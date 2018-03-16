@@ -12,22 +12,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models
+namespace Karamem0.SharePoint.PowerShell.Models.Search
 {
 
     [JsonObject()]
-    public class ViewFields : ClientObject
+    public class SimpleDataTable : ClientObject
     {
 
-        public ViewFields()
+        public SimpleDataTable()
         {
         }
 
         [JsonProperty()]
-        public string SchemaXml { get; private set; }
-
-        [JsonProperty()]
-        public ClientObjectCollection<string> Items { get; private set; }
+        public ClientObjectCollection<SimpleDataRow> Rows { get; private set; }
 
     }
 

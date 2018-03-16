@@ -24,21 +24,24 @@ namespace Karamem0.SharePoint.PowerShell.Models
         {
         }
 
-        public ListItem(IDictionary<string, object> properties)
+        public ListItem(IDictionary<string, object> parameters)
         {
-            foreach (var property in properties)
+            var jsonSerializerSettings = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
+            var jsonSerializer = JsonSerializer.Create(jsonSerializerSettings);
+            foreach (var parameter in parameters)
             {
-                var valueType = property.Value.GetType();
+                var valueType = parameter.Value.GetType();
                 if (valueType.IsArray)
                 {
                     var elementType = valueType.GetElementType();
-                    var collectionType = typeof(ClientValueObjectCollection<>);
+                    var collectionType = typeof(ClientObjectCollection<>);
                     var genericType = collectionType.MakeGenericType(elementType);
-                    this.ExtendedProperties.Add(property.Key, JToken.FromObject(Activator.CreateInstance(genericType, property.Value)));
+                    var value = Activator.CreateInstance(genericType, parameter.Value);
+                    this.ExtendedProperties.Add(parameter.Key, JToken.FromObject(value, jsonSerializer));
                 }
                 else
                 {
-                    this.ExtendedProperties.Add(property.Key, JToken.FromObject(property.Value));
+                    this.ExtendedProperties.Add(parameter.Key, JToken.FromObject(parameter.Value, jsonSerializer));
                 }
             }
         }

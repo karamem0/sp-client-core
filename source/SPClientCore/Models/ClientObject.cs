@@ -28,10 +28,10 @@ namespace Karamem0.SharePoint.PowerShell.Models
         }
 
         [JsonProperty("__deferred")]
-        public virtual ODataDeferred Deferred { get; private set; }
+        public ODataDeferred Deferred { get; private set; }
 
         [JsonProperty("__metadata")]
-        public virtual ODataMetadata Metadata { get; private set; }
+        public ODataMetadata Metadata { get; private set; }
 
         [JsonExtensionData()]
         public Dictionary<string, JToken> ExtendedProperties { get; private set; }

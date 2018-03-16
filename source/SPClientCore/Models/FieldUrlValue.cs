@@ -16,7 +16,7 @@ namespace Karamem0.SharePoint.PowerShell.Models
 {
 
     [JsonObject(Id = "SP.FieldUrlValue")]
-    public class FieldUrlValue : ClientValueObject
+    public class FieldUrlValue : ClientObject
     {
 
         public FieldUrlValue()

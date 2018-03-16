@@ -22,7 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
     [Cmdlet("Find", "SPList")]
     [OutputType(typeof(List[]))]
-
     public class FindListCommand : PSCmdlet
     {
 

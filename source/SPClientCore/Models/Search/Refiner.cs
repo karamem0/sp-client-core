@@ -12,22 +12,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models
+namespace Karamem0.SharePoint.PowerShell.Models.Search
 {
 
-    [JsonObject()]
-    public class ViewFields : ClientObject
+    [JsonObject(Id = "Microsoft.Office.Server.Search.REST.Refiner")]
+    public class Refiner : ClientObject
     {
-
-        public ViewFields()
+        
+        public Refiner()
         {
         }
 
         [JsonProperty()]
-        public string SchemaXml { get; private set; }
+        public ClientObjectCollection<RefinerEntry> Entries { get; private set; }
 
         [JsonProperty()]
-        public ClientObjectCollection<string> Items { get; private set; }
+        public string Name { get; private set; }
 
     }
 

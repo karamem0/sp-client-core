@@ -25,27 +25,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.OData
             var typeAttribute = type.GetCustomAttribute<JsonObjectAttribute>(false);
             if (typeAttribute != null)
             {
-                return new ODataMetadata(null, null, typeAttribute.Id);
-            }
-            else
-            {
-                if (type.IsGenericSubclassOf(typeof(ClientObjectCollection<>)))
+                if (typeAttribute.Id != null)
                 {
-                    var argumentType = type.GetGenericArguments()[0];
-                    var argumentAttribute = argumentType.GetCustomAttribute<JsonObjectAttribute>(false);
-                    if (argumentAttribute != null)
-                    {
-                        return new ODataMetadata(null, null, $"Collection({argumentAttribute.Id})");
-                    }
-                }
-                if (type.IsGenericSubclassOf(typeof(ClientValueObjectCollection<>)))
-                {
-                    var argumentType = type.GetGenericArguments()[0];
-                    if (argumentType.IsGenericSubclassOf(typeof(Nullable<>)))
-                    {
-                        argumentType = argumentType.GetGenericArguments()[0];
-                    }
-                    return new ODataMetadata(null, null, $"Collection(Edm.{argumentType.Name})");
+                    return new ODataMetadata(null, null, typeAttribute.Id);
                 }
             }
             return null;

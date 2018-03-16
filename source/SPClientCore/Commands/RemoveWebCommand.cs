@@ -22,6 +22,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
     [OutputType(typeof(void))]
     public class RemoveWebCommand : PSCmdlet
     {
+
         public RemoveWebCommand()
         {
         }

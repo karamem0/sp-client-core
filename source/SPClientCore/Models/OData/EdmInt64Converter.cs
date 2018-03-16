@@ -40,15 +40,14 @@ namespace Karamem0.SharePoint.PowerShell.Models.OData
 
         public override bool CanConvert(Type objectType)
         {
-            if (objectType == typeof(long))
+            if (objectType == typeof(long) || objectType == typeof(long?))
             {
                 return true;
             }
-            if (objectType == typeof(Nullable<long>))
+            else
             {
-                return true;
+                return false;
             }
-            return false;
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
