@@ -6,8 +6,9 @@
 // https://github.com/karamem0/SPClientCore/blob/master/LICENSE
 //
 
-using Karamem0.SharePoint.PowerShell.Models;
+using Karamem0.SharePoint.PowerShell.Models.Core;
 using Karamem0.SharePoint.PowerShell.Services;
+using Karamem0.SharePoint.PowerShell.Services.Core;
 using Karamem0.SharePoint.PowerShell.Services.OAuth;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -16,7 +17,6 @@ using System.Management.Automation;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Management.Automation.Host;
 
 namespace Karamem0.SharePoint.PowerShell.Commands
 {

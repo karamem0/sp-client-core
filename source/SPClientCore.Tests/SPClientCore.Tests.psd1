@@ -12,7 +12,7 @@
     RootModule = 'SPClientCore.Tests.psm1'
     
     # Version number of this module.
-    ModuleVersion = '1.1.0'
+    ModuleVersion = '1.1.1'
     
     # ID used to uniquely identify this module
     GUID = 'FE41D7F6-F44C-402B-A23F-6ACF64FE0E9F'
