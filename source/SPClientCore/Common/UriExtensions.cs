@@ -55,6 +55,7 @@ namespace Karamem0.SharePoint.PowerShell.Common
         public static Uri ConcatPath(this Uri uri, string path, params object[] args)
         {
             return uri.ConcatPath(string.Format(path, args
+                .Select(obj => obj is null ? string.Empty : obj)
                 .Select(obj => obj is bool ? obj.ToString().ToLower() : obj.ToString())
                 .Select(str => Uri.EscapeDataString(str)).ToArray()));
         }

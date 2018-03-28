@@ -35,7 +35,7 @@ namespace Karamem0.SharePoint.PowerShell.Common
                     var value = Uri.EscapeDataString(pair.Value.ToString());
                     if (quote)
                     {
-                        return $"{key}='{value}'";
+                        return $"{key}=%27{value}%27";
                     }
                     else
                     {

@@ -14,8 +14,8 @@ SharePoint Service Module for PowerShell Core.
 ## Dependencies
 
 - [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/2.0.0) (2.0.0)
-- [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/6.0.3) (10.0.3)
-- [System.Management.Automation](https://powershell.myget.org/feed/powershell-core/package/nuget/System.Management.Automation/6.0.1) (6.0.1)
+- [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/11.0.2) (11.0.2)
+- [System.Management.Automation](https://powershell.myget.org/feed/powershell-core/package/nuget/System.Management.Automation/6.0.2) (6.0.2)
 
 ## Installation
 

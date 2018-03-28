@@ -9,13 +9,13 @@
 @{
 
 # Script module or binary module file associated with this manifest.
-RootModule = 'SPClientCore.dll'
+RootModule = 'SPClientCore.Tests.psm1'
 
 # Version number of this module.
 ModuleVersion = '1.2.0'
 
 # ID used to uniquely identify this module
-GUID = '83E99C54-16E5-4ABA-96EC-76830CCDFFEF'
+GUID = 'FE41D7F6-F44C-402B-A23F-6ACF64FE0E9F'
 
 # Author of this module
 Author = 'karamem0'
@@ -30,7 +30,7 @@ Copyright = 'Copyright (c) 2018 karamem0'
 Description = 'SharePoint Service Module for PowerShell Core'
 
 # Minimum version of the Windows PowerShell engine required by this module
-PowerShellVersion = '6.0'
+PowerShellVersion = '3.0'
 
 # Name of the Windows PowerShell host required by this module
 # PowerShellHostName = ''
@@ -51,11 +51,7 @@ PowerShellVersion = '6.0'
 # RequiredModules = @()
 
 # Assemblies that must be loaded prior to importing this module
-RequiredAssemblies = @(
-    'Microsoft.Extensions.DependencyInjection.dll'
-    'Microsoft.Extensions.DependencyInjection.Abstractions.dll'
-    'Newtonsoft.Json.dll'
-)
+# RequiredAssemblies = @()
 
 # Script files (.ps1) that are run in the caller's environment prior to importing this module.
 # ScriptsToProcess = @()

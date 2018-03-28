@@ -6,6 +6,10 @@
 # https://github.com/karamem0/SPClientCore/blob/master/LICENSE
 #
 
+Add-Type -Path "$PSScriptRoot/Microsoft.SharePoint.Client.dll"
+Add-Type -Path "$PSScriptRoot/Microsoft.SharePoint.Client.Runtime.dll"
+Add-Type -Path "$PSScriptRoot/Microsoft.SharePoint.Client.UserProfiles.dll"
+
 function Install-TestSite
 {
 
@@ -17,7 +21,7 @@ function Install-TestSite
         [string]
         $ServiceType,
         [Parameter(Mandatory = $true)]
-        [string]
+        [uri]
         $Url,
         [Parameter(Mandatory = $true)]
         [string]
@@ -34,7 +38,7 @@ function Install-TestSite
     {
         $appSettings = [ordered]@{}
 
-        $context = New-Object Microsoft.SharePoint.Client.ClientContext($Url)
+        $context = New-Object Microsoft.SharePoint.Client.ClientContext($Url.ToString())
         $credential = New-Object System.Net.NetworkCredential(($UserName + '@' + $DomainName), $Password)
         if ($ServiceType -eq 'Server')
         {
@@ -43,7 +47,7 @@ function Install-TestSite
         if ($ServiceType -eq 'Online')
         {
             $context.Credentials = New-Object Microsoft.SharePoint.Client.SharePointOnlineCredentials($credential.UserName, $credential.SecurePassword)
-            $context.add_ExecutingWebRequest({ $_.WebRequestExecutor.WebRequest.UserAgent = "NONISV|karamem0|SPClientCore/1.0" })
+            $context.add_ExecutingWebRequest({ $_.WebRequestExecutor.WebRequest.UserAgent = 'NONISV|karamem0|SPClientCore/' + $MyInvocation.MyCommand.Module.Version })
         }
         $appSettings.ServiceType = $ServiceType
         $appSettings.LoginUrl = $Url
@@ -918,7 +922,33 @@ function Install-TestSite
         $context.ExecuteQuery()
         $appSettings.File4Url = $file4.ServerRelativeUrl
         $appSettings.File4Id = $file4.ListItemAllFields.Id
-        
+
+        $socialFeedManager = New-Object Microsoft.SharePoint.Client.Social.SocialFeedManager($context)
+
+        $socialAttachment1 = $socialFeedManager.GetPreview($Url.GetLeftPart(1) + $file1.ServerRelativeUrl)
+        $context.ExecuteQuery()
+
+        $socialPost1 = New-Object Microsoft.SharePoint.Client.Social.SocialPostCreationData
+        $socialPost1.Attachment = $socialAttachment1.Value
+        $socialPost1.ContentText = 'Test Post 1'
+        $socialThread1 = $socialFeedManager.CreatePost($web1.Url + '/newsfeed.aspx', $socialPost1)
+        $context.ExecuteQuery()
+
+        $socialPost2 = New-Object Microsoft.SharePoint.Client.Social.SocialPostCreationData
+        $socialPost2.ContentText = 'Test Post 2'
+        $socialThread2 = $socialFeedManager.CreatePost($web1.Url + '/newsfeed.aspx', $socialPost2)
+        $context.ExecuteQuery()
+
+        $socialPost3 = New-Object Microsoft.SharePoint.Client.Social.SocialPostCreationData
+        $socialPost3.ContentText = 'Test Post 3'
+        $socialThread3 = $socialFeedManager.CreatePost($web1.Url + '/newsfeed.aspx', $socialPost3)
+        $context.ExecuteQuery()
+
+        $socialPost4 = New-Object Microsoft.SharePoint.Client.Social.SocialPostCreationData
+        $socialPost4.ContentText = 'Test Post 4'
+        $socialThread4 = $socialFeedManager.CreatePost($socialThread1.Value.Id, $socialPost4)
+        $context.ExecuteQuery()
+
         Write-Output $appSettings
     }
 
@@ -935,7 +965,7 @@ function Uninstall-TestSite
         [string]
         $ServiceType,
         [Parameter(Mandatory = $true)]
-        [string]
+        [uri]
         $Url,
         [Parameter(Mandatory = $true)]
         [string]
@@ -952,7 +982,7 @@ function Uninstall-TestSite
     {
         trap { continue }
 
-        $context = New-Object Microsoft.SharePoint.Client.ClientContext($Url)
+        $context = New-Object Microsoft.SharePoint.Client.ClientContext($Url.ToString())
         $credential = New-Object System.Net.NetworkCredential(($UserName + '@' + $DomainName), $Password)
         if ($ServiceType -eq 'Server')
         {
