@@ -22,7 +22,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands.Core
 {
 
-    [Cmdlet("Update", "SPView", DefaultParameterSetName = "ByParam")]
+    [Cmdlet("Update", "SPView", DefaultParameterSetName = "Param")]
     [OutputType(typeof(View))]
     public class UpdateViewCommand : PSCmdlet
     {
@@ -31,16 +31,16 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
         {
         }
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position = 0)]
         public ListPipeBind List { get; private set; }
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
         public ViewPipeBind View { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ByParam")]
+        [Parameter(Mandatory = false, ParameterSetName = "Param")]
         public string Aggregations { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ByParam")]
+        [Parameter(Mandatory = false, ParameterSetName = "Param")]
         public string AggregationsStatus { get; private set; }
 
         [Parameter(Mandatory = false)]
@@ -52,7 +52,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
         [Parameter(Mandatory = false)]
         public bool? EditorModified { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ByParam")]
+        [Parameter(Mandatory = false, ParameterSetName = "Param")]
         public string Formats { get; private set; }
 
         [Parameter(Mandatory = false)]
@@ -61,10 +61,10 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
         [Parameter(Mandatory = false)]
         public bool? IncludeRootFolder { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ByParam")]
+        [Parameter(Mandatory = false, ParameterSetName = "Param")]
         public string JSLink { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ByParam")]
+        [Parameter(Mandatory = false, ParameterSetName = "Param")]
         public bool? Paged { get; private set; }
 
         [Parameter(Mandatory = false)]
@@ -73,7 +73,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
         [Parameter(Mandatory = false)]
         public bool? MobileView { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ByParam")]
+        [Parameter(Mandatory = false, ParameterSetName = "Param")]
         public int? RowLimit { get; private set; }
 
         [Parameter(Mandatory = false)]
@@ -82,22 +82,22 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
         [Parameter(Mandatory = false)]
         public string Title { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ByParam")]
+        [Parameter(Mandatory = false, ParameterSetName = "Param")]
         public string Toolbar { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ByParam")]
+        [Parameter(Mandatory = false, ParameterSetName = "Param")]
         public string ViewData { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ByParam")]
+        [Parameter(Mandatory = false, ParameterSetName = "Param")]
         public string ViewJoins { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ByParam")]
+        [Parameter(Mandatory = false, ParameterSetName = "Param")]
         public string ViewProjectedFields { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ByParam")]
+        [Parameter(Mandatory = false, ParameterSetName = "Param")]
         public string ViewQuery { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ByXml")]
+        [Parameter(Mandatory = false, ParameterSetName = "Xml")]
         public string ListViewXml { get; private set; }
 
         [Parameter(Mandatory = false)]

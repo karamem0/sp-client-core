@@ -29,7 +29,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
         {
         }
 
-        [Parameter(Mandatory = false)]
+        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
         public ListPipeBind List { get; private set; }
 
         [Parameter(Mandatory = false)]

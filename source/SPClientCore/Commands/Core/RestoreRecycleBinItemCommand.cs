@@ -29,7 +29,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
         {
         }
 
-        [Parameter(Mandatory = true, ParameterSetName = "One")]
+        [Parameter(Mandatory = true, ParameterSetName = "One", Position = 0, ValueFromPipeline = true)]
         public RecycleBinItemPipeBind RecycleBinItem { get; private set; }
 
         [Parameter(Mandatory = true, ParameterSetName = "All")]

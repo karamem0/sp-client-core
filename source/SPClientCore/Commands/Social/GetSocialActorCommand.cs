@@ -31,7 +31,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Social
         {
         }
 
-        [Parameter(Mandatory = false)]
+        [Parameter(Mandatory = false, Position = 0, ValueFromPipeline = true)]
         public SocialActorPipeBind Actor { get; private set; }
 
         protected override void ProcessRecord()

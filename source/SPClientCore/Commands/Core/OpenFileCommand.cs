@@ -29,7 +29,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
         {
         }
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
         public FilePipeBind File { get; private set; }
 
         protected override void ProcessRecord()

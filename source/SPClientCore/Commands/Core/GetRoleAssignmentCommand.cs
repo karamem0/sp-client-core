@@ -22,7 +22,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands.Core
 {
 
-    [Cmdlet("Get", "SPRoleAssignment", DefaultParameterSetName = "ByWeb")]
+    [Cmdlet("Get", "SPRoleAssignment", DefaultParameterSetName = "Web")]
     [OutputType(typeof(RoleAssignment))]
     public class GetRoleAssignmentCommand : PSCmdlet
     {
@@ -31,21 +31,17 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
         {
         }
 
-        [Parameter(Mandatory = true, ParameterSetName = "ByList")]
-        [Parameter(Mandatory = true, ParameterSetName = "ByListItem")]
+        [Parameter(Mandatory = true, ParameterSetName = "List", Position = 0)]
+        [Parameter(Mandatory = true, ParameterSetName = "ListItem", Position = 0)]
         public ListPipeBind List { get; private set; }
 
-        [Parameter(Mandatory = true, ParameterSetName = "ByListItem")]
+        [Parameter(Mandatory = true, ParameterSetName = "ListItem", Position = 1)]
         public ListItemPipeBind ListItem { get; private set; }
 
-        [Parameter(Mandatory = true, ParameterSetName = "ByWeb")]
-        [Parameter(Mandatory = true, ParameterSetName = "ByList")]
-        [Parameter(Mandatory = true, ParameterSetName = "ByListItem")]
+        [Parameter(Mandatory = true)]
         public int? PrincipalId { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ByWeb")]
-        [Parameter(Mandatory = false, ParameterSetName = "ByList")]
-        [Parameter(Mandatory = false, ParameterSetName = "ByListItem")]
+        [Parameter(Mandatory = false)]
         public string[] Includes { get; private set; }
 
 
@@ -56,18 +52,18 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
                 throw new InvalidOperationException(StringResources.ErrorNotConnected);
             }
             var roleAssignmentQuery = ODataQuery.Create<RoleAssignment>(this.MyInvocation.BoundParameters);
-            if (this.ParameterSetName == "ByWeb")
+            if (this.ParameterSetName == "Web")
             {
                 var webService = ClientObjectService.ServiceProvider.GetService<IWebService>();
                 this.WriteObject(webService.GetWebRoleAssignment(this.PrincipalId, roleAssignmentQuery));
             }
-            if (this.ParameterSetName == "ByList")
+            if (this.ParameterSetName == "List")
             {
                 var listService = ClientObjectService.ServiceProvider.GetService<IListService>();
                 var list = listService.GetList(this.List);
                 this.WriteObject(listService.GetListRoleAssignment(list.Id, this.PrincipalId, roleAssignmentQuery));
             }
-            if (this.ParameterSetName == "ByListItem")
+            if (this.ParameterSetName == "ListItem")
             {
                 var listItemService = ClientObjectService.ServiceProvider.GetService<IListItemService>();
                 var listService = ClientObjectService.ServiceProvider.GetService<IListService>();

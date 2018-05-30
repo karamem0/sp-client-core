@@ -31,7 +31,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
         {
         }
 
-        [Parameter(Mandatory = false)]
+        [Parameter(Mandatory = false, Position = 0)]
         public GroupPipeBind Group { get; private set; }
 
         [Parameter(Mandatory = false)]

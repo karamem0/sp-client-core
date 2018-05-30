@@ -29,10 +29,10 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
         {
         }
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position = 0)]
         public FilePipeBind File { get; private set; }
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
         public FileVersionPipeBind FileVersion { get; private set; }
 
         protected override void ProcessRecord()

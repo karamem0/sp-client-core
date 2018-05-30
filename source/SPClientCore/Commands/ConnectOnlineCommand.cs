@@ -28,8 +28,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         public ConnectOnlineCommand()
         {
-            this.Authority = new Uri("https://login.microsoftonline.com");
-            this.ClientId = new Guid("2212ff95-3f5a-4de7-b55e-8efebb515180");
         }
 
         [Parameter(Mandatory = true)]
@@ -46,6 +44,14 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         protected override void ProcessRecord()
         {
+            if (this.Authority == null)
+            {
+                this.Authority = new Uri(Constants.Authority);
+            }
+            if (this.ClientId == null)
+            {
+                this.ClientId = new Guid(Constants.ClientId);
+            }
             var oAuthContext = new OAuthContext(this.Authority.ToString(), this.ClientId.ToString(), this.Url.GetLeftPart(UriPartial.Authority));
             if (this.Credential == null)
             {

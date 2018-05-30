@@ -166,6 +166,22 @@ namespace Karamem0.SharePoint.PowerShell.Services.OAuth
             }
         }
 
+        public Uri GetAdminConsentUrl()
+        {
+            var requertParameters = new Dictionary<string, object>()
+            {
+                { "client_id", this.clientId },
+                { "response_type", "code" },
+                { "redirect_uri", Constants.AdminConsentRedirectUrl },
+                { "resource", this.resource },
+                { "prompt", "admin_consent" }
+            };
+            var requestUrl = new Uri(this.authority, UriKind.Absolute)
+                .ConcatPath("common/oauth2/authorize")
+                .ConcatQuery(UriQuery.Create(requertParameters));
+            return requestUrl;
+        }
+
     }
 
 }

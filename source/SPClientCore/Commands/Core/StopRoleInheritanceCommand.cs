@@ -20,7 +20,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands.Core
 {
 
-    [Cmdlet("Stop", "SPRoleInheritance", DefaultParameterSetName = "ByWeb")]
+    [Cmdlet("Stop", "SPRoleInheritance", DefaultParameterSetName = "Web")]
     [OutputType(typeof(void))]
     public class StopRoleInheritanceCommand : PSCmdlet
     {
@@ -29,21 +29,21 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
         {
         }
 
-        [Parameter(Mandatory = true, ParameterSetName = "ByList")]
-        [Parameter(Mandatory = true, ParameterSetName = "ByListItem")]
+        [Parameter(Mandatory = true, ParameterSetName = "List", Position = 0)]
+        [Parameter(Mandatory = true, ParameterSetName = "ListItem", Position = 0)]
         public ListPipeBind List { get; private set; }
 
-        [Parameter(Mandatory = true, ParameterSetName = "ByListItem")]
+        [Parameter(Mandatory = true, ParameterSetName = "ListItem", Position = 1)]
         public ListItemPipeBind ListItem { get; private set; }
 
-        [Parameter(Mandatory = true, ParameterSetName = "ByWeb")]
-        [Parameter(Mandatory = true, ParameterSetName = "ByList")]
-        [Parameter(Mandatory = true, ParameterSetName = "ByListItem")]
+        [Parameter(Mandatory = true, ParameterSetName = "Web")]
+        [Parameter(Mandatory = true, ParameterSetName = "List")]
+        [Parameter(Mandatory = true, ParameterSetName = "ListItem")]
         public SwitchParameter CopyRoleAssignments { get; private set; }
 
-        [Parameter(Mandatory = true, ParameterSetName = "ByWeb")]
-        [Parameter(Mandatory = true, ParameterSetName = "ByList")]
-        [Parameter(Mandatory = true, ParameterSetName = "ByListItem")]
+        [Parameter(Mandatory = true, ParameterSetName = "Web")]
+        [Parameter(Mandatory = true, ParameterSetName = "List")]
+        [Parameter(Mandatory = true, ParameterSetName = "ListItem")]
         public SwitchParameter ClearSubscopes { get; private set; }
 
         protected override void ProcessRecord()
@@ -52,18 +52,18 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
             {
                 throw new InvalidOperationException(StringResources.ErrorNotConnected);
             }
-            if (this.ParameterSetName == "ByWeb")
+            if (this.ParameterSetName == "Web")
             {
                 var webService = ClientObjectService.ServiceProvider.GetService<IWebService>();
                 webService.BreakWebRoleInheritance(this.CopyRoleAssignments, this.ClearSubscopes);
             }
-            if (this.ParameterSetName == "ByList")
+            if (this.ParameterSetName == "List")
             {
                 var listService = ClientObjectService.ServiceProvider.GetService<IListService>();
                 var list = listService.GetList(this.List);
                 listService.BreakListRoleInheritance(list.Id, this.CopyRoleAssignments, this.ClearSubscopes);
             }
-            if (this.ParameterSetName == "ByListItem")
+            if (this.ParameterSetName == "ListItem")
             {
                 var listItemService = ClientObjectService.ServiceProvider.GetService<IListItemService>();
                 var listService = ClientObjectService.ServiceProvider.GetService<IListService>();

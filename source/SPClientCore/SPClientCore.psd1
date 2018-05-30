@@ -12,7 +12,7 @@
 RootModule = 'SPClientCore.dll'
 
 # Version number of this module.
-ModuleVersion = '1.2.1'
+ModuleVersion = '1.2.2'
 
 # ID used to uniquely identify this module
 GUID = '83E99C54-16E5-4ABA-96EC-76830CCDFFEF'
@@ -30,7 +30,7 @@ Copyright = 'Copyright (c) 2018 karamem0'
 Description = 'SharePoint Service Module for PowerShell Core'
 
 # Minimum version of the Windows PowerShell engine required by this module
-PowerShellVersion = '6.0'
+PowerShellVersion = '6.0.2'
 
 # Name of the Windows PowerShell host required by this module
 # PowerShellHostName = ''
@@ -100,6 +100,7 @@ CmdletsToExport = @(
     'Get-SPGroup'
     'Get-SPList'
     'Get-SPListItem'
+    'Get-SPOnlineAdminConsentUrl'
     'Get-SPRecycleBinItem'
     'Get-SPRoleAssignment'
     'Get-SPRoleDefinition'

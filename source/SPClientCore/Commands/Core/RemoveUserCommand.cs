@@ -29,11 +29,10 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
         {
         }
 
-        [Parameter(Mandatory = true)]
-        [Alias("Identity")]
+        [Parameter(Mandatory = true, Position = 0)]
         public UserPipeBind User { get; private set; }
 
-        [Parameter(Mandatory = false)]
+        [Parameter(Mandatory = false, Position = 1, ValueFromPipeline = true)]
         public GroupPipeBind Group { get; private set; }
 
         protected override void ProcessRecord()

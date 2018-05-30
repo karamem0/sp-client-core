@@ -29,13 +29,13 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
         {
         }
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position = 0)]
         public ListPipeBind List { get; private set; }
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position = 1)]
         public ListItemPipeBind ListItem { get; private set; }
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position = 2, ValueFromPipeline = true)]
         public AttachmentPipeBind Attachment { get; private set; }
 
         protected override void ProcessRecord()

@@ -31,10 +31,10 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
         {
         }
 
-        [Parameter(Mandatory = false)]
+        [Parameter(Mandatory = false, Position = 0)]
         public GroupPipeBind Group { get; private set; }
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
         public UserPipeBind User { get; private set; }
 
         [Parameter(Mandatory = false)]

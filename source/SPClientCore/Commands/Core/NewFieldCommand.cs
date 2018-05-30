@@ -22,7 +22,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands.Core
 {
 
-    [Cmdlet("New", "SPField", DefaultParameterSetName = "ByParam")]
+    [Cmdlet("New", "SPField", DefaultParameterSetName = "Param")]
     [OutputType(typeof(Field))]
     public class NewFieldCommand : PSCmdlet
     {
@@ -31,64 +31,64 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
         {
         }
 
-        [Parameter(Mandatory = false)]
+        [Parameter(Mandatory = false, Position = 0)]
         public ListPipeBind List { get; private set; }
 
-        [Parameter(Mandatory = true, ParameterSetName = "ByParam")]
+        [Parameter(Mandatory = true, ParameterSetName = "Param")]
         public FieldTypeKind? FieldTypeKind { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ByParam")]
+        [Parameter(Mandatory = false, ParameterSetName = "Param")]
         public string DefaultValue { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ByParam")]
+        [Parameter(Mandatory = false, ParameterSetName = "Param")]
         public string Description { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ByParam")]
+        [Parameter(Mandatory = false, ParameterSetName = "Param")]
         public string Direction { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ByParam")]
+        [Parameter(Mandatory = false, ParameterSetName = "Param")]
         public bool? EnforceUniqueValues { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ByParam")]
+        [Parameter(Mandatory = false, ParameterSetName = "Param")]
         public string Group { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ByParam")]
+        [Parameter(Mandatory = false, ParameterSetName = "Param")]
         public bool? Hidden { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ByParam")]
+        [Parameter(Mandatory = false, ParameterSetName = "Param")]
         public bool? Indexed { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ByParam")]
+        [Parameter(Mandatory = false, ParameterSetName = "Param")]
         public string JSLink { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ByParam")]
+        [Parameter(Mandatory = false, ParameterSetName = "Param")]
         public bool? ReadOnlyField { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ByParam")]
+        [Parameter(Mandatory = false, ParameterSetName = "Param")]
         public bool? Required { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ByParam")]
+        [Parameter(Mandatory = false, ParameterSetName = "Param")]
         public string Scope { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ByParam")]
+        [Parameter(Mandatory = false, ParameterSetName = "Param")]
         public bool? Sortable { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ByParam")]
+        [Parameter(Mandatory = false, ParameterSetName = "Param")]
         public string StaticName { get; private set; }
 
-        [Parameter(Mandatory = true, ParameterSetName = "ByParam")]
+        [Parameter(Mandatory = true, ParameterSetName = "Param")]
         public string Title { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ByParam")]
+        [Parameter(Mandatory = false, ParameterSetName = "Param")]
         public string ValidationFormula { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ByParam")]
+        [Parameter(Mandatory = false, ParameterSetName = "Param")]
         public string ValidationMessage { get; private set; }
 
-        [Parameter(Mandatory = true, ParameterSetName = "ByXml")]
+        [Parameter(Mandatory = true, ParameterSetName = "Xml")]
         public string SchemaXml { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ByXml")]
+        [Parameter(Mandatory = false, ParameterSetName = "Xml")]
         public AddFieldOptions? Options { get; private set; }
 
         [Parameter(Mandatory = false)]
@@ -102,7 +102,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
             }
             var fieldService = ClientObjectService.ServiceProvider.GetService<IFieldService>();
             var fieldQuery = ODataQuery.Create<Field>(this.MyInvocation.BoundParameters);
-            if (this.ParameterSetName == "ByParam")
+            if (this.ParameterSetName == "Param")
             {
                 if (this.List == null)
                 {
@@ -115,7 +115,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
                     this.WriteObject(fieldService.CreateField(list.Id, this.MyInvocation.BoundParameters, fieldQuery));
                 }
             }
-            if (this.ParameterSetName == "ByXml")
+            if (this.ParameterSetName == "Xml")
             {
                 if (this.List == null)
                 {
