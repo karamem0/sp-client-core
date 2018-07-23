@@ -10,12 +10,10 @@ Add-Type -Path "$PSScriptRoot/Microsoft.SharePoint.Client.dll"
 Add-Type -Path "$PSScriptRoot/Microsoft.SharePoint.Client.Runtime.dll"
 Add-Type -Path "$PSScriptRoot/Microsoft.SharePoint.Client.UserProfiles.dll"
 
-function Install-TestSite
-{
+function Install-TestSite {
 
     [CmdletBinding()]
-    param
-    (
+    param (
         [Parameter(Mandatory = $true)]
         [ValidateSet("Server", "Online")]
         [string]
@@ -34,18 +32,15 @@ function Install-TestSite
         $DomainName
     )
 
-    process
-    {
+    process {
         $appSettings = [ordered]@{}
 
         $context = New-Object Microsoft.SharePoint.Client.ClientContext($Url.ToString())
         $credential = New-Object System.Net.NetworkCredential(($UserName + '@' + $DomainName), $Password)
-        if ($ServiceType -eq 'Server')
-        {
+        if ($ServiceType -eq 'Server') {
             $context.Credentials = $credential
         }
-        if ($ServiceType -eq 'Online')
-        {
+        if ($ServiceType -eq 'Online') {
             $context.Credentials = New-Object Microsoft.SharePoint.Client.SharePointOnlineCredentials($credential.UserName, $credential.SecurePassword)
             $context.add_ExecutingWebRequest({ $_.WebRequestExecutor.WebRequest.UserAgent = 'NONISV|karamem0|SPClientCore/' + $MyInvocation.MyCommand.Module.Version })
         }
@@ -55,11 +50,11 @@ function Install-TestSite
         $appSettings.LoginUserName = $credential.UserName
         $appSettings.LoginPassword = $credential.Password
 
-        $site = $context.Site
-        $context.Load($site)
+        $context.Load($context.Web)
+        $context.Load($context.Site)
         $context.ExecuteQuery()
-        $appSettings.SiteGuid = $site.Id
-        $appSettings.SiteUrl = $site.ServerRelativeUrl
+        $appSettings.SiteGuid = $context.Site.Id
+        $appSettings.SiteUrl = $context.Site.ServerRelativeUrl
 
         $group1 = New-Object Microsoft.SharePoint.Client.GroupCreationInformation
         $group1.Title = 'Test Group 1'
@@ -94,8 +89,7 @@ function Install-TestSite
         $appSettings.Group3Id = $group3.Id
         $appSettings.Group3Name = $group3.Title
 
-        if ($ServiceType -eq 'Server')
-        {
+        if ($ServiceType -eq 'Server') {
             $user1 = New-Object Microsoft.SharePoint.Client.UserCreationInformation
             $user1.LoginName = 'i:0#.w|' + $DomainName.Split('.')[0].ToUpper() + '\testuser1'
             $user1.Title = 'Test User 1'
@@ -136,8 +130,7 @@ function Install-TestSite
             $appSettings.User3Email = $user3.Email
         }
 
-        if ($ServiceType -eq 'Online')
-        {
+        if ($ServiceType -eq 'Online') {
             $user1 = New-Object Microsoft.SharePoint.Client.UserCreationInformation
             $user1.LoginName = 'i:0#.f|membership|testuser1@' + $DomainName
             $user1.Title = 'Test User 1'
@@ -821,6 +814,7 @@ function Install-TestSite
         $attachment1 = $item1.AttachmentFiles.Add($attachment1)
         $context.Load($attachment1)
         $context.ExecuteQuery()
+        $stream.Dispose()
         $appSettings.Attachment1Name = $attachment1.FileName
         
         $buffer = [System.Text.Encoding]::UTF8.GetBytes('TestFile2')
@@ -831,6 +825,7 @@ function Install-TestSite
         $attachment2 = $item1.AttachmentFiles.Add($attachment2)
         $context.Load($attachment2)
         $context.ExecuteQuery()
+        $stream.Dispose()
         $appSettings.Attachment2Name = $attachment2.FileName
 
         $buffer = [System.Text.Encoding]::UTF8.GetBytes('TestFile3')
@@ -841,6 +836,7 @@ function Install-TestSite
         $attachment3 = $item1.AttachmentFiles.Add($attachment3)
         $context.Load($attachment3)
         $context.ExecuteQuery()
+        $stream.Dispose()
         $appSettings.Attachment3Name = $attachment3.FileName
 
         $folder1 = $list2.RootFolder.Folders.Add('TestFolder1')
@@ -896,6 +892,7 @@ function Install-TestSite
         $context.Load($file2)
         $context.Load($file2.ListItemAllFields)
         $context.ExecuteQuery()
+        $stream.Dispose()
         $appSettings.File2Url = $file2.ServerRelativeUrl
         $appSettings.File2Id = $file2.ListItemAllFields.Id
 
@@ -908,6 +905,7 @@ function Install-TestSite
         $context.Load($file3)
         $context.Load($file3.ListItemAllFields)
         $context.ExecuteQuery()
+        $stream.Dispose()
         $appSettings.File3Url = $file3.ServerRelativeUrl
         $appSettings.File3Id = $file3.ListItemAllFields.Id
 
@@ -920,6 +918,7 @@ function Install-TestSite
         $context.Load($file4)
         $context.Load($file4.ListItemAllFields)
         $context.ExecuteQuery()
+        $stream.Dispose()
         $appSettings.File4Url = $file4.ServerRelativeUrl
         $appSettings.File4Id = $file4.ListItemAllFields.Id
 
@@ -949,17 +948,81 @@ function Install-TestSite
         $socialThread4 = $socialFeedManager.CreatePost($socialThread1.Value.Id, $socialPost4)
         $context.ExecuteQuery()
 
+        if ($ServiceType -eq 'Online') {
+            $appCatalogSites = $context.Web.TenantAppCatalog.SiteCollectionAppCatalogsSites
+            $context.Load($appCatalogSites)
+            $context.ExecuteQuery()
+            $appCatalogSite = $appCatalogSites | where AbsoluteUrl -eq $Url
+            if ($appCatalogSite -eq $null) {
+                $appCatalogSite = $appCatalogSites.Add($Url)
+                $context.ExecuteQuery()
+            }
+
+            $tenant = [Microsoft.SharePoint.Client.TenantSettings]::GetCurrent($context)
+            $context.Load($tenant)
+            $context.ExecuteQuery()
+            $appSettings.AppCatalogSiteUrl = $tenant.CorporateCatalogUrl
+
+            $list = $context.Web.GetList($context.Web.ServerRelativeUrl + '/AppCatalog')
+            $context.Load($list)
+            $context.Load($list.RootFolder)
+            $context.ExecuteQuery()
+
+            $app0Path = (Resolve-Path "$PSScriptRoot/SharePointAddIn0.sppkg").ToString()
+            $appSettings.App0Path = $app0Path
+
+            $app1Path = (Resolve-Path "$PSScriptRoot/SharePointAddIn1.app").ToString()
+            $stream = [System.IO.File]::OpenRead($app1Path)
+            $app1File = New-Object Microsoft.SharePoint.Client.FileCreationInformation
+            $app1File.Url = 'SharePointAddIn1.app'
+            $app1File.ContentStream = $stream
+            $app1File = $list.RootFolder.Files.Add($app1File)
+            $context.Load($app1File)
+            $context.Load($app1File.ListItemAllFields)
+            $context.ExecuteQuery()
+            $stream.Dispose()
+            $appSettings.App1Path = $app1Path
+            $appSettings.App1Id = $app1File.ListItemAllFields['UniqueId']
+            $appSettings.App1ProductId = $app1File.ListItemAllFields['AppProductID']
+
+            $app2Path = (Resolve-Path "$PSScriptRoot/SharePointAddIn2.app").ToString()
+            $stream = [System.IO.File]::OpenRead($app2Path)
+            $app2File = New-Object Microsoft.SharePoint.Client.FileCreationInformation
+            $app2File.Url = 'SharePointAddIn2.app'
+            $app2File.ContentStream = $stream
+            $app2File = $list.RootFolder.Files.Add($app2File)
+            $context.Load($app2File)
+            $context.Load($app2File.ListItemAllFields)
+            $context.ExecuteQuery()
+            $stream.Dispose()
+            $appSettings.App2Path = $app2Path
+            $appSettings.App2Id = $app2File.ListItemAllFields['UniqueId']
+            $appSettings.App2ProductId = $app2File.ListItemAllFields['AppProductID']
+
+            $app3Path = (Resolve-Path "$PSScriptRoot/SharePointAddIn3.app").ToString()
+            $stream = [System.IO.File]::OpenRead($app3Path)
+            $app3File = New-Object Microsoft.SharePoint.Client.FileCreationInformation
+            $app3File.Url = 'SharePointAddIn3.app'
+            $app3File.ContentStream = $stream
+            $app3File = $list.RootFolder.Files.Add($app3File)
+            $context.Load($app3File)
+            $context.Load($app3File.ListItemAllFields)
+            $context.ExecuteQuery()
+            $stream.Dispose()
+            $appSettings.App3Path = $app3Path
+            $appSettings.App3Id = $app3File.ListItemAllFields['UniqueId']
+            $appSettings.App3ProductId = $app3File.ListItemAllFields['AppProductID']
+        }
+
         Write-Output $appSettings
     }
 
 }
 
-function Uninstall-TestSite
-{
+function Uninstall-TestSite {
 
     [CmdletBinding()]
-    param
-    (
+    param (
         [Parameter(Mandatory = $true)]
         [ValidateSet("Server", "Online")]
         [string]
@@ -978,47 +1041,45 @@ function Uninstall-TestSite
         $DomainName
     )
 
-    process
-    {
+    process {
         trap { continue }
 
         $context = New-Object Microsoft.SharePoint.Client.ClientContext($Url.ToString())
         $credential = New-Object System.Net.NetworkCredential(($UserName + '@' + $DomainName), $Password)
-        if ($ServiceType -eq 'Server')
-        {
+        if ($ServiceType -eq 'Server') {
             $context.Credentials = $credential
         }
-        if ($ServiceType -eq 'Online')
-        {
+        if ($ServiceType -eq 'Online') {
             $context.Credentials = New-Object Microsoft.SharePoint.Client.SharePointOnlineCredentials($credential.UserName, $credential.SecurePassword)
-            $context.add_ExecutingWebRequest({ $_.WebRequestExecutor.WebRequest.UserAgent = "NONISV|karamem0|SPClientCore/1.0" })
+            $context.add_ExecutingWebRequest({
+                $_.WebRequestExecutor.WebRequest.UserAgent = "NONISV|karamem0|SPClientCore/1.0"
+            })
         }
 
-        $site = $context.Site
-        $context.Load($site)
+        $context.Load($context.Web)
+        $context.Load($context.Site)
         $context.ExecuteQuery()
 
-        $web4 = $context.Site.OpenWeb($site.ServerRelativeUrl + '/TestWeb1/TestWeb4')
+        $web4 = $context.Site.OpenWeb($context.Site.ServerRelativeUrl + '/TestWeb1/TestWeb4')
         $web4.DeleteObject()
         $context.ExecuteQuery()
 
-        $web3 = $context.Site.OpenWeb($site.ServerRelativeUrl + '/TestWeb1/TestWeb2/TestWeb3')
+        $web3 = $context.Site.OpenWeb($context.Site.ServerRelativeUrl + '/TestWeb1/TestWeb2/TestWeb3')
         $web3.DeleteObject()
         $context.ExecuteQuery()
 
-        $web2 = $context.Site.OpenWeb($site.ServerRelativeUrl + '/TestWeb1/TestWeb2')
+        $web2 = $context.Site.OpenWeb($context.Site.ServerRelativeUrl + '/TestWeb1/TestWeb2')
         $web2.DeleteObject()
         $context.ExecuteQuery()
 
-        $web1 = $context.Site.OpenWeb($site.ServerRelativeUrl + '/TestWeb1')
+        $web1 = $context.Site.OpenWeb($context.Site.ServerRelativeUrl + '/TestWeb1')
         $web1.DeleteObject()
         $context.ExecuteQuery()
 
         $groups = $context.Web.SiteGroups
         $context.Load($groups)
         $context.ExecuteQuery()
-        while ($groups.Count -gt 0) 
-        {
+        while ($groups.Count -gt 0) {
             $groups.Remove($groups[0])
         }
         $context.ExecuteQuery()
@@ -1026,8 +1087,7 @@ function Uninstall-TestSite
         $users = $context.Web.SiteUsers
         $context.Load($users)
         $context.ExecuteQuery()
-        while ($users.Count -gt 0) 
-        {
+        while ($users.Count -gt 0) {
             $users.Remove($users[0])
         }
         $context.ExecuteQuery()
@@ -1035,16 +1095,36 @@ function Uninstall-TestSite
         $roleDefinitions = $context.Web.RoleDefinitions
         $context.Load($roleDefinitions)
         $context.ExecuteQuery()
-        for ($i = $roleDefinitions.Count - 1; $i -ge 0; $i--) 
-        {
+        for ($i = $roleDefinitions.Count - 1; $i -ge 0; $i--) {
             $roleDefinition = $roleDefinitions[$i]
-            if ($roleDefinition.RoleTypeKind -eq [Microsoft.SharePoint.Client.RoleType]::None)
-            {
+            if ($roleDefinition.RoleTypeKind -eq [Microsoft.SharePoint.Client.RoleType]::None) {
                 $roleDefinition.DeleteObject()
             }
         }
         $context.ExecuteQuery()
 
+        if ($ServiceType -eq 'Online') {
+            $appCatalogSites = $context.Web.TenantAppCatalog.SiteCollectionAppCatalogsSites
+            $context.Load($appCatalogSites)
+            $context.ExecuteQuery()
+            $appCatalogSite = $appCatalogSites | where AbsoluteUrl -eq $Url
+            if ($appCatalogSite -ne $null) {
+                $appCatalogSites.Remove($appCatalogSite.AbsoluteUrl)
+                $context.ExecuteQuery()
+            }
+
+            $app1File = $context.Web.GetFileByServerRelativeUrl($context.Web.ServerRelativeUrl + '/AppCatalog/SharePointAddIn1.app')
+            $app1File.DeleteObject()
+            $context.ExecuteQuery()
+
+            $app2File = $context.Web.GetFileByServerRelativeUrl($context.Web.ServerRelativeUrl + '/AppCatalog/SharePointAddIn2.app')
+            $app2File.DeleteObject()
+            $context.ExecuteQuery()
+
+            $app3File = $context.Web.GetFileByServerRelativeUrl($context.Web.ServerRelativeUrl + '/AppCatalog/SharePointAddIn3.app')
+            $app3File.DeleteObject()
+            $context.ExecuteQuery()
+        }
     }
 
 }

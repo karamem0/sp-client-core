@@ -37,11 +37,11 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
                     var collectionType = typeof(ClientObjectCollection<>);
                     var genericType = collectionType.MakeGenericType(elementType);
                     var value = Activator.CreateInstance(genericType, parameter.Value);
-                    this.ExtendedProperties.Add(parameter.Key, JToken.FromObject(value, jsonSerializer));
+                    this.ExtensionProperties.Add(parameter.Key, JToken.FromObject(value, jsonSerializer));
                 }
                 else
                 {
-                    this.ExtendedProperties.Add(parameter.Key, JToken.FromObject(parameter.Value, jsonSerializer));
+                    this.ExtensionProperties.Add(parameter.Key, JToken.FromObject(parameter.Value, jsonSerializer));
                 }
             }
         }

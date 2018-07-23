@@ -24,7 +24,19 @@ namespace Karamem0.SharePoint.PowerShell.Models
         protected ClientObject()
         {
             this.Metadata = ODataMetadata.Create(this.GetType());
-            this.ExtendedProperties = new Dictionary<string, JToken>();
+            this.ExtensionProperties = new Dictionary<string, JToken>();
+        }
+
+        [JsonIgnore()]
+        public dynamic this[string key]
+        {
+            get => (dynamic)this.ExtensionProperties[key];
+        }
+
+        [JsonIgnore()]
+        public IEnumerable<string> ExtensionKeys
+        {
+            get => this.ExtensionProperties.Keys;
         }
 
         [JsonProperty("__deferred")]
@@ -34,7 +46,7 @@ namespace Karamem0.SharePoint.PowerShell.Models
         public ODataMetadata Metadata { get; private set; }
 
         [JsonExtensionData()]
-        public Dictionary<string, JToken> ExtendedProperties { get; private set; }
+        protected Dictionary<string, JToken> ExtensionProperties { get; private set; }
 
         public override string ToString()
         {

@@ -45,7 +45,16 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
                         { "PassThru", true }
                     }
                 );
-                var result3 = context.Runspace.InvokeCommand(
+                var result3 = context.Runspace.InvokeCommand<User>(
+                    "Update-SPUser",
+                    new Dictionary<string, object>()
+                    {
+                        { "User", result1.ElementAt(0).Id },
+                        { "IsSiteAdmin", false },
+                        { "PassThru", true }
+                    }
+                );
+                var result4 = context.Runspace.InvokeCommand(
                     "Remove-SPUser",
                     new Dictionary<string, object>()
                     {
@@ -81,7 +90,17 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
                         { "PassThru", true }
                     }
                 );
-                var result3 = context.Runspace.InvokeCommand(
+                var result3 = context.Runspace.InvokeCommand<User>(
+                    "Update-SPUser",
+                    new Dictionary<string, object>()
+                    {
+                        { "Group", context.AppSettings["Group1Id"] },
+                        { "User", result1.ElementAt(0).Id },
+                        { "IsSiteAdmin", false },
+                        { "PassThru", true }
+                    }
+                );
+                var result4 = context.Runspace.InvokeCommand(
                     "Remove-SPUser",
                     new Dictionary<string, object>()
                     {

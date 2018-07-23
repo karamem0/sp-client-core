@@ -12,7 +12,7 @@
 RootModule = 'SPClientCore.dll'
 
 # Version number of this module.
-ModuleVersion = '1.2.2'
+ModuleVersion = '1.3.0'
 
 # ID used to uniquely identify this module
 GUID = '83E99C54-16E5-4ABA-96EC-76830CCDFFEF'
@@ -75,7 +75,9 @@ CmdletsToExport = @(
     'Connect-SPOnline'
     'Connect-SPServer'
     'Copy-SPFile'
+    'Find-SPAppInstance'
     'Find-SPAttachment'
+    'Find-SPCatalogApp'
     'Find-SPContentType'
     'Find-SPField'
     'Find-SPFile'
@@ -91,7 +93,9 @@ CmdletsToExport = @(
     'Find-SPView'
     'Find-SPWeb'
     'Find-SPWebTemplate'
+    'Get-SPAppInstance'
     'Get-SPAttachment'
+    'Get-SPCatalogApp'
     'Get-SPContentType'
     'Get-SPField'
     'Get-SPFile'
@@ -112,10 +116,12 @@ CmdletsToExport = @(
     'Get-SPView'
     'Get-SPWeb'
     'Get-SPWebTemplate'
+    'Install-SPCatalogApp'
     'Invoke-SPSearchQuery'
     'Move-SPFile'
     'Move-SPViewField'
     'New-SPAttachment'
+    'New-SPCatalogApp'
     'New-SPContentType'
     'New-SPField'
     'New-SPFile'
@@ -128,7 +134,9 @@ CmdletsToExport = @(
     'New-SPView'
     'New-SPWeb'
     'Open-SPFile'
+    'Publish-SPCatalogApp'
     'Remove-SPAttachment'
+    'Remove-SPCatalogApp'
     'Remove-SPContentType'
     'Remove-SPField'
     'Remove-SPFile'
@@ -149,6 +157,8 @@ CmdletsToExport = @(
     'Select-SPWeb'
     'Start-SPRoleInheritance'
     'Stop-SPRoleInheritance'
+    'Uninstall-SPCatalogApp'
+    'Unpublish-SPCatalogApp'
     'Update-SPContentType'
     'Update-SPField'
     'Update-SPFile'
@@ -160,6 +170,7 @@ CmdletsToExport = @(
     'Update-SPUser'
     'Update-SPView'
     'Update-SPWeb'
+    'Upgrade-SPCatalogApp'
 )
 
 # Variables to export from this module
@@ -180,7 +191,7 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries. 
-        # Tags = @()
+        Tags = @('PSEdition_Core')
 
         # A URL to the license for this module.
         LicenseUri = 'https://github.com/karamem0/SPClientCore/blob/master/LICENSE'
