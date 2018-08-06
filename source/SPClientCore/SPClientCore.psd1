@@ -12,7 +12,7 @@
 RootModule = 'SPClientCore.dll'
 
 # Version number of this module.
-ModuleVersion = '1.3.0'
+ModuleVersion = '1.3.1'
 
 # ID used to uniquely identify this module
 GUID = '83E99C54-16E5-4ABA-96EC-76830CCDFFEF'
@@ -159,6 +159,7 @@ CmdletsToExport = @(
     'Stop-SPRoleInheritance'
     'Uninstall-SPCatalogApp'
     'Unpublish-SPCatalogApp'
+    'Update-SPCatalogApp'
     'Update-SPContentType'
     'Update-SPField'
     'Update-SPFile'
@@ -170,7 +171,6 @@ CmdletsToExport = @(
     'Update-SPUser'
     'Update-SPView'
     'Update-SPWeb'
-    'Upgrade-SPCatalogApp'
 )
 
 # Variables to export from this module

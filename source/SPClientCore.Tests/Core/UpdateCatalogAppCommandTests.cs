@@ -20,11 +20,11 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
 
     [TestClass()]
     [TestCategory("CatalogApp")]
-    public class UpgradeCatalogAppCommandTests
+    public class UpdateCatalogAppCommandTests
     {
 
         [TestMethod()]
-        public void UpgradeSiteCatalogApp()
+        public void UpdateSiteCatalogApp()
         {
             using (var context = new PSCmdletContext())
             {
@@ -52,7 +52,7 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
                     }
                 }
                 var result3 = context.Runspace.InvokeCommand<CatalogApp>(
-                    "Upgrade-SPCatalogApp",
+                    "Update-SPCatalogApp",
                     new Dictionary<string, object>()
                     {
                         { "CatalogApp", context.AppSettings["App1Id"] },

@@ -22,12 +22,12 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands.Core
 {
 
-    [Cmdlet("Upgrade", "SPCatalogApp")]
+    [Cmdlet("Update", "SPCatalogApp")]
     [OutputType(typeof(CatalogApp))]
-    public class UpgradeCatalogAppCommand : PSCmdlet
+    public class UpdateCatalogAppCommand : PSCmdlet
     {
 
-        public UpgradeCatalogAppCommand()
+        public UpdateCatalogAppCommand()
         {
         }
 

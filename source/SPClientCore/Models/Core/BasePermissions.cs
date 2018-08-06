@@ -29,9 +29,12 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
             this.Set(permissionKind);
         }
 
-        public BasePermissions(string permissionKind)
+        public BasePermissions(string permissionKinds)
         {
-            this.Set(Enum.Parse<PermissionKind>(permissionKind));
+            foreach (var permissionKind in permissionKinds.Split(','))
+            {
+                this.Set(Enum.Parse<PermissionKind>(permissionKind.Trim()));
+            }
         }
 
         public BasePermissions(params PermissionKind[] permissionKinds)
@@ -46,7 +49,7 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         {
             foreach (var permissionKind in permissionKinds)
             {
-                this.Set(Enum.Parse<PermissionKind>(permissionKind));
+                this.Set(Enum.Parse<PermissionKind>(permissionKind.ToString()));
             }
         }
 

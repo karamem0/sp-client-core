@@ -1,0 +1,1975 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<helpItems schema="maml" xmlns="http://msh">
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Add-SPRoleAssignment</command:name>
+      <command:verb>Add</command:verb>
+      <command:noun>SPRoleAssignment</command:noun>
+      <maml:description>
+        <maml:para>Adds a role assignment to a principal.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Add-SPRoleAssignment cmdlet adds a permission to a principal (User or Group).</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Add-SPRoleAssignment</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>List</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the list ID or title.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ListPipeBind</command:parameterValue>
+          <dev:type>
+            <maml:name>ListPipeBind</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PrincipalId</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the user ID or group ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>RoleDefinitionId</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the role definition ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Add-SPRoleAssignment</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>List</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the list ID or title.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ListPipeBind</command:parameterValue>
+          <dev:type>
+            <maml:name>ListPipeBind</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>ListItem</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the list item ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ListItemPipeBind</command:parameterValue>
+          <dev:type>
+            <maml:name>ListItemPipeBind</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PrincipalId</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the user ID or group ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>RoleDefinitionId</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the role definition ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>List</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the list ID or title.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ListPipeBind</command:parameterValue>
+        <dev:type>
+          <maml:name>ListPipeBind</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>ListItem</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the list item ID.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ListItemPipeBind</command:parameterValue>
+        <dev:type>
+          <maml:name>ListItemPipeBind</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>PrincipalId</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the user ID or group ID.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>RoleDefinitionId</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the role definition ID.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Void</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Add-SPRoleAssignment -PrincipalId 14 -RoleDefinitionId 1073741826</dev:code>
+        <dev:remarks>
+          <maml:para>Adds site read permission to the principal.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Add-SPRoleAssignment -List 'Shared Documents' -PrincipalId 14 -RoleDefinitionId 1073741827</dev:code>
+        <dev:remarks>
+          <maml:para>Adds list contribute permission to the principal.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 3 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Add-SPRoleAssignment -List 'Shared Documents' -ListItem 1 -PrincipalId 14 -RoleDefinitionId 1073741829</dev:code>
+        <dev:remarks>
+          <maml:para>Adds list full control permission to the principal.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Connect-SPOnline</command:name>
+      <command:verb>Connect</command:verb>
+      <command:noun>SPOnline</command:noun>
+      <maml:description>
+        <maml:para>Connects to SharePoint Online.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Connect-SPOnline cmdlet creates new connection to SharePoint Online.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Connect-SPOnline</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Authority</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the authorization endpoint URL. This parameter is provided for some environment. (Germany, China, and US Government)</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
+          <dev:type>
+            <maml:name>Uri</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ClientId</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the app ID if a user wants to connect through his/her organization app.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+          <dev:type>
+            <maml:name>Guid</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Credential</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the credential (user name and password).</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
+          <dev:type>
+            <maml:name>PSCredential</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Url</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the site URL.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
+          <dev:type>
+            <maml:name>Uri</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Authority</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the authorization endpoint URL. This parameter is provided for some environment. (Germany, China, and US Government)</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
+        <dev:type>
+          <maml:name>Uri</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ClientId</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the app ID if a user wants to connect through his/her organization app.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+        <dev:type>
+          <maml:name>Guid</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Credential</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the credential (user name and password).</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
+        <dev:type>
+          <maml:name>PSCredential</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Url</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the site URL.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
+        <dev:type>
+          <maml:name>Uri</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Core.User</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Connect-SPOnline -Url 'https://example.sharepoint.com'</dev:code>
+        <dev:remarks>
+          <maml:para>Connects to SharePoint Online with device code.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Connect-SPOnline -Url 'https://example.sharepoint.com' -Credentials (Get-Credential)</dev:code>
+        <dev:remarks>
+          <maml:para>Connects to SharePoint Online with user name and password.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Connect-SPServer</command:name>
+      <command:verb>Connect</command:verb>
+      <command:noun>SPServer</command:noun>
+      <maml:description>
+        <maml:para>Connects to SharePoint Server.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Connect-SPServer cmdlet creates new connection to SharePoint Server. (On-premiss)</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Connect-SPServer</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Credential</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the credential (user name and password).</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
+          <dev:type>
+            <maml:name>PSCredential</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Url</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the site URL.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
+          <dev:type>
+            <maml:name>Uri</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Credential</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the credential (user name and password).</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
+        <dev:type>
+          <maml:name>PSCredential</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Url</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the site URL.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
+        <dev:type>
+          <maml:name>Uri</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Core.User</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Connect-SPServer -Url 'https://example.com/sharepoint' -Credentials (Get-Credential)</dev:code>
+        <dev:remarks>
+          <maml:para>Connects to SharePoint Server with user name and password.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Find-SPRoleAssignment</command:name>
+      <command:verb>Find</command:verb>
+      <command:noun>SPRoleAssignment</command:noun>
+      <maml:description>
+        <maml:para>Lists role assignments.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Find-SPRoleAssignment cmdlet retrieves all role assignments.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Find-SPRoleAssignment</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>List</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the list ID or title.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ListPipeBind</command:parameterValue>
+          <dev:type>
+            <maml:name>ListPipeBind</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Includes</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the property name collection to include in the result object.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>OrderBy</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the property name collection used for sorting.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Skip</maml:name>
+          <maml:Description>
+            <maml:para>Indicates number which ignores the first N objects and then gets the remaining objects.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Top</maml:name>
+          <maml:Description>
+            <maml:para>Indicates number which selecting only the first N objects of the collection.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Find-SPRoleAssignment</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>List</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the list ID or title.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ListPipeBind</command:parameterValue>
+          <dev:type>
+            <maml:name>ListPipeBind</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>ListItem</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the list item ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ListItemPipeBind</command:parameterValue>
+          <dev:type>
+            <maml:name>ListItemPipeBind</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Includes</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the property name collection to include in the result object.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>OrderBy</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the property name collection used for sorting.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Skip</maml:name>
+          <maml:Description>
+            <maml:para>Indicates number which ignores the first N objects and then gets the remaining objects.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Top</maml:name>
+          <maml:Description>
+            <maml:para>Indicates number which selecting only the first N objects of the collection.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Includes</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the property name collection to include in the result object.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>String[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>List</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the list ID or title.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ListPipeBind</command:parameterValue>
+        <dev:type>
+          <maml:name>ListPipeBind</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>ListItem</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the list item ID.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ListItemPipeBind</command:parameterValue>
+        <dev:type>
+          <maml:name>ListItemPipeBind</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>OrderBy</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the property name collection used for sorting.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>String[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Skip</maml:name>
+        <maml:Description>
+          <maml:para>Indicates number which ignores the first N objects and then gets the remaining objects.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Top</maml:name>
+        <maml:Description>
+          <maml:para>Indicates number which selecting only the first N objects of the collection.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Core.RoleAssignment[]</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Find-SPRoleAssignment</dev:code>
+        <dev:remarks>
+          <maml:para>Lists site role assignments.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Find-SPRoleAssignment -List 'Shared Documents'</dev:code>
+        <dev:remarks>
+          <maml:para>Lists list role assignments.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 3 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Find-SPRoleAssignment -List 'Shared Documents' -ListItem 1</dev:code>
+        <dev:remarks>
+          <maml:para>Lists list item role assignments.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Find-SPRoleDefinition</command:name>
+      <command:verb>Find</command:verb>
+      <command:noun>SPRoleDefinition</command:noun>
+      <maml:description>
+        <maml:para>Lists role definitions.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Find-SPRoleAssignment cmdlet retrieves all role definitions.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Find-SPRoleDefinition</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Includes</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the property name collection to include in the result object.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>OrderBy</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the property name collection used for sorting.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Skip</maml:name>
+          <maml:Description>
+            <maml:para>Indicates number which ignores the first N objects and then gets the remaining objects.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Top</maml:name>
+          <maml:Description>
+            <maml:para>Indicates number which selecting only the first N objects of the collection.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Includes</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the property name collection to include in the result object.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>String[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>OrderBy</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the property name collection used for sorting.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>String[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Skip</maml:name>
+        <maml:Description>
+          <maml:para>Indicates number which ignores the first N objects and then gets the remaining objects.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Top</maml:name>
+        <maml:Description>
+          <maml:para>Indicates number which selecting only the first N objects of the collection.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Core.RoleDefinition[]</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Find-SPRoleDefinition</dev:code>
+        <dev:remarks>
+          <maml:para>Lists role definitions.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-SPOnlineAdminConsentUrl</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>SPOnlineAdminConsentUrl</command:noun>
+      <maml:description>
+        <maml:para>Gets the admin consent URL.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Add-SPOnlineAdminConsentUrl cmdlet retrieves the admin consent URL.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-SPOnlineAdminConsentUrl</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Authority</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the authorization endpoint URL. This parameter is provided for some environment. (Germany, China, and US Government)</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
+          <dev:type>
+            <maml:name>Uri</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ClientId</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the app ID if a user wants to connect through his/her organization app.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+          <dev:type>
+            <maml:name>Guid</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Url</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the site URL.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
+          <dev:type>
+            <maml:name>Uri</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Authority</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the authorization endpoint URL. This parameter is provided for some environment. (Germany, China, and US Government)</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
+        <dev:type>
+          <maml:name>Uri</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ClientId</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the app ID if a user wants to connect through his/her organization app.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+        <dev:type>
+          <maml:name>Guid</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Url</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the site URL.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
+        <dev:type>
+          <maml:name>Uri</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-SPOnlineAdminConsentUrl -Url 'https://example.sharepoint.com'</dev:code>
+        <dev:remarks>
+          <maml:para>Gets the admin consent URL.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-SPRoleAssignment</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>SPRoleAssignment</command:noun>
+      <maml:description>
+        <maml:para>Gets a role assignment.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-SPRoleAssignment cmdlet retrieves the role assignment which matches the parameter.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-SPRoleAssignment</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>List</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the list ID or title.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ListPipeBind</command:parameterValue>
+          <dev:type>
+            <maml:name>ListPipeBind</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Includes</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the property name collection to include in the result object.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PrincipalId</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the user ID or group ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-SPRoleAssignment</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>List</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the list ID or title.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ListPipeBind</command:parameterValue>
+          <dev:type>
+            <maml:name>ListPipeBind</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>ListItem</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the list item ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ListItemPipeBind</command:parameterValue>
+          <dev:type>
+            <maml:name>ListItemPipeBind</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Includes</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the property name collection to include in the result object.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PrincipalId</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the user ID or group ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Includes</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the property name collection to include in the result object.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>String[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>List</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the list ID or title.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ListPipeBind</command:parameterValue>
+        <dev:type>
+          <maml:name>ListPipeBind</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>ListItem</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the list item ID.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ListItemPipeBind</command:parameterValue>
+        <dev:type>
+          <maml:name>ListItemPipeBind</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>PrincipalId</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the user ID or group ID.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Core.RoleAssignment</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-SPRoleAssignment -PrincipalId 14</dev:code>
+        <dev:remarks>
+          <maml:para>Gets the site role assignment by principal ID.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-SPRoleAssignment -List 'Shared Documents' -PrincipalId 14</dev:code>
+        <dev:remarks>
+          <maml:para>Gets the list role assignment by principal ID.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 3 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-SPRoleAssignment -List 'Shared Documents' -ListItem 1 -PrincipalId 14</dev:code>
+        <dev:remarks>
+          <maml:para>Gets the list item role assignment by principal ID.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-SPRoleDefinition</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>SPRoleDefinition</command:noun>
+      <maml:description>
+        <maml:para>Gets a role definition.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>{{Fill in the Description}}</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-SPRoleDefinition</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>RoleDefinition</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the role definition ID, name or type.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">RoleDefinitionPipeBind</command:parameterValue>
+          <dev:type>
+            <maml:name>RoleDefinitionPipeBind</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Includes</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the property name collection to include in the result object.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Includes</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the property name collection to include in the result object.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>String[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>RoleDefinition</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the role definition ID, name or type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">RoleDefinitionPipeBind</command:parameterValue>
+        <dev:type>
+          <maml:name>RoleDefinitionPipeBind</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.PipeBinds.Core.RoleDefinitionPipeBind</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Core.RoleDefinition</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-SPRoleDefinition -RoleDefinition 1073741826</dev:code>
+        <dev:remarks>
+          <maml:para>Gets the role definition by role definition ID.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-SPRoleDefinition -RoleDefinition 'Full Control'</dev:code>
+        <dev:remarks>
+          <maml:para>Gets the role definition by role definition name.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 3 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-SPRoleDefinition -RoleDefinition 'Administrator'</dev:code>
+        <dev:remarks>
+          <maml:para>Gets the role definition by role definition type.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>New-SPRoleDefinition</command:name>
+      <command:verb>New</command:verb>
+      <command:noun>SPRoleDefinition</command:noun>
+      <maml:description>
+        <maml:para>Creates a new role definition.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The New-SPRoleDefinition cmdlet adds a new role definition to the site.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>New-SPRoleDefinition</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>BasePermissions</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the role definition base permissions.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">BasePermissions</command:parameterValue>
+          <dev:type>
+            <maml:name>BasePermissions</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Description</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the role definition description.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Includes</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the property name collection to include in the result object.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Name</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the role definition name.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>BasePermissions</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the role definition base permissions.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">BasePermissions</command:parameterValue>
+        <dev:type>
+          <maml:name>BasePermissions</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Description</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the role definition description.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Includes</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the property name collection to include in the result object.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>String[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Name</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the role definition name.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Core.RoleDefinition</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; New-SPRoleDefinition -BasePermissions 'ViewListItems,AddListItems' -Name 'RoleDefinition1'</dev:code>
+        <dev:remarks>
+          <maml:para>Creates a new role definition to the site.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Remove-SPRoleAssignment</command:name>
+      <command:verb>Remove</command:verb>
+      <command:noun>SPRoleAssignment</command:noun>
+      <maml:description>
+        <maml:para>Removes a role assignment from a principal.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Remove-SPRoleAssignment cmdlet removes a permission from a principal (User or Group).</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Remove-SPRoleAssignment</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>List</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the list ID or title.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ListPipeBind</command:parameterValue>
+          <dev:type>
+            <maml:name>ListPipeBind</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PrincipalId</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the user ID or group ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>RoleDefinitionId</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the role definition ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Remove-SPRoleAssignment</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>List</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the list ID or title.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ListPipeBind</command:parameterValue>
+          <dev:type>
+            <maml:name>ListPipeBind</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>ListItem</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the list item ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ListItemPipeBind</command:parameterValue>
+          <dev:type>
+            <maml:name>ListItemPipeBind</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PrincipalId</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the user ID or group ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>RoleDefinitionId</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the role definition ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>List</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the list ID or title.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ListPipeBind</command:parameterValue>
+        <dev:type>
+          <maml:name>ListPipeBind</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>ListItem</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the list item ID.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ListItemPipeBind</command:parameterValue>
+        <dev:type>
+          <maml:name>ListItemPipeBind</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>PrincipalId</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the user ID or group ID.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>RoleDefinitionId</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the role definition ID.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Void</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Remove-SPRoleAssignment -PrincipalId 14 -RoleDefinitionId 1073741826</dev:code>
+        <dev:remarks>
+          <maml:para>Removes site read permission from the principal.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Remove-SPRoleAssignment -List 'Shared Documents' -PrincipalId 14 -RoleDefinitionId 1073741827</dev:code>
+        <dev:remarks>
+          <maml:para>Removes list contribute permission from the principal.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 3 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Remove-SPRoleAssignment -List 'Shared Documents' -ListItem 1 -PrincipalId 14 -RoleDefinitionId 1073741829</dev:code>
+        <dev:remarks>
+          <maml:para>Removes list full control permission from the principal.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Remove-SPRoleDefinition</command:name>
+      <command:verb>Remove</command:verb>
+      <command:noun>SPRoleDefinition</command:noun>
+      <maml:description>
+        <maml:para>Removes a role definition.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Remove-SPRoleDefinition cmdlet removes a role definition from the site.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Remove-SPRoleDefinition</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>RoleDefinition</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the role definition ID, name or type.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">RoleDefinitionPipeBind</command:parameterValue>
+          <dev:type>
+            <maml:name>RoleDefinitionPipeBind</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>RoleDefinition</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the role definition ID, name or type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">RoleDefinitionPipeBind</command:parameterValue>
+        <dev:type>
+          <maml:name>RoleDefinitionPipeBind</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.PipeBinds.Core.RoleDefinitionPipeBind</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Void</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Remove-SPRoleDefinition -RoleDefinition 1073741947</dev:code>
+        <dev:remarks>
+          <maml:para>Removes the role definition from the site.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Update-SPRoleDefinition</command:name>
+      <command:verb>Update</command:verb>
+      <command:noun>SPRoleDefinition</command:noun>
+      <maml:description>
+        <maml:para>Updates a role definition.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Update-SPRoleDefinition cmdlet updates the role definition property.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Update-SPRoleDefinition</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>RoleDefinition</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the role definition ID, name or type.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">RoleDefinitionPipeBind</command:parameterValue>
+          <dev:type>
+            <maml:name>RoleDefinitionPipeBind</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>BasePermissions</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the role definition base permissions.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">BasePermissions</command:parameterValue>
+          <dev:type>
+            <maml:name>BasePermissions</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Description</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the role definition description.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Includes</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the property name collection to include in the result object.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Name</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the role definition name.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PassThru</maml:name>
+          <maml:Description>
+            <maml:para>If specified, returns the updated object.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>BasePermissions</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the role definition base permissions.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">BasePermissions</command:parameterValue>
+        <dev:type>
+          <maml:name>BasePermissions</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Description</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the role definition description.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Includes</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the property name collection to include in the result object.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>String[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Name</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the role definition name.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>PassThru</maml:name>
+        <maml:Description>
+          <maml:para>If specified, returns the updated object.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>RoleDefinition</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the role definition ID, name or type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">RoleDefinitionPipeBind</command:parameterValue>
+        <dev:type>
+          <maml:name>RoleDefinitionPipeBind</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.PipeBinds.Core.RoleDefinitionPipeBind</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Core.RoleDefinition</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Update-SPRoleDefinition -RoleDefinition 1073741947 -BasePermissions 'ViewListItems,AddListItems'</dev:code>
+        <dev:remarks>
+          <maml:para>Updates a role definition.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+</helpItems>
