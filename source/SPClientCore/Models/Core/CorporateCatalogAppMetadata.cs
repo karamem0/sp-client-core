@@ -15,11 +15,11 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Models.Core
 {
 
-    [JsonObject()]
-    public class CatalogApp : ClientObject
+    [JsonObject(Id = "Microsoft.SharePoint.Marketplace.CorporateCuratedGallery.CorporateCatalogAppMetadata")]
+    public class CorporateCatalogAppMetadata : ClientObject
     {
 
-        public CatalogApp()
+        public CorporateCatalogAppMetadata()
         {
         }
 

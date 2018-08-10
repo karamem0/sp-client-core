@@ -22,20 +22,20 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands.Core
 {
 
-    [Cmdlet("Install", "SPCatalogApp")]
-    [OutputType(typeof(CatalogApp))]
-    public class InstallCatalogAppCommand : PSCmdlet
+    [Cmdlet("Unpublish", "SPApp")]
+    [OutputType(typeof(CorporateCatalogAppMetadata))]
+    public class UnpublishAppCommand : PSCmdlet
     {
 
-        public InstallCatalogAppCommand()
+        public UnpublishAppCommand()
         {
         }
 
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public CatalogAppPipeBind CatalogApp { get; private set; }
+        public AppPipeBind App { get; private set; }
 
         [Parameter(Mandatory = false)]
-        public CatalogAppScope Scope { get; private set; }
+        public AppScope Scope { get; private set; }
 
         [Parameter(Mandatory = false)]
         public SwitchParameter PassThru { get; private set; }
@@ -49,22 +49,22 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
             {
                 throw new InvalidOperationException(StringResources.ErrorNotConnected);
             }
-            var catalogAppService = ClientObjectService.ServiceProvider.GetService<ICatalogAppService>();
-            var catalogAppQuery = ODataQuery.Create<CatalogApp>(this.MyInvocation.BoundParameters);
-            if (this.Scope == CatalogAppScope.Tenant)
+            var appService = ClientObjectService.ServiceProvider.GetService<IAppService>();
+            var appQuery = ODataQuery.Create<CorporateCatalogAppMetadata>(this.MyInvocation.BoundParameters);
+            if (this.Scope == AppScope.Tenant)
             {
-                catalogAppService.InstallTenantCatalogApp(this.CatalogApp);
+                appService.RetractTenantApp(this.App);
                 if (this.PassThru)
                 {
-                    this.WriteObject(catalogAppService.GetTenantCatalogApp(this.CatalogApp, catalogAppQuery));
+                    this.WriteObject(appService.GetTenantApp(this.App, appQuery));
                 }
             }
-            if (this.Scope == CatalogAppScope.Site)
+            if (this.Scope == AppScope.SiteCollection)
             {
-                catalogAppService.InstallSiteCatalogApp(this.CatalogApp);
+                appService.RetractSiteCollectionApp(this.App);
                 if (this.PassThru)
                 {
-                    this.WriteObject(catalogAppService.GetSiteCatalogApp(this.CatalogApp, catalogAppQuery));
+                    this.WriteObject(appService.GetSiteCollectionApp(this.App, appQuery));
                 }
             }
         }

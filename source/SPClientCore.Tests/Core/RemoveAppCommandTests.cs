@@ -18,12 +18,12 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
 {
 
     [TestClass()]
-    [TestCategory("CatalogApp")]
-    public class PublishCatalogAppCommandTests
+    [TestCategory("App")]
+    public class RemoveAppCommandTests
     {
 
         [TestMethod()]
-        public void DeploySiteCatalogApp()
+        public void RemoveSiteCollectionApp()
         {
             using (var context = new PSCmdletContext())
             {
@@ -34,34 +34,24 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
                         { "Web", context.AppSettings["SiteUrl"] }
                     }
                 );
-                var result2 = context.Runspace.InvokeCommand<CatalogApp>(
-                    "New-SPCatalogApp",
+                var result2 = context.Runspace.InvokeCommand<CorporateCatalogAppMetadata>(
+                    "New-SPApp",
                     new Dictionary<string, object>()
                     {
                         { "Name", "SharePointAddIn0.sppkg" },
                         { "Content", new System.IO.MemoryStream(System.IO.File.ReadAllBytes(context.AppSettings["App0Path"])) },
                         { "Overwrite", true },
-                        { "Scope", "Site" }
+                        { "Scope", "SiteCollection" }
                     }
                 );
-                var result3 = context.Runspace.InvokeCommand<CatalogApp>(
-                    "Publish-SPCatalogApp",
+                var result3 = context.Runspace.InvokeCommand(
+                    "Remove-SPApp",
                     new Dictionary<string, object>()
                     {
-                        { "CatalogApp", result2.ElementAt(0).Id },
-                        { "Scope", "Site" },
-                        { "PassThru", true }
+                        { "App", result2.ElementAt(0).Id },
+                        { "Scope", "SiteCollection" }
                     }
                 );
-                var result4 = context.Runspace.InvokeCommand(
-                    "Remove-SPCatalogApp",
-                    new Dictionary<string, object>()
-                    {
-                        { "CatalogApp", result2.ElementAt(0).Id },
-                        { "Scope", "Site" }
-                    }
-                );
-                var actual = result3.ElementAt(0);
             }
         }
 

@@ -22,20 +22,20 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands.Core
 {
 
-    [Cmdlet("Find", "SPAppInstance")]
-    [OutputType(typeof(AppInstance[]))]
-    public class FindAppInstanceCommand : PSCmdlet
+    [Cmdlet("Remove", "SPApp")]
+    [OutputType(typeof(void))]
+    public class RemoveAppCommand : PSCmdlet
     {
 
-        public FindAppInstanceCommand()
+        public RemoveAppCommand()
         {
         }
 
-        [Parameter(Mandatory = true)]
-        public Guid? ProductId { get; private set; }
+        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+        public AppPipeBind App { get; private set; }
 
         [Parameter(Mandatory = false)]
-        public string[] Includes { get; private set; }
+        public AppScope Scope { get; private set; }
 
         protected override void ProcessRecord()
         {
@@ -43,9 +43,15 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
             {
                 throw new InvalidOperationException(StringResources.ErrorNotConnected);
             }
-            var webService = ClientObjectService.ServiceProvider.GetService<IWebService>();
-            var appInstanceQuery = ODataQuery.Create<AppInstance>(this.MyInvocation.BoundParameters);
-            this.WriteObject(webService.FindAppInstancesByProductId(this.ProductId, appInstanceQuery), true);
+            var appService = ClientObjectService.ServiceProvider.GetService<IAppService>();
+            if (this.Scope == AppScope.Tenant)
+            {
+               appService.RemoveTenantApp(this.App);
+            }
+            if (this.Scope == AppScope.SiteCollection)
+            {
+                appService.RemoveSiteCollectionApp(this.App);
+            }
         }
 
     }

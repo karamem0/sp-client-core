@@ -21,23 +21,29 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands.Core
 {
 
-    [Cmdlet("Get", "SPAppInstance")]
-    [OutputType(typeof(AppInstance[]))]
-    public class GetAppInstanceCommand : PSCmdlet
+    [Cmdlet("Find", "SPApp")]
+    [OutputType(typeof(CorporateCatalogAppMetadata[]))]
+    public class FindAppCommand : PSCmdlet
     {
 
-        public GetAppInstanceCommand()
+        public FindAppCommand()
         {
         }
 
-        [Parameter(Mandatory = true, ParameterSetName = "Id")]
-        public Guid? Id { get; private set; }
-
-        [Parameter(Mandatory = true, ParameterSetName = "ProductId")]
-        public Guid? ProductId { get; private set; }
+        [Parameter(Mandatory = false)]
+        public AppScope Scope { get; private set; }
 
         [Parameter(Mandatory = false)]
         public string[] Includes { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public string[] OrderBy { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public int? Top { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public int? Skip { get; private set; }
 
         protected override void ProcessRecord()
         {
@@ -45,18 +51,17 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
             {
                 throw new InvalidOperationException(StringResources.ErrorNotConnected);
             }
-            var webService = ClientObjectService.ServiceProvider.GetService<IWebService>();
-            var appInstanceQuery = ODataQuery.Create<AppInstance>(this.MyInvocation.BoundParameters);
-            if (this.ParameterSetName == "Id")
+            var appService = ClientObjectService.ServiceProvider.GetService<IAppService>();
+            var appQuery = ODataQuery.Create<CorporateCatalogAppMetadata>(this.MyInvocation.BoundParameters);
+            if (this.Scope == AppScope.Tenant)
             {
-                this.WriteObject(webService.GetAppInstanceById(this.Id, appInstanceQuery));
+                this.WriteObject(appService.FindTenantApps(appQuery), true);
             }
-            if (this.ParameterSetName == "ProductId")
+            if (this.Scope == AppScope.SiteCollection)
             {
-                this.WriteObject(webService.GetAppInstancesByProductId(this.ProductId, appInstanceQuery), true);
+                this.WriteObject(appService.FindSiteCollectionApps(appQuery), true);
             }
         }
-
     }
 
 }

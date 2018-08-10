@@ -24,37 +24,40 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         }
 
         [JsonProperty()]
-        public string AppPrincipalId { get; set; }
+        public string AppPrincipalId { get; private set; }
 
         [JsonProperty()]
-        public string AppWebFullUrl { get; set; }
+        public string AppWebFullUrl { get; private set; }
 
         [JsonProperty()]
-        public Guid? Id { get; set; }
+        public Guid? Id { get; private set; }
 
         [JsonProperty()]
-        public bool? InError { get; set; }
+        public bool? InError { get; private set; }
 
         [JsonProperty()]
-        public string RemoteAppUrl { get; set; }
+        public Guid? ProductId { get; private set; }
 
         [JsonProperty()]
-        public string SettingsPageUrl { get; set; }
+        public string RemoteAppUrl { get; private set; }
 
         [JsonProperty()]
-        public Guid? SiteId { get; set; }
+        public string SettingsPageUrl { get; private set; }
 
         [JsonProperty()]
-        public string StartPage { get; set; }
+        public Guid? SiteId { get; private set; }
 
         [JsonProperty()]
-        public AppInstanceStatus? Status { get; set; }
+        public string StartPage { get; private set; }
 
         [JsonProperty()]
-        public string Title { get; set; }
+        public AppInstanceStatus? Status { get; private set; }
 
         [JsonProperty()]
-        public Guid? WebId { get; set; }
+        public string Title { get; private set; }
+
+        [JsonProperty()]
+        public Guid? WebId { get; private set; }
 
     }
 

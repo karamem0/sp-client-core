@@ -177,6 +177,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         public bool? SyndicationEnabled { get; private set; }
 
         [JsonProperty()]
+        public TenantCorporateCatalogAccessor TenantAppCatalog { get; private set; }
+
+        [JsonProperty()]
         public ThemeInfo ThemeInfo { get; private set; }
 
         [JsonProperty()]

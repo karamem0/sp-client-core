@@ -19,28 +19,28 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
 {
 
     [TestClass()]
-    [TestCategory("CatalogApp")]
-    public class UpdateCatalogAppCommandTests
+    [TestCategory("App")]
+    public class UninstallAppCommandTests
     {
 
         [TestMethod()]
-        public void UpdateSiteCatalogApp()
+        public void UninstallSiteCollectionApp()
         {
             using (var context = new PSCmdletContext())
             {
                 var result1 = context.Runspace.InvokeCommand(
-                    "Install-SPCatalogApp",
+                    "Install-SPApp",
                     new Dictionary<string, object>()
                     {
-                        { "CatalogApp", context.AppSettings["App1Id"] },
-                        { "Scope", "Site" }
+                        { "App", context.AppSettings["App1Id"] },
+                        { "Scope", "SiteCollection" }
                     }
                 );
                 while (true)
                 {
                     Thread.Sleep(TimeSpan.FromSeconds(1));
                     var result2 = context.Runspace.InvokeCommand<AppInstance>(
-                        "Find-SPAppInstance",
+                        "Get-SPAppInstance",
                         new Dictionary<string, object>()
                         {
                             { "ProductId", context.AppSettings["App1ProductId"] }
@@ -51,12 +51,12 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
                         break;
                     }
                 }
-                var result3 = context.Runspace.InvokeCommand<CatalogApp>(
-                    "Update-SPCatalogApp",
+                var result3 = context.Runspace.InvokeCommand<CorporateCatalogAppMetadata>(
+                    "Uninstall-SPApp",
                     new Dictionary<string, object>()
                     {
-                        { "CatalogApp", context.AppSettings["App1Id"] },
-                        { "Scope", "Site" },
+                        { "App", context.AppSettings["App1Id"] },
+                        { "Scope", "SiteCollection" },
                         { "PassThru", true }
                     }
                 );
@@ -64,42 +64,18 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
                 {
                     Thread.Sleep(TimeSpan.FromSeconds(1));
                     var result4 = context.Runspace.InvokeCommand<AppInstance>(
-                        "Find-SPAppInstance",
+                        "Get-SPAppInstance",
                         new Dictionary<string, object>()
                         {
                             { "ProductId", context.AppSettings["App1ProductId"] }
                         }
                     );
-                    if (result4.ElementAt(0).Status == AppInstanceStatus.Installed)
+                    if (result4.Count() == 0)
                     {
                         break;
                     }
                 }
-                var result5 = context.Runspace.InvokeCommand<CatalogApp>(
-                    "Uninstall-SPCatalogApp",
-                    new Dictionary<string, object>()
-                    {
-                        { "CatalogApp", context.AppSettings["App1Id"] },
-                        { "Scope", "Site" },
-                        { "PassThru", true }
-                    }
-                );
-                while (true)
-                {
-                    Thread.Sleep(TimeSpan.FromSeconds(1));
-                    var result6 = context.Runspace.InvokeCommand<AppInstance>(
-                        "Find-SPAppInstance",
-                        new Dictionary<string, object>()
-                        {
-                            { "ProductId", context.AppSettings["App1ProductId"] }
-                        }
-                    );
-                    if (result6.Count() == 0)
-                    {
-                        break;
-                    }
-                }
-                var actual = result5.ElementAt(0);
+                var actual = result3.ElementAt(0);
             }
         }
 

@@ -18,12 +18,12 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
 {
 
     [TestClass()]
-    [TestCategory("CatalogApp")]
-    public class NewCatalogAppCommandTests
+    [TestCategory("App")]
+    public class PublishAppCommandTests
     {
 
         [TestMethod()]
-        public void CreateSiteCatalogApp()
+        public void DeploySiteCollectionApp()
         {
             using (var context = new PSCmdletContext())
             {
@@ -34,25 +34,34 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
                         { "Web", context.AppSettings["SiteUrl"] }
                     }
                 );
-                var result2 = context.Runspace.InvokeCommand<CatalogApp>(
-                    "New-SPCatalogApp",
+                var result2 = context.Runspace.InvokeCommand<CorporateCatalogAppMetadata>(
+                    "New-SPApp",
                     new Dictionary<string, object>()
                     {
                         { "Name", "SharePointAddIn0.sppkg" },
                         { "Content", new System.IO.MemoryStream(System.IO.File.ReadAllBytes(context.AppSettings["App0Path"])) },
                         { "Overwrite", true },
-                        { "Scope", "Site" }
+                        { "Scope", "SiteCollection" }
                     }
                 );
-                var result3 = context.Runspace.InvokeCommand(
-                    "Remove-SPCatalogApp",
+                var result3 = context.Runspace.InvokeCommand<CorporateCatalogAppMetadata>(
+                    "Publish-SPApp",
                     new Dictionary<string, object>()
                     {
-                        { "CatalogApp", result2.ElementAt(0).Id },
-                        { "Scope", "Site" }
+                        { "App", result2.ElementAt(0).Id },
+                        { "Scope", "SiteCollection" },
+                        { "PassThru", true }
                     }
                 );
-                var actual = result2.ElementAt(0);
+                var result4 = context.Runspace.InvokeCommand(
+                    "Remove-SPApp",
+                    new Dictionary<string, object>()
+                    {
+                        { "App", result2.ElementAt(0).Id },
+                        { "Scope", "SiteCollection" }
+                    }
+                );
+                var actual = result3.ElementAt(0);
             }
         }
 

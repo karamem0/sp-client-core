@@ -15,14 +15,14 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.PipeBinds.Core
 {
 
-    public class CatalogAppPipeBind : ClientObjectPipeBind<CatalogApp>
+    public class AppPipeBind : ClientObjectPipeBind<CorporateCatalogAppMetadata>
     {
 
-        public CatalogAppPipeBind(CatalogApp inputObject) : base(inputObject)
+        public AppPipeBind(CorporateCatalogAppMetadata inputObject) : base(inputObject)
         {
         }
 
-        public CatalogAppPipeBind(Guid? inputId)
+        public AppPipeBind(Guid? inputId)
         {
             if (inputId == null)
             {
@@ -31,7 +31,7 @@ namespace Karamem0.SharePoint.PowerShell.PipeBinds.Core
             this.Id = inputId;
         }
 
-        public CatalogAppPipeBind(string inputString)
+        public AppPipeBind(string inputString)
         {
             if (string.IsNullOrEmpty(inputString))
             {

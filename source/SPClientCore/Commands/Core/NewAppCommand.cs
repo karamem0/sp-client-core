@@ -22,12 +22,12 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands.Core
 {
 
-    [Cmdlet("New", "SPCatalogApp")]
-    [OutputType(typeof(CatalogApp))]
-    public class NewCatalogAppCommand : PSCmdlet
+    [Cmdlet("New", "SPApp")]
+    [OutputType(typeof(CorporateCatalogAppMetadata))]
+    public class NewAppCommand : PSCmdlet
     {
 
-        public NewCatalogAppCommand()
+        public NewAppCommand()
         {
         }
 
@@ -41,7 +41,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
         public SwitchParameter Overwrite { get; private set; }
 
         [Parameter(Mandatory = false)]
-        public CatalogAppScope? Scope { get; private set; }
+        public AppScope Scope { get; private set; }
 
         [Parameter(Mandatory = false)]
         public string[] Includes { get; private set; }
@@ -52,19 +52,19 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
             {
                 throw new InvalidOperationException(StringResources.ErrorNotConnected);
             }
-            var catalogAppService = ClientObjectService.ServiceProvider.GetService<ICatalogAppService>();
-            var catalogAppQuery = ODataQuery.Create<File>(this.MyInvocation.BoundParameters);
-            if (this.Scope == CatalogAppScope.Tenant)
+            var appService = ClientObjectService.ServiceProvider.GetService<IAppService>();
+            var appQuery = ODataQuery.Create<File>(this.MyInvocation.BoundParameters);
+            if (this.Scope == AppScope.Tenant)
             {
-                var catalogAppFile = catalogAppService.CreateTenantCatalogApp(this.Name, this.Content, this.Overwrite, "$expand=ListItemAllFields/UniqueId");
-                var catalogAppId = (string)catalogAppFile.ListItemAllFields["UniqueId"];
-                this.WriteObject(catalogAppService.GetTenantCatalogApp(new CatalogAppPipeBind(catalogAppId), catalogAppQuery));
+                var appFile = appService.CreateTenantApp(this.Name, this.Content, this.Overwrite, "$expand=ListItemAllFields/UniqueId");
+                var appId = (string)appFile.ListItemAllFields["UniqueId"];
+                this.WriteObject(appService.GetTenantApp(new AppPipeBind(appId), appQuery));
             }
-            if (this.Scope == CatalogAppScope.Site)
+            if (this.Scope == AppScope.SiteCollection)
             {
-                var catalogAppFile = catalogAppService.CreateSiteCatalogApp(this.Name, this.Content, this.Overwrite, "$expand=ListItemAllFields/UniqueId");
-                var catalogAppId = (string)catalogAppFile.ListItemAllFields["UniqueId"];
-                this.WriteObject(catalogAppService.GetSiteCatalogApp(new CatalogAppPipeBind(catalogAppId), catalogAppQuery));
+                var appFile = appService.CreateSiteCollectionApp(this.Name, this.Content, this.Overwrite, "$expand=ListItemAllFields/UniqueId");
+                var appId = (string)appFile.ListItemAllFields["UniqueId"];
+                this.WriteObject(appService.GetSiteCollectionApp(new AppPipeBind(appId), appQuery));
             }
         }
 

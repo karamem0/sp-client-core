@@ -8,6 +8,7 @@
 
 using Karamem0.SharePoint.PowerShell.Models.Core;
 using Karamem0.SharePoint.PowerShell.Models.OData;
+using Karamem0.SharePoint.PowerShell.PipeBinds.Core;
 using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Services;
 using Karamem0.SharePoint.PowerShell.Services.Core;
@@ -21,29 +22,23 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands.Core
 {
 
-    [Cmdlet("Find", "SPCatalogApp")]
-    [OutputType(typeof(CatalogApp[]))]
-    public class FindCatalogAppCommand : PSCmdlet
+    [Cmdlet("Get", "SPApp")]
+    [OutputType(typeof(CorporateCatalogAppMetadata))]
+    public class GetAppCommand : PSCmdlet
     {
 
-        public FindCatalogAppCommand()
+        public GetAppCommand()
         {
         }
 
+        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+        public AppPipeBind App { get; private set; }
+
         [Parameter(Mandatory = false)]
-        public CatalogAppScope Scope { get; private set; }
+        public AppScope Scope { get; private set; }
 
         [Parameter(Mandatory = false)]
         public string[] Includes { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public string[] OrderBy { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public int? Top { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public int? Skip { get; private set; }
 
         protected override void ProcessRecord()
         {
@@ -51,17 +46,18 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
             {
                 throw new InvalidOperationException(StringResources.ErrorNotConnected);
             }
-            var catalogAppService = ClientObjectService.ServiceProvider.GetService<ICatalogAppService>();
-            var catalogAppQuery = ODataQuery.Create<CatalogApp>(this.MyInvocation.BoundParameters);
-            if (this.Scope == CatalogAppScope.Tenant)
+            var appService = ClientObjectService.ServiceProvider.GetService<IAppService>();
+            var appQuery = ODataQuery.Create<CorporateCatalogAppMetadata>(this.MyInvocation.BoundParameters);
+            if (this.Scope == AppScope.Tenant)
             {
-                this.WriteObject(catalogAppService.FindTenantCatalogApps(catalogAppQuery), true);
+                this.WriteObject(appService.GetTenantApp(this.App, appQuery));
             }
-            if (this.Scope == CatalogAppScope.Site)
+            if (this.Scope == AppScope.SiteCollection)
             {
-                this.WriteObject(catalogAppService.FindSiteCatalogApps(catalogAppQuery), true);
+                this.WriteObject(appService.GetSiteCollectionApp(this.App, appQuery));
             }
         }
+
     }
 
 }

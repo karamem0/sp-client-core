@@ -51,9 +51,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.Core
 
         WebTemplate GetWebTemplate(string webTemplateName, uint? lcid, bool doIncludeCrossLanguage, string webTemplateQuery = null);
 
-        IEnumerable<AppInstance> FindAppInstancesByProductId(Guid? appProductId, string appInstanceQuery = null);
-
         AppInstance GetAppInstanceById(Guid? appInstanceId, string appInstanceQuery = null);
+
+        IEnumerable<AppInstance> GetAppInstancesByProductId(Guid? appProductId, string appInstanceQuery = null);
 
     }
 
@@ -251,18 +251,6 @@ namespace Karamem0.SharePoint.PowerShell.Services.Core
             return this.ClientContext.PostObject<WebTemplate>(requestUrl, null);
         }
 
-        public IEnumerable<AppInstance> FindAppInstancesByProductId(Guid? appProductId, string appInstanceQuery = null)
-        {
-            if (appProductId == null)
-            {
-                throw new ArgumentNullException(nameof(appProductId));
-            }
-            var requestUrl = this.ClientContext.BaseAddress
-                .ConcatPath("_api/web/getappinstancesbyproductid('{0}')", appProductId)
-                .ConcatQuery(appInstanceQuery);
-            return this.ClientContext.GetObject<ClientObjectCollection<AppInstance>>(requestUrl);
-        }
-
         public AppInstance GetAppInstanceById(Guid? appInstanceId, string appInstanceQuery = null)
         {
             if (appInstanceId == null)
@@ -273,6 +261,18 @@ namespace Karamem0.SharePoint.PowerShell.Services.Core
                 .ConcatPath("_api/web/getappinstancebyid('{0}')", appInstanceId)
                 .ConcatQuery(appInstanceQuery);
             return this.ClientContext.GetObject<AppInstance>(requestUrl);
+        }
+
+        public IEnumerable<AppInstance> GetAppInstancesByProductId(Guid? appProductId, string appInstanceQuery = null)
+        {
+            if (appProductId == null)
+            {
+                throw new ArgumentNullException(nameof(appProductId));
+            }
+            var requestUrl = this.ClientContext.BaseAddress
+                .ConcatPath("_api/web/getappinstancesbyproductid('{0}')", appProductId)
+                .ConcatQuery(appInstanceQuery);
+            return this.ClientContext.GetObject<ClientObjectCollection<AppInstance>>(requestUrl);
         }
 
     }

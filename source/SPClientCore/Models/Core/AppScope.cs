@@ -14,12 +14,12 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Models.Core
 {
 
-    public enum CatalogAppScope
+    public enum AppScope
     {
 
         Tenant = 0,
 
-        Site = 1,
+        SiteCollection = 1,
 
     }
 

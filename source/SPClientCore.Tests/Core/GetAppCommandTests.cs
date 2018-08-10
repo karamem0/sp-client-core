@@ -18,21 +18,21 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
 {
 
     [TestClass()]
-    [TestCategory("CatalogApp")]
-    public class GetCatalogAppCommandTests
+    [TestCategory("App")]
+    public class GetAppCommandTests
     {
 
         [TestMethod()]
-        public void GetSiteCatalogApp()
+        public void GetSiteCollectionApp()
         {
             using (var context = new PSCmdletContext())
             {
-                var result1 = context.Runspace.InvokeCommand<CatalogApp>(
-                    "Get-SPCatalogApp",
+                var result1 = context.Runspace.InvokeCommand<CorporateCatalogAppMetadata>(
+                    "Get-SPApp",
                     new Dictionary<string, object>()
                     {
-                        { "CatalogApp", context.AppSettings["App1Id"] },
-                        { "Scope", "Site" }
+                        { "App", context.AppSettings["App1Id"] },
+                        { "Scope", "SiteCollection" }
                     }
                 );
                 var actual = result1.ElementAt(0);
