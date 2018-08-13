@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <PackageId>SPClientCore</PackageId>
-    <Version>1.3.2</Version>
+    <Version>1.3.3</Version>
     <Authors>karamem0</Authors>
     <Company>karamem0</Company>
     <Product>SPClientCore</Product>
@@ -11,8 +11,8 @@
     <Copyright>Copyright (c) 2018 karamem0</Copyright>
     <PackageLicenseUrl>https://github.com/karamem0/SPClientCore/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/karamem0/SPClientCore</PackageProjectUrl>
-    <AssemblyVersion>1.3.2.0</AssemblyVersion>
-    <FileVersion>1.3.2.0</FileVersion>
+    <AssemblyVersion>1.3.3.0</AssemblyVersion>
+    <FileVersion>1.3.3.0</FileVersion>
     <RootNamespace>Karamem0.SharePoint.PowerShell</RootNamespace>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies> 
   </PropertyGroup>

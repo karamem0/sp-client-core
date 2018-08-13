@@ -22,21 +22,21 @@ Get-SPRoleDefinition [-RoleDefinition] <RoleDefinitionPipeBind> [-Includes <Stri
 ## EXAMPLES
 
 ### Example 1
-```powershell
+```
 PS C:\> Get-SPRoleDefinition -RoleDefinition 1073741826
 ```
 
 Gets the role definition by role definition ID.
 
 ### Example 2
-```powershell
+```
 PS C:\> Get-SPRoleDefinition -RoleDefinition 'Full Control'
 ```
 
 Gets the role definition by role definition name.
 
 ### Example 3
-```powershell
+```
 PS C:\> Get-SPRoleDefinition -RoleDefinition 'Administrator'
 ```
 
@@ -81,11 +81,9 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.PipeBinds.Core.RoleDefinitionPipeBind
-
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.Core.RoleDefinition
-
 ## NOTES
 
 ## RELATED LINKS

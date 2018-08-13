@@ -36,21 +36,21 @@ The Find-SPRoleAssignment cmdlet retrieves all role assignments.
 ## EXAMPLES
 
 ### Example 1
-```powershell
+```
 PS C:\> Find-SPRoleAssignment
 ```
 
 Lists site role assignments.
 
 ### Example 2
-```powershell
+```
 PS C:\> Find-SPRoleAssignment -List 'Shared Documents'
 ```
 
 Lists list role assignments.
 
 ### Example 3
-```powershell
+```
 PS C:\> Find-SPRoleAssignment -List 'Shared Documents' -ListItem 1
 ```
 
@@ -155,11 +155,9 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.Core.RoleAssignment[]
-
 ## NOTES
 
 ## RELATED LINKS

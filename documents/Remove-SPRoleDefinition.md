@@ -22,7 +22,7 @@ The Remove-SPRoleDefinition cmdlet removes a role definition from the site.
 ## EXAMPLES
 
 ### Example 1
-```powershell
+```
 PS C:\> Remove-SPRoleDefinition -RoleDefinition 1073741947
 ```
 
@@ -52,11 +52,9 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.PipeBinds.Core.RoleDefinitionPipeBind
-
 ## OUTPUTS
 
 ### System.Void
-
 ## NOTES
 
 ## RELATED LINKS

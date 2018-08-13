@@ -21,8 +21,9 @@ using System.Threading;
 namespace Karamem0.SharePoint.PowerShell.Commands
 {
 
-    [Cmdlet("Connect", "SPOnline")]
-    [OutputType(typeof(User))]
+    [Cmdlet("Connect", "SPOnline", DefaultParameterSetName = "DeviceCode")]
+    [OutputType(typeof(User), ParameterSetName = new[] { "DeviceCode", "Password" })]
+    [OutputType(typeof(string), ParameterSetName = new[] { "AdminConsent" })]
     public class ConnectOnlineCommand : PSCmdlet
     {
 
@@ -30,17 +31,21 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         {
         }
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, ParameterSetName = "DeviceCode")]
+        [Parameter(Mandatory = true, ParameterSetName = "Password")]
+        [Parameter(Mandatory = true, ParameterSetName = "AdminConsent")]
         public Uri Url { get; private set; }
 
-        [Parameter(Mandatory = false)]
-        public Uri Authority { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public Guid? ClientId { get; private set; }
-
-        [Parameter(Mandatory = false)]
+        [Parameter(Mandatory = true, ParameterSetName = "Password")]
         public PSCredential Credential { get; private set; }
+
+        [Parameter(Mandatory = true, ParameterSetName = "AdminConsent")]
+        public SwitchParameter AdminConsent { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "DeviceCode")]
+        [Parameter(Mandatory = false, ParameterSetName = "Password")]
+        [Parameter(Mandatory = false, ParameterSetName = "AdminConsent")]
+        public Uri Authority { get; private set; }
 
         protected override void ProcessRecord()
         {
@@ -48,12 +53,8 @@ namespace Karamem0.SharePoint.PowerShell.Commands
             {
                 this.Authority = new Uri(Constants.Authority);
             }
-            if (this.ClientId == null)
-            {
-                this.ClientId = new Guid(Constants.ClientId);
-            }
-            var oAuthContext = new OAuthContext(this.Authority.ToString(), this.ClientId.ToString(), this.Url.GetLeftPart(UriPartial.Authority));
-            if (this.Credential == null)
+            var oAuthContext = new OAuthContext(this.Authority.ToString(), Constants.ClientId, this.Url.GetLeftPart(UriPartial.Authority));
+            if (this.ParameterSetName == "DeviceCode")
             {
                 var oAuthDeviceCodeMessage = oAuthContext.AcquireDeviceCode();
                 if (oAuthDeviceCodeMessage is OAuthDeviceCode oAuthDeviceCode)
@@ -101,8 +102,10 @@ namespace Karamem0.SharePoint.PowerShell.Commands
                 {
                     throw new InvalidOperationException(oAuthDeviceCodeError.ErrorDescription);
                 }
+                var userService = ClientObjectService.ServiceProvider.GetService<IUserService>();
+                this.WriteObject(userService.GetUser());
             }
-            else
+            if (this.ParameterSetName == "Password")
             {
                 var credential = this.Credential.GetNetworkCredential();
                 var oAuthMessage = oAuthContext.AcquireTokenByPassword(credential.UserName, credential.Password);
@@ -114,9 +117,13 @@ namespace Karamem0.SharePoint.PowerShell.Commands
                 {
                     throw new InvalidOperationException(oAuthError.ErrorDescription);
                 }
+                var userService = ClientObjectService.ServiceProvider.GetService<IUserService>();
+                this.WriteObject(userService.GetUser());
             }
-            var userService = ClientObjectService.ServiceProvider.GetService<IUserService>();
-            this.WriteObject(userService.GetUser());
+            if (this.ParameterSetName == "AdminConsent")
+            {
+                this.WriteObject(oAuthContext.GetAdminConsentUrl().AbsoluteUri);
+            }
         }
 
     }

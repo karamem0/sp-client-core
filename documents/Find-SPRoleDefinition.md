@@ -23,7 +23,7 @@ The Find-SPRoleAssignment cmdlet retrieves all role definitions.
 ## EXAMPLES
 
 ### Example 1
-```powershell
+```
 PS C:\> Find-SPRoleDefinition
 ```
 
@@ -98,11 +98,9 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.Core.RoleDefinition[]
-
 ## NOTES
 
 ## RELATED LINKS

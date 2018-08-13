@@ -17,12 +17,13 @@ Connect-SPServer -Url <Uri> [-Credential <PSCredential>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Connect-SPServer cmdlet creates new connection to SharePoint Server. (On-premiss)
+The Connect-SPServer cmdlet creates new connection to SharePoint Server.
+(On-premiss)
 
 ## EXAMPLES
 
 ### Example 1
-```powershell
+```
 PS C:\> Connect-SPServer -Url 'https://example.com/sharepoint' -Credentials (Get-Credential)
 ```
 
@@ -67,11 +68,9 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.Core.User
-
 ## NOTES
 
 ## RELATED LINKS

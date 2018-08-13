@@ -35,21 +35,21 @@ The Remove-SPRoleAssignment cmdlet removes a permission from a principal (User o
 ## EXAMPLES
 
 ### Example 1
-```powershell
+```
 PS C:\> Remove-SPRoleAssignment -PrincipalId 14 -RoleDefinitionId 1073741826
 ```
 
 Removes site read permission from the principal.
 
 ### Example 2
-```powershell
+```
 PS C:\> Remove-SPRoleAssignment -List 'Shared Documents' -PrincipalId 14 -RoleDefinitionId 1073741827
 ```
 
 Removes list contribute permission from the principal.
 
 ### Example 3
-```powershell
+```
 PS C:\> Remove-SPRoleAssignment -List 'Shared Documents' -ListItem 1 -PrincipalId 14 -RoleDefinitionId 1073741829
 ```
 
@@ -124,11 +124,9 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### System.Void
-
 ## NOTES
 
 ## RELATED LINKS

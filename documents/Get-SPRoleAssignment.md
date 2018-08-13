@@ -34,21 +34,21 @@ The Get-SPRoleAssignment cmdlet retrieves the role assignment which matches the 
 ## EXAMPLES
 
 ### Example 1
-```powershell
+```
 PS C:\> Get-SPRoleAssignment -PrincipalId 14
 ```
 
 Gets the site role assignment by principal ID.
 
 ### Example 2
-```powershell
+```
 PS C:\> Get-SPRoleAssignment -List 'Shared Documents' -PrincipalId 14
 ```
 
 Gets the list role assignment by principal ID.
 
 ### Example 3
-```powershell
+```
 PS C:\> Get-SPRoleAssignment -List 'Shared Documents' -ListItem 1 -PrincipalId 14
 ```
 
@@ -123,11 +123,9 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.Core.RoleAssignment
-
 ## NOTES
 
 ## RELATED LINKS

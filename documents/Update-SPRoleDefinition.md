@@ -23,7 +23,7 @@ The Update-SPRoleDefinition cmdlet updates the role definition property.
 ## EXAMPLES
 
 ### Example 1
-```powershell
+```
 PS C:\> Update-SPRoleDefinition -RoleDefinition 1073741947 -BasePermissions 'ViewListItems,AddListItems'
 ```
 
@@ -101,7 +101,7 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -128,11 +128,9 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.PipeBinds.Core.RoleDefinitionPipeBind
-
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.Core.RoleDefinition
-
 ## NOTES
 
 ## RELATED LINKS

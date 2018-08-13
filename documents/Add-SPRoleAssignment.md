@@ -34,21 +34,21 @@ The Add-SPRoleAssignment cmdlet adds a permission to a principal (User or Group)
 ## EXAMPLES
 
 ### Example 1
-```powershell
+```
 PS C:\> Add-SPRoleAssignment -PrincipalId 14 -RoleDefinitionId 1073741826
 ```
 
 Adds site read permission to the principal.
 
 ### Example 2
-```powershell
+```
 PS C:\> Add-SPRoleAssignment -List 'Shared Documents' -PrincipalId 14 -RoleDefinitionId 1073741827
 ```
 
 Adds list contribute permission to the principal.
 
 ### Example 3
-```powershell
+```
 PS C:\> Add-SPRoleAssignment -List 'Shared Documents' -ListItem 1 -PrincipalId 14 -RoleDefinitionId 1073741829
 ```
 
@@ -123,11 +123,9 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### System.Void
-
 ## NOTES
 
 ## RELATED LINKS
