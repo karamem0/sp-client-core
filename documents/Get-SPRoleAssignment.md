@@ -38,21 +38,21 @@ The Get-SPRoleAssignment cmdlet retrieves the role assignment which matches the 
 PS C:\> Get-SPRoleAssignment -PrincipalId 14
 ```
 
-Gets the site role assignment by principal ID.
+Gets the site role assignment by ID.
 
 ### Example 2
 ```
 PS C:\> Get-SPRoleAssignment -List 'Shared Documents' -PrincipalId 14
 ```
 
-Gets the list role assignment by principal ID.
+Gets the list role assignment by ID.
 
 ### Example 3
 ```
 PS C:\> Get-SPRoleAssignment -List 'Shared Documents' -ListItem 1 -PrincipalId 14
 ```
 
-Gets the list item role assignment by principal ID.
+Gets the list item role assignment by ID.
 
 ## PARAMETERS
 

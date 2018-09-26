@@ -74,9 +74,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         public FileSystemObjectType? FileSystemObjectType { get; private set; }
 
         [JsonProperty()]
-        public SecurableObject FirstUniqueAncestorSecurableObject { get; private set; }
-
-        [JsonProperty()]
         public Folder Folder { get; private set; }
 
         [JsonProperty()]

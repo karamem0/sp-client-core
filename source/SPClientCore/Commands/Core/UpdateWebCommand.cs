@@ -31,7 +31,13 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
         }
 
         [Parameter(Mandatory = false)]
+        public bool? AllowCreateDeclarativeWorkflowForCurrentUser { get; private set; }
+
+        [Parameter(Mandatory = false)]
         public bool? AllowSavePublishDeclarativeWorkflowForCurrentUser { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public string AlternateCssUrl { get; private set; }
 
         [Parameter(Mandatory = false)]
         public Group AssociatedMemberGroup { get; private set; }
@@ -52,7 +58,37 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
         public bool? EnableMinimalDownload { get; private set; }
 
         [Parameter(Mandatory = false)]
+        public bool? FooterEnabled { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public VariantThemeType? HeaderEmphasis { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public HeaderLayoutType? HeaderLayout { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public bool? HideSiteLogo { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public bool? HideSiteTitle { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public bool? HorizontalQuickLaunch { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public bool? MegaMenuEnabled { get; private set; }
+
+        [Parameter(Mandatory = false)]
         public string MasterUrl { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public bool? NoCrawl { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public bool? ObjectCacheEnabled { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public bool? OverwriteTranslationsOnChange { get; private set; }
 
         [Parameter(Mandatory = false)]
         public bool? QuickLaunchEnabled { get; private set; }
@@ -62,6 +98,9 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
         [Parameter(Mandatory = false)]
         public string ServerRelativeUrl { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public string SiteLogoUrl { get; private set; }
 
         [Parameter(Mandatory = false)]
         public bool? SyndicationEnabled { get; private set; }
@@ -77,6 +116,9 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
         [Parameter(Mandatory = false)]
         public bool? UIVersionConfigurationEnabled { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public string WelcomePage { get; private set; }
 
         [Parameter(Mandatory = false)]
         public SwitchParameter PassThru { get; private set; }

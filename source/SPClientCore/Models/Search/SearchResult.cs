@@ -6,6 +6,7 @@
 // https://github.com/karamem0/SPClientCore/blob/master/LICENSE
 //
 
+using Karamem0.SharePoint.PowerShell.Models.Core;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

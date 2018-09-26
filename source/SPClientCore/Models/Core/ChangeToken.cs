@@ -6,25 +6,24 @@
 // https://github.com/karamem0/SPClientCore/blob/master/LICENSE
 //
 
-using Karamem0.SharePoint.PowerShell.Models.Core;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.Search
+namespace Karamem0.SharePoint.PowerShell.Models.Core
 {
 
-    public class SimpleDataRow : ClientObject
+    public class ChangeToken : ClientObject
     {
 
-        public SimpleDataRow()
+        public ChangeToken()
         {
         }
 
         [JsonProperty()]
-        public ClientObjectCollection<KeyValue> Cells { get; private set; }
+        public string StringValue { get; private set; }
 
     }
 

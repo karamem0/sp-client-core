@@ -5,42 +5,35 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-SPRoleDefinition
+# Get-SPWeb
 
 ## SYNOPSIS
-Gets a role definition.
+Gets a sub site.
 
 ## SYNTAX
 
 ```
-Get-SPRoleDefinition [-RoleDefinition] <RoleDefinitionPipeBind> [-Includes <String[]>] [<CommonParameters>]
+Get-SPWeb [[-Web] <WebPipeBind>] [-Includes <String[]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-SPRoleDefinition cmdlet retrieves the role definition which matches the parameter.
+The Get-SPWeb cmdlet retrieves the sub site which matches the parameter.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> Get-SPRoleDefinition -RoleDefinition 1073741826
+PS C:\> Get-SPWeb -Web 'eaaad9d1-3a34-413c-9c73-f0ecd6bfe91a'
 ```
 
-Gets the role definition by ID.
+Gets the web by ID.
 
 ### Example 2
 ```
-PS C:\> Get-SPRoleDefinition -RoleDefinition 'Full Control'
+PS C:\> Get-SPWeb -Web '/path/to/site'
 ```
 
-Gets the role definition by name.
-
-### Example 3
-```
-PS C:\> Get-SPRoleDefinition -RoleDefinition 'Administrator'
-```
-
-Gets the role definition by type.
+Gets the web by URL.
 
 ## PARAMETERS
 
@@ -59,15 +52,15 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -RoleDefinition
-Indicates the role definition ID, name or type.
+### -Web
+Indicates the web ID or URL.
 
 ```yaml
-Type: RoleDefinitionPipeBind
+Type: WebPipeBind
 Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
 Position: 0
 Default value: None
 Accept pipeline input: True (ByValue)
@@ -80,10 +73,10 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## INPUTS
 
-### Karamem0.SharePoint.PowerShell.PipeBinds.Core.RoleDefinitionPipeBind
+### Karamem0.SharePoint.PowerShell.PipeBinds.Core.WebPipeBind
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.Core.RoleDefinition
+### Karamem0.SharePoint.PowerShell.Models.Core.Web
 ## NOTES
 
 ## RELATED LINKS

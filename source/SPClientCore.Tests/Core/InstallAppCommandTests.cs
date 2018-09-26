@@ -47,7 +47,7 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
                             { "ProductId", context.AppSettings["App1ProductId"] }
                         }
                     );
-                    if (result2.ElementAt(0).Status == AppInstanceStatus.Installed)
+                    if (result2.ElementAt(0).Status == AppStatus.Installed)
                     {
                         break;
                     }

@@ -51,7 +51,7 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         public string StartPage { get; private set; }
 
         [JsonProperty()]
-        public AppInstanceStatus? Status { get; private set; }
+        public AppStatus? Status { get; private set; }
 
         [JsonProperty()]
         public string Title { get; private set; }

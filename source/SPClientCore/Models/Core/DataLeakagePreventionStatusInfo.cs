@@ -15,25 +15,25 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Models.Core
 {
 
-    [JsonObject(Id = "SP.Attachment")]
-    public class Attachment : ClientObject
+    [JsonObject(Id = "SP.SPDataLeakagePreventionStatusInfo")]
+    public class DataLeakagePreventionStatusInfo : ClientObject
     {
 
-        public Attachment()
+        public DataLeakagePreventionStatusInfo()
         {
         }
 
         [JsonProperty()]
-        public string FileName { get; private set; }
+        public bool? ContainsConfidentialInfo { get; private set; }
 
         [JsonProperty()]
-        public ResourcePath FileNameAsPath { get; private set; }
+        public string ContainsConfidentialInfoLearnMoreUrl { get; private set; }
 
         [JsonProperty()]
-        public ResourcePath ServerRelativePath { get; private set; }
+        public bool? ExternalSharingTipsEnabled { get; private set; }
 
         [JsonProperty()]
-        public string ServerRelativeUrl { get; private set; }
+        public bool? ExternalSharingTipsLearnMoreUrl { get; private set; }
 
     }
 

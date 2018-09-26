@@ -5,61 +5,30 @@ online version:
 schema: 2.0.0
 ---
 
-# New-SPRoleDefinition
+# Find-SPWeb
 
 ## SYNOPSIS
-Creates a new role definition.
+Lists sub sites.
 
 ## SYNTAX
 
 ```
-New-SPRoleDefinition -BasePermissions <BasePermissions> [-Description <String>] -Name <String>
- [-Includes <String[]>] [<CommonParameters>]
+Find-SPWeb [-Includes <String[]>] [-OrderBy <String[]>] [-Top <Int32>] [-Skip <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The New-SPRoleDefinition cmdlet adds a new role definition to the site.
+The Find-SPWeb cmdlet retrieves all sub sites.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> New-SPRoleDefinition -BasePermissions 'ViewListItems,AddListItems' -Name 'RoleDefinition1'
+PS C:\> Find-SPWeb
 ```
 
-Creates a new role definition to the site.
+Lists sub sites.
 
 ## PARAMETERS
-
-### -BasePermissions
-Indicates the role definition base permissions.
-
-```yaml
-Type: BasePermissions
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Description
-Indicates the description.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -Includes
 Indicates the property name collection to include in the result object.
@@ -76,15 +45,45 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Name
-Indicates the name.
+### -OrderBy
+Indicates the property name collection used for sorting.
 
 ```yaml
-Type: String
+Type: String[]
 Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Skip
+Indicates number which ignores the first N objects and then gets the remaining objects.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Top
+Indicates number which selecting only the first N objects of the collection.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -100,7 +99,7 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ### None
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.Core.RoleDefinition
+### Karamem0.SharePoint.PowerShell.Models.Core.Web[]
 ## NOTES
 
 ## RELATED LINKS

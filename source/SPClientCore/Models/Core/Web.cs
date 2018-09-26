@@ -24,10 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         }
 
         [JsonProperty()]
-        public bool? AllowCreateDeclarativeWorkflowForCurrentUser { get; private set; }
-
-        [JsonProperty()]
-        public bool? AllowDesignerForCurrentUser { get; private set; }
+        public ClientObjectCollection<Alert> Alerts { get; private set; }
 
         [JsonProperty()]
         public bool? AllowMasterPageEditingForCurrentUser { get; private set; }
@@ -48,7 +45,13 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         public PropertyValues AllProperties { get; private set; }
 
         [JsonProperty()]
+        public string AlternateCssUrl { get; private set; }
+
+        [JsonProperty()]
         public Guid? AppInstanceId { get; private set; }
+
+        [JsonProperty()]
+        public ClientObjectCollection<AppTile> AppTiles { get; private set; }
 
         [JsonProperty()]
         public Group AssociatedMemberGroup { get; private set; }
@@ -58,6 +61,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
 
         [JsonProperty()]
         public Group AssociatedVisitorGroup { get; private set; }
+
+        [JsonProperty()]
+        public User Author { get; private set; }
 
         [JsonProperty()]
         public ClientObjectCollection<ContentType> AvailableContentTypes { get; private set; }
@@ -75,13 +81,22 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         public DateTime? Created { get; private set; }
 
         [JsonProperty()]
+        public ChangeToken CurrentChangeToken { get; private set; }
+
+        [JsonProperty()]
         public User CurrentUser { get; private set; }
 
         [JsonProperty()]
         public string CustomMasterUrl { get; private set; }
 
         [JsonProperty()]
+        public DataLeakagePreventionStatusInfo DataLeakagePreventionStatusInfo { get; private set; }
+
+        [JsonProperty()]
         public string Description { get; private set; }
+
+        [JsonProperty()]
+        public Guid? DesignPackageId { get; private set; }
 
         [JsonProperty()]
         public string DesignerDownloadUrlForCurrentUser { get; private set; }
@@ -108,13 +123,37 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         public ClientObjectCollection<Folder> Folders { get; private set; }
 
         [JsonProperty()]
+        public bool? FooterEnabled { get; private set; }
+
+        [JsonProperty()]
+        public VariantThemeType? HeaderEmphasis { get; private set; }
+
+        [JsonProperty()]
+        public HeaderLayoutType? HeaderLayout { get; private set; }
+
+        [JsonProperty()]
+        public bool? HideSiteLogo { get; private set; }
+
+        [JsonProperty()]
+        public bool? HideSiteTitle { get; private set; }
+
+        [JsonProperty()]
+        public bool? HorizontalQuickLaunch { get; private set; }
+
+        [JsonProperty()]
         public Guid? Id { get; private set; }
+
+        [JsonProperty()]
+        public bool? IsMultilingual { get; private set; }
 
         [JsonProperty()]
         public int? Language { get; private set; }
 
         [JsonProperty()]
         public DateTime? LastItemModifiedDate { get; private set; }
+
+        [JsonProperty()]
+        public DateTime? LastItemUserModifiedDate { get; private set; }
 
         [JsonProperty()]
         public ClientObjectCollection<List> Lists { get; private set; }
@@ -126,7 +165,19 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         public string MasterUrl { get; private set; }
 
         [JsonProperty()]
+        public bool? MegaMenuEnabled { get; private set; }
+
+        [JsonProperty()]
         public Navigation Navigation { get; private set; }
+
+        [JsonProperty()]
+        public bool? NoCrawl { get; private set; }
+
+        [JsonProperty()]
+        public bool? ObjectCacheEnabled { get; private set; }
+
+        [JsonProperty()]
+        public bool? OverwriteTranslationsOnChange { get; private set; }
 
         [JsonProperty()]
         public Web ParentWeb { get; private set; }
@@ -147,6 +198,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         public RegionalSettings RegionalSettings { get; private set; }
 
         [JsonProperty()]
+        public ResourcePath ResourcePath { get; private set; }
+
+        [JsonProperty()]
         public ClientObjectCollection<RoleDefinition> RoleDefinitions { get; private set; }
 
         [JsonProperty()]
@@ -163,6 +217,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
 
         [JsonProperty()]
         public ClientObjectCollection<Group> SiteGroups { get; private set; }
+
+        [JsonProperty()]
+        public string SiteLogoUrl { get; private set; }
 
         [JsonProperty()]
         public List SiteUserInfoList { get; private set; }
@@ -208,6 +265,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
 
         [JsonProperty()]
         public string WebTemplate { get; private set; }
+
+        [JsonProperty()]
+        public string WelcomePage { get; private set; }
 
         [JsonProperty()]
         public ClientObjectCollection<WorkflowAssociation> WorkflowAssociations { get; private set; }

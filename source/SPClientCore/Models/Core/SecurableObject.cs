@@ -24,6 +24,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         }
 
         [JsonProperty()]
+        public SecurableObject FirstUniqueAncestorSecurableObject { get; private set; }
+
+        [JsonProperty()]
         public bool? HasUniqueRoleAssignments { get; private set; }
 
         [JsonProperty()]

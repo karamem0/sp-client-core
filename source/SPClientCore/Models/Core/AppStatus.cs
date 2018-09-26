@@ -14,7 +14,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Models.Core
 {
 
-    public enum AppInstanceStatus
+    public enum AppStatus
     {
 
         InvalidStatus = 0,

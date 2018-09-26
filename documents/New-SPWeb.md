@@ -5,46 +5,32 @@ online version:
 schema: 2.0.0
 ---
 
-# Update-SPRoleDefinition
+# New-SPWeb
 
 ## SYNOPSIS
-Updates a role definition.
+Creates a new sub site.
 
 ## SYNTAX
 
 ```
-Update-SPRoleDefinition [-RoleDefinition] <RoleDefinitionPipeBind> [-BasePermissions <BasePermissions>]
- [-Description <String>] [-Name <String>] [-PassThru] [-Includes <String[]>] [<CommonParameters>]
+New-SPWeb [-Description <String>] [-Language <Int32>] [-Title <String>] [-Url <String>]
+ [-UseSamePermissionsAsParentSite <Boolean>] [-WebTemplate <String>] [-Includes <String[]>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Update-SPRoleDefinition cmdlet updates the role definition property.
+The New-SPWeb cmdlet adds a new site to the its parent site.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> Update-SPRoleDefinition -RoleDefinition 1073741947 -BasePermissions 'ViewListItems,AddListItems'
+PS C:\> New-SPWeb -Url 'Portal' -Title 'Company Portal' -Description 'This is a company portal site.' -WebTemplate 'STS#0'
 ```
 
-Updates base permissions of a role definition.
+Creates a new site to the its parent site.
 
 ## PARAMETERS
-
-### -BasePermissions
-Indicates the role definition base permissions.
-
-```yaml
-Type: BasePermissions
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -Description
 Indicates the description.
@@ -76,8 +62,23 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Name
-Indicates the name.
+### -Language
+Indicates the LCID.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Title
+Indicates the display name.
 
 ```yaml
 Type: String
@@ -91,33 +92,48 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -PassThru
-If specified, returns the updated object.
+### -Url
+Indicates the internal name.
 
 ```yaml
-Type: SwitchParameter
+Type: String
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: False
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -RoleDefinition
-Indicates the ID, name or type.
+### -UseSamePermissionsAsParentSite
+If specified, the site will inherit permissions from its parent site.
 
 ```yaml
-Type: RoleDefinitionPipeBind
+Type: Boolean
 Parameter Sets: (All)
 Aliases:
 
-Required: True
-Position: 0
+Required: False
+Position: Named
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -WebTemplate
+Indicates the template ID.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -127,10 +143,10 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## INPUTS
 
-### Karamem0.SharePoint.PowerShell.PipeBinds.Core.RoleDefinitionPipeBind
+### None
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.Core.RoleDefinition
+### Karamem0.SharePoint.PowerShell.Models.Core.Web
 ## NOTES
 
 ## RELATED LINKS

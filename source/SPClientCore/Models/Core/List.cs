@@ -108,9 +108,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         public ClientObjectCollection<Field> Fields { get; private set; }
 
         [JsonProperty()]
-        public SecurableObject FirstUniqueAncestorSecurableObject { get; private set; }
-
-        [JsonProperty()]
         public bool? ForceCheckout { get; private set; }
 
         [JsonProperty()]
