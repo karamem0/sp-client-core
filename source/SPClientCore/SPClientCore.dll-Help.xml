@@ -500,6 +500,188 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Find-SPContentType</command:name>
+      <command:verb>Find</command:verb>
+      <command:noun>SPContentType</command:noun>
+      <maml:description>
+        <maml:para>Lists content types.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Find-SPContentType cmdlet retrieves all content types.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Find-SPContentType</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>List</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the list ID or title.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ListPipeBind</command:parameterValue>
+          <dev:type>
+            <maml:name>ListPipeBind</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Includes</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the property name collection to include in the result object.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>OrderBy</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the property name collection used for sorting.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Skip</maml:name>
+          <maml:Description>
+            <maml:para>Indicates number which ignores the first N objects and then gets the remaining objects.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Top</maml:name>
+          <maml:Description>
+            <maml:para>Indicates number which selecting only the first N objects of the collection.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Includes</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the property name collection to include in the result object.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>String[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>List</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the list ID or title.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ListPipeBind</command:parameterValue>
+        <dev:type>
+          <maml:name>ListPipeBind</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>OrderBy</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the property name collection used for sorting.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>String[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Skip</maml:name>
+        <maml:Description>
+          <maml:para>Indicates number which ignores the first N objects and then gets the remaining objects.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Top</maml:name>
+        <maml:Description>
+          <maml:para>Indicates number which selecting only the first N objects of the collection.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Core.ContentType[]</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Find-SPContentType</dev:code>
+        <dev:remarks>
+          <maml:para>Lists site content types.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Find-SPContentType -List 'Shared Documents'</dev:code>
+        <dev:remarks>
+          <maml:para>Lists list content types.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Find-SPRoleAssignment</command:name>
       <command:verb>Find</command:verb>
       <command:noun>SPRoleAssignment</command:noun>
@@ -1078,6 +1260,167 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Get-SPContentType</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>SPContentType</command:noun>
+      <maml:description>
+        <maml:para>Gets a content type.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-SPContentType cmdlet retrieves the content type which matches the parameter.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-SPContentType</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>ContentType</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the content type ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ContentTypePipeBind</command:parameterValue>
+          <dev:type>
+            <maml:name>ContentTypePipeBind</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Includes</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the property name collection to include in the result object.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-SPContentType</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>ContentType</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the content type ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ContentTypePipeBind</command:parameterValue>
+          <dev:type>
+            <maml:name>ContentTypePipeBind</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>List</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the list ID or title.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ListPipeBind</command:parameterValue>
+          <dev:type>
+            <maml:name>ListPipeBind</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Includes</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the property name collection to include in the result object.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>ContentType</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the content type ID.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ContentTypePipeBind</command:parameterValue>
+        <dev:type>
+          <maml:name>ContentTypePipeBind</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Includes</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the property name collection to include in the result object.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>String[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>List</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the list ID or title.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ListPipeBind</command:parameterValue>
+        <dev:type>
+          <maml:name>ListPipeBind</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.PipeBinds.Core.ContentTypePipeBind</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Core.ContentType</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-SPContentType -ContentType '0x0100DFF682E1FF5A8A4EA7A6370B7D0A8104'</dev:code>
+        <dev:remarks>
+          <maml:para>Gets the site content type by ID.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-SPContentType -List 'Shared Documents' -ContentType '0x0100DFF682E1FF5A8A4EA7A6370B7D0A8104'</dev:code>
+        <dev:remarks>
+          <maml:para>Gets the list content type by ID.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Get-SPRoleAssignment</command:name>
       <command:verb>Get</command:verb>
       <command:noun>SPRoleAssignment</command:noun>
@@ -1509,6 +1852,380 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>New-SPContentType</command:name>
+      <command:verb>New</command:verb>
+      <command:noun>SPContentType</command:noun>
+      <maml:description>
+        <maml:para>Creates a new content type.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The New-SPWeb cmdlet adds a new content type to a site or list.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>New-SPContentType</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>List</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the list ID or title.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ListPipeBind</command:parameterValue>
+          <dev:type>
+            <maml:name>ListPipeBind</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Description</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the description.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>DisplayFormUrl</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the URL of a custom display form.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>EditFormUrl</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the URL of a custom edit form.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Group</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the group.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Hidden</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the value whether to hide from user.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Includes</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the property name collection to include in the result object.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>JSLink</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the JSLink URL.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>MobileDisplayFormUrl</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the URL of a custom display form for mobile.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>MobileEditFormUrl</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the URL of a custom edit form for mobile.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>MobileNewFormUrl</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the URL of a custom new form for mobile.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Name</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the name.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NewFormUrl</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the URL of a custom new form.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Description</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the description.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>DisplayFormUrl</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the URL of a custom display form.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>EditFormUrl</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the URL of a custom edit form.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Group</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the group.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Hidden</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the value whether to hide from user.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Includes</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the property name collection to include in the result object.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>String[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>JSLink</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the JSLink URL.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>List</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the list ID or title.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ListPipeBind</command:parameterValue>
+        <dev:type>
+          <maml:name>ListPipeBind</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>MobileDisplayFormUrl</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the URL of a custom display form for mobile.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>MobileEditFormUrl</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the URL of a custom edit form for mobile.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>MobileNewFormUrl</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the URL of a custom new form for mobile.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Name</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the name.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>NewFormUrl</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the URL of a custom new form.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Core.ContentType</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; New-SPContentType -Name 'My Content Type'</dev:code>
+        <dev:remarks>
+          <maml:para>Creates a new content type to a site.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; New-SPContentType -List 'Shared Documents' -Name 'My Content Type'</dev:code>
+        <dev:remarks>
+          <maml:para>Creates a new content type to a list.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>New-SPRoleDefinition</command:name>
       <command:verb>New</command:verb>
       <command:noun>SPRoleDefinition</command:noun>
@@ -1517,7 +2234,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The New-SPRoleDefinition cmdlet adds a new role definition to the site.</maml:para>
+      <maml:para>The New-SPRoleDefinition cmdlet adds a new role definition to a site.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -1652,7 +2369,7 @@
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; New-SPRoleDefinition -BasePermissions 'ViewListItems,AddListItems' -Name 'RoleDefinition1'</dev:code>
         <dev:remarks>
-          <maml:para>Creates a new role definition to the site.</maml:para>
+          <maml:para>Creates a new role definition to a site.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -1883,6 +2600,131 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Remove-SPContentType</command:name>
+      <command:verb>Remove</command:verb>
+      <command:noun>SPContentType</command:noun>
+      <maml:description>
+        <maml:para>Removes a content type.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Remove-SPContentType cmdlet removes a content type from a site or list.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Remove-SPContentType</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>ContentType</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the content type ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ContentTypePipeBind</command:parameterValue>
+          <dev:type>
+            <maml:name>ContentTypePipeBind</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Remove-SPContentType</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>ContentType</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the content type ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ContentTypePipeBind</command:parameterValue>
+          <dev:type>
+            <maml:name>ContentTypePipeBind</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>List</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the list ID or title.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ListPipeBind</command:parameterValue>
+          <dev:type>
+            <maml:name>ListPipeBind</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>ContentType</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the content type ID.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ContentTypePipeBind</command:parameterValue>
+        <dev:type>
+          <maml:name>ContentTypePipeBind</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>List</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the list ID or title.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ListPipeBind</command:parameterValue>
+        <dev:type>
+          <maml:name>ListPipeBind</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.PipeBinds.Core.ContentTypePipeBind</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Void</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Remove-SPContentType -ContentType '0x0100DFF682E1FF5A8A4EA7A6370B7D0A8104'</dev:code>
+        <dev:remarks>
+          <maml:para>Removes the site content type.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Remove-SPContentType -List 'Shared Documents' -ContentType '0x0100DFF682E1FF5A8A4EA7A6370B7D0A8104'</dev:code>
+        <dev:remarks>
+          <maml:para>Removes the list content type.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Remove-SPRoleAssignment</command:name>
       <command:verb>Remove</command:verb>
       <command:noun>SPRoleAssignment</command:noun>
@@ -2095,7 +2937,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-SPRoleDefinition cmdlet removes a role definition from the site.</maml:para>
+      <maml:para>The Remove-SPRoleDefinition cmdlet removes a role definition from a site.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -2213,6 +3055,442 @@
         <dev:code>PS C:\&gt; Remove-SPWeb</dev:code>
         <dev:remarks>
           <maml:para>Removes the current site from its parent site.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Select-SPWeb</command:name>
+      <command:verb>Select</command:verb>
+      <command:noun>SPWeb</command:noun>
+      <maml:description>
+        <maml:para>Select a site.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Select-SPWeb cmdlet set the site which matches the parameter to current.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Select-SPWeb</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Web</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the web ID or URL.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">WebPipeBind</command:parameterValue>
+          <dev:type>
+            <maml:name>WebPipeBind</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Includes</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the property name collection to include in the result object.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PassThru</maml:name>
+          <maml:Description>
+            <maml:para>If specified, returns the selected object.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Includes</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the property name collection to include in the result object.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>String[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>PassThru</maml:name>
+        <maml:Description>
+          <maml:para>If specified, returns the selected object.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Web</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the web ID or URL.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">WebPipeBind</command:parameterValue>
+        <dev:type>
+          <maml:name>WebPipeBind</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.PipeBinds.Core.WebPipeBind</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Core.Web</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Select-SPWeb -Web 'eaaad9d1-3a34-413c-9c73-f0ecd6bfe91a'</dev:code>
+        <dev:remarks>
+          <maml:para>Changes the current web by ID.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Select-SPWeb -Web '/path/to/site'</dev:code>
+        <dev:remarks>
+          <maml:para>Changes the current web by URL.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Update-SPContentType</command:name>
+      <command:verb>Update</command:verb>
+      <command:noun>SPContentType</command:noun>
+      <maml:description>
+        <maml:para>Updates a content type.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Update-SPContentType cmdlet updates the content type property.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Update-SPContentType</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>ContentType</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the content type ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ContentTypePipeBind</command:parameterValue>
+          <dev:type>
+            <maml:name>ContentTypePipeBind</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Description</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the description.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Hidden</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the value whether to hide from user.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Includes</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the property name collection to include in the result object.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>JSLink</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the JSLink URL.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PassThru</maml:name>
+          <maml:Description>
+            <maml:para>If specified, returns the updated object.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Update-SPContentType</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>ContentType</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the content type ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ContentTypePipeBind</command:parameterValue>
+          <dev:type>
+            <maml:name>ContentTypePipeBind</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>List</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the list ID or title.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ListPipeBind</command:parameterValue>
+          <dev:type>
+            <maml:name>ListPipeBind</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Description</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the description.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Hidden</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the value whether to hide from user.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Includes</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the property name collection to include in the result object.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>JSLink</maml:name>
+          <maml:Description>
+            <maml:para>Indicates the JSLink URL.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PassThru</maml:name>
+          <maml:Description>
+            <maml:para>If specified, returns the updated object.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>ContentType</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the content type ID.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ContentTypePipeBind</command:parameterValue>
+        <dev:type>
+          <maml:name>ContentTypePipeBind</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Description</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the description.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Hidden</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the value whether to hide from user.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Includes</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the property name collection to include in the result object.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>String[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>JSLink</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the JSLink URL.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>List</maml:name>
+        <maml:Description>
+          <maml:para>Indicates the list ID or title.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ListPipeBind</command:parameterValue>
+        <dev:type>
+          <maml:name>ListPipeBind</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>PassThru</maml:name>
+        <maml:Description>
+          <maml:para>If specified, returns the updated object.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.PipeBinds.Core.ContentTypePipeBind</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Core.ContentType</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Update-SPContentType -ContentType '0x0100DFF682E1FF5A8A4EA7A6370B7D0A8104' -Description 'My Content Type'</dev:code>
+        <dev:remarks>
+          <maml:para>Updates display name of the site content type.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Update-SPContentType -List 'Shared Documents' -ContentType '0x0100DFF682E1FF5A8A4EA7A6370B7D0A8104' -Description 'My Content Type'</dev:code>
+        <dev:remarks>
+          <maml:para>Updates display name of the list content type.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -2566,7 +3844,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>HideSiteLogo</maml:name>
           <maml:Description>
-            <maml:para>Indicates the value whether to hide the site logo.</maml:para>
+            <maml:para>Indicates the value whether to hide the site logo to user.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
@@ -2578,7 +3856,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>HideSiteTitle</maml:name>
           <maml:Description>
-            <maml:para>Indicates the value whether to hide the site title.</maml:para>
+            <maml:para>Indicates the value whether to hide the site title to user.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
@@ -2928,7 +4206,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>HideSiteLogo</maml:name>
         <maml:Description>
-          <maml:para>Indicates the value whether to hide the site logo.</maml:para>
+          <maml:para>Indicates the value whether to hide the site logo to user.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
         <dev:type>
@@ -2940,7 +4218,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>HideSiteTitle</maml:name>
         <maml:Description>
-          <maml:para>Indicates the value whether to hide the site title.</maml:para>
+          <maml:para>Indicates the value whether to hide the site title to user.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
         <dev:type>

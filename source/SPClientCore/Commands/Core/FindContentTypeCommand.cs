@@ -22,7 +22,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands.Core
 {
 
-    [Cmdlet("Find", "SPContentType")]
+    [Cmdlet("Find", "SPContentType", DefaultParameterSetName = "Web")]
     [OutputType(typeof(ContentType[]))]
     public class FindContentTypeCommand : PSCmdlet
     {
@@ -31,7 +31,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
         {
         }
 
-        [Parameter(Mandatory = false, Position = 0)]
+        [Parameter(Mandatory = true, ParameterSetName = "List", Position = 0)]
         public ListPipeBind List { get; private set; }
 
         [Parameter(Mandatory = false)]

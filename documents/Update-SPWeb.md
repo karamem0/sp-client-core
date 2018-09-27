@@ -13,14 +13,12 @@ Updates a site.
 ## SYNTAX
 
 ```
-Update-SPWeb [-AllowCreateDeclarativeWorkflowForCurrentUser <Boolean>]
- [-AllowSavePublishDeclarativeWorkflowForCurrentUser <Boolean>] [-AlternateCssUrl <String>]
- [-AssociatedMemberGroup <Group>] [-AssociatedOwnerGroup <Group>] [-AssociatedVisitorGroup <Group>]
- [-CustomMasterUrl <String>] [-Description <String>] [-EnableMinimalDownload <Boolean>]
- [-FooterEnabled <Boolean>] [-HeaderEmphasis <VariantThemeType>] [-HeaderLayout <HeaderLayoutType>]
- [-HideSiteLogo <Boolean>] [-HideSiteTitle <Boolean>] [-HorizontalQuickLaunch <Boolean>]
- [-MegaMenuEnabled <Boolean>] [-MasterUrl <String>] [-NoCrawl <Boolean>] [-ObjectCacheEnabled <Boolean>]
- [-OverwriteTranslationsOnChange <Boolean>] [-QuickLaunchEnabled <Boolean>]
+Update-SPWeb [-AlternateCssUrl <String>] [-AssociatedMemberGroup <Group>] [-AssociatedOwnerGroup <Group>]
+ [-AssociatedVisitorGroup <Group>] [-CustomMasterUrl <String>] [-Description <String>]
+ [-EnableMinimalDownload <Boolean>] [-FooterEnabled <Boolean>] [-HeaderEmphasis <VariantThemeType>]
+ [-HeaderLayout <HeaderLayoutType>] [-HideSiteLogo <Boolean>] [-HideSiteTitle <Boolean>]
+ [-HorizontalQuickLaunch <Boolean>] [-MegaMenuEnabled <Boolean>] [-MasterUrl <String>] [-NoCrawl <Boolean>]
+ [-ObjectCacheEnabled <Boolean>] [-OverwriteTranslationsOnChange <Boolean>] [-QuickLaunchEnabled <Boolean>]
  [-SaveSiteAsTemplateEnabled <Boolean>] [-ServerRelativeUrl <String>] [-SiteLogoUrl <String>]
  [-SyndicationEnabled <Boolean>] [-Title <String>] [-TreeViewEnabled <Boolean>] [-UIVersion <Int32>]
  [-UIVersionConfigurationEnabled <Boolean>] [-WelcomePage <String>] [-PassThru] [-Includes <String[]>]
@@ -57,7 +55,7 @@ Accept wildcard characters: False
 ```
 
 ### -AssociatedMemberGroup
-@{Text=}
+
 
 ```yaml
 Type: Group
@@ -72,7 +70,7 @@ Accept wildcard characters: False
 ```
 
 ### -AssociatedOwnerGroup
-@{Text=}
+
 
 ```yaml
 Type: Group
@@ -87,7 +85,7 @@ Accept wildcard characters: False
 ```
 
 ### -AssociatedVisitorGroup
-@{Text=}
+
 
 ```yaml
 Type: Group
@@ -162,7 +160,7 @@ Accept wildcard characters: False
 ```
 
 ### -HeaderEmphasis
-@{Text=}
+
 
 ```yaml
 Type: VariantThemeType
@@ -178,7 +176,7 @@ Accept wildcard characters: False
 ```
 
 ### -HeaderLayout
-@{Text=}
+
 
 ```yaml
 Type: HeaderLayoutType
@@ -194,7 +192,7 @@ Accept wildcard characters: False
 ```
 
 ### -HideSiteLogo
-Indicates the value whether to hide the site logo.
+Indicates the value whether to hide the site logo to user.
 
 ```yaml
 Type: Boolean
@@ -209,7 +207,7 @@ Accept wildcard characters: False
 ```
 
 ### -HideSiteTitle
-Indicates the value whether to hide the site title.
+Indicates the value whether to hide the site title to user.
 
 ```yaml
 Type: Boolean
@@ -224,7 +222,7 @@ Accept wildcard characters: False
 ```
 
 ### -HorizontalQuickLaunch
-@{Text=}
+
 
 ```yaml
 Type: Boolean
@@ -269,7 +267,7 @@ Accept wildcard characters: False
 ```
 
 ### -MegaMenuEnabled
-@{Text=}
+
 
 ```yaml
 Type: Boolean
@@ -299,7 +297,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectCacheEnabled
-@{Text=}
+
 
 ```yaml
 Type: Boolean
@@ -314,7 +312,7 @@ Accept wildcard characters: False
 ```
 
 ### -OverwriteTranslationsOnChange
-@{Text=}
+
 
 ```yaml
 Type: Boolean
@@ -404,7 +402,7 @@ Accept wildcard characters: False
 ```
 
 ### -SyndicationEnabled
-@{Text=}
+
 
 ```yaml
 Type: Boolean
@@ -483,36 +481,6 @@ Indicates the welcome page URL.
 
 ```yaml
 Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -AllowCreateDeclarativeWorkflowForCurrentUser
-{{Fill AllowCreateDeclarativeWorkflowForCurrentUser Description}}
-
-```yaml
-Type: Boolean
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -AllowSavePublishDeclarativeWorkflowForCurrentUser
-{{Fill AllowSavePublishDeclarativeWorkflowForCurrentUser Description}}
-
-```yaml
-Type: Boolean
 Parameter Sets: (All)
 Aliases:
 

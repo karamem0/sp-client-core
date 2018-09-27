@@ -22,7 +22,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands.Core
 {
 
-    [Cmdlet("New", "SPContentType")]
+    [Cmdlet("New", "SPContentType", DefaultParameterSetName = "Web")]
     [OutputType(typeof(ContentType))]
     public class NewContentTypeCommand : PSCmdlet
     {
@@ -31,17 +31,41 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
         {
         }
 
-        [Parameter(Mandatory = false, Position = 0)]
+        [Parameter(Mandatory = true, ParameterSetName = "List", Position = 0)]
         public ListPipeBind List { get; private set; }
 
         [Parameter(Mandatory = false)]
         public string Description { get; private set; }
 
         [Parameter(Mandatory = false)]
+        public string DisplayFormUrl { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public string EditFormUrl { get; private set; }
+
+        [Parameter(Mandatory = false)]
         public string Group { get; private set; }
 
         [Parameter(Mandatory = false)]
+        public bool? Hidden { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public string JSLink { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public string MobileDisplayFormUrl { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public string MobileEditFormUrl { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public string MobileNewFormUrl { get; private set; }
+
+        [Parameter(Mandatory = false)]
         public string Name { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public string NewFormUrl { get; private set; }
 
         [Parameter(Mandatory = false)]
         public string[] Includes { get; private set; }

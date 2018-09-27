@@ -5,57 +5,67 @@ online version:
 schema: 2.0.0
 ---
 
-# New-SPRoleDefinition
+# Get-SPContentType
 
 ## SYNOPSIS
-Creates a new role definition.
+Gets a content type.
 
 ## SYNTAX
 
+### Web (Default)
 ```
-New-SPRoleDefinition -BasePermissions <BasePermissions> [-Description <String>] -Name <String>
- [-Includes <String[]>] [<CommonParameters>]
+Get-SPContentType [-ContentType] <ContentTypePipeBind> [-Includes <String[]>] [<CommonParameters>]
+```
+
+### List
+```
+Get-SPContentType [-List] <ListPipeBind> [-ContentType] <ContentTypePipeBind> [-Includes <String[]>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The New-SPRoleDefinition cmdlet adds a new role definition to a site.
+The Get-SPContentType cmdlet retrieves the content type which matches the parameter.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> New-SPRoleDefinition -BasePermissions 'ViewListItems,AddListItems' -Name 'RoleDefinition1'
+PS C:\> Get-SPContentType -ContentType '0x0100DFF682E1FF5A8A4EA7A6370B7D0A8104'
 ```
 
-Creates a new role definition to a site.
+Gets the site content type by ID.
+
+### Example 1
+```
+PS C:\> Get-SPContentType -List 'Shared Documents' -ContentType '0x0100DFF682E1FF5A8A4EA7A6370B7D0A8104'
+```
+
+Gets the list content type by ID.
 
 ## PARAMETERS
 
-### -BasePermissions
-Indicates the role definition base permissions.
+### -ContentType
+Indicates the content type ID.
 
 ```yaml
-Type: BasePermissions
-Parameter Sets: (All)
+Type: ContentTypePipeBind
+Parameter Sets: Web
 Aliases:
 
 Required: True
-Position: Named
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Description
-Indicates the description.
-
 ```yaml
-Type: String
-Parameter Sets: (All)
+Type: ContentTypePipeBind
+Parameter Sets: List
 Aliases:
 
-Required: False
-Position: Named
+Required: True
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -76,16 +86,16 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Name
-Indicates the name.
+### -List
+Indicates the list ID or title.
 
 ```yaml
-Type: String
-Parameter Sets: (All)
+Type: ListPipeBind
+Parameter Sets: List
 Aliases:
 
 Required: True
-Position: Named
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -97,10 +107,10 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## INPUTS
 
-### None
+### Karamem0.SharePoint.PowerShell.PipeBinds.Core.ContentTypePipeBind
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.Core.RoleDefinition
+### Karamem0.SharePoint.PowerShell.Models.Core.ContentType
 ## NOTES
 
 ## RELATED LINKS

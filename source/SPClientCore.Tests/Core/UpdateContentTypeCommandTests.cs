@@ -40,6 +40,8 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
                     {
                         { "ContentType", result1.ElementAt(0).StringId },
                         { "Description", "Test Content Type 9 Description" },
+                        { "Hidden", true },
+                        { "JSLink", "/TestList9/Forms/JSLink.js" },
                         { "PassThru", true }
                     }
                 );
@@ -74,6 +76,8 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
                         { "List", context.AppSettings["List1Id"] },
                         { "ContentType", result1.ElementAt(0).StringId },
                         { "Description", "Test Content Type 9 Description" },
+                        { "Hidden", true },
+                        { "JSLink", "/TestList9/Forms/JSLink.js" },
                         { "PassThru", true }
                     }
                 );

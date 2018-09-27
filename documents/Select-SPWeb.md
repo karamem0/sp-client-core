@@ -5,61 +5,37 @@ online version:
 schema: 2.0.0
 ---
 
-# New-SPRoleDefinition
+# Select-SPWeb
 
 ## SYNOPSIS
-Creates a new role definition.
+Select a site.
 
 ## SYNTAX
 
 ```
-New-SPRoleDefinition -BasePermissions <BasePermissions> [-Description <String>] -Name <String>
- [-Includes <String[]>] [<CommonParameters>]
+Select-SPWeb [-Web] <WebPipeBind> [-PassThru] [-Includes <String[]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The New-SPRoleDefinition cmdlet adds a new role definition to a site.
+The Select-SPWeb cmdlet set the site which matches the parameter to current.
 
 ## EXAMPLES
 
 ### Example 1
 ```
-PS C:\> New-SPRoleDefinition -BasePermissions 'ViewListItems,AddListItems' -Name 'RoleDefinition1'
+PS C:\> Select-SPWeb -Web 'eaaad9d1-3a34-413c-9c73-f0ecd6bfe91a'
 ```
 
-Creates a new role definition to a site.
+Changes the current web by ID.
+
+### Example 2
+```
+PS C:\> Select-SPWeb -Web '/path/to/site'
+```
+
+Changes the current web by URL.
 
 ## PARAMETERS
-
-### -BasePermissions
-Indicates the role definition base permissions.
-
-```yaml
-Type: BasePermissions
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Description
-Indicates the description.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -Includes
 Indicates the property name collection to include in the result object.
@@ -76,18 +52,33 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Name
-Indicates the name.
+### -PassThru
+If specified, returns the selected object.
 
 ```yaml
-Type: String
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Web
+Indicates the web ID or URL.
+
+```yaml
+Type: WebPipeBind
 Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: Named
+Position: 0
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
@@ -97,10 +88,10 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## INPUTS
 
-### None
+### Karamem0.SharePoint.PowerShell.PipeBinds.Core.WebPipeBind
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.Core.RoleDefinition
+### Karamem0.SharePoint.PowerShell.Models.Core.Web
 ## NOTES
 
 ## RELATED LINKS

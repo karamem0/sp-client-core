@@ -22,7 +22,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands.Core
 {
 
-    [Cmdlet("Update", "SPContentType")]
+    [Cmdlet("Update", "SPContentType", DefaultParameterSetName = "Web")]
     [OutputType(typeof(ContentType))]
     public class UpdateContentTypeCommand : PSCmdlet
     {
@@ -31,14 +31,21 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
         {
         }
 
-        [Parameter(Mandatory = false, Position = 0)]
+        [Parameter(Mandatory = true, ParameterSetName = "List", Position = 0)]
         public ListPipeBind List { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
+        [Parameter(Mandatory = true, ParameterSetName = "Web", Position = 0)]
+        [Parameter(Mandatory = true, ParameterSetName = "List", Position = 1, ValueFromPipeline = true)]
         public ContentTypePipeBind ContentType { get; private set; }
 
         [Parameter(Mandatory = false)]
         public string Description { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public string JSLink { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public bool? Hidden { get; private set; }
 
         [Parameter(Mandatory = false)]
         public SwitchParameter PassThru { get; private set; }

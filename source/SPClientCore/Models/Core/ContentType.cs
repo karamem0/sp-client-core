@@ -63,6 +63,15 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         public string JSLink { get; private set; }
 
         [JsonProperty()]
+        public string MobileDisplayFormUrl { get; private set; }
+
+        [JsonProperty()]
+        public string MobileEditFormUrl { get; private set; }
+
+        [JsonProperty()]
+        public string MobileNewFormUrl { get; private set; }
+
+        [JsonProperty()]
         public string Name { get; private set; }
 
         [JsonProperty()]

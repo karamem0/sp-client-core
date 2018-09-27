@@ -17,7 +17,7 @@ Remove-SPRoleDefinition [-RoleDefinition] <RoleDefinitionPipeBind> [<CommonParam
 ```
 
 ## DESCRIPTION
-The Remove-SPRoleDefinition cmdlet removes a role definition from the site.
+The Remove-SPRoleDefinition cmdlet removes a role definition from a site.
 
 ## EXAMPLES
 

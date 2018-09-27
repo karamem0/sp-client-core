@@ -31,12 +31,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
         }
 
         [Parameter(Mandatory = false)]
-        public bool? AllowCreateDeclarativeWorkflowForCurrentUser { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public bool? AllowSavePublishDeclarativeWorkflowForCurrentUser { get; private set; }
-
-        [Parameter(Mandatory = false)]
         public string AlternateCssUrl { get; private set; }
 
         [Parameter(Mandatory = false)]

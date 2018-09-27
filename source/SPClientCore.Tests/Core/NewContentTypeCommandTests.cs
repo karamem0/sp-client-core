@@ -32,8 +32,16 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
                     new Dictionary<string, object>()
                     {
                         { "Description", "Test Content Type 0 Description" },
+                        { "DisplayFormUrl", "/TestList0/Forms/DispForm.aspx" },
+                        { "EditFormUrl", "/TestList0/Forms/EditForm.aspx" },
                         { "Group", "Test Content Type 0 Group" },
-                        { "Name", "Test Content Type 0" }
+                        { "Hidden", true },
+                        { "JSLink", "/TestList0/Forms/JSLink.js" },
+                        { "MobileDisplayFormUrl", "/TestList0/Forms/DispForm.aspx" },
+                        { "MobileEditFormUrl", "/TestList0/Forms/EditForm.aspx" },
+                        { "MobileNewFormUrl", "/TestList0/Forms/NewForm.aspx" },
+                        { "Name", "Test Content Type 0" },
+                        { "NewFormUrl", "/TestList0/Forms/NewForm.aspx" },
                     }
                 );
                 var result2 = context.Runspace.InvokeCommand(
@@ -58,8 +66,16 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
                     {
                         { "List", context.AppSettings["List1Id"] },
                         { "Description", "Test Content Type 0 Description" },
+                        { "DisplayFormUrl", "/TestList0/Forms/DispForm.aspx" },
+                        { "EditFormUrl", "/TestList0/Forms/EditForm.aspx" },
                         { "Group", "Test Content Type 0 Group" },
-                        { "Name", "Test Content Type 0" }
+                        { "Hidden", true },
+                        { "JSLink", "/TestList0/Forms/JSLink.js" },
+                        { "MobileDisplayFormUrl", "/TestList0/Forms/DispForm.aspx" },
+                        { "MobileEditFormUrl", "/TestList0/Forms/EditForm.aspx" },
+                        { "MobileNewFormUrl", "/TestList0/Forms/NewForm.aspx" },
+                        { "Name", "Test Content Type 0" },
+                        { "NewFormUrl", "/TestList0/Forms/NewForm.aspx" },
                     }
                 );
                 var result2 = context.Runspace.InvokeCommand(
