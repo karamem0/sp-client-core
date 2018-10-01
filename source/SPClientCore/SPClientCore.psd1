@@ -12,7 +12,7 @@
 RootModule = 'SPClientCore.dll'
 
 # Version number of this module.
-ModuleVersion = '1.3.5'
+ModuleVersion = '1.4.0'
 
 # ID used to uniquely identify this module
 GUID = '83E99C54-16E5-4ABA-96EC-76830CCDFFEF'
@@ -30,7 +30,7 @@ Copyright = 'Copyright (c) 2018 karamem0'
 Description = 'SharePoint Service Module for PowerShell Core'
 
 # Minimum version of the Windows PowerShell engine required by this module
-PowerShellVersion = '6.0.2'
+PowerShellVersion = '6.1.0'
 
 # Name of the Windows PowerShell host required by this module
 # PowerShellHostName = ''

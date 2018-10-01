@@ -57,6 +57,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         public string GroupName { get; private set; }
 
         [JsonProperty()]
+        public bool? IrmEnabled { get; private set; }
+
+        [JsonProperty()]
         public int? LicenseCacheExpireDays { get; private set; }
 
         [JsonProperty()]
@@ -64,6 +67,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
 
         [JsonProperty()]
         public string PolicyTitle { get; private set; }
+
+        [JsonProperty()]
+        public string TemplateId { get; private set; }
 
     }
 

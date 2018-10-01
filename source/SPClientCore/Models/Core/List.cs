@@ -42,7 +42,19 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         public bool? ContentTypesEnabled { get; private set; }
 
         [JsonProperty()]
+        public bool? CrawlNonDefaultViews { get; private set; }
+
+        [JsonProperty()]
+        public CreatablesInfo CreatablesInfo { get; private set; }
+
+        [JsonProperty()]
         public DateTime? Created { get; private set; }
+
+        [JsonProperty()]
+        public ChangeToken CurrentChangeToken { get; private set; }
+
+        [JsonProperty()]
+        public ClientObjectCollection<CustomActionElement> CustomActionElements { get; private set; }
 
         [JsonProperty()]
         public ListDataSource DataSource { get; private set; }
@@ -55,6 +67,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
 
         [JsonProperty()]
         public string DefaultEditFormUrl { get; private set; }
+
+        [JsonProperty()]
+        public bool? DefaultItemOpenUseListSetting { get; private set; }
 
         [JsonProperty()]
         public string DefaultNewFormUrl { get; private set; }
@@ -70,6 +85,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
 
         [JsonProperty()]
         public string Direction { get; private set; }
+
+        [JsonProperty()]
+        public bool? DisableGridEditing { get; private set; }
 
         [JsonProperty()]
         public string DocumentTemplateUrl { get; private set; }
@@ -96,6 +114,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         public bool? EnableModeration { get; private set; }
 
         [JsonProperty()]
+        public bool? EnableRequestSignOff { get; private set; }
+
+        [JsonProperty()]
         public bool? EnableVersioning { get; private set; }
 
         [JsonProperty()]
@@ -103,6 +124,12 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
 
         [JsonProperty()]
         public ClientObjectCollection<EventReceiverDefinition> EventReceivers { get; private set; }
+
+        [JsonProperty()]
+        public bool? ExemptFromBlockDownloadOfNonViewableFiles { get; private set; }
+
+        [JsonProperty()]
+        public bool? FileSavePostProcessingEnabled { get; private set; }
 
         [JsonProperty()]
         public ClientObjectCollection<Field> Fields { get; private set; }
@@ -121,6 +148,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
 
         [JsonProperty()]
         public Guid? Id { get; private set; }
+
+        [JsonProperty()]
+        public ResourcePath ImagePath { get; private set; }
 
         [JsonProperty()]
         public string ImageUrl { get; private set; }
@@ -162,7 +192,16 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         public DateTime? LastItemModifiedDate { get; private set; }
 
         [JsonProperty()]
+        public DateTime? LastItemUserModifiedDate { get; private set; }
+
+        [JsonProperty()]
         public string ListItemEntityTypeFullName { get; private set; }
+
+        [JsonProperty()]
+        public int? MajorVersionLimit { get; private set; }
+
+        [JsonProperty()]
+        public int? MajorWithMinorVersionsLimit { get; private set; }
 
         [JsonProperty()]
         public bool? MultipleDataList { get; private set; }
@@ -177,7 +216,13 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         public Web ParentWeb { get; private set; }
 
         [JsonProperty()]
+        public ResourcePath ParentWebPath { get; private set; }
+
+        [JsonProperty()]
         public string ParentWebUrl { get; private set; }
+
+        [JsonProperty()]
+        public bool? ParserDisabled { get; private set; }
 
         [JsonProperty()]
         public Folder RootFolder { get; private set; }

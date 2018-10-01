@@ -55,6 +55,12 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
         [Parameter(Mandatory = false, ParameterSetName = "Param")]
         public string Formats { get; private set; }
 
+        [Parameter(Mandatory = false, ParameterSetName = "Param")]
+        public string ColumnWidth { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "Param")]
+        public string CustomFormatter { get; private set; }
+
         [Parameter(Mandatory = false)]
         public bool? Hidden { get; private set; }
 
@@ -78,6 +84,9 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
         [Parameter(Mandatory = false)]
         public ViewScope? Scope { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "Param")]
+        public bool? TabularView { get; private set; }
 
         [Parameter(Mandatory = false)]
         public string Title { get; private set; }

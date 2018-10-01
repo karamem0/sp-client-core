@@ -82,6 +82,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         [JsonProperty()]
         public List ParentList { get; private set; }
 
+        [JsonProperty()]
+        public ClientObjectCollection<ListItemVersion> Versions { get; private set; }
+
     }
 
 }

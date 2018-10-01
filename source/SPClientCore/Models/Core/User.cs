@@ -24,10 +24,19 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         }
 
         [JsonProperty()]
+        public ClientObjectCollection<Alert> Alerts { get; private set; }
+
+        [JsonProperty()]
         public string Email { get; private set; }
 
         [JsonProperty()]
         public ClientObjectCollection<Group> Groups { get; private set; }
+
+        [JsonProperty()]
+        public bool? IsEmailAuthenticationGuestUser { get; private set; }
+
+        [JsonProperty()]
+        public bool? IsShareByEmailGuestUser { get; private set; }
 
         [JsonProperty()]
         public bool? IsSiteAdmin { get; private set; }

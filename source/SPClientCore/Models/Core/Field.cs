@@ -24,7 +24,22 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         }
 
         [JsonProperty()]
+        public bool? AutoIndexed { get; private set; }
+
+        [JsonProperty()]
         public bool? CanBeDeleted { get; private set; }
+
+        [JsonProperty()]
+        public string ClientSideComponentId { get; private set; }
+
+        [JsonProperty()]
+        public string ClientSideComponentProperties { get; private set; }
+
+        [JsonProperty()]
+        public string CustomFormatter { get; private set; }
+
+        [JsonProperty()]
+        public string DefaultFormula { get; private set; }
 
         [JsonProperty()]
         public string DefaultValue { get; private set; }
@@ -69,6 +84,12 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         public string JSLink { get; private set; }
 
         [JsonProperty()]
+        public int? MaxLength { get; private set; }
+
+        [JsonProperty()]
+        public bool? PinnedToFiltersPane { get; private set; }
+
+        [JsonProperty()]
         public bool? ReadOnlyField { get; private set; }
 
         [JsonProperty()]
@@ -85,6 +106,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
 
         [JsonProperty()]
         public bool? Sealed { get; private set; }
+
+        [JsonProperty()]
+        public bool? ShowInFiltersPane { get; private set; }
 
         [JsonProperty()]
         public bool? Sortable { get; private set; }

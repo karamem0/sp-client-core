@@ -48,10 +48,22 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         public bool? Exists { get; private set; }
 
         [JsonProperty()]
+        public InformationRightsManagementSettings EffectiveInformationRightsManagementSettings { get; private set; }
+
+        [JsonProperty()]
+        public InformationRightsManagementSettings InformationRightsManagementSettings { get; private set; }
+
+        [JsonProperty()]
+        public bool? IrmEnabled { get; private set; }
+
+        [JsonProperty()]
         public long? Length { get; private set; }
 
         [JsonProperty()]
         public byte? Level { get; private set; }
+
+        [JsonProperty()]
+        public string LinkingUrl { get; private set; }
 
         [JsonProperty()]
         public ListItem ListItemAllFields { get; private set; }
@@ -72,6 +84,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         public string Name { get; private set; }
 
         [JsonProperty()]
+        public PropertyValues Properties { get; private set; }
+
+        [JsonProperty()]
         public string ServerRelativeUrl { get; private set; }
 
         [JsonProperty()]
@@ -88,6 +103,12 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
 
         [JsonProperty()]
         public string UIVersionLabel { get; private set; }
+
+        [JsonProperty()]
+        public Guid? UniqueId { get; private set; }
+
+        [JsonProperty()]
+        public ClientObjectCollection<FileVersionEvent> VersionEvents { get; private set; }
 
         [JsonProperty()]
         public ClientObjectCollection<FileVersion> Versions { get; private set; }

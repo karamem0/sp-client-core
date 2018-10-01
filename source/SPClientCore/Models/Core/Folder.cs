@@ -27,10 +27,16 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         public ClientObjectCollection<ContentTypeId> ContentTypeOrder { get; private set; }
 
         [JsonProperty()]
+        public bool? Exists { get; private set; }
+
+        [JsonProperty()]
         public ClientObjectCollection<File> Files { get; private set; }
 
         [JsonProperty()]
         public ClientObjectCollection<Folder> Folders { get; private set; }
+
+        [JsonProperty()]
+        public bool? IsWOPIEnabled { get; private set; }
 
         [JsonProperty()]
         public int? ItemCount { get; private set; }
@@ -44,6 +50,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         [JsonProperty()]
         public Folder ParentFolder { get; private set; }
 
+        [JsonProperty("ProgID")]
+        public Guid? ProgId { get; private set; }
+
         [JsonProperty()]
         public PropertyValues Properties { get; private set; }
 
@@ -51,7 +60,19 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         public string ServerRelativeUrl { get; private set; }
 
         [JsonProperty()]
+        public StorageMetrics StorageMetrics { get; private set; }
+
+        [JsonProperty()]
+        public DateTime? TimeCreated { get; private set; }
+
+        [JsonProperty()]
+        public DateTime? TimeLastModified { get; private set; }
+
+        [JsonProperty()]
         public ClientObjectCollection<ContentTypeId> UniqueContentTypeOrder { get; private set; }
+
+        [JsonProperty()]
+        public Guid? UniqueId { get; private set; }
 
         [JsonProperty()]
         public string WelcomePage { get; private set; }

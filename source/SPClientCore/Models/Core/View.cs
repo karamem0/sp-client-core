@@ -33,7 +33,13 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         public string BaseViewId { get; private set; }
 
         [JsonProperty()]
+        public string ColumnWidth { get; private set; }
+
+        [JsonProperty()]
         public ContentTypeId ContentTypeId { get; private set; }
+
+        [JsonProperty()]
+        public string CustomFormatter { get; private set; }
 
         [JsonProperty()]
         public bool? DefaultView { get; private set; }
@@ -81,6 +87,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         public string ModerationType { get; private set; }
 
         [JsonProperty()]
+        public string NewDocumentTemplates { get; private set; }
+
+        [JsonProperty()]
         public bool? OrderedView { get; private set; }
 
         [JsonProperty()]
@@ -102,10 +111,16 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         public ViewScope? Scope { get; private set; }
 
         [JsonProperty()]
+        public ResourcePath ServerRelativePath { get; private set; }
+
+        [JsonProperty()]
         public string ServerRelativeUrl { get; private set; }
 
         [JsonProperty()]
         public string StyleId { get; private set; }
+
+        [JsonProperty()]
+        public bool? TabularView { get; private set; }
 
         [JsonProperty()]
         public bool? Threaded { get; private set; }
@@ -136,6 +151,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
 
         [JsonProperty()]
         public string ViewType { get; private set; }
+
+        [JsonProperty()]
+        public string VisualizationInfo { get; private set; }
 
     }
 

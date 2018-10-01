@@ -27,13 +27,31 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         public User Author { get; private set; }
 
         [JsonProperty()]
+        public string AuthorEmail { get; private set; }
+
+        [JsonProperty()]
+        public string AuthorName { get; private set; }
+
+        [JsonProperty()]
         public User DeletedBy { get; private set; }
+
+        [JsonProperty()]
+        public string DeletedByEmail { get; private set; }
+
+        [JsonProperty()]
+        public string DeletedByName { get; private set; }
 
         [JsonProperty()]
         public DateTime? DeletedDate { get; private set; }
 
         [JsonProperty()]
+        public string DeletedDateLocalFormatted { get; private set; }
+
+        [JsonProperty()]
         public string DirName { get; private set; }
+
+        [JsonProperty()]
+        public ResourcePath DirNamePath { get; private set; }
 
         [JsonProperty()]
         public Guid? Id { get; private set; }
@@ -46,6 +64,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
 
         [JsonProperty()]
         public string LeafName { get; private set; }
+
+        [JsonProperty()]
+        public ResourcePath LeafNamePath { get; private set; }
 
         [JsonProperty()]
         public int? Size { get; private set; }
