@@ -22,7 +22,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Open", "SPFile")]
     [OutputType(typeof(System.IO.Stream))]
-    public class OpenFileCommand : PSCmdlet
+    public class OpenFileCommand : ClientObjectCmdlet
     {
 
         public OpenFileCommand()

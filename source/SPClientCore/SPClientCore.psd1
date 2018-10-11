@@ -12,7 +12,7 @@
 RootModule = 'SPClientCore.dll'
 
 # Version number of this module.
-ModuleVersion = '1.4.0'
+ModuleVersion = '1.4.1'
 
 # ID used to uniquely identify this module
 GUID = '83E99C54-16E5-4ABA-96EC-76830CCDFFEF'

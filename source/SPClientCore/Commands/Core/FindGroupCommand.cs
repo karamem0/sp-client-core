@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Find", "SPGroup")]
     [OutputType(typeof(Group[]))]
-    public class FindGroupCommand : PSCmdlet
+    public class FindGroupCommand : ClientObjectCmdlet
     {
 
         public FindGroupCommand()

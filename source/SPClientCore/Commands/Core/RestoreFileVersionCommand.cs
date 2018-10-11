@@ -22,7 +22,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Restore", "SPFileVersion")]
     [OutputType(typeof(void))]
-    public class RestoreFileVersionCommand : PSCmdlet
+    public class RestoreFileVersionCommand : ClientObjectCmdlet
     {
 
         public RestoreFileVersionCommand()

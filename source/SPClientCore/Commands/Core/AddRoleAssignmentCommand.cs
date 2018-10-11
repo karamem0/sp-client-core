@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Add", "SPRoleAssignment", DefaultParameterSetName = "Web")]
     [OutputType(typeof(void))]
-    public class AddRoleAssignmentCommand : PSCmdlet
+    public class AddRoleAssignmentCommand : ClientObjectCmdlet
     {
 
         public AddRoleAssignmentCommand()

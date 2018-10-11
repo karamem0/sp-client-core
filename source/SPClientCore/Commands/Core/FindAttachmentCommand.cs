@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Find", "SPAttachment")]
     [OutputType(typeof(Attachment[]))]
-    public class FindAttachmentCommand : PSCmdlet
+    public class FindAttachmentCommand : ClientObjectCmdlet
     {
 
         public FindAttachmentCommand()

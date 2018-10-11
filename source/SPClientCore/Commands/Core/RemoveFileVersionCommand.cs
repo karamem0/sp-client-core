@@ -22,7 +22,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Remove", "SPFileVersion", DefaultParameterSetName = "One")]
     [OutputType(typeof(void))]
-    public class RemoveFileVersionCommand : PSCmdlet
+    public class RemoveFileVersionCommand : ClientObjectCmdlet
     {
 
         public RemoveFileVersionCommand()

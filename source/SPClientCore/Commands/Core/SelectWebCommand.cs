@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Select", "SPWeb")]
     [OutputType(typeof(Web))]
-    public class SelectWebCommand : PSCmdlet
+    public class SelectWebCommand : ClientObjectCmdlet
     {
 
         public SelectWebCommand()

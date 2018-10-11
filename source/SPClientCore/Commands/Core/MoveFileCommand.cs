@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Move", "SPFile")]
     [OutputType(typeof(File))]
-    public class MoveFileCommand : PSCmdlet
+    public class MoveFileCommand : ClientObjectCmdlet
     {
 
         public MoveFileCommand()

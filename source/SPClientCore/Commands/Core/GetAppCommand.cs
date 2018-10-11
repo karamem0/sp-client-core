@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Get", "SPApp")]
     [OutputType(typeof(CorporateCatalogAppMetadata))]
-    public class GetAppCommand : PSCmdlet
+    public class GetAppCommand : ClientObjectCmdlet
     {
 
         public GetAppCommand()

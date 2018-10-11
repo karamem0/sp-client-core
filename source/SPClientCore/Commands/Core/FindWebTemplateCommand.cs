@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Find", "SPWebTemplate")]
     [OutputType(typeof(WebTemplate[]))]
-    public class FindWebTemplateCommand : PSCmdlet
+    public class FindWebTemplateCommand : ClientObjectCmdlet
     {
 
         public FindWebTemplateCommand()

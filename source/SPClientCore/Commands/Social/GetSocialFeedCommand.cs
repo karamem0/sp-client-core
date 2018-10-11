@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Social
 
     [Cmdlet("Get", "SPSocialFeed")]
     [OutputType(typeof(SocialRestFeed))]
-    public class GetSocialFeedCommand : PSCmdlet
+    public class GetSocialFeedCommand : ClientObjectCmdlet
     {
 
         public GetSocialFeedCommand()

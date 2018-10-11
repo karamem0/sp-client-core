@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("New", "SPFolder")]
     [OutputType(typeof(Folder))]
-    public class NewFolderCommand : PSCmdlet
+    public class NewFolderCommand : ClientObjectCmdlet
     {
 
         public NewFolderCommand()

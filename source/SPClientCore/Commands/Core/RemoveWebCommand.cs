@@ -21,7 +21,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Remove", "SPWeb")]
     [OutputType(typeof(void))]
-    public class RemoveWebCommand : PSCmdlet
+    public class RemoveWebCommand : ClientObjectCmdlet
     {
 
         public RemoveWebCommand()

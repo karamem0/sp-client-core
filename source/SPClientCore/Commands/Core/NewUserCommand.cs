@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("New", "SPUser")]
     [OutputType(typeof(User))]
-    public class NewUserCommand : PSCmdlet
+    public class NewUserCommand : ClientObjectCmdlet
     {
 
         public NewUserCommand()

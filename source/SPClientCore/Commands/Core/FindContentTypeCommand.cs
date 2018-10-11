@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Find", "SPContentType", DefaultParameterSetName = "Web")]
     [OutputType(typeof(ContentType[]))]
-    public class FindContentTypeCommand : PSCmdlet
+    public class FindContentTypeCommand : ClientObjectCmdlet
     {
 
         public FindContentTypeCommand()

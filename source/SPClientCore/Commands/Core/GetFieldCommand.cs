@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Get", "SPField")]
     [OutputType(typeof(Field))]
-    public class GetFieldCommand : PSCmdlet
+    public class GetFieldCommand : ClientObjectCmdlet
     {
 
         public GetFieldCommand()

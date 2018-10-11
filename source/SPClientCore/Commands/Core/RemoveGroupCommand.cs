@@ -21,7 +21,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Remove", "SPGroup")]
     [OutputType(typeof(void))]
-    public class RemoveGroupCommand : PSCmdlet
+    public class RemoveGroupCommand : ClientObjectCmdlet
     {
 
         public RemoveGroupCommand()

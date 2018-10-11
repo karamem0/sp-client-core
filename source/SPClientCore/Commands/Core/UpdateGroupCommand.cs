@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Update", "SPGroup")]
     [OutputType(typeof(Group))]
-    public class UpdateGroupCommand : PSCmdlet
+    public class UpdateGroupCommand : ClientObjectCmdlet
     {
 
         public UpdateGroupCommand()

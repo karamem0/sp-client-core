@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Get", "SPUser")]
     [OutputType(typeof(User))]
-    public class GetUserCommand : PSCmdlet
+    public class GetUserCommand : ClientObjectCmdlet
     {
 
         public GetUserCommand()

@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Get", "SPList")]
     [OutputType(typeof(List))]
-    public class GetListCommand : PSCmdlet
+    public class GetListCommand : ClientObjectCmdlet
     {
 
         public GetListCommand()

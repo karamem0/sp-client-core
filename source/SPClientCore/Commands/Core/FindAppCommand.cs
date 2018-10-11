@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Find", "SPApp")]
     [OutputType(typeof(CorporateCatalogAppMetadata[]))]
-    public class FindAppCommand : PSCmdlet
+    public class FindAppCommand : ClientObjectCmdlet
     {
 
         public FindAppCommand()

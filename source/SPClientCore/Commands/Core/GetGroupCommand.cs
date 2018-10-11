@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Get", "SPGroup")]
     [OutputType(typeof(Group))]
-    public class GetGroupCommand : PSCmdlet
+    public class GetGroupCommand : ClientObjectCmdlet
     {
 
         public GetGroupCommand()

@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Social
 
     [Cmdlet("Get", "SPSocialActor")]
     [OutputType(typeof(SocialRestActor))]
-    public class GetSocialActorCommand : PSCmdlet
+    public class GetSocialActorCommand : ClientObjectCmdlet
     {
 
         public GetSocialActorCommand()

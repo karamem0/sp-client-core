@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Update", "SPFolder")]
     [OutputType(typeof(Folder))]
-    public class UpdateFolderCommand : PSCmdlet
+    public class UpdateFolderCommand : ClientObjectCmdlet
     {
 
         public UpdateFolderCommand()

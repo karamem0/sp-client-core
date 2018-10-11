@@ -22,7 +22,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Remove", "SPView")]
     [OutputType(typeof(void))]
-    public class RemoveViewCommand : PSCmdlet
+    public class RemoveViewCommand : ClientObjectCmdlet
     {
 
         public RemoveViewCommand()

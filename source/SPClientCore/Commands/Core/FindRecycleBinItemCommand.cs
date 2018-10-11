@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Find", "SPRecycleBinItem")]
     [OutputType(typeof(RecycleBinItem[]))]
-    public class FindRecycleBinItemCommand : PSCmdlet
+    public class FindRecycleBinItemCommand : ClientObjectCmdlet
     {
 
         public FindRecycleBinItemCommand()

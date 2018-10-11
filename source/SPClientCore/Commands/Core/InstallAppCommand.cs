@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Install", "SPApp")]
     [OutputType(typeof(CorporateCatalogAppMetadata))]
-    public class InstallAppCommand : PSCmdlet
+    public class InstallAppCommand : ClientObjectCmdlet
     {
 
         public InstallAppCommand()

@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Find", "SPRoleDefinition")]
     [OutputType(typeof(RoleDefinition[]))]
-    public class FindRoleDefinitionCommand : PSCmdlet
+    public class FindRoleDefinitionCommand : ClientObjectCmdlet
     {
 
         public FindRoleDefinitionCommand()

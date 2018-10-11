@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Update", "SPRoleDefinition")]
     [OutputType(typeof(RoleDefinition))]
-    public class UpdateRoleDefinitionCommand : PSCmdlet
+    public class UpdateRoleDefinitionCommand : ClientObjectCmdlet
     {
 
         public UpdateRoleDefinitionCommand()

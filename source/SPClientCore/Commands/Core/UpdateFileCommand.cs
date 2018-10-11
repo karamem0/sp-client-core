@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Update", "SPFile")]
     [OutputType(typeof(File))]
-    public class UpdateFileCommand : PSCmdlet
+    public class UpdateFileCommand : ClientObjectCmdlet
     {
 
         public UpdateFileCommand()

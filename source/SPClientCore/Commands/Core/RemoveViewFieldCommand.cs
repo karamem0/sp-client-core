@@ -22,7 +22,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Remove", "SPViewField", DefaultParameterSetName = "One")]
     [OutputType(typeof(void))]
-    public class RemoveViewFieldCommand : PSCmdlet
+    public class RemoveViewFieldCommand : ClientObjectCmdlet
     {
 
         public RemoveViewFieldCommand()

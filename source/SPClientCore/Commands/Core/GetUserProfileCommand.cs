@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Get", "SPUserProfile")]
     [OutputType(typeof(UserProfile))]
-    public class GetUserProfileCommand : PSCmdlet
+    public class GetUserProfileCommand : ClientObjectCmdlet
     {
 
         public GetUserProfileCommand()

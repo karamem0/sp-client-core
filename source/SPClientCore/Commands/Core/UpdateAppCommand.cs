@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Update", "SPApp")]
     [OutputType(typeof(CorporateCatalogAppMetadata))]
-    public class UpdateAppCommand : PSCmdlet
+    public class UpdateAppCommand : ClientObjectCmdlet
     {
 
         public UpdateAppCommand()

@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Get", "SPSite")]
     [OutputType(typeof(Site))]
-    public class GetSiteCommand : PSCmdlet
+    public class GetSiteCommand : ClientObjectCmdlet
     {
 
         public GetSiteCommand()

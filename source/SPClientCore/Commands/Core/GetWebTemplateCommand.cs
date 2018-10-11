@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Get", "SPWebTemplate")]
     [OutputType(typeof(WebTemplate))]
-    public class GetWebTemplateCommand : PSCmdlet
+    public class GetWebTemplateCommand : ClientObjectCmdlet
     {
 
         public GetWebTemplateCommand()

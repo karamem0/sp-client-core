@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("New", "SPGroup")]
     [OutputType(typeof(Group))]
-    public class NewGroupCommand : PSCmdlet
+    public class NewGroupCommand : ClientObjectCmdlet
     {
 
         public NewGroupCommand()

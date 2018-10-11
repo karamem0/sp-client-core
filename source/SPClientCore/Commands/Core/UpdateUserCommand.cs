@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Update", "SPUser")]
     [OutputType(typeof(User))]
-    public class UpdateUserCommand : PSCmdlet
+    public class UpdateUserCommand : ClientObjectCmdlet
     {
 
         public UpdateUserCommand()

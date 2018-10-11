@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Get", "SPFileVersion")]
     [OutputType(typeof(FileVersion))]
-    public class GetFileVersionCommand : PSCmdlet
+    public class GetFileVersionCommand : ClientObjectCmdlet
     {
 
         public GetFileVersionCommand()

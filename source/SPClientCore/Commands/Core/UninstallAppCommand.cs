@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Uninstall", "SPApp")]
     [OutputType(typeof(CorporateCatalogAppMetadata))]
-    public class UninstallAppCommand : PSCmdlet
+    public class UninstallAppCommand : ClientObjectCmdlet
     {
 
         public UninstallAppCommand()

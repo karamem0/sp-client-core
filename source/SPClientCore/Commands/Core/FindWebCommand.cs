@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Find", "SPWeb")]
     [OutputType(typeof(Web[]))]
-    public class FindWebCommand : PSCmdlet
+    public class FindWebCommand : ClientObjectCmdlet
     {
 
         public FindWebCommand()

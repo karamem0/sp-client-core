@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("New", "SPRoleDefinition")]
     [OutputType(typeof(RoleDefinition))]
-    public class NewRoleDefinitionCommand : PSCmdlet
+    public class NewRoleDefinitionCommand : ClientObjectCmdlet
     {
 
         public NewRoleDefinitionCommand()

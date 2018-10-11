@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Get", "SPView")]
     [OutputType(typeof(View))]
-    public class GetViewCommand : PSCmdlet
+    public class GetViewCommand : ClientObjectCmdlet
     {
 
         public GetViewCommand()

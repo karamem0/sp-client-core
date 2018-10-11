@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Find", "SPListItem")]
     [OutputType(typeof(ListItem[]))]
-    public class FindListItemCommand : PSCmdlet
+    public class FindListItemCommand : ClientObjectCmdlet
     {
 
         public FindListItemCommand()

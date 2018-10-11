@@ -10,6 +10,7 @@ using Karamem0.SharePoint.PowerShell.Common;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -20,13 +21,13 @@ namespace Karamem0.SharePoint.PowerShell.Services.OAuth
     public class OAuthContext
     {
 
-        private string authority;
+        private readonly string authority;
 
-        private string clientId;
+        private readonly string clientId;
 
-        private string resource;
+        private readonly string resource;
 
-        private HttpClient httpClient = new HttpClient();
+        private readonly HttpClient httpClient = new HttpClient();
 
         public OAuthContext(string authority, string clientId, string resource)
         {
@@ -59,8 +60,11 @@ namespace Karamem0.SharePoint.PowerShell.Services.OAuth
                 .ConcatQuery(UriQuery.Create(requertParameters));
             var requestMessage = new HttpRequestMessage(HttpMethod.Get, requestUrl);
             requestMessage.Headers.Add("Accept", "application/json");
+            Trace.WriteLine(requestMessage);
             var responseMessage = this.httpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
             var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            Trace.WriteLine(responseMessage);
+            Trace.WriteLine(responseContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return JsonConvert.DeserializeObject<OAuthDeviceCode>(responseContent);
@@ -85,12 +89,16 @@ namespace Karamem0.SharePoint.PowerShell.Services.OAuth
                 { "code", deviceCode },
                 { "resource", this.resource }
             };
-            var requestContent = new StringContent(UriQuery.Create(requertParameters), Encoding.UTF8, "application/x-www-form-urlencoded");
+            var requestContent = UriQuery.Create(requertParameters);
             var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
-            requestMessage.Content = requestContent;
+            requestMessage.Content = new StringContent(requestContent, Encoding.UTF8, "application/x-www-form-urlencoded");
             requestMessage.Headers.Add("Accept", "application/json");
+            Trace.WriteLine(requestMessage);
+            Trace.WriteLine(requestContent);
             var responseMessage = this.httpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
             var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            Trace.WriteLine(responseMessage);
+            Trace.WriteLine(responseContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return JsonConvert.DeserializeObject<OAuthToken>(responseContent);
@@ -120,12 +128,16 @@ namespace Karamem0.SharePoint.PowerShell.Services.OAuth
                 { "password", password },
                 { "resource", this.resource }
             };
-            var requestContent = new StringContent(UriQuery.Create(requertParameters), Encoding.UTF8, "application/x-www-form-urlencoded");
+            var requestContent = UriQuery.Create(requertParameters);
             var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
-            requestMessage.Content = requestContent;
+            requestMessage.Content = new StringContent(requestContent, Encoding.UTF8, "application/x-www-form-urlencoded");
             requestMessage.Headers.Add("Accept", "application/json");
+            Trace.WriteLine(requestMessage);
+            Trace.WriteLine(requestContent);
             var responseMessage = this.httpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
             var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            Trace.WriteLine(responseMessage);
+            Trace.WriteLine(responseContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return JsonConvert.DeserializeObject<OAuthToken>(responseContent);
@@ -150,12 +162,16 @@ namespace Karamem0.SharePoint.PowerShell.Services.OAuth
                 { "refresh_token", refreshToken },
                 { "resource", this.resource }
             };
-            var requestContent = new StringContent(UriQuery.Create(requertParameters), Encoding.UTF8, "application/x-www-form-urlencoded");
+            var requestContent = UriQuery.Create(requertParameters);
             var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
-            requestMessage.Content = requestContent;
+            requestMessage.Content = new StringContent(requestContent, Encoding.UTF8, "application/x-www-form-urlencoded");
             requestMessage.Headers.Add("Accept", "application/json");
+            Trace.WriteLine(requestMessage);
+            Trace.WriteLine(requestContent);
             var responseMessage = this.httpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
             var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            Trace.WriteLine(responseMessage);
+            Trace.WriteLine(responseContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return JsonConvert.DeserializeObject<OAuthToken>(responseContent);

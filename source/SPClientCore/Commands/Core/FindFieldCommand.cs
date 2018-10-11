@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Find", "SPField")]
     [OutputType(typeof(Field[]))]
-    public class FindFieldCommand : PSCmdlet
+    public class FindFieldCommand : ClientObjectCmdlet
     {
 
         public FindFieldCommand()

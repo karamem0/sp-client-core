@@ -36,7 +36,7 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
                         { "Url", "TestWeb0" }
                     }
                 );
-                var result2 = context.Runspace.InvokeCommand<Web>(
+                var result2 = context.Runspace.InvokeCommand(
                     "Select-SPWeb",
                     new Dictionary<string, object>()
                     {
@@ -56,8 +56,6 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
                         { "FooterEnabled", true },
                         { "HeaderEmphasis", "Neutral" },
                         { "HeaderLayout", "Standard" },
-                        { "HideSiteLogo", true },
-                        { "HideSiteTitle", true },
                         { "HorizontalQuickLaunch", true },
                         { "MasterUrl", result1.ElementAt(0).ServerRelativeUrl + "/_catalogs/masterpage/oslo.master" },
                         { "MegaMenuEnabled", true },

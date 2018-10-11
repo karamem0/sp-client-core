@@ -17,12 +17,12 @@ using System.Management.Automation;
 using System.Net;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands.Common
 {
 
     [Cmdlet("Connect", "SPServer")]
     [OutputType(typeof(User))]
-    public class ConnectServerCommand : PSCmdlet
+    public class ConnectServerCommand : ClientObjectCmdlet
     {
 
         public ConnectServerCommand()

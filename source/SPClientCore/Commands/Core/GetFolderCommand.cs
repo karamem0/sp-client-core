@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Get", "SPFolder")]
     [OutputType(typeof(Folder))]
-    public class GetFolderCommand : PSCmdlet
+    public class GetFolderCommand : ClientObjectCmdlet
     {
 
         public GetFolderCommand()

@@ -22,7 +22,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Remove", "SPRoleAssignment", DefaultParameterSetName = "Web")]
     [OutputType(typeof(void))]
-    public class RemoveRoleAssignmentCommand : PSCmdlet
+    public class RemoveRoleAssignmentCommand : ClientObjectCmdlet
     {
 
         public RemoveRoleAssignmentCommand()

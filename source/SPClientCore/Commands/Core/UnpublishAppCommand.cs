@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Unpublish", "SPApp")]
     [OutputType(typeof(CorporateCatalogAppMetadata))]
-    public class UnpublishAppCommand : PSCmdlet
+    public class UnpublishAppCommand : ClientObjectCmdlet
     {
 
         public UnpublishAppCommand()

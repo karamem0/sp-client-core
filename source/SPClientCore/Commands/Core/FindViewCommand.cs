@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Find", "SPView")]
     [OutputType(typeof(View[]))]
-    public class FindViewCommand : PSCmdlet
+    public class FindViewCommand : ClientObjectCmdlet
     {
 
         public FindViewCommand()

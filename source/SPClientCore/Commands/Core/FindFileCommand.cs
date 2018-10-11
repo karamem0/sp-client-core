@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Find", "SPFile")]
     [OutputType(typeof(File[]))]
-    public class FindFileCommand : PSCmdlet
+    public class FindFileCommand : ClientObjectCmdlet
     {
 
         public FindFileCommand()

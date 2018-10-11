@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Publish", "SPApp")]
     [OutputType(typeof(CorporateCatalogAppMetadata))]
-    public class PublishAppCommand : PSCmdlet
+    public class PublishAppCommand : ClientObjectCmdlet
     {
 
         public PublishAppCommand()

@@ -22,7 +22,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Add", "SPViewField")]
     [OutputType(typeof(void))]
-    public class AddViewFieldCommand : PSCmdlet
+    public class AddViewFieldCommand : ClientObjectCmdlet
     {
 
         public AddViewFieldCommand()

@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Remove", "SPListItem")]
     [OutputType(typeof(GuidResult))]
-    public class RemoveListItemCommand : PSCmdlet
+    public class RemoveListItemCommand : ClientObjectCmdlet
     {
 
         public RemoveListItemCommand()

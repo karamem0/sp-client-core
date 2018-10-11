@@ -22,7 +22,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Start", "SPRoleInheritance", DefaultParameterSetName = "Web")]
     [OutputType(typeof(void))]
-    public class StartRoleInheritanceCommand : PSCmdlet
+    public class StartRoleInheritanceCommand : ClientObjectCmdlet
     {
 
         public StartRoleInheritanceCommand()

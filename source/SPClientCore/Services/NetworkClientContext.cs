@@ -17,6 +17,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using Karamem0.SharePoint.PowerShell.Common;
+using System.Diagnostics;
 
 namespace Karamem0.SharePoint.PowerShell.Services
 {
@@ -57,8 +58,11 @@ namespace Karamem0.SharePoint.PowerShell.Services
             {
                 var contextInfoRequestUrl = this.BaseAddress.ConcatPath("_api/contextinfo");
                 var contextInfoRequestMessage = new HttpRequestMessage(HttpMethod.Post, contextInfoRequestUrl);
+                Trace.WriteLine(contextInfoRequestMessage);
                 var contextInfoResponseMessage = this.HttpClient.SendAsync(contextInfoRequestMessage).GetAwaiter().GetResult();
                 var contextInfoResponseContent = contextInfoResponseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                Trace.WriteLine(contextInfoResponseMessage);
+                Trace.WriteLine(contextInfoResponseContent);
                 try
                 {
                     var contextInfoResponsePayload = JsonConvert.DeserializeObject<ODataResultPayload<ContextInformation>>(contextInfoResponseContent);

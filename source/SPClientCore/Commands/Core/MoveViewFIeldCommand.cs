@@ -22,7 +22,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Move", "SPViewField")]
     [OutputType(typeof(void))]
-    public class MoveViewFieldCommand : PSCmdlet
+    public class MoveViewFieldCommand : ClientObjectCmdlet
     {
 
         public MoveViewFieldCommand()

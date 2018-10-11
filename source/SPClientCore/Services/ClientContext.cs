@@ -6,11 +6,12 @@
 // https://github.com/karamem0/SPClientCore/blob/master/LICENSE
 //
 
-using Newtonsoft.Json;
 using Karamem0.SharePoint.PowerShell.Models;
 using Karamem0.SharePoint.PowerShell.Models.OData;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -57,8 +58,11 @@ namespace Karamem0.SharePoint.PowerShell.Services
             var requestMessage = this.CreateHttpRequestMessage(HttpMethod.Post, requestUrl);
             requestMessage.Headers.Add("X-HTTP-Method", "DELETE");
             requestMessage.Headers.Add("If-Match", "*");
+            Trace.WriteLine(requestMessage);
             var responseMessage = this.HttpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
             var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            Trace.WriteLine(responseMessage);
+            Trace.WriteLine(responseContent);
             try
             {
                 var responsePayload = JsonConvert.DeserializeObject<ODataResultPayload>(responseContent);
@@ -79,8 +83,11 @@ namespace Karamem0.SharePoint.PowerShell.Services
         public T GetObject<T>(Uri requestUrl) where T : ClientObject
         {
             var requestMessage = this.CreateHttpRequestMessage(HttpMethod.Get, requestUrl);
+            Trace.WriteLine(requestMessage);
             var responseMessage = this.HttpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
             var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            Trace.WriteLine(responseMessage);
+            Trace.WriteLine(responseContent);
             try
             {
                 var responsePayload = JsonConvert.DeserializeObject<ODataResultPayload<T>>(responseContent);
@@ -102,8 +109,10 @@ namespace Karamem0.SharePoint.PowerShell.Services
         public Stream GetStream(Uri requestUrl)
         {
             var requestMessage = this.CreateHttpRequestMessage(HttpMethod.Get, requestUrl);
+            Trace.WriteLine(requestMessage);
             var responseMessage = this.HttpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
             var responseStream = responseMessage.Content.ReadAsStreamAsync().GetAwaiter().GetResult();
+            Trace.WriteLine(responseMessage);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return responseStream;
@@ -124,10 +133,15 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 requestMessage.Content = new StringContent(jsonContent, Encoding.UTF8);
                 requestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json;odata=verbose");
             }
+            var requestContent = requestMessage.Content?.ReadAsStringAsync().GetAwaiter().GetResult();
             requestMessage.Headers.Add("X-HTTP-Method", "MERGE");
             requestMessage.Headers.Add("If-Match", "*");
+            Trace.WriteLine(requestMessage);
+            Trace.WriteLine(requestContent);
             var responseMessage = this.HttpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
             var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            Trace.WriteLine(responseMessage);
+            Trace.WriteLine(responseContent);
             try
             {
                 var responsePayload = JsonConvert.DeserializeObject<ODataResultPayload>(responseContent);
@@ -155,8 +169,13 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 requestMessage.Content = new StringContent(jsonContent, Encoding.UTF8);
                 requestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json;odata=verbose");
             }
+            var requestContent = requestMessage.Content?.ReadAsStringAsync().GetAwaiter().GetResult();
+            Trace.WriteLine(requestMessage);
+            Trace.WriteLine(requestContent);
             var responseMessage = this.HttpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
             var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            Trace.WriteLine(responseMessage);
+            Trace.WriteLine(responseContent);
             try
             {
                 var responsePayload = JsonConvert.DeserializeObject<ODataResultPayload>(responseContent);
@@ -184,8 +203,13 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 requestMessage.Content = new StringContent(jsonContent, Encoding.UTF8);
                 requestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json;odata=verbose");
             }
+            var requestContent = requestMessage.Content?.ReadAsStringAsync().GetAwaiter().GetResult();
+            Trace.WriteLine(requestMessage);
+            Trace.WriteLine(requestContent);
             var responseMessage = this.HttpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
             var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            Trace.WriteLine(responseMessage);
+            Trace.WriteLine(responseContent);
             try
             {
                 var responsePayload = JsonConvert.DeserializeObject<ODataResultPayload<T>>(responseContent);
@@ -211,8 +235,11 @@ namespace Karamem0.SharePoint.PowerShell.Services
             {
                 requestMessage.Content = new StreamContent(requestStream);
             }
+            Trace.WriteLine(requestMessage);
             var responseMessage = this.HttpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
             var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            Trace.WriteLine(responseMessage);
+            Trace.WriteLine(responseContent);
             try
             {
                 var responsePayload = JsonConvert.DeserializeObject<ODataResultPayload<T>>(responseContent);

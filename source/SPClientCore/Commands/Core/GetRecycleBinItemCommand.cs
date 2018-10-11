@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Get", "SPRecycleBinItem")]
     [OutputType(typeof(RecycleBinItem))]
-    public class GetRecycleBinItemCommand : PSCmdlet
+    public class GetRecycleBinItemCommand : ClientObjectCmdlet
     {
 
         public GetRecycleBinItemCommand()

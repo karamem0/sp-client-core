@@ -22,7 +22,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Restore", "SPRecycleBinItem", DefaultParameterSetName = "One")]
     [OutputType(typeof(void))]
-    public class RestoreRecycleBinItemCommand : PSCmdlet
+    public class RestoreRecycleBinItemCommand : ClientObjectCmdlet
     {
 
         public RestoreRecycleBinItemCommand()

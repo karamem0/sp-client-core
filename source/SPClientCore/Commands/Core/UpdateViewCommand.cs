@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Update", "SPView", DefaultParameterSetName = "Param")]
     [OutputType(typeof(View))]
-    public class UpdateViewCommand : PSCmdlet
+    public class UpdateViewCommand : ClientObjectCmdlet
     {
 
         public UpdateViewCommand()

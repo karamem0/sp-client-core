@@ -132,12 +132,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.Core
         public HeaderLayoutType? HeaderLayout { get; private set; }
 
         [JsonProperty()]
-        public bool? HideSiteLogo { get; private set; }
-
-        [JsonProperty()]
-        public bool? HideSiteTitle { get; private set; }
-
-        [JsonProperty()]
         public bool? HorizontalQuickLaunch { get; private set; }
 
         [JsonProperty()]

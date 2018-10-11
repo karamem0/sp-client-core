@@ -21,7 +21,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Get", "SPAppCatalogUrl")]
     [OutputType(typeof(string[]))]
-    public class GetAppCatalogUrlCommand : PSCmdlet
+    public class GetAppCatalogUrlCommand : ClientObjectCmdlet
     {
 
         public GetAppCatalogUrlCommand()

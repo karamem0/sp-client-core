@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Get", "SPRoleDefinition")]
     [OutputType(typeof(RoleDefinition))]
-    public class GetRoleDefinitionCommand : PSCmdlet
+    public class GetRoleDefinitionCommand : ClientObjectCmdlet
     {
 
         public GetRoleDefinitionCommand()

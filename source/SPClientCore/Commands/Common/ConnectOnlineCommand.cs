@@ -13,18 +13,18 @@ using Karamem0.SharePoint.PowerShell.Services.OAuth;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using System.Management.Automation;
 using System.Linq;
+using System.Management.Automation;
 using System.Text;
 using System.Threading;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands.Common
 {
 
     [Cmdlet("Connect", "SPOnline", DefaultParameterSetName = "DeviceCode")]
     [OutputType(typeof(User), ParameterSetName = new[] { "DeviceCode", "Password" })]
     [OutputType(typeof(string), ParameterSetName = new[] { "AdminConsent" })]
-    public class ConnectOnlineCommand : PSCmdlet
+    public class ConnectOnlineCommand : ClientObjectCmdlet
     {
 
         public ConnectOnlineCommand()
@@ -53,7 +53,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
             {
                 this.Authority = new Uri(Constants.Authority);
             }
-            var oAuthContext = new OAuthContext(this.Authority.ToString(), Constants.ClientId, this.Url.GetLeftPart(UriPartial.Authority));
+            var oAuthContext = new OAuthContext(this.Authority.GetLeftPart(UriPartial.Authority), Constants.ClientId, this.Url.GetLeftPart(UriPartial.Authority));
             if (this.ParameterSetName == "DeviceCode")
             {
                 var oAuthDeviceCodeMessage = oAuthContext.AcquireDeviceCode();

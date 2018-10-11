@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Get", "SPAttachment")]
     [OutputType(typeof(Attachment))]
-    public class GetAttachmentCommand : PSCmdlet
+    public class GetAttachmentCommand : ClientObjectCmdlet
     {
 
         public GetAttachmentCommand()

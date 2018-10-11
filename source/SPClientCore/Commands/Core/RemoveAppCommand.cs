@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Remove", "SPApp")]
     [OutputType(typeof(void))]
-    public class RemoveAppCommand : PSCmdlet
+    public class RemoveAppCommand : ClientObjectCmdlet
     {
 
         public RemoveAppCommand()

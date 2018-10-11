@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("New", "SPAttachment")]
     [OutputType(typeof(Attachment))]
-    public class NewAttachmentCommand : PSCmdlet
+    public class NewAttachmentCommand : ClientObjectCmdlet
     {
 
         public NewAttachmentCommand()

@@ -22,7 +22,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Remove", "SPUser")]
     [OutputType(typeof(void))]
-    public class RemoveUserCommand : PSCmdlet
+    public class RemoveUserCommand : ClientObjectCmdlet
     {
 
         public RemoveUserCommand()

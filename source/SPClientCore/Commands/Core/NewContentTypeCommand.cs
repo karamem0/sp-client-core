@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("New", "SPContentType", DefaultParameterSetName = "Web")]
     [OutputType(typeof(ContentType))]
-    public class NewContentTypeCommand : PSCmdlet
+    public class NewContentTypeCommand : ClientObjectCmdlet
     {
 
         public NewContentTypeCommand()

@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Find", "SPFolder")]
     [OutputType(typeof(Folder[]))]
-    public class FindFolderCommand : PSCmdlet
+    public class FindFolderCommand : ClientObjectCmdlet
     {
 
         public FindFolderCommand()

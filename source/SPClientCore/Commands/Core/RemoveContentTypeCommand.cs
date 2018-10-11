@@ -22,7 +22,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Remove", "SPContentType", DefaultParameterSetName = "Web")]
     [OutputType(typeof(void))]
-    public class RemoveContentTypeCommand : PSCmdlet
+    public class RemoveContentTypeCommand : ClientObjectCmdlet
     {
 
         public RemoveContentTypeCommand()

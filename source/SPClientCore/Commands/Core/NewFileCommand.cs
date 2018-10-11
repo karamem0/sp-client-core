@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("New", "SPFile")]
     [OutputType(typeof(File))]
-    public class NewFileCommand : PSCmdlet
+    public class NewFileCommand : ClientObjectCmdlet
     {
 
         public NewFileCommand()

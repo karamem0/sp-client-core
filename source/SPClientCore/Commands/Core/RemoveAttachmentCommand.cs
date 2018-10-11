@@ -22,7 +22,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 {
 
     [Cmdlet("Remove", "SPAttachment")]
-    public class RemoveAttachmentCommand : PSCmdlet
+    public class RemoveAttachmentCommand : ClientObjectCmdlet
     {
 
         public RemoveAttachmentCommand()

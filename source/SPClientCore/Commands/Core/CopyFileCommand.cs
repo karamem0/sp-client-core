@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Copy", "SPFile")]
     [OutputType(typeof(File))]
-    public class CopyFileCommand : PSCmdlet
+    public class CopyFileCommand : ClientObjectCmdlet
     {
 
         public CopyFileCommand()

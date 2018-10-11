@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Update", "SPWeb")]
     [OutputType(typeof(Web))]
-    public class UpdateWebCommand : PSCmdlet
+    public class UpdateWebCommand : ClientObjectCmdlet
     {
 
         public UpdateWebCommand()
@@ -59,12 +59,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
         [Parameter(Mandatory = false)]
         public HeaderLayoutType? HeaderLayout { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public bool? HideSiteLogo { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public bool? HideSiteTitle { get; private set; }
 
         [Parameter(Mandatory = false)]
         public bool? HorizontalQuickLaunch { get; private set; }

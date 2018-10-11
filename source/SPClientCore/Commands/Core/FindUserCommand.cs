@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Find", "SPUser")]
     [OutputType(typeof(User[]))]
-    public class FindUserCommand : PSCmdlet
+    public class FindUserCommand : ClientObjectCmdlet
     {
 
         public FindUserCommand()

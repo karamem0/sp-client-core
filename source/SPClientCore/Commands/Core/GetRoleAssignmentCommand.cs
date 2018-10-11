@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Get", "SPRoleAssignment", DefaultParameterSetName = "Web")]
     [OutputType(typeof(RoleAssignment))]
-    public class GetRoleAssignmentCommand : PSCmdlet
+    public class GetRoleAssignmentCommand : ClientObjectCmdlet
     {
 
         public GetRoleAssignmentCommand()

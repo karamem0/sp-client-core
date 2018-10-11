@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("New", "SPView")]
     [OutputType(typeof(View))]
-    public class NewViewCommand : PSCmdlet
+    public class NewViewCommand : ClientObjectCmdlet
     {
 
         public NewViewCommand()

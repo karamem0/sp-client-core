@@ -22,7 +22,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Remove", "SPRecycleBinItem", DefaultParameterSetName = "One")]
     [OutputType(typeof(void))]
-    public class RemoveRecycleBinItemCommand : PSCmdlet
+    public class RemoveRecycleBinItemCommand : ClientObjectCmdlet
     {
 
         public RemoveRecycleBinItemCommand()

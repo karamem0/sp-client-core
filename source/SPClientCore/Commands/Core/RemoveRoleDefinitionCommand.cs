@@ -22,7 +22,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Remove", "SPRoleDefinition")]
     [OutputType(typeof(void))]
-    public class RemoveRoleDefinitionCommand : PSCmdlet
+    public class RemoveRoleDefinitionCommand : ClientObjectCmdlet
     {
 
         public RemoveRoleDefinitionCommand()

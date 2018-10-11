@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Get", "SPWeb")]
     [OutputType(typeof(Web))]
-    public class GetWebCommand : PSCmdlet
+    public class GetWebCommand : ClientObjectCmdlet
     {
 
         public GetWebCommand()

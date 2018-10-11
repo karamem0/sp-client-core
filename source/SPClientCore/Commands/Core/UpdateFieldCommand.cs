@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Update", "SPField")]
     [OutputType(typeof(Field))]
-    public class UpdateFieldCommand : PSCmdlet
+    public class UpdateFieldCommand : ClientObjectCmdlet
     {
 
         public UpdateFieldCommand()

@@ -42,7 +42,7 @@ namespace Karamem0.SharePoint.PowerShell.Common
             {
                 var str1 = uri.ToString().TrimEnd('/');
                 var str2 = path.Trim('/');
-                var slash = uri.ToString().EndsWith("/") ? "/" : "";
+                var slash = uri.OriginalString.EndsWith("/") ? "/" : "";
                 return new Uri(str1 + "/" + str2 + slash, UriKind.RelativeOrAbsolute);
             }
         }

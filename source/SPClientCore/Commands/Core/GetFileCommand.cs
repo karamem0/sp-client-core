@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Get", "SPFile")]
     [OutputType(typeof(File))]
-    public class GetFileCommand : PSCmdlet
+    public class GetFileCommand : ClientObjectCmdlet
     {
 
         public GetFileCommand()

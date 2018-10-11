@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("New", "SPField", DefaultParameterSetName = "Param")]
     [OutputType(typeof(Field))]
-    public class NewFieldCommand : PSCmdlet
+    public class NewFieldCommand : ClientObjectCmdlet
     {
 
         public NewFieldCommand()

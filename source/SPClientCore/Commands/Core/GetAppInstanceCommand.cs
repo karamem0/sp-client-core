@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Get", "SPAppInstance")]
     [OutputType(typeof(AppInstance[]))]
-    public class GetAppInstanceCommand : PSCmdlet
+    public class GetAppInstanceCommand : ClientObjectCmdlet
     {
 
         public GetAppInstanceCommand()

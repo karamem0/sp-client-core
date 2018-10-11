@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("New", "SPList")]
     [OutputType(typeof(List))]
-    public class NewListCommand : PSCmdlet
+    public class NewListCommand : ClientObjectCmdlet
     {
 
         public NewListCommand()

@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Find", "SPList")]
     [OutputType(typeof(List[]))]
-    public class FindListCommand : PSCmdlet
+    public class FindListCommand : ClientObjectCmdlet
     {
 
         public FindListCommand()

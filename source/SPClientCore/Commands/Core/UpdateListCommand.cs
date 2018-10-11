@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Update", "SPList")]
     [OutputType(typeof(List))]
-    public class UpdateListCommand : PSCmdlet
+    public class UpdateListCommand : ClientObjectCmdlet
     {
 
         public UpdateListCommand()

@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("New", "SPWeb")]
     [OutputType(typeof(Web))]
-    public class NewWebCommand : PSCmdlet
+    public class NewWebCommand : ClientObjectCmdlet
     {
 
         public NewWebCommand()

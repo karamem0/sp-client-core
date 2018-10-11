@@ -22,7 +22,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Search
 
     [Cmdlet("Invoke", "SPSearchQuery")]
     [OutputType(typeof(SearchResult))]
-    public class InvokeSearchQueryCommand : PSCmdlet
+    public class InvokeSearchQueryCommand : ClientObjectCmdlet
     {
 
         public InvokeSearchQueryCommand()

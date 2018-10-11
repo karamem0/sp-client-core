@@ -22,7 +22,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
 
     [Cmdlet("Remove", "SPField")]
     [OutputType(typeof(void))]
-    public class RemoveFieldCommand : PSCmdlet
+    public class RemoveFieldCommand : ClientObjectCmdlet
     {
 
         public RemoveFieldCommand()
