@@ -9,6 +9,7 @@
 using Karamem0.SharePoint.PowerShell.Services.OAuth;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -55,7 +56,9 @@ namespace Karamem0.SharePoint.PowerShell.Services
         protected override HttpRequestMessage CreateHttpRequestMessage(HttpMethod httpMethod, Uri requestUrl)
         {
             var requestMessage = new HttpRequestMessage(httpMethod, requestUrl);
-            var expireOn = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(this.oAuthToken.ExpiresIn);
+            var jwtToken = new JwtSecurityToken(this.oAuthToken.AccessToken);
+            var expireIn = (double)jwtToken.Payload.Exp;
+            var expireOn = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(expireIn);
             if (expireOn <= DateTime.UtcNow)
             {
                 var oAuthMessage = this.oAuthContext.AcquireTokenByRefreshToken(this.oAuthToken.RefreshToken);

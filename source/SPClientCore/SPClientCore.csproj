@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <PackageId>SPClientCore</PackageId>
-    <Version>1.4.2</Version>
+    <Version>1.4.3</Version>
     <Authors>karamem0</Authors>
     <Company>karamem0</Company>
     <Product>SPClientCore</Product>
@@ -11,8 +11,8 @@
     <Copyright>Copyright (c) 2018 karamem0</Copyright>
     <PackageLicenseUrl>https://github.com/karamem0/SPClientCore/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/karamem0/SPClientCore</PackageProjectUrl>
-    <AssemblyVersion>1.4.2.0</AssemblyVersion>
-    <FileVersion>1.4.2.0</FileVersion>
+    <AssemblyVersion>1.4.3.0</AssemblyVersion>
+    <FileVersion>1.4.3.0</FileVersion>
     <RootNamespace>Karamem0.SharePoint.PowerShell</RootNamespace>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies> 
   </PropertyGroup>
@@ -24,6 +24,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.3.0" />
     <PackageReference Include="System.Management.Automation" Version="6.1.0" />
   </ItemGroup>
 
