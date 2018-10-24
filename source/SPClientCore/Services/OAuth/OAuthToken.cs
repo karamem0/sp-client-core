@@ -35,15 +35,6 @@ namespace Karamem0.SharePoint.PowerShell.Services.OAuth
         [JsonProperty("ext_expires_in")]
         public int ExtExpiresIn { get; private set; }
 
-        [JsonProperty("expires_on")]
-        public int ExpiresOn { get; private set; }
-
-        [JsonProperty("not_before")]
-        public int NotBefore { get; private set; }
-
-        [JsonProperty("resource")]
-        public string Resource { get; private set; }
-
         [JsonProperty("access_token")]
         public string AccessToken { get; private set; }
 

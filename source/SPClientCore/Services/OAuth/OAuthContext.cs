@@ -7,19 +7,24 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Common;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Karamem0.SharePoint.PowerShell.Services.OAuth
 {
 
     public class OAuthContext
     {
+
+        private readonly string tenantId;
 
         private readonly string authority;
 
@@ -46,6 +51,25 @@ namespace Karamem0.SharePoint.PowerShell.Services.OAuth
             this.authority = authority;
             this.clientId = clientId;
             this.resource = resource;
+            var requestUrl = new Uri(resource, UriKind.Absolute).ConcatPath("_vti_bin/client.svc");
+            var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
+            requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer");
+            Trace.WriteLine(requestMessage);
+            var responseMessage = this.httpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
+            Trace.WriteLine(responseMessage);
+            var authHeaderValue = responseMessage.Headers.WwwAuthenticate.FirstOrDefault();
+            if (authHeaderValue != null)
+            {
+                var authRealm = Regex.Match(authHeaderValue.Parameter, "realm=\"(.+?)\"");
+                if (authRealm.Success)
+                {
+                    this.tenantId = authRealm.Groups[1].Value;
+                }
+            }
+            if (this.tenantId == null)
+            {
+                throw new ArgumentNullException(nameof(resource), StringResources.ErrorCannotResolveTenantId);
+            }
         }
 
         public OAuthMessage AcquireDeviceCode()
@@ -53,10 +77,15 @@ namespace Karamem0.SharePoint.PowerShell.Services.OAuth
             var requertParameters = new Dictionary<string, object>()
             {
                 { "client_id", this.clientId },
-                { "resource", this.resource }
+                { "scope", string.Join(" ", new[] {
+                    "offline_access",
+                    this.resource + "/AllSites.FullControl",
+                    this.resource + "/User.Read.All"
+                })}
             };
             var requestUrl = new Uri(this.authority, UriKind.Absolute)
-                .ConcatPath("common/oauth2/devicecode")
+                .ConcatPath(this.tenantId)
+                .ConcatPath("oauth2/v2.0/devicecode")
                 .ConcatQuery(UriQuery.Create(requertParameters));
             var requestMessage = new HttpRequestMessage(HttpMethod.Get, requestUrl);
             requestMessage.Headers.Add("Accept", "application/json");
@@ -81,13 +110,19 @@ namespace Karamem0.SharePoint.PowerShell.Services.OAuth
             {
                 throw new ArgumentNullException(nameof(deviceCode));
             }
-            var requestUrl = new Uri(this.authority, UriKind.Absolute).ConcatPath("common/oauth2/token");
+            var requestUrl = new Uri(this.authority, UriKind.Absolute)
+                .ConcatPath(this.tenantId)
+                .ConcatPath("oauth2/token");
             var requertParameters = new Dictionary<string, object>()
             {
                 { "grant_type", "device_code" },
                 { "client_id", this.clientId },
                 { "code", deviceCode },
-                { "resource", this.resource }
+                { "scope", string.Join(" ", new[] {
+                    "offline_access",
+                    this.resource + "/AllSites.FullControl",
+                    this.resource + "/User.Read.All"
+                })}
             };
             var requestContent = UriQuery.Create(requertParameters);
             var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -119,14 +154,20 @@ namespace Karamem0.SharePoint.PowerShell.Services.OAuth
             {
                 throw new ArgumentNullException(nameof(password));
             }
-            var requestUrl = new Uri(this.authority, UriKind.Absolute).ConcatPath("common/oauth2/token");
+            var requestUrl = new Uri(this.authority, UriKind.Absolute)
+                .ConcatPath(this.tenantId)
+                .ConcatPath("oauth2/v2.0/token");
             var requertParameters = new Dictionary<string, object>()
             {
                 { "grant_type", "password" },
                 { "client_id", this.clientId },
                 { "username", userName },
                 { "password", password },
-                { "resource", this.resource }
+                { "scope", string.Join(" ", new[] {
+                    "offline_access",
+                    this.resource + "/AllSites.FullControl",
+                    this.resource + "/User.Read.All"
+                })}
             };
             var requestContent = UriQuery.Create(requertParameters);
             var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -154,13 +195,19 @@ namespace Karamem0.SharePoint.PowerShell.Services.OAuth
             {
                 throw new ArgumentNullException(nameof(refreshToken));
             }
-            var requestUrl = new Uri(this.authority, UriKind.Absolute).ConcatPath("common/oauth2/token");
+            var requestUrl = new Uri(this.authority, UriKind.Absolute)
+                .ConcatPath(this.tenantId)
+                .ConcatPath("oauth2/v2.0/token");
             var requertParameters = new Dictionary<string, object>()
             {
                 { "grant_type", "refresh_token" },
                 { "client_id", this.clientId },
                 { "refresh_token", refreshToken },
-                { "resource", this.resource }
+                { "scope", string.Join(" ", new[] {
+                    "offline_access",
+                    this.resource + "/AllSites.FullControl",
+                    this.resource + "/User.Read.All"
+                })}
             };
             var requestContent = UriQuery.Create(requertParameters);
             var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -187,13 +234,11 @@ namespace Karamem0.SharePoint.PowerShell.Services.OAuth
             var requertParameters = new Dictionary<string, object>()
             {
                 { "client_id", this.clientId },
-                { "response_type", "code" },
-                { "redirect_uri", Constants.AdminConsentRedirectUrl },
-                { "resource", this.resource },
-                { "prompt", "admin_consent" }
+                { "redirect_uri", Constants.AdminConsentRedirectUrl }
             };
             var requestUrl = new Uri(this.authority, UriKind.Absolute)
-                .ConcatPath("common/oauth2/authorize")
+                .ConcatPath(this.tenantId)
+                .ConcatPath("adminconsent")
                 .ConcatQuery(UriQuery.Create(requertParameters));
             return requestUrl;
         }

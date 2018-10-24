@@ -47,7 +47,7 @@ namespace Karamem0.SharePoint.PowerShell.Resources {
         }
         
         /// <summary>
-        ///   厳密に型指定されたこのリソース クラスを使用して、すべての検索リソースに対し、
+        ///   すべてについて、現在のスレッドの CurrentUICulture プロパティをオーバーライドします
         ///   現在のスレッドの CurrentUICulture プロパティをオーバーライドします。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -57,6 +57,15 @@ namespace Karamem0.SharePoint.PowerShell.Resources {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Cannot resolve Tenant ID from resource URL. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ErrorCannotResolveTenantId {
+            get {
+                return ResourceManager.GetString("ErrorCannotResolveTenantId", resourceCulture);
             }
         }
         

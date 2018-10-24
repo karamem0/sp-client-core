@@ -55,7 +55,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
         protected override HttpRequestMessage CreateHttpRequestMessage(HttpMethod httpMethod, Uri requestUrl)
         {
             var requestMessage = new HttpRequestMessage(httpMethod, requestUrl);
-            var expireOn = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(this.oAuthToken.ExpiresOn);
+            var expireOn = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(this.oAuthToken.ExpiresIn);
             if (expireOn <= DateTime.UtcNow)
             {
                 var oAuthMessage = this.oAuthContext.AcquireTokenByRefreshToken(this.oAuthToken.RefreshToken);

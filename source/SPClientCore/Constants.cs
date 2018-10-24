@@ -19,7 +19,7 @@ namespace Karamem0.SharePoint.PowerShell
 
         public const string Authority = "https://login.microsoftonline.com";
 
-        public const string ClientId = "2212ff95-3f5a-4de7-b55e-8efebb515180";
+        public const string ClientId = "d329ccf1-98fe-483f-b616-23cc5a874743";
 
         public const string AdminConsentRedirectUrl = "https://github.com/karamem0/SPClientCore/wiki";
 
