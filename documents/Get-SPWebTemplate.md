@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-SPWebTemplate
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Gets a site template.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Get-SPWebTemplate -Name <String> -LCID <UInt32> [-DoIncludeCrossLanguage] [-Incl
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+The Get-SPWeb cmdlet retrieves the site template which matches the parameter.
 
 ## EXAMPLES
 
 ### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+```
+PS C:\> Get-SPWebTemplate -Name 'STS#0' -LCID 1033
 ```
 
-{{ Add example description here }}
+Gets a site template by name.
 
 ## PARAMETERS
 
 ### -DoIncludeCrossLanguage
-{{Fill DoIncludeCrossLanguage Description}}
+If specified, includes cross language site templates.
 
 ```yaml
 Type: SwitchParameter
@@ -41,13 +41,13 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -Includes
-{{Fill Includes Description}}
+Indicates the property name collection to include in the result object.
 
 ```yaml
 Type: String[]
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -LCID
-{{Fill LCID Description}}
+Indicates the LCID.
 
 ```yaml
 Type: UInt32
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{Fill Name Description}}
+Indicates the name.
 
 ```yaml
 Type: String
@@ -98,11 +98,9 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.Core.WebTemplate
-
 ## NOTES
 
 ## RELATED LINKS

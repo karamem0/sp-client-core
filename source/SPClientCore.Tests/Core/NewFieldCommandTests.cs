@@ -39,7 +39,7 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
                         { "Group", "Test Field 0 Group" },
                         { "Hidden", true },
                         { "Indexed", true },
-                        { "JSLink", "TestField0.js" },
+                        //{ "JSLink", "TestField0.js" },
                         { "ReadOnlyField", false },
                         { "Required", true },
                         { "Scope", context.AppSettings["List1Url"] },

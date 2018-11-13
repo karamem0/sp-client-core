@@ -49,6 +49,9 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Core
         [Parameter(Mandatory = false)]
         public int? Skip { get; private set; }
 
+        [Parameter(Mandatory = false)]
+        public string Filter { get; private set; }
+
         protected override void ProcessRecord()
         {
             if (ClientObjectService.ServiceProvider == null)

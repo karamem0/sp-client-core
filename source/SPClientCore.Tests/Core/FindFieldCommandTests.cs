@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
     {
 
         [TestMethod()]
-        public void FindWebFields()
+        public void SkipAndTakeWebFields()
         {
             using (var context = new PSCmdletContext())
             {
@@ -41,7 +41,7 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
         }
 
         [TestMethod()]
-        public void FindListFields()
+        public void SkipAndTakeListFields()
         {
             using (var context = new PSCmdletContext())
             {
@@ -53,6 +53,39 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
                         { "OrderBy", "Title desc" },
                         { "Top", 1 },
                         { "Skip", 1 }
+                    }
+                );
+                var actual = result1.ToArray();
+            }
+        }
+
+        [TestMethod()]
+        public void FilterWebFields()
+        {
+            using (var context = new PSCmdletContext())
+            {
+                var result1 = context.Runspace.InvokeCommand<Field>(
+                    "Find-SPField",
+                    new Dictionary<string, object>()
+                    {
+                        { "Filter", "Title eq '" + context.AppSettings["Field2Title"] + "'" }
+                    }
+                );
+                var actual = result1.ToArray();
+            }
+        }
+
+        [TestMethod()]
+        public void FilterListFields()
+        {
+            using (var context = new PSCmdletContext())
+            {
+                var result1 = context.Runspace.InvokeCommand<Field>(
+                    "Find-SPField",
+                    new Dictionary<string, object>()
+                    {
+                        { "List", context.AppSettings["List1Id"] },
+                        { "Filter", "Title eq '" + context.AppSettings["Field2Title"] + "'" }
                     }
                 );
                 var actual = result1.ToArray();

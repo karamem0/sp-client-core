@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
     {
 
         [TestMethod()]
-        public void FindWebContentTypes()
+        public void SkipAndTakeWebContentTypes()
         {
             using (var context = new PSCmdletContext())
             {
@@ -41,7 +41,7 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
         }
 
         [TestMethod()]
-        public void FindListContentTypes()
+        public void SkipAndTakeListContentTypes()
         {
             using (var context = new PSCmdletContext())
             {
@@ -53,6 +53,39 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
                         { "OrderBy", "Name desc" },
                         { "Top", 1 },
                         { "Skip", 1 }
+                    }
+                );
+                var actual = result1.ToArray();
+            }
+        }
+
+        [TestMethod()]
+        public void FilterWebContentTypes()
+        {
+            using (var context = new PSCmdletContext())
+            {
+                var result1 = context.Runspace.InvokeCommand<ContentType>(
+                    "Find-SPContentType",
+                    new Dictionary<string, object>()
+                    {
+                        { "Filter", "Name eq '" + context.AppSettings["WebContentType2Name"] + "'" }
+                    }
+                );
+                var actual = result1.ToArray();
+            }
+        }
+
+        [TestMethod()]
+        public void FilterListContentTypes()
+        {
+            using (var context = new PSCmdletContext())
+            {
+                var result1 = context.Runspace.InvokeCommand<ContentType>(
+                    "Find-SPContentType",
+                    new Dictionary<string, object>()
+                    {
+                        { "List", context.AppSettings["List1Id"] },
+                        { "Filter", "Name eq '" + context.AppSettings["ListContentType2Name"] + "'" }
                     }
                 );
                 var actual = result1.ToArray();

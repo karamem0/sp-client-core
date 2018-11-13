@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
     {
 
         [TestMethod()]
-        public void CreateSiteCollectionApps()
+        public void SkipAndTakeSiteCollectionApps()
         {
             using (var context = new PSCmdletContext())
             {
@@ -35,6 +35,23 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
                         { "OrderBy", "Title desc" },
                         { "Top", 1 },
                         { "Skip", 1 }
+                    }
+                );
+                var actual = result1.ToArray();
+            }
+        }
+
+        [TestMethod()]
+        public void FilterSiteCollectionApps()
+        {
+            using (var context = new PSCmdletContext())
+            {
+                var result1 = context.Runspace.InvokeCommand<CorporateCatalogAppMetadata>(
+                    "Find-SPApp",
+                    new Dictionary<string, object>()
+                    {
+                        { "Scope", "SiteCollection" },
+                        { "Filter", "Title eq '" + context.AppSettings["App2Title"] + "'" }
                     }
                 );
                 var actual = result1.ToArray();

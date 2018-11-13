@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
     {
 
         [TestMethod()]
-        public void FindLists()
+        public void SkipAndTakeLists()
         {
             using (var context = new PSCmdletContext())
             {
@@ -34,6 +34,22 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
                         { "OrderBy", "Title desc" },
                         { "Top", 1 },
                         { "Skip", 1 }
+                    }
+                );
+                var actual = result1.ToArray();
+            }
+        }
+
+        [TestMethod()]
+        public void FilterLists()
+        {
+            using (var context = new PSCmdletContext())
+            {
+                var result1 = context.Runspace.InvokeCommand<List>(
+                    "Find-SPList",
+                    new Dictionary<string, object>()
+                    {
+                        { "Filter", "Title eq '" + context.AppSettings["List2Title"] + "'" }
                     }
                 );
                 var actual = result1.ToArray();

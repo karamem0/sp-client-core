@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
     {
 
         [TestMethod()]
-        public void FindAttachments()
+        public void SkipAndTakeAttachments()
         {
             using (var context = new PSCmdletContext())
             {
@@ -36,6 +36,24 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
                         { "OrderBy", "FileName desc" },
                         { "Top", 1 },
                         { "Skip", 1 }
+                    }
+                );
+                var actual = result1.ToArray();
+            }
+        }
+
+        [TestMethod()]
+        public void FilterAttachments()
+        {
+            using (var context = new PSCmdletContext())
+            {
+                var result1 = context.Runspace.InvokeCommand<Attachment>(
+                    "Find-SPAttachment",
+                    new Dictionary<string, object>()
+                    {
+                        { "List", context.AppSettings["List1Id"] },
+                        { "ListItem", context.AppSettings["ListItem1Id"] },
+                        { "Filter", "FileName eq '" + context.AppSettings["Attachment2Name"] + "'" }
                     }
                 );
                 var actual = result1.ToArray();

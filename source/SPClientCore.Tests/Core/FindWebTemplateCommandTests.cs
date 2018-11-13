@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
     {
 
         [TestMethod()]
-        public void FindWebTemplates()
+        public void SkipAndTakeWebTemplates()
         {
             using (var context = new PSCmdletContext())
             {
@@ -36,6 +36,24 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
                         { "OrderBy", "Name desc" },
                         { "Top", 1 },
                         { "Skip", 1 }
+                    }
+                );
+                var actual = result1.ToArray();
+            }
+        }
+
+        [TestMethod()]
+        public void FilterWebTemplates()
+        {
+            using (var context = new PSCmdletContext())
+            {
+                var result1 = context.Runspace.InvokeCommand<WebTemplate>(
+                    "Find-SPWebTemplate",
+                    new Dictionary<string, object>()
+                    {
+                        { "LCID", 1033 },
+                        { "DoIncludeCrossLanguage", true },
+                        { "Filter", "Name eq 'STS#0'" },
                     }
                 );
                 var actual = result1.ToArray();

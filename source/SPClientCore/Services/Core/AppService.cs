@@ -19,7 +19,6 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Services.Core
 {
 
-
     public interface IAppService
     {
 

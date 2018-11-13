@@ -8,31 +8,31 @@ schema: 2.0.0
 # Find-SPWebTemplate
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Lists site templates.
 
 ## SYNTAX
 
 ```
 Find-SPWebTemplate -LCID <UInt32> [-DoIncludeCrossLanguage] [-Includes <String[]>] [-OrderBy <String[]>]
- [-Top <Int32>] [-Skip <Int32>] [<CommonParameters>]
+ [-Top <Int32>] [-Skip <Int32>] [-Filter <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+The Find-SPWeb cmdlet retrieves all site templates.
 
 ## EXAMPLES
 
 ### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+```
+PS C:\> Find-SPWebTemplate -LCID 1033
 ```
 
-{{ Add example description here }}
+Lists the site templates that are enabled for en-US.
 
 ## PARAMETERS
 
 ### -DoIncludeCrossLanguage
-{{Fill DoIncludeCrossLanguage Description}}
+If specified, includes cross language site templates.
 
 ```yaml
 Type: SwitchParameter
@@ -41,13 +41,13 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -Includes
-{{Fill Includes Description}}
+Indicates the property name collection to include in the result object.
 
 ```yaml
 Type: String[]
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -LCID
-{{Fill LCID Description}}
+Indicates the LCID.
 
 ```yaml
 Type: UInt32
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -OrderBy
-{{Fill OrderBy Description}}
+Indicates the property name collection used for sorting.
 
 ```yaml
 Type: String[]
@@ -92,7 +92,7 @@ Accept wildcard characters: False
 ```
 
 ### -Skip
-Ignores the first 'n' objects and then gets the remaining objects.
+Indicates number which ignores the first N objects and then gets the remaining objects.
 
 ```yaml
 Type: Int32
@@ -107,10 +107,25 @@ Accept wildcard characters: False
 ```
 
 ### -Top
-{{Fill Top Description}}
+Indicates number which selecting only the first N objects of the collection.
 
 ```yaml
 Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Filter
+Indicates a query string to select which objects to return.
+
+```yaml
+Type: String
 Parameter Sets: (All)
 Aliases:
 
@@ -128,11 +143,9 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## INPUTS
 
 ### None
-
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.Core.WebTemplate[]
-
 ## NOTES
 
 ## RELATED LINKS

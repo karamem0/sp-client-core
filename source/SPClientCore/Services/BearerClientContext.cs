@@ -47,7 +47,6 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 if (this.httpClient == null)
                 {
                     this.httpClient = new HttpClient();
-                    this.httpClient.DefaultRequestHeaders.Add("Accept", "application/json;odata=verbose");
                 }
                 return this.httpClient;
             }
@@ -72,6 +71,8 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 }
             }
             requestMessage.Headers.Add("Authorization", "Bearer " + this.oAuthToken.AccessToken);
+            requestMessage.Headers.Add("Accept", "application/json;odata=verbose");
+            requestMessage.Headers.Add("User-Agent", "NONISV|karamem0|SPClientCore/" + this.GetType().Assembly.GetName().Version.ToString(3));
             return requestMessage;
         }
 

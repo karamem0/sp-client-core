@@ -13,7 +13,8 @@ Lists sub sites.
 ## SYNTAX
 
 ```
-Find-SPWeb [-Includes <String[]>] [-OrderBy <String[]>] [-Top <Int32>] [-Skip <Int32>] [<CommonParameters>]
+Find-SPWeb [-Includes <String[]>] [-OrderBy <String[]>] [-Top <Int32>] [-Skip <Int32>] [-Filter <String>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -80,6 +81,21 @@ Indicates number which selecting only the first N objects of the collection.
 
 ```yaml
 Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Filter
+Indicates a query string to select which objects to return.
+
+```yaml
+Type: String
 Parameter Sets: (All)
 Aliases:
 

@@ -80,6 +80,13 @@ namespace Karamem0.SharePoint.PowerShell.Models.OData
                     queries.Add("$skiptoken", $"Paged=TRUE&p_ID={typed}");
                 }
             }
+            if (parameters.TryGetValue("Filter", out value))
+            {
+                if (value is string typed)
+                {
+                    queries.Add("$filter", typed);
+                }
+            }
             if (!queries.ContainsKey("$select"))
             {
                 queries.Add("$select", string.Join(",", select));

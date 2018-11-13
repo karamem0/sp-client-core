@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
     {
 
         [TestMethod()]
-        public void FindViews()
+        public void SkipAndTakeViews()
         {
             using (var context = new PSCmdletContext())
             {
@@ -35,6 +35,23 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
                         { "OrderBy", "Title desc" },
                         { "Top", 1 },
                         { "Skip", 1 }
+                    }
+                );
+                var actual = result1.ToArray();
+            }
+        }
+
+        [TestMethod()]
+        public void FilterViews()
+        {
+            using (var context = new PSCmdletContext())
+            {
+                var result1 = context.Runspace.InvokeCommand<View>(
+                    "Find-SPView",
+                    new Dictionary<string, object>()
+                    {
+                        { "List", context.AppSettings["List1Id"] },
+                        { "Filter", "Title eq '" + context.AppSettings["View2Title"] + "'" }
                     }
                 );
                 var actual = result1.ToArray();

@@ -15,19 +15,19 @@ Lists role assignments.
 ### Web (Default)
 ```
 Find-SPRoleAssignment [-Includes <String[]>] [-OrderBy <String[]>] [-Top <Int32>] [-Skip <Int32>]
- [<CommonParameters>]
+ [-Filter <String>] [<CommonParameters>]
 ```
 
 ### List
 ```
 Find-SPRoleAssignment [-List] <ListPipeBind> [-Includes <String[]>] [-OrderBy <String[]>] [-Top <Int32>]
- [-Skip <Int32>] [<CommonParameters>]
+ [-Skip <Int32>] [-Filter <String>] [<CommonParameters>]
 ```
 
 ### ListItem
 ```
 Find-SPRoleAssignment [-List] <ListPipeBind> [-ListItem] <ListItemPipeBind> [-Includes <String[]>]
- [-OrderBy <String[]>] [-Top <Int32>] [-Skip <Int32>] [<CommonParameters>]
+ [-OrderBy <String[]>] [-Top <Int32>] [-Skip <Int32>] [-Filter <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -138,6 +138,21 @@ Indicates number which selecting only the first N objects of the collection.
 
 ```yaml
 Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Filter
+Indicates a query string to select which objects to return.
+
+```yaml
+Type: String
 Parameter Sets: (All)
 Aliases:
 

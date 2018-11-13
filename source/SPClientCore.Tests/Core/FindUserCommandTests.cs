@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
     {
 
         [TestMethod()]
-        public void FindWebUsers()
+        public void SkipAndTakeWebUsers()
         {
             using (var context = new PSCmdletContext())
             {
@@ -41,7 +41,7 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
         }
 
         [TestMethod()]
-        public void FindGroupUsers()
+        public void SkipAndTakeGroupUsers()
         {
             using (var context = new PSCmdletContext())
             {
@@ -50,9 +50,42 @@ namespace Karamem0.SharePoint.PowerShell.Core.Tests
                     new Dictionary<string, object>()
                     {
                         { "Group", context.AppSettings["Group1Id"] },
-                        { "OrderBy", "Email desc" },
+                        { "OrderBy", "Title desc" },
                         { "Top", 1 },
                         { "Skip", 1 }
+                    }
+                );
+                var actual = result1.ToArray();
+            }
+        }
+
+        [TestMethod()]
+        public void FilterWebUsers()
+        {
+            using (var context = new PSCmdletContext())
+            {
+                var result1 = context.Runspace.InvokeCommand<User>(
+                    "Find-SPUser",
+                    new Dictionary<string, object>()
+                    {
+                        { "Filter", "Title eq '" + context.AppSettings["User2Title"] + "'" }
+                    }
+                );
+                var actual = result1.ToArray();
+            }
+        }
+
+        [TestMethod()]
+        public void FilterGroupUsers()
+        {
+            using (var context = new PSCmdletContext())
+            {
+                var result1 = context.Runspace.InvokeCommand<User>(
+                    "Find-SPUser",
+                    new Dictionary<string, object>()
+                    {
+                        { "Group", context.AppSettings["Group1Id"] },
+                        { "Filter", "Title eq '" + context.AppSettings["User2Title"] + "'" }
                     }
                 );
                 var actual = result1.ToArray();
