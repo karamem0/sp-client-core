@@ -1,35 +1,31 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <OutputType>Library</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <PackageId>SPClientCore</PackageId>
-    <Version>1.4.4.1</Version>
+    <Version>1.0.0.0</Version> 
     <Authors>karamem0</Authors>
     <Company>karamem0</Company>
     <Product>SPClientCore</Product>
     <Description>SharePoint Service Module for PowerShell Core</Description>
-    <Copyright>Copyright (c) 2018 karamem0</Copyright>
+    <Copyright>Copyright (c) 2019 karamem0</Copyright>
     <PackageLicenseUrl>https://github.com/karamem0/SPClientCore/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/karamem0/SPClientCore</PackageProjectUrl>
-    <AssemblyVersion>1.4.4.1</AssemblyVersion>
-    <FileVersion>1.4.4.1</FileVersion>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
     <RootNamespace>Karamem0.SharePoint.PowerShell</RootNamespace>
-    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies> 
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile></DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.3.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.4.0" />
     <PackageReference Include="System.Management.Automation" Version="6.1.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Resources\StringResources.Designer.cs">
+    <Compile Update="Resources\StringResources.designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>StringResources.resx</DependentUpon>
@@ -45,6 +41,9 @@
 
   <ItemGroup>
     <None Update="SPClientCore.dll-Help.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="SPClientCore.format.ps1xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="SPClientCore.psd1">

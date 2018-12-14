@@ -1,4 +1,4 @@
-﻿#
+#
 # Copyright (c) 2018 karamem0
 #
 # This software is released under the MIT License.
@@ -12,7 +12,7 @@
 RootModule = 'SPClientCore.Tests.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.4.4.1'
+ModuleVersion = '0.0.0.0'
 
 # ID used to uniquely identify this module
 GUID = 'FE41D7F6-F44C-402B-A23F-6ACF64FE0E9F'
@@ -24,13 +24,13 @@ Author = 'karamem0'
 CompanyName = 'karamem0'
 
 # Copyright statement for this module
-Copyright = 'Copyright (c) 2018 karamem0'
+Copyright = 'Copyright (c) 2019 karamem0'
 
 # Description of the functionality provided by this module
 Description = 'SharePoint Service Module for PowerShell Core'
 
 # Minimum version of the Windows PowerShell engine required by this module
-PowerShellVersion = '3.0'
+PowerShellVersion = '6.1'
 
 # Name of the Windows PowerShell host required by this module
 # PowerShellHostName = ''
@@ -48,7 +48,7 @@ PowerShellVersion = '3.0'
 # ProcessorArchitecture = ''
 
 # Modules that must be imported into the global environment prior to importing this module
-# RequiredModules = @()
+RequiredModules = @('SPClientCore')
 
 # Assemblies that must be loaded prior to importing this module
 # RequiredAssemblies = @()

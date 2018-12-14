@@ -1,0 +1,29 @@
+version: "2.0.0.{build}"
+image: Visual Studio 2017
+configuration: Release
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}'
+  package_version: '{version}'
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
+environment:
+  NUGET_API_KEY:
+    secure: HiJ63ZahbXoHe9O5gnu+5k8eR9YwMEV8XSNIdVGLH3doslLZzFI57LPoUWS0usVi
+build_script:
+- pwsh: |
+    Set-Location "$env:APPVEYOR_BUILD_FOLDER\source\$env:APPVEYOR_PROJECT_NAME"
+    dotnet restore --source https://api.nuget.org/v3/index.json
+    dotnet publish --configuration $env:CONFIGURATION
+    Update-ModuleManifest -Path "$env:APPVEYOR_BUILD_FOLDER\source\$env:APPVEYOR_PROJECT_NAME\bin\$env:CONFIGURATION\netcoreapp2.1\publish\$env:APPVEYOR_PROJECT_NAME.psd1" -ModuleVersion "$env:APPVEYOR_BUILD_VERSION"
+test: off
+artifacts:
+- path: source\$(APPVEYOR_PROJECT_NAME)\bin\$(CONFIGURATION)\netcoreapp2.1\publish
+  name: SPClientCore
+deploy_script:
+- pwsh: |
+    if ($env:APPVEYOR_REPO_TAG -eq "true") {
+      Publish-Module -Name "$env:APPVEYOR_BUILD_FOLDER\source\$env:APPVEYOR_PROJECT_NAME\bin\$env:CONFIGURATION\netcoreapp2.1\publish\$env:APPVEYOR_PROJECT_NAME.psd1" -NuGetApiKey "$env:NUGET_API_KEY"
+    }

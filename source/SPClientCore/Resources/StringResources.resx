@@ -118,21 +118,36 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ErrorCannotResolveTenantId" xml:space="preserve">
-    <value>Cannot resolve Tenant ID from resource URL.</value>
+    <value>Cannot resolve Tenant ID from resource URL</value>
   </data>
   <data name="ErrorNotConnected" xml:space="preserve">
-    <value>Not connected to SharePoint Server.</value>
+    <value>Not connected to SharePoint Server</value>
+  </data>
+  <data name="ErrorOperationTimeout" xml:space="preserve">
+    <value>The operation timed out</value>
   </data>
   <data name="ErrorValueIsInvalid" xml:space="preserve">
-    <value>'{0}' is invalid.</value>
+    <value>The value is invalid</value>
   </data>
   <data name="ErrorValueIsNotAbsoluteUrl" xml:space="preserve">
-    <value>'{0}' is not a absolute URL.</value>
+    <value>'{0}' is not a absolute URL</value>
   </data>
   <data name="ErrorValueIsNotRelativeUrl" xml:space="preserve">
-    <value>'{0}' is not a relative URL.</value>
+    <value>'{0}' is not a relative URL</value>
   </data>
-  <data name="ErrorValueShouldNotBeNull" xml:space="preserve">
-    <value>'{0}' should not be null.</value>
+  <data name="ErrorValueCannotBeValue" xml:space="preserve">
+    <value>The value cannot be '{0}'</value>
+  </data>
+  <data name="ErrorValueCannotBeNull" xml:space="preserve">
+    <value>The value cannot be null</value>
+  </data>
+  <data name="ErrorValueCannotBeLessThan" xml:space="preserve">
+    <value>The value cannot be less than '{0}'</value>
+  </data>
+  <data name="ErrorValueCannotBeMoreThan" xml:space="preserve">
+    <value>The value cannot be more than '{0}'</value>
+  </data>
+  <data name="ErrorMaxRetryCountExceeded" xml:space="preserve">
+    <value>Max retry count exceeded</value>
   </data>
 </root>

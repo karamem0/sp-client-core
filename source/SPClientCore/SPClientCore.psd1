@@ -1,5 +1,5 @@
 ﻿#
-# Copyright (c) 2018 karamem0
+# Copyright (c) 2019 karamem0
 #
 # This software is released under the MIT License.
 #
@@ -12,7 +12,7 @@
 RootModule = 'SPClientCore.dll'
 
 # Version number of this module.
-ModuleVersion = '1.4.4.1'
+ModuleVersion = '2.0.0'
 
 # ID used to uniquely identify this module
 GUID = '83E99C54-16E5-4ABA-96EC-76830CCDFFEF'
@@ -24,7 +24,7 @@ Author = 'karamem0'
 CompanyName = 'karamem0'
 
 # Copyright statement for this module
-Copyright = 'Copyright (c) 2018 karamem0'
+Copyright = 'Copyright (c) 2019 karamem0'
 
 # Description of the functionality provided by this module
 Description = 'SharePoint Service Module for PowerShell Core'
@@ -60,7 +60,7 @@ PowerShellVersion = '6.1.0'
 # TypesToProcess = @()
 
 # Format files (.ps1xml) to be loaded when importing this module
-# FormatsToProcess = @()
+FormatsToProcess = @('SPClientCore.format.ps1xml')
 
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
 # NestedModules = @()
@@ -69,110 +69,7 @@ PowerShellVersion = '6.1.0'
 FunctionsToExport = '*'
 
 # Cmdlets to export from this module
-CmdletsToExport = @(
-    'Add-SPRoleAssignment'
-    'Add-SPViewField'
-    'Connect-SPOnline'
-    'Connect-SPServer'
-    'Copy-SPFile'
-    'Find-SPApp'
-    'Find-SPAppInstance'
-    'Find-SPAttachment'
-    'Find-SPContentType'
-    'Find-SPField'
-    'Find-SPFile'
-    'Find-SPFileVersion'
-    'Find-SPFolder'
-    'Find-SPGroup'
-    'Find-SPList'
-    'Find-SPListItem'
-    'Find-SPRecycleBinItem'
-    'Find-SPRoleAssignment'
-    'Find-SPRoleDefinition'
-    'Find-SPUser'
-    'Find-SPView'
-    'Find-SPWeb'
-    'Find-SPWebTemplate'
-    'Get-SPApp'
-    'Get-SPAppCatalogUrl'
-    'Get-SPAppInstance'
-    'Get-SPAttachment'
-    'Get-SPContentType'
-    'Get-SPField'
-    'Get-SPFile'
-    'Get-SPFileVersion'
-    'Get-SPFolder'
-    'Get-SPGroup'
-    'Get-SPList'
-    'Get-SPListItem'
-    'Get-SPOnlineAdminConsentUrl'
-    'Get-SPRecycleBinItem'
-    'Get-SPRoleAssignment'
-    'Get-SPRoleDefinition'
-    'Get-SPSite'
-    'Get-SPSocialActor'
-    'Get-SPSocialFeed'
-    'Get-SPUser'
-    'Get-SPUserProfile'
-    'Get-SPView'
-    'Get-SPWeb'
-    'Get-SPWebTemplate'
-    'Install-SPApp'
-    'Invoke-SPSearchQuery'
-    'Move-SPFile'
-    'Move-SPViewField'
-    'New-SPApp'
-    'New-SPAttachment'
-    'New-SPContentType'
-    'New-SPField'
-    'New-SPFile'
-    'New-SPFolder'
-    'New-SPGroup'
-    'New-SPList'
-    'New-SPListItem'
-    'New-SPRoleDefinition'
-    'New-SPUser'
-    'New-SPView'
-    'New-SPWeb'
-    'Open-SPFile'
-    'Publish-SPApp'
-    'Remove-SPApp'
-    'Remove-SPAttachment'
-    'Remove-SPContentType'
-    'Remove-SPField'
-    'Remove-SPFile'
-    'Remove-SPFileVersion'
-    'Remove-SPFolder'
-    'Remove-SPGroup'
-    'Remove-SPList'
-    'Remove-SPListItem'
-    'Remove-SPRecycleBinItem'
-    'Remove-SPRoleAssignment'
-    'Remove-SPRoleDefinition'
-    'Remove-SPUser'
-    'Remove-SPView'
-    'Remove-SPViewField'
-    'Remove-SPWeb'
-    'Restore-SPFileVersion'
-    'Restore-SPRecycleBinItem'
-    'Select-SPWeb'
-    'Start-SPRoleInheritance'
-    'Stop-SPRoleInheritance'
-    'Uninstall-SPApp'
-    'Unpublish-SPApp'
-    'Update-SPApp'
-    'Update-SPContentType'
-    'Update-SPField'
-    'Update-SPFile'
-    'Update-SPFolder'
-    'Update-SPGroup'
-    'Update-SPList'
-    'Update-SPListItem'
-    'Update-SPRoleDefinition'
-    'Update-SPUser'
-    'Update-SPView'
-    'Update-SPWeb'
-)
+CmdletsToExport = '*'
 
 # Variables to export from this module
 VariablesToExport = '*'
@@ -192,7 +89,7 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries. 
-        Tags = @('PSEdition_Core')
+        Tags = @('PSEdition_Core', 'OfficeDev', 'SharePointOnline')
 
         # A URL to the license for this module.
         LicenseUri = 'https://github.com/karamem0/SPClientCore/blob/master/LICENSE'
