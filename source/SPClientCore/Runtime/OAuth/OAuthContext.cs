@@ -55,11 +55,13 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
             var requertParameters = new Dictionary<string, object>()
             {
                 { "client_id", this.clientId },
-                { "scope", string.Join(" ", new[] {
-                    "offline_access",
-                    $"{this.resource}/AllSites.FullControl",
-                    $"{this.resource}/User.Read.All"
-                })}
+                { "scope", string.Join(" ", new[]
+                    {
+                        "offline_access",
+                        $"{this.resource}/AllSites.FullControl",
+                        $"{this.resource}/User.Read.All"
+                    })
+                }
             };
             var requestUrl = new Uri(this.authority, UriKind.Absolute)
                 .ConcatPath(this.tenantIdResolver.Resolve())
@@ -87,17 +89,19 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
             }
             var requestUrl = new Uri(this.authority, UriKind.Absolute)
                 .ConcatPath(this.tenantIdResolver.Resolve())
-                .ConcatPath("oauth2/token");
+                .ConcatPath("oauth2/v2.0/token");
             var requertParameters = new Dictionary<string, object>()
             {
                 { "grant_type", "device_code" },
                 { "client_id", this.clientId },
                 { "code", deviceCode },
-                { "scope", string.Join(" ", new[] {
-                    "offline_access",
-                    $"{this.resource}/AllSites.FullControl",
-                    $"{this.resource}/User.Read.All"
-                })}
+                { "scope", string.Join(" ", new[]
+                    {
+                        "offline_access",
+                        $"{this.resource}/AllSites.FullControl",
+                        $"{this.resource}/User.Read.All"
+                    })
+                }
             };
             var requestContent = UriQuery.Create(requertParameters);
             var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -134,11 +138,13 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
                 { "client_id", this.clientId },
                 { "username", userName },
                 { "password", password },
-                { "scope", string.Join(" ", new[] {
-                    "offline_access",
-                    $"{this.resource}/AllSites.FullControl",
-                    $"{this.resource}/User.Read.All"
-                })}
+                { "scope", string.Join(" ", new[]
+                    {
+                        "offline_access",
+                        $"{this.resource}/AllSites.FullControl",
+                        $"{this.resource}/User.Read.All"
+                    })
+                }
             };
             var requestContent = UriQuery.Create(requertParameters);
             var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -170,11 +176,13 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
                 { "grant_type", "refresh_token" },
                 { "client_id", this.clientId },
                 { "refresh_token", refreshToken },
-                { "scope", string.Join(" ", new[] {
-                    "offline_access",
-                    $"{this.resource}/AllSites.FullControl",
-                    $"{this.resource}/User.Read.All"
-                })}
+                { "scope", string.Join(" ", new[]
+                    {
+                        "offline_access",
+                        $"{this.resource}/AllSites.FullControl",
+                        $"{this.resource}/User.Read.All"
+                    })
+                }
             };
             var requestContent = UriQuery.Create(requertParameters);
             var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
