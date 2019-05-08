@@ -76,7 +76,7 @@ Accept wildcard characters: False
 ```
 
 ### -GroupTitle
-{{ Fill GroupTitle Description }}
+Specifies the group title.
 
 ```yaml
 Type: String

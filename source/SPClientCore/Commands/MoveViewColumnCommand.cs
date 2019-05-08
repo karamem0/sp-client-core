@@ -27,18 +27,30 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         {
         }
 
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet2")]
         public View View { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 1)]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet1")]
         public Column Column { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 2)]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
+        public string ColumnName { get; private set; }
+
+        [Parameter(Mandatory = true, Position = 2, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = true, Position = 2, ParameterSetName = "ParamSet2")]
         public int Index { get; private set; }
 
         protected override void ProcessRecordCore()
         {
-            this.Service.MoveObject(this.View, this.Column, this.Index);
+            if (this.ParameterSetName == "ParamSet1")
+            {
+                this.Service.MoveObject(this.View, this.Column, this.Index);
+            }
+            if (this.ParameterSetName == "ParamSet2")
+            {
+                this.Service.MoveObject(this.View, this.ColumnName, this.Index);
+            }
         }
 
     }

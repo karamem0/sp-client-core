@@ -59,6 +59,9 @@ function Install-TestSite {
         $appSettings.SiteCollectionGuid = $siteCollection.Id
         $appSettings.SiteCollectionUrl = $siteCollection.ServerRelativeUrl
 
+        Write-Progress -Activity 'Removing existing groups...' -Status 'Processing'
+        Get-KshGroup | Remove-KshGroup
+
         Write-Progress -Activity 'Creating site groups...' -Status 'Test Group 1'
         $group1 = New-KshGroup `
             -Description 'Test Group 1' `

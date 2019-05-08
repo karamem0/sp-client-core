@@ -29,12 +29,16 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet2")]
+        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet3")]
         public View View { get; private set; }
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet1")]
         public Column Column { get; private set; }
 
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
+        public string ColumnName { get; private set; }
+
+        [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
         public SwitchParameter All { get; private set; }
 
         protected override void ProcessRecordCore()
@@ -45,7 +49,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands
             }
             if (this.ParameterSetName == "ParamSet2")
             {
-                this.Service.RemoveObjects(this.View);
+                this.Service.RemoveObject(this.View, this.ColumnName);
+            }
+            if (this.ParameterSetName == "ParamSet3")
+            {
+                this.Service.RemoveObjectAll(this.View);
             }
         }
 

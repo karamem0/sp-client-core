@@ -22,13 +22,19 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         void AddObject(View viewObject, Column columnObject);
 
+        void AddObject(View viewObject, string columnName);
+
         IEnumerable<string> GetObjectEnumerable(View viewObject);
 
         void MoveObject(View viewObject, Column columnObject, int columnIndex);
 
+        void MoveObject(View viewObject, string columnName, int columnIndex);
+
         void RemoveObject(View viewObject, Column columnObject);
 
-        void RemoveObjects(View viewObject);
+        void RemoveObject(View viewObject, string columnName);
+
+        void RemoveObjectAll(View viewObject);
 
     }
 
@@ -41,13 +47,22 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         public void AddObject(View viewObject, Column columnObject)
         {
+            if (columnObject == null)
+            {
+                throw new ArgumentNullException(nameof(columnObject));
+            }
+            this.AddObject(viewObject, columnObject.Name);
+        }
+
+        public void AddObject(View viewObject, string columnName)
+        {
             if (viewObject == null)
             {
                 throw new ArgumentNullException(nameof(viewObject));
             }
-            if (columnObject == null)
+            if (columnName == null)
             {
-                throw new ArgumentNullException(nameof(columnObject));
+                throw new ArgumentNullException(nameof(columnName));
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(new ObjectPathIdentity(viewObject.ObjectIdentity));
@@ -59,7 +74,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 objectPathId => new ClientActionMethod(
                     objectPathId,
                     "Add",
-                    requestPayload.CreateParameter(columnObject.Name)));
+                    requestPayload.CreateParameter(columnName)));
             var objectPath4 = requestPayload.Add(
                 objectPath1,
                 objectPathId => new ClientActionMethod(objectPathId, "Update"));
@@ -91,13 +106,22 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         public void MoveObject(View viewObject, Column columnObject, int columnIndex)
         {
+            if (columnObject == null)
+            {
+                throw new ArgumentNullException(nameof(columnObject));
+            }
+            this.MoveObject(viewObject, columnObject.Name, columnIndex);
+        }
+
+        public void MoveObject(View viewObject, string columnName, int columnIndex)
+        {
             if (viewObject == null)
             {
                 throw new ArgumentNullException(nameof(viewObject));
             }
-            if (columnObject == null)
+            if (columnName == null)
             {
-                throw new ArgumentNullException(nameof(columnObject));
+                throw new ArgumentNullException(nameof(columnName));
             }
             if (columnIndex < 0)
             {
@@ -115,7 +139,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 objectPathId => new ClientActionMethod(
                     objectPathId,
                     "MoveFieldTo",
-                    requestPayload.CreateParameter(columnObject.Name),
+                    requestPayload.CreateParameter(columnName),
                     requestPayload.CreateParameter(columnIndex)));
             var objectPath4 = requestPayload.Add(
                 objectPath1,
@@ -125,13 +149,22 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         public void RemoveObject(View viewObject, Column columnObject)
         {
+            if (columnObject == null)
+            {
+                throw new ArgumentNullException(nameof(columnObject));
+            }
+            this.RemoveObject(viewObject, columnObject.Name);
+        }
+
+        public void RemoveObject(View viewObject, string columnName)
+        {
             if (viewObject == null)
             {
                 throw new ArgumentNullException(nameof(viewObject));
             }
-            if (columnObject == null)
+            if (columnName == null)
             {
-                throw new ArgumentNullException(nameof(columnObject));
+                throw new ArgumentNullException(nameof(columnName));
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
@@ -145,14 +178,14 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 objectPathId => new ClientActionMethod(
                     objectPathId,
                     "Remove",
-                    requestPayload.CreateParameter(columnObject.Name)));
+                    requestPayload.CreateParameter(columnName)));
             var objectPath4 = requestPayload.Add(
                 objectPath1,
                 objectPathId => new ClientActionMethod(objectPathId, "Update"));
             this.ClientContext.ProcessQuery(requestPayload);
         }
 
-        public void RemoveObjects(View viewObject)
+        public void RemoveObjectAll(View viewObject)
         {
             if (viewObject == null)
             {

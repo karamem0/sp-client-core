@@ -61,7 +61,7 @@ Retrieves all content type columns of the site content type.
 ## PARAMETERS
 
 ### -Column
-{{ Fill Column Description }}
+Specifies the column.
 
 ```yaml
 Type: Column

@@ -50,7 +50,7 @@ Accept wildcard characters: False
 ```
 
 ### -ContentTypeColumn
-{{ Fill ContentTypeColumn Description }}
+Specifies the content type column.
 
 ```yaml
 Type: ContentTypeColumn

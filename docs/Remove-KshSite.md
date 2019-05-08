@@ -13,7 +13,7 @@ Removes a site.
 ## SYNTAX
 
 ```
-Remove-KshSite [[-Identity] <Site>] [<CommonParameters>]
+Remove-KshSite [-Identity] <Site> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -39,7 +39,7 @@ Type: Site
 Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: 0
 Default value: None
 Accept pipeline input: True (ByValue)

@@ -20,10 +20,10 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
     [Cmdlet("Get", "KshTenantSiteTemplate")]
     [OutputType(typeof(TenantSiteTemplate))]
-    public class GetTenantSiteTemplate : ClientObjectCmdlet<ITenantSiteTemplateService>
+    public class GetTenantSiteTemplateCommand : ClientObjectCmdlet<ITenantSiteTemplateService>
     {
 
-        public GetTenantSiteTemplate()
+        public GetTenantSiteTemplateCommand()
         {
         }
 

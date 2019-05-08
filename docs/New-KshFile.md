@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -FileName
-{{ Fill FileName Description }}
+Specifies the file name.
 
 ```yaml
 Type: String

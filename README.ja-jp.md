@@ -3,7 +3,7 @@
 PowerShell Core 向けの SharePoint サービス モジュール
 
 [![Build status](https://ci.appveyor.com/api/projects/status/etlu54thystfp79a?svg=true)](https://ci.appveyor.com/project/karamem0/spclientcore)
-[![License](https://img.shields.io/github/license/karamem0/SPClientCore.svg)](https://github.com/karamem0/SPClientCore/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/karamem0/spclientcore.svg)](https://github.com/karamem0/spclientcore/blob/master/LICENSE)
 
 ## インストール
 
@@ -99,6 +99,10 @@ SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant およ
     - [Save-KshFile](docs/Save-KshFile.md)
     - [Unlock-KshFile](docs/Unlock-KshFile.md)
     - [Unpublish-KshFile](docs/Unpublish-KshFile.md)
+  - ファイル バージョン
+    - [Get-KshFileVersion](docs/Get-KshFileVersion.md)
+    - [Remove-KshFileVersion](docs/Remove-KshFileVersion.md)
+    - [Restore-KshFileVersion](docs/Restore-KshFileVersion.md)
   - フォルダー
     - [Approve-KshFolder](docs/Approve-KshFolder.md)
     - [Deny-KshFolder](docs/Deny-KshFolder.md)
@@ -175,3 +179,8 @@ SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant およ
     - [Update-KshTenantSiteCollection](docs/Update-KshTenantSiteCollection.md)
   - サイト テンプレート
     - [Get-KshTenantSiteTemplate](docs/Get-KshTenantSiteTemplate.md)
+  - テーマ
+    - [Get-KshTenantTheme](docs/Get-KshTenantTheme.md)
+    - [New-KshTenantTheme](docs/New-KshTenantTheme.md)
+    - [Remove-KshTenantTheme](docs/Remove-KshTenantTheme.md)
+    - [Update-KshTenantTheme](docs/Update-KshTenantTheme.md)

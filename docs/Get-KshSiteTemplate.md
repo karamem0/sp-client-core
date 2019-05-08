@@ -84,7 +84,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteTemplateName
-{{ Fill SiteTemplateName Description }}
+Specifies the site template name.
 
 ```yaml
 Type: String

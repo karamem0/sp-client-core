@@ -46,7 +46,7 @@ Accept wildcard characters: False
 ```
 
 ### -FolderName
-{{ Fill FolderName Description }}
+Specifies the folder name.
 
 ```yaml
 Type: String

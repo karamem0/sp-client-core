@@ -19,7 +19,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 {
 
     [Cmdlet("Get", "KshViewColumn")]
-    [OutputType(typeof(View))]
+    [OutputType(typeof(string))]
     public class GetViewColumnCommand : ClientObjectCmdlet<IViewColumnService>
     {
 

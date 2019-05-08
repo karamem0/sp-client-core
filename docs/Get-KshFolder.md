@@ -153,7 +153,7 @@ Accept wildcard characters: False
 ```
 
 ### -List
-{{ Fill List Description }}
+Specifies the list.
 
 ```yaml
 Type: List

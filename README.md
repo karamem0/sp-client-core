@@ -3,7 +3,7 @@
 SharePoint Service Module for PowerShell Core
 
 [![Build status](https://ci.appveyor.com/api/projects/status/etlu54thystfp79a?svg=true)](https://ci.appveyor.com/project/karamem0/spclientcore)
-[![License](https://img.shields.io/github/license/karamem0/SPClientCore.svg)](https://github.com/karamem0/SPClientCore/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/karamem0/spclientcore.svg)](https://github.com/karamem0/spclientcore/blob/master/LICENSE)
 
 ## Installation
 
@@ -13,19 +13,19 @@ SPClientCore is published to [PowerShell Gallery](https://www.powershellgallery.
 
 ### Works with PowerShell Core
 
-Yes, SPClientCore works with PowerShell Core. And it does not work with Windows PowerShell. It means that you can use this module on Mac and Linux as well as Windows (of course if PowerShell Core is installed on the machine). To manage SharePoint Online in non-Windows environments there was only a way to run SharePoint REST API. But SharePoint REST API has a few problems compared to SharePoint client library (CSOM). SPClientCore provides full functionality by making compatible API calls with CSOM.
+Yes, SPClientCore works with PowerShell Core. And it does not work with Windows PowerShell. It means that you can use this module on Mac and Linux as well as Windows (of course if PowerShell Core is installed on the machine). There was only a way to run the SharePoint REST API to manage SharePoint Online in non-Windows environments. But SharePoint REST API has a few problems compared to the SharePoint Client Library (CSOM). SPClientCore provides full functionality by making compatible API calls with CSOM.
 
 ### One module, manage all
 
-PnP PowerShell has only site admin features, and SharePoint Online Management Shell has only tenant admin features. SPClientCore includes both features. You can run cmdlets for site admin by connecting to a site (https://tenant.sharepoint.com and its sub URLs), and you can run tenant admin cmdlets for connecting to the SharePoint admin center (https://tenant-admin.sharepoint.com). You can also determine whether you are currently connected to the SharePoint admin center.
+PnP PowerShell has only site admin features, and SharePoint Online Management Shell has only tenant admin features. SPClientCore includes both elements. You can run cmdlets for site admin by connecting to a site (https://tenant.sharepoint.com and its sub URLs), and you can run tenant admin cmdlets for connecting to the SharePoint admin center (https://tenant-admin.sharepoint.com). You can also determine whether you are currently connected to the SharePoint admin center.
 
-### Friendly naming
+### Friendly Naming
 
 CSOM naming is difficult for non-programmers. For example, A site is not "Site" (that is "Web"), A column is not "Column" (that is "Field"). SPClientCore adjusts the naming so that it matches the name used by the user.
 
 ### Uses Modern Authentication
 
-SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Password Grant). If you enable MFA, you can login in with a web browser of another device. If you do not enable MFA, you can login using your user name and password (admin concent is required).
+SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Password Grant). If you enable MFA, you can log in with a web browser of another device. If you do not enable MFA, you can log in using your user name and password (admin consent is required).
 
 ## Dependencies
 
@@ -99,6 +99,10 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Save-KshFile](docs/Save-KshFile.md)
     - [Unlock-KshFile](docs/Unlock-KshFile.md)
     - [Unpublish-KshFile](docs/Unpublish-KshFile.md)
+  - File Versions
+    - [Get-KshFileVersion](docs/Get-KshFileVersion.md)
+    - [Remove-KshFileVersion](docs/Remove-KshFileVersion.md)
+    - [Restore-KshFileVersion](docs/Restore-KshFileVersion.md)
   - Folders
     - [Approve-KshFolder](docs/Approve-KshFolder.md)
     - [Deny-KshFolder](docs/Deny-KshFolder.md)
@@ -175,3 +179,8 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Update-KshTenantSiteCollection](docs/Update-KshTenantSiteCollection.md)
   - Site Templates
     - [Get-KshTenantSiteTemplate](docs/Get-KshTenantSiteTemplate.md)
+  - Themes
+    - [Get-KshTenantTheme](docs/Get-KshTenantTheme.md)
+    - [New-KshTenantTheme](docs/New-KshTenantTheme.md)
+    - [Remove-KshTenantTheme](docs/Remove-KshTenantTheme.md)
+    - [Update-KshTenantTheme](docs/Update-KshTenantTheme.md)

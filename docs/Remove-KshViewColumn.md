@@ -19,6 +19,11 @@ Remove-KshViewColumn [-View] <View> [-Column] <Column> [<CommonParameters>]
 
 ### ParamSet2
 ```
+Remove-KshViewColumn [-View] <View> [-ColumnName] <String> [<CommonParameters>]
+```
+
+### ParamSet3
+```
 Remove-KshViewColumn [-View] <View> [-All] [<CommonParameters>]
 ```
 
@@ -53,7 +58,7 @@ If specified, removes all columns.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: ParamSet2
+Parameter Sets: ParamSet3
 Aliases:
 
 Required: True
@@ -69,6 +74,21 @@ Specifies the column.
 ```yaml
 Type: Column
 Parameter Sets: ParamSet1
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ColumnName
+Specifies the column name.
+
+```yaml
+Type: String
+Parameter Sets: ParamSet2
 Aliases:
 
 Required: True

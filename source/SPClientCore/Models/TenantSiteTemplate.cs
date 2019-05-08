@@ -20,28 +20,28 @@ namespace Karamem0.SharePoint.PowerShell.Models
     [JsonObject()]
     public class TenantSiteTemplate: ClientObject
     {
- 
+
         [JsonProperty()]
-        public virtual int CompatibilityLevel { get; set; }
- 
+        public virtual int CompatibilityLevel { get; protected set; }
+
         [JsonProperty()]
-        public virtual string Description { get; set; }
- 
+        public virtual string Description { get; protected set; }
+
         [JsonProperty()]
-        public virtual string DisplayCategory { get; set; }
- 
+        public virtual string DisplayCategory { get; protected set; }
+
         [JsonProperty()]
-        public virtual int Id { get; set; }
- 
+        public virtual int Id { get; protected set; }
+
         [JsonProperty()]
-        public virtual uint Lcid { get; set; }
- 
+        public virtual uint Lcid { get; protected set; }
+
         [JsonProperty()]
-        public virtual string Name { get; set; }
- 
+        public virtual string Name { get; protected set; }
+
         [JsonProperty()]
-        public virtual string Title { get; set; }
- 
+        public virtual string Title { get; protected set; }
+
     }
 
 }

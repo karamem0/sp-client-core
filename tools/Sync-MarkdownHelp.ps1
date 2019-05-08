@@ -7,5 +7,5 @@ dotnet publish $SOURCE_PATH
 Remove-Item $SOURCE_HELP_FILE_PATH
 Import-Module -Name $SOURCE_MODULE_PATH
 Import-Module -Name 'platyPS'
-New-MarkdownHelp -Module 'SPClientCore' -OutputFolder $DOCS_PATH
+New-MarkdownHelp -Module 'SPClientCore' -OutputFolder $DOCS_PATH -ErrorAction SilentlyContinue
 Update-MarkdownHelp -Path $DOCS_PATH

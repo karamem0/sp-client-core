@@ -12,8 +12,14 @@ Changes a view column index.
 
 ## SYNTAX
 
+### ParamSet1
 ```
 Move-KshViewColumn [-View] <View> [-Column] <Column> [-Index] <Int32> [<CommonParameters>]
+```
+
+### ParamSet2
+```
+Move-KshViewColumn [-View] <View> [-ColumnName] <String> [-Index] <Int32> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -38,7 +44,22 @@ Specifies the column.
 
 ```yaml
 Type: Column
-Parameter Sets: (All)
+Parameter Sets: ParamSet1
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ColumnName
+Specifies the column name.
+
+```yaml
+Type: String
+Parameter Sets: ParamSet2
 Aliases:
 
 Required: True

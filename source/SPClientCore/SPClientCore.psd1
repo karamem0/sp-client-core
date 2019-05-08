@@ -12,7 +12,7 @@
 RootModule = 'SPClientCore.dll'
 
 # Version number of this module.
-ModuleVersion = '2.0.1'
+ModuleVersion = '2.1.0'
 
 # ID used to uniquely identify this module
 GUID = '83E99C54-16E5-4ABA-96EC-76830CCDFFEF'
@@ -92,10 +92,10 @@ PrivateData = @{
         Tags = @('PSEdition_Core', 'OfficeDev', 'SharePointOnline')
 
         # A URL to the license for this module.
-        LicenseUri = 'https://github.com/karamem0/SPClientCore/blob/master/LICENSE'
+        LicenseUri = 'https://github.com/karamem0/spclientcore/blob/master/LICENSE'
 
         # A URL to the main website for this project.
-        ProjectUri = 'https://github.com/karamem0/SPClientCore'
+        ProjectUri = 'https://github.com/karamem0/spclientcore'
 
         # A URL to an icon representing this module.
         # IconUri = ''

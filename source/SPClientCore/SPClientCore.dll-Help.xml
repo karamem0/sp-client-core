@@ -145,6 +145,33 @@ PS C:\&gt; Add-KshGroupMember -Group $group -Member $member</dev:code>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
       </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Add-KshViewColumn</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>View</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the view.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">View</command:parameterValue>
+          <dev:type>
+            <maml:name>View</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>ColumnName</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the column name.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
     </command:syntax>
     <command:parameters>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
@@ -155,6 +182,18 @@ PS C:\&gt; Add-KshGroupMember -Group $group -Member $member</dev:code>
         <command:parameterValue required="true" variableLength="false">Column</command:parameterValue>
         <dev:type>
           <maml:name>Column</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>ColumnName</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the column name.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -1912,7 +1951,7 @@ PS C:\&gt; $listContentTypes = Get-KshContentType -List $list</dev:code>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
           <maml:name>Column</maml:name>
           <maml:Description>
-            <maml:para>{{ Fill Column Description }}</maml:para>
+            <maml:para>Specifies the column.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Column</command:parameterValue>
           <dev:type>
@@ -1968,7 +2007,7 @@ PS C:\&gt; $listContentTypes = Get-KshContentType -List $list</dev:code>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
         <maml:name>Column</maml:name>
         <maml:Description>
-          <maml:para>{{ Fill Column Description }}</maml:para>
+          <maml:para>Specifies the column.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">Column</command:parameterValue>
         <dev:type>
@@ -2249,7 +2288,7 @@ PS C:\&gt; $siteContentTypeColumns = Get-KshContentTypeColumn -ContentType $site
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
           <maml:name>AttachmentFile</maml:name>
           <maml:Description>
-            <maml:para>{{ Fill AttachmentFile Description }}</maml:para>
+            <maml:para>Specifies the attachment file.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">AttachmentFile</command:parameterValue>
           <dev:type>
@@ -2362,7 +2401,7 @@ PS C:\&gt; $siteContentTypeColumns = Get-KshContentTypeColumn -ContentType $site
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
         <maml:name>AttachmentFile</maml:name>
         <maml:Description>
-          <maml:para>{{ Fill AttachmentFile Description }}</maml:para>
+          <maml:para>Specifies the attachment file.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">AttachmentFile</command:parameterValue>
         <dev:type>
@@ -2471,31 +2510,208 @@ PS C:\&gt; $siteContentTypeColumns = Get-KshContentTypeColumn -ContentType $site
     </maml:alertSet>
     <command:examples>
       <command:example>
-        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; $file = Get-KshFile -FileId '2c7ceb97-193f-4d05-91a5-a03c6d58ae60'</dev:code>
         <dev:remarks>
           <maml:para>Retrieves a file by file ID.</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
-        <maml:title>-------------------------- Example 3 --------------------------</maml:title>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
         <dev:code>PS C:\&gt; $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'</dev:code>
         <dev:remarks>
           <maml:para>Retrieves a file by file URL.</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
-        <maml:title>-------------------------- Example 5 --------------------------</maml:title>
+        <maml:title>-------------------------- Example 3 --------------------------</maml:title>
         <dev:code>PS C:\&gt; $file = Get-KshFile -Folder '/sites/japan/hr/Shared%20Documents' -FileName 'Readme.txt'</dev:code>
         <dev:remarks>
           <maml:para>Retrieves a file by folder and file name.</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
-        <maml:title>-------------------------- Example 5 --------------------------</maml:title>
+        <maml:title>-------------------------- Example 4 --------------------------</maml:title>
         <dev:code>PS C:\&gt; $files = Get-KshFile -Folder '/sites/japan/hr/Shared%20Documents'</dev:code>
         <dev:remarks>
           <maml:para>Retrieves all files.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-KshFileVersion</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>KshFileVersion</command:noun>
+      <maml:description>
+        <maml:para>Retrieves one or more file versions.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-KshFile cmdlet retrives file versions of the specified file.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-KshFileVersion</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>File</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the file.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">File</command:parameterValue>
+          <dev:type>
+            <maml:name>File</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>FileVersionId</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the file version ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshFileVersion</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>File</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the file.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">File</command:parameterValue>
+          <dev:type>
+            <maml:name>File</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NoEnumerate</maml:name>
+          <maml:Description>
+            <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshFileVersion</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Identity</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the file version.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">FileVersion</command:parameterValue>
+          <dev:type>
+            <maml:name>FileVersion</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>File</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the file.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">File</command:parameterValue>
+        <dev:type>
+          <maml:name>File</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>FileVersionId</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the file version ID.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Identity</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the file version.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">FileVersion</command:parameterValue>
+        <dev:type>
+          <maml:name>FileVersion</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>NoEnumerate</maml:name>
+        <maml:Description>
+          <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.FileVersion</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.FileVersion</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+PS C:\&gt; $fileVersion = Get-KshFileVersion -File $file -FileVersionId 1</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves a file version by file version ID.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+PS C:\&gt; $fileVersions = Get-KshFileVersion -File $file</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves all file versions.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -2617,7 +2833,7 @@ PS C:\&gt; $siteContentTypeColumns = Get-KshContentTypeColumn -ContentType $site
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
           <maml:name>List</maml:name>
           <maml:Description>
-            <maml:para>{{ Fill List Description }}</maml:para>
+            <maml:para>Specifies the list.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">List</command:parameterValue>
           <dev:type>
@@ -2692,7 +2908,7 @@ PS C:\&gt; $siteContentTypeColumns = Get-KshContentTypeColumn -ContentType $site
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
         <maml:name>List</maml:name>
         <maml:Description>
-          <maml:para>{{ Fill List Description }}</maml:para>
+          <maml:para>Specifies the list.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">List</command:parameterValue>
         <dev:type>
@@ -2804,7 +3020,7 @@ PS C:\&gt; $siteContentTypeColumns = Get-KshContentTypeColumn -ContentType $site
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>GroupTitle</maml:name>
           <maml:Description>
-            <maml:para>{{ Fill GroupTitle Description }}</maml:para>
+            <maml:para>Specifies the group title.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -2860,7 +3076,7 @@ PS C:\&gt; $siteContentTypeColumns = Get-KshContentTypeColumn -ContentType $site
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>GroupTitle</maml:name>
         <maml:Description>
-          <maml:para>{{ Fill GroupTitle Description }}</maml:para>
+          <maml:para>Specifies the group title.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -4382,7 +4598,7 @@ PS C:\&gt; $site = Get-KshSite -List $list</dev:code>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>SiteTemplateName</maml:name>
           <maml:Description>
-            <maml:para>{{ Fill SiteTemplateName Description }}</maml:para>
+            <maml:para>Specifies the site template name.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -4456,7 +4672,7 @@ PS C:\&gt; $site = Get-KshSite -List $list</dev:code>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>SiteTemplateName</maml:name>
         <maml:Description>
-          <maml:para>{{ Fill SiteTemplateName Description }}</maml:para>
+          <maml:para>Specifies the site template name.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -5006,6 +5222,156 @@ PS C:\&gt; $site = Get-KshSite -List $list</dev:code>
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Get-KshTenantTheme</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>KshTenantTheme</command:noun>
+      <maml:description>
+        <maml:para>Retrieves one or more themes.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-KshTenantSiteTemplate cmdlet retrieves themes. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-KshTenantTheme</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Identity</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the theme.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">TenantTheme</command:parameterValue>
+          <dev:type>
+            <maml:name>TenantTheme</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshTenantTheme</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NoEnumerate</maml:name>
+          <maml:Description>
+            <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ThemeName</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the theme name.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshTenantTheme</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NoEnumerate</maml:name>
+          <maml:Description>
+            <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Identity</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the theme.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">TenantTheme</command:parameterValue>
+        <dev:type>
+          <maml:name>TenantTheme</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>NoEnumerate</maml:name>
+        <maml:Description>
+          <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ThemeName</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the theme name.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.TenantTheme</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; $themes = Get-KshTenantSiteTemplate</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves all themes.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; $theme = Get-KshTenantSiteTemplate -ThemeName 'Custom Theme'</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves a theme by theme name.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Get-KshUser</command:name>
       <command:verb>Get</command:verb>
       <command:noun>KshUser</command:noun>
@@ -5487,7 +5853,7 @@ PS C:\&gt; $views = Get-KshView $list</dev:code>
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.View</maml:name>
+          <maml:name>System.String</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -5808,6 +6174,45 @@ PS C:\&gt; Lock-KshTenantSiteCollection -Identity $siteCollection</dev:code>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
       </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Move-KshViewColumn</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>View</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the view.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">View</command:parameterValue>
+          <dev:type>
+            <maml:name>View</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>ColumnName</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the column name.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
+          <maml:name>Index</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the index.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
     </command:syntax>
     <command:parameters>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
@@ -5818,6 +6223,18 @@ PS C:\&gt; Lock-KshTenantSiteCollection -Identity $siteCollection</dev:code>
         <command:parameterValue required="true" variableLength="false">Column</command:parameterValue>
         <dev:type>
           <maml:name>Column</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>ColumnName</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the column name.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -22322,7 +22739,7 @@ PS C:&gt; New-KshContentTypeColumn -ContentType $siteContentType -Column $siteCo
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>FileName</maml:name>
           <maml:Description>
-            <maml:para>{{ Fill FileName Description }}</maml:para>
+            <maml:para>Specifies the file name.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -22373,7 +22790,7 @@ PS C:&gt; New-KshContentTypeColumn -ContentType $siteContentType -Column $siteCo
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>FileName</maml:name>
         <maml:Description>
-          <maml:para>{{ Fill FileName Description }}</maml:para>
+          <maml:para>Specifies the file name.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -22474,7 +22891,7 @@ PS C:\&gt; $file = New-KshFile -Folder '/sites/japan/hr/Shared%20Documents' -Con
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>FolderName</maml:name>
           <maml:Description>
-            <maml:para>{{ Fill FolderName Description }}</maml:para>
+            <maml:para>Specifies the folder name.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -22501,7 +22918,7 @@ PS C:\&gt; $file = New-KshFile -Folder '/sites/japan/hr/Shared%20Documents' -Con
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>FolderName</maml:name>
         <maml:Description>
-          <maml:para>{{ Fill FolderName Description }}</maml:para>
+          <maml:para>Specifies the folder name.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -23493,6 +23910,133 @@ PS C:\&gt; $listItem = New-KshListItem -List $list -Value @{ 'Title' = 'A Happy 
         <dev:code>PS C:\&gt; $siteCollection = New-KshTenantSiteCollection -Owner 'admin@example.onmicrosoft.com' -Url 'https://example.sharepoint.com/sites/hub'</dev:code>
         <dev:remarks>
           <maml:para>Creates a new site collection.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>New-KshTenantTheme</command:name>
+      <command:verb>New</command:verb>
+      <command:noun>KshTenantTheme</command:noun>
+      <maml:description>
+        <maml:para>Creates a new theme.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The New-KshTenantTheme cmdlet adds a new theme to the tenant. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>New-KshTenantTheme</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>IsInverted</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether the colors are inverted.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Name</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the theme name.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Palette</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the palette. For more information, see theme generator (https://developer.microsoft.com/en-us/fabric#/styles/themegenerator).</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Hashtable</command:parameterValue>
+          <dev:type>
+            <maml:name>Hashtable</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>IsInverted</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether the colors are inverted.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Name</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the theme name.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Palette</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the palette. For more information, see theme generator (https://developer.microsoft.com/en-us/fabric#/styles/themegenerator).</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Hashtable</command:parameterValue>
+        <dev:type>
+          <maml:name>Hashtable</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.TenantTheme</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; $theme = New-KshTenantTheme -Name 'Custom Theme' -Palette @{ "black" = "#000000" }</dev:code>
+        <dev:remarks>
+          <maml:para>Creates a new site theme.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -24765,6 +25309,216 @@ PS C:\&gt; Remove-KshFile -Identity $file -Force</dev:code>
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Remove-KshFileVersion</command:name>
+      <command:verb>Remove</command:verb>
+      <command:noun>KshFileVersion</command:noun>
+      <maml:description>
+        <maml:para>Removes a file version.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Remove-KshFileVersion cmdlet removes a file version from the file.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Remove-KshFileVersion</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>File</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the file.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">File</command:parameterValue>
+          <dev:type>
+            <maml:name>File</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>All</maml:name>
+          <maml:Description>
+            <maml:para>If specified, removes all file versions.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Remove-KshFileVersion</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>File</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the file.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">File</command:parameterValue>
+          <dev:type>
+            <maml:name>File</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>FileVersion</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the file version.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">FileVersion</command:parameterValue>
+          <dev:type>
+            <maml:name>FileVersion</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Remove-KshFileVersion</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>File</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the file.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">File</command:parameterValue>
+          <dev:type>
+            <maml:name>File</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>FileVersion</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the file version.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">FileVersion</command:parameterValue>
+          <dev:type>
+            <maml:name>FileVersion</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Force</maml:name>
+          <maml:Description>
+            <maml:para>If specified, removes object permanently.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>All</maml:name>
+        <maml:Description>
+          <maml:para>If specified, removes all file versions.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>File</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the file.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">File</command:parameterValue>
+        <dev:type>
+          <maml:name>File</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>FileVersion</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the file version.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">FileVersion</command:parameterValue>
+        <dev:type>
+          <maml:name>FileVersion</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Force</maml:name>
+        <maml:Description>
+          <maml:para>If specified, removes object permanently.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.File</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Void</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+PS C:\&gt; $fileVersion = Get-KshFileVersion -File $file -FileVersionId 1
+PS C:\&gt; Remove-KshFileVersion -File $file -FileVersion $fileVersion</dev:code>
+        <dev:remarks>
+          <maml:para>Moves a file version to the recycle bin.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+PS C:\&gt; $fileVersion = Get-KshFileVersion -File $file -FileVersionId 1
+PS C:\&gt; Remove-KshFileVersion -File $file -FileVersion $fileVersion -Force</dev:code>
+        <dev:remarks>
+          <maml:para>Removes a file version permanently.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 3 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+PS C:\&gt; Remove-KshFileVersion -File $file -All</dev:code>
+        <dev:remarks>
+          <maml:para>Removes all file versions.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Remove-KshFolder</command:name>
       <command:verb>Remove</command:verb>
       <command:noun>KshFolder</command:noun>
@@ -25411,7 +26165,7 @@ PS C:\&gt; Remove-KshRecycleBinItem -Identity $recycleBinItem</dev:code>
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Remove-KshSite</maml:name>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
           <maml:name>Identity</maml:name>
           <maml:Description>
             <maml:para>Specifies the site.</maml:para>
@@ -25426,7 +26180,7 @@ PS C:\&gt; Remove-KshRecycleBinItem -Identity $recycleBinItem</dev:code>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
         <maml:name>Identity</maml:name>
         <maml:Description>
           <maml:para>Specifies the site.</maml:para>
@@ -25684,6 +26438,86 @@ PS C:\&gt; Remove-KshTenantDeletedSiteCollection -Identity $siteCollection</dev:
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Remove-KshTenantTheme</command:name>
+      <command:verb>Remove</command:verb>
+      <command:noun>KshTenantTheme</command:noun>
+      <maml:description>
+        <maml:para>Removes a theme.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Remove-KshTenantTheme cmdlet removes a theme from the tenant. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Remove-KshTenantTheme</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Identity</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the theme.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">TenantTheme</command:parameterValue>
+          <dev:type>
+            <maml:name>TenantTheme</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Identity</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the theme.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">TenantTheme</command:parameterValue>
+        <dev:type>
+          <maml:name>TenantTheme</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.TenantTheme</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Void</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; $theme = Get-KshTenantTheme -ThemeName 'Custom Theme'
+PS C:\&gt; Remove-KshTenantTheme -Identity $theme</dev:code>
+        <dev:remarks>
+          <maml:para>Removes a theme.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Remove-KshUser</command:name>
       <command:verb>Remove</command:verb>
       <command:noun>KshUser</command:noun>
@@ -25909,6 +26743,33 @@ PS C:\&gt; Remove-KshView -Identity $view</dev:code>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
       </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Remove-KshViewColumn</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>View</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the view.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">View</command:parameterValue>
+          <dev:type>
+            <maml:name>View</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>ColumnName</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the column name.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
     </command:syntax>
     <command:parameters>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
@@ -25931,6 +26792,18 @@ PS C:\&gt; Remove-KshView -Identity $view</dev:code>
         <command:parameterValue required="true" variableLength="false">Column</command:parameterValue>
         <dev:type>
           <maml:name>Column</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>ColumnName</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the column name.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -25991,6 +26864,111 @@ PS C:&gt; $view = Get-KshView -List $list -ViewTitle 'My Items'
 PS C:&gt; Remove-KshViewColumn -View $view -All</dev:code>
         <dev:remarks>
           <maml:para>Removes all view columns.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Restore-KshFileVersion</command:name>
+      <command:verb>Restore</command:verb>
+      <command:noun>KshFileVersion</command:noun>
+      <maml:description>
+        <maml:para>Restore a file version.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Restore-KshFileVersion cmdlet creates a new file version from the specified file version.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Restore-KshFileVersion</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>File</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the file.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">File</command:parameterValue>
+          <dev:type>
+            <maml:name>File</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>FileVersion</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the file version.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">FileVersion</command:parameterValue>
+          <dev:type>
+            <maml:name>FileVersion</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>File</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the file.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">File</command:parameterValue>
+        <dev:type>
+          <maml:name>File</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>FileVersion</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the file version.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">FileVersion</command:parameterValue>
+        <dev:type>
+          <maml:name>FileVersion</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.File</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Void</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+PS C:\&gt; $fileVersion = Get-KshFileVersion -File $file -FileVersionId 1
+PS C:\&gt; Restore-KshFileVersion -File $file -FileVersion $fileVersion</dev:code>
+        <dev:remarks>
+          <maml:para>Restores a file version.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -35329,7 +36307,7 @@ PS C:\&gt; Update-KshContentType -Identity $siteContentType -ReadOnly $true</dev
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
           <maml:name>ContentTypeColumn</maml:name>
           <maml:Description>
-            <maml:para>{{ Fill ContentTypeColumn Description }}</maml:para>
+            <maml:para>Specifies the content type column.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">ContentTypeColumn</command:parameterValue>
           <dev:type>
@@ -35402,7 +36380,7 @@ PS C:\&gt; Update-KshContentType -Identity $siteContentType -ReadOnly $true</dev
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
         <maml:name>ContentTypeColumn</maml:name>
         <maml:Description>
-          <maml:para>{{ Fill ContentTypeColumn Description }}</maml:para>
+          <maml:para>Specifies the content type column.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">ContentTypeColumn</command:parameterValue>
         <dev:type>
@@ -38356,6 +39334,157 @@ PS C:\&gt; Update-KshSite -Identity $site -NoCrawl $true</dev:code>
 PS C:\&gt; Update-KshTenantSiteCollection -Identity $siteCollection -Owner 'admin@example.onmicrosoft.com'</dev:code>
         <dev:remarks>
           <maml:para>Updates property values of the site collection.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Update-KshTenantTheme</command:name>
+      <command:verb>Update</command:verb>
+      <command:noun>KshTenantTheme</command:noun>
+      <maml:description>
+        <maml:para>Updates a theme.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Update-KshTenantTheme cmdlet updates properties of the theme. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Update-KshTenantTheme</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Identity</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the theme.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">TenantTheme</command:parameterValue>
+          <dev:type>
+            <maml:name>TenantTheme</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>IsInverted</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether the colors are inverted.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Palette</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the palette.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Hashtable</command:parameterValue>
+          <dev:type>
+            <maml:name>Hashtable</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PassThru</maml:name>
+          <maml:Description>
+            <maml:para>If specified, returns the updated object.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Identity</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the theme.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">TenantTheme</command:parameterValue>
+        <dev:type>
+          <maml:name>TenantTheme</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>IsInverted</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether the colors are inverted.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Palette</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the palette.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Hashtable</command:parameterValue>
+        <dev:type>
+          <maml:name>Hashtable</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>PassThru</maml:name>
+        <maml:Description>
+          <maml:para>If specified, returns the updated object.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.TenantTheme</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; $theme = Get-KshTenantTheme -ThemeName 'Custom Theme'
+PS C:\&gt; Update-KshTenantTheme -Identity $theme -Palette @{ "black" = "#0f0f0f" }</dev:code>
+        <dev:remarks>
+          <maml:para>Updates property values of the theme.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>

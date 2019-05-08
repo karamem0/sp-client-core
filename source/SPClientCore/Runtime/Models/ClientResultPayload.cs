@@ -61,7 +61,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
             if (typeof(T).IsSubclassOf(typeof(ClientObject)))
             {
                 var objectName = jsonToken["_ObjectType_"].ToString();
-                var objectType = ClientObject.GetType(objectName) ?? typeof(ClientObject);
+                var objectType = ClientObject.GetType<T>(objectName);
                 return (T)jsonToken.ToObject(objectType, ClientResultPayload.JsonSerializer);
             }
             else

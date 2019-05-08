@@ -12,8 +12,14 @@ Adds a view column.
 
 ## SYNTAX
 
+### ParamSet1
 ```
 Add-KshViewColumn [-View] <View> [-Column] <Column> [<CommonParameters>]
+```
+
+### ParamSet2
+```
+Add-KshViewColumn [-View] <View> [-ColumnName] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -38,7 +44,22 @@ Specifies the column.
 
 ```yaml
 Type: Column
-Parameter Sets: (All)
+Parameter Sets: ParamSet1
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ColumnName
+Specifies the column name.
+
+```yaml
+Type: String
+Parameter Sets: ParamSet2
 Aliases:
 
 Required: True

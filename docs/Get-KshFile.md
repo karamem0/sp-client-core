@@ -47,28 +47,28 @@ The Get-KshFile cmdlet retrives files of the specified folder.
 
 ## EXAMPLES
 
-### Example 2
+### Example 1
 ```powershell
 PS C:\> $file = Get-KshFile -FileId '2c7ceb97-193f-4d05-91a5-a03c6d58ae60'
 ```
 
 Retrieves a file by file ID.
 
-### Example 3
+### Example 2
 ```powershell
 PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
 ```
 
 Retrieves a file by file URL.
 
-### Example 5
+### Example 3
 ```powershell
 PS C:\> $file = Get-KshFile -Folder '/sites/japan/hr/Shared%20Documents' -FileName 'Readme.txt'
 ```
 
 Retrieves a file by folder and file name.
 
-### Example 5
+### Example 4
 ```powershell
 PS C:\> $files = Get-KshFile -Folder '/sites/japan/hr/Shared%20Documents'
 ```
@@ -78,7 +78,7 @@ Retrieves all files.
 ## PARAMETERS
 
 ### -AttachmentFile
-{{ Fill AttachmentFile Description }}
+Specifies the attachment file.
 
 ```yaml
 Type: AttachmentFile

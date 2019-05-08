@@ -36,6 +36,26 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
                 .SingleOrDefault();
         }
 
+        public static Type GetType<T>(string name)
+        {
+            var type = ClientObject.GetType(name);
+            if (type == null)
+            {
+                if (typeof(T).IsGenericSubclassOf(typeof(ClientObjectEnumerable<>)))
+                {
+                    return typeof(T);
+                }
+                else
+                {
+                    return typeof(ClientObject);
+                }
+            }
+            else
+            {
+                return type;
+            }
+        }
+
         protected ClientObject()
         {
             this.ExtensionProperties = new Dictionary<string, JToken>();

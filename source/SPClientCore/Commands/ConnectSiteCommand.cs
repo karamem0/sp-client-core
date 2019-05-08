@@ -52,7 +52,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Common
                 var oAuthDeviceCodeMessage = oAuthContext.AcquireDeviceCode();
                 if (oAuthDeviceCodeMessage is OAuthDeviceCode oAuthDeviceCode)
                 {
-                    Console.WriteLine(oAuthDeviceCode.Message);
+                    this.WriteWarning(oAuthDeviceCode.Message);
                     var expiresOn = DateTime.UtcNow.AddSeconds(oAuthDeviceCode.ExpiresIn);
                     do
                     {
