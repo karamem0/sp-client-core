@@ -19,7 +19,7 @@ Remove-KshListItem [-Identity] <ListItem> [<CommonParameters>]
 
 ### ParamSet2
 ```
-Remove-KshListItem [-Identity] <ListItem> [-Force] [<CommonParameters>]
+Remove-KshListItem [-Identity] <ListItem> [-RecycleBin] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -31,36 +31,21 @@ The Remove-KshListItem cmdlet removes a list item from the parent list.
 ```powershell
 PS C:\> $list = Get-KshList -ListTitle 'Announcements'
 PS C:\> $listItem = Get-KshListItem -List $list -ItemId 1
-PS C:\> $guid = Remove-KshListItem -Identity $listItem
+PS C:\> Remove-KshListItem -Identity $listItem
 ```
 
-Moves a list item to the recycle bin.
-
+Removes a list item.
 ### Example 2
 ```powershell
 PS C:\> $list = Get-KshList -ListTitle 'Announcements'
 PS C:\> $listItem = Get-KshListItem -List $list -ItemId 1
-PS C:\> Remove-KshListItem -Identity $listItem -Force
+PS C:\> $guid = Remove-KshListItem -Identity $listItem -RecycleBin
 ```
 
-Removes a list item permanently.
+Moves a list item to the recycle bin.
+
 
 ## PARAMETERS
-
-### -Force
-If specified, removes object permanently.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: ParamSet2
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -Identity
 Specifies the list item.
@@ -74,6 +59,21 @@ Required: True
 Position: 0
 Default value: None
 Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -RecycleBin
+If specified, moves the item to the recycle bin.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: ParamSet2
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

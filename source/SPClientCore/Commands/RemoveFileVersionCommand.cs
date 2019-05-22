@@ -38,42 +38,36 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         public FileVersion FileVersion { get; private set; }
 
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-        public SwitchParameter Force { get; private set; }
+        public SwitchParameter All { get; private set; }
 
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
-        public SwitchParameter All { get; private set; }
+        public SwitchParameter RecycleBin { get; private set; }
 
         protected override void ProcessRecordCore()
         {
             if (this.ParameterSetName == "ParamSet1")
             {
-                this.Service.RecycleObject(this.File, this.FileVersion);
+                    this.Service.RemoveObject(this.File, this.FileVersion);
             }
             if (this.ParameterSetName == "ParamSet2")
             {
-                if (this.Force)
-                {
-                    this.Service.RemoveObject(this.File, this.FileVersion);
-                }
-                else
-                {
-                    throw new ArgumentException(
-                        string.Format(StringResources.ErrorValueCannotBeValue, false),
-                        nameof(this.Force));
-                }
-            }
-            if (this.ParameterSetName == "ParamSet3")
-            {
-                if (this.All)
-                {
-                    this.Service.RemoveObjectAll(this.File);
-                }
-                else
+                if (this.All ? false : true)
                 {
                     throw new ArgumentException(
                         string.Format(StringResources.ErrorValueCannotBeValue, false),
                         nameof(this.All));
                 }
+                this.Service.RemoveObjectAll(this.File);
+            }
+            if (this.ParameterSetName == "ParamSet3")
+            {
+                if (this.RecycleBin ? false : true)
+                {
+                    throw new ArgumentException(
+                        string.Format(StringResources.ErrorValueCannotBeValue, false),
+                        nameof(this.RecycleBin));
+                }
+                this.Service.RecycleObject(this.File, this.FileVersion);
             }
         }
 

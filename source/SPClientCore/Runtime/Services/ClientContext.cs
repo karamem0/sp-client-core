@@ -13,6 +13,7 @@ using Karamem0.SharePoint.PowerShell.Runtime.OAuth;
 using Karamem0.SharePoint.PowerShell.Runtime.OData;
 using Newtonsoft.Json;
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -72,8 +73,10 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
             requestMessage.Headers.Add("Authorization", "Bearer " + this.oAuthTokenCache.GetAccessToken());
             requestMessage.Headers.Add("Accept", "application/json;odata=verbose");
             requestMessage.Headers.Add("User-Agent", "NONISV|karamem0|SPClientCore/" + this.GetType().Assembly.GetName().Version.ToString(3));
+            Trace.WriteLine(requestMessage);
             var responseMessage = this.httpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
             var responseStream = responseMessage.Content.ReadAsStreamAsync().GetAwaiter().GetResult();
+            Trace.WriteLine(responseMessage);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return responseStream;
@@ -99,8 +102,11 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
             requestMessage.Headers.Add("Accept", "application/json;odata=verbose");
             requestMessage.Headers.Add("User-Agent", "NONISV|karamem0|SPClientCore/" + this.GetType().Assembly.GetName().Version.ToString(3));
             requestMessage.Content = new StreamContent(requestStream);
+            Trace.WriteLine(requestMessage);
             var responseMessage = this.httpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
             var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            Trace.WriteLine(responseMessage);
+            Trace.WriteLine(responseContent);
             try
             {
                 var responsePayload = JsonConvert.DeserializeObject<ODataResultPayload>(responseContent);
@@ -130,8 +136,12 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                 requestMessage.Headers.Add("User-Agent", "NONISV|karamem0|SPClientCore/" + this.GetType().Assembly.GetName().Version.ToString(3));
                 requestMessage.Content = new StringContent(requestContent, Encoding.UTF8);
                 requestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("text/xml");
+                Trace.WriteLine(requestMessage);
+                Trace.WriteLine(requestContent);
                 var responseMessage = this.httpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
                 var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                Trace.WriteLine(responseMessage);
+                Trace.WriteLine(responseContent);
                 if (responseMessage.IsSuccessStatusCode)
                 {
                     var responsePayload = new ClientResultPayload(responseContent);

@@ -32,7 +32,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         public RecycleBinItem Identity { get; private set; }
 
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
+        [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
         public SwitchParameter All { get; private set; }
+
+        [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
+        public SwitchParameter SecondStage { get; private set; }
 
         protected override void ProcessRecordCore()
         {
@@ -42,16 +46,29 @@ namespace Karamem0.SharePoint.PowerShell.Commands
             }
             if (this.ParameterSetName == "ParamSet2")
             {
-                if (this.All)
-                {
-                    this.Service.RemoveObjectAll();
-                }
-                else
+                if (this.All ? false : true)
                 {
                     throw new ArgumentException(
                         string.Format(StringResources.ErrorValueCannotBeValue, false),
                         nameof(this.All));
                 }
+                this.Service.RemoveAllObject();
+            }
+            if (this.ParameterSetName == "ParamSet3")
+            {
+                if (this.All ? false : true)
+                {
+                    throw new ArgumentException(
+                        string.Format(StringResources.ErrorValueCannotBeValue, false),
+                        nameof(this.All));
+                }
+                if (this.SecondStage ? false : true)
+                {
+                    throw new ArgumentException(
+                        string.Format(StringResources.ErrorValueCannotBeValue, false),
+                        nameof(this.SecondStage));
+                }
+                this.Service.RemoveAllSecondStageObject();
             }
         }
 

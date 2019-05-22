@@ -87,8 +87,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Remove-KshFile",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result4.ElementAt(0) },
-                        { "Force", true }
+                        { "Identity", result4.ElementAt(0) }
                     }
                 );
             }

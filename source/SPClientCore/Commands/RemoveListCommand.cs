@@ -33,26 +33,23 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         public List Identity { get; private set; }
 
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-        public SwitchParameter Force { get; private set; }
+        public SwitchParameter RecycleBin { get; private set; }
 
         protected override void ProcessRecordCore()
         {
             if (this.ParameterSetName == "ParamSet1")
             {
-                this.WriteObject(this.Service.RecycleObject(this.Identity));
+                this.Service.RemoveObject(this.Identity);
             }
             if (this.ParameterSetName == "ParamSet2")
             {
-                if (this.Force)
-                {
-                    this.Service.RemoveObject(this.Identity);
-                }
-                else
+                if (this.RecycleBin ? false : true)
                 {
                     throw new ArgumentException(
                         string.Format(StringResources.ErrorValueCannotBeValue, false),
-                        nameof(this.Force));
+                        nameof(this.RecycleBin));
                 }
+                this.WriteObject(this.Service.RecycleObject(this.Identity));
             }
         }
 

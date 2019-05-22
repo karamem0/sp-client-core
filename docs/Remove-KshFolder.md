@@ -19,7 +19,7 @@ Remove-KshFolder [-Identity] <Folder> [<CommonParameters>]
 
 ### ParamSet2
 ```
-Remove-KshFolder [-Identity] <Folder> [-Force] [<CommonParameters>]
+Remove-KshFolder [-Identity] <Folder> [-RecycleBin] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -33,32 +33,17 @@ PS C:\> $folder = Get-KshFolder -FolderUrl '/sites/japan/hr/Shared%20Documents/T
 PS C:\> Remove-KshFolder -Identity $folder
 ```
 
-Moves a folder to the recycle bin.
-
+Removes a folder.
 ### Example 2
 ```powershell
 PS C:\> $folder = Get-KshFolder -FolderUrl '/sites/japan/hr/Shared%20Documents/Templates'
-PS C:\> Remove-KshFolder -Identity $folder -Force
+PS C:\> Remove-KshFolder -Identity $folder -RecycleBin
 ```
 
-Removes a folder permanently.
+Moves a folder to the recycle bin.
+
 
 ## PARAMETERS
-
-### -Force
-If specified, removes object permanently.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: ParamSet2
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -Identity
 Specifies the folder.
@@ -72,6 +57,21 @@ Required: True
 Position: 0
 Default value: None
 Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -RecycleBin
+If specified, moves the item to the recycle bin.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: ParamSet2
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

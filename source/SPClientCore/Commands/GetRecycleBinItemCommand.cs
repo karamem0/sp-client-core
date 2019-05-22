@@ -33,22 +33,27 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
         public Guid ItemId { get; private set; }
 
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
+        public SwitchParameter SecondStage { get; private set; }
+
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
         public SwitchParameter NoEnumerate { get; private set; }
 
         protected override void ProcessRecordCore()
         {
+            var recycleBinItemState = this.SecondStage ? RecycleBinItemState.SecondStageRecycleBin : RecycleBinItemState.FirstStageRecycleBin;
             if (this.ParameterSetName == "ParamSet1")
             {
                 this.WriteObject(this.Service.GetObject(this.Identity));
             }
             if (this.ParameterSetName == "ParamSet2")
             {
-                this.WriteObject(this.Service.GetObject(this.ItemId));
+                this.WriteObject(this.Service.GetObject(this.ItemId, recycleBinItemState));
             }
             if (this.ParameterSetName == "ParamSet3")
             {
-                this.WriteObject(this.Service.GetObjectEnumerable(), this.NoEnumerate ? false : true);
+                this.WriteObject(this.Service.GetObjectEnumerable(recycleBinItemState), this.NoEnumerate ? false : true);
             }
         }
 

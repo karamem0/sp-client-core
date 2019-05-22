@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
     {
 
         [TestMethod()]
-        public void MoveAttachmentFileToRecycleBin()
+        public void RemoveAttachmentFile()
         {
             using (var context = new PSCmdletContext())
             {
@@ -70,18 +70,11 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "Identity", result4.ElementAt(0) }
                     }
                 );
-                var result6 = context.Runspace.InvokeCommand(
-                    "Remove-KshRecycleBinItem",
-                    new Dictionary<string, object>()
-                    {
-                        { "All", true }
-                    }
-                );
             }
         }
 
         [TestMethod()]
-        public void RemoveAttachmentFile()
+        public void MoveAttachmentFileToRecycleBin()
         {
             using (var context = new PSCmdletContext())
             {
@@ -126,7 +119,14 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     new Dictionary<string, object>()
                     {
                         { "Identity", result4.ElementAt(0) },
-                        { "Force", true }
+                        { "RecycleBin", true }
+                    }
+                );
+                var result6 = context.Runspace.InvokeCommand(
+                    "Remove-KshRecycleBinItem",
+                    new Dictionary<string, object>()
+                    {
+                        { "All", true }
                     }
                 );
             }

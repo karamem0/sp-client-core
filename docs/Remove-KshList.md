@@ -19,7 +19,7 @@ Remove-KshList [-Identity] <List> [<CommonParameters>]
 
 ### ParamSet2
 ```
-Remove-KshList [-Identity] <List> [-Force] [<CommonParameters>]
+Remove-KshList [-Identity] <List> [-RecycleBin] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -30,35 +30,20 @@ The Remove-KshList cmdlet removes a list from the current site.
 ### Example 1
 ```powershell
 PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> $guid = Remove-KshList -Identity $list
+PS C:\> Remove-KshList -Identity $list
 ```
 
-Moves a list to the recycle bin.
+Removes a list.
 
 ### Example 2
 ```powershell
 PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> Remove-KshList -Identity $list -Force
+PS C:\> $guid = Remove-KshList -Identity $list -RecycleBin
 ```
 
-Removes a list permanently.
+Moves a list to the recycle bin.
 
 ## PARAMETERS
-
-### -Force
-If specified, removes object permanently.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: ParamSet2
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -Identity
 Specifies the list.
@@ -72,6 +57,21 @@ Required: True
 Position: 0
 Default value: None
 Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -RecycleBin
+If specified, moves the item to the recycle bin.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: ParamSet2
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

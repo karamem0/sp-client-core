@@ -89,8 +89,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Remove-KshFile",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result5.ElementAt(0) },
-                        { "Force", true }
+                        { "Identity", result5.ElementAt(0) }
                     }
                 );
                 var actual = result6.ToArray();
@@ -161,8 +160,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Remove-KshFile",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result4.ElementAt(0) },
-                        { "Force", true }
+                        { "Identity", result4.ElementAt(0) }
                     }
                 );
                 var actual = result6.ElementAt(0);
@@ -226,8 +224,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Remove-KshFile",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result4.ElementAt(0) },
-                        { "Force", true }
+                        { "Identity", result4.ElementAt(0) }
                     }
                 );
                 var actual = result5.ElementAt(0);

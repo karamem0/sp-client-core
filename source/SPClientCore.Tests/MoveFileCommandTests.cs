@@ -1,3 +1,4 @@
+
 //
 // Copyright (c) 2019 karamem0
 //
@@ -18,12 +19,12 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("New-KshList")]
-    public class NewListCommandTests
+    [TestCategory("Move-KshFile")]
+    public class MoveFileCommandTests
     {
 
         [TestMethod()]
-        public void NewList()
+        public void MoveFile()
         {
             using (var context = new PSCmdletContext())
             {
@@ -38,25 +39,40 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         }
                     }
                 );
-                var result2 = context.Runspace.InvokeCommand<List>(
-                    "New-KshList",
+                var result2 = context.Runspace.InvokeCommand<Folder>(
+                    "Get-KshFolder",
                     new Dictionary<string, object>()
                     {
-                        { "Description", "Test List 0 Description" },
-                        { "QuickLaunchOption", "On" },
-                        { "ServerRelativeUrl", "Lists/TestList0" },
-                        { "Template", "DocumentLibrary" },
-                        { "Title", "Test List 0" }
+                        { "FolderUrl", context.AppSettings["Folder1Url"] }
                     }
                 );
-                var result3 = context.Runspace.InvokeCommand(
-                    "Remove-KshList",
+                var result3 = context.Runspace.InvokeCommand<File>(
+                    "New-KshFile",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result2.ElementAt(0) }
+                        { "Folder", result2.ElementAt(0) },
+                        { "Content", Encoding.UTF8.GetBytes("TestFile0") },
+                        { "FileName", "TestFile0.txt" }
                     }
                 );
-                var actual = result2.ElementAt(0);
+                var result4 = context.Runspace.InvokeCommand<File>(
+                    "Move-KshFile",
+                    new Dictionary<string, object>()
+                    {
+                        { "Identity", result3.ElementAt(0) },
+                        { "Url", context.AppSettings["Folder1Url"] + "/TestFile9.txt" },
+                        { "MoveOperation", 1 },
+                        { "PassThru", true }
+                    }
+                );
+                var result5 = context.Runspace.InvokeCommand(
+                    "Remove-KshFile",
+                    new Dictionary<string, object>()
+                    {
+                        { "Identity", result4.ElementAt(0) }
+                    }
+                );
+                var actual = result4.ElementAt(0);
             }
         }
 

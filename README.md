@@ -92,6 +92,7 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Deny-KshFile](docs/Deny-KshFile.md)
     - [Get-KshFile](docs/Get-KshFile.md)
     - [Lock-KshFile](docs/Lock-KshFile.md)
+    - [Move-KshFile](docs/Move-KshFile.md)
     - [New-KshFile](docs/New-KshFile.md)
     - [Open-KshFile](docs/Open-KshFile.md)
     - [Publish-KshFile](docs/Publish-KshFile.md)
@@ -142,6 +143,7 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Get-KshListTemplate](docs/Get-KshListTemplate.md)
   - Recycle Bin Items
     - [Get-KshRecycleBinItem](docs/Get-KshRecycleBinItem.md)
+    - [Move-KshRecycleBinItem](docs/Move-KshRecycleBinItem.md)
     - [Remove-KshRecycleBinItem](docs/Remove-KshRecycleBinItem.md)
     - [Restore-KshRecycleBinItem](docs/Remove-KshRecycleBinItem.md)
   - Site

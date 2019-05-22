@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Management.Automation.Runspaces;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Tests.Runtime
@@ -32,12 +33,15 @@ namespace Karamem0.SharePoint.PowerShell.Tests.Runtime
                 .Build();
             this.Runspace = RunspaceFactory.CreateRunspace();
             this.Runspace.Open();
-            this.Runspace.InvokeCommand(
-                "Set-ExecutionPolicy",
-                new Dictionary<string, object>()
-                {
-                    { "ExecutionPolicy", "RemoteSigned" }
-                });
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                this.Runspace.InvokeCommand(
+                    "Set-ExecutionPolicy",
+                    new Dictionary<string, object>()
+                    {
+                        { "ExecutionPolicy", "RemoteSigned" }
+                    });
+            }
             this.Runspace.InvokeCommand(
                 "Import-Module",
                 new Dictionary<string, object>()

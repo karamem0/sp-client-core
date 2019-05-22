@@ -8,7 +8,7 @@ schema: 2.0.0
 # Move-KshViewColumn
 
 ## SYNOPSIS
-Changes a view column index.
+Moves a view column.
 
 ## SYNTAX
 
@@ -35,7 +35,7 @@ PS C:> $column = Get-KshColumn -List $list -ColumnName 'Remarks'
 PS C:> Move-KshViewColumn -View $view -Column $column -Index 0
 ```
 
-Changes the view column index.
+Move the view column.
 
 ## PARAMETERS
 

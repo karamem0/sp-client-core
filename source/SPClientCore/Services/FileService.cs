@@ -43,6 +43,8 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         IEnumerable<File> GetObjectEnumerable(Folder folderObject);
 
+        void MoveObject(File fileObject, Uri fileUrl, MoveOperations fileMoveOperations);
+
         Guid RecycleObject(File fileObject);
 
         void RemoveObject(File fileObject);
@@ -281,6 +283,27 @@ namespace Karamem0.SharePoint.PowerShell.Services
             return this.ClientContext
                 .ProcessQuery(requestPayload)
                 .ToObject<FileEnumerable>(requestPayload.ActionQueryId);
+        }
+
+        public void MoveObject(File fileObject, Uri fileUrl, MoveOperations fileMoveOperations)
+        {
+            if (fileObject == null)
+            {
+                throw new ArgumentNullException(nameof(fileObject));
+            }
+            if (fileUrl == null)
+            {
+                throw new ArgumentNullException(nameof(fileUrl));
+            }
+            var requestPayload = new ClientRequestPayload();
+            var objectPath = requestPayload.Add(
+                new ObjectPathIdentity(fileObject.ObjectIdentity),
+                objectPathId => new ClientActionMethod(
+                    objectPathId,
+                    "MoveTo",
+                    requestPayload.CreateParameter(fileUrl.ToString()),
+                    requestPayload.CreateParameter(fileMoveOperations)));
+            this.ClientContext.ProcessQuery(requestPayload);
         }
 
         public void PublishObject(File fileObject, string comment)

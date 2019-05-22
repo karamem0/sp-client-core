@@ -28,7 +28,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         List GetObject(Guid listId);
 
-        List GetObject(Uri listUrl);
+        List    GetObject(Uri listUrl);
 
         List GetObject(string listTitle);
 
@@ -150,7 +150,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 new ObjectPathMethod(
                     objectPath2.Id,
                     "GetList",
-                    requestPayload.CreateParameter(listUrl)),
+                    requestPayload.CreateParameter(listUrl.ToString())),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {

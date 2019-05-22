@@ -5,43 +5,29 @@ online version:
 schema: 2.0.0
 ---
 
-# Remove-KshFile
+# Move-KshFile
 
 ## SYNOPSIS
-Removes a file.
+Moves a file.
 
 ## SYNTAX
 
-### ParamSet1
 ```
-Remove-KshFile [-Identity] <File> [<CommonParameters>]
-```
-
-### ParamSet2
-```
-Remove-KshFile [-Identity] <File> [-RecycleBin] [<CommonParameters>]
+Move-KshFile [-Identity] <File> [-Url] <Uri> [-MoveOperation <MoveOperations>] [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Remove-KshFile cmdlet removes a file from the parent folder.
+The Move-KshFile cmdlet moves a file to the specified URL.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
 PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
-PS C:\> Remove-KshFile -Identity $file
+PS C:\> Move-KshFile -Identity $file -Url '/sites/japan/hr/Shared%20Documents/License.txt'
 ```
 
-Removes a file.
-
-### Example 2
-```powershell
-PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
-PS C:\> $guid = Remove-KshFile -Identity $file -RecycleBin
-```
-
-Moves a file to the recycle bin.
+Move the view file.
 
 ## PARAMETERS
 
@@ -60,16 +46,47 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -RecycleBin
-If specified, moves the item to the recycle bin.
+### -MoveOperation
+Specifies the move operations.
+
+```yaml
+Type: MoveOperations
+Parameter Sets: (All)
+Aliases:
+Accepted values: None, Overwrite, AllowBrokenThickets, BypassApprovePermission
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PassThru
+If specified, returns the updated object.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: ParamSet2
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Url
+Specifies the URL.
+
+```yaml
+Type: Uri
+Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: Named
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -84,7 +101,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### System.Void
+### Karamem0.SharePoint.PowerShell.Models.File
 
 ## NOTES
 

@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
     {
 
         [TestMethod()]
-        public void MoveFileVersionToRecycleBin()
+        public void RemoveFileVersion()
         {
             using (var context = new PSCmdletContext())
             {
@@ -87,8 +87,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Remove-KshFile",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result4.ElementAt(0) },
-                        { "Force", true }
+                        { "Identity", result4.ElementAt(0) }
                     }
                 );
             }
@@ -151,15 +150,14 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Remove-KshFile",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result4.ElementAt(0) },
-                        { "Force", true }
+                        { "Identity", result4.ElementAt(0) }
                     }
                 );
             }
         }
 
         [TestMethod()]
-        public void RemoveFileVersion()
+        public void MoveFileVersionToRecycleBin()
         {
             using (var context = new PSCmdletContext())
             {
@@ -217,15 +215,21 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     {
                         { "File", result4.ElementAt(0) },
                         { "FileVersion", result5.ElementAt(0) },
-                        { "Force", true }
+                        { "RecycleBin", true }
                     }
                 );
                 var result7 = context.Runspace.InvokeCommand(
                     "Remove-KshFile",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result4.ElementAt(0) },
-                        { "Force", true }
+                        { "Identity", result4.ElementAt(0) }
+                    }
+                );
+                var result8 = context.Runspace.InvokeCommand(
+                    "Remove-KshRecycleBinItem",
+                    new Dictionary<string, object>()
+                    {
+                        { "All", true }
                     }
                 );
             }

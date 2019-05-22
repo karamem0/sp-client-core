@@ -19,7 +19,7 @@ Remove-KshAttachmentFile [-Identity] <AttachmentFile> [<CommonParameters>]
 
 ### ParamSet2
 ```
-Remove-KshAttachmentFile [-Identity] <AttachmentFile> [-Force] [<CommonParameters>]
+Remove-KshAttachmentFile [-Identity] <AttachmentFile> [-RecycleBin] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -35,34 +35,19 @@ PS C:\> $attachmentFile = Get-KshAttachmentFile -ListItem $listItem -FileName 'R
 PS C:\> Remove-KshAttachmentFile -Identity $attachmentFile
 ```
 
-Moves a attachment file to the recycle bin.
+Removes a attachment file.
 
 ### Example 2
 ```powershell
 PS C:\> $list = Get-KshList -ListTitle 'Announcements'
 PS C:\> $listItem = Get-KshListItem -List $list -ItemId 1
 PS C:\> $attachmentFile = Get-KshAttachmentFile -ListItem $listItem -FileName 'Readme.txt'
-PS C:\> Remove-KshAttachmentFile -Identity $attachmentFile -Force
+PS C:\> Remove-KshAttachmentFile -Identity $attachmentFile -RecycleBin
 ```
 
-Removes a attachment file permanently.
+Moves a attachment file to the recycle bin.
 
 ## PARAMETERS
-
-### -Force
-If specified, removes object permanently.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: ParamSet2
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -Identity
 Specifies the attachment file.
@@ -76,6 +61,21 @@ Required: True
 Position: 0
 Default value: None
 Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -RecycleBin
+If specified, moves the item to the recycle bin.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: ParamSet2
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

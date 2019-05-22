@@ -19,12 +19,12 @@ Remove-KshFileVersion [-File] <File> [-FileVersion] <FileVersion> [<CommonParame
 
 ### ParamSet2
 ```
-Remove-KshFileVersion [-File] <File> [-FileVersion] <FileVersion> [-Force] [<CommonParameters>]
+Remove-KshFileVersion [-File] <File> [-FileVersion] <FileVersion> [-All] [<CommonParameters>]
 ```
 
 ### ParamSet3
 ```
-Remove-KshFileVersion [-File] <File> [-All] [<CommonParameters>]
+Remove-KshFileVersion [-File] <File> [-RecycleBin] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -39,24 +39,24 @@ PS C:\> $fileVersion = Get-KshFileVersion -File $file -FileVersionId 1
 PS C:\> Remove-KshFileVersion -File $file -FileVersion $fileVersion
 ```
 
-Moves a file version to the recycle bin.
+Removes a file version.
 
 ### Example 2
-```powershell
-PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
-PS C:\> $fileVersion = Get-KshFileVersion -File $file -FileVersionId 1
-PS C:\> Remove-KshFileVersion -File $file -FileVersion $fileVersion -Force
-```
-
-Removes a file version permanently.
-
-### Example 3
 ```powershell
 PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
 PS C:\> Remove-KshFileVersion -File $file -All
 ```
 
 Removes all file versions.
+
+### Example 3
+```powershell
+PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+PS C:\> $fileVersion = Get-KshFileVersion -File $file -FileVersionId 1
+PS C:\> Remove-KshFileVersion -File $file -FileVersion $fileVersion -RecycleBin
+```
+
+Moves a file version to the recycle bin.
 
 ## PARAMETERS
 
@@ -65,7 +65,7 @@ If specified, removes all file versions.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: ParamSet3
+Parameter Sets: ParamSet2
 Aliases:
 
 Required: True
@@ -105,12 +105,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Force
-If specified, removes object permanently.
+### -RecycleBin
+If specified, moves the item to the recycle bin.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: ParamSet2
+Parameter Sets: ParamSet3
 Aliases:
 
 Required: True

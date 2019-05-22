@@ -19,37 +19,36 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands
 {
 
-    [Cmdlet("Remove", "KshListItem")]
+    [Cmdlet("Move", "KshRecycleBinItem")]
     [OutputType(typeof(void))]
-    public class RemoveListItemCommand : ClientObjectCmdlet<IListItemService>
+    public class MoveRecycleBinItemCommand : ClientObjectCmdlet<IRecycleBinItemService>
     {
 
-        public RemoveListItemCommand()
+        public MoveRecycleBinItemCommand()
         {
         }
 
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet2")]
-        public ListItem Identity { get; private set; }
+        public RecycleBinItem Identity { get; private set; }
 
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-        public SwitchParameter RecycleBin { get; private set; }
+        public SwitchParameter All { get; private set; }
 
         protected override void ProcessRecordCore()
         {
             if (this.ParameterSetName == "ParamSet1")
             {
-                this.Service.RemoveObject(this.Identity);
+                this.Service.MoveObjectToSecondStage(this.Identity);
             }
             if (this.ParameterSetName == "ParamSet2")
             {
-                if (this.RecycleBin ? false : true)
+                if (this.All ? false : true)
                 {
                     throw new ArgumentException(
                         string.Format(StringResources.ErrorValueCannotBeValue, false),
-                        nameof(this.RecycleBin));
+                        nameof(this.All));
                 }
-                this.WriteObject(this.Service.RecycleObject(this.Identity));
+                this.Service.MoveAllObjectToSecondStage();
             }
         }
 
