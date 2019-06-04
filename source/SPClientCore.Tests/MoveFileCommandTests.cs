@@ -61,7 +61,8 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     {
                         { "Identity", result3.ElementAt(0) },
                         { "Url", context.AppSettings["Folder1Url"] + "/TestFile9.txt" },
-                        { "MoveOperation", 1 },
+                        { "Overwrite", true },
+                        { "AllowBrokenThickets", true },
                         { "PassThru", true }
                     }
                 );

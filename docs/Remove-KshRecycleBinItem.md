@@ -22,6 +22,11 @@ Remove-KshRecycleBinItem [-Identity] <RecycleBinItem> [<CommonParameters>]
 Remove-KshRecycleBinItem [-All] [<CommonParameters>]
 ```
 
+### ParamSet3
+```
+Remove-KshRecycleBinItem [-All] [-SecondStage] [<CommonParameters>]
+```
+
 ## DESCRIPTION
 The Remove-KshListItem cmdlet removes a recycle bin item from the current site.
 
@@ -49,7 +54,7 @@ If specified, removes all recycle bin items.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: ParamSet2
+Parameter Sets: ParamSet2, ParamSet3
 Aliases:
 
 Required: True
@@ -71,6 +76,21 @@ Required: True
 Position: 0
 Default value: None
 Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -SecondStage
+If specified, removes the second stage recycle bin items.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: ParamSet3
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

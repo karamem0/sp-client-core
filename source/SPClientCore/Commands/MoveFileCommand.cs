@@ -8,6 +8,7 @@
 
 using Karamem0.SharePoint.PowerShell.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
+using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Karamem0.SharePoint.PowerShell.Services;
 using System;
 using System.Collections.Generic;
@@ -34,20 +35,27 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         public Uri Url { get; private set; }
 
         [Parameter(Mandatory = false)]
-        public MoveOperations MoveOperation { get; private set; }
+        public SwitchParameter Overwrite { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public SwitchParameter AllowBrokenThickets { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public SwitchParameter BypassApprovePermission { get; private set; }
 
         [Parameter(Mandatory = false)]
         public SwitchParameter PassThru { get; private set; }
 
         protected override void ProcessRecordCore()
         {
+            var moveOperations = FlagsParser.Parse<MoveOperations>(this.MyInvocation.BoundParameters);
             if (this.Url.IsAbsoluteUri)
             {
-                this.Service.MoveObject(this.Identity, new Uri(this.Url.AbsolutePath, UriKind.Relative), this.MoveOperation);
+                this.Service.MoveObject(this.Identity, new Uri(this.Url.AbsolutePath, UriKind.Relative), moveOperations);
             }
             else
             {
-                this.Service.MoveObject(this.Identity, this.Url, this.MoveOperation);
+                this.Service.MoveObject(this.Identity, this.Url, moveOperations);
             }
             if (this.PassThru)
             {

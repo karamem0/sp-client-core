@@ -18,7 +18,8 @@ New-KshColumnUrl [-List] <List> [-ClientSideComponentId <String>] [-ClientSideCo
  [-CustomFormatter <String>] [-Description <String>] [-Direction <String>] [-Group <String>]
  [-Hidden <Boolean>] [-Id <Guid>] [-JSLink <String>] -Name <String> [-NoCrawl <Boolean>] [-ReadOnly <Boolean>]
  [-Required <Boolean>] [-StaticName <String>] [-Title <String>] [-UrlFormat <ColumnUrlFormatType>]
- [-AddColumnOptions <AddColumnOptions>] [-AddToDefaultView] [<CommonParameters>]
+ [-AddToDefaultContentType] [-AddToNoContentType] [-AddToAllContentTypes] [-AddColumnInternalNameHint]
+ [-AddColumnToDefaultView] [-AddColumnCheckDisplayName] [-AddToDefaultView] [<CommonParameters>]
 ```
 
 ### ParamSet2
@@ -27,7 +28,8 @@ New-KshColumnUrl [-ClientSideComponentId <String>] [-ClientSideComponentProperti
  [-CustomFormatter <String>] [-Description <String>] [-Direction <String>] [-Group <String>]
  [-Hidden <Boolean>] [-Id <Guid>] [-JSLink <String>] -Name <String> [-NoCrawl <Boolean>] [-ReadOnly <Boolean>]
  [-Required <Boolean>] [-StaticName <String>] [-Title <String>] [-UrlFormat <ColumnUrlFormatType>]
- [-AddColumnOptions <AddColumnOptions>] [-AddToDefaultView] [<CommonParameters>]
+ [-AddToDefaultContentType] [-AddToNoContentType] [-AddToAllContentTypes] [-AddColumnInternalNameHint]
+ [-AddColumnToDefaultView] [-AddColumnCheckDisplayName] [-AddToDefaultView] [<CommonParameters>]
 ```
 
 ### ParamSet3
@@ -53,14 +55,73 @@ Creates a new column.
 
 ## PARAMETERS
 
-### -AddColumnOptions
-Specifies the control settings while adding a column.
+### -AddColumnCheckDisplayName
+Specifies whether to confirm that no other column has the same display name.
 
 ```yaml
-Type: AddColumnOptions
+Type: SwitchParameter
 Parameter Sets: ParamSet1, ParamSet2
 Aliases:
-Accepted values: DefaultValue, AddToDefaultContentType, AddToNoContentType, AddToAllContentTypes, AddColumnInternalNameHint, AddColumnToDefaultView, AddColumnCheckDisplayName
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AddColumnInternalNameHint
+Specifies whether to add an internal column name hint for the purpose of avoiding possible database locking or column renaming operations.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: ParamSet1, ParamSet2
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AddColumnToDefaultView
+Specifies whether a new column that is added to the specified list is also be added to the default list view.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: ParamSet1, ParamSet2
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AddToAllContentTypes
+Specifies whether a new column that is added to the specified list is also be added to all content types in the site collection.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: ParamSet1, ParamSet2
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AddToDefaultContentType
+Specifies whether a new column that is added to the list is also be added to the default content type in the site collection.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: ParamSet1, ParamSet2
+Aliases:
 
 Required: False
 Position: Named
@@ -71,6 +132,21 @@ Accept wildcard characters: False
 
 ### -AddToDefaultView
 Specifies whether to add a column to the default view.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: ParamSet1, ParamSet2
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AddToNoContentType
+Specifies whether a new column is not be added to any content type.
 
 ```yaml
 Type: SwitchParameter

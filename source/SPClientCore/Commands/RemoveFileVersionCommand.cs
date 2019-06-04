@@ -38,10 +38,10 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         public FileVersion FileVersion { get; private set; }
 
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-        public SwitchParameter All { get; private set; }
+        public SwitchParameter RecycleBin { get; private set; }
 
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
-        public SwitchParameter RecycleBin { get; private set; }
+        public SwitchParameter All { get; private set; }
 
         protected override void ProcessRecordCore()
         {
@@ -51,16 +51,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands
             }
             if (this.ParameterSetName == "ParamSet2")
             {
-                if (this.All ? false : true)
-                {
-                    throw new ArgumentException(
-                        string.Format(StringResources.ErrorValueCannotBeValue, false),
-                        nameof(this.All));
-                }
-                this.Service.RemoveObjectAll(this.File);
-            }
-            if (this.ParameterSetName == "ParamSet3")
-            {
                 if (this.RecycleBin ? false : true)
                 {
                     throw new ArgumentException(
@@ -68,6 +58,16 @@ namespace Karamem0.SharePoint.PowerShell.Commands
                         nameof(this.RecycleBin));
                 }
                 this.Service.RecycleObject(this.File, this.FileVersion);
+            }
+            if (this.ParameterSetName == "ParamSet3")
+            {
+                if (this.All ? false : true)
+                {
+                    throw new ArgumentException(
+                        string.Format(StringResources.ErrorValueCannotBeValue, false),
+                        nameof(this.All));
+                }
+                this.Service.RemoveObjectAll(this.File);
             }
         }
 

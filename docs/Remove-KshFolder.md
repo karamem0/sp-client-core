@@ -34,6 +34,7 @@ PS C:\> Remove-KshFolder -Identity $folder
 ```
 
 Removes a folder.
+
 ### Example 2
 ```powershell
 PS C:\> $folder = Get-KshFolder -FolderUrl '/sites/japan/hr/Shared%20Documents/Templates'
@@ -41,7 +42,6 @@ PS C:\> Remove-KshFolder -Identity $folder -RecycleBin
 ```
 
 Moves a folder to the recycle bin.
-
 
 ## PARAMETERS
 

@@ -9,6 +9,7 @@
 using Karamem0.SharePoint.PowerShell.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Runtime.Common;
+using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Karamem0.SharePoint.PowerShell.Services;
 using Karamem0.SharePoint.PowerShell.Services.Utilities;
 using System;
@@ -149,7 +150,27 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-        public AddColumnOptions AddColumnOptions { get; private set; }
+        public SwitchParameter AddToDefaultContentType { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+        public SwitchParameter AddToNoContentType { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+        public SwitchParameter AddToAllContentTypes { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+        public SwitchParameter AddColumnInternalNameHint { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+        public SwitchParameter AddColumnToDefaultView { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+        public SwitchParameter AddColumnCheckDisplayName { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -161,13 +182,14 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         protected override void ProcessRecordCore()
         {
             var columnType = ColumnType.Number;
+            var addColumnOptions = FlagsParser.Parse<AddColumnOptions>(this.MyInvocation.BoundParameters);
             if (this.ParameterSetName == "ParamSet1")
             {
-                this.WriteObject(this.Service.CreateObject(this.List, columnType, this.MyInvocation.BoundParameters, this.AddToDefaultView, this.AddColumnOptions));
+                this.WriteObject(this.Service.CreateObject(this.List, columnType, this.MyInvocation.BoundParameters, this.AddToDefaultView, addColumnOptions));
             }
             if (this.ParameterSetName == "ParamSet2")
             {
-                this.WriteObject(this.Service.CreateObject(columnType, this.MyInvocation.BoundParameters, this.AddToDefaultView, this.AddColumnOptions));
+                this.WriteObject(this.Service.CreateObject(columnType, this.MyInvocation.BoundParameters, this.AddToDefaultView, addColumnOptions));
             }
             if (this.ParameterSetName == "ParamSet3")
             {

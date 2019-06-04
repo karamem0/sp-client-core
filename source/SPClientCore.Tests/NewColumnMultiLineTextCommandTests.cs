@@ -71,7 +71,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "StaticName", "TestColumn0" },
                         { "Title", "Test Column 0" },
                         { "UnlimitedLengthInDocumentLibrary", true },
-                        { "AddColumnOptions", "AddColumnInternalNameHint" },
+                        { "AddColumnInternalNameHint", true },
                         { "AddToDefaultView", true }
                     }
                 );
@@ -136,7 +136,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "StaticName", "TestColumn0" },
                         { "Title", "Test Column 0" },
                         { "UnlimitedLengthInDocumentLibrary", true },
-                        { "AddColumnOptions", "AddColumnInternalNameHint" },
+                        { "AddColumnInternalNameHint", true },
                         { "AddToDefaultView", true },
                     }
                 );

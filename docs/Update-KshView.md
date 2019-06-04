@@ -40,7 +40,7 @@ Updates property values of the view.
 ## PARAMETERS
 
 ### -Aggregations
-Specifies fields and functions that define totals shown in a view.
+Specifies columns and functions that define totals shown in a view.
 
 ```yaml
 Type: String
@@ -431,7 +431,7 @@ Accept wildcard characters: False
 ```
 
 ### -ViewProjectedColumns
-Specifies the view projected fields XML.
+Specifies the view projected columns XML.
 
 ```yaml
 Type: String

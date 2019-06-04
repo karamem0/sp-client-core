@@ -13,7 +13,8 @@ Moves a file.
 ## SYNTAX
 
 ```
-Move-KshFile [-Identity] <File> [-Url] <Uri> [-MoveOperation <MoveOperations>] [-PassThru] [<CommonParameters>]
+Move-KshFile [-Identity] <File> [-Url] <Uri> [-Overwrite] [-AllowBrokenThickets] [-BypassApprovePermission]
+ [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -31,6 +32,36 @@ Move the view file.
 
 ## PARAMETERS
 
+### -AllowBrokenThickets
+If specified, completes the move operation even if supporting files are separated from the file.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -BypassApprovePermission
+If specified, approval permissions are not required if there are no published versions of the file.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Identity
 Specifies the file.
 
@@ -46,14 +77,13 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -MoveOperation
-Specifies the move operations.
+### -Overwrite
+If specified, overwrites the existing file.
 
 ```yaml
-Type: MoveOperations
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
-Accepted values: None, Overwrite, AllowBrokenThickets, BypassApprovePermission
 
 Required: False
 Position: Named

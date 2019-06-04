@@ -79,7 +79,7 @@ Accept wildcard characters: False
 ```
 
 ### -Overwrite
-If specified, overwrite the existing file.
+If specified, overwrites the existing file.
 
 ```yaml
 Type: Boolean

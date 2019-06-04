@@ -55,7 +55,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "LookupColumnName", context.AppSettings["Column1Name"] },
                         { "Name", "TestColumn0" },
                         { "Title", "Test Column 0" },
-                        { "AddColumnOptions", "AddColumnInternalNameHint" },
+                        { "AddColumnInternalNameHint", true },
                         { "AddToDefaultView", true }
                     }
                 );
@@ -140,7 +140,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "LookupColumnName", context.AppSettings["Column1Name"] },
                         { "Name", "TestColumn0" },
                         { "Title", "Test Column 0" },
-                        { "AddColumnOptions", "AddColumnInternalNameHint" },
+                        { "AddColumnInternalNameHint", true },
                         { "AddToDefaultView", true }
                     }
                 );
@@ -217,7 +217,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "LookupColumnName", context.AppSettings["Column1Name"] },
                         { "Name", "TestColumn0" },
                         { "Title", "Test Column 0" },
-                        { "AddColumnOptions", "AddColumnInternalNameHint" },
+                        { "AddColumnInternalNameHint", true },
                         { "AddToDefaultView", true }
                     }
                 );
@@ -294,7 +294,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "LookupColumnName", context.AppSettings["Column1Name"] },
                         { "Name", "TestColumn0" },
                         { "Title", "Test Column 0" },
-                        { "AddColumnOptions", "AddColumnInternalNameHint" },
+                        { "AddColumnInternalNameHint", true },
                         { "AddToDefaultView", true }
                     }
                 );

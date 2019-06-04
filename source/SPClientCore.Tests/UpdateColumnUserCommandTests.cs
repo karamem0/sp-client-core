@@ -56,7 +56,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "SelectionGroupId", context.AppSettings["Group1Id"] },
                         { "SelectionMode", "PeopleOnly" },
                         { "Title", "Test Column 0" },
-                        { "AddColumnOptions", "AddColumnInternalNameHint" },
+                        { "AddColumnInternalNameHint", true },
                         { "AddToDefaultView", true }
                     }
                 );
@@ -143,7 +143,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "SelectionGroupId", context.AppSettings["Group1Id"] },
                         { "SelectionMode", "PeopleOnly" },
                         { "Title", "Test Column 0" },
-                        { "AddColumnOptions", "AddColumnInternalNameHint" },
+                        { "AddColumnInternalNameHint", true },
                         { "AddToDefaultView", true }
                     }
                 );
@@ -222,7 +222,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "SelectionGroupId", context.AppSettings["Group1Id"] },
                         { "SelectionMode", "PeopleOnly" },
                         { "Title", "Test Column 0" },
-                        { "AddColumnOptions", "AddColumnInternalNameHint" },
+                        { "AddColumnInternalNameHint", true },
                         { "AddToDefaultView", true }
                     }
                 );
@@ -301,7 +301,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "SelectionGroupId", context.AppSettings["Group1Id"] },
                         { "SelectionMode", "PeopleOnly" },
                         { "Title", "Test Column 0" },
-                        { "AddColumnOptions", "AddColumnInternalNameHint" },
+                        { "AddColumnInternalNameHint", true },
                         { "AddToDefaultView", true }
                     }
                 );

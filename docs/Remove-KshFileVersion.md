@@ -19,12 +19,12 @@ Remove-KshFileVersion [-File] <File> [-FileVersion] <FileVersion> [<CommonParame
 
 ### ParamSet2
 ```
-Remove-KshFileVersion [-File] <File> [-FileVersion] <FileVersion> [-All] [<CommonParameters>]
+Remove-KshFileVersion [-File] <File> [-FileVersion] <FileVersion> [-RecycleBin] [<CommonParameters>]
 ```
 
 ### ParamSet3
 ```
-Remove-KshFileVersion [-File] <File> [-RecycleBin] [<CommonParameters>]
+Remove-KshFileVersion [-File] <File> [-All] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -65,7 +65,7 @@ If specified, removes all file versions.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: ParamSet2
+Parameter Sets: ParamSet3
 Aliases:
 
 Required: True
@@ -110,7 +110,7 @@ If specified, moves the item to the recycle bin.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: ParamSet3
+Parameter Sets: ParamSet2
 Aliases:
 
 Required: True

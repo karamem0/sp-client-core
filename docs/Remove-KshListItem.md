@@ -35,6 +35,7 @@ PS C:\> Remove-KshListItem -Identity $listItem
 ```
 
 Removes a list item.
+
 ### Example 2
 ```powershell
 PS C:\> $list = Get-KshList -ListTitle 'Announcements'
@@ -43,7 +44,6 @@ PS C:\> $guid = Remove-KshListItem -Identity $listItem -RecycleBin
 ```
 
 Moves a list item to the recycle bin.
-
 
 ## PARAMETERS
 

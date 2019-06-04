@@ -53,7 +53,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "Name", "TestColumn0" },
                         { "Title", "Test Column 0" },
                         { "UrlFormat", "Hyperlink" },
-                        { "AddColumnOptions", "AddColumnInternalNameHint" },
+                        { "AddColumnInternalNameHint", true },
                         { "AddToDefaultView", true }
                     }
                 );
@@ -121,7 +121,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "Name", "TestColumn0" },
                         { "Title", "Test Column 0" },
                         { "UrlFormat", "Hyperlink" },
-                        { "AddColumnOptions", "AddColumnInternalNameHint" },
+                        { "AddColumnInternalNameHint", true },
                         { "AddToDefaultView", true }
                     }
                 );

@@ -71,7 +71,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "Name", "TestColumn0" },
                         { "OutputType", "Boolean" },
                         { "Title", "Test Column 0" },
-                        { "AddColumnOptions", "AddColumnInternalNameHint" },
+                        { "AddColumnInternalNameHint", true },
                         { "AddToDefaultView", true }
                     }
                 );
@@ -165,7 +165,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "Name", "TestColumn0" },
                         { "OutputType", "Currency" },
                         { "Title", "Test Column 0" },
-                        { "AddColumnOptions", "AddColumnInternalNameHint" },
+                        { "AddColumnInternalNameHint", true },
                         { "AddToDefaultView", true }
                     }
                 );
@@ -261,7 +261,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "Name", "TestColumn0" },
                         { "OutputType", "DateTime" },
                         { "Title", "Test Column 0" },
-                        { "AddColumnOptions", "AddColumnInternalNameHint" },
+                        { "AddColumnInternalNameHint", true },
                         { "AddToDefaultView", true }
                     }
                 );
@@ -356,7 +356,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "Name", "TestColumn0" },
                         { "OutputType", "Number" },
                         { "Title", "Test Column 0" },
-                        { "AddColumnOptions", "AddColumnInternalNameHint" },
+                        { "AddColumnInternalNameHint", true },
                         { "AddToDefaultView", true }
                     }
                 );
@@ -451,7 +451,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "Name", "TestColumn0" },
                         { "OutputType", "Text" },
                         { "Title", "Test Column 0" },
-                        { "AddColumnOptions", "AddColumnInternalNameHint" },
+                        { "AddColumnInternalNameHint", true },
                         { "AddToDefaultView", true }
                     }
                 );
@@ -535,7 +535,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "Name", "TestColumn0" },
                         { "OutputType", "Boolean" },
                         { "Title", "Test Column 0" },
-                        { "AddColumnOptions", "AddColumnInternalNameHint" },
+                        { "AddColumnInternalNameHint", true },
                         { "AddToDefaultView", true }
                     }
                 );
@@ -619,7 +619,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "Name", "TestColumn0" },
                         { "OutputType", "Currency" },
                         { "Title", "Test Column 0" },
-                        { "AddColumnOptions", "AddColumnInternalNameHint" },
+                        { "AddColumnInternalNameHint", true },
                         { "AddToDefaultView", true }
                     }
                 );
@@ -705,7 +705,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "Name", "TestColumn0" },
                         { "OutputType", "DateTime" },
                         { "Title", "Test Column 0" },
-                        { "AddColumnOptions", "AddColumnInternalNameHint" },
+                        { "AddColumnInternalNameHint", true },
                         { "AddToDefaultView", true }
                     }
                 );
@@ -790,7 +790,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "Name", "TestColumn0" },
                         { "OutputType", "Number" },
                         { "Title", "Test Column 0" },
-                        { "AddColumnOptions", "AddColumnInternalNameHint" },
+                        { "AddColumnInternalNameHint", true },
                         { "AddToDefaultView", true }
                     }
                 );
@@ -876,7 +876,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "Name", "TestColumn0" },
                         { "OutputType", "Boolean" },
                         { "Title", "Test Column 0" },
-                        { "AddColumnOptions", "AddColumnInternalNameHint" },
+                        { "AddColumnInternalNameHint", true },
                         { "AddToDefaultView", true }
                     }
                 );

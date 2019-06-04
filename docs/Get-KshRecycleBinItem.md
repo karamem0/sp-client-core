@@ -19,12 +19,12 @@ Get-KshRecycleBinItem [-Identity] <RecycleBinItem> [<CommonParameters>]
 
 ### ParamSet2
 ```
-Get-KshRecycleBinItem [-ItemId] <Guid> [<CommonParameters>]
+Get-KshRecycleBinItem [-ItemId] <Guid> [-SecondStage] [<CommonParameters>]
 ```
 
 ### ParamSet3
 ```
-Get-KshRecycleBinItem [-NoEnumerate] [<CommonParameters>]
+Get-KshRecycleBinItem [-SecondStage] [-NoEnumerate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -84,6 +84,21 @@ If specified, suppresses to enumerate objects.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: ParamSet3
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SecondStage
+If specified, retrieves the second stage recycle bin items.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: ParamSet2, ParamSet3
 Aliases:
 
 Required: False
