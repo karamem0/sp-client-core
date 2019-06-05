@@ -56,14 +56,14 @@ Retrieves a file by file ID.
 
 ### Example 2
 ```powershell
-PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 ```
 
 Retrieves a file by file URL.
 
 ### Example 3
 ```powershell
-PS C:\> $file = Get-KshFile -Folder '/sites/japan/hr/Shared%20Documents' -FileName 'Readme.txt'
+PS C:\> $file = Get-KshFile -Folder '/sites/japan/hr/Shared%20Documents' -FileName 'README.txt'
 ```
 
 Retrieves a file by folder and file name.

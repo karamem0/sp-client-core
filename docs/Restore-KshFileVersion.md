@@ -23,7 +23,7 @@ The Restore-KshFileVersion cmdlet creates a new file version from the specified 
 
 ### Example 1
 ```powershell
-PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\> $fileVersion = Get-KshFileVersion -File $file -FileVersionId 1
 PS C:\> Restore-KshFileVersion -File $file -FileVersion $fileVersion
 ```

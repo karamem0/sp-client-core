@@ -23,7 +23,7 @@ The Open-KshFile cmdlet retrives contents of the file.
 
 ### Example 1
 ```powershell
-PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\> $content = Open-KshFile -Identity $file
 ```
 

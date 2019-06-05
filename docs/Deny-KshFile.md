@@ -23,7 +23,7 @@ The Deny-KshFile cmdlet rejects an approval request for the file. The approval s
 
 ### Example 1
 ```powershell
-PS C:\> $file = Get-KshFile -FolderUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+PS C:\> $file = Get-KshFile -FolderUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\> Deny-KshFile -Identity $file
 ```
 

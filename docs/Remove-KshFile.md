@@ -29,7 +29,7 @@ The Remove-KshFile cmdlet removes a file from the parent folder.
 
 ### Example 1
 ```powershell
-PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\> Remove-KshFile -Identity $file
 ```
 
@@ -37,7 +37,7 @@ Removes a file.
 
 ### Example 2
 ```powershell
-PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\> $guid = Remove-KshFile -Identity $file -RecycleBin
 ```
 

@@ -23,7 +23,7 @@ The Approve-KshFile cmdlet an approves approval request for the file. The approv
 
 ### Example 1
 ```powershell
-PS C:\> $file = Get-KshFile -FolderUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+PS C:\> $file = Get-KshFile -FolderUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\> Approve-KshFile -Identity $file
 ```
 

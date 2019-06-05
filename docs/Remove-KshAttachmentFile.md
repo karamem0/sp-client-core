@@ -31,7 +31,7 @@ The Remove-KshAttachmentFile cmdlet removes a attachment file from the list item
 ```powershell
 PS C:\> $list = Get-KshList -ListTitle 'Announcements'
 PS C:\> $listItem = Get-KshListItem -List $list -ItemId 1
-PS C:\> $attachmentFile = Get-KshAttachmentFile -ListItem $listItem -FileName 'Readme.txt'
+PS C:\> $attachmentFile = Get-KshAttachmentFile -ListItem $listItem -FileName 'README.txt'
 PS C:\> Remove-KshAttachmentFile -Identity $attachmentFile
 ```
 
@@ -41,7 +41,7 @@ Removes a attachment file.
 ```powershell
 PS C:\> $list = Get-KshList -ListTitle 'Announcements'
 PS C:\> $listItem = Get-KshListItem -List $list -ItemId 1
-PS C:\> $attachmentFile = Get-KshAttachmentFile -ListItem $listItem -FileName 'Readme.txt'
+PS C:\> $attachmentFile = Get-KshAttachmentFile -ListItem $listItem -FileName 'README.txt'
 PS C:\> Remove-KshAttachmentFile -Identity $attachmentFile -RecycleBin
 ```
 

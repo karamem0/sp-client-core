@@ -23,7 +23,7 @@ The Unpublish-KshFile cmdlet resets an approval request or result for the file. 
 
 ### Example 1
 ```powershell
-PS C:\> $file = Get-KshFile -FolderUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+PS C:\> $file = Get-KshFile -FolderUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\> Unpublish-KshFile -Identity $file
 ```
 

@@ -35,8 +35,8 @@ The Get-KshAttachmentFile cmdlet retrives attachment files of the specified list
 ### Example 1
 ```powershell
 PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> $listItem = Get-KshListItem -List $list -ItemId 1 
-PS C:\> $attachmentFile = Get-KshAttachmentFile -FileName 'Readme.txt'
+PS C:\> $listItem = Get-KshListItem -List $list -ItemId 1
+PS C:\> $attachmentFile = Get-KshAttachmentFile -FileName 'README.txt'
 ```
 
 Retrieves a attachment file by file name.
@@ -44,7 +44,7 @@ Retrieves a attachment file by file name.
 ### Example 2
 ```powershell
 PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> $listItem = Get-KshListItem -List $list -ItemId 1 
+PS C:\> $listItem = Get-KshListItem -List $list -ItemId 1
 PS C:\> $attachmentFiles = Get-KshAttachmentFile -ListItem $listItem
 ```
 

@@ -54,7 +54,7 @@ Retrieves a list item from the folder.
 
 ### Example 2
 ```powershell
-PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\> $listItem = Get-KshListItem -File $file
 ```
 

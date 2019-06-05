@@ -34,7 +34,7 @@ The Remove-KshFileVersion cmdlet removes a file version from the file.
 
 ### Example 1
 ```powershell
-PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\> $fileVersion = Get-KshFileVersion -File $file -FileVersionId 1
 PS C:\> Remove-KshFileVersion -File $file -FileVersion $fileVersion
 ```
@@ -43,7 +43,7 @@ Removes a file version.
 
 ### Example 2
 ```powershell
-PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\> Remove-KshFileVersion -File $file -All
 ```
 
@@ -51,7 +51,7 @@ Removes all file versions.
 
 ### Example 3
 ```powershell
-PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\> $fileVersion = Get-KshFileVersion -File $file -FileVersionId 1
 PS C:\> Remove-KshFileVersion -File $file -FileVersion $fileVersion -RecycleBin
 ```

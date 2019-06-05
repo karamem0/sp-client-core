@@ -34,7 +34,7 @@ The Get-KshFile cmdlet retrives file versions of the specified file.
 
 ### Example 1
 ```powershell
-PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\> $fileVersion = Get-KshFileVersion -File $file -FileVersionId 1
 ```
 
@@ -42,7 +42,7 @@ Retrieves a file version by file version ID.
 
 ### Example 2
 ```powershell
-PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\> $fileVersions = Get-KshFileVersion -File $file
 ```
 

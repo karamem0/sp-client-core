@@ -25,7 +25,7 @@ The Open-KshAttachmentFile cmdlet retrives contents of the attachment file.
 ```powershell
 PS C:\> $list = Get-KshList -ListTitle 'Announcements'
 PS C:\> $listItem = Get-KshListItem -List $list -ItemId 1
-PS C:\> $attachmentFile = Get-KshAttachmentFile -ListItem $listItem -FileName 'Readme.txt'
+PS C:\> $attachmentFile = Get-KshAttachmentFile -ListItem $listItem -FileName 'README.txt'
 PS C:\> $content = Open-KshAttachmentFile -Identity $attachmentFile
 ```
 

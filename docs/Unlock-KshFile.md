@@ -30,7 +30,7 @@ The Unlock-KshFile cmdlet checks in a file or discards a check-out file.
 
 ### Example 1
 ```powershell
-PS C:\> $file = Get-KshFile -FolderUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+PS C:\> $file = Get-KshFile -FolderUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\> Unlock-KshFile -Identity $file -Comment 'Changed e-mail address'
 ```
 
@@ -38,7 +38,7 @@ Checks in the file.
 
 ### Example 2
 ```powershell
-PS C:\> $file = Get-KshFile -FolderUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+PS C:\> $file = Get-KshFile -FolderUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\> Unlock-KshFile -Identity $file -Undo
 ```
 

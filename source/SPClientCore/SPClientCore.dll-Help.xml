@@ -368,7 +368,7 @@ PS C:&gt; Add-KshViewColumn -View $view -Column $column</dev:code>
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; $file = Get-KshFile -FolderUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+        <dev:code>PS C:\&gt; $file = Get-KshFile -FolderUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\&gt; Approve-KshFile -Identity $file</dev:code>
         <dev:remarks>
           <maml:para>Approves an approval request for the file.</maml:para>
@@ -884,7 +884,7 @@ PS C:\&gt; Approve-KshListItem -Identity $listItem</dev:code>
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; $file = Get-KshFile -FolderUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+        <dev:code>PS C:\&gt; $file = Get-KshFile -FolderUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\&gt; Deny-KshFile -Identity $file</dev:code>
         <dev:remarks>
           <maml:para>Rejects an approval request for the file.</maml:para>
@@ -1011,7 +1011,7 @@ PS C:\&gt; Deny-KshFile -Identity $file</dev:code>
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; $folder = Get-KshFile -FolderUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+        <dev:code>PS C:\&gt; $folder = Get-KshFile -FolderUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\&gt; Deny-KshFile -Identity $folder</dev:code>
         <dev:remarks>
           <maml:para>Rejects an approval request for the folder.</maml:para>
@@ -1309,8 +1309,8 @@ PS C:\&gt; Deny-KshListItem -Identity $listItem</dev:code>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; $list = Get-KshList -ListTitle 'Announcements'
-PS C:\&gt; $listItem = Get-KshListItem -List $list -ItemId 1 
-PS C:\&gt; $attachmentFile = Get-KshAttachmentFile -FileName 'Readme.txt'</dev:code>
+PS C:\&gt; $listItem = Get-KshListItem -List $list -ItemId 1
+PS C:\&gt; $attachmentFile = Get-KshAttachmentFile -FileName 'README.txt'</dev:code>
         <dev:remarks>
           <maml:para>Retrieves a attachment file by file name.</maml:para>
         </dev:remarks>
@@ -1318,7 +1318,7 @@ PS C:\&gt; $attachmentFile = Get-KshAttachmentFile -FileName 'Readme.txt'</dev:c
       <command:example>
         <maml:title>-------------------------- Example 2 --------------------------</maml:title>
         <dev:code>PS C:\&gt; $list = Get-KshList -ListTitle 'Announcements'
-PS C:\&gt; $listItem = Get-KshListItem -List $list -ItemId 1 
+PS C:\&gt; $listItem = Get-KshListItem -List $list -ItemId 1
 PS C:\&gt; $attachmentFiles = Get-KshAttachmentFile -ListItem $listItem</dev:code>
         <dev:remarks>
           <maml:para>Retrieves all attachment files.</maml:para>
@@ -2518,14 +2518,14 @@ PS C:\&gt; $siteContentTypeColumns = Get-KshContentTypeColumn -ContentType $site
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 2 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'</dev:code>
+        <dev:code>PS C:\&gt; $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt'</dev:code>
         <dev:remarks>
           <maml:para>Retrieves a file by file URL.</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 3 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; $file = Get-KshFile -Folder '/sites/japan/hr/Shared%20Documents' -FileName 'Readme.txt'</dev:code>
+        <dev:code>PS C:\&gt; $file = Get-KshFile -Folder '/sites/japan/hr/Shared%20Documents' -FileName 'README.txt'</dev:code>
         <dev:remarks>
           <maml:para>Retrieves a file by folder and file name.</maml:para>
         </dev:remarks>
@@ -2700,7 +2700,7 @@ PS C:\&gt; $siteContentTypeColumns = Get-KshContentTypeColumn -ContentType $site
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+        <dev:code>PS C:\&gt; $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\&gt; $fileVersion = Get-KshFileVersion -File $file -FileVersionId 1</dev:code>
         <dev:remarks>
           <maml:para>Retrieves a file version by file version ID.</maml:para>
@@ -2708,7 +2708,7 @@ PS C:\&gt; $fileVersion = Get-KshFileVersion -File $file -FileVersionId 1</dev:c
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 2 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+        <dev:code>PS C:\&gt; $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\&gt; $fileVersions = Get-KshFileVersion -File $file</dev:code>
         <dev:remarks>
           <maml:para>Retrieves all file versions.</maml:para>
@@ -3989,7 +3989,7 @@ PS C:\&gt; $listItem = Get-KshListItem -Folder $folder</dev:code>
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 2 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+        <dev:code>PS C:\&gt; $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\&gt; $listItem = Get-KshListItem -File $file</dev:code>
         <dev:remarks>
           <maml:para>Retrieves a list item from the file.</maml:para>
@@ -6006,7 +6006,7 @@ PS C:\&gt; $viewColumns = Get-KshViewColumn -View $view</dev:code>
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; $file = Get-KshFile -FolderUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+        <dev:code>PS C:\&gt; $file = Get-KshFile -FolderUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\&gt; Lock-KshFile -Identity $file</dev:code>
         <dev:remarks>
           <maml:para>Checks out the file.</maml:para>
@@ -6343,10 +6343,10 @@ PS C:\&gt; Lock-KshTenantSiteCollection -Identity $siteCollection</dev:code>
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
-PS C:\&gt; Move-KshFile -Identity $file -Url '/sites/japan/hr/Shared%20Documents/License.txt'</dev:code>
+        <dev:code>PS C:\&gt; $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt'
+PS C:\&gt; Move-KshFile -Identity $file -Url '/sites/japan/hr/Shared%20Documents/README_old.txt'</dev:code>
         <dev:remarks>
-          <maml:para>Move the view file.</maml:para>
+          <maml:para>Moves a file.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -25146,7 +25146,7 @@ PS C:&gt; New-KshContentTypeColumn -ContentType $siteContentType -Column $siteCo
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; $content = [System.Text.Encoding]::UTF8.GetBytes('Contact: admin@example.onmicrosoft.com')
-PS C:\&gt; $file = New-KshFile -Folder '/sites/japan/hr/Shared%20Documents' -Content $content -FileName 'Readme.txt'</dev:code>
+PS C:\&gt; $file = New-KshFile -Folder '/sites/japan/hr/Shared%20Documents' -Content $content -FileName 'README.txt'</dev:code>
         <dev:remarks>
           <maml:para>Creates a new file.</maml:para>
         </dev:remarks>
@@ -26840,7 +26840,7 @@ PS C:\&gt; $view = New-KshView -List $list -Title 'My Items' -ViewColumns @('Id'
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; $list = Get-KshList -ListTitle 'Announcements'
 PS C:\&gt; $listItem = Get-KshListItem -List $list -ItemId 1
-PS C:\&gt; $attachmentFile = Get-KshAttachmentFile -ListItem $listItem -FileName 'Readme.txt'
+PS C:\&gt; $attachmentFile = Get-KshAttachmentFile -ListItem $listItem -FileName 'README.txt'
 PS C:\&gt; $content = Open-KshAttachmentFile -Identity $attachmentFile</dev:code>
         <dev:remarks>
           <maml:para>Retrieves contents of the attachment file.</maml:para>
@@ -26920,7 +26920,7 @@ PS C:\&gt; $content = Open-KshAttachmentFile -Identity $attachmentFile</dev:code
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+        <dev:code>PS C:\&gt; $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\&gt; $content = Open-KshFile -Identity $file</dev:code>
         <dev:remarks>
           <maml:para>Retrieves contents of the file.</maml:para>
@@ -27047,7 +27047,7 @@ PS C:\&gt; $content = Open-KshFile -Identity $file</dev:code>
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; $file = Get-KshFile -FolderUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+        <dev:code>PS C:\&gt; $file = Get-KshFile -FolderUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\&gt; Publish-KshFile -Identity $file</dev:code>
         <dev:remarks>
           <maml:para>Requests approval for the file.</maml:para>
@@ -27152,7 +27152,7 @@ PS C:\&gt; Publish-KshFile -Identity $file</dev:code>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; $list = Get-KshList -ListTitle 'Announcements'
 PS C:\&gt; $listItem = Get-KshListItem -List $list -ItemId 1
-PS C:\&gt; $attachmentFile = Get-KshAttachmentFile -ListItem $listItem -FileName 'Readme.txt'
+PS C:\&gt; $attachmentFile = Get-KshAttachmentFile -ListItem $listItem -FileName 'README.txt'
 PS C:\&gt; Remove-KshAttachmentFile -Identity $attachmentFile</dev:code>
         <dev:remarks>
           <maml:para>Removes a attachment file.</maml:para>
@@ -27162,7 +27162,7 @@ PS C:\&gt; Remove-KshAttachmentFile -Identity $attachmentFile</dev:code>
         <maml:title>-------------------------- Example 2 --------------------------</maml:title>
         <dev:code>PS C:\&gt; $list = Get-KshList -ListTitle 'Announcements'
 PS C:\&gt; $listItem = Get-KshListItem -List $list -ItemId 1
-PS C:\&gt; $attachmentFile = Get-KshAttachmentFile -ListItem $listItem -FileName 'Readme.txt'
+PS C:\&gt; $attachmentFile = Get-KshAttachmentFile -ListItem $listItem -FileName 'README.txt'
 PS C:\&gt; Remove-KshAttachmentFile -Identity $attachmentFile -RecycleBin</dev:code>
         <dev:remarks>
           <maml:para>Moves a attachment file to the recycle bin.</maml:para>
@@ -27583,7 +27583,7 @@ PS C:&gt; Remove-KshContentTypeColumn -ContentType $siteContentType -ContentType
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+        <dev:code>PS C:\&gt; $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\&gt; Remove-KshFile -Identity $file</dev:code>
         <dev:remarks>
           <maml:para>Removes a file.</maml:para>
@@ -27591,7 +27591,7 @@ PS C:\&gt; Remove-KshFile -Identity $file</dev:code>
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 2 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+        <dev:code>PS C:\&gt; $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\&gt; $guid = Remove-KshFile -Identity $file -RecycleBin</dev:code>
         <dev:remarks>
           <maml:para>Moves a file to the recycle bin.</maml:para>
@@ -27783,7 +27783,7 @@ PS C:\&gt; $guid = Remove-KshFile -Identity $file -RecycleBin</dev:code>
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+        <dev:code>PS C:\&gt; $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\&gt; $fileVersion = Get-KshFileVersion -File $file -FileVersionId 1
 PS C:\&gt; Remove-KshFileVersion -File $file -FileVersion $fileVersion</dev:code>
         <dev:remarks>
@@ -27792,7 +27792,7 @@ PS C:\&gt; Remove-KshFileVersion -File $file -FileVersion $fileVersion</dev:code
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 2 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+        <dev:code>PS C:\&gt; $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\&gt; Remove-KshFileVersion -File $file -All</dev:code>
         <dev:remarks>
           <maml:para>Removes all file versions.</maml:para>
@@ -27800,7 +27800,7 @@ PS C:\&gt; Remove-KshFileVersion -File $file -All</dev:code>
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 3 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+        <dev:code>PS C:\&gt; $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\&gt; $fileVersion = Get-KshFileVersion -File $file -FileVersionId 1
 PS C:\&gt; Remove-KshFileVersion -File $file -FileVersion $fileVersion -RecycleBin</dev:code>
         <dev:remarks>
@@ -29294,7 +29294,7 @@ PS C:&gt; Remove-KshViewColumn -View $view -All</dev:code>
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+        <dev:code>PS C:\&gt; $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\&gt; $fileVersion = Get-KshFileVersion -File $file -FileVersionId 1
 PS C:\&gt; Restore-KshFileVersion -File $file -FileVersion $fileVersion</dev:code>
         <dev:remarks>
@@ -29664,8 +29664,8 @@ PS C:\&gt; Restore-KshTenantDeletedSiteCollection -Identity $siteCollection</dev
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; $list = Get-KshList -ListTitle 'Announcements'
 PS C:\&gt; $listItem = Get-KshListItem -List $list -ItemId 1
-PS C:\&gt; $content = [System.IO.File]::OpenRead("C:\Readme.txt")
-PS C:\&gt; $attachmentFile = Save-KshAttachmentFile -Content $content -FileName 'Readme.txt'</dev:code>
+PS C:\&gt; $content = [System.IO.File]::OpenRead("C:\README.txt")
+PS C:\&gt; $attachmentFile = Save-KshAttachmentFile -Content $content -FileName 'README.txt'</dev:code>
         <dev:remarks>
           <maml:para>Adds a new attachment file.</maml:para>
         </dev:remarks>
@@ -29840,8 +29840,8 @@ PS C:\&gt; $attachmentFile = Save-KshAttachmentFile -Content $content -FileName 
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; $folder = Get-KshFolder -FolderUrl '/sites/japan/hr/Shared%20Documents'
-PS C:\&gt; $content = [System.IO.File]::OpenRead("C:\Readme.txt")
-PS C:\&gt; Save-KshFile -Folder $folder -Content $content -FileName 'Readme.txt'</dev:code>
+PS C:\&gt; $content = [System.IO.File]::OpenRead("C:\README.txt")
+PS C:\&gt; Save-KshFile -Folder $folder -Content $content -FileName 'README.txt'</dev:code>
         <dev:remarks>
           <maml:para>Adds a new file.</maml:para>
         </dev:remarks>
@@ -30562,7 +30562,7 @@ PS C:\&gt; Suspend-KshListItem -Identity $listItem</dev:code>
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; $file = Get-KshFile -FolderUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+        <dev:code>PS C:\&gt; $file = Get-KshFile -FolderUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\&gt; Unlock-KshFile -Identity $file -Comment 'Changed e-mail address'</dev:code>
         <dev:remarks>
           <maml:para>Checks in the file.</maml:para>
@@ -30570,7 +30570,7 @@ PS C:\&gt; Unlock-KshFile -Identity $file -Comment 'Changed e-mail address'</dev
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 2 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; $file = Get-KshFile -FolderUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+        <dev:code>PS C:\&gt; $file = Get-KshFile -FolderUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\&gt; Unlock-KshFile -Identity $file -Undo</dev:code>
         <dev:remarks>
           <maml:para>Discards the check-out file.</maml:para>
@@ -30838,7 +30838,7 @@ PS C:\&gt; Unlock-KshTenantSiteCollection -Identity $siteCollection</dev:code>
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; $file = Get-KshFile -FolderUrl '/sites/japan/hr/Shared%20Documents/Readme.txt'
+        <dev:code>PS C:\&gt; $file = Get-KshFile -FolderUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 PS C:\&gt; Unpublish-KshFile -Identity $file</dev:code>
         <dev:remarks>
           <maml:para>Resets an approval request or result for the file.</maml:para>
