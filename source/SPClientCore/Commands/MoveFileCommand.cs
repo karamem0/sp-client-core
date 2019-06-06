@@ -32,7 +32,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         public File Identity { get; private set; }
 
         [Parameter(Mandatory = true, Position = 1)]
-        public Uri Url { get; private set; }
+        public Uri NewUrl { get; private set; }
 
         [Parameter(Mandatory = false)]
         public SwitchParameter Overwrite { get; private set; }
@@ -49,17 +49,17 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         protected override void ProcessRecordCore()
         {
             var moveOperations = FlagsParser.Parse<MoveOperations>(this.MyInvocation.BoundParameters);
-            if (this.Url.IsAbsoluteUri)
+            if (this.NewUrl.IsAbsoluteUri)
             {
-                this.Service.MoveObject(this.Identity, new Uri(this.Url.AbsolutePath, UriKind.Relative), moveOperations);
+                this.Service.MoveObject(this.Identity, new Uri(this.NewUrl.AbsolutePath, UriKind.Relative), moveOperations);
             }
             else
             {
-                this.Service.MoveObject(this.Identity, this.Url, moveOperations);
+                this.Service.MoveObject(this.Identity, this.NewUrl, moveOperations);
             }
             if (this.PassThru)
             {
-                this.WriteObject(this.Service.GetObject(this.Url));
+                this.WriteObject(this.Service.GetObject(this.NewUrl));
             }
         }
 

@@ -33,7 +33,7 @@ Get-KshView [-List] <List> [-NoEnumerate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshView cmdlet retrives views of the specified list.
+The Get-KshView cmdlet retrieves views of the specified list.
 
 ## EXAMPLES
 

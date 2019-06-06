@@ -60,7 +60,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     new Dictionary<string, object>()
                     {
                         { "Identity", result3.ElementAt(0) },
-                        { "Url", context.AppSettings["Folder1Url"] + "/TestFile9.txt" },
+                        { "NewUrl", context.AppSettings["Folder1Url"] + "/TestFile9.txt" },
                         { "Overwrite", true },
                         { "AllowBrokenThickets", true },
                         { "PassThru", true }

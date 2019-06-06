@@ -1,5 +1,7 @@
 # SPClientCore
 
+[View in English](README.md)
+
 PowerShell Core 向けの SharePoint サービス モジュール
 
 [![Build status](https://ci.appveyor.com/api/projects/status/etlu54thystfp79a?svg=true)](https://ci.appveyor.com/project/karamem0/spclientcore)
@@ -151,6 +153,18 @@ SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant およ
     - [New-KshSite](docs/New-KshSite.md)
     - [Remove-KshSite](docs/Remove-KshSite.md)
     - [Update-KshSite](docs/Update-KshSite.md)
+  - サイト コレクションのアプリ カタログ
+    - [Add-KshSiteCollectionAppCatalog](docs/Add-KshSiteCollectionAppCatalog.md)
+    - [Get-KshSiteCollectionAppCatalog](docs/Get-KshSiteCollectionAppCatalog.md)
+    - [Remove-KshSiteCollectionAppCatalog](docs/Remove-KshSiteCollectionAppCatalog.md)
+  - サイト コレクションの機能
+    - [Add-KshSiteCollectionFeature](docs/Add-KshSiteCollectionFeature.md)
+    - [Get-KshSiteCollectionFeature](docs/Get-KshSiteCollectionFeature.md)
+    - [Remove-KshCollectionSiteFeature](docs/Remove-KshSiteCollectionFeature.md)
+  - サイトの機能
+    - [Add-KshSiteFeature](docs/Add-KshSiteFeature.md)
+    - [Get-KshSiteFeature](docs/Get-KshSiteFeature.md)
+    - [Remove-KshSiteFeature](docs/Remove-KshSiteFeature.md)
   - サイト テンプレート
     - [Get-KshSiteTemplate](docs/Get-KshSiteTemplate.md)
   - ユーザー
@@ -168,6 +182,14 @@ SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant およ
     - [Move-KshViewColumn](docs/Move-KshViewColumn.md)
     - [Remove-KshViewColumn](docs/Remove-KshViewColumn.md)
 - テナント管理
+  - Office 365 CDN
+    - [Get-KshTenantCdnEnabled](docs/Get-KshTenantCdnEnabled.md)
+    - [Set-KshTenantCdnEnabled](docs/Set-KshTenantCdnEnabled.md)
+    - [Add-KshTenantCdnOrigin](docs/Get-KshTenantCdnOrigin.md)
+    - [Get-KshTenantCdnOrigin](docs/Get-KshTenantCdnOrigin.md)
+    - [Remove-KshTenantCdnOrigin](docs/Remove-KshTenantCdnOrigin.md)
+    - [Get-KshTenantCdnPolicy](docs/Get-KshTenantCdnPolicy.md)
+    - [Set-KshTenantCdnPolicy](docs/Get-KshTenantCdnPolicy.md)
   - 削除されたサイト コレクション
     - [Get-KshTenantDeletedSiteCollection](docs/Get-KshTenantDeletedSiteCollection.md)
     - [Remove-KshTenantDeletedSiteCollection](docs/Remove-KshTenantDeletedSiteCollection.md)

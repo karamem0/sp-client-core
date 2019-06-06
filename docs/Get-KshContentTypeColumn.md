@@ -28,7 +28,7 @@ Get-KshContentTypeColumn [-ContentType] <ContentType> [-NoEnumerate] [<CommonPar
 ```
 
 ## DESCRIPTION
-The Get-KshContentTypeColumn cmdlet retrives content type columns of the specified content type.
+The Get-KshContentTypeColumn cmdlet retrieves content type columns of the specified content type.
 
 ## EXAMPLES
 

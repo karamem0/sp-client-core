@@ -78,7 +78,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     {
                         { "View", result3.ElementAt(0) },
                         { "Column", result4.ElementAt(0) },
-                        { "Index", 0 }
+                        { "NewIndex", 0 }
                     }
                 );
                 var result7 = context.Runspace.InvokeCommand(
@@ -155,7 +155,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     {
                         { "View", result3.ElementAt(0) },
                         { "Column", result4.ElementAt(0) },
-                        { "Index", 0 }
+                        { "NewIndex", 0 }
                     }
                 );
                 var result7 = context.Runspace.InvokeCommand(

@@ -17,7 +17,7 @@ Get-KshViewColumn [-View] <View> [-NoEnumerate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshViewColumn cmdlet retrives view columns of the specified view.
+The Get-KshViewColumn cmdlet retrieves view columns of the specified view.
 
 ## EXAMPLES
 

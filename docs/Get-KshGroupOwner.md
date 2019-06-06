@@ -17,7 +17,7 @@ Get-KshGroupOwner [-Group] <Group> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Get-KshGroupOwner cmdlet retrives the user or group that is the owner of the group.
+Get-KshGroupOwner cmdlet retrieves the user or group that is the owner of the group.
 
 ## EXAMPLES
 

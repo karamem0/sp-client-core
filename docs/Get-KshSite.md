@@ -43,7 +43,7 @@ Get-KshSite [-NoEnumerate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshSite cmdlet retrives sub sites of the current site.
+The Get-KshSite cmdlet retrieves sub sites of the current site.
 In order to retrive a site of different site collections, invoke the Connect-KshSite cmdlet.
 
 ## EXAMPLES

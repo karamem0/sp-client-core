@@ -8,7 +8,7 @@ schema: 2.0.0
 # Set-KshGroupOwner
 
 ## SYNOPSIS
-Changes the group owner.
+Changes a group owner.
 
 ## SYNTAX
 
@@ -28,7 +28,7 @@ PS C:\> $owner = Get-KshUser -UserName 'i:0#.f|membership|admin@example.onmicros
 PS C:\> Set-KshGroupOwner -Identity $group -Owner $owner
 ```
 
-Changes the group owner.
+Changes a group owner.
 
 ## PARAMETERS
 

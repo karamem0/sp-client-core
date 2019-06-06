@@ -28,7 +28,7 @@ Get-KshAttachmentFile [-ListItem] <ListItem> [-NoEnumerate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshAttachmentFile cmdlet retrives attachment files of the specified list item.
+The Get-KshAttachmentFile cmdlet retrieves attachment files of the specified list item.
 
 ## EXAMPLES
 

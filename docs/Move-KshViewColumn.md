@@ -14,12 +14,12 @@ Moves a view column.
 
 ### ParamSet1
 ```
-Move-KshViewColumn [-View] <View> [-Column] <Column> [-Index] <Int32> [<CommonParameters>]
+Move-KshViewColumn [-View] <View> [-Column] <Column> [-NewIndex] <Int32> [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-Move-KshViewColumn [-View] <View> [-ColumnName] <String> [-Index] <Int32> [<CommonParameters>]
+Move-KshViewColumn [-View] <View> [-ColumnName] <String> [-NewIndex] <Int32> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -32,7 +32,7 @@ The Move-KshViewColumn cmdlet moves a view column to the specified index.
 PS C:> $list = Get-KshList -ListTitle 'Announcements'
 PS C:> $view = Get-KshView -List $list -ViewTitle 'My Items'
 PS C:> $column = Get-KshColumn -List $list -ColumnName 'Remarks'
-PS C:> Move-KshViewColumn -View $view -Column $column -Index 0
+PS C:> Move-KshViewColumn -View $view -Column $column -NewIndex 0
 ```
 
 Move the view column.
@@ -69,7 +69,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Index
+### -NewIndex
 Specifies the index.
 
 ```yaml

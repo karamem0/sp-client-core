@@ -43,7 +43,7 @@ Get-KshFile [-Folder] <Folder> [-NoEnumerate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshFile cmdlet retrives files of the specified folder.
+The Get-KshFile cmdlet retrieves files of the specified folder.
 
 ## EXAMPLES
 

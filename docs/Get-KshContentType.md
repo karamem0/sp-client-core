@@ -38,7 +38,7 @@ Get-KshContentType [-NoEnumerate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshContentType cmdlet retrives content types of the current site or the specified group.
+The Get-KshContentType cmdlet retrieves content types of the current site or the specified group.
 
 ## EXAMPLES
 

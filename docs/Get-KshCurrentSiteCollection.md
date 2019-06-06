@@ -17,7 +17,7 @@ Get-KshCurrentSiteCollection [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshCurrentSiteCollection cmdlet retrives the current site collection.
+The Get-KshCurrentSiteCollection cmdlet retrieves the current site collection.
 
 ## EXAMPLES
 

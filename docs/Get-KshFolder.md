@@ -43,7 +43,7 @@ Get-KshFolder [-Folder] <Folder> [-NoEnumerate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshFolder cmdlet retrives folders of the specified folder.
+The Get-KshFolder cmdlet retrieves folders of the specified folder.
 
 ## EXAMPLES
 

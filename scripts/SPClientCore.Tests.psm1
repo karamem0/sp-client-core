@@ -59,6 +59,9 @@ function Install-TestSite {
         $appSettings.SiteCollectionGuid = $siteCollection.Id
         $appSettings.SiteCollectionUrl = $siteCollection.ServerRelativeUrl
 
+        Write-Progress -Activity 'Enabling site collection features....' -Status 'Processing'
+        Add-KshSiteCollectionFeature -FeatureId '00bfea71-1c5e-4a24-b310-ba51c3eb7a57'
+
         Write-Progress -Activity 'Removing existing groups...' -Status 'Processing'
         Get-KshGroup | Remove-KshGroup
 
@@ -276,7 +279,7 @@ function Install-TestSite {
 
         Write-Progress -Activity 'Creating columns...' -Status 'Test Column 1'
         $column1 = New-KshColumnText `
-            -AddColumnOptions 8 `
+            -AddColumnInternalNameHint `
             -Name 'TestColumn1' `
             -Title 'Test Column 1'
         $null = New-KshContentTypeColumn `
@@ -288,7 +291,7 @@ function Install-TestSite {
 
         Write-Progress -Activity 'Creating columns...' -Status 'Test Column 2'
         $column2 = New-KshColumnMultiLineText `
-            -AddColumnOptions 8 `
+            -AddColumnInternalNameHint `
             -Name 'TestColumn2' `
             -Title 'Test Column 2'
         $null = New-KshContentTypeColumn `
@@ -300,7 +303,7 @@ function Install-TestSite {
 
         Write-Progress -Activity 'Creating columns...' -Status 'Test Column 3'
         $column3 = New-KshColumnChoice `
-            -AddColumnOptions 8 `
+            -AddColumnInternalNameHint `
             -Choices @('Test Value 1', 'Test Value 2', 'Test Value 3') `
             -Name 'TestColumn3' `
             -Title 'Test Column 3'
@@ -313,7 +316,7 @@ function Install-TestSite {
 
         Write-Progress -Activity 'Creating columns...' -Status 'Test Column 4'
         $column4 = New-KshColumnMultiChoice `
-            -AddColumnOptions 8 `
+            -AddColumnInternalNameHint `
             -Choices @('Test Value 1', 'Test Value 2', 'Test Value 3') `
             -Name 'TestColumn4' `
             -Title 'Test Column 4'
@@ -326,7 +329,7 @@ function Install-TestSite {
 
         Write-Progress -Activity 'Creating columns...' -Status 'Test Column 5'
         $column5 = New-KshColumnNumber `
-            -AddColumnOptions 8 `
+            -AddColumnInternalNameHint `
             -Name 'TestColumn5' `
             -Title 'Test Column 5'
         $null = New-KshContentTypeColumn `
@@ -338,7 +341,7 @@ function Install-TestSite {
 
         Write-Progress -Activity 'Creating columns...' -Status 'Test Column 6'
         $column6 = New-KshColumnCurrency `
-            -AddColumnOptions 8 `
+            -AddColumnInternalNameHint `
             -Name 'TestColumn6' `
             -Title 'Test Column 6'
         $null = New-KshContentTypeColumn `
@@ -350,7 +353,7 @@ function Install-TestSite {
 
         Write-Progress -Activity 'Creating columns...' -Status 'Test Column 7'
         $column7 = New-KshColumnDateTime `
-            -AddColumnOptions 8 `
+            -AddColumnInternalNameHint `
             -Name 'TestColumn7' `
             -Title 'Test Column 7'
         $null = New-KshContentTypeColumn `
@@ -362,7 +365,7 @@ function Install-TestSite {
 
         Write-Progress -Activity 'Creating columns...' -Status 'Test Column 8'
         $column8 = New-KshColumnLookup `
-            -AddColumnOptions 8 `
+            -AddColumnInternalNameHint `
             -LookupColumnName 'Title' `
             -LookupListId $list1.Id `
             -Name 'TestColumn8' `
@@ -376,7 +379,7 @@ function Install-TestSite {
 
         Write-Progress -Activity 'Creating columns...' -Status 'Test Column 9'
         $column9 = New-KshColumnLookup `
-            -AddColumnOptions 8 `
+            -AddColumnInternalNameHint `
             -AllowMultipleValues $true `
             -LookupColumnName 'Title' `
             -LookupListId $list1.Id `
@@ -391,7 +394,7 @@ function Install-TestSite {
 
         Write-Progress -Activity 'Creating fields...' -Status 'Test Column 10'
         $column10 = New-KshColumnBoolean `
-            -AddColumnOptions 8 `
+            -AddColumnInternalNameHint `
             -Name 'TestColumn10' `
             -Title 'Test Column 10'
         $null = New-KshContentTypeColumn `
@@ -403,7 +406,7 @@ function Install-TestSite {
 
         Write-Progress -Activity 'Creating fields...' -Status 'Test Column 11'
         $column11 = New-KshColumnUser `
-            -AddColumnOptions 8 `
+            -AddColumnInternalNameHint `
             -Name 'TestColumn11' `
             -Title 'Test Column 11'
         $null = New-KshContentTypeColumn `
@@ -415,7 +418,7 @@ function Install-TestSite {
 
         Write-Progress -Activity 'Creating fields...' -Status 'Test Column 12'
         $column12 = New-KshColumnUser `
-            -AddColumnOptions 8 `
+            -AddColumnInternalNameHint `
             -AllowMultipleValues $true `
             -Name 'TestColumn12' `
             -Title 'Test Column 12'
@@ -428,7 +431,7 @@ function Install-TestSite {
 
         Write-Progress -Activity 'Creating fields...' -Status 'Test Column 13'
         $column13 = New-KshColumnUrl `
-            -AddColumnOptions 8 `
+            -AddColumnInternalNameHint `
             -Name 'TestColumn13' `
             -Title 'Test Column 13'
         $null = New-KshContentTypeColumn `
@@ -440,7 +443,7 @@ function Install-TestSite {
 
         Write-Progress -Activity 'Creating fields...' -Status 'Test Column 14'
         $column14 = New-KshColumnCalculated `
-            -AddColumnOptions 8 `
+            -AddColumnInternalNameHint `
             -Columns @($column1) `
             -Formula '=TestColumn1' `
             -Name 'TestColumn14' `
@@ -455,7 +458,7 @@ function Install-TestSite {
 
         Write-Progress -Activity 'Creating fields...' -Status 'Test Column 15'
         $column15 = New-KshColumnGeolocation `
-            -AddColumnOptions 8 `
+            -AddColumnInternalNameHint `
             -Name 'TestColumn15' `
             -Title 'Test Column 15'
         $null = New-KshContentTypeColumn `

@@ -29,7 +29,7 @@ Get-KshTenantSiteCollection [-GroupIdDefined] [-IncludePersonalSiteCollection] [
 ```
 
 ## DESCRIPTION
-The Get-KshTenantSiteCollection cmdlet retrives active site collections.
+The Get-KshTenantSiteCollection cmdlet retrieves active site collections.
 This cmdlet can be used only when connected to the SharePoint admin center.
 
 ## EXAMPLES

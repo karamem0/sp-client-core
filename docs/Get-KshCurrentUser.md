@@ -17,7 +17,7 @@ Get-KshCurrentUser [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshCurrentUser cmdlet retrives the current user.
+The Get-KshCurrentUser cmdlet retrieves the current user.
 
 ## EXAMPLES
 

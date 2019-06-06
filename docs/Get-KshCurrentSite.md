@@ -17,7 +17,7 @@ Get-KshCurrentSite [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshCurrentSite cmdlet retrives the current site.
+The Get-KshCurrentSite cmdlet retrieves the current site.
 
 ## EXAMPLES
 

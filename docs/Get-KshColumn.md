@@ -63,7 +63,7 @@ Get-KshColumn [-NoEnumerate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshColumn cmdlet retrives columns of the current site or the specified content type.
+The Get-KshColumn cmdlet retrieves columns of the current site or the specified content type.
 
 ## EXAMPLES
 

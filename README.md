@@ -1,5 +1,7 @@
 # SPClientCore
 
+[日本語で見る](README.ja-jp.md)
+
 SharePoint Service Module for PowerShell Core
 
 [![Build status](https://ci.appveyor.com/api/projects/status/etlu54thystfp79a?svg=true)](https://ci.appveyor.com/project/karamem0/spclientcore)
@@ -146,11 +148,23 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Move-KshRecycleBinItem](docs/Move-KshRecycleBinItem.md)
     - [Remove-KshRecycleBinItem](docs/Remove-KshRecycleBinItem.md)
     - [Restore-KshRecycleBinItem](docs/Remove-KshRecycleBinItem.md)
-  - Site
+  - Sites
     - [Get-KshSite](docs/Get-KshSite.md)
     - [New-KshSite](docs/New-KshSite.md)
     - [Remove-KshSite](docs/Remove-KshSite.md)
     - [Update-KshSite](docs/Update-KshSite.md)
+  - Site Collection App Catalogs
+    - [Add-KshSiteCollectionAppCatalog](docs/Add-KshSiteCollectionAppCatalog.md)
+    - [Get-KshSiteCollectionAppCatalog](docs/Get-KshSiteCollectionAppCatalog.md)
+    - [Remove-KshSiteCollectionAppCatalog](docs/Remove-KshSiteCollectionAppCatalog.md)
+  - Site Collection Features
+    - [Add-KshSiteCollectionFeature](docs/Add-KshSiteCollectionFeature.md)
+    - [Get-KshSiteCollectionFeature](docs/Get-KshSiteCollectionFeature.md)
+    - [Remove-KshCollectionSiteFeature](docs/Remove-KshSiteCollectionFeature.md)
+  - Site Features
+    - [Add-KshSiteFeature](docs/Add-KshSiteFeature.md)
+    - [Get-KshSiteFeature](docs/Get-KshSiteFeature.md)
+    - [Remove-KshSiteFeature](docs/Remove-KshSiteFeature.md)
   - Site Templates
     - [Get-KshSiteTemplate](docs/Get-KshSiteTemplate.md)
   - Users
@@ -168,6 +182,14 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Move-KshViewColumn](docs/Move-KshViewColumn.md)
     - [Remove-KshViewColumn](docs/Remove-KshViewColumn.md)
 - Tenant Administration
+  - Office 365 CDN
+    - [Get-KshTenantCdnEnabled](docs/Get-KshTenantCdnEnabled.md)
+    - [Set-KshTenantCdnEnabled](docs/Set-KshTenantCdnEnabled.md)
+    - [Add-KshTenantCdnOrigin](docs/Get-KshTenantCdnOrigin.md)
+    - [Get-KshTenantCdnOrigin](docs/Get-KshTenantCdnOrigin.md)
+    - [Remove-KshTenantCdnOrigin](docs/Remove-KshTenantCdnOrigin.md)
+    - [Get-KshTenantCdnPolicy](docs/Get-KshTenantCdnPolicy.md)
+    - [Set-KshTenantCdnPolicy](docs/Get-KshTenantCdnPolicy.md)
   - Deleted Site Collections
     - [Get-KshTenantDeletedSiteCollection](docs/Get-KshTenantDeletedSiteCollection.md)
     - [Remove-KshTenantDeletedSiteCollection](docs/Remove-KshTenantDeletedSiteCollection.md)

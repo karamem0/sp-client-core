@@ -43,7 +43,7 @@ Get-KshList [-NoEnumerate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshList cmdlet retrives lists of the current site.
+The Get-KshList cmdlet retrieves lists of the current site.
 
 ## EXAMPLES
 

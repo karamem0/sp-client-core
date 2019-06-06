@@ -33,7 +33,7 @@ Get-KshUser [-NoEnumerate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshUser cmdlet retrives users of the current site.
+The Get-KshUser cmdlet retrieves users of the current site.
 
 ## EXAMPLES
 

@@ -17,7 +17,7 @@ Open-KshAttachmentFile [-Identity] <AttachmentFile> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Open-KshAttachmentFile cmdlet retrives contents of the attachment file.
+The Open-KshAttachmentFile cmdlet retrieves contents of the attachment file.
 
 ## EXAMPLES
 

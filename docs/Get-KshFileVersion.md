@@ -28,7 +28,7 @@ Get-KshFileVersion [-File] <File> [-NoEnumerate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshFile cmdlet retrives file versions of the specified file.
+The Get-KshFile cmdlet retrieves file versions of the specified file.
 
 ## EXAMPLES
 

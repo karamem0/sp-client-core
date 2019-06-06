@@ -28,7 +28,7 @@ Get-KshGroupMember [-Group] <Group> [-NoEnumerate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshUser cmdlet retrives members of the specified group.
+The Get-KshUser cmdlet retrieves members of the specified group.
 
 ## EXAMPLES
 

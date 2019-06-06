@@ -39,17 +39,17 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = true, Position = 2, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = true, Position = 2, ParameterSetName = "ParamSet2")]
-        public int Index { get; private set; }
+        public int NewIndex { get; private set; }
 
         protected override void ProcessRecordCore()
         {
             if (this.ParameterSetName == "ParamSet1")
             {
-                this.Service.MoveObject(this.View, this.Column, this.Index);
+                this.Service.MoveObject(this.View, this.Column, this.NewIndex);
             }
             if (this.ParameterSetName == "ParamSet2")
             {
-                this.Service.MoveObject(this.View, this.ColumnName, this.Index);
+                this.Service.MoveObject(this.View, this.ColumnName, this.NewIndex);
             }
         }
 

@@ -33,7 +33,7 @@ Get-KshGroup [-NoEnumerate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshGroup cmdlet retrives groups of the current site.
+The Get-KshGroup cmdlet retrieves groups of the current site.
 
 ## EXAMPLES
 

@@ -28,7 +28,7 @@ Get-KshListTemplate [-NoEnumerate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshListTemplate cmdlet retrives list templates of the current site.
+The Get-KshListTemplate cmdlet retrieves list templates of the current site.
 
 ## EXAMPLES
 

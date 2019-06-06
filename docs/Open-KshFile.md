@@ -17,7 +17,7 @@ Open-KshFile [-Identity] <File> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Open-KshFile cmdlet retrives contents of the file.
+The Open-KshFile cmdlet retrieves contents of the file.
 
 ## EXAMPLES
 

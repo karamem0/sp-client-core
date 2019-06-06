@@ -24,7 +24,7 @@ Get-KshSiteTemplate [-IncludeCrossLanguage] [[-Lcid] <UInt32>] [-NoEnumerate] [<
 ```
 
 ## DESCRIPTION
-The Get-KshListTemplate cmdlet retrives site templates of the current site.
+The Get-KshListTemplate cmdlet retrieves site templates of the current site.
 
 ## EXAMPLES
 

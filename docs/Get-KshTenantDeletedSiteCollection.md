@@ -28,7 +28,7 @@ Get-KshTenantDeletedSiteCollection [-NoEnumerate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshTenantDeletedSiteCollection cmdlet retrives deleted site collections.
+The Get-KshTenantDeletedSiteCollection cmdlet retrieves deleted site collections.
 This cmdlet can be used only when connected to the SharePoint admin center.
 
 ## EXAMPLES

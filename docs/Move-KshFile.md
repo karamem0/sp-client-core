@@ -13,7 +13,7 @@ Moves a file.
 ## SYNTAX
 
 ```
-Move-KshFile [-Identity] <File> [-Url] <Uri> [-Overwrite] [-AllowBrokenThickets] [-BypassApprovePermission]
+Move-KshFile [-Identity] <File> [-NewUrl] <Uri> [-Overwrite] [-AllowBrokenThickets] [-BypassApprovePermission]
  [-PassThru] [<CommonParameters>]
 ```
 
@@ -25,7 +25,7 @@ The Move-KshFile cmdlet moves a file to the specified URL.
 ### Example 1
 ```powershell
 PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt'
-PS C:\> Move-KshFile -Identity $file -Url '/sites/japan/hr/Shared%20Documents/README_old.txt'
+PS C:\> Move-KshFile -Identity $file -NewUrl '/sites/japan/hr/Shared%20Documents/README_old.txt'
 ```
 
 Moves a file.
@@ -77,6 +77,21 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
+### -NewUrl
+Specifies the URL.
+
+```yaml
+Type: Uri
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Overwrite
 If specified, overwrites the existing file.
 
@@ -102,21 +117,6 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Url
-Specifies the URL.
-
-```yaml
-Type: Uri
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

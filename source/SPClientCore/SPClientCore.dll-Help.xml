@@ -623,7 +623,7 @@ PS C:\&gt; Approve-KshFolder -Identity $folder</dev:code>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; $list = Get-KshList -ListTitle 'Announcements'
-PS C:\&gt; $listItem = Get-KshListItem -List $list -ItemId 1 
+PS C:\&gt; $listItem = Get-KshListItem -List $list -ItemId 1
 PS C:\&gt; Approve-KshListItem -Identity $listItem</dev:code>
         <dev:remarks>
           <maml:para>Approves an approval request for the list item.</maml:para>
@@ -1139,7 +1139,7 @@ PS C:\&gt; Deny-KshFile -Identity $folder</dev:code>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; $list = Get-KshList -ListTitle 'Announcements'
-PS C:\&gt; $listItem = Get-KshListItem -List $list -ItemId 1 
+PS C:\&gt; $listItem = Get-KshListItem -List $list -ItemId 1
 PS C:\&gt; Deny-KshListItem -Identity $listItem</dev:code>
         <dev:remarks>
           <maml:para>Rejects an approval request for the list item.</maml:para>
@@ -1158,7 +1158,7 @@ PS C:\&gt; Deny-KshListItem -Identity $listItem</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshAttachmentFile cmdlet retrives attachment files of the specified list item.</maml:para>
+      <maml:para>The Get-KshAttachmentFile cmdlet retrieves attachment files of the specified list item.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -1337,7 +1337,7 @@ PS C:\&gt; $attachmentFiles = Get-KshAttachmentFile -ListItem $listItem</dev:cod
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshColumn cmdlet retrives columns of the current site or the specified content type.</maml:para>
+      <maml:para>The Get-KshColumn cmdlet retrieves columns of the current site or the specified content type.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -1719,7 +1719,7 @@ PS C:\&gt; $listColumns = Get-KshColumn -List $list</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshContentType cmdlet retrives content types of the current site or the specified group.</maml:para>
+      <maml:para>The Get-KshContentType cmdlet retrieves content types of the current site or the specified group.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -1931,7 +1931,7 @@ PS C:\&gt; $listContentTypes = Get-KshContentType -List $list</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshContentTypeColumn cmdlet retrives content type columns of the specified content type.</maml:para>
+      <maml:para>The Get-KshContentTypeColumn cmdlet retrieves content type columns of the specified content type.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -2118,7 +2118,7 @@ PS C:\&gt; $siteContentTypeColumns = Get-KshContentTypeColumn -ContentType $site
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshCurrentSite cmdlet retrives the current site.</maml:para>
+      <maml:para>The Get-KshCurrentSite cmdlet retrieves the current site.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -2172,7 +2172,7 @@ PS C:\&gt; $siteContentTypeColumns = Get-KshContentTypeColumn -ContentType $site
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshCurrentSiteCollection cmdlet retrives the current site collection.</maml:para>
+      <maml:para>The Get-KshCurrentSiteCollection cmdlet retrieves the current site collection.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -2226,7 +2226,7 @@ PS C:\&gt; $siteContentTypeColumns = Get-KshContentTypeColumn -ContentType $site
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshCurrentUser cmdlet retrives the current user.</maml:para>
+      <maml:para>The Get-KshCurrentUser cmdlet retrieves the current user.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -2280,7 +2280,7 @@ PS C:\&gt; $siteContentTypeColumns = Get-KshContentTypeColumn -ContentType $site
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshFile cmdlet retrives files of the specified folder.</maml:para>
+      <maml:para>The Get-KshFile cmdlet retrieves files of the specified folder.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -2550,7 +2550,7 @@ PS C:\&gt; $siteContentTypeColumns = Get-KshContentTypeColumn -ContentType $site
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshFile cmdlet retrives file versions of the specified file.</maml:para>
+      <maml:para>The Get-KshFile cmdlet retrieves file versions of the specified file.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -2727,7 +2727,7 @@ PS C:\&gt; $fileVersions = Get-KshFileVersion -File $file</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshFolder cmdlet retrives folders of the specified folder.</maml:para>
+      <maml:para>The Get-KshFolder cmdlet retrieves folders of the specified folder.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -2997,7 +2997,7 @@ PS C:\&gt; $fileVersions = Get-KshFileVersion -File $file</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshGroup cmdlet retrives groups of the current site.</maml:para>
+      <maml:para>The Get-KshGroup cmdlet retrieves groups of the current site.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -3170,7 +3170,7 @@ PS C:\&gt; $fileVersions = Get-KshFileVersion -File $file</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshUser cmdlet retrives members of the specified group.</maml:para>
+      <maml:para>The Get-KshUser cmdlet retrieves members of the specified group.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -3375,7 +3375,7 @@ PS C:\&gt; $members = Get-KshGroupMember -Group $group</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>Get-KshGroupOwner cmdlet retrives the user or group that is the owner of the group.</maml:para>
+      <maml:para>Get-KshGroupOwner cmdlet retrieves the user or group that is the owner of the group.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -3454,7 +3454,7 @@ PS C:\&gt; $members = Get-KshGroupMember -Group $group</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshList cmdlet retrives lists of the current site.</maml:para>
+      <maml:para>The Get-KshList cmdlet retrieves lists of the current site.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -3697,7 +3697,7 @@ PS C:\&gt; $list = Get-KshList -ListItem $listItem</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshListItem cmdlet retrives list items of the list.</maml:para>
+      <maml:para>The Get-KshListItem cmdlet retrieves list items of the list.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -4032,7 +4032,7 @@ PS C:\&gt; $listItems = Get-KshListItem -List $list -ViewXml '&lt;View&gt;&lt;Ro
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshListTemplate cmdlet retrives list templates of the current site.</maml:para>
+      <maml:para>The Get-KshListTemplate cmdlet retrieves list templates of the current site.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -4344,7 +4344,7 @@ PS C:\&gt; $listItems = Get-KshListItem -List $list -ViewXml '&lt;View&gt;&lt;Ro
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshSite cmdlet retrives sub sites of the current site. In order to retrive a site of different site collections, invoke the Connect-KshSite cmdlet.</maml:para>
+      <maml:para>The Get-KshSite cmdlet retrieves sub sites of the current site. In order to retrive a site of different site collections, invoke the Connect-KshSite cmdlet.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -4587,7 +4587,7 @@ PS C:\&gt; $site = Get-KshSite -List $list</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshListTemplate cmdlet retrives site templates of the current site.</maml:para>
+      <maml:para>The Get-KshListTemplate cmdlet retrieves site templates of the current site.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -4762,7 +4762,7 @@ PS C:\&gt; $site = Get-KshSite -List $list</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshTenantDeletedSiteCollection cmdlet retrives deleted site collections. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
+      <maml:para>The Get-KshTenantDeletedSiteCollection cmdlet retrieves deleted site collections. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -4901,7 +4901,7 @@ PS C:\&gt; $site = Get-KshSite -List $list</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshTenantSiteCollection cmdlet retrives active site collections. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
+      <maml:para>The Get-KshTenantSiteCollection cmdlet retrieves active site collections. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -5414,7 +5414,7 @@ PS C:\&gt; $site = Get-KshSite -List $list</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshUser cmdlet retrives users of the current site.</maml:para>
+      <maml:para>The Get-KshUser cmdlet retrieves users of the current site.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -5594,7 +5594,7 @@ PS C:\&gt; $site = Get-KshSite -List $list</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshView cmdlet retrives views of the specified list.</maml:para>
+      <maml:para>The Get-KshView cmdlet retrieves views of the specified list.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -5818,7 +5818,7 @@ PS C:\&gt; $views = Get-KshView $list</dev:code>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshViewColumn cmdlet retrives view columns of the specified view.</maml:para>
+      <maml:para>The Get-KshViewColumn cmdlet retrieves view columns of the specified view.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -26777,7 +26777,7 @@ PS C:\&gt; $view = New-KshView -List $list -Title 'My Items' -ViewColumns @('Id'
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Open-KshAttachmentFile cmdlet retrives contents of the attachment file.</maml:para>
+      <maml:para>The Open-KshAttachmentFile cmdlet retrieves contents of the attachment file.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -26859,7 +26859,7 @@ PS C:\&gt; $content = Open-KshAttachmentFile -Identity $attachmentFile</dev:code
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Open-KshFile cmdlet retrives contents of the file.</maml:para>
+      <maml:para>The Open-KshFile cmdlet retrieves contents of the file.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
