@@ -54,7 +54,7 @@ The New-KshColumnMultiLineText cmdlet adds new multi-line text column to the cur
 
 ### Example 1
 ```powershell
-PS C:\> $multiLineTextColumn = New-KshColumnCalculated -Name 'MultiLineTextColumn' -RichText $true -RichTextMode 'FullHtml'
+PS C:\> New-KshColumnCalculated -Name 'MultiLineTextColumn' -RichText $true -RichTextMode 'FullHtml'
 ```
 
 Creates a new column.

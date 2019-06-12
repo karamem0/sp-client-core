@@ -27,8 +27,7 @@ The Update-KshColumnBoolean cmdlet updates properties of the column of boolean t
 
 ### Example 1
 ```powershell
-PS C:\> $booleanColumn = Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af'
-PS C:\> Update-KshColumnBoolean -Identity $booleanColumn -ReadOnly $true
+PS C:\> Update-KshColumnBoolean -Identity (Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af') -ReadOnly $true
 ```
 
 Updates property values of the column.

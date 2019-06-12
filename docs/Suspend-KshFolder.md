@@ -23,8 +23,7 @@ The Suspend-KshFolder cmdlet resets an approval result for the folder. The appro
 
 ### Example 1
 ```powershell
-PS C:\> $folder = Get-KshFolder -FolderUrl '/sites/japan/hr/Shared%20Documents/Templates'
-PS C:\> Suspend-KshFolder -Identity $folder
+PS C:\> Suspend-KshFolder -Identity (Get-KshFolder -FolderUrl '/sites/japan/hr/Shared%20Documents/Templates')
 ```
 
 Resets an approval result for the folder.

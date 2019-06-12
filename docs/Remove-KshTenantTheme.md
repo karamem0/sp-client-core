@@ -24,8 +24,7 @@ This cmdlet can be used only when connected to the SharePoint admin center.
 
 ### Example 1
 ```powershell
-PS C:\> $theme = Get-KshTenantTheme -ThemeName 'Custom Theme'
-PS C:\> Remove-KshTenantTheme -Identity $theme
+PS C:\> Remove-KshTenantTheme -Identity (Get-KshTenantTheme -ThemeName 'Custom Theme')
 ```
 
 Removes a theme.

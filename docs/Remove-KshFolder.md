@@ -29,16 +29,14 @@ The Remove-KshFolder cmdlet removes a folder from the parent folder.
 
 ### Example 1
 ```powershell
-PS C:\> $folder = Get-KshFolder -FolderUrl '/sites/japan/hr/Shared%20Documents/Templates'
-PS C:\> Remove-KshFolder -Identity $folder
+PS C:\> Remove-KshFolder -Identity (Get-KshFolder -FolderUrl '/sites/japan/hr/Shared%20Documents/Templates')
 ```
 
 Removes a folder.
 
 ### Example 2
 ```powershell
-PS C:\> $folder = Get-KshFolder -FolderUrl '/sites/japan/hr/Shared%20Documents/Templates'
-PS C:\> Remove-KshFolder -Identity $folder -RecycleBin
+PS C:\> Remove-KshFolder -Identity (Get-KshFolder -FolderUrl '/sites/japan/hr/Shared%20Documents/Templates')-RecycleBin
 ```
 
 Moves a folder to the recycle bin.

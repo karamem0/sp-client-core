@@ -24,7 +24,7 @@ The New-KshList cmdlet adds a new list to the current site.
 
 ### Example 1
 ```powershell
-PS C:\> $list = New-KshList -Description 'Check the updates' -QuickLaunchOption $true -ServerRelativeUrl 'Lists/Announcements' -TemplateType '' -Title 'Announcements'
+PS C:\> New-KshList -Description 'Check the updates' -QuickLaunchOption $true -ServerRelativeUrl 'Lists/Announcements' -TemplateType 'Announcements' -Title 'Announcements'
 ```
 
 Creates a new list.

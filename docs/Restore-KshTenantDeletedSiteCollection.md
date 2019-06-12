@@ -30,8 +30,7 @@ This cmdlet can be used only when connected to the SharePoint admin center.
 
 ### Example 1
 ```powershell
-PS C:\> $siteCollection = Get-KshTenantDeletedSiteCollection -SiteCollectionUrl 'https://example.sharepoint.com/sites/hub'
-PS C:\> Restore-KshTenantDeletedSiteCollection -Identity $siteCollection
+PS C:\> Restore-KshTenantDeletedSiteCollection -Identity (Get-KshTenantDeletedSiteCollection -SiteCollectionUrl 'https://example.sharepoint.com/sites/hub')
 ```
 
 Restores a deleted site collection.

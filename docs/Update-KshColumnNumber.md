@@ -29,8 +29,7 @@ The Update-KshColumnNumber cmdlet updates properties of the column of number typ
 
 ### Example 1
 ```powershell
-PS C:\> $numberColumn = Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af'
-PS C:\> Update-KshColumnBoolean -Identity $numberColumn -ReadOnly $true
+PS C:\> Update-KshColumnNumber -Identity (Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af') -ReadOnly $true
 ```
 
 Updates property values of the column.

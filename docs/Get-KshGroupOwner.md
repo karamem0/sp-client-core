@@ -23,7 +23,7 @@ Get-KshGroupOwner cmdlet retrieves the user or group that is the owner of the gr
 
 ### Example 1
 ```powershell
-PS C:\> $owner = Get-KshGroupOwner -Group 'Blog Owners'
+PS C:\> Get-KshGroupOwner -Group 'Blog Owners'
 ```
 
 Retrieves a group owner.

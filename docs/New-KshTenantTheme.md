@@ -24,7 +24,7 @@ This cmdlet can be used only when connected to the SharePoint admin center.
 
 ### Example 1
 ```powershell
-PS C:\> $theme = New-KshTenantTheme -Name 'Custom Theme' -Palette @{ "black" = "#000000" }
+PS C:\> New-KshTenantTheme -Name 'Custom Theme' -Palette @{ "black" = "#000000" }
 ```
 
 Creates a new site theme.

@@ -48,7 +48,7 @@ The New-KshColumnUrl cmdlet adds new URL column to the current site or the speci
 
 ### Example 1
 ```powershell
-PS C:\> $urlColumn = New-KshColumnUrl -Format 'Hyperlink' -Name 'UrlColumn'
+PS C:\> New-KshColumnUrl -Format 'Hyperlink' -Name 'UrlColumn'
 ```
 
 Creates a new column.

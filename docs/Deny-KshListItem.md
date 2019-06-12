@@ -23,9 +23,7 @@ The Deny-KshListItem cmdlet rejects an approval request for the list item. The a
 
 ### Example 1
 ```powershell
-PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> $listItem = Get-KshListItem -List $list -ItemId 1 
-PS C:\> Deny-KshListItem -Identity $listItem
+PS C:\> Deny-KshListItem -Identity (Get-KshListItem -List (Get-KshList -ListTitle 'Announcements') -ItemId 1 )
 ```
 
 Rejects an approval request for the list item.

@@ -13,8 +13,8 @@ Updates a content type column.
 ## SYNTAX
 
 ```
-Update-KshContentTypeColumn [-ContentType] <ContentType> [-ContentTypeColumn] <ContentTypeColumn>
- [-Hidden <Boolean>] [-Required <Boolean>] [-PushChanges] [-PassThru] [<CommonParameters>]
+Update-KshContentTypeColumn [-Identity] <ContentTypeColumn> [-Hidden <Boolean>] [-Required <Boolean>]
+ [-PushChanges] [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -24,45 +24,12 @@ The Update-KshContentTypeColumn cmdlet updates properties of the content type co
 
 ### Example 1
 ```powershell
-PS C:> $siteContentType = Get-KshContentType -ContentTypeId '0x0100EFB1758564C77D448177233D1199B912'
-PS C:> $siteColumn = Get-KshColumn -ColumnTitle 'Remarks'
-PS C:> $siteContentTypeColumn = Get-KshContentTypeColumn -ContentType $siteContentType -Column $siteColumn
-PS C:\> Update-KshContentTypeColumn -ContentType $siteContentType -ContentTypeColumn $siteContentTypeColumn -Required $true
+PS C:\> Update-KshContentTypeColumn -ContentTypeColumn Get-KshContentTypeColumn -ContentType (Get-KshContentType -ContentTypeId '0x0100EFB1758564C77D448177233D1199B912') -Column (Get-KshColumn -ColumnTitle 'Remarks') -Required $true
 ```
 
 Updates property values of the content type column.
 
 ## PARAMETERS
-
-### -ContentType
-Specifies the content type.
-
-```yaml
-Type: ContentType
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: 0
-Default value: None
-Accept pipeline input: True (ByValue)
-Accept wildcard characters: False
-```
-
-### -ContentTypeColumn
-Specifies the content type column.
-
-```yaml
-Type: ContentTypeColumn
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -Hidden
 Specifies whether to hide the content type column from users.
@@ -76,6 +43,21 @@ Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Identity
+Specifies the content type column.
+
+```yaml
+Type: ContentTypeColumn
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 0
+Default value: None
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 

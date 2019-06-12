@@ -24,7 +24,7 @@ This is provided for the [Update-KshFolder](Update-KshFolder.md) and [Update-Ksh
 
 ### Example 1
 ```powershell
-PS C:\> $contentTypeId = New-KshContentTypeId -StringValue '0x0107'
+PS C:\> New-KshContentTypeId -StringValue '0x0107'
 ```
 
 Creates a content type ID.

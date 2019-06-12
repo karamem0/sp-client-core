@@ -23,8 +23,7 @@ The Remove-KshUser cmdlet removes a user from the current site.
 
 ### Example 1
 ```powershell
-PS C:\> $user = Get-KshUser -Identity 'i:0#.f|membership|admin@example.onmicrosoft.com'
-PS C:\> Remove-KshUser -Identity $user
+PS C:\> Remove-KshUser -Identity (Get-KshUser -Identity 'i:0#.f|membership|admin@example.onmicrosoft.com')
 ```
 
 Removes a user from the current site.

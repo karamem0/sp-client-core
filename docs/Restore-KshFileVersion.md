@@ -13,7 +13,7 @@ Restore a file version.
 ## SYNTAX
 
 ```
-Restore-KshFileVersion [-File] <File> [-FileVersion] <FileVersion> [<CommonParameters>]
+Restore-KshFileVersion [-Identity] <FileVersion> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -23,31 +23,14 @@ The Restore-KshFileVersion cmdlet creates a new file version from the specified 
 
 ### Example 1
 ```powershell
-PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt'
-PS C:\> $fileVersion = Get-KshFileVersion -File $file -FileVersionId 1
-PS C:\> Restore-KshFileVersion -File $file -FileVersion $fileVersion
+PS C:\> Restore-KshFileVersion -Identity (Get-KshFileVersion -File (Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt') -FileVersionId 1)
 ```
 
 Restores a file version.
 
 ## PARAMETERS
 
-### -File
-Specifies the file.
-
-```yaml
-Type: File
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: 0
-Default value: None
-Accept pipeline input: True (ByValue)
-Accept wildcard characters: False
-```
-
-### -FileVersion
+### -Identity
 Specifies the file version.
 
 ```yaml
@@ -56,9 +39,9 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 

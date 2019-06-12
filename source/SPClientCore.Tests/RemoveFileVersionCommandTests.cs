@@ -79,8 +79,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Remove-KshFileVersion",
                     new Dictionary<string, object>()
                     {
-                        { "File", result4.ElementAt(0) },
-                        { "FileVersion", result5.ElementAt(0) }
+                        { "Identity", result5.ElementAt(0) }
                     }
                 );
                 var result7 = context.Runspace.InvokeCommand(
@@ -213,8 +212,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Remove-KshFileVersion",
                     new Dictionary<string, object>()
                     {
-                        { "File", result4.ElementAt(0) },
-                        { "FileVersion", result5.ElementAt(0) },
+                        { "Identity", result5.ElementAt(0) },
                         { "RecycleBin", true }
                     }
                 );

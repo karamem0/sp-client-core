@@ -27,8 +27,7 @@ The Update-KshColumnUrl cmdlet updates properties of the column of URL type.
 
 ### Example 1
 ```powershell
-PS C:\> $urlColumn = Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af'
-PS C:\> Update-KshColumnBoolean -Identity $urlColumn -ReadOnly $true
+PS C:\> Update-KshColumnUrl -Identity (Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af') -ReadOnly $true
 ```
 
 Updates property values of the column.

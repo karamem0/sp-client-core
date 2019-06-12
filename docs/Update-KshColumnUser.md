@@ -30,8 +30,7 @@ The Update-KshColumnUser cmdlet updates properties of the column of user type.
 
 ### Example 1
 ```powershell
-PS C:\> $userColumn = Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af'
-PS C:\> Update-KshColumnBoolean -Identity $userColumn -ReadOnly $true
+PS C:\> Update-KshColumnUser -Identity (Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af') -ReadOnly $true
 ```
 
 Updates property values of the column.

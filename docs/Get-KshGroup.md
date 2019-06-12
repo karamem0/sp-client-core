@@ -39,21 +39,21 @@ The Get-KshGroup cmdlet retrieves groups of the current site.
 
 ### Example 1
 ```powershell
-PS C:\> $group = Get-KshGroup -GroupId 1
+PS C:\> Get-KshGroup -GroupId 1
 ```
 
 Retrieves a group by group ID.
 
 ### Example 2
 ```powershell
-PS C:\> $group = Get-KshGroup -GroupName 'Blog Owners'
+PS C:\> Get-KshGroup -GroupName 'Blog Owners'
 ```
 
 Retrieves a group by group title.
 
 ### Example 3
 ```powershell
-PS C:\> $groups = Get-KshGroup
+PS C:\> Get-KshGroup
 ```
 
 Retrieves all groups.

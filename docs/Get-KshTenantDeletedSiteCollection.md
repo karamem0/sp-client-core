@@ -35,14 +35,14 @@ This cmdlet can be used only when connected to the SharePoint admin center.
 
 ### Example 1
 ```powershell
-PS C:\> $siteCollection = Get-KshTenantDeletedSiteCollection -SiteCollectionUrl 'https://example.sharepoint.com/sites/hub'
+PS C:\> Get-KshTenantDeletedSiteCollection -SiteCollectionUrl 'https://example.sharepoint.com/sites/hub'
 ```
 
 Retrieves a deleted site collection by site collection URL.
 
 ### Example 2
 ```powershell
-PS C:\> $siteCollections = Get-KshTenantDeletedSiteCollection
+PS C:\> Get-KshTenantDeletedSiteCollection
 ```
 
 Retrieves all deleted site collections.

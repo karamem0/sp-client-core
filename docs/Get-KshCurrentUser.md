@@ -23,7 +23,7 @@ The Get-KshCurrentUser cmdlet retrieves the current user.
 
 ### Example 1
 ```powershell
-PS C:\> $user = Get-KshCurrentUser
+PS C:\> Get-KshCurrentUser
 ```
 
 Retrieves a current user.

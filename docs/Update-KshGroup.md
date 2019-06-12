@@ -26,8 +26,7 @@ The Update-KshGroup cmdlet updates properties of the group.
 
 ### Example 1
 ```powershell
-PS C:\> $group = Get-KshGroup -GroupName 'Blog Owners'
-PS C:\> Update-KshGroup -Identity $group -AllowMembersEditMembership $true
+PS C:\> Update-KshGroup -Identity (Get-KshGroup -GroupName 'Blog Owners') -AllowMembersEditMembership $true
 ```
 
 Updates property values of the group.

@@ -34,7 +34,7 @@ The Get-KshSiteFeature cmdlet retrieves features of the site collection.
 
 ### Example 1
 ```powershell
-PS C:\> $feature = Get-KshSiteFeature -FeatureId '99fe402e-89a0-45aa-9163-85342e865dc8'
+PS C:\> Get-KshSiteFeature -FeatureId '99fe402e-89a0-45aa-9163-85342e865dc8'
 ```
 
 Retrieves a feature by feature ID.

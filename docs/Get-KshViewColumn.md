@@ -23,9 +23,7 @@ The Get-KshViewColumn cmdlet retrieves view columns of the specified view.
 
 ### Example 1
 ```powershell
-PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> $view = Get-KshView -List $list -ViewId 'bae9f925-48d3-47f5-bb07-92927a82df7d'
-PS C:\> $viewColumns = Get-KshViewColumn -View $view
+PS C:\> Get-KshViewColumn -View (Get-KshView -List (Get-KshList -ListTitle 'Announcements') -ViewId 'bae9f925-48d3-47f5-bb07-92927a82df7d')
 ```
 
 Retrieves all view columns.

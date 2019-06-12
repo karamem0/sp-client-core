@@ -28,14 +28,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         }
 
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public File File { get; private set; }
-
-        [Parameter(Mandatory = true, Position = 1)]
-        public FileVersion FileVersion { get; private set; }
+        public FileVersion Identity { get; private set; }
 
         protected override void ProcessRecordCore()
         {
-            this.Service.RestoreObject(this.File, this.FileVersion);
+            this.Service.RestoreObject(this.Identity);
         }
 
     }

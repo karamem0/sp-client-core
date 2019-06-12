@@ -33,8 +33,7 @@ The Update-KshSite cmdlet updates properties of the site.
 
 ### Example 1
 ```powershell
-PS C:\> $site = Get-KshSite -SiteId 'd298e576-6985-4119-9796-050b9f371872'
-PS C:\> Update-KshSite -Identity $site -NoCrawl $true
+PS C:\> Update-KshSite -Identity (Get-KshSite -SiteId 'd298e576-6985-4119-9796-050b9f371872') -NoCrawl $true
 ```
 
 Updates property values of the site.

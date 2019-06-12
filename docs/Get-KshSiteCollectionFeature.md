@@ -34,14 +34,14 @@ The Get-KshSiteCollectionFeature cmdlet retrieves features of the site collectio
 
 ### Example 1
 ```powershell
-PS C:\> $feature = Get-KshSiteCollectionFeature -FeatureId 'b21b090c-c796-4b0f-ac0f-7ef1659c20ae'
+PS C:\> Get-KshSiteCollectionFeature -FeatureId 'b21b090c-c796-4b0f-ac0f-7ef1659c20ae'
 ```
 
 Retrieves a feature by feature ID.
 
 ### Example 2
 ```powershell
-PS C:\> $features = Get-KshSiteCollectionFeature
+PS C:\> Get-KshSiteCollectionFeature
 ```
 
 Retrieves all features.

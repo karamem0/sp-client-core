@@ -28,10 +28,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         }
 
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public ContentType ContentType { get; private set; }
-
-        [Parameter(Mandatory = true, Position = 1)]
-        public ContentTypeColumn ContentTypeColumn { get; private set; }
+        public ContentTypeColumn Identity { get; private set; }
 
         [Parameter(Mandatory = false)]
         public bool Hidden { get; private set; }
@@ -47,10 +44,10 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         protected override void ProcessRecordCore()
         {
-            this.Service.UpdateObject(this.ContentType, this.ContentTypeColumn, this.MyInvocation.BoundParameters, this.PushChanges);
+            this.Service.UpdateObject(this.Identity, this.MyInvocation.BoundParameters, this.PushChanges);
             if (this.PassThru)
             {
-                this.WriteObject(this.Service.GetObject(this.ContentTypeColumn));
+                this.WriteObject(this.Service.GetObject(this.Identity));
             }
         }
 

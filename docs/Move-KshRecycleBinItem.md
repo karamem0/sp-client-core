@@ -29,8 +29,7 @@ The Move-KshRecycleBinItem cmdlet moves a recycle bin item to the second stage.
 
 ### Example 1
 ```powershell
-PS C:\> $recycleBinItem = Get-KshRecycleBinItem -ItemId '77566246-6e0d-4bc7-8360-689b8743265f'
-PS C:\> Move-KshRecycleBinItem -Identity $recycleBinItem
+PS C:\> Move-KshRecycleBinItem -Identity (Get-KshRecycleBinItem -ItemId '77566246-6e0d-4bc7-8360-689b8743265f')
 ```
 
 Moves the recycle bin item to the second stage.

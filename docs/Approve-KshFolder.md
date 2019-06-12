@@ -23,8 +23,7 @@ The Approve-KshFolder cmdlet an approves approval request for the folder. The ap
 
 ### Example 1
 ```powershell
-PS C:\> $folder = Get-KshFolder -FolderUrl '/sites/japan/hr/Shared%20Documents/Templates'
-PS C:\> Approve-KshFolder -Identity $folder
+PS C:\> Approve-KshFolder -Identity (Get-KshFolder -FolderUrl '/sites/japan/hr/Shared%20Documents/Templates')
 ```
 
 Approves an approval request for the folder.

@@ -54,7 +54,7 @@ The New-KshColumnLookup cmdlet adds new lookup column to the current site or the
 
 ### Example 1
 ```powershell
-PS C:\> $lookupColumn = New-KshColumnLookup -ListId 'a01f8e07-290f-4644-9db8-85bb00b85e74' -Name 'LookupColumn' -ShowColumnName 'Title'
+PS C:\> New-KshColumnLookup -ListId 'a01f8e07-290f-4644-9db8-85bb00b85e74' -Name 'LookupColumn' -ShowColumnName 'Title'
 ```
 
 Creates a new column.

@@ -23,9 +23,7 @@ The Suspend-KshListItem cmdlet resets an approval result for the list item. The 
 
 ### Example 1
 ```powershell
-PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> $listItem = Get-KshListItem -List $list -ItemId 1
-PS C:\> Suspend-KshListItem -Identity $listItem
+PS C:\> Suspend-KshListItem -Identity (Get-KshListItem -List (Get-KshList -ListTitle 'Announcements') -ItemId 1)
 ```
 
 Resets an approval result for the list item.

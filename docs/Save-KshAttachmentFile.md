@@ -24,10 +24,7 @@ The Save-KshAttachmentFile cmdlet adds a new attachment file to the list item.
 
 ### Example 1
 ```powershell
-PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> $listItem = Get-KshListItem -List $list -ItemId 1
-PS C:\> $content = [System.IO.File]::OpenRead("C:\README.txt")
-PS C:\> $attachmentFile = Save-KshAttachmentFile -Content $content -FileName 'README.txt'
+PS C:\> Save-KshAttachmentFile -ListItem (Get-KshListItem -List (Get-KshList -ListTitle 'Announcements') -ItemId 1) -Content ([System.IO.File]::OpenRead("C:\README.txt")) -FileName 'README.txt'
 ```
 
 Adds a new attachment file.

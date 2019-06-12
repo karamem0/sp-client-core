@@ -34,19 +34,14 @@ The Remove-KshViewColumn cmdlet removes a column from the specified view.
 
 ### Example 1
 ```powershell
-PS C:> $list = Get-KshList -ListTitle 'Announcements'
-PS C:> $view = Get-KshView -List $list -ViewTitle 'My Items'
-PS C:> $column = Get-KshColumn -List $list -ColumnName 'Remarks'
-PS C:> Remove-KshViewColumn -View $view -Column $column
+PS C:> Remove-KshViewColumn -View (Get-KshView -List (Get-KshList -ListTitle 'Announcements') -ViewTitle 'My Items') -Column (Get-KshColumn -List (Get-KshList -ListTitle 'Announcements') -ColumnName 'Remarks')
 ```
 
 Removes a view column.
 
 ### Example 2
 ```powershell
-PS C:> $list = Get-KshList -ListTitle 'Announcements'
-PS C:> $view = Get-KshView -List $list -ViewTitle 'My Items'
-PS C:> Remove-KshViewColumn -View $view -All
+PS C:> Remove-KshViewColumn -View (Get-KshView -List (Get-KshList -ListTitle 'Announcements') -ViewTitle 'My Items') -All
 ```
 
 Removes all view columns.

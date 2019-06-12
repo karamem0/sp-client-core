@@ -39,28 +39,28 @@ The Get-KshUser cmdlet retrieves users of the current site.
 
 ### Example 1
 ```powershell
-PS C:\> $user = Get-KshUser -UserId 1
+PS C:\> Get-KshUser -UserId 1
 ```
 
 Retrieves a user by user ID.
 
 ### Example 2
 ```powershell
-PS C:\> $user = Get-KshUser -UserName 'i:0#.f|membership|admin@example.onmicrosoft.com'
+PS C:\> Get-KshUser -UserName 'i:0#.f|membership|admin@example.onmicrosoft.com'
 ```
 
 Retrieves a user by user login name.
 
 ### Example 3
 ```powershell
-PS C:\> $user = Get-KshUser -UserName 'admin@example.onmicrosoft.com'
+PS C:\> Get-KshUser -UserName 'admin@example.onmicrosoft.com'
 ```
 
 Retrieves a user by user e-mail address.
 
 ### Example 4
 ```powershell
-PS C:\> $users = Get-KshUser
+PS C:\> Get-KshUser
 ```
 
 Retrieves all users of the current site.

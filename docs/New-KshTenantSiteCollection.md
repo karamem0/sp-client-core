@@ -36,7 +36,7 @@ This cmdlet can be used only when connected to the SharePoint admin center.
 
 ### Example 1
 ```powershell
-PS C:\> $siteCollection = New-KshTenantSiteCollection -Owner 'admin@example.onmicrosoft.com' -Url 'https://example.sharepoint.com/sites/hub'
+PS C:\> New-KshTenantSiteCollection -Owner 'admin@example.onmicrosoft.com' -Url 'https://example.sharepoint.com/sites/hub'
 ```
 
 Creates a new site collection.

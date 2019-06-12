@@ -23,9 +23,7 @@ Get-KshGroupOwner cmdlet changes the user or group that is the owner of the grou
 
 ### Example 1
 ```powershell
-PS C:\> $group = Get-KshGroup -GroupName 'Blog Owners'
-PS C:\> $owner = Get-KshUser -UserName 'i:0#.f|membership|admin@example.onmicrosoft.com'
-PS C:\> Set-KshGroupOwner -Identity $group -Owner $owner
+PS C:\> Set-KshGroupOwner -Identity (Get-KshGroup -GroupName 'Blog Owners') -Owner (Get-KshUser -UserName 'i:0#.f|membership|admin@example.onmicrosoft.com')
 ```
 
 Changes a group owner.

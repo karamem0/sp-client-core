@@ -29,18 +29,14 @@ The Remove-KshListItem cmdlet removes a list item from the parent list.
 
 ### Example 1
 ```powershell
-PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> $listItem = Get-KshListItem -List $list -ItemId 1
-PS C:\> Remove-KshListItem -Identity $listItem
+PS C:\> Remove-KshListItem -Identity (Get-KshListItem -List (Get-KshList -ListTitle 'Announcements') -ItemId 1)
 ```
 
 Removes a list item.
 
 ### Example 2
 ```powershell
-PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> $listItem = Get-KshListItem -List $list -ItemId 1
-PS C:\> $guid = Remove-KshListItem -Identity $listItem -RecycleBin
+PS C:\> Remove-KshListItem -Identity (Get-KshListItem -List (Get-KshList -ListTitle 'Announcements') -ItemId 1) -RecycleBin
 ```
 
 Moves a list item to the recycle bin.

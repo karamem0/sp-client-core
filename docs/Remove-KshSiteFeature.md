@@ -23,8 +23,7 @@ The Remove-KshSiteFeature cmdlet removes a feature from the site.
 
 ### Example 1
 ```powershell
-PS C:\> $feature = Get-KshSiteFeature -FeatureId '99fe402e-89a0-45aa-9163-85342e865dc8'
-PS C:\> Remove-KshSiteFeature -Identity $feature
+PS C:\> Remove-KshSiteFeature -Identity (Get-KshSiteFeature -FeatureId '99fe402e-89a0-45aa-9163-85342e865dc8')
 ```
 
 Removes a feature.

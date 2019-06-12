@@ -39,24 +39,21 @@ The Get-KshView cmdlet retrieves views of the specified list.
 
 ### Example 1
 ```powershell
-PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> $view = Get-KshView -List $list -ViewId 'bae9f925-48d3-47f5-bb07-92927a82df7d'
+PS C:\> Get-KshView -List (Get-KshList -ListTitle 'Announcements') -ViewId 'bae9f925-48d3-47f5-bb07-92927a82df7d'
 ```
 
 Retrieves a view by view ID.
 
 ### Example 2
 ```powershell
-PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> $view = Get-KshView -List $list -ViewTitle 'All Items'
+PS C:\> Get-KshView -List (Get-KshList -ListTitle 'Announcements') -ViewTitle 'All Items'
 ```
 
 Retrieves a view by view title.
 
 ### Example 3
 ```powershell
-PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> $views = Get-KshView $list
+PS C:\> Get-KshView -List (Get-KshList -ListTitle 'Announcements')
 ```
 
 Retrieves all views of the list.

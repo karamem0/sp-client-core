@@ -24,13 +24,13 @@ Get-KshSiteTemplate [-IncludeCrossLanguage] [[-Lcid] <UInt32>] [-NoEnumerate] [<
 ```
 
 ## DESCRIPTION
-The Get-KshListTemplate cmdlet retrieves site templates of the current site.
+The Get-KshSiteTemplate cmdlet retrieves site templates of the current site.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> Find-KshSiteTemplate -DoIncludeCrossLanguage -Lcid 1033
+PS C:\> Get-KshSiteTemplate -DoIncludeCrossLanguage -Lcid 1033
 ```
 
 Retrieves all site templates.

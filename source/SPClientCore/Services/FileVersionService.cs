@@ -7,7 +7,6 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models;
-using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.Services;
 using System;
@@ -27,13 +26,13 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         IEnumerable<FileVersion> GetObjectEnumerable(File fileObject);
 
-        void RecycleObject(File fileObject, FileVersion fileVersionObject);
+        void RecycleObject(FileVersion fileVersionObject);
 
-        void RemoveObject(File fileObject, FileVersion fileVersionObject);
+        void RemoveObject(FileVersion fileVersionObject);
 
         void RemoveObjectAll(File fileObject);
 
-        void RestoreObject(File fileObject, FileVersion fileVersionObject);
+        void RestoreObject(FileVersion fileVersionObject);
 
     }
 
@@ -99,15 +98,15 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 .ToObject<FileVersionEnumerable>(requestPayload.ActionQueryId);
         }
 
-        public void RecycleObject(File fileObject, FileVersion fileVersionObject)
+        public void RecycleObject(FileVersion fileVersionObject)
         {
-            if (fileObject == null)
+            if (fileVersionObject == null)
             {
-                throw new ArgumentNullException(nameof(fileObject));
+                throw new ArgumentNullException(nameof(fileVersionObject));
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(fileObject.ObjectIdentity),
+                new ObjectPathIdentity(string.Join(":", fileVersionObject.ObjectIdentity.Split(':').SkipLast(2))),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathProperty(objectPath1.Id, "Versions"),
@@ -121,15 +120,15 @@ namespace Karamem0.SharePoint.PowerShell.Services
             this.ClientContext.ProcessQuery(requestPayload);
         }
 
-        public void RemoveObject(File fileObject, FileVersion fileVersionObject)
+        public override void RemoveObject(FileVersion fileVersionObject)
         {
-            if (fileObject == null)
+            if (fileVersionObject == null)
             {
-                throw new ArgumentNullException(nameof(fileObject));
+                throw new ArgumentNullException(nameof(fileVersionObject));
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(fileObject.ObjectIdentity),
+                new ObjectPathIdentity(string.Join(":", fileVersionObject.ObjectIdentity.Split(':').SkipLast(2))),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathProperty(objectPath1.Id, "Versions"),
@@ -162,15 +161,15 @@ namespace Karamem0.SharePoint.PowerShell.Services
             this.ClientContext.ProcessQuery(requestPayload);
         }
 
-        public void RestoreObject(File fileObject, FileVersion fileVersionObject)
+        public void RestoreObject(FileVersion fileVersionObject)
         {
-            if (fileObject == null)
+            if (fileVersionObject == null)
             {
-                throw new ArgumentNullException(nameof(fileObject));
+                throw new ArgumentNullException(nameof(fileVersionObject));
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(fileObject.ObjectIdentity),
+                new ObjectPathIdentity(string.Join(":", fileVersionObject.ObjectIdentity.Split(':').SkipLast(2))),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathProperty(objectPath1.Id, "Versions"),

@@ -30,8 +30,7 @@ This cmdlet can be used only when connected to the SharePoint admin center.
 
 ### Example 1
 ```powershell
-PS C:\> $siteCollection = Get-KshTenantSiteCollection -SiteCollectionUrl 'https://example.sharepoint.com/sites/hub'
-PS C:\> Lock-KshTenantSiteCollection -Identity $siteCollection
+PS C:\> Lock-KshTenantSiteCollection -Identity (Get-KshTenantSiteCollection -SiteCollectionUrl 'https://example.sharepoint.com/sites/hub')
 ```
 
 Locks a site collection.

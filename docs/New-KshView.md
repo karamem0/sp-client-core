@@ -25,8 +25,7 @@ The New-KshUser cmdlet adds a new view to the specified list.
 
 ### Example 1
 ```powershell
-PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> $view = New-KshView -List $list -Title 'My Items' -ViewColumns @('Id', 'Title')
+PS C:\> New-KshView -List (Get-KshList -ListTitle 'Announcements') -Title 'My Items' -ViewColumns @('Id', 'Title')
 ```
 
 Creates a new view to the list.

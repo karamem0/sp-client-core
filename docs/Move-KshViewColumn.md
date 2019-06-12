@@ -29,10 +29,7 @@ The Move-KshViewColumn cmdlet moves a view column to the specified index.
 
 ### Example 1
 ```powershell
-PS C:> $list = Get-KshList -ListTitle 'Announcements'
-PS C:> $view = Get-KshView -List $list -ViewTitle 'My Items'
-PS C:> $column = Get-KshColumn -List $list -ColumnName 'Remarks'
-PS C:> Move-KshViewColumn -View $view -Column $column -NewIndex 0
+PS C:> Move-KshViewColumn -View (Get-KshView -List (Get-KshList -ListTitle 'Announcements') -ViewTitle 'My Items') -Column (Get-KshColumn -List (Get-KshList -ListTitle 'Announcements') -ColumnName 'Remarks') -NewIndex 0
 ```
 
 Move the view column.

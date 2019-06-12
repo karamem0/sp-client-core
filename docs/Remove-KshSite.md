@@ -23,8 +23,7 @@ The Remove-KshSite cmdlet removes a site from the current site collection.
 
 ### Example 1
 ```powershell
-PS C:\> $site = Get-KshSite -SiteId 'd298e576-6985-4119-9796-050b9f371872'
-PS C:\> Remove-KshSite $site
+PS C:\> Remove-KshSite (Get-KshSite -SiteId 'd298e576-6985-4119-9796-050b9f371872')
 ```
 
 Removes a site.

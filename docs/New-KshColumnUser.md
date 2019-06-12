@@ -56,7 +56,7 @@ The New-KshColumnUser cmdlet adds new people/group column to the current site or
 
 ### Example 1
 ```powershell
-PS C:\> $userColumn = New-KshColumnUser -Name 'UserColumn' -SelectionMode 'PeopleOnly'
+PS C:\> New-KshColumnUser -Name 'UserColumn' -SelectionMode 'PeopleOnly'
 ```
 
 Creates a new column.

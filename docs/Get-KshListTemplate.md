@@ -34,14 +34,14 @@ The Get-KshListTemplate cmdlet retrieves list templates of the current site.
 
 ### Example 1
 ```powershell
-PS C:\> $listTemplate = Get-KshListTemplate -ListTemplateTitle 'Document Library'
+PS C:\> Get-KshListTemplate -ListTemplateTitle 'Document Library'
 ```
 
 Retrieves a list template by list template title.
 
 ### Example 2
 ```powershell
-PS C:\> $listTemplates = Get-KshListTemplate
+PS C:\> Get-KshListTemplate
 ```
 
 Retrieves all list templates.

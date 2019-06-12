@@ -28,8 +28,7 @@ The Update-KshColumnCurrency cmdlet updates properties of the column of currency
 
 ### Example 1
 ```powershell
-PS C:\> $currencyColumn = Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af'
-PS C:\> Update-KshColumnBoolean -Identity $currencyColumn -ReadOnly $true
+PS C:\> Update-KshColumnCurrency -Identity (Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af') -ReadOnly $true
 ```
 
 Updates property values of the column.

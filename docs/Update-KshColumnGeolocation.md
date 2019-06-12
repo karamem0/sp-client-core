@@ -27,8 +27,7 @@ The Update-KshColumnGeolocation cmdlet updates properties of the column of geolo
 
 ### Example 1
 ```powershell
-PS C:\> $geolocationColumn = Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af'
-PS C:\> Update-KshColumnBoolean -Identity $geolocationColumn -ReadOnly $true
+PS C:\> Update-KshColumnGeolocation -Identity (Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af') -ReadOnly $true
 ```
 
 Updates property values of the column.

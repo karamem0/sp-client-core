@@ -23,7 +23,7 @@ The New-KshGroup cmdlet adds a new group to the current site.
 
 ### Example 1
 ```powershell
-PS C:\> $group = New-KshGroup -Description 'The members can manage Blog posts.' -Title 'Blog Owners'
+PS C:\> New-KshGroup -Description 'The members can manage Blog posts.' -Title 'Blog Owners'
 ```
 
 Creates a new group.

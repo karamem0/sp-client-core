@@ -34,15 +34,14 @@ The Get-KshSiteCollectionFeature cmdlet retrieves site collection app catalogs i
 
 ### Example 1
 ```powershell
-PS C:\> $siteCollection = Get-KshCurrentSiteCollection
-PS C:\> $siteCollectionAppCatalog = Get-KshSiteCollectionAppCatalog -SiteCollection $siteCollection
+PS C:\> Get-KshSiteCollectionAppCatalog -SiteCollection (Get-KshCurrentSiteCollection)
 ```
 
 Retrieves a site collection app catalog.
 
 ### Example 2
 ```powershell
-PS C:\> $siteCollectionAppCatalogs = Get-KshSiteCollectionAppCatalog
+PS C:\> Get-KshSiteCollectionAppCatalog
 ```
 
 Retrieves all site collection app catalogs.

@@ -23,19 +23,14 @@ The New-KshContentTypeColumn cmdlet adds a new content type column to the specif
 
 ### Example 1
 ```powershell
-PS C:> $list = New-KshContentTypeColumn -ListTitle 'Announcements'
-PS C:> $listContentType = $list | Get-KshContentType -ContentType '0x0100EFB1758564C77D448177233D1199B912000A210B1C5CBC634C849328008B1CC306'
-PS C:> $listColumn = $list | Get-KshColumn -ColumnTitle 'Remarks'
-PS C:> New-KshContentTypeColumn -ContentType $listContentType -Column $listColumn
+PS C:> New-KshContentTypeColumn -ContentType (Get-KshContentType -List (Get-KshList -ListTitle 'Announcements') -ContentType '0x0100EFB1758564C77D448177233D1199B912000A210B1C5CBC634C849328008B1CC306') -Column (Get-KshColumn -List (Get-KshList -ListTitle 'Announcements') -ColumnTitle 'Remarks')
 ```
 
 Creates a new content type column to the list content type.
 
 ### Example 2
 ```powershell
-PS C:> $siteContentType = Get-KshContentType -ContentTypeId '0x0100EFB1758564C77D448177233D1199B912'
-PS C:> $siteColumn = Get-KshColumn -ColumnTitle 'Remarks'
-PS C:> New-KshContentTypeColumn -ContentType $siteContentType -Column $siteColumn -PushChanges
+PS C:> New-KshContentTypeColumn -ContentType (Get-KshContentType -ContentTypeId '0x0100EFB1758564C77D448177233D1199B912') -Column (Get-KshColumn -ColumnTitle 'Remarks') -PushChanges
 ```
 
 Creates a new content type column to the site content type.

@@ -23,9 +23,7 @@ The Approve-KshListItem cmdlet approves an approval request for the list item. T
 
 ### Example 1
 ```powershell
-PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> $listItem = Get-KshListItem -List $list -ItemId 1 
-PS C:\> Approve-KshListItem -Identity $listItem
+PS C:\> Approve-KshListItem -Identity (Get-KshListItem -List (Get-KshList -ListTitle 'Announcements') -ItemId 1)
 ```
 
 Approves an approval request for the list item.

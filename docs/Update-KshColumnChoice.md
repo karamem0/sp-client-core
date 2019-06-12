@@ -28,8 +28,7 @@ The Update-KshColumnChoice cmdlet updates properties of the column of choice typ
 
 ### Example 1
 ```powershell
-PS C:\> $choiceColumn = Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af'
-PS C:\> Update-KshColumnBoolean -Identity $choiceColumn -ReadOnly $true
+PS C:\> Update-KshColumnChoice -Identity (Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af') -ReadOnly $true
 ```
 
 Updates property values of the column.

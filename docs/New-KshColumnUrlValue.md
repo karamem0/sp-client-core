@@ -24,7 +24,7 @@ This is provided for the Add-KshListItem cmdlet and Update-KshListItem cmdlet.
 
 ### Example 1
 ```powershell
-PS C:\> $columnValue = New-KshColumnUrlValue -Url 'https://www.example.com'
+PS C:\> New-KshColumnUrlValue -Url 'https://www.example.com'
 ```
 
 Creates a new URL column value.

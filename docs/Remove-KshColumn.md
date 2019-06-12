@@ -23,17 +23,14 @@ The Remove-KshColumn cmdlet removes a column from the current site or the specif
 
 ### Example 1
 ```powershell
-PS C:\> $column = Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af'
-PS C:\> Remove-KshColumn -Identity $column
+PS C:\> Remove-KshColumn -Identity (Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af')
 ```
 
 Removes a column from the current site.
 
 ### Example 2
 ```powershell
-PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> $column = Get-KshColumn -List $list -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af'
-PS C:\> Remove-KshColumn -Identity $column
+PS C:\> Remove-KshColumn -Identity (Get-KshColumn -List (Get-KshList -ListTitle 'Announcements') -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af')
 ```
 
 Removes a column from the list.

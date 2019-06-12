@@ -23,9 +23,7 @@ The Update-KshListItem cmdlet updates column values of the list item.
 
 ### Example 1
 ```powershell
-PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> $listItem = Get-KshListItem -List $list -ItemId 1
-PS C:\> Update-KshListItem -Identity $listItem -Value @{ 'Title' = 'A Happy New Year' }
+PS C:\> Update-KshListItem -Identity (Get-KshListItem -List (Get-KshList -ListTitle 'Announcements') -ItemId 1) -Value @{ 'Title' = 'A Happy New Year' }
 ```
 
 Updates column values of the list item.

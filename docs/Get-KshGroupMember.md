@@ -34,32 +34,28 @@ The Get-KshUser cmdlet retrieves members of the specified group.
 
 ### Example 1
 ```powershell
-PS C:\> $group = Get-KshGroup -GroupName 'Blog Owners'
-PS C:\> $member = Get-KshGroupMember -Group $group -MemberId 1
+PS C:\> Get-KshGroupMember -Group (Get-KshGroup -GroupName 'Blog Owners') -MemberId 1
 ```
 
 Retrieves a group member by member ID.
 
 ### Example 2
 ```powershell
-PS C:\> $group = Get-KshGroup -GroupName 'Blog Owners'
-PS C:\> $member = Get-KshGroupMember -Group $group -MemberName 'i:0#.f|membership|admin@example.onmicrosoft.com'
+PS C:\> Get-KshGroupMember -Group (Get-KshGroup -GroupName 'Blog Owners') -MemberName 'i:0#.f|membership|admin@example.onmicrosoft.com'
 ```
 
 Retrieves a group member by member login name.
 
 ### Example 3
 ```powershell
-PS C:\> $group = Get-KshGroup -GroupName 'Blog Owners'
-PS C:\> $member = Get-KshGroupMember -Group $group -MemberName 'admin@example.onmicrosoft.com'
+PS C:\> Get-KshGroupMember -Group (Get-KshGroup -GroupName 'Blog Owners') -MemberName 'admin@example.onmicrosoft.com'
 ```
 
 Retrieves a group member by member e-mail address.
 
 ### Example 4
 ```powershell
-PS C:\> $group = Get-KshGroup -GroupName 'Blog Owners'
-PS C:\> $members = Get-KshGroupMember -Group $group
+PS C:\> Get-KshGroupMember -Group (Get-KshGroup -GroupName 'Blog Owners')
 ```
 
 Retrieves all users of the group.

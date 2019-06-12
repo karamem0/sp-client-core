@@ -49,28 +49,28 @@ The Get-KshFolder cmdlet retrieves folders of the specified folder.
 
 ### Example 2
 ```powershell
-PS C:\> $folder = Get-KshFolder -FolderId 'ca511d76-828d-4c86-a16c-c3a544eef5da'
+PS C:\> Get-KshFolder -FolderId 'ca511d76-828d-4c86-a16c-c3a544eef5da'
 ```
 
 Retrieves a folder by folder ID.
 
 ### Example 3
 ```powershell
-PS C:\> $folder = Get-KshFolder -FolderUrl '/sites/japan/hr/Shared%20Documents/Templates'
+PS C:\> Get-KshFolder -FolderUrl '/sites/japan/hr/Shared%20Documents/Templates'
 ```
 
 Retrieves a folder by folder URL.
 
 ### Example 4
 ```powershell
-PS C:\> $folder = Get-KshFolder -Folder '/sites/japan/hr/Shared%20Documents' -FolderName 'Templates'
+PS C:\> Get-KshFolder -Folder '/sites/japan/hr/Shared%20Documents' -FolderName 'Templates'
 ```
 
 Retrieves a folder by folder and folder name.
 
 ### Example 5
 ```powershell
-PS C:\> $folders = Get-KshFolder -Folder '/sites/japan/hr/Shared%20Documents'
+PS C:\> Get-KshFolder -Folder '/sites/japan/hr/Shared%20Documents'
 ```
 
 Retrieves all folders.

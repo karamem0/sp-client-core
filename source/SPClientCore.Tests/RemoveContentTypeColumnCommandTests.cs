@@ -74,8 +74,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Remove-KshContentTypeColumn",
                     new Dictionary<string, object>()
                     {
-                        { "ContentType", result3.ElementAt(0) },
-                        { "ContentTypeColumn", result5.ElementAt(0) }
+                        { "Identity", result5.ElementAt(0) }
                     }
                 );
                 var result7 = context.Runspace.InvokeCommand(
@@ -154,8 +153,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Remove-KshContentTypeColumn",
                     new Dictionary<string, object>()
                     {
-                        { "ContentType", result3.ElementAt(0) },
-                        { "ContentTypeColumn", result5.ElementAt(0) },
+                        { "Identity", result5.ElementAt(0) },
                         { "PushChanges", true }
                     }
                 );

@@ -18,7 +18,7 @@ Add-KshSiteCollectionFeature -FeatureId <Guid> [-Force <Boolean>] [-Scope <Featu
 ```
 
 ## DESCRIPTION
-The Add-KshSiteFeature cmdlet adds a feature to the site collection.
+The Add-KshSiteCollectionFeature cmdlet adds a feature to the site collection.
 
 ## EXAMPLES
 

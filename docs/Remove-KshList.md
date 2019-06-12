@@ -29,16 +29,14 @@ The Remove-KshList cmdlet removes a list from the current site.
 
 ### Example 1
 ```powershell
-PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> Remove-KshList -Identity $list
+PS C:\> Remove-KshList -Identity (Get-KshList -ListTitle 'Announcements')
 ```
 
 Removes a list.
 
 ### Example 2
 ```powershell
-PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> $guid = Remove-KshList -Identity $list -RecycleBin
+PS C:\> Remove-KshList -Identity (Get-KshList -ListTitle 'Announcements') -RecycleBin
 ```
 
 Moves a list to the recycle bin.

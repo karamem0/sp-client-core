@@ -23,17 +23,14 @@ The Remove-KshContentType cmdlet removes a content type from the current site or
 
 ### Example 1
 ```powershell
-PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> $listContentType = Get-KshContentType -List $list -ContentTypeId '0x0100EFB1758564C77D448177233D1199B912000A210B1C5CBC634C849328008B1CC306'
-PS C:\> Remove-KshContentType -Identity $listContentType
+PS C:\> Remove-KshContentType -Identity (Get-KshContentType -List (Get-KshList -ListTitle 'Announcements') -ContentTypeId '0x0100EFB1758564C77D448177233D1199B912000A210B1C5CBC634C849328008B1CC306')
 ```
 
 Removes a content type from the list.
 
 ### Example 2
 ```powershell
-PS C:\> $siteContentType = Get-KshContentType -ContentTypeId '0x0100EFB1758564C77D448177233D1199B912'
-PS C:\> Remove-KshContentType -Identity $siteContentType
+PS C:\> Remove-KshContentType -Identity (Get-KshContentType -ContentTypeId '0x0100EFB1758564C77D448177233D1199B912')
 ```
 
 Removes a content type from the current site.

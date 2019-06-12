@@ -110,6 +110,30 @@
             </TableControl>
         </View>
         <View>
+            <Name>Karamem0.SharePoint.PowerShell.Models.Feature</Name>
+            <ViewSelectedBy>
+                <TypeName>Karamem0.SharePoint.PowerShell.Models.Feature</TypeName>
+            </ViewSelectedBy>
+            <TableControl>
+                <TableHeaders>
+                    <TableColumnHeader />
+                    <TableColumnHeader />
+                </TableHeaders>
+                <TableRowEntries>
+                    <TableRowEntry>
+                        <TableColumnItems>
+                            <TableColumnItem>
+                                <PropertyName>DefinitionId</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>DisplayName</PropertyName>
+                            </TableColumnItem>
+                        </TableColumnItems>
+                    </TableRowEntry>
+                </TableRowEntries>
+            </TableControl>
+        </View>
+        <View>
             <Name>Karamem0.SharePoint.PowerShell.Models.File</Name>
             <ViewSelectedBy>
                 <TypeName>Karamem0.SharePoint.PowerShell.Models.File</TypeName>
@@ -385,6 +409,30 @@
                             </TableColumnItem>
                             <TableColumnItem>
                                 <PropertyName>Url</PropertyName>
+                            </TableColumnItem>
+                        </TableColumnItems>
+                    </TableRowEntry>
+                </TableRowEntries>
+            </TableControl>
+        </View>
+        <View>
+            <Name>Karamem0.SharePoint.PowerShell.Models.SiteCollectionAppCatalog</Name>
+            <ViewSelectedBy>
+                <TypeName>Karamem0.SharePoint.PowerShell.Models.SiteCollectionAppCatalog</TypeName>
+            </ViewSelectedBy>
+            <TableControl>
+                <TableHeaders>
+                    <TableColumnHeader />
+                    <TableColumnHeader />
+                </TableHeaders>
+                <TableRowEntries>
+                    <TableRowEntry>
+                        <TableColumnItems>
+                            <TableColumnItem>
+                                <PropertyName>AbsoluteUrl</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>SiteCollectionId</PropertyName>
                             </TableColumnItem>
                         </TableColumnItems>
                     </TableRowEntry>

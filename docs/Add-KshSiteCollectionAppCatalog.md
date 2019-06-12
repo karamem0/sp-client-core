@@ -34,8 +34,7 @@ The Add-KshSiteCollectionAppCatalog cmdlet adds a site collection app catalog to
 
 ### Example 1
 ```powershell
-PS C:\> $siteCollection = Get-KshCurrentSiteCollection
-PS C:\> Add-KshSiteCollectionAppCatalog -SiteCollection $siteCollection
+PS C:\> Add-KshSiteCollectionAppCatalog -SiteCollection (Get-KshCurrentSiteCollection)
 ```
 
 Adds a site collection app catalog.

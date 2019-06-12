@@ -24,8 +24,7 @@ In order to change the current site to a different site collections, invoke the 
 
 ### Example 1
 ```powershell
-PS C:\> $site = Get-KshSite -SiteId 'd298e576-6985-4119-9796-050b9f371872'
-PS C:\> Select-KshSite -Identity $site
+PS C:\> Select-KshSite -Identity (Get-KshSite -SiteId 'd298e576-6985-4119-9796-050b9f371872')
 ```
 
 Selects the site.

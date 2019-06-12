@@ -23,15 +23,14 @@ Remove-KshTenantSiteCollection [-Identity] <TenantSiteCollection> [-NoWait] [<Co
 ```
 
 ## DESCRIPTION
-The Remove-KshTenantDeletedSiteCollection cmdlet removes a deleted site collection.
+The Remove-KshTenantSiteCollection cmdlet removes a deleted site collection.
 This cmdlet can be used only when connected to the SharePoint admin center.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> $siteCollection = Get-KshTenantSiteCollection -SiteCollectionUrl 'https://example.sharepoint.com/sites/hub'
-PS C:\> Remove-KshTenantDeletedSiteCollection -Identity $siteCollection
+PS C:\> Remove-KshTenantSiteCollection -Identity (Get-KshTenantSiteCollection -SiteCollectionUrl 'https://example.sharepoint.com/sites/hub')
 ```
 
 Removes a site collection.

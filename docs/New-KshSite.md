@@ -24,7 +24,7 @@ The New-KshSite cmdlet adds a new site to the current site.
 
 ### Example 1
 ```powershell
-PS C:\> $site = New-KshSite -Description 'Everyday happiness' -LCID 1033 -Title 'Blog' -Url 'blog' -UseSamePermissionsAsParentSite $true -Template 'BLOG#0'
+PS C:\> New-KshSite -Description 'Everyday happiness' -LCID 1033 -Title 'Blog' -Url 'blog' -UseSamePermissionsAsParentSite $true -Template 'BLOG#0'
 ```
 
 Creates a new site.

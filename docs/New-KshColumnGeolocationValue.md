@@ -25,7 +25,7 @@ This is provided for the Add-KshListItem cmdlet and Update-KshListItem cmdlet.
 
 ### Example 1
 ```powershell
-PS C:\> $columnValue = New-KshColumnGeolocationValue -Latitude 10 -Longitude 10
+PS C:\> New-KshColumnGeolocationValue -Latitude 10 -Longitude 10
 ```
 
 Creates a new Geolocation column value.

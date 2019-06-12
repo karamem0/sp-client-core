@@ -35,14 +35,14 @@ This cmdlet can be used only when connected to the SharePoint admin center.
 
 ### Example 1
 ```powershell
-PS C:\> $themes = Get-KshTenantSiteTemplate
+PS C:\> Get-KshTenantSiteTemplate
 ```
 
 Retrieves all themes.
 
 ### Example 1
 ```powershell
-PS C:\> $theme = Get-KshTenantSiteTemplate -ThemeName 'Custom Theme'
+PS C:\> Get-KshTenantSiteTemplate -ThemeName 'Custom Theme'
 ```
 
 Retrieves a theme by theme name.

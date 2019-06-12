@@ -23,9 +23,7 @@ The Remove-KshSiteCollectionAppCatalog cmdlet removes a site collection app cata
 
 ### Example 1
 ```powershell
-PS C:\> $siteCollection = Get-KshCurrentSiteCollection
-PS C:\> $siteCollectionAppCatalog = Get-KshSiteCollectionAppCatalog -SiteCollection $siteCollection
-PS C:\> Remove-KshSiteCollectionAppCatalog -Identity $siteCollectionAppCatalog
+PS C:\> Remove-KshSiteCollectionAppCatalog -Identity (Get-KshSiteCollectionAppCatalog -SiteCollection (Get-KshCurrentSiteCollection))
 ```
 
 Removes a site collection app catalog.

@@ -30,8 +30,7 @@ This cmdlet can be used only when connected to the SharePoint admin center.
 
 ### Example 1
 ```powershell
-PS C:\> $siteCollection = Get-KshTenantDeletedSiteCollection -SiteCollectionUrl 'https://example.sharepoint.com/sites/hub'
-PS C:\> Remove-KshTenantDeletedSiteCollection -Identity $siteCollection
+PS C:\> Remove-KshTenantDeletedSiteCollection -Identity (Get-KshTenantDeletedSiteCollection -SiteCollectionUrl 'https://example.sharepoint.com/sites/hub')
 ```
 
 Removes a deleted site collection.

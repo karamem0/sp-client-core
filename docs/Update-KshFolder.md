@@ -24,8 +24,7 @@ The Update-KshFolder cmdlet updates properties of the folder.
 
 ### Example 1
 ```powershell
-PS C:\> $folder = Get-KshFolder -FolderUrl '/sites/japan/hr/Shared%20Documents/Templates'
-PS C:\> Update-KshFolder -Identity $folder -WelcomePage 'AllPages.aspx'
+PS C:\> Update-KshFolder -Identity (Get-KshFolder -FolderUrl '/sites/japan/hr/Shared%20Documents/Templates') -WelcomePage 'AllPages.aspx'
 ```
 
 Updates property values of the folder.

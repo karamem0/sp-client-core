@@ -23,7 +23,7 @@ The Get-KshCurrentSiteCollection cmdlet retrieves the current site collection.
 
 ### Example 1
 ```powershell
-PS C:\> $siteCollection = Get-KshCurrentSiteCollection
+PS C:\> Get-KshCurrentSiteCollection
 ```
 
 Retrieves a current site collection.

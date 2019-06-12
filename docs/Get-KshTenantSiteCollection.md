@@ -36,35 +36,35 @@ This cmdlet can be used only when connected to the SharePoint admin center.
 
 ### Example 1
 ```powershell
-PS C:\> $siteCollection = Get-KshTenantSiteCollection -SiteCollectionUrl 'https://example.sharepoint.com/sites/hub'
+PS C:\> Get-KshTenantSiteCollection -SiteCollectionUrl 'https://example.sharepoint.com/sites/hub'
 ```
 
 Retrieves a site collection by URL.
 
 ### Example 2
 ```powershell
-PS C:\> $siteCollections = Get-KshTenantSiteCollection
+PS C:\> Get-KshTenantSiteCollection
 ```
 
 Retrieves site collections excludes personal site collections.
 
 ### Example 3
 ```powershell
-PS C:\> $siteCollections = Get-KshTenantSiteCollection -GroupIdDefined
+PS C:\> Get-KshTenantSiteCollection -GroupIdDefined
 ```
 
 Retrieves Office 365 Groups site collections.
 
 ### Example 4
 ```powershell
-PS C:\> $siteCollections = Get-KshTenantSiteCollection -IncludePersonalSiteCollection
+PS C:\> Get-KshTenantSiteCollection -IncludePersonalSiteCollection
 ```
 
 Retrieves site collections includes personal site collections.
 
 ### Example 5
 ```powershell
-PS C:\> $siteCollections = Get-KshTenantSiteCollection -Template 'STS#0'
+PS C:\> Get-KshTenantSiteCollection -Template 'STS#0'
 ```
 
 Retrieves team site (classic experience) site collections.

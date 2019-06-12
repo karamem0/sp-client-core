@@ -23,8 +23,7 @@ The Remove-KshGroup cmdlet removes a group from the current site.
 
 ### Example 1
 ```powershell
-PS C:\> $group = Get-KshGroup -GroupName 'Blog Owners'
-PS C:\> Remove-KshGroup -Identity $group
+PS C:\> Remove-KshGroup -Identity (Get-KshGroup -GroupName 'Blog Owners')
 ```
 
 Removes a group.

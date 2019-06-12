@@ -28,9 +28,9 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         IEnumerable<ContentTypeColumn> GetObjectEnumerable(ContentType contentTypeObject);
 
-        void UpdateObject(ContentType contentTypeObject, ContentTypeColumn contentTypeColumnObject, IReadOnlyDictionary<string, object> modificationInformation, bool pushChanges);
+        void UpdateObject(ContentTypeColumn contentTypeColumnObject, IReadOnlyDictionary<string, object> modificationInformation, bool pushChanges);
 
-        void RemoveObject(ContentType contentTypeObject, ContentTypeColumn contentTypeColumnObject, bool pushChanges);
+        void RemoveObject(ContentTypeColumn contentTypeColumnObject, bool pushChanges);
 
     }
 
@@ -134,19 +134,15 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 .ToObject<ContentTypeColumnEnumerable>(requestPayload.ActionQueryId);
         }
 
-        public void UpdateObject(ContentType contentTypeObject, ContentTypeColumn contentTypeColumnObject, IReadOnlyDictionary<string, object> modificationInformation, bool pushChanges)
+        public void UpdateObject(ContentTypeColumn contentTypeColumnObject, IReadOnlyDictionary<string, object> modificationInformation, bool pushChanges)
         {
-            if (contentTypeObject == null)
-            {
-                throw new ArgumentNullException(nameof(contentTypeObject));
-            }
             if (contentTypeColumnObject == null)
             {
                 throw new ArgumentNullException(nameof(contentTypeColumnObject));
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(contentTypeObject.ObjectIdentity),
+                new ObjectPathIdentity(string.Join(":", contentTypeColumnObject.ObjectIdentity.Split(':').SkipLast(2))),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathIdentity(contentTypeColumnObject.ObjectIdentity),
@@ -163,19 +159,15 @@ namespace Karamem0.SharePoint.PowerShell.Services
             this.ClientContext.ProcessQuery(requestPayload);
         }
 
-        public void RemoveObject(ContentType contentTypeObject, ContentTypeColumn contentTypeColumnObject, bool pushChanges)
+        public void RemoveObject(ContentTypeColumn contentTypeColumnObject, bool pushChanges)
         {
-            if (contentTypeObject == null)
-            {
-                throw new ArgumentNullException(nameof(contentTypeObject));
-            }
             if (contentTypeColumnObject == null)
             {
                 throw new ArgumentNullException(nameof(contentTypeColumnObject));
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(contentTypeObject.ObjectIdentity),
+                new ObjectPathIdentity(string.Join(":", contentTypeColumnObject.ObjectIdentity.Split(':').SkipLast(2))),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathIdentity(contentTypeColumnObject.ObjectIdentity),

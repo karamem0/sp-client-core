@@ -48,7 +48,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     }
                 );
                 var result3 = context.Runspace.InvokeCommand<Feature>(
-                    "Get-KshSiteCollectionFeature",
+                    "Get-KshSiteFeature",
                     new Dictionary<string, object>()
                     {
                         { "FeatureId", "99fe402e-89a0-45aa-9163-85342e865dc8" }
@@ -58,7 +58,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Remove-KshSiteFeature",
                     new Dictionary<string, object>()
                     {
-                        { "FeatureId", result3.ElementAt(0) },
+                        { "Identity", result3.ElementAt(0) },
                         { "Force", false }
                     }
                 );

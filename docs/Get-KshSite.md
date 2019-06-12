@@ -50,37 +50,35 @@ In order to retrive a site of different site collections, invoke the Connect-Ksh
 
 ### Example 1
 ```powershell
-PS C:\> $siteCollection = Get-KshCurrentSiteCollection
-PS C:\> $site = Get-KshSite -SiteCollection $siteCollection
+PS C:\> Get-KshSite -SiteCollection (Get-KshCurrentSiteCollection)
 ```
 
 Retrieves a root site of the site collection.
 
 ### Example 2
 ```powershell
-PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> $site = Get-KshSite -List $list
+PS C:\> Get-KshSite -List (Get-KshList -ListTitle 'Announcements')
 ```
 
 Retrieves a parent site of the list.
 
 ### Example 3
 ```powershell
-PS C:\> $site = Get-KshSite -SiteId 'd298e576-6985-4119-9796-050b9f371872'
+PS C:\> Get-KshSite -SiteId 'd298e576-6985-4119-9796-050b9f371872'
 ```
 
 Retrieves a site by site ID.
 
 ### Example 4
 ```powershell
-PS C:\> $site = Get-KshSite -SiteUrl '/sites/japan/hr'
+PS C:\> Get-KshSite -SiteUrl '/sites/japan/hr'
 ```
 
 Retrieves a site by site URL.
 
 ### Example 5
 ```powershell
-PS C:\> $sites = Get-KshSite
+PS C:\> Get-KshSite
 ```
 
 Retrieves all sites.

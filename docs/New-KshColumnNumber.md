@@ -53,7 +53,7 @@ The New-KshColumnNumber cmdlet adds new number column to the current site or the
 
 ### Example 1
 ```powershell
-PS C:\> $numberColumn = New-KshColumnNumber -MinimumValue 0 -MaximumValue 1000 -Name 'NumberColumn'
+PS C:\> New-KshColumnNumber -MinimumValue 0 -MaximumValue 1000 -Name 'NumberColumn'
 ```
 
 Creates a new column.

@@ -28,17 +28,14 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         }
 
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public ContentType ContentType { get; private set; }
-
-        [Parameter(Mandatory = true, Position = 1)]
-        public ContentTypeColumn ContentTypeColumn { get; private set; }
+        public ContentTypeColumn Identity { get; private set; }
 
         [Parameter(Mandatory = false)]
         public SwitchParameter PushChanges { get; private set; }
 
         protected override void ProcessRecordCore()
         {
-            this.Service.RemoveObject(this.ContentType, this.ContentTypeColumn, this.PushChanges);
+            this.Service.RemoveObject(this.Identity, this.PushChanges);
         }
 
     }

@@ -53,7 +53,7 @@ The New-KshColumnCurrency cmdlet adds new currency column to the current site or
 
 ### Example 1
 ```powershell
-PS C:\> $currencyColumn = New-KshColumnCurrency -MinimumValue 0 -MaximumValue 1000 -Name 'CurrencyColumn'
+PS C:\> New-KshColumnCurrency -MinimumValue 0 -MaximumValue 1000 -Name 'CurrencyColumn'
 ```
 
 Creates a new column.

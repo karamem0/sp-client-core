@@ -46,16 +46,14 @@ The Get-KshListItem cmdlet retrieves list items of the list.
 
 ### Example 1
 ```powershell
-PS C:\> $folder = Get-KshFolder -FolderUrl '/sites/japan/hr/Shared%20Documents/Templates'
-PS C:\> $listItem = Get-KshListItem -Folder $folder
+PS C:\> Get-KshListItem -Folder (Get-KshFolder -FolderUrl '/sites/japan/hr/Shared%20Documents/Templates')
 ```
 
 Retrieves a list item from the folder.
 
 ### Example 2
 ```powershell
-PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt'
-PS C:\> $listItem = Get-KshListItem -File $file
+PS C:\> Get-KshListItem -File (Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt')
 ```
 
 Retrieves a list item from the file.

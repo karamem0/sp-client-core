@@ -24,7 +24,7 @@ This is provided for the Add-KshListItem cmdlet and Update-KshListItem cmdlet .
 
 ### Example 1
 ```powershell
-PS C:\> $columnValue = New-KshColumnUserValue -LookupId 1
+PS C:\> New-KshColumnUserValue -LookupId 1
 ```
 
 Creates a new user column value.

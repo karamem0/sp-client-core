@@ -28,8 +28,7 @@ The Update-KshColumnDateTime cmdlet updates properties of the column of date/tim
 
 ### Example 1
 ```powershell
-PS C:\> $dateTimeColumn = Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af'
-PS C:\> Update-KshColumnBoolean -Identity $dateTimeColumn -ReadOnly $true
+PS C:\> Update-KshColumnDateTime -Identity (Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af') -ReadOnly $true
 ```
 
 Updates property values of the column.

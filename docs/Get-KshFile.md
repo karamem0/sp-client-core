@@ -49,28 +49,28 @@ The Get-KshFile cmdlet retrieves files of the specified folder.
 
 ### Example 1
 ```powershell
-PS C:\> $file = Get-KshFile -FileId '2c7ceb97-193f-4d05-91a5-a03c6d58ae60'
+PS C:\> Get-KshFile -FileId '2c7ceb97-193f-4d05-91a5-a03c6d58ae60'
 ```
 
 Retrieves a file by file ID.
 
 ### Example 2
 ```powershell
-PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt'
+PS C:\> Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt'
 ```
 
 Retrieves a file by file URL.
 
 ### Example 3
 ```powershell
-PS C:\> $file = Get-KshFile -Folder '/sites/japan/hr/Shared%20Documents' -FileName 'README.txt'
+PS C:\> Get-KshFile -Folder '/sites/japan/hr/Shared%20Documents' -FileName 'README.txt'
 ```
 
 Retrieves a file by folder and file name.
 
 ### Example 4
 ```powershell
-PS C:\> $files = Get-KshFile -Folder '/sites/japan/hr/Shared%20Documents'
+PS C:\> Get-KshFile -Folder '/sites/japan/hr/Shared%20Documents'
 ```
 
 Retrieves all files.

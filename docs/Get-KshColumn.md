@@ -69,46 +69,42 @@ The Get-KshColumn cmdlet retrieves columns of the current site or the specified 
 
 ### Example 1
 ```powershell
-PS C:\> $siteColumn = Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af'
+PS C:\> Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af'
 ```
 
 Retrieves a column by column ID.
 
 ### Example 2
 ```powershell
-PS C:\> $siteColumn = Get-KshColumn -ColumnTitle 'Remarks'
+PS C:\> Get-KshColumn -ColumnTitle 'Remarks'
 ```
 
 Retrieves a column by column title.
 
 ### Example 3
 ```powershell
-PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> $listContentType = Get-KshContentType -List $list -ContentTypeId '0x0100EFB1758564C77D448177233D1199B912000A210B1C5CBC634C849328008B1CC306'
-PS C:\> $listColumns = Get-KshColumn -ContentType $listContentType
+PS C:\> Get-KshColumn -ContentType (Get-KshContentType -List (Get-KshList -ListTitle 'Announcements') -ContentTypeId '0x0100EFB1758564C77D448177233D1199B912000A210B1C5CBC634C849328008B1CC306')
 ```
 
 Retrieves all columns of the list content type.
 
 ### Example 4
 ```powershell
-PS C:\> $siteContentType = Get-KshContentType -ContentTypeId '0x0100EFB1758564C77D448177233D1199B912'
-PS C:\> $siteColumns = Get-KshColumn -ContentType $siteContentType
+PS C:\> Get-KshColumn -ContentType (Get-KshContentType -ContentTypeId '0x0100EFB1758564C77D448177233D1199B912')
 ```
 
 Retrieves all columns of the site content type.
 
 ### Example 5
 ```powershell
-PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> $listColumns = Get-KshColumn -List $list
+PS C:\> Get-KshColumn -List (Get-KshList -ListTitle 'Announcements')
 ```
 
 Retrieves all columns of the list.
 
 ### Example 6
 ```powershell
-PS C:\> $siteColumns = Get-KshColumn
+PS C:\> Get-KshColumn
 ```
 
 Retrieves all columns of the current site.

@@ -23,7 +23,7 @@ The New-KshUser cmdlet adds a new user to the current site.
 
 ### Example 1
 ```powershell
-PS C:\> $user = New-KshUser -LoginName 'i:0#.f|membership|admin@example.onmicrosoft.com'
+PS C:\> New-KshUser -LoginName 'i:0#.f|membership|admin@example.onmicrosoft.com'
 ```
 
 Creates a new user to the current site.

@@ -34,18 +34,14 @@ The Get-KshContentTypeColumn cmdlet retrieves content type columns of the specif
 
 ### Example 1
 ```powershell
-PS C:\> $siteContentType = Get-KshContentType -ContentTypeId '0x0100EFB1758564C77D448177233D1199B912'
-PS C:\> $siteColumn = Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af'
-PS C:\> $siteContentTypeColumn = Get-KshContentTypeColumn -ContentType $siteContentType -Column $siteColumn
+PS C:\> Get-KshContentTypeColumn -ContentType (Get-KshContentType -ContentTypeId '0x0100EFB1758564C77D448177233D1199B912') -Column (Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af')
 ```
 
 Retrieves a content type column by column.
 
 ### Example 2
 ```powershell
-PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> $listContentType = Get-KshContentType -List $list -ContentTypeId '0x0100EFB1758564C77D448177233D1199B912000A210B1C5CBC634C849328008B1CC306'
-PS C:\> $listContentTypeColumns = Get-KshContentTypeColumn -ContentType $listContentType
+PS C:\> Get-KshContentTypeColumn -ContentType (Get-KshContentType -List (Get-KshList -ListTitle 'Announcements') -ContentTypeId '0x0100EFB1758564C77D448177233D1199B912000A210B1C5CBC634C849328008B1CC306')
 ```
 
 Retrieves all content type columns of the list content type.

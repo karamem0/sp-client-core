@@ -51,7 +51,7 @@ The New-KshColumnText cmdlet adds new text column to the current site or the spe
 
 ### Example 1
 ```powershell
-PS C:\> $numberText = New-KshColumnCalculated -Name 'TextColumn' -MaxLength 128
+PS C:\> New-KshColumnCalculated -Name 'TextColumn' -MaxLength 128
 ```
 
 Creates a new column.

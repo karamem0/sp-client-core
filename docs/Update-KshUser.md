@@ -24,8 +24,7 @@ The Update-KshUser cmdlet updates properties of the user.
 
 ### Example 1
 ```powershell
-PS C:\> $user = Get-KshUser -Identity 'i:0#.f|membership|admin@example.onmicrosoft.com'
-PS C:\> Update-KshUser -Identity $user -IsSiteCollectionAdmin $true
+PS C:\> Update-KshUser -Identity (Get-KshUser -Identity 'i:0#.f|membership|admin@example.onmicrosoft.com') -IsSiteCollectionAdmin $true
 ```
 
 Updates property values of the user.

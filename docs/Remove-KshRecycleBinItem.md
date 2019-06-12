@@ -34,8 +34,7 @@ The Remove-KshListItem cmdlet removes a recycle bin item from the current site.
 
 ### Example 1
 ```powershell
-PS C:\> $recycleBinItem = Get-KshRecycleBinItem -ItemId '77566246-6e0d-4bc7-8360-689b8743265f'
-PS C:\> Remove-KshRecycleBinItem -Identity $recycleBinItem
+PS C:\> Remove-KshRecycleBinItem -Identity (Get-KshRecycleBinItem -ItemId '77566246-6e0d-4bc7-8360-689b8743265f')
 ```
 
 Removes a recycle bin item.

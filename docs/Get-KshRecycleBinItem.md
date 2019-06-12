@@ -34,14 +34,14 @@ The Get-KshRecycleBinItem cmdlet recycle bin items of the current site.
 
 ### Example 1
 ```powershell
-PS C:\> $recycleBinItem = Get-KshRecycleBinItem -ItemId '77566246-6e0d-4bc7-8360-689b8743265f'
+PS C:\> Get-KshRecycleBinItem -ItemId '77566246-6e0d-4bc7-8360-689b8743265f'
 ```
 
 Retrieves a recycle bin item by recycle bin item ID.
 
 ### Example 2
 ```powershell
-PS C:\> $recycleBinItems = Get-KshRecycleBinItem
+PS C:\> Get-KshRecycleBinItem
 ```
 
 Retrieves all recycle bin items.

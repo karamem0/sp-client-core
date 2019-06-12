@@ -34,18 +34,14 @@ The Get-KshAttachmentFile cmdlet retrieves attachment files of the specified lis
 
 ### Example 1
 ```powershell
-PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> $listItem = Get-KshListItem -List $list -ItemId 1
-PS C:\> $attachmentFile = Get-KshAttachmentFile -FileName 'README.txt'
+PS C:\> Get-KshAttachmentFile -ListItem (Get-KshListItem -List (Get-KshList -ListTitle 'Announcements') -ItemId 1) -FileName 'README.txt'
 ```
 
 Retrieves a attachment file by file name.
 
 ### Example 2
 ```powershell
-PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> $listItem = Get-KshListItem -List $list -ItemId 1
-PS C:\> $attachmentFiles = Get-KshAttachmentFile -ListItem $listItem
+PS C:\> Get-KshAttachmentFile -ListItem (Get-KshListItem -List (Get-KshList -ListTitle 'Announcements') -ItemId 1)
 ```
 
 Retrieves all attachment files.

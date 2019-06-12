@@ -53,8 +53,7 @@ The New-KshColumnCalculated adds creates new calculated column to the current si
 
 ### Example 1
 ```powershell
-PS C:\> $textColumn = Get-KshColumn -Identity 'TextColumn'
-PS C:\> $calculatedColumn = New-KshColumnCalculated -Formula '=TextColumn' -Columns $textColumn -Name 'CalculatedColumn' -OutputType 'Text'
+PS C:\> New-KshColumnCalculated -Formula '=TextColumn' -Columns (Get-KshColumn -Identity 'TextColumn') -Name 'CalculatedColumn' -OutputType 'Text'
 ```
 
 Creates a new column.

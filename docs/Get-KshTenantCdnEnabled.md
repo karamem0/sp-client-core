@@ -29,14 +29,14 @@ The Get-KshTenantCdnEnabled cmdlet retrieves whether Office 365 CDN is enabled i
 
 ### Example 1
 ```powershell
-PS C:\> $enabled = Get-KshTenantCdnEnabled -Public
+PS C:\> Get-KshTenantCdnEnabled -Public
 ```
 
 Retrieves whether Office 365 Public CDN is enabled.
 
 ### Example 2
 ```powershell
-PS C:\> $enabled = Get-KshTenantCdnEnabled -Private
+PS C:\> Get-KshTenantCdnEnabled -Private
 ```
 
 Retrieves whether Office 365 Private CDN is enabled.

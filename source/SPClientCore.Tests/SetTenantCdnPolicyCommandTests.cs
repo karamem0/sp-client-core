@@ -52,7 +52,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void GetTenantPrivateCdnPolicy()
+        public void SetTenantPrivateCdnPolicy()
         {
             using (var context = new PSCmdletContext())
             {

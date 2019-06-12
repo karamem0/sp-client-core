@@ -28,8 +28,7 @@ The Update-KshColumnCalculated cmdlet updates properties of the column of calcul
 
 ### Example 1
 ```powershell
-PS C:\> $calculatedColumn = Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af'
-PS C:\> Update-KshColumnBoolean -Identity $calculatedColumn -ReadOnly $true
+PS C:\> Update-KshColumnCalculated -Identity (Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af') -ReadOnly $true
 ```
 
 Updates property values of the column.

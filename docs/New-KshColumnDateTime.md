@@ -54,7 +54,7 @@ The New-KshColumnDateTime adds creates new date/time column to the current site 
 
 ### Example 1
 ```powershell
-PS C:\> $dateTimeColumn = New-KshColumnDateTime -Format 'DateOnly' -FriendlyDisplayFormat 'Disabled' -Name 'DateTimeColumn'
+PS C:\> New-KshColumnDateTime -Format 'DateOnly' -FriendlyDisplayFormat 'Disabled' -Name 'DateTimeColumn'
 ```
 
 Creates a new column.

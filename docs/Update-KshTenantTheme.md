@@ -25,8 +25,7 @@ This cmdlet can be used only when connected to the SharePoint admin center.
 
 ### Example 1
 ```powershell
-PS C:\> $theme = Get-KshTenantTheme -ThemeName 'Custom Theme'
-PS C:\> Update-KshTenantTheme -Identity $theme -Palette @{ "black" = "#0f0f0f" }
+PS C:\> Update-KshTenantTheme -Identity (Get-KshTenantTheme -ThemeName 'Custom Theme') -Palette @{ "black" = "#0f0f0f" }
 ```
 
 Updates property values of the theme.

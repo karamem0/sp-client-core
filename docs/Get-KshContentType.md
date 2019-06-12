@@ -44,22 +44,21 @@ The Get-KshContentType cmdlet retrieves content types of the current site or the
 
 ### Example 1
 ```powershell
-PS C:\> $siteContentType = Get-KshContentType -ContentTypeId '0x0100EFB1758564C77D448177233D1199B912'
+PS C:\> Get-KshContentType -ContentTypeId '0x0100EFB1758564C77D448177233D1199B912'
 ```
 
 Retrieves a content type by content type ID.
 
 ### Example 2
 ```powershell
-PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> $listContentTypes = Get-KshContentType -List $list
+PS C:\> Get-KshContentType -List (Get-KshList -ListTitle 'Announcements')
 ```
 
 Retrieves all content types of the list.
 
 ### Example 3
 ```powershell
-PS C:\> $siteContentTypes = Get-KshContentType
+PS C:\> Get-KshContentType
 ```
 
 Retrieves all content types of the current site.

@@ -47,7 +47,7 @@ The New-KshColumnGeolocation cmdlet adds new geolocation column to the current s
 
 ### Example 1
 ```powershell
-PS C:\> $geolocationColumn = New-KshColumnGeolocation -Name 'GetlocationColumn'
+PS C:\> New-KshColumnGeolocation -Name 'GetlocationColumn'
 ```
 
 Creates a new column.

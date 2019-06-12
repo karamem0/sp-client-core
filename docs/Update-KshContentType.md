@@ -25,8 +25,7 @@ The Update-KshContentType cmdlet updates properties of the content type.
 
 ### Example 1
 ```powershell
-PS C:\> $siteContentType = Get-KshContentType -ContentTypeId '0x0100EFB1758564C77D448177233D1199B912'
-PS C:\> Update-KshContentType -Identity $siteContentType -ReadOnly $true
+PS C:\> Update-KshContentType -Identity (Get-KshContentType -ContentTypeId '0x0100EFB1758564C77D448177233D1199B912') -ReadOnly $true
 ```
 
 Updates property values of the content type.

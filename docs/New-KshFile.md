@@ -23,8 +23,7 @@ The New-KshFolder cmdlet adds a new file to the specified folder. Maximum file s
 
 ### Example 1
 ```powershell
-PS C:\> $content = [System.Text.Encoding]::UTF8.GetBytes('Contact: admin@example.onmicrosoft.com')
-PS C:\> $file = New-KshFile -Folder '/sites/japan/hr/Shared%20Documents' -Content $content -FileName 'README.txt'
+PS C:\> New-KshFile -Folder '/sites/japan/hr/Shared%20Documents' -Content ([System.Text.Encoding]::UTF8.GetBytes('Contact: admin@example.onmicrosoft.com')) -FileName 'README.txt'
 ```
 
 Creates a new file.

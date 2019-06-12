@@ -47,11 +47,18 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "Scope", "None" }
                     }
                 );
-                var result3 = context.Runspace.InvokeCommand(
+                var result3 = context.Runspace.InvokeCommand<Feature>(
+                    "Get-KshSiteFeature",
+                    new Dictionary<string, object>()
+                    {
+                        { "FeatureId", "99fe402e-89a0-45aa-9163-85342e865dc8" }
+                    }
+                );
+                var result4 = context.Runspace.InvokeCommand(
                     "Remove-KshSiteFeature",
                     new Dictionary<string, object>()
                     {
-                        { "FeatureId", "99fe402e-89a0-45aa-9163-85342e865dc8" },
+                        { "Identity", result3.ElementAt(0) },
                         { "Force", false }
                     }
                 );

@@ -74,8 +74,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Update-KshContentTypeColumn",
                     new Dictionary<string, object>()
                     {
-                        { "ContentType", result3.ElementAt(0) },
-                        { "ContentTypeColumn", result5.ElementAt(0) },
+                        { "Identity", result5.ElementAt(0) },
                         { "Hidden", true },
                         { "Required", true },
                         { "PassThru", true }
@@ -85,8 +84,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Remove-KshContentTypeColumn",
                     new Dictionary<string, object>()
                     {
-                        { "ContentType", result3.ElementAt(0) },
-                        { "ContentTypeColumn", result5.ElementAt(0) }
+                        { "Identity", result5.ElementAt(0) }
                     }
                 );
                 var result8 = context.Runspace.InvokeCommand(
@@ -158,8 +156,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Update-KshContentTypeColumn",
                     new Dictionary<string, object>()
                     {
-                        { "ContentType", result2.ElementAt(0) },
-                        { "ContentTypeColumn", result4.ElementAt(0) },
+                        { "Identity", result4.ElementAt(0) },
                         { "Hidden", true },
                         { "Required", true },
                         { "PassThru", true }
@@ -169,8 +166,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Remove-KshContentTypeColumn",
                     new Dictionary<string, object>()
                     {
-                        { "ContentType", result2.ElementAt(0) },
-                        { "ContentTypeColumn", result4.ElementAt(0) },
+                        { "Identity", result4.ElementAt(0) }
                     }
                 );
                 var result8 = context.Runspace.InvokeCommand(

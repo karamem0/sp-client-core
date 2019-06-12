@@ -24,8 +24,7 @@ The Move-KshFile cmdlet moves a file to the specified URL.
 
 ### Example 1
 ```powershell
-PS C:\> $file = Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt'
-PS C:\> Move-KshFile -Identity $file -NewUrl '/sites/japan/hr/Shared%20Documents/README_old.txt'
+PS C:\> Move-KshFile -Identity (Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt') -NewUrl '/sites/japan/hr/Shared%20Documents/README_old.txt'
 ```
 
 Moves a file.

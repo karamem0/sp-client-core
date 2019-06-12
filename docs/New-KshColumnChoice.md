@@ -53,7 +53,7 @@ The New-KshColumnChoice cmdlet adds new choice column to the current site or the
 
 ### Example 1
 ```powershell
-PS C:\> $choiceColumn = New-KshColumnChoice -Choices @('Dog', 'Cat', 'Rabbit') -Name 'ChoiceColumn' -Format 'Dropdown'
+PS C:\> New-KshColumnChoice -Choices @('Dog', 'Cat', 'Rabbit') -Name 'ChoiceColumn' -Format 'Dropdown'
 ```
 
 Creates a new column.

@@ -23,10 +23,7 @@ The Open-KshAttachmentFile cmdlet retrieves contents of the attachment file.
 
 ### Example 1
 ```powershell
-PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> $listItem = Get-KshListItem -List $list -ItemId 1
-PS C:\> $attachmentFile = Get-KshAttachmentFile -ListItem $listItem -FileName 'README.txt'
-PS C:\> $content = Open-KshAttachmentFile -Identity $attachmentFile
+PS C:\> Open-KshAttachmentFile -Identity (Get-KshAttachmentFile -ListItem (Get-KshListItem -List (Get-KshList -ListTitle 'Announcements') -ItemId 1) -FileName 'README.txt')
 ```
 
 Retrieves contents of the attachment file.

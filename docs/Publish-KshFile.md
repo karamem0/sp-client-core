@@ -23,8 +23,7 @@ The Publish-KshFile cmdlet requests approval for the file. The approval status t
 
 ### Example 1
 ```powershell
-PS C:\> $file = Get-KshFile -FolderUrl '/sites/japan/hr/Shared%20Documents/README.txt'
-PS C:\> Publish-KshFile -Identity $file
+PS C:\> Publish-KshFile -Identity (Get-KshFile -FolderUrl '/sites/japan/hr/Shared%20Documents/README.txt')
 ```
 
 Requests approval for the file.

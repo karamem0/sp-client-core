@@ -23,9 +23,7 @@ The Add-KshGroupMember cmdlet add a user to the specified group.
 
 ### Example 1
 ```powershell
-PS C:\> $group = Get-KshGroup -GroupName 'Blog Owners'
-PS C:\> $member = Get-KshUser -UserName 'i:0#.f|membership|admin@example.onmicrosoft.com'
-PS C:\> Add-KshGroupMember -Group $group -Member $member
+PS C:\> Add-KshGroupMember -Group (Get-KshGroup -GroupName 'Blog Owners') -Member (Get-KshUser -UserName 'i:0#.f|membership|admin@example.onmicrosoft.com')
 ```
 
 Adds a group member.

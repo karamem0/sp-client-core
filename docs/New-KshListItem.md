@@ -23,8 +23,7 @@ The New-KshListItem cmdlet adds a new list item to the specified list.
 
 ### Example 1
 ```powershell
-PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> $listItem = New-KshListItem -List $list -Value @{ 'Title' = 'A Happy New Year' }
+PS C:\> New-KshListItem -List (Get-KshList -ListTitle 'Announcements') -Value @{ 'Title' = 'A Happy New Year' }
 ```
 
 Creates a new list item.

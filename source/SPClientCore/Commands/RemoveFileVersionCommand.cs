@@ -30,12 +30,10 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet2")]
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet3")]
-        public File File { get; private set; }
+        public FileVersion Identity { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
-        public FileVersion FileVersion { get; private set; }
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet3")]
+        public File File { get; private set; }
 
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
         public SwitchParameter RecycleBin { get; private set; }
@@ -47,7 +45,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         {
             if (this.ParameterSetName == "ParamSet1")
             {
-                    this.Service.RemoveObject(this.File, this.FileVersion);
+                this.Service.RemoveObject(this.Identity);
             }
             if (this.ParameterSetName == "ParamSet2")
             {
@@ -57,7 +55,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
                         string.Format(StringResources.ErrorValueCannotBeValue, false),
                         nameof(this.RecycleBin));
                 }
-                this.Service.RecycleObject(this.File, this.FileVersion);
+                this.Service.RecycleObject(this.Identity);
             }
             if (this.ParameterSetName == "ParamSet3")
             {

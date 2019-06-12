@@ -23,8 +23,7 @@ The Lock-KshFile cmdlet checks out a file.
 
 ### Example 1
 ```powershell
-PS C:\> $file = Get-KshFile -FolderUrl '/sites/japan/hr/Shared%20Documents/README.txt'
-PS C:\> Lock-KshFile -Identity $file
+PS C:\> Lock-KshFile -Identity (Get-KshFile -FolderUrl '/sites/japan/hr/Shared%20Documents/README.txt')
 ```
 
 Checks out the file.

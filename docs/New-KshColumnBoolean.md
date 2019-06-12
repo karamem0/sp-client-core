@@ -48,7 +48,7 @@ The New-KshColumnBooleanXml cmdlet adds new boolean column to the current site o
 
 ### Example 1
 ```powershell
-PS C:\> $booleanColumn = New-KshColumnBooleanXml -DefaultValue $true -Name 'BooleanColumn'
+PS C:\> New-KshColumnBooleanXml -DefaultValue $true -Name 'BooleanColumn'
 ```
 
 Creates a new column.

@@ -42,8 +42,7 @@ This cmdlet can be used only when connected to the SharePoint admin center.
 
 ### Example 1
 ```powershell
-PS C:\> $siteCollection = Get-KshTenantSiteCollection -SiteCollectionUrl 'https://example.sharepoint.com/sites/hub'
-PS C:\> Update-KshTenantSiteCollection -Identity $siteCollection -Owner 'admin@example.onmicrosoft.com'
+PS C:\> Update-KshTenantSiteCollection -Identity (Get-KshTenantSiteCollection -SiteCollectionUrl 'https://example.sharepoint.com/sites/hub') -Owner 'admin@example.onmicrosoft.com'
 ```
 
 Updates property values of the site collection.

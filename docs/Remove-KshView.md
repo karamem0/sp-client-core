@@ -23,9 +23,7 @@ The Remove-KshView cmdlet removes a view from the specified list.
 
 ### Example 1
 ```powershell
-PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> $view = Get-KshView -List $list -ViewId 'bae9f925-48d3-47f5-bb07-92927a82df7d'
-PS C:\> Remove-KshView -Identity $view
+PS C:\> Remove-KshView -Identity (Get-KshView -List (Get-KshList -ListTitle 'Announcements') -ViewTitle 'My Items')
 ```
 
 Removes a view from the list.

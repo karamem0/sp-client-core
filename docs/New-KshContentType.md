@@ -36,22 +36,21 @@ The New-KshContentType cmdlet adds a new content type to the current site or the
 
 ### Example 1
 ```powershell
-PS C:\> $siteContentType = Get-KshContentType -Identity '0x0100EFB1758564C77D448177233D1199B912'
-PS C:\> $listContentType = New-KshContentType -List 'Announcements' -ContentType $siteContentType
+PS C:\> New-KshContentType -List 'Announcements' -ContentType (Get-KshContentType -Identity '0x0100EFB1758564C77D448177233D1199B912')
 ```
 
 Creates a new list content from the site content type.
 
 ### Example 2
 ```powershell
-PS C:\> $listContentType = New-KshContentType -List 'Announcements' -Name 'Approval Requests'
+PS C:\> New-KshContentType -List 'Announcements' -Name 'Approval Requests'
 ```
 
 Creates a new content type to the list.
 
 ### Example 3
 ```powershell
-PS C:\> $siteContentType = New-KshContentType -Name 'Approval Requests'
+PS C:\> New-KshContentType -Name 'Approval Requests'
 ```
 
 Creates a new content type to the current site.

@@ -23,7 +23,7 @@ The Get-KshCurrentSite cmdlet retrieves the current site.
 
 ### Example 1
 ```powershell
-PS C:\> $site = Get-KshCurrentSite
+PS C:\> Get-KshCurrentSite
 ```
 
 Retrieves a current site.
