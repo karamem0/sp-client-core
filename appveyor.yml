@@ -1,4 +1,4 @@
-version: "2.3.1.{build}"
+version: "2.3.2.{build}"
 image: Visual Studio 2017
 configuration: Release
 dotnet_csproj:
@@ -21,7 +21,7 @@ build_script:
 test: off
 artifacts:
 - path: source\$(APPVEYOR_PROJECT_NAME)\bin\$(CONFIGURATION)\netcoreapp2.1\publish
-  name: SPClientCore
+  name: SPClientCore_$(APPVEYOR_BUILD_VERSION)
 deploy_script:
 - pwsh: |
     if ($env:APPVEYOR_REPO_TAG -eq "true") {

@@ -2877,6 +2877,21 @@ PS C:\&gt; $siteContentTypeColumns = Get-KshContentTypeColumn -ContentType $site
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Get-KshFile</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>FileVersion</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the file version.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">FileVersion</command:parameterValue>
+          <dev:type>
+            <maml:name>FileVersion</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshFile</maml:name>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>Folder</maml:name>
           <maml:Description>
@@ -2962,6 +2977,18 @@ PS C:\&gt; $siteContentTypeColumns = Get-KshContentTypeColumn -ContentType $site
         <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
         <dev:type>
           <maml:name>Uri</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>FileVersion</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the file version.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">FileVersion</command:parameterValue>
+        <dev:type>
+          <maml:name>FileVersion</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -4060,6 +4087,21 @@ PS C:\&gt; $siteContentTypeColumns = Get-KshContentTypeColumn -ContentType $site
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
       </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshList</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>View</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the view.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">View</command:parameterValue>
+          <dev:type>
+            <maml:name>View</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
     </command:syntax>
     <command:parameters>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
@@ -4133,6 +4175,18 @@ PS C:\&gt; $siteContentTypeColumns = Get-KshContentTypeColumn -ContentType $site
           <maml:uri />
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>View</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the view.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">View</command:parameterValue>
+        <dev:type>
+          <maml:name>View</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
     </command:parameters>
     <command:inputTypes>
@@ -5080,6 +5134,112 @@ PS C:\&gt; $listItems = Get-KshListItem -List $list -ViewXml '&lt;View&gt;&lt;Ro
         <dev:code>PS C:\&gt; Get-KshSite</dev:code>
         <dev:remarks>
           <maml:para>Retrieves all sites.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-KshSiteCollection</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>KshSiteCollection</command:noun>
+      <maml:description>
+        <maml:para>Retrieves a site collection.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-KshSiteCollection cmdlet retrieves a site collection. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-KshSiteCollection</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Identity</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the site collection.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">SiteCollection</command:parameterValue>
+          <dev:type>
+            <maml:name>SiteCollection</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshSiteCollection</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>SiteCollectionUrl</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the site collection URL.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
+          <dev:type>
+            <maml:name>Uri</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Identity</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the site collection.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">SiteCollection</command:parameterValue>
+        <dev:type>
+          <maml:name>SiteCollection</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>SiteCollectionUrl</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the site collection URL.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
+        <dev:type>
+          <maml:name>Uri</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.SiteCollection</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.SiteCollection</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshSiteCollection -SiteCollectionUrl 'https://example.sharepoint.com/sites/hub'</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves a site collection by site collection URL.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -6414,7 +6574,7 @@ PS C:\&gt; $listItems = Get-KshListItem -List $list -ViewXml '&lt;View&gt;&lt;Ro
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; Get-KshTenantSiteCollection -SiteCollectionUrl 'https://example.sharepoint.com/sites/hub'</dev:code>
         <dev:remarks>
-          <maml:para>Retrieves a site collection by URL.</maml:para>
+          <maml:para>Retrieves a site collection by site collection URL.</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
@@ -27258,7 +27418,7 @@ PS C:\&gt; $listItems = Get-KshListItem -List $list -ViewXml '&lt;View&gt;&lt;Ro
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Template</maml:name>
           <maml:Description>
             <maml:para>Specifies the site template ID.</maml:para>
@@ -27405,7 +27565,7 @@ PS C:\&gt; $listItems = Get-KshListItem -List $list -ViewXml '&lt;View&gt;&lt;Ro
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Template</maml:name>
         <maml:Description>
           <maml:para>Specifies the site template ID.</maml:para>

@@ -22,9 +22,13 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         SiteCollection GetObject();
 
+        SiteCollection GetObject(SiteCollection siteCollectionObject);
+
+        SiteCollection GetObject(Uri siteCollectionUrl);
+
     }
 
-    public class SiteCollectionService : ClientService, ISiteCollectionService
+    public class SiteCollectionService : ClientService<SiteCollection>, ISiteCollectionService
     {
 
         public SiteCollectionService(ClientContext clientContext) : base(clientContext)
@@ -39,6 +43,32 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathProperty(objectPath1.Id, "Site"),
+                objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
+                objectPathId => new ClientActionQuery(objectPathId)
+                {
+                    Query = new ClientQuery(true, typeof(SiteCollection))
+                });
+            return this.ClientContext
+                .ProcessQuery(requestPayload)
+                .ToObject<SiteCollection>(requestPayload.ActionQueryId);
+        }
+
+        public SiteCollection GetObject(Uri siteCollectionUrl)
+        {
+            if (siteCollectionUrl == null)
+            {
+                throw new ArgumentNullException(nameof(siteCollectionUrl));
+            }
+            var requestPayload = new ClientRequestPayload();
+            var objectPath1 = requestPayload.Add(
+                new ObjectPathConstructor(typeof(Tenant)),
+                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+            var objectPath2 = requestPayload.Add(
+                new ObjectPathMethod(
+                    objectPath1.Id,
+                    "GetSiteByUrl",
+                    requestPayload.CreateParameter(siteCollectionUrl.ToString()),
+                    requestPayload.CreateParameter(false)),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {

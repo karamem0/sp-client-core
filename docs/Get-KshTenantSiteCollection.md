@@ -39,7 +39,7 @@ This cmdlet can be used only when connected to the SharePoint admin center.
 PS C:\> Get-KshTenantSiteCollection -SiteCollectionUrl 'https://example.sharepoint.com/sites/hub'
 ```
 
-Retrieves a site collection by URL.
+Retrieves a site collection by site collection URL.
 
 ### Example 2
 ```powershell

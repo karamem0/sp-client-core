@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
     {
 
         [TestMethod()]
-        public void UpdateSiteCollection()
+        public void UpdateTenantSiteCollection()
         {
             using (var context = new PSCmdletContext())
             {
@@ -43,6 +43,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     new Dictionary<string, object>()
                     {
                         { "Owner", context.AppSettings["LoginUserName"] },
+                        { "Template", "STS#0" },
                         { "Url", context.AppSettings["AuthorityUrl"] + "/sites/TestSite0" }
                     }
                 );
@@ -74,18 +75,18 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "Identity", result2.ElementAt(0) }
                     }
                 );
-                var result6 = context.Runspace.InvokeCommand<TenantDeletedSiteCollection>(
+                var result5 = context.Runspace.InvokeCommand<TenantDeletedSiteCollection>(
                     "Get-KshTenantDeletedSiteCollection",
                     new Dictionary<string, object>()
                     {
                         { "SiteCollectionUrl", result2.ElementAt(0).Url }
                     }
                 );
-                var result5 = context.Runspace.InvokeCommand(
+                var result6 = context.Runspace.InvokeCommand(
                     "Remove-KshTenantDeletedSiteCollection",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result6.ElementAt(0) }
+                        { "Identity", result5.ElementAt(0) }
                     }
                 );
                 var actual = result3.ElementAt(0);

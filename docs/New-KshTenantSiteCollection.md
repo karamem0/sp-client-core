@@ -15,7 +15,7 @@ Creates a new site collection.
 ### ParamSet1
 ```
 New-KshTenantSiteCollection [-CompatibilityLevel <Int32>] [-Lcid <UInt32>] -Owner <String>
- [-StorageMaxLevel <Int64>] [-StorageWarningLevel <Int64>] [-Template <String>] [-TimeZoneId <Int32>]
+ [-StorageMaxLevel <Int64>] [-StorageWarningLevel <Int64>] -Template <String> [-TimeZoneId <Int32>]
  [-Title <String>] -Url <String> [-UserCodeMaxLevel <Double>] [-UserCodeWarningLevel <Double>]
  [<CommonParameters>]
 ```
@@ -23,7 +23,7 @@ New-KshTenantSiteCollection [-CompatibilityLevel <Int32>] [-Lcid <UInt32>] -Owne
 ### ParamSet2
 ```
 New-KshTenantSiteCollection [-CompatibilityLevel <Int32>] [-Lcid <UInt32>] -Owner <String>
- [-StorageMaxLevel <Int64>] [-StorageWarningLevel <Int64>] [-Template <String>] [-TimeZoneId <Int32>]
+ [-StorageMaxLevel <Int64>] [-StorageWarningLevel <Int64>] -Template <String> [-TimeZoneId <Int32>]
  [-Title <String>] -Url <String> [-UserCodeMaxLevel <Double>] [-UserCodeWarningLevel <Double>] [-NoWait]
  [<CommonParameters>]
 ```
@@ -142,7 +142,7 @@ Type: String
 Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False

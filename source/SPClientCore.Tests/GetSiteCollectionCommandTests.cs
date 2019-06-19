@@ -13,18 +13,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 
 namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("Remove-KshTenantSiteCollection")]
-    public class RemoveTenantSiteCollectionCommandTests
+    [TestCategory("Get-KshSiteCollection")]
+    public class GetSiteCollectionCommandTests
     {
 
         [TestMethod()]
-        public void RemoveTenantSiteCollection()
+        public void GetSiteCollectionByIdentity()
         {
             using (var context = new PSCmdletContext())
             {
@@ -39,36 +38,49 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         }
                     }
                 );
-                var result2 = context.Runspace.InvokeCommand<TenantSiteCollection>(
-                    "New-KshTenantSiteCollection",
+                var result2 = context.Runspace.InvokeCommand<SiteCollection>(
+                    "Get-KshSiteCollection",
                     new Dictionary<string, object>()
                     {
-                        { "Owner", context.AppSettings["LoginUserName"] },
-                        { "Template", "STS#0" },
-                        { "Url", context.AppSettings["AuthorityUrl"] + "/sites/TestSite0" }
+                         { "SiteCollectionUrl", context.AppSettings["BaseUrl"] }
                     }
                 );
-                var result3 = context.Runspace.InvokeCommand(
-                    "Remove-KshTenantSiteCollection",
+                var result3 = context.Runspace.InvokeCommand<SiteCollection>(
+                    "Get-KshSiteCollection",
                     new Dictionary<string, object>()
                     {
                         { "Identity", result2.ElementAt(0) }
                     }
                 );
-                var result4 = context.Runspace.InvokeCommand<TenantDeletedSiteCollection>(
-                    "Get-KshTenantDeletedSiteCollection",
+                var actual = result3.ElementAt(0);
+            }
+        }
+
+
+        [TestMethod()]
+        public void GetSiteCollectionBySiteCollectionUrl()
+        {
+            using (var context = new PSCmdletContext())
+            {
+                var result1 = context.Runspace.InvokeCommand(
+                    "Connect-KshSite",
                     new Dictionary<string, object>()
                     {
-                        { "SiteCollectionUrl", result2.ElementAt(0).Url }
+                        { "Url", context.AppSettings["AdminUrl"] },
+                        { "Credential", PSCredentialFactory.CreateCredential(
+                            context.AppSettings["LoginUserName"],
+                            context.AppSettings["LoginPassword"])
+                        }
                     }
                 );
-                var result5 = context.Runspace.InvokeCommand(
-                    "Remove-KshTenantDeletedSiteCollection",
+                var result2 = context.Runspace.InvokeCommand<SiteCollection>(
+                    "Get-KshSiteCollection",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result4.ElementAt(0) }
+                         { "SiteCollectionUrl", context.AppSettings["BaseUrl"] }
                     }
                 );
+                var actual = result2.ElementAt(0);
             }
         }
 

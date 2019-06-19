@@ -33,16 +33,19 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet2")]
         public ListItem ListItem { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet3")]
-        public Guid ListId { get; private set; }
+        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet3")]
+        public View View { get; private set; }
 
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet4")]
-        public Uri ListUrl { get; private set; }
+        public Guid ListId { get; private set; }
 
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet5")]
+        public Uri ListUrl { get; private set; }
+
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet6")]
         public string ListTitle { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ParamSet6")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet7")]
         public SwitchParameter NoEnumerate { get; private set; }
 
         protected override void ProcessRecordCore()
@@ -57,9 +60,13 @@ namespace Karamem0.SharePoint.PowerShell.Commands
             }
             if (this.ParameterSetName == "ParamSet3")
             {
-                this.WriteObject(this.Service.GetObject(this.ListId));
+                this.WriteObject(this.Service.GetObject(this.View));
             }
             if (this.ParameterSetName == "ParamSet4")
+            {
+                this.WriteObject(this.Service.GetObject(this.ListId));
+            }
+            if (this.ParameterSetName == "ParamSet5")
             {
                 if (this.ListUrl.IsAbsoluteUri)
                 {
@@ -70,11 +77,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands
                     this.WriteObject(this.Service.GetObject(this.ListUrl));
                 }
             }
-            if (this.ParameterSetName == "ParamSet5")
+            if (this.ParameterSetName == "ParamSet6")
             {
                 this.WriteObject(this.Service.GetObject(this.ListTitle));
             }
-            if (this.ParameterSetName == "ParamSet6")
+            if (this.ParameterSetName == "ParamSet7")
             {
                 this.WriteObject(this.Service.GetObjectEnumerable(), this.NoEnumerate ? false : true);
             }

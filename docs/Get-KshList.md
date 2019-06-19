@@ -24,20 +24,25 @@ Get-KshList [-ListItem] <ListItem> [<CommonParameters>]
 
 ### ParamSet3
 ```
-Get-KshList [-ListId] <Guid> [<CommonParameters>]
+Get-KshList [-View] <View> [<CommonParameters>]
 ```
 
 ### ParamSet4
 ```
-Get-KshList [-ListUrl] <Uri> [<CommonParameters>]
+Get-KshList [-ListId] <Guid> [<CommonParameters>]
 ```
 
 ### ParamSet5
 ```
-Get-KshList [-ListTitle] <String> [<CommonParameters>]
+Get-KshList [-ListUrl] <Uri> [<CommonParameters>]
 ```
 
 ### ParamSet6
+```
+Get-KshList [-ListTitle] <String> [<CommonParameters>]
+```
+
+### ParamSet7
 ```
 Get-KshList [-NoEnumerate] [<CommonParameters>]
 ```
@@ -104,7 +109,7 @@ Specifies the list ID.
 
 ```yaml
 Type: Guid
-Parameter Sets: ParamSet3
+Parameter Sets: ParamSet4
 Aliases:
 
 Required: True
@@ -134,7 +139,7 @@ Specifies the list title.
 
 ```yaml
 Type: String
-Parameter Sets: ParamSet5
+Parameter Sets: ParamSet6
 Aliases:
 
 Required: True
@@ -149,7 +154,7 @@ Specifies the list URL.
 
 ```yaml
 Type: Uri
-Parameter Sets: ParamSet4
+Parameter Sets: ParamSet5
 Aliases:
 
 Required: True
@@ -164,13 +169,28 @@ If specified, suppresses to enumerate objects.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: ParamSet6
+Parameter Sets: ParamSet7
 Aliases:
 
 Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -View
+Specifies the view.
+
+```yaml
+Type: View
+Parameter Sets: ParamSet3
+Aliases:
+
+Required: True
+Position: 0
+Default value: None
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 

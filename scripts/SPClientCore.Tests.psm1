@@ -48,6 +48,7 @@ function Install-TestSite {
             -Lcid 1033 `
             -Owner $credential.UserName `
             -StorageMaxLevel 26214400 `
+            -Template 'STS#3' `
             -Title 'SPClientCore' `
             -Url $Url
 
@@ -58,9 +59,6 @@ function Install-TestSite {
         $siteCollection = Get-KshCurrentSiteCollection
         $appSettings.SiteCollectionGuid = $siteCollection.Id
         $appSettings.SiteCollectionUrl = $siteCollection.ServerRelativeUrl
-
-        Write-Progress -Activity 'Enabling site collection features....' -Status 'Processing'
-        Add-KshSiteCollectionFeature -FeatureId '00bfea71-1c5e-4a24-b310-ba51c3eb7a57'
 
         Write-Progress -Activity 'Removing existing groups...' -Status 'Processing'
         Get-KshGroup | Remove-KshGroup
@@ -139,7 +137,7 @@ function Install-TestSite {
             -Description 'Test Site 1' `
             -Lcid 1033 `
             -ServerRelativeUrl 'TestSite1' `
-            -Template 'STS#1' `
+            -Template 'STS#3' `
             -Title 'Test Site 1'
         $appSettings.Site1Id = $site1.Id
         $appSettings.Site1Url = $site1.ServerRelativeUrl
@@ -153,7 +151,7 @@ function Install-TestSite {
             -Description 'Test Site 2' `
             -Lcid 1033 `
             -ServerRelativeUrl 'TestSite2' `
-            -Template 'STS#1' `
+            -Template 'STS#3' `
             -Title 'Test Site 2'
         $appSettings.Site2Id = $site2.Id
         $appSettings.Site2Url = $site2.ServerRelativeUrl
@@ -164,7 +162,7 @@ function Install-TestSite {
             -Description 'Test Site 3' `
             -Lcid 1033 `
             -ServerRelativeUrl 'TestSite3' `
-            -Template 'STS#1' `
+            -Template 'STS#3' `
             -Title 'Test Site 3'
         $appSettings.Site3Id = $site3.Id
         $appSettings.Site3Url = $site3.ServerRelativeUrl
@@ -178,7 +176,7 @@ function Install-TestSite {
             -Description 'Test Site 4' `
             -Lcid 1033 `
             -ServerRelativeUrl 'TestSite4' `
-            -Template 'STS#1' `
+            -Template 'STS#3' `
             -Title 'Test Site 4'
         $appSettings.Site4Id = $site4.Id
         $appSettings.Site4Url = $site4.ServerRelativeUrl

@@ -35,6 +35,8 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         File GetObject(File fileObject);
 
+        File GetObject(FileVersion fileVersionObject);
+
         File GetObject(Guid fileId);
 
         File GetObject(Uri fileUrl);
@@ -172,6 +174,25 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 "_api/web/getfilebyserverrelativeurl('{0}')/openbinarystream",
                 fileObject.ServerRelativeUrl);
             return this.ClientContext.GetStream(requestUrl);
+        }
+
+        public File GetObject(FileVersion fileVersionObject)
+        {
+            if (fileVersionObject == null)
+            {
+                throw new ArgumentNullException(nameof(fileVersionObject));
+            }
+            var requestPayload = new ClientRequestPayload();
+            var objectPath1 = requestPayload.Add(
+                new ObjectPathIdentity(string.Join(":", fileVersionObject.ObjectIdentity.Split(':').SkipLast(2))),
+                objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
+                objectPathId => new ClientActionQuery(objectPathId)
+                {
+                    Query = new ClientQuery(true, typeof(File))
+                });
+            return this.ClientContext
+                .ProcessQuery(requestPayload)
+                .ToObject<File>(requestPayload.ActionQueryId);
         }
 
         public File GetObject(Guid fileId)

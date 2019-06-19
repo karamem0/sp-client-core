@@ -24,20 +24,25 @@ Get-KshFile [-AttachmentFile] <AttachmentFile> [<CommonParameters>]
 
 ### ParamSet3
 ```
-Get-KshFile [-FileId] <Guid> [<CommonParameters>]
+Get-KshFile [-FileVersion] <FileVersion> [<CommonParameters>]
 ```
 
 ### ParamSet4
 ```
-Get-KshFile [-FileUrl] <Uri> [<CommonParameters>]
+Get-KshFile [-FileId] <Guid> [<CommonParameters>]
 ```
 
 ### ParamSet5
 ```
-Get-KshFile [-Folder] <Folder> [-FileName] <String> [<CommonParameters>]
+Get-KshFile [-FileUrl] <Uri> [<CommonParameters>]
 ```
 
 ### ParamSet6
+```
+Get-KshFile [-Folder] <Folder> [-FileName] <String> [<CommonParameters>]
+```
+
+### ParamSet7
 ```
 Get-KshFile [-Folder] <Folder> [-NoEnumerate] [<CommonParameters>]
 ```
@@ -97,7 +102,7 @@ Specifies the file ID.
 
 ```yaml
 Type: Guid
-Parameter Sets: ParamSet3
+Parameter Sets: ParamSet4
 Aliases:
 
 Required: True
@@ -112,7 +117,7 @@ Specifies the file name.
 
 ```yaml
 Type: String
-Parameter Sets: ParamSet5
+Parameter Sets: ParamSet6
 Aliases:
 
 Required: True
@@ -127,7 +132,7 @@ Specifies the file URL.
 
 ```yaml
 Type: Uri
-Parameter Sets: ParamSet4
+Parameter Sets: ParamSet5
 Aliases:
 
 Required: True
@@ -137,12 +142,27 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -FileVersion
+Specifies the file version.
+
+```yaml
+Type: FileVersion
+Parameter Sets: ParamSet3
+Aliases:
+
+Required: True
+Position: 0
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
 ### -Folder
 Specifies the folder.
 
 ```yaml
 Type: Folder
-Parameter Sets: ParamSet5, ParamSet6
+Parameter Sets: ParamSet6, ParamSet7
 Aliases:
 
 Required: True
@@ -172,7 +192,7 @@ If specified, suppresses to enumerate objects.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: ParamSet6
+Parameter Sets: ParamSet7
 Aliases:
 
 Required: False

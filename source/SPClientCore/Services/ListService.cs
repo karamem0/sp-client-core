@@ -26,9 +26,11 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         List GetObject(ListItem listItemObject);
 
+        List GetObject(View viewObject);
+
         List GetObject(Guid listId);
 
-        List    GetObject(Uri listUrl);
+        List GetObject(Uri listUrl);
 
         List GetObject(string listTitle);
 
@@ -92,6 +94,25 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathProperty(objectPath1.Id, "ParentList"),
+                objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
+                objectPathId => new ClientActionQuery(objectPathId)
+                {
+                    Query = new ClientQuery(true, typeof(List))
+                });
+            return this.ClientContext
+                .ProcessQuery(requestPayload)
+                .ToObject<List>(requestPayload.ActionQueryId);
+        }
+
+        public List GetObject(View viewObject)
+        {
+            if (viewObject == null)
+            {
+                throw new ArgumentNullException(nameof(viewObject));
+            }
+            var requestPayload = new ClientRequestPayload();
+            var objectPath1 = requestPayload.Add(
+                new ObjectPathIdentity(string.Join(":", viewObject.ObjectIdentity.Split(':').SkipLast(2))),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {
