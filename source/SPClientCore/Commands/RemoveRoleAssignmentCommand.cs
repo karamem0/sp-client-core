@@ -8,6 +8,7 @@
 
 using Karamem0.SharePoint.PowerShell.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
+using Karamem0.SharePoint.PowerShell.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,21 +18,21 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands
 {
 
-    [Cmdlet("New", "KshContentTypeId")]
-    [OutputType(typeof(ContentTypeId))]
-    public class NewContentTypeIdCommand : ClientObjectCmdlet
+    [Cmdlet("Remove", "KshRoleAssignment")]
+    [OutputType(typeof(void))]
+    public class RemoveRoleAssignmentCommand : ClientObjectCmdlet<IRoleAssignmentService>
     {
 
-        public NewContentTypeIdCommand()
+        public RemoveRoleAssignmentCommand()
         {
         }
 
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public string StringValue { get; private set; }
+        public RoleAssignment Identity { get; private set; }
 
         protected override void ProcessRecordCore()
         {
-            this.WriteObject(new ContentTypeId(this.StringValue));
+            this.Service.RemoveObject(this.Identity);
         }
 
     }

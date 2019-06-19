@@ -16,20 +16,14 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Models
 {
 
-    [ClientObject(Name = "SP.BasePermissions", Id = "{db780e5a-6bc6-41ad-8e64-9dfa761afb6d}")]
+    [ClientObject(Name = "SP.RoleDefinitionCollection", Id = "{964b9ab0-d026-4487-99d1-e06450963cc9}")]
     [JsonObject()]
-    public class BasePermissions : ClientValueObject
+    public class RoleDefinitionEnumerable : ClientObjectEnumerable<RoleDefinition>
     {
 
-        public BasePermissions()
+        public RoleDefinitionEnumerable()
         {
         }
-
-        [JsonProperty()]
-        public virtual int High { get; protected set; }
-
-        [JsonProperty()]
-        public virtual int Low { get; protected set; }
 
     }
 

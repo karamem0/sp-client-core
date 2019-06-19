@@ -18,7 +18,7 @@ namespace Karamem0.SharePoint.PowerShell.Models
 
     [ClientObject(Name = "SP.ListItem", Id = "{53cc48c0-1777-47b7-99ca-729390f06602}")]
     [JsonObject()]
-    public class ListItem : ClientObject
+    public class ListItem : SecurableObject
     {
 
         public ListItem()
@@ -38,7 +38,7 @@ namespace Karamem0.SharePoint.PowerShell.Models
         public virtual FileSystemObjectType FileSystemObjectType { get; protected set; }
 
         [JsonProperty()]
-        public virtual bool HasUniqueRoleAssignments { get; protected set; }
+        public override bool HasUniqueRoleAssignments { get; protected set; }
 
         [JsonProperty()]
         public virtual int Id { get; protected set; }

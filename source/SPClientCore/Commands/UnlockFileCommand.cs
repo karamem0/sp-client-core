@@ -7,7 +7,6 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models;
-using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services;
 using System;
@@ -57,19 +56,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands
             }
             if (this.ParameterSetName == "ParamSet2")
             {
-                if (this.Undo)
+                this.ValidateSwitchParameter(nameof(this.Undo));
+                this.Service.UndoCheckOutObject(this.Identity);
+                if (this.PassThru)
                 {
-                    this.Service.UndoCheckOutObject(this.Identity);
-                    if (this.PassThru)
-                    {
-                        this.WriteObject(this.Service.GetObject(this.Identity));
-                    }
-                }
-                else
-                {
-                    throw new ArgumentException(
-                        string.Format(StringResources.ErrorValueCannotBeValue, false),
-                        nameof(this.Undo));
+                    this.WriteObject(this.Service.GetObject(this.Identity));
                 }
             }
         }

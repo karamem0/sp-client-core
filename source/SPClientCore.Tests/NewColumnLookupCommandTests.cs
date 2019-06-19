@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
     {
 
         [TestMethod()]
-        public void NewListColumnLookup()
+        public void CreateListColumnLookup()
         {
             using (var context = new PSCmdletContext())
             {
@@ -97,7 +97,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 
 
         [TestMethod()]
-        public void NewListColumnLookupMulti()
+        public void CreateListColumnLookupMulti()
         {
             using (var context = new PSCmdletContext())
             {
@@ -170,7 +170,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void NewSiteColumnLookup()
+        public void CreateSiteColumnLookup()
         {
             using (var context = new PSCmdletContext())
             {
@@ -236,7 +236,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void NewSiteColumnLookupMulti()
+        public void CreateSiteColumnLookupMulti()
         {
             using (var context = new PSCmdletContext())
             {

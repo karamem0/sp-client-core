@@ -34,7 +34,10 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet2")]
         public Uri SiteCollectionUrl { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
+        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet3")]
+        public Guid SiteCollectionId { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet4")]
         public SwitchParameter NoEnumerate { get; private set; }
 
         protected override void ProcessRecordCore()
@@ -57,6 +60,10 @@ namespace Karamem0.SharePoint.PowerShell.Commands
                 }
             }
             if (this.ParameterSetName == "ParamSet3")
+            {
+                this.WriteObject(this.Service.GetObjectEnumerable().Single(obj => obj.SiteCollectionId == this.SiteCollectionId));
+            }
+            if (this.ParameterSetName == "ParamSet4")
             {
                 this.WriteObject(this.Service.GetObjectEnumerable(), this.NoEnumerate ? false : true);
             }

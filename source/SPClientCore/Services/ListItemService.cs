@@ -32,7 +32,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         ListItem GetObject(File fileObject);
 
-        ListItem GetObject(List listObject, int itemId);
+        ListItem GetObject(List listObject, int listItemId);
 
         IEnumerable<ListItem> GetObjectEnumerable(List listObject, IReadOnlyDictionary<string, object> filterInformation);
 
@@ -182,11 +182,15 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 .ToObject<ListItem>(requestPayload.ActionQueryId);
         }
 
-        public ListItem GetObject(List listObject, int itemId)
+        public ListItem GetObject(List listObject, int listItemId)
         {
             if (listObject == null)
             {
                 throw new ArgumentNullException(nameof(listObject));
+            }
+            if (listItemId == default(int))
+            {
+                throw new ArgumentNullException(nameof(listItemId));
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
@@ -196,7 +200,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 new ObjectPathMethod(
                     objectPath1.Id,
                     "GetItemById",
-                    requestPayload.CreateParameter(itemId)),
+                    requestPayload.CreateParameter(listItemId)),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {

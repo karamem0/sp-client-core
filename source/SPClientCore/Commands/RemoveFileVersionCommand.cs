@@ -7,7 +7,6 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models;
-using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services;
 using System;
@@ -49,22 +48,12 @@ namespace Karamem0.SharePoint.PowerShell.Commands
             }
             if (this.ParameterSetName == "ParamSet2")
             {
-                if (this.RecycleBin ? false : true)
-                {
-                    throw new ArgumentException(
-                        string.Format(StringResources.ErrorValueCannotBeValue, false),
-                        nameof(this.RecycleBin));
-                }
+                this.ValidateSwitchParameter(nameof(this.RecycleBin));
                 this.Service.RecycleObject(this.Identity);
             }
             if (this.ParameterSetName == "ParamSet3")
             {
-                if (this.All ? false : true)
-                {
-                    throw new ArgumentException(
-                        string.Format(StringResources.ErrorValueCannotBeValue, false),
-                        nameof(this.All));
-                }
+                this.ValidateSwitchParameter(nameof(this.All));
                 this.Service.RemoveObjectAll(this.File);
             }
         }

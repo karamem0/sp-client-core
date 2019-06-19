@@ -48,7 +48,7 @@ function Install-TestSite {
             -Lcid 1033 `
             -Owner $credential.UserName `
             -StorageMaxLevel 26214400 `
-            -Template 'STS#3' `
+            -Template 'STS#0' `
             -Title 'SPClientCore' `
             -Url $Url
 
@@ -59,6 +59,9 @@ function Install-TestSite {
         $siteCollection = Get-KshCurrentSiteCollection
         $appSettings.SiteCollectionGuid = $siteCollection.Id
         $appSettings.SiteCollectionUrl = $siteCollection.ServerRelativeUrl
+
+        Write-Progress -Activity 'Adding site collection app catalog...' -Status 'Processing'
+        Add-KshSiteCollectionAppCatalog -SiteCollection $siteCollection
 
         Write-Progress -Activity 'Removing existing groups...' -Status 'Processing'
         Get-KshGroup | Remove-KshGroup
@@ -132,16 +135,64 @@ function Install-TestSite {
         $appSettings.User3Title = $user3.Title
         $appSettings.User3Email = $user3.Email
 
+        Write-Progress -Activity 'Creating role definitions...' -Status 'Test Role Definition 1'
+        $basePermission1 = Initialize-KshBasePermission -Permission 'EmptyMask'
+        $roleDefinition1 = New-KshRoleDefinition `
+            -BasePermission $basePermission1 `
+            -Name 'Test Role Definition 1'
+        $appSettings.RoleDefinition1Id = $RoleDefinition1.Id
+        $appSettings.RoleDefinition1Name = $RoleDefinition1.Name
+
+        Write-Progress -Activity 'Creating role definitions...' -Status 'Test Role Definition 2'
+        $basePermission2 = Initialize-KshBasePermission -Permission 'EmptyMask'
+        $roleDefinition2 = New-KshRoleDefinition `
+            -BasePermission $basePermission2 `
+            -Name 'Test Role Definition 2'
+        $appSettings.RoleDefinition2Id = $RoleDefinition2.Id
+        $appSettings.RoleDefinition2Name = $RoleDefinition2.Name
+
+        Write-Progress -Activity 'Creating role definitions...' -Status 'Test Role Definition 3'
+        $basePermission3 = Initialize-KshBasePermission -Permission 'EmptyMask'
+        $roleDefinition3 = New-KshRoleDefinition `
+            -BasePermission $basePermission3 `
+            -Name 'Test Role Definition 3'
+        $appSettings.RoleDefinition3Id = $RoleDefinition3.Id
+        $appSettings.RoleDefinition3Name = $RoleDefinition3.Name
+
         Write-Progress -Activity 'Creating sites...' -Status 'Test Site 1'
         $site1 = New-KshSite `
             -Description 'Test Site 1' `
             -Lcid 1033 `
             -ServerRelativeUrl 'TestSite1' `
-            -Template 'STS#3' `
+            -Template 'STS#0' `
             -Title 'Test Site 1'
         $appSettings.Site1Id = $site1.Id
         $appSettings.Site1Url = $site1.ServerRelativeUrl
         $appSettings.Site1Title = $site1.Title
+
+        Write-Progress -Activity 'Enabling unique role assignment...' -Status 'Test Site 1'
+        Set-KshUniqueRoleAssignmentEnabled -Identity $site1 -Enabled
+
+        Write-Progress -Activity 'Creating site role assignments...' -Status 'Test Role Definition 1'
+        $siteRoleAssignment1 = New-KshRoleAssignment `
+            -Site $site1 `
+            -Principal $group1 `
+            -RoleDefinition $roleDefinition1
+        $appSettings.SiteRoleAssignment1Id = $siteRoleAssignment1.PrincipalId
+
+        Write-Progress -Activity 'Creating site role assignments...' -Status 'Test Role Definition 2'
+        $siteRoleAssignment2 = New-KshRoleAssignment `
+            -Site $site1 `
+            -Principal $group2 `
+            -RoleDefinition $roleDefinition2
+        $appSettings.SiteRoleAssignment2Id = $siteRoleAssignment2.PrincipalId
+
+        Write-Progress -Activity 'Creating site role assignments...' -Status 'Test Role Definition 3'
+        $siteRoleAssignment3 = New-KshRoleAssignment `
+            -Site $site1 `
+            -Principal $group3 `
+            -RoleDefinition $roleDefinition3
+        $appSettings.SiteRoleAssignment3Id = $siteRoleAssignment3.PrincipalId
 
         Write-Progress -Activity 'Changing current site...' -Status 'Test Site 1'
         Select-KshSite -Identity $site1
@@ -151,22 +202,28 @@ function Install-TestSite {
             -Description 'Test Site 2' `
             -Lcid 1033 `
             -ServerRelativeUrl 'TestSite2' `
-            -Template 'STS#3' `
+            -Template 'STS#0' `
             -Title 'Test Site 2'
         $appSettings.Site2Id = $site2.Id
         $appSettings.Site2Url = $site2.ServerRelativeUrl
         $appSettings.Site2Title = $site2.Title
+
+        Write-Progress -Activity 'Enabling unique role assignment...' -Status 'Test Site 2'
+        Set-KshUniqueRoleAssignmentEnabled -Identity $site2 -Enabled
 
         Write-Progress -Activity 'Creating sites...' -Status 'Test Site 3'
         $site3 = New-KshSite `
             -Description 'Test Site 3' `
             -Lcid 1033 `
             -ServerRelativeUrl 'TestSite3' `
-            -Template 'STS#3' `
+            -Template 'STS#0' `
             -Title 'Test Site 3'
         $appSettings.Site3Id = $site3.Id
         $appSettings.Site3Url = $site3.ServerRelativeUrl
         $appSettings.Site3Title = $site3.Title
+
+        Write-Progress -Activity 'Enabling unique role assignment...' -Status 'Test Site 3'
+        Set-KshUniqueRoleAssignmentEnabled -Identity $site3 -Enabled
 
         Write-Progress -Activity 'Changing current site...' -Status 'Test Site 2'
         Select-KshSite -Identity $site2
@@ -176,11 +233,14 @@ function Install-TestSite {
             -Description 'Test Site 4' `
             -Lcid 1033 `
             -ServerRelativeUrl 'TestSite4' `
-            -Template 'STS#3' `
+            -Template 'STS#0' `
             -Title 'Test Site 4'
         $appSettings.Site4Id = $site4.Id
         $appSettings.Site4Url = $site4.ServerRelativeUrl
         $appSettings.Site4Title = $site4.Title
+
+        Write-Progress -Activity 'Enabling unique role assignment...' -Status 'Test Site 4'
+        Set-KshUniqueRoleAssignmentEnabled -Identity $site4 -Enabled
 
         Write-Progress -Activity 'Changing current site...' -Status 'Test Site 1'
         Select-KshSite -Identity $site1
@@ -202,6 +262,33 @@ function Install-TestSite {
         $appSettings.List1Id = $list1.Id
         $appSettings.List1Title = $list1.Title
         $appSettings.List1Url = $rootFolder1.ServerRelativeUrl
+
+        Write-Progress -Activity 'Enabling unique role assignment...' -Status 'Test List 1'
+        Set-KshUniqueRoleAssignmentEnabled -Identity $list1 -Enabled
+
+        Write-Progress -Activity 'Enabling unique role assignment...' -Status 'Test Site 1'
+        Set-KshUniqueRoleAssignmentEnabled -Identity $site1 -Enabled
+
+        Write-Progress -Activity 'Creating site role assignments...' -Status 'Test Role Definition 1'
+        $listRoleAssignment1 = New-KshRoleAssignment `
+            -List $list1 `
+            -Principal $group1 `
+            -RoleDefinition $roleDefinition1
+        $appSettings.ListRoleAssignment1Id = $listRoleAssignment1.PrincipalId
+
+        Write-Progress -Activity 'Creating site role assignments...' -Status 'Test Role Definition 2'
+        $listRoleAssignment2 = New-KshRoleAssignment `
+            -List $list1 `
+            -Principal $group2 `
+            -RoleDefinition $roleDefinition2
+        $appSettings.ListRoleAssignment2Id = $listRoleAssignment2.PrincipalId
+
+        Write-Progress -Activity 'Creating site role assignments...' -Status 'Test Role Definition 3'
+        $listRoleAssignment3 = New-KshRoleAssignment `
+            -List $list1 `
+            -Principal $group3 `
+            -RoleDefinition $roleDefinition3
+        $appSettings.ListRoleAssignment3Id = $listRoleAssignment3.PrincipalId
 
         Write-Progress -Activity 'Creating lists...' -Status 'Test List 2'
         $list2 = New-KshList `
@@ -507,22 +594,22 @@ function Install-TestSite {
             -List $list1 `
             -Title 'TestView1' `
             -ViewColumns @(
-                'Test Column 1'
-                'Test Column 2'
-                'Test Column 3'
-                'Test Column 4'
-                'Test Column 5'
-                'Test Column 6'
-                'Test Column 7'
-                'Test Column 8'
-                'Test Column 9'
-                'Test Column 10'
-                'Test Column 11'
-                'Test Column 12'
-                'Test Column 13'
-                'Test Column 14'
-                'Test Column 15'
-            )
+            'Test Column 1'
+            'Test Column 2'
+            'Test Column 3'
+            'Test Column 4'
+            'Test Column 5'
+            'Test Column 6'
+            'Test Column 7'
+            'Test Column 8'
+            'Test Column 9'
+            'Test Column 10'
+            'Test Column 11'
+            'Test Column 12'
+            'Test Column 13'
+            'Test Column 14'
+            'Test Column 15'
+        )
         $view1 = Update-KshView `
             -Identity $view1 `
             -Title 'Test View 1' `
@@ -535,22 +622,22 @@ function Install-TestSite {
             -List $list1 `
             -Title 'TestView2' `
             -ViewColumns @(
-                'Test Column 1'
-                'Test Column 2'
-                'Test Column 3'
-                'Test Column 4'
-                'Test Column 5'
-                'Test Column 6'
-                'Test Column 7'
-                'Test Column 8'
-                'Test Column 9'
-                'Test Column 10'
-                'Test Column 11'
-                'Test Column 12'
-                'Test Column 13'
-                'Test Column 14'
-                'Test Column 15'
-            )
+            'Test Column 1'
+            'Test Column 2'
+            'Test Column 3'
+            'Test Column 4'
+            'Test Column 5'
+            'Test Column 6'
+            'Test Column 7'
+            'Test Column 8'
+            'Test Column 9'
+            'Test Column 10'
+            'Test Column 11'
+            'Test Column 12'
+            'Test Column 13'
+            'Test Column 14'
+            'Test Column 15'
+        )
         $view2 = Update-KshView `
             -Identity $view2 `
             -Title 'Test View 2' `
@@ -563,22 +650,22 @@ function Install-TestSite {
             -List $list1 `
             -Title 'TestView3' `
             -ViewColumns @(
-                'Test Column 1'
-                'Test Column 2'
-                'Test Column 3'
-                'Test Column 4'
-                'Test Column 5'
-                'Test Column 6'
-                'Test Column 7'
-                'Test Column 8'
-                'Test Column 9'
-                'Test Column 10'
-                'Test Column 11'
-                'Test Column 12'
-                'Test Column 13'
-                'Test Column 14'
-                'Test Column 15'
-            )
+            'Test Column 1'
+            'Test Column 2'
+            'Test Column 3'
+            'Test Column 4'
+            'Test Column 5'
+            'Test Column 6'
+            'Test Column 7'
+            'Test Column 8'
+            'Test Column 9'
+            'Test Column 10'
+            'Test Column 11'
+            'Test Column 12'
+            'Test Column 13'
+            'Test Column 14'
+            'Test Column 15'
+        )
         $view3 = Update-KshView `
             -Identity $view3 `
             -Title 'Test View 3' `
@@ -587,29 +674,29 @@ function Install-TestSite {
         $appSettings.View3Title = $view3.Title
 
         Write-Progress -Activity 'Creating list items...' -Status 'Preparing'
-        $userValue1 = New-KshColumnUserValue -LookupId $user1.Id
-        $userValue2 = New-KshColumnUserValue -LookupId $user2.Id
-        $userValue3 = New-KshColumnUserValue -LookupId $user3.Id
+        $userValue1 = Initialize-KshColumnUserValue -LookupId $user1.Id
+        $userValue2 = Initialize-KshColumnUserValue -LookupId $user2.Id
+        $userValue3 = Initialize-KshColumnUserValue -LookupId $user3.Id
 
         Write-Progress -Activity 'Creating list items...' -Status 'Preparing'
-        $urlValue1 = New-KshColumnUrlValue `
+        $urlValue1 = Initialize-KshColumnUrlValue `
             -Description 'Test Value 1' `
             -Url 'http://www.example.com'
-        $urlValue2 = New-KshColumnUrlValue `
+        $urlValue2 = Initialize-KshColumnUrlValue `
             -Description 'Test Value 2' `
             -Url 'http://www.example.com'
-        $urlValue3 = New-KshColumnUrlValue `
+        $urlValue3 = Initialize-KshColumnUrlValue `
             -Description 'Test Value 3' `
             -Url 'http://www.example.com'
 
         Write-Progress -Activity 'Creating list items...' -Status 'Preparing'
-        $geolocationValue1 = New-KshColumnGeolocationValue `
+        $geolocationValue1 = Initialize-KshColumnGeolocationValue `
             -Latitude 35.689488 `
             -Longitude 139.691706
-        $geolocationValue2 = New-KshColumnGeolocationValue `
+        $geolocationValue2 = Initialize-KshColumnGeolocationValue `
             -Latitude 34.686297 `
             -Longitude 135.519661
-        $geolocationValue3 = New-KshColumnGeolocationValue `
+        $geolocationValue3 = Initialize-KshColumnGeolocationValue `
             -Latitude 35.180188 `
             -Longitude 136.906565
 
@@ -617,92 +704,116 @@ function Install-TestSite {
         $item1 = New-KshListItem `
             -List $list1 `
             -Value @{
-                Title = 'Test List Item 1'
-                TestColumn1 = 'Test Value 1'
-                TestColumn2 = 'Test Value 1'
-                TestColumn3 = 'Test Value 1'
-                TestColumn4 = @('Test Value 1')
-                TestColumn5 = 1
-                TestColumn6 = 1
-                TestColumn7 = [datetime]'10/10/2010'
-                TestColumn10 = $true
-                TestColumn11 = $userValue1
-                TestColumn12 = @($userValue1)
-                TestColumn13 = $urlValue1
-                TestColumn15 = $geolocationValue1
-            }
+            Title        = 'Test List Item 1'
+            TestColumn1  = 'Test Value 1'
+            TestColumn2  = 'Test Value 1'
+            TestColumn3  = 'Test Value 1'
+            TestColumn4  = @('Test Value 1')
+            TestColumn5  = 1
+            TestColumn6  = 1
+            TestColumn7  = [datetime]'10/10/2010'
+            TestColumn10 = $true
+            TestColumn11 = $userValue1
+            TestColumn12 = @($userValue1)
+            TestColumn13 = $urlValue1
+            TestColumn15 = $geolocationValue1
+        }
         $appSettings.ListItem1Id = $item1.Id
+
+        Write-Progress -Activity 'Enabling unique role assignment...' -Status 'Test List Item 1'
+        Set-KshUniqueRoleAssignmentEnabled -Identity $item1 -Enabled
+
+        Write-Progress -Activity 'Creating site role assignments...' -Status 'Test Role Definition 1'
+        $itemRoleAssignment1 = New-KshRoleAssignment `
+            -ListItem $item1 `
+            -Principal $group1 `
+            -RoleDefinition $roleDefinition1
+        $appSettings.ListItemRoleAssignment1Id = $itemRoleAssignment1.PrincipalId
+
+        Write-Progress -Activity 'Creating site role assignments...' -Status 'Test Role Definition 2'
+        $itemRoleAssignment2 = New-KshRoleAssignment `
+            -ListItem $item1 `
+            -Principal $group2 `
+            -RoleDefinition $roleDefinition2
+        $appSettings.ListItemRoleAssignment2Id = $itemRoleAssignment2.PrincipalId
+
+        Write-Progress -Activity 'Creating site role assignments...' -Status 'Test Role Definition 3'
+        $itemRoleAssignment3 = New-KshRoleAssignment `
+            -ListItem $item1 `
+            -Principal $group3 `
+            -RoleDefinition $roleDefinition3
+        $appSettings.ListItemRoleAssignment3Id = $itemRoleAssignment3.PrincipalId
 
         Write-Progress -Activity 'Creating list items...' -Status 'Test List Item 2'
         $item2 = New-KshListItem `
             -List $list1 `
             -Value @{
-                Title = 'Test List Item 2'
-                TestColumn1 = 'Test Value 2'
-                TestColumn2 = 'Test Value 2'
-                TestColumn3 = 'Test Value 2'
-                TestColumn4 = @('Test Value 2')
-                TestColumn5 = 2
-                TestColumn6 = 2
-                TestColumn7 = [datetime]'12/20/2016'
-                TestColumn10 = $true
-                TestColumn11 = $userValue2
-                TestColumn12 = @($userValue2)
-                TestColumn13 = $urlValue2
-                TestColumn15 = $geolocationValue2
-            }
+            Title        = 'Test List Item 2'
+            TestColumn1  = 'Test Value 2'
+            TestColumn2  = 'Test Value 2'
+            TestColumn3  = 'Test Value 2'
+            TestColumn4  = @('Test Value 2')
+            TestColumn5  = 2
+            TestColumn6  = 2
+            TestColumn7  = [datetime]'12/20/2016'
+            TestColumn10 = $true
+            TestColumn11 = $userValue2
+            TestColumn12 = @($userValue2)
+            TestColumn13 = $urlValue2
+            TestColumn15 = $geolocationValue2
+        }
         $appSettings.ListItem2Id = $item2.Id
 
         Write-Progress -Activity 'Creating list items...' -Status 'Test List Item 3'
         $item3 = New-KshListItem `
             -List $list1 `
             -Value @{
-                Title = 'Test List Item 3'
-                TestColumn1 = 'Test Value 3'
-                TestColumn2 = 'Test Value 3'
-                TestColumn3 = 'Test Value 3'
-                TestColumn4 = @('Test Value 1', 'Test Value 2', 'Test Value 3')
-                TestColumn5 = 1
-                TestColumn6 = 1
-                TestColumn7 = [datetime]'12/20/2016'
-                TestColumn10 = $true
-                TestColumn11 = $userValue3
-                TestColumn12 = @($userValue1, $userValue2, $userValue3)
-                TestColumn13 = $urlValue3
-                TestColumn15 = $geolocationValue3
-            }
+            Title        = 'Test List Item 3'
+            TestColumn1  = 'Test Value 3'
+            TestColumn2  = 'Test Value 3'
+            TestColumn3  = 'Test Value 3'
+            TestColumn4  = @('Test Value 1', 'Test Value 2', 'Test Value 3')
+            TestColumn5  = 1
+            TestColumn6  = 1
+            TestColumn7  = [datetime]'12/20/2016'
+            TestColumn10 = $true
+            TestColumn11 = $userValue3
+            TestColumn12 = @($userValue1, $userValue2, $userValue3)
+            TestColumn13 = $urlValue3
+            TestColumn15 = $geolocationValue3
+        }
         $appSettings.ListItem3Id = $item3.Id
 
         Write-Progress -Activity 'Updating list items...' -Status 'Preparing'
-        $lookupValue1 = New-KshColumnLookupValue -LookupId $item1.Id
-        $lookupValue2 = New-KshColumnLookupValue -LookupId $item2.Id
-        $lookupValue3 = New-KshColumnLookupValue -LookupId $item3.Id
+        $lookupValue1 = Initialize-KshColumnLookupValue -LookupId $item1.Id
+        $lookupValue2 = Initialize-KshColumnLookupValue -LookupId $item2.Id
+        $lookupValue3 = Initialize-KshColumnLookupValue -LookupId $item3.Id
 
         Write-Progress -Activity 'Updating list items...' -Status 'Test List Item 1'
         $item1 = Update-KshListItem `
             -Identity $item1 `
             -Value @{
-                TestColumn8 = $lookupValue1
-                TestColumn9 = @($lookupValue1)
-            } `
+            TestColumn8 = $lookupValue1
+            TestColumn9 = @($lookupValue1)
+        } `
             -PassThru
 
         Write-Progress -Activity 'Updating list items...' -Status 'Test List Item 2'
         $item2 = Update-KshListItem `
             -Identity $item2 `
             -Value @{
-                TestColumn8 = $lookupValue2
-                TestColumn9 = @($lookupValue2)
-            } `
+            TestColumn8 = $lookupValue2
+            TestColumn9 = @($lookupValue2)
+        } `
             -PassThru
 
         Write-Progress -Activity 'Updating list items...' -Status 'Test List Item 3'
         $item3 = Update-KshListItem `
             -Identity $item3 `
             -Value @{
-                TestColumn8 = $lookupValue3
-                TestColumn9 = @($lookupValue1, $lookupValue2, $lookupValue3)
-            } `
+            TestColumn8 = $lookupValue3
+            TestColumn9 = @($lookupValue1, $lookupValue2, $lookupValue3)
+        } `
             -PassThru
 
         Write-Progress -Activity 'Creating attachments...' -Status 'Test File 1'
@@ -840,6 +951,9 @@ function Uninstall-TestSite {
 
         Write-Progress -Activity 'Sign in...' -Status 'Processing'
         Connect-KshSite -Url $adminUrl -Credential $credential
+
+        Write-Progress -Activity 'Removing site collection app catalog...' -Status 'Processing'
+        Get-KshSiteCollectionAppCatalog -SiteCollectionUrl $Url | Remove-KshSiteCollectionAppCatalog
 
         Write-Progress -Activity 'Deleting site collection...' -Status 'Processing'
         Get-KshTenantSiteCollection -SiteCollectionUrl $Url | Remove-KshTenantSiteCollection

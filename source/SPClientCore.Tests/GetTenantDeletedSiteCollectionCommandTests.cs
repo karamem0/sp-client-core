@@ -44,6 +44,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     new Dictionary<string, object>()
                     {
                         { "Owner", context.AppSettings["LoginUserName"] },
+                        { "Template", "STS#0" },
                         { "Url", context.AppSettings["AuthorityUrl"] + "/sites/TestSite0" }
                     }
                 );
@@ -106,6 +107,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     new Dictionary<string, object>()
                     {
                         { "Owner", context.AppSettings["LoginUserName"] },
+                        { "Template", "STS#0" },
                         { "Url", context.AppSettings["AuthorityUrl"] + "/sites/TestSite0" }
                     }
                 );
@@ -169,6 +171,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     new Dictionary<string, object>()
                     {
                         { "Owner", context.AppSettings["LoginUserName"] },
+                        { "Template", "STS#0" },
                         { "Url", context.AppSettings["AuthorityUrl"] + "/sites/TestSite0" }
                     }
                 );

@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshCurrentSite
 
 ## SYNOPSIS
-Retrieves a current site.
+Retrieves the current site.
 
 ## SYNTAX
 

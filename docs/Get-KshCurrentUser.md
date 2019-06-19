@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshCurrentUser
 
 ## SYNOPSIS
-Retrieves a current user.
+Retrieves the current user.
 
 ## SYNTAX
 

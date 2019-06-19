@@ -32,7 +32,6 @@ The Update-KshList cmdlet updates properties of the list.
 
 ### Example 1
 ```powershell
-PS C:\> $list =
 PS C:\> Update-KshList -Identity (Get-KshList -ListTitle 'Announcements') -EnableAttachments $true
 ```
 

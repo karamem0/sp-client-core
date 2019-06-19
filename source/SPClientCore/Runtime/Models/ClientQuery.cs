@@ -38,9 +38,23 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
                 .Select(propertyInfo =>
                 {
                     var propertyAttribute = propertyInfo.GetCustomAttribute<JsonPropertyAttribute>();
-                    return string.IsNullOrEmpty(propertyAttribute.PropertyName)
-                        ? new ClientQueryProperty(propertyInfo.Name)
-                        : new ClientQueryProperty(propertyAttribute.PropertyName);
+                    var propertyName = string.IsNullOrEmpty(propertyAttribute.PropertyName) ? propertyInfo.Name : propertyAttribute.PropertyName;
+                    var propertyType = propertyInfo.PropertyType;
+                    if (propertyType.IsSubclassOf(typeof(ClientObject)))
+                    {
+                        return new ClientQueryProperty(propertyName)
+                        {
+                            SelectAll = true,
+                            Query = new ClientQuery(selectAllProperties, propertyType)
+                        };
+                    }
+                    else
+                    {
+                        return new ClientQueryProperty(propertyName)
+                        {
+                            ScalarProperty = true
+                        };
+                    }
                 })
                 .ToList();
         }

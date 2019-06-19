@@ -48,8 +48,7 @@ Retrieves all content type columns of the list content type.
 
 ### Example 3
 ```powershell
-PS C:\> $siteContentType = Get-KshContentType -ContentTypeId '0x0100EFB1758564C77D448177233D1199B912'
-PS C:\> $siteContentTypeColumns = Get-KshContentTypeColumn -ContentType $siteContentType
+PS C:\> Get-KshContentTypeColumn -ContentType (Get-KshContentType -ContentTypeId '0x0100EFB1758564C77D448177233D1199B912')
 ```
 
 Retrieves all content type columns of the site content type.

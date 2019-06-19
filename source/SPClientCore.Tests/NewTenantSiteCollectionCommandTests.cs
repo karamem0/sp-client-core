@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
     {
 
         [TestMethod()]
-        public void NewTenantSiteCollection()
+        public void CreateTenantSiteCollection()
         {
             using (var context = new PSCmdletContext())
             {

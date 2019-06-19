@@ -5,37 +5,36 @@ online version:
 schema: 2.0.0
 ---
 
-# New-KshColumnUserValue
+# Remove-KshRoleAssignment
 
 ## SYNOPSIS
-Creates a user column value.
+Removes a role assignment.
 
 ## SYNTAX
 
 ```
-New-KshColumnUserValue [-LookupId] <Int32> [<CommonParameters>]
+Remove-KshRoleAssignment [-Identity] <RoleAssignment> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The New-KshColumnUserValue cmdlet creates a new user column value from user ID.
-This is provided for the Add-KshListItem cmdlet and Update-KshListItem cmdlet .
+The Remove-KshRoleAssignment cmdlet removes a role assignment from the site, list or list item.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> New-KshColumnUserValue -LookupId 1
+PS C:\> Remove-KshRoleAssignment -Identity (Get-KshRoleAssignment -PrincipalId 1)
 ```
 
-Creates a new user column value.
+Removes a role assignment.
 
 ## PARAMETERS
 
-### -LookupId
-Specifies the user ID.
+### -Identity
+Specifies the role assignment.
 
 ```yaml
-Type: Int32
+Type: RoleAssignment
 Parameter Sets: (All)
 Aliases:
 
@@ -51,11 +50,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### System.Int32
+### Karamem0.SharePoint.PowerShell.Models.RoleAssignment
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.ColumnUserValue
+### System.Void
 
 ## NOTES
 

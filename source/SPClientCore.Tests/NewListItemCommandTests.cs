@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
     {
 
         [TestMethod()]
-        public void NewListItem()
+        public void CreateListItem()
         {
             using (var context = new PSCmdletContext())
             {
@@ -47,21 +47,21 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     }
                 );
                 var result3 = context.Runspace.InvokeCommand<ColumnLookupValue>(
-                    "New-KshColumnLookupValue",
+                    "Initialize-KshColumnLookupValue",
                     new Dictionary<string, object>()
                     {
                         { "LookupId", context.AppSettings["ListItem1Id"] },
                     }
                 );
                 var result4 = context.Runspace.InvokeCommand<ColumnUserValue>(
-                    "New-KshColumnUserValue",
+                    "Initialize-KshColumnUserValue",
                     new Dictionary<string, object>()
                     {
                         { "LookupId", context.AppSettings["User1Id"] },
                     }
                 );
                 var result5 = context.Runspace.InvokeCommand<ColumnUrlValue>(
-                    "New-KshColumnUrlValue",
+                    "Initialize-KshColumnUrlValue",
                     new Dictionary<string, object>()
                     {
                         { "Url", "https://www.example.com" },
@@ -69,7 +69,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     }
                 );
                 var result6 = context.Runspace.InvokeCommand<ColumnGeolocationValue>(
-                    "New-KshColumnGeolocationValue",
+                    "Initialize-KshColumnGeolocationValue",
                     new Dictionary<string, object>()
                     {
                         { "Latitude", 10 },

@@ -56,7 +56,7 @@ namespace Karamem0.SharePoint.PowerShell.Models
         public virtual bool RequireSiteAdministrator { get; protected set; }
 
         [JsonProperty()]
-        public virtual BasePermissions Rights { get; protected set; }
+        public virtual BasePermission Rights { get; protected set; }
 
         [JsonProperty()]
         public virtual string Title { get; protected set; }

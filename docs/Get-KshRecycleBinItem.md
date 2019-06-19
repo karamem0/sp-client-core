@@ -28,7 +28,7 @@ Get-KshRecycleBinItem [-SecondStage] [-NoEnumerate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshRecycleBinItem cmdlet recycle bin items of the current site.
+The Get-KshRecycleBinItem cmdlet retrieves recycle bin items of the current site.
 
 ## EXAMPLES
 

@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
     {
 
         [TestMethod()]
-        public void NewListColumnGeolocation()
+        public void CreateListColumnGeolocation()
         {
             using (var context = new PSCmdletContext())
             {
@@ -90,7 +90,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void NewSiteColumnGeolocation()
+        public void CreateSiteColumnGeolocation()
         {
             using (var context = new PSCmdletContext())
             {

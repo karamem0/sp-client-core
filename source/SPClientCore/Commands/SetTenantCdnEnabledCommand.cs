@@ -7,7 +7,6 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models;
-using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services;
 using System;
@@ -29,36 +28,46 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         }
 
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
         public SwitchParameter Public { get; private set; }
 
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
+        [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
+        [Parameter(Mandatory = true, ParameterSetName = "ParamSet4")]
         public SwitchParameter Private { get; private set; }
 
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
+        public SwitchParameter Enabled { get; private set; }
+
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-        public bool Enabled { get; private set; }
+        [Parameter(Mandatory = true, ParameterSetName = "ParamSet4")]
+        public SwitchParameter Disabled { get; private set; }
 
         protected override void ProcessRecordCore()
         {
             if (this.ParameterSetName == "ParamSet1")
             {
-                if (this.Public ? false : true)
-                {
-                    throw new ArgumentException(
-                        string.Format(StringResources.ErrorValueCannotBeValue, false),
-                        nameof(this.Public));
-                }
-                this.Service.SetEnabled(TenantCdnType.Public, this.Enabled);
+                this.ValidateSwitchParameter(nameof(this.Public));
+                this.ValidateSwitchParameter(nameof(this.Enabled));
+                this.Service.SetEnabled(TenantCdnType.Public, true);
             }
             if (this.ParameterSetName == "ParamSet2")
             {
-                if (this.Private ? false : true)
-                {
-                    throw new ArgumentException(
-                        string.Format(StringResources.ErrorValueCannotBeValue, false),
-                        nameof(this.Private));
-                }
-                this.Service.SetEnabled(TenantCdnType.Private, this.Enabled);
+                this.ValidateSwitchParameter(nameof(this.Public));
+                this.ValidateSwitchParameter(nameof(this.Disabled));
+                this.Service.SetEnabled(TenantCdnType.Public, false);
+            }
+            if (this.ParameterSetName == "ParamSet3")
+            {
+                this.ValidateSwitchParameter(nameof(this.Private));
+                this.ValidateSwitchParameter(nameof(this.Enabled));
+                this.Service.SetEnabled(TenantCdnType.Private, true);
+            }
+            if (this.ParameterSetName == "ParamSet4")
+            {
+                this.ValidateSwitchParameter(nameof(this.Private));
+                this.ValidateSwitchParameter(nameof(this.Disabled));
+                this.Service.SetEnabled(TenantCdnType.Private, false);
             }
         }
 

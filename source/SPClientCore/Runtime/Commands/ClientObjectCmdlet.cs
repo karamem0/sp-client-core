@@ -6,6 +6,7 @@
 // https://github.com/karamem0/SPClientCore/blob/master/LICENSE
 //
 
+using Karamem0.SharePoint.PowerShell.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,23 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Commands
         }
 
         protected abstract void ProcessRecordCore();
+
+        public void ValidateSwitchParameter(string parameterName)
+        {
+            if (this.MyInvocation.BoundParameters.TryGetValue(parameterName, out var parameterValue))
+            {
+                if (parameterValue is SwitchParameter switchParameter)
+                {
+                    if (switchParameter ? false : true)
+                    {
+                        throw new ArgumentException(
+                            string.Format(StringResources.ErrorValueCannotBeValue, false),
+                            nameof(parameterName));
+                    }
+                }
+            }
+
+        }
 
     }
 

@@ -24,6 +24,11 @@ Get-KshSiteCollectionAppCatalog [-SiteCollectionUrl] <Uri> [<CommonParameters>]
 
 ### ParamSet3
 ```
+Get-KshSiteCollectionAppCatalog [-SiteCollectionId] <Guid> [<CommonParameters>]
+```
+
+### ParamSet4
+```
 Get-KshSiteCollectionAppCatalog [-NoEnumerate] [<CommonParameters>]
 ```
 
@@ -53,7 +58,7 @@ If specified, suppresses to enumerate objects.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: ParamSet3
+Parameter Sets: ParamSet4
 Aliases:
 
 Required: False
@@ -69,6 +74,21 @@ Specifies the site collection.
 ```yaml
 Type: SiteCollection
 Parameter Sets: ParamSet1
+Aliases:
+
+Required: True
+Position: 0
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -SiteCollectionId
+Specifies the site collection ID.
+
+```yaml
+Type: Guid
+Parameter Sets: ParamSet3
 Aliases:
 
 Required: True

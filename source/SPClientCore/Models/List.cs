@@ -18,7 +18,7 @@ namespace Karamem0.SharePoint.PowerShell.Models
 
     [ClientObject(Name = "SP.List", Id = "{d89f0b18-614e-4b4a-bac0-fd6142b55448}")]
     [JsonObject()]
-    public class List : ClientObject
+    public class List : SecurableObject
     {
 
         public List()
@@ -120,6 +120,9 @@ namespace Karamem0.SharePoint.PowerShell.Models
 
         [JsonProperty()]
         public virtual bool HasExternalDataSource { get; protected set; }
+
+        [JsonProperty()]
+        public override bool HasUniqueRoleAssignments { get; protected set; }
 
         [JsonProperty()]
         public virtual bool Hidden { get; protected set; }

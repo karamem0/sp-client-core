@@ -60,24 +60,21 @@ Retrieves a list item from the file.
 
 ### Example 3
 ```powershell
-PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> $listItem = Get-KshListItem -List $list -ItemId 1
+PS C:\> Get-KshListItem -List (Get-KshList -ListTitle 'Announcements') -ItemId 1
 ```
 
 Retrieves a list item by list item ID.
 
 ### Example 4
 ```powershell
-PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> $listItems = Get-KshListItem -List $list
+PS C:\> Get-KshListItem -List (Get-KshList -ListTitle 'Announcements')
 ```
 
 Retrieves all list items. (This case, list items must be less than 5000.)
 
 ### Example 5
 ```powershell
-PS C:\> $list = Get-KshList -ListTitle 'Announcements'
-PS C:\> $listItems = Get-KshListItem -List $list -ViewXml '<View><RowLimit>10</RowLimit><View>'
+PS C:\> Get-KshListItem -List (Get-KshList -ListTitle 'Announcements') -ViewXml '<View><RowLimit>10</RowLimit><View>'
 ```
 
 Retrieves list items by CAML query.

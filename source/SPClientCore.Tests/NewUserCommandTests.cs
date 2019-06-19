@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
     {
 
         [TestMethod()]
-        public void NewUser()
+        public void CreateUser()
         {
             using (var context = new PSCmdletContext())
             {

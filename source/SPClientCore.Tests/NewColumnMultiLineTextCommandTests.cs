@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
     {
 
         [TestMethod()]
-        public void NewListColumnMultiLineText()
+        public void CreateListColumnMultiLineText()
         {
             using (var context = new PSCmdletContext())
             {
@@ -96,7 +96,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void NewSiteColumnMultiLineText()
+        public void CreateSiteColumnMultiLineText()
         {
             using (var context = new PSCmdletContext())
             {

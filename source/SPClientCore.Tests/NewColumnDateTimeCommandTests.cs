@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
     {
 
         [TestMethod()]
-        public void NewListColumnDateTime()
+        public void CreateListColumnDateTime()
         {
             using (var context = new PSCmdletContext())
             {
@@ -96,7 +96,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void NewSiteColumnDateTime()
+        public void CreateSiteColumnDateTime()
         {
             using (var context = new PSCmdletContext())
             {

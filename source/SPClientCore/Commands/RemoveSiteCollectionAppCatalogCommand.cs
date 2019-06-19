@@ -32,7 +32,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         protected override void ProcessRecordCore()
         {
-            this.Service.RemoveObject(new Uri(this.Identity.AbsoluteUrl, UriKind.Absolute));
+            this.Service.RemoveObject(this.Identity.SiteCollectionId);
         }
 
     }

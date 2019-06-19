@@ -18,7 +18,7 @@ namespace Karamem0.SharePoint.PowerShell.Models
 
     [ClientObject(Name = "SP.Web", Id = "{a489add2-5d3a-4de8-9445-49259462dceb}")]
     [JsonObject()]
-    public class Site : ClientObject
+    public class Site : SecurableObject
     {
 
         public Site()
@@ -54,6 +54,9 @@ namespace Karamem0.SharePoint.PowerShell.Models
 
         [JsonProperty()]
         public virtual Guid AppInstanceId { get; protected set; }
+
+        [JsonProperty()]
+        public virtual User Author { get; protected set; }
 
         [JsonProperty()]
         public virtual bool CommentsOnSitePagesDisabled { get; protected set; }
@@ -101,7 +104,7 @@ namespace Karamem0.SharePoint.PowerShell.Models
         public virtual bool FooterEnabled { get; protected set; }
 
         [JsonProperty()]
-        public virtual bool HasUniqueRoleAssignments { get; protected set; }
+        public override bool HasUniqueRoleAssignments { get; protected set; }
 
         [JsonProperty()]
         public virtual VariantThemeType HeaderEmphasis { get; protected set; }

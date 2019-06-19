@@ -5,44 +5,44 @@ online version:
 schema: 2.0.0
 ---
 
-# New-KshContentTypeId
+# Initialize-KshColumnLookupValue
 
 ## SYNOPSIS
-Creates a content type ID.
+Creates a lookup column value.
 
 ## SYNTAX
 
 ```
-New-KshContentTypeId [-StringValue] <String> [<CommonParameters>]
+Initialize-KshColumnLookupValue [-LookupId] <Int32> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The New-KshContentTypeId cmdlet creates a content type ID from string value.
-This is provided for the [Update-KshFolder](Update-KshFolder.md) and [Update-KshView](Update-KshView.md) cmdlet.
+The Initialize-KshColumnLookupValue cmdlet creates a new lookup column value from item ID.
+This is provided for the [New-KshListItem](New-KshListItem.md) cmdlet and [Update-KshListItem](Update-KshListItem.md) cmdlet.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> New-KshContentTypeId -StringValue '0x0107'
+PS C:\> Initialize-KshColumnLookupValue -LookupId 1
 ```
 
-Creates a content type ID.
+Creates a new lookup column value.
 
 ## PARAMETERS
 
-### -StringValue
-Specifies the string value.
+### -LookupId
+Specifies the item ID.
 
 ```yaml
-Type: String
+Type: Int32
 Parameter Sets: (All)
 Aliases:
 
 Required: True
 Position: 0
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -51,11 +51,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### System.String
+### System.Int32
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.ContentTypeId
+### Karamem0.SharePoint.PowerShell.Models.ColumnLookupValue
 
 ## NOTES
 

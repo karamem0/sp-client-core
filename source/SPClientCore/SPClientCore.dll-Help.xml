@@ -783,7 +783,7 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:&gt; Add-KshViewColumn -View (Get-KshView -List (Get-KshList -ListTitle 'Announcements') -ViewTitle 'My Items') -Column (Get-KshColumn -List $list -ColumnName 'Remarks')</dev:code>
+        <dev:code>PS C:&gt; Add-KshViewColumn -View (Get-KshView -List (Get-KshList -ListTitle 'Announcements') -ViewTitle 'My Items') -Column (Get-KshColumn -List (Get-KshList -ListTitle 'Announcements') -ColumnName 'Remarks')</dev:code>
         <dev:remarks>
           <maml:para>Adds a view column.</maml:para>
         </dev:remarks>
@@ -2619,8 +2619,7 @@
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 3 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; $siteContentType = Get-KshContentType -ContentTypeId '0x0100EFB1758564C77D448177233D1199B912'
-PS C:\&gt; $siteContentTypeColumns = Get-KshContentTypeColumn -ContentType $siteContentType</dev:code>
+        <dev:code>PS C:\&gt; Get-KshContentTypeColumn -ContentType (Get-KshContentType -ContentTypeId '0x0100EFB1758564C77D448177233D1199B912')</dev:code>
         <dev:remarks>
           <maml:para>Retrieves all content type columns of the site content type.</maml:para>
         </dev:remarks>
@@ -2634,7 +2633,7 @@ PS C:\&gt; $siteContentTypeColumns = Get-KshContentTypeColumn -ContentType $site
       <command:verb>Get</command:verb>
       <command:noun>KshCurrentSite</command:noun>
       <maml:description>
-        <maml:para>Retrieves a current site.</maml:para>
+        <maml:para>Retrieves the current site.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -2688,7 +2687,7 @@ PS C:\&gt; $siteContentTypeColumns = Get-KshContentTypeColumn -ContentType $site
       <command:verb>Get</command:verb>
       <command:noun>KshCurrentSiteCollection</command:noun>
       <maml:description>
-        <maml:para>Retrieves a current site collection.</maml:para>
+        <maml:para>Retrieves the current site collection.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -2742,7 +2741,7 @@ PS C:\&gt; $siteContentTypeColumns = Get-KshContentTypeColumn -ContentType $site
       <command:verb>Get</command:verb>
       <command:noun>KshCurrentUser</command:noun>
       <maml:description>
-        <maml:para>Retrieves a current user.</maml:para>
+        <maml:para>Retrieves the current user.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -4561,24 +4560,21 @@ PS C:\&gt; $siteContentTypeColumns = Get-KshContentTypeColumn -ContentType $site
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 3 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; $list = Get-KshList -ListTitle 'Announcements'
-PS C:\&gt; $listItem = Get-KshListItem -List $list -ItemId 1</dev:code>
+        <dev:code>PS C:\&gt; Get-KshListItem -List (Get-KshList -ListTitle 'Announcements') -ItemId 1</dev:code>
         <dev:remarks>
           <maml:para>Retrieves a list item by list item ID.</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 4 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; $list = Get-KshList -ListTitle 'Announcements'
-PS C:\&gt; $listItems = Get-KshListItem -List $list</dev:code>
+        <dev:code>PS C:\&gt; Get-KshListItem -List (Get-KshList -ListTitle 'Announcements')</dev:code>
         <dev:remarks>
           <maml:para>Retrieves all list items. (This case, list items must be less than 5000.)</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 5 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; $list = Get-KshList -ListTitle 'Announcements'
-PS C:\&gt; $listItems = Get-KshListItem -List $list -ViewXml '&lt;View&gt;&lt;RowLimit&gt;10&lt;/RowLimit&gt;&lt;View&gt;'</dev:code>
+        <dev:code>PS C:\&gt; Get-KshListItem -List (Get-KshList -ListTitle 'Announcements') -ViewXml '&lt;View&gt;&lt;RowLimit&gt;10&lt;/RowLimit&gt;&lt;View&gt;'</dev:code>
         <dev:remarks>
           <maml:para>Retrieves list items by CAML query.</maml:para>
         </dev:remarks>
@@ -4735,7 +4731,7 @@ PS C:\&gt; $listItems = Get-KshListItem -List $list -ViewXml '&lt;View&gt;&lt;Ro
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshRecycleBinItem cmdlet recycle bin items of the current site.</maml:para>
+      <maml:para>The Get-KshRecycleBinItem cmdlet retrieves recycle bin items of the current site.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -4893,6 +4889,498 @@ PS C:\&gt; $listItems = Get-KshListItem -List $list -ViewXml '&lt;View&gt;&lt;Ro
         <dev:code>PS C:\&gt; Get-KshRecycleBinItem</dev:code>
         <dev:remarks>
           <maml:para>Retrieves all recycle bin items.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-KshRoleAssignment</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>KshRoleAssignment</command:noun>
+      <maml:description>
+        <maml:para>Retrieves one or more role assignments.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-KshRoleAssignment cmdlet retrieves role assignments of the site, list or list item.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-KshRoleAssignment</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Identity</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the role assignment.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">RoleAssignment</command:parameterValue>
+          <dev:type>
+            <maml:name>RoleAssignment</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshRoleAssignment</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>List</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the list.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">List</command:parameterValue>
+          <dev:type>
+            <maml:name>List</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>PrincipalId</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the user ID or group ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshRoleAssignment</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>List</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the list.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">List</command:parameterValue>
+          <dev:type>
+            <maml:name>List</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NoEnumerate</maml:name>
+          <maml:Description>
+            <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshRoleAssignment</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>ListItem</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the list item.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ListItem</command:parameterValue>
+          <dev:type>
+            <maml:name>ListItem</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>PrincipalId</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the user ID or group ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshRoleAssignment</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>ListItem</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the list item.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ListItem</command:parameterValue>
+          <dev:type>
+            <maml:name>ListItem</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NoEnumerate</maml:name>
+          <maml:Description>
+            <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshRoleAssignment</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>Site</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the site.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Site</command:parameterValue>
+          <dev:type>
+            <maml:name>Site</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NoEnumerate</maml:name>
+          <maml:Description>
+            <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshRoleAssignment</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>Site</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the site.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Site</command:parameterValue>
+          <dev:type>
+            <maml:name>Site</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>PrincipalId</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the user ID or group ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Identity</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the role assignment.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">RoleAssignment</command:parameterValue>
+        <dev:type>
+          <maml:name>RoleAssignment</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>List</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the list.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">List</command:parameterValue>
+        <dev:type>
+          <maml:name>List</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>ListItem</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the list item.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ListItem</command:parameterValue>
+        <dev:type>
+          <maml:name>ListItem</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>NoEnumerate</maml:name>
+        <maml:Description>
+          <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>PrincipalId</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the user ID or group ID.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>Site</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the site.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Site</command:parameterValue>
+        <dev:type>
+          <maml:name>Site</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.RoleAssignment</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.RoleAssignment</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshRoleAssignment -Site (Get-KshSite -SiteUrl '/sites/japan/hr') -PrincipalId 1</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves a site role assignment by principal ID.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshRoleAssignment -List (Get-KshList -ListUrl '/sites/japan/hr/Announcements') -PrincipalId 1</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves a list role assignment by principal ID.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 3 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshRoleAssignment -ListItem (Get-KshListItem -List (Get-KshList -ListUrl '/sites/japan/hr/Announcements') -ItemId 1) -PrincipalId 1</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves a list item role assignment by principal ID.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 4 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshRoleAssignment</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves all site role assignments.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-KshRoleDefinition</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>KshRoleDefinition</command:noun>
+      <maml:description>
+        <maml:para>Retrieves one or more role definitions.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-KshRoleDefinition cmdlet retrieves role definitions of the current site.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-KshRoleDefinition</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Identity</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the role definition.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">RoleDefinition</command:parameterValue>
+          <dev:type>
+            <maml:name>RoleDefinition</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshRoleDefinition</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NoEnumerate</maml:name>
+          <maml:Description>
+            <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshRoleDefinition</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>RoleDefinitionId</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the role definition ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshRoleDefinition</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>RoleDefinitionName</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the role definition name.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Identity</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the role definition.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">RoleDefinition</command:parameterValue>
+        <dev:type>
+          <maml:name>RoleDefinition</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>NoEnumerate</maml:name>
+        <maml:Description>
+          <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>RoleDefinitionId</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the role definition ID.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>RoleDefinitionName</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the role definition name.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.RoleDefinition</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.RoleDefinition</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshRoleDefinition -RoleDefinitionId 1073741829</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves a role definition by role definition ID.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshRoleDefinition -RoleDefinitionName 'Full Control'</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves a role definition by role definition name.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 3 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshRoleDefinition</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves all role definitions.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -5290,6 +5778,21 @@ PS C:\&gt; $listItems = Get-KshListItem -List $list -ViewXml '&lt;View&gt;&lt;Ro
       <command:syntaxItem>
         <maml:name>Get-KshSiteCollectionAppCatalog</maml:name>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>SiteCollectionId</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the site collection ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+          <dev:type>
+            <maml:name>Guid</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshSiteCollectionAppCatalog</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
           <maml:name>SiteCollectionUrl</maml:name>
           <maml:Description>
             <maml:para>Specifies the site collection URL.</maml:para>
@@ -5324,6 +5827,18 @@ PS C:\&gt; $listItems = Get-KshListItem -List $list -ViewXml '&lt;View&gt;&lt;Ro
         <command:parameterValue required="true" variableLength="false">SiteCollection</command:parameterValue>
         <dev:type>
           <maml:name>SiteCollection</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>SiteCollectionId</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the site collection ID.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+        <dev:type>
+          <maml:name>Guid</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -7389,6 +7904,615 @@ PS C:\&gt; $listItems = Get-KshListItem -List $list -ViewXml '&lt;View&gt;&lt;Ro
         <dev:code>PS C:\&gt; Get-KshViewColumn -View (Get-KshView -List (Get-KshList -ListTitle 'Announcements') -ViewId 'bae9f925-48d3-47f5-bb07-92927a82df7d')</dev:code>
         <dev:remarks>
           <maml:para>Retrieves all view columns.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Initialize-KshBasePermission</command:name>
+      <command:verb>Initialize</command:verb>
+      <command:noun>KshBasePermission</command:noun>
+      <maml:description>
+        <maml:para>Creates a base permission.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Initialize-KshBasePermission cmdlet creates a new base permission from permissions. This is provided for the New-KshRoleDefinition (New-KshRoleDefinition.md) cmdlet and [Update-KshRoleDefinition](Update-KshRoleDefinition.md)cmdlet.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Initialize-KshBasePermission</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>Permission</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the permissions.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">EmptyMask</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ViewListItems</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">AddListItems</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">EditListItems</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">DeleteListItems</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ApproveItems</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">OpenItems</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ViewVersions</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">DeleteVersions</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">CancelCheckout</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ManagePersonalViews</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ManageLists</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ViewFormPages</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">AnonymousSearchAccessList</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Open</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ViewPages</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">AddAndCustomizePages</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ApplyThemeAndBorder</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ApplyStyleSheets</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ViewUsageData</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">CreateSSCSite</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ManageSubwebs</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">CreateGroups</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ManagePermissions</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">BrowseDirectories</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">BrowseUserInfo</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">AddDelPrivateWebParts</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">UpdatePersonalWebParts</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ManageWeb</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">AnonymousSearchAccessWebLists</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">UseClientIntegration</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">UseRemoteAPIs</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ManageAlerts</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">CreateAlerts</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">EditMyUserInfo</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">EnumeratePermissions</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">FullMask</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">PermissionKind[]</command:parameterValue>
+          <dev:type>
+            <maml:name>PermissionKind[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>Permission</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the permissions.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">PermissionKind[]</command:parameterValue>
+        <dev:type>
+          <maml:name>PermissionKind[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.BasePermission</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Initialize-KshBasePermission -Permission @('ViewListItems', 'AddListItems', 'EditListItems', 'DeleteListItems')</dev:code>
+        <dev:remarks>
+          <maml:para>Creates a base permission.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Initialize-KshColumnGeolocationValue</command:name>
+      <command:verb>Initialize</command:verb>
+      <command:noun>KshColumnGeolocationValue</command:noun>
+      <maml:description>
+        <maml:para>Creates a geolocation column value.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Initialize-KshColumnGeolocationValue cmdlet creates a new geolocation column value from latitude and longitude. This is provided for the New-KshListItem (New-KshListItem.md) cmdlet and [Update-KshListItem](Update-KshListItem.md)cmdlet.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Initialize-KshColumnGeolocationValue</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Altitude</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the altitude.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Double</command:parameterValue>
+          <dev:type>
+            <maml:name>Double</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Latitude</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the latitude.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Double</command:parameterValue>
+          <dev:type>
+            <maml:name>Double</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Longitude</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the longitude.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Double</command:parameterValue>
+          <dev:type>
+            <maml:name>Double</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Measure</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the measure.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Double</command:parameterValue>
+          <dev:type>
+            <maml:name>Double</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Altitude</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the altitude.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Double</command:parameterValue>
+        <dev:type>
+          <maml:name>Double</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Latitude</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the latitude.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Double</command:parameterValue>
+        <dev:type>
+          <maml:name>Double</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Longitude</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the longitude.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Double</command:parameterValue>
+        <dev:type>
+          <maml:name>Double</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Measure</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the measure.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Double</command:parameterValue>
+        <dev:type>
+          <maml:name>Double</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.ColumnGeolocationValue</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Initialize-KshColumnGeolocationValue -Latitude 10 -Longitude 10</dev:code>
+        <dev:remarks>
+          <maml:para>Creates a new geolocation column value.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Initialize-KshColumnLookupValue</command:name>
+      <command:verb>Initialize</command:verb>
+      <command:noun>KshColumnLookupValue</command:noun>
+      <maml:description>
+        <maml:para>Creates a lookup column value.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Initialize-KshColumnLookupValue cmdlet creates a new lookup column value from item ID. This is provided for the New-KshListItem (New-KshListItem.md) cmdlet and [Update-KshListItem](Update-KshListItem.md)cmdlet.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Initialize-KshColumnLookupValue</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>LookupId</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the item ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>LookupId</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the item ID.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.Int32</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.ColumnLookupValue</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Initialize-KshColumnLookupValue -LookupId 1</dev:code>
+        <dev:remarks>
+          <maml:para>Creates a new lookup column value.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Initialize-KshColumnUrlValue</command:name>
+      <command:verb>Initialize</command:verb>
+      <command:noun>KshColumnUrlValue</command:noun>
+      <maml:description>
+        <maml:para>Creates a URL column value.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Initialize-KshColumnUrlValue cmdlet creates a new URL column value from URL. This is provided for the New-KshListItem (New-KshListItem.md) cmdlet and [Update-KshListItem](Update-KshListItem.md)cmdlet.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Initialize-KshColumnUrlValue</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>Url</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the URL.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>Description</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the description.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>Description</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the description.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>Url</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the URL.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.ColumnUserValue</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Initialize-KshColumnUrlValue -Url 'https://www.example.com'</dev:code>
+        <dev:remarks>
+          <maml:para>Creates a new URL column value.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Initialize-KshColumnUserValue</command:name>
+      <command:verb>Initialize</command:verb>
+      <command:noun>KshColumnUserValue</command:noun>
+      <maml:description>
+        <maml:para>Creates a user column value.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Initialize-KshColumnUserValue cmdlet creates a new user column value from user ID. This is provided for the New-KshListItem (New-KshListItem.md) cmdlet and [Update-KshListItem](Update-KshListItem.md)cmdlet.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Initialize-KshColumnUserValue</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>LookupId</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the user ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>LookupId</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the user ID.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.Int32</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.ColumnUserValue</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Initialize-KshColumnUserValue -LookupId 1</dev:code>
+        <dev:remarks>
+          <maml:para>Creates a new user column value.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Initialize-KshContentTypeId</command:name>
+      <command:verb>Initialize</command:verb>
+      <command:noun>KshContentTypeId</command:noun>
+      <maml:description>
+        <maml:para>Creates a content type ID.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Initialize-KshContentTypeId cmdlet creates a content type ID from string value. This is provided for the Update-KshFolder (Update-KshFolder.md) and [Update-KshView](Update-KshView.md)cmdlet.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Initialize-KshContentTypeId</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>StringValue</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the string value.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>StringValue</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the string value.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.ContentTypeId</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Initialize-KshContentTypeId -StringValue '0x0107'</dev:code>
+        <dev:remarks>
+          <maml:para>Creates a content type ID.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -16124,157 +17248,6 @@ PS C:\&gt; $listItems = Get-KshListItem -List $list -ViewXml '&lt;View&gt;&lt;Ro
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
-      <command:name>New-KshColumnGeolocationValue</command:name>
-      <command:verb>New</command:verb>
-      <command:noun>KshColumnGeolocationValue</command:noun>
-      <maml:description>
-        <maml:para>Creates a Geolocation column value.</maml:para>
-      </maml:description>
-    </command:details>
-    <maml:description>
-      <maml:para>The New-KshColumnGeolocationValue cmdlet creates a new Geolocation column value from latitude and longitude. This is provided for the Add-KshListItem cmdlet and Update-KshListItem cmdlet.</maml:para>
-    </maml:description>
-    <command:syntax>
-      <command:syntaxItem>
-        <maml:name>New-KshColumnGeolocationValue</maml:name>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>Altitude</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the altitude.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Double</command:parameterValue>
-          <dev:type>
-            <maml:name>Double</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>Latitude</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the latitude.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Double</command:parameterValue>
-          <dev:type>
-            <maml:name>Double</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>Longitude</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the longitude.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Double</command:parameterValue>
-          <dev:type>
-            <maml:name>Double</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>Measure</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the measure.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Double</command:parameterValue>
-          <dev:type>
-            <maml:name>Double</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-      </command:syntaxItem>
-    </command:syntax>
-    <command:parameters>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>Altitude</maml:name>
-        <maml:Description>
-          <maml:para>Specifies the altitude.</maml:para>
-        </maml:Description>
-        <command:parameterValue required="true" variableLength="false">Double</command:parameterValue>
-        <dev:type>
-          <maml:name>Double</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>Latitude</maml:name>
-        <maml:Description>
-          <maml:para>Specifies the latitude.</maml:para>
-        </maml:Description>
-        <command:parameterValue required="true" variableLength="false">Double</command:parameterValue>
-        <dev:type>
-          <maml:name>Double</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>Longitude</maml:name>
-        <maml:Description>
-          <maml:para>Specifies the longitude.</maml:para>
-        </maml:Description>
-        <command:parameterValue required="true" variableLength="false">Double</command:parameterValue>
-        <dev:type>
-          <maml:name>Double</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>Measure</maml:name>
-        <maml:Description>
-          <maml:para>Specifies the measure.</maml:para>
-        </maml:Description>
-        <command:parameterValue required="true" variableLength="false">Double</command:parameterValue>
-        <dev:type>
-          <maml:name>Double</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-    </command:parameters>
-    <command:inputTypes>
-      <command:inputType>
-        <dev:type>
-          <maml:name>None</maml:name>
-        </dev:type>
-        <maml:description>
-          <maml:para></maml:para>
-        </maml:description>
-      </command:inputType>
-    </command:inputTypes>
-    <command:returnValues>
-      <command:returnValue>
-        <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.ColumnGeolocationValue</maml:name>
-        </dev:type>
-        <maml:description>
-          <maml:para></maml:para>
-        </maml:description>
-      </command:returnValue>
-    </command:returnValues>
-    <maml:alertSet>
-      <maml:alert>
-        <maml:para></maml:para>
-      </maml:alert>
-    </maml:alertSet>
-    <command:examples>
-      <command:example>
-        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; New-KshColumnGeolocationValue -Latitude 10 -Longitude 10</dev:code>
-        <dev:remarks>
-          <maml:para>Creates a new Geolocation column value.</maml:para>
-        </dev:remarks>
-      </command:example>
-    </command:examples>
-    <command:relatedLinks />
-  </command:command>
-  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-    <command:details>
       <command:name>New-KshColumnLookup</command:name>
       <command:verb>New</command:verb>
       <command:noun>KshColumnLookup</command:noun>
@@ -17685,85 +18658,6 @@ PS C:\&gt; $listItems = Get-KshListItem -List $list -ViewXml '&lt;View&gt;&lt;Ro
         <dev:code>PS C:\&gt; New-KshColumnLookup -ListId 'a01f8e07-290f-4644-9db8-85bb00b85e74' -Name 'LookupColumn' -ShowColumnName 'Title'</dev:code>
         <dev:remarks>
           <maml:para>Creates a new column.</maml:para>
-        </dev:remarks>
-      </command:example>
-    </command:examples>
-    <command:relatedLinks />
-  </command:command>
-  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-    <command:details>
-      <command:name>New-KshColumnLookupValue</command:name>
-      <command:verb>New</command:verb>
-      <command:noun>KshColumnLookupValue</command:noun>
-      <maml:description>
-        <maml:para>Creates a lookup column value.</maml:para>
-      </maml:description>
-    </command:details>
-    <maml:description>
-      <maml:para>The New-KshColumnLookupValue cmdlet creates a new lookup column value from item ID. This is provided for the Add-KshListItem cmdlet and Update-KshListItem cmdlet .</maml:para>
-    </maml:description>
-    <command:syntax>
-      <command:syntaxItem>
-        <maml:name>New-KshColumnLookupValue</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
-          <maml:name>LookupId</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the item ID.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
-          <dev:type>
-            <maml:name>Int32</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-      </command:syntaxItem>
-    </command:syntax>
-    <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
-        <maml:name>LookupId</maml:name>
-        <maml:Description>
-          <maml:para>Specifies the item ID.</maml:para>
-        </maml:Description>
-        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
-        <dev:type>
-          <maml:name>Int32</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-    </command:parameters>
-    <command:inputTypes>
-      <command:inputType>
-        <dev:type>
-          <maml:name>System.Int32</maml:name>
-        </dev:type>
-        <maml:description>
-          <maml:para></maml:para>
-        </maml:description>
-      </command:inputType>
-    </command:inputTypes>
-    <command:returnValues>
-      <command:returnValue>
-        <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.ColumnLookupValue</maml:name>
-        </dev:type>
-        <maml:description>
-          <maml:para></maml:para>
-        </maml:description>
-      </command:returnValue>
-    </command:returnValues>
-    <maml:alertSet>
-      <maml:alert>
-        <maml:para></maml:para>
-      </maml:alert>
-    </maml:alertSet>
-    <command:examples>
-      <command:example>
-        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; New-KshColumnLookupValue -LookupId 1</dev:code>
-        <dev:remarks>
-          <maml:para>Creates a new lookup column value.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -24331,109 +25225,6 @@ PS C:\&gt; $listItems = Get-KshListItem -List $list -ViewXml '&lt;View&gt;&lt;Ro
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
-      <command:name>New-KshColumnUrlValue</command:name>
-      <command:verb>New</command:verb>
-      <command:noun>KshColumnUrlValue</command:noun>
-      <maml:description>
-        <maml:para>Creates a URL column value.</maml:para>
-      </maml:description>
-    </command:details>
-    <maml:description>
-      <maml:para>The New-KshColumnUrlValue cmdlet creates a new URL column value from URL. This is provided for the Add-KshListItem cmdlet and Update-KshListItem cmdlet.</maml:para>
-    </maml:description>
-    <command:syntax>
-      <command:syntaxItem>
-        <maml:name>New-KshColumnUrlValue</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
-          <maml:name>Url</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the URL.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-          <dev:type>
-            <maml:name>String</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
-          <maml:name>Description</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the description.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-          <dev:type>
-            <maml:name>String</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-      </command:syntaxItem>
-    </command:syntax>
-    <command:parameters>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
-        <maml:name>Description</maml:name>
-        <maml:Description>
-          <maml:para>Specifies the description.</maml:para>
-        </maml:Description>
-        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-        <dev:type>
-          <maml:name>String</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
-        <maml:name>Url</maml:name>
-        <maml:Description>
-          <maml:para>Specifies the URL.</maml:para>
-        </maml:Description>
-        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-        <dev:type>
-          <maml:name>String</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-    </command:parameters>
-    <command:inputTypes>
-      <command:inputType>
-        <dev:type>
-          <maml:name>System.String</maml:name>
-        </dev:type>
-        <maml:description>
-          <maml:para></maml:para>
-        </maml:description>
-      </command:inputType>
-    </command:inputTypes>
-    <command:returnValues>
-      <command:returnValue>
-        <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.ColumnUserValue</maml:name>
-        </dev:type>
-        <maml:description>
-          <maml:para></maml:para>
-        </maml:description>
-      </command:returnValue>
-    </command:returnValues>
-    <maml:alertSet>
-      <maml:alert>
-        <maml:para></maml:para>
-      </maml:alert>
-    </maml:alertSet>
-    <command:examples>
-      <command:example>
-        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; New-KshColumnUrlValue -Url 'https://www.example.com'</dev:code>
-        <dev:remarks>
-          <maml:para>Creates a new URL column value.</maml:para>
-        </dev:remarks>
-      </command:example>
-    </command:examples>
-    <command:relatedLinks />
-  </command:command>
-  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-    <command:details>
       <command:name>New-KshColumnUser</command:name>
       <command:verb>New</command:verb>
       <command:noun>KshColumnUser</command:noun>
@@ -25914,85 +26705,6 @@ PS C:\&gt; $listItems = Get-KshListItem -List $list -ViewXml '&lt;View&gt;&lt;Ro
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
-      <command:name>New-KshColumnUserValue</command:name>
-      <command:verb>New</command:verb>
-      <command:noun>KshColumnUserValue</command:noun>
-      <maml:description>
-        <maml:para>Creates a user column value.</maml:para>
-      </maml:description>
-    </command:details>
-    <maml:description>
-      <maml:para>The New-KshColumnUserValue cmdlet creates a new user column value from user ID. This is provided for the Add-KshListItem cmdlet and Update-KshListItem cmdlet .</maml:para>
-    </maml:description>
-    <command:syntax>
-      <command:syntaxItem>
-        <maml:name>New-KshColumnUserValue</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
-          <maml:name>LookupId</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the user ID.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
-          <dev:type>
-            <maml:name>Int32</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-      </command:syntaxItem>
-    </command:syntax>
-    <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
-        <maml:name>LookupId</maml:name>
-        <maml:Description>
-          <maml:para>Specifies the user ID.</maml:para>
-        </maml:Description>
-        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
-        <dev:type>
-          <maml:name>Int32</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-    </command:parameters>
-    <command:inputTypes>
-      <command:inputType>
-        <dev:type>
-          <maml:name>System.Int32</maml:name>
-        </dev:type>
-        <maml:description>
-          <maml:para></maml:para>
-        </maml:description>
-      </command:inputType>
-    </command:inputTypes>
-    <command:returnValues>
-      <command:returnValue>
-        <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.ColumnUserValue</maml:name>
-        </dev:type>
-        <maml:description>
-          <maml:para></maml:para>
-        </maml:description>
-      </command:returnValue>
-    </command:returnValues>
-    <maml:alertSet>
-      <maml:alert>
-        <maml:para></maml:para>
-      </maml:alert>
-    </maml:alertSet>
-    <command:examples>
-      <command:example>
-        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; New-KshColumnUserValue -LookupId 1</dev:code>
-        <dev:remarks>
-          <maml:para>Creates a new user column value.</maml:para>
-        </dev:remarks>
-      </command:example>
-    </command:examples>
-    <command:relatedLinks />
-  </command:command>
-  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-    <command:details>
       <command:name>New-KshContentType</command:name>
       <command:verb>New</command:verb>
       <command:noun>KshContentType</command:noun>
@@ -26386,85 +27098,6 @@ PS C:\&gt; $listItems = Get-KshListItem -List $list -ViewXml '&lt;View&gt;&lt;Ro
         <dev:code>PS C:&gt; New-KshContentTypeColumn -ContentType (Get-KshContentType -ContentTypeId '0x0100EFB1758564C77D448177233D1199B912') -Column (Get-KshColumn -ColumnTitle 'Remarks') -PushChanges</dev:code>
         <dev:remarks>
           <maml:para>Creates a new content type column to the site content type.</maml:para>
-        </dev:remarks>
-      </command:example>
-    </command:examples>
-    <command:relatedLinks />
-  </command:command>
-  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-    <command:details>
-      <command:name>New-KshContentTypeId</command:name>
-      <command:verb>New</command:verb>
-      <command:noun>KshContentTypeId</command:noun>
-      <maml:description>
-        <maml:para>Creates a content type ID.</maml:para>
-      </maml:description>
-    </command:details>
-    <maml:description>
-      <maml:para>The New-KshContentTypeId cmdlet creates a content type ID from string value. This is provided for the Update-KshFolder (Update-KshFolder.md) and [Update-KshView](Update-KshView.md)cmdlet.</maml:para>
-    </maml:description>
-    <command:syntax>
-      <command:syntaxItem>
-        <maml:name>New-KshContentTypeId</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
-          <maml:name>StringValue</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the string value.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-          <dev:type>
-            <maml:name>String</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-      </command:syntaxItem>
-    </command:syntax>
-    <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
-        <maml:name>StringValue</maml:name>
-        <maml:Description>
-          <maml:para>Specifies the string value.</maml:para>
-        </maml:Description>
-        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-        <dev:type>
-          <maml:name>String</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-    </command:parameters>
-    <command:inputTypes>
-      <command:inputType>
-        <dev:type>
-          <maml:name>System.String</maml:name>
-        </dev:type>
-        <maml:description>
-          <maml:para></maml:para>
-        </maml:description>
-      </command:inputType>
-    </command:inputTypes>
-    <command:returnValues>
-      <command:returnValue>
-        <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.ContentTypeId</maml:name>
-        </dev:type>
-        <maml:description>
-          <maml:para></maml:para>
-        </maml:description>
-      </command:returnValue>
-    </command:returnValues>
-    <maml:alertSet>
-      <maml:alert>
-        <maml:para></maml:para>
-      </maml:alert>
-    </maml:alertSet>
-    <command:examples>
-      <command:example>
-        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; New-KshContentTypeId -StringValue '0x0107'</dev:code>
-        <dev:remarks>
-          <maml:para>Creates a content type ID.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -27128,6 +27761,386 @@ PS C:\&gt; $listItems = Get-KshListItem -List $list -ViewXml '&lt;View&gt;&lt;Ro
         <dev:code>PS C:\&gt; New-KshListItem -List (Get-KshList -ListTitle 'Announcements') -Value @{ 'Title' = 'A Happy New Year' }</dev:code>
         <dev:remarks>
           <maml:para>Creates a new list item.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>New-KshRoleAssignment</command:name>
+      <command:verb>New</command:verb>
+      <command:noun>KshRoleAssignment</command:noun>
+      <maml:description>
+        <maml:para>Creates a new role assignment.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The New-KshRoleAssignment cmdlet adds a new role assignment to the site, list or list item.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>New-KshRoleAssignment</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>List</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the list.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">List</command:parameterValue>
+          <dev:type>
+            <maml:name>List</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>Principal</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the user or group.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Principal</command:parameterValue>
+          <dev:type>
+            <maml:name>Principal</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
+          <maml:name>RoleDefinition</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the role definition.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">RoleDefinition</command:parameterValue>
+          <dev:type>
+            <maml:name>RoleDefinition</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>New-KshRoleAssignment</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>ListItem</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the list item.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ListItem</command:parameterValue>
+          <dev:type>
+            <maml:name>ListItem</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>Principal</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the user or group.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Principal</command:parameterValue>
+          <dev:type>
+            <maml:name>Principal</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
+          <maml:name>RoleDefinition</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the role definition.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">RoleDefinition</command:parameterValue>
+          <dev:type>
+            <maml:name>RoleDefinition</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>New-KshRoleAssignment</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>Site</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the site.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Site</command:parameterValue>
+          <dev:type>
+            <maml:name>Site</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>Principal</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the user or group.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Principal</command:parameterValue>
+          <dev:type>
+            <maml:name>Principal</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
+          <maml:name>RoleDefinition</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the role definition.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">RoleDefinition</command:parameterValue>
+          <dev:type>
+            <maml:name>RoleDefinition</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>List</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the list.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">List</command:parameterValue>
+        <dev:type>
+          <maml:name>List</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>ListItem</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the list item.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ListItem</command:parameterValue>
+        <dev:type>
+          <maml:name>ListItem</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>Principal</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the user or group.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Principal</command:parameterValue>
+        <dev:type>
+          <maml:name>Principal</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
+        <maml:name>RoleDefinition</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the role definition.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">RoleDefinition</command:parameterValue>
+        <dev:type>
+          <maml:name>RoleDefinition</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>Site</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the site.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Site</command:parameterValue>
+        <dev:type>
+          <maml:name>Site</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.RoleAssignment</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; New-KshRoleAssignment -Site (Get-KshSite -SiteUrl '/sites/japan/hr') -Principal (Get-KshUser -Identity 'i:0#.f|membership|admin@example.onmicrosoft.com') -RoleDefinition (Get-KshRoleDefinition -RoleDefinitionName 'Full Control')</dev:code>
+        <dev:remarks>
+          <maml:para>Creates a new role assignment.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>New-KshRoleDefinition</command:name>
+      <command:verb>New</command:verb>
+      <command:noun>KshRoleDefinition</command:noun>
+      <maml:description>
+        <maml:para>Creates a new role definition.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The New-KshRoleDefinition cmdlet adds a new role definition to the current site.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>New-KshRoleDefinition</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>BasePermission</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the base permissions.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">BasePermission</command:parameterValue>
+          <dev:type>
+            <maml:name>BasePermission</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Description</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the description.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Name</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the name.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Order</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the order.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>BasePermission</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the base permissions.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">BasePermission</command:parameterValue>
+        <dev:type>
+          <maml:name>BasePermission</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Description</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the description.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Name</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the name.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Order</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the order.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.RoleDefinition</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; New-KshRoleDefinition -BasePermission (Initialize-KshBasePermission -Permission 'ViewListItems') -Name 'Viewer'</dev:code>
+        <dev:remarks>
+          <maml:para>Creates a new role definition.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -29856,6 +30869,164 @@ PS C:\&gt; $listItems = Get-KshListItem -List $list -ViewXml '&lt;View&gt;&lt;Ro
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Remove-KshRoleAssignment</command:name>
+      <command:verb>Remove</command:verb>
+      <command:noun>KshRoleAssignment</command:noun>
+      <maml:description>
+        <maml:para>Removes a role assignment.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Remove-KshRoleAssignment cmdlet removes a role assignment from the site, list or list item.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Remove-KshRoleAssignment</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Identity</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the role assignment.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">RoleAssignment</command:parameterValue>
+          <dev:type>
+            <maml:name>RoleAssignment</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Identity</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the role assignment.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">RoleAssignment</command:parameterValue>
+        <dev:type>
+          <maml:name>RoleAssignment</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.RoleAssignment</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Void</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Remove-KshRoleAssignment -Identity (Get-KshRoleAssignment -PrincipalId 1)</dev:code>
+        <dev:remarks>
+          <maml:para>Removes a role assignment.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Remove-KshRoleDefinition</command:name>
+      <command:verb>Remove</command:verb>
+      <command:noun>KshRoleDefinition</command:noun>
+      <maml:description>
+        <maml:para>Removes a role definition.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Remove-KshRoleDefinition cmdlet removes a role definition from the current site.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Remove-KshRoleDefinition</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Identity</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the role definition.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">RoleDefinition</command:parameterValue>
+          <dev:type>
+            <maml:name>RoleDefinition</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Identity</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the role definition.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">RoleDefinition</command:parameterValue>
+        <dev:type>
+          <maml:name>RoleDefinition</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.RoleDefinition</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Void</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Remove-KshRoleDefinition -Identity (Get-KshRoleDefinition -RoleDefinitionName 'Viewer')</dev:code>
+        <dev:remarks>
+          <maml:para>Removes a role definition.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Remove-KshSite</command:name>
       <command:verb>Remove</command:verb>
       <command:noun>KshSite</command:noun>
@@ -31831,16 +33002,40 @@ PS C:\&gt; $listItems = Get-KshListItem -List $list -ViewXml '&lt;View&gt;&lt;Ro
       <command:syntaxItem>
         <maml:name>Set-KshTenantCdnEnabled</maml:name>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>Enabled</maml:name>
+          <maml:name>Disabled</maml:name>
           <maml:Description>
-            <maml:para>Specifies whether Office 365 CDN is enabled.</maml:para>
+            <maml:para>If specified, Office 365 CDN is disabled.</maml:para>
           </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
-            <maml:name>Boolean</maml:name>
+            <maml:name>SwitchParameter</maml:name>
             <maml:uri />
           </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Public</maml:name>
+          <maml:Description>
+            <maml:para>If specified, targets Office 365 Public CDN.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Set-KshTenantCdnEnabled</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Disabled</maml:name>
+          <maml:Description>
+            <maml:para>If specified, Office 365 CDN is disabled.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Private</maml:name>
@@ -31859,14 +33054,13 @@ PS C:\&gt; $listItems = Get-KshListItem -List $list -ViewXml '&lt;View&gt;&lt;Ro
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Enabled</maml:name>
           <maml:Description>
-            <maml:para>Specifies whether Office 365 CDN is enabled.</maml:para>
+            <maml:para>If specified, Office 365 CDN is enabled.</maml:para>
           </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
-            <maml:name>Boolean</maml:name>
+            <maml:name>SwitchParameter</maml:name>
             <maml:uri />
           </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
+          <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Public</maml:name>
@@ -31880,19 +33074,56 @@ PS C:\&gt; $listItems = Get-KshListItem -List $list -ViewXml '&lt;View&gt;&lt;Ro
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
       </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Set-KshTenantCdnEnabled</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Enabled</maml:name>
+          <maml:Description>
+            <maml:para>If specified, Office 365 CDN is enabled.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Private</maml:name>
+          <maml:Description>
+            <maml:para>If specified, targets Office 365 Private CDN.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
     </command:syntax>
     <command:parameters>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>Enabled</maml:name>
+        <maml:name>Disabled</maml:name>
         <maml:Description>
-          <maml:para>Specifies whether Office 365 CDN is enabled.</maml:para>
+          <maml:para>If specified, Office 365 CDN is disabled.</maml:para>
         </maml:Description>
-        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
-          <maml:name>Boolean</maml:name>
+          <maml:name>SwitchParameter</maml:name>
           <maml:uri />
         </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Enabled</maml:name>
+        <maml:Description>
+          <maml:para>If specified, Office 365 CDN is enabled.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Private</maml:name>
@@ -31947,14 +33178,14 @@ PS C:\&gt; $listItems = Get-KshListItem -List $list -ViewXml '&lt;View&gt;&lt;Ro
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Set-KshTenantCdnEnabled -Public -Enabled $true</dev:code>
+        <dev:code>PS C:\&gt; Set-KshTenantCdnEnabled -Public -Enabled</dev:code>
         <dev:remarks>
           <maml:para>Enables Office 365 Public CDN.</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 2 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Set-KshTenantCdnEnabled -Private -Enabled $true</dev:code>
+        <dev:code>PS C:\&gt; Set-KshTenantCdnEnabled -Private -Enabled</dev:code>
         <dev:remarks>
           <maml:para>Enables the Office 365 Private CDN.</maml:para>
         </dev:remarks>
@@ -32150,6 +33381,199 @@ PS C:\&gt; $listItems = Get-KshListItem -List $list -ViewXml '&lt;View&gt;&lt;Ro
         <dev:code>PS C:\&gt; Set-KshTenantCdnPolicy -Private -Type 'IncludeFileExtensions' -Value 'GIF,ICO,JPEG,JPG,JS,PNG'</dev:code>
         <dev:remarks>
           <maml:para>Changes a Office 365 Private CDN policy.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Set-KshUniqueRoleAssignmentEnabled</command:name>
+      <command:verb>Set</command:verb>
+      <command:noun>KshUniqueRoleAssignmentEnabled</command:noun>
+      <maml:description>
+        <maml:para>Changes whether unique role assignment is enabled.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Set-KshUniqueRoleAssignmentEnabled cmdlet changes whether unique role assignment is enabled for the securable object.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Set-KshUniqueRoleAssignmentEnabled</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Identity</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the securable object.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">SecurableObject</command:parameterValue>
+          <dev:type>
+            <maml:name>SecurableObject</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ClearSubscopes</maml:name>
+          <maml:Description>
+            <maml:para>If specified, the role assignments for all child securable objects must be cleared.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>CopyRoleAssignments</maml:name>
+          <maml:Description>
+            <maml:para>If specified, copies the role assignments from the parent securable object.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Enabled</maml:name>
+          <maml:Description>
+            <maml:para>If specified, creates unique role assignments for the securable object.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Set-KshUniqueRoleAssignmentEnabled</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Identity</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the securable object.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">SecurableObject</command:parameterValue>
+          <dev:type>
+            <maml:name>SecurableObject</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Disabled</maml:name>
+          <maml:Description>
+            <maml:para>If specified, removes unique role assignments for the securable object.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ClearSubscopes</maml:name>
+        <maml:Description>
+          <maml:para>If specified, the role assignments for all child securable objects must be cleared.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>CopyRoleAssignments</maml:name>
+        <maml:Description>
+          <maml:para>If specified, copies the role assignments from the parent securable object.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Disabled</maml:name>
+        <maml:Description>
+          <maml:para>If specified, removes unique role assignments for the securable object.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Enabled</maml:name>
+        <maml:Description>
+          <maml:para>If specified, creates unique role assignments for the securable object.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Identity</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the securable object.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">SecurableObject</command:parameterValue>
+        <dev:type>
+          <maml:name>SecurableObject</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.SecurableObject</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Void</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Set-KshUniqueRoleAssignmentEnabled -Identity (Get-KshCurrentSite) -Enabled -CopyRoleAssignments -ClearSubscopes</dev:code>
+        <dev:remarks>
+          <maml:para>Creates unique role assignments for the securable object.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Set-KshUniqueRoleAssignmentEnabled -Identity (Get-KshCurrentSite) -Disabled</dev:code>
+        <dev:remarks>
+          <maml:para>Removes unique role assignments for the securable object.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -42024,8 +43448,7 @@ PS C:\&gt; $listItems = Get-KshListItem -List $list -ViewXml '&lt;View&gt;&lt;Ro
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; $list =
-PS C:\&gt; Update-KshList -Identity (Get-KshList -ListTitle 'Announcements') -EnableAttachments $true</dev:code>
+        <dev:code>PS C:\&gt; Update-KshList -Identity (Get-KshList -ListTitle 'Announcements') -EnableAttachments $true</dev:code>
         <dev:remarks>
           <maml:para>Updates property values of the list.</maml:para>
         </dev:remarks>
@@ -42154,6 +43577,204 @@ PS C:\&gt; Update-KshList -Identity (Get-KshList -ListTitle 'Announcements') -En
         <dev:code>PS C:\&gt; Update-KshListItem -Identity (Get-KshListItem -List (Get-KshList -ListTitle 'Announcements') -ItemId 1) -Value @{ 'Title' = 'A Happy New Year' }</dev:code>
         <dev:remarks>
           <maml:para>Updates column values of the list item.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Update-KshRoleDefinition</command:name>
+      <command:verb>Update</command:verb>
+      <command:noun>KshRoleDefinition</command:noun>
+      <maml:description>
+        <maml:para>Updates a role definition.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Update-KshRoleDefinition cmdlet updates properties of the role definition.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Update-KshRoleDefinition</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Identity</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the role definition.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">RoleDefinition</command:parameterValue>
+          <dev:type>
+            <maml:name>RoleDefinition</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>BasePermission</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the base permissions.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">BasePermission</command:parameterValue>
+          <dev:type>
+            <maml:name>BasePermission</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Description</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the description.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Name</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the name.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Order</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the order.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PassThru</maml:name>
+          <maml:Description>
+            <maml:para>If specified, returns the updated object.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>BasePermission</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the base permissions.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">BasePermission</command:parameterValue>
+        <dev:type>
+          <maml:name>BasePermission</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Description</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the description.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Identity</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the role definition.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">RoleDefinition</command:parameterValue>
+        <dev:type>
+          <maml:name>RoleDefinition</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Name</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the name.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Order</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the order.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>PassThru</maml:name>
+        <maml:Description>
+          <maml:para>If specified, returns the updated object.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.RoleDefinition</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.RoleDefinition</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Update-KshRoleDefinition -Identity (Get-KshRoleDefinition -Name 'Viewer') -Order 255</dev:code>
+        <dev:remarks>
+          <maml:para>Updates property values of the role definition.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>

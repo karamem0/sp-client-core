@@ -55,7 +55,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     }
                 );
                 var result4 = context.Runspace.InvokeCommand<ContentTypeId>(
-                    "New-KshContentTypeId",
+                    "Initialize-KshContentTypeId",
                     new Dictionary<string, object>()
                     {
                         { "StringValue", context.AppSettings["ListContentType6Id"] },

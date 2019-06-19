@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
     {
 
         [TestMethod()]
-        public void NewList()
+        public void CreateList()
         {
             using (var context = new PSCmdletContext())
             {

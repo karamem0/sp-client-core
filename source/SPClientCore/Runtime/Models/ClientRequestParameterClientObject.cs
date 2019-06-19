@@ -52,6 +52,10 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
                             propertyName,
                             payload.Add(new ObjectPathIdentity(clientObject.ObjectIdentity)));
                     }
+                    else if (propertyValue is ClientValueObject clientValueObject)
+                    {
+                        return new ClientRequestPropertyClientValueObject(propertyName, clientValueObject);
+                    }
                     else
                     {
                         throw new InvalidOperationException();

@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshCurrentSiteCollection
 
 ## SYNOPSIS
-Retrieves a current site collection.
+Retrieves the current site collection.
 
 ## SYNTAX
 

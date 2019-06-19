@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
     {
 
         [TestMethod()]
-        public void NewListContentTypeByContentType()
+        public void CreateListContentTypeByContentType()
         {
             using (var context = new PSCmdletContext())
             {
@@ -49,7 +49,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "New-KshContentType",
                     new Dictionary<string, object>()
                     {
-                        { "Description", "Test Content Type 0" },
+                        { "Description", "Test Content Type 0 Description" },
                         { "Group", "Test Content Type 0 Group" },
                         { "Name", "Test Content Type 0" }
                     }
@@ -81,7 +81,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void NewListContentTypeByParam()
+        public void CreateListContentTypeByParam()
         {
             using (var context = new PSCmdletContext())
             {
@@ -125,7 +125,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void NewSiteContentTypeByParam()
+        public void CreateSiteContentTypeByParam()
         {
             using (var context = new PSCmdletContext())
             {

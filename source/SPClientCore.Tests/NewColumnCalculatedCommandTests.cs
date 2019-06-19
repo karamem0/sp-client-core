@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
     {
 
         [TestMethod()]
-        public void NewListColumnCalculatedOfBoolean()
+        public void CreateListColumnCalculatedOfBoolean()
         {
             using (var context = new PSCmdletContext())
             {
@@ -98,7 +98,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void NewListColumnCalculatedOfCurrency()
+        public void CreateListColumnCalculatedOfCurrency()
         {
             using (var context = new PSCmdletContext())
             {
@@ -175,7 +175,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void NewListColumnCalculatedOfDateTime()
+        public void CreateListColumnCalculatedOfDateTime()
         {
             using (var context = new PSCmdletContext())
             {
@@ -251,7 +251,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void NewListColumnCalculatedOfNumber()
+        public void CreateListColumnCalculatedOfNumber()
         {
             using (var context = new PSCmdletContext())
             {
@@ -328,7 +328,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void NewListColumnCalculatedOfText()
+        public void CreateListColumnCalculatedOfText()
         {
             using (var context = new PSCmdletContext())
             {
@@ -411,7 +411,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void NewSiteColumnCalculatedOfBoolean()
+        public void CreateSiteColumnCalculatedOfBoolean()
         {
             using (var context = new PSCmdletContext())
             {
@@ -477,7 +477,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void NewSiteColumnCalculatedOfCurrency()
+        public void CreateSiteColumnCalculatedOfCurrency()
         {
             using (var context = new PSCmdletContext())
             {
@@ -545,7 +545,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void NewSiteColumnCalculatedOfDateTime()
+        public void CreateSiteColumnCalculatedOfDateTime()
         {
             using (var context = new PSCmdletContext())
             {
@@ -612,7 +612,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void NewSiteColumnCalculatedOfNumber()
+        public void CreateSiteColumnCalculatedOfNumber()
         {
             using (var context = new PSCmdletContext())
             {
@@ -680,7 +680,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void NewSiteColumnCalculatedOfText()
+        public void CreateSiteColumnCalculatedOfText()
         {
             using (var context = new PSCmdletContext())
             {

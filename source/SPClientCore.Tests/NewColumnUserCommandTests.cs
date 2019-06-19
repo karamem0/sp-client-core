@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
     {
 
         [TestMethod()]
-        public void NewListColumnUser()
+        public void CreateListColumnUser()
         {
             using (var context = new PSCmdletContext())
             {
@@ -97,7 +97,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void NewListColumnUserMulti()
+        public void CreateListColumnUserMulti()
         {
             using (var context = new PSCmdletContext())
             {
@@ -171,7 +171,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void NewSiteColumnUser()
+        public void CreateSiteColumnUser()
         {
             using (var context = new PSCmdletContext())
             {
@@ -237,7 +237,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void NewSiteColumnUserMulti()
+        public void CreateSiteColumnUserMulti()
         {
             using (var context = new PSCmdletContext())
             {

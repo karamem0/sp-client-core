@@ -26,16 +26,25 @@ namespace Karamem0.SharePoint.PowerShell.Models
         }
 
         [JsonProperty()]
+        public virtual User Author { get; protected set; }
+
+        [JsonProperty()]
         public virtual string CheckInComment { get; protected set; }
 
         [JsonProperty()]
         public virtual CheckOutType CheckOutType { get; protected set; }
+
+        [JsonProperty("CheckedOutByUser")]
+        public virtual User CheckOutUser { get; protected set; }
 
         [JsonProperty()]
         public virtual string ContentTag { get; protected set; }
 
         [JsonProperty()]
         public virtual int CustomizedPageStatus { get; protected set; }
+
+        [JsonProperty("ModifiedBy")]
+        public virtual User Editor { get; protected set; }
 
         [JsonProperty()]
         public virtual string ETag { get; protected set; }
@@ -54,6 +63,9 @@ namespace Karamem0.SharePoint.PowerShell.Models
 
         [JsonProperty("LinkingUri")]
         public virtual string LinkingUrl { get; protected set; }
+
+        [JsonProperty("LockedByUser")]
+        public virtual User LockUser { get; protected set; }
 
         [JsonProperty()]
         public virtual int MajorVersion { get; protected set; }

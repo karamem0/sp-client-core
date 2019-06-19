@@ -5,7 +5,7 @@ online version:
 schema: 2.0.0
 ---
 
-# New-KshColumnUrlValue
+# Initialize-KshColumnUrlValue
 
 ## SYNOPSIS
 Creates a URL column value.
@@ -13,18 +13,18 @@ Creates a URL column value.
 ## SYNTAX
 
 ```
-New-KshColumnUrlValue [-Url] <String> [[-Description] <String>] [<CommonParameters>]
+Initialize-KshColumnUrlValue [-Url] <String> [[-Description] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The New-KshColumnUrlValue cmdlet creates a new URL column value from URL.
-This is provided for the Add-KshListItem cmdlet and Update-KshListItem cmdlet.
+The Initialize-KshColumnUrlValue cmdlet creates a new URL column value from URL.
+This is provided for the [New-KshListItem](New-KshListItem.md) cmdlet and [Update-KshListItem](Update-KshListItem.md) cmdlet.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> New-KshColumnUrlValue -Url 'https://www.example.com'
+PS C:\> Initialize-KshColumnUrlValue -Url 'https://www.example.com'
 ```
 
 Creates a new URL column value.
@@ -57,7 +57,7 @@ Aliases:
 Required: True
 Position: 0
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

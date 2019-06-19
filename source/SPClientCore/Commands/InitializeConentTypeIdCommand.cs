@@ -17,21 +17,21 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands
 {
 
-    [Cmdlet("New", "KshColumnUserValue")]
-    [OutputType(typeof(ColumnUserValue))]
-    public class NewColumnUserValueCommand : ClientObjectCmdlet
+    [Cmdlet("Initialize", "KshContentTypeId")]
+    [OutputType(typeof(ContentTypeId))]
+    public class InitializeContentTypeIdCommand : ClientObjectCmdlet
     {
 
-        public NewColumnUserValueCommand()
+        public InitializeContentTypeIdCommand()
         {
         }
 
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public int LookupId { get; private set; }
+        [Parameter(Mandatory = true, Position = 0)]
+        public string StringValue { get; private set; }
 
         protected override void ProcessRecordCore()
         {
-            this.WriteObject(new ColumnUserValue(this.LookupId, null, null));
+            this.WriteObject(new ContentTypeId(this.StringValue));
         }
 
     }

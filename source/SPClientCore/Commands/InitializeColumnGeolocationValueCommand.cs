@@ -17,12 +17,12 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands
 {
 
-    [Cmdlet("New", "KshColumnGeolocationValue")]
+    [Cmdlet("Initialize", "KshColumnGeolocationValue")]
     [OutputType(typeof(ColumnGeolocationValue))]
-    public class NewColumnGeolocationValueCommand : ClientObjectCmdlet
+    public class InitializeColumnGeolocationValueCommand : ClientObjectCmdlet
     {
 
-        public NewColumnGeolocationValueCommand()
+        public InitializeColumnGeolocationValueCommand()
         {
         }
 

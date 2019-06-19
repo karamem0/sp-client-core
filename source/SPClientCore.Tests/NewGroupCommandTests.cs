@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
     {
 
         [TestMethod()]
-        public void NewGroup()
+        public void CreateGroup()
         {
             using (var context = new PSCmdletContext())
             {

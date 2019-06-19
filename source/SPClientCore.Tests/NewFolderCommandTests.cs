@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
     {
 
         [TestMethod()]
-        public void NewFolder()
+        public void CreateFolder()
         {
             using (var context = new PSCmdletContext())
             {

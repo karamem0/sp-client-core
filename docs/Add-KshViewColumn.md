@@ -29,7 +29,7 @@ The Add-KshViewColumn cmdlet add a column to the specified view.
 
 ### Example 1
 ```powershell
-PS C:> Add-KshViewColumn -View (Get-KshView -List (Get-KshList -ListTitle 'Announcements') -ViewTitle 'My Items') -Column (Get-KshColumn -List $list -ColumnName 'Remarks')
+PS C:> Add-KshViewColumn -View (Get-KshView -List (Get-KshList -ListTitle 'Announcements') -ViewTitle 'My Items') -Column (Get-KshColumn -List (Get-KshList -ListTitle 'Announcements') -ColumnName 'Remarks')
 ```
 
 Adds a view column.

@@ -5,34 +5,34 @@ online version:
 schema: 2.0.0
 ---
 
-# New-KshColumnLookupValue
+# Initialize-KshColumnUserValue
 
 ## SYNOPSIS
-Creates a lookup column value.
+Creates a user column value.
 
 ## SYNTAX
 
 ```
-New-KshColumnLookupValue [-LookupId] <Int32> [<CommonParameters>]
+Initialize-KshColumnUserValue [-LookupId] <Int32> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The New-KshColumnLookupValue cmdlet creates a new lookup column value from item ID.
-This is provided for the Add-KshListItem cmdlet and Update-KshListItem cmdlet .
+The Initialize-KshColumnUserValue cmdlet creates a new user column value from user ID.
+This is provided for the [New-KshListItem](New-KshListItem.md) cmdlet and [Update-KshListItem](Update-KshListItem.md) cmdlet.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> New-KshColumnLookupValue -LookupId 1
+PS C:\> Initialize-KshColumnUserValue -LookupId 1
 ```
 
-Creates a new lookup column value.
+Creates a new user column value.
 
 ## PARAMETERS
 
 ### -LookupId
-Specifies the item ID.
+Specifies the user ID.
 
 ```yaml
 Type: Int32
@@ -42,7 +42,7 @@ Aliases:
 Required: True
 Position: 0
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -55,7 +55,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.ColumnLookupValue
+### Karamem0.SharePoint.PowerShell.Models.ColumnUserValue
 
 ## NOTES
 

@@ -7,7 +7,6 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models;
-using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services;
 using System;
@@ -46,22 +45,12 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         {
             if (this.ParameterSetName == "ParamSet1")
             {
-                if (this.Public ? false : true)
-                {
-                    throw new ArgumentException(
-                        string.Format(StringResources.ErrorValueCannotBeValue, false),
-                        nameof(this.Public));
-                }
+                this.ValidateSwitchParameter(nameof(this.Public));
                 this.Service.SetPolicy(TenantCdnType.Public, this.Type, this.Value);
             }
             if (this.ParameterSetName == "ParamSet2")
             {
-                if (this.Private ? false : true)
-                {
-                    throw new ArgumentException(
-                        string.Format(StringResources.ErrorValueCannotBeValue, false),
-                        nameof(this.Private));
-                }
+                this.ValidateSwitchParameter(nameof(this.Private));
                 this.Service.SetPolicy(TenantCdnType.Private, this.Type, this.Value);
             }
         }

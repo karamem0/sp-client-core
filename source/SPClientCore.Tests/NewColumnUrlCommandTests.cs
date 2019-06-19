@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
     {
 
         [TestMethod()]
-        public void NewListColumnUrl()
+        public void CreateListColumnUrl()
         {
             using (var context = new PSCmdletContext())
             {
@@ -91,7 +91,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void NewSiteColumnUrl()
+        public void CreateSiteColumnUrl()
         {
             using (var context = new PSCmdletContext())
             {

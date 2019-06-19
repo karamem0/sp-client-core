@@ -7,7 +7,6 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models;
-using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services;
 using System;
@@ -85,16 +84,8 @@ namespace Karamem0.SharePoint.PowerShell.Commands
             }
             if (this.ParameterSetName == "ParamSet2")
             {
-                if (this.NoWait)
-                {
-                    this.Service.CreateObject(this.MyInvocation.BoundParameters);
-                }
-                else
-                {
-                    throw new ArgumentException(
-                        string.Format(StringResources.ErrorValueCannotBeValue, false),
-                        nameof(this.NoWait));
-                }
+                this.ValidateSwitchParameter(nameof(this.NoWait));
+                this.Service.CreateObject(this.MyInvocation.BoundParameters);
             }
         }
 

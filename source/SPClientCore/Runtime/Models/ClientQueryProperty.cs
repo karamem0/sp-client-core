@@ -37,6 +37,9 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
         [XmlAttribute()]
         public virtual bool? SelectAll { get; set; }
 
+        [XmlElement()]
+        public virtual ClientQuery Query { get; set; }
+
     }
 
 }

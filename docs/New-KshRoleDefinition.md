@@ -5,38 +5,37 @@ online version:
 schema: 2.0.0
 ---
 
-# New-KshColumnGeolocationValue
+# New-KshRoleDefinition
 
 ## SYNOPSIS
-Creates a Geolocation column value.
+Creates a new role definition.
 
 ## SYNTAX
 
 ```
-New-KshColumnGeolocationValue [-Altitude <Double>] -Latitude <Double> -Longitude <Double> [-Measure <Double>]
- [<CommonParameters>]
+New-KshRoleDefinition [-BasePermission <BasePermission>] [-Description <String>] -Name <String>
+ [-Order <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The New-KshColumnGeolocationValue cmdlet creates a new Geolocation column value from latitude and longitude.
-This is provided for the Add-KshListItem cmdlet and Update-KshListItem cmdlet.
+The New-KshRoleDefinition cmdlet adds a new role definition to the current site.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> New-KshColumnGeolocationValue -Latitude 10 -Longitude 10
+PS C:\> New-KshRoleDefinition -BasePermission (Initialize-KshBasePermission -Permission 'ViewListItems') -Name 'Viewer'
 ```
 
-Creates a new Geolocation column value.
+Creates a new role definition.
 
 ## PARAMETERS
 
-### -Altitude
-Specifies the altitude.
+### -BasePermission
+Specifies the base permissions.
 
 ```yaml
-Type: Double
+Type: BasePermission
 Parameter Sets: (All)
 Aliases:
 
@@ -47,11 +46,26 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Latitude
-Specifies the latitude.
+### -Description
+Specifies the description.
 
 ```yaml
-Type: Double
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Name
+Specifies the name.
+
+```yaml
+Type: String
 Parameter Sets: (All)
 Aliases:
 
@@ -62,26 +76,11 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Longitude
-Specifies the longitude.
+### -Order
+Specifies the order.
 
 ```yaml
-Type: Double
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Measure
-Specifies the measure.
-
-```yaml
-Type: Double
+Type: Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -101,7 +100,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.ColumnGeolocationValue
+### Karamem0.SharePoint.PowerShell.Models.RoleDefinition
 
 ## NOTES
 

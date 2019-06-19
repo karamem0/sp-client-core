@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
     {
 
         [TestMethod()]
-        public void NewListColumnCurrency()
+        public void CreateListColumnCurrency()
         {
             using (var context = new PSCmdletContext())
             {
@@ -97,7 +97,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void NewSiteColumnCurrency()
+        public void CreateSiteColumnCurrency()
         {
             using (var context = new PSCmdletContext())
             {

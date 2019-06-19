@@ -84,7 +84,7 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [New-KshContentType](docs/New-KshContentType.md)
     - [Remove-KshContentType](docs/Remove-KshContentType.md)
     - [Update-KshContentType](docs/Update-KshContentType.md)
-    - [New-KshContentTypeId](docs/New-KshContentTypeId.md)
+    - [Initialize-KshContentTypeId](docs/Initialize-KshContentTypeId.md)
     - [Get-KshContentTypeColumn](docs/Get-KshContentTypeColumn.md)
     - [New-KshContentTypeColumn](docs/New-KshContentTypeColumn.md)
     - [Remove-KshContentTypeColumn](docs/Remove-KshContentTypeColumn.md)
@@ -137,10 +137,10 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Remove-KshListItem](docs/Remove-KshListItem.md)
     - [Suspend-KshListItem](docs/Suspend-KshListItem.md)
     - [Update-KshListItem](docs/Update-KshListItem.md)
-    - [New-KshColumnGeolocationValue](docs/New-KshColumnGeolocationValue.md)
-    - [New-KshColumnLookupValue](docs/New-KshColumnLookupValue.md)
-    - [New-KshColumnUrlValue](docs/New-KshColumnUrlValue.md)
-    - [New-KshColumnUserValue](docs/New-KshColumnUserValue.md)
+    - [Initialize-KshColumnGeolocationValue](docs/Initialize-KshColumnGeolocationValue.md)
+    - [Initialize-KshColumnLookupValue](docs/Initialize-KshColumnLookupValue.md)
+    - [Initialize-KshColumnUrlValue](docs/Initialize-KshColumnUrlValue.md)
+    - [Initialize-KshColumnUserValue](docs/Initialize-KshColumnUserValue.md)
   - List Templates
     - [Get-KshListTemplate](docs/Get-KshListTemplate.md)
   - Recycle Bin Items
@@ -148,6 +148,15 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Move-KshRecycleBinItem](docs/Move-KshRecycleBinItem.md)
     - [Remove-KshRecycleBinItem](docs/Remove-KshRecycleBinItem.md)
     - [Restore-KshRecycleBinItem](docs/Remove-KshRecycleBinItem.md)
+  - Role Assignment
+    - [Get-KshRoleAssignment](docs/Get-KshRoleAssignment.md)
+    - [New-KshRoleAssignment](docs/New-KshRoleAssignment.md)
+    - [Remove-KshRoleAssignment](docs/Remove-KshRoleAssignment.md)
+    - [Set-KshUniqueRoleAssignmentEnabled](docs/Set-KshUniqueRoleAssignmentEnabled.md)
+  - Role Definitions
+    - [Get-KshRoleDefinition](docs/Get-KshRoleDefinition.md)
+    - [New-KshRoleDefinition](docs/New-KshRoleDefinition.md)
+    - [Remove-KshRoleDefinition](docs/Remove-KshRoleDefinition.md)
   - Sites
     - [Get-KshSite](docs/Get-KshSite.md)
     - [New-KshSite](docs/New-KshSite.md)
