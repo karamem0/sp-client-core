@@ -218,3 +218,35 @@ SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant およ
     - [New-KshTenantTheme](docs/New-KshTenantTheme.md)
     - [Remove-KshTenantTheme](docs/Remove-KshTenantTheme.md)
     - [Update-KshTenantTheme](docs/Update-KshTenantTheme.md)
+- 管理されたメタデータ
+  - カスタム プロパティ
+    - [Add-KshTermCustomProperty](docs/New-KshTermCustomProperty.md)
+    - [Remove-KshTermCustomProperty](docs/Remove-KshTermCustomProperty.md)
+    - [Add-KshTermLocalCustomProperty](docs/New-KshTermLocalCustomProperty.md)
+    - [Remove-KshTermLocalCustomProperty](docs/Remove-KshTermLocalCustomProperty.md)
+  - 用語
+    - [Get-KshTerm](docs/Get-KshTerm.md)
+    - [Merge-KshTerm](docs/Merge-KshTerm.md)
+    - [Move-KshTerm](docs/Move-KshTerm.md)
+    - [New-KshTerm](docs/New-KshTerm.md)
+    - [Remove-KshTerm](docs/Remove-KshTerm.md)
+    - [Update-KshTerm](docs/Update-KshTerm.md)
+  - 用語グループ
+    - [Get-KshTermGroup](docs/Get-KshTermGroup.md)
+    - [New-KshTermGroup](docs/New-KshTermGroup.md)
+    - [Remove-KshTermGroup](docs/Remove-KshTermGroup.md)
+    - [Update-KshTermGroup](docs/Update-KshTermGroup.md)
+  - 用語ラベル
+    - [Get-KshTermLabel](docs/Get-KshTermLabel.md)
+    - [New-KshTermLabel](docs/New-KshTermLabel.md)
+    - [Remove-KshTermLabel](docs/Remove-KshTermLabel.md)
+  - 用語セット
+    - [Get-KshTermSet](docs/Get-KshTermSet.md)
+    - [New-KshTermSet](docs/New-KshTermSet.md)
+    - [Remove-KshTermSet](docs/Remove-KshTermSet.md)
+    - [Update-KshTermSet](docs/Update-KshTermSet.md)
+  - 用語ストア
+    - [Get-KshTermStore](docs/Get-KshTermStore.md)
+    - [Update-KshTermStore](docs/Update-KshTermStore.md)
+    - [Add-KshTermStoreLanguage](docs/Add-KshTermStoreLanguage.md)
+    - [Remove-KshTermStoreLanguage](docs/Remove-KshTermStoreLanguage.md)

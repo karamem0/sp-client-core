@@ -304,7 +304,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### System.Void
+### Karamem0.SharePoint.PowerShell.Models.TenantSiteCollection
 
 ## NOTES
 

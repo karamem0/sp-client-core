@@ -43,6 +43,77 @@ function Install-TestSite {
         Write-Progress -Activity 'Sign in...' -Status 'Processing'
         Connect-KshSite -Url $adminUrl -Credential $credential
 
+        Write-Progress -Activity 'Creating term group...' -Status 'Test Term Group 1'
+        $termGroup1 = New-KshTermGroup -Name 'Test Term Group 1'
+        $appSettings.TermGroup1Id = $termGroup1.Id
+        $appSettings.TermGroup1Name = $termGroup1.Name
+
+        Write-Progress -Activity 'Creating term group...' -Status 'Test Term Group 2'
+        $termGroup2 = New-KshTermGroup -Name 'Test Term Group 2'
+        $appSettings.TermGroup2Id = $termGroup2.Id
+        $appSettings.TermGroup2Name = $termGroup2.Name
+
+        Write-Progress -Activity 'Creating term group...' -Status 'Test Term Group 3'
+        $termGroup3 = New-KshTermGroup -Name 'Test Term Group 3'
+        $appSettings.TermGroup3Id = $termGroup3.Id
+        $appSettings.TermGroup3Name = $termGroup3.Name
+
+        Write-Progress -Activity 'Creating term set...' -Status 'Test Term Set 1'
+        $termSet1 = New-KshTermSet `
+            -TermGroup $termGroup1 `
+            -Name 'Test Term Set 1' `
+            -Lcid 1033
+        $appSettings.TermSet1Id = $termSet1.Id
+        $appSettings.TermSet1Name = $termSet1.Name
+
+        Write-Progress -Activity 'Creating term set...' -Status 'Test Term Set 2'
+        $termSet2 = New-KshTermSet `
+            -TermGroup $termGroup1 `
+            -Name 'Test Term Set 2' `
+            -Lcid 1033
+        $appSettings.TermSet2Id = $termSet2.Id
+        $appSettings.TermSet2Name = $termSet2.Name
+
+        Write-Progress -Activity 'Creating term set...' -Status 'Test Term Set 3'
+        $termSet3 = New-KshTermSet `
+            -TermGroup $termGroup1 `
+            -Name 'Test Term Set 3' `
+            -Lcid 1033
+        $appSettings.TermSet3Id = $termSet3.Id
+        $appSettings.TermSet3Name = $termSet3.Name
+
+        Write-Progress -Activity 'Creating term...' -Status 'Test Term 1'
+        $term1 = New-KshTerm `
+            -TermSet $termSet1 `
+            -Name 'Test Term 1' `
+            -Lcid 1033
+        $appSettings.Term1Id = $term1.Id
+        $appSettings.Term1Name = $term1.Name
+
+        Write-Progress -Activity 'Creating term...' -Status 'Test Term 2'
+        $term2 = New-KshTerm `
+            -Term $term1 `
+            -Name 'Test Term 2' `
+            -Lcid 1033
+        $appSettings.Term2Id = $term2.Id
+        $appSettings.Term2Name = $term2.Name
+
+        Write-Progress -Activity 'Creating term...' -Status 'Test Term 3'
+        $term3 = New-KshTerm `
+            -Term $term1 `
+            -Name 'Test Term 3' `
+            -Lcid 1033
+        $appSettings.Term3Id = $term3.Id
+        $appSettings.Term3Name = $term3.Name
+
+        Write-Progress -Activity 'Creating term...' -Status 'Test Term 4'
+        $term4 = New-KshTerm `
+            -Term $term2 `
+            -Name 'Test Term 4' `
+            -Lcid 1033
+        $appSettings.Term4Id = $term4.Id
+        $appSettings.Term4Name = $term4.Name
+
         Write-Progress -Activity 'Creating site collection...' -Status 'Processing'
         $siteCollection = New-KshTenantSiteCollection `
             -Lcid 1033 `
@@ -958,6 +1029,40 @@ function Uninstall-TestSite {
         Write-Progress -Activity 'Deleting site collection...' -Status 'Processing'
         Get-KshTenantSiteCollection -SiteCollectionUrl $Url | Remove-KshTenantSiteCollection
         Get-KshTenantDeletedSiteCollection -SiteCollectionUrl $Url | Remove-KshTenantDeletedSiteCollection
+
+        Write-Progress -Activity 'Retrieving term group...' -Status 'Processing'
+        $termGroup1 = Get-KshTermGroup -TermGroupName 'Test Term Group 1'
+        $termGroup2 = Get-KshTermGroup -TermGroupName 'Test Term Group 2'
+        $termGroup3 = Get-KshTermGroup -TermGroupName 'Test Term Group 3'
+
+        Write-Progress -Activity 'Retrieving term set...' -Status 'Processing'
+        $termSet1 = Get-KshTermSet `
+            -TermGroup $termGroup1 `
+            -TermSetName 'Test Term Set 1'
+        $termSet2 = Get-KshTermSet `
+            -TermGroup $termGroup1 `
+            -TermSetName 'Test Term Set 2'
+        $termSet3 = Get-KshTermSet `
+            -TermGroup $termGroup1 `
+            -TermSetName 'Test Term Set 3'
+            
+        Write-Progress -Activity 'Retrieving term...' -Status 'Processing'
+        $term1 = Get-KshTerm `
+            -TermSet $termSet1 `
+            -TermName 'Test Term 1'
+        
+        Write-Progress -Activity 'Removing term...' -Status 'Processing'
+        Remove-KshTerm -Identity $term1
+
+        Write-Progress -Activity 'Removing term set...' -Status 'Processing'
+        Remove-KshTermSet -Identity $termSet1
+        Remove-KshTermSet -Identity $termSet2
+        Remove-KshTermSet -Identity $termSet3
+
+        Write-Progress -Activity 'Removing term group...' -Status 'Processing'
+        Remove-KshTermGroup -Identity $termGroup1
+        Remove-KshTermGroup -Identity $termGroup2
+        Remove-KshTermGroup -Identity $termGroup3
 
     }
 

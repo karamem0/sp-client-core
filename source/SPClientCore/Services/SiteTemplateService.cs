@@ -35,9 +35,13 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         public SiteTemplate GetObject(string name, uint lcid, bool includeCrossLanguage)
         {
-            if (string.IsNullOrEmpty(name))
+            if (name == null)
             {
                 throw new ArgumentNullException(nameof(name));
+            }
+            if (lcid == default(int))
+            {
+                throw new ArgumentNullException(nameof(lcid));
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
@@ -70,6 +74,10 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         public IEnumerable<SiteTemplate> GetObjectEnumerable(uint lcid, bool includeCrossLanguage)
         {
+            if (lcid == default(int))
+            {
+                throw new ArgumentNullException(nameof(lcid));
+            }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathStaticProperty(typeof(Context), "Current"),

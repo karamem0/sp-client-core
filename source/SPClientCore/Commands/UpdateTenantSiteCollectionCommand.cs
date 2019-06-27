@@ -20,7 +20,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 {
 
     [Cmdlet("Update", "KshTenantSiteCollection")]
-    [OutputType(typeof(void))]
+    [OutputType(typeof(TenantSiteCollection))]
     public class UpdateTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteCollectionService>
     {
 

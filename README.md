@@ -218,3 +218,35 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [New-KshTenantTheme](docs/New-KshTenantTheme.md)
     - [Remove-KshTenantTheme](docs/Remove-KshTenantTheme.md)
     - [Update-KshTenantTheme](docs/Update-KshTenantTheme.md)
+- Managed Metadata
+  - Custom Property
+    - [Add-KshTermCustomProperty](docs/New-KshTermCustomProperty.md)
+    - [Remove-KshTermCustomProperty](docs/Remove-KshTermCustomProperty.md)
+    - [Add-KshTermLocalCustomProperty](docs/New-KshTermLocalCustomProperty.md)
+    - [Remove-KshTermLocalCustomProperty](docs/Remove-KshTermLocalCustomProperty.md)
+  - Term
+    - [Get-KshTerm](docs/Get-KshTerm.md)
+    - [Merge-KshTerm](docs/Merge-KshTerm.md)
+    - [Move-KshTerm](docs/Move-KshTerm.md)
+    - [New-KshTerm](docs/New-KshTerm.md)
+    - [Remove-KshTerm](docs/Remove-KshTerm.md)
+    - [Update-KshTerm](docs/Update-KshTerm.md)
+  - Term Group
+    - [Get-KshTermGroup](docs/Get-KshTermGroup.md)
+    - [New-KshTermGroup](docs/New-KshTermGroup.md)
+    - [Remove-KshTermGroup](docs/Remove-KshTermGroup.md)
+    - [Update-KshTermGroup](docs/Update-KshTermGroup.md)
+  - Term Label
+    - [Get-KshTermLabel](docs/Get-KshTermLabel.md)
+    - [New-KshTermLabel](docs/New-KshTermLabel.md)
+    - [Remove-KshTermLabel](docs/Remove-KshTermLabel.md)
+  - Term Set
+    - [Get-KshTermSet](docs/Get-KshTermSet.md)
+    - [New-KshTermSet](docs/New-KshTermSet.md)
+    - [Remove-KshTermSet](docs/Remove-KshTermSet.md)
+    - [Update-KshTermSet](docs/Update-KshTermSet.md)
+  - Term Store
+    - [Get-KshTermStore](docs/Get-KshTermStore.md)
+    - [Update-KshTermStore](docs/Update-KshTermStore.md)
+    - [Add-KshTermStoreLanguage](docs/Add-KshTermStoreLanguage.md)
+    - [Remove-KshTermStoreLanguage](docs/Remove-KshTermStoreLanguage.md)

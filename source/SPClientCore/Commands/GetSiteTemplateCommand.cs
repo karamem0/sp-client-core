@@ -43,7 +43,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         protected override void ProcessRecordCore()
         {
-            if (this.Lcid == 0)
+            if (this.Lcid == default(uint))
             {
                 var site = this.Service1.GetObject();
                 if (site != null)

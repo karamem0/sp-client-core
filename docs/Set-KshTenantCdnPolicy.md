@@ -8,7 +8,7 @@ schema: 2.0.0
 # Set-KshTenantCdnPolicy
 
 ## SYNOPSIS
-Changes a Office 365 CDN policy.
+Changes Office 365 CDN policy.
 
 ## SYNTAX
 
@@ -23,7 +23,7 @@ Set-KshTenantCdnPolicy [-Private] -Type <TenantCdnPolicyType> -Value <String> [<
 ```
 
 ## DESCRIPTION
-Set-KshTenantCdnPolicy changes the value of speficied Office 365 CDN policy.
+Set-KshTenantCdnPolicy changes the value of Office 365 CDN policy.
 
 ## EXAMPLES
 

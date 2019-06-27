@@ -59,6 +59,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
                     {
                         "offline_access",
                         $"{this.resource}/AllSites.FullControl",
+                        $"{this.resource}/TermStore.ReadWrite.All",
                         $"{this.resource}/User.Read.All"
                     })
                 }
@@ -99,6 +100,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
                     {
                         "offline_access",
                         $"{this.resource}/AllSites.FullControl",
+                        $"{this.resource}/TermStore.ReadWrite.All",
                         $"{this.resource}/User.Read.All"
                     })
                 }
@@ -142,6 +144,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
                     {
                         "offline_access",
                         $"{this.resource}/AllSites.FullControl",
+                        $"{this.resource}/TermStore.ReadWrite.All",
                         $"{this.resource}/User.Read.All"
                     })
                 }
@@ -180,6 +183,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
                     {
                         "offline_access",
                         $"{this.resource}/AllSites.FullControl",
+                        $"{this.resource}/TermStore.ReadWrite.All",
                         $"{this.resource}/User.Read.All"
                     })
                 }

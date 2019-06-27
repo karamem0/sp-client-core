@@ -54,7 +54,6 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Commands
                     }
                 }
             }
-
         }
 
     }

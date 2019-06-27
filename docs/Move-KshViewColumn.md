@@ -32,7 +32,7 @@ The Move-KshViewColumn cmdlet moves a view column to the specified index.
 PS C:> Move-KshViewColumn -View (Get-KshView -List (Get-KshList -ListTitle 'Announcements') -ViewTitle 'My Items') -Column (Get-KshColumn -List (Get-KshList -ListTitle 'Announcements') -ColumnName 'Remarks') -NewIndex 0
 ```
 
-Move the view column.
+Moves a view column.
 
 ## PARAMETERS
 

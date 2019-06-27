@@ -14,22 +14,12 @@ Changes whether Office 365 CDN is enabled.
 
 ### ParamSet1
 ```
-Set-KshTenantCdnEnabled [-Public] [-Enabled] [<CommonParameters>]
+Set-KshTenantCdnEnabled [-Public] -Enabled <Boolean> [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-Set-KshTenantCdnEnabled [-Public] [-Disabled] [<CommonParameters>]
-```
-
-### ParamSet3
-```
-Set-KshTenantCdnEnabled [-Private] [-Enabled] [<CommonParameters>]
-```
-
-### ParamSet4
-```
-Set-KshTenantCdnEnabled [-Private] [-Disabled] [<CommonParameters>]
+Set-KshTenantCdnEnabled [-Private] -Enabled <Boolean> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -39,41 +29,26 @@ The Set-KshTenantCdnEnabled cmdlet changes whether Office 365 CDN is enabled in 
 
 ### Example 1
 ```powershell
-PS C:\> Set-KshTenantCdnEnabled -Public -Enabled
+PS C:\> Set-KshTenantCdnEnabled -Public -Enabled $true
 ```
 
 Enables Office 365 Public CDN.
 
 ### Example 2
 ```powershell
-PS C:\> Set-KshTenantCdnEnabled -Private -Enabled
+PS C:\> Set-KshTenantCdnEnabled -Private -Enabled $true
 ```
 
 Enables the Office 365 Private CDN.
 
 ## PARAMETERS
 
-### -Disabled
-If specified, Office 365 CDN is disabled.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: ParamSet2, ParamSet4
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Enabled
-If specified, Office 365 CDN is enabled.
+Specifies whether Office 365 CDN is enabled.
 
 ```yaml
-Type: SwitchParameter
-Parameter Sets: ParamSet1, ParamSet3
+Type: Boolean
+Parameter Sets: (All)
 Aliases:
 
 Required: True
@@ -88,7 +63,7 @@ If specified, targets Office 365 Private CDN.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: ParamSet3, ParamSet4
+Parameter Sets: ParamSet2
 Aliases:
 
 Required: True
@@ -103,7 +78,7 @@ If specified, targets Office 365 Public CDN.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: ParamSet1, ParamSet2
+Parameter Sets: ParamSet1
 Aliases:
 
 Required: True

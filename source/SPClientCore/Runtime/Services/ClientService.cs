@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
 
         public static void Register(ClientContext clientContext)
         {
-            ClientService.ServiceProvider = Assembly.GetCallingAssembly().GetTypes()
+            ClientService.ServiceProvider = Assembly.GetExecutingAssembly().GetTypes()
                 .Where(type => type.IsSubclassOf(typeof(ClientService)))
                 .Where(type => type.GetInterfaces().Any())
                 .Aggregate<Type, IServiceCollection>(

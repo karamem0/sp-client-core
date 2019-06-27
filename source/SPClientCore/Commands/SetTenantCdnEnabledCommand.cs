@@ -28,46 +28,26 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         }
 
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
         public SwitchParameter Public { get; private set; }
 
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet4")]
+        [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
         public SwitchParameter Private { get; private set; }
 
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
-        public SwitchParameter Enabled { get; private set; }
-
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet4")]
-        public SwitchParameter Disabled { get; private set; }
+        public bool Enabled { get; private set; }
 
         protected override void ProcessRecordCore()
         {
             if (this.ParameterSetName == "ParamSet1")
             {
                 this.ValidateSwitchParameter(nameof(this.Public));
-                this.ValidateSwitchParameter(nameof(this.Enabled));
-                this.Service.SetEnabled(TenantCdnType.Public, true);
+                this.Service.SetEnabled(TenantCdnType.Public, this.Enabled);
             }
             if (this.ParameterSetName == "ParamSet2")
             {
-                this.ValidateSwitchParameter(nameof(this.Public));
-                this.ValidateSwitchParameter(nameof(this.Disabled));
-                this.Service.SetEnabled(TenantCdnType.Public, false);
-            }
-            if (this.ParameterSetName == "ParamSet3")
-            {
                 this.ValidateSwitchParameter(nameof(this.Private));
-                this.ValidateSwitchParameter(nameof(this.Enabled));
-                this.Service.SetEnabled(TenantCdnType.Private, true);
-            }
-            if (this.ParameterSetName == "ParamSet4")
-            {
-                this.ValidateSwitchParameter(nameof(this.Private));
-                this.ValidateSwitchParameter(nameof(this.Disabled));
-                this.Service.SetEnabled(TenantCdnType.Private, false);
+                this.Service.SetEnabled(TenantCdnType.Public, this.Enabled);
             }
         }
 
