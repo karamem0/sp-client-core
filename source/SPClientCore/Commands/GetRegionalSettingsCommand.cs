@@ -18,24 +18,18 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands
 {
 
-    [Cmdlet("Set", "KshGroupOwner")]
-    [OutputType(typeof(void))]
-    public class SetGroupOwnerCommand : ClientObjectCmdlet<IGroupOwnerService>
+    [Cmdlet("Get", "KshRegionalSettings")]
+    [OutputType(typeof(RegionalSettings))]
+    public class GetRegionalSettingsCommand : ClientObjectCmdlet<IRegionalSettingsService>
     {
 
-        public SetGroupOwnerCommand()
+        public GetRegionalSettingsCommand()
         {
         }
 
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public Group Identity { get; private set; }
-
-        [Parameter(Mandatory = true)]
-        public Principal Owner { get; private set; }
-
         protected override void ProcessRecordCore()
         {
-            this.Service.SetObject(this.Identity, this.Owner);
+            this.WriteObject(this.Service.GetObject());
         }
 
     }

@@ -24,25 +24,16 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
             var type = typeof(T);
             if (type.IsDefined(typeof(FlagsAttribute), false))
             {
-                var values = parameters
+                var names = Enum.GetNames(type);
+                var keys = parameters
                     .Where(parameter => parameter.Value is SwitchParameter)
                     .Where(parameter => (SwitchParameter)parameter.Value)
-                    .Select(parameter =>
-                    {
-                        if (Enum.TryParse(type, parameter.Key, true, out var value))
-                        {
-                            return Enum.GetName(type, value);
-                        }
-                        else
-                        {
-                            return null;
-                        }
-                    })
-                    .Where(value => value != null)
+                    .Where(parameter => names.Contains(parameter.Key))
+                    .Select(parameter => parameter.Key)
                     .ToList();
-                if (values.Any())
+                if (keys.Any())
                 {
-                    return (T)Enum.Parse(type, string.Join(",", values));
+                    return (T)Enum.Parse(type, string.Join(",", keys));
                 }
                 else
                 {

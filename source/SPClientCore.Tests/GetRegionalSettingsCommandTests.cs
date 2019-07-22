@@ -10,6 +10,7 @@ using Karamem0.SharePoint.PowerShell.Models;
 using Karamem0.SharePoint.PowerShell.Tests.Runtime;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,12 +19,12 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("Set-KshGroupOwner")]
-    public class SetGroupOwnerCommandTests
+    [TestCategory("Get-KshRegionalSettings")]
+    public class GetRegionalSettingsCommandTests
     {
 
         [TestMethod()]
-        public void SetGroupOwner()
+        public void GetRegionalSettings()
         {
             using (var context = new PSCmdletContext())
             {
@@ -38,35 +39,13 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         }
                     }
                 );
-                var result2 = context.Runspace.InvokeCommand<User>(
-                    "Get-KshUser",
+                var result2 = context.Runspace.InvokeCommand<RegionalSettings>(
+                    "Get-KshRegionalSettings",
                     new Dictionary<string, object>()
                     {
-                        { "UserId", context.AppSettings["User1Id"] }
                     }
                 );
-                var result3 = context.Runspace.InvokeCommand<Group>(
-                    "New-KshGroup",
-                    new Dictionary<string, object>()
-                    {
-                        { "Title", "Test Group 0" }
-                    }
-                );
-                var result4 = context.Runspace.InvokeCommand<Principal>(
-                    "Set-KshGroupOwner",
-                    new Dictionary<string, object>()
-                    {
-                        { "Identity", result3.ElementAt(0) },
-                        { "Owner", result2.ElementAt(0) }
-                    }
-                );
-                var result5 = context.Runspace.InvokeCommand(
-                    "Remove-KshGroup",
-                    new Dictionary<string, object>()
-                    {
-                        { "Identity", result3.ElementAt(0) }
-                    }
-                );
+                var actual = result2.ElementAt(0);
             }
         }
 

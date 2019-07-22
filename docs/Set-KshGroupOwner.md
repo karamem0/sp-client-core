@@ -13,7 +13,7 @@ Changes a group owner.
 ## SYNTAX
 
 ```
-Set-KshGroupOwner [-Group] <Group> -Owner <Principal> [<CommonParameters>]
+Set-KshGroupOwner [-Identity] <Group> -Owner <Principal> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -30,7 +30,7 @@ Changes a group owner.
 
 ## PARAMETERS
 
-### -Group
+### -Identity
 Specifies the group.
 
 ```yaml

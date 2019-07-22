@@ -89,6 +89,7 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [New-KshContentTypeColumn](docs/New-KshContentTypeColumn.md)
     - [Remove-KshContentTypeColumn](docs/Remove-KshContentTypeColumn.md)
     - [Update-KshContentTypeColumn](docs/Update-KshContentTypeColumn.md)
+    - [Set-KshContentTypeColumnOrder](docs/Set-KshContentTypeColumnOrder.md)
   - Files
     - [Approve-KshFile](docs/Approve-KshFile.md)
     - [Deny-KshFile](docs/Deny-KshFile.md)
@@ -148,6 +149,9 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Move-KshRecycleBinItem](docs/Move-KshRecycleBinItem.md)
     - [Remove-KshRecycleBinItem](docs/Remove-KshRecycleBinItem.md)
     - [Restore-KshRecycleBinItem](docs/Remove-KshRecycleBinItem.md)
+  - Regional Settings
+    - [Get-KshRegionalSettings](docs/Get-KshRegionalSettings.md)
+    - [Update-KshRegionalSettings](docs/Update-KshRegionalSettings.md)
   - Role Assignment
     - [Get-KshRoleAssignment](docs/Get-KshRoleAssignment.md)
     - [New-KshRoleAssignment](docs/New-KshRoleAssignment.md)
@@ -220,9 +224,9 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Update-KshTenantTheme](docs/Update-KshTenantTheme.md)
 - Managed Metadata
   - Custom Property
-    - [Add-KshTermCustomProperty](docs/New-KshTermCustomProperty.md)
+    - [Add-KshTermCustomProperty](docs/Add-KshTermCustomProperty.md)
     - [Remove-KshTermCustomProperty](docs/Remove-KshTermCustomProperty.md)
-    - [Add-KshTermLocalCustomProperty](docs/New-KshTermLocalCustomProperty.md)
+    - [Add-KshTermLocalCustomProperty](docs/Add-KshTermLocalCustomProperty.md)
     - [Remove-KshTermLocalCustomProperty](docs/Remove-KshTermLocalCustomProperty.md)
   - Term
     - [Get-KshTerm](docs/Get-KshTerm.md)

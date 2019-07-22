@@ -28,9 +28,11 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         IEnumerable<ContentTypeColumn> GetObjectEnumerable(ContentType contentTypeObject);
 
-        void UpdateObject(ContentTypeColumn contentTypeColumnObject, IReadOnlyDictionary<string, object> modificationInformation, bool pushChanges);
-
         void RemoveObject(ContentTypeColumn contentTypeColumnObject, bool pushChanges);
+
+        void ReorderObject(ContentType contentTypeObject, IEnumerable<string> contentTypeColumnNames, bool pushChanges);
+
+        void UpdateObject(ContentTypeColumn contentTypeColumnObject, IReadOnlyDictionary<string, object> modificationInformation, bool pushChanges);
 
     }
 
@@ -134,31 +136,6 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 .ToObject<ContentTypeColumnEnumerable>(requestPayload.ActionQueryId);
         }
 
-        public void UpdateObject(ContentTypeColumn contentTypeColumnObject, IReadOnlyDictionary<string, object> modificationInformation, bool pushChanges)
-        {
-            if (contentTypeColumnObject == null)
-            {
-                throw new ArgumentNullException(nameof(contentTypeColumnObject));
-            }
-            var requestPayload = new ClientRequestPayload();
-            var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(string.Join(":", contentTypeColumnObject.ObjectIdentity.Split(':').SkipLast(2))),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
-            var objectPath2 = requestPayload.Add(
-                new ObjectPathIdentity(contentTypeColumnObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
-            var objectPath3 = requestPayload.Add(
-                objectPath2,
-                requestPayload.CreateSetPropertyDelegates(contentTypeColumnObject, modificationInformation).ToArray());
-            var objectPath4 = requestPayload.Add(
-                objectPath1,
-                objectPathId => new ClientActionMethod(
-                    objectPathId,
-                    "Update",
-                    requestPayload.CreateParameter(pushChanges)));
-            this.ClientContext.ProcessQuery(requestPayload);
-        }
-
         public void RemoveObject(ContentTypeColumn contentTypeColumnObject, bool pushChanges)
         {
             if (contentTypeColumnObject == null)
@@ -175,6 +152,63 @@ namespace Karamem0.SharePoint.PowerShell.Services
             var objectPath3 = requestPayload.Add(
                 objectPath2,
                 objectPathId => new ClientActionMethod(objectPathId, "DeleteObject"));
+            var objectPath4 = requestPayload.Add(
+                objectPath1,
+                objectPathId => new ClientActionMethod(
+                    objectPathId,
+                    "Update",
+                    requestPayload.CreateParameter(pushChanges)));
+            this.ClientContext.ProcessQuery(requestPayload);
+        }
+
+        public void ReorderObject(ContentType contentTypeObject, IEnumerable<string> contentTypeColumnNames, bool pushChanges)
+        {
+            if (contentTypeObject == null)
+            {
+                throw new ArgumentNullException(nameof(contentTypeObject));
+            }
+            if (contentTypeColumnNames == null)
+            {
+                throw new ArgumentNullException(nameof(contentTypeColumnNames));
+            }
+            var requestPayload = new ClientRequestPayload();
+            var objectPath1 = requestPayload.Add(
+                new ObjectPathIdentity(contentTypeObject.ObjectIdentity),
+                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+            var objectPath2 = requestPayload.Add(
+                new ObjectPathProperty(objectPath1.Id, "FieldLinks"),
+                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+            var objectPath3 = requestPayload.Add(
+                objectPath2,
+                objectPathId => new ClientActionMethod(
+                    objectPathId,
+                    "Reorder",
+                    requestPayload.CreateParameter(contentTypeColumnNames)));
+            var objectPath4 = requestPayload.Add(
+                objectPath1,
+                objectPathId => new ClientActionMethod(
+                    objectPathId,
+                    "Update",
+                    requestPayload.CreateParameter(pushChanges)));
+            this.ClientContext.ProcessQuery(requestPayload);
+        }
+
+        public void UpdateObject(ContentTypeColumn contentTypeColumnObject, IReadOnlyDictionary<string, object> modificationInformation, bool pushChanges)
+        {
+            if (contentTypeColumnObject == null)
+            {
+                throw new ArgumentNullException(nameof(contentTypeColumnObject));
+            }
+            var requestPayload = new ClientRequestPayload();
+            var objectPath1 = requestPayload.Add(
+                new ObjectPathIdentity(string.Join(":", contentTypeColumnObject.ObjectIdentity.Split(':').SkipLast(2))),
+                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+            var objectPath2 = requestPayload.Add(
+                new ObjectPathIdentity(contentTypeColumnObject.ObjectIdentity),
+                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+            var objectPath3 = requestPayload.Add(
+                objectPath2,
+                requestPayload.CreateSetPropertyDelegates(contentTypeColumnObject, modificationInformation).ToArray());
             var objectPath4 = requestPayload.Add(
                 objectPath1,
                 objectPathId => new ClientActionMethod(

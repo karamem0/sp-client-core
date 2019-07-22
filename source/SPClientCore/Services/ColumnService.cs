@@ -45,11 +45,11 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         IEnumerable<Column> GetObjectEnumerable(List listObject);
 
+        void RemoveObject(Column columnObject);
+
         void UpdateObject(Column columnObject, IReadOnlyDictionary<string, object> modificationInformation);
 
         void UpdateObject(Column columnObject, IReadOnlyDictionary<string, object> modificationInformation, bool pushChanges);
-
-        void RemoveObject(Column columnObject);
 
     }
 

@@ -89,6 +89,7 @@ SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant およ
     - [New-KshContentTypeColumn](docs/New-KshContentTypeColumn.md)
     - [Remove-KshContentTypeColumn](docs/Remove-KshContentTypeColumn.md)
     - [Update-KshContentTypeColumn](docs/Update-KshContentTypeColumn.md)
+    - [Set-KshContentTypeColumnOrder](docs/Set-KshContentTypeColumnOrder.md)
   - ファイル
     - [Approve-KshFile](docs/Approve-KshFile.md)
     - [Deny-KshFile](docs/Deny-KshFile.md)
@@ -148,6 +149,9 @@ SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant およ
     - [Move-KshRecycleBinItem](docs/Move-KshRecycleBinItem.md)
     - [Remove-KshRecycleBinItem](docs/Remove-KshRecycleBinItem.md)
     - [Restore-KshRecycleBinItem](docs/Remove-KshRecycleBinItem.md)
+  - 地域と言語の設定
+    - [Get-KshRegionalSettings](docs/Get-KshRegionalSettings.md)
+    - [Update-KshRegionalSettings](docs/Update-KshRegionalSettings.md)
   - アクセス許可
     - [Get-KshRoleAssignment](docs/Get-KshRoleAssignment.md)
     - [New-KshRoleAssignment](docs/New-KshRoleAssignment.md)
@@ -220,9 +224,9 @@ SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant およ
     - [Update-KshTenantTheme](docs/Update-KshTenantTheme.md)
 - 管理されたメタデータ
   - カスタム プロパティ
-    - [Add-KshTermCustomProperty](docs/New-KshTermCustomProperty.md)
+    - [Add-KshTermCustomProperty](docs/Add-KshTermCustomProperty.md)
     - [Remove-KshTermCustomProperty](docs/Remove-KshTermCustomProperty.md)
-    - [Add-KshTermLocalCustomProperty](docs/New-KshTermLocalCustomProperty.md)
+    - [Add-KshTermLocalCustomProperty](docs/Add-KshTermLocalCustomProperty.md)
     - [Remove-KshTermLocalCustomProperty](docs/Remove-KshTermLocalCustomProperty.md)
   - 用語
     - [Get-KshTerm](docs/Get-KshTerm.md)

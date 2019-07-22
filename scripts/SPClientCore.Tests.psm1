@@ -142,7 +142,7 @@ function Install-TestSite {
             -Description 'Test Group 1' `
             -Title 'Test Group 1'
         Set-KshGroupOwner `
-            -Group $group1 `
+            -Identity $group1 `
             -Owner $group1
         $appSettings.Group1Id = $group1.Id
         $appSettings.Group1Name = $group1.Title
@@ -152,7 +152,7 @@ function Install-TestSite {
             -Description 'Test Group 2' `
             -Title 'Test Group 2'
         Set-KshGroupOwner `
-            -Group $group2 `
+            -Identity $group2 `
             -Owner $group2
         $appSettings.Group2Id = $group2.Id
         $appSettings.Group2Name = $group2.Title
@@ -162,7 +162,7 @@ function Install-TestSite {
             -Description 'Test Group 3' `
             -Title 'Test Group 3'
         Set-KshGroupOwner `
-            -Group $group3 `
+            -Identity $group3 `
             -Owner $group3
         $appSettings.Group3Id = $group3.Id
         $appSettings.Group3Name = $group3.Title

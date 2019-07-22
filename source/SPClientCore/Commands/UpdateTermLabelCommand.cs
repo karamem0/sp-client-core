@@ -8,12 +8,14 @@
 
 using Karamem0.SharePoint.PowerShell.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
+using Karamem0.SharePoint.PowerShell.Runtime.Services;
 using Karamem0.SharePoint.PowerShell.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using System.Text;
+using System.Threading;
 
 namespace Karamem0.SharePoint.PowerShell.Commands
 {
@@ -50,26 +52,52 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         {
             if (this.ParameterSetName == "ParamSet1")
             {
-                var term = this.Service1.GetObject(this.Identity);
-                this.Service2.UpdateObject(this.Identity, this.MyInvocation.BoundParameters);
                 if (this.PassThru)
                 {
-                    this.WriteObject(this.Service2.GetObjectEnumerable(term)
-                        .Where(obj => obj.Lcid == this.Lcid)
-                        .Where(obj => obj.Name == this.Identity.Name)
-                        .Single());
+                    var termObject = this.Service1.GetObject(this.Identity);
+                    this.Service2.UpdateObject(this.Identity, this.MyInvocation.BoundParameters);
+                    while (true)
+                    {
+                        var termLabelObject = this.Service2.GetObjectEnumerable(termObject)
+                            .Where(obj => obj.Lcid == this.Lcid)
+                            .Where(obj => obj.Name == this.Identity.Name)
+                            .SingleOrDefault();
+                        if (termLabelObject != null)
+                        {
+                            this.WriteObject(termLabelObject);
+                            break;
+                        }
+                        Thread.Sleep(TimeSpan.FromSeconds(1));
+                    }
+                }
+                else
+                {
+                    this.Service2.UpdateObject(this.Identity, this.MyInvocation.BoundParameters);
                 }
             }
             if (this.ParameterSetName == "ParamSet2")
             {
-                var term = this.Service1.GetObject(this.Identity);
-                this.Service2.UpdateObject(this.Identity, this.MyInvocation.BoundParameters);
                 if (this.PassThru)
                 {
-                    this.WriteObject(this.Service2.GetObjectEnumerable(term)
-                        .Where(obj => obj.Lcid == this.Identity.Lcid)
-                        .Where(obj => obj.Name == this.Name)
-                        .Single());
+                    var termObject = this.Service1.GetObject(this.Identity);
+                    this.Service2.UpdateObject(this.Identity, this.MyInvocation.BoundParameters);
+                    while (true)
+                    {
+                        var termLabelObject = this.Service2.GetObjectEnumerable(termObject)
+                            .Where(obj => obj.Lcid == this.Identity.Lcid)
+                            .Where(obj => obj.Name == this.Name)
+                            .SingleOrDefault();
+                        if (termLabelObject != null)
+                        {
+                            this.WriteObject(termLabelObject);
+                            break;
+                        }
+                        Thread.Sleep(TimeSpan.FromSeconds(1));
+                    }
+                }
+                else
+                {
+                    this.Service2.UpdateObject(this.Identity, this.MyInvocation.BoundParameters);
                 }
             }
             if (this.ParameterSetName == "ParamSet3")

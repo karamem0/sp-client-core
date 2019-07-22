@@ -47,11 +47,11 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         void MoveObject(File fileObject, Uri fileUrl, MoveOperations fileMoveOperations);
 
+        void PublishObject(File fileObject, string comment);
+
         Guid RecycleObject(File fileObject);
 
         void RemoveObject(File fileObject);
-
-        void PublishObject(File fileObject, string comment);
 
         void UndoCheckOutObject(File fileObject);
 

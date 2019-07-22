@@ -23,7 +23,7 @@ The Remove-KshContentTypeColumn cmdlet removes a content type column from the sp
 
 ### Example 1
 ```powershell
-PS C:> Remove-KshContentTypeColumn -Identity (Get-KshContentTypeColumn -ContentType (Get-KshContentType -List (Get-KshList -ListTitle 'Announcements') -ContentType '0x0100EFB1758564C77D448177233D1199B912000A210B1C5CBC634C849328008B1CC306') -Column (Get-KshColumn -List (Get-KshList -ListTitle 'Announcements') -ColumnTitle 'Remarks'))
+PS C:> Remove-KshContentTypeColumn -Identity (Get-KshContentTypeColumn -ContentType (Get-KshContentType -List (Get-KshList -ListTitle 'Announcements') -ContentTypeId '0x0100EFB1758564C77D448177233D1199B912000A210B1C5CBC634C849328008B1CC306') -Column (Get-KshColumn -List (Get-KshList -ListTitle 'Announcements') -ColumnTitle 'Remarks'))
 ```
 
 Removes a content type column from the list content type.

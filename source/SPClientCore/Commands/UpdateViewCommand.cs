@@ -103,7 +103,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         public string ViewJoins { get; private set; }
 
         [Parameter(Mandatory = false)]
-
         public string ViewProjectedColumns { get; private set; }
 
         [Parameter(Mandatory = false)]

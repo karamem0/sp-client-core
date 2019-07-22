@@ -48,12 +48,12 @@ namespace Karamem0.SharePoint.PowerShell.Commands
             if (this.ParameterSetName == "ParamSet1")
             {
                 this.ValidateSwitchParameter(nameof(this.Enabled));
-                this.Service.SetUniqueEnabled(this.Identity, this.CopyRoleAssignments, this.ClearSubscopes);
+                this.Service.BreakObjectInheritance(this.Identity, this.CopyRoleAssignments, this.ClearSubscopes);
             }
             if (this.ParameterSetName == "ParamSet2")
             {
                 this.ValidateSwitchParameter(nameof(this.Disabled));
-                this.Service.SetUniqueDisabled(this.Identity);
+                this.Service.ResetObjectInheritance(this.Identity);
             }
         }
 

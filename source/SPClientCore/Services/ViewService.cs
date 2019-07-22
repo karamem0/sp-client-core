@@ -30,9 +30,9 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         IEnumerable<View> GetObjectEnumerable(List listObject);
 
-        void UpdateObject(View viewObject, IReadOnlyDictionary<string, object> modificationInformation);
-
         void RemoveObject(View viewObject);
+
+        void UpdateObject(View viewObject, IReadOnlyDictionary<string, object> modificationInformation);
 
     }
 

@@ -18,24 +18,27 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands
 {
 
-    [Cmdlet("Set", "KshGroupOwner")]
+    [Cmdlet("Set", "KshContentTypeColumnOrder")]
     [OutputType(typeof(void))]
-    public class SetGroupOwnerCommand : ClientObjectCmdlet<IGroupOwnerService>
+    public class SetContentTypeColumnOrderCommand : ClientObjectCmdlet<IContentTypeColumnService>
     {
 
-        public SetGroupOwnerCommand()
+        public SetContentTypeColumnOrderCommand()
         {
         }
 
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public Group Identity { get; private set; }
+        [Parameter(Mandatory = true)]
+        public ContentType ContentType { get; private set; }
 
         [Parameter(Mandatory = true)]
-        public Principal Owner { get; private set; }
+        public string[] ContentTypeColumns { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public SwitchParameter PushChanges { get; private set; }
 
         protected override void ProcessRecordCore()
         {
-            this.Service.SetObject(this.Identity, this.Owner);
+            this.Service.ReorderObject(this.ContentType, this.ContentTypeColumns, this.PushChanges);
         }
 
     }

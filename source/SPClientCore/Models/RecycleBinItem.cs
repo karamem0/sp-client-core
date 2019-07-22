@@ -26,49 +26,49 @@ namespace Karamem0.SharePoint.PowerShell.Models
         }
 
         [JsonProperty()]
-        public string AuthorEmail { get; private set; }
+        public virtual string AuthorEmail { get; protected set; }
 
         [JsonProperty()]
-        public string AuthorName { get; private set; }
+        public virtual string AuthorName { get; protected set; }
 
         [JsonProperty()]
-        public string DeletedByEmail { get; private set; }
+        public virtual string DeletedByEmail { get; protected set; }
 
         [JsonProperty()]
-        public string DeletedByName { get; private set; }
+        public virtual string DeletedByName { get; protected set; }
 
         [JsonProperty()]
-        public DateTime DeletedDate { get; private set; }
+        public virtual DateTime DeletedDate { get; protected set; }
 
         [JsonProperty()]
-        public string DeletedDateLocalFormatted { get; private set; }
+        public virtual string DeletedDateLocalFormatted { get; protected set; }
 
         [JsonProperty()]
-        public string DirName { get; private set; }
+        public virtual string DirName { get; protected set; }
 
         [JsonProperty()]
-        public ResourcePath DirNamePath { get; private set; }
+        public virtual ResourcePath DirNamePath { get; protected set; }
 
         [JsonProperty()]
-        public Guid Id { get; private set; }
+        public virtual Guid Id { get; protected set; }
 
         [JsonProperty()]
-        public RecycleBinItemState ItemState { get; private set; }
+        public virtual RecycleBinItemState ItemState { get; protected set; }
 
         [JsonProperty()]
-        public RecycleBinItemType ItemType { get; private set; }
+        public virtual RecycleBinItemType ItemType { get; protected set; }
 
         [JsonProperty()]
-        public string LeafName { get; private set; }
+        public virtual string LeafName { get; protected set; }
 
         [JsonProperty()]
-        public ResourcePath LeafNamePath { get; private set; }
+        public virtual ResourcePath LeafNamePath { get; protected set; }
 
         [JsonProperty()]
-        public int Size { get; private set; }
+        public virtual int Size { get; protected set; }
 
         [JsonProperty()]
-        public string Title { get; private set; }
+        public virtual string Title { get; protected set; }
 
     }
 

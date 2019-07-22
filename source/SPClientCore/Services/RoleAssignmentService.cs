@@ -20,6 +20,8 @@ namespace Karamem0.SharePoint.PowerShell.Services
     public interface IRoleAssignmentService
     {
 
+        void BreakObjectInheritance(SecurableObject securableObject, bool copyRoleAssignments, bool clearSubscopes);
+
         RoleAssignment CreateObject(SecurableObject securableObject, Principal principalObject, RoleDefinition roleDefinitionObject);
 
         IEnumerable<RoleAssignment> GetObjectEnumerable(SecurableObject securableObject);
@@ -30,9 +32,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         void RemoveObject(RoleAssignment roleAssignmentObject);
 
-        void SetUniqueDisabled(SecurableObject securableObject);
-
-        void SetUniqueEnabled(SecurableObject securableObject, bool copyRoleAssignments, bool clearSubscopes);
+        void ResetObjectInheritance(SecurableObject securableObject);
 
     }
 
@@ -41,6 +41,23 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         public RoleAssignmentService(ClientContext clientContext) : base(clientContext)
         {
+        }
+
+        public void BreakObjectInheritance(SecurableObject securableObject, bool copyRoleAssignments, bool clearSubscopes)
+        {
+            if (securableObject == null)
+            {
+                throw new ArgumentNullException(nameof(securableObject));
+            }
+            var requestPayload = new ClientRequestPayload();
+            var objectPath = requestPayload.Add(
+                new ObjectPathIdentity(securableObject.ObjectIdentity),
+                objectPathId => new ClientActionMethod(
+                    objectPathId,
+                    "BreakRoleInheritance",
+                    requestPayload.CreateParameter(copyRoleAssignments),
+                    requestPayload.CreateParameter(clearSubscopes)));
+            this.ClientContext.ProcessQuery(requestPayload);
         }
 
         public RoleAssignment CreateObject(SecurableObject securableObject, Principal principalObject, RoleDefinition roleDefinitionObject)
@@ -141,7 +158,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 .ToObject<RoleAssignment>(requestPayload.ActionQueryId);
         }
 
-        public void SetUniqueDisabled(SecurableObject securableObject)
+        public void ResetObjectInheritance(SecurableObject securableObject)
         {
             if (securableObject == null)
             {
@@ -153,23 +170,6 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 objectPathId => new ClientActionMethod(
                     objectPathId,
                     "ResetRoleInheritance"));
-            this.ClientContext.ProcessQuery(requestPayload);
-        }
-
-        public void SetUniqueEnabled(SecurableObject securableObject, bool copyRoleAssignments, bool clearSubscopes)
-        {
-            if (securableObject == null)
-            {
-                throw new ArgumentNullException(nameof(securableObject));
-            }
-            var requestPayload = new ClientRequestPayload();
-            var objectPath = requestPayload.Add(
-                new ObjectPathIdentity(securableObject.ObjectIdentity),
-                objectPathId => new ClientActionMethod(
-                    objectPathId,
-                    "BreakRoleInheritance",
-                    requestPayload.CreateParameter(copyRoleAssignments),
-                    requestPayload.CreateParameter(clearSubscopes)));
             this.ClientContext.ProcessQuery(requestPayload);
         }
 
