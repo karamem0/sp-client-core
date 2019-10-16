@@ -5,36 +5,36 @@ online version:
 schema: 2.0.0
 ---
 
-# New-KshFolder
+# Install-KshSiteCollectionApp
 
 ## SYNOPSIS
-Creates a new folder.
+Installs the site collection app.
 
 ## SYNTAX
 
 ```
-New-KshFolder [-Folder] <Folder> -FolderName <String> [<CommonParameters>]
+Install-KshSiteCollectionApp [-Identity] <App> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The New-KshFolder cmdlet adds a new folder to the specified folder.
+The Install-KshSiteCollectionApp cmdlets installs the site collection app to the current site.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> New-KshFolder -Folder '/sites/japan/hr/Shared%20Documents' -FolderName 'Templates'
+PS C:\> Install-KshSiteCollectionApp -Identity (Get-KshSiteCollectionApp -AppId 'fdee2390-48bf-409e-956a-20f11a0add59')
 ```
 
-Creates a new folder.
+Installs an app.
 
 ## PARAMETERS
 
-### -Folder
-Specifies the folder.
+### -Identity
+Specifies the app.
 
 ```yaml
-Type: Folder
+Type: App
 Parameter Sets: (All)
 Aliases:
 
@@ -45,31 +45,16 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -FolderName
-Specifies the folder name.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
-### None
+### Karamem0.SharePoint.PowerShell.Models.App
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.Folder
+### System.Void
 
 ## NOTES
 

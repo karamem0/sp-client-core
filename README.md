@@ -45,6 +45,8 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
   - [Select-KshSite](docs/Select-KshSite.md)
   - [Test-KshTenantSiteCollection](docs/Test-KshTenantSiteCollection.md)
 - Site Administration
+  - App Instances
+    - [Get-KshAppInstance](docs/Get-KshAppInstance.md)
   - Attachment Files
     - [Get-KshAttachmentFile](docs/Get-KshAttachmentFile.md)
     - [Open-KshAttachmentFile](docs/Open-KshAttachmentFile.md)
@@ -166,6 +168,14 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [New-KshSite](docs/New-KshSite.md)
     - [Remove-KshSite](docs/Remove-KshSite.md)
     - [Update-KshSite](docs/Update-KshSite.md)
+  - Site Collection Apps
+    - [Get-KshSiteCollectionApp](docs/Get-KshSiteCollectionApp.md)
+    - [Install-KshSiteCollectionApp](docs/Install-KshSiteCollectionApp.md)
+    - [New-KshSiteCollectionApp](docs/New-KshSiteCollectionApp.md)
+    - [Publish-KshSiteCollectionApp](docs/Publish-KshSiteCollectionApp.md)
+    - [Remove-KshSiteCollectionApp](docs/Remove-KshSiteCollectionApp.md)
+    - [Uninstall-KshSiteCollectionApp](docs/Uninstall-KshSiteCollectionApp.md)
+    - [Unpublish-KshSiteCollectionApp](docs/Unpublish-KshSiteCollectionApp.md)
   - Site Collection App Catalogs
     - [Add-KshSiteCollectionAppCatalog](docs/Add-KshSiteCollectionAppCatalog.md)
     - [Get-KshSiteCollectionAppCatalog](docs/Get-KshSiteCollectionAppCatalog.md)
@@ -223,28 +233,28 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Remove-KshTenantTheme](docs/Remove-KshTenantTheme.md)
     - [Update-KshTenantTheme](docs/Update-KshTenantTheme.md)
 - Managed Metadata
-  - Custom Property
+  - Custom Properties
     - [Add-KshTermCustomProperty](docs/Add-KshTermCustomProperty.md)
     - [Remove-KshTermCustomProperty](docs/Remove-KshTermCustomProperty.md)
     - [Add-KshTermLocalCustomProperty](docs/Add-KshTermLocalCustomProperty.md)
     - [Remove-KshTermLocalCustomProperty](docs/Remove-KshTermLocalCustomProperty.md)
-  - Term
+  - Terms
     - [Get-KshTerm](docs/Get-KshTerm.md)
     - [Merge-KshTerm](docs/Merge-KshTerm.md)
     - [Move-KshTerm](docs/Move-KshTerm.md)
     - [New-KshTerm](docs/New-KshTerm.md)
     - [Remove-KshTerm](docs/Remove-KshTerm.md)
     - [Update-KshTerm](docs/Update-KshTerm.md)
-  - Term Group
+  - Term Groups
     - [Get-KshTermGroup](docs/Get-KshTermGroup.md)
     - [New-KshTermGroup](docs/New-KshTermGroup.md)
     - [Remove-KshTermGroup](docs/Remove-KshTermGroup.md)
     - [Update-KshTermGroup](docs/Update-KshTermGroup.md)
-  - Term Label
+  - Term Labels
     - [Get-KshTermLabel](docs/Get-KshTermLabel.md)
     - [New-KshTermLabel](docs/New-KshTermLabel.md)
     - [Remove-KshTermLabel](docs/Remove-KshTermLabel.md)
-  - Term Set
+  - Term Sets
     - [Get-KshTermSet](docs/Get-KshTermSet.md)
     - [New-KshTermSet](docs/New-KshTermSet.md)
     - [Remove-KshTermSet](docs/Remove-KshTermSet.md)

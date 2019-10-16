@@ -12,22 +12,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.OData
+namespace Karamem0.SharePoint.PowerShell.Runtime.Models
 {
 
     [JsonObject()]
-    public class ODataErrorMessage : ODataObject
+    public class ODataResultPayload<T> : ODataResultPayload where T : ODataObject
     {
 
-        public ODataErrorMessage()
+        public ODataResultPayload()
         {
         }
 
-        [JsonProperty("lang")]
-        public string Language { get; private set; }
-
-        [JsonProperty("value")]
-        public string Value { get; private set; }
+        [JsonProperty("d")]
+        public T Entry { get; private set; }
 
     }
 

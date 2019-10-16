@@ -45,6 +45,8 @@ SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant およ
   - [Select-KshSite](docs/Select-KshSite.md)
   - [Test-KshTenantSiteCollection](docs/Test-KshTenantSiteCollection.md)
 - サイト管理
+  - アプリ インスタンス
+    - [Get-KshAppInstance](docs/Get-KshAppInstance.md)
   - 添付ファイル
     - [Get-KshAttachmentFile](docs/Get-KshAttachmentFile.md)
     - [Open-KshAttachmentFile](docs/Open-KshAttachmentFile.md)
@@ -166,6 +168,14 @@ SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant およ
     - [New-KshSite](docs/New-KshSite.md)
     - [Remove-KshSite](docs/Remove-KshSite.md)
     - [Update-KshSite](docs/Update-KshSite.md)
+  - サイト コレクションのアプリ
+    - [Get-KshSiteCollectionApp](docs/Get-KshSiteCollectionApp.md)
+    - [Install-KshSiteCollectionApp](docs/Install-KshSiteCollectionApp.md)
+    - [New-KshSiteCollectionApp](docs/New-KshSiteCollectionApp.md)
+    - [Publish-KshSiteCollectionApp](docs/Publish-KshSiteCollectionApp.md)
+    - [Remove-KshSiteCollectionApp](docs/Remove-KshSiteCollectionApp.md)
+    - [Uninstall-KshSiteCollectionApp](docs/Uninstall-KshSiteCollectionApp.md)
+    - [Unpublish-KshSiteCollectionApp](docs/Unpublish-KshSiteCollectionApp.md)
   - サイト コレクションのアプリ カタログ
     - [Add-KshSiteCollectionAppCatalog](docs/Add-KshSiteCollectionAppCatalog.md)
     - [Get-KshSiteCollectionAppCatalog](docs/Get-KshSiteCollectionAppCatalog.md)

@@ -26,7 +26,13 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
                 .GetTypes()
                 .Where(type => type.IsSubclassOf(typeof(ClientObject)))
                 .Where(type => type.IsDefined(typeof(ClientObjectAttribute)))
-                .ToDictionary(type => type.GetCustomAttribute<ClientObjectAttribute>().Name, type => type);
+                .Select(type => new
+                {
+                    Type = type,
+                    Attribute = type.GetCustomAttribute<ClientObjectAttribute>()
+                })
+                .Where(value => value.Attribute.Name != null)
+                .ToDictionary(value => value.Attribute.Name, value => value.Type);
 
         public static Type GetType(string name)
         {
@@ -80,13 +86,13 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
             .Select(item => item.Key);
 
         [JsonProperty("_ObjectIdentity_")]
-        public string ObjectIdentity { get; private set; }
+        internal string ObjectIdentity { get; private set; }
 
         [JsonProperty("_ObjectType_")]
-        public string ObjectType { get; private set; }
+        internal string ObjectType { get; private set; }
 
         [JsonProperty("_ObjectVersion_")]
-        public string ObjectVersion { get; private set; }
+        internal string ObjectVersion { get; private set; }
 
         [JsonExtensionData()]
         protected Dictionary<string, JToken> ExtensionProperties { get; private set; }

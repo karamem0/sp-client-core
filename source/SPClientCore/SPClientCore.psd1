@@ -1,4 +1,4 @@
-﻿#
+#
 # Copyright (c) 2019 karamem0
 #
 # This software is released under the MIT License.
@@ -12,7 +12,7 @@
 RootModule = 'SPClientCore.dll'
 
 # Version number of this module.
-ModuleVersion = '2.1.0'
+ModuleVersion = '0.0.0'
 
 # ID used to uniquely identify this module
 GUID = '83E99C54-16E5-4ABA-96EC-76830CCDFFEF'

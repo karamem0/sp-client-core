@@ -12,24 +12,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.OData
+namespace Karamem0.SharePoint.PowerShell.Runtime.Models
 {
 
     [JsonObject()]
-    public class ODataDeferred : ODataObject
+    public class ODataMetadata
     {
 
-        public ODataDeferred()
+        public ODataMetadata()
         {
         }
 
-        public ODataDeferred(Uri uri)
-        {
-            this.Uri = uri;
-        }
+        [JsonProperty("id")]
+        public string Id { get; private set; }
 
         [JsonProperty("uri")]
         public Uri Uri { get; private set; }
+
+        [JsonProperty("type")]
+        public string Type { get; private set; }
 
     }
 

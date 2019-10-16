@@ -337,24 +337,21 @@ function Install-TestSite {
         Write-Progress -Activity 'Enabling unique role assignment...' -Status 'Test List 1'
         Set-KshUniqueRoleAssignmentEnabled -Identity $list1 -Enabled
 
-        Write-Progress -Activity 'Enabling unique role assignment...' -Status 'Test Site 1'
-        Set-KshUniqueRoleAssignmentEnabled -Identity $site1 -Enabled
-
-        Write-Progress -Activity 'Creating site role assignments...' -Status 'Test Role Definition 1'
+        Write-Progress -Activity 'Creating list role assignments...' -Status 'Test Role Definition 1'
         $listRoleAssignment1 = New-KshRoleAssignment `
             -List $list1 `
             -Principal $group1 `
             -RoleDefinition $roleDefinition1
         $appSettings.ListRoleAssignment1Id = $listRoleAssignment1.PrincipalId
 
-        Write-Progress -Activity 'Creating site role assignments...' -Status 'Test Role Definition 2'
+        Write-Progress -Activity 'Creating list role assignments...' -Status 'Test Role Definition 2'
         $listRoleAssignment2 = New-KshRoleAssignment `
             -List $list1 `
             -Principal $group2 `
             -RoleDefinition $roleDefinition2
         $appSettings.ListRoleAssignment2Id = $listRoleAssignment2.PrincipalId
 
-        Write-Progress -Activity 'Creating site role assignments...' -Status 'Test Role Definition 3'
+        Write-Progress -Activity 'Creating list role assignments...' -Status 'Test Role Definition 3'
         $listRoleAssignment3 = New-KshRoleAssignment `
             -List $list1 `
             -Principal $group3 `
@@ -794,21 +791,21 @@ function Install-TestSite {
         Write-Progress -Activity 'Enabling unique role assignment...' -Status 'Test List Item 1'
         Set-KshUniqueRoleAssignmentEnabled -Identity $item1 -Enabled
 
-        Write-Progress -Activity 'Creating site role assignments...' -Status 'Test Role Definition 1'
+        Write-Progress -Activity 'Creating list item role assignments...' -Status 'Test Role Definition 1'
         $itemRoleAssignment1 = New-KshRoleAssignment `
             -ListItem $item1 `
             -Principal $group1 `
             -RoleDefinition $roleDefinition1
         $appSettings.ListItemRoleAssignment1Id = $itemRoleAssignment1.PrincipalId
 
-        Write-Progress -Activity 'Creating site role assignments...' -Status 'Test Role Definition 2'
+        Write-Progress -Activity 'Creating list item role assignments...' -Status 'Test Role Definition 2'
         $itemRoleAssignment2 = New-KshRoleAssignment `
             -ListItem $item1 `
             -Principal $group2 `
             -RoleDefinition $roleDefinition2
         $appSettings.ListItemRoleAssignment2Id = $itemRoleAssignment2.PrincipalId
 
-        Write-Progress -Activity 'Creating site role assignments...' -Status 'Test Role Definition 3'
+        Write-Progress -Activity 'Creating list item role assignments...' -Status 'Test Role Definition 3'
         $itemRoleAssignment3 = New-KshRoleAssignment `
             -ListItem $item1 `
             -Principal $group3 `
@@ -988,6 +985,64 @@ function Install-TestSite {
             -PassThru
         $appSettings.File4Url = $file4.ServerRelativeUrl
         $appSettings.File4Name = $file4.Name
+
+        Write-Progress -Activity 'Changing current site...' -Status 'Root Site'
+        Get-KshSite -SiteUrl $Url | Select-KshSite
+
+        Write-Progress -Activity 'Creating apps...' -Status 'SharePointAddIn0'
+        $path = (Resolve-Path "$PSScriptRoot/SharePointAddIn0.sppkg").ToString()
+        $appSettings.App0Path = $path
+
+        Write-Progress -Activity 'Creating apps...' -Status 'SharePointAddIn1'
+        $path = (Resolve-Path "$PSScriptRoot/SharePointAddIn1.app").ToString()
+        $app1 = New-KshSiteCollectionApp `
+            -Content ([System.IO.File]::OpenRead($path)) `
+            -FileName 'SharePointAddIn1.app'
+        $file1 = Get-KshFile -App $app1
+        $item1 = Get-KshListItem -File $file1
+        $appSettings.App1Path = $path
+        $appSettings.App1Id = $app1.Id
+        $appSettings.App1ProductId = $item1['AppProductID']
+
+        Write-Progress -Activity 'Creating apps...' -Status 'SharePointAddIn2'
+        $path = (Resolve-Path "$PSScriptRoot/SharePointAddIn2.app").ToString()
+        $app2 = New-KshSiteCollectionApp `
+            -Content ([System.IO.File]::OpenRead($path)) `
+            -FileName 'SharePointAddIn2.app'
+        $file2 = Get-KshFile -App $app2
+        $item2 = Get-KshListItem -File $file2
+        $appSettings.App2Path = $path
+        $appSettings.App2Id = $app2.Id
+        $appSettings.App2ProductId = $item2['AppProductID']
+        
+        Write-Progress -Activity 'Creating apps...' -Status 'SharePointAddIn3'
+        $path = (Resolve-Path "$PSScriptRoot/SharePointAddIn3.app").ToString()
+        $app3 = New-KshSiteCollectionApp `
+            -Content ([System.IO.File]::OpenRead($path)) `
+            -FileName 'SharePointAddIn3.app'
+        $file3 = Get-KshFile -App $app3
+        $item3 = Get-KshListItem -File $file3
+        $appSettings.App3Path = $path
+        $appSettings.App3Id = $app3.Id
+        $appSettings.App3ProductId = $item3['AppProductID']
+
+        Write-Progress -Activity 'Changing current site...' -Status 'Test Site 1'
+        Select-KshSite -Identity $site1
+
+        Write-Progress -Activity 'Installing apps...' -Status 'SharePointAddIn1'
+        Install-KshSiteCollectionApp -Identity $app1
+        $appInstance1 = Get-KshAppInstance -AppProductId $item1['AppProductID']
+        $appSettings.AppInstance1Id = $appInstance1.Id
+
+        Write-Progress -Activity 'Installing apps...' -Status 'SharePointAddIn2'
+        Install-KshSiteCollectionApp -Identity $app2
+        $appInstance2 = Get-KshAppInstance -AppProductId $item2['AppProductID']
+        $appSettings.AppInstance2Id = $appInstance2.Id
+
+        Write-Progress -Activity 'Installing apps...' -Status 'SharePointAddIn3'
+        Install-KshSiteCollectionApp -Identity $app3
+        $appInstance3 = Get-KshAppInstance -AppProductId $item3['AppProductID']
+        $appSettings.AppInstance3Id = $appInstance3.Id
 
         Write-Output $appSettings
     }

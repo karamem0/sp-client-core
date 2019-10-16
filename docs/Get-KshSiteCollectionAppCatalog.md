@@ -33,7 +33,7 @@ Get-KshSiteCollectionAppCatalog [-NoEnumerate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshSiteCollectionFeature cmdlet retrieves site collection app catalogs in the tenant.
+The Get-KshSiteCollectionAppCatalog cmdlet retrieves site collection app catalogs in the tenant.
 
 ## EXAMPLES
 

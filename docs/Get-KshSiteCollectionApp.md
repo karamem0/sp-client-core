@@ -5,67 +5,70 @@ online version:
 schema: 2.0.0
 ---
 
-# New-KshFile
+# Get-KshSiteCollectionApp
 
 ## SYNOPSIS
-Creates a new file.
+Retrieves one or more site collection apps.
 
 ## SYNTAX
 
+### ParamSet1
 ```
-New-KshFile [-Folder] <Folder> -Content <Byte[]> -FileName <String> [-Overwrite <Boolean>] [<CommonParameters>]
+Get-KshSiteCollectionApp [-Identity] <App> [<CommonParameters>]
+```
+
+### ParamSet2
+```
+Get-KshSiteCollectionApp [-AppId] <Guid> [<CommonParameters>]
+```
+
+### ParamSet3
+```
+Get-KshSiteCollectionApp [-NoEnumerate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The New-KshFolder cmdlet adds a new file to the specified folder. Maximum file size is 2MB.
+The Get-KshSiteCollectionApp cmdlet retrieves apps in the current site collection.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> New-KshFile -Folder '/sites/japan/hr/Shared%20Documents' -Content ([System.Text.Encoding]::UTF8.GetBytes('Contact: admin@example.onmicrosoft.com')) -FileName 'README.txt'
+PS C:\> Get-KshSiteCollectionApp -AppId 'fdee2390-48bf-409e-956a-20f11a0add59'
 ```
 
-Creates a new file.
+Retrieves an app by app ID.
+
+### Example 2
+```powershell
+PS C:\> Get-KshSiteCollectionApp
+```
+
+Retrieves all apps.
 
 ## PARAMETERS
 
-### -Content
-Specifies the contents.
+### -AppId
+Specifies the app ID.
 
 ```yaml
-Type: Byte[]
-Parameter Sets: (All)
+Type: Guid
+Parameter Sets: ParamSet2
 Aliases:
 
 Required: True
-Position: Named
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -FileName
-Specifies the file name.
+### -Identity
+Specifies the app.
 
 ```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Folder
-Specifies the folder.
-
-```yaml
-Type: Folder
-Parameter Sets: (All)
+Type: App
+Parameter Sets: ParamSet1
 Aliases:
 
 Required: True
@@ -75,12 +78,12 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -Overwrite
-If specified, overwrites the existing file.
+### -NoEnumerate
+If specified, suppresses to enumerate objects.
 
 ```yaml
-Type: Boolean
-Parameter Sets: (All)
+Type: SwitchParameter
+Parameter Sets: ParamSet3
 Aliases:
 
 Required: False
@@ -95,11 +98,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### None
+### Karamem0.SharePoint.PowerShell.Models.App
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.File
+### Karamem0.SharePoint.PowerShell.Models.App
 
 ## NOTES
 

@@ -37,6 +37,8 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         File GetObject(FileVersion fileVersionObject);
 
+        File GetObject(App appObject);
+
         File GetObject(Guid fileId);
 
         File GetObject(Uri fileUrl);
@@ -170,9 +172,10 @@ namespace Karamem0.SharePoint.PowerShell.Services
             {
                 throw new ArgumentNullException(nameof(fileObject));
             }
-            var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
-                "_api/web/getfilebyserverrelativeurl('{0}')/openbinarystream",
-                fileObject.ServerRelativeUrl);
+            var requestUrl = this.ClientContext.BaseAddress
+                .ConcatPath(
+                    "_api/web/getfilebyserverrelativeurl('{0}')/openbinarystream",
+                    fileObject.ServerRelativeUrl);
             return this.ClientContext.GetStream(requestUrl);
         }
 
@@ -185,6 +188,34 @@ namespace Karamem0.SharePoint.PowerShell.Services
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathIdentity(string.Join(":", fileVersionObject.ObjectIdentity.Split(':').SkipLast(2))),
+                objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
+                objectPathId => new ClientActionQuery(objectPathId)
+                {
+                    Query = new ClientQuery(true, typeof(File))
+                });
+            return this.ClientContext
+                .ProcessQuery(requestPayload)
+                .ToObject<File>(requestPayload.ActionQueryId);
+        }
+
+        public File GetObject(App appObject)
+        {
+            if (appObject == null)
+            {
+                throw new ArgumentNullException(nameof(appObject));
+            }
+            var requestPayload = new ClientRequestPayload();
+            var objectPath1 = requestPayload.Add(
+                new ObjectPathStaticProperty(typeof(Context), "Current"),
+                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+            var objectPath2 = requestPayload.Add(
+                new ObjectPathProperty(objectPath1.Id, "Web"),
+                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+            var objectPath3 = requestPayload.Add(
+                new ObjectPathMethod(
+                    objectPath2.Id,
+                    "GetFileById",
+                    requestPayload.CreateParameter(appObject.Id)),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {
@@ -401,11 +432,12 @@ namespace Karamem0.SharePoint.PowerShell.Services
             {
                 throw new ArgumentNullException(nameof(fileContent));
             }
-            var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
-                "_api/web/getfolderbyserverrelativeurl('{0}')/files/add(url='{1}',overwrite={2})",
-                folderUrl,
-                fileName,
-                overwrite);
+            var requestUrl = this.ClientContext.BaseAddress
+                .ConcatPath(
+                    "_api/web/getfolderbyserverrelativeurl('{0}')/files/add(url='{1}',overwrite={2})",
+                    folderUrl,
+                    fileName,
+                    overwrite);
             this.ClientContext.PostStream(requestUrl, fileContent);
         }
 

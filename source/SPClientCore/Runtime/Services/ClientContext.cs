@@ -10,7 +10,6 @@ using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.OAuth;
-using Karamem0.SharePoint.PowerShell.Runtime.OData;
 using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
@@ -63,6 +62,43 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
             }
         }
 
+        public T GetObject<T>(Uri requestUrl) where T : ODataObject
+        {
+            for (var count = 1; count <= ClientConstants.MaxRetryCount; count++)
+            {
+                var requestMessage = new HttpRequestMessage(HttpMethod.Get, requestUrl);
+                requestMessage.Headers.Add("Authorization", "Bearer " + this.oAuthTokenCache.GetAccessToken());
+                requestMessage.Headers.Add("Accept", "application/json;odata=verbose");
+                requestMessage.Headers.Add("User-Agent", "NONISV|karamem0|SPClientCore/" + this.GetType().Assembly.GetName().Version.ToString(3));
+                Trace.WriteLine(requestMessage);
+                var responseMessage = this.httpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
+                var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                Trace.WriteLine(responseMessage);
+                Trace.WriteLine(responseContent);
+                try
+                {
+                    var responsePayload = JsonConvert.DeserializeObject<ODataResultPayload<T>>(responseContent);
+                    if (responseMessage.IsSuccessStatusCode)
+                    {
+                        return responsePayload.Entry;
+                    }
+                    else if (responseMessage.StatusCode == HttpStatusCode.TooManyRequests)
+                    {
+                        Thread.Sleep(responseMessage.Headers.RetryAfter.Delta.GetValueOrDefault(TimeSpan.FromSeconds(1)));
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException(responsePayload.Error.Message.Value);
+                    }
+                }
+                catch (JsonException)
+                {
+                    throw new InvalidOperationException(responseContent);
+                }
+            }
+            throw new InvalidOperationException(StringResources.ErrorMaxRetryCountExceeded);
+        }
+
         public System.IO.Stream GetStream(Uri requestUrl)
         {
             if (requestUrl == null)
@@ -85,6 +121,52 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
             {
                 throw new InvalidOperationException(responseMessage.ReasonPhrase);
             }
+        }
+
+        public void PostObject(Uri requestUrl, object requestPayload)
+        {
+            for (var count = 1; count <= ClientConstants.MaxRetryCount; count++)
+            {
+                var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
+                requestMessage.Headers.Add("Authorization", "Bearer " + this.oAuthTokenCache.GetAccessToken());
+                requestMessage.Headers.Add("Accept", "application/json;odata=verbose");
+                requestMessage.Headers.Add("User-Agent", "NONISV|karamem0|SPClientCore/" + this.GetType().Assembly.GetName().Version.ToString(3));
+                if (requestPayload != null)
+                {
+                    var jsonSerializerSettings = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
+                    var jsonContent = JsonConvert.SerializeObject(requestPayload, jsonSerializerSettings);
+                    requestMessage.Content = new StringContent(jsonContent, Encoding.UTF8);
+                    requestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json;odata=verbose");
+                }
+                var requestContent = requestMessage.Content?.ReadAsStringAsync().GetAwaiter().GetResult();
+                Trace.WriteLine(requestMessage);
+                Trace.WriteLine(requestContent);
+                var responseMessage = this.httpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
+                var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                Trace.WriteLine(responseMessage);
+                Trace.WriteLine(responseContent);
+                try
+                {
+                    var responsePayload = JsonConvert.DeserializeObject<ODataResultPayload>(responseContent);
+                    if (responseMessage.IsSuccessStatusCode)
+                    {
+                        return;
+                    }
+                    else if (responseMessage.StatusCode == HttpStatusCode.TooManyRequests)
+                    {
+                        Thread.Sleep(responseMessage.Headers.RetryAfter.Delta.GetValueOrDefault(TimeSpan.FromSeconds(1)));
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException(responsePayload.Error.Message.Value);
+                    }
+                }
+                catch (JsonException)
+                {
+                    throw new InvalidOperationException(responseContent);
+                }
+            }
+            throw new InvalidOperationException(StringResources.ErrorMaxRetryCountExceeded);
         }
 
         public void PostStream(Uri requestUrl, System.IO.Stream requestStream)
@@ -111,6 +193,44 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
             {
                 var responsePayload = JsonConvert.DeserializeObject<ODataResultPayload>(responseContent);
                 if (responsePayload.Error != null)
+                {
+                    throw new InvalidOperationException(responsePayload.Error.Message.Value);
+                }
+            }
+            catch (JsonException)
+            {
+                throw new InvalidOperationException(responseContent);
+            }
+        }
+
+        public T PostStream<T>(Uri requestUrl, System.IO.Stream requestStream) where T : ODataObject
+        {
+            if (requestUrl == null)
+            {
+                throw new ArgumentNullException(nameof(requestUrl));
+            }
+            if (requestStream == null)
+            {
+                throw new ArgumentNullException(nameof(requestStream));
+            }
+            var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
+            requestMessage.Headers.Add("Authorization", "Bearer " + this.oAuthTokenCache.GetAccessToken());
+            requestMessage.Headers.Add("Accept", "application/json;odata=verbose");
+            requestMessage.Headers.Add("User-Agent", "NONISV|karamem0|SPClientCore/" + this.GetType().Assembly.GetName().Version.ToString(3));
+            requestMessage.Content = new StreamContent(requestStream);
+            Trace.WriteLine(requestMessage);
+            var responseMessage = this.httpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
+            var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            Trace.WriteLine(responseMessage);
+            Trace.WriteLine(responseContent);
+            try
+            {
+                var responsePayload = JsonConvert.DeserializeObject<ODataResultPayload<T>>(responseContent);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    return responsePayload.Entry;
+                }
+                else
                 {
                     throw new InvalidOperationException(responsePayload.Error.Message.Value);
                 }

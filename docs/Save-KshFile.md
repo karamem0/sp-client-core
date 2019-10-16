@@ -24,7 +24,7 @@ The Save-KshFile cmdlet adds a new file to the specified folder. Maximum file si
 
 ### Example 1
 ```powershell
-PS C:\> Save-KshFile -Folder (Get-KshFolder -FolderUrl '/sites/japan/hr/Shared%20Documents') -Content ([System.IO.File]::OpenRead("C:\README.txt")) -FileName 'README.txt'
+PS C:\> Save-KshFile -Folder (Get-KshFolder -FolderUrl '/sites/japan/hr/Shared%20Documents') -Content ([System.IO.File]::OpenRead('C:\README.txt')) -FileName 'README.txt'
 ```
 
 Adds a new file.

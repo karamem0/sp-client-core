@@ -5,48 +5,48 @@ online version:
 schema: 2.0.0
 ---
 
-# New-KshFolder
+# New-KshSiteCollectionApp
 
 ## SYNOPSIS
-Creates a new folder.
+Creates a new site collection app.
 
 ## SYNTAX
 
 ```
-New-KshFolder [-Folder] <Folder> -FolderName <String> [<CommonParameters>]
+New-KshSiteCollectionApp -Content <Stream> -FileName <String> [-Overwrite <Boolean>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The New-KshFolder cmdlet adds a new folder to the specified folder.
+The New-KshSiteCollectionApp cmdlet adds a new app to the current site collection.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> New-KshFolder -Folder '/sites/japan/hr/Shared%20Documents' -FolderName 'Templates'
+PS C:\> New-KshSiteCollectionApp -Content [System.IO.File]::OpenRead('C:\app.sppkg') -FileName 'app.sppkg'
 ```
 
-Creates a new folder.
+Creates a new app.
 
 ## PARAMETERS
 
-### -Folder
-Specifies the folder.
+### -Content
+Specifies the contents.
 
 ```yaml
-Type: Folder
+Type: Stream
 Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 0
+Position: Named
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -FolderName
-Specifies the folder name.
+### -FileName
+Specifies the file name.
 
 ```yaml
 Type: String
@@ -54,6 +54,21 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Overwrite
+If specified, overwrites the existing file.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -69,7 +84,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.Folder
+### Karamem0.SharePoint.PowerShell.Models.App
 
 ## NOTES
 

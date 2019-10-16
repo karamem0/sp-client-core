@@ -36,20 +36,23 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet3")]
         public FileVersion FileVersion { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet4")]
-        public Guid FileId { get; private set; }
+        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet4")]
+        public App App { get; private set; }
 
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet5")]
-        public Uri FileUrl { get; private set; }
+        public Guid FileId { get; private set; }
 
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet6")]
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet7")]
+        public Uri FileUrl { get; private set; }
+
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet7")]
+        [Parameter(Mandatory = true, ParameterSetName = "ParamSet8")]
         public Folder Folder { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet6")]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet7")]
         public string FileName { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ParamSet7")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet8")]
         public SwitchParameter NoEnumerate { get; private set; }
 
         protected override void ProcessRecordCore()
@@ -76,9 +79,13 @@ namespace Karamem0.SharePoint.PowerShell.Commands
             }
             if (this.ParameterSetName == "ParamSet4")
             {
-                this.WriteObject(this.Service.GetObject(this.FileId));
+                this.WriteObject(this.Service.GetObject(this.App));
             }
             if (this.ParameterSetName == "ParamSet5")
+            {
+                this.WriteObject(this.Service.GetObject(this.FileId));
+            }
+            if (this.ParameterSetName == "ParamSet6")
             {
                 if (this.FileUrl.IsAbsoluteUri)
                 {
@@ -89,11 +96,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands
                     this.WriteObject(this.Service.GetObject(this.FileUrl));
                 }
             }
-            if (this.ParameterSetName == "ParamSet6")
+            if (this.ParameterSetName == "ParamSet7")
             {
                 this.WriteObject(this.Service.GetObject(this.Folder, this.FileName));
             }
-            if (this.ParameterSetName == "ParamSet7")
+            if (this.ParameterSetName == "ParamSet8")
             {
                 this.WriteObject(this.Service.GetObjectEnumerable(this.Folder), this.NoEnumerate ? false : true);
             }

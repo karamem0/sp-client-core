@@ -50,9 +50,10 @@ namespace Karamem0.SharePoint.PowerShell.Services
             {
                 throw new ArgumentNullException(nameof(attachmentFileObject));
             }
-            var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
-                "_api/web/getfilebyserverrelativeurl('{0}')/openbinarystream",
-                attachmentFileObject.ServerRelativeUrl);
+            var requestUrl = this.ClientContext.BaseAddress
+                .ConcatPath(
+                    "_api/web/getfilebyserverrelativeurl('{0}')/openbinarystream",
+                    attachmentFileObject.ServerRelativeUrl);
             return this.ClientContext.GetStream(requestUrl);
         }
 
@@ -146,11 +147,12 @@ namespace Karamem0.SharePoint.PowerShell.Services
             var listObject = this.ClientContext
                 .ProcessQuery(requestPayload)
                 .ToObject<List>(ObjectPath.CurrentId());
-            var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
-                "_api/web/lists('{0}')/items({1})/attachmentfiles/add(filename='{2}')",
-                listObject.Id,
-                listItemObject.Id,
-                attachmentFileName);
+            var requestUrl = this.ClientContext.BaseAddress
+                .ConcatPath(
+                    "_api/web/lists('{0}')/items({1})/attachmentfiles/add(filename='{2}')",
+                    listObject.Id,
+                    listItemObject.Id,
+                    attachmentFileName);
             this.ClientContext.PostStream(requestUrl, attachmentFileContent);
         }
 

@@ -18,20 +18,17 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands
 {
 
-    [Cmdlet("New", "KshFile")]
-    [OutputType(typeof(File))]
-    public class NewFileCommand : ClientObjectCmdlet<IFileService>
+    [Cmdlet("New", "KshSiteCollectionApp")]
+    [OutputType(typeof(App))]
+    public class NewSiteCollectionAppCommand : ClientObjectCmdlet<ISiteCollectionAppService>
     {
 
-        public NewFileCommand()
+        public NewSiteCollectionAppCommand()
         {
         }
 
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public Folder Folder { get; private set; }
-
         [Parameter(Mandatory = true)]
-        public byte[] Content { get; private set; }
+        public System.IO.Stream Content { get; private set; }
 
         [Parameter(Mandatory = true)]
         public string FileName { get; private set; }
@@ -41,7 +38,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         protected override void ProcessRecordCore()
         {
-            this.WriteObject(this.Service.CreateObject(this.Folder, this.MyInvocation.BoundParameters));
+            this.WriteObject(this.Service.CreateObject(this.Content, this.FileName, this.Overwrite));
         }
 
     }
