@@ -5,44 +5,43 @@ online version:
 schema: 2.0.0
 ---
 
-# Update-KshTermStore
+# Enable-KshTerm
 
 ## SYNOPSIS
-Updates a term store.
+Enables a term.
 
 ## SYNTAX
 
 ```
-Update-KshTermStore [-DefaultLcid <UInt32>] [-WorkingLcid <UInt32>] [-PassThru] [<CommonParameters>]
+Enable-KshTerm [-Identity] <Term> [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Update-KshTermStore cmdlet updates properties of the term store.
+The Enable-KshTerm cmdlet sets the term active.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> Update-KshTermStore -DefaultLcid 1033
+PS C:\> Enable-KshTerm -Identity (Get-KshTerm -TermSet (Get-KshTermSet -TermGroup (Get-KshTermGroup -TermGroupName 'Company') -TermSetName 'Department') -TermName 'Human Resources')
 ```
 
-Updates property values of the term store.
+Enables a term.
 
 ## PARAMETERS
 
-### -DefaultLcid
-Specifies the default locale ID.
-For more information, see [reference](https://msdn.microsoft.com/en-us/library/cc233965.aspx).
+### -Identity
+Specifies the term.
 
 ```yaml
-Type: UInt32
+Type: Term
 Parameter Sets: (All)
 Aliases:
 
-Required: False
-Position: Named
+Required: True
+Position: 0
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
@@ -61,32 +60,16 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -WorkingLcid
-Specifies the working locale ID.
-For more information, see [reference](https://msdn.microsoft.com/en-us/library/cc233965.aspx).
-
-```yaml
-Type: UInt32
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
-### None
+### Karamem0.SharePoint.PowerShell.Models.Term
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.TermStore
+### System.Void
 
 ## NOTES
 

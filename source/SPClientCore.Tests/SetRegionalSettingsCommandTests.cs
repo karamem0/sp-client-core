@@ -19,12 +19,12 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("Update-KshRegionalSettings")]
-    public class UpdateRegionalSettingsCommandTests
+    [TestCategory("Set-KshRegionalSettings")]
+    public class SetRegionalSettingsCommandTests
     {
 
         [TestMethod()]
-        public void UpdateRegionalSettings()
+        public void SetRegionalSettings()
         {
             using (var context = new PSCmdletContext())
             {
@@ -63,7 +63,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     }
                 );
                 var result5 = context.Runspace.InvokeCommand<RegionalSettings>(
-                    "Update-KshRegionalSettings",
+                    "Set-KshRegionalSettings",
                     new Dictionary<string, object>()
                     {
                         { "AdjustHijriDays", 1 },

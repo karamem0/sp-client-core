@@ -24,6 +24,8 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         Term CreateObject(TermSetItem termSetItemObject, string termName, Guid termId, uint lcid);
 
+        void DeprecateObject(Term termObject, bool deprecated);
+
         Term GetObject(Term termObject);
 
         Term GetObject(TermLabel termLabelObject);
@@ -39,8 +41,6 @@ namespace Karamem0.SharePoint.PowerShell.Services
         void MoveObject(Term termObject, TermSetItem termSetItemObject);
 
         void RemoveObject(Term termObject);
-
-        void SetObjectDeprecated(Term termObject, bool deprecated);
 
         void UpdateObject(Term termObject, IReadOnlyDictionary<string, object> modificationInformation);
 
@@ -115,6 +115,25 @@ namespace Karamem0.SharePoint.PowerShell.Services
             return this.ClientContext
                 .ProcessQuery(requestPayload)
                 .ToObject<Term>(requestPayload.ActionQueryId);
+        }
+
+        public void DeprecateObject(Term termObject, bool deprecated)
+        {
+            if (termObject == null)
+            {
+                throw new ArgumentNullException(nameof(termObject));
+            }
+            var requestPayload = new ClientRequestPayload();
+            var objectPath1 = requestPayload.Add(
+                new ObjectPathIdentity(termObject.ObjectIdentity),
+                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+            var objectPath2 = requestPayload.Add(
+                objectPath1,
+                objectPathId => new ClientActionMethod(
+                    objectPathId,
+                    "Deprecate",
+                    requestPayload.CreateParameter(deprecated)));
+            this.ClientContext.ProcessQuery(requestPayload);
         }
 
         public Term GetObject(TermLabel termLabelObject)
@@ -269,25 +288,6 @@ namespace Karamem0.SharePoint.PowerShell.Services
                     objectPathId,
                     "Move",
                     requestPayload.CreateParameter(termSetItemObject)));
-            this.ClientContext.ProcessQuery(requestPayload);
-        }
-
-        public void SetObjectDeprecated(Term termObject, bool deprecated)
-        {
-            if (termObject == null)
-            {
-                throw new ArgumentNullException(nameof(termObject));
-            }
-            var requestPayload = new ClientRequestPayload();
-            var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(termObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
-            var objectPath2 = requestPayload.Add(
-                objectPath1,
-                objectPathId => new ClientActionMethod(
-                    objectPathId,
-                    "Deprecate",
-                    requestPayload.CreateParameter(deprecated)));
             this.ClientContext.ProcessQuery(requestPayload);
         }
 

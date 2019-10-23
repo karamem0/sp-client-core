@@ -18,12 +18,12 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands
 {
 
-    [Cmdlet("Update", "KshRegionalSettings")]
+    [Cmdlet("Set", "KshRegionalSettings")]
     [OutputType(typeof(RegionalSettings))]
-    public class UpdateRegionalSettingsCommand : ClientObjectCmdlet<IRegionalSettingsService>
+    public class SetRegionalSettingsCommand : ClientObjectCmdlet<IRegionalSettingsService>
     {
 
-        public UpdateRegionalSettingsCommand()
+        public SetRegionalSettingsCommand()
         {
         }
 

@@ -31,9 +31,9 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
 
 ## Dependencies
 
-- [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/2.2.0) (2.2.0)
-- [System.IdentityModel.Tokens.Jwt](https://www.nuget.org/packages/System.IdentityModel.Tokens.Jwt/5.4.0) (5.4.0)
-- [System.Management.Automation](https://www.nuget.org/packages/System.Management.Automation/6.1.0) (6.1.0)
+- [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/3.0.0) (3.0.0)
+- [System.IdentityModel.Tokens.Jwt](https://www.nuget.org/packages/System.IdentityModel.Tokens.Jwt/5.5.0) (5.5.0)
+- [System.Management.Automation](https://www.nuget.org/packages/System.Management.Automation/6.2.3) (6.2.3)
 
 ## Command References
 
@@ -153,7 +153,7 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Restore-KshRecycleBinItem](docs/Remove-KshRecycleBinItem.md)
   - Regional Settings
     - [Get-KshRegionalSettings](docs/Get-KshRegionalSettings.md)
-    - [Update-KshRegionalSettings](docs/Update-KshRegionalSettings.md)
+    - [Set-KshRegionalSettings](docs/Set-KshRegionalSettings.md)
   - Role Assignment
     - [Get-KshRoleAssignment](docs/Get-KshRoleAssignment.md)
     - [New-KshRoleAssignment](docs/New-KshRoleAssignment.md)
@@ -163,6 +163,8 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Get-KshRoleDefinition](docs/Get-KshRoleDefinition.md)
     - [New-KshRoleDefinition](docs/New-KshRoleDefinition.md)
     - [Remove-KshRoleDefinition](docs/Remove-KshRoleDefinition.md)
+    - [Update-KshRoleDefinition](docs/Update-KshRoleDefinition.md)
+    - [Initialize-KshBasePermission](docs/Initialize-KshBasePermission.md)
   - Sites
     - [Get-KshSite](docs/Get-KshSite.md)
     - [New-KshSite](docs/New-KshSite.md)
@@ -183,7 +185,7 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
   - Site Collection Features
     - [Add-KshSiteCollectionFeature](docs/Add-KshSiteCollectionFeature.md)
     - [Get-KshSiteCollectionFeature](docs/Get-KshSiteCollectionFeature.md)
-    - [Remove-KshCollectionSiteFeature](docs/Remove-KshSiteCollectionFeature.md)
+    - [Remove-KshSiteCollectionFeature](docs/Remove-KshSiteCollectionFeature.md)
   - Site Features
     - [Add-KshSiteFeature](docs/Add-KshSiteFeature.md)
     - [Get-KshSiteFeature](docs/Get-KshSiteFeature.md)
@@ -239,12 +241,17 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Add-KshTermLocalCustomProperty](docs/Add-KshTermLocalCustomProperty.md)
     - [Remove-KshTermLocalCustomProperty](docs/Remove-KshTermLocalCustomProperty.md)
   - Terms
+    - [Copy-KshTerm](docs/Copy-KshTerm.md)
+    - [Disable-KshTerm](docs/Disable-KshTerm.md)
+    - [Enable-KshTerm](docs/Enable-KshTerm.md)
     - [Get-KshTerm](docs/Get-KshTerm.md)
     - [Merge-KshTerm](docs/Merge-KshTerm.md)
     - [Move-KshTerm](docs/Move-KshTerm.md)
     - [New-KshTerm](docs/New-KshTerm.md)
     - [Remove-KshTerm](docs/Remove-KshTerm.md)
     - [Update-KshTerm](docs/Update-KshTerm.md)
+    - [Get-KshTermDescription](docs/Get-KshTermDescription.md)
+    - [Set-KshTermDescription](docs/Set-KshTermDescription.md)
   - Term Groups
     - [Get-KshTermGroup](docs/Get-KshTermGroup.md)
     - [New-KshTermGroup](docs/New-KshTermGroup.md)
@@ -254,6 +261,7 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Get-KshTermLabel](docs/Get-KshTermLabel.md)
     - [New-KshTermLabel](docs/New-KshTermLabel.md)
     - [Remove-KshTermLabel](docs/Remove-KshTermLabel.md)
+    - [Update-KshTermLabel](docs/Update-KshTermLabel.md)
   - Term Sets
     - [Get-KshTermSet](docs/Get-KshTermSet.md)
     - [New-KshTermSet](docs/New-KshTermSet.md)
@@ -261,6 +269,6 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Update-KshTermSet](docs/Update-KshTermSet.md)
   - Term Store
     - [Get-KshTermStore](docs/Get-KshTermStore.md)
-    - [Update-KshTermStore](docs/Update-KshTermStore.md)
+    - [Set-KshTermStore](docs/Set-KshTermStore.md)
     - [Add-KshTermStoreLanguage](docs/Add-KshTermStoreLanguage.md)
     - [Remove-KshTermStoreLanguage](docs/Remove-KshTermStoreLanguage.md)

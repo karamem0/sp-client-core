@@ -18,24 +18,28 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands
 {
 
-    [Cmdlet("Set", "KshTermDeprecated")]
+    [Cmdlet("Disable", "KshTerm")]
     [OutputType(typeof(void))]
-    public class SetTermDeprecatedCommand : ClientObjectCmdlet<ITermService>
+    public class DisableTermCommand : ClientObjectCmdlet<ITermService>
     {
 
-        public SetTermDeprecatedCommand()
+        public DisableTermCommand()
         {
         }
 
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
         public Term Identity { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 1)]
-        public bool Deprecated { get; private set; }
+        [Parameter(Mandatory = false)]
+        public SwitchParameter PassThru { get; private set; }
 
         protected override void ProcessRecordCore()
         {
-            this.Service.SetObjectDeprecated(this.Identity, this.Deprecated);
+            this.Service.DeprecateObject(this.Identity, true);
+            if (this.PassThru)
+            {
+                this.WriteObject(this.Service.GetObject(this.Identity));
+            }
         }
 
     }

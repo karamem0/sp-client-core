@@ -18,12 +18,12 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("Set-KshTermDeprecated")]
-    public class SetTermDeprecatedCommandTests
+    [TestCategory("Enable-KshTerm")]
+    public class EnableTermCommandTests
     {
 
         [TestMethod()]
-        public void SetTermDeprecated()
+        public void EnableTerm()
         {
             using (var context = new PSCmdletContext())
             {
@@ -62,26 +62,18 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     }
                 );
                 var result5 = context.Runspace.InvokeCommand(
-                    "Set-KshTermDeprecated",
-                    new Dictionary<string, object>()
-                    {
-                        { "Identity", result4.ElementAt(0) },
-                        { "Deprecated", true }
-                    }
-                );
-                var result6 = context.Runspace.InvokeCommand<Term>(
-                    "Get-KshTerm",
+                    "Disable-KshTerm",
                     new Dictionary<string, object>()
                     {
                         { "Identity", result4.ElementAt(0) }
                     }
                 );
-                var result7 = context.Runspace.InvokeCommand(
-                    "Set-KshTermDeprecated",
+                var result6 = context.Runspace.InvokeCommand<Term>(
+                    "Enable-KshTerm",
                     new Dictionary<string, object>()
                     {
                         { "Identity", result4.ElementAt(0) },
-                        { "Deprecated", true }
+                        { "PassThru", true }
                     }
                 );
                 var actual = result6.ElementAt(0);

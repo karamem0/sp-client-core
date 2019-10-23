@@ -5,22 +5,22 @@ online version:
 schema: 2.0.0
 ---
 
-# Update-KshRegionalSettings
+# Set-KshRegionalSettings
 
 ## SYNOPSIS
-Updates a regional settings.
+Changes a regional settings.
 
 ## SYNTAX
 
 ```
-Update-KshRegionalSettings [-AdjustHijriDays <Int16>] [-AlternateCalendarType <Int16>] [-CalendarType <Int16>]
+Set-KshRegionalSettings [-AdjustHijriDays <Int16>] [-AlternateCalendarType <Int16>] [-CalendarType <Int16>]
  [-Collation <Int16>] [-FirstDayOfWeek <UInt32>] [-FirstWeekOfYear <UInt32>] [-Lcid <UInt32>]
  [-ShowWeeks <Boolean>] [-Time24 <Boolean>] [-TimeZone <TimeZone>] [-WorkDayEndHour <Int16>]
  [-WorkDays <Int16>] [-WorkDayStartHour <Int16>] [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Update-KshRegionalSettings cmdlet updates properties of the regional settings of the current site.
+The Update-KshRegionalSettings cmdlet changes properties of the regional settings of the current site.
 
 ## EXAMPLES
 

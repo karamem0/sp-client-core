@@ -5,45 +5,30 @@ online version:
 schema: 2.0.0
 ---
 
-# Set-KshTermDeprecated
+# Disable-KshTerm
 
 ## SYNOPSIS
-Changes whether a term is deprecated.
+Disables a term.
 
 ## SYNTAX
 
 ```
-Set-KshTermDeprecated [-Identity] <Term> [-Deprecated] <Boolean> [<CommonParameters>]
+Disable-KshTerm [-Identity] <Term> [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Set-KshTermDeprecated cmdlet changes whether a term is deprecated.
+The Disable-KshTerm cmdlet sets the term inactive.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> Set-KshTermDeprecated -Identity (Get-KshTerm -TermSet (Get-KshTermSet -TermGroup (Get-KshTermGroup -TermGroupName 'Company') -TermSetName 'Department') -TermName 'Human Resources') -Deprecated $true
+PS C:\> Disable-KshTerm -Identity (Get-KshTerm -TermSet (Get-KshTermSet -TermGroup (Get-KshTermGroup -TermGroupName 'Company') -TermSetName 'Department') -TermName 'Human Resources')
 ```
 
-Deprecates a term.
+Disables a term.
 
 ## PARAMETERS
-
-### -Deprecated
-Specifies whether a term is deprecated.
-
-```yaml
-Type: Boolean
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -Identity
 Specifies the term.
@@ -57,6 +42,21 @@ Required: True
 Position: 0
 Default value: None
 Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -PassThru
+If specified, returns the updated object.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

@@ -2,6 +2,54 @@
 <Configuration>
     <ViewDefinitions>
         <View>
+            <Name>Karamem0.SharePoint.PowerShell.Models.App</Name>
+            <ViewSelectedBy>
+                <TypeName>Karamem0.SharePoint.PowerShell.Models.App</TypeName>
+            </ViewSelectedBy>
+            <TableControl>
+                <TableHeaders>
+                    <TableColumnHeader />
+                    <TableColumnHeader />
+                </TableHeaders>
+                <TableRowEntries>
+                    <TableRowEntry>
+                        <TableColumnItems>
+                            <TableColumnItem>
+                                <PropertyName>Id</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>Title</PropertyName>
+                            </TableColumnItem>
+                        </TableColumnItems>
+                    </TableRowEntry>
+                </TableRowEntries>
+            </TableControl>
+        </View>
+        <View>
+            <Name>Karamem0.SharePoint.PowerShell.Models.AppInstance</Name>
+            <ViewSelectedBy>
+                <TypeName>Karamem0.SharePoint.PowerShell.Models.AppInstance</TypeName>
+            </ViewSelectedBy>
+            <TableControl>
+                <TableHeaders>
+                    <TableColumnHeader />
+                    <TableColumnHeader />
+                </TableHeaders>
+                <TableRowEntries>
+                    <TableRowEntry>
+                        <TableColumnItems>
+                            <TableColumnItem>
+                                <PropertyName>Id</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>Title</PropertyName>
+                            </TableColumnItem>
+                        </TableColumnItems>
+                    </TableRowEntry>
+                </TableRowEntries>
+            </TableControl>
+        </View>
+        <View>
             <Name>Karamem0.SharePoint.PowerShell.Models.AttachmentFile</Name>
             <ViewSelectedBy>
                 <TypeName>Karamem0.SharePoint.PowerShell.Models.AttachmentFile</TypeName>
@@ -163,6 +211,30 @@
                             </TableColumnItem>
                             <TableColumnItem>
                                 <PropertyName>TimeLastModified</PropertyName>
+                            </TableColumnItem>
+                        </TableColumnItems>
+                    </TableRowEntry>
+                </TableRowEntries>
+            </TableControl>
+        </View>
+        <View>
+            <Name>Karamem0.SharePoint.PowerShell.Models.FileVersion</Name>
+            <ViewSelectedBy>
+                <TypeName>Karamem0.SharePoint.PowerShell.Models.FileVersion</TypeName>
+            </ViewSelectedBy>
+            <TableControl>
+                <TableHeaders>
+                    <TableColumnHeader />
+                    <TableColumnHeader />
+                </TableHeaders>
+                <TableRowEntries>
+                    <TableRowEntry>
+                        <TableColumnItems>
+                            <TableColumnItem>
+                                <PropertyName>Url</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>VersionLabel</PropertyName>
                             </TableColumnItem>
                         </TableColumnItems>
                     </TableRowEntry>
@@ -392,6 +464,30 @@
             </TableControl>
         </View>
         <View>
+            <Name>Karamem0.SharePoint.PowerShell.Models.RoleAssignment</Name>
+            <ViewSelectedBy>
+                <TypeName>Karamem0.SharePoint.PowerShell.Models.RoleAssignment</TypeName>
+            </ViewSelectedBy>
+            <TableControl>
+                <TableHeaders>
+                    <TableColumnHeader />
+                    <TableColumnHeader />
+                </TableHeaders>
+                <TableRowEntries>
+                    <TableRowEntry>
+                        <TableColumnItems>
+                            <TableColumnItem>
+                                <PropertyName>Member</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>PrincipalId</PropertyName>
+                            </TableColumnItem>
+                        </TableColumnItems>
+                    </TableRowEntry>
+                </TableRowEntries>
+            </TableControl>
+        </View>
+        <View>
             <Name>Karamem0.SharePoint.PowerShell.Models.SiteCollection</Name>
             <ViewSelectedBy>
                 <TypeName>Karamem0.SharePoint.PowerShell.Models.SiteCollection</TypeName>
@@ -461,6 +557,34 @@
                             </TableColumnItem>
                             <TableColumnItem>
                                 <PropertyName>Description</PropertyName>
+                            </TableColumnItem>
+                        </TableColumnItems>
+                    </TableRowEntry>
+                </TableRowEntries>
+            </TableControl>
+        </View>
+        <View>
+            <Name>Karamem0.SharePoint.PowerShell.Models.TaxonomyItem</Name>
+            <ViewSelectedBy>
+                <TypeName>Karamem0.SharePoint.PowerShell.Models.TaxonomyItem</TypeName>
+            </ViewSelectedBy>
+            <TableControl>
+                <TableHeaders>
+                    <TableColumnHeader />
+                    <TableColumnHeader />
+                    <TableColumnHeader />
+                </TableHeaders>
+                <TableRowEntries>
+                    <TableRowEntry>
+                        <TableColumnItems>
+                            <TableColumnItem>
+                                <PropertyName>Id</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>Name</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>LastModifiedDate</PropertyName>
                             </TableColumnItem>
                         </TableColumnItems>
                     </TableRowEntry>
