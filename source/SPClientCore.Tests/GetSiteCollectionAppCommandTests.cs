@@ -68,7 +68,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Get-KshSiteCollectionApp",
                     new Dictionary<string, object>()
                     {
-                        { "AppId", context.AppSettings["App1Id"] }
+                        { "AppId", context.AppSettings["SiteCollectionApp1Id"] }
                     }
                 );
                 var result3 = context.Runspace.InvokeCommand<App>(
@@ -102,7 +102,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Get-KshSiteCollectionApp",
                     new Dictionary<string, object>()
                     {
-                        { "AppId", context.AppSettings["App1Id"] }
+                        { "AppId", context.AppSettings["SiteCollectionApp1Id"] }
                     }
                 );
                 var actual = result2.ElementAt(0);

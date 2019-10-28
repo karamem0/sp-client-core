@@ -18,21 +18,28 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands
 {
 
-    [Cmdlet("Install", "KshSiteCollectionApp")]
-    [OutputType(typeof(void))]
-    public class InstallSiteCollectionAppCommand : ClientObjectCmdlet<ISiteCollectionAppService>
+    [Cmdlet("Install", "KshTenantApp")]
+    [OutputType(typeof(App))]
+    public class InstallTenantAppCommand : ClientObjectCmdlet<ITenantAppService>
     {
 
-        public InstallSiteCollectionAppCommand()
+        public InstallTenantAppCommand()
         {
         }
 
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
         public App Identity { get; private set; }
 
+        [Parameter(Mandatory = false)]
+        public SwitchParameter PassThru { get; private set; }
+
         protected override void ProcessRecordCore()
         {
-            this.Service.InstallObject(this.Identity.Id);
+            this.Service.InstallObject(this.Identity);
+            if (this.PassThru)
+            {
+                this.WriteObject(this.Service.GetObject(this.Identity));
+            }
         }
 
     }

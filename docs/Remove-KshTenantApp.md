@@ -5,28 +5,28 @@ online version:
 schema: 2.0.0
 ---
 
-# Uninstall-KshSiteCollectionApp
+# Remove-KshTenantApp
 
 ## SYNOPSIS
-Uninstalls the site collection app.
+Removes a tenant app.
 
 ## SYNTAX
 
 ```
-Uninstall-KshSiteCollectionApp [-Identity] <App> [-PassThru] [<CommonParameters>]
+Remove-KshTenantApp [-Identity] <App> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Uninstall-KshSiteCollectionApp cmdlets uninstalls the site collection app from the current site.
+The Remove-KshTenantApp removes an app from the tenant app catalog.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> Uninstall-KshSiteCollectionApp -Identity (Get-KshSiteCollectionApp -AppId 'fdee2390-48bf-409e-956a-20f11a0add59')
+PS C:\> The Remove-KshTenantApp -Identity (Get-KshTenantApp -AppId 'fdee2390-48bf-409e-956a-20f11a0add59')
 ```
 
-Uninstalls an app.
+Removes an app.
 
 ## PARAMETERS
 
@@ -45,21 +45,6 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -PassThru
-If specified, returns the updated object.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
@@ -69,7 +54,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.App
+### System.Void
 
 ## NOTES
 

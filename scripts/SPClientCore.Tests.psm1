@@ -989,42 +989,42 @@ function Install-TestSite {
         Write-Progress -Activity 'Changing current site...' -Status 'Root Site'
         Get-KshSite -SiteUrl $Url | Select-KshSite
 
-        Write-Progress -Activity 'Creating apps...' -Status 'SharePointAddIn0'
-        $path = (Resolve-Path "$PSScriptRoot/SharePointAddIn0.sppkg").ToString()
-        $appSettings.App0Path = $path
+        Write-Progress -Activity 'Retrieving app path...' -Status 'SharePointAddIn0'
+        $app0Path = (Resolve-Path "$PSScriptRoot/SharePointAddIn0.sppkg").ToString()
+        $appSettings.App0Path = $app0Path
+        $app1Path = (Resolve-Path "$PSScriptRoot/SharePointAddIn1.app").ToString()
+        $appSettings.App1Path = $app1Path
+        $app2Path = (Resolve-Path "$PSScriptRoot/SharePointAddIn2.app").ToString()
+        $appSettings.App2Path = $app2Path
+        $app3Path = (Resolve-Path "$PSScriptRoot/SharePointAddIn3.app").ToString()
+        $appSettings.App3Path = $app3Path
 
-        Write-Progress -Activity 'Creating apps...' -Status 'SharePointAddIn1'
-        $path = (Resolve-Path "$PSScriptRoot/SharePointAddIn1.app").ToString()
+        Write-Progress -Activity 'Creating site collection apps...' -Status 'SharePointAddIn1'
         $app1 = New-KshSiteCollectionApp `
-            -Content ([System.IO.File]::OpenRead($path)) `
+            -Content ([System.IO.File]::OpenRead($app1Path)) `
             -FileName 'SharePointAddIn1.app'
         $file1 = Get-KshFile -App $app1
         $item1 = Get-KshListItem -File $file1
-        $appSettings.App1Path = $path
-        $appSettings.App1Id = $app1.Id
-        $appSettings.App1ProductId = $item1['AppProductID']
+        $appSettings.SiteCollectionApp1Id = $app1.Id
+        $appSettings.SiteCollectionApp1ProductId = $item1['AppProductID']
 
-        Write-Progress -Activity 'Creating apps...' -Status 'SharePointAddIn2'
-        $path = (Resolve-Path "$PSScriptRoot/SharePointAddIn2.app").ToString()
+        Write-Progress -Activity 'Creating site collection apps...' -Status 'SharePointAddIn2'
         $app2 = New-KshSiteCollectionApp `
-            -Content ([System.IO.File]::OpenRead($path)) `
+            -Content ([System.IO.File]::OpenRead($app2Path)) `
             -FileName 'SharePointAddIn2.app'
         $file2 = Get-KshFile -App $app2
         $item2 = Get-KshListItem -File $file2
-        $appSettings.App2Path = $path
-        $appSettings.App2Id = $app2.Id
-        $appSettings.App2ProductId = $item2['AppProductID']
+        $appSettings.SiteCollectionApp2Id = $app2.Id
+        $appSettings.SiteCollectionApp2ProductId = $item2['AppProductID']
         
-        Write-Progress -Activity 'Creating apps...' -Status 'SharePointAddIn3'
-        $path = (Resolve-Path "$PSScriptRoot/SharePointAddIn3.app").ToString()
+        Write-Progress -Activity 'Creating site collection apps...' -Status 'SharePointAddIn3'
         $app3 = New-KshSiteCollectionApp `
-            -Content ([System.IO.File]::OpenRead($path)) `
+            -Content ([System.IO.File]::OpenRead($app3Path)) `
             -FileName 'SharePointAddIn3.app'
         $file3 = Get-KshFile -App $app3
         $item3 = Get-KshListItem -File $file3
-        $appSettings.App3Path = $path
-        $appSettings.App3Id = $app3.Id
-        $appSettings.App3ProductId = $item3['AppProductID']
+        $appSettings.SiteCollectionApp3Id = $app3.Id
+        $appSettings.SiteCollectionApp3ProductId = $item3['AppProductID']
 
         Write-Progress -Activity 'Changing current site...' -Status 'Test Site 1'
         Select-KshSite -Identity $site1
@@ -1043,6 +1043,27 @@ function Install-TestSite {
         Install-KshSiteCollectionApp -Identity $app3
         $appInstance3 = Get-KshAppInstance -AppProductId $item3['AppProductID']
         $appSettings.AppInstance3Id = $appInstance3.Id
+
+        $tenantSettings = Get-KshTenantSettings
+        $appSettings.TenantAppCatalogUrl = $tenantSettings.AppCatalogUrl
+
+        Write-Progress -Activity 'Creating tenant apps...' -Status 'SharePointAddIn1'
+        $app1 = New-KshTenantApp `
+            -Content ([System.IO.File]::OpenRead($app1Path)) `
+            -FileName 'SharePointAddIn1.app'
+        $appSettings.TenantApp1Id = $app1.Id
+
+        Write-Progress -Activity 'Creating tenant apps...' -Status 'SharePointAddIn2'
+        $app2 = New-KshTenantApp `
+            -Content ([System.IO.File]::OpenRead($app2Path)) `
+            -FileName 'SharePointAddIn2.app'
+        $appSettings.TenantApp2Id = $app2.Id
+        
+        Write-Progress -Activity 'Creating tenant apps...' -Status 'SharePointAddIn3'
+        $app3 = New-KshTenantApp `
+            -Content ([System.IO.File]::OpenRead($app3Path)) `
+            -FileName 'SharePointAddIn3.app'
+        $appSettings.TenantApp3Id = $app3.Id
 
         Write-Output $appSettings
     }
@@ -1077,7 +1098,7 @@ function Uninstall-TestSite {
 
         Write-Progress -Activity 'Sign in...' -Status 'Processing'
         Connect-KshSite -Url $adminUrl -Credential $credential
-
+        
         Write-Progress -Activity 'Removing site collection app catalog...' -Status 'Processing'
         Get-KshSiteCollectionAppCatalog -SiteCollectionUrl $Url | Remove-KshSiteCollectionAppCatalog
 
@@ -1118,6 +1139,15 @@ function Uninstall-TestSite {
         Remove-KshTermGroup -Identity $termGroup1
         Remove-KshTermGroup -Identity $termGroup2
         Remove-KshTermGroup -Identity $termGroup3
+
+        Write-Progress -Activity 'Sign in...' -Status 'Processing'
+        $tenantSettings = Get-KshTenantSettings
+        Connect-KshSite -Url $tenantSettings.AppCatalogUrl -Credential $credential
+
+        Write-Progress -Activity 'Removing tenant apps...' -Status 'Processing'
+        Get-KshTenantApp | where Title -eq 'SharePointAddIn1' | Remove-KshTenantApp
+        Get-KshTenantApp | where Title -eq 'SharePointAddIn2' | Remove-KshTenantApp
+        Get-KshTenantApp | where Title -eq 'SharePointAddIn3' | Remove-KshTenantApp
 
     }
 

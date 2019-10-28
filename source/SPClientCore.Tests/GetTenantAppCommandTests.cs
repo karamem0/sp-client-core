@@ -18,12 +18,12 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("Get-KshAppInstance")]
-    public class GetAppInstanceCommandTests
+    [TestCategory("Get-KshTenantApp")]
+    public class GetTenantAppCommandTests
     {
 
         [TestMethod()]
-        public void GetAppInstances()
+        public void GetTenantApps()
         {
             using (var context = new PSCmdletContext())
             {
@@ -31,15 +31,15 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Connect-KshSite",
                     new Dictionary<string, object>()
                     {
-                        { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
+                        { "Url", context.AppSettings["TenantAppCatalogUrl"] },
                         { "Credential", PSCredentialFactory.CreateCredential(
                             context.AppSettings["LoginUserName"],
                             context.AppSettings["LoginPassword"])
                         }
                     }
                 );
-                var result2 = context.Runspace.InvokeCommand<AppInstance>(
-                    "Get-KshAppInstance",
+                var result2 = context.Runspace.InvokeCommand<App>(
+                    "Get-KshTenantApp",
                     new Dictionary<string, object>()
                     {
                     }
@@ -49,7 +49,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void GetAppInstanceByAppInstance()
+        public void GetTenantAppByApp()
         {
             using (var context = new PSCmdletContext())
             {
@@ -57,22 +57,22 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Connect-KshSite",
                     new Dictionary<string, object>()
                     {
-                        { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
+                        { "Url", context.AppSettings["TenantAppCatalogUrl"] },
                         { "Credential", PSCredentialFactory.CreateCredential(
                             context.AppSettings["LoginUserName"],
                             context.AppSettings["LoginPassword"])
                         }
                     }
                 );
-                var result2 = context.Runspace.InvokeCommand<AppInstance>(
-                    "Get-KshAppInstance",
+                var result2 = context.Runspace.InvokeCommand<App>(
+                    "Get-KshTenantApp",
                     new Dictionary<string, object>()
                     {
-                        { "AppInstanceId", context.AppSettings["AppInstance1Id"] }
+                        { "AppId", context.AppSettings["TenantApp1Id"] }
                     }
                 );
-                var result3 = context.Runspace.InvokeCommand<AppInstance>(
-                    "Get-KshAppInstance",
+                var result3 = context.Runspace.InvokeCommand<App>(
+                    "Get-KshTenantApp",
                     new Dictionary<string, object>()
                     {
                         { "Identity", result2.ElementAt(0) }
@@ -83,7 +83,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void GetAppInstanceByAppInstanceId()
+        public void GetTenantAppByAppId()
         {
             using (var context = new PSCmdletContext())
             {
@@ -91,45 +91,18 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Connect-KshSite",
                     new Dictionary<string, object>()
                     {
-                        { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
+                        { "Url", context.AppSettings["TenantAppCatalogUrl"] },
                         { "Credential", PSCredentialFactory.CreateCredential(
                             context.AppSettings["LoginUserName"],
                             context.AppSettings["LoginPassword"])
                         }
                     }
                 );
-                var result2 = context.Runspace.InvokeCommand<AppInstance>(
-                    "Get-KshAppInstance",
+                var result2 = context.Runspace.InvokeCommand<App>(
+                    "Get-KshTenantApp",
                     new Dictionary<string, object>()
                     {
-                        { "AppInstanceId", context.AppSettings["AppInstance1Id"] }
-                    }
-                );
-                var actual = result2.ElementAt(0);
-            }
-        }
-
-        [TestMethod()]
-        public void GetAppInstanceByAppProductId()
-        {
-            using (var context = new PSCmdletContext())
-            {
-                var result1 = context.Runspace.InvokeCommand(
-                    "Connect-KshSite",
-                    new Dictionary<string, object>()
-                    {
-                        { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                        { "Credential", PSCredentialFactory.CreateCredential(
-                            context.AppSettings["LoginUserName"],
-                            context.AppSettings["LoginPassword"])
-                        }
-                    }
-                );
-                var result2 = context.Runspace.InvokeCommand<AppInstance>(
-                    "Get-KshAppInstance",
-                    new Dictionary<string, object>()
-                    {
-                        { "AppProductId", context.AppSettings["SiteCollectionApp1ProductId"] }
+                        { "AppId", context.AppSettings["TenantApp1Id"] }
                     }
                 );
                 var actual = result2.ElementAt(0);

@@ -5,70 +5,37 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-KshSiteCollectionApp
+# Install-KshTenantApp
 
 ## SYNOPSIS
-Retrieves one or more site collection apps.
+Installs the tenant app.
 
 ## SYNTAX
 
-### ParamSet1
 ```
-Get-KshSiteCollectionApp [-Identity] <App> [<CommonParameters>]
-```
-
-### ParamSet2
-```
-Get-KshSiteCollectionApp [-AppId] <Guid> [<CommonParameters>]
-```
-
-### ParamSet3
-```
-Get-KshSiteCollectionApp [-NoEnumerate] [<CommonParameters>]
+Install-KshTenantApp [-Identity] <App> [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshSiteCollectionApp cmdlet retrieves apps in the current site collection app catalog.
+The Install-KshTenantApp cmdlets installs the tenant app to the current site.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> Get-KshSiteCollectionApp -AppId 'fdee2390-48bf-409e-956a-20f11a0add59'
+PS C:\> Install-KshTenantApp -Identity (Get-KshTenantApp -AppId 'fdee2390-48bf-409e-956a-20f11a0add59')
 ```
 
-Retrieves an app by app ID.
-
-### Example 2
-```powershell
-PS C:\> Get-KshSiteCollectionApp
-```
-
-Retrieves all apps.
+Installs an app.
 
 ## PARAMETERS
-
-### -AppId
-Specifies the app ID.
-
-```yaml
-Type: Guid
-Parameter Sets: ParamSet2
-Aliases:
-
-Required: True
-Position: 0
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
 
 ### -Identity
 Specifies the app.
 
 ```yaml
 Type: App
-Parameter Sets: ParamSet1
+Parameter Sets: (All)
 Aliases:
 
 Required: True
@@ -78,12 +45,12 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -NoEnumerate
-If specified, suppresses to enumerate objects.
+### -PassThru
+If specified, returns the updated object.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: ParamSet3
+Parameter Sets: (All)
 Aliases:
 
 Required: False

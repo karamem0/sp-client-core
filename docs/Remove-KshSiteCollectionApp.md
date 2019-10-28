@@ -17,7 +17,7 @@ Remove-KshSiteCollectionApp [-Identity] <App> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Remove-KshSiteCollectionApp removes an app from the current site collection.
+The Remove-KshSiteCollectionApp removes an app from the current site collection app catalog.
 
 ## EXAMPLES
 

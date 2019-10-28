@@ -5,43 +5,43 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-KshSiteCollectionApp
+# Get-KshTenantApp
 
 ## SYNOPSIS
-Retrieves one or more site collection apps.
+Retrieves one or more tenant apps.
 
 ## SYNTAX
 
 ### ParamSet1
 ```
-Get-KshSiteCollectionApp [-Identity] <App> [<CommonParameters>]
+Get-KshTenantApp [-Identity] <App> [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-Get-KshSiteCollectionApp [-AppId] <Guid> [<CommonParameters>]
+Get-KshTenantApp [-AppId] <Guid> [<CommonParameters>]
 ```
 
 ### ParamSet3
 ```
-Get-KshSiteCollectionApp [-NoEnumerate] [<CommonParameters>]
+Get-KshTenantApp [-NoEnumerate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshSiteCollectionApp cmdlet retrieves apps in the current site collection app catalog.
+The Get-KshTenantApp cmdlet retrieves apps in the tenant app catalog.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> Get-KshSiteCollectionApp -AppId 'fdee2390-48bf-409e-956a-20f11a0add59'
+PS C:\> Get-KshTenantApp -AppId 'fdee2390-48bf-409e-956a-20f11a0add59'
 ```
 
 Retrieves an app by app ID.
 
 ### Example 2
 ```powershell
-PS C:\> Get-KshSiteCollectionApp
+PS C:\> Get-KshTenantApp
 ```
 
 Retrieves all apps.

@@ -17,7 +17,7 @@ New-KshSiteCollectionApp -Content <Stream> -FileName <String> [-Overwrite <Boole
 ```
 
 ## DESCRIPTION
-The New-KshSiteCollectionApp cmdlet adds a new app to the current site collection.
+The New-KshSiteCollectionApp cmdlet adds a new app to the current site collection app catalog.
 
 ## EXAMPLES
 

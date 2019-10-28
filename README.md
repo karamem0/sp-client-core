@@ -192,6 +192,16 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Remove-KshSiteFeature](docs/Remove-KshSiteFeature.md)
   - Site Templates
     - [Get-KshSiteTemplate](docs/Get-KshSiteTemplate.md)
+  - Tenant Apps
+    - [Get-KshTenantApp](docs/Get-KshTenantApp.md)
+    - [Install-KshTenantApp](docs/Install-KshTenantApp.md)
+    - [New-KshTenantApp](docs/New-KshTenantApp.md)
+    - [Publish-KshTenantApp](docs/Publish-KshTenantApp.md)
+    - [Remove-KshTenantApp](docs/Remove-KshTenantApp.md)
+    - [Uninstall-KshTenantApp](docs/Uninstall-KshTenantApp.md)
+    - [Unpublish-KshTenantApp](docs/Unpublish-KshTenantApp.md)
+  - Tenant Settings
+    - [Get-KshTenantSettings](docs/Get-KshTenantSettings.md)
   - Users
     - [Get-KshUser](docs/Get-KshUser.md)
     - [New-KshUser](docs/New-KshUser.md)
@@ -211,10 +221,10 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Get-KshTenantCdnEnabled](docs/Get-KshTenantCdnEnabled.md)
     - [Set-KshTenantCdnEnabled](docs/Set-KshTenantCdnEnabled.md)
     - [Add-KshTenantCdnOrigin](docs/Get-KshTenantCdnOrigin.md)
-    - [Get-KshTenantCdnOrigin](docs/Get-KshTenantCdnOrigin.md)
+    - [Get-KshTenantCdnOrigin](docs/Set-KshTenantCdnOrigin.md)
     - [Remove-KshTenantCdnOrigin](docs/Remove-KshTenantCdnOrigin.md)
     - [Get-KshTenantCdnPolicy](docs/Get-KshTenantCdnPolicy.md)
-    - [Set-KshTenantCdnPolicy](docs/Get-KshTenantCdnPolicy.md)
+    - [Set-KshTenantCdnPolicy](docs/Set-KshTenantCdnPolicy.md)
   - Deleted Site Collections
     - [Get-KshTenantDeletedSiteCollection](docs/Get-KshTenantDeletedSiteCollection.md)
     - [Remove-KshTenantDeletedSiteCollection](docs/Remove-KshTenantDeletedSiteCollection.md)

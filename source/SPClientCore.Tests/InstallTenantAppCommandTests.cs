@@ -19,12 +19,12 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("Uninstall-KshSiteCollectionApp")]
-    public class UninstallSiteCollectionAppCommandTests
+    [TestCategory("Install-KshTenantApp")]
+    public class InstallTenantAppCommandTests
     {
 
         [TestMethod()]
-        public void UninstallSiteCollectionApp()
+        public void InstallTenantApp()
         {
             using (var context = new PSCmdletContext())
             {
@@ -32,7 +32,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Connect-KshSite",
                     new Dictionary<string, object>()
                     {
-                        { "Url", context.AppSettings["BaseUrl"] },
+                        { "Url", context.AppSettings["TenantAppCatalogUrl"] },
                         { "Credential", PSCredentialFactory.CreateCredential(
                             context.AppSettings["LoginUserName"],
                             context.AppSettings["LoginPassword"])
@@ -40,7 +40,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     }
                 );
                 var result2 = context.Runspace.InvokeCommand<App>(
-                    "New-KshSiteCollectionApp",
+                    "New-KshTenantApp",
                     new Dictionary<string, object>()
                     {
                         { "Content", System.IO.File.OpenRead(context.AppSettings["App0Path"]) },
@@ -74,7 +74,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     }
                 );
                 var result6 = context.Runspace.InvokeCommand(
-                    "Install-KshSiteCollectionApp",
+                    "Install-KshTenantApp",
                     new Dictionary<string, object>()
                     {
                         { "Identity", result2.ElementAt(0) }
@@ -96,7 +96,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     }
                 }
                 var result8 = context.Runspace.InvokeCommand(
-                    "Uninstall-KshSiteCollectionApp",
+                    "Install-KshTenantApp",
                     new Dictionary<string, object>()
                     {
                         { "Identity", result2.ElementAt(0) }
@@ -121,7 +121,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Connect-KshSite",
                     new Dictionary<string, object>()
                     {
-                        { "Url", context.AppSettings["BaseUrl"] },
+                        { "Url", context.AppSettings["TenantAppCatalogUrl"] },
                         { "Credential", PSCredentialFactory.CreateCredential(
                             context.AppSettings["LoginUserName"],
                             context.AppSettings["LoginPassword"])
@@ -129,7 +129,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     }
                 );
                 var result11 = context.Runspace.InvokeCommand(
-                    "Remove-KshSiteCollectionApp",
+                    "Remove-KshTenantApp",
                     new Dictionary<string, object>()
                     {
                         { "Identity", result2.ElementAt(0) }

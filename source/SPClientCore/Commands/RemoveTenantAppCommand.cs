@@ -18,12 +18,12 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands
 {
 
-    [Cmdlet("Remove", "KshSiteCollectionApp")]
+    [Cmdlet("Remove", "KshTenantApp")]
     [OutputType(typeof(void))]
-    public class RemoveSiteCollectionAppCommand : ClientObjectCmdlet<ISiteCollectionAppService>
+    public class RemoveTenantAppCommand : ClientObjectCmdlet<ITenantAppService>
     {
 
-        public RemoveSiteCollectionAppCommand()
+        public RemoveTenantAppCommand()
         {
         }
 

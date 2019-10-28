@@ -19,7 +19,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Services
 {
 
-    public interface ISiteCollectionAppService
+    public interface ITenantAppService
     {
 
         App CreateObject(System.IO.Stream appContent, string appName, bool overwrite);
@@ -42,10 +42,10 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
     }
 
-    public class SiteCollectionAppService : ClientService, ISiteCollectionAppService
+    public class TenantAppService : ClientService, ITenantAppService
     {
 
-        public SiteCollectionAppService(ClientContext clientContext) : base(clientContext)
+        public TenantAppService(ClientContext clientContext) : base(clientContext)
         {
         }
 
@@ -61,7 +61,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestUrl = this.ClientContext.BaseAddress
                 .ConcatPath(
-                    "_api/web/sitecollectionappcatalog/add(url='{0}',overwrite={1})",
+                    "_api/web/tenantappcatalog/add(url='{0}',overwrite={1})",
                     appName,
                     overwrite)
                 .ConcatQuery("$expand=ListItemAllFields&$select=ListItemAllFields/UniqueId");
@@ -87,7 +87,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestUrl = this.ClientContext.BaseAddress
                 .ConcatPath(
-                    "_api/web/sitecollectionappcatalog/availableapps/getbyid('{0}')",
+                    "_api/web/tenantappcatalog/availableapps/getbyid('{0}')",
                     appId)
                 .ConcatQuery(ODataQuery.Create<App>());
             return this.ClientContext.GetObject<App>(requestUrl);
@@ -96,7 +96,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
         public IEnumerable<App> GetObjectEnumerable()
         {
             var requestUrl = this.ClientContext.BaseAddress
-                .ConcatPath("_api/web/sitecollectionappcatalog/availableapps")
+                .ConcatPath("_api/web/tenantappcatalog/availableapps")
                 .ConcatQuery(ODataQuery.Create<App>());
             return this.ClientContext.GetObject<ODataObjectEnumerable<App>>(requestUrl);
         }
@@ -113,7 +113,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestUrl = this.ClientContext.BaseAddress
                 .ConcatPath(
-                    "_api/web/sitecollectionappcatalog/availableapps/getbyid('{0}')/install",
+                    "_api/web/tenantappcatalog/availableapps/getbyid('{0}')/install",
                     appObject.Id);
             this.ClientContext.PostObject(requestUrl, null);
         }
@@ -130,7 +130,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestUrl = this.ClientContext.BaseAddress
                 .ConcatPath(
-                    "_api/web/sitecollectionappcatalog/availableapps/getbyid('{0}')/deploy",
+                    "_api/web/tenantappcatalog/availableapps/getbyid('{0}')/deploy",
                     appObject.Id);
             this.ClientContext.PostObject(requestUrl, null);
         }
@@ -147,7 +147,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestUrl = this.ClientContext.BaseAddress
                 .ConcatPath(
-                    "_api/web/sitecollectionappcatalog/availableapps/getbyid('{0}')/remove",
+                    "_api/web/tenantappcatalog/availableapps/getbyid('{0}')/remove",
                     appObject.Id);
             this.ClientContext.PostObject(requestUrl, null);
         }
@@ -164,7 +164,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestUrl = this.ClientContext.BaseAddress
                 .ConcatPath(
-                    "_api/web/sitecollectionappcatalog/availableapps/getbyid('{0}')/uninstall",
+                    "_api/web/tenantappcatalog/availableapps/getbyid('{0}')/uninstall",
                     appObject.Id);
             this.ClientContext.PostObject(requestUrl, null);
         }
@@ -181,7 +181,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestUrl = this.ClientContext.BaseAddress
                 .ConcatPath(
-                    "_api/web/sitecollectionappcatalog/availableapps/getbyid('{0}')/deploy",
+                    "_api/web/tenantappcatalog/availableapps/getbyid('{0}')/deploy",
                     appObject.Id);
             this.ClientContext.PostObject(requestUrl, null);
         }

@@ -18,21 +18,18 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands
 {
 
-    [Cmdlet("Remove", "KshSiteCollectionApp")]
-    [OutputType(typeof(void))]
-    public class RemoveSiteCollectionAppCommand : ClientObjectCmdlet<ISiteCollectionAppService>
+    [Cmdlet("Get", "KshTenantSettings")]
+    [OutputType(typeof(TenantSettings))]
+    public class GetTenantSettingsCommand : ClientObjectCmdlet<ITenantSettingsService>
     {
 
-        public RemoveSiteCollectionAppCommand()
+        public GetTenantSettingsCommand()
         {
         }
 
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public App Identity { get; private set; }
-
         protected override void ProcessRecordCore()
         {
-            this.Service.RemoveObject(this.Identity);
+            this.WriteObject(this.Service.GetObject());
         }
 
     }

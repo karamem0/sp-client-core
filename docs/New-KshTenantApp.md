@@ -5,85 +5,67 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-KshSiteCollectionApp
+# New-KshTenantApp
 
 ## SYNOPSIS
-Retrieves one or more site collection apps.
+Creates a new tenant app.
 
 ## SYNTAX
 
-### ParamSet1
 ```
-Get-KshSiteCollectionApp [-Identity] <App> [<CommonParameters>]
-```
-
-### ParamSet2
-```
-Get-KshSiteCollectionApp [-AppId] <Guid> [<CommonParameters>]
-```
-
-### ParamSet3
-```
-Get-KshSiteCollectionApp [-NoEnumerate] [<CommonParameters>]
+New-KshTenantApp -Content <Stream> -FileName <String> [-Overwrite <Boolean>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshSiteCollectionApp cmdlet retrieves apps in the current site collection app catalog.
+The New-KshTenantApp cmdlet adds a new app to the tenant app catalog.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> Get-KshSiteCollectionApp -AppId 'fdee2390-48bf-409e-956a-20f11a0add59'
+PS C:\> New-KshTenantApp -Content [System.IO.File]::OpenRead('C:\app.sppkg') -FileName 'app.sppkg'
 ```
 
-Retrieves an app by app ID.
-
-### Example 2
-```powershell
-PS C:\> Get-KshSiteCollectionApp
-```
-
-Retrieves all apps.
+Creates a new app.
 
 ## PARAMETERS
 
-### -AppId
-Specifies the app ID.
+### -Content
+Specifies the contents.
 
 ```yaml
-Type: Guid
-Parameter Sets: ParamSet2
+Type: Stream
+Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 0
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Identity
-Specifies the app.
+### -FileName
+Specifies the file name.
 
 ```yaml
-Type: App
-Parameter Sets: ParamSet1
+Type: String
+Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 0
+Position: Named
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -NoEnumerate
-If specified, suppresses to enumerate objects.
+### -Overwrite
+If specified, overwrites the existing file.
 
 ```yaml
-Type: SwitchParameter
-Parameter Sets: ParamSet3
+Type: Boolean
+Parameter Sets: (All)
 Aliases:
 
 Required: False
@@ -98,7 +80,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.App
+### None
 
 ## OUTPUTS
 

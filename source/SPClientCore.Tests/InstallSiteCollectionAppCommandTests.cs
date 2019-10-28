@@ -63,6 +63,17 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     }
                 );
                 var result5 = context.Runspace.InvokeCommand(
+                    "Connect-KshSite",
+                    new Dictionary<string, object>()
+                    {
+                        { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
+                        { "Credential", PSCredentialFactory.CreateCredential(
+                            context.AppSettings["LoginUserName"],
+                            context.AppSettings["LoginPassword"])
+                        }
+                    }
+                );
+                var result6 = context.Runspace.InvokeCommand(
                     "Install-KshSiteCollectionApp",
                     new Dictionary<string, object>()
                     {
@@ -72,19 +83,19 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 while (true)
                 {
                     Thread.Sleep(TimeSpan.FromSeconds(1));
-                    var result6 = context.Runspace.InvokeCommand<AppInstance>(
+                    var result7 = context.Runspace.InvokeCommand<AppInstance>(
                         "Get-KshAppInstance",
                         new Dictionary<string, object>()
                         {
                             { "AppProductId", result4.ElementAt(0)["AppProductID"] }
                         }
                     );
-                    if (result6.ElementAt(0).Status == AppStatus.Installed)
+                    if (result7.ElementAt(0).Status == AppStatus.Installed)
                     {
                         break;
                     }
                 }
-                var result7 = context.Runspace.InvokeCommand(
+                var result8 = context.Runspace.InvokeCommand(
                     "Uninstall-KshSiteCollectionApp",
                     new Dictionary<string, object>()
                     {
@@ -94,18 +105,36 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 while (true)
                 {
                     Thread.Sleep(TimeSpan.FromSeconds(1));
-                    var result8 = context.Runspace.InvokeCommand<AppInstance>(
+                    var result9 = context.Runspace.InvokeCommand<AppInstance>(
                         "Get-KshAppInstance",
                         new Dictionary<string, object>()
                         {
                             { "AppProductId", result4.ElementAt(0)["AppProductID"] }
                         }
                     );
-                    if (result8.Count() == 0)
+                    if (result9.Count() == 0)
                     {
                         break;
                     }
                 }
+                var result10 = context.Runspace.InvokeCommand(
+                    "Connect-KshSite",
+                    new Dictionary<string, object>()
+                    {
+                        { "Url", context.AppSettings["BaseUrl"] },
+                        { "Credential", PSCredentialFactory.CreateCredential(
+                            context.AppSettings["LoginUserName"],
+                            context.AppSettings["LoginPassword"])
+                        }
+                    }
+                );
+                var result11 = context.Runspace.InvokeCommand(
+                    "Remove-KshSiteCollectionApp",
+                    new Dictionary<string, object>()
+                    {
+                        { "Identity", result2.ElementAt(0) }
+                    }
+                );
             }
         }
 

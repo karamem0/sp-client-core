@@ -18,12 +18,12 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands
 {
 
-    [Cmdlet("Get", "KshSiteCollectionApp")]
+    [Cmdlet("Get", "KshTenantApp")]
     [OutputType(typeof(App))]
-    public class GetSiteCollectionAppCommand : ClientObjectCmdlet<ISiteCollectionAppService>
+    public class GetTenantAppCommand : ClientObjectCmdlet<ITenantAppService>
     {
 
-        public GetSiteCollectionAppCommand()
+        public GetTenantAppCommand()
         {
         }
 
