@@ -40,13 +40,21 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Common
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
         public Uri Authority { get; private set; }
 
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+        public SwitchParameter UserMode { get; private set; }
+
         protected override void ProcessRecordCore()
         {
             if (this.Authority == null)
             {
                 this.Authority = new Uri(OAuthConstants.Authority);
             }
-            var oAuthContext = new OAuthContext(this.Authority.GetAuthority(), OAuthConstants.ClientId, this.Url.GetAuthority());
+            var oAuthContext = new OAuthContext(
+                this.Authority.GetAuthority(),
+                OAuthConstants.ClientId,
+                this.Url.GetAuthority(),
+                this.UserMode);
             if (this.ParameterSetName == "ParamSet1")
             {
                 var oAuthDeviceCodeMessage = oAuthContext.AcquireDeviceCode();

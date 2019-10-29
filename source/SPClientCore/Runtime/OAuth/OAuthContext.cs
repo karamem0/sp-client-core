@@ -26,11 +26,13 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
 
         private readonly string resource;
 
+        private readonly bool userMode;
+
         private readonly TenantIdResolver tenantIdResolver;
 
         private readonly HttpClient httpClient = new HttpClient();
 
-        public OAuthContext(string authority, string clientId, string resource)
+        public OAuthContext(string authority, string clientId, string resource, bool userMode)
         {
             if (string.IsNullOrEmpty(authority))
             {
@@ -47,6 +49,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
             this.authority = authority;
             this.clientId = clientId;
             this.resource = resource;
+            this.userMode = userMode;
             this.tenantIdResolver = new TenantIdResolver(this.httpClient, new Uri(this.resource, UriKind.Absolute));
         }
 
@@ -55,7 +58,13 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
             var requertParameters = new Dictionary<string, object>()
             {
                 { "client_id", this.clientId },
-                { "scope", string.Join(" ", new[]
+                { "scope", string.Join(" ", this.userMode
+                    ? new[]
+                    {
+                        "offline_access",
+                        $"{this.resource}/AllSites.Manage"
+                    }
+                    : new[]
                     {
                         "offline_access",
                         $"{this.resource}/AllSites.FullControl",
@@ -96,7 +105,13 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
                 { "grant_type", "device_code" },
                 { "client_id", this.clientId },
                 { "code", deviceCode },
-                { "scope", string.Join(" ", new[]
+                { "scope", string.Join(" ", this.userMode
+                    ? new[]
+                    {
+                        "offline_access",
+                        $"{this.resource}/AllSites.Manage"
+                    }
+                    : new[]
                     {
                         "offline_access",
                         $"{this.resource}/AllSites.FullControl",
@@ -140,7 +155,13 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
                 { "client_id", this.clientId },
                 { "username", userName },
                 { "password", password },
-                { "scope", string.Join(" ", new[]
+                { "scope", string.Join(" ", this.userMode
+                    ? new[]
+                    {
+                        "offline_access",
+                        $"{this.resource}/AllSites.Manage"
+                    }
+                    : new[]
                     {
                         "offline_access",
                         $"{this.resource}/AllSites.FullControl",
@@ -179,7 +200,13 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
                 { "grant_type", "refresh_token" },
                 { "client_id", this.clientId },
                 { "refresh_token", refreshToken },
-                { "scope", string.Join(" ", new[]
+                { "scope", string.Join(" ", this.userMode
+                    ? new[]
+                    {
+                        "offline_access",
+                        $"{this.resource}/AllSites.Manage"
+                    }
+                    : new[]
                     {
                         "offline_access",
                         $"{this.resource}/AllSites.FullControl",

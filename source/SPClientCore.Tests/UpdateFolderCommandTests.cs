@@ -66,7 +66,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     new Dictionary<string, object>()
                     {
                         { "Identity", result3.ElementAt(0) },
-                        { "UniqueContentTypeOrder", new [] { result4.ElementAt(0) } },
+                        { "UniqueContentTypeOrder", new[] { result4.ElementAt(0) } },
                         { "WelcomePage", "AllItems.aspx" },
                         { "PassThru", true }
                     }

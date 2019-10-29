@@ -55,7 +55,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "RowLimit", 10 },
                         { "SetAsDefaultView", true },
                         { "Title", "Test View 0" },
-                        { "ViewColumns", new [] { "Test Column 1", "Test Column 2", "Test Column 3" } },
+                        { "ViewColumns", new[] { "Test Column 1", "Test Column 2", "Test Column 3" } },
                         { "ViewQuery", "<OrderBy><FieldRef Name='Title'/></OrderBy>" },
                         { "ViewType", "Html" }
                     }

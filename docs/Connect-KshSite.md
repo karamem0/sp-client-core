@@ -14,12 +14,12 @@ Connects to a site.
 
 ### ParamSet1
 ```
-Connect-KshSite [-Url] <Uri> [-Authority <Uri>] [<CommonParameters>]
+Connect-KshSite [-Url] <Uri> [-Authority <Uri>] [-UserMode] [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-Connect-KshSite [-Url] <Uri> -Credential <PSCredential> [-Authority <Uri>] [<CommonParameters>]
+Connect-KshSite [-Url] <Uri> -Credential <PSCredential> [-Authority <Uri>] [-UserMode] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -85,6 +85,21 @@ Required: True
 Position: 0
 Default value: None
 Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -UserMode
+If specified, connects with user mode. (without admin consent)
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
