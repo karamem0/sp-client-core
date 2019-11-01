@@ -25,7 +25,7 @@ namespace Karamem0.SharePoint.PowerShell.Models
         }
 
         [JsonProperty()]
-        public virtual string AadAppId { get; protected set; }
+        public virtual Guid AadAppId { get; protected set; }
 
         [JsonProperty()]
         public virtual string AadPermissions { get; protected set; }
@@ -45,7 +45,7 @@ namespace Karamem0.SharePoint.PowerShell.Models
         [JsonProperty()]
         public virtual bool Deployed { get; protected set; }
 
-        [JsonProperty()]
+        [JsonProperty("ID")]
         public virtual Guid Id { get; protected set; }
 
         [JsonProperty()]
@@ -58,7 +58,7 @@ namespace Karamem0.SharePoint.PowerShell.Models
         public virtual bool IsClientSideSolution { get; protected set; }
 
         [JsonProperty()]
-        public virtual string ProductId { get; protected set; }
+        public virtual Guid ProductId { get; protected set; }
 
         [JsonProperty()]
         public virtual string ShortDescription { get; protected set; }

@@ -41,7 +41,16 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            if (DateTimeConverter.TryParse(reader.Value.ToString(), out var value))
+            var value = new DateTime();
+            if (reader.Value == null)
+            {
+                return value;
+            }
+            if (DateTime.TryParse(reader.Value.ToString(), out value))
+            {
+                return value;
+            }
+            if (DateTimeConverter.TryParse(reader.Value.ToString(), out value))
             {
                 return value;
             }

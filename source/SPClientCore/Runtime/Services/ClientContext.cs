@@ -12,6 +12,7 @@ using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.OAuth;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
@@ -77,7 +78,9 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                 Trace.WriteLine(responseContent);
                 try
                 {
-                    var responsePayload = JsonConvert.DeserializeObject<ODataResultPayload<T>>(responseContent);
+                    var responsePayload = JsonConvert.DeserializeObject<ODataResultPayload<T>>(
+                        responseContent,
+                        JsonSerializerManager.JsonSerializerSettings);
                     if (responseMessage.IsSuccessStatusCode)
                     {
                         return responsePayload.Entry;
@@ -133,8 +136,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                 requestMessage.Headers.Add("User-Agent", "NONISV|karamem0|SPClientCore/" + this.GetType().Assembly.GetName().Version.ToString(3));
                 if (requestPayload != null)
                 {
-                    var jsonSerializerSettings = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
-                    var jsonContent = JsonConvert.SerializeObject(requestPayload, jsonSerializerSettings);
+                    var jsonContent = JsonConvert.SerializeObject(requestPayload, JsonSerializerManager.JsonSerializerSettings);
                     requestMessage.Content = new StringContent(jsonContent, Encoding.UTF8);
                     requestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json;odata=verbose");
                 }
@@ -147,7 +149,9 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                 Trace.WriteLine(responseContent);
                 try
                 {
-                    var responsePayload = JsonConvert.DeserializeObject<ODataResultPayload>(responseContent);
+                    var responsePayload = JsonConvert.DeserializeObject<ODataResultPayload>(
+                        responseContent,
+                        JsonSerializerManager.JsonSerializerSettings);
                     if (responseMessage.IsSuccessStatusCode)
                     {
                         return;

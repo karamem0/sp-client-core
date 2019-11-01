@@ -43,7 +43,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     new Dictionary<string, object>()
                     {
                         { "Content", System.IO.File.OpenRead(context.AppSettings["App0Path"]) },
-                        { "FileName", "SharePointAddIn0.sppkg" },
+                        { "FileName", "TestApp0.sppkg" },
                         { "Overwrite", false }
                     }
                 );

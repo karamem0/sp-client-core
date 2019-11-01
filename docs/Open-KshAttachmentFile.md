@@ -8,7 +8,7 @@ schema: 2.0.0
 # Open-KshAttachmentFile
 
 ## SYNOPSIS
-Opens a attachment file.
+Opens an attachment file.
 
 ## SYNTAX
 

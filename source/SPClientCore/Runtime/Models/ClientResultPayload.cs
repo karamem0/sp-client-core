@@ -20,23 +20,11 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
     public class ClientResultPayload
     {
 
-        private static readonly JsonSerializerSettings JsonSerializerSettings =
-            new JsonSerializerSettings()
-            {
-                Converters = new List<JsonConverter>()
-                {
-                    new JsonDateTimeConverter(),
-                    new JsonGuidConverter()
-                }
-            };
-
-        private static readonly JsonSerializer JsonSerializer = JsonSerializer.Create(ClientResultPayload.JsonSerializerSettings);
-
         public ClientResultPayload(string jsonString)
         {
             var jsonArray = JsonConvert.DeserializeObject<JArray>(
                 JsonHelper.ReplaceDoubleToInfinity(jsonString),
-                ClientResultPayload.JsonSerializerSettings);
+                JsonSerializerManager.JsonSerializerSettings);
             var jsonToken = jsonArray.ElementAt(0);
             this.SchemaVersion = jsonToken.Value<string>(nameof(this.SchemaVersion));
             this.LibraryVersion = jsonToken.Value<string>(nameof(this.LibraryVersion));
@@ -62,11 +50,11 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
             {
                 var objectName = jsonToken["_ObjectType_"].ToString();
                 var objectType = ClientObject.GetType<T>(objectName);
-                return (T)jsonToken.ToObject(objectType, ClientResultPayload.JsonSerializer);
+                return (T)jsonToken.ToObject(objectType, JsonSerializerManager.JsonSerializer);
             }
             else
             {
-                return jsonToken.ToObject<T>(ClientResultPayload.JsonSerializer);
+                return jsonToken.ToObject<T>(JsonSerializerManager.JsonSerializer);
             }
         }
 

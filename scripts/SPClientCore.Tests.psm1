@@ -662,22 +662,22 @@ function Install-TestSite {
             -List $list1 `
             -Title 'TestView1' `
             -ViewColumns @(
-            'Test Column 1'
-            'Test Column 2'
-            'Test Column 3'
-            'Test Column 4'
-            'Test Column 5'
-            'Test Column 6'
-            'Test Column 7'
-            'Test Column 8'
-            'Test Column 9'
-            'Test Column 10'
-            'Test Column 11'
-            'Test Column 12'
-            'Test Column 13'
-            'Test Column 14'
-            'Test Column 15'
-        )
+                'Test Column 1'
+                'Test Column 2'
+                'Test Column 3'
+                'Test Column 4'
+                'Test Column 5'
+                'Test Column 6'
+                'Test Column 7'
+                'Test Column 8'
+                'Test Column 9'
+                'Test Column 10'
+                'Test Column 11'
+                'Test Column 12'
+                'Test Column 13'
+                'Test Column 14'
+                'Test Column 15'
+            )
         $view1 = Update-KshView `
             -Identity $view1 `
             -Title 'Test View 1' `
@@ -690,22 +690,22 @@ function Install-TestSite {
             -List $list1 `
             -Title 'TestView2' `
             -ViewColumns @(
-            'Test Column 1'
-            'Test Column 2'
-            'Test Column 3'
-            'Test Column 4'
-            'Test Column 5'
-            'Test Column 6'
-            'Test Column 7'
-            'Test Column 8'
-            'Test Column 9'
-            'Test Column 10'
-            'Test Column 11'
-            'Test Column 12'
-            'Test Column 13'
-            'Test Column 14'
-            'Test Column 15'
-        )
+                'Test Column 1'
+                'Test Column 2'
+                'Test Column 3'
+                'Test Column 4'
+                'Test Column 5'
+                'Test Column 6'
+                'Test Column 7'
+                'Test Column 8'
+                'Test Column 9'
+                'Test Column 10'
+                'Test Column 11'
+                'Test Column 12'
+                'Test Column 13'
+                'Test Column 14'
+                'Test Column 15'
+            )
         $view2 = Update-KshView `
             -Identity $view2 `
             -Title 'Test View 2' `
@@ -718,22 +718,22 @@ function Install-TestSite {
             -List $list1 `
             -Title 'TestView3' `
             -ViewColumns @(
-            'Test Column 1'
-            'Test Column 2'
-            'Test Column 3'
-            'Test Column 4'
-            'Test Column 5'
-            'Test Column 6'
-            'Test Column 7'
-            'Test Column 8'
-            'Test Column 9'
-            'Test Column 10'
-            'Test Column 11'
-            'Test Column 12'
-            'Test Column 13'
-            'Test Column 14'
-            'Test Column 15'
-        )
+                'Test Column 1'
+                'Test Column 2'
+                'Test Column 3'
+                'Test Column 4'
+                'Test Column 5'
+                'Test Column 6'
+                'Test Column 7'
+                'Test Column 8'
+                'Test Column 9'
+                'Test Column 10'
+                'Test Column 11'
+                'Test Column 12'
+                'Test Column 13'
+                'Test Column 14'
+                'Test Column 15'
+            )
         $view3 = Update-KshView `
             -Identity $view3 `
             -Title 'Test View 3' `
@@ -772,20 +772,20 @@ function Install-TestSite {
         $item1 = New-KshListItem `
             -List $list1 `
             -Value @{
-            Title        = 'Test List Item 1'
-            TestColumn1  = 'Test Value 1'
-            TestColumn2  = 'Test Value 1'
-            TestColumn3  = 'Test Value 1'
-            TestColumn4  = @('Test Value 1')
-            TestColumn5  = 1
-            TestColumn6  = 1
-            TestColumn7  = [datetime]'10/10/2010'
-            TestColumn10 = $true
-            TestColumn11 = $userValue1
-            TestColumn12 = @($userValue1)
-            TestColumn13 = $urlValue1
-            TestColumn15 = $geolocationValue1
-        }
+                Title = 'Test List Item 1'
+                TestColumn1 = 'Test Value 1'
+                TestColumn2 = 'Test Value 1'
+                TestColumn3 = 'Test Value 1'
+                TestColumn4 = @('Test Value 1')
+                TestColumn5 = 1
+                TestColumn6 = 1
+                TestColumn7 = [datetime]'10/10/2010'
+                TestColumn10 = $true
+                TestColumn11 = $userValue1
+                TestColumn12 = @($userValue1)
+                TestColumn13 = $urlValue1
+                TestColumn15 = $geolocationValue1
+            }
         $appSettings.ListItem1Id = $item1.Id
 
         Write-Progress -Activity 'Enabling unique role assignment...' -Status 'Test List Item 1'
@@ -816,40 +816,40 @@ function Install-TestSite {
         $item2 = New-KshListItem `
             -List $list1 `
             -Value @{
-            Title        = 'Test List Item 2'
-            TestColumn1  = 'Test Value 2'
-            TestColumn2  = 'Test Value 2'
-            TestColumn3  = 'Test Value 2'
-            TestColumn4  = @('Test Value 2')
-            TestColumn5  = 2
-            TestColumn6  = 2
-            TestColumn7  = [datetime]'12/20/2016'
-            TestColumn10 = $true
-            TestColumn11 = $userValue2
-            TestColumn12 = @($userValue2)
-            TestColumn13 = $urlValue2
-            TestColumn15 = $geolocationValue2
-        }
+                Title = 'Test List Item 2'
+                TestColumn1 = 'Test Value 2'
+                TestColumn2 = 'Test Value 2'
+                TestColumn3 = 'Test Value 2'
+                TestColumn4 = @('Test Value 2')
+                TestColumn5 = 2
+                TestColumn6 = 2
+                TestColumn7 = [datetime]'12/20/2016'
+                TestColumn10 = $true
+                TestColumn11 = $userValue2
+                TestColumn12 = @($userValue2)
+                TestColumn13 = $urlValue2
+                TestColumn15 = $geolocationValue2
+            }
         $appSettings.ListItem2Id = $item2.Id
 
         Write-Progress -Activity 'Creating list items...' -Status 'Test List Item 3'
         $item3 = New-KshListItem `
             -List $list1 `
             -Value @{
-            Title        = 'Test List Item 3'
-            TestColumn1  = 'Test Value 3'
-            TestColumn2  = 'Test Value 3'
-            TestColumn3  = 'Test Value 3'
-            TestColumn4  = @('Test Value 1', 'Test Value 2', 'Test Value 3')
-            TestColumn5  = 1
-            TestColumn6  = 1
-            TestColumn7  = [datetime]'12/20/2016'
-            TestColumn10 = $true
-            TestColumn11 = $userValue3
-            TestColumn12 = @($userValue1, $userValue2, $userValue3)
-            TestColumn13 = $urlValue3
-            TestColumn15 = $geolocationValue3
-        }
+                Title = 'Test List Item 3'
+                TestColumn1 = 'Test Value 3'
+                TestColumn2 = 'Test Value 3'
+                TestColumn3 = 'Test Value 3'
+                TestColumn4 = @('Test Value 1', 'Test Value 2', 'Test Value 3')
+                TestColumn5 = 1
+                TestColumn6 = 1
+                TestColumn7 = [datetime]'12/20/2016'
+                TestColumn10 = $true
+                TestColumn11 = $userValue3
+                TestColumn12 = @($userValue1, $userValue2, $userValue3)
+                TestColumn13 = $urlValue3
+                TestColumn15 = $geolocationValue3
+            }
         $appSettings.ListItem3Id = $item3.Id
 
         Write-Progress -Activity 'Updating list items...' -Status 'Preparing'
@@ -861,27 +861,27 @@ function Install-TestSite {
         $item1 = Update-KshListItem `
             -Identity $item1 `
             -Value @{
-            TestColumn8 = $lookupValue1
-            TestColumn9 = @($lookupValue1)
-        } `
+                TestColumn8 = $lookupValue1
+                TestColumn9 = @($lookupValue1)
+            } `
             -PassThru
 
         Write-Progress -Activity 'Updating list items...' -Status 'Test List Item 2'
         $item2 = Update-KshListItem `
             -Identity $item2 `
             -Value @{
-            TestColumn8 = $lookupValue2
-            TestColumn9 = @($lookupValue2)
-        } `
+                TestColumn8 = $lookupValue2
+                TestColumn9 = @($lookupValue2)
+            } `
             -PassThru
 
         Write-Progress -Activity 'Updating list items...' -Status 'Test List Item 3'
         $item3 = Update-KshListItem `
             -Identity $item3 `
             -Value @{
-            TestColumn8 = $lookupValue3
-            TestColumn9 = @($lookupValue1, $lookupValue2, $lookupValue3)
-        } `
+                TestColumn8 = $lookupValue3
+                TestColumn9 = @($lookupValue1, $lookupValue2, $lookupValue3)
+            } `
             -PassThru
 
         Write-Progress -Activity 'Creating attachments...' -Status 'Test File 1'
@@ -986,41 +986,68 @@ function Install-TestSite {
         $appSettings.File4Url = $file4.ServerRelativeUrl
         $appSettings.File4Name = $file4.Name
 
+        Write-Progress -Activity 'Creating alerts...' -Status 'Test Alert 1'
+        $alert1 = New-KshAlert `
+            -AlertFrequency 'Immediate' `
+            -AlertTemplateName 'SPAlertTemplateType.GenericList' `
+            -List $list1 `
+            -Title 'Test Alert 1' `
+            -User $user1
+        $appSettings.Alert1Id = $alert1.Id
+
+        Write-Progress -Activity 'Creating alerts...' -Status 'Test Alert 2'
+        $alert2 = New-KshAlert `
+            -AlertFrequency 'Immediate' `
+            -AlertTemplateName 'SPAlertTemplateType.GenericList' `
+            -List $list1 `
+            -Title 'Test Alert 2' `
+            -User $user2
+        $appSettings.Alert2Id = $alert2.Id
+
+        Write-Progress -Activity 'Creating alerts...' -Status 'Test Alert 3'
+        $alert3 = New-KshAlert `
+            -AlertFrequency 'Immediate' `
+            -AlertTemplateName 'SPAlertTemplateType.GenericList' `
+            -List $list1 `
+            -Title 'Test Alert 3' `
+            -User $user3
+        $appSettings.Alert3Id = $alert3.Id
+
         Write-Progress -Activity 'Changing current site...' -Status 'Root Site'
         Get-KshSite -SiteUrl $Url | Select-KshSite
 
-        Write-Progress -Activity 'Retrieving app path...' -Status 'SharePointAddIn0'
-        $app0Path = (Resolve-Path "$PSScriptRoot/SharePointAddIn0.sppkg").ToString()
-        $appSettings.App0Path = $app0Path
-        $app1Path = (Resolve-Path "$PSScriptRoot/SharePointAddIn1.app").ToString()
-        $appSettings.App1Path = $app1Path
-        $app2Path = (Resolve-Path "$PSScriptRoot/SharePointAddIn2.app").ToString()
-        $appSettings.App2Path = $app2Path
-        $app3Path = (Resolve-Path "$PSScriptRoot/SharePointAddIn3.app").ToString()
-        $appSettings.App3Path = $app3Path
+        Write-Progress -Activity 'Retrieving app path...' -Status 'Processing'
+        $app0Path = Resolve-Path "$PSScriptRoot/TestApp0/sharepoint/solution/TestApp0.sppkg"
+        $appSettings.App0Path = $app0Path.ToString()
+        $app1Path = Resolve-Path "$PSScriptRoot/TestApp1/sharepoint/solution/TestApp1.sppkg"
+        $appSettings.App1Path = $app1Path.ToString()
+        $app2Path = Resolve-Path "$PSScriptRoot/TestApp2/sharepoint/solution/TestApp2.sppkg"
+        $appSettings.App2Path = $app2Path.ToString()
+        $app3Path = Resolve-Path "$PSScriptRoot/TestApp3/sharepoint/solution/TestApp3.sppkg"
+        $appSettings.App3Path = $app3Path.ToString()
 
-        Write-Progress -Activity 'Creating site collection apps...' -Status 'SharePointAddIn1'
+        Write-Progress -Activity 'Creating site collection apps...' -Status 'TestApp1'
         $app1 = New-KshSiteCollectionApp `
             -Content ([System.IO.File]::OpenRead($app1Path)) `
-            -FileName 'SharePointAddIn1.app'
+            -FileName 'TestApp1.sppkg'
         $file1 = Get-KshFile -App $app1
         $item1 = Get-KshListItem -File $file1
         $appSettings.SiteCollectionApp1Id = $app1.Id
         $appSettings.SiteCollectionApp1ProductId = $item1['AppProductID']
 
-        Write-Progress -Activity 'Creating site collection apps...' -Status 'SharePointAddIn2'
+        Write-Progress -Activity 'Creating site collection apps...' -Status 'TestApp2'
         $app2 = New-KshSiteCollectionApp `
             -Content ([System.IO.File]::OpenRead($app2Path)) `
-            -FileName 'SharePointAddIn2.app'
+            -FileName 'TestApp2.sppkg'
         $file2 = Get-KshFile -App $app2
         $item2 = Get-KshListItem -File $file2
         $appSettings.SiteCollectionApp2Id = $app2.Id
         $appSettings.SiteCollectionApp2ProductId = $item2['AppProductID']
         
-        Write-Progress -Activity 'Creating site collection apps...' -Status 'SharePointAddIn3'
+        Write-Progress -Activity 'Creating site collection apps...' -Status 'TestApp3'
         $app3 = New-KshSiteCollectionApp `
             -Content ([System.IO.File]::OpenRead($app3Path)) `
-            -FileName 'SharePointAddIn3.app'
+            -FileName 'TestApp3.sppkg'
         $file3 = Get-KshFile -App $app3
         $item3 = Get-KshListItem -File $file3
         $appSettings.SiteCollectionApp3Id = $app3.Id
@@ -1029,17 +1056,17 @@ function Install-TestSite {
         Write-Progress -Activity 'Changing current site...' -Status 'Test Site 1'
         Select-KshSite -Identity $site1
 
-        Write-Progress -Activity 'Installing apps...' -Status 'SharePointAddIn1'
+        Write-Progress -Activity 'Installing apps...' -Status 'TestApp1'
         Install-KshSiteCollectionApp -Identity $app1
         $appInstance1 = Get-KshAppInstance -AppProductId $item1['AppProductID']
         $appSettings.AppInstance1Id = $appInstance1.Id
 
-        Write-Progress -Activity 'Installing apps...' -Status 'SharePointAddIn2'
+        Write-Progress -Activity 'Installing apps...' -Status 'TestApp2'
         Install-KshSiteCollectionApp -Identity $app2
         $appInstance2 = Get-KshAppInstance -AppProductId $item2['AppProductID']
         $appSettings.AppInstance2Id = $appInstance2.Id
 
-        Write-Progress -Activity 'Installing apps...' -Status 'SharePointAddIn3'
+        Write-Progress -Activity 'Installing apps...' -Status 'TestApp3'
         Install-KshSiteCollectionApp -Identity $app3
         $appInstance3 = Get-KshAppInstance -AppProductId $item3['AppProductID']
         $appSettings.AppInstance3Id = $appInstance3.Id
@@ -1047,22 +1074,22 @@ function Install-TestSite {
         $tenantSettings = Get-KshTenantSettings
         $appSettings.TenantAppCatalogUrl = $tenantSettings.AppCatalogUrl
 
-        Write-Progress -Activity 'Creating tenant apps...' -Status 'SharePointAddIn1'
+        Write-Progress -Activity 'Creating tenant apps...' -Status 'TestApp1'
         $app1 = New-KshTenantApp `
             -Content ([System.IO.File]::OpenRead($app1Path)) `
-            -FileName 'SharePointAddIn1.app'
+            -FileName 'TestApp1.sppkg'
         $appSettings.TenantApp1Id = $app1.Id
 
-        Write-Progress -Activity 'Creating tenant apps...' -Status 'SharePointAddIn2'
+        Write-Progress -Activity 'Creating tenant apps...' -Status 'TestApp2'
         $app2 = New-KshTenantApp `
             -Content ([System.IO.File]::OpenRead($app2Path)) `
-            -FileName 'SharePointAddIn2.app'
+            -FileName 'TestApp2.sppkg'
         $appSettings.TenantApp2Id = $app2.Id
         
-        Write-Progress -Activity 'Creating tenant apps...' -Status 'SharePointAddIn3'
+        Write-Progress -Activity 'Creating tenant apps...' -Status 'TestApp3'
         $app3 = New-KshTenantApp `
             -Content ([System.IO.File]::OpenRead($app3Path)) `
-            -FileName 'SharePointAddIn3.app'
+            -FileName 'TestApp3.sppkg'
         $appSettings.TenantApp3Id = $app3.Id
 
         Write-Output $appSettings
@@ -1145,9 +1172,9 @@ function Uninstall-TestSite {
         Connect-KshSite -Url $tenantSettings.AppCatalogUrl -Credential $credential
 
         Write-Progress -Activity 'Removing tenant apps...' -Status 'Processing'
-        Get-KshTenantApp | where Title -eq 'SharePointAddIn1' | Remove-KshTenantApp
-        Get-KshTenantApp | where Title -eq 'SharePointAddIn2' | Remove-KshTenantApp
-        Get-KshTenantApp | where Title -eq 'SharePointAddIn3' | Remove-KshTenantApp
+        Get-KshTenantApp | Where-Object { $_.Title -eq 'TestApp1' } | Remove-KshTenantApp
+        Get-KshTenantApp | Where-Object { $_.Title -eq 'TestApp2' } | Remove-KshTenantApp
+        Get-KshTenantApp | Where-Object { $_.Title -eq 'TestApp3' } | Remove-KshTenantApp
 
     }
 

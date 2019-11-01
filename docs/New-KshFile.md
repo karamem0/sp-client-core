@@ -17,7 +17,7 @@ New-KshFile [-Folder] <Folder> -Content <Byte[]> -FileName <String> [-Overwrite 
 ```
 
 ## DESCRIPTION
-The New-KshFolder cmdlet adds a new file to the specified folder. Maximum file size is 2MB.
+The New-KshFile cmdlet adds a new file to the specified folder. Maximum file size is 2MB.
 
 ## EXAMPLES
 

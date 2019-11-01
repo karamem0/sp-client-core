@@ -83,7 +83,8 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
         [JsonIgnore()]
         public IEnumerable<string> ExtensionKeys => this.ExtensionProperties
             .Select(item => ClientResultValue.Create(item))
-            .Select(item => item.Key);
+            .Select(item => item.Key)
+            .ToArray();
 
         [JsonProperty("_ObjectIdentity_")]
         internal string ObjectIdentity { get; private set; }

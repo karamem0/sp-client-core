@@ -26,16 +26,16 @@ namespace Karamem0.SharePoint.PowerShell.Models
         }
 
         [JsonProperty()]
-        public string FileName { get; private set; }
+        public virtual string FileName { get; protected set; }
 
         [JsonProperty()]
-        public ResourcePath FileNameAsPath { get; private set; }
+        public virtual ResourcePath FileNameAsPath { get; protected set; }
 
         [JsonProperty()]
-        public ResourcePath ServerRelativePath { get; private set; }
+        public virtual ResourcePath ServerRelativePath { get; protected set; }
 
         [JsonProperty()]
-        public string ServerRelativeUrl { get; private set; }
+        public virtual string ServerRelativeUrl { get; protected set; }
 
     }
 

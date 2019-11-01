@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshTenantCdnOrigin
 
 ## SYNOPSIS
-Adds a Office 365 CDN origin.
+Adds Office 365 CDN origin.
 
 ## SYNTAX
 
@@ -23,7 +23,7 @@ Add-KshTenantCdnOrigin [-Private] -Origin <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Add-KshTenantCdnOrigin cmdlet adds a Office 365 CDN origin to the tenant.
+The Add-KshTenantCdnOrigin cmdlet adds Office 365 CDN origin to the tenant.
 
 ## EXAMPLES
 
@@ -32,14 +32,14 @@ The Add-KshTenantCdnOrigin cmdlet adds a Office 365 CDN origin to the tenant.
 PS C:\> The Add-KshTenantCdnOrigin -Public -Origin 'PUBLICCDN'
 ```
 
-Adds a Office 365 Public CDN origin.
+Adds Office 365 Public CDN origin.
 
 ### Example 2
 ```powershell
 PS C:\> The Add-KshTenantCdnOrigin -Private -Origin 'PUBLICCDN'
 ```
 
-Adds a Office 365 Private CDN origin.
+Adds Office 365 Private CDN origin.
 
 ## PARAMETERS
 

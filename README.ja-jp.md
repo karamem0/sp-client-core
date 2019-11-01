@@ -45,6 +45,11 @@ SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant およ
   - [Select-KshSite](docs/Select-KshSite.md)
   - [Test-KshTenantSiteCollection](docs/Test-KshTenantSiteCollection.md)
 - サイト管理
+  - 通知
+    - [Get-KshAlert](docs/Get-KshAlert.md)
+    - [New-KshAlert](docs/New-KshAlert.md)
+    - [Remove-KshAlert](docs/Remove-KshAlert.md)
+    - [Update-KshAlert](docs/Update-KshAlert.md)
   - アプリ インスタンス
     - [Get-KshAppInstance](docs/Get-KshAppInstance.md)
   - 添付ファイル

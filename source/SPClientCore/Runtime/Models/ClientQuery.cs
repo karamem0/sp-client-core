@@ -30,11 +30,23 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
             this.Properties = new List<ClientQueryProperty>();
         }
 
-        public ClientQuery(bool selectAllProperties, Type type)
+        public ClientQuery(bool selectAllProperties, Type type, params string[] conditions)
         {
             this.SelectAllProperties = selectAllProperties;
             this.Properties = type.GetDeclaringProperties()
                 .Where(propertyInfo => propertyInfo.IsDefined(typeof(JsonPropertyAttribute)))
+                .Where(propertyInfo =>
+                {
+                    var conditionAttribute = propertyInfo.GetCustomAttribute<ClientQueryConditionAttribute>();
+                    if (conditionAttribute == null)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return conditions.Contains(conditionAttribute.Name);
+                    }
+                })
                 .Select(propertyInfo =>
                 {
                     var propertyAttribute = propertyInfo.GetCustomAttribute<JsonPropertyAttribute>();

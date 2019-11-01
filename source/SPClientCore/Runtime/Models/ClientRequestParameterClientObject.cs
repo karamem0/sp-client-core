@@ -42,6 +42,10 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
                     {
                         return new ClientRequestPropertyValue(propertyName, valueObject);
                     }
+                    else if (propertyValue is IDictionary dictionaryObject)
+                    {
+                        return new ClientRequestPropertyDictionary(propertyName, dictionaryObject);
+                    }
                     else if (propertyValue is IEnumerable arrayObject)
                     {
                         return new ClientRequestPropertyArray(propertyName, arrayObject.OfType<object>().ToArray());

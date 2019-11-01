@@ -32,14 +32,14 @@ Set-KshTenantCdnPolicy changes the value of Office 365 CDN policy.
 PS C:\> Set-KshTenantCdnPolicy -Public -Type 'IncludeFileExtensions' -Value 'CSS,EOT,GIF,ICO,JPEG,JPG,JS,MAP,PNG,SVG,TTF,WOFF'
 ```
 
-Changes a Office 365 Public CDN policy.
+Changes Office 365 Public CDN policy.
 
 ### Example 2
 ```powershell
 PS C:\> Set-KshTenantCdnPolicy -Private -Type 'IncludeFileExtensions' -Value 'GIF,ICO,JPEG,JPG,JS,PNG'
 ```
 
-Changes a Office 365 Private CDN policy.
+Changes Office 365 Private CDN policy.
 
 ## PARAMETERS
 

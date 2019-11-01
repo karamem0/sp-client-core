@@ -1,0 +1,12 @@
+{
+    "@microsoft/generator-sharepoint": {
+        "version": "1.9.1",
+        "libraryName": "TestApp3",
+        "libraryId": "b0197e98-53da-47ca-a534-b7adbcbb9aa7",
+        "environment": "spo",
+        "packageManager": "npm",
+        "isCreatingSolution": true,
+        "isDomainIsolated": false,
+        "componentType": "webpart"
+    }
+}

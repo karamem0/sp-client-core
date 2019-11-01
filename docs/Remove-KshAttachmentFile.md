@@ -8,7 +8,7 @@ schema: 2.0.0
 # Remove-KshAttachmentFile
 
 ## SYNOPSIS
-Removes a attachment file.
+Removes an attachment file.
 
 ## SYNTAX
 
@@ -23,7 +23,7 @@ Remove-KshAttachmentFile [-Identity] <AttachmentFile> [-RecycleBin] [<CommonPara
 ```
 
 ## DESCRIPTION
-The Remove-KshAttachmentFile cmdlet removes a attachment file from the list item.
+The Remove-KshAttachmentFile cmdlet removes an attachment file from the list item.
 
 ## EXAMPLES
 
@@ -32,14 +32,14 @@ The Remove-KshAttachmentFile cmdlet removes a attachment file from the list item
 PS C:\> Remove-KshAttachmentFile -Identity (Get-KshAttachmentFile -ListItem (Get-KshListItem -List (Get-KshList -ListTitle 'Announcements') -ItemId 1) -FileName 'README.txt')
 ```
 
-Removes a attachment file.
+Removes an attachment file.
 
 ### Example 2
 ```powershell
 PS C:\> Remove-KshAttachmentFile -Identity (Get-KshAttachmentFile -ListItem (Get-KshListItem -List (Get-KshList -ListTitle 'Announcements') -ItemId 1) -FileName 'README.txt') -RecycleBin
 ```
 
-Moves a attachment file to the recycle bin.
+Moves an attachment file to the recycle bin.
 
 ## PARAMETERS
 

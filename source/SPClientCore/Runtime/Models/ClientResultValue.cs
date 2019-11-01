@@ -99,9 +99,17 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
                     output.Value = input.Value.ToObject<Guid>();
                     return true;
                 case JTokenType.Object:
-                    var objectName = input.Value["_ObjectType_"].ToString();
-                    var objectType = ClientValueObject.GetType(objectName) ?? typeof(ClientValueObject);
-                    output.Value = input.Value.ToObject(objectType);
+                    var objectNameJson = input.Value["_ObjectType_"];
+                    if (objectNameJson == null)
+                    {
+                        output.Value = input.Value.ToObject<Dictionary<string, object>>();
+                    }
+                    else
+                    {
+                        var objectName = objectNameJson.ToString();
+                        var objectType = ClientValueObject.GetType(objectName) ?? typeof(ClientValueObject);
+                        output.Value = input.Value.ToObject(objectType);
+                    }
                     return true;
                 case JTokenType.Array:
                     output.Value = input.Value.ToArray()

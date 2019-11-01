@@ -8,7 +8,7 @@ schema: 2.0.0
 # Remove-KshTenantCdnOrigin
 
 ## SYNOPSIS
-Removes a Office 365 CDN origin.
+Removes Office 365 CDN origin.
 
 ## SYNTAX
 
@@ -23,7 +23,7 @@ Remove-KshTenantCdnOrigin [-Private] -Origin <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Remove-KshTenantCdnOrigin cmdlet removes a Office 365 CDN origin from the tenant.
+The Remove-KshTenantCdnOrigin cmdlet removes Office 365 CDN origin from the tenant.
 
 ## EXAMPLES
 
@@ -32,14 +32,14 @@ The Remove-KshTenantCdnOrigin cmdlet removes a Office 365 CDN origin from the te
 PS C:\> Remove-KshTenantCdnOrigin -Public -Origin 'PUBLICCDN'
 ```
 
-Rmeoves a Office 365 Public CDN origin.
+Rmeoves Office 365 Public CDN origin.
 
 ### Example 2
 ```powershell
 PS C:\> Remove-KshTenantCdnOrigin -Public -Origin 'PRIVATECDN'
 ```
 
-Rmeoves a Office 365 Private CDN origin.
+Rmeoves Office 365 Private CDN origin.
 
 ## PARAMETERS
 

@@ -37,7 +37,7 @@ The Get-KshAttachmentFile cmdlet retrieves attachment files of the specified lis
 PS C:\> Get-KshAttachmentFile -ListItem (Get-KshListItem -List (Get-KshList -ListTitle 'Announcements') -ItemId 1) -FileName 'README.txt'
 ```
 
-Retrieves a attachment file by file name.
+Retrieves an attachment file by file name.
 
 ### Example 2
 ```powershell
