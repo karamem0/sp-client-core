@@ -48,7 +48,7 @@ Get-KshRoleAssignment [-ListItem] <ListItem> [-NoEnumerate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshRoleAssignment cmdlet retrieves role assignments of the site, list or list item.
+The Get-KshRoleAssignment cmdlet retrieves role assignments of the specified site, list or list item.
 
 ## EXAMPLES
 

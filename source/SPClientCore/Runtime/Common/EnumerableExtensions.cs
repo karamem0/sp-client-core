@@ -35,6 +35,15 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Common
             }
         }
 
+        public static IEnumerable<T> SkipLast<T>(this IEnumerable<T> collection, int count)
+        {
+            var array = collection.ToArray();
+            for (var index = 0; index < array.Length - count; index++)
+            {
+                yield return array[index];
+            }
+        }
+
     }
 
 }

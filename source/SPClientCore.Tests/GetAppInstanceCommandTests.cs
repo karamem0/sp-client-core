@@ -49,7 +49,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void GetAppInstanceByAppInstance()
+        public void GetAppInstanceByIdentity()
         {
             using (var context = new PSCmdletContext())
             {

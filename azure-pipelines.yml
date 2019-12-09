@@ -1,0 +1,55 @@
+# ASP.NET Core (.NET Framework)
+# Build and test ASP.NET Core projects targeting the full .NET Framework.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+- develop
+
+pr: none
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  solutionFile: 'source/SPClientCore/SPClientCore.csproj'
+  manifestFile: 'source/SPClientCore/SPClientCore.psd1'
+  nuspecFile: 'source/SPClientCore/SPClientCore.nuspec'
+  buildConfiguration: 'Release'
+  buildVersion: '3.0.0'
+  buildId: '$(Build.BuildId)'
+
+steps:
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      Write-Host "##vso[task.setvariable variable=buildNumber]$env:buildVersion.$env:buildId"
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      Update-ModuleManifest -Path $env:manifestFile -ModuleVersion $env:buildNumber
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      $xml=[xml](Get-Content $env:nuspecFile)
+      $xml.package.metadata.version=$env:buildNumber
+      $xml.Save($env:nuspecFile)
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    projects: '$(solutionFile)'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
+    projects: '$(solutionFile)'
+    arguments: '-c $(buildConfiguration) -o $(Build.ArtifactStagingDirectory) -p:version=$(buildNumber);fileversion=$(buildNumber)'
+    zipAfterPublish: false
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'SPClientCore'
+    publishLocation: 'Container'

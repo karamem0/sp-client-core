@@ -85,7 +85,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                     {
                         return responsePayload.Entry;
                     }
-                    else if (responseMessage.StatusCode == HttpStatusCode.TooManyRequests)
+                    else if ((int)responseMessage.StatusCode == 429)
                     {
                         Thread.Sleep(responseMessage.Headers.RetryAfter.Delta.GetValueOrDefault(TimeSpan.FromSeconds(1)));
                     }
@@ -156,7 +156,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                     {
                         return;
                     }
-                    else if (responseMessage.StatusCode == HttpStatusCode.TooManyRequests)
+                    else if ((int)responseMessage.StatusCode == 429)
                     {
                         Thread.Sleep(responseMessage.Headers.RetryAfter.Delta.GetValueOrDefault(TimeSpan.FromSeconds(1)));
                     }
@@ -285,7 +285,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                         }
                     }
                 }
-                else if (responseMessage.StatusCode == HttpStatusCode.TooManyRequests)
+                else if ((int)responseMessage.StatusCode == 429)
                 {
                     Thread.Sleep(responseMessage.Headers.RetryAfter.Delta.GetValueOrDefault(TimeSpan.FromSeconds(1)));
                 }

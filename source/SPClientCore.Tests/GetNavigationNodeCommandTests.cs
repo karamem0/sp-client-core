@@ -10,6 +10,7 @@ using Karamem0.SharePoint.PowerShell.Models;
 using Karamem0.SharePoint.PowerShell.Tests.Runtime;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,12 +19,12 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("Get-KshAlert")]
-    public class GetAlertCommandTests
+    [TestCategory("Get-KshNavigationNode")]
+    public class GetNavigationNodeCommandTests
     {
 
         [TestMethod()]
-        public void GetAlerts()
+        public void GetNavigationNodes()
         {
             using (var context = new PSCmdletContext())
             {
@@ -38,18 +39,26 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         }
                     }
                 );
-                var result2 = context.Runspace.InvokeCommand<Alert>(
-                    "Get-KshAlert",
+                var result2 = context.Runspace.InvokeCommand<NavigationNode>(
+                    "Get-KshNavigationNode",
                     new Dictionary<string, object>()
                     {
+                        { "NavigationNodeId", context.AppSettings["NavigationNode1Id"] }
                     }
                 );
-                var actual = result2.ToArray();
+                var result3 = context.Runspace.InvokeCommand<NavigationNode>(
+                    "Get-KshNavigationNode",
+                    new Dictionary<string, object>()
+                    {
+                        { "NavigationNode", result2.ElementAt(0) }
+                    }
+                );
+                var actual = result3.ToArray();
             }
         }
 
         [TestMethod()]
-        public void GetAlertByIdentity()
+        public void GetNavigationNodeByIdentity()
         {
             using (var context = new PSCmdletContext())
             {
@@ -64,15 +73,15 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         }
                     }
                 );
-                var result2 = context.Runspace.InvokeCommand<Alert>(
-                    "Get-KshAlert",
+                var result2 = context.Runspace.InvokeCommand<NavigationNode>(
+                    "Get-KshNavigationNode",
                     new Dictionary<string, object>()
                     {
-                        { "AlertId", context.AppSettings["Alert1Id"] }
+                        { "NavigationNodeId", context.AppSettings["NavigationNode1Id"] }
                     }
                 );
-                var result3 = context.Runspace.InvokeCommand<Alert>(
-                    "Get-KshAlert",
+                var result3 = context.Runspace.InvokeCommand<NavigationNode>(
+                    "Get-KshNavigationNode",
                     new Dictionary<string, object>()
                     {
                         { "Identity", result2.ElementAt(0) }
@@ -83,7 +92,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void GetAlertByAlertId()
+        public void GetNavigationByNavigationNodeId()
         {
             using (var context = new PSCmdletContext())
             {
@@ -98,11 +107,11 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         }
                     }
                 );
-                var result2 = context.Runspace.InvokeCommand<Alert>(
-                    "Get-KshAlert",
+                var result2 = context.Runspace.InvokeCommand<NavigationNode>(
+                    "Get-KshNavigationNode",
                     new Dictionary<string, object>()
                     {
-                        { "AlertId", context.AppSettings["Alert1Id"] }
+                        { "NavigationNodeId", context.AppSettings["NavigationNode1Id"] }
                     }
                 );
                 var actual = result2.ElementAt(0);

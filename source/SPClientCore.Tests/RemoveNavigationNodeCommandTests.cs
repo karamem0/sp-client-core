@@ -10,6 +10,7 @@ using Karamem0.SharePoint.PowerShell.Models;
 using Karamem0.SharePoint.PowerShell.Tests.Runtime;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,12 +19,12 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("Update-KshUser")]
-    public class UpdateUserCommandTests
+    [TestCategory("Remove-KshNavigationNode")]
+    public class RemoveNavigationNodeCommandTests
     {
 
         [TestMethod()]
-        public void UpdateUser()
+        public void RemoveNavigationNode()
         {
             using (var context = new PSCmdletContext())
             {
@@ -38,32 +39,29 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         }
                     }
                 );
-                var result2 = context.Runspace.InvokeCommand<User>(
-                    "New-KshUser",
+                var result2 = context.Runspace.InvokeCommand<NavigationNode>(
+                    "Get-KshNavigationNode",
                     new Dictionary<string, object>()
                     {
-                        { "LoginName", "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"] }
+                        { "NavigationNodeId", context.AppSettings["NavigationNode1Id"] }
                     }
                 );
-                var result3 = context.Runspace.InvokeCommand<User>(
-                    "Update-KshUser",
+                var result3 = context.Runspace.InvokeCommand<NavigationNode>(
+                    "New-KshNavigationNode",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result2.ElementAt(0) },
-                        { "Email", "testuser0@example.com" },
-                        { "IsSiteCollectionAdmin", true },
-                        { "Title", "Test User 9" },
-                        { "PassThru", true }
+                        { "NavigationNode", result2.ElementAt(0) },
+                        { "Title", "Test Navigation Node 0" },
+                        { "Url", "http://www.example.com" }
                     }
                 );
                 var result4 = context.Runspace.InvokeCommand(
-                    "Remove-KshUser",
+                    "Remove-KshNavigationNode",
                     new Dictionary<string, object>()
                     {
                         { "Identity", result3.ElementAt(0) }
                     }
                 );
-                var actual = result3.ElementAt(0);
             }
         }
 

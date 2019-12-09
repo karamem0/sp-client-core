@@ -316,6 +316,59 @@ function Install-TestSite {
         Write-Progress -Activity 'Changing current site...' -Status 'Test Site 1'
         Select-KshSite -Identity $site1
 
+        Write-Progress -Activity 'Removing navigation nodes...' -Status 'Processing'
+        $navigation = Get-KshNavigation
+        $navigation.QuickLaunch | Remove-KshNavigationNode
+        $navigation.TopNavigationBar | Remove-KshNavigationNode
+
+        Write-Progress -Activity 'Creating navigation nodes...' -Status 'Test Navigation Node 1'
+        $navigationNode1 = New-KshNavigationNode `
+            -TopNavigationBar `
+            -AsLastNode $true `
+            -Title 'Test Navigation Node 1' `
+            -Url 'http://www.example.com'
+        $appSettings.NavigationNode1Id = $navigationNode1.Id
+
+        Write-Progress -Activity 'Creating navigation nodes...' -Status 'Test Navigation Node 2'
+        $navigationNode2 = New-KshNavigationNode `
+            -TopNavigationBar `
+            -AsLastNode $true `
+            -Title 'Test Navigation Node 2' `
+            -Url 'http://www.example.com'
+        $appSettings.NavigationNode2Id = $navigationNode2.Id
+
+        Write-Progress -Activity 'Creating navigation nodes...' -Status 'Test Navigation Node 3'
+        $navigationNode3 = New-KshNavigationNode `
+            -TopNavigationBar `
+            -AsLastNode $true `
+            -Title 'Test Navigation Node 3' `
+            -Url 'http://www.example.com'
+        $appSettings.NavigationNode3Id = $navigationNode3.Id
+
+        Write-Progress -Activity 'Creating navigation nodes...' -Status 'Test Navigation Node 4'
+        $navigationNode4 = New-KshNavigationNode `
+            -NavigationNode $navigationNode1 `
+            -AsLastNode $true `
+            -Title 'Test Navigation Node 4' `
+            -Url 'http://www.example.com'
+        $appSettings.NavigationNode4Id = $navigationNode4.Id
+
+        Write-Progress -Activity 'Creating navigation nodes...' -Status 'Test Navigation Node 5'
+        $navigationNode5 = New-KshNavigationNode `
+            -NavigationNode $navigationNode1 `
+            -AsLastNode $true `
+            -Title 'Test Navigation Node 5' `
+            -Url 'http://www.example.com'
+        $appSettings.NavigationNode5Id = $navigationNode5.Id
+
+        Write-Progress -Activity 'Creating navigation nodes...' -Status 'Test Navigation Node 6'
+        $navigationNode6 = New-KshNavigationNode `
+            -NavigationNode $navigationNode1 `
+            -AsLastNode $true `
+            -Title 'Test Navigation Node 6' `
+            -Url 'http://www.example.com'
+        $appSettings.NavigationNode6Id = $navigationNode6.Id
+
         Write-Progress -Activity 'Creating lists...' -Status 'Test List 1'
         $list1 = New-KshList `
             -Description 'Test List 1' `

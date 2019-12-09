@@ -78,7 +78,7 @@ Retrieves all folders.
 ## PARAMETERS
 
 ### -Folder
-Specifies the folder.
+Specifies the parent folder.
 
 ```yaml
 Type: Folder

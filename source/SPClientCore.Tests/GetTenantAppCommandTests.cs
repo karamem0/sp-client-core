@@ -49,7 +49,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void GetTenantAppByApp()
+        public void GetTenantAppByIdentity()
         {
             using (var context = new PSCmdletContext())
             {

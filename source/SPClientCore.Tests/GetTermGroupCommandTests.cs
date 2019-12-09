@@ -19,7 +19,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 
     [TestClass()]
     [TestCategory("Get-KshTermGroup")]
-    public class GetCurrentTermGroupCommandTests
+    public class GetTermGroupCommandTests
     {
 
         [TestMethod()]

@@ -5,6 +5,7 @@
 SharePoint Service Module for PowerShell Core
 
 [![Build status](https://ci.appveyor.com/api/projects/status/etlu54thystfp79a?svg=true)](https://ci.appveyor.com/project/karamem0/spclientcore)
+[![Build Status](https://dev.azure.com/karamem0/SPClientCore/_apis/build/status/SPClientCore?branchName=develop)](https://dev.azure.com/karamem0/SPClientCore/_build/latest?definitionId=1&branchName=develop)
 [![License](https://img.shields.io/github/license/karamem0/spclientcore.svg)](https://github.com/karamem0/spclientcore/blob/master/LICENSE)
 
 ## Installation
@@ -15,7 +16,7 @@ SPClientCore is published to [PowerShell Gallery](https://www.powershellgallery.
 
 ### Works with PowerShell Core
 
-Yes, SPClientCore works with PowerShell Core. And it does not work with Windows PowerShell. It means that you can use this module on Mac and Linux as well as Windows (of course if PowerShell Core is installed on the machine). There was only a way to run the SharePoint REST API to manage SharePoint Online in non-Windows environments. But SharePoint REST API has a few problems compared to the SharePoint Client Library (CSOM). SPClientCore provides full functionality by making compatible API calls with CSOM.
+Yes, SPClientCore works with PowerShell Core, also it works with Windows PowerShell. It means that you can use this module on Mac and Linux as well as Windows (of course if PowerShell Core is installed on the machine). There was only a way to run the SharePoint REST API to manage SharePoint Online in non-Windows environments. But SharePoint REST API has a few problems compared to the SharePoint Client Library (CSOM). SPClientCore provides full functionality by making compatible API calls with CSOM.
 
 ### One module, manage all
 
@@ -31,9 +32,8 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
 
 ## Dependencies
 
-- [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/3.0.0) (3.0.0)
-- [System.IdentityModel.Tokens.Jwt](https://www.nuget.org/packages/System.IdentityModel.Tokens.Jwt/5.5.0) (5.5.0)
-- [System.Management.Automation](https://www.nuget.org/packages/System.Management.Automation/6.2.3) (6.2.3)
+- [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/3.1.0) (3.1.0)
+- [System.IdentityModel.Tokens.Jwt](https://www.nuget.org/packages/System.IdentityModel.Tokens.Jwt/5.6.0) (5.6.0)
 
 ## Command References
 
@@ -151,6 +151,12 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Initialize-KshColumnUserValue](docs/Initialize-KshColumnUserValue.md)
   - List Templates
     - [Get-KshListTemplate](docs/Get-KshListTemplate.md)
+  - Navigation
+    - [Get-KshNavigation](docs/Get-KshNavigation.md)
+    - [Get-KshNavigationNode](docs/Get-KshNavigationNode.md)
+    - [New-KshNavigationNode](docs/New-KshNavigationNode.md)
+    - [Remove-KshNavigationNode](docs/Remove-KshNavigationNode.md)
+    - [Update-KshNavigationNode](docs/Update-KshNavigationNode.md)
   - Recycle Bin Items
     - [Get-KshRecycleBinItem](docs/Get-KshRecycleBinItem.md)
     - [Move-KshRecycleBinItem](docs/Move-KshRecycleBinItem.md)

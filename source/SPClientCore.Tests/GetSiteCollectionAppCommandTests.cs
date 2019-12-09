@@ -49,7 +49,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void GetSiteCollectionAppByApp()
+        public void GetSiteCollectionAppByIdentity()
         {
             using (var context = new PSCmdletContext())
             {

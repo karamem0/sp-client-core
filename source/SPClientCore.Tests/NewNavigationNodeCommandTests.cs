@@ -10,6 +10,7 @@ using Karamem0.SharePoint.PowerShell.Models;
 using Karamem0.SharePoint.PowerShell.Tests.Runtime;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,12 +19,12 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("Get-KshAlert")]
-    public class GetAlertCommandTests
+    [TestCategory("New-KshNavigationNode")]
+    public class NewNavigationNodeCommandTests
     {
 
         [TestMethod()]
-        public void GetAlerts()
+        public void CreateNavigationNode()
         {
             using (var context = new PSCmdletContext())
             {
@@ -38,44 +39,29 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         }
                     }
                 );
-                var result2 = context.Runspace.InvokeCommand<Alert>(
-                    "Get-KshAlert",
+                var result2 = context.Runspace.InvokeCommand<NavigationNode>(
+                    "Get-KshNavigationNode",
                     new Dictionary<string, object>()
                     {
+                        { "NavigationNodeId", context.AppSettings["NavigationNode1Id"] }
                     }
                 );
-                var actual = result2.ToArray();
-            }
-        }
-
-        [TestMethod()]
-        public void GetAlertByIdentity()
-        {
-            using (var context = new PSCmdletContext())
-            {
-                var result1 = context.Runspace.InvokeCommand(
-                    "Connect-KshSite",
+                var result3 = context.Runspace.InvokeCommand<NavigationNode>(
+                    "New-KshNavigationNode",
                     new Dictionary<string, object>()
                     {
-                        { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                        { "Credential", PSCredentialFactory.CreateCredential(
-                            context.AppSettings["LoginUserName"],
-                            context.AppSettings["LoginPassword"])
-                        }
+                        { "NavigationNode", result2.ElementAt(0) },
+                        { "AsLastNode", true },
+                        { "IsExternal", true },
+                        { "Title", "Test Navigation Node 0" },
+                        { "Url", "http://www.example.com" }
                     }
                 );
-                var result2 = context.Runspace.InvokeCommand<Alert>(
-                    "Get-KshAlert",
+                var result4 = context.Runspace.InvokeCommand(
+                    "Remove-KshNavigationNode",
                     new Dictionary<string, object>()
                     {
-                        { "AlertId", context.AppSettings["Alert1Id"] }
-                    }
-                );
-                var result3 = context.Runspace.InvokeCommand<Alert>(
-                    "Get-KshAlert",
-                    new Dictionary<string, object>()
-                    {
-                        { "Identity", result2.ElementAt(0) }
+                        { "Identity", result3.ElementAt(0) }
                     }
                 );
                 var actual = result3.ElementAt(0);
@@ -83,7 +69,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void GetAlertByAlertId()
+        public void CreateNavigationNodeToQuickLaunch()
         {
             using (var context = new PSCmdletContext())
             {
@@ -98,11 +84,60 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         }
                     }
                 );
-                var result2 = context.Runspace.InvokeCommand<Alert>(
-                    "Get-KshAlert",
+                var result2 = context.Runspace.InvokeCommand<NavigationNode>(
+                    "New-KshNavigationNode",
                     new Dictionary<string, object>()
                     {
-                        { "AlertId", context.AppSettings["Alert1Id"] }
+                        { "QuickLaunch", true },
+                        { "AsLastNode", true },
+                        { "IsExternal", true },
+                        { "Title", "Test Navigation Node 0" },
+                        { "Url", "http://www.example.com" }
+                    }
+                );
+                var result3 = context.Runspace.InvokeCommand(
+                    "Remove-KshNavigationNode",
+                    new Dictionary<string, object>()
+                    {
+                        { "Identity", result2.ElementAt(0) }
+                    }
+                );
+                var actual = result2.ElementAt(0);
+            }
+        }
+
+        [TestMethod()]
+        public void CreateNavigationNodeToTopNavigationBar()
+        {
+            using (var context = new PSCmdletContext())
+            {
+                var result1 = context.Runspace.InvokeCommand(
+                    "Connect-KshSite",
+                    new Dictionary<string, object>()
+                    {
+                        { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
+                        { "Credential", PSCredentialFactory.CreateCredential(
+                            context.AppSettings["LoginUserName"],
+                            context.AppSettings["LoginPassword"])
+                        }
+                    }
+                );
+                var result2 = context.Runspace.InvokeCommand<NavigationNode>(
+                    "New-KshNavigationNode",
+                    new Dictionary<string, object>()
+                    {
+                        { "TopNavigationBar", true },
+                        { "AsLastNode", true },
+                        { "IsExternal", true },
+                        { "Title", "Test Navigation Node 0" },
+                        { "Url", "http://www.example.com" }
+                    }
+                );
+                var result3 = context.Runspace.InvokeCommand(
+                    "Remove-KshNavigationNode",
+                    new Dictionary<string, object>()
+                    {
+                        { "Identity", result2.ElementAt(0) }
                     }
                 );
                 var actual = result2.ElementAt(0);

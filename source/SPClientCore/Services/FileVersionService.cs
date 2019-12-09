@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models;
+using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.Services;
 using System;

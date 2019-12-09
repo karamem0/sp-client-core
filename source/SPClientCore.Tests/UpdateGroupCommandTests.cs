@@ -65,7 +65,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Remove-KshGroup",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result2.ElementAt(0) }
+                        { "Identity", result3.ElementAt(0) }
                     }
                 );
                 var actual = result3.ElementAt(0);

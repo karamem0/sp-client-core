@@ -14,6 +14,9 @@ RootModule = 'SPClientCore.dll'
 # Version number of this module.
 ModuleVersion = '0.0.0'
 
+# Supported PSEditions
+CompatiblePSEditions = @('Desktop', 'Core')
+
 # ID used to uniquely identify this module
 GUID = '83E99C54-16E5-4ABA-96EC-76830CCDFFEF'
 
@@ -30,7 +33,7 @@ Copyright = 'Copyright (c) 2019 karamem0'
 Description = 'SharePoint Service Module for PowerShell Core'
 
 # Minimum version of the Windows PowerShell engine required by this module
-PowerShellVersion = '6.1.0'
+PowerShellVersion = '5.1'
 
 # Name of the Windows PowerShell host required by this module
 # PowerShellHostName = ''
@@ -89,7 +92,7 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        Tags = @('PSEdition_Core', 'OfficeDev', 'SharePointOnline')
+        Tags = @('PSEdition_Core', 'PSEdition_Desktop', 'OfficeDev', 'SharePointOnline')
 
         # A URL to the license for this module.
         LicenseUri = 'https://github.com/karamem0/spclientcore/blob/master/LICENSE'

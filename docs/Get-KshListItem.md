@@ -40,7 +40,7 @@ Get-KshListItem [-List] <List> [-FolderServerRelativeUrl <String>]
 ```
 
 ## DESCRIPTION
-The Get-KshListItem cmdlet retrieves list items of the list.
+The Get-KshListItem cmdlet retrieves list items of the specified list.
 
 ## EXAMPLES
 

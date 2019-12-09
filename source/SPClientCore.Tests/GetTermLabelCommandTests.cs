@@ -19,7 +19,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 
     [TestClass()]
     [TestCategory("Get-KshTermLabel")]
-    public class GetCurrentTermLabelCommandTests
+    public class GetTermLabelCommandTests
     {
 
         [TestMethod()]

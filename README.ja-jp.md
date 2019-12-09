@@ -5,6 +5,7 @@
 PowerShell Core 向けの SharePoint サービス モジュール
 
 [![Build status](https://ci.appveyor.com/api/projects/status/etlu54thystfp79a?svg=true)](https://ci.appveyor.com/project/karamem0/spclientcore)
+[![Build Status](https://dev.azure.com/karamem0/SPClientCore/_apis/build/status/SPClientCore?branchName=develop)](https://dev.azure.com/karamem0/SPClientCore/_build/latest?definitionId=1&branchName=develop)
 [![License](https://img.shields.io/github/license/karamem0/spclientcore.svg)](https://github.com/karamem0/spclientcore/blob/master/LICENSE)
 
 ## インストール
@@ -15,7 +16,7 @@ SPClientCore は [PowerShell Gallery](https://www.powershellgallery.com/packages
 
 ### PowerShell Core での動作
 
-はい、SPClientCore は PowerShell Core で動作します。そして Windows PowerShell では動作しません。つまり、このモジュールを Windows はもちろん Mac や Linux でも使用できるということです (もちろんそのマシンに PowerShell Core がインストールされていればですが)。Windows 以外の環境で SharePoint Online を管理するには REST API を実行する方法しかありませんでした。しかし REST API は SharePoint クライアント ライブラリ (CSOM) に比べていくつかの問題を持っています。SPClientCore は SharePoint クライアント ライブラリと互換性のある API 呼び出しを行うことで完全な機能を提供します。
+はい、SPClientCore は PowerShell Core で動作し、また Windows PowerShell でも動作します。つまり、このモジュールを Windows はもちろん Mac や Linux でも使用できるということです (もちろんそのマシンに PowerShell Core がインストールされていればですが)。Windows 以外の環境で SharePoint Online を管理するには REST API を実行する方法しかありませんでした。しかし REST API は SharePoint クライアント ライブラリ (CSOM) に比べていくつかの問題を持っています。SPClientCore は SharePoint クライアント ライブラリと互換性のある API 呼び出しを行うことで完全な機能を提供します。
 
 ### 1 つのモジュールですべての管理を
 
@@ -31,9 +32,8 @@ SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant およ
 
 ## 依存関係
 
-- [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/3.0.0) (3.0.0)
-- [System.IdentityModel.Tokens.Jwt](https://www.nuget.org/packages/System.IdentityModel.Tokens.Jwt/5.5.0) (5.5.0)
-- [System.Management.Automation](https://www.nuget.org/packages/System.Management.Automation/6.2.3) (6.2.3)
+- [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/3.1.0) (3.1.0)
+- [System.IdentityModel.Tokens.Jwt](https://www.nuget.org/packages/System.IdentityModel.Tokens.Jwt/5.6.0) (5.6.0)
 
 ## コマンド リファレンス (英語)
 
@@ -151,6 +151,12 @@ SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant およ
     - [Initialize-KshColumnUserValue](docs/Initialize-KshColumnUserValue.md)
   - リスト テンプレート
     - [Get-KshListTemplate](docs/Get-KshListTemplate.md)
+  - ナビゲーション
+    - [Get-KshNavigation](docs/Get-KshNavigation.md)
+    - [Get-KshNavigationNode](docs/Get-KshNavigationNode.md)
+    - [New-KshNavigationNode](docs/New-KshNavigationNode.md)
+    - [Remove-KshNavigationNode](docs/Remove-KshNavigationNode.md)
+    - [Update-KshNavigationNode](docs/Update-KshNavigationNode.md)
   - ごみ箱
     - [Get-KshRecycleBinItem](docs/Get-KshRecycleBinItem.md)
     - [Move-KshRecycleBinItem](docs/Move-KshRecycleBinItem.md)
