@@ -85,6 +85,9 @@ namespace Karamem0.SharePoint.PowerShell.Models
         [JsonProperty()]
         public virtual int TermsCount { get; protected set; }
 
+        [JsonProperty()]
+        public override TermStore TermStore { get; protected set; }
+
     }
 
 }

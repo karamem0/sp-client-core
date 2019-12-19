@@ -10,7 +10,6 @@ using Karamem0.SharePoint.PowerShell.Models;
 using Karamem0.SharePoint.PowerShell.Tests.Runtime;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,12 +18,12 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("Set-KshRegionalSettings")]
-    public class SetRegionalSettingsCommandTests
+    [TestCategory("Update-KshRegionalSettings")]
+    public class UpdateRegionalSettingsCommandTests
     {
 
         [TestMethod()]
-        public void SetRegionalSettings()
+        public void UpdateRegionalSettings()
         {
             using (var context = new PSCmdletContext())
             {
@@ -63,7 +62,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     }
                 );
                 var result5 = context.Runspace.InvokeCommand<RegionalSettings>(
-                    "Set-KshRegionalSettings",
+                    "Update-KshRegionalSettings",
                     new Dictionary<string, object>()
                     {
                         { "AdjustHijriDays", 1 },

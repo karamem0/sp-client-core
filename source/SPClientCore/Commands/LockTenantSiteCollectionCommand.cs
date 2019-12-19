@@ -14,13 +14,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using System.Text;
-using System.Threading;
 
 namespace Karamem0.SharePoint.PowerShell.Commands
 {
 
     [Cmdlet("Lock", "KshTenantSiteCollection")]
-    [OutputType(typeof(void))]
+    [OutputType(typeof(TenantSiteCollection))]
     public class LockTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteCollectionService>
     {
 

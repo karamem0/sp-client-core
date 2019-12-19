@@ -6,7 +6,6 @@
 // https://github.com/karamem0/SPClientCore/blob/master/LICENSE
 //
 
-using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Newtonsoft.Json;
 using System;
@@ -83,6 +82,10 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
             else if (value is IEnumerable arrayObject)
             {
                 return new ClientRequestParameterArray(this, arrayObject.OfType<object>().ToArray());
+            }
+            else if (value is ObjectPath objectPath)
+            {
+                return new ClientRequestParameterObjectPath(objectPath);
             }
             else if (value is ClientObject clientObject)
             {

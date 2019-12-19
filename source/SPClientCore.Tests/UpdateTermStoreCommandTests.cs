@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
     {
 
         [TestMethod()]
-        public void SetTermStore()
+        public void UpdateTermStore()
         {
             using (var context = new PSCmdletContext())
             {
@@ -39,7 +39,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     }
                 );
                 var result2 = context.Runspace.InvokeCommand<TermStore>(
-                    "Set-KshTermStore",
+                    "Update-KshTermStore",
                     new Dictionary<string, object>()
                     {
                         { "DefaultLcid", 1033 },

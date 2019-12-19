@@ -49,6 +49,7 @@ namespace Karamem0.SharePoint.PowerShell.Models
         [JsonProperty()]
         public virtual string Owner { get; protected set; }
 
+
     }
 
 }

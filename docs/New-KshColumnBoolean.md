@@ -42,13 +42,13 @@ New-KshColumnBoolean [-ClientSideComponentId <String>] [-ClientSideComponentProp
 ```
 
 ## DESCRIPTION
-The New-KshColumnBooleanXml cmdlet adds new boolean column to the current site or the specified list.
+The New-KshColumnBoolean cmdlet adds new boolean column to the current site or the specified list.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> New-KshColumnBooleanXml -DefaultValue $true -Name 'BooleanColumn'
+PS C:\> New-KshColumnBoolean -DefaultValue $true -Name 'BooleanColumn'
 ```
 
 Creates a new column.
@@ -450,7 +450,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### None
+### Karamem0.SharePoint.PowerShell.Models.List
 
 ## OUTPUTS
 

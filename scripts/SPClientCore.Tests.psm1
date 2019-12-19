@@ -598,7 +598,7 @@ function Install-TestSite {
         $appSettings.Column9Name = $column9.Name
         $appSettings.Column9Title = $column9.Title
 
-        Write-Progress -Activity 'Creating fields...' -Status 'Test Column 10'
+        Write-Progress -Activity 'Creating columns...' -Status 'Test Column 10'
         $column10 = New-KshColumnBoolean `
             -AddColumnInternalNameHint `
             -Name 'TestColumn10' `
@@ -610,7 +610,7 @@ function Install-TestSite {
         $appSettings.Column10Name = $column10.Name
         $appSettings.Column10Title = $column10.Title
 
-        Write-Progress -Activity 'Creating fields...' -Status 'Test Column 11'
+        Write-Progress -Activity 'Creating columns...' -Status 'Test Column 11'
         $column11 = New-KshColumnUser `
             -AddColumnInternalNameHint `
             -Name 'TestColumn11' `
@@ -622,7 +622,7 @@ function Install-TestSite {
         $appSettings.Column11Name = $column11.Name
         $appSettings.Column11Title = $column11.Title
 
-        Write-Progress -Activity 'Creating fields...' -Status 'Test Column 12'
+        Write-Progress -Activity 'Creating columns...' -Status 'Test Column 12'
         $column12 = New-KshColumnUser `
             -AddColumnInternalNameHint `
             -AllowMultipleValues $true `
@@ -635,7 +635,7 @@ function Install-TestSite {
         $appSettings.Column12Name = $column12.Name
         $appSettings.Column12Title = $column12.Title
 
-        Write-Progress -Activity 'Creating fields...' -Status 'Test Column 13'
+        Write-Progress -Activity 'Creating columns...' -Status 'Test Column 13'
         $column13 = New-KshColumnUrl `
             -AddColumnInternalNameHint `
             -Name 'TestColumn13' `
@@ -647,7 +647,7 @@ function Install-TestSite {
         $appSettings.Column13Name = $column13.Name
         $appSettings.Column13Title = $column13.Title
 
-        Write-Progress -Activity 'Creating fields...' -Status 'Test Column 14'
+        Write-Progress -Activity 'Creating columns...' -Status 'Test Column 14'
         $column14 = New-KshColumnCalculated `
             -AddColumnInternalNameHint `
             -Columns @($column1) `
@@ -662,7 +662,7 @@ function Install-TestSite {
         $appSettings.Column14Name = $column14.Name
         $appSettings.Column14Title = $column14.Title
 
-        Write-Progress -Activity 'Creating fields...' -Status 'Test Column 15'
+        Write-Progress -Activity 'Creating columns...' -Status 'Test Column 15'
         $column15 = New-KshColumnGeolocation `
             -AddColumnInternalNameHint `
             -Name 'TestColumn15' `
@@ -673,6 +673,19 @@ function Install-TestSite {
         $appSettings.Column15Id = $column15.Id
         $appSettings.Column15Name = $column15.Name
         $appSettings.Column15Title = $column15.Title
+
+        Write-Progress -Activity 'Creating columns...' -Status 'Test Column 16'
+        $column16 = New-KshColumnTaxonomy `
+            -AddColumnInternalNameHint `
+            -Name 'TestColumn16' `
+            -TermSet $termSet1 `
+            -Title 'Test Column 16'
+        $null = New-KshContentTypeColumn `
+            -ContentType $siteContentType1 `
+            -Column $column16
+        $appSettings.Column16Id = $column16.Id
+        $appSettings.Column16Name = $column16.Name
+        $appSettings.Column16Title = $column16.Title
 
         Write-Progress -Activity 'Creating list content types...' -Status 'Test Content Type 1'
         $listContentType1 = New-KshContentType `
@@ -730,6 +743,7 @@ function Install-TestSite {
                 'Test Column 13'
                 'Test Column 14'
                 'Test Column 15'
+                'Test Column 16'
             )
         $view1 = Update-KshView `
             -Identity $view1 `
@@ -758,6 +772,7 @@ function Install-TestSite {
                 'Test Column 13'
                 'Test Column 14'
                 'Test Column 15'
+                'Test Column 16'
             )
         $view2 = Update-KshView `
             -Identity $view2 `
@@ -786,6 +801,7 @@ function Install-TestSite {
                 'Test Column 13'
                 'Test Column 14'
                 'Test Column 15'
+                'Test Column 16'
             )
         $view3 = Update-KshView `
             -Identity $view3 `
@@ -821,6 +837,11 @@ function Install-TestSite {
             -Latitude 35.180188 `
             -Longitude 136.906565
 
+        Write-Progress -Activity 'Creating list items...' -Status 'Preparing'
+        $taxonomyValue1 = Initialize-KshColumnTaxonomyValue -Term $term1
+        $taxonomyValue2 = Initialize-KshColumnTaxonomyValue -Term $term1
+        $taxonomyValue3 = Initialize-KshColumnTaxonomyValue -Term $term1
+    
         Write-Progress -Activity 'Creating list items...' -Status 'Test List Item 1'
         $item1 = New-KshListItem `
             -List $list1 `
@@ -838,6 +859,7 @@ function Install-TestSite {
                 TestColumn12 = @($userValue1)
                 TestColumn13 = $urlValue1
                 TestColumn15 = $geolocationValue1
+                TestColumn16 = $taxonomyValue1
             }
         $appSettings.ListItem1Id = $item1.Id
 
@@ -882,6 +904,7 @@ function Install-TestSite {
                 TestColumn12 = @($userValue2)
                 TestColumn13 = $urlValue2
                 TestColumn15 = $geolocationValue2
+                TestColumn16 = $taxonomyValue2
             }
         $appSettings.ListItem2Id = $item2.Id
 
@@ -902,6 +925,7 @@ function Install-TestSite {
                 TestColumn12 = @($userValue1, $userValue2, $userValue3)
                 TestColumn13 = $urlValue3
                 TestColumn15 = $geolocationValue3
+                TestColumn16 = $taxonomyValue3
             }
         $appSettings.ListItem3Id = $item3.Id
 
@@ -1079,7 +1103,7 @@ function Install-TestSite {
         $app3Path = Resolve-Path "$PSScriptRoot/TestApp3/sharepoint/solution/TestApp3.sppkg"
         $appSettings.App3Path = $app3Path.ToString()
 
-        Write-Progress -Activity 'Creating site collection apps...' -Status 'TestApp1'
+        Write-Progress -Activity 'Creating site collection apps...' -Status 'Test App 1'
         $app1 = New-KshSiteCollectionApp `
             -Content ([System.IO.File]::OpenRead($app1Path)) `
             -FileName 'TestApp1.sppkg'
@@ -1088,7 +1112,7 @@ function Install-TestSite {
         $appSettings.SiteCollectionApp1Id = $app1.Id
         $appSettings.SiteCollectionApp1ProductId = $item1['AppProductID']
 
-        Write-Progress -Activity 'Creating site collection apps...' -Status 'TestApp2'
+        Write-Progress -Activity 'Creating site collection apps...' -Status 'Test App 2'
         $app2 = New-KshSiteCollectionApp `
             -Content ([System.IO.File]::OpenRead($app2Path)) `
             -FileName 'TestApp2.sppkg'
@@ -1097,7 +1121,7 @@ function Install-TestSite {
         $appSettings.SiteCollectionApp2Id = $app2.Id
         $appSettings.SiteCollectionApp2ProductId = $item2['AppProductID']
         
-        Write-Progress -Activity 'Creating site collection apps...' -Status 'TestApp3'
+        Write-Progress -Activity 'Creating site collection apps...' -Status 'Test App 3'
         $app3 = New-KshSiteCollectionApp `
             -Content ([System.IO.File]::OpenRead($app3Path)) `
             -FileName 'TestApp3.sppkg'
@@ -1109,17 +1133,17 @@ function Install-TestSite {
         Write-Progress -Activity 'Changing current site...' -Status 'Test Site 1'
         Select-KshSite -Identity $site1
 
-        Write-Progress -Activity 'Installing apps...' -Status 'TestApp1'
+        Write-Progress -Activity 'Installing apps...' -Status 'Test App 1'
         Install-KshSiteCollectionApp -Identity $app1
         $appInstance1 = Get-KshAppInstance -AppProductId $item1['AppProductID']
         $appSettings.AppInstance1Id = $appInstance1.Id
 
-        Write-Progress -Activity 'Installing apps...' -Status 'TestApp2'
+        Write-Progress -Activity 'Installing apps...' -Status 'Test App 2'
         Install-KshSiteCollectionApp -Identity $app2
         $appInstance2 = Get-KshAppInstance -AppProductId $item2['AppProductID']
         $appSettings.AppInstance2Id = $appInstance2.Id
 
-        Write-Progress -Activity 'Installing apps...' -Status 'TestApp3'
+        Write-Progress -Activity 'Installing apps...' -Status 'Test App 3'
         Install-KshSiteCollectionApp -Identity $app3
         $appInstance3 = Get-KshAppInstance -AppProductId $item3['AppProductID']
         $appSettings.AppInstance3Id = $appInstance3.Id
@@ -1127,19 +1151,19 @@ function Install-TestSite {
         $tenantSettings = Get-KshTenantSettings
         $appSettings.TenantAppCatalogUrl = $tenantSettings.AppCatalogUrl
 
-        Write-Progress -Activity 'Creating tenant apps...' -Status 'TestApp1'
+        Write-Progress -Activity 'Creating tenant apps...' -Status 'Test App 1'
         $app1 = New-KshTenantApp `
             -Content ([System.IO.File]::OpenRead($app1Path)) `
             -FileName 'TestApp1.sppkg'
         $appSettings.TenantApp1Id = $app1.Id
 
-        Write-Progress -Activity 'Creating tenant apps...' -Status 'TestApp2'
+        Write-Progress -Activity 'Creating tenant apps...' -Status 'Test App 2'
         $app2 = New-KshTenantApp `
             -Content ([System.IO.File]::OpenRead($app2Path)) `
             -FileName 'TestApp2.sppkg'
         $appSettings.TenantApp2Id = $app2.Id
         
-        Write-Progress -Activity 'Creating tenant apps...' -Status 'TestApp3'
+        Write-Progress -Activity 'Creating tenant apps...' -Status 'Test App 3'
         $app3 = New-KshTenantApp `
             -Content ([System.IO.File]::OpenRead($app3Path)) `
             -FileName 'TestApp3.sppkg'

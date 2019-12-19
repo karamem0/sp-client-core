@@ -18,12 +18,12 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands
 {
 
-    [Cmdlet("Set", "KshTermStore")]
+    [Cmdlet("Update", "KshTermStore")]
     [OutputType(typeof(TermStore))]
-    public class SetTermStoreCommand : ClientObjectCmdlet<ITermStoreService>
+    public class UpdateTermStoreCommand : ClientObjectCmdlet<ITermStoreService>
     {
 
-        public SetTermStoreCommand()
+        public UpdateTermStoreCommand()
         {
         }
 

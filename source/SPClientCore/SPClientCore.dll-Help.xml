@@ -80,7 +80,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -213,7 +213,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -346,7 +346,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -479,7 +479,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -619,7 +619,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -812,7 +812,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -946,7 +946,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -1025,7 +1025,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -1167,7 +1167,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -1695,7 +1695,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -2284,7 +2284,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -2386,7 +2386,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -3641,7 +3641,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -11013,6 +11013,85 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Initialize-KshColumnTaxonomyValue</command:name>
+      <command:verb>Initialize</command:verb>
+      <command:noun>KshColumnTaxonomyValue</command:noun>
+      <maml:description>
+        <maml:para>Creates a taxonomy column value.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Initialize-KshColumnTaxonomyValue cmdlet creates a new taxonomy column value from term. This is provided for the New-KshListItem (New-KshListItem.md) cmdlet and [Update-KshListItem](Update-KshListItem.md)cmdlet.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Initialize-KshColumnTaxonomyValue</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Term</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the term.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Term</command:parameterValue>
+          <dev:type>
+            <maml:name>Term</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Term</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the term.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Term</command:parameterValue>
+        <dev:type>
+          <maml:name>Term</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.ColumnTaxonomyValue</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Initialize-KshColumnTaxonomyValue -Term (Get-KshTerm -TermSet (Get-KshTermSet -TermGroup (Get-KshTermGroup -TermGroupName 'Company') -TermSetName 'Department') -TermId '4e45662f-c021-41fd-b413-967bf413d369')</dev:code>
+        <dev:remarks>
+          <maml:para>Creates a new taxonomy column value.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Initialize-KshColumnUrlValue</command:name>
       <command:verb>Initialize</command:verb>
       <command:noun>KshColumnUrlValue</command:noun>
@@ -11695,7 +11774,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.TenantSiteCollection</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -11798,7 +11877,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -12098,7 +12177,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -12409,7 +12488,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -12883,7 +12962,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The New-KshColumnBooleanXml cmdlet adds new boolean column to the current site or the specified list.</maml:para>
+      <maml:para>The New-KshColumnBoolean cmdlet adds new boolean column to the current site or the specified list.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -14002,7 +14081,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.List</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -14027,7 +14106,7 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; New-KshColumnBooleanXml -DefaultValue $true -Name 'BooleanColumn'</dev:code>
+        <dev:code>PS C:\&gt; New-KshColumnBoolean -DefaultValue $true -Name 'BooleanColumn'</dev:code>
         <dev:remarks>
           <maml:para>Creates a new column.</maml:para>
         </dev:remarks>
@@ -15428,7 +15507,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.List</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -16842,7 +16921,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.List</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -18292,7 +18371,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.List</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -19775,7 +19854,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.List</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -20841,7 +20920,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.List</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -22258,7 +22337,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.List</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -23516,7 +23595,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.List</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -24936,7 +25015,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.List</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -24961,7 +25040,7 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; New-KshColumnCalculated -Name 'MultiLineTextColumn' -RichText $true -RichTextMode 'FullHtml'</dev:code>
+        <dev:code>PS C:\&gt; New-KshColumnMultiLineText -Name 'MultiLineTextColumn' -RichText $true -RichTextMode 'FullHtml'</dev:code>
         <dev:remarks>
           <maml:para>Creates a new column.</maml:para>
         </dev:remarks>
@@ -26386,7 +26465,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.List</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -26412,6 +26491,1264 @@
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; New-KshColumnNumber -MinimumValue 0 -MaximumValue 1000 -Name 'NumberColumn'</dev:code>
+        <dev:remarks>
+          <maml:para>Creates a new column.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>New-KshColumnTaxonomy</command:name>
+      <command:verb>New</command:verb>
+      <command:noun>KshColumnTaxonomy</command:noun>
+      <maml:description>
+        <maml:para>Creates a column of taxonomy type.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The New-KshColumnTaxonomy cmdlet adds new taxonomy column to the current site or the specified list.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>New-KshColumnTaxonomy</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>List</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the list.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">List</command:parameterValue>
+          <dev:type>
+            <maml:name>List</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AddColumnCheckDisplayName</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to confirm that no other column has the same display name.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AddColumnInternalNameHint</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to add an internal column name hint for the purpose of avoiding possible database locking or column renaming operations.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AddColumnToDefaultView</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether a new column that is added to the specified list is also be added to the default list view.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AddToAllContentTypes</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether a new column that is added to the specified list is also be added to all content types in the site collection.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AddToDefaultContentType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether a new column that is added to the list is also be added to the default content type in the site collection.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AddToDefaultView</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to add a column to the default view.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AddToNoContentType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether a new column is not be added to any content type.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AllowMultipleValues</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to allow to select multiple values.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ClientSideComponentId</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the ID of the client-side component.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ClientSideComponentProperties</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the JSON string that the propeties of the client-side component.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>CustomFormatter</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the JSON string of custom format.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>DefaultFormula</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the default formula.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>DefaultValue</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the default value.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Description</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the description.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Direction</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the direction.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Group</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the name for grouping.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Hidden</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to hide the column from users.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Id</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+          <dev:type>
+            <maml:name>Guid</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>JSLink</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the JSLink URL.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Name</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the name.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NoCrawl</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to suppress to search crawling.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ReadOnly</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether changes to the column properties are denied.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Required</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether a value is required.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>StaticName</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the static name.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>TermSet</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the term set.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">TermSet</command:parameterValue>
+          <dev:type>
+            <maml:name>TermSet</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Title</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the title.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>New-KshColumnTaxonomy</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AddColumnCheckDisplayName</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to confirm that no other column has the same display name.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AddColumnInternalNameHint</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to add an internal column name hint for the purpose of avoiding possible database locking or column renaming operations.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AddColumnToDefaultView</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether a new column that is added to the specified list is also be added to the default list view.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AddToAllContentTypes</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether a new column that is added to the specified list is also be added to all content types in the site collection.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AddToDefaultContentType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether a new column that is added to the list is also be added to the default content type in the site collection.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AddToDefaultView</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to add a column to the default view.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AddToNoContentType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether a new column is not be added to any content type.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AllowMultipleValues</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to allow to select multiple values.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ClientSideComponentId</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the ID of the client-side component.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ClientSideComponentProperties</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the JSON string that the propeties of the client-side component.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>CustomFormatter</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the JSON string of custom format.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>DefaultFormula</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the default formula.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>DefaultValue</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the default value.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Description</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the description.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Direction</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the direction.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Group</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the name for grouping.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Hidden</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to hide the column from users.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Id</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+          <dev:type>
+            <maml:name>Guid</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>JSLink</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the JSLink URL.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Name</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the name.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NoCrawl</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to suppress to search crawling.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ReadOnly</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether changes to the column properties are denied.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Required</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether a value is required.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>StaticName</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the static name.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>TermSet</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the term set.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">TermSet</command:parameterValue>
+          <dev:type>
+            <maml:name>TermSet</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Title</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the title.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>New-KshColumnTaxonomy</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AllowMultipleValues</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to allow to select multiple values.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ClientSideComponentId</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the ID of the client-side component.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ClientSideComponentProperties</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the JSON string that the propeties of the client-side component.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>CustomFormatter</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the JSON string of custom format.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>DefaultFormula</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the default formula.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>DefaultValue</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the default value.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Description</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the description.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Direction</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the direction.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Group</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the name for grouping.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Hidden</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to hide the column from users.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Id</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+          <dev:type>
+            <maml:name>Guid</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>JSLink</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the JSLink URL.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Name</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the name.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NoCrawl</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to suppress to search crawling.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ReadOnly</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether changes to the column properties are denied.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Required</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether a value is required.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>StaticName</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the static name.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>TermSet</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the term set.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">TermSet</command:parameterValue>
+          <dev:type>
+            <maml:name>TermSet</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Title</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the title.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>WhatIf</maml:name>
+          <maml:Description>
+            <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>AddColumnCheckDisplayName</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether to confirm that no other column has the same display name.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>AddColumnInternalNameHint</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether to add an internal column name hint for the purpose of avoiding possible database locking or column renaming operations.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>AddColumnToDefaultView</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether a new column that is added to the specified list is also be added to the default list view.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>AddToAllContentTypes</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether a new column that is added to the specified list is also be added to all content types in the site collection.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>AddToDefaultContentType</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether a new column that is added to the list is also be added to the default content type in the site collection.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>AddToDefaultView</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether to add a column to the default view.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>AddToNoContentType</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether a new column is not be added to any content type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>AllowMultipleValues</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether to allow to select multiple values.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ClientSideComponentId</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the ID of the client-side component.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ClientSideComponentProperties</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the JSON string that the propeties of the client-side component.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>CustomFormatter</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the JSON string of custom format.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>DefaultFormula</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the default formula.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>DefaultValue</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the default value.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Description</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the description.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Direction</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the direction.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Group</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the name for grouping.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Hidden</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether to hide the column from users.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Id</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the ID.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+        <dev:type>
+          <maml:name>Guid</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>JSLink</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the JSLink URL.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>List</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the list.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">List</command:parameterValue>
+        <dev:type>
+          <maml:name>List</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Name</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the name.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>NoCrawl</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether to suppress to search crawling.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ReadOnly</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether changes to the column properties are denied.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Required</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether a value is required.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>StaticName</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the static name.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>TermSet</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the term set.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">TermSet</command:parameterValue>
+        <dev:type>
+          <maml:name>TermSet</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Title</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the title.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>WhatIf</maml:name>
+        <maml:Description>
+          <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.List</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Column</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; New-KshColumnTaxonomy -Name 'TaxonomyColumn' -TermSet (Get-KshTermSet -TermGroup (Get-KshTermGroup -TermGroupName 'Company') -TermSetId '543a5c66-1de4-475a-9047-e4bd3aa4f2d7')</dev:code>
         <dev:remarks>
           <maml:para>Creates a new column.</maml:para>
         </dev:remarks>
@@ -27692,7 +29029,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.List</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -27717,7 +29054,7 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; New-KshColumnCalculated -Name 'TextColumn' -MaxLength 128</dev:code>
+        <dev:code>PS C:\&gt; New-KshColumnText -Name 'TextColumn' -MaxLength 128</dev:code>
         <dev:remarks>
           <maml:para>Creates a new column.</maml:para>
         </dev:remarks>
@@ -34669,7 +36006,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -34771,7 +36108,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -34857,7 +36194,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -34943,7 +36280,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -35052,7 +36389,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -35161,7 +36498,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -35335,7 +36672,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -35451,7 +36788,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -35537,7 +36874,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -35640,7 +36977,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -35742,7 +37079,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -35851,7 +37188,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -35937,7 +37274,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -36079,7 +37416,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -36165,7 +37502,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -36244,7 +37581,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -36402,7 +37739,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -36481,7 +37818,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -36584,7 +37921,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -36687,7 +38024,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -36766,7 +38103,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -36906,7 +38243,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -37015,7 +38352,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -37117,7 +38454,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -37196,7 +38533,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -37275,7 +38612,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -37425,7 +38762,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -37511,7 +38848,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -37590,7 +38927,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -37693,7 +39030,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -37772,7 +39109,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -37851,7 +39188,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -37930,7 +39267,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -38009,7 +39346,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -38189,7 +39526,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -38275,7 +39612,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -38380,7 +39717,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -38489,7 +39826,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -38842,7 +40179,7 @@
       <command:verb>Select</command:verb>
       <command:noun>KshSite</command:noun>
       <maml:description>
-        <maml:para>Selectes a site.</maml:para>
+        <maml:para>Selects a site.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -38933,6 +40270,157 @@
         <dev:code>PS C:\&gt; Select-KshSite -Identity (Get-KshSite -SiteId 'd298e576-6985-4119-9796-050b9f371872')</dev:code>
         <dev:remarks>
           <maml:para>Selects the site.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Set-KshColumnTaxonomyValue</command:name>
+      <command:verb>Set</command:verb>
+      <command:noun>KshColumnTaxonomyValue</command:noun>
+      <maml:description>
+        <maml:para>Changes a taxonomy column value.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>Set-KshColumnTaxonomyValue changes the taxonomy column value of the specified list item.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Set-KshColumnTaxonomyValue</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Column</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the taxonomy column.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ColumnTaxonomy</command:parameterValue>
+          <dev:type>
+            <maml:name>ColumnTaxonomy</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Lcid</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
+          <dev:type>
+            <maml:name>UInt32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ListItem</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the list item.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ListItem</command:parameterValue>
+          <dev:type>
+            <maml:name>ListItem</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Value</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the terms.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Term[]</command:parameterValue>
+          <dev:type>
+            <maml:name>Term[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Column</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the taxonomy column.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ColumnTaxonomy</command:parameterValue>
+        <dev:type>
+          <maml:name>ColumnTaxonomy</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Lcid</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
+        <dev:type>
+          <maml:name>UInt32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ListItem</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the list item.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ListItem</command:parameterValue>
+        <dev:type>
+          <maml:name>ListItem</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Value</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the terms.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Term[]</command:parameterValue>
+        <dev:type>
+          <maml:name>Term[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Set-KshColumnTaxonomyValue -Column (Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af' -List (Get-KshList -ListTitle 'Announcements')) -ListItem (Get-KshListItem -List (Get-KshList -ListTitle 'Announcements') -ItemId 1) -Value (Get-KshTerm -TermSet (Get-KshTermSet -TermGroup (Get-KshTermGroup -TermGroupName 'Company') -TermSetName 'Department') -TermId '4e45662f-c021-41fd-b413-967bf413d369') -Lcid 1033</dev:code>
+        <dev:remarks>
+          <maml:para>Changes a taxonomy column value.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -39041,7 +40529,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -39176,396 +40664,6 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
-      <command:name>Set-KshRegionalSettings</command:name>
-      <command:verb>Set</command:verb>
-      <command:noun>KshRegionalSettings</command:noun>
-      <maml:description>
-        <maml:para>Changes a regional settings.</maml:para>
-      </maml:description>
-    </command:details>
-    <maml:description>
-      <maml:para>The Update-KshRegionalSettings cmdlet changes properties of the regional settings of the current site.</maml:para>
-    </maml:description>
-    <command:syntax>
-      <command:syntaxItem>
-        <maml:name>Set-KshRegionalSettings</maml:name>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>AdjustHijriDays</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the adjust days for Hijri calendars.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Int16</command:parameterValue>
-          <dev:type>
-            <maml:name>Int16</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>AlternateCalendarType</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the alternate calendar type.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Int16</command:parameterValue>
-          <dev:type>
-            <maml:name>Int16</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>CalendarType</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the calendar type.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Int16</command:parameterValue>
-          <dev:type>
-            <maml:name>Int16</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>Collation</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the collation.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Int16</command:parameterValue>
-          <dev:type>
-            <maml:name>Int16</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>FirstDayOfWeek</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the first day of the week.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
-          <dev:type>
-            <maml:name>UInt32</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>FirstWeekOfYear</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the first week of the year.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
-          <dev:type>
-            <maml:name>UInt32</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>Lcid</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
-          <dev:type>
-            <maml:name>UInt32</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>PassThru</maml:name>
-          <maml:Description>
-            <maml:para>If specified, returns the updated object.</maml:para>
-          </maml:Description>
-          <dev:type>
-            <maml:name>SwitchParameter</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>False</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>ShowWeeks</maml:name>
-          <maml:Description>
-            <maml:para>Specifies whether to display the week number.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
-          <dev:type>
-            <maml:name>Boolean</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>Time24</maml:name>
-          <maml:Description>
-            <maml:para>Specifies whether to use a 24-hour time format</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
-          <dev:type>
-            <maml:name>Boolean</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>TimeZone</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the time zone</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">TimeZone</command:parameterValue>
-          <dev:type>
-            <maml:name>TimeZone</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>WorkDayEndHour</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the hour at which the work day ends.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Int16</command:parameterValue>
-          <dev:type>
-            <maml:name>Int16</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>WorkDayStartHour</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the hour at which the work day starts.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Int16</command:parameterValue>
-          <dev:type>
-            <maml:name>Int16</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>WorkDays</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the number of the work days.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Int16</command:parameterValue>
-          <dev:type>
-            <maml:name>Int16</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-      </command:syntaxItem>
-    </command:syntax>
-    <command:parameters>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>AdjustHijriDays</maml:name>
-        <maml:Description>
-          <maml:para>Specifies the adjust days for Hijri calendars.</maml:para>
-        </maml:Description>
-        <command:parameterValue required="true" variableLength="false">Int16</command:parameterValue>
-        <dev:type>
-          <maml:name>Int16</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>AlternateCalendarType</maml:name>
-        <maml:Description>
-          <maml:para>Specifies the alternate calendar type.</maml:para>
-        </maml:Description>
-        <command:parameterValue required="true" variableLength="false">Int16</command:parameterValue>
-        <dev:type>
-          <maml:name>Int16</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>CalendarType</maml:name>
-        <maml:Description>
-          <maml:para>Specifies the calendar type.</maml:para>
-        </maml:Description>
-        <command:parameterValue required="true" variableLength="false">Int16</command:parameterValue>
-        <dev:type>
-          <maml:name>Int16</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>Collation</maml:name>
-        <maml:Description>
-          <maml:para>Specifies the collation.</maml:para>
-        </maml:Description>
-        <command:parameterValue required="true" variableLength="false">Int16</command:parameterValue>
-        <dev:type>
-          <maml:name>Int16</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>FirstDayOfWeek</maml:name>
-        <maml:Description>
-          <maml:para>Specifies the first day of the week.</maml:para>
-        </maml:Description>
-        <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
-        <dev:type>
-          <maml:name>UInt32</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>FirstWeekOfYear</maml:name>
-        <maml:Description>
-          <maml:para>Specifies the first week of the year.</maml:para>
-        </maml:Description>
-        <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
-        <dev:type>
-          <maml:name>UInt32</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>Lcid</maml:name>
-        <maml:Description>
-          <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
-        </maml:Description>
-        <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
-        <dev:type>
-          <maml:name>UInt32</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>PassThru</maml:name>
-        <maml:Description>
-          <maml:para>If specified, returns the updated object.</maml:para>
-        </maml:Description>
-        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
-        <dev:type>
-          <maml:name>SwitchParameter</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>False</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>ShowWeeks</maml:name>
-        <maml:Description>
-          <maml:para>Specifies whether to display the week number.</maml:para>
-        </maml:Description>
-        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
-        <dev:type>
-          <maml:name>Boolean</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>Time24</maml:name>
-        <maml:Description>
-          <maml:para>Specifies whether to use a 24-hour time format</maml:para>
-        </maml:Description>
-        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
-        <dev:type>
-          <maml:name>Boolean</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>TimeZone</maml:name>
-        <maml:Description>
-          <maml:para>Specifies the time zone</maml:para>
-        </maml:Description>
-        <command:parameterValue required="true" variableLength="false">TimeZone</command:parameterValue>
-        <dev:type>
-          <maml:name>TimeZone</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>WorkDayEndHour</maml:name>
-        <maml:Description>
-          <maml:para>Specifies the hour at which the work day ends.</maml:para>
-        </maml:Description>
-        <command:parameterValue required="true" variableLength="false">Int16</command:parameterValue>
-        <dev:type>
-          <maml:name>Int16</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>WorkDayStartHour</maml:name>
-        <maml:Description>
-          <maml:para>Specifies the hour at which the work day starts.</maml:para>
-        </maml:Description>
-        <command:parameterValue required="true" variableLength="false">Int16</command:parameterValue>
-        <dev:type>
-          <maml:name>Int16</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>WorkDays</maml:name>
-        <maml:Description>
-          <maml:para>Specifies the number of the work days.</maml:para>
-        </maml:Description>
-        <command:parameterValue required="true" variableLength="false">Int16</command:parameterValue>
-        <dev:type>
-          <maml:name>Int16</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-    </command:parameters>
-    <command:inputTypes>
-      <command:inputType>
-        <dev:type>
-          <maml:name>None</maml:name>
-        </dev:type>
-        <maml:description>
-          <maml:para></maml:para>
-        </maml:description>
-      </command:inputType>
-    </command:inputTypes>
-    <command:returnValues>
-      <command:returnValue>
-        <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.RegionalSettings</maml:name>
-        </dev:type>
-        <maml:description>
-          <maml:para></maml:para>
-        </maml:description>
-      </command:returnValue>
-    </command:returnValues>
-    <maml:alertSet>
-      <maml:alert>
-        <maml:para></maml:para>
-      </maml:alert>
-    </maml:alertSet>
-    <command:examples>
-      <command:example>
-        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Update-KshRegionalSettings -Lcid 1041</dev:code>
-        <dev:remarks>
-          <maml:para>Updates property values of the regional settings.</maml:para>
-        </dev:remarks>
-      </command:example>
-    </command:examples>
-    <command:relatedLinks />
-  </command:command>
-  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-    <command:details>
       <command:name>Set-KshTenantCdnEnabled</command:name>
       <command:verb>Set</command:verb>
       <command:noun>KshTenantCdnEnabled</command:noun>
@@ -39681,7 +40779,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -39874,7 +40972,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -40008,7 +41106,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -40026,132 +41124,6 @@
         <dev:code>PS C:\&gt; Set-KshTermDescription -Identity (Get-KshTerm -TermSet (Get-KshTermSet -TermGroup (Get-KshTermGroup -TermGroupName 'Company') -TermSetName 'Department') -TermName 'Human Resources') -Description 'An organization performs human resource management.' -Lcid 1033</dev:code>
         <dev:remarks>
           <maml:para>Changes a term description.</maml:para>
-        </dev:remarks>
-      </command:example>
-    </command:examples>
-    <command:relatedLinks />
-  </command:command>
-  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-    <command:details>
-      <command:name>Set-KshTermStore</command:name>
-      <command:verb>Set</command:verb>
-      <command:noun>KshTermStore</command:noun>
-      <maml:description>
-        <maml:para>Changes a term store.</maml:para>
-      </maml:description>
-    </command:details>
-    <maml:description>
-      <maml:para>The Update-KshTermStore cmdlet changes properties of the term store.</maml:para>
-    </maml:description>
-    <command:syntax>
-      <command:syntaxItem>
-        <maml:name>Set-KshTermStore</maml:name>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>DefaultLcid</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the default locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
-          <dev:type>
-            <maml:name>UInt32</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>PassThru</maml:name>
-          <maml:Description>
-            <maml:para>If specified, returns the updated object.</maml:para>
-          </maml:Description>
-          <dev:type>
-            <maml:name>SwitchParameter</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>False</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>WorkingLcid</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the working locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
-          <dev:type>
-            <maml:name>UInt32</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-      </command:syntaxItem>
-    </command:syntax>
-    <command:parameters>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>DefaultLcid</maml:name>
-        <maml:Description>
-          <maml:para>Specifies the default locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
-        </maml:Description>
-        <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
-        <dev:type>
-          <maml:name>UInt32</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>PassThru</maml:name>
-        <maml:Description>
-          <maml:para>If specified, returns the updated object.</maml:para>
-        </maml:Description>
-        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
-        <dev:type>
-          <maml:name>SwitchParameter</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>False</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>WorkingLcid</maml:name>
-        <maml:Description>
-          <maml:para>Specifies the working locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
-        </maml:Description>
-        <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
-        <dev:type>
-          <maml:name>UInt32</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-    </command:parameters>
-    <command:inputTypes>
-      <command:inputType>
-        <dev:type>
-          <maml:name>None</maml:name>
-        </dev:type>
-        <maml:description>
-          <maml:para></maml:para>
-        </maml:description>
-      </command:inputType>
-    </command:inputTypes>
-    <command:returnValues>
-      <command:returnValue>
-        <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.TermStore</maml:name>
-        </dev:type>
-        <maml:description>
-          <maml:para></maml:para>
-        </maml:description>
-      </command:returnValue>
-    </command:returnValues>
-    <maml:alertSet>
-      <maml:alert>
-        <maml:para></maml:para>
-      </maml:alert>
-    </maml:alertSet>
-    <command:examples>
-      <command:example>
-        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Update-KshTermStore -DefaultLcid 1033</dev:code>
-        <dev:remarks>
-          <maml:para>Updates property values of the term store.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -40320,7 +41292,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -41188,7 +42160,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.TenantSiteCollection</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -47630,6 +48602,515 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Update-KshColumnTaxonomy</command:name>
+      <command:verb>Update</command:verb>
+      <command:noun>KshColumnTaxonomy</command:noun>
+      <maml:description>
+        <maml:para>Updates a column of taxonomy type.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Update-KshColumnTaxonomy cmdlet updates properties of the column of taxonomy type.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Update-KshColumnTaxonomy</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Identity</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the column.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Column</command:parameterValue>
+          <dev:type>
+            <maml:name>Column</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AllowMultipleValues</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to allow to select multiple values.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ClientSideComponentId</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the ID of the client-side component.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ClientSideComponentProperties</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the JSON string that the propeties of the client-side component.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>CustomFormatter</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the JSON string of custom format.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>DefaultFormula</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the default formula.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>DefaultValue</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the default value.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Description</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the description.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Direction</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the direction.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Group</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the name for grouping.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Hidden</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to hide the column from users.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>JSLink</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the JSLink URL.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NoCrawl</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to suppress to search crawling.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PassThru</maml:name>
+          <maml:Description>
+            <maml:para>If specified, returns the updated object.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PushChanges</maml:name>
+          <maml:Description>
+            <maml:para>If Specified, propagates changes to all lists that use the column.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ReadOnly</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether changes to the column properties are denied.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Required</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether a value is required.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>StaticName</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the static name.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Title</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the title.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>AllowMultipleValues</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether to allow to select multiple values.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ClientSideComponentId</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the ID of the client-side component.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ClientSideComponentProperties</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the JSON string that the propeties of the client-side component.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>CustomFormatter</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the JSON string of custom format.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>DefaultFormula</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the default formula.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>DefaultValue</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the default value.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Description</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the description.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Direction</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the direction.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Group</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the name for grouping.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Hidden</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether to hide the column from users.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Identity</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the column.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Column</command:parameterValue>
+        <dev:type>
+          <maml:name>Column</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>JSLink</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the JSLink URL.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>NoCrawl</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether to suppress to search crawling.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>PassThru</maml:name>
+        <maml:Description>
+          <maml:para>If specified, returns the updated object.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>PushChanges</maml:name>
+        <maml:Description>
+          <maml:para>If Specified, propagates changes to all lists that use the column.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ReadOnly</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether changes to the column properties are denied.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Required</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether a value is required.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>StaticName</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the static name.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Title</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the title.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Column</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.ColumnTaxonomy</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Update-KshColumnTaxonomy -Identity (Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af') -ReadOnly $true</dev:code>
+        <dev:remarks>
+          <maml:para>Updates property values of the column.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Update-KshColumnText</command:name>
       <command:verb>Update</command:verb>
       <command:noun>KshColumnText</command:noun>
@@ -51252,6 +52733,396 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Update-KshRegionalSettings</command:name>
+      <command:verb>Update</command:verb>
+      <command:noun>KshRegionalSettings</command:noun>
+      <maml:description>
+        <maml:para>Updates a regional settings.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Update-KshRegionalSettings cmdlet changes properties of the regional settings of the current site.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Update-KshRegionalSettings</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AdjustHijriDays</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the adjust days for Hijri calendars.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int16</command:parameterValue>
+          <dev:type>
+            <maml:name>Int16</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AlternateCalendarType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the alternate calendar type.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int16</command:parameterValue>
+          <dev:type>
+            <maml:name>Int16</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>CalendarType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the calendar type.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int16</command:parameterValue>
+          <dev:type>
+            <maml:name>Int16</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Collation</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the collation.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int16</command:parameterValue>
+          <dev:type>
+            <maml:name>Int16</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>FirstDayOfWeek</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the first day of the week.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
+          <dev:type>
+            <maml:name>UInt32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>FirstWeekOfYear</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the first week of the year.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
+          <dev:type>
+            <maml:name>UInt32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Lcid</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
+          <dev:type>
+            <maml:name>UInt32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PassThru</maml:name>
+          <maml:Description>
+            <maml:para>If specified, returns the updated object.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ShowWeeks</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to display the week number.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Time24</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to use a 24-hour time format</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>TimeZone</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the time zone</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">TimeZone</command:parameterValue>
+          <dev:type>
+            <maml:name>TimeZone</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>WorkDayEndHour</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the hour at which the work day ends.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int16</command:parameterValue>
+          <dev:type>
+            <maml:name>Int16</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>WorkDayStartHour</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the hour at which the work day starts.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int16</command:parameterValue>
+          <dev:type>
+            <maml:name>Int16</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>WorkDays</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the number of the work days.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int16</command:parameterValue>
+          <dev:type>
+            <maml:name>Int16</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>AdjustHijriDays</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the adjust days for Hijri calendars.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int16</command:parameterValue>
+        <dev:type>
+          <maml:name>Int16</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>AlternateCalendarType</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the alternate calendar type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int16</command:parameterValue>
+        <dev:type>
+          <maml:name>Int16</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>CalendarType</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the calendar type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int16</command:parameterValue>
+        <dev:type>
+          <maml:name>Int16</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Collation</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the collation.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int16</command:parameterValue>
+        <dev:type>
+          <maml:name>Int16</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>FirstDayOfWeek</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the first day of the week.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
+        <dev:type>
+          <maml:name>UInt32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>FirstWeekOfYear</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the first week of the year.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
+        <dev:type>
+          <maml:name>UInt32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Lcid</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
+        <dev:type>
+          <maml:name>UInt32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>PassThru</maml:name>
+        <maml:Description>
+          <maml:para>If specified, returns the updated object.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ShowWeeks</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether to display the week number.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Time24</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether to use a 24-hour time format</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>TimeZone</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the time zone</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">TimeZone</command:parameterValue>
+        <dev:type>
+          <maml:name>TimeZone</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>WorkDayEndHour</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the hour at which the work day ends.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int16</command:parameterValue>
+        <dev:type>
+          <maml:name>Int16</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>WorkDayStartHour</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the hour at which the work day starts.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int16</command:parameterValue>
+        <dev:type>
+          <maml:name>Int16</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>WorkDays</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the number of the work days.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int16</command:parameterValue>
+        <dev:type>
+          <maml:name>Int16</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.RegionalSettings</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Update-KshRegionalSettings -Lcid 1041</dev:code>
+        <dev:remarks>
+          <maml:para>Updates property values of the regional settings.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Update-KshRoleDefinition</command:name>
       <command:verb>Update</command:verb>
       <command:noun>KshRoleDefinition</command:noun>
@@ -53990,6 +55861,132 @@
         <dev:code>PS C:\&gt; Update-KshTermSet (Get-KshTermSet -TermGroup (Get-KshTermGroup -TermGroupName 'Company') -TermSetName 'Department') -Owner 'admin@example.onmicrosoft.com'</dev:code>
         <dev:remarks>
           <maml:para>Updates property values of the term set.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Update-KshTermStore</command:name>
+      <command:verb>Update</command:verb>
+      <command:noun>KshTermStore</command:noun>
+      <maml:description>
+        <maml:para>Updates a term store.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Update-KshTermStore cmdlet changes properties of the term store.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Update-KshTermStore</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>DefaultLcid</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the default locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
+          <dev:type>
+            <maml:name>UInt32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PassThru</maml:name>
+          <maml:Description>
+            <maml:para>If specified, returns the updated object.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>WorkingLcid</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the working locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
+          <dev:type>
+            <maml:name>UInt32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>DefaultLcid</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the default locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
+        <dev:type>
+          <maml:name>UInt32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>PassThru</maml:name>
+        <maml:Description>
+          <maml:para>If specified, returns the updated object.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>WorkingLcid</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the working locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
+        <dev:type>
+          <maml:name>UInt32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.TermStore</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Update-KshTermStore -DefaultLcid 1033</dev:code>
+        <dev:remarks>
+          <maml:para>Updates property values of the term store.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>

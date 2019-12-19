@@ -15,7 +15,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -275,14 +274,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                     }
                     else
                     {
-                        if (count < ClientConstants.MaxRetryCount)
-                        {
-                            Thread.Sleep(TimeSpan.FromSeconds(1));
-                        }
-                        else
-                        {
-                            throw new InvalidOperationException(responsePayload.ErrorInfo.ErrorMessage);
-                        }
+                        throw new InvalidOperationException(responsePayload.ErrorInfo.ErrorMessage);
                     }
                 }
                 else if ((int)responseMessage.StatusCode == 429)

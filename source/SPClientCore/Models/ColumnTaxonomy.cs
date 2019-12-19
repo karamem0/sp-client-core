@@ -167,9 +167,6 @@ namespace Karamem0.SharePoint.PowerShell.Models
         public override bool Sortable { get; protected set; }
 
         [JsonProperty()]
-        public virtual Guid SspId { get; protected set; }
-
-        [JsonProperty()]
         public override string StaticName { get; protected set; }
 
         [JsonProperty()]
@@ -177,6 +174,9 @@ namespace Karamem0.SharePoint.PowerShell.Models
 
         [JsonProperty()]
         public virtual Guid TermSetId { get; protected set; }
+
+        [JsonProperty("SspId")]
+        public virtual Guid TermStoreId { get; protected set; }
 
         [JsonProperty()]
         public override string Title { get; protected set; }

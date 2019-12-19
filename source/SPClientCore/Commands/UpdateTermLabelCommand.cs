@@ -8,7 +8,6 @@
 
 using Karamem0.SharePoint.PowerShell.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
-using Karamem0.SharePoint.PowerShell.Runtime.Services;
 using Karamem0.SharePoint.PowerShell.Services;
 using System;
 using System.Collections.Generic;

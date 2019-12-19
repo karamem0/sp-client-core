@@ -20,7 +20,7 @@ Yes, SPClientCore works with PowerShell Core, also it works with Windows PowerSh
 
 ### One module, manage all
 
-PnP PowerShell has only site admin features, and SharePoint Online Management Shell has only tenant admin features. SPClientCore includes both elements. You can run cmdlets for site admin by connecting to a site (https://tenant.sharepoint.com and its sub URLs), and you can run tenant admin cmdlets for connecting to the SharePoint admin center (https://tenant-admin.sharepoint.com). You can also determine whether you are currently connected to the SharePoint admin center.
+SPClientCore includes both elements that site admin features and tenant admin features. You can run cmdlets for site admin by connecting to a site (https://tenant.sharepoint.com and its sub URLs), and you can run tenant admin cmdlets for connecting to the SharePoint admin center (https://tenant-admin.sharepoint.com). You can also determine whether you are currently connected to the SharePoint admin center.
 
 ### Friendly Naming
 
@@ -39,9 +39,9 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
 
 - Login
   - [Connect-KshSite](docs/Connect-KshSite.md)
-  - [Get-KshCurrentSite](docs/Connect-KshCurrentSite.md)
-  - [Get-KshCurrentSiteCollection](docs/Connect-KshCurrentSiteCollection.md)
-  - [Get-KshCurrentUser](docs/Connect-KshCurrentUser.md)
+  - [Get-KshCurrentSite](docs/Get-KshCurrentSite.md)
+  - [Get-KshCurrentSiteCollection](docs/Get-KshCurrentSiteCollection.md)
+  - [Get-KshCurrentUser](docs/Get-KshCurrentUser.md)
   - [Select-KshSite](docs/Select-KshSite.md)
   - [Test-KshTenantSiteCollection](docs/Test-KshTenantSiteCollection.md)
 - Site Administration
@@ -69,6 +69,7 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [New-KshColumnMultiChoice](docs/New-KshColumnMultiChoice.md)
     - [New-KshColumnMultiLineText](docs/New-KshColumnMultiLineText.md)
     - [New-KshColumnNumber](docs/New-KshColumnNumber.md)
+    - [New-KshColumnTaxonomy](docs/New-KshColumnTaxonomy.md)
     - [New-KshColumnText](docs/New-KshColumnText.md)
     - [New-KshColumnUrl](docs/New-KshColumnUrl.md)
     - [New-KshColumnUser](docs/New-KshColumnUser.md)
@@ -83,6 +84,7 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Update-KshColumnMultiChoice](docs/Update-KshColumnMultiChoice.md)
     - [Update-KshColumnMultiLineText](docs/Update-KshColumnMultiLineText.md)
     - [Update-KshColumnNumber](docs/Update-KshColumnNumber.md)
+    - [Update-KshColumnTaxonomy](docs/Update-KshColumnTaxonomy.md)
     - [Update-KshColumnText](docs/Update-KshColumnText.md)
     - [Update-KshColumnUrl](docs/Update-KshColumnUrl.md)
     - [Update-KshColumnUser](docs/Update-KshColumnUser.md)
@@ -147,8 +149,10 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Update-KshListItem](docs/Update-KshListItem.md)
     - [Initialize-KshColumnGeolocationValue](docs/Initialize-KshColumnGeolocationValue.md)
     - [Initialize-KshColumnLookupValue](docs/Initialize-KshColumnLookupValue.md)
+    - [Initialize-KshColumnTaxonomyValue](docs/Initialize-KshColumnTaxonomyValue.md)
     - [Initialize-KshColumnUrlValue](docs/Initialize-KshColumnUrlValue.md)
     - [Initialize-KshColumnUserValue](docs/Initialize-KshColumnUserValue.md)
+    - [Set-KshColumnTaxonomyValue](docs/Set-KshColumnTaxonomyValue.md)
   - List Templates
     - [Get-KshListTemplate](docs/Get-KshListTemplate.md)
   - Navigation
@@ -164,7 +168,7 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Restore-KshRecycleBinItem](docs/Remove-KshRecycleBinItem.md)
   - Regional Settings
     - [Get-KshRegionalSettings](docs/Get-KshRegionalSettings.md)
-    - [Set-KshRegionalSettings](docs/Set-KshRegionalSettings.md)
+    - [Update-KshRegionalSettings](docs/Update-KshRegionalSettings.md)
   - Role Assignment
     - [Get-KshRoleAssignment](docs/Get-KshRoleAssignment.md)
     - [New-KshRoleAssignment](docs/New-KshRoleAssignment.md)
@@ -290,6 +294,6 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Update-KshTermSet](docs/Update-KshTermSet.md)
   - Term Store
     - [Get-KshTermStore](docs/Get-KshTermStore.md)
-    - [Set-KshTermStore](docs/Set-KshTermStore.md)
+    - [Update-KshTermStore](docs/Update-KshTermStore.md)
     - [Add-KshTermStoreLanguage](docs/Add-KshTermStoreLanguage.md)
     - [Remove-KshTermStoreLanguage](docs/Remove-KshTermStoreLanguage.md)

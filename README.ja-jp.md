@@ -20,7 +20,7 @@ SPClientCore は [PowerShell Gallery](https://www.powershellgallery.com/packages
 
 ### 1 つのモジュールですべての管理を
 
-PnP-PowerShell にはサイト管理機能のみしかなく、SharePoint Online 管理シェルにはテナント管理機能のみしかありません。SPClientCore は両方の機能を含んでいます。一般のサイト (https://tenant.sharepoint.com およびその配下の URL) に接続すればサイト管理のためのコマンドレットを実行することができ、SharePoint 管理センター (https://tenant-admin.sharepoint.com) に接続すればテナント管理のためのコマンドレットを実行することができます。現在 SharePoint 管理センターに接続しているかどうかを確認することもできます。
+SPClientCore はサイト管理者機能とテナント管理機能の両方の要素を含んでいます。一般のサイト (https://tenant.sharepoint.com およびその配下の URL) に接続すればサイト管理のためのコマンドレットを実行することができ、SharePoint 管理センター (https://tenant-admin.sharepoint.com) に接続すればテナント管理のためのコマンドレットを実行することができます。現在 SharePoint 管理センターに接続しているかどうかを確認することもできます。
 
 ### フレンドリーな名前付け
 
@@ -39,9 +39,9 @@ SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant およ
 
 - ログイン
   - [Connect-KshSite](docs/Connect-KshSite.md)
-  - [Get-KshCurrentSite](docs/Connect-KshCurrentSite.md)
-  - [Get-KshCurrentSiteCollection](docs/Connect-KshCurrentSiteCollection.md)
-  - [Get-KshCurrentUser](docs/Connect-KshCurrentUser.md)
+  - [Get-KshCurrentSite](docs/Get-KshCurrentSite.md)
+  - [Get-KshCurrentSiteCollection](docs/Get-KshCurrentSiteCollection.md)
+  - [Get-KshCurrentUser](docs/Get-KshCurrentUser.md)
   - [Select-KshSite](docs/Select-KshSite.md)
   - [Test-KshTenantSiteCollection](docs/Test-KshTenantSiteCollection.md)
 - サイト管理
@@ -69,6 +69,7 @@ SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant およ
     - [New-KshColumnMultiChoice](docs/New-KshColumnMultiChoice.md)
     - [New-KshColumnMultiLineText](docs/New-KshColumnMultiLineText.md)
     - [New-KshColumnNumber](docs/New-KshColumnNumber.md)
+    - [New-KshColumnTaxonomy](docs/New-KshColumnTaxonomy.md)
     - [New-KshColumnText](docs/New-KshColumnText.md)
     - [New-KshColumnUrl](docs/New-KshColumnUrl.md)
     - [New-KshColumnUser](docs/New-KshColumnUser.md)
@@ -83,6 +84,7 @@ SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant およ
     - [Update-KshColumnMultiChoice](docs/Update-KshColumnMultiChoice.md)
     - [Update-KshColumnMultiLineText](docs/Update-KshColumnMultiLineText.md)
     - [Update-KshColumnNumber](docs/Update-KshColumnNumber.md)
+    - [Update-KshColumnTaxonomy](docs/Update-KshColumnTaxonomy.md)
     - [Update-KshColumnText](docs/Update-KshColumnText.md)
     - [Update-KshColumnUrl](docs/Update-KshColumnUrl.md)
     - [Update-KshColumnUser](docs/Update-KshColumnUser.md)
@@ -147,8 +149,10 @@ SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant およ
     - [Update-KshListItem](docs/Update-KshListItem.md)
     - [Initialize-KshColumnGeolocationValue](docs/Initialize-KshColumnGeolocationValue.md)
     - [Initialize-KshColumnLookupValue](docs/Initialize-KshColumnLookupValue.md)
+    - [Initialize-KshColumnTaxonomyValue](docs/Initialize-KshColumnTaxonomyValue.md)
     - [Initialize-KshColumnUrlValue](docs/Initialize-KshColumnUrlValue.md)
     - [Initialize-KshColumnUserValue](docs/Initialize-KshColumnUserValue.md)
+    - [Set-KshColumnTaxonomyValue](docs/Set-KshColumnTaxonomyValue.md)
   - リスト テンプレート
     - [Get-KshListTemplate](docs/Get-KshListTemplate.md)
   - ナビゲーション
@@ -164,7 +168,7 @@ SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant およ
     - [Restore-KshRecycleBinItem](docs/Remove-KshRecycleBinItem.md)
   - 地域と言語の設定
     - [Get-KshRegionalSettings](docs/Get-KshRegionalSettings.md)
-    - [Set-KshRegionalSettings](docs/Set-KshRegionalSettings.md)
+    - [Update-KshRegionalSettings](docs/Update-KshRegionalSettings.md)
   - アクセス許可
     - [Get-KshRoleAssignment](docs/Get-KshRoleAssignment.md)
     - [New-KshRoleAssignment](docs/New-KshRoleAssignment.md)
@@ -290,6 +294,6 @@ SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant およ
     - [Update-KshTermSet](docs/Update-KshTermSet.md)
   - 用語ストア
     - [Get-KshTermStore](docs/Get-KshTermStore.md)
-    - [Set-KshTermStore](docs/Update-KshTermStore.md)
+    - [Update-KshTermStore](docs/Update-KshTermStore.md)
     - [Add-KshTermStoreLanguage](docs/Add-KshTermStoreLanguage.md)
     - [Remove-KshTermStoreLanguage](docs/Remove-KshTermStoreLanguage.md)

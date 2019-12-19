@@ -37,6 +37,9 @@ namespace Karamem0.SharePoint.PowerShell.Models
         [JsonProperty()]
         public virtual string Name { get; protected set; }
 
+        [JsonProperty()]
+        public virtual TermStore TermStore { get; protected set; }
+
     }
 
 }

@@ -8,7 +8,7 @@ schema: 2.0.0
 # Select-KshSite
 
 ## SYNOPSIS
-Selectes a site.
+Selects a site.
 
 ## SYNTAX
 

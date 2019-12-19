@@ -5,33 +5,49 @@ online version:
 schema: 2.0.0
 ---
 
-# Set-KshTermStore
+# Set-KshColumnTaxonomyValue
 
 ## SYNOPSIS
-Changes a term store.
+Changes a taxonomy column value.
 
 ## SYNTAX
 
 ```
-Set-KshTermStore [-DefaultLcid <UInt32>] [-WorkingLcid <UInt32>] [-PassThru] [<CommonParameters>]
+Set-KshColumnTaxonomyValue -Column <ColumnTaxonomy> -ListItem <ListItem> -Value <Term[]> -Lcid <UInt32>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Update-KshTermStore cmdlet changes properties of the term store.
+Set-KshColumnTaxonomyValue changes the taxonomy column value of the specified list item.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> Update-KshTermStore -DefaultLcid 1033
+PS C:\> Set-KshColumnTaxonomyValue -Column (Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af' -List (Get-KshList -ListTitle 'Announcements')) -ListItem (Get-KshListItem -List (Get-KshList -ListTitle 'Announcements') -ItemId 1) -Value (Get-KshTerm -TermSet (Get-KshTermSet -TermGroup (Get-KshTermGroup -TermGroupName 'Company') -TermSetName 'Department') -TermId '4e45662f-c021-41fd-b413-967bf413d369') -Lcid 1033
 ```
 
-Updates property values of the term store.
+Changes a taxonomy column value.
 
 ## PARAMETERS
 
-### -DefaultLcid
-Specifies the default locale ID.
+### -Column
+Specifies the taxonomy column.
+
+```yaml
+Type: ColumnTaxonomy
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Lcid
+Specifies the locale ID.
 For more information, see [reference](https://msdn.microsoft.com/en-us/library/cc233965.aspx).
 
 ```yaml
@@ -39,38 +55,37 @@ Type: UInt32
 Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -PassThru
-If specified, returns the updated object.
+### -ListItem
+Specifies the list item.
 
 ```yaml
-Type: SwitchParameter
+Type: ListItem
 Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -WorkingLcid
-Specifies the working locale ID.
-For more information, see [reference](https://msdn.microsoft.com/en-us/library/cc233965.aspx).
+### -Value
+Specifies the terms.
 
 ```yaml
-Type: UInt32
+Type: Term[]
 Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -86,7 +101,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.TermStore
+### None
 
 ## NOTES
 

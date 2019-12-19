@@ -51,7 +51,7 @@ The New-KshColumnText cmdlet adds new text column to the current site or the spe
 
 ### Example 1
 ```powershell
-PS C:\> New-KshColumnCalculated -Name 'TextColumn' -MaxLength 128
+PS C:\> New-KshColumnText -Name 'TextColumn' -MaxLength 128
 ```
 
 Creates a new column.
@@ -498,7 +498,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### None
+### Karamem0.SharePoint.PowerShell.Models.List
 
 ## OUTPUTS
 

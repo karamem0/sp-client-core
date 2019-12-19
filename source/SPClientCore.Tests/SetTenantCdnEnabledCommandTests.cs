@@ -6,11 +6,9 @@
 // https://github.com/karamem0/SPClientCore/blob/master/LICENSE
 //
 
-using Karamem0.SharePoint.PowerShell.Models;
 using Karamem0.SharePoint.PowerShell.Tests.Runtime;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

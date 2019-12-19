@@ -64,6 +64,9 @@ namespace Karamem0.SharePoint.PowerShell.Models
         [JsonProperty()]
         public virtual IReadOnlyList<string> Stakeholders { get; protected set; }
 
+        [JsonProperty()]
+        public override TermStore TermStore { get; protected set; }
+
     }
 
 }

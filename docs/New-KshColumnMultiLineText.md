@@ -54,7 +54,7 @@ The New-KshColumnMultiLineText cmdlet adds new multi-line text column to the cur
 
 ### Example 1
 ```powershell
-PS C:\> New-KshColumnCalculated -Name 'MultiLineTextColumn' -RichText $true -RichTextMode 'FullHtml'
+PS C:\> New-KshColumnMultiLineText -Name 'MultiLineTextColumn' -RichText $true -RichTextMode 'FullHtml'
 ```
 
 Creates a new column.
@@ -532,7 +532,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### None
+### Karamem0.SharePoint.PowerShell.Models.List
 
 ## OUTPUTS
 

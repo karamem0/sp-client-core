@@ -76,7 +76,37 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "Longitude", 10 }
                     }
                 );
-                var result7 = context.Runspace.InvokeCommand<ListItem>(
+                var result7 = context.Runspace.InvokeCommand<TermGroup>(
+                    "Get-KshTermGroup",
+                    new Dictionary<string, object>()
+                    {
+                        { "TermGroupId", context.AppSettings["TermGroup1Id"] }
+                    }
+                );
+                var result8 = context.Runspace.InvokeCommand<TermSet>(
+                    "Get-KshTermSet",
+                    new Dictionary<string, object>()
+                    {
+                        { "TermGroup", result7.ElementAt(0) },
+                        { "TermSetId", context.AppSettings["TermSet1Id"] }
+                    }
+                );
+                var result9 = context.Runspace.InvokeCommand<Term>(
+                    "Get-KshTerm",
+                    new Dictionary<string, object>()
+                    {
+                        { "TermSet", result8.ElementAt(0) },
+                        { "TermId", context.AppSettings["Term1Id"] }
+                    }
+                );
+                var result10 = context.Runspace.InvokeCommand<ColumnTaxonomyValue>(
+                    "Initialize-KshColumnTaxonomyValue",
+                    new Dictionary<string, object>()
+                    {
+                        { "Term", result9.ElementAt(0) }
+                    }
+                );
+                var result11 = context.Runspace.InvokeCommand<ListItem>(
                     "New-KshListItem",
                     new Dictionary<string, object>()
                     {
@@ -96,19 +126,20 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                                 { "TestColumn11", result4.ElementAt(0) },
                                 { "TestColumn12", new[] { result4.ElementAt(0) } },
                                 { "TestColumn13", result5.ElementAt(0) },
-                                { "TestColumn15", result6.ElementAt(0) }
+                                { "TestColumn15", result6.ElementAt(0) },
+                                { "TestColumn16", result10.ElementAt(0) }
                             }
                         }
                     }
                 );
-                var result8 = context.Runspace.InvokeCommand(
+                var result12 = context.Runspace.InvokeCommand(
                     "Remove-KshListItem",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result7.ElementAt(0) }
+                        { "Identity", result11.ElementAt(0) }
                     }
                 );
-                var actual = result7.ElementAt(0);
+                var actual = result11.ElementAt(0);
             }
         }
 
