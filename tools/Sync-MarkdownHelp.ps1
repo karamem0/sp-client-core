@@ -1,3 +1,11 @@
+#
+# Copyright (c) 2020 karamem0
+#
+# This software is released under the MIT License.
+#
+# https://github.com/karamem0/SPClientCore/blob/master/LICENSE
+#
+
 $SOURCE_PATH = "$PSScriptRoot/../source/SPClientCore"
 $SOURCE_HELP_FILE_PATH = "$PSScriptRoot/../source/SPClientCore/bin/Debug/netstandard2.0/publish/SPClientCore.dll-Help.xml"
 $SOURCE_MODULE_PATH = "$PSScriptRoot/../source/SPClientCore/bin/Debug/netstandard2.0/publish/SPClientCore.psd1"

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2019 karamem0
+// Copyright (c) 2020 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -38,7 +38,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         public SwitchParameter GroupIdDefined { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
-        public SwitchParameter IncludePersonalSiteCollection { get; private set; }
+        public SwitchParameter IncludePersonalSite { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
         public string Template { get; private set; }

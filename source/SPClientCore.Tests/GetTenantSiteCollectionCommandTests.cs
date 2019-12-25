@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2019 karamem0
+// Copyright (c) 2020 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -69,7 +69,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     new Dictionary<string, object>()
                     {
                         { "GroupIdDefined", false },
-                        { "IncludePersonalSiteCollection", true },
+                        { "IncludePersonalSite", true },
                         { "Template", "SPSPERS#10" }
                     }
                 );

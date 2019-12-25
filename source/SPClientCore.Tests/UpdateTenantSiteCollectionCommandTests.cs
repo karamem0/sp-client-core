@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2019 karamem0
+// Copyright (c) 2020 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -60,6 +60,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "PWAEnabled", "Enabled" },
                         { "RestrictedToRegion", "BlockFull" },
                         { "SandboxedCodeActivationCapability", "Enabled" },
+                        { "SharingCapability", "Disabled" },
                         { "StorageMaxLevel", 26214400 },
                         { "StorageWarningLevel", 25574400 },
                         { "Title", "Test Site 9" },

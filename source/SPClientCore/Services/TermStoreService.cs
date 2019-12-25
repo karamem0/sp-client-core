@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2019 karamem0
+// Copyright (c) 2020 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -37,8 +37,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
         {
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession"));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore"),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -59,8 +58,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession"));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore"),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId));

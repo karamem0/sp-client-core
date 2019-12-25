@@ -5,7 +5,7 @@
 SharePoint Service Module for PowerShell Core
 
 [![Build status](https://ci.appveyor.com/api/projects/status/etlu54thystfp79a?svg=true)](https://ci.appveyor.com/project/karamem0/spclientcore)
-[![Build Status](https://dev.azure.com/karamem0/SPClientCore/_apis/build/status/SPClientCore?branchName=develop)](https://dev.azure.com/karamem0/SPClientCore/_build/latest?definitionId=1&branchName=develop)
+[![Build Status](https://dev.azure.com/karamem0jp/SPClientCore/_apis/build/status/SPClientCore?branchName=develop)](https://dev.azure.com/karamem0jp/SPClientCore/_build/latest?definitionId=1&branchName=develop)
 [![License](https://img.shields.io/github/license/karamem0/spclientcore.svg)](https://github.com/karamem0/spclientcore/blob/master/LICENSE)
 
 ## Installation
@@ -42,6 +42,8 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
   - [Get-KshCurrentSite](docs/Get-KshCurrentSite.md)
   - [Get-KshCurrentSiteCollection](docs/Get-KshCurrentSiteCollection.md)
   - [Get-KshCurrentUser](docs/Get-KshCurrentUser.md)
+  - [Get-KshCurrentUserProfile](docs/Get-KshCurrentUserProfile.md)
+  - [Get-KshCurrentUserProperties](docs/Get-KshCurrentUserProperties.md)
   - [Select-KshSite](docs/Select-KshSite.md)
   - [Test-KshTenantSiteCollection](docs/Test-KshTenantSiteCollection.md)
 - Site Administration
@@ -232,6 +234,11 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Move-KshViewColumn](docs/Move-KshViewColumn.md)
     - [Remove-KshViewColumn](docs/Remove-KshViewColumn.md)
 - Tenant Administration
+  - Hub sites
+    - [Get-KshTenantHubSite](docs/Get-KshTenantHubSite.md)
+    - [New-KshTenantHubSite](docs/New-KshTenantHubSite.md)
+    - [Remove-KshTenantHubSite](docs/Remove-KshTenantHubSite.md)
+    - [Update-KshTenantHubSite](docs/Update-KshTenantHubSite.md)
   - Office 365 CDN
     - [Get-KshTenantCdnEnabled](docs/Get-KshTenantCdnEnabled.md)
     - [Set-KshTenantCdnEnabled](docs/Set-KshTenantCdnEnabled.md)

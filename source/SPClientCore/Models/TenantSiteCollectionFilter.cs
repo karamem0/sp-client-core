@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2019 karamem0
+// Copyright (c) 2020 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -39,9 +39,9 @@ namespace Karamem0.SharePoint.PowerShell.Models
         [JsonProperty()]
         public virtual bool IncludeDetail { get; protected set; }
 
-        [JsonProperty("IncludePersonalSite")]
+        [JsonProperty()]
         [SwitchParameterValue(TrueValue = PersonalSiteFilter.Include, FalseValue = PersonalSiteFilter.Exclude)]
-        public virtual PersonalSiteFilter IncludePersonalSiteCollection { get; protected set; }
+        public virtual PersonalSiteFilter IncludePersonalSite { get; protected set; }
 
         [JsonProperty()]
         public virtual string StartIndex { get; protected set; }

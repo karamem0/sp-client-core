@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2019 karamem0
+// Copyright (c) 2020 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -61,8 +61,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(termObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(termObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathMethod(
                     objectPath1.Id,
@@ -98,8 +97,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(termSetItemObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(termSetItemObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathMethod(
                     objectPath1.Id,
@@ -125,8 +123,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(termObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(termObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
                 objectPath1,
                 objectPathId => new ClientActionMethod(
@@ -144,8 +141,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(termLabelObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(termLabelObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathProperty(objectPath1.Id, "Term"),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -170,11 +166,9 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(termSetItemObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(termSetItemObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "Terms"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath1.Id, "Terms"));
             var objectPath3 = requestPayload.Add(
                 new ObjectPathMethod(
                     objectPath2.Id,
@@ -202,11 +196,9 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(termSetItemObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(termSetItemObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "Terms"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath1.Id, "Terms"));
             var objectPath3 = requestPayload.Add(
                 new ObjectPathMethod(
                     objectPath2.Id,
@@ -230,8 +222,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(termSetItemObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(termSetItemObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathProperty(objectPath1.Id, "Terms"),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -257,8 +248,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(sourceTermObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(sourceTermObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
                 objectPath1,
                 objectPathId => new ClientActionMethod(
@@ -280,8 +270,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(termObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(termObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
                 objectPath1,
                 objectPathId => new ClientActionMethod(
@@ -303,14 +292,12 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(termObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(termObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
                 objectPath1,
                 requestPayload.CreateSetPropertyDelegates(termObject, modificationInformation).ToArray());
             var objectPath3 = requestPayload.Add(
-                new ObjectPathProperty(objectPath2.Id, "TermStore"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath2.Id, "TermStore"));
             var objectPath4 = requestPayload.Add(
                 objectPath3,
                 objectPathId => new ClientActionMethod(objectPathId, "CommitAll"));

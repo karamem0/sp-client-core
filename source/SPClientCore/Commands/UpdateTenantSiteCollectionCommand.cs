@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2019 karamem0
+// Copyright (c) 2020 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -62,6 +62,10 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
         public SandboxedCodeActivationCapabilities SandboxedCodeActivationCapability { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+        public SharingCapabilities SharingCapability { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]

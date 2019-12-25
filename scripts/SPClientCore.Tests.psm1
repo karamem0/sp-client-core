@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2019 karamem0
+# Copyright (c) 2020 karamem0
 #
 # This software is released under the MIT License.
 #
@@ -29,6 +29,8 @@ function Install-TestSite {
 
         $authorityUrl = $Url.GetLeftPart([System.UriPartial]::Authority)
         $adminUrl = $authorityUrl.Replace('.sharepoint.com', '-admin.sharepoint.com')
+        $baseUrl = $authorityUrl + '/sites/SPClientCore'
+        $hubSiteUrl = $authorityUrl + '/sites/SPClientCoreHubSite'
 
         $credential = New-Object System.Net.NetworkCredential("$UserName@$DomainName", $Password)
         $credential = New-Object System.Management.Automation.PSCredential($credential.UserName, $credential.SecurePassword)
@@ -36,29 +38,29 @@ function Install-TestSite {
         $appSettings.LoginDomainName = $DomainName
         $appSettings.LoginUserName = "$UserName@$DomainName"
         $appSettings.LoginPassword = $Password
-        $appSettings.BaseUrl = $Url
+        $appSettings.BaseUrl = $baseUrl
         $appSettings.AuthorityUrl = $authorityUrl
         $appSettings.AdminUrl = $adminUrl
 
         Write-Progress -Activity 'Sign in...' -Status 'Processing'
         Connect-KshSite -Url $adminUrl -Credential $credential
 
-        Write-Progress -Activity 'Creating term group...' -Status 'Test Term Group 1'
+        Write-Progress -Activity 'Creating term groups...' -Status 'Test Term Group 1'
         $termGroup1 = New-KshTermGroup -Name 'Test Term Group 1'
         $appSettings.TermGroup1Id = $termGroup1.Id
         $appSettings.TermGroup1Name = $termGroup1.Name
 
-        Write-Progress -Activity 'Creating term group...' -Status 'Test Term Group 2'
+        Write-Progress -Activity 'Creating term groups...' -Status 'Test Term Group 2'
         $termGroup2 = New-KshTermGroup -Name 'Test Term Group 2'
         $appSettings.TermGroup2Id = $termGroup2.Id
         $appSettings.TermGroup2Name = $termGroup2.Name
 
-        Write-Progress -Activity 'Creating term group...' -Status 'Test Term Group 3'
+        Write-Progress -Activity 'Creating term groups...' -Status 'Test Term Group 3'
         $termGroup3 = New-KshTermGroup -Name 'Test Term Group 3'
         $appSettings.TermGroup3Id = $termGroup3.Id
         $appSettings.TermGroup3Name = $termGroup3.Name
 
-        Write-Progress -Activity 'Creating term set...' -Status 'Test Term Set 1'
+        Write-Progress -Activity 'Creating term sets...' -Status 'Test Term Set 1'
         $termSet1 = New-KshTermSet `
             -TermGroup $termGroup1 `
             -Name 'Test Term Set 1' `
@@ -66,7 +68,7 @@ function Install-TestSite {
         $appSettings.TermSet1Id = $termSet1.Id
         $appSettings.TermSet1Name = $termSet1.Name
 
-        Write-Progress -Activity 'Creating term set...' -Status 'Test Term Set 2'
+        Write-Progress -Activity 'Creating term sets...' -Status 'Test Term Set 2'
         $termSet2 = New-KshTermSet `
             -TermGroup $termGroup1 `
             -Name 'Test Term Set 2' `
@@ -74,7 +76,7 @@ function Install-TestSite {
         $appSettings.TermSet2Id = $termSet2.Id
         $appSettings.TermSet2Name = $termSet2.Name
 
-        Write-Progress -Activity 'Creating term set...' -Status 'Test Term Set 3'
+        Write-Progress -Activity 'Creating term sets...' -Status 'Test Term Set 3'
         $termSet3 = New-KshTermSet `
             -TermGroup $termGroup1 `
             -Name 'Test Term Set 3' `
@@ -82,7 +84,7 @@ function Install-TestSite {
         $appSettings.TermSet3Id = $termSet3.Id
         $appSettings.TermSet3Name = $termSet3.Name
 
-        Write-Progress -Activity 'Creating term...' -Status 'Test Term 1'
+        Write-Progress -Activity 'Creating terms...' -Status 'Test Term 1'
         $term1 = New-KshTerm `
             -TermSet $termSet1 `
             -Name 'Test Term 1' `
@@ -90,7 +92,7 @@ function Install-TestSite {
         $appSettings.Term1Id = $term1.Id
         $appSettings.Term1Name = $term1.Name
 
-        Write-Progress -Activity 'Creating term...' -Status 'Test Term 2'
+        Write-Progress -Activity 'Creating terms...' -Status 'Test Term 2'
         $term2 = New-KshTerm `
             -Term $term1 `
             -Name 'Test Term 2' `
@@ -98,7 +100,7 @@ function Install-TestSite {
         $appSettings.Term2Id = $term2.Id
         $appSettings.Term2Name = $term2.Name
 
-        Write-Progress -Activity 'Creating term...' -Status 'Test Term 3'
+        Write-Progress -Activity 'Creating terms...' -Status 'Test Term 3'
         $term3 = New-KshTerm `
             -Term $term1 `
             -Name 'Test Term 3' `
@@ -106,32 +108,52 @@ function Install-TestSite {
         $appSettings.Term3Id = $term3.Id
         $appSettings.Term3Name = $term3.Name
 
-        Write-Progress -Activity 'Creating term...' -Status 'Test Term 4'
+        Write-Progress -Activity 'Creating terms...' -Status 'Test Term 4'
         $term4 = New-KshTerm `
             -Term $term2 `
             -Name 'Test Term 4' `
             -Lcid 1033
         $appSettings.Term4Id = $term4.Id
         $appSettings.Term4Name = $term4.Name
+    
+        Write-Progress -Activity 'Creating site collections...' -Status 'Processing'
+        $null = New-KshTenantSiteCollection `
+            -Lcid 1033 `
+            -Owner $credential.UserName `
+            -StorageMaxLevel 26214400 `
+            -Template 'STS#0' `
+            -Title 'SPClientCoreHubSite' `
+            -Url $hubSiteUrl
 
-        Write-Progress -Activity 'Creating site collection...' -Status 'Processing'
-        $siteCollection = New-KshTenantSiteCollection `
+        Write-Progress -Activity 'Retrieving site collections....' -Status 'Processing'
+        $hubSite = Get-KshSiteCollection -SiteCollectionUrl $hubSiteUrl
+        $appSettings.HubSiteId = $hubSite.Id
+        $appSettings.HubSiteUrl = $hubSite.ServerRelativeUrl
+
+        Write-Progress -Activity 'Creating hub sites...' -Status 'Processing'
+        $null = New-KshTenantHubSite `
+            -SiteCollectionId $hubSite.Id `
+            -SiteCollectionUrl $hubSiteUrl `
+            -Title 'SPClientCoreHubSite'
+
+        Write-Progress -Activity 'Creating site collections...' -Status 'Processing'
+        $null = New-KshTenantSiteCollection `
             -Lcid 1033 `
             -Owner $credential.UserName `
             -StorageMaxLevel 26214400 `
             -Template 'STS#0' `
             -Title 'SPClientCore' `
-            -Url $Url
+            -Url $baseUrl
 
-        Write-Progress -Activity 'Sign in...' -Status 'Processing'
-        Connect-KshSite -Url $Url -Credential $credential
-
-        Write-Progress -Activity 'Retrieving a site collection....' -Status 'Processing'
-        $siteCollection = Get-KshCurrentSiteCollection
-        $appSettings.SiteCollectionGuid = $siteCollection.Id
+        Write-Progress -Activity 'Retrieving site collections....' -Status 'Processing'
+        $siteCollection = Get-KshSiteCollection -SiteCollectionUrl $baseUrl
+        $appSettings.SiteCollectionId = $siteCollection.Id
         $appSettings.SiteCollectionUrl = $siteCollection.ServerRelativeUrl
+        
+        Write-Progress -Activity 'Sign in...' -Status 'Processing'
+        Connect-KshSite -Url $baseUrl -Credential $credential
 
-        Write-Progress -Activity 'Adding site collection app catalog...' -Status 'Processing'
+        Write-Progress -Activity 'Adding site collection app catalogs...' -Status 'Processing'
         Add-KshSiteCollectionAppCatalog -SiteCollection $siteCollection
 
         Write-Progress -Activity 'Removing existing groups...' -Status 'Processing'
@@ -1091,7 +1113,7 @@ function Install-TestSite {
         $appSettings.Alert3Id = $alert3.Id
 
         Write-Progress -Activity 'Changing current site...' -Status 'Root Site'
-        Get-KshSite -SiteUrl $Url | Select-KshSite
+        Get-KshSite -SiteUrl $baseUrl | Select-KshSite
 
         Write-Progress -Activity 'Retrieving app path...' -Status 'Processing'
         $app0Path = Resolve-Path "$PSScriptRoot/TestApp0/sharepoint/solution/TestApp0.sppkg"
@@ -1196,6 +1218,8 @@ function Uninstall-TestSite {
 
         $authorityUrl = $Url.GetLeftPart([System.UriPartial]::Authority)
         $adminUrl = $authorityUrl.Replace('.sharepoint.com', '-admin.sharepoint.com')
+        $baseUrl = $authorityUrl + '/sites/SPClientCore'
+        $hubSiteUrl = $authorityUrl + '/sites/SPClientCoreHubSite'
 
         $credential = New-Object System.Net.NetworkCredential("$UserName@$DomainName", $Password)
         $credential = New-Object System.Management.Automation.PSCredential($credential.UserName, $credential.SecurePassword)
@@ -1203,19 +1227,26 @@ function Uninstall-TestSite {
         Write-Progress -Activity 'Sign in...' -Status 'Processing'
         Connect-KshSite -Url $adminUrl -Credential $credential
         
-        Write-Progress -Activity 'Removing site collection app catalog...' -Status 'Processing'
-        Get-KshSiteCollectionAppCatalog -SiteCollectionUrl $Url | Remove-KshSiteCollectionAppCatalog
+        Write-Progress -Activity 'Removing site collection app catalogs...' -Status 'Processing'
+        Get-KshSiteCollectionAppCatalog -SiteCollectionUrl $baseUrl | Remove-KshSiteCollectionAppCatalog
 
-        Write-Progress -Activity 'Deleting site collection...' -Status 'Processing'
-        Get-KshTenantSiteCollection -SiteCollectionUrl $Url | Remove-KshTenantSiteCollection
-        Get-KshTenantDeletedSiteCollection -SiteCollectionUrl $Url | Remove-KshTenantDeletedSiteCollection
+        Write-Progress -Activity 'Removing site collections...' -Status 'Processing'
+        Get-KshTenantSiteCollection -SiteCollectionUrl $baseUrl | Remove-KshTenantSiteCollection
+        Get-KshTenantDeletedSiteCollection -SiteCollectionUrl $baseUrl | Remove-KshTenantDeletedSiteCollection
 
-        Write-Progress -Activity 'Retrieving term group...' -Status 'Processing'
+        Write-Progress -Activity 'Removing hub sites...' -Status 'Processing'
+        Get-KshTenantHubSite -HubSiteUrl $hubSiteUrl | Remove-KshTenantHubSite
+
+        Write-Progress -Activity 'Removing site collections...' -Status 'Processing'
+        Get-KshTenantSiteCollection -SiteCollectionUrl $hubSiteUrl | Remove-KshTenantSiteCollection
+        Get-KshTenantDeletedSiteCollection -SiteCollectionUrl $hubSiteUrl | Remove-KshTenantDeletedSiteCollection
+
+        Write-Progress -Activity 'Retrieving term groups...' -Status 'Processing'
         $termGroup1 = Get-KshTermGroup -TermGroupName 'Test Term Group 1'
         $termGroup2 = Get-KshTermGroup -TermGroupName 'Test Term Group 2'
         $termGroup3 = Get-KshTermGroup -TermGroupName 'Test Term Group 3'
 
-        Write-Progress -Activity 'Retrieving term set...' -Status 'Processing'
+        Write-Progress -Activity 'Retrieving term sets...' -Status 'Processing'
         $termSet1 = Get-KshTermSet `
             -TermGroup $termGroup1 `
             -TermSetName 'Test Term Set 1'
@@ -1226,20 +1257,20 @@ function Uninstall-TestSite {
             -TermGroup $termGroup1 `
             -TermSetName 'Test Term Set 3'
             
-        Write-Progress -Activity 'Retrieving term...' -Status 'Processing'
+        Write-Progress -Activity 'Retrieving terms...' -Status 'Processing'
         $term1 = Get-KshTerm `
             -TermSet $termSet1 `
             -TermName 'Test Term 1'
         
-        Write-Progress -Activity 'Removing term...' -Status 'Processing'
+        Write-Progress -Activity 'Removing terms...' -Status 'Processing'
         Remove-KshTerm -Identity $term1
 
-        Write-Progress -Activity 'Removing term set...' -Status 'Processing'
+        Write-Progress -Activity 'Removing term sets...' -Status 'Processing'
         Remove-KshTermSet -Identity $termSet1
         Remove-KshTermSet -Identity $termSet2
         Remove-KshTermSet -Identity $termSet3
 
-        Write-Progress -Activity 'Removing term group...' -Status 'Processing'
+        Write-Progress -Activity 'Removing term groups...' -Status 'Processing'
         Remove-KshTermGroup -Identity $termGroup1
         Remove-KshTermGroup -Identity $termGroup2
         Remove-KshTermGroup -Identity $termGroup3

@@ -32,7 +32,7 @@ Updates property values of the term store.
 
 ### -DefaultLcid
 Specifies the default locale ID.
-For more information, see [reference](https://msdn.microsoft.com/en-us/library/cc233965.aspx).
+For more information, see [reference](https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).
 
 ```yaml
 Type: UInt32
@@ -63,7 +63,7 @@ Accept wildcard characters: False
 
 ### -WorkingLcid
 Specifies the working locale ID.
-For more information, see [reference](https://msdn.microsoft.com/en-us/library/cc233965.aspx).
+For more information, see [reference](https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).
 
 ```yaml
 Type: UInt32

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2019 karamem0
+// Copyright (c) 2020 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -58,8 +58,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathConstructor(typeof(Tenant)),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathConstructor(typeof(Tenant)));
             var objectPath2 = requestPayload.Add(
                 objectPath1,
                 objectPathId => new ClientActionMethod(
@@ -89,8 +88,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathConstructor(typeof(Tenant)),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathConstructor(typeof(Tenant)));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathMethod(
                     objectPath1.Id,
@@ -110,8 +108,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
         {
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathConstructor(typeof(Tenant)),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathConstructor(typeof(Tenant)));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathMethod(objectPath1.Id, "GetAllTenantThemes"),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -142,8 +139,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathConstructor(typeof(Tenant)),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathConstructor(typeof(Tenant)));
             var objectPath2 = requestPayload.Add(
                 objectPath1,
                 objectPathId => new ClientActionMethod(
@@ -174,8 +170,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathConstructor(typeof(Tenant)),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathConstructor(typeof(Tenant)));
             var objectPath2 = requestPayload.Add(
                 objectPath1,
                 objectPathId => new ClientActionMethod(

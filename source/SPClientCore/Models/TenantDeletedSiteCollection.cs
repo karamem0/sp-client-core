@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2019 karamem0
+// Copyright (c) 2020 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -31,8 +31,8 @@ namespace Karamem0.SharePoint.PowerShell.Models
         [JsonProperty()]
         public virtual DateTime DeletionTime { get; protected set; }
 
-        [JsonProperty()]
-        public virtual Guid SiteId { get; protected set; }
+        [JsonProperty("SiteId")]
+        public virtual Guid Id { get; protected set; }
 
         [JsonProperty()]
         public virtual string Status { get; protected set; }

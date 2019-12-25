@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshCurrentSite
 
 ## SYNOPSIS
-Retrieves the current site.
+Retrieves current site.
 
 ## SYNTAX
 
@@ -17,7 +17,7 @@ Get-KshCurrentSite [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshCurrentSite cmdlet retrieves the current site.
+The Get-KshCurrentSite cmdlet retrieves current site.
 
 ## EXAMPLES
 
@@ -26,7 +26,7 @@ The Get-KshCurrentSite cmdlet retrieves the current site.
 PS C:\> Get-KshCurrentSite
 ```
 
-Retrieves a current site.
+Retrieves current site.
 
 ## PARAMETERS
 

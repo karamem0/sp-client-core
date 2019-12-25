@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2019 karamem0
+// Copyright (c) 2020 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -49,8 +49,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(termObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(termObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
                 objectPath1,
                 objectPathId => new ClientActionMethod(
@@ -73,8 +72,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(termObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(termObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
                 objectPath1,
                 objectPathId => new ClientActionMethod(

@@ -987,7 +987,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>Lcid</maml:name>
           <maml:Description>
-            <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+            <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
           <dev:type>
@@ -1002,7 +1002,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>Lcid</maml:name>
         <maml:Description>
-          <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+          <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
         <dev:type>
@@ -3684,11 +3684,11 @@
       <command:verb>Get</command:verb>
       <command:noun>KshCurrentSite</command:noun>
       <maml:description>
-        <maml:para>Retrieves the current site.</maml:para>
+        <maml:para>Retrieves current site.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshCurrentSite cmdlet retrieves the current site.</maml:para>
+      <maml:para>The Get-KshCurrentSite cmdlet retrieves current site.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -3726,7 +3726,7 @@
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; Get-KshCurrentSite</dev:code>
         <dev:remarks>
-          <maml:para>Retrieves a current site.</maml:para>
+          <maml:para>Retrieves current site.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -3738,11 +3738,11 @@
       <command:verb>Get</command:verb>
       <command:noun>KshCurrentSiteCollection</command:noun>
       <maml:description>
-        <maml:para>Retrieves the current site collection.</maml:para>
+        <maml:para>Retrieves current site collection.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshCurrentSiteCollection cmdlet retrieves the current site collection.</maml:para>
+      <maml:para>The Get-KshCurrentSiteCollection cmdlet retrieves current site collection.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -3780,7 +3780,7 @@
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; Get-KshCurrentSiteCollection</dev:code>
         <dev:remarks>
-          <maml:para>Retrieves a current site collection.</maml:para>
+          <maml:para>Retrieves current site collection.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -3792,11 +3792,11 @@
       <command:verb>Get</command:verb>
       <command:noun>KshCurrentUser</command:noun>
       <maml:description>
-        <maml:para>Retrieves the current user.</maml:para>
+        <maml:para>Retrieves current user.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshCurrentUser cmdlet retrieves the current user.</maml:para>
+      <maml:para>The Get-KshCurrentUser cmdlet retrieves current user.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -3834,7 +3834,115 @@
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; Get-KshCurrentUser</dev:code>
         <dev:remarks>
-          <maml:para>Retrieves a current user.</maml:para>
+          <maml:para>Retrieves current user.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-KshCurrentUserProfile</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>KshCurrentUserProfile</command:noun>
+      <maml:description>
+        <maml:para>Retrieves current user profile.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-KshCurrentUserProfile cmdlet retrieves current user profile.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-KshCurrentUserProfile</maml:name>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters />
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>なし</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.UserProfile</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshCurrentUserProfile</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves current user profile.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-KshCurrentUserProperties</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>KshCurrentUserProperties</command:noun>
+      <maml:description>
+        <maml:para>Retrieves current user properties.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-KshCurrentUserProperties cmdlet retrieves current user properties.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-KshCurrentUserProperties</maml:name>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters />
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>なし</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.UserProfile</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshCurrentUserProperties</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves current user properties.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -7695,7 +7803,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
           <maml:name>Lcid</maml:name>
           <maml:Description>
-            <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+            <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
           <dev:type>
@@ -7744,7 +7852,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
           <maml:name>Lcid</maml:name>
           <maml:Description>
-            <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+            <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
           <dev:type>
@@ -7771,7 +7879,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
         <maml:name>Lcid</maml:name>
         <maml:Description>
-          <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+          <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
         <dev:type>
@@ -8522,6 +8630,152 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Get-KshTenantHubSite</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>KshTenantHubSite</command:noun>
+      <maml:description>
+        <maml:para>Retrieves one or more hub sites.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-KshTenantHubSite cmdlet retrieves hub sites. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-KshTenantHubSite</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>HubSiteId</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the hub site ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+          <dev:type>
+            <maml:name>Guid</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshTenantHubSite</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>HubSiteUrl</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the hub site URL.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshTenantHubSite</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NoEnumerate</maml:name>
+          <maml:Description>
+            <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>HubSiteId</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the hub site ID.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+        <dev:type>
+          <maml:name>Guid</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>HubSiteUrl</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the hub site URL.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>NoEnumerate</maml:name>
+        <maml:Description>
+          <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.HubSite</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshTenantHubSite -HubSiteId '36a7d47b-c717-4647-99ca-59c8cd3cc71f'</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves a hub site by hub site ID.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshTenantHubSite -HubSiteId 'https://example.sharepoint.com/sites/hub'</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves a hub site by hub site URL.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 3 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshTenantHubSite</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves all hub sites.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Get-KshTenantSettings</command:name>
       <command:verb>Get</command:verb>
       <command:noun>KshTenantSettings</command:noun>
@@ -8601,9 +8855,9 @@
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>IncludePersonalSiteCollection</maml:name>
+          <maml:name>IncludePersonalSite</maml:name>
           <maml:Description>
-            <maml:para>If specified, returns personal site collections.</maml:para>
+            <maml:para>If specified, returns personal sites.</maml:para>
           </maml:Description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -8692,9 +8946,9 @@
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>IncludePersonalSiteCollection</maml:name>
+        <maml:name>IncludePersonalSite</maml:name>
         <maml:Description>
-          <maml:para>If specified, returns personal site collections.</maml:para>
+          <maml:para>If specified, returns personal sites.</maml:para>
         </maml:Description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
@@ -8789,9 +9043,9 @@
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 4 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Get-KshTenantSiteCollection -IncludePersonalSiteCollection</dev:code>
+        <dev:code>PS C:\&gt; Get-KshTenantSiteCollection -IncludePersonalSite</dev:code>
         <dev:remarks>
-          <maml:para>Retrieves site collections includes personal site collections.</maml:para>
+          <maml:para>Retrieves site collections includes personal sites.</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
@@ -8834,7 +9088,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Lcid</maml:name>
           <maml:Description>
-            <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+            <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
           <dev:type>
@@ -8872,7 +9126,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Lcid</maml:name>
         <maml:Description>
-          <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+          <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
         <dev:type>
@@ -9464,7 +9718,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Lcid</maml:name>
           <maml:Description>
-            <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+            <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
           <dev:type>
@@ -9491,7 +9745,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Lcid</maml:name>
         <maml:Description>
-          <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+          <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
         <dev:type>
@@ -10335,6 +10589,112 @@
         <dev:code>PS C:\&gt; Get-KshUser</dev:code>
         <dev:remarks>
           <maml:para>Retrieves all users of the current site.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-KshUserProperties</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>KshUserProperties</command:noun>
+      <maml:description>
+        <maml:para>Retrieves an user properties.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-KshUserProperties cmdlet retrieves properties of the specific user.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-KshUserProperties</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Identity</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the user properties.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">UserProperties</command:parameterValue>
+          <dev:type>
+            <maml:name>UserProperties</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshUserProperties</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>UserLoginName</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the user login name.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Identity</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the user properties.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">UserProperties</command:parameterValue>
+        <dev:type>
+          <maml:name>UserProperties</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>UserLoginName</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the user login name.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.UserProperties</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.UserProfile</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshUserProperties -UserLoginName 'i:0#.f|membership|admin@example.onmicrosoft.com'</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves a user properties by user login name.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -14257,7 +14617,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>CurrencyLcid</maml:name>
           <maml:Description>
-            <maml:para>Specifies the locale ID. This parameter is used when OutputType is 'Currency'. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+            <maml:para>Specifies the locale ID. This parameter is used when OutputType is 'Currency'. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
           <dev:type>
@@ -14617,7 +14977,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>CurrencyLcid</maml:name>
           <maml:Description>
-            <maml:para>Specifies the locale ID. This parameter is used when OutputType is 'Currency'. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+            <maml:para>Specifies the locale ID. This parameter is used when OutputType is 'Currency'. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
           <dev:type>
@@ -14900,7 +15260,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>CurrencyLcid</maml:name>
           <maml:Description>
-            <maml:para>Specifies the locale ID. This parameter is used when OutputType is 'Currency'. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+            <maml:para>Specifies the locale ID. This parameter is used when OutputType is 'Currency'. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
           <dev:type>
@@ -15278,7 +15638,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>CurrencyLcid</maml:name>
         <maml:Description>
-          <maml:para>Specifies the locale ID. This parameter is used when OutputType is 'Currency'. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+          <maml:para>Specifies the locale ID. This parameter is used when OutputType is 'Currency'. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
         <dev:type>
@@ -17085,7 +17445,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>CurrencyLcid</maml:name>
           <maml:Description>
-            <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+            <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
           <dev:type>
@@ -17441,7 +17801,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>CurrencyLcid</maml:name>
           <maml:Description>
-            <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+            <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
           <dev:type>
@@ -17720,7 +18080,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>CurrencyLcid</maml:name>
           <maml:Description>
-            <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+            <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
           <dev:type>
@@ -18094,7 +18454,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>CurrencyLcid</maml:name>
         <maml:Description>
-          <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+          <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
         <dev:type>
@@ -33512,7 +33872,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Lcid</maml:name>
           <maml:Description>
-            <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+            <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
           <dev:type>
@@ -33587,7 +33947,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Lcid</maml:name>
         <maml:Description>
-          <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+          <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
         <dev:type>
@@ -33937,6 +34297,229 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>New-KshTenantHubSite</command:name>
+      <command:verb>New</command:verb>
+      <command:noun>KshTenantHubSite</command:noun>
+      <maml:description>
+        <maml:para>Creates a new hub site.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The New-KshTenantHubSite cmdlet adds a new hub site to the tenant. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>New-KshTenantHubSite</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Description</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the description.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>EnablePermissionsSync</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to enable permissions sync.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>HideNameInNavigation</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to hide name in navigation.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>LogoUrl</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the logo URL.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>SiteCollectionId</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the site collection ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+          <dev:type>
+            <maml:name>Guid</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>SiteCollectionUrl</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the site collection URL.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Title</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the title.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Description</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the description.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>EnablePermissionsSync</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether to enable permissions sync.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>HideNameInNavigation</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether to hide name in navigation.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>LogoUrl</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the logo URL.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>SiteCollectionId</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the site collection ID.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+        <dev:type>
+          <maml:name>Guid</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>SiteCollectionUrl</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the site collection URL.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Title</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the title.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.HubSite</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; New-KshTenantHubSite -SiteCollectionId '36a7d47b-c717-4647-99ca-59c8cd3cc71f' -SiteCollectionUrl 'https://example.sharepoint.com/sites/hub' -Title 'Hub Site'</dev:code>
+        <dev:remarks>
+          <maml:para>Creates a new hub site.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>New-KshTenantSiteCollection</command:name>
       <command:verb>New</command:verb>
       <command:noun>KshTenantSiteCollection</command:noun>
@@ -33965,7 +34548,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Lcid</maml:name>
           <maml:Description>
-            <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+            <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
           <dev:type>
@@ -34111,7 +34694,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Lcid</maml:name>
         <maml:Description>
-          <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+          <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
         <dev:type>
@@ -34446,7 +35029,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Lcid</maml:name>
           <maml:Description>
-            <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+            <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
           <dev:type>
@@ -34497,7 +35080,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Lcid</maml:name>
           <maml:Description>
-            <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+            <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
           <dev:type>
@@ -34536,7 +35119,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Lcid</maml:name>
         <maml:Description>
-          <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+          <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
         <dev:type>
@@ -34771,7 +35354,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Lcid</maml:name>
           <maml:Description>
-            <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+            <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
           <dev:type>
@@ -34810,7 +35393,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Lcid</maml:name>
         <maml:Description>
-          <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+          <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
         <dev:type>
@@ -34922,7 +35505,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Lcid</maml:name>
           <maml:Description>
-            <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+            <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
           <dev:type>
@@ -34961,7 +35544,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Lcid</maml:name>
         <maml:Description>
-          <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+          <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
         <dev:type>
@@ -38377,6 +38960,85 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Remove-KshTenantHubSite</command:name>
+      <command:verb>Remove</command:verb>
+      <command:noun>KshTenantHubSite</command:noun>
+      <maml:description>
+        <maml:para>Removes a hub site.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Remove-KshTenantHubSite cmdlet removes a hub site. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Remove-KshTenantHubSite</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Identity</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the hub site.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">HubSite</command:parameterValue>
+          <dev:type>
+            <maml:name>HubSite</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Identity</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the hub site.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">HubSite</command:parameterValue>
+        <dev:type>
+          <maml:name>HubSite</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.HubSite</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Void</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Remove-KshTenantHubSite -Identity (Get-KshTenantHubSite -HubSiteUrl 'https://example.sharepoint.com/sites/hub')</dev:code>
+        <dev:remarks>
+          <maml:para>Removes a hub site.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Remove-KshTenantSiteCollection</command:name>
       <command:verb>Remove</command:verb>
       <command:noun>KshTenantSiteCollection</command:noun>
@@ -39150,7 +39812,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>Lcid</maml:name>
           <maml:Description>
-            <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+            <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
           <dev:type>
@@ -39165,7 +39827,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>Lcid</maml:name>
         <maml:Description>
-          <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+          <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
         <dev:type>
@@ -40305,7 +40967,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Lcid</maml:name>
           <maml:Description>
-            <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+            <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
           <dev:type>
@@ -40356,7 +41018,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Lcid</maml:name>
         <maml:Description>
-          <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+          <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
         <dev:type>
@@ -41044,7 +41706,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Lcid</maml:name>
           <maml:Description>
-            <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+            <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
           <dev:type>
@@ -41083,7 +41745,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Lcid</maml:name>
         <maml:Description>
-          <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+          <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
         <dev:type>
@@ -43379,7 +44041,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>CurrencyLcid</maml:name>
           <maml:Description>
-            <maml:para>Specifies the locale ID. This parameter is used when OutputType is 'Currency'. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+            <maml:para>Specifies the locale ID. This parameter is used when OutputType is 'Currency'. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
           <dev:type>
@@ -43660,7 +44322,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>CurrencyLcid</maml:name>
         <maml:Description>
-          <maml:para>Specifies the locale ID. This parameter is used when OutputType is 'Currency'. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+          <maml:para>Specifies the locale ID. This parameter is used when OutputType is 'Currency'. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
         <dev:type>
@@ -44573,7 +45235,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>CurrencyLcid</maml:name>
           <maml:Description>
-            <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+            <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
           <dev:type>
@@ -44850,7 +45512,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>CurrencyLcid</maml:name>
         <maml:Description>
-          <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+          <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
         <dev:type>
@@ -52821,7 +53483,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Lcid</maml:name>
           <maml:Description>
-            <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+            <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
           <dev:type>
@@ -52991,7 +53653,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Lcid</maml:name>
         <maml:Description>
-          <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+          <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
         <dev:type>
@@ -54196,6 +54858,252 @@
         <dev:code>PS C:\&gt; Update-KshSite -Identity (Get-KshSite -SiteId 'd298e576-6985-4119-9796-050b9f371872') -NoCrawl $true</dev:code>
         <dev:remarks>
           <maml:para>Updates property values of the site.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Update-KshTenantHubSite</command:name>
+      <command:verb>Update</command:verb>
+      <command:noun>KshTenantHubSite</command:noun>
+      <maml:description>
+        <maml:para>Updates a hub site.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Update-KshTenantHubSite cmdlet updates properties of the hub site. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Update-KshTenantHubSite</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Identity</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the hub site.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">HubSite</command:parameterValue>
+          <dev:type>
+            <maml:name>HubSite</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Description</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the description.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>EnablePermissionsSync</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to enable permissions sync.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>HideNameInNavigation</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to hide name in navigation.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>LogoUrl</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the logo URL.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ParentHubSiteId</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the parent hub site ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+          <dev:type>
+            <maml:name>Guid</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PassThru</maml:name>
+          <maml:Description>
+            <maml:para>If specified, returns the updated object.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Title</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the title.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Description</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the description.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>EnablePermissionsSync</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether to enable permissions sync.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>HideNameInNavigation</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether to hide name in navigation.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Identity</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the hub site.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">HubSite</command:parameterValue>
+        <dev:type>
+          <maml:name>HubSite</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>LogoUrl</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the logo URL.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ParentHubSiteId</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the parent hub site ID.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+        <dev:type>
+          <maml:name>Guid</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>PassThru</maml:name>
+        <maml:Description>
+          <maml:para>If specified, returns the updated object.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Title</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the title.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.HubSite</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.HubSite</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Update-KshTenantHubSite -Identity (Get-KshTenantHubSite -HubSiteUrl 'https://example.sharepoint.com/sites/hub') -Title 'Hub site'</dev:code>
+        <dev:remarks>
+          <maml:para>Updates property values of the hub site.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -55438,7 +56346,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Lcid</maml:name>
           <maml:Description>
-            <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+            <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
           <dev:type>
@@ -55526,7 +56434,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Lcid</maml:name>
         <maml:Description>
-          <maml:para>Specifies the locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+          <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
         <dev:type>
@@ -55884,7 +56792,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>DefaultLcid</maml:name>
           <maml:Description>
-            <maml:para>Specifies the default locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+            <maml:para>Specifies the default locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
           <dev:type>
@@ -55907,7 +56815,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>WorkingLcid</maml:name>
           <maml:Description>
-            <maml:para>Specifies the working locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+            <maml:para>Specifies the working locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
           <dev:type>
@@ -55922,7 +56830,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>DefaultLcid</maml:name>
         <maml:Description>
-          <maml:para>Specifies the default locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+          <maml:para>Specifies the default locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
         <dev:type>
@@ -55946,7 +56854,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>WorkingLcid</maml:name>
         <maml:Description>
-          <maml:para>Specifies the working locale ID. For more information, see reference (https://msdn.microsoft.com/en-us/library/cc233965.aspx).</maml:para>
+          <maml:para>Specifies the working locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
         <dev:type>

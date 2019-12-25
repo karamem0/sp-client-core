@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshCurrentUser
 
 ## SYNOPSIS
-Retrieves the current user.
+Retrieves current user.
 
 ## SYNTAX
 
@@ -17,7 +17,7 @@ Get-KshCurrentUser [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshCurrentUser cmdlet retrieves the current user.
+The Get-KshCurrentUser cmdlet retrieves current user.
 
 ## EXAMPLES
 
@@ -26,7 +26,7 @@ The Get-KshCurrentUser cmdlet retrieves the current user.
 PS C:\> Get-KshCurrentUser
 ```
 
-Retrieves a current user.
+Retrieves current user.
 
 ## PARAMETERS
 

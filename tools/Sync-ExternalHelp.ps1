@@ -1,3 +1,11 @@
+#
+# Copyright (c) 2020 karamem0
+#
+# This software is released under the MIT License.
+#
+# https://github.com/karamem0/SPClientCore/blob/master/LICENSE
+#
+
 $DOCS_PATH = "$PSScriptRoot/../docs"
 $SOURCE_PATH = "$PSScriptRoot/../source/SPClientCore"
 

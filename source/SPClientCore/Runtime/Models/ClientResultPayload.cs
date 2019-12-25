@@ -1,11 +1,12 @@
 //
-// Copyright (c) 2019 karamem0
+// Copyright (c) 2020 karamem0
 //
 // This software is released under the MIT License.
 //
 // https://github.com/karamem0/SPClientCore/blob/master/LICENSE
 //
 
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -46,6 +47,10 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
         public T ToObject<T>(long id)
         {
             var jsonToken = this.ClientObjects[id];
+            if (jsonToken.Type == JTokenType.Null)
+            {
+                throw new InvalidOperationException(StringResources.ErrorValueIsInvalid);
+            }
             if (typeof(T).IsSubclassOf(typeof(ClientObject)))
             {
                 var objectName = jsonToken["_ObjectType_"].ToString();

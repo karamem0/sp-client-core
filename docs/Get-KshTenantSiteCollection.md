@@ -24,8 +24,8 @@ Get-KshTenantSiteCollection [-SiteCollectionUrl] <Uri> [<CommonParameters>]
 
 ### ParamSet3
 ```
-Get-KshTenantSiteCollection [-GroupIdDefined] [-IncludePersonalSiteCollection] [-Template <String>]
- [-NoEnumerate] [<CommonParameters>]
+Get-KshTenantSiteCollection [-GroupIdDefined] [-IncludePersonalSite] [-Template <String>] [-NoEnumerate]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -57,10 +57,10 @@ Retrieves Office 365 Groups site collections.
 
 ### Example 4
 ```powershell
-PS C:\> Get-KshTenantSiteCollection -IncludePersonalSiteCollection
+PS C:\> Get-KshTenantSiteCollection -IncludePersonalSite
 ```
 
-Retrieves site collections includes personal site collections.
+Retrieves site collections includes personal sites.
 
 ### Example 5
 ```powershell
@@ -101,8 +101,8 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -IncludePersonalSiteCollection
-If specified, returns personal site collections.
+### -IncludePersonalSite
+If specified, returns personal sites.
 
 ```yaml
 Type: SwitchParameter

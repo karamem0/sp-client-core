@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2019 karamem0
+# Copyright (c) 2020 karamem0
 #
 # This software is released under the MIT License.
 #
@@ -24,7 +24,7 @@ Author = 'karamem0'
 CompanyName = 'karamem0'
 
 # Copyright statement for this module
-Copyright = 'Copyright (c) 2019 karamem0'
+Copyright = 'Copyright (c) 2020 karamem0'
 
 # Description of the functionality provided by this module
 Description = 'SharePoint Service Module for PowerShell Core'

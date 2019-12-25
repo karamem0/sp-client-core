@@ -18,9 +18,10 @@ Update-KshTenantSiteCollection [-Identity] <TenantSiteCollection>
  [-AllowDownloadingNonWebViewableFiles <Boolean>] [-DisableAppViews <AppViewsPolicy>]
  [-DisableCompanyWideSharingLinks <CompanyWideSharingLinksPolicy>] [-DisableFlows <FlowsPolicy>]
  [-Owner <String>] [-PWAEnabled <PWAEnabledStatus>] [-RestrictedToRegion <RestrictedToRegion>]
- [-SandboxedCodeActivationCapability <SandboxedCodeActivationCapabilities>] [-StorageMaxLevel <Int64>]
- [-StorageWarningLevel <Int64>] [-Title <String>] [-UserCodeMaxLevel <Double>] [-UserCodeWarningLevel <Double>]
- [-PassThru] [<CommonParameters>]
+ [-SandboxedCodeActivationCapability <SandboxedCodeActivationCapabilities>]
+ [-SharingCapability <SharingCapabilities>] [-StorageMaxLevel <Int64>] [-StorageWarningLevel <Int64>]
+ [-Title <String>] [-UserCodeMaxLevel <Double>] [-UserCodeWarningLevel <Double>] [-PassThru]
+ [<CommonParameters>]
 ```
 
 ### ParamSet2
@@ -29,9 +30,9 @@ Update-KshTenantSiteCollection [-Identity] <TenantSiteCollection>
  [-AllowDownloadingNonWebViewableFiles <Boolean>] [-DisableAppViews <AppViewsPolicy>]
  [-DisableCompanyWideSharingLinks <CompanyWideSharingLinksPolicy>] [-DisableFlows <FlowsPolicy>]
  [-Owner <String>] [-PWAEnabled <PWAEnabledStatus>] [-RestrictedToRegion <RestrictedToRegion>]
- [-SandboxedCodeActivationCapability <SandboxedCodeActivationCapabilities>] [-StorageMaxLevel <Int64>]
- [-StorageWarningLevel <Int64>] [-Title <String>] [-UserCodeMaxLevel <Double>] [-UserCodeWarningLevel <Double>]
- [-NoWait] [<CommonParameters>]
+ [-SandboxedCodeActivationCapability <SandboxedCodeActivationCapabilities>]
+ [-SharingCapability <SharingCapabilities>] [-StorageMaxLevel <Int64>] [-StorageWarningLevel <Int64>]
+ [-Title <String>] [-UserCodeMaxLevel <Double>] [-UserCodeWarningLevel <Double>] [-NoWait] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -212,6 +213,22 @@ Type: SandboxedCodeActivationCapabilities
 Parameter Sets: (All)
 Aliases:
 Accepted values: Unknown, Check, Disabled, Enabled
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SharingCapability
+Specifies the sharing capability.
+
+```yaml
+Type: SharingCapabilities
+Parameter Sets: (All)
+Aliases:
+Accepted values: Disabled, ExternalUserSharingOnly, ExternalUserAndGuestSharing, ExistingExternalUserSharingOnly
 
 Required: False
 Position: Named

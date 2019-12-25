@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2019 karamem0
+// Copyright (c) 2020 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -70,8 +70,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathConstructor(typeof(Tenant)),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathConstructor(typeof(Tenant)));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathMethod(
                     objectPath1.Id,
@@ -119,8 +118,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathConstructor(typeof(Tenant)),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathConstructor(typeof(Tenant)));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathMethod(
                     objectPath1.Id,
@@ -154,20 +152,32 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             while (true)
             {
-                Thread.Sleep(TimeSpan.FromSeconds(ClientConstants.TenantServiceWaitSeconds));
-                var siteCollectionObject = this.GetObject(siteCollectionUrl);
-                if (siteCollectionObject.Status == "Active")
+                var errorCount = 0;
+                try
                 {
-                    return siteCollectionObject;
+                    Thread.Sleep(TimeSpan.FromSeconds(ClientConstants.TenantServiceWaitSeconds));
+                    var siteCollectionObject = this.GetObject(siteCollectionUrl);
+                    if (siteCollectionObject.Status == "Active")
+                    {
+                        return siteCollectionObject;
+                    }
+                }
+                catch
+                {
+                    errorCount += 1;
+                    if (errorCount > ClientConstants.MaxRetryCount)
+                    {
+                        throw;
+                    }
                 }
             }
         }
+
         public IEnumerable<TenantSiteCollection> GetObjectEnumerable()
         {
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathConstructor(typeof(Tenant)),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathConstructor(typeof(Tenant)));
             var objectPath2 = requestPayload.Add(
                     new ObjectPathMethod(
                     objectPath1.Id,
@@ -190,8 +200,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
         {
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathConstructor(typeof(Tenant)),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathConstructor(typeof(Tenant)));
             var objectPath2 = requestPayload.Add(
                     new ObjectPathMethod(
                     objectPath1.Id,
@@ -251,8 +260,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathConstructor(typeof(Tenant)),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathConstructor(typeof(Tenant)));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathMethod(
                     objectPath1.Id,

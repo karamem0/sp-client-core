@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshCurrentSiteCollection
 
 ## SYNOPSIS
-Retrieves the current site collection.
+Retrieves current site collection.
 
 ## SYNTAX
 
@@ -17,7 +17,7 @@ Get-KshCurrentSiteCollection [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshCurrentSiteCollection cmdlet retrieves the current site collection.
+The Get-KshCurrentSiteCollection cmdlet retrieves current site collection.
 
 ## EXAMPLES
 
@@ -26,7 +26,7 @@ The Get-KshCurrentSiteCollection cmdlet retrieves the current site collection.
 PS C:\> Get-KshCurrentSiteCollection
 ```
 
-Retrieves a current site collection.
+Retrieves current site collection.
 
 ## PARAMETERS
 
