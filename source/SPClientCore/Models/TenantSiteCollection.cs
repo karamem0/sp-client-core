@@ -35,7 +35,16 @@ namespace Karamem0.SharePoint.PowerShell.Models
         public virtual bool AllowSelfServiceUpgrade { get; protected set; }
 
         [JsonProperty()]
+        public virtual int AnonymousLinkExpirationInDays { get; protected set; }
+
+        [JsonProperty()]
+        public virtual string AuthContextStrength { get; protected set; }
+
+        [JsonProperty()]
         public virtual int AverageResourceUsage { get; protected set; }
+
+        [JsonProperty()]
+        public virtual BlockDownloadLinksFileTypes BlockDownloadLinksFileType { get; protected set; }
 
         [JsonProperty()]
         public virtual bool CommentsOnSitePagesDisabled { get; protected set; }
@@ -50,13 +59,19 @@ namespace Karamem0.SharePoint.PowerShell.Models
         public virtual double CurrentResourceUsage { get; protected set; }
 
         [JsonProperty()]
-        public virtual int DefaultLinkPermission { get; protected set; }
+        public virtual SharingPermissionType DefaultLinkPermission { get; protected set; }
 
         [JsonProperty()]
-        public virtual int DefaultSharingLinkType { get; protected set; }
+        public virtual bool DefaultLinkToExistingAccess { get; protected set; }
 
         [JsonProperty()]
-        public virtual int DenyAddAndCustomizePages { get; protected set; }
+        public virtual bool DefaultLinkToExistingAccessReset { get; protected set; }
+
+        [JsonProperty()]
+        public virtual SharingLinkType DefaultSharingLinkType { get; protected set; }
+
+        [JsonProperty()]
+        public virtual DenyAddAndCustomizePagesStatus DenyAddAndCustomizePages { get; protected set; }
 
         [JsonProperty()]
         public virtual string Description { get; protected set; }
@@ -71,10 +86,22 @@ namespace Karamem0.SharePoint.PowerShell.Models
         public virtual FlowsPolicy DisableFlows { get; protected set; }
 
         [JsonProperty()]
+        public virtual int ExternalUserExpirationInDays { get; protected set; }
+
+        [JsonProperty()]
+        public virtual Guid GroupId { get; protected set; }
+
+        [JsonProperty()]
+        public virtual string GroupOwnerLoginName { get; protected set; }
+
+        [JsonProperty()]
         public virtual bool HasHolds { get; protected set; }
 
         [JsonProperty()]
         public virtual Guid HubSiteId { get; protected set; }
+
+        [JsonProperty("IsGroupOwnerSiteAdmin")]
+        public virtual bool IsGroupOwnerSiteCollectionAdmin { get; protected set; }
 
         [JsonProperty()]
         public virtual bool IsHubSite { get; protected set; }
@@ -98,16 +125,28 @@ namespace Karamem0.SharePoint.PowerShell.Models
         // public virtual string NewUrl { get; protected set; }
 
         [JsonProperty()]
+        public virtual bool OverrideTenantAnonymousLinkExpirationPolicy { get; protected set; }
+
+        [JsonProperty()]
+        public virtual bool OverrideTenantExternalUserExpirationPolicy { get; protected set; }
+
+        [JsonProperty()]
         public virtual string Owner { get; protected set; }
 
         [JsonProperty()]
         public virtual string OwnerEmail { get; protected set; }
 
         [JsonProperty()]
+        public virtual string OwnerLoginName { get; protected set; }
+
+        [JsonProperty()]
         public virtual string OwnerName { get; protected set; }
 
         [JsonProperty()]
         public virtual PWAEnabledStatus PWAEnabled { get; protected set; }
+
+        [JsonProperty()]
+        public virtual Guid RelatedGroupId { get; protected set; }
 
         [JsonProperty()]
         public virtual RestrictedToRegion RestrictedToRegion { get; protected set; }

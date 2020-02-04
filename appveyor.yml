@@ -1,4 +1,4 @@
-version: "3.2.0.{build}"
+version: "3.2.1.{build}"
 skip_non_tags: true
 image: Visual Studio 2017
 configuration: Release
@@ -12,7 +12,7 @@ dotnet_csproj:
   informational_version: '{version}'
 environment:
   NUGET_API_KEY:
-    secure: HiJ63ZahbXoHe9O5gnu+5k8eR9YwMEV8XSNIdVGLH3doslLZzFI57LPoUWS0usVi
+    secure: onXIsjs9rpQLczvPCCqZEd4jHxbXk0EaAJheCUhqzKbbJ3VchV8aB//a1KMD95Uv
 build_script:
 - ps: |
     Set-Location "$env:APPVEYOR_BUILD_FOLDER\source\$env:APPVEYOR_PROJECT_NAME"

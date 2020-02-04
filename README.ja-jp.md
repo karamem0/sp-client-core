@@ -224,6 +224,8 @@ SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant およ
     - [New-KshUser](docs/New-KshUser.md)
     - [Remove-KshUser](docs/Remove-KshUser.md)
     - [Update-KshUser](docs/Update-KshUser.md)
+  - ユーザー プロパティ
+    - [Get-KshUserProperties](docs/Get-KshUserProperties.md)
   - ビュー
     - [Get-KshView](docs/Get-KshView.md)
     - [New-KshView](docs/New-KshView.md)
