@@ -55149,6 +55149,139 @@
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AllowEditing</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to allow editing Office files in the browser.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AnonymousLinkExpirationInDays</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the days that anonymous link to be expired.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>BlockDownloadLinksFileType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the block download links file type.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">WebPreviewableFiles</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ServerRenderedFilesOnly</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">BlockDownloadLinksFileTypes</command:parameterValue>
+          <dev:type>
+            <maml:name>BlockDownloadLinksFileTypes</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>CommentsOnSitePagesDisabled</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to disable comments on the site.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ConditionalAccessPolicy</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the conditional access policy.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">AllowFullAccess</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">AllowLimitedAccess</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">BlockAccess</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">ConditionalAccessPolicyType</command:parameterValue>
+          <dev:type>
+            <maml:name>ConditionalAccessPolicyType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>DefaultLinkPermission</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the default link permission.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">None</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">View</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Edit</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">SharingPermissionType</command:parameterValue>
+          <dev:type>
+            <maml:name>SharingPermissionType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>DefaultLinkToExistingAccess</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to override default sharing link as existing access link.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>DefaultSharingLinkType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the default sharing link type.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">None</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Direct</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Internal</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">AnonymousAccess</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">SharingLinkType</command:parameterValue>
+          <dev:type>
+            <maml:name>SharingLinkType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>DenyAddAndCustomizePages</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to deny to add and customize pages.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">Unknown</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Disabled</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Enabled</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">DenyAddAndCustomizePagesStatus</command:parameterValue>
+          <dev:type>
+            <maml:name>DenyAddAndCustomizePagesStatus</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>DisableAppViews</maml:name>
           <maml:Description>
             <maml:para>Specifies the app views policy.</maml:para>
@@ -55195,6 +55328,35 @@
           <command:parameterValue required="true" variableLength="false">FlowsPolicy</command:parameterValue>
           <dev:type>
             <maml:name>FlowsPolicy</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ExternalUserExpirationInDays</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the days that external user to be expired.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>LimitedAccessFileType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the limited access file type.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">OfficeOnlineFilesOnly</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">WebPreviewableFiles</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">OtherFiles</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">LimitedAccessFileType</command:parameterValue>
+          <dev:type>
+            <maml:name>LimitedAccessFileType</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -55271,6 +55433,89 @@
           <command:parameterValue required="true" variableLength="false">SandboxedCodeActivationCapabilities</command:parameterValue>
           <dev:type>
             <maml:name>SandboxedCodeActivationCapabilities</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>SharingAllowedDomainList</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the list of domain to allow sharing.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>SharingBlockedDomainList</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the list of domain to block sharing.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>SharingCapability</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the sharing capability.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">Disabled</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ExternalUserSharingOnly</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ExternalUserAndGuestSharing</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ExistingExternalUserSharingOnly</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">SharingCapabilities</command:parameterValue>
+          <dev:type>
+            <maml:name>SharingCapabilities</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>SharingDomainRestrictionMode</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the sharing domain restriction mode.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">None</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">AllowList</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">BlockList</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">SharingDomainRestrictionMode</command:parameterValue>
+          <dev:type>
+            <maml:name>SharingDomainRestrictionMode</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ShowPeoplePickerSuggestionsForGuestUsers</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to show people picker suggestions for guest users.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>SocialBarOnSitePagesDisabled</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to disable social bar on site.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -55363,6 +55608,139 @@
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AllowEditing</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to allow editing Office files in the browser.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AnonymousLinkExpirationInDays</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the days that anonymous link to be expired.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>BlockDownloadLinksFileType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the block download links file type.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">WebPreviewableFiles</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ServerRenderedFilesOnly</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">BlockDownloadLinksFileTypes</command:parameterValue>
+          <dev:type>
+            <maml:name>BlockDownloadLinksFileTypes</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>CommentsOnSitePagesDisabled</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to disable comments on the site.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ConditionalAccessPolicy</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the conditional access policy.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">AllowFullAccess</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">AllowLimitedAccess</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">BlockAccess</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">ConditionalAccessPolicyType</command:parameterValue>
+          <dev:type>
+            <maml:name>ConditionalAccessPolicyType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>DefaultLinkPermission</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the default link permission.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">None</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">View</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Edit</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">SharingPermissionType</command:parameterValue>
+          <dev:type>
+            <maml:name>SharingPermissionType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>DefaultLinkToExistingAccess</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to override default sharing link as existing access link.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>DefaultSharingLinkType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the default sharing link type.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">None</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Direct</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Internal</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">AnonymousAccess</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">SharingLinkType</command:parameterValue>
+          <dev:type>
+            <maml:name>SharingLinkType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>DenyAddAndCustomizePages</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to deny to add and customize pages.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">Unknown</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Disabled</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Enabled</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">DenyAddAndCustomizePagesStatus</command:parameterValue>
+          <dev:type>
+            <maml:name>DenyAddAndCustomizePagesStatus</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>DisableAppViews</maml:name>
           <maml:Description>
             <maml:para>Specifies the app views policy.</maml:para>
@@ -55409,6 +55787,35 @@
           <command:parameterValue required="true" variableLength="false">FlowsPolicy</command:parameterValue>
           <dev:type>
             <maml:name>FlowsPolicy</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ExternalUserExpirationInDays</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the days that external user to be expired.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>LimitedAccessFileType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the limited access file type.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">OfficeOnlineFilesOnly</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">WebPreviewableFiles</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">OtherFiles</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">LimitedAccessFileType</command:parameterValue>
+          <dev:type>
+            <maml:name>LimitedAccessFileType</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -55490,6 +55897,89 @@
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>SharingAllowedDomainList</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the list of domain to allow sharing.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>SharingBlockedDomainList</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the list of domain to block sharing.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>SharingCapability</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the sharing capability.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">Disabled</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ExternalUserSharingOnly</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ExternalUserAndGuestSharing</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ExistingExternalUserSharingOnly</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">SharingCapabilities</command:parameterValue>
+          <dev:type>
+            <maml:name>SharingCapabilities</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>SharingDomainRestrictionMode</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the sharing domain restriction mode.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">None</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">AllowList</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">BlockList</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">SharingDomainRestrictionMode</command:parameterValue>
+          <dev:type>
+            <maml:name>SharingDomainRestrictionMode</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ShowPeoplePickerSuggestionsForGuestUsers</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to show people picker suggestions for guest users.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>SocialBarOnSitePagesDisabled</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to disable social bar on site.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>StorageMaxLevel</maml:name>
           <maml:Description>
             <maml:para>Specifies the maximum quota of the storage.</maml:para>
@@ -55565,6 +56055,114 @@
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>AllowEditing</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether to allow editing Office files in the browser.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>AnonymousLinkExpirationInDays</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the days that anonymous link to be expired.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>BlockDownloadLinksFileType</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the block download links file type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">BlockDownloadLinksFileTypes</command:parameterValue>
+        <dev:type>
+          <maml:name>BlockDownloadLinksFileTypes</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>CommentsOnSitePagesDisabled</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether to disable comments on the site.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ConditionalAccessPolicy</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the conditional access policy.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ConditionalAccessPolicyType</command:parameterValue>
+        <dev:type>
+          <maml:name>ConditionalAccessPolicyType</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>DefaultLinkPermission</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the default link permission.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">SharingPermissionType</command:parameterValue>
+        <dev:type>
+          <maml:name>SharingPermissionType</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>DefaultLinkToExistingAccess</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether to override default sharing link as existing access link.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>DefaultSharingLinkType</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the default sharing link type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">SharingLinkType</command:parameterValue>
+        <dev:type>
+          <maml:name>SharingLinkType</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>DenyAddAndCustomizePages</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether to deny to add and customize pages.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">DenyAddAndCustomizePagesStatus</command:parameterValue>
+        <dev:type>
+          <maml:name>DenyAddAndCustomizePagesStatus</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>DisableAppViews</maml:name>
         <maml:Description>
           <maml:para>Specifies the app views policy.</maml:para>
@@ -55600,6 +56198,18 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ExternalUserExpirationInDays</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the days that external user to be expired.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
         <maml:name>Identity</maml:name>
         <maml:Description>
@@ -55608,6 +56218,18 @@
         <command:parameterValue required="true" variableLength="false">TenantSiteCollection</command:parameterValue>
         <dev:type>
           <maml:name>TenantSiteCollection</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>LimitedAccessFileType</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the limited access file type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">LimitedAccessFileType</command:parameterValue>
+        <dev:type>
+          <maml:name>LimitedAccessFileType</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -55680,6 +56302,78 @@
         <command:parameterValue required="true" variableLength="false">SandboxedCodeActivationCapabilities</command:parameterValue>
         <dev:type>
           <maml:name>SandboxedCodeActivationCapabilities</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>SharingAllowedDomainList</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the list of domain to allow sharing.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>SharingBlockedDomainList</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the list of domain to block sharing.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>SharingCapability</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the sharing capability.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">SharingCapabilities</command:parameterValue>
+        <dev:type>
+          <maml:name>SharingCapabilities</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>SharingDomainRestrictionMode</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the sharing domain restriction mode.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">SharingDomainRestrictionMode</command:parameterValue>
+        <dev:type>
+          <maml:name>SharingDomainRestrictionMode</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ShowPeoplePickerSuggestionsForGuestUsers</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether to show people picker suggestions for guest users.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>SocialBarOnSitePagesDisabled</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether to disable social bar on site.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
