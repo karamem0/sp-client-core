@@ -57,11 +57,9 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(navigationNodeObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(navigationNodeObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "Children"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath1.Id, "Children"));
             var objectPath3 = requestPayload.Add(
                 new ObjectPathMethod(
                     objectPath2.Id,
@@ -85,17 +83,13 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathStaticProperty(typeof(Context), "Current"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathStaticProperty(typeof(Context), "Current"));
             var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "Web"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath1.Id, "Web"));
             var objectPath3 = requestPayload.Add(
-                new ObjectPathProperty(objectPath2.Id, "Navigation"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath2.Id, "Navigation"));
             var objectPath4 = requestPayload.Add(
-                new ObjectPathProperty(objectPath3.Id, "QuickLaunch"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath3.Id, "QuickLaunch"));
             var objectPath5 = requestPayload.Add(
                 new ObjectPathMethod(
                     objectPath4.Id,
@@ -119,17 +113,13 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathStaticProperty(typeof(Context), "Current"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathStaticProperty(typeof(Context), "Current"));
             var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "Web"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath1.Id, "Web"));
             var objectPath3 = requestPayload.Add(
-                new ObjectPathProperty(objectPath2.Id, "Navigation"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath2.Id, "Navigation"));
             var objectPath4 = requestPayload.Add(
-                new ObjectPathProperty(objectPath3.Id, "TopNavigationBar"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath3.Id, "TopNavigationBar"));
             var objectPath5 = requestPayload.Add(
                 new ObjectPathMethod(
                     objectPath4.Id,
@@ -153,14 +143,11 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathStaticProperty(typeof(Context), "Current"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathStaticProperty(typeof(Context), "Current"));
             var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "Web"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath1.Id, "Web"));
             var objectPath3 = requestPayload.Add(
-                new ObjectPathProperty(objectPath2.Id, "Navigation"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath2.Id, "Navigation"));
             var objectPath4 = requestPayload.Add(
                 new ObjectPathMethod(
                     objectPath3.Id,
@@ -184,8 +171,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(navigationNodeObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(navigationNodeObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathProperty(objectPath1.Id, "Children"),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),

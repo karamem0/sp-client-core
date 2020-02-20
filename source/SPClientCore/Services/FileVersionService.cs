@@ -56,11 +56,9 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(fileObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(fileObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "Versions"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath1.Id, "Versions"));
             var objectPath3 = requestPayload.Add(
                 new ObjectPathMethod(
                     objectPath2.Id,
@@ -84,8 +82,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(fileObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(fileObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathProperty(objectPath1.Id, "Versions"),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -110,8 +107,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 new ObjectPathIdentity(string.Join(":", fileVersionObject.ObjectIdentity.Split(':').SkipLast(2))),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
             var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "Versions"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath1.Id, "Versions"));
             var objectPath3 = requestPayload.Add(
                 objectPath2,
                 objectPathId => new ClientActionMethod(
@@ -129,11 +125,9 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(string.Join(":", fileVersionObject.ObjectIdentity.Split(':').SkipLast(2))),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(string.Join(":", fileVersionObject.ObjectIdentity.Split(':').SkipLast(2))));
             var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "Versions"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath1.Id, "Versions"));
             var objectPath3 = requestPayload.Add(
                 objectPath2,
                 objectPathId => new ClientActionMethod(
@@ -151,11 +145,9 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(fileObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(fileObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "Versions"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath1.Id, "Versions"));
             var objectPath3 = requestPayload.Add(
                 objectPath2,
                 objectPathId => new ClientActionMethod(objectPathId, "DeleteAll"));
@@ -170,11 +162,9 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(string.Join(":", fileVersionObject.ObjectIdentity.Split(':').SkipLast(2))),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(string.Join(":", fileVersionObject.ObjectIdentity.Split(':').SkipLast(2))));
             var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "Versions"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath1.Id, "Versions"));
             var objectPath3 = requestPayload.Add(
                 objectPath2,
                 objectPathId => new ClientActionMethod(

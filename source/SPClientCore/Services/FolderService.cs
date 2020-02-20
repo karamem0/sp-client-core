@@ -63,11 +63,9 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(folderObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(folderObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathProperty(objectPath1.Id, "ListItemAllFields"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionMethod(
                     objectPathId,
                     "SetFieldValue",
@@ -94,11 +92,9 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(folderObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(folderObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "Folders"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath1.Id, "Folders"));
             var objectPath3 = requestPayload.Add(
                 new ObjectPathMethod(
                     objectPath2.Id,
@@ -122,11 +118,9 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(folderObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(folderObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathProperty(objectPath1.Id, "ListItemAllFields"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionMethod(
                     objectPathId,
                     "SetFieldValue",
@@ -149,8 +143,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(listObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(listObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathProperty(objectPath1.Id, "RootFolder"),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -171,11 +164,9 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathStaticProperty(typeof(Context), "Current"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathStaticProperty(typeof(Context), "Current"));
             var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "Web"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath1.Id, "Web"));
             var objectPath3 = requestPayload.Add(
                 new ObjectPathMethod(
                     objectPath2.Id,
@@ -199,11 +190,9 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathStaticProperty(typeof(Context), "Current"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathStaticProperty(typeof(Context), "Current"));
             var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "Web"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath1.Id, "Web"));
             var objectPath3 = requestPayload.Add(
                 new ObjectPathMethod(
                     objectPath2.Id,
@@ -231,11 +220,9 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(folderObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(folderObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "Folders"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath1.Id, "Folders"));
             var objectPath3 = requestPayload.Add(
                 new ObjectPathMethod(
                     objectPath2.Id,
@@ -259,8 +246,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(folderObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(folderObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathProperty(objectPath1.Id, "Folders"),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -297,11 +283,9 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(folderObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(folderObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathProperty(objectPath1.Id, "ListItemAllFields"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionMethod(
                     objectPathId,
                     "SetFieldValue",

@@ -65,10 +65,10 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 throw new ArgumentNullException(nameof(columnName));
             }
             var requestPayload = new ClientRequestPayload();
-            var objectPath1 = requestPayload.Add(new ObjectPathIdentity(viewObject.ObjectIdentity));
+            var objectPath1 = requestPayload.Add(
+                new ObjectPathIdentity(viewObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "ViewFields"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath1.Id, "ViewFields"));
             var objectPath3 = requestPayload.Add(
                 objectPath2,
                 objectPathId => new ClientActionMethod(
@@ -89,8 +89,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(viewObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(viewObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathProperty(objectPath1.Id, "ViewFields"),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -129,11 +128,9 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(viewObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(viewObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "ViewFields"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath1.Id, "ViewFields"));
             var objectPath3 = requestPayload.Add(
                 objectPath2,
                 objectPathId => new ClientActionMethod(
@@ -168,11 +165,9 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(viewObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(viewObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "ViewFields"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath1.Id, "ViewFields"));
             var objectPath3 = requestPayload.Add(
                 objectPath2,
                 objectPathId => new ClientActionMethod(
@@ -193,11 +188,9 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(viewObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(viewObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "ViewFields"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath1.Id, "ViewFields"));
             var objectPath3 = requestPayload.Add(
                 objectPath2,
                 objectPathId => new ClientActionMethod(objectPathId, "RemoveAll"));

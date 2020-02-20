@@ -77,23 +77,21 @@ namespace Karamem0.SharePoint.PowerShell.Services
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathConstructor(typeof(RoleDefinitionBindingEnumerable)),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionMethod(
                     objectPathId,
                     "Add",
                     requestPayload.CreateParameter(roleDefinitionObject)));
             var objectPath2 = requestPayload.Add(
-                new ObjectPathIdentity(securableObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(securableObject.ObjectIdentity));
             var objectPath3 = requestPayload.Add(
-                new ObjectPathProperty(objectPath2.Id, "RoleAssignments"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath2.Id, "RoleAssignments"));
             var objectPath4 = requestPayload.Add(
                 new ObjectPathMethod(
                     objectPath3.Id,
                     "Add",
                     requestPayload.CreateParameter(principalObject),
                     new ClientRequestParameterObjectPath(objectPath1)),
+                objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {
                     Query = new ClientQuery(true, typeof(RoleAssignment))
@@ -111,8 +109,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(securableObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(securableObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathProperty(objectPath1.Id, "RoleAssignments"),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -138,11 +135,9 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(securableObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(securableObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "RoleAssignments"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath1.Id, "RoleAssignments"));
             var objectPath3 = requestPayload.Add(
                 new ObjectPathMethod(
                     objectPath2.Id,

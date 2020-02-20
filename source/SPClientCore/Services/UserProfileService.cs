@@ -35,8 +35,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
         {
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathStaticMethod(typeof(ProfileLoader), "GetProfileLoader"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathStaticMethod(typeof(ProfileLoader), "GetProfileLoader"));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathMethod(objectPath1.Id, "GetUserProfile"),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),

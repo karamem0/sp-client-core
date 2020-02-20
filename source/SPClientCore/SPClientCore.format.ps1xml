@@ -342,6 +342,30 @@
             </TableControl>
         </View>
         <View>
+            <Name>Karamem0.SharePoint.PowerShell.Models.HubSite</Name>
+            <ViewSelectedBy>
+                <TypeName>Karamem0.SharePoint.PowerShell.Models.HubSite</TypeName>
+            </ViewSelectedBy>
+            <TableControl>
+                <TableHeaders>
+                    <TableColumnHeader />
+                    <TableColumnHeader />
+                </TableHeaders>
+                <TableRowEntries>
+                    <TableRowEntry>
+                        <TableColumnItems>
+                            <TableColumnItem>
+                                <PropertyName>Id</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>Title</PropertyName>
+                            </TableColumnItem>
+                        </TableColumnItems>
+                    </TableRowEntry>
+                </TableRowEntries>
+            </TableControl>
+        </View>
+        <View>
             <Name>Karamem0.SharePoint.PowerShell.Models.List</Name>
             <ViewSelectedBy>
                 <TypeName>Karamem0.SharePoint.PowerShell.Models.List</TypeName>

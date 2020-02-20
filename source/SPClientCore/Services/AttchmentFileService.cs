@@ -68,10 +68,10 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 throw new ArgumentNullException(nameof(attachmentFileName));
             }
             var requestPayload = new ClientRequestPayload();
-            var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listItemObject.ObjectIdentity));
+            var objectPath1 = requestPayload.Add(
+                new ObjectPathIdentity(listItemObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "AttachmentFiles"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath1.Id, "AttachmentFiles"));
             var objectPath3 = requestPayload.Add(
                 new ObjectPathMethod(
                     objectPath2.Id,
@@ -94,7 +94,8 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 throw new ArgumentNullException(nameof(listItemObject));
             }
             var requestPayload = new ClientRequestPayload();
-            var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listItemObject.ObjectIdentity));
+            var objectPath1 = requestPayload.Add(
+                new ObjectPathIdentity(listItemObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathProperty(objectPath1.Id, "AttachmentFiles"),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -136,7 +137,8 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 throw new ArgumentNullException(nameof(attachmentFileContent));
             }
             var requestPayload = new ClientRequestPayload();
-            var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listItemObject.ObjectIdentity));
+            var objectPath1 = requestPayload.Add(
+                new ObjectPathIdentity(listItemObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathProperty(objectPath1.Id, "ParentList"),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),

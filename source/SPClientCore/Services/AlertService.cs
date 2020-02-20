@@ -50,14 +50,11 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathStaticProperty(typeof(Context), "Current"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathStaticProperty(typeof(Context), "Current"));
             var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "Web"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath1.Id, "Web"));
             var objectPath3 = requestPayload.Add(
-                new ObjectPathProperty(objectPath2.Id, "Alerts"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath2.Id, "Alerts"));
             var objectPath4 = requestPayload.Add(
                 objectPath3,
                 objectPathId => new ClientActionMethod(
@@ -105,14 +102,11 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathStaticProperty(typeof(Context), "Current"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathStaticProperty(typeof(Context), "Current"));
             var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "Web"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath1.Id, "Web"));
             var objectPath3 = requestPayload.Add(
-                new ObjectPathProperty(objectPath2.Id, "Alerts"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath2.Id, "Alerts"));
             var objectPath4 = requestPayload.Add(
                 new ObjectPathMethod(
                     objectPath3.Id,
@@ -132,11 +126,9 @@ namespace Karamem0.SharePoint.PowerShell.Services
         {
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathStaticProperty(typeof(Context), "Current"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathStaticProperty(typeof(Context), "Current"));
             var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "Web"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath1.Id, "Web"));
             var objectPath3 = requestPayload.Add(
                 new ObjectPathProperty(objectPath2.Id, "Alerts"),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -154,14 +146,11 @@ namespace Karamem0.SharePoint.PowerShell.Services
         {
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathStaticProperty(typeof(Context), "Current"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathStaticProperty(typeof(Context), "Current"));
             var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "Web"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath1.Id, "Web"));
             var objectPath3 = requestPayload.Add(
-                new ObjectPathProperty(objectPath2.Id, "Alerts"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath2.Id, "Alerts"));
             var objectPath4 = requestPayload.Add(
                 objectPath3,
                 objectPathId => new ClientActionMethod(

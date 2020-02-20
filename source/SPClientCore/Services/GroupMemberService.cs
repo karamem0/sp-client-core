@@ -51,11 +51,9 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(groupObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(groupObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "Users"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath1.Id, "Users"));
             var objectPath3 = requestPayload.Add(
                 new ObjectPathMethod(
                     objectPath2.Id,
@@ -83,11 +81,9 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(groupObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(groupObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "Users"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath1.Id, "Users"));
             var objectPath3 = requestPayload.Add(
                 new ObjectPathMethod(
                     objectPath2.Id,
@@ -117,11 +113,9 @@ namespace Karamem0.SharePoint.PowerShell.Services
             {
                 var requestPayload = new ClientRequestPayload();
                 var objectPath1 = requestPayload.Add(
-                    new ObjectPathIdentity(groupObject.ObjectIdentity),
-                    objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                    new ObjectPathIdentity(groupObject.ObjectIdentity));
                 var objectPath2 = requestPayload.Add(
-                    new ObjectPathProperty(objectPath1.Id, "Users"),
-                    objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                    new ObjectPathProperty(objectPath1.Id, "Users"));
                 var objectPath3 = requestPayload.Add(
                     new ObjectPathMethod(
                         objectPath2.Id,
@@ -140,11 +134,9 @@ namespace Karamem0.SharePoint.PowerShell.Services
             {
                 var requestPayload = new ClientRequestPayload();
                 var objectPath1 = requestPayload.Add(
-                    new ObjectPathIdentity(groupObject.ObjectIdentity),
-                    objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                    new ObjectPathIdentity(groupObject.ObjectIdentity));
                 var objectPath2 = requestPayload.Add(
-                    new ObjectPathProperty(objectPath1.Id, "Users"),
-                    objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                    new ObjectPathProperty(objectPath1.Id, "Users"));
                 var objectPath3 = requestPayload.Add(
                     new ObjectPathMethod(
                         objectPath2.Id,
@@ -169,8 +161,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(groupObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(groupObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathProperty(objectPath1.Id, "Users"),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -196,11 +187,9 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(groupObject.ObjectIdentity),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathIdentity(groupObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "Users"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathProperty(objectPath1.Id, "Users"));
             var objectPath3 = requestPayload.Add(
                 objectPath2,
                 objectPathId => new ClientActionMethod(

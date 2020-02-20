@@ -39,8 +39,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
         {
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathStaticProperty(typeof(Context), "Current"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathStaticProperty(typeof(Context), "Current"));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathProperty(objectPath1.Id, "Site"),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -61,8 +60,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             }
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathConstructor(typeof(Tenant)),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                new ObjectPathConstructor(typeof(Tenant)));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathMethod(
                     objectPath1.Id,
