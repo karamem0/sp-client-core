@@ -7,11 +7,15 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Runtime.Common;
+using Microsoft.IdentityModel.JsonWebTokens;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
@@ -212,6 +216,58 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
                         $"{this.resource}/AllSites.FullControl",
                         $"{this.resource}/TermStore.ReadWrite.All",
                         $"{this.resource}/User.Read.All"
+                    })
+                }
+            };
+            var requestContent = UriQuery.Create(requertParameters);
+            var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
+            requestMessage.Content = new StringContent(requestContent, Encoding.UTF8, "application/x-www-form-urlencoded");
+            requestMessage.Headers.Add("Accept", "application/json");
+            var responseMessage = this.httpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
+            var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<OAuthToken>(responseContent);
+            }
+            else
+            {
+                return JsonConvert.DeserializeObject<OAuthError>(responseContent);
+            }
+        }
+
+        public OAuthMessage AcquireTokenByCertificate(byte[] certBytes, SecureString certPassword)
+        {
+            if (certBytes == null)
+            {
+                throw new ArgumentNullException(nameof(certBytes));
+            }
+            if (certPassword == null)
+            {
+                throw new ArgumentNullException(nameof(certPassword));
+            }
+            var requestUrl = new Uri(this.authority, UriKind.Absolute)
+                .ConcatPath(this.tenantIdResolver.Resolve())
+                .ConcatPath("oauth2/v2.0/token");
+            var requertParameters = new Dictionary<string, object>()
+            {
+                { "grant_type", "client_credentials" },
+                { "client_id", this.clientId },
+                { "client_assertion_type", "urn:ietf:params:oauth:client-assertion-type:jwt-bearer" },
+                { "client_assertion", new JsonWebTokenHandler().CreateToken(new SecurityTokenDescriptor()
+                    {
+                        Claims = new Dictionary<string, object>()
+                        {
+                            { "aud", requestUrl.ToString() },
+                            { "iss", this.clientId },
+                            { "jti", Guid.NewGuid().ToString() },
+                            { "sub", this.clientId }
+                        },
+                        SigningCredentials = new X509SigningCredentials(new X509Certificate2(certBytes, certPassword))
+                    })
+                },
+                { "scope", string.Join(" ", new[]
+                    {
+                        $"{this.resource}/.default"
                     })
                 }
             };

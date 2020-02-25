@@ -58,7 +58,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Update-KshNavigationNode",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result2.ElementAt(0) },
+                        { "Identity", result3.ElementAt(0) },
                         { "IsVisible", true },
                         { "Title", "Test Navigation Node 9" },
                         { "Url", "https://www.bing.com" },

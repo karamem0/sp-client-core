@@ -24,6 +24,7 @@ Get-KshTenantCdnPolicy [-Private] [-NoEnumerate] [<CommonParameters>]
 
 ## DESCRIPTION
 The Get-KshTenantCdnPolicy cmdlet retrieves Office 365 CDN policies applied to the tenant.
+This cmdlet can be used only when connected to the SharePoint admin center.
 
 ## EXAMPLES
 

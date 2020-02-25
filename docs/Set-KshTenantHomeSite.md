@@ -5,51 +5,37 @@ online version:
 schema: 2.0.0
 ---
 
-# Set-KshGroupOwner
+# Set-KshTenantHomeSite
 
 ## SYNOPSIS
-Sets a user or group as a group owner.
+Sets a site as a home site.
 
 ## SYNTAX
 
 ```
-Set-KshGroupOwner [-Identity] <Group> -Owner <Principal> [<CommonParameters>]
+Set-KshTenantHomeSite -Url <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Set-KshGroupOwner cmdlet changes the user or group that is the owner of the group.
+The Set-KshTenantHomeSite cmdlet sets a site as a home site.
+This cmdlet can be used only when connected to the SharePoint admin center.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> Set-KshGroupOwner -Identity (Get-KshGroup -GroupName 'Blog Owners') -Owner (Get-KshUser -UserName 'i:0#.f|membership|admin@example.onmicrosoft.com')
+PS C:\> Set-KshTenantHomeSite -Url 'https://karamem0jp.sharepoint.com/sites/HomeSite'
 ```
 
-Changes a group owner.
+Sets a site as a home site.
 
 ## PARAMETERS
 
-### -Identity
-Specifies the group.
+### -Url
+Specifies the URL.
 
 ```yaml
-Type: Group
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: 0
-Default value: None
-Accept pipeline input: True (ByValue)
-Accept wildcard characters: False
-```
-
-### -Owner
-Specifies the user or group.
-
-```yaml
-Type: Principal
+Type: String
 Parameter Sets: (All)
 Aliases:
 
@@ -65,11 +51,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.Group
+### None
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.User
+### System.Void
 
 ## NOTES
 

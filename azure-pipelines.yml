@@ -16,7 +16,7 @@ variables:
   manifestFile: 'source/SPClientCore/SPClientCore.psd1'
   nuspecFile: 'source/SPClientCore/SPClientCore.nuspec'
   buildConfiguration: 'Release'
-  buildVersion: '3.2.3'
+  buildVersion: '3.3.0'
   buildId: '$(Build.BuildId)'
 
 steps:

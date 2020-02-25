@@ -1607,6 +1607,68 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ClientId</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the app ID of Azure AD app.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>UserMode</maml:name>
+          <maml:Description>
+            <maml:para>If specified, connects with user mode. (without admin consent)</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Connect-KshSite</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Url</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the site URL.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
+          <dev:type>
+            <maml:name>Uri</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Authority</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the authorization endpoint URL. This parameter is provided for some environment. (Germany, China, and US Government)</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
+          <dev:type>
+            <maml:name>Uri</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ClientId</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the app ID of Azure AD app.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Credential</maml:name>
           <maml:Description>
@@ -1631,6 +1693,57 @@
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
       </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Connect-KshSite</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Url</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the site URL.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
+          <dev:type>
+            <maml:name>Uri</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>CertificatePassword</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the password for certificate file (.pfx).</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">SecureString</command:parameterValue>
+          <dev:type>
+            <maml:name>SecureString</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>CertificatePath</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the path which located certificate file (.pfx).</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ClientId</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the app ID of Azure AD app.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
     </command:syntax>
     <command:parameters>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
@@ -1641,6 +1754,42 @@
         <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
         <dev:type>
           <maml:name>Uri</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>CertificatePassword</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the password for certificate file (.pfx).</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">SecureString</command:parameterValue>
+        <dev:type>
+          <maml:name>SecureString</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>CertificatePath</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the path which located certificate file (.pfx).</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ClientId</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the app ID of Azure AD app.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -1720,6 +1869,13 @@
         <dev:code>PS C:\&gt; Connect-KshSite -Url 'https://example.sharepoint.com' -Credentials (Get-Credential)</dev:code>
         <dev:remarks>
           <maml:para>Connects to a site with user name and password.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 3 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Connect-KshSite -Url 'https://example.sharepoint.com' -ClientId 'e157e5b9-f2df-4417-991d-60546d11c21d' -CertificatePath 'C:\Certificate.pfx' -CertificatePassword 'P@ssw0rd'</dev:code>
+        <dev:remarks>
+          <maml:para>Connects to a site with app credentials.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -8098,7 +8254,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshTenantCdnEnabled cmdlet retrieves whether Office 365 CDN is enabled in the tenant.</maml:para>
+      <maml:para>The Get-KshTenantCdnEnabled cmdlet retrieves whether Office 365 CDN is enabled in the tenant. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -8209,7 +8365,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshTenantCdnOrigin cmdlet retrieves Office 365 CDN origins under the tenant.</maml:para>
+      <maml:para>The Get-KshTenantCdnOrigin cmdlet retrieves Office 365 CDN origins under the tenant. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -8354,7 +8510,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshTenantCdnPolicy cmdlet retrieves Office 365 CDN policies applied to the tenant.</maml:para>
+      <maml:para>The Get-KshTenantCdnPolicy cmdlet retrieves Office 365 CDN policies applied to the tenant. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -8630,6 +8786,60 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Get-KshTenantHomeSite</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>KshTenantHomeSite</command:noun>
+      <maml:description>
+        <maml:para>Retrieves a home site.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-KshTenantHomeSite cmdlet retrieves a home site URL of the tenant. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-KshTenantHomeSite</maml:name>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters />
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshTenantHomeSite</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves a home site.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Get-KshTenantHubSite</command:name>
       <command:verb>Get</command:verb>
       <command:noun>KshTenantHubSite</command:noun>
@@ -8776,6 +8986,156 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Get-KshTenantLogEntry</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>KshTenantLogEntry</command:noun>
+      <maml:description>
+        <maml:para>Retrieves one or more tenant logs.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-KshTenantLogEntry cmdlet retrieves tenant logs. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-KshTenantLogEntry</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>BeginDateTime</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the begin time to search for the logs.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">DateTime</command:parameterValue>
+          <dev:type>
+            <maml:name>DateTime</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>EndDateTime</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the end time to search for the logs.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">DateTime</command:parameterValue>
+          <dev:type>
+            <maml:name>DateTime</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NoEnumerate</maml:name>
+          <maml:Description>
+            <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Rows</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the number of rows.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
+          <dev:type>
+            <maml:name>UInt32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>BeginDateTime</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the begin time to search for the logs.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">DateTime</command:parameterValue>
+        <dev:type>
+          <maml:name>DateTime</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>EndDateTime</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the end time to search for the logs.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">DateTime</command:parameterValue>
+        <dev:type>
+          <maml:name>DateTime</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>NoEnumerate</maml:name>
+        <maml:Description>
+          <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Rows</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the number of rows.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
+        <dev:type>
+          <maml:name>UInt32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.TenantLogEntry</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshTenantLogEntry -BeginDateTime '2020/01/01 00:00:00' -EndDateTime '2020/01/31 23:59:59' -Rows 100</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves hub sites by period.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Get-KshTenantSettings</command:name>
       <command:verb>Get</command:verb>
       <command:noun>KshTenantSettings</command:noun>
@@ -8784,7 +9144,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshTenantSettings cmdlet retrieves tenant settings.</maml:para>
+      <maml:para>The Get-KshTenantSettings cmdlet retrieves tenant settings. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -38960,6 +39320,60 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Remove-KshTenantHomeSite</command:name>
+      <command:verb>Remove</command:verb>
+      <command:noun>KshTenantHomeSite</command:noun>
+      <maml:description>
+        <maml:para>Removes a home site.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Remove-KshTenantHomeSite cmdlet removes a home site. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Remove-KshTenantHomeSite</maml:name>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters />
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Void</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Remove-KshTenantHomeSite</dev:code>
+        <dev:remarks>
+          <maml:para>Removes a home site.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Remove-KshTenantHubSite</command:name>
       <command:verb>Remove</command:verb>
       <command:noun>KshTenantHubSite</command:noun>
@@ -41227,11 +41641,11 @@
       <command:verb>Set</command:verb>
       <command:noun>KshGroupOwner</command:noun>
       <maml:description>
-        <maml:para>Changes a group owner.</maml:para>
+        <maml:para>Sets a user or group as a group owner.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>Get-KshGroupOwner cmdlet changes the user or group that is the owner of the group.</maml:para>
+      <maml:para>The Set-KshGroupOwner cmdlet changes the user or group that is the owner of the group.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -41334,7 +41748,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Set-KshTenantCdnEnabled cmdlet changes whether Office 365 CDN is enabled in the tenant.</maml:para>
+      <maml:para>The Set-KshTenantCdnEnabled cmdlet changes whether Office 365 CDN is enabled in the tenant. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -41481,7 +41895,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>Set-KshTenantCdnPolicy changes the value of Office 365 CDN policy.</maml:para>
+      <maml:para>The Set-KshTenantCdnPolicy cmdlet changes the value of Office 365 CDN policy. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -41659,6 +42073,85 @@
         <dev:code>PS C:\&gt; Set-KshTenantCdnPolicy -Private -Type 'IncludeFileExtensions' -Value 'GIF,ICO,JPEG,JPG,JS,PNG'</dev:code>
         <dev:remarks>
           <maml:para>Changes Office 365 Private CDN policy.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Set-KshTenantHomeSite</command:name>
+      <command:verb>Set</command:verb>
+      <command:noun>KshTenantHomeSite</command:noun>
+      <maml:description>
+        <maml:para>Sets a site as a home site.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Set-KshTenantHomeSite cmdlet sets a site as a home site. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Set-KshTenantHomeSite</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Url</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the URL.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Url</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the URL.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Void</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Set-KshTenantHomeSite -Url 'https://karamem0jp.sharepoint.com/sites/HomeSite'</dev:code>
+        <dev:remarks>
+          <maml:para>Sets a site as a home site.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -53132,6 +53625,17 @@
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>SystemUpdate</maml:name>
+          <maml:Description>
+            <maml:para>If specified, uses system update.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Value</maml:name>
           <maml:Description>
             <maml:para>Specifies the column values.</maml:para>
@@ -53162,6 +53666,18 @@
         <maml:name>PassThru</maml:name>
         <maml:Description>
           <maml:para>If specified, returns the updated object.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>SystemUpdate</maml:name>
+        <maml:Description>
+          <maml:para>If specified, uses system update.</maml:para>
         </maml:Description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>

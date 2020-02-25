@@ -5,29 +5,29 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-KshTenantSettings
+# Get-KshTenantHomeSite
 
 ## SYNOPSIS
-Retrieves tenant settings.
+Retrieves a home site.
 
 ## SYNTAX
 
 ```
-Get-KshTenantSettings [<CommonParameters>]
+Get-KshTenantHomeSite [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshTenantSettings cmdlet retrieves tenant settings.
+The Get-KshTenantHomeSite cmdlet retrieves a home site URL of the tenant.
 This cmdlet can be used only when connected to the SharePoint admin center.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> Get-KshTenantSettings
+PS C:\> Get-KshTenantHomeSite
 ```
 
-Retrieves tenant settings.
+Retrieves a home site.
 
 ## PARAMETERS
 
@@ -40,7 +40,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.TenantSettings
+### System.String
 
 ## NOTES
 

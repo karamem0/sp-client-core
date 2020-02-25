@@ -23,7 +23,8 @@ Set-KshTenantCdnPolicy [-Private] -Type <TenantCdnPolicyType> -Value <String> [<
 ```
 
 ## DESCRIPTION
-Set-KshTenantCdnPolicy changes the value of Office 365 CDN policy.
+The Set-KshTenantCdnPolicy cmdlet changes the value of Office 365 CDN policy.
+This cmdlet can be used only when connected to the SharePoint admin center.
 
 ## EXAMPLES
 

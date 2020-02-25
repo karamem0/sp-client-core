@@ -12,8 +12,10 @@ using Karamem0.SharePoint.PowerShell.Runtime.OAuth;
 using Karamem0.SharePoint.PowerShell.Runtime.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Management.Automation;
+using System.Security;
 using System.Text;
 using System.Threading;
 
@@ -31,10 +33,16 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Common
 
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet1", Position = 0, ValueFromPipeline = true)]
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet2", Position = 0, ValueFromPipeline = true)]
+        [Parameter(Mandatory = true, ParameterSetName = "ParamSet3", Position = 0, ValueFromPipeline = true)]
         public Uri Url { get; private set; }
 
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
         public PSCredential Credential { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+        [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
+        public string ClientId { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -44,6 +52,12 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Common
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
         public SwitchParameter UserMode { get; private set; }
 
+        [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
+        public string CertificatePath { get; private set; }
+
+        [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
+        public SecureString CertificatePassword { get; private set; }
+
         protected override void ProcessRecordCore()
         {
             if (this.Authority == null)
@@ -52,7 +66,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Common
             }
             var oAuthContext = new OAuthContext(
                 this.Authority.GetAuthority(),
-                OAuthConstants.ClientId,
+                this.ClientId ?? OAuthConstants.ClientId,
                 this.Url.GetAuthority(),
                 this.UserMode);
             if (this.ParameterSetName == "ParamSet1")
@@ -108,6 +122,20 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Common
             {
                 var credential = this.Credential.GetNetworkCredential();
                 var oAuthMessage = oAuthContext.AcquireTokenByPassword(credential.UserName, credential.Password);
+                if (oAuthMessage is OAuthToken oAuthToken)
+                {
+                    ClientService.Register(new ClientContext(this.Url, new OAuthTokenCache(oAuthContext, oAuthToken)));
+                }
+                if (oAuthMessage is OAuthError oAuthError)
+                {
+                    throw new InvalidOperationException(oAuthError.ErrorDescription);
+                }
+            }
+            if (this.ParameterSetName == "ParamSet3")
+            {
+                var certificatePath = this.SessionState.Path.GetResolvedPSPathFromPSPath(this.CertificatePath)[0];
+                var certificateBytes = File.ReadAllBytes(Path.GetFullPath(certificatePath.Path));
+                var oAuthMessage = oAuthContext.AcquireTokenByCertificate(certificateBytes, this.CertificatePassword);
                 if (oAuthMessage is OAuthToken oAuthToken)
                 {
                     ClientService.Register(new ClientContext(this.Url, new OAuthTokenCache(oAuthContext, oAuthToken)));

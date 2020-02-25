@@ -14,12 +14,19 @@ Connects to a site.
 
 ### ParamSet1
 ```
-Connect-KshSite [-Url] <Uri> [-Authority <Uri>] [-UserMode] [<CommonParameters>]
+Connect-KshSite [-Url] <Uri> [-ClientId <String>] [-Authority <Uri>] [-UserMode] [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-Connect-KshSite [-Url] <Uri> -Credential <PSCredential> [-Authority <Uri>] [-UserMode] [<CommonParameters>]
+Connect-KshSite [-Url] <Uri> -Credential <PSCredential> [-ClientId <String>] [-Authority <Uri>] [-UserMode]
+ [<CommonParameters>]
+```
+
+### ParamSet3
+```
+Connect-KshSite [-Url] <Uri> -ClientId <String> -CertificatePath <String> -CertificatePassword <SecureString>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -41,6 +48,13 @@ PS C:\> Connect-KshSite -Url 'https://example.sharepoint.com' -Credentials (Get-
 
 Connects to a site with user name and password.
 
+### Example 3
+```powershell
+PS C:\> Connect-KshSite -Url 'https://example.sharepoint.com' -ClientId 'e157e5b9-f2df-4417-991d-60546d11c21d' -CertificatePath 'C:\Certificate.pfx' -CertificatePassword 'P@ssw0rd'
+```
+
+Connects to a site with app credentials.
+
 ## PARAMETERS
 
 ### -Authority
@@ -48,10 +62,67 @@ Specifies the authorization endpoint URL. This parameter is provided for some en
 
 ```yaml
 Type: Uri
-Parameter Sets: (All)
+Parameter Sets: ParamSet1, ParamSet2
 Aliases:
 
 Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -CertificatePassword
+Specifies the password for certificate file (.pfx).
+
+```yaml
+Type: SecureString
+Parameter Sets: ParamSet3
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -CertificatePath
+Specifies the path which located certificate file (.pfx).
+
+```yaml
+Type: String
+Parameter Sets: ParamSet3
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ClientId
+Specifies the app ID of Azure AD app.
+
+```yaml
+Type: String
+Parameter Sets: ParamSet1, ParamSet2
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+```yaml
+Type: String
+Parameter Sets: ParamSet3
+Aliases:
+
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -93,7 +164,7 @@ If specified, connects with user mode. (without admin consent)
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: ParamSet1, ParamSet2
 Aliases:
 
 Required: False

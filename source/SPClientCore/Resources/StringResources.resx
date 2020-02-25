@@ -150,4 +150,7 @@
   <data name="ErrorMaxRetryCountExceeded" xml:space="preserve">
     <value>Max retry count exceeded</value>
   </data>
+  <data name="ErrorAccessTokenExpired" xml:space="preserve">
+    <value>The access token has expired, please login again</value>
+  </data>
 </root>

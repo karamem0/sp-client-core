@@ -61,6 +61,15 @@ namespace Karamem0.SharePoint.PowerShell.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The access token has expired, please login again.
+        /// </summary>
+        public static string ErrorAccessTokenExpired {
+            get {
+                return ResourceManager.GetString("ErrorAccessTokenExpired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot resolve Tenant ID from resource URL.
         /// </summary>
         public static string ErrorCannotResolveTenantId {

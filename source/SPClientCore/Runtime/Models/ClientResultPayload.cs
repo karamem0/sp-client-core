@@ -49,7 +49,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
             var jsonToken = this.ClientObjects[id];
             if (jsonToken.Type == JTokenType.Null)
             {
-                throw new InvalidOperationException(StringResources.ErrorValueIsInvalid);
+                return default(T);
             }
             if (typeof(T).IsSubclassOf(typeof(ClientObject)))
             {

@@ -5,48 +5,65 @@ online version:
 schema: 2.0.0
 ---
 
-# Update-KshListItem
+# Get-KshTenantLogEntry
 
 ## SYNOPSIS
-Updates a list item.
+Retrieves one or more tenant logs.
 
 ## SYNTAX
 
 ```
-Update-KshListItem [-Identity] <ListItem> [-Value <Hashtable>] [-SystemUpdate] [-PassThru] [<CommonParameters>]
+Get-KshTenantLogEntry -BeginDateTime <DateTime> -EndDateTime <DateTime> -Rows <UInt32> [-NoEnumerate]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Update-KshListItem cmdlet updates column values of the list item.
+The Get-KshTenantLogEntry cmdlet retrieves tenant logs.
+This cmdlet can be used only when connected to the SharePoint admin center.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> Update-KshListItem -Identity (Get-KshListItem -List (Get-KshList -ListTitle 'Announcements') -ItemId 1) -Value @{ 'Title' = 'A Happy New Year' }
+PS C:\> Get-KshTenantLogEntry -BeginDateTime '2020/01/01 00:00:00' -EndDateTime '2020/01/31 23:59:59' -Rows 100
 ```
 
-Updates column values of the list item.
+Retrieves hub sites by period.
 
 ## PARAMETERS
 
-### -Identity
-Specifies the list item.
+### -BeginDateTime
+Specifies the begin time to search for the logs.
 
 ```yaml
-Type: ListItem
+Type: DateTime
 Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 0
+Position: Named
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -PassThru
-If specified, returns the updated object.
+### -EndDateTime
+Specifies the end time to search for the logs.
+
+```yaml
+Type: DateTime
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -NoEnumerate
+If specified, suppresses to enumerate objects.
 
 ```yaml
 Type: SwitchParameter
@@ -60,30 +77,15 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -SystemUpdate
-If specified, uses system update.
+### -Rows
+Specifies the number of rows.
 
 ```yaml
-Type: SwitchParameter
+Type: UInt32
 Parameter Sets: (All)
 Aliases:
 
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Value
-Specifies the column values.
-
-```yaml
-Type: Hashtable
-Parameter Sets: (All)
-Aliases:
-
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -95,11 +97,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.List
+### None
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.List
+### Karamem0.SharePoint.PowerShell.Models.TenantLogEntry
 
 ## NOTES
 

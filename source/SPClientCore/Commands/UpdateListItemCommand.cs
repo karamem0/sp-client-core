@@ -36,11 +36,14 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         public Hashtable Value { get; private set; }
 
         [Parameter(Mandatory = false)]
+        public SwitchParameter SystemUpdate { get; private set; }
+
+        [Parameter(Mandatory = false)]
         public SwitchParameter PassThru { get; private set; }
 
         protected override void ProcessRecordCore()
         {
-            this.Service.UpdateObject(this.Identity, this.Value?.ToDictionary<string, object>());
+            this.Service.UpdateObject(this.Identity, this.Value?.ToDictionary<string, object>(), this.SystemUpdate);
             if (this.PassThru)
             {
                 this.WriteObject(this.Service.GetObject(this.Identity));

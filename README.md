@@ -33,7 +33,7 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
 ## Dependencies
 
 - [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/3.1.0) (3.1.0)
-- [System.IdentityModel.Tokens.Jwt](https://www.nuget.org/packages/System.IdentityModel.Tokens.Jwt/5.6.0) (5.6.0)
+- [Microsoft.IdentityModel.JsonWebTokens](https://www.nuget.org/packages/Microsoft.IdentityModel.JsonWebTokens/5.6.0) (5.6.0)
 
 ## Command References
 
@@ -236,11 +236,21 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Move-KshViewColumn](docs/Move-KshViewColumn.md)
     - [Remove-KshViewColumn](docs/Remove-KshViewColumn.md)
 - Tenant Administration
+  - Deleted Site Collections
+    - [Get-KshTenantDeletedSiteCollection](docs/Get-KshTenantDeletedSiteCollection.md)
+    - [Remove-KshTenantDeletedSiteCollection](docs/Remove-KshTenantDeletedSiteCollection.md)
+    - [Restore-KshTenantDeletedSiteCollection](docs/Restore-KshTenantDeletedSiteCollection.md)
+  - Home site
+    - [Get-KshTenantHomeSite](docs/Get-KshTenantHomeSite.md)
+    - [Remove-KshTenantHomeSite](docs/Remove-KshTenantHomeSite.md)
+    - [Set-KshTenantHomeSite](docs/Set-KshTenantHomeSite.md)
   - Hub sites
     - [Get-KshTenantHubSite](docs/Get-KshTenantHubSite.md)
     - [New-KshTenantHubSite](docs/New-KshTenantHubSite.md)
     - [Remove-KshTenantHubSite](docs/Remove-KshTenantHubSite.md)
     - [Update-KshTenantHubSite](docs/Update-KshTenantHubSite.md)
+  - Logs
+    - [Get-KshTenantLogEntry](docs/Get-KshTenantLogEntry.md)
   - Office 365 CDN
     - [Get-KshTenantCdnEnabled](docs/Get-KshTenantCdnEnabled.md)
     - [Set-KshTenantCdnEnabled](docs/Set-KshTenantCdnEnabled.md)
@@ -249,10 +259,6 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Remove-KshTenantCdnOrigin](docs/Remove-KshTenantCdnOrigin.md)
     - [Get-KshTenantCdnPolicy](docs/Get-KshTenantCdnPolicy.md)
     - [Set-KshTenantCdnPolicy](docs/Set-KshTenantCdnPolicy.md)
-  - Deleted Site Collections
-    - [Get-KshTenantDeletedSiteCollection](docs/Get-KshTenantDeletedSiteCollection.md)
-    - [Remove-KshTenantDeletedSiteCollection](docs/Remove-KshTenantDeletedSiteCollection.md)
-    - [Restore-KshTenantDeletedSiteCollection](docs/Restore-KshTenantDeletedSiteCollection.md)
   - Site Collections
     - [Get-KshSiteCollection](docs/Get-KshSiteCollection.md)
     - [Get-KshTenantSiteCollection](docs/Get-KshTenantSiteCollection.md)

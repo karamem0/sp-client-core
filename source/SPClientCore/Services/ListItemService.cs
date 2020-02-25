@@ -42,7 +42,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         void SuspendObject(ListItem listItemObject, string comment);
 
-        void UpdateObject(ListItem listItemObject, IReadOnlyDictionary<string, object> modificationInformation);
+        void UpdateObject(ListItem listItemObject, IReadOnlyDictionary<string, object> modificationInformation, bool useSyetemUpdate);
 
     }
 
@@ -272,7 +272,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             this.ClientContext.ProcessQuery(requestPayload);
         }
 
-        public override void UpdateObject(ListItem listItemObject, IReadOnlyDictionary<string, object> modificationInformation)
+        public void UpdateObject(ListItem listItemObject, IReadOnlyDictionary<string, object> modificationInformation, bool useSyetemUpdate)
         {
             if (listItemObject == null)
             {
@@ -290,7 +290,9 @@ namespace Karamem0.SharePoint.PowerShell.Services
                             new ClientActionMethod(objectPathId, "SetFieldValue",
                             requestPayload.CreateParameter(parameter.Key),
                             requestPayload.CreateParameter(parameter.Value))))
-                    .Append(objectPathId => new ClientActionMethod(objectPathId, "Update"))
+                    .Append(objectPathId => new ClientActionMethod(
+                        objectPathId,
+                        useSyetemUpdate ? "SystemUpdate" : "Update"))
                     .Where(item => item != null)
                     .ToArray());
             this.ClientContext.ProcessQuery(requestPayload);

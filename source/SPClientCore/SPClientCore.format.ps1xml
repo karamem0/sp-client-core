@@ -672,6 +672,34 @@
             </TableControl>
         </View>
         <View>
+            <Name>Karamem0.SharePoint.PowerShell.Models.TenantLogEntry</Name>
+            <ViewSelectedBy>
+                <TypeName>Karamem0.SharePoint.PowerShell.Models.TenantLogEntry</TypeName>
+            </ViewSelectedBy>
+            <TableControl>
+                <TableHeaders>
+                    <TableColumnHeader />
+                    <TableColumnHeader />
+                    <TableColumnHeader />
+                </TableHeaders>
+                <TableRowEntries>
+                    <TableRowEntry>
+                        <TableColumnItems>
+                            <TableColumnItem>
+                                <PropertyName>Timestamp</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>CorrelationId</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>Message</PropertyName>
+                            </TableColumnItem>
+                        </TableColumnItems>
+                    </TableRowEntry>
+                </TableRowEntries>
+            </TableControl>
+        </View>
+        <View>
             <Name>Karamem0.SharePoint.PowerShell.Models.TenantSiteCollection</Name>
             <ViewSelectedBy>
                 <TypeName>Karamem0.SharePoint.PowerShell.Models.TenantSiteCollection</TypeName>

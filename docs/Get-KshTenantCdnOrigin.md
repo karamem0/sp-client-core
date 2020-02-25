@@ -24,6 +24,7 @@ Get-KshTenantCdnOrigin [-Private] [-NoEnumerate] [<CommonParameters>]
 
 ## DESCRIPTION
 The Get-KshTenantCdnOrigin cmdlet retrieves Office 365 CDN origins under the tenant.
+This cmdlet can be used only when connected to the SharePoint admin center.
 
 ## EXAMPLES
 

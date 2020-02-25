@@ -5,29 +5,29 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-KshTenantSettings
+# Remove-KshTenantHomeSite
 
 ## SYNOPSIS
-Retrieves tenant settings.
+Removes a home site.
 
 ## SYNTAX
 
 ```
-Get-KshTenantSettings [<CommonParameters>]
+Remove-KshTenantHomeSite [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshTenantSettings cmdlet retrieves tenant settings.
+The Remove-KshTenantHomeSite cmdlet removes a home site.
 This cmdlet can be used only when connected to the SharePoint admin center.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> Get-KshTenantSettings
+PS C:\> Remove-KshTenantHomeSite
 ```
 
-Retrieves tenant settings.
+Removes a home site.
 
 ## PARAMETERS
 
@@ -40,7 +40,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.TenantSettings
+### System.Void
 
 ## NOTES
 

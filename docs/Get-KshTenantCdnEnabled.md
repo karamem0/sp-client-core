@@ -24,6 +24,7 @@ Get-KshTenantCdnEnabled [-Private] [<CommonParameters>]
 
 ## DESCRIPTION
 The Get-KshTenantCdnEnabled cmdlet retrieves whether Office 365 CDN is enabled in the tenant.
+This cmdlet can be used only when connected to the SharePoint admin center.
 
 ## EXAMPLES
 
