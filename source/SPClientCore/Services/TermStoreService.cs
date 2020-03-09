@@ -47,7 +47,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<TermStore>(requestPayload.ActionQueryId);
+                .ToObject<TermStore>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public void UpdateObject(IReadOnlyDictionary<string, object> modificationInformation)

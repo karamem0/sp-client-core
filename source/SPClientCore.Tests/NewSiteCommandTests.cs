@@ -45,7 +45,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "Description", "Test Site 0 Description" },
                         { "Lcid", 1033 },
                         { "ServerRelativeUrl", "TestSite0" },
-                        { "Template", "STS#0" },
+                        { "Template", "SITEPAGEPUBLISHING#0" },
                         { "Title", "Test Site 0" },
                         { "UseSamePermissionsAsParentSite", true }
                     }

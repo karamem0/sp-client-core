@@ -71,7 +71,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<TermGroup>(requestPayload.ActionQueryId);
+                .ToObject<TermGroup>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public TermGroup GetObject(Guid termGroupId)
@@ -100,7 +100,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<TermGroup>(requestPayload.ActionQueryId);
+                .ToObject<TermGroup>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public TermGroup GetObject(string termGroupName)
@@ -129,7 +129,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<TermGroup>(requestPayload.ActionQueryId);
+                .ToObject<TermGroup>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public IEnumerable<TermGroup> GetObjectEnumerable()
@@ -149,7 +149,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<TermGroupEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<TermGroupEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public override void UpdateObject(TermGroup termGroupObject, IReadOnlyDictionary<string, object> modificationInformation)

@@ -68,7 +68,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<RoleDefinition>(requestPayload.ActionQueryId);
+                .ToObject<RoleDefinition>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public RoleDefinition GetObject(int roleDefinitionId)
@@ -96,7 +96,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<RoleDefinition>(requestPayload.ActionQueryId);
+                .ToObject<RoleDefinition>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public RoleDefinition GetObject(string roleDefinitionName)
@@ -124,7 +124,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<RoleDefinition>(requestPayload.ActionQueryId);
+                .ToObject<RoleDefinition>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public IEnumerable<RoleDefinition> GetObjectEnumerable()
@@ -144,7 +144,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<RoleDefinitionEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<RoleDefinitionEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
     }

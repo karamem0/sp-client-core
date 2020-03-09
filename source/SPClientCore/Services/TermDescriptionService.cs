@@ -54,7 +54,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                     requestPayload.CreateParameter(lcid)));
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<string>(requestPayload.ActionMethodId);
+                .ToObject<string>(requestPayload.GetActionId<ClientActionMethod>());
         }
 
         public void SetObject(Term termObject, string description, uint lcid)

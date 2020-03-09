@@ -16,8 +16,9 @@ variables:
   manifestFile: 'source/SPClientCore/SPClientCore.psd1'
   nuspecFile: 'source/SPClientCore/SPClientCore.nuspec'
   buildConfiguration: 'Release'
-  buildVersion: '3.3.0'
+  buildVersion: '3.4.0'
   buildId: '$(Build.BuildId)'
+  artifactName: 'SPClientCore'
 
 steps:
 - task: PowerShell@2
@@ -51,5 +52,5 @@ steps:
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'SPClientCore'
+    ArtifactName: '$(artifactName)'
     publishLocation: 'Container'

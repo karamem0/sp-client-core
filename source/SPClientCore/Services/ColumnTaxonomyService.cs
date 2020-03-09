@@ -70,7 +70,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<ColumnTaxonomy>(requestPayload.ActionQueryId);
+                .ToObject<ColumnTaxonomy>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public ColumnTaxonomy CreateObject(List listObject, IReadOnlyDictionary<string, object> creationInformation, bool addToDefaultView, AddColumnOptions addColumnOptions)
@@ -104,7 +104,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<ColumnTaxonomy>(requestPayload.ActionQueryId);
+                .ToObject<ColumnTaxonomy>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public void SetObjectValue(ColumnTaxonomy columnTaxonomyObject, ListItem listItemObject, IEnumerable<Term> termCollection, uint lcid)

@@ -74,7 +74,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<TermLabel>(requestPayload.ActionQueryId);
+                .ToObject<TermLabel>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public TermLabel GetObject(Term termObject, string labelName)
@@ -104,7 +104,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<TermLabel>(requestPayload.ActionQueryId);
+                .ToObject<TermLabel>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public IEnumerable<TermLabel> GetObjectEnumerable(Term termObject)
@@ -126,7 +126,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<TermLabelEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<TermLabelEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public override void RemoveObject(TermLabel termLabelObject)

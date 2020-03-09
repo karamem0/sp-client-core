@@ -77,7 +77,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                     requestPayload.CreateParameter(pushChanges)));
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<ContentTypeColumn>(requestPayload.ActionQueryId);
+                .ToObject<ContentTypeColumn>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public ContentTypeColumn GetObject(ContentType contentTypeObject, Guid columnId)
@@ -107,7 +107,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<ContentTypeColumn>(requestPayload.ActionQueryId);
+                .ToObject<ContentTypeColumn>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public IEnumerable<ContentTypeColumn> GetObjectEnumerable(ContentType contentTypeObject)
@@ -129,7 +129,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<ContentTypeColumnEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<ContentTypeColumnEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public void RemoveObject(ContentTypeColumn contentTypeColumnObject, bool pushChanges)

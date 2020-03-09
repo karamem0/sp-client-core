@@ -48,7 +48,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                     });
                 operationResultObject = this.ClientContext
                     .ProcessQuery(requestPayload)
-                    .ToObject<TenantOperationResult>(requestPayload.ActionQueryId);
+                    .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
             }
         }
 

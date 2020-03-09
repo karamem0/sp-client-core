@@ -63,7 +63,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<TenantLogEntryEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<TenantLogEntryEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
     }

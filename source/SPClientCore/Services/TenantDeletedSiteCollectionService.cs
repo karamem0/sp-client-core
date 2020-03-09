@@ -59,7 +59,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             var clientObject = this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<TenantDeletedSiteCollection>(requestPayload.ActionQueryId);
+                .ToObject<TenantDeletedSiteCollection>(requestPayload.GetActionId<ClientActionQuery>());
             return this.GetObject(new Uri(clientObject.Url, UriKind.Absolute));
         }
 
@@ -85,7 +85,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<TenantDeletedSiteCollection>(requestPayload.ActionQueryId);
+                .ToObject<TenantDeletedSiteCollection>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public IEnumerable<TenantDeletedSiteCollection> GetObjectEnumerable()
@@ -106,7 +106,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<TenantDeletedSiteCollectionsEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<TenantDeletedSiteCollectionsEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public TenantOperationResult RemoveObject(TenantDeletedSiteCollection siteCollectionObject)
@@ -134,7 +134,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<TenantOperationResult>(requestPayload.ActionQueryId);
+                .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public void RemoveObjectAwait(TenantDeletedSiteCollection siteCollectionObject)
@@ -167,7 +167,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<TenantOperationResult>(requestPayload.ActionQueryId);
+                .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public void RestoreObjectAwait(TenantDeletedSiteCollection siteCollectionObject)

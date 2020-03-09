@@ -107,7 +107,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Folder>(requestPayload.ActionQueryId);
+                .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public void DenyObject(Folder folderObject, string comment)
@@ -153,7 +153,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Folder>(requestPayload.ActionQueryId);
+                .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public Folder GetObject(Guid folderId)
@@ -179,7 +179,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Folder>(requestPayload.ActionQueryId);
+                .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public Folder GetObject(Uri folderUrl)
@@ -205,7 +205,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Folder>(requestPayload.ActionQueryId);
+                .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public Folder GetObject(Folder folderObject, string folderName)
@@ -235,7 +235,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Folder>(requestPayload.ActionQueryId);
+                .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public IEnumerable<Folder> GetObjectEnumerable(Folder folderObject)
@@ -257,7 +257,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<FolderEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<FolderEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public Guid RecycleObject(Folder folderObject)
@@ -272,7 +272,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 objectPathId => new ClientActionMethod(objectPathId, "Recycle"));
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Guid>(requestPayload.ActionMethodId);
+                .ToObject<Guid>(requestPayload.GetActionId<ClientActionMethod>());
         }
 
         public void SuspendObject(Folder folderObject, string comment)

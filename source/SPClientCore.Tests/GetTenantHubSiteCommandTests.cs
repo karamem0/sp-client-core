@@ -38,13 +38,66 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         }
                     }
                 );
-                var result2 = context.Runspace.InvokeCommand<HubSite>(
+                var result2 = context.Runspace.InvokeCommand<TenantSiteCollection>(
+                    "New-KshTenantSiteCollection",
+                    new Dictionary<string, object>()
+                    {
+                        { "Owner", context.AppSettings["LoginUserName"] },
+                        { "Template", "SITEPAGEPUBLISHING#0" },
+                        { "Url", context.AppSettings["AuthorityUrl"] + "/sites/TestSite0" }
+                    }
+                );
+                var result3 = context.Runspace.InvokeCommand<SiteCollection>(
+                    "Get-KshSiteCollection",
+                    new Dictionary<string, object>()
+                    {
+                         { "SiteCollectionUrl", result2.ElementAt(0).Url }
+                    }
+                );
+                var result4 = context.Runspace.InvokeCommand<HubSite>(
+                    "New-KshTenantHubSite",
+                    new Dictionary<string, object>()
+                    {
+                        { "SiteCollectionId", result3.ElementAt(0).Id },
+                        { "SiteCollectionUrl", result3.ElementAt(0).Url },
+                        { "Title", "Test Hub Site 0" }
+                    }
+                );
+                var result5 = context.Runspace.InvokeCommand<HubSite>(
                     "Get-KshTenantHubSite",
                     new Dictionary<string, object>()
                     {
                     }
                 );
-                var actual = result2.ToArray();
+                var result6 = context.Runspace.InvokeCommand(
+                    "Remove-KshTenantHubSite",
+                    new Dictionary<string, object>()
+                    {
+                        { "Identity", result4.ElementAt(0) }
+                    }
+                );
+                var result7 = context.Runspace.InvokeCommand(
+                    "Remove-KshTenantSiteCollection",
+                    new Dictionary<string, object>()
+                    {
+                        { "Identity", result2.ElementAt(0) }
+                    }
+                );
+                var result8 = context.Runspace.InvokeCommand<TenantDeletedSiteCollection>(
+                    "Get-KshTenantDeletedSiteCollection",
+                    new Dictionary<string, object>()
+                    {
+                        { "SiteCollectionUrl", result2.ElementAt(0).Url }
+                    }
+                );
+                var result9 = context.Runspace.InvokeCommand(
+                    "Remove-KshTenantDeletedSiteCollection",
+                    new Dictionary<string, object>()
+                    {
+                        { "Identity", result8.ElementAt(0) }
+                    }
+                );
+                var actual = result5.ToArray();
             }
         }
 
@@ -64,14 +117,67 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         }
                     }
                 );
-                var result2 = context.Runspace.InvokeCommand<HubSite>(
+                var result2 = context.Runspace.InvokeCommand<TenantSiteCollection>(
+                    "New-KshTenantSiteCollection",
+                    new Dictionary<string, object>()
+                    {
+                        { "Owner", context.AppSettings["LoginUserName"] },
+                        { "Template", "SITEPAGEPUBLISHING#0" },
+                        { "Url", context.AppSettings["AuthorityUrl"] + "/sites/TestSite0" }
+                    }
+                );
+                var result3 = context.Runspace.InvokeCommand<SiteCollection>(
+                    "Get-KshSiteCollection",
+                    new Dictionary<string, object>()
+                    {
+                         { "SiteCollectionUrl", result2.ElementAt(0).Url }
+                    }
+                );
+                var result4 = context.Runspace.InvokeCommand<HubSite>(
+                    "New-KshTenantHubSite",
+                    new Dictionary<string, object>()
+                    {
+                        { "SiteCollectionId", result3.ElementAt(0).Id },
+                        { "SiteCollectionUrl", result3.ElementAt(0).Url },
+                        { "Title", "Test Hub Site 0" }
+                    }
+                );
+                var result5 = context.Runspace.InvokeCommand<HubSite>(
                     "Get-KshTenantHubSite",
                     new Dictionary<string, object>()
                     {
-                        { "HubSiteId", context.AppSettings["HubSiteId"] }
+                        { "HubSiteId", result4.ElementAt(0).Id }
                     }
                 );
-                var actual = result2.ToArray();
+                var result6 = context.Runspace.InvokeCommand(
+                    "Remove-KshTenantHubSite",
+                    new Dictionary<string, object>()
+                    {
+                        { "Identity", result4.ElementAt(0) }
+                    }
+                );
+                var result7 = context.Runspace.InvokeCommand(
+                    "Remove-KshTenantSiteCollection",
+                    new Dictionary<string, object>()
+                    {
+                        { "Identity", result2.ElementAt(0) }
+                    }
+                );
+                var result8 = context.Runspace.InvokeCommand<TenantDeletedSiteCollection>(
+                    "Get-KshTenantDeletedSiteCollection",
+                    new Dictionary<string, object>()
+                    {
+                        { "SiteCollectionUrl", result2.ElementAt(0).Url }
+                    }
+                );
+                var result9 = context.Runspace.InvokeCommand(
+                    "Remove-KshTenantDeletedSiteCollection",
+                    new Dictionary<string, object>()
+                    {
+                        { "Identity", result8.ElementAt(0) }
+                    }
+                );
+                var actual = result5.ElementAt(0);
             }
         }
 
@@ -91,14 +197,67 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         }
                     }
                 );
-                var result2 = context.Runspace.InvokeCommand<HubSite>(
+                var result2 = context.Runspace.InvokeCommand<TenantSiteCollection>(
+                    "New-KshTenantSiteCollection",
+                    new Dictionary<string, object>()
+                    {
+                        { "Owner", context.AppSettings["LoginUserName"] },
+                        { "Template", "SITEPAGEPUBLISHING#0" },
+                        { "Url", context.AppSettings["AuthorityUrl"] + "/sites/TestSite0" }
+                    }
+                );
+                var result3 = context.Runspace.InvokeCommand<SiteCollection>(
+                    "Get-KshSiteCollection",
+                    new Dictionary<string, object>()
+                    {
+                         { "SiteCollectionUrl", result2.ElementAt(0).Url }
+                    }
+                );
+                var result4 = context.Runspace.InvokeCommand<HubSite>(
+                    "New-KshTenantHubSite",
+                    new Dictionary<string, object>()
+                    {
+                        { "SiteCollectionId", result3.ElementAt(0).Id },
+                        { "SiteCollectionUrl", result3.ElementAt(0).Url },
+                        { "Title", "Test Hub Site 0" }
+                    }
+                );
+                var result5 = context.Runspace.InvokeCommand<HubSite>(
                     "Get-KshTenantHubSite",
                     new Dictionary<string, object>()
                     {
-                        { "HubSiteUrl", context.AppSettings["AuthorityUrl"] + context.AppSettings["HubSiteUrl"] }
+                        { "HubSiteUrl", result3.ElementAt(0).Url }
                     }
                 );
-                var actual = result2.ToArray();
+                var result6 = context.Runspace.InvokeCommand(
+                    "Remove-KshTenantHubSite",
+                    new Dictionary<string, object>()
+                    {
+                        { "Identity", result4.ElementAt(0) }
+                    }
+                );
+                var result7 = context.Runspace.InvokeCommand(
+                    "Remove-KshTenantSiteCollection",
+                    new Dictionary<string, object>()
+                    {
+                        { "Identity", result2.ElementAt(0) }
+                    }
+                );
+                var result8 = context.Runspace.InvokeCommand<TenantDeletedSiteCollection>(
+                    "Get-KshTenantDeletedSiteCollection",
+                    new Dictionary<string, object>()
+                    {
+                        { "SiteCollectionUrl", result2.ElementAt(0).Url }
+                    }
+                );
+                var result9 = context.Runspace.InvokeCommand(
+                    "Remove-KshTenantDeletedSiteCollection",
+                    new Dictionary<string, object>()
+                    {
+                        { "Identity", result8.ElementAt(0) }
+                    }
+                );
+                var actual = result5.ElementAt(0);
             }
         }
 

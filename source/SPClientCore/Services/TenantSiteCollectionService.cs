@@ -83,7 +83,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<TenantOperationResult>(requestPayload.ActionQueryId);
+                .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public void CreateObjectAwait(IReadOnlyDictionary<string, object> creationInformation)
@@ -107,7 +107,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<TenantSiteCollection>(requestPayload.ActionQueryId);
+                .ToObject<TenantSiteCollection>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public TenantSiteCollection GetObject(Uri siteCollectionUrl)
@@ -132,7 +132,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<TenantSiteCollection>(requestPayload.ActionQueryId);
+                .ToObject<TenantSiteCollection>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public TenantSiteCollection GetObjectAwait(TenantSiteCollection siteCollectionObject)
@@ -193,7 +193,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<TenantSiteCollectionEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<TenantSiteCollectionEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public IEnumerable<TenantSiteCollection> GetObjectEnumerable(IReadOnlyDictionary<string, object> filterInformation)
@@ -215,7 +215,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<TenantSiteCollectionEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<TenantSiteCollectionEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public TenantOperationResult LockObject(TenantSiteCollection siteCollectionObject)
@@ -240,7 +240,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<TenantOperationResult>(requestPayload.ActionQueryId);
+                .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public void LockObjectAwait(TenantSiteCollection siteCollectionObject)
@@ -273,7 +273,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<TenantOperationResult>(requestPayload.ActionQueryId);
+                .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public void RemoveObjectAwait(TenantSiteCollection siteCollectionObject)
@@ -303,7 +303,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<TenantOperationResult>(requestPayload.ActionQueryId);
+                .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public void UnlockObjectAwait(TenantSiteCollection siteCollectionObject)
@@ -334,7 +334,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<TenantOperationResult>(requestPayload.ActionQueryId);
+                .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public void UpdateObjectAwait(TenantSiteCollection siteCollectionObject, IReadOnlyDictionary<string, object> modificationInformation)

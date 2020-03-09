@@ -101,6 +101,8 @@ SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant およ
     - [Remove-KshContentTypeColumn](docs/Remove-KshContentTypeColumn.md)
     - [Update-KshContentTypeColumn](docs/Update-KshContentTypeColumn.md)
     - [Set-KshContentTypeColumnOrder](docs/Set-KshContentTypeColumnOrder.md)
+  - ドキュメント ライブラリ
+    - [Get-KshDocumentLibrary](docs/Get-KshDocumentLibrary.md)
   - ファイル
     - [Approve-KshFile](docs/Approve-KshFile.md)
     - [Deny-KshFile](docs/Deny-KshFile.md)
@@ -167,7 +169,7 @@ SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant およ
     - [Get-KshRecycleBinItem](docs/Get-KshRecycleBinItem.md)
     - [Move-KshRecycleBinItem](docs/Move-KshRecycleBinItem.md)
     - [Remove-KshRecycleBinItem](docs/Remove-KshRecycleBinItem.md)
-    - [Restore-KshRecycleBinItem](docs/Remove-KshRecycleBinItem.md)
+    - [Restore-KshRecycleBinItem](docs/Restore-KshRecycleBinItem.md)
   - 地域と言語の設定
     - [Get-KshRegionalSettings](docs/Get-KshRegionalSettings.md)
     - [Update-KshRegionalSettings](docs/Update-KshRegionalSettings.md)
@@ -182,6 +184,12 @@ SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant およ
     - [Remove-KshRoleDefinition](docs/Remove-KshRoleDefinition.md)
     - [Update-KshRoleDefinition](docs/Update-KshRoleDefinition.md)
     - [Initialize-KshBasePermission](docs/Initialize-KshBasePermission.md)
+  - 共有リンク
+    - [New-KshAnonymousLink](docs/New-KshAnonymousLink.md)
+    - [Remove-KshAnonymousLink](docs/Remove-KshAnonymousLink.md)
+    - [New-KshOrganizationSharingLink](docs/New-KshOrganizationSharingLink.md)
+    - [Remove-KshOrganizationSharingLink](docs/Remove-KshOrganizationSharingLink.md)
+    - [Test-KshSharingLink](docs/New-KshSharingLink.md)
   - サイト
     - [Get-KshSite](docs/Get-KshSite.md)
     - [New-KshSite](docs/New-KshSite.md)
@@ -223,6 +231,7 @@ SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant およ
     - [Get-KshUser](docs/Get-KshUser.md)
     - [New-KshUser](docs/New-KshUser.md)
     - [Remove-KshUser](docs/Remove-KshUser.md)
+    - [Resolve-KshUser](docs/Resolve-KshUser.md)
     - [Update-KshUser](docs/Update-KshUser.md)
   - ユーザー プロパティ
     - [Get-KshUserProperties](docs/Get-KshUserProperties.md)

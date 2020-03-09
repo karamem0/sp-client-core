@@ -67,7 +67,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<HubSite>(requestPayload.ActionQueryId);
+                .ToObject<HubSite>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public HubSite GetObject(Guid hubSiteId)
@@ -91,7 +91,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<HubSite>(requestPayload.ActionQueryId);
+                .ToObject<HubSite>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public HubSite GetObject(string hubSiteUrl)
@@ -115,7 +115,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<HubSite>(requestPayload.ActionQueryId);
+                .ToObject<HubSite>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public IEnumerable<HubSite> GetObjectEnumerable()
@@ -133,7 +133,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<HubSiteEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<HubSiteEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public override void RemoveObject(HubSite hubSiteObject)

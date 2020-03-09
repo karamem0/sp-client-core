@@ -101,6 +101,8 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Remove-KshContentTypeColumn](docs/Remove-KshContentTypeColumn.md)
     - [Update-KshContentTypeColumn](docs/Update-KshContentTypeColumn.md)
     - [Set-KshContentTypeColumnOrder](docs/Set-KshContentTypeColumnOrder.md)
+  - Document Libraries
+    - [Get-KshDocumentLibrary](docs/Get-KshDocumentLibrary.md)
   - Files
     - [Approve-KshFile](docs/Approve-KshFile.md)
     - [Deny-KshFile](docs/Deny-KshFile.md)
@@ -167,7 +169,7 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Get-KshRecycleBinItem](docs/Get-KshRecycleBinItem.md)
     - [Move-KshRecycleBinItem](docs/Move-KshRecycleBinItem.md)
     - [Remove-KshRecycleBinItem](docs/Remove-KshRecycleBinItem.md)
-    - [Restore-KshRecycleBinItem](docs/Remove-KshRecycleBinItem.md)
+    - [Restore-KshRecycleBinItem](docs/Restore-KshRecycleBinItem.md)
   - Regional Settings
     - [Get-KshRegionalSettings](docs/Get-KshRegionalSettings.md)
     - [Update-KshRegionalSettings](docs/Update-KshRegionalSettings.md)
@@ -182,6 +184,12 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Remove-KshRoleDefinition](docs/Remove-KshRoleDefinition.md)
     - [Update-KshRoleDefinition](docs/Update-KshRoleDefinition.md)
     - [Initialize-KshBasePermission](docs/Initialize-KshBasePermission.md)
+  - Sharing Links
+    - [New-KshAnonymousLink](docs/New-KshAnonymousLink.md)
+    - [Remove-KshAnonymousLink](docs/Remove-KshAnonymousLink.md)
+    - [New-KshOrganizationSharingLink](docs/New-KshOrganizationSharingLink.md)
+    - [Remove-KshOrganizationSharingLink](docs/Remove-KshOrganizationSharingLink.md)
+    - [Test-KshSharingLink](docs/New-KshSharingLink.md)
   - Sites
     - [Get-KshSite](docs/Get-KshSite.md)
     - [New-KshSite](docs/New-KshSite.md)
@@ -223,6 +231,7 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Get-KshUser](docs/Get-KshUser.md)
     - [New-KshUser](docs/New-KshUser.md)
     - [Remove-KshUser](docs/Remove-KshUser.md)
+    - [Resolve-KshUser](docs/Resolve-KshUser.md)
     - [Update-KshUser](docs/Update-KshUser.md)
   - User Properties
     - [Get-KshUserProperties](docs/Get-KshUserProperties.md)

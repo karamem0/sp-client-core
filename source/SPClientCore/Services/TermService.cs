@@ -74,7 +74,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Term>(requestPayload.ActionQueryId);
+                .ToObject<Term>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public Term CreateObject(TermSetItem termSetItemObject, string termName, Guid termId, uint lcid)
@@ -112,7 +112,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Term>(requestPayload.ActionQueryId);
+                .ToObject<Term>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public void DeprecateObject(Term termObject, bool deprecated)
@@ -151,7 +151,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Term>(requestPayload.ActionQueryId);
+                .ToObject<Term>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public Term GetObject(TermSetItem termSetItemObject, Guid termId)
@@ -181,7 +181,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Term>(requestPayload.ActionQueryId);
+                .ToObject<Term>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public Term GetObject(TermSetItem termSetItemObject, string termName)
@@ -211,7 +211,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Term>(requestPayload.ActionQueryId);
+                .ToObject<Term>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public IEnumerable<Term> GetObjectEnumerable(TermSetItem termSetItemObject)
@@ -233,7 +233,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<TermEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<TermEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public void MergeObject(Term sourceTermObject, TermSetItem destinationTermObject)

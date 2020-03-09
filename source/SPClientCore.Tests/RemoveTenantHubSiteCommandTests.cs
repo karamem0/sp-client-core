@@ -43,7 +43,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     new Dictionary<string, object>()
                     {
                         { "Owner", context.AppSettings["LoginUserName"] },
-                        { "Template", "STS#0" },
+                        { "Template", "SITEPAGEPUBLISHING#0" },
                         { "Url", context.AppSettings["AuthorityUrl"] + "/sites/TestSite0" }
                     }
                 );
@@ -60,7 +60,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     {
                         { "SiteCollectionId", result3.ElementAt(0).Id },
                         { "SiteCollectionUrl", result3.ElementAt(0).Url },
-                        { "Title", "Test Hub Site 1" }
+                        { "Title", "Test Hub Site 0" }
                     }
                 );
                 var result5 = context.Runspace.InvokeCommand(

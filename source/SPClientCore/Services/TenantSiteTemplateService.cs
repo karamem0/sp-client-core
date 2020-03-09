@@ -52,7 +52,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<TenantSiteTemplateEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<TenantSiteTemplateEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public IEnumerable<TenantSiteTemplate> GetObjectEnumerable()
@@ -70,7 +70,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<TenantSiteTemplateEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<TenantSiteTemplateEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
     }

@@ -88,7 +88,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Feature>(requestPayload.ActionQueryId);
+                .ToObject<Feature>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public IEnumerable<Feature> GetObjectEnumerable()
@@ -108,7 +108,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<FeatureEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<FeatureEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public void RemoveObject(Guid featureId, bool force)

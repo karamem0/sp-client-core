@@ -49,7 +49,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<RegionalSettings>(requestPayload.ActionQueryId);
+                .ToObject<RegionalSettings>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public void UpdateObject(IReadOnlyDictionary<string, object> modificationInformation)

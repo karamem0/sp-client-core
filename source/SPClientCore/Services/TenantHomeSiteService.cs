@@ -47,7 +47,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                     "GetSPHSiteUrl"));
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<string>(requestPayload.ActionMethodId);
+                .ToObject<string>(requestPayload.GetActionId<ClientActionMethod>());
         }
 
         public void RemoveObject()

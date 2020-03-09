@@ -59,6 +59,9 @@ namespace Karamem0.SharePoint.PowerShell.Models
         public virtual User Author { get; protected set; }
 
         [JsonProperty()]
+        public virtual string ClassicWelcomePage { get; protected set; }
+
+        [JsonProperty()]
         public virtual bool CommentsOnSitePagesDisabled { get; protected set; }
 
         [JsonProperty()]
@@ -101,6 +104,9 @@ namespace Karamem0.SharePoint.PowerShell.Models
         public virtual bool ExcludeFromOfflineClient { get; protected set; }
 
         [JsonProperty()]
+        public virtual FooterVariantThemeType FooterEmphasis { get; protected set; }
+
+        [JsonProperty()]
         public virtual bool FooterEnabled { get; protected set; }
 
         [JsonProperty()]
@@ -119,7 +125,13 @@ namespace Karamem0.SharePoint.PowerShell.Models
         public virtual Guid Id { get; protected set; }
 
         [JsonProperty()]
+        public virtual bool IsHomepageModernized { get; protected set; }
+
+        [JsonProperty()]
         public virtual bool IsMultilingual { get; protected set; }
+
+        [JsonProperty()]
+        public virtual bool IsRevertHomepageLinkHidden { get; protected set; }
 
         [JsonProperty("Language")]
         public virtual uint Lcid { get; protected set; }

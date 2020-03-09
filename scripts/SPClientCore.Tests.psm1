@@ -30,7 +30,6 @@ function Install-TestSite {
         $authorityUrl = $Url.GetLeftPart([System.UriPartial]::Authority)
         $adminUrl = $authorityUrl.Replace('.sharepoint.com', '-admin.sharepoint.com')
         $baseUrl = $authorityUrl + '/sites/SPClientCore'
-        $hubSiteUrl = $authorityUrl + '/sites/SPClientCoreHubSite'
 
         $credential = New-Object System.Net.NetworkCredential("$UserName@$DomainName", $Password)
         $credential = New-Object System.Management.Automation.PSCredential($credential.UserName, $credential.SecurePassword)
@@ -115,38 +114,22 @@ function Install-TestSite {
             -Lcid 1033
         $appSettings.Term4Id = $term4.Id
         $appSettings.Term4Name = $term4.Name
-    
-        Write-Progress -Activity 'Creating site collections...' -Status 'Processing'
-        $null = New-KshTenantSiteCollection `
-            -Lcid 1033 `
-            -Owner $credential.UserName `
-            -StorageMaxLevel 26214400 `
-            -Template 'STS#0' `
-            -Title 'SPClientCoreHubSite' `
-            -Url $hubSiteUrl
-
-        Write-Progress -Activity 'Retrieving site collections....' -Status 'Processing'
-        $hubSite = Get-KshSiteCollection -SiteCollectionUrl $hubSiteUrl
-        $appSettings.HubSiteId = $hubSite.Id
-        $appSettings.HubSiteUrl = $hubSite.ServerRelativeUrl
-
-        Write-Progress -Activity 'Creating hub sites...' -Status 'Processing'
-        $null = New-KshTenantHubSite `
-            -SiteCollectionId $hubSite.Id `
-            -SiteCollectionUrl $hubSiteUrl `
-            -Title 'SPClientCoreHubSite'
 
         Write-Progress -Activity 'Creating site collections...' -Status 'Processing'
-        $null = New-KshTenantSiteCollection `
+        $siteCollection = New-KshTenantSiteCollection `
             -Lcid 1033 `
             -Owner $credential.UserName `
             -StorageMaxLevel 26214400 `
             -Template 'STS#0' `
             -Title 'SPClientCore' `
             -Url $baseUrl
+        $siteCollection = Update-KshTenantSiteCollection `
+            -Identity $siteCollection `
+            -SharingCapability ExternalUserAndGuestSharing `
+            -PassThru
 
         Write-Progress -Activity 'Retrieving site collections....' -Status 'Processing'
-        $siteCollection = Get-KshSiteCollection -SiteCollectionUrl $baseUrl
+        $siteCollection = Get-KshSiteCollection -SiteCollectionUrl $siteCollection.Url
         $appSettings.SiteCollectionId = $siteCollection.Id
         $appSettings.SiteCollectionUrl = $siteCollection.ServerRelativeUrl
         
@@ -455,7 +438,7 @@ function Install-TestSite {
         Write-Progress -Activity 'Creating lists...' -Status 'Test List 3'
         $list3 = New-KshList `
             -Description 'Test List 3' `
-            -ServerRelativeUrl 'Lists/TestList33' `
+            -ServerRelativeUrl 'Lists/TestList3' `
             -Template 101 `
             -Title 'Test List 3'
         $rootFolder3 = Get-KshFolder -List $list3
@@ -1219,7 +1202,6 @@ function Uninstall-TestSite {
         $authorityUrl = $Url.GetLeftPart([System.UriPartial]::Authority)
         $adminUrl = $authorityUrl.Replace('.sharepoint.com', '-admin.sharepoint.com')
         $baseUrl = $authorityUrl + '/sites/SPClientCore'
-        $hubSiteUrl = $authorityUrl + '/sites/SPClientCoreHubSite'
 
         $credential = New-Object System.Net.NetworkCredential("$UserName@$DomainName", $Password)
         $credential = New-Object System.Management.Automation.PSCredential($credential.UserName, $credential.SecurePassword)
@@ -1233,13 +1215,6 @@ function Uninstall-TestSite {
         Write-Progress -Activity 'Removing site collections...' -Status 'Processing'
         Get-KshTenantSiteCollection -SiteCollectionUrl $baseUrl | Remove-KshTenantSiteCollection
         Get-KshTenantDeletedSiteCollection -SiteCollectionUrl $baseUrl | Remove-KshTenantDeletedSiteCollection
-
-        Write-Progress -Activity 'Removing hub sites...' -Status 'Processing'
-        Get-KshTenantHubSite -HubSiteUrl $hubSiteUrl | Remove-KshTenantHubSite
-
-        Write-Progress -Activity 'Removing site collections...' -Status 'Processing'
-        Get-KshTenantSiteCollection -SiteCollectionUrl $hubSiteUrl | Remove-KshTenantSiteCollection
-        Get-KshTenantDeletedSiteCollection -SiteCollectionUrl $hubSiteUrl | Remove-KshTenantDeletedSiteCollection
 
         Write-Progress -Activity 'Retrieving term groups...' -Status 'Processing'
         $termGroup1 = Get-KshTermGroup -TermGroupName 'Test Term Group 1'

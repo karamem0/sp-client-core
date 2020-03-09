@@ -49,7 +49,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<SiteCollection>(requestPayload.ActionQueryId);
+                .ToObject<SiteCollection>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public SiteCollection GetObject(Uri siteCollectionUrl)
@@ -74,7 +74,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<SiteCollection>(requestPayload.ActionQueryId);
+                .ToObject<SiteCollection>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
     }

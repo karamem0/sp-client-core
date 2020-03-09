@@ -98,7 +98,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<RoleAssignment>(requestPayload.ActionQueryId);
+                .ToObject<RoleAssignment>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public IEnumerable<RoleAssignment> GetObjectEnumerable(SecurableObject securableObject)
@@ -120,7 +120,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<RoleAssignmentEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<RoleAssignmentEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public RoleAssignment GetObject(SecurableObject securableObject, int principalId)
@@ -150,7 +150,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<RoleAssignment>(requestPayload.ActionQueryId);
+                .ToObject<RoleAssignment>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public void ResetObjectInheritance(SecurableObject securableObject)

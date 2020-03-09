@@ -22,6 +22,8 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         User CreateObject(IReadOnlyDictionary<string, object> creationInformation);
 
+        User EnsureObject(string userLoginName);
+
         User GetObject();
 
         User GetObject(User userObject);
@@ -70,7 +72,33 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<User>(requestPayload.ActionQueryId);
+                .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
+        }
+
+        public User EnsureObject(string userLoginName)
+        {
+            if (userLoginName == null)
+            {
+                throw new ArgumentNullException(nameof(userLoginName));
+            }
+            var requestPayload = new ClientRequestPayload();
+            var objectPath1 = requestPayload.Add(
+                new ObjectPathStaticProperty(typeof(Context), "Current"));
+            var objectPath2 = requestPayload.Add(
+                new ObjectPathProperty(objectPath1.Id, "Web"));
+            var objectPath3 = requestPayload.Add(
+                new ObjectPathMethod(
+                    objectPath2.Id,
+                    "EnsureUser",
+                    requestPayload.CreateParameter(userLoginName)),
+                objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
+                objectPathId => new ClientActionQuery(objectPathId)
+                {
+                    Query = new ClientQuery(true, typeof(User))
+                });
+            return this.ClientContext
+                .ProcessQuery(requestPayload)
+                .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public User GetObject()
@@ -89,7 +117,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<User>(requestPayload.ActionQueryId);
+                .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public User GetObject(int userId)
@@ -117,7 +145,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<User>(requestPayload.ActionQueryId);
+                .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public User GetObject(string userName)
@@ -147,7 +175,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                     });
                 return this.ClientContext
                     .ProcessQuery(requestPayload)
-                    .ToObject<User>(requestPayload.ActionQueryId);
+                    .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
             }
             else
             {
@@ -170,7 +198,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                     });
                 return this.ClientContext
                     .ProcessQuery(requestPayload)
-                    .ToObject<User>(requestPayload.ActionQueryId);
+                    .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
             }
         }
 
@@ -191,7 +219,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<UserEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<UserEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
     }

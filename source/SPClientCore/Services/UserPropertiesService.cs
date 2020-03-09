@@ -49,7 +49,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<UserProperties>(requestPayload.ActionQueryId);
+                .ToObject<UserProperties>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public UserProperties GetObject(string userLoginName)
@@ -73,7 +73,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<UserProperties>(requestPayload.ActionQueryId);
+                .ToObject<UserProperties>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
     }

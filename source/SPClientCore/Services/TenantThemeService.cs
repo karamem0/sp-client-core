@@ -68,7 +68,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                     requestPayload.CreateParameter(JsonConvert.SerializeObject(new TenantThemeCreationInformation(creationInformation)))));
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<bool>(requestPayload.ActionMethodId);
+                .ToObject<bool>(requestPayload.GetActionId<ClientActionMethod>());
         }
 
         public TenantTheme GetObject(TenantTheme themeObject)
@@ -101,7 +101,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<TenantTheme>(requestPayload.ActionQueryId);
+                .ToObject<TenantTheme>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public IEnumerable<TenantTheme> GetObjectEnumerable()
@@ -119,7 +119,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<TenantThemeEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<TenantThemeEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public void RemoveObject(TenantTheme themeObject)
@@ -180,7 +180,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                     requestPayload.CreateParameter(JsonConvert.SerializeObject(new TenantThemeCreationInformation(modificationInformation)))));
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<bool>(requestPayload.ActionMethodId);
+                .ToObject<bool>(requestPayload.GetActionId<ClientActionMethod>());
         }
 
     }

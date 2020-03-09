@@ -47,7 +47,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Navigation>(requestPayload.ActionQueryId);
+                .ToObject<Navigation>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
     }

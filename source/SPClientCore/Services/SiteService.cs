@@ -78,7 +78,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Site>(requestPayload.ActionQueryId);
+                .ToObject<Site>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public Site GetObject()
@@ -95,7 +95,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Site>(requestPayload.ActionQueryId);
+                .ToObject<Site>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public Site GetObject(SiteCollection siteCollectionObject)
@@ -121,7 +121,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Site>(requestPayload.ActionQueryId);
+                .ToObject<Site>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public Site GetObject(List listObject)
@@ -142,7 +142,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Site>(requestPayload.ActionQueryId);
+                .ToObject<Site>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public Site GetObject(Guid siteId)
@@ -168,7 +168,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Site>(requestPayload.ActionQueryId);
+                .ToObject<Site>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public Site GetObject(Uri siteUrl)
@@ -194,7 +194,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Site>(requestPayload.ActionQueryId);
+                .ToObject<Site>(requestPayload.GetActionId<ClientActionQuery>());
         }
         public IEnumerable<Site> GetObjectEnumerable()
         {
@@ -213,7 +213,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<SiteEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<SiteEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public void SelectObject(Site siteObject)

@@ -38,7 +38,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<T>(requestPayload.ActionQueryId);
+                .ToObject<T>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public virtual void RemoveObject(T clientObject)

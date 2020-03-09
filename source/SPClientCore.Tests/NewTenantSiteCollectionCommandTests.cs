@@ -47,7 +47,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "Owner", context.AppSettings["LoginUserName"] },
                         { "StorageMaxLevel", 26214400 },
                         { "StorageWarningLevel", 25574400 },
-                        { "Template", "STS#0" },
+                        { "Template", "SITEPAGEPUBLISHING#0" },
                         { "TimeZoneId", 20 },
                         { "Title", "Test Site 0" },
                         { "Url", context.AppSettings["AuthorityUrl"] + "/sites/TestSite0" },

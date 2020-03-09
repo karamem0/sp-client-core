@@ -28,6 +28,9 @@ namespace Karamem0.SharePoint.PowerShell.Models
         [JsonProperty()]
         public virtual int Id { get; protected set; }
 
+        // [JsonProperty()]
+        // public virtual bool IsHiddenInUI { get; protected set; }
+
         [JsonProperty()]
         public virtual string LoginName { get; protected set; }
 

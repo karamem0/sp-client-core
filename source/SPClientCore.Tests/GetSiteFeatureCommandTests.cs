@@ -82,7 +82,6 @@ namespace Karamem0.SharePoint.PowerShell.Tests
             }
         }
 
-
         [TestMethod()]
         public void GetSiteFeatureByFeatureId()
         {

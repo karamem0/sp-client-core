@@ -82,7 +82,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<SiteCollectionAppCatalogEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<SiteCollectionAppCatalogEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public void RemoveObject(Uri siteCollectionUrl)

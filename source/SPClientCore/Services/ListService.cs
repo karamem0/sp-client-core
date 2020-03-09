@@ -77,7 +77,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<List>(requestPayload.ActionQueryId);
+                .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public List GetObject(ListItem listItemObject)
@@ -98,7 +98,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<List>(requestPayload.ActionQueryId);
+                .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public List GetObject(View viewObject)
@@ -117,7 +117,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<List>(requestPayload.ActionQueryId);
+                .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public List GetObject(Guid listId)
@@ -145,7 +145,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<List>(requestPayload.ActionQueryId);
+                .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public List GetObject(Uri listUrl)
@@ -171,7 +171,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<List>(requestPayload.ActionQueryId);
+                .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public List GetObject(string listTitle)
@@ -199,7 +199,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<List>(requestPayload.ActionQueryId);
+                .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public IEnumerable<List> GetObjectEnumerable()
@@ -219,7 +219,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<ListEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<ListEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public Guid RecycleObject(List listObject)
@@ -234,7 +234,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 objectPathId => new ClientActionMethod(objectPathId, "Recycle"));
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Guid>(requestPayload.ActionMethodId);
+                .ToObject<Guid>(requestPayload.GetActionId<ClientActionMethod>());
         }
 
     }

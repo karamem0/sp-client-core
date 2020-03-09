@@ -71,7 +71,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<FileVersion>(requestPayload.ActionQueryId);
+                .ToObject<FileVersion>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public IEnumerable<FileVersion> GetObjectEnumerable(File fileObject)
@@ -93,7 +93,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<FileVersionEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<FileVersionEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public void RecycleObject(FileVersion fileVersionObject)

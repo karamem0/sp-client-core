@@ -77,7 +77,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                     });
                 return this.ClientContext
                     .ProcessQuery(requestPayload)
-                    .ToObject<RecycleBinItem>(requestPayload.ActionQueryId);
+                    .ToObject<RecycleBinItem>(requestPayload.GetActionId<ClientActionQuery>());
             }
             if (recycleBinItemState == RecycleBinItemState.SecondStageRecycleBin)
             {
@@ -100,7 +100,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                     });
                 return this.ClientContext
                     .ProcessQuery(requestPayload)
-                    .ToObject<RecycleBinItem>(requestPayload.ActionQueryId);
+                    .ToObject<RecycleBinItem>(requestPayload.GetActionId<ClientActionQuery>());
             }
             throw new InvalidOperationException(StringResources.ErrorValueIsInvalid);
         }
@@ -124,7 +124,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                     });
                 return this.ClientContext
                     .ProcessQuery(requestPayload)
-                    .ToObject<RecycleBinItemEnumerable>(requestPayload.ActionQueryId);
+                    .ToObject<RecycleBinItemEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
             }
             if (recycleBinItemState == RecycleBinItemState.SecondStageRecycleBin)
             {
@@ -143,7 +143,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                     });
                 return this.ClientContext
                     .ProcessQuery(requestPayload)
-                    .ToObject<RecycleBinItemEnumerable>(requestPayload.ActionQueryId);
+                    .ToObject<RecycleBinItemEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
             }
             throw new InvalidOperationException(StringResources.ErrorValueIsInvalid);
         }

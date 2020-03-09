@@ -47,18 +47,6 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
         [XmlArray()]
         public ObjectPathCollection ObjectPaths { get; private set; }
 
-        [XmlIgnore()]
-        public long ActionMethodId => this.Actions
-            .OfType<ClientActionMethod>()
-            .Select(action => action.Id)
-            .LastOrDefault();
-
-        [XmlIgnore()]
-        public long ActionQueryId => this.Actions
-            .OfType<ClientActionQuery>()
-            .Select(action => action.Id)
-            .LastOrDefault();
-
         public ObjectPath Add(ObjectPath objectPath, params ClientActionDelegate[] delegates)
         {
             if (objectPath == null)
@@ -144,6 +132,14 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
             var objectName = clientObject.ObjectType;
             var objectType = ClientObject.GetType(objectName);
             return this.CreateSetPropertyDelegates(objectType, parameters);
+        }
+
+        public long GetActionId<T>() where T : ClientAction
+        {
+            return this.Actions
+                .OfType<T>()
+                .Select(action => action.Id)
+                .LastOrDefault();
         }
 
     }

@@ -67,7 +67,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<SiteTemplate>(requestPayload.ActionQueryId);
+                .ToObject<SiteTemplate>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public IEnumerable<SiteTemplate> GetObjectEnumerable(uint lcid, bool includeCrossLanguage)
@@ -95,7 +95,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<SiteTemplateEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<SiteTemplateEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
     }

@@ -17,7 +17,6 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
-
     [TestClass()]
     [TestCategory("Get-KshContentTypeColumn")]
     public class GetContentTypeColumnCommandTests

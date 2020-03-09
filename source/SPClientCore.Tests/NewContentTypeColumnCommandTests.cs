@@ -17,7 +17,6 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
-
     [TestClass()]
     [TestCategory("New-KshContentTypeColumn")]
     public class NewContentTypeColumnCommandTests

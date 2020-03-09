@@ -74,7 +74,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<ContentType>(requestPayload.ActionQueryId);
+                .ToObject<ContentType>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public ContentType CreateObject(List listObject, IReadOnlyDictionary<string, object> creationInformation)
@@ -106,7 +106,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<ContentType>(requestPayload.ActionQueryId);
+                .ToObject<ContentType>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public ContentType CreateObject(List listObject, ContentType contentTypeObject)
@@ -136,7 +136,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<ContentType>(requestPayload.ActionQueryId);
+                .ToObject<ContentType>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public ContentType GetObject(string contentTypeId)
@@ -164,7 +164,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<ContentType>(requestPayload.ActionQueryId);
+                .ToObject<ContentType>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public ContentType GetObject(List listObject, string contentTypeId)
@@ -194,7 +194,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<ContentType>(requestPayload.ActionQueryId);
+                .ToObject<ContentType>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public IEnumerable<ContentType> GetObjectEnumerable()
@@ -214,7 +214,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<ContentTypeEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<ContentTypeEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public IEnumerable<ContentType> GetObjectEnumerable(List listObject)
@@ -236,7 +236,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<ContentTypeEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<ContentTypeEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
     }

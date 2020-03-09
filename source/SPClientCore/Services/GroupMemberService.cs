@@ -66,7 +66,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<User>(requestPayload.ActionQueryId);
+                .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public User GetObject(Group groupObject, int userId)
@@ -96,7 +96,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<User>(requestPayload.ActionQueryId);
+                .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public User GetObject(Group groupObject, string userName)
@@ -128,7 +128,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                     });
                 return this.ClientContext
                     .ProcessQuery(requestPayload)
-                    .ToObject<User>(requestPayload.ActionQueryId);
+                    .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
             }
             else
             {
@@ -149,7 +149,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                     });
                 return this.ClientContext
                     .ProcessQuery(requestPayload)
-                    .ToObject<User>(requestPayload.ActionQueryId);
+                    .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
             }
         }
 
@@ -172,7 +172,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<UserEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<UserEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public void RemoveObject(Group groupObject, User memberObject)

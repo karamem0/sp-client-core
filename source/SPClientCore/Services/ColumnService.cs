@@ -87,7 +87,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Column>(requestPayload.ActionQueryId);
+                .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public Column CreateObject(List listObject, ColumnType columnType, IReadOnlyDictionary<string, object> creationInformation, bool addToDefaultView, AddColumnOptions addColumnOptions)
@@ -119,7 +119,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Column>(requestPayload.ActionQueryId);
+                .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public Column GetObject(Guid columnId)
@@ -147,7 +147,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Column>(requestPayload.ActionQueryId);
+                .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public Column GetObject(string columnTitle)
@@ -175,7 +175,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Column>(requestPayload.ActionQueryId);
+                .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public Column GetObject(ContentType contentTypeObject, Guid columnId)
@@ -205,7 +205,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Column>(requestPayload.ActionQueryId);
+                .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public Column GetObject(ContentType contentTypeObject, string columnTitle)
@@ -235,7 +235,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Column>(requestPayload.ActionQueryId);
+                .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public Column GetObject(List listObject, Guid columnId)
@@ -265,7 +265,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Column>(requestPayload.ActionQueryId);
+                .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public Column GetObject(List listObject, string columnTitle)
@@ -295,7 +295,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Column>(requestPayload.ActionQueryId);
+                .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public IEnumerable<Column> GetObjectEnumerable()
@@ -315,7 +315,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<ColumnEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<ColumnEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public IEnumerable<Column> GetObjectEnumerable(ContentType contentTypeObject)
@@ -337,7 +337,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<ColumnEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<ColumnEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public IEnumerable<Column> GetObjectEnumerable(List listObject)
@@ -359,7 +359,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<ColumnEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<ColumnEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public override void UpdateObject(Column columnObject, IReadOnlyDictionary<string, object> modificationInformation)

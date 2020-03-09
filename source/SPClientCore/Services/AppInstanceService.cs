@@ -28,7 +28,6 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
     }
 
-
     public class AppInstanceService : ClientService, IAppInstanceService
     {
 
@@ -59,7 +58,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<AppInstance>(requestPayload.ActionQueryId);
+                .ToObject<AppInstance>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public IEnumerable<AppInstance> GetObjectEnumerable()
@@ -83,7 +82,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<AppInstanceEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<AppInstanceEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public IEnumerable<AppInstance> GetObjectEnumerable(Guid appProductId)
@@ -110,7 +109,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<AppInstanceEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<AppInstanceEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
     }

@@ -96,7 +96,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Get-KshSiteTemplate",
                     new Dictionary<string, object>()
                     {
-                        { "SiteTemplateName", "STS#0" }
+                        { "SiteTemplateName", "SITEPAGEPUBLISHING#0" }
                     }
                 );
                 var actual = result2.ElementAt(0);

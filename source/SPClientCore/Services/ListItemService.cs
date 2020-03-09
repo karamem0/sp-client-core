@@ -109,7 +109,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             var objectPath3 = requestPayload.Add(objectPath2, delegates.ToArray());
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<ListItem>(requestPayload.ActionQueryId);
+                .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public void DenyObject(ListItem listItemObject, string comment)
@@ -153,7 +153,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<ListItem>(requestPayload.ActionQueryId);
+                .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public ListItem GetObject(File fileObject)
@@ -174,7 +174,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<ListItem>(requestPayload.ActionQueryId);
+                .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public ListItem GetObject(List listObject, int listItemId)
@@ -202,7 +202,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<ListItem>(requestPayload.ActionQueryId);
+                .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public IEnumerable<ListItem> GetObjectEnumerable(List listObject, IReadOnlyDictionary<string, object> filterInformation)
@@ -231,7 +231,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<ListItemEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<ListItemEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public Guid RecycleObject(ListItem listItemObject)
@@ -246,7 +246,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 objectPathId => new ClientActionMethod(objectPathId, "Recycle"));
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Guid>(requestPayload.ActionMethodId);
+                .ToObject<Guid>(requestPayload.GetActionId<ClientActionMethod>());
         }
 
         public void SuspendObject(ListItem listItemObject, string comment)

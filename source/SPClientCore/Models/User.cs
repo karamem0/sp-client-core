@@ -29,10 +29,16 @@ namespace Karamem0.SharePoint.PowerShell.Models
         public virtual string Email { get; protected set; }
 
         [JsonProperty()]
+        public virtual string Expiration { get; protected set; }
+
+        [JsonProperty()]
         public override int Id { get; protected set; }
 
         [JsonProperty()]
         public virtual bool IsEmailAuthenticationGuestUser { get; protected set; }
+
+        [JsonProperty()]
+        public virtual bool IsHiddenInUI { get; protected set; }
 
         [JsonProperty()]
         public virtual bool IsShareByEmailGuestUser { get; protected set; }
@@ -51,6 +57,9 @@ namespace Karamem0.SharePoint.PowerShell.Models
 
         [JsonProperty()]
         public virtual UserIdInfo UserId { get; protected set; }
+
+        [JsonProperty()]
+        public virtual string UserPrincipalName { get; protected set; }
 
     }
 

@@ -72,7 +72,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<NavigationNode>(requestPayload.ActionQueryId);
+                .ToObject<NavigationNode>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public NavigationNode CreateObjectToQuickLaunch(IReadOnlyDictionary<string, object> creationInformation)
@@ -102,7 +102,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<NavigationNode>(requestPayload.ActionQueryId);
+                .ToObject<NavigationNode>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public NavigationNode CreateObjectToTopNavigationBar(IReadOnlyDictionary<string, object> creationInformation)
@@ -132,7 +132,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<NavigationNode>(requestPayload.ActionQueryId);
+                .ToObject<NavigationNode>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public NavigationNode GetObject(int navigationNodeId)
@@ -160,7 +160,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<NavigationNode>(requestPayload.ActionQueryId);
+                .ToObject<NavigationNode>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public NavigationNodeEnumerable GetObjectEnumerable(NavigationNode navigationNodeObject)
@@ -182,7 +182,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<NavigationNodeEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<NavigationNodeEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
     }

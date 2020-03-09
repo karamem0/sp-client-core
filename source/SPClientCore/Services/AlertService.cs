@@ -34,7 +34,6 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
     }
 
-
     public class AlertService : ClientService<Alert>, IAlertService
     {
 
@@ -63,7 +62,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                     requestPayload.CreateParameter(new AlertCreationInformation(creationInformation))));
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Guid>(requestPayload.ActionMethodId);
+                .ToObject<Guid>(requestPayload.GetActionId<ClientActionMethod>());
         }
 
         public override Alert GetObject(Alert clientObject)
@@ -91,7 +90,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Alert>(requestPayload.ActionQueryId);
+                .ToObject<Alert>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public Alert GetObject(Guid alertId)
@@ -119,7 +118,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.GetObject(this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Alert>(requestPayload.ActionQueryId));
+                .ToObject<Alert>(requestPayload.GetActionId<ClientActionQuery>()));
         }
 
         public IEnumerable<Alert> GetObjectEnumerable()
@@ -139,7 +138,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<AlertEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<AlertEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public override void RemoveObject(Alert alertObject)

@@ -71,7 +71,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                     requestPayload.CreateParameter(cdnType)));
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<bool>(requestPayload.ActionMethodId);
+                .ToObject<bool>(requestPayload.GetActionId<ClientActionMethod>());
         }
 
         public IEnumerable<string> GetOriginEnumerable(TenantCdnType cdnType)
@@ -87,7 +87,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                     requestPayload.CreateParameter(cdnType)));
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<IEnumerable<string>>(requestPayload.ActionMethodId);
+                .ToObject<IEnumerable<string>>(requestPayload.GetActionId<ClientActionMethod>());
         }
 
         public IEnumerable<string> GetPolicyEnumerable(TenantCdnType cdnType)
@@ -103,7 +103,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                     requestPayload.CreateParameter(cdnType)));
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<IEnumerable<string>>(requestPayload.ActionMethodId);
+                .ToObject<IEnumerable<string>>(requestPayload.GetActionId<ClientActionMethod>());
         }
 
         public void SetEnabled(TenantCdnType cdnType, bool cdnEnabled)

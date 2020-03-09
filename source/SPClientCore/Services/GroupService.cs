@@ -68,7 +68,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Group>(requestPayload.ActionQueryId);
+                .ToObject<Group>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public Group GetObject(int groupId)
@@ -96,7 +96,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Group>(requestPayload.ActionQueryId);
+                .ToObject<Group>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public Group GetObject(string groupName)
@@ -124,7 +124,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Group>(requestPayload.ActionQueryId);
+                .ToObject<Group>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public IEnumerable<Group> GetObjectEnumerable()
@@ -144,7 +144,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<GroupEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<GroupEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public override void RemoveObject(Group groupObject)

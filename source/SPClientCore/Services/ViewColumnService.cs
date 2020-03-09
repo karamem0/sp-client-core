@@ -100,7 +100,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<ViewColumnEnumerable>(requestPayload.ActionQueryId);
+                .ToObject<ViewColumnEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public void MoveObject(View viewObject, Column columnObject, int columnIndex)

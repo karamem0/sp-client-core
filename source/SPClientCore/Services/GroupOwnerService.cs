@@ -51,7 +51,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<Principal>(requestPayload.ActionQueryId);
+                .ToObject<Principal>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public void SetObject(Group groupObject, Principal principalObject)
