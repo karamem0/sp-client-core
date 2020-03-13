@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-KshTermLabel
 
 ## SYNOPSIS
-Creates a new label of the term.
+Creates a new term label.
 
 ## SYNTAX
 
@@ -26,7 +26,7 @@ New-KshTermLabel cmdlet adds a new label to the term.
 PS C:\> New-KshTermLabel -Term (Get-KshTerm -TermSet (Get-KshTermSet -TermGroup (Get-KshTermGroup -TermGroupName 'Company') -TermSetName 'Department') -TermName 'Human Resources') -Name 'HR' -Lcid 1033 -IsDefault $false
 ```
 
-Creates a new label.
+Creates a new term label.
 
 ## PARAMETERS
 

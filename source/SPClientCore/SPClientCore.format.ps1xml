@@ -194,6 +194,32 @@
       </TableControl>
     </View>
     <View>
+      <Name>Karamem0.SharePoint.PowerShell.Models.DefaultDocument</Name>
+      <ViewSelectedBy>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.DefaultDocument</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <TableHeaders>
+          <TableColumnHeader>
+            <Label>ContentType</Label>
+          </TableColumnHeader>
+          <TableColumnHeader />
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem>
+                <ScriptBlock>$_.ContentTypeId.StringValue</ScriptBlock>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Name</PropertyName>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+    <View>
       <Name>Karamem0.SharePoint.PowerShell.Models.DocumentLibraryInformation</Name>
       <ViewSelectedBy>
         <TypeName>Karamem0.SharePoint.PowerShell.Models.DocumentLibraryInformation</TypeName>

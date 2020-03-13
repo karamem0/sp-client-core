@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-KshColumnGeolocation
 
 ## SYNOPSIS
-Creates a column of geolocation type.
+Creates a new column of geolocation type.
 
 ## SYNTAX
 

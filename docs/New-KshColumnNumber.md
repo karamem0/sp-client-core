@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-KshColumnNumber
 
 ## SYNOPSIS
-Creates a column of Number type.
+Creates a new column of number type.
 
 ## SYNTAX
 
@@ -53,7 +53,7 @@ The New-KshColumnNumber cmdlet adds new number column to the current site or the
 
 ### Example 1
 ```powershell
-PS C:\> New-KshColumnNumber -MinimumValue 0 -MaximumValue 1000 -Name 'NumberColumn'
+PS C:\> New-KshColumnNumber -Name 'NumberColumn' -MinimumValue 0 -MaximumValue 1000
 ```
 
 Creates a new column.

@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-KshColumnText
 
 ## SYNOPSIS
-Creates a column of Text type.
+Creates a new column of text type.
 
 ## SYNTAX
 

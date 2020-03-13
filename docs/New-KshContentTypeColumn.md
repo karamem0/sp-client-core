@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-KshContentTypeColumn
 
 ## SYNOPSIS
-Creates a content type column.
+Creates a new content type column.
 
 ## SYNTAX
 

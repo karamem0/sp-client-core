@@ -103,6 +103,21 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Set-KshContentTypeColumnOrder](docs/Set-KshContentTypeColumnOrder.md)
   - Document Libraries
     - [Get-KshDocumentLibrary](docs/Get-KshDocumentLibrary.md)
+  - Document Sets
+    - [New-KshDocumentSet](docs/New-KshDocumentSet.md)
+  - Document Set Templates
+    - [Add-KshDocumentSetAllowedContentType](docs/Add-KshDocumentSetAllowedContentType.md)
+    - [Add-KshDocumentSetSharedColumn](docs/Add-KshDocumentSetSharedColumn.md)
+    - [Add-KshDocumentSetWelcomePageColumn](docs/Add-KshDocumentSetWelcomePageColumn.md)
+    - [Get-KshDocumentSetAllowedContentType](docs/Get-KshDocumentSetAllowedContentType.md)
+    - [Get-KshDocumentSetDefaultDocument](docs/Get-KshDocumentSetDefaultDocument.md)
+    - [Get-KshDocumentSetSharedColumn](docs/Get-KshDocumentSetSharedColumn.md)
+    - [Get-KshDocumentSetWelcomePageColumn](docs/Get-KshDocumentSetWelcomePageColumn.md)
+    - [New-KshDocumentSetDefaultDocument](docs/New-KshDocumentSetDefaultDocument.md)
+    - [Remove-KshDocumentSetAllowedContentType](docs/Remove-KshDocumentSetAllowedContentType.md)
+    - [Remove-KshDocumentSetDefaultDocument](docs/Remove-KshDocumentSetDefaultDocument.md)
+    - [Remove-KshDocumentSetSharedColumn](docs/Remove-KshDocumentSetSharedColumn.md)
+    - [Remove-KshDocumentSetWelcomePageColumn](docs/Remove-KshDocumentSetWelcomePageColumn.md)
   - Files
     - [Approve-KshFile](docs/Approve-KshFile.md)
     - [Deny-KshFile](docs/Deny-KshFile.md)
@@ -173,7 +188,7 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
   - Regional Settings
     - [Get-KshRegionalSettings](docs/Get-KshRegionalSettings.md)
     - [Update-KshRegionalSettings](docs/Update-KshRegionalSettings.md)
-  - Role Assignment
+  - Role Assignments
     - [Get-KshRoleAssignment](docs/Get-KshRoleAssignment.md)
     - [New-KshRoleAssignment](docs/New-KshRoleAssignment.md)
     - [Remove-KshRoleAssignment](docs/Remove-KshRoleAssignment.md)

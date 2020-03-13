@@ -61,7 +61,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         void UpdateObject(File fileObject, IReadOnlyDictionary<string, object> modificationInformation);
 
-        void UploadObject(string folderUrl, string fileName, System.IO.Stream contentStream, bool overwrite);
+        void UploadObject(string folderUrl, string fileName, System.IO.Stream fileContent, bool overwrite);
 
     }
 

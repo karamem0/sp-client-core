@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-KshColumnTaxonomy
 
 ## SYNOPSIS
-Creates a column of taxonomy type.
+Creates a new column of taxonomy type.
 
 ## SYNTAX
 

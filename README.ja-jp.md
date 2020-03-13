@@ -103,6 +103,21 @@ SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant およ
     - [Set-KshContentTypeColumnOrder](docs/Set-KshContentTypeColumnOrder.md)
   - ドキュメント ライブラリ
     - [Get-KshDocumentLibrary](docs/Get-KshDocumentLibrary.md)
+  - ドキュメント セット
+    - [New-KshDocumentSet](docs/New-KshDocumentSet.md)
+  - ドキュメント セット テンプレート
+    - [Add-KshDocumentSetAllowedContentType](docs/Add-KshDocumentSetAllowedContentType.md)
+    - [Add-KshDocumentSetSharedColumn](docs/Add-KshDocumentSetSharedColumn.md)
+    - [Add-KshDocumentSetWelcomePageColumn](docs/Add-KshDocumentSetWelcomePageColumn.md)
+    - [Get-KshDocumentSetAllowedContentType](docs/Get-KshDocumentSetAllowedContentType.md)
+    - [Get-KshDocumentSetDefaultDocument](docs/Get-KshDocumentSetDefaultDocument.md)
+    - [Get-KshDocumentSetSharedColumn](docs/Get-KshDocumentSetSharedColumn.md)
+    - [Get-KshDocumentSetWelcomePageColumn](docs/Get-KshDocumentSetWelcomePageColumn.md)
+    - [New-KshDocumentSetDefaultDocument](docs/New-KshDocumentSetDefaultDocument.md)
+    - [Remove-KshDocumentSetAllowedContentType](docs/Remove-KshDocumentSetAllowedContentType.md)
+    - [Remove-KshDocumentSetDefaultDocument](docs/Remove-KshDocumentSetDefaultDocument.md)
+    - [Remove-KshDocumentSetSharedColumn](docs/Remove-KshDocumentSetSharedColumn.md)
+    - [Remove-KshDocumentSetWelcomePageColumn](docs/Remove-KshDocumentSetWelcomePageColumn.md)
   - ファイル
     - [Approve-KshFile](docs/Approve-KshFile.md)
     - [Deny-KshFile](docs/Deny-KshFile.md)

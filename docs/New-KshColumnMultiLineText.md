@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-KshColumnMultiLineText
 
 ## SYNOPSIS
-Creates a column of mutiple line text type.
+Creates a new column of mutiple line text type.
 
 ## SYNTAX
 

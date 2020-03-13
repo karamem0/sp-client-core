@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-KshColumnCalculated
 
 ## SYNOPSIS
-Creates a column of calculated type.
+Creates a new column of calculated type.
 
 ## SYNTAX
 
@@ -53,7 +53,7 @@ The New-KshColumnCalculated adds creates new calculated column to the current si
 
 ### Example 1
 ```powershell
-PS C:\> New-KshColumnCalculated -Formula '=TextColumn' -Columns (Get-KshColumn -Identity 'TextColumn') -Name 'CalculatedColumn' -OutputType 'Text'
+PS C:\> New-KshColumnCalculated -Name 'CalculatedColumn' -Columns (Get-KshColumn -Identity 'TextColumn') -Formula '=TextColumn' -OutputType 'Text'
 ```
 
 Creates a new column.

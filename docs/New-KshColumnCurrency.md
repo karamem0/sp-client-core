@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-KshColumnCurrency
 
 ## SYNOPSIS
-Creates a column of currency type.
+Creates a new column of currency type.
 
 ## SYNTAX
 
@@ -53,7 +53,7 @@ The New-KshColumnCurrency cmdlet adds new currency column to the current site or
 
 ### Example 1
 ```powershell
-PS C:\> New-KshColumnCurrency -MinimumValue 0 -MaximumValue 1000 -Name 'CurrencyColumn'
+PS C:\> New-KshColumnCurrency -Name 'CurrencyColumn' -MinimumValue 0 -MaximumValue 1000
 ```
 
 Creates a new column.

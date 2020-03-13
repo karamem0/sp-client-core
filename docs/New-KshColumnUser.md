@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-KshColumnUser
 
 ## SYNOPSIS
-Creates a column of User type.
+Creates a new column of user type.
 
 ## SYNTAX
 

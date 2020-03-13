@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-KshColumnChoice
 
 ## SYNOPSIS
-Creates a column of choice type.
+Creates a new column of choice type.
 
 ## SYNTAX
 
@@ -53,7 +53,7 @@ The New-KshColumnChoice cmdlet adds new choice column to the current site or the
 
 ### Example 1
 ```powershell
-PS C:\> New-KshColumnChoice -Choices @('Dog', 'Cat', 'Rabbit') -Name 'ChoiceColumn' -Format 'Dropdown'
+PS C:\> New-KshColumnChoice -Name 'ChoiceColumn' -Choices @('Dog', 'Cat', 'Rabbit') -Format 'Dropdown'
 ```
 
 Creates a new column.

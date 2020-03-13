@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-KshColumnUrl
 
 ## SYNOPSIS
-Creates a column of URL type.
+Creates a new column of URL type.
 
 ## SYNTAX
 
@@ -48,7 +48,7 @@ The New-KshColumnUrl cmdlet adds new URL column to the current site or the speci
 
 ### Example 1
 ```powershell
-PS C:\> New-KshColumnUrl -Format 'Hyperlink' -Name 'UrlColumn'
+PS C:\> New-KshColumnUrl -Name 'UrlColumn' -Format 'Hyperlink'
 ```
 
 Creates a new column.

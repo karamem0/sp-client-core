@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-KshColumnDateTime
 
 ## SYNOPSIS
-Creates a column of date/time type.
+Creates a new column of date/time type.
 
 ## SYNTAX
 
@@ -54,7 +54,7 @@ The New-KshColumnDateTime adds creates new date/time column to the current site 
 
 ### Example 1
 ```powershell
-PS C:\> New-KshColumnDateTime -Format 'DateOnly' -FriendlyDisplayFormat 'Disabled' -Name 'DateTimeColumn'
+PS C:\> New-KshColumnDateTime -Name 'DateTimeColumn' -Format 'DateOnly' -FriendlyDisplayFormat 'Disabled'
 ```
 
 Creates a new column.

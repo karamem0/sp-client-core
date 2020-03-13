@@ -2,6 +2,384 @@
 <helpItems schema="maml" xmlns="http://msh">
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Add-KshDocumentSetAllowedContentType</command:name>
+      <command:verb>Add</command:verb>
+      <command:noun>KshDocumentSetAllowedContentType</command:noun>
+      <maml:description>
+        <maml:para>Adds a document set allowed content type.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Add-KshDocumentSetAllowedContentType cmdlet add an allowed content type to the specified document set template.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Add-KshDocumentSetAllowedContentType</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AllowedContentType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the allowed content type.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+          <dev:type>
+            <maml:name>ContentType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ContentType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the content type.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+          <dev:type>
+            <maml:name>ContentType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PushChanges</maml:name>
+          <maml:Description>
+            <maml:para>If Specified, propagates changes to all content types that use the content type.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>AllowedContentType</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the allowed content type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+        <dev:type>
+          <maml:name>ContentType</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ContentType</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the content type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+        <dev:type>
+          <maml:name>ContentType</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>PushChanges</maml:name>
+        <maml:Description>
+          <maml:para>If Specified, propagates changes to all content types that use the content type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Void</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Add-KshDocumentSetAllowedContentType -ContentType (Get-KshContentType -ContentTypeId '0x0120D5200014BC33BECFD5C340922C6D6CECC7830D') -AllowedContentType (Get-KshContentType -ContentTypeId '0x0101009D1CB255DA76424F860D91F20E6C4118') -PushChanges</dev:code>
+        <dev:remarks>
+          <maml:para>Adds a document set allowed content type.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Add-KshDocumentSetSharedColumn</command:name>
+      <command:verb>Add</command:verb>
+      <command:noun>KshDocumentSetSharedColumn</command:noun>
+      <maml:description>
+        <maml:para>Adds a document set shared column.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Add-KshDocumentSetSharedColumn cmdlet add a shared column to the specified document set template.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Add-KshDocumentSetSharedColumn</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Column</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the column.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Column</command:parameterValue>
+          <dev:type>
+            <maml:name>Column</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ContentType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the content type.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+          <dev:type>
+            <maml:name>ContentType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PushChanges</maml:name>
+          <maml:Description>
+            <maml:para>If Specified, propagates changes to all content types that use the content type.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Column</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the column.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Column</command:parameterValue>
+        <dev:type>
+          <maml:name>Column</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ContentType</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the content type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+        <dev:type>
+          <maml:name>ContentType</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>PushChanges</maml:name>
+        <maml:Description>
+          <maml:para>If Specified, propagates changes to all content types that use the content type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Void</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Add-KshDocumentSetSharedColumn -ContentType (Get-KshContentType -ContentTypeId '0x0120D5200014BC33BECFD5C340922C6D6CECC7830D') -Column (Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af') -PushChanges</dev:code>
+        <dev:remarks>
+          <maml:para>Adds a document set shared column.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Add-KshDocumentSetWelcomePageColumn</command:name>
+      <command:verb>Add</command:verb>
+      <command:noun>KshDocumentSetWelcomePageColumn</command:noun>
+      <maml:description>
+        <maml:para>Adds a document set welcome page column.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Add-KshDocumentSetWelcomePageColumn cmdlet add a welcome page column to the specified document set template.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Add-KshDocumentSetWelcomePageColumn</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Column</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the column.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Column</command:parameterValue>
+          <dev:type>
+            <maml:name>Column</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ContentType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the content type.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+          <dev:type>
+            <maml:name>ContentType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PushChanges</maml:name>
+          <maml:Description>
+            <maml:para>If Specified, propagates changes to all content types that use the content type.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Column</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the column.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Column</command:parameterValue>
+        <dev:type>
+          <maml:name>Column</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ContentType</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the content type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+        <dev:type>
+          <maml:name>ContentType</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>PushChanges</maml:name>
+        <maml:Description>
+          <maml:para>If Specified, propagates changes to all content types that use the content type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Void</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Add-KshDocumentSetWelcomePageColumn -ContentType (Get-KshContentType -ContentTypeId '0x0120D5200014BC33BECFD5C340922C6D6CECC7830D') -Column (Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af') -PushChanges</dev:code>
+        <dev:remarks>
+          <maml:para>Adds a document set welcome page column.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Add-KshGroupMember</command:name>
       <command:verb>Add</command:verb>
       <command:noun>KshGroupMember</command:noun>
@@ -4256,6 +4634,414 @@
         <dev:code>PS C:\&gt; Get-KshDocumentLibrary -IncludeMediaLibraries -IncludePageLibraries</dev:code>
         <dev:remarks>
           <maml:para>Retrieves document libraries includes media libraries and page libraries.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-KshDocumentSetAllowedContentType</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>KshDocumentSetAllowedContentType</command:noun>
+      <maml:description>
+        <maml:para>Retrieves document set allowed content types.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-KshDocumentSetAllowedContentType cmdlet retrieves allowed content types of the document set template.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-KshDocumentSetAllowedContentType</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ContentType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the content type.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+          <dev:type>
+            <maml:name>ContentType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NoEnumerate</maml:name>
+          <maml:Description>
+            <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ContentType</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the content type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+        <dev:type>
+          <maml:name>ContentType</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>NoEnumerate</maml:name>
+        <maml:Description>
+          <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Column</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshDocumentSetAllowedContentType -ContentType (Get-KshContentType -ContentTypeId '0x0120D5200014BC33BECFD5C340922C6D6CECC7830D')</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves document set allowed content types.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-KshDocumentSetDefaultDocument</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>KshDocumentSetDefaultDocument</command:noun>
+      <maml:description>
+        <maml:para>Retrieves document set default documents.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-KshDocumentSetDefaultDocument cmdlet retrieves default documents of the document set template.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-KshDocumentSetDefaultDocument</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ContentType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the content type.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+          <dev:type>
+            <maml:name>ContentType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NoEnumerate</maml:name>
+          <maml:Description>
+            <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ContentType</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the content type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+        <dev:type>
+          <maml:name>ContentType</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>NoEnumerate</maml:name>
+        <maml:Description>
+          <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.DefaultDocument</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshDocumentSetDefaultDocument -ContentType (Get-KshContentType -ContentTypeId '0x0120D5200014BC33BECFD5C340922C6D6CECC7830D')</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves document set default documents.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-KshDocumentSetSharedColumn</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>KshDocumentSetSharedColumn</command:noun>
+      <maml:description>
+        <maml:para>Retrieves document set shared columns.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-KshDocumentSetSharedColumn cmdlet retrieves shared columns of the document set template.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-KshDocumentSetSharedColumn</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ContentType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the content type.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+          <dev:type>
+            <maml:name>ContentType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NoEnumerate</maml:name>
+          <maml:Description>
+            <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ContentType</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the content type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+        <dev:type>
+          <maml:name>ContentType</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>NoEnumerate</maml:name>
+        <maml:Description>
+          <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Column</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshDocumentSetSharedColumn -ContentType (Get-KshContentType -ContentTypeId '0x0120D5200014BC33BECFD5C340922C6D6CECC7830D')</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves document set shared columns.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-KshDocumentSetWelcomePageColumn</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>KshDocumentSetWelcomePageColumn</command:noun>
+      <maml:description>
+        <maml:para>Retrieves document set welcome page columns.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-KshDocumentSetWelcomePageColumn cmdlet retrieves welcome page columns of the document set template.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-KshDocumentSetWelcomePageColumn</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ContentType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the content type.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+          <dev:type>
+            <maml:name>ContentType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NoEnumerate</maml:name>
+          <maml:Description>
+            <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ContentType</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the content type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+        <dev:type>
+          <maml:name>ContentType</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>NoEnumerate</maml:name>
+        <maml:Description>
+          <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Column</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshDocumentSetWelcomePageColumn -ContentType (Get-KshContentType -ContentTypeId '0x0120D5200014BC33BECFD5C340922C6D6CECC7830D')</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves document set welcome page columns.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -13962,7 +14748,7 @@
       <command:verb>New</command:verb>
       <command:noun>KshColumnBoolean</command:noun>
       <maml:description>
-        <maml:para>Creates a column of boolean type.</maml:para>
+        <maml:para>Creates a new column of boolean type.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -15110,7 +15896,7 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; New-KshColumnBoolean -DefaultValue $true -Name 'BooleanColumn'</dev:code>
+        <dev:code>PS C:\&gt; New-KshColumnBoolean -Name 'BooleanColumn' -DefaultValue $true</dev:code>
         <dev:remarks>
           <maml:para>Creates a new column.</maml:para>
         </dev:remarks>
@@ -15124,7 +15910,7 @@
       <command:verb>New</command:verb>
       <command:noun>KshColumnCalculated</command:noun>
       <maml:description>
-        <maml:para>Creates a column of calculated type.</maml:para>
+        <maml:para>Creates a new column of calculated type.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -16536,7 +17322,7 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; New-KshColumnCalculated -Formula '=TextColumn' -Columns (Get-KshColumn -Identity 'TextColumn') -Name 'CalculatedColumn' -OutputType 'Text'</dev:code>
+        <dev:code>PS C:\&gt; New-KshColumnCalculated -Name 'CalculatedColumn' -Columns (Get-KshColumn -Identity 'TextColumn') -Formula '=TextColumn' -OutputType 'Text'</dev:code>
         <dev:remarks>
           <maml:para>Creates a new column.</maml:para>
         </dev:remarks>
@@ -16550,7 +17336,7 @@
       <command:verb>New</command:verb>
       <command:noun>KshColumnChoice</command:noun>
       <maml:description>
-        <maml:para>Creates a column of choice type.</maml:para>
+        <maml:para>Creates a new column of choice type.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -17950,7 +18736,7 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; New-KshColumnChoice -Choices @('Dog', 'Cat', 'Rabbit') -Name 'ChoiceColumn' -Format 'Dropdown'</dev:code>
+        <dev:code>PS C:\&gt; New-KshColumnChoice -Name 'ChoiceColumn' -Choices @('Dog', 'Cat', 'Rabbit') -Format 'Dropdown'</dev:code>
         <dev:remarks>
           <maml:para>Creates a new column.</maml:para>
         </dev:remarks>
@@ -17964,7 +18750,7 @@
       <command:verb>New</command:verb>
       <command:noun>KshColumnCurrency</command:noun>
       <maml:description>
-        <maml:para>Creates a column of currency type.</maml:para>
+        <maml:para>Creates a new column of currency type.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -19400,7 +20186,7 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; New-KshColumnCurrency -MinimumValue 0 -MaximumValue 1000 -Name 'CurrencyColumn'</dev:code>
+        <dev:code>PS C:\&gt; New-KshColumnCurrency -Name 'CurrencyColumn' -MinimumValue 0 -MaximumValue 1000</dev:code>
         <dev:remarks>
           <maml:para>Creates a new column.</maml:para>
         </dev:remarks>
@@ -19414,7 +20200,7 @@
       <command:verb>New</command:verb>
       <command:noun>KshColumnDateTime</command:noun>
       <maml:description>
-        <maml:para>Creates a column of date/time type.</maml:para>
+        <maml:para>Creates a new column of date/time type.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -20883,7 +21669,7 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; New-KshColumnDateTime -Format 'DateOnly' -FriendlyDisplayFormat 'Disabled' -Name 'DateTimeColumn'</dev:code>
+        <dev:code>PS C:\&gt; New-KshColumnDateTime -Name 'DateTimeColumn' -Format 'DateOnly' -FriendlyDisplayFormat 'Disabled'</dev:code>
         <dev:remarks>
           <maml:para>Creates a new column.</maml:para>
         </dev:remarks>
@@ -20897,7 +21683,7 @@
       <command:verb>New</command:verb>
       <command:noun>KshColumnGeolocation</command:noun>
       <maml:description>
-        <maml:para>Creates a column of geolocation type.</maml:para>
+        <maml:para>Creates a new column of geolocation type.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -21963,7 +22749,7 @@
       <command:verb>New</command:verb>
       <command:noun>KshColumnLookup</command:noun>
       <maml:description>
-        <maml:para>Creates a column of lookup type.</maml:para>
+        <maml:para>Creates a new column of lookup type.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -23366,7 +24152,7 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; New-KshColumnLookup -ListId 'a01f8e07-290f-4644-9db8-85bb00b85e74' -Name 'LookupColumn' -ShowColumnName 'Title'</dev:code>
+        <dev:code>PS C:\&gt; New-KshColumnLookup -Name 'LookupColumn' -ListId 'a01f8e07-290f-4644-9db8-85bb00b85e74' -ShowColumnName 'Title'</dev:code>
         <dev:remarks>
           <maml:para>Creates a new column.</maml:para>
         </dev:remarks>
@@ -23380,7 +24166,7 @@
       <command:verb>New</command:verb>
       <command:noun>KshColumnMultiChoice</command:noun>
       <maml:description>
-        <maml:para>Creates a column of multiple choice type.</maml:para>
+        <maml:para>Creates a new column of multiple choice type.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -24624,7 +25410,7 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; New-KshColumnMultiChoice -Choices @('Dog', 'Cat', 'Rabbit') -Name 'ChoiceColumn'</dev:code>
+        <dev:code>PS C:\&gt; New-KshColumnMultiChoice -Name 'ChoiceColumn' -Choices @('Dog', 'Cat', 'Rabbit')</dev:code>
         <dev:remarks>
           <maml:para>Creates a new column.</maml:para>
         </dev:remarks>
@@ -24638,7 +25424,7 @@
       <command:verb>New</command:verb>
       <command:noun>KshColumnMultiLineText</command:noun>
       <maml:description>
-        <maml:para>Creates a column of mutiple line text type.</maml:para>
+        <maml:para>Creates a new column of mutiple line text type.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -26058,7 +26844,7 @@
       <command:verb>New</command:verb>
       <command:noun>KshColumnNumber</command:noun>
       <maml:description>
-        <maml:para>Creates a column of Number type.</maml:para>
+        <maml:para>Creates a new column of number type.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -27494,7 +28280,7 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; New-KshColumnNumber -MinimumValue 0 -MaximumValue 1000 -Name 'NumberColumn'</dev:code>
+        <dev:code>PS C:\&gt; New-KshColumnNumber -Name 'NumberColumn' -MinimumValue 0 -MaximumValue 1000</dev:code>
         <dev:remarks>
           <maml:para>Creates a new column.</maml:para>
         </dev:remarks>
@@ -27508,7 +28294,7 @@
       <command:verb>New</command:verb>
       <command:noun>KshColumnTaxonomy</command:noun>
       <maml:description>
-        <maml:para>Creates a column of taxonomy type.</maml:para>
+        <maml:para>Creates a new column of taxonomy type.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -28766,7 +29552,7 @@
       <command:verb>New</command:verb>
       <command:noun>KshColumnText</command:noun>
       <maml:description>
-        <maml:para>Creates a column of Text type.</maml:para>
+        <maml:para>Creates a new column of text type.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -30072,7 +30858,7 @@
       <command:verb>New</command:verb>
       <command:noun>KshColumnUrl</command:noun>
       <maml:description>
-        <maml:para>Creates a column of URL type.</maml:para>
+        <maml:para>Creates a new column of URL type.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -31184,7 +31970,7 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; New-KshColumnUrl -Format 'Hyperlink' -Name 'UrlColumn'</dev:code>
+        <dev:code>PS C:\&gt; New-KshColumnUrl -Name 'UrlColumn' -Format 'Hyperlink'</dev:code>
         <dev:remarks>
           <maml:para>Creates a new column.</maml:para>
         </dev:remarks>
@@ -31198,7 +31984,7 @@
       <command:verb>New</command:verb>
       <command:noun>KshColumnUser</command:noun>
       <maml:description>
-        <maml:para>Creates a column of User type.</maml:para>
+        <maml:para>Creates a new column of user type.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -32945,7 +33731,7 @@
       <command:verb>New</command:verb>
       <command:noun>KshContentTypeColumn</command:noun>
       <maml:description>
-        <maml:para>Creates a content type column.</maml:para>
+        <maml:para>Creates a new content type column.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -33067,6 +33853,307 @@
         <dev:code>PS C:&gt; New-KshContentTypeColumn -ContentType (Get-KshContentType -ContentTypeId '0x0100EFB1758564C77D448177233D1199B912') -Column (Get-KshColumn -ColumnTitle 'Remarks') -PushChanges</dev:code>
         <dev:remarks>
           <maml:para>Creates a new content type column to the site content type.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>New-KshDocumentSet</command:name>
+      <command:verb>New</command:verb>
+      <command:noun>KshDocumentSet</command:noun>
+      <maml:description>
+        <maml:para>Creates a new document set.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The New-KshDocumentSet cmdlet adds a new document set to the speficied folder.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>New-KshDocumentSet</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ContentType</maml:name>
+          <maml:Description>
+            <maml:para>Speficies the content type.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+          <dev:type>
+            <maml:name>ContentType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Folder</maml:name>
+          <maml:Description>
+            <maml:para>Speficies the folder.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Folder</command:parameterValue>
+          <dev:type>
+            <maml:name>Folder</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Name</maml:name>
+          <maml:Description>
+            <maml:para>Speficies the name.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ContentType</maml:name>
+        <maml:Description>
+          <maml:para>Speficies the content type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+        <dev:type>
+          <maml:name>ContentType</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Folder</maml:name>
+        <maml:Description>
+          <maml:para>Speficies the folder.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Folder</command:parameterValue>
+        <dev:type>
+          <maml:name>Folder</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Name</maml:name>
+        <maml:Description>
+          <maml:para>Speficies the name.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; New-KshDocumentSet -Folder (Get-KshFolder -FolderUrl '/sites/japan/hr/Shared%20Documents') -Name 'Design Documents' -ContentType (Get-KshContentType -List (Get-KshList -ListUrl '/sites/japan/hr/Shared%20Documents' -ContentTypeId '0x0120D5200014BC33BECFD5C340922C6D6CECC7830D008BB6866D789F8E48B1DFD8CCF0B26886'))</dev:code>
+        <dev:remarks>
+          <maml:para>Creates a new document set.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>New-KshDocumentSetDefaultDocument</command:name>
+      <command:verb>New</command:verb>
+      <command:noun>KshDocumentSetDefaultDocument</command:noun>
+      <maml:description>
+        <maml:para>Creates a new document set default document.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The New-KshDocumentSetDefaultDocument adds a new default document to the specified document set template.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>New-KshDocumentSetDefaultDocument</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Content</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the contents.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Byte[]</command:parameterValue>
+          <dev:type>
+            <maml:name>Byte[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ContentType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the content type.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+          <dev:type>
+            <maml:name>ContentType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>DocumentContentType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the document content type.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+          <dev:type>
+            <maml:name>ContentType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>FileName</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the file name.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PushChanges</maml:name>
+          <maml:Description>
+            <maml:para>If Specified, propagates changes to all content types that use the content type.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Content</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the contents.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Byte[]</command:parameterValue>
+        <dev:type>
+          <maml:name>Byte[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ContentType</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the content type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+        <dev:type>
+          <maml:name>ContentType</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>DocumentContentType</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the document content type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+        <dev:type>
+          <maml:name>ContentType</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>FileName</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the file name.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>PushChanges</maml:name>
+        <maml:Description>
+          <maml:para>If Specified, propagates changes to all content types that use the content type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.DefaultDocument</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; New-KshDocumentSetDefaultDocument -ContentType (Get-KshContentType -ContentTypeId '0x0120D5200014BC33BECFD5C340922C6D6CECC7830D') -DocumentContentType (Get-KshContentType -ContentTypeId '0x101') -Content ([System.Text.Encoding]::UTF8.GetBytes('Contact: admin@example.onmicrosoft.com')) -FileName 'README.txt' -PushChanges</dev:code>
+        <dev:remarks>
+          <maml:para>Creates a new document set default document.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -33318,7 +34405,7 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; New-KshFolder -Folder '/sites/japan/hr/Shared%20Documents' -FolderName 'Templates'</dev:code>
+        <dev:code>PS C:\&gt; New-KshFolder -Folder (Get-KshFolder -FolderUrl '/sites/japan/hr/Shared%20Documents') -FolderName 'Templates'</dev:code>
         <dev:remarks>
           <maml:para>Creates a new folder.</maml:para>
         </dev:remarks>
@@ -36065,7 +37152,7 @@
       <command:verb>New</command:verb>
       <command:noun>KshTermLabel</command:noun>
       <maml:description>
-        <maml:para>Creates a new label of the term.</maml:para>
+        <maml:para>Creates a new term label.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -36204,7 +37291,7 @@
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; New-KshTermLabel -Term (Get-KshTerm -TermSet (Get-KshTermSet -TermGroup (Get-KshTermGroup -TermGroupName 'Company') -TermSetName 'Department') -TermName 'Human Resources') -Name 'HR' -Lcid 1033 -IsDefault $false</dev:code>
         <dev:remarks>
-          <maml:para>Creates a new label.</maml:para>
+          <maml:para>Creates a new term label.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -37871,6 +38958,510 @@
         <dev:code>PS C:&gt; Remove-KshContentTypeColumn -Identity (Get-KshContentTypeColumn -ContentType (Get-KshContentType -ContentTypeId '0x0100EFB1758564C77D448177233D1199B912') -Column (Get-KshColumn -ColumnTitle 'Remarks')) -PushChanges</dev:code>
         <dev:remarks>
           <maml:para>Removes a content type column from the site content type.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Remove-KshDocumentSetAllowedContentType</command:name>
+      <command:verb>Remove</command:verb>
+      <command:noun>KshDocumentSetAllowedContentType</command:noun>
+      <maml:description>
+        <maml:para>Removes a document set allowed content type.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Remove-KshDocumentSetAllowedContentType cmdlet removes an allowed content type from the specified document set template.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Remove-KshDocumentSetAllowedContentType</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AllowedContentType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the allowed content type.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+          <dev:type>
+            <maml:name>ContentType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ContentType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the content type.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+          <dev:type>
+            <maml:name>ContentType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PushChanges</maml:name>
+          <maml:Description>
+            <maml:para>If Specified, propagates changes to all content types that use the content type.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>AllowedContentType</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the allowed content type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+        <dev:type>
+          <maml:name>ContentType</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ContentType</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the content type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+        <dev:type>
+          <maml:name>ContentType</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>PushChanges</maml:name>
+        <maml:Description>
+          <maml:para>If Specified, propagates changes to all content types that use the content type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Void</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Remove-KshDocumentSetAllowedContentType -ContentType (Get-KshContentType -ContentTypeId '0x0120D5200014BC33BECFD5C340922C6D6CECC7830D') -AllowedContentType (Get-KshContentType -ContentTypeId '0x0101009D1CB255DA76424F860D91F20E6C4118') -PushChanges</dev:code>
+        <dev:remarks>
+          <maml:para>Removes a document set allowed content type.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Remove-KshDocumentSetDefaultDocument</command:name>
+      <command:verb>Remove</command:verb>
+      <command:noun>KshDocumentSetDefaultDocument</command:noun>
+      <maml:description>
+        <maml:para>Removes a document set default document.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Remove-KshDocumentSetDefaultDocument cmdlet removes a default document from the specified document set template.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Remove-KshDocumentSetDefaultDocument</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ContentType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the content type.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+          <dev:type>
+            <maml:name>ContentType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>FileName</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the file name.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PushChanges</maml:name>
+          <maml:Description>
+            <maml:para>If Specified, propagates changes to all content types that use the content type.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ContentType</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the content type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+        <dev:type>
+          <maml:name>ContentType</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>FileName</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the file name.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>PushChanges</maml:name>
+        <maml:Description>
+          <maml:para>If Specified, propagates changes to all content types that use the content type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Void</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Remove-KshDocumentSetDefaultDocument -ContentType (Get-KshContentType -ContentTypeId '0x0120D5200014BC33BECFD5C340922C6D6CECC7830D') -FileName 'README.txt' -PushChanges</dev:code>
+        <dev:remarks>
+          <maml:para>Removes a document set default document.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Remove-KshDocumentSetSharedColumn</command:name>
+      <command:verb>Remove</command:verb>
+      <command:noun>KshDocumentSetSharedColumn</command:noun>
+      <maml:description>
+        <maml:para>Removes a document set shared column.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Remove-KshDocumentSetSharedColumn cmdlet removes a shared column from the specified document set template.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Remove-KshDocumentSetSharedColumn</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Column</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the column.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Column</command:parameterValue>
+          <dev:type>
+            <maml:name>Column</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ContentType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the content type.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+          <dev:type>
+            <maml:name>ContentType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PushChanges</maml:name>
+          <maml:Description>
+            <maml:para>If Specified, propagates changes to all content types that use the content type.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Column</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the column.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Column</command:parameterValue>
+        <dev:type>
+          <maml:name>Column</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ContentType</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the content type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+        <dev:type>
+          <maml:name>ContentType</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>PushChanges</maml:name>
+        <maml:Description>
+          <maml:para>If Specified, propagates changes to all content types that use the content type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Void</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Remove-KshDocumentSetSharedColumn -ContentType (Get-KshContentType -ContentTypeId '0x0120D5200014BC33BECFD5C340922C6D6CECC7830D') -Column (Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af') -PushChanges</dev:code>
+        <dev:remarks>
+          <maml:para>Removes a document set shared column.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Remove-KshDocumentSetWelcomePageColumn</command:name>
+      <command:verb>Remove</command:verb>
+      <command:noun>KshDocumentSetWelcomePageColumn</command:noun>
+      <maml:description>
+        <maml:para>Removes a document set welcome page column.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Remove-KshDocumentSetWelcomePageColumn cmdlet removes a welcome page column from the specified document set template.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Remove-KshDocumentSetWelcomePageColumn</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Column</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the column.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Column</command:parameterValue>
+          <dev:type>
+            <maml:name>Column</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ContentType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the content type.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+          <dev:type>
+            <maml:name>ContentType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PushChanges</maml:name>
+          <maml:Description>
+            <maml:para>If Specified, propagates changes to all content types that use the content type.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Column</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the column.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Column</command:parameterValue>
+        <dev:type>
+          <maml:name>Column</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ContentType</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the content type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+        <dev:type>
+          <maml:name>ContentType</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>PushChanges</maml:name>
+        <maml:Description>
+          <maml:para>If Specified, propagates changes to all content types that use the content type.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Void</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Remove-KshDocumentSetWelcomePageColumn -ContentType (Get-KshContentType -ContentTypeId '0x0120D5200014BC33BECFD5C340922C6D6CECC7830D') -Column (Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af') -PushChanges</dev:code>
+        <dev:remarks>
+          <maml:para>Removes a document set welcome page column.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>

@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-KshColumnBoolean
 
 ## SYNOPSIS
-Creates a column of boolean type.
+Creates a new column of boolean type.
 
 ## SYNTAX
 
@@ -48,7 +48,7 @@ The New-KshColumnBoolean cmdlet adds new boolean column to the current site or t
 
 ### Example 1
 ```powershell
-PS C:\> New-KshColumnBoolean -DefaultValue $true -Name 'BooleanColumn'
+PS C:\> New-KshColumnBoolean -Name 'BooleanColumn' -DefaultValue $true
 ```
 
 Creates a new column.

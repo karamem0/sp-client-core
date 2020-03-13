@@ -23,7 +23,7 @@ The New-KshFolder cmdlet adds a new folder to the specified folder.
 
 ### Example 1
 ```powershell
-PS C:\> New-KshFolder -Folder '/sites/japan/hr/Shared%20Documents' -FolderName 'Templates'
+PS C:\> New-KshFolder -Folder (Get-KshFolder -FolderUrl '/sites/japan/hr/Shared%20Documents') -FolderName 'Templates'
 ```
 
 Creates a new folder.

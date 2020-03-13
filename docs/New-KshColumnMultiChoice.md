@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-KshColumnMultiChoice
 
 ## SYNOPSIS
-Creates a column of multiple choice type.
+Creates a new column of multiple choice type.
 
 ## SYNTAX
 
@@ -51,7 +51,7 @@ The New-KshColumnMultiChoice cmdlet adds new multiple choice column to the curre
 
 ### Example 1
 ```powershell
-PS C:\> New-KshColumnMultiChoice -Choices @('Dog', 'Cat', 'Rabbit') -Name 'ChoiceColumn'
+PS C:\> New-KshColumnMultiChoice -Name 'ChoiceColumn' -Choices @('Dog', 'Cat', 'Rabbit')
 ```
 
 Creates a new column.
