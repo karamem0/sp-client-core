@@ -38,21 +38,26 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet4")]
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet5")]
+        [Parameter(Mandatory = true, ParameterSetName = "ParamSet6")]
         public List List { get; private set; }
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet4")]
         public int ItemId { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ParamSet5")]
+        [Parameter(Mandatory = true, ParameterSetName = "ParamSet5")]
+        public SwitchParameter All { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet6")]
         public string FolderServerRelativeUrl { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ParamSet5")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet6")]
         public ListItemCollectionPosition ListItemCollectionPosition { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ParamSet5")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet6")]
         public string ViewXml { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet5")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet6")]
         public SwitchParameter NoEnumerate { get; private set; }
 
         protected override void ProcessRecordCore()
@@ -72,6 +77,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands
             if (this.ParameterSetName == "ParamSet4")
             {
                 this.WriteObject(this.Service.GetObject(this.List, this.ItemId));
+            }
+            if (this.ParameterSetName == "ParamSet6")
+            {
+                this.ValidateSwitchParameter(nameof(this.All));
+                this.WriteObject(this.Service.GetObjectEnumerable(this.List), this.NoEnumerate ? false : true);
             }
             if (this.ParameterSetName == "ParamSet5")
             {

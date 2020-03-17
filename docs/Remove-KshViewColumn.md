@@ -14,12 +14,12 @@ Removes a view column.
 
 ### ParamSet1
 ```
-Remove-KshViewColumn [-View] <View> [-Column] <Column> [<CommonParameters>]
+Remove-KshViewColumn [-View] <View> -Column <Column> [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-Remove-KshViewColumn [-View] <View> [-ColumnName] <String> [<CommonParameters>]
+Remove-KshViewColumn [-View] <View> -ColumnName <String> [<CommonParameters>]
 ```
 
 ### ParamSet3
@@ -72,7 +72,7 @@ Parameter Sets: ParamSet1
 Aliases:
 
 Required: True
-Position: 1
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -87,7 +87,7 @@ Parameter Sets: ParamSet2
 Aliases:
 
 Required: True
-Position: 1
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

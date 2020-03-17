@@ -34,6 +34,8 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         ListItem GetObject(List listObject, int listItemId);
 
+        IEnumerable<ListItem> GetObjectEnumerable(List listObject);
+
         IEnumerable<ListItem> GetObjectEnumerable(List listObject, IReadOnlyDictionary<string, object> filterInformation);
 
         Guid RecycleObject(ListItem listItemObject);
@@ -203,6 +205,44 @@ namespace Karamem0.SharePoint.PowerShell.Services
             return this.ClientContext
                 .ProcessQuery(requestPayload)
                 .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
+        }
+
+        public IEnumerable<ListItem> GetObjectEnumerable(List listObject)
+        {
+            if (listObject == null)
+            {
+                throw new ArgumentNullException(nameof(listObject));
+            }
+            var listItemCollectionPosition = default(ListItemCollectionPosition);
+            do
+            {
+                var requestPayload = new ClientRequestPayload();
+                var objectPath1 = requestPayload.Add(
+                    new ObjectPathIdentity(listObject.ObjectIdentity));
+                var objectPath2 = requestPayload.Add(
+                    new ObjectPathMethod(
+                        objectPath1.Id,
+                        "GetItems",
+                        requestPayload.CreateParameter(new CamlQuery(new Dictionary<string, object>(){
+                            { "ViewXml", "<View Scope=\"Recursive\"><RowLimit Paged=\"TRUE\">5000</RowLimit></View>" },
+                            { "ListItemCollectionPosition", listItemCollectionPosition }
+                        }))),
+                    objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
+                    objectPathId => new ClientActionQuery(objectPathId)
+                    {
+                        Query = new ClientQuery(true, typeof(ListItemEnumerable)),
+                        ChildItemQuery = new ClientQuery(true, typeof(ListItem))
+                    });
+                var listItemEnumerable = this.ClientContext
+                    .ProcessQuery(requestPayload)
+                    .ToObject<ListItemEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+                foreach (var listItem in listItemEnumerable)
+                {
+                    yield return listItem;
+                }
+                listItemCollectionPosition = listItemEnumerable.ListItemCollectionPosition;
+            }
+            while (listItemCollectionPosition != null);
         }
 
         public IEnumerable<ListItem> GetObjectEnumerable(List listObject, IReadOnlyDictionary<string, object> filterInformation)

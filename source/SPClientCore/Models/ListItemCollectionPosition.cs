@@ -16,7 +16,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Models
 {
 
-    [ClientObject(Name = "SP.ListItemCollectionPosition")]
+    [ClientObject(Name = "SP.ListItemCollectionPosition", Id = "{922354eb-c56a-4d88-ad59-67496854efe1}")]
     [JsonObject()]
     public class ListItemCollectionPosition : ClientValueObject
     {

@@ -13,7 +13,7 @@ Retrieves document set shared columns.
 ## SYNTAX
 
 ```
-Get-KshDocumentSetSharedColumn -ContentType <ContentType> [-NoEnumerate] [<CommonParameters>]
+Get-KshDocumentSetSharedColumn [-ContentType] <ContentType> [-NoEnumerate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -39,7 +39,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: Named
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

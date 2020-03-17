@@ -28,14 +28,14 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         }
 
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public Group Identity { get; private set; }
+        public Group Group { get; private set; }
 
         [Parameter(Mandatory = true)]
         public Principal Owner { get; private set; }
 
         protected override void ProcessRecordCore()
         {
-            this.Service.SetObject(this.Identity, this.Owner);
+            this.Service.SetObject(this.Group, this.Owner);
         }
 
     }

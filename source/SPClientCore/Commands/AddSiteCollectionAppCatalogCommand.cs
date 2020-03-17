@@ -28,13 +28,13 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         {
         }
 
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
         public SiteCollection SiteCollection { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+        [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
         public TenantSiteCollection TenantSiteCollection { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet3")]
+        [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
         public Uri SiteCollectionUrl { get; private set; }
 
         protected override void ProcessRecordCore()

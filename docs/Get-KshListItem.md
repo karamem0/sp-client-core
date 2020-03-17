@@ -34,6 +34,11 @@ Get-KshListItem [-List] <List> [-ItemId] <Int32> [<CommonParameters>]
 
 ### ParamSet5
 ```
+Get-KshListItem [-List] <List> [-All] [-NoEnumerate] [<CommonParameters>]
+```
+
+### ParamSet6
+```
 Get-KshListItem [-List] <List> [-FolderServerRelativeUrl <String>]
  [-ListItemCollectionPosition <ListItemCollectionPosition>] [-ViewXml <String>] [-NoEnumerate]
  [<CommonParameters>]
@@ -67,10 +72,10 @@ Retrieves a list item by list item ID.
 
 ### Example 4
 ```powershell
-PS C:\> Get-KshListItem -List (Get-KshList -ListTitle 'Announcements')
+PS C:\> Get-KshListItem -List (Get-KshList -ListTitle 'Announcements') -All
 ```
 
-Retrieves all list items. (This case, list items must be less than 5000.)
+Retrieves all list items.
 
 ### Example 5
 ```powershell
@@ -80,6 +85,22 @@ PS C:\> Get-KshListItem -List (Get-KshList -ListTitle 'Announcements') -ViewXml 
 Retrieves list items by CAML query.
 
 ## PARAMETERS
+
+### -All
+if specified, returns all items.
+This parameter is effective if there are more than 5000 items.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: ParamSet5
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### -File
 Specifies the file.
@@ -116,7 +137,7 @@ Specifies the site relative URL of folder.
 
 ```yaml
 Type: String
-Parameter Sets: ParamSet5
+Parameter Sets: ParamSet6
 Aliases:
 
 Required: False
@@ -161,7 +182,7 @@ Specifies the list.
 
 ```yaml
 Type: List
-Parameter Sets: ParamSet4, ParamSet5
+Parameter Sets: ParamSet4, ParamSet5, ParamSet6
 Aliases:
 
 Required: True
@@ -176,7 +197,7 @@ Specifies the starting position.
 
 ```yaml
 Type: ListItemCollectionPosition
-Parameter Sets: ParamSet5
+Parameter Sets: ParamSet6
 Aliases:
 
 Required: False
@@ -191,7 +212,7 @@ If specified, suppresses to enumerate objects.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: ParamSet5
+Parameter Sets: ParamSet5, ParamSet6
 Aliases:
 
 Required: False
@@ -207,7 +228,7 @@ For more information, see [reference](https://docs.microsoft.com/en-us/sharepoin
 
 ```yaml
 Type: String
-Parameter Sets: ParamSet5
+Parameter Sets: ParamSet6
 Aliases:
 
 Required: False

@@ -13,7 +13,7 @@ Removes a document set welcome page column.
 ## SYNTAX
 
 ```
-Remove-KshDocumentSetWelcomePageColumn -ContentType <ContentType> -Column <Column> [-PushChanges]
+Remove-KshDocumentSetWelcomePageColumn [-ContentType] <ContentType> -Column <Column> [-PushChanges]
  [<CommonParameters>]
 ```
 
@@ -55,9 +55,9 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: Named
+Position: 0
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 

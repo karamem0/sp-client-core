@@ -30,7 +30,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
         public Group Group { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 1)]
+        [Parameter(Mandatory = true)]
         public User Member { get; private set; }
 
         protected override void ProcessRecordCore()

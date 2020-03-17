@@ -14,13 +14,13 @@ Changes whether unique role assignment is enabled.
 
 ### ParamSet1
 ```
-Set-KshUniqueRoleAssignmentEnabled [-Identity] <SecurableObject> [-Enabled] [-CopyRoleAssignments]
+Set-KshUniqueRoleAssignmentEnabled [-SecurableObject] <SecurableObject> [-Enabled] [-CopyRoleAssignments]
  [-ClearSubscopes] [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-Set-KshUniqueRoleAssignmentEnabled [-Identity] <SecurableObject> [-Disabled] [<CommonParameters>]
+Set-KshUniqueRoleAssignmentEnabled [-SecurableObject] <SecurableObject> [-Disabled] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -104,7 +104,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Identity
+### -SecurableObject
 Specifies the securable object.
 
 ```yaml

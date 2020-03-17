@@ -14,17 +14,17 @@ Adds a site collection app catalog.
 
 ### ParamSet1
 ```
-Add-KshSiteCollectionAppCatalog [-SiteCollection] <SiteCollection> [<CommonParameters>]
+Add-KshSiteCollectionAppCatalog -SiteCollection <SiteCollection> [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-Add-KshSiteCollectionAppCatalog [-TenantSiteCollection] <TenantSiteCollection> [<CommonParameters>]
+Add-KshSiteCollectionAppCatalog -TenantSiteCollection <TenantSiteCollection> [<CommonParameters>]
 ```
 
 ### ParamSet3
 ```
-Add-KshSiteCollectionAppCatalog [-SiteCollectionUrl] <Uri> [<CommonParameters>]
+Add-KshSiteCollectionAppCatalog -SiteCollectionUrl <Uri> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -50,7 +50,7 @@ Parameter Sets: ParamSet1
 Aliases:
 
 Required: True
-Position: 0
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -65,7 +65,7 @@ Parameter Sets: ParamSet3
 Aliases:
 
 Required: True
-Position: 0
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -80,7 +80,7 @@ Parameter Sets: ParamSet2
 Aliases:
 
 Required: True
-Position: 0
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

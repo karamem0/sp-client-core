@@ -13,7 +13,7 @@ Changes a term description.
 ## SYNTAX
 
 ```
-Set-KshTermDescription [-Identity] <Term> -Description <String> -Lcid <UInt32> [<CommonParameters>]
+Set-KshTermDescription [-Term] <Term> -Description <String> -Lcid <UInt32> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -45,21 +45,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Identity
-Specifies the term.
-
-```yaml
-Type: Term
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: 0
-Default value: None
-Accept pipeline input: True (ByValue)
-Accept wildcard characters: False
-```
-
 ### -Lcid
 Specifies the locale ID.
 For more information, see [reference](https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).
@@ -73,6 +58,21 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Term
+Specifies the term.
+
+```yaml
+Type: Term
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 0
+Default value: None
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 

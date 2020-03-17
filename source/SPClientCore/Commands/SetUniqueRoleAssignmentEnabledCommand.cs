@@ -29,7 +29,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet2")]
-        public SecurableObject Identity { get; private set; }
+        public SecurableObject SecurableObject { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         public SwitchParameter Enabled { get; private set; }
@@ -48,12 +48,12 @@ namespace Karamem0.SharePoint.PowerShell.Commands
             if (this.ParameterSetName == "ParamSet1")
             {
                 this.ValidateSwitchParameter(nameof(this.Enabled));
-                this.Service.BreakObjectInheritance(this.Identity, this.CopyRoleAssignments, this.ClearSubscopes);
+                this.Service.BreakObjectInheritance(this.SecurableObject, this.CopyRoleAssignments, this.ClearSubscopes);
             }
             if (this.ParameterSetName == "ParamSet2")
             {
                 this.ValidateSwitchParameter(nameof(this.Disabled));
-                this.Service.ResetObjectInheritance(this.Identity);
+                this.Service.ResetObjectInheritance(this.SecurableObject);
             }
         }
 

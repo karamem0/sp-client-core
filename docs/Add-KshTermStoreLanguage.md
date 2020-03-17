@@ -13,7 +13,7 @@ Adds a term store language.
 ## SYNTAX
 
 ```
-Add-KshTermStoreLanguage [-Lcid] <UInt32> [<CommonParameters>]
+Add-KshTermStoreLanguage -Lcid <UInt32> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -40,7 +40,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 0
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

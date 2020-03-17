@@ -28,7 +28,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         }
 
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public Term Identity { get; private set; }
+        public Term Term { get; private set; }
 
         [Parameter(Mandatory = true)]
         public string Description { get; private set; }
@@ -38,7 +38,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         protected override void ProcessRecordCore()
         {
-            this.Service.SetObject(this.Identity, this.Description, this.Lcid);
+            this.Service.SetObject(this.Term, this.Description, this.Lcid);
         }
 
     }

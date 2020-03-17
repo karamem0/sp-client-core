@@ -49,7 +49,8 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Get-KshListItem",
                     new Dictionary<string, object>()
                     {
-                        { "List", result2.ElementAt(0) }
+                        { "List", result2.ElementAt(0) },
+                        { "All", true }
                     }
                 );
                 var actual = result3.ToArray();

@@ -13,7 +13,7 @@ Adds a document set welcome page column.
 ## SYNTAX
 
 ```
-Add-KshDocumentSetWelcomePageColumn -ContentType <ContentType> -Column <Column> [-PushChanges]
+Add-KshDocumentSetWelcomePageColumn [-ContentType] <ContentType> -Column <Column> [-PushChanges]
  [<CommonParameters>]
 ```
 
@@ -55,9 +55,9 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: Named
+Position: 0
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 

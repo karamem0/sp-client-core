@@ -13,7 +13,7 @@ Adds a document set allowed content type.
 ## SYNTAX
 
 ```
-Add-KshDocumentSetAllowedContentType -ContentType <ContentType> -AllowedContentType <ContentType>
+Add-KshDocumentSetAllowedContentType [-ContentType] <ContentType> -AllowedContentType <ContentType>
  [-PushChanges] [<CommonParameters>]
 ```
 
@@ -55,9 +55,9 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: Named
+Position: 0
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 

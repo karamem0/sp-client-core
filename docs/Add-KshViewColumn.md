@@ -14,12 +14,12 @@ Adds a view column.
 
 ### ParamSet1
 ```
-Add-KshViewColumn [-View] <View> [-Column] <Column> [<CommonParameters>]
+Add-KshViewColumn [-View] <View> -Column <Column> [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-Add-KshViewColumn [-View] <View> [-ColumnName] <String> [<CommonParameters>]
+Add-KshViewColumn [-View] <View> -ColumnName <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -45,7 +45,7 @@ Parameter Sets: ParamSet1
 Aliases:
 
 Required: True
-Position: 1
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -60,7 +60,7 @@ Parameter Sets: ParamSet2
 Aliases:
 
 Required: True
-Position: 1
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
