@@ -4,8 +4,7 @@
 
 PowerShell Core 向けの SharePoint サービス モジュール
 
-[![Build status](https://ci.appveyor.com/api/projects/status/etlu54thystfp79a?svg=true)](https://ci.appveyor.com/project/karamem0/spclientcore)
-[![Build Status](https://dev.azure.com/karamem0jp/SPClientCore/_apis/build/status/SPClientCore?branchName=develop)](https://dev.azure.com/karamem0jp/SPClientCore/_build/latest?definitionId=1&branchName=develop)
+[![Build Status](https://dev.azure.com/karamem0jp/SPClientCore/_apis/build/status/SPClientCore?branchName=master)](https://dev.azure.com/karamem0jp/SPClientCore/_build/latest?definitionId=27&branchName=master)
 [![License](https://img.shields.io/github/license/karamem0/spclientcore.svg)](https://github.com/karamem0/spclientcore/blob/master/LICENSE)
 
 ## インストール

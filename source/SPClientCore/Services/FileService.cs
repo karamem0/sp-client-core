@@ -53,7 +53,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         Guid RecycleObject(File fileObject);
 
-        void RemoveObject(File fileObject);
+        void RemoveObject(File fileObject, bool force);
 
         void UndoCheckOutObject(File fileObject);
 
@@ -376,6 +376,25 @@ namespace Karamem0.SharePoint.PowerShell.Services
             return this.ClientContext
                 .ProcessQuery(requestPayload)
                 .ToObject<Guid>(requestPayload.GetActionId<ClientActionMethod>());
+        }
+
+        public virtual void RemoveObject(File fileObject, bool force)
+        {
+            if (fileObject == null)
+            {
+                throw new ArgumentNullException(nameof(fileObject));
+            }
+            var requestPayload = new ClientRequestPayload();
+            var objectPath = requestPayload.Add(
+                new ObjectPathIdentity(fileObject.ObjectIdentity),
+                objectPathId => new ClientActionMethod(
+                    objectPathId,
+                    "DeleteWithParameters",
+                    requestPayload.CreateParameter(new FileDeleteParameters(new Dictionary<string, object>()
+                    {
+                        { "BypassSharedLock", force }
+                    }))));
+            this.ClientContext.ProcessQuery(requestPayload);
         }
 
         public void UndoCheckOutObject(File fileObject)

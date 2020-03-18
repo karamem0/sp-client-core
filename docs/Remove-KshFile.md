@@ -14,7 +14,7 @@ Removes a file.
 
 ### ParamSet1
 ```
-Remove-KshFile [-Identity] <File> [<CommonParameters>]
+Remove-KshFile [-Identity] <File> [-Force] [<CommonParameters>]
 ```
 
 ### ParamSet2
@@ -42,6 +42,21 @@ PS C:\> Remove-KshFile -Identity (Get-KshFile -FileUrl '/sites/japan/hr/Shared%2
 Moves a file to the recycle bin.
 
 ## PARAMETERS
+
+### -Force
+If specified, removes the item bypassing shared lock.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: ParamSet1
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### -Identity
 Specifies the file.

@@ -31,6 +31,9 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet2")]
         public File Identity { get; private set; }
 
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+        public SwitchParameter Force { get; private set; }
+
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
         public SwitchParameter RecycleBin { get; private set; }
 
@@ -38,7 +41,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         {
             if (this.ParameterSetName == "ParamSet1")
             {
-                this.Service.RemoveObject(this.Identity);
+                this.Service.RemoveObject(this.Identity, this.Force);
             }
             if (this.ParameterSetName == "ParamSet2")
             {
