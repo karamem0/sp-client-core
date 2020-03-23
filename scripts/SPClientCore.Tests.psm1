@@ -147,7 +147,7 @@ function Install-TestSite {
             -Description 'Test Group 1' `
             -Title 'Test Group 1'
         Set-KshGroupOwner `
-            -Identity $group1 `
+            -Group $group1 `
             -Owner $group1
         $appSettings.Group1Id = $group1.Id
         $appSettings.Group1Name = $group1.Title
@@ -157,7 +157,7 @@ function Install-TestSite {
             -Description 'Test Group 2' `
             -Title 'Test Group 2'
         Set-KshGroupOwner `
-            -Identity $group2 `
+            -Group $group2 `
             -Owner $group2
         $appSettings.Group2Id = $group2.Id
         $appSettings.Group2Name = $group2.Title
@@ -167,7 +167,7 @@ function Install-TestSite {
             -Description 'Test Group 3' `
             -Title 'Test Group 3'
         Set-KshGroupOwner `
-            -Identity $group3 `
+            -Group $group3 `
             -Owner $group3
         $appSettings.Group3Id = $group3.Id
         $appSettings.Group3Name = $group3.Title
@@ -247,7 +247,7 @@ function Install-TestSite {
         $appSettings.Site1Title = $site1.Title
 
         Write-Progress -Activity 'Enabling unique role assignment...' -Status 'Test Site 1'
-        Set-KshUniqueRoleAssignmentEnabled -Identity $site1 -Enabled
+        Set-KshUniqueRoleAssignmentEnabled -SecurableObject $site1 -Enabled
 
         Write-Progress -Activity 'Creating site role assignments...' -Status 'Test Role Definition 1'
         $siteRoleAssignment1 = New-KshRoleAssignment `
@@ -285,7 +285,7 @@ function Install-TestSite {
         $appSettings.Site2Title = $site2.Title
 
         Write-Progress -Activity 'Enabling unique role assignment...' -Status 'Test Site 2'
-        Set-KshUniqueRoleAssignmentEnabled -Identity $site2 -Enabled
+        Set-KshUniqueRoleAssignmentEnabled -SecurableObject $site2 -Enabled
 
         Write-Progress -Activity 'Creating sites...' -Status 'Test Site 3'
         $site3 = New-KshSite `
@@ -299,7 +299,7 @@ function Install-TestSite {
         $appSettings.Site3Title = $site3.Title
 
         Write-Progress -Activity 'Enabling unique role assignment...' -Status 'Test Site 3'
-        Set-KshUniqueRoleAssignmentEnabled -Identity $site3 -Enabled
+        Set-KshUniqueRoleAssignmentEnabled -SecurableObject $site3 -Enabled
 
         Write-Progress -Activity 'Changing current site...' -Status 'Test Site 2'
         Select-KshSite -Identity $site2
@@ -316,7 +316,7 @@ function Install-TestSite {
         $appSettings.Site4Title = $site4.Title
 
         Write-Progress -Activity 'Enabling unique role assignment...' -Status 'Test Site 4'
-        Set-KshUniqueRoleAssignmentEnabled -Identity $site4 -Enabled
+        Set-KshUniqueRoleAssignmentEnabled -SecurableObject $site4 -Enabled
 
         Write-Progress -Activity 'Changing current site...' -Status 'Test Site 1'
         Select-KshSite -Identity $site1
@@ -393,7 +393,7 @@ function Install-TestSite {
         $appSettings.List1Url = $rootFolder1.ServerRelativeUrl
 
         Write-Progress -Activity 'Enabling unique role assignment...' -Status 'Test List 1'
-        Set-KshUniqueRoleAssignmentEnabled -Identity $list1 -Enabled
+        Set-KshUniqueRoleAssignmentEnabled -SecurableObject $list1 -Enabled
 
         Write-Progress -Activity 'Creating list role assignments...' -Status 'Test Role Definition 1'
         $listRoleAssignment1 = New-KshRoleAssignment `
@@ -945,7 +945,7 @@ function Install-TestSite {
         $appSettings.ListItem1Id = $item1.Id
 
         Write-Progress -Activity 'Enabling unique role assignment...' -Status 'Test List Item 1'
-        Set-KshUniqueRoleAssignmentEnabled -Identity $item1 -Enabled
+        Set-KshUniqueRoleAssignmentEnabled -SecurableObject $item1 -Enabled
 
         Write-Progress -Activity 'Creating list item role assignments...' -Status 'Test Role Definition 1'
         $itemRoleAssignment1 = New-KshRoleAssignment `

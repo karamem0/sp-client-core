@@ -9,6 +9,8 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
+  buildVersion: '3.5.3'
+  buildId: '$(Build.BuildId)'
   artifactName: 'SPClientCore'
   solutionName: 'SPClientCore'
 
@@ -20,8 +22,6 @@ stages:
     manifestFile: 'source/$(solutionName)/$(solutionName).psd1'
     nuspecFile: 'source/$(solutionName)/$(solutionName).nuspec'
     buildConfiguration: 'Release'
-    buildVersion: '3.5.2'
-    buildId: '$(Build.BuildId)'
   jobs:
   - job: Build
     displayName: Build job
@@ -54,9 +54,17 @@ stages:
         projects: '$(solutionFile)'
         arguments: '-c $(buildConfiguration) -o $(Build.ArtifactStagingDirectory) -p:version=$(buildNumber);fileversion=$(buildNumber)'
         zipAfterPublish: false
+    - task: PowerShell@2
+      inputs:
+        targetType: 'inline'
+        script: |
+          Import-Module -Name $env:targetFile
+          Update-ModuleManifest -Path $env:targetFile -CmdletsToExport (Get-Command -Module $env:solutionName | %{ $_.Name })
+      env:
+        targetFile: '$(Build.ArtifactStagingDirectory)/$(solutionName)/$(solutionName).psd1'
     - task: PublishBuildArtifacts@1
       inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        pathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: '$(artifactName)'
         publishLocation: 'Container'
 - stage: ReleaseAzureArtifacts

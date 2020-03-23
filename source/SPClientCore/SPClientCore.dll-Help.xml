@@ -15,10 +15,10 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Add-KshDocumentSetAllowedContentType</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>AllowedContentType</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>ContentType</maml:name>
           <maml:Description>
-            <maml:para>Specifies the allowed content type.</maml:para>
+            <maml:para>Specifies the content type.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
           <dev:type>
@@ -28,9 +28,9 @@
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>ContentType</maml:name>
+          <maml:name>AllowedContentType</maml:name>
           <maml:Description>
-            <maml:para>Specifies the content type.</maml:para>
+            <maml:para>Specifies the allowed content type.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
           <dev:type>
@@ -65,7 +65,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
         <maml:name>ContentType</maml:name>
         <maml:Description>
           <maml:para>Specifies the content type.</maml:para>
@@ -141,6 +141,18 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Add-KshDocumentSetSharedColumn</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>ContentType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the content type.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+          <dev:type>
+            <maml:name>ContentType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Column</maml:name>
           <maml:Description>
@@ -149,18 +161,6 @@
           <command:parameterValue required="true" variableLength="false">Column</command:parameterValue>
           <dev:type>
             <maml:name>Column</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>ContentType</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the content type.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
-          <dev:type>
-            <maml:name>ContentType</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -191,7 +191,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
         <maml:name>ContentType</maml:name>
         <maml:Description>
           <maml:para>Specifies the content type.</maml:para>
@@ -267,6 +267,18 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Add-KshDocumentSetWelcomePageColumn</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>ContentType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the content type.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+          <dev:type>
+            <maml:name>ContentType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Column</maml:name>
           <maml:Description>
@@ -275,18 +287,6 @@
           <command:parameterValue required="true" variableLength="false">Column</command:parameterValue>
           <dev:type>
             <maml:name>Column</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>ContentType</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the content type.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
-          <dev:type>
-            <maml:name>ContentType</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -317,7 +317,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
         <maml:name>ContentType</maml:name>
         <maml:Description>
           <maml:para>Specifies the content type.</maml:para>
@@ -405,7 +405,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Member</maml:name>
           <maml:Description>
             <maml:para>Specifies the user.</maml:para>
@@ -432,7 +432,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Member</maml:name>
         <maml:Description>
           <maml:para>Specifies the user.</maml:para>
@@ -496,7 +496,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Add-KshSiteCollectionAppCatalog</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>SiteCollection</maml:name>
           <maml:Description>
             <maml:para>Specifies the site collection.</maml:para>
@@ -511,7 +511,7 @@
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Add-KshSiteCollectionAppCatalog</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>SiteCollectionUrl</maml:name>
           <maml:Description>
             <maml:para>Specifies the site collection URL.</maml:para>
@@ -526,7 +526,7 @@
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Add-KshSiteCollectionAppCatalog</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>TenantSiteCollection</maml:name>
           <maml:Description>
             <maml:para>Specifies the tenant site collection.</maml:para>
@@ -541,7 +541,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>SiteCollection</maml:name>
         <maml:Description>
           <maml:para>Specifies the site collection.</maml:para>
@@ -553,7 +553,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>SiteCollectionUrl</maml:name>
         <maml:Description>
           <maml:para>Specifies the site collection URL.</maml:para>
@@ -565,7 +565,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>TenantSiteCollection</maml:name>
         <maml:Description>
           <maml:para>Specifies the tenant site collection.</maml:para>
@@ -1362,7 +1362,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Add-KshTermStoreLanguage</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Lcid</maml:name>
           <maml:Description>
             <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
@@ -1377,7 +1377,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Lcid</maml:name>
         <maml:Description>
           <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
@@ -1453,7 +1453,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Column</maml:name>
           <maml:Description>
             <maml:para>Specifies the column.</maml:para>
@@ -1480,7 +1480,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>ColumnName</maml:name>
           <maml:Description>
             <maml:para>Specifies the column name.</maml:para>
@@ -1495,7 +1495,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Column</maml:name>
         <maml:Description>
           <maml:para>Specifies the column.</maml:para>
@@ -1507,7 +1507,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>ColumnName</maml:name>
         <maml:Description>
           <maml:para>Specifies the column name.</maml:para>
@@ -4654,7 +4654,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Get-KshDocumentSetAllowedContentType</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>ContentType</maml:name>
           <maml:Description>
             <maml:para>Specifies the content type.</maml:para>
@@ -4680,7 +4680,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>ContentType</maml:name>
         <maml:Description>
           <maml:para>Specifies the content type.</maml:para>
@@ -4756,7 +4756,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Get-KshDocumentSetDefaultDocument</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>ContentType</maml:name>
           <maml:Description>
             <maml:para>Specifies the content type.</maml:para>
@@ -4782,7 +4782,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>ContentType</maml:name>
         <maml:Description>
           <maml:para>Specifies the content type.</maml:para>
@@ -4858,7 +4858,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Get-KshDocumentSetSharedColumn</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>ContentType</maml:name>
           <maml:Description>
             <maml:para>Specifies the content type.</maml:para>
@@ -4884,7 +4884,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>ContentType</maml:name>
         <maml:Description>
           <maml:para>Specifies the content type.</maml:para>
@@ -4960,7 +4960,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Get-KshDocumentSetWelcomePageColumn</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>ContentType</maml:name>
           <maml:Description>
             <maml:para>Specifies the content type.</maml:para>
@@ -4986,7 +4986,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>ContentType</maml:name>
         <maml:Description>
           <maml:para>Specifies the content type.</maml:para>
@@ -6552,6 +6552,43 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Get-KshListItem</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>List</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the list.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">List</command:parameterValue>
+          <dev:type>
+            <maml:name>List</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>All</maml:name>
+          <maml:Description>
+            <maml:para>if specified, returns all items. This parameter is effective if there are more than 5000 items.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NoEnumerate</maml:name>
+          <maml:Description>
+            <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshListItem</maml:name>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
           <maml:name>File</maml:name>
           <maml:Description>
@@ -6686,6 +6723,18 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>All</maml:name>
+        <maml:Description>
+          <maml:para>if specified, returns all items. This parameter is effective if there are more than 5000 items.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
         <maml:name>File</maml:name>
         <maml:Description>
@@ -6852,9 +6901,9 @@
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 4 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Get-KshListItem -List (Get-KshList -ListTitle 'Announcements')</dev:code>
+        <dev:code>PS C:\&gt; Get-KshListItem -List (Get-KshList -ListTitle 'Announcements') -All</dev:code>
         <dev:remarks>
-          <maml:para>Retrieves all list items. (This case, list items must be less than 5000.)</maml:para>
+          <maml:para>Retrieves all list items.</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
@@ -38978,10 +39027,10 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Remove-KshDocumentSetAllowedContentType</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>AllowedContentType</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>ContentType</maml:name>
           <maml:Description>
-            <maml:para>Specifies the allowed content type.</maml:para>
+            <maml:para>Specifies the content type.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
           <dev:type>
@@ -38991,9 +39040,9 @@
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>ContentType</maml:name>
+          <maml:name>AllowedContentType</maml:name>
           <maml:Description>
-            <maml:para>Specifies the content type.</maml:para>
+            <maml:para>Specifies the allowed content type.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
           <dev:type>
@@ -39028,7 +39077,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
         <maml:name>ContentType</maml:name>
         <maml:Description>
           <maml:para>Specifies the content type.</maml:para>
@@ -39104,7 +39153,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Remove-KshDocumentSetDefaultDocument</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
           <maml:name>ContentType</maml:name>
           <maml:Description>
             <maml:para>Specifies the content type.</maml:para>
@@ -39142,7 +39191,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
         <maml:name>ContentType</maml:name>
         <maml:Description>
           <maml:para>Specifies the content type.</maml:para>
@@ -39230,6 +39279,18 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Remove-KshDocumentSetSharedColumn</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>ContentType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the content type.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+          <dev:type>
+            <maml:name>ContentType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Column</maml:name>
           <maml:Description>
@@ -39238,18 +39299,6 @@
           <command:parameterValue required="true" variableLength="false">Column</command:parameterValue>
           <dev:type>
             <maml:name>Column</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>ContentType</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the content type.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
-          <dev:type>
-            <maml:name>ContentType</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -39280,7 +39329,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
         <maml:name>ContentType</maml:name>
         <maml:Description>
           <maml:para>Specifies the content type.</maml:para>
@@ -39356,6 +39405,18 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Remove-KshDocumentSetWelcomePageColumn</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>ContentType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the content type.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
+          <dev:type>
+            <maml:name>ContentType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Column</maml:name>
           <maml:Description>
@@ -39364,18 +39425,6 @@
           <command:parameterValue required="true" variableLength="false">Column</command:parameterValue>
           <dev:type>
             <maml:name>Column</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>ContentType</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the content type.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">ContentType</command:parameterValue>
-          <dev:type>
-            <maml:name>ContentType</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -39406,7 +39455,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
         <maml:name>ContentType</maml:name>
         <maml:Description>
           <maml:para>Specifies the content type.</maml:para>
@@ -39494,6 +39543,32 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Force</maml:name>
+          <maml:Description>
+            <maml:para>If specified, removes the item bypassing shared lock.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Remove-KshFile</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Identity</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the file.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">File</command:parameterValue>
+          <dev:type>
+            <maml:name>File</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>RecycleBin</maml:name>
           <maml:Description>
@@ -39508,6 +39583,18 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Force</maml:name>
+        <maml:Description>
+          <maml:para>If specified, removes the item bypassing shared lock.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
         <maml:name>Identity</maml:name>
         <maml:Description>
@@ -42455,7 +42542,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Remove-KshTermStoreLanguage</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Lcid</maml:name>
           <maml:Description>
             <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
@@ -42470,7 +42557,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Lcid</maml:name>
         <maml:Description>
           <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
@@ -42730,7 +42817,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Column</maml:name>
           <maml:Description>
             <maml:para>Specifies the column.</maml:para>
@@ -42757,7 +42844,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>ColumnName</maml:name>
           <maml:Description>
             <maml:para>Specifies the column name.</maml:para>
@@ -42784,7 +42871,7 @@
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Column</maml:name>
         <maml:Description>
           <maml:para>Specifies the column.</maml:para>
@@ -42796,7 +42883,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>ColumnName</maml:name>
         <maml:Description>
           <maml:para>Specifies the column name.</maml:para>
@@ -43828,7 +43915,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Set-KshContentTypeColumnOrder</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
           <maml:name>ContentType</maml:name>
           <maml:Description>
             <maml:para>Specifies the content type.</maml:para>
@@ -43866,7 +43953,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
         <maml:name>ContentType</maml:name>
         <maml:Description>
           <maml:para>Specifies the content type.</maml:para>
@@ -43962,7 +44049,7 @@
       <command:syntaxItem>
         <maml:name>Set-KshGroupOwner</maml:name>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
-          <maml:name>Identity</maml:name>
+          <maml:name>Group</maml:name>
           <maml:Description>
             <maml:para>Specifies the group.</maml:para>
           </maml:Description>
@@ -43989,7 +44076,7 @@
     </command:syntax>
     <command:parameters>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
-        <maml:name>Identity</maml:name>
+        <maml:name>Group</maml:name>
         <maml:Description>
           <maml:para>Specifies the group.</maml:para>
         </maml:Description>
@@ -44484,7 +44571,7 @@
       <command:syntaxItem>
         <maml:name>Set-KshTermDescription</maml:name>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
-          <maml:name>Identity</maml:name>
+          <maml:name>Term</maml:name>
           <maml:Description>
             <maml:para>Specifies the term.</maml:para>
           </maml:Description>
@@ -44534,18 +44621,6 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
-        <maml:name>Identity</maml:name>
-        <maml:Description>
-          <maml:para>Specifies the term.</maml:para>
-        </maml:Description>
-        <command:parameterValue required="true" variableLength="false">Term</command:parameterValue>
-        <dev:type>
-          <maml:name>Term</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Lcid</maml:name>
         <maml:Description>
@@ -44554,6 +44629,18 @@
         <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
         <dev:type>
           <maml:name>UInt32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Term</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the term.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Term</command:parameterValue>
+        <dev:type>
+          <maml:name>Term</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -44611,7 +44698,7 @@
       <command:syntaxItem>
         <maml:name>Set-KshUniqueRoleAssignmentEnabled</maml:name>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
-          <maml:name>Identity</maml:name>
+          <maml:name>SecurableObject</maml:name>
           <maml:Description>
             <maml:para>Specifies the securable object.</maml:para>
           </maml:Description>
@@ -44659,7 +44746,7 @@
       <command:syntaxItem>
         <maml:name>Set-KshUniqueRoleAssignmentEnabled</maml:name>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
-          <maml:name>Identity</maml:name>
+          <maml:name>SecurableObject</maml:name>
           <maml:Description>
             <maml:para>Specifies the securable object.</maml:para>
           </maml:Description>
@@ -44733,7 +44820,7 @@
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
-        <maml:name>Identity</maml:name>
+        <maml:name>SecurableObject</maml:name>
         <maml:Description>
           <maml:para>Specifies the securable object.</maml:para>
         </maml:Description>
