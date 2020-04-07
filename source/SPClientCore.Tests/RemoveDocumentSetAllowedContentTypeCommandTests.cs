@@ -84,7 +84,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Get-KshDocumentSetAllowedContentType",
                     new Dictionary<string, object>()
                     {
-                        { "DocumentSetContentType", result4.ElementAt(0) }
+                        { "ContentType", result4.ElementAt(0) }
                     }
                 );
                 var actual = result7.ToArray();

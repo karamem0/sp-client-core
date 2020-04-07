@@ -17,7 +17,7 @@ Remove-KshView [-Identity] <View> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Remove-KshView cmdlet removes a view from the specified list.
+The Remove-KshView cmdlet removes a view from the parent list.
 
 ## EXAMPLES
 

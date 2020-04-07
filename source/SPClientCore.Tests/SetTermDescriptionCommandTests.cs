@@ -66,7 +66,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Set-KshTermDescription",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result4.ElementAt(0) },
+                        { "Term", result4.ElementAt(0) },
                         { "Description", "Test Term 0" },
                         { "Lcid", 1033 },
                     }

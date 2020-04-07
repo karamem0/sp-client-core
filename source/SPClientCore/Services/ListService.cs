@@ -35,6 +35,8 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         List GetObject(string listTitle);
 
+        List GetObject(LibraryType libraryType);
+
         IEnumerable<List> GetObjectEnumerable();
 
         Guid RecycleObject(List listObject);
@@ -197,6 +199,54 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 {
                     Query = new ClientQuery(true, typeof(List))
                 });
+            return this.ClientContext
+                .ProcessQuery(requestPayload)
+                .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
+        }
+
+        public List GetObject(LibraryType libraryType)
+        {
+            if (libraryType == default(LibraryType))
+            {
+                throw new ArgumentNullException(nameof(libraryType));
+            }
+            var requestPayload = new ClientRequestPayload();
+            var objectPath1 = requestPayload.Add(
+                new ObjectPathStaticProperty(typeof(Context), "Current"));
+            var objectPath2 = requestPayload.Add(
+                new ObjectPathProperty(objectPath1.Id, "Web"));
+            var objectPath3 = requestPayload.Add(
+                new ObjectPathProperty(objectPath2.Id, "Lists"));
+            if (libraryType == LibraryType.SitePages)
+            {
+                var objectPath4 = requestPayload.Add(
+                    new ObjectPathMethod(objectPath3.Id, "EnsureSitePagesLibrary"),
+                    objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
+                    objectPathId => new ClientActionQuery(objectPathId)
+                    {
+                        Query = new ClientQuery(true, typeof(List))
+                    });
+            }
+            if (libraryType == LibraryType.ClientRenderedSitePages)
+            {
+                var objectPath4 = requestPayload.Add(
+                    new ObjectPathMethod(objectPath3.Id, "EnsureClientRenderedSitePagesLibrary"),
+                    objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
+                    objectPathId => new ClientActionQuery(objectPathId)
+                    {
+                        Query = new ClientQuery(true, typeof(List))
+                    });
+            }
+            if (libraryType == LibraryType.SiteAssets)
+            {
+                var objectPath4 = requestPayload.Add(
+                    new ObjectPathMethod(objectPath3.Id, "EnsureSiteAssetsLibrary"),
+                    objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
+                    objectPathId => new ClientActionQuery(objectPathId)
+                    {
+                        Query = new ClientQuery(true, typeof(List))
+                    });
+            }
             return this.ClientContext
                 .ProcessQuery(requestPayload)
                 .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());

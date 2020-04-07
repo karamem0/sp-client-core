@@ -50,7 +50,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Set-KshUniqueRoleAssignmentEnabled",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result2.ElementAt(0) },
+                        { "SecurableObject", result2.ElementAt(0) },
                         { "Enabled", true }
                     }
                 );
@@ -58,7 +58,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Set-KshUniqueRoleAssignmentEnabled",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result2.ElementAt(0) },
+                        { "SecurableObject", result2.ElementAt(0) },
                         { "Disabled", true }
                     }
                 );
@@ -108,7 +108,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Set-KshUniqueRoleAssignmentEnabled",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result2.ElementAt(0) },
+                        { "SecurableObject", result2.ElementAt(0) },
                         { "Enabled", true }
                     }
                 );
@@ -116,7 +116,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Set-KshUniqueRoleAssignmentEnabled",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result2.ElementAt(0) },
+                        { "SecurableObject", result2.ElementAt(0) },
                         { "Disabled", true }
                     }
                 );
@@ -173,7 +173,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Set-KshUniqueRoleAssignmentEnabled",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result3.ElementAt(0) },
+                        { "SecurableObject", result3.ElementAt(0) },
                         { "Enabled", true }
                     }
                 );
@@ -181,7 +181,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Set-KshUniqueRoleAssignmentEnabled",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result3.ElementAt(0) },
+                        { "SecurableObject", result3.ElementAt(0) },
                         { "Disabled", true }
                     }
                 );
@@ -230,7 +230,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Set-KshUniqueRoleAssignmentEnabled",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result2.ElementAt(0) },
+                        { "SecurableObject", result2.ElementAt(0) },
                         { "Enabled", true },
                         { "CopyRoleAssignments", true },
                         { "ClearSubscopes", true }
@@ -247,7 +247,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Set-KshUniqueRoleAssignmentEnabled",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result2.ElementAt(0) },
+                        { "SecurableObject", result2.ElementAt(0) },
                         { "Disabled", true }
                     }
                 );
@@ -290,7 +290,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Set-KshUniqueRoleAssignmentEnabled",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result2.ElementAt(0) },
+                        { "SecurableObject", result2.ElementAt(0) },
                         { "Enabled", true },
                         { "CopyRoleAssignments", true },
                         { "ClearSubscopes", true }
@@ -307,7 +307,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Set-KshUniqueRoleAssignmentEnabled",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result2.ElementAt(0) },
+                        { "SecurableObject", result2.ElementAt(0) },
                         { "Disabled", true }
                     }
                 );
@@ -357,7 +357,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Set-KshUniqueRoleAssignmentEnabled",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result3.ElementAt(0) },
+                        { "SecurableObject", result3.ElementAt(0) },
                         { "Enabled", true },
                         { "CopyRoleAssignments", true },
                         { "ClearSubscopes", true }
@@ -374,7 +374,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Set-KshUniqueRoleAssignmentEnabled",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result3.ElementAt(0) },
+                        { "SecurableObject", result3.ElementAt(0) },
                         { "Disabled", true }
                     }
                 );

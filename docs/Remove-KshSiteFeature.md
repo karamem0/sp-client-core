@@ -17,7 +17,7 @@ Remove-KshSiteFeature [-Identity] <Feature> [-Force <Boolean>] [<CommonParameter
 ```
 
 ## DESCRIPTION
-The Remove-KshSiteFeature cmdlet removes a feature from the site.
+The Remove-KshSiteFeature cmdlet removes a feature from the current site.
 
 ## EXAMPLES
 

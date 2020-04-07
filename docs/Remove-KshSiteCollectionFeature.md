@@ -17,7 +17,7 @@ Remove-KshSiteCollectionFeature [-Identity] <Feature> [-Force <Boolean>] [<Commo
 ```
 
 ## DESCRIPTION
-The Remove-KshSiteCollectionFeature cmdlet removes a feature from the site collection.
+The Remove-KshSiteCollectionFeature cmdlet removes a feature from the current site collection.
 
 ## EXAMPLES
 

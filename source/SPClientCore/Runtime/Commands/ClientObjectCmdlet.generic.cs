@@ -52,4 +52,26 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Commands
 
     }
 
+    public abstract class ClientObjectCmdlet<T1, T2, T3> : ClientObjectCmdlet
+    {
+
+        protected ClientObjectCmdlet()
+        {
+            if (ClientService.ServiceProvider == null)
+            {
+                throw new InvalidOperationException(StringResources.ErrorNotConnected);
+            }
+            this.Service1 = ClientService.ServiceProvider.GetService<T1>();
+            this.Service2 = ClientService.ServiceProvider.GetService<T2>();
+            this.Service3 = ClientService.ServiceProvider.GetService<T3>();
+        }
+
+        protected T1 Service1 { get; private set; }
+
+        protected T2 Service2 { get; private set; }
+
+        protected T3 Service3 { get; private set; }
+
+    }
+
 }

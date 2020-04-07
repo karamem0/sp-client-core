@@ -326,8 +326,10 @@ namespace Karamem0.SharePoint.PowerShell.Services
             var objectPath = requestPayload.Add(
                 new ObjectPathIdentity(listItemObject.ObjectIdentity),
                 modificationInformation.Select(parameter =>
-                        new ClientActionDelegate(objectPathId =>
-                            new ClientActionMethod(objectPathId, "SetFieldValue",
+                    new ClientActionDelegate(objectPathId =>
+                        new ClientActionMethod(
+                            objectPathId,
+                            "SetFieldValue",
                             requestPayload.CreateParameter(parameter.Key),
                             requestPayload.CreateParameter(parameter.Value))))
                     .Append(objectPathId => new ClientActionMethod(

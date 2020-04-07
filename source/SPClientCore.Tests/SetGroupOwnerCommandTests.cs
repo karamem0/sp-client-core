@@ -56,7 +56,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Set-KshGroupOwner",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result3.ElementAt(0) },
+                        { "Group", result3.ElementAt(0) },
                         { "Owner", result2.ElementAt(0) }
                     }
                 );

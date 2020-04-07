@@ -115,31 +115,33 @@ function Install-TestSite {
         $appSettings.Term4Id = $term4.Id
         $appSettings.Term4Name = $term4.Name
 
-        Write-Progress -Activity 'Creating site collections...' -Status 'Processing'
+        Write-Progress -Activity 'Creating a site collection...' -Status 'Processing'
         $siteCollection = New-KshTenantSiteCollection `
             -Lcid 1033 `
             -Owner $credential.UserName `
-            -StorageMaxLevel 26214400 `
             -Template 'STS#0' `
+            -StorageMaxLevel 26214400 `
             -Title 'SPClientCore' `
             -Url $baseUrl
+
+        Write-Progress -Activity 'Updating a site collection...' -Status 'Processing'
         $siteCollection = Update-KshTenantSiteCollection `
             -Identity $siteCollection `
             -SharingCapability ExternalUserAndGuestSharing `
             -PassThru
 
-        Write-Progress -Activity 'Retrieving site collections....' -Status 'Processing'
+        Write-Progress -Activity 'Retrieving a site collection....' -Status 'Processing'
         $siteCollection = Get-KshSiteCollection -SiteCollectionUrl $siteCollection.Url
         $appSettings.SiteCollectionId = $siteCollection.Id
         $appSettings.SiteCollectionUrl = $siteCollection.ServerRelativeUrl
 
+        Write-Progress -Activity 'Adding a site collection app catalog...' -Status 'Processing'
+        Add-KshSiteCollectionAppCatalog -SiteCollection $siteCollection
+
         Write-Progress -Activity 'Sign in...' -Status 'Processing'
         Connect-KshSite -Url $baseUrl -Credential $credential
 
-        Write-Progress -Activity 'Adding site collection app catalogs...' -Status 'Processing'
-        Add-KshSiteCollectionAppCatalog -SiteCollection $siteCollection
-
-        Write-Progress -Activity 'Removing existing groups...' -Status 'Processing'
+        Write-Progress -Activity 'Removing site groups...' -Status 'Processing'
         Get-KshGroup | Remove-KshGroup
 
         Write-Progress -Activity 'Creating site groups...' -Status 'Test Group 1'
@@ -177,9 +179,6 @@ function Install-TestSite {
             -Email "testuser1@$DomainName" `
             -LoginName "i:0#.f|membership|testuser1@$DomainName" `
             -Title 'Test User 1'
-        Add-KshGroupMember `
-            -Group $group1 `
-            -Member $user1
         $appSettings.User1Id = $user1.Id
         $appSettings.User1LoginName = $user1.LoginName
         $appSettings.User1Title = $user1.Title
@@ -190,9 +189,6 @@ function Install-TestSite {
             -Email "testuser2@$DomainName" `
             -LoginName "i:0#.f|membership|testuser2@$DomainName" `
             -Title 'Test User 2'
-        Add-KshGroupMember `
-            -Group $group1 `
-            -Member $user2
         $appSettings.User2Id = $user2.Id
         $appSettings.User2LoginName = $user2.LoginName
         $appSettings.User2Title = $user2.Title
@@ -203,13 +199,25 @@ function Install-TestSite {
             -Email "testuser3@$DomainName" `
             -LoginName "i:0#.f|membership|testuser3@$DomainName" `
             -Title 'Test User 3'
-        Add-KshGroupMember `
-            -Group $group1 `
-            -Member $user3
         $appSettings.User3Id = $user3.Id
         $appSettings.User3LoginName = $user3.LoginName
         $appSettings.User3Title = $user3.Title
         $appSettings.User3Email = $user3.Email
+
+        Write-Progress -Activity 'Adding site group members...' -Status 'Test User 1'
+        Add-KshGroupMember `
+            -Group $group1 `
+            -Member $user1
+
+        Write-Progress -Activity 'Adding site group members...' -Status 'Test User 2'
+        Add-KshGroupMember `
+            -Group $group1 `
+            -Member $user2
+
+        Write-Progress -Activity 'Adding site group members...' -Status 'Test User 3'
+        Add-KshGroupMember `
+            -Group $group1 `
+            -Member $user3
 
         Write-Progress -Activity 'Creating role definitions...' -Status 'Test Role Definition 1'
         $basePermission1 = Initialize-KshBasePermission -Permission 'EmptyMask'
@@ -246,7 +254,7 @@ function Install-TestSite {
         $appSettings.Site1Url = $site1.ServerRelativeUrl
         $appSettings.Site1Title = $site1.Title
 
-        Write-Progress -Activity 'Enabling unique role assignment...' -Status 'Test Site 1'
+        Write-Progress -Activity 'Breaking role inheritance...' -Status 'Test Site 1'
         Set-KshUniqueRoleAssignmentEnabled -SecurableObject $site1 -Enabled
 
         Write-Progress -Activity 'Creating site role assignments...' -Status 'Test Role Definition 1'
@@ -284,7 +292,7 @@ function Install-TestSite {
         $appSettings.Site2Url = $site2.ServerRelativeUrl
         $appSettings.Site2Title = $site2.Title
 
-        Write-Progress -Activity 'Enabling unique role assignment...' -Status 'Test Site 2'
+        Write-Progress -Activity 'Breaking role inheritance...' -Status 'Test Site 2'
         Set-KshUniqueRoleAssignmentEnabled -SecurableObject $site2 -Enabled
 
         Write-Progress -Activity 'Creating sites...' -Status 'Test Site 3'
@@ -298,7 +306,7 @@ function Install-TestSite {
         $appSettings.Site3Url = $site3.ServerRelativeUrl
         $appSettings.Site3Title = $site3.Title
 
-        Write-Progress -Activity 'Enabling unique role assignment...' -Status 'Test Site 3'
+        Write-Progress -Activity 'Breaking role inheritance...' -Status 'Test Site 3'
         Set-KshUniqueRoleAssignmentEnabled -SecurableObject $site3 -Enabled
 
         Write-Progress -Activity 'Changing current site...' -Status 'Test Site 2'
@@ -315,7 +323,7 @@ function Install-TestSite {
         $appSettings.Site4Url = $site4.ServerRelativeUrl
         $appSettings.Site4Title = $site4.Title
 
-        Write-Progress -Activity 'Enabling unique role assignment...' -Status 'Test Site 4'
+        Write-Progress -Activity 'Breaking role inheritance...' -Status 'Test Site 4'
         Set-KshUniqueRoleAssignmentEnabled -SecurableObject $site4 -Enabled
 
         Write-Progress -Activity 'Changing current site...' -Status 'Test Site 1'
@@ -392,7 +400,7 @@ function Install-TestSite {
         $appSettings.List1Title = $list1.Title
         $appSettings.List1Url = $rootFolder1.ServerRelativeUrl
 
-        Write-Progress -Activity 'Enabling unique role assignment...' -Status 'Test List 1'
+        Write-Progress -Activity 'Breaking role inheritance...' -Status 'Test List 1'
         Set-KshUniqueRoleAssignmentEnabled -SecurableObject $list1 -Enabled
 
         Write-Progress -Activity 'Creating list role assignments...' -Status 'Test Role Definition 1'
@@ -944,7 +952,7 @@ function Install-TestSite {
             }
         $appSettings.ListItem1Id = $item1.Id
 
-        Write-Progress -Activity 'Enabling unique role assignment...' -Status 'Test List Item 1'
+        Write-Progress -Activity 'Breaking role inheritance...' -Status 'Test List Item 1'
         Set-KshUniqueRoleAssignmentEnabled -SecurableObject $item1 -Enabled
 
         Write-Progress -Activity 'Creating list item role assignments...' -Status 'Test Role Definition 1'
@@ -1146,29 +1154,37 @@ function Install-TestSite {
         $appSettings.File4Url = $file4.ServerRelativeUrl
         $appSettings.File4Name = $file4.Name
 
-        Write-Progress -Activity 'Updating document set template...' -Status 'Shared Columns'
+        Write-Progress -Activity 'Updating document set shared columns...' -Status 'Test Column 1'
         Add-KshDocumentSetSharedColumn `
             -ContentType $siteContentType7 `
             -Column $column1 `
             -PushChanges
+
+        Write-Progress -Activity 'Updating document set shared columns...' -Status 'Test Column 2'
         Add-KshDocumentSetSharedColumn `
             -ContentType $siteContentType7 `
             -Column $column2 `
             -PushChanges
+
+        Write-Progress -Activity 'Updating document set shared columns...' -Status 'Test Column 3'
         Add-KshDocumentSetSharedColumn `
             -ContentType $siteContentType7 `
             -Column $column3 `
             -PushChanges
 
-        Write-Progress -Activity 'Updating document set template...' -Status 'Welcome Page Columns'
+        Write-Progress -Activity 'Updating document set welcome page columns...' -Status 'Test Column 1'
         Add-KshDocumentSetWelcomePageColumn `
             -ContentType $siteContentType7 `
             -Column $column1 `
             -PushChanges
+
+        Write-Progress -Activity 'Updating document set welcome page columns...' -Status 'Test Column 2'
         Add-KshDocumentSetWelcomePageColumn `
             -ContentType $siteContentType7 `
             -Column $column2 `
             -PushChanges
+
+        Write-Progress -Activity 'Updating document set welcome page columns...' -Status 'Test Column 3'
         Add-KshDocumentSetWelcomePageColumn `
             -ContentType $siteContentType7 `
             -Column $column3 `
@@ -1194,6 +1210,55 @@ function Install-TestSite {
             -Name 'Test Document Set 3' `
             -ContentType $listContentType7
         $appSettings.DocumentSet3Url = $documentSet3
+
+        Write-Progress -Activity 'Retrieving site pages...' -Status 'Site Pages'
+        $sitePageFolder = Get-KshFolder -FolderUrl ($site1.ServerRelativeUrl + '/SitePages')
+        $appSettings.SitePageFolderUrl = $sitePageFolder.ServerRelativeUrl
+
+        Write-Progress -Activity 'Creating site pages...' -Status 'Test Site Page 1'
+        $sitePage1 = New-KshSitePage `
+            -Folder $sitePageFolder `
+            -PageName 'Test Site Page 1' `
+            -LayoutType 'Article'
+        $appSettings.SitePage1Url = $sitePage1.ServerRelativeUrl
+
+        Write-Progress -Activity 'Creating site pages...' -Status 'Test Site Page 2'
+        $sitePage2 = New-KshSitePage `
+            -Folder $sitePageFolder `
+            -PageName 'Test Site Page 2' `
+            -LayoutType 'Article'
+        $appSettings.SitePage2Url = $sitePage2.ServerRelativeUrl
+    
+        Write-Progress -Activity 'Creating site pages...' -Status 'Test Site Page 3'
+        $sitePage3 = New-KshSitePage `
+            -Folder $sitePageFolder `
+            -PageName 'Test Site Page 3' `
+            -LayoutType 'Article'
+        $appSettings.SitePage3Url = $sitePage3.ServerRelativeUrl
+
+        Write-Progress -Activity 'Creating site page comments...' -Status 'Test Comment 1'
+        $sitePageComment1 = New-KshSitePageComment `
+            -ListItem (Get-KshListItem -File $sitePage1) `
+            -Text 'Test Comment 1'
+        $appSettings.SitePageComment1Id = $sitePageComment1.Id
+
+        Write-Progress -Activity 'Creating site page comments...' -Status 'Test Comment 2'
+        $sitePageComment2 = New-KshSitePageComment `
+            -Comment $sitePageComment1 `
+            -Text 'Test Comment 2'
+        $appSettings.SitePageComment2Id = $sitePageComment2.Id
+
+        Write-Progress -Activity 'Creating site page comments...' -Status 'Test Comment 3'
+        $sitePageComment3 = New-KshSitePageComment `
+            -Comment $sitePageComment1 `
+            -Text 'Test Comment 3'
+        $appSettings.SitePageComment3Id = $sitePageComment3.Id
+
+        Write-Progress -Activity 'Creating site page comments...' -Status 'Test Comment 4'
+        $sitePageComment4 = New-KshSitePageComment `
+            -Comment $sitePageComment1 `
+            -Text 'Test Comment 4'
+        $appSettings.SitePageComment4Id = $sitePageComment4.Id
 
         Write-Progress -Activity 'Creating alerts...' -Status 'Test Alert 1'
         $alert1 = New-KshAlert `
@@ -1225,7 +1290,7 @@ function Install-TestSite {
         Write-Progress -Activity 'Changing current site...' -Status 'Root Site'
         Get-KshSite -SiteUrl $baseUrl | Select-KshSite
 
-        Write-Progress -Activity 'Retrieving app path...' -Status 'Processing'
+        Write-Progress -Activity 'Retrieving app paths...' -Status 'Processing'
         $app0Path = Resolve-Path "$PSScriptRoot/TestApp0/sharepoint/solution/TestApp0.sppkg"
         $appSettings.App0Path = $app0Path.ToString()
         $app1Path = Resolve-Path "$PSScriptRoot/TestApp1/sharepoint/solution/TestApp1.sppkg"
@@ -1339,7 +1404,7 @@ function Uninstall-TestSite {
         Write-Progress -Activity 'Removing site collection app catalogs...' -Status 'Processing'
         Get-KshSiteCollectionAppCatalog -SiteCollectionUrl $baseUrl | Remove-KshSiteCollectionAppCatalog
 
-        Write-Progress -Activity 'Removing site collections...' -Status 'Processing'
+        Write-Progress -Activity 'Removing a site collection...' -Status 'Processing'
         Get-KshTenantSiteCollection -SiteCollectionUrl $baseUrl | Remove-KshTenantSiteCollection
         Get-KshTenantDeletedSiteCollection -SiteCollectionUrl $baseUrl | Remove-KshTenantDeletedSiteCollection
 

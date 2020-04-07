@@ -44,6 +44,11 @@ Get-KshList [-ListTitle] <String> [<CommonParameters>]
 
 ### ParamSet7
 ```
+Get-KshList [-LibraryType] <LibraryType> [<CommonParameters>]
+```
+
+### ParamSet8
+```
 Get-KshList [-NoEnumerate] [<CommonParameters>]
 ```
 
@@ -80,7 +85,14 @@ PS C:\> Get-KshList -ListTitle 'Announcements'
 
 Retrieves a list by list title.
 
-### Example 5
+### Example 4
+```powershell
+PS C:\> Get-KshList -LibraryType 'SitePages'
+```
+
+Retrieves a list by library type.
+
+### Example 6
 ```powershell
 PS C:\> Get-KshList
 ```
@@ -101,6 +113,22 @@ Required: True
 Position: 0
 Default value: None
 Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -LibraryType
+Specifies the library type.
+
+```yaml
+Type: LibraryType
+Parameter Sets: ParamSet7
+Aliases:
+Accepted values: SitePages, ClientRenderedSitePages, SiteAssets
+
+Required: True
+Position: 0
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -169,7 +197,7 @@ If specified, suppresses to enumerate objects.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: ParamSet7
+Parameter Sets: ParamSet8
 Aliases:
 
 Required: False

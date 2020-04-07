@@ -45,7 +45,10 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet6")]
         public string ListTitle { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ParamSet7")]
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet7")]
+        public LibraryType LibraryType { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet8")]
         public SwitchParameter NoEnumerate { get; private set; }
 
         protected override void ProcessRecordCore()
@@ -82,6 +85,10 @@ namespace Karamem0.SharePoint.PowerShell.Commands
                 this.WriteObject(this.Service.GetObject(this.ListTitle));
             }
             if (this.ParameterSetName == "ParamSet7")
+            {
+                this.WriteObject(this.Service.GetObject(this.LibraryType));
+            }
+            if (this.ParameterSetName == "ParamSet8")
             {
                 this.WriteObject(this.Service.GetObjectEnumerable(), this.NoEnumerate ? false : true);
             }

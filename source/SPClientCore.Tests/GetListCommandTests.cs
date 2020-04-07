@@ -220,6 +220,33 @@ namespace Karamem0.SharePoint.PowerShell.Tests
             }
         }
 
+        [TestMethod()]
+        public void GetListByLibraryType()
+        {
+            using (var context = new PSCmdletContext())
+            {
+                var result1 = context.Runspace.InvokeCommand(
+                    "Connect-KshSite",
+                    new Dictionary<string, object>()
+                    {
+                        { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
+                        { "Credential", PSCredentialFactory.CreateCredential(
+                            context.AppSettings["LoginUserName"],
+                            context.AppSettings["LoginPassword"])
+                        }
+                    }
+                );
+                var result2 = context.Runspace.InvokeCommand<List>(
+                    "Get-KshList",
+                    new Dictionary<string, object>()
+                    {
+                        { "LibraryType", "SiteAssets" }
+                    }
+                );
+                var actual = result2.ElementAt(0);
+            }
+        }
+
     }
 
 }

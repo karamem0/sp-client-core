@@ -20,8 +20,9 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
     public class ODataObject
     {
 
-        public ODataObject()
+        protected ODataObject()
         {
+            this.Metadata = ODataMetadata.Create(this.GetType());
             this.ExtensionProperties = new Dictionary<string, JToken>();
         }
 
