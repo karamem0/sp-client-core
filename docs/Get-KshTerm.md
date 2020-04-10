@@ -199,6 +199,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### Karamem0.SharePoint.PowerShell.Models.Term
 
+### Karamem0.SharePoint.PowerShell.Models.TermLabel
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.Term

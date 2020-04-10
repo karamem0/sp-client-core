@@ -13,7 +13,7 @@ Removes an anonymous link.
 ## SYNTAX
 
 ```
-Remove-KshAnonymousLink -Url <String> -IsEditLink <Boolean> -RemoveAssociatedSharingLinkGroup <Boolean>
+Remove-KshAnonymousLink [-Url] <String> [-IsEditLink] <Boolean> [-RemoveAssociatedSharingLinkGroup] <Boolean>
  [<CommonParameters>]
 ```
 
@@ -40,7 +40,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: Named
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -55,7 +55,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: Named
+Position: 2
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -70,7 +70,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: Named
+Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

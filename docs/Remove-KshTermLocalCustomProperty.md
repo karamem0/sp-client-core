@@ -13,7 +13,7 @@ Removes a local custom property of the term.
 ## SYNTAX
 
 ```
-Remove-KshTermLocalCustomProperty [-Term] <Term> -Name <String> [<CommonParameters>]
+Remove-KshTermLocalCustomProperty [-Term] <Term> [-Name] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -39,7 +39,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: Named
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -56,7 +56,7 @@ Aliases:
 Required: True
 Position: 0
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

@@ -26,7 +26,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         {
         }
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position = 0)]
         public uint Lcid { get; private set; }
 
         protected override void ProcessRecordCore()

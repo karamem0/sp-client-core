@@ -18,10 +18,10 @@ namespace Karamem0.SharePoint.PowerShell.Models
 
     [ClientObject(Name = "SP.UserProfiles.PersonProperties", Id = "{9a467bf8-bbfb-4a76-9c41-0753ecf7218f}")]
     [JsonObject()]
-    public class UserProperties : ClientObject
+    public class UserProperty : ClientObject
     {
 
-        public UserProperties()
+        public UserProperty()
         {
         }
 

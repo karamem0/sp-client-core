@@ -27,10 +27,10 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         {
         }
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position = 0)]
         public ColumnTaxonomy Column { get; private set; }
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position = 1)]
         public ListItem ListItem { get; private set; }
 
         [Parameter(Mandatory = true)]

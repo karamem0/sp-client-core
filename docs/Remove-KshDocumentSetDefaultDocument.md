@@ -13,7 +13,7 @@ Removes a document set default document.
 ## SYNTAX
 
 ```
-Remove-KshDocumentSetDefaultDocument [-ContentType] <ContentType> -FileName <String> [-PushChanges]
+Remove-KshDocumentSetDefaultDocument [-ContentType] <ContentType> [-FileName] <String> [-PushChanges]
  [<CommonParameters>]
 ```
 
@@ -42,7 +42,7 @@ Aliases:
 Required: True
 Position: 0
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -55,7 +55,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: Named
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -81,7 +81,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### None
+### Karamem0.SharePoint.PowerShell.Models.ContentType
 
 ## OUTPUTS
 

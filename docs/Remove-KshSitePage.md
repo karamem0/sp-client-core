@@ -14,12 +14,12 @@ Removes a site page.
 
 ### ParamSet1
 ```
-Remove-KshSitePage [-List] <List> -PageName <String> [<CommonParameters>]
+Remove-KshSitePage [-List] <List> [-PageName] <String> [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-Remove-KshSitePage -PageName <String> [<CommonParameters>]
+Remove-KshSitePage [-PageName] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -47,7 +47,7 @@ Aliases:
 Required: True
 Position: 0
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -60,7 +60,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: Named
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

@@ -15,7 +15,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Add-KshDocumentSetAllowedContentType</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>ContentType</maml:name>
           <maml:Description>
             <maml:para>Specifies the content type.</maml:para>
@@ -65,7 +65,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>ContentType</maml:name>
         <maml:Description>
           <maml:para>Specifies the content type.</maml:para>
@@ -93,7 +93,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.ContentType</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -141,7 +141,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Add-KshDocumentSetSharedColumn</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>ContentType</maml:name>
           <maml:Description>
             <maml:para>Specifies the content type.</maml:para>
@@ -191,7 +191,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>ContentType</maml:name>
         <maml:Description>
           <maml:para>Specifies the content type.</maml:para>
@@ -219,7 +219,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.ContentType</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -267,7 +267,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Add-KshDocumentSetWelcomePageColumn</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>ContentType</maml:name>
           <maml:Description>
             <maml:para>Specifies the content type.</maml:para>
@@ -317,7 +317,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>ContentType</maml:name>
         <maml:Description>
           <maml:para>Specifies the content type.</maml:para>
@@ -345,7 +345,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.ContentType</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -393,7 +393,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Add-KshGroupMember</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>Group</maml:name>
           <maml:Description>
             <maml:para>Specifies the group.</maml:para>
@@ -420,7 +420,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>Group</maml:name>
         <maml:Description>
           <maml:para>Specifies the group.</maml:para>
@@ -895,7 +895,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Add-KshSitePage</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>List</maml:name>
           <maml:Description>
             <maml:para>Specifies the list.</maml:para>
@@ -942,7 +942,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>List</maml:name>
         <maml:Description>
           <maml:para>Specifies the list.</maml:para>
@@ -1177,7 +1177,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Add-KshTermCustomProperty</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>Term</maml:name>
           <maml:Description>
             <maml:para>Specifies the term.</maml:para>
@@ -1216,7 +1216,7 @@
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Add-KshTermCustomProperty</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>TermSet</maml:name>
           <maml:Description>
             <maml:para>Specifies the term set.</maml:para>
@@ -1267,7 +1267,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>Term</maml:name>
         <maml:Description>
           <maml:para>Specifies the term.</maml:para>
@@ -1279,7 +1279,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>TermSet</maml:name>
         <maml:Description>
           <maml:para>Specifies the term set.</maml:para>
@@ -1370,7 +1370,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Add-KshTermLocalCustomProperty</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>Term</maml:name>
           <maml:Description>
             <maml:para>Specifies the term.</maml:para>
@@ -1421,7 +1421,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>Term</maml:name>
         <maml:Description>
           <maml:para>Specifies the term.</maml:para>
@@ -1576,7 +1576,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Add-KshViewColumn</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>View</maml:name>
           <maml:Description>
             <maml:para>Specifies the view.</maml:para>
@@ -1603,7 +1603,7 @@
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Add-KshViewColumn</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>View</maml:name>
           <maml:Description>
             <maml:para>Specifies the view.</maml:para>
@@ -1654,7 +1654,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>View</maml:name>
         <maml:Description>
           <maml:para>Specifies the view.</maml:para>
@@ -4310,7 +4310,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>None</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.ContentTypeColumn</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -4565,19 +4565,19 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
-      <command:name>Get-KshCurrentUserProperties</command:name>
+      <command:name>Get-KshCurrentUserProperty</command:name>
       <command:verb>Get</command:verb>
-      <command:noun>KshCurrentUserProperties</command:noun>
+      <command:noun>KshCurrentUserProperty</command:noun>
       <maml:description>
         <maml:para>Retrieves current user properties.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshCurrentUserProperties cmdlet retrieves current user properties.</maml:para>
+      <maml:para>The Get-KshCurrentUserProperty cmdlet retrieves current user properties.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
-        <maml:name>Get-KshCurrentUserProperties</maml:name>
+        <maml:name>Get-KshCurrentUserProperty</maml:name>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters />
@@ -4594,7 +4594,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.UserProfile</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.UserProperty</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -4609,7 +4609,7 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Get-KshCurrentUserProperties</dev:code>
+        <dev:code>PS C:\&gt; Get-KshCurrentUserProperty</dev:code>
         <dev:remarks>
           <maml:para>Retrieves current user properties.</maml:para>
         </dev:remarks>
@@ -5458,6 +5458,30 @@
           <maml:para></maml:para>
         </maml:description>
       </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.AttachmentFile</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.FileVersion</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.App</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
     </command:inputTypes>
     <command:returnValues>
       <command:returnValue>
@@ -5903,6 +5927,14 @@
           <maml:para></maml:para>
         </maml:description>
       </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.List</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
     </command:inputTypes>
     <command:returnValues>
       <command:returnValue>
@@ -6271,7 +6303,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.Group</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -6340,7 +6372,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Get-KshGroupOwner</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>Group</maml:name>
           <maml:Description>
             <maml:para>Specifies the group.</maml:para>
@@ -6355,7 +6387,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>Group</maml:name>
         <maml:Description>
           <maml:para>Specifies the group.</maml:para>
@@ -6644,6 +6676,22 @@
       <command:inputType>
         <dev:type>
           <maml:name>Karamem0.SharePoint.PowerShell.Models.List</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.ListItem</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.View</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -7021,7 +7069,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.List</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.ListItem</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -7029,7 +7077,15 @@
       </command:inputType>
       <command:inputType>
         <dev:type>
-          <maml:name>System.Int32</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Folder</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.File</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -7039,7 +7095,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.List</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.ListItem</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -8351,6 +8407,22 @@
           <maml:para></maml:para>
         </maml:description>
       </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.SiteCollection</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.List</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
     </command:inputTypes>
     <command:returnValues>
       <command:returnValue>
@@ -8680,7 +8752,7 @@
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Get-KshSiteCollectionAppCatalog</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>SiteCollection</maml:name>
           <maml:Description>
             <maml:para>Specifies the site collection.</maml:para>
@@ -8695,7 +8767,7 @@
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Get-KshSiteCollectionAppCatalog</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>SiteCollectionId</maml:name>
           <maml:Description>
             <maml:para>Specifies the site collection ID.</maml:para>
@@ -8710,7 +8782,7 @@
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Get-KshSiteCollectionAppCatalog</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>SiteCollectionUrl</maml:name>
           <maml:Description>
             <maml:para>Specifies the site collection URL.</maml:para>
@@ -8737,7 +8809,7 @@
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>SiteCollection</maml:name>
         <maml:Description>
           <maml:para>Specifies the site collection.</maml:para>
@@ -8749,7 +8821,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>SiteCollectionId</maml:name>
         <maml:Description>
           <maml:para>Specifies the site collection ID.</maml:para>
@@ -8761,7 +8833,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>SiteCollectionUrl</maml:name>
         <maml:Description>
           <maml:para>Specifies the site collection URL.</maml:para>
@@ -8777,15 +8849,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.SiteCollection</maml:name>
-        </dev:type>
-        <maml:description>
-          <maml:para></maml:para>
-        </maml:description>
-      </command:inputType>
-      <command:inputType>
-        <dev:type>
-          <maml:name>System.Uri</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -11341,6 +11405,14 @@
           <maml:para></maml:para>
         </maml:description>
       </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.TermLabel</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
     </command:inputTypes>
     <command:returnValues>
       <command:returnValue>
@@ -12297,34 +12369,229 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
-      <command:name>Get-KshUserProperties</command:name>
+      <command:name>Get-KshUserPermission</command:name>
       <command:verb>Get</command:verb>
-      <command:noun>KshUserProperties</command:noun>
+      <command:noun>KshUserPermission</command:noun>
       <maml:description>
-        <maml:para>Retrieves an user properties.</maml:para>
+        <maml:para>Retrieves an user permissions.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshUserProperties cmdlet retrieves properties of the specific user.</maml:para>
+      <maml:para>The Get-KshUserPermission cmdlet retrieves user permissions for the specific securable object.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
-        <maml:name>Get-KshUserProperties</maml:name>
+        <maml:name>Get-KshUserPermission</maml:name>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
-          <maml:name>Identity</maml:name>
+          <maml:name>User</maml:name>
           <maml:Description>
-            <maml:para>Specifies the user properties.</maml:para>
+            <maml:para>Specifies the user.</maml:para>
           </maml:Description>
-          <command:parameterValue required="true" variableLength="false">UserProperties</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">User</command:parameterValue>
           <dev:type>
-            <maml:name>UserProperties</maml:name>
+            <maml:name>User</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>List</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the list.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">List</command:parameterValue>
+          <dev:type>
+            <maml:name>List</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
       </command:syntaxItem>
       <command:syntaxItem>
-        <maml:name>Get-KshUserProperties</maml:name>
+        <maml:name>Get-KshUserPermission</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>User</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the user.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">User</command:parameterValue>
+          <dev:type>
+            <maml:name>User</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>ListItem</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the list item.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ListItem</command:parameterValue>
+          <dev:type>
+            <maml:name>ListItem</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshUserPermission</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>User</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the user.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">User</command:parameterValue>
+          <dev:type>
+            <maml:name>User</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>Site</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the site.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Site</command:parameterValue>
+          <dev:type>
+            <maml:name>Site</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>List</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the list.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">List</command:parameterValue>
+        <dev:type>
+          <maml:name>List</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>ListItem</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the list item.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ListItem</command:parameterValue>
+        <dev:type>
+          <maml:name>ListItem</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>Site</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the site.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Site</command:parameterValue>
+        <dev:type>
+          <maml:name>Site</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>User</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the user.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">User</command:parameterValue>
+        <dev:type>
+          <maml:name>User</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.User</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.BasePermission</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshUserPermission -User (Get-KshUser -UserName 'admin@example.onmicrosoft.com') -Site (Get-KshSite -SiteUrl '/sites/japan/hr')</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves user permissions for the site.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshUserPermission -User (Get-KshUser -UserName 'admin@example.onmicrosoft.com') -List (Get-KshList -ListTitle 'Announcements')</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves user permissions for the list.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 3 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshUserPermission -User (Get-KshUser -UserName 'admin@example.onmicrosoft.com') -ListItem (Get-KshListItem -List (Get-KshList -ListTitle 'Announcements') -ItemId 1)</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves user permissions for the list item.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-KshUserProperty</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>KshUserProperty</command:noun>
+      <maml:description>
+        <maml:para>Retrieves an user properties.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-KshUserProperty cmdlet retrieves properties of the specific user.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-KshUserProperty</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Identity</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the user properties.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">UserProperty</command:parameterValue>
+          <dev:type>
+            <maml:name>UserProperty</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshUserProperty</maml:name>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>UserLoginName</maml:name>
           <maml:Description>
@@ -12345,9 +12612,9 @@
         <maml:Description>
           <maml:para>Specifies the user properties.</maml:para>
         </maml:Description>
-        <command:parameterValue required="true" variableLength="false">UserProperties</command:parameterValue>
+        <command:parameterValue required="true" variableLength="false">UserProperty</command:parameterValue>
         <dev:type>
-          <maml:name>UserProperties</maml:name>
+          <maml:name>UserProperty</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -12368,7 +12635,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.UserProperties</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.UserProperty</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -12378,7 +12645,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.UserProfile</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.UserProperty</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -12393,7 +12660,7 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Get-KshUserProperties -UserLoginName 'i:0#.f|membership|admin@example.onmicrosoft.com'</dev:code>
+        <dev:code>PS C:\&gt; Get-KshUserProperty -UserLoginName 'i:0#.f|membership|admin@example.onmicrosoft.com'</dev:code>
         <dev:remarks>
           <maml:para>Retrieves a user properties by user login name.</maml:para>
         </dev:remarks>
@@ -13039,7 +13306,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>System.Int32</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -13221,7 +13488,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>System.String</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -13300,7 +13567,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>System.Int32</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -13379,7 +13646,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>System.String</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -14409,7 +14676,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Move-KshViewColumn</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>View</maml:name>
           <maml:Description>
             <maml:para>Specifies the view.</maml:para>
@@ -14448,7 +14715,7 @@
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Move-KshViewColumn</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>View</maml:name>
           <maml:Description>
             <maml:para>Specifies the view.</maml:para>
@@ -14523,7 +14790,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>View</maml:name>
         <maml:Description>
           <maml:para>Specifies the view.</maml:para>
@@ -32343,7 +32610,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.List</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -33823,7 +34090,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.List</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -34675,7 +34942,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Folder</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -34778,7 +35045,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Folder</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -35197,7 +35464,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.List</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.ListItem</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -38394,7 +38661,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.List</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -39009,31 +39276,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Remove-KshAnonymousLink</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>IsEditLink</maml:name>
-          <maml:Description>
-            <maml:para>Specifies whether it is an edit link.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
-          <dev:type>
-            <maml:name>Boolean</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>RemoveAssociatedSharingLinkGroup</maml:name>
-          <maml:Description>
-            <maml:para>Specifies whether to remove the associated sharing link group.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
-          <dev:type>
-            <maml:name>Boolean</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>Url</maml:name>
           <maml:Description>
             <maml:para>Specifies the URL.</maml:para>
@@ -39045,10 +39288,34 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>IsEditLink</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether it is an edit link.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
+          <maml:name>RemoveAssociatedSharingLinkGroup</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to remove the associated sharing link group.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
         <maml:name>IsEditLink</maml:name>
         <maml:Description>
           <maml:para>Specifies whether it is an edit link.</maml:para>
@@ -39060,7 +39327,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
         <maml:name>RemoveAssociatedSharingLinkGroup</maml:name>
         <maml:Description>
           <maml:para>Specifies whether to remove the associated sharing link group.</maml:para>
@@ -39072,7 +39339,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>Url</maml:name>
         <maml:Description>
           <maml:para>Specifies the URL.</maml:para>
@@ -39471,7 +39738,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.ContentTypeColumn</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -39526,7 +39793,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Remove-KshDocumentSetAllowedContentType</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>ContentType</maml:name>
           <maml:Description>
             <maml:para>Specifies the content type.</maml:para>
@@ -39538,7 +39805,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
           <maml:name>AllowedContentType</maml:name>
           <maml:Description>
             <maml:para>Specifies the allowed content type.</maml:para>
@@ -39564,7 +39831,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
         <maml:name>AllowedContentType</maml:name>
         <maml:Description>
           <maml:para>Specifies the allowed content type.</maml:para>
@@ -39576,7 +39843,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>ContentType</maml:name>
         <maml:Description>
           <maml:para>Specifies the content type.</maml:para>
@@ -39604,7 +39871,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.ContentType</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -39652,7 +39919,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Remove-KshDocumentSetDefaultDocument</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>ContentType</maml:name>
           <maml:Description>
             <maml:para>Specifies the content type.</maml:para>
@@ -39664,7 +39931,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
           <maml:name>FileName</maml:name>
           <maml:Description>
             <maml:para>Specifies the file name.</maml:para>
@@ -39690,7 +39957,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>ContentType</maml:name>
         <maml:Description>
           <maml:para>Specifies the content type.</maml:para>
@@ -39702,7 +39969,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
         <maml:name>FileName</maml:name>
         <maml:Description>
           <maml:para>Specifies the file name.</maml:para>
@@ -39730,7 +39997,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.ContentType</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -39778,7 +40045,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Remove-KshDocumentSetSharedColumn</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>ContentType</maml:name>
           <maml:Description>
             <maml:para>Specifies the content type.</maml:para>
@@ -39790,7 +40057,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
           <maml:name>Column</maml:name>
           <maml:Description>
             <maml:para>Specifies the column.</maml:para>
@@ -39816,7 +40083,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
         <maml:name>Column</maml:name>
         <maml:Description>
           <maml:para>Specifies the column.</maml:para>
@@ -39828,7 +40095,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>ContentType</maml:name>
         <maml:Description>
           <maml:para>Specifies the content type.</maml:para>
@@ -39856,7 +40123,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.ContentType</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -39904,7 +40171,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Remove-KshDocumentSetWelcomePageColumn</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>ContentType</maml:name>
           <maml:Description>
             <maml:para>Specifies the content type.</maml:para>
@@ -39916,7 +40183,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
           <maml:name>Column</maml:name>
           <maml:Description>
             <maml:para>Specifies the column.</maml:para>
@@ -39942,7 +40209,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
         <maml:name>Column</maml:name>
         <maml:Description>
           <maml:para>Specifies the column.</maml:para>
@@ -39954,7 +40221,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>ContentType</maml:name>
         <maml:Description>
           <maml:para>Specifies the content type.</maml:para>
@@ -39982,7 +40249,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.ContentType</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -40296,7 +40563,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.File</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.FileVersion</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -40546,7 +40813,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Remove-KshGroupMember</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>Group</maml:name>
           <maml:Description>
             <maml:para>Specifies the group.</maml:para>
@@ -40573,7 +40840,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>Group</maml:name>
         <maml:Description>
           <maml:para>Specifies the group.</maml:para>
@@ -40812,7 +41079,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.List</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.ListItem</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -40946,31 +41213,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Remove-KshOrganizationSharingLink</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>IsEditLink</maml:name>
-          <maml:Description>
-            <maml:para>Specifies whether it is an edit link.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
-          <dev:type>
-            <maml:name>Boolean</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>RemoveAssociatedSharingLinkGroup</maml:name>
-          <maml:Description>
-            <maml:para>Specifies whether to remove the associated sharing link group.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
-          <dev:type>
-            <maml:name>Boolean</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>Url</maml:name>
           <maml:Description>
             <maml:para>Specifies the URL.</maml:para>
@@ -40982,10 +41225,34 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>IsEditLink</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether it is an edit link.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
+          <maml:name>RemoveAssociatedSharingLinkGroup</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to remove the associated sharing link group.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
         <maml:name>IsEditLink</maml:name>
         <maml:Description>
           <maml:para>Specifies whether it is an edit link.</maml:para>
@@ -40997,7 +41264,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
         <maml:name>RemoveAssociatedSharingLinkGroup</maml:name>
         <maml:Description>
           <maml:para>Specifies whether to remove the associated sharing link group.</maml:para>
@@ -41009,7 +41276,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>Url</maml:name>
         <maml:Description>
           <maml:para>Specifies the URL.</maml:para>
@@ -41421,7 +41688,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.Site</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -41823,7 +42090,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Remove-KshSitePage</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>List</maml:name>
           <maml:Description>
             <maml:para>Specifies the list.</maml:para>
@@ -41835,7 +42102,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
           <maml:name>PageName</maml:name>
           <maml:Description>
             <maml:para>Specifies the page name.</maml:para>
@@ -41850,7 +42117,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>List</maml:name>
         <maml:Description>
           <maml:para>Specifies the list.</maml:para>
@@ -41862,7 +42129,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
         <maml:name>PageName</maml:name>
         <maml:Description>
           <maml:para>Specifies the page name.</maml:para>
@@ -42726,7 +42993,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Remove-KshTermCustomProperty</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>Term</maml:name>
           <maml:Description>
             <maml:para>Specifies the term.</maml:para>
@@ -42738,7 +43005,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
           <maml:name>Name</maml:name>
           <maml:Description>
             <maml:para>Specifies the name.</maml:para>
@@ -42753,7 +43020,7 @@
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Remove-KshTermCustomProperty</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>TermSet</maml:name>
           <maml:Description>
             <maml:para>Specifies the term set.</maml:para>
@@ -42765,7 +43032,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
           <maml:name>Name</maml:name>
           <maml:Description>
             <maml:para>Specifies the name.</maml:para>
@@ -42780,7 +43047,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
         <maml:name>Name</maml:name>
         <maml:Description>
           <maml:para>Specifies the name.</maml:para>
@@ -42792,7 +43059,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>Term</maml:name>
         <maml:Description>
           <maml:para>Specifies the term.</maml:para>
@@ -42804,7 +43071,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>TermSet</maml:name>
         <maml:Description>
           <maml:para>Specifies the term set.</maml:para>
@@ -43041,7 +43308,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Remove-KshTermLocalCustomProperty</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>Term</maml:name>
           <maml:Description>
             <maml:para>Specifies the term.</maml:para>
@@ -43053,7 +43320,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
           <maml:name>Name</maml:name>
           <maml:Description>
             <maml:para>Specifies the name.</maml:para>
@@ -43068,7 +43335,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
         <maml:name>Name</maml:name>
         <maml:Description>
           <maml:para>Specifies the name.</maml:para>
@@ -43080,7 +43347,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>Term</maml:name>
         <maml:Description>
           <maml:para>Specifies the term.</maml:para>
@@ -43223,7 +43490,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Remove-KshTermStoreLanguage</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>Lcid</maml:name>
           <maml:Description>
             <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
@@ -43238,7 +43505,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>Lcid</maml:name>
         <maml:Description>
           <maml:para>Specifies the locale ID. For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).</maml:para>
@@ -43460,7 +43727,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Remove-KshViewColumn</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>View</maml:name>
           <maml:Description>
             <maml:para>Specifies the view.</maml:para>
@@ -43486,7 +43753,7 @@
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Remove-KshViewColumn</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>View</maml:name>
           <maml:Description>
             <maml:para>Specifies the view.</maml:para>
@@ -43498,7 +43765,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
           <maml:name>Column</maml:name>
           <maml:Description>
             <maml:para>Specifies the column.</maml:para>
@@ -43513,7 +43780,7 @@
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Remove-KshViewColumn</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>View</maml:name>
           <maml:Description>
             <maml:para>Specifies the view.</maml:para>
@@ -43525,7 +43792,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
           <maml:name>ColumnName</maml:name>
           <maml:Description>
             <maml:para>Specifies the column name.</maml:para>
@@ -43552,7 +43819,7 @@
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
         <maml:name>Column</maml:name>
         <maml:Description>
           <maml:para>Specifies the column.</maml:para>
@@ -43564,7 +43831,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
         <maml:name>ColumnName</maml:name>
         <maml:Description>
           <maml:para>Specifies the column name.</maml:para>
@@ -43576,7 +43843,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>View</maml:name>
         <maml:Description>
           <maml:para>Specifies the view.</maml:para>
@@ -43592,7 +43859,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.Column</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.View</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -43647,7 +43914,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Resolve-KshUser</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>LoginName</maml:name>
           <maml:Description>
             <maml:para>Specifies the login name.</maml:para>
@@ -43662,7 +43929,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>LoginName</maml:name>
         <maml:Description>
           <maml:para>Specifies the login name.</maml:para>
@@ -43757,7 +44024,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.File</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.FileVersion</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -44121,7 +44388,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.ListItem</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -44445,7 +44712,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Set-KshColumnTaxonomyValue</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>Column</maml:name>
           <maml:Description>
             <maml:para>Specifies the taxonomy column.</maml:para>
@@ -44453,6 +44720,18 @@
           <command:parameterValue required="true" variableLength="false">ColumnTaxonomy</command:parameterValue>
           <dev:type>
             <maml:name>ColumnTaxonomy</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>ListItem</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the list item.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ListItem</command:parameterValue>
+          <dev:type>
+            <maml:name>ListItem</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -44465,18 +44744,6 @@
           <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
           <dev:type>
             <maml:name>UInt32</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>ListItem</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the list item.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">ListItem</command:parameterValue>
-          <dev:type>
-            <maml:name>ListItem</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -44496,7 +44763,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>Column</maml:name>
         <maml:Description>
           <maml:para>Specifies the taxonomy column.</maml:para>
@@ -44520,7 +44787,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
         <maml:name>ListItem</maml:name>
         <maml:Description>
           <maml:para>Specifies the list item.</maml:para>
@@ -44596,7 +44863,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Set-KshContentTypeColumnOrder</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>ContentType</maml:name>
           <maml:Description>
             <maml:para>Specifies the content type.</maml:para>
@@ -44634,7 +44901,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>ContentType</maml:name>
         <maml:Description>
           <maml:para>Specifies the content type.</maml:para>
@@ -44674,7 +44941,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>None</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.ContentType</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -44729,7 +44996,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Set-KshGroupOwner</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>Group</maml:name>
           <maml:Description>
             <maml:para>Specifies the group.</maml:para>
@@ -44756,7 +45023,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>Group</maml:name>
         <maml:Description>
           <maml:para>Specifies the group.</maml:para>
@@ -44794,7 +45061,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.User</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -44832,7 +45099,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Set-KshSitePage</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>List</maml:name>
           <maml:Description>
             <maml:para>Specifies the list.</maml:para>
@@ -44840,6 +45107,18 @@
           <command:parameterValue required="true" variableLength="false">List</command:parameterValue>
           <dev:type>
             <maml:name>List</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>PageName</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the page name.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -44864,18 +45143,6 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>PageName</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the page name.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-          <dev:type>
-            <maml:name>String</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Title</maml:name>
           <maml:Description>
@@ -44891,7 +45158,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>List</maml:name>
         <maml:Description>
           <maml:para>Specifies the list.</maml:para>
@@ -44915,7 +45182,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
         <maml:name>PageName</maml:name>
         <maml:Description>
           <maml:para>Specifies the page name.</maml:para>
@@ -45410,7 +45677,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Set-KshTermDescription</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>Term</maml:name>
           <maml:Description>
             <maml:para>Specifies the term.</maml:para>
@@ -45473,7 +45740,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>Term</maml:name>
         <maml:Description>
           <maml:para>Specifies the term.</maml:para>
@@ -45537,14 +45804,14 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Set-KshUniqueRoleAssignmentEnabled</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
-          <maml:name>SecurableObject</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>Site</maml:name>
           <maml:Description>
-            <maml:para>Specifies the securable object.</maml:para>
+            <maml:para>Specifies the site.</maml:para>
           </maml:Description>
-          <command:parameterValue required="true" variableLength="false">SecurableObject</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">Site</command:parameterValue>
           <dev:type>
-            <maml:name>SecurableObject</maml:name>
+            <maml:name>Site</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -45571,7 +45838,7 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Enabled</maml:name>
           <maml:Description>
             <maml:para>If specified, creates unique role assignments for the securable object.</maml:para>
@@ -45585,19 +45852,167 @@
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Set-KshUniqueRoleAssignmentEnabled</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
-          <maml:name>SecurableObject</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>List</maml:name>
           <maml:Description>
-            <maml:para>Specifies the securable object.</maml:para>
+            <maml:para>Specifies the list.</maml:para>
           </maml:Description>
-          <command:parameterValue required="true" variableLength="false">SecurableObject</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">List</command:parameterValue>
           <dev:type>
-            <maml:name>SecurableObject</maml:name>
+            <maml:name>List</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ClearSubscopes</maml:name>
+          <maml:Description>
+            <maml:para>If specified, the role assignments for all child securable objects must be cleared.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>CopyRoleAssignments</maml:name>
+          <maml:Description>
+            <maml:para>If specified, copies the role assignments from the parent securable object.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Enabled</maml:name>
+          <maml:Description>
+            <maml:para>If specified, creates unique role assignments for the securable object.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Set-KshUniqueRoleAssignmentEnabled</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>ListItem</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the list item.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ListItem</command:parameterValue>
+          <dev:type>
+            <maml:name>ListItem</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ClearSubscopes</maml:name>
+          <maml:Description>
+            <maml:para>If specified, the role assignments for all child securable objects must be cleared.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>CopyRoleAssignments</maml:name>
+          <maml:Description>
+            <maml:para>If specified, copies the role assignments from the parent securable object.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Enabled</maml:name>
+          <maml:Description>
+            <maml:para>If specified, creates unique role assignments for the securable object.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Set-KshUniqueRoleAssignmentEnabled</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>Site</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the site.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Site</command:parameterValue>
+          <dev:type>
+            <maml:name>Site</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Disabled</maml:name>
+          <maml:Description>
+            <maml:para>If specified, removes unique role assignments for the securable object.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Set-KshUniqueRoleAssignmentEnabled</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>List</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the list.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">List</command:parameterValue>
+          <dev:type>
+            <maml:name>List</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Disabled</maml:name>
+          <maml:Description>
+            <maml:para>If specified, removes unique role assignments for the securable object.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Set-KshUniqueRoleAssignmentEnabled</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>ListItem</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the list item.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ListItem</command:parameterValue>
+          <dev:type>
+            <maml:name>ListItem</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Disabled</maml:name>
           <maml:Description>
             <maml:para>If specified, removes unique role assignments for the securable object.</maml:para>
@@ -45635,7 +46050,7 @@
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Disabled</maml:name>
         <maml:Description>
           <maml:para>If specified, removes unique role assignments for the securable object.</maml:para>
@@ -45647,7 +46062,7 @@
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Enabled</maml:name>
         <maml:Description>
           <maml:para>If specified, creates unique role assignments for the securable object.</maml:para>
@@ -45659,14 +46074,38 @@
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
-        <maml:name>SecurableObject</maml:name>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>List</maml:name>
         <maml:Description>
-          <maml:para>Specifies the securable object.</maml:para>
+          <maml:para>Specifies the list.</maml:para>
         </maml:Description>
-        <command:parameterValue required="true" variableLength="false">SecurableObject</command:parameterValue>
+        <command:parameterValue required="true" variableLength="false">List</command:parameterValue>
         <dev:type>
-          <maml:name>SecurableObject</maml:name>
+          <maml:name>List</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>ListItem</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the list item.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ListItem</command:parameterValue>
+        <dev:type>
+          <maml:name>ListItem</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>Site</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the site.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Site</command:parameterValue>
+        <dev:type>
+          <maml:name>Site</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -45675,7 +46114,23 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.SecurableObject</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Site</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.List</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.ListItem</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -45700,16 +46155,16 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Set-KshUniqueRoleAssignmentEnabled -Identity (Get-KshCurrentSite) -Enabled -CopyRoleAssignments -ClearSubscopes</dev:code>
+        <dev:code>PS C:\&gt; Set-KshUniqueRoleAssignmentEnabled -Site (Get-KshSite -SiteUrl '/sites/japan/hr') -Enabled -CopyRoleAssignments -ClearSubscopes</dev:code>
         <dev:remarks>
-          <maml:para>Creates unique role assignments for the securable object.</maml:para>
+          <maml:para>Creates unique role assignments.</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 2 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Set-KshUniqueRoleAssignmentEnabled -Identity (Get-KshCurrentSite) -Disabled</dev:code>
+        <dev:code>PS C:\&gt; Set-KshUniqueRoleAssignmentEnabled -Site (Get-KshSite -SiteUrl '/sites/japan/hr') -Disabled</dev:code>
         <dev:remarks>
-          <maml:para>Removes unique role assignments for the securable object.</maml:para>
+          <maml:para>Removes unique role assignments.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -48359,7 +48814,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.Column</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.ColumnCalculated</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -57019,7 +57474,7 @@
     <command:inputTypes>
       <command:inputType>
         <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.List</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.ListItem</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -57029,7 +57484,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.List</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.ListItem</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -61578,7 +62033,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.List</maml:name>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.User</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>

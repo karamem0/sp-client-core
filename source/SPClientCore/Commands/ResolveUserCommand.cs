@@ -27,7 +27,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         {
         }
 
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+        [Parameter(Mandatory = true, Position = 0)]
         public string LoginName { get; private set; }
 
         protected override void ProcessRecordCore()

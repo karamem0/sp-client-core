@@ -27,10 +27,10 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         {
         }
 
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+        [Parameter(Mandatory = true, Position = 0)]
         public ContentType ContentType { get; private set; }
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position = 1)]
         public ContentType AllowedContentType { get; private set; }
 
         [Parameter(Mandatory = false)]

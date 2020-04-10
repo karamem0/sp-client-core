@@ -42,7 +42,7 @@ SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant およ
   - [Get-KshCurrentSiteCollection](docs/Get-KshCurrentSiteCollection.md)
   - [Get-KshCurrentUser](docs/Get-KshCurrentUser.md)
   - [Get-KshCurrentUserProfile](docs/Get-KshCurrentUserProfile.md)
-  - [Get-KshCurrentUserProperties](docs/Get-KshCurrentUserProperties.md)
+  - [Get-KshCurrentUserProperty](docs/Get-KshCurrentUserProperty.md)
   - [Select-KshSite](docs/Select-KshSite.md)
   - [Test-KshTenantSiteCollection](docs/Test-KshTenantSiteCollection.md)
 - サイト管理
@@ -255,8 +255,10 @@ SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant およ
     - [Remove-KshUser](docs/Remove-KshUser.md)
     - [Resolve-KshUser](docs/Resolve-KshUser.md)
     - [Update-KshUser](docs/Update-KshUser.md)
+  - ユーザーの権限
+    - [Get-KshUserPermission](docs/Get-KshUserPermission.md)
   - ユーザー プロパティ
-    - [Get-KshUserProperties](docs/Get-KshUserProperties.md)
+    - [Get-KshUserProperty](docs/Get-KshUserProperty.md)
   - ビュー
     - [Get-KshView](docs/Get-KshView.md)
     - [New-KshView](docs/New-KshView.md)

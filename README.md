@@ -42,7 +42,7 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
   - [Get-KshCurrentSiteCollection](docs/Get-KshCurrentSiteCollection.md)
   - [Get-KshCurrentUser](docs/Get-KshCurrentUser.md)
   - [Get-KshCurrentUserProfile](docs/Get-KshCurrentUserProfile.md)
-  - [Get-KshCurrentUserProperties](docs/Get-KshCurrentUserProperties.md)
+  - [Get-KshCurrentUserProperty](docs/Get-KshCurrentUserProperty.md)
   - [Select-KshSite](docs/Select-KshSite.md)
   - [Test-KshTenantSiteCollection](docs/Test-KshTenantSiteCollection.md)
 - Site Administration
@@ -255,8 +255,10 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Remove-KshUser](docs/Remove-KshUser.md)
     - [Resolve-KshUser](docs/Resolve-KshUser.md)
     - [Update-KshUser](docs/Update-KshUser.md)
+  - User Permissions
+    - [Get-KshUserPermission](docs/Get-KshUserPermission.md)
   - User Properties
-    - [Get-KshUserProperties](docs/Get-KshUserProperties.md)
+    - [Get-KshUserProperty](docs/Get-KshUserProperty.md)
   - Views
     - [Get-KshView](docs/Get-KshView.md)
     - [New-KshView](docs/New-KshView.md)

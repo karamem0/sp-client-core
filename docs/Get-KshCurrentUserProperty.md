@@ -5,7 +5,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-KshCurrentUserProperties
+# Get-KshCurrentUserProperty
 
 ## SYNOPSIS
 Retrieves current user properties.
@@ -13,17 +13,17 @@ Retrieves current user properties.
 ## SYNTAX
 
 ```
-Get-KshCurrentUserProperties [<CommonParameters>]
+Get-KshCurrentUserProperty [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshCurrentUserProperties cmdlet retrieves current user properties.
+The Get-KshCurrentUserProperty cmdlet retrieves current user properties.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> Get-KshCurrentUserProperties
+PS C:\> Get-KshCurrentUserProperty
 ```
 
 Retrieves current user properties.
@@ -39,7 +39,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.UserProfile
+### Karamem0.SharePoint.PowerShell.Models.UserProperty
 
 ## NOTES
 

@@ -14,13 +14,35 @@ Changes whether unique role assignment is enabled.
 
 ### ParamSet1
 ```
-Set-KshUniqueRoleAssignmentEnabled [-SecurableObject] <SecurableObject> [-Enabled] [-CopyRoleAssignments]
- [-ClearSubscopes] [<CommonParameters>]
+Set-KshUniqueRoleAssignmentEnabled [[-Site] <Site>] [-Enabled] [-CopyRoleAssignments] [-ClearSubscopes]
+ [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-Set-KshUniqueRoleAssignmentEnabled [-SecurableObject] <SecurableObject> [-Disabled] [<CommonParameters>]
+Set-KshUniqueRoleAssignmentEnabled [[-Site] <Site>] [-Disabled] [<CommonParameters>]
+```
+
+### ParamSet3
+```
+Set-KshUniqueRoleAssignmentEnabled [-List] <List> [-Enabled] [-CopyRoleAssignments] [-ClearSubscopes]
+ [<CommonParameters>]
+```
+
+### ParamSet4
+```
+Set-KshUniqueRoleAssignmentEnabled [-List] <List> [-Disabled] [<CommonParameters>]
+```
+
+### ParamSet5
+```
+Set-KshUniqueRoleAssignmentEnabled [-ListItem] <ListItem> [-Enabled] [-CopyRoleAssignments] [-ClearSubscopes]
+ [<CommonParameters>]
+```
+
+### ParamSet6
+```
+Set-KshUniqueRoleAssignmentEnabled [-ListItem] <ListItem> [-Disabled] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -30,17 +52,17 @@ The Set-KshUniqueRoleAssignmentEnabled cmdlet changes whether unique role assign
 
 ### Example 1
 ```powershell
-PS C:\> Set-KshUniqueRoleAssignmentEnabled -Identity (Get-KshCurrentSite) -Enabled -CopyRoleAssignments -ClearSubscopes
+PS C:\> Set-KshUniqueRoleAssignmentEnabled -Site (Get-KshSite -SiteUrl '/sites/japan/hr') -Enabled -CopyRoleAssignments -ClearSubscopes
 ```
 
-Creates unique role assignments for the securable object.
+Creates unique role assignments.
 
 ### Example 2
 ```powershell
-PS C:\> Set-KshUniqueRoleAssignmentEnabled -Identity (Get-KshCurrentSite) -Disabled
+PS C:\> Set-KshUniqueRoleAssignmentEnabled -Site (Get-KshSite -SiteUrl '/sites/japan/hr') -Disabled
 ```
 
-Removes unique role assignments for the securable object.
+Removes unique role assignments.
 
 ## PARAMETERS
 
@@ -49,7 +71,7 @@ If specified, the role assignments for all child securable objects must be clear
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: ParamSet1
+Parameter Sets: ParamSet1, ParamSet3, ParamSet5
 Aliases:
 
 Required: False
@@ -64,7 +86,7 @@ If specified, copies the role assignments from the parent securable object.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: ParamSet1
+Parameter Sets: ParamSet1, ParamSet3, ParamSet5
 Aliases:
 
 Required: False
@@ -79,10 +101,10 @@ If specified, removes unique role assignments for the securable object.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: ParamSet2
+Parameter Sets: ParamSet2, ParamSet4, ParamSet6
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -94,28 +116,58 @@ If specified, creates unique role assignments for the securable object.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: ParamSet1
+Parameter Sets: ParamSet1, ParamSet3, ParamSet5
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -SecurableObject
-Specifies the securable object.
+### -List
+Specifies the list.
 
 ```yaml
-Type: SecurableObject
-Parameter Sets: (All)
+Type: List
+Parameter Sets: ParamSet3, ParamSet4
 Aliases:
 
 Required: True
 Position: 0
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ListItem
+Specifies the list item.
+
+```yaml
+Type: ListItem
+Parameter Sets: ParamSet5, ParamSet6
+Aliases:
+
+Required: True
+Position: 0
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Site
+Specifies the site.
+
+```yaml
+Type: Site
+Parameter Sets: ParamSet1, ParamSet2
+Aliases:
+
+Required: False
+Position: 0
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -124,7 +176,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.SecurableObject
+### Karamem0.SharePoint.PowerShell.Models.Site
+
+### Karamem0.SharePoint.PowerShell.Models.List
+
+### Karamem0.SharePoint.PowerShell.Models.ListItem
 
 ## OUTPUTS
 

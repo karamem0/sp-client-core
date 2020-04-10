@@ -14,12 +14,12 @@ Removes a custom property of the term set or term.
 
 ### ParamSet1
 ```
-Remove-KshTermCustomProperty [-TermSet] <TermSet> -Name <String> [<CommonParameters>]
+Remove-KshTermCustomProperty [-TermSet] <TermSet> [-Name] <String> [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-Remove-KshTermCustomProperty [-Term] <Term> -Name <String> [<CommonParameters>]
+Remove-KshTermCustomProperty [-Term] <Term> [-Name] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -52,7 +52,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: Named
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -69,7 +69,7 @@ Aliases:
 Required: True
 Position: 0
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -84,7 +84,7 @@ Aliases:
 Required: True
 Position: 0
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

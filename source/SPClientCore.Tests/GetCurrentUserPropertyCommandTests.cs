@@ -18,12 +18,12 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("Get-KshCurrentUserProperties")]
-    public class GetCurrentUserPropertiesCommandTests
+    [TestCategory("Get-KshCurrentUserProperty")]
+    public class GetCurrentUserPropertyCommandTests
     {
 
         [TestMethod()]
-        public void GetCurrentUserProperties()
+        public void GetCurrentUserProperty()
         {
             using (var context = new PSCmdletContext())
             {
@@ -38,8 +38,8 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         }
                     }
                 );
-                var result2 = context.Runspace.InvokeCommand<UserProperties>(
-                    "Get-KshCurrentUserProperties",
+                var result2 = context.Runspace.InvokeCommand<UserProperty>(
+                    "Get-KshCurrentUserProperty",
                     new Dictionary<string, object>()
                     {
                     }

@@ -17,25 +17,25 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Services
 {
 
-    public interface IUserPropertiesService
+    public interface IUserPropertyService
     {
 
-        UserProperties GetObject();
+        UserProperty GetObject();
 
-        UserProperties GetObject(UserProperties userPropertiesObject);
+        UserProperty GetObject(UserProperty userPropertyObject);
 
-        UserProperties GetObject(string userLoginName);
+        UserProperty GetObject(string userLoginName);
 
     }
 
-    public class UserPropertiesService : ClientService<UserProperties>, IUserPropertiesService
+    public class UserPropertyService : ClientService<UserProperty>, IUserPropertyService
     {
 
-        public UserPropertiesService(ClientContext clientContext) : base(clientContext)
+        public UserPropertyService(ClientContext clientContext) : base(clientContext)
         {
         }
 
-        public UserProperties GetObject()
+        public UserProperty GetObject()
         {
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
@@ -45,14 +45,14 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {
-                    Query = new ClientQuery(true, typeof(UserProperties))
+                    Query = new ClientQuery(true, typeof(UserProperty))
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<UserProperties>(requestPayload.GetActionId<ClientActionQuery>());
+                .ToObject<UserProperty>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
-        public UserProperties GetObject(string userLoginName)
+        public UserProperty GetObject(string userLoginName)
         {
             if (userLoginName == null)
             {
@@ -69,11 +69,11 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {
-                    Query = new ClientQuery(true, typeof(UserProperties))
+                    Query = new ClientQuery(true, typeof(UserProperty))
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<UserProperties>(requestPayload.GetActionId<ClientActionQuery>());
+                .ToObject<UserProperty>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
     }

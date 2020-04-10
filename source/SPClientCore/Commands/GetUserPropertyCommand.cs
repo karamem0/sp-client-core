@@ -18,17 +18,17 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands
 {
 
-    [Cmdlet("Get", "KshUserProperties")]
-    [OutputType(typeof(UserProfile))]
-    public class GetUserPropertiesCommand : ClientObjectCmdlet<IUserPropertiesService>
+    [Cmdlet("Get", "KshUserProperty")]
+    [OutputType(typeof(UserProperty))]
+    public class GetUserPropertyCommand : ClientObjectCmdlet<IUserPropertyService>
     {
 
-        public GetUserPropertiesCommand()
+        public GetUserPropertyCommand()
         {
         }
 
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
-        public UserProperties Identity { get; private set; }
+        public UserProperty Identity { get; private set; }
 
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
         public string UserLoginName { get; private set; }

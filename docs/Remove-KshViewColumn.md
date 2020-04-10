@@ -14,12 +14,12 @@ Removes a view column.
 
 ### ParamSet1
 ```
-Remove-KshViewColumn [-View] <View> -Column <Column> [<CommonParameters>]
+Remove-KshViewColumn [-View] <View> [-Column] <Column> [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-Remove-KshViewColumn [-View] <View> -ColumnName <String> [<CommonParameters>]
+Remove-KshViewColumn [-View] <View> [-ColumnName] <String> [<CommonParameters>]
 ```
 
 ### ParamSet3
@@ -72,7 +72,7 @@ Parameter Sets: ParamSet1
 Aliases:
 
 Required: True
-Position: Named
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -87,7 +87,7 @@ Parameter Sets: ParamSet2
 Aliases:
 
 Required: True
-Position: Named
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -104,7 +104,7 @@ Aliases:
 Required: True
 Position: 0
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -113,7 +113,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.Column
+### Karamem0.SharePoint.PowerShell.Models.View
 
 ## OUTPUTS
 

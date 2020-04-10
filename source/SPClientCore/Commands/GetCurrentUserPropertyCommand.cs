@@ -18,12 +18,12 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands
 {
 
-    [Cmdlet("Get", "KshCurrentUserProperties")]
-    [OutputType(typeof(UserProfile))]
-    public class GetCurrentUserPropertiesCommand : ClientObjectCmdlet<IUserPropertiesService>
+    [Cmdlet("Get", "KshCurrentUserProperty")]
+    [OutputType(typeof(UserProperty))]
+    public class GetCurrentUserPropertyCommand : ClientObjectCmdlet<IUserPropertyService>
     {
 
-        public GetCurrentUserPropertiesCommand()
+        public GetCurrentUserPropertyCommand()
         {
         }
 

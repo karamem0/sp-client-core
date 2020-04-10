@@ -27,8 +27,8 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         {
         }
 
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet2")]
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
         public View View { get; private set; }
 
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]

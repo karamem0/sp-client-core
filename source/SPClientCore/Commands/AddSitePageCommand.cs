@@ -20,14 +20,14 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
     [Cmdlet("Add", "KshSitePage")]
     [OutputType(typeof(void))]
-    public class AddSitePageCommand : ClientObjectCmdlet<ISitePageService, IListService, IFolderService>
+    public class AddSitePageCommand : ClientObjectCmdlet<IListService, IFolderService, ISitePageService>
     {
 
         public AddSitePageCommand()
         {
         }
 
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
         public List List { get; private set; }
 
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
@@ -42,14 +42,14 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         {
             if (this.ParameterSetName == "ParamSet1")
             {
-                var folderObject = this.Service3.GetObject(this.List);
-                this.Service1.AddObject(folderObject, this.PageName, this.PageLayoutType);
+                var folderObject = this.Service2.GetObject(this.List);
+                this.Service3.AddObject(folderObject, this.PageName, this.PageLayoutType);
             }
             if (this.ParameterSetName == "ParamSet2")
             {
-                var listObject = this.Service2.GetObject(LibraryType.ClientRenderedSitePages);
-                var folderObject = this.Service3.GetObject(listObject);
-                this.Service1.AddObject(folderObject, this.PageName, this.PageLayoutType);
+                var listObject = this.Service1.GetObject(LibraryType.ClientRenderedSitePages);
+                var folderObject = this.Service2.GetObject(listObject);
+                this.Service3.AddObject(folderObject, this.PageName, this.PageLayoutType);
             }
         }
 

@@ -243,13 +243,15 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.List
+### Karamem0.SharePoint.PowerShell.Models.ListItem
 
-### System.Int32
+### Karamem0.SharePoint.PowerShell.Models.Folder
+
+### Karamem0.SharePoint.PowerShell.Models.File
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.List
+### Karamem0.SharePoint.PowerShell.Models.ListItem
 
 ## NOTES
 

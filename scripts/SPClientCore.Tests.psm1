@@ -255,7 +255,7 @@ function Install-TestSite {
         $appSettings.Site1Title = $site1.Title
 
         Write-Progress -Activity 'Breaking role inheritance...' -Status 'Test Site 1'
-        Set-KshUniqueRoleAssignmentEnabled -SecurableObject $site1 -Enabled
+        Set-KshUniqueRoleAssignmentEnabled -Site $site1 -Enabled
 
         Write-Progress -Activity 'Creating site role assignments...' -Status 'Test Role Definition 1'
         $siteRoleAssignment1 = New-KshRoleAssignment `
@@ -293,7 +293,7 @@ function Install-TestSite {
         $appSettings.Site2Title = $site2.Title
 
         Write-Progress -Activity 'Breaking role inheritance...' -Status 'Test Site 2'
-        Set-KshUniqueRoleAssignmentEnabled -SecurableObject $site2 -Enabled
+        Set-KshUniqueRoleAssignmentEnabled -Site $site2 -Enabled
 
         Write-Progress -Activity 'Creating sites...' -Status 'Test Site 3'
         $site3 = New-KshSite `
@@ -307,7 +307,7 @@ function Install-TestSite {
         $appSettings.Site3Title = $site3.Title
 
         Write-Progress -Activity 'Breaking role inheritance...' -Status 'Test Site 3'
-        Set-KshUniqueRoleAssignmentEnabled -SecurableObject $site3 -Enabled
+        Set-KshUniqueRoleAssignmentEnabled -Site $site3 -Enabled
 
         Write-Progress -Activity 'Changing current site...' -Status 'Test Site 2'
         Select-KshSite -Identity $site2
@@ -324,7 +324,7 @@ function Install-TestSite {
         $appSettings.Site4Title = $site4.Title
 
         Write-Progress -Activity 'Breaking role inheritance...' -Status 'Test Site 4'
-        Set-KshUniqueRoleAssignmentEnabled -SecurableObject $site4 -Enabled
+        Set-KshUniqueRoleAssignmentEnabled -Site $site4 -Enabled
 
         Write-Progress -Activity 'Changing current site...' -Status 'Test Site 1'
         Select-KshSite -Identity $site1
@@ -401,7 +401,7 @@ function Install-TestSite {
         $appSettings.List1Url = $rootFolder1.ServerRelativeUrl
 
         Write-Progress -Activity 'Breaking role inheritance...' -Status 'Test List 1'
-        Set-KshUniqueRoleAssignmentEnabled -SecurableObject $list1 -Enabled
+        Set-KshUniqueRoleAssignmentEnabled -List $list1 -Enabled
 
         Write-Progress -Activity 'Creating list role assignments...' -Status 'Test Role Definition 1'
         $listRoleAssignment1 = New-KshRoleAssignment `
@@ -953,7 +953,7 @@ function Install-TestSite {
         $appSettings.ListItem1Id = $item1.Id
 
         Write-Progress -Activity 'Breaking role inheritance...' -Status 'Test List Item 1'
-        Set-KshUniqueRoleAssignmentEnabled -SecurableObject $item1 -Enabled
+        Set-KshUniqueRoleAssignmentEnabled -ListItem $item1 -Enabled
 
         Write-Progress -Activity 'Creating list item role assignments...' -Status 'Test Role Definition 1'
         $itemRoleAssignment1 = New-KshRoleAssignment `

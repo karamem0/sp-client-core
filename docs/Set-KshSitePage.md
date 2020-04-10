@@ -14,13 +14,13 @@ Changes a site page properties.
 
 ### ParamSet1
 ```
-Set-KshSitePage [-List] <List> -PageName <String> [-PageLayoutType <SitePageLayoutType>] [-Title <String>]
+Set-KshSitePage [-List] <List> [-PageName] <String> [-PageLayoutType <SitePageLayoutType>] [-Title <String>]
  [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-Set-KshSitePage -PageName <String> [-PageLayoutType <SitePageLayoutType>] [-Title <String>]
+Set-KshSitePage [-PageName] <String> [-PageLayoutType <SitePageLayoutType>] [-Title <String>]
  [<CommonParameters>]
 ```
 
@@ -49,7 +49,7 @@ Aliases:
 Required: True
 Position: 0
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -78,7 +78,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: Named
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

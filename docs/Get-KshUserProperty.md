@@ -5,7 +5,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-KshUserProperties
+# Get-KshUserProperty
 
 ## SYNOPSIS
 Retrieves an user properties.
@@ -14,22 +14,22 @@ Retrieves an user properties.
 
 ### ParamSet1
 ```
-Get-KshUserProperties [-Identity] <UserProperties> [<CommonParameters>]
+Get-KshUserProperty [-Identity] <UserProperty> [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-Get-KshUserProperties [-UserLoginName] <String> [<CommonParameters>]
+Get-KshUserProperty [-UserLoginName] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshUserProperties cmdlet retrieves properties of the specific user.
+The Get-KshUserProperty cmdlet retrieves properties of the specific user.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> Get-KshUserProperties -UserLoginName 'i:0#.f|membership|admin@example.onmicrosoft.com'
+PS C:\> Get-KshUserProperty -UserLoginName 'i:0#.f|membership|admin@example.onmicrosoft.com'
 ```
 
 Retrieves a user properties by user login name.
@@ -40,7 +40,7 @@ Retrieves a user properties by user login name.
 Specifies the user properties.
 
 ```yaml
-Type: UserProperties
+Type: UserProperty
 Parameter Sets: ParamSet1
 Aliases:
 
@@ -71,11 +71,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.UserProperties
+### Karamem0.SharePoint.PowerShell.Models.UserProperty
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.UserProfile
+### Karamem0.SharePoint.PowerShell.Models.UserProperty
 
 ## NOTES
 

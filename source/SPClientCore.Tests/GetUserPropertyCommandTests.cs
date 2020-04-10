@@ -18,12 +18,12 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("Get-KshUserProperties")]
-    public class GetUserPropertiesCommandTests
+    [TestCategory("Get-KshUserProperty")]
+    public class GetUserPropertyCommandTests
     {
 
         [TestMethod()]
-        public void GetUserPropertiesByIdentity()
+        public void GetUserPropertyByIdentity()
         {
             using (var context = new PSCmdletContext())
             {
@@ -38,15 +38,15 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         }
                     }
                 );
-                var result2 = context.Runspace.InvokeCommand<UserProperties>(
-                    "Get-KshUserProperties",
+                var result2 = context.Runspace.InvokeCommand<UserProperty>(
+                    "Get-KshUserProperty",
                     new Dictionary<string, object>()
                     {
                         { "UserLoginName", context.AppSettings["User1LoginName"] }
                     }
                 );
-                var result3 = context.Runspace.InvokeCommand<UserProperties>(
-                    "Get-KshUserProperties",
+                var result3 = context.Runspace.InvokeCommand<UserProperty>(
+                    "Get-KshUserProperty",
                     new Dictionary<string, object>()
                     {
                         { "Identity", result2.ElementAt(0) }
@@ -57,7 +57,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void GetUserPropertiesByUserLoginName()
+        public void GetUserPropertyByUserLoginName()
         {
             using (var context = new PSCmdletContext())
             {
@@ -72,8 +72,8 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         }
                     }
                 );
-                var result2 = context.Runspace.InvokeCommand<UserProperties>(
-                    "Get-KshUserProperties",
+                var result2 = context.Runspace.InvokeCommand<UserProperty>(
+                    "Get-KshUserProperty",
                     new Dictionary<string, object>()
                     {
                         { "UserLoginName", context.AppSettings["User1LoginName"] }
