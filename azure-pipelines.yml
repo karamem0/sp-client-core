@@ -9,7 +9,7 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  buildVersion: '3.7.0'
+  buildVersion: '3.8.0'
   buildId: '$(Build.BuildId)'
   artifactName: 'SPClientCore'
   solutionName: 'SPClientCore'
@@ -75,6 +75,7 @@ stages:
   - job: Publish
     displayName: Publish job
     steps:
+    - checkout: none
     - task: DownloadBuildArtifacts@0
       inputs:
         buildType: 'current'
@@ -100,6 +101,7 @@ stages:
   - job: Publish
     displayName: Publish job
     steps:
+    - checkout: none
     - task: PowerShell@2
       inputs:
         targetType: 'inline'

@@ -34,6 +34,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Common
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet1", Position = 0, ValueFromPipeline = true)]
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet2", Position = 0, ValueFromPipeline = true)]
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet3", Position = 0, ValueFromPipeline = true)]
+        [Parameter(Mandatory = true, ParameterSetName = "ParamSet4", Position = 0, ValueFromPipeline = true)]
         public Uri Url { get; private set; }
 
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
@@ -42,10 +43,13 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Common
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet4")]
         public string ClientId { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet4")]
         public Uri Authority { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
@@ -57,6 +61,9 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Common
 
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
         public SecureString CertificatePassword { get; private set; }
+
+        [Parameter(Mandatory = true, ParameterSetName = "ParamSet4")]
+        public SwitchParameter Cached { get; private set; }
 
         protected override void ProcessRecordCore()
         {
@@ -144,6 +151,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Common
                 {
                     throw new InvalidOperationException(oAuthError.ErrorDescription);
                 }
+            }
+            if (this.ParameterSetName == "ParamSet4")
+            {
+                this.ValidateSwitchParameter(nameof(this.Cached));
+                ClientService.Register(new ClientContext(this.Url, new OAuthTokenCache(oAuthContext)));
             }
         }
 

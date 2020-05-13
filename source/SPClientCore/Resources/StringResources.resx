@@ -117,8 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ErrorAccessTokenExpired" xml:space="preserve">
+    <value>The access token has expired, please login again</value>
+  </data>
+  <data name="ErrorAccessTokenIsNotCached" xml:space="preserve">
+    <value>The access token is not cached, please login again</value>
+  </data>
   <data name="ErrorCannotResolveTenantId" xml:space="preserve">
     <value>Cannot resolve Tenant ID from resource URL</value>
+  </data>
+  <data name="ErrorMaxRetryCountExceeded" xml:space="preserve">
+    <value>Max retry count exceeded</value>
   </data>
   <data name="ErrorNotConnected" xml:space="preserve">
     <value>Not connected to SharePoint Server</value>
@@ -146,11 +155,5 @@
   </data>
   <data name="ErrorValueCannotBeMoreThan" xml:space="preserve">
     <value>The value cannot be more than '{0}'</value>
-  </data>
-  <data name="ErrorMaxRetryCountExceeded" xml:space="preserve">
-    <value>Max retry count exceeded</value>
-  </data>
-  <data name="ErrorAccessTokenExpired" xml:space="preserve">
-    <value>The access token has expired, please login again</value>
   </data>
 </root>

@@ -17,7 +17,7 @@ Remove-KshTerm [-Identity] <Term> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Remove-KshTerm cmdlet removes a term from the term set or term.
+The Remove-KshTerm cmdlet removes a term from the parent term set or term.
 
 ## EXAMPLES
 

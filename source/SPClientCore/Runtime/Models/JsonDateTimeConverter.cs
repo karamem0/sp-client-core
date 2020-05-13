@@ -8,6 +8,7 @@
 
 using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,11 +62,11 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
         {
             if (value == null || (DateTime)value == new DateTime())
             {
-                serializer.Serialize(writer, null);
+                writer.WriteNull();
             }
             else
             {
-                serializer.Serialize(writer, value);
+                JToken.FromObject(value).WriteTo(writer);
             }
         }
 

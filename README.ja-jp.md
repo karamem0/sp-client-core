@@ -268,6 +268,11 @@ SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant およ
     - [Get-KshViewColumn](docs/Get-KshViewColumn.md)
     - [Move-KshViewColumn](docs/Move-KshViewColumn.md)
     - [Remove-KshViewColumn](docs/Remove-KshViewColumn.md)
+  - Webhook
+    - [Get-KshSubscription](docs/Get-KshSubscription.md)
+    - [New-KshSubscription](docs/New-KshSubscription.md)
+    - [Remove-KshSubscription](docs/Remove-KshSubscription.md)
+    - [Update-KshSubscription](docs/Update-KshSubscription.md)
 - テナント管理
   - 削除されたサイト コレクション
     - [Get-KshTenantDeletedSiteCollection](docs/Get-KshTenantDeletedSiteCollection.md)

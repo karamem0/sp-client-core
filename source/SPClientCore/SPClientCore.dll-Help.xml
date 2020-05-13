@@ -890,7 +890,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Add-KshSitePage cmdlet adds a new site page to the site page library or the specified folder.</maml:para>
+      <maml:para>The Add-KshSitePage cmdlet adds a new site page to the site page library or the specified list.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -2120,6 +2120,119 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Cached</maml:name>
+          <maml:Description>
+            <maml:para>If specified, uses the last login credentials.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ClientId</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the app ID of Azure AD app.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Connect-KshSite</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Url</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the site URL.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
+          <dev:type>
+            <maml:name>Uri</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Authority</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the authorization endpoint URL. This parameter is provided for some environment. (Germany, China, and US Government)</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
+          <dev:type>
+            <maml:name>Uri</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>CertificatePassword</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the password for certificate file (.pfx).</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">SecureString</command:parameterValue>
+          <dev:type>
+            <maml:name>SecureString</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>CertificatePath</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the path which located certificate file (.pfx).</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ClientId</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the app ID of Azure AD app.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Connect-KshSite</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Url</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the site URL.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
+          <dev:type>
+            <maml:name>Uri</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Authority</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the authorization endpoint URL. This parameter is provided for some environment. (Germany, China, and US Government)</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
+          <dev:type>
+            <maml:name>Uri</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>ClientId</maml:name>
           <maml:Description>
@@ -2135,7 +2248,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>UserMode</maml:name>
           <maml:Description>
-            <maml:para>If specified, connects with user mode. (without admin consent)</maml:para>
+            <maml:para>If specified, connects with the user mode. (without admin consent)</maml:para>
           </maml:Description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -2197,64 +2310,13 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>UserMode</maml:name>
           <maml:Description>
-            <maml:para>If specified, connects with user mode. (without admin consent)</maml:para>
+            <maml:para>If specified, connects with the user mode. (without admin consent)</maml:para>
           </maml:Description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
-        </command:parameter>
-      </command:syntaxItem>
-      <command:syntaxItem>
-        <maml:name>Connect-KshSite</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
-          <maml:name>Url</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the site URL.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
-          <dev:type>
-            <maml:name>Uri</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>CertificatePassword</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the password for certificate file (.pfx).</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">SecureString</command:parameterValue>
-          <dev:type>
-            <maml:name>SecureString</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>CertificatePath</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the path which located certificate file (.pfx).</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-          <dev:type>
-            <maml:name>String</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>ClientId</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the app ID of Azure AD app.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-          <dev:type>
-            <maml:name>String</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
       </command:syntaxItem>
     </command:syntax>
@@ -2270,6 +2332,18 @@
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Cached</maml:name>
+        <maml:Description>
+          <maml:para>If specified, uses the last login credentials.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>CertificatePassword</maml:name>
@@ -2334,7 +2408,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>UserMode</maml:name>
         <maml:Description>
-          <maml:para>If specified, connects with user mode. (without admin consent)</maml:para>
+          <maml:para>If specified, connects with the user mode. (without admin consent)</maml:para>
         </maml:Description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
@@ -2389,6 +2463,13 @@
         <dev:code>PS C:\&gt; Connect-KshSite -Url 'https://example.sharepoint.com' -ClientId 'e157e5b9-f2df-4417-991d-60546d11c21d' -CertificatePath 'C:\Certificate.pfx' -CertificatePassword 'P@ssw0rd'</dev:code>
         <dev:remarks>
           <maml:para>Connects to a site with app credentials.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 4 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Connect-KshSite -Url 'https://example.sharepoint.com' -Cached</dev:code>
+        <dev:remarks>
+          <maml:para>Connects to a site with cached credentials.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -9170,7 +9251,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshSitePageComment cmdlet retrieves comments of the site page.</maml:para>
+      <maml:para>The Get-KshSitePageComment cmdlet retrieves comments of the specified site page.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -9505,6 +9586,181 @@
         <dev:code>PS C:\&gt; Get-KshSiteTemplate -DoIncludeCrossLanguage -Lcid 1033</dev:code>
         <dev:remarks>
           <maml:para>Retrieves all site templates.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-KshSubscription</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>KshSubscription</command:noun>
+      <maml:description>
+        <maml:para>Retrieves one or more subscription.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-KshSubscription cmdlet retrieves subscriptions of the specified list.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-KshSubscription</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Identity</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the subscription.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Subscription</command:parameterValue>
+          <dev:type>
+            <maml:name>Subscription</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshSubscription</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>List</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the list.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">List</command:parameterValue>
+          <dev:type>
+            <maml:name>List</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>SubscriptionId</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the subscription ID.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+          <dev:type>
+            <maml:name>Guid</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshSubscription</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>List</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the list.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">List</command:parameterValue>
+          <dev:type>
+            <maml:name>List</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NoEnumerate</maml:name>
+          <maml:Description>
+            <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Identity</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the subscription.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Subscription</command:parameterValue>
+        <dev:type>
+          <maml:name>Subscription</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>List</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the list.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">List</command:parameterValue>
+        <dev:type>
+          <maml:name>List</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>NoEnumerate</maml:name>
+        <maml:Description>
+          <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>SubscriptionId</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the subscription ID.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+        <dev:type>
+          <maml:name>Guid</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Subscription</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Subscription</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshSubscription -List (Get-KshList -ListTitle 'Announcements') -SubscriptionId '40231e12-904f-430a-aa76-a6487076c36e'</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves a subscription by subscription ID.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshSubscription -List (Get-KshList -ListTitle 'Announcements')</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves all subscriptions.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -36819,6 +37075,157 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>New-KshSubscription</command:name>
+      <command:verb>New</command:verb>
+      <command:noun>KshSubscription</command:noun>
+      <maml:description>
+        <maml:para>Creates a new subscription.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The New-KshSubscription cmdlet adds a new subscription to the specified list.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>New-KshSubscription</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>List</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the list.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">List</command:parameterValue>
+          <dev:type>
+            <maml:name>List</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ClientState</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the client state.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ExpirationDateTime</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the expiration date/time.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">DateTime</command:parameterValue>
+          <dev:type>
+            <maml:name>DateTime</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NotificationUrl</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the notification URL.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ClientState</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the client state.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ExpirationDateTime</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the expiration date/time.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">DateTime</command:parameterValue>
+        <dev:type>
+          <maml:name>DateTime</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>List</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the list.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">List</command:parameterValue>
+        <dev:type>
+          <maml:name>List</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>NotificationUrl</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the notification URL.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.List</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Subscription</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; New-KshSubscription -List (Get-KshList -ListTitle 'Announcements') -ExpirationDateTime [System.DateTime]::UtcNow.AddDays(1) -NotificationUrl 'https://www.example.com'</dev:code>
+        <dev:remarks>
+          <maml:para>Creates a new subscription.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>New-KshTenantApp</command:name>
       <command:verb>New</command:verb>
       <command:noun>KshTenantApp</command:noun>
@@ -42085,7 +42492,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-KshSitePage cmdlet removes a site page from the site page library or the parent folder.</maml:para>
+      <maml:para>The Remove-KshSitePage cmdlet removes a site page from the site page library or the specified list.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -42252,6 +42659,85 @@
         <dev:code>PS C:\&gt; Remove-KshSitePageComment -Identity (Get-KshSitePageComment -ListItem (Get-KshListItem -List (Get-KshList -ListTitle 'Site Pages') -ItemId 1) -CommentId 1)</dev:code>
         <dev:remarks>
           <maml:para>Removes a comment.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Remove-KshSubscription</command:name>
+      <command:verb>Remove</command:verb>
+      <command:noun>KshSubscription</command:noun>
+      <maml:description>
+        <maml:para>Removes a subscription.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Remove-KshSubscription cmdlet removes a subscription from the list.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Remove-KshSubscription</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Identity</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the subscription.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Subscription</command:parameterValue>
+          <dev:type>
+            <maml:name>Subscription</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Identity</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the subscription.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Subscription</command:parameterValue>
+        <dev:type>
+          <maml:name>Subscription</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Subscription</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Remove-KshSubscription -Identity (Get-KshSubscription -List (Get-KshList -ListTitle 'Announcements') -SubscriptionId '40231e12-904f-430a-aa76-a6487076c36e')</dev:code>
+        <dev:remarks>
+          <maml:para>Removes a subscription.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -42909,7 +43395,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-KshTerm cmdlet removes a term from the term set or term.</maml:para>
+      <maml:para>The Remove-KshTerm cmdlet removes a term from the parent term set or term.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -43406,7 +43892,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Remove-KshTermSet cmdlet removes a term set from the term group.</maml:para>
+      <maml:para>The Remove-KshTermSet cmdlet removes a term set from the parent term group.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -45830,7 +46316,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>CopyRoleAssignments</maml:name>
           <maml:Description>
-            <maml:para>If specified, copies the role assignments from the parent securable object.</maml:para>
+            <maml:para>If specified, copies the role assignments from the specified securable object.</maml:para>
           </maml:Description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -45878,7 +46364,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>CopyRoleAssignments</maml:name>
           <maml:Description>
-            <maml:para>If specified, copies the role assignments from the parent securable object.</maml:para>
+            <maml:para>If specified, copies the role assignments from the specified securable object.</maml:para>
           </maml:Description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -45926,7 +46412,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>CopyRoleAssignments</maml:name>
           <maml:Description>
-            <maml:para>If specified, copies the role assignments from the parent securable object.</maml:para>
+            <maml:para>If specified, copies the role assignments from the specified securable object.</maml:para>
           </maml:Description>
           <dev:type>
             <maml:name>SwitchParameter</maml:name>
@@ -46041,7 +46527,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>CopyRoleAssignments</maml:name>
         <maml:Description>
-          <maml:para>If specified, copies the role assignments from the parent securable object.</maml:para>
+          <maml:para>If specified, copies the role assignments from the specified securable object.</maml:para>
         </maml:Description>
         <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
@@ -59146,6 +59632,156 @@
         <dev:code>PS C:\&gt; Update-KshSite -Identity (Get-KshSite -SiteId 'd298e576-6985-4119-9796-050b9f371872') -NoCrawl $true</dev:code>
         <dev:remarks>
           <maml:para>Updates property values of the site.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Update-KshSubscription</command:name>
+      <command:verb>Update</command:verb>
+      <command:noun>KshSubscription</command:noun>
+      <maml:description>
+        <maml:para>Updates a subscription.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Update-KshSubscription cmdlet updates properties of the subscription.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Update-KshSubscription</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Identity</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the subscription.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Subscription</command:parameterValue>
+          <dev:type>
+            <maml:name>Subscription</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ExpirationDateTime</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the expiration date/time.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">DateTime</command:parameterValue>
+          <dev:type>
+            <maml:name>DateTime</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NotificationUrl</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the notification URL.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PassThru</maml:name>
+          <maml:Description>
+            <maml:para>If specified, returns the updated object.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ExpirationDateTime</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the expiration date/time.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">DateTime</command:parameterValue>
+        <dev:type>
+          <maml:name>DateTime</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Identity</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the subscription.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Subscription</command:parameterValue>
+        <dev:type>
+          <maml:name>Subscription</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>NotificationUrl</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the notification URL.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>PassThru</maml:name>
+        <maml:Description>
+          <maml:para>If specified, returns the updated object.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Subscription</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Subscription</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Update-KshSubscription -Identity (Get-KshSubscription -List (Get-KshList -ListTitle 'Announcements') -SubscriptionId '40231e12-904f-430a-aa76-a6487076c36e') -ExpirationDateTime [System.DateTime]::UtcNow.AddDays(1)</dev:code>
+        <dev:remarks>
+          <maml:para>Updates property values of the subscription.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>

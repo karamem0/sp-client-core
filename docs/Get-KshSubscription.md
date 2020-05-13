@@ -5,69 +5,54 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-KshSitePageComment
+# Get-KshSubscription
 
 ## SYNOPSIS
-Retrieves one or more site page comment.
+Retrieves one or more subscription.
 
 ## SYNTAX
 
 ### ParamSet1
 ```
-Get-KshSitePageComment [-Identity] <SitePageComment> [<CommonParameters>]
+Get-KshSubscription [-Identity] <Subscription> [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-Get-KshSitePageComment [-ListItem] <ListItem> [-CommentId] <Int32> [<CommonParameters>]
+Get-KshSubscription [-List] <List> [-SubscriptionId] <Guid> [<CommonParameters>]
 ```
 
 ### ParamSet3
 ```
-Get-KshSitePageComment [-ListItem] <ListItem> [-NoEnumerate] [<CommonParameters>]
+Get-KshSubscription [-List] <List> [-NoEnumerate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshSitePageComment cmdlet retrieves comments of the specified site page.
+The Get-KshSubscription cmdlet retrieves subscriptions of the specified list.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> Get-KshSitePageComment -ListItem (Get-KshListItem -List (Get-KshList -ListTitle 'Site Pages') -ItemId 1) -CommentId 1
+PS C:\> Get-KshSubscription -List (Get-KshList -ListTitle 'Announcements') -SubscriptionId '40231e12-904f-430a-aa76-a6487076c36e'
 ```
 
-Retrieves a comment by comment ID.
+Retrieves a subscription by subscription ID.
 
 ### Example 2
 ```powershell
-PS C:\> Get-KshSitePageComment -ListItem (Get-KshListItem -List (Get-KshList -ListTitle 'Site Pages') -ItemId 1)
+PS C:\> Get-KshSubscription -List (Get-KshList -ListTitle 'Announcements')
 ```
 
-Retrieves all comments.
+Retrieves all subscriptions.
 
 ## PARAMETERS
 
-### -CommentId
-Specifies the comment ID.
-
-```yaml
-Type: Int32
-Parameter Sets: ParamSet2
-Aliases:
-
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Identity
-Specifies the comment.
+Specifies the subscription.
 
 ```yaml
-Type: SitePageComment
+Type: Subscription
 Parameter Sets: ParamSet1
 Aliases:
 
@@ -78,11 +63,11 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -ListItem
-Specifies the list item.
+### -List
+Specifies the list.
 
 ```yaml
-Type: ListItem
+Type: List
 Parameter Sets: ParamSet2, ParamSet3
 Aliases:
 
@@ -108,16 +93,31 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -SubscriptionId
+Specifies the subscription ID.
+
+```yaml
+Type: Guid
+Parameter Sets: ParamSet2
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.SitePageComment
+### Karamem0.SharePoint.PowerShell.Models.Subscription
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.SitePageComment
+### Karamem0.SharePoint.PowerShell.Models.Subscription
 
 ## NOTES
 

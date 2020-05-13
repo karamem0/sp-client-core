@@ -82,7 +82,7 @@ Accept wildcard characters: False
 ```
 
 ### -CopyRoleAssignments
-If specified, copies the role assignments from the parent securable object.
+If specified, copies the role assignments from the specified securable object.
 
 ```yaml
 Type: SwitchParameter

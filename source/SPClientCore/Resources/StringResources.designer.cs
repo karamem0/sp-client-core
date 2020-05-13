@@ -70,6 +70,15 @@ namespace Karamem0.SharePoint.PowerShell.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The access token is not cached, please login again.
+        /// </summary>
+        public static string ErrorAccessTokenIsNotCached {
+            get {
+                return ResourceManager.GetString("ErrorAccessTokenIsNotCached", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot resolve Tenant ID from resource URL.
         /// </summary>
         public static string ErrorCannotResolveTenantId {

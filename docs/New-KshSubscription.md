@@ -5,60 +5,39 @@ online version:
 schema: 2.0.0
 ---
 
-# Add-KshSitePage
+# New-KshSubscription
 
 ## SYNOPSIS
-Creates a new site page.
+Creates a new subscription.
 
 ## SYNTAX
 
-### ParamSet1
 ```
-Add-KshSitePage [-List] <List> -PageName <String> [-PageLayoutType <SitePageLayoutType>] [<CommonParameters>]
-```
-
-### ParamSet2
-```
-Add-KshSitePage -PageName <String> [-PageLayoutType <SitePageLayoutType>] [<CommonParameters>]
+New-KshSubscription [-List] <List> [-ClientState <String>] -ExpirationDateTime <DateTime>
+ -NotificationUrl <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Add-KshSitePage cmdlet adds a new site page to the site page library or the specified list.
+The New-KshSubscription cmdlet adds a new subscription to the specified list.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> Add-KshSitePage -PageName 'News' -PageLayoutType 'Article'
+PS C:\> New-KshSubscription -List (Get-KshList -ListTitle 'Announcements') -ExpirationDateTime [System.DateTime]::UtcNow.AddDays(1) -NotificationUrl 'https://www.example.com'
 ```
 
-Creates a site page.
+Creates a new subscription.
 
 ## PARAMETERS
 
-### -List
-Specifies the list.
+### -ClientState
+Specifies the client state.
 
 ```yaml
-Type: List
-Parameter Sets: ParamSet1
-Aliases:
-
-Required: True
-Position: 0
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -PageLayoutType
-Specifies the page layout type.
-
-```yaml
-Type: SitePageLayoutType
+Type: String
 Parameter Sets: (All)
 Aliases:
-Accepted values: Article, Home, SingleWebPartAppPage, RepostPage, HeaderlessSearchResults, Spaces
 
 Required: False
 Position: Named
@@ -67,8 +46,38 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -PageName
-Specifies the page name.
+### -ExpirationDateTime
+Specifies the expiration date/time.
+
+```yaml
+Type: DateTime
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -List
+Specifies the list.
+
+```yaml
+Type: List
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 0
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -NotificationUrl
+Specifies the notification URL.
 
 ```yaml
 Type: String
@@ -91,7 +100,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### None
+### Karamem0.SharePoint.PowerShell.Models.Subscription
 
 ## NOTES
 

@@ -5,64 +5,43 @@ online version:
 schema: 2.0.0
 ---
 
-# Remove-KshSitePage
+# Remove-KshSubscription
 
 ## SYNOPSIS
-Removes a site page.
+Removes a subscription.
 
 ## SYNTAX
 
-### ParamSet1
 ```
-Remove-KshSitePage [-List] <List> [-PageName] <String> [<CommonParameters>]
-```
-
-### ParamSet2
-```
-Remove-KshSitePage [-PageName] <String> [<CommonParameters>]
+Remove-KshSubscription [-Identity] <Subscription> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Remove-KshSitePage cmdlet removes a site page from the site page library or the specified list.
+The Remove-KshSubscription cmdlet removes a subscription from the list.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> Remove-KshSitePage -PageName 'News'
+PS C:\> Remove-KshSubscription -Identity (Get-KshSubscription -List (Get-KshList -ListTitle 'Announcements') -SubscriptionId '40231e12-904f-430a-aa76-a6487076c36e')
 ```
 
-Removes a site page.
+Removes a subscription.
 
 ## PARAMETERS
 
-### -List
-Specifies the list.
+### -Identity
+Specifies the subscription.
 
 ```yaml
-Type: List
-Parameter Sets: ParamSet1
+Type: Subscription
+Parameter Sets: (All)
 Aliases:
 
 Required: True
 Position: 0
 Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -PageName
-Specifies the page name.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: 1
-Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
@@ -71,7 +50,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.List
+### Karamem0.SharePoint.PowerShell.Models.Subscription
 
 ## OUTPUTS
 

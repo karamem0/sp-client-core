@@ -25,8 +25,13 @@ Connect-KshSite [-Url] <Uri> -Credential <PSCredential> [-ClientId <String>] [-A
 
 ### ParamSet3
 ```
-Connect-KshSite [-Url] <Uri> -ClientId <String> -CertificatePath <String> -CertificatePassword <SecureString>
- [<CommonParameters>]
+Connect-KshSite [-Url] <Uri> -ClientId <String> [-Authority <Uri>] -CertificatePath <String>
+ -CertificatePassword <SecureString> [<CommonParameters>]
+```
+
+### ParamSet4
+```
+Connect-KshSite [-Url] <Uri> [-ClientId <String>] [-Authority <Uri>] [-Cached] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -55,6 +60,13 @@ PS C:\> Connect-KshSite -Url 'https://example.sharepoint.com' -ClientId 'e157e5b
 
 Connects to a site with app credentials.
 
+### Example 4
+```powershell
+PS C:\> Connect-KshSite -Url 'https://example.sharepoint.com' -Cached
+```
+
+Connects to a site with cached credentials.
+
 ## PARAMETERS
 
 ### -Authority
@@ -62,10 +74,25 @@ Specifies the authorization endpoint URL. This parameter is provided for some en
 
 ```yaml
 Type: Uri
-Parameter Sets: ParamSet1, ParamSet2
+Parameter Sets: (All)
 Aliases:
 
 Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Cached
+If specified, uses the last login credentials.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: ParamSet4
+Aliases:
+
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -107,7 +134,7 @@ Specifies the app ID of Azure AD app.
 
 ```yaml
 Type: String
-Parameter Sets: ParamSet1, ParamSet2
+Parameter Sets: ParamSet1, ParamSet2, ParamSet4
 Aliases:
 
 Required: False
@@ -160,7 +187,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserMode
-If specified, connects with user mode. (without admin consent)
+If specified, connects with the user mode. (without admin consent)
 
 ```yaml
 Type: SwitchParameter

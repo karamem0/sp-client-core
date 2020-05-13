@@ -17,7 +17,7 @@ Remove-KshTermSet [-Identity] <TermSet> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Remove-KshTermSet cmdlet removes a term set from the term group.
+The Remove-KshTermSet cmdlet removes a term set from the parent term group.
 
 ## EXAMPLES
 

@@ -23,6 +23,16 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
 
         private OAuthToken oAuthToken;
 
+        public OAuthTokenCache(OAuthContext oAuthContext)
+        {
+            if (oAuthContext == null)
+            {
+                throw new ArgumentNullException(nameof(oAuthContext));
+            }
+            this.oAuthContext = oAuthContext;
+            this.oAuthToken = OAuthToken.Load();
+        }
+
         public OAuthTokenCache(OAuthContext oAuthContext, OAuthToken oAuthToken)
         {
             if (oAuthContext == null)
@@ -35,6 +45,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
             }
             this.oAuthContext = oAuthContext;
             this.oAuthToken = oAuthToken;
+            this.oAuthToken.Save();
         }
 
         public string GetAccessToken() 
@@ -52,6 +63,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
                 if (oAuthMessage is OAuthToken oAuthToken)
                 {
                     this.oAuthToken = oAuthToken;
+                    this.oAuthToken.Save();
                 }
                 if (oAuthMessage is OAuthError oAuthError)
                 {
