@@ -14,13 +14,13 @@ Changes whether unique role assignment is enabled.
 
 ### ParamSet1
 ```
-Set-KshUniqueRoleAssignmentEnabled [[-Site] <Site>] [-Enabled] [-CopyRoleAssignments] [-ClearSubscopes]
+Set-KshUniqueRoleAssignmentEnabled [-Site] [-Enabled] [-CopyRoleAssignments] [-ClearSubscopes]
  [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-Set-KshUniqueRoleAssignmentEnabled [[-Site] <Site>] [-Disabled] [<CommonParameters>]
+Set-KshUniqueRoleAssignmentEnabled [-Site] [-Disabled] [<CommonParameters>]
 ```
 
 ### ParamSet3
@@ -46,20 +46,20 @@ Set-KshUniqueRoleAssignmentEnabled [-ListItem] <ListItem> [-Disabled] [<CommonPa
 ```
 
 ## DESCRIPTION
-The Set-KshUniqueRoleAssignmentEnabled cmdlet changes whether unique role assignment is enabled for the securable object.
+The Set-KshUniqueRoleAssignmentEnabled cmdlet changes whether a unique role assignment is enabled for the current site, the specified list, or the specified list item.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> Set-KshUniqueRoleAssignmentEnabled -Site (Get-KshSite -SiteUrl '/sites/japan/hr') -Enabled -CopyRoleAssignments -ClearSubscopes
+PS C:\> Set-KshUniqueRoleAssignmentEnabled -Site -Enabled -CopyRoleAssignments -ClearSubscopes
 ```
 
 Creates unique role assignments.
 
 ### Example 2
 ```powershell
-PS C:\> Set-KshUniqueRoleAssignmentEnabled -Site (Get-KshSite -SiteUrl '/sites/japan/hr') -Disabled
+PS C:\> Set-KshUniqueRoleAssignmentEnabled -Site -Disabled
 ```
 
 Removes unique role assignments.
@@ -157,14 +157,14 @@ Accept wildcard characters: False
 ```
 
 ### -Site
-Specifies the site.
+If specified, uses the current site.
 
 ```yaml
-Type: Site
+Type: SwitchParameter
 Parameter Sets: ParamSet1, ParamSet2
 Aliases:
 
-Required: False
+Required: True
 Position: 0
 Default value: None
 Accept pipeline input: False

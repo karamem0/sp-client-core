@@ -32,8 +32,8 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet3")]
         public User User { get; private set; }
 
-        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "ParamSet1")]
-        public Site Site { get; private set; }
+        [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
+        public SwitchParameter Site { get; private set; }
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
         public List List { get; private set; }
@@ -45,14 +45,8 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         {
             if (this.ParameterSetName == "ParamSet1")
             {
-                if (this.Site == null)
-                {
-                    this.WriteObject(this.Service2.GetObject(this.User, this.Service1.GetObject()));
-                }
-                else
-                {
-                    this.WriteObject(this.Service2.GetObject(this.User, this.Site));
-                }
+                this.ValidateSwitchParameter(nameof(this.Site));
+                this.WriteObject(this.Service2.GetObject(this.User, this.Service1.GetObject()));
             }
             if (this.ParameterSetName == "ParamSet2")
             {

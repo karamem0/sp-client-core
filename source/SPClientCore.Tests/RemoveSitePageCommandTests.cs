@@ -56,7 +56,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void RemoveSitePageByFolder()
+        public void RemoveSitePageByList()
         {
             using (var context = new PSCmdletContext())
             {

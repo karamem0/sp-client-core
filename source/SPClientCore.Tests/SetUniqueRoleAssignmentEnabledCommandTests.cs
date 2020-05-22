@@ -46,37 +46,45 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "ServerRelativeUrl", "TestSite0" }
                     }
                 );
-                var result3 = context.Runspace.InvokeCommand(
-                    "Set-KshUniqueRoleAssignmentEnabled",
+                var result3 = context.Runspace.InvokeCommand<Site>(
+                    "Select-KshSite",
                     new Dictionary<string, object>()
                     {
-                        { "SecurableObject", result2.ElementAt(0) },
-                        { "Enabled", true }
+                        { "Identity", result2.ElementAt(0) },
+                        { "PassThru", true }
                     }
                 );
                 var result4 = context.Runspace.InvokeCommand(
                     "Set-KshUniqueRoleAssignmentEnabled",
                     new Dictionary<string, object>()
                     {
-                        { "SecurableObject", result2.ElementAt(0) },
+                        { "Site", true },
+                        { "Enabled", true }
+                    }
+                );
+                var result5 = context.Runspace.InvokeCommand(
+                    "Set-KshUniqueRoleAssignmentEnabled",
+                    new Dictionary<string, object>()
+                    {
+                        { "Site", true },
                         { "Disabled", true }
                     }
                 );
-                var result5 = context.Runspace.InvokeCommand<Site>(
+                var result6 = context.Runspace.InvokeCommand<Site>(
                     "Get-KshSite",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result2.ElementAt(0) }
+                        { "Identity", result3.ElementAt(0) }
                     }
                 );
-                var result6 = context.Runspace.InvokeCommand(
+                var result7 = context.Runspace.InvokeCommand(
                     "Remove-KshSite",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result2.ElementAt(0) }
+                        { "Identity", result3.ElementAt(0) }
                     }
                 );
-                var actual = result5.ElementAt(0);
+                var actual = result6.ElementAt(0);
             }
         }
 
@@ -108,7 +116,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Set-KshUniqueRoleAssignmentEnabled",
                     new Dictionary<string, object>()
                     {
-                        { "SecurableObject", result2.ElementAt(0) },
+                        { "List", result2.ElementAt(0) },
                         { "Enabled", true }
                     }
                 );
@@ -116,7 +124,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Set-KshUniqueRoleAssignmentEnabled",
                     new Dictionary<string, object>()
                     {
-                        { "SecurableObject", result2.ElementAt(0) },
+                        { "List", result2.ElementAt(0) },
                         { "Disabled", true }
                     }
                 );
@@ -173,7 +181,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Set-KshUniqueRoleAssignmentEnabled",
                     new Dictionary<string, object>()
                     {
-                        { "SecurableObject", result3.ElementAt(0) },
+                        { "ListItem", result3.ElementAt(0) },
                         { "Enabled", true }
                     }
                 );
@@ -181,7 +189,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Set-KshUniqueRoleAssignmentEnabled",
                     new Dictionary<string, object>()
                     {
-                        { "SecurableObject", result3.ElementAt(0) },
+                        { "ListItem", result3.ElementAt(0) },
                         { "Disabled", true }
                     }
                 );
@@ -226,39 +234,47 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "ServerRelativeUrl", "TestSite0" }
                     }
                 );
-                var result3 = context.Runspace.InvokeCommand(
+                var result3 = context.Runspace.InvokeCommand<Site>(
+                    "Select-KshSite",
+                    new Dictionary<string, object>()
+                    {
+                        { "Identity", result2.ElementAt(0) },
+                        { "PassThru", true }
+                    }
+                );
+                var result4 = context.Runspace.InvokeCommand(
                     "Set-KshUniqueRoleAssignmentEnabled",
                     new Dictionary<string, object>()
                     {
-                        { "SecurableObject", result2.ElementAt(0) },
+                        { "Site", true },
                         { "Enabled", true },
                         { "CopyRoleAssignments", true },
                         { "ClearSubscopes", true }
                     }
                 );
-                var result4 = context.Runspace.InvokeCommand<Site>(
+                var result5 = context.Runspace.InvokeCommand<Site>(
                     "Get-KshSite",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result2.ElementAt(0) }
-                    }
-                );
-                var result5 = context.Runspace.InvokeCommand(
-                    "Set-KshUniqueRoleAssignmentEnabled",
-                    new Dictionary<string, object>()
-                    {
-                        { "SecurableObject", result2.ElementAt(0) },
-                        { "Disabled", true }
+                        { "Identity", result3.ElementAt(0) }
                     }
                 );
                 var result6 = context.Runspace.InvokeCommand(
+                    "Set-KshUniqueRoleAssignmentEnabled",
+                    new Dictionary<string, object>()
+                    {
+                        { "Site", true },
+                        { "Disabled", true }
+                    }
+                );
+                var result7 = context.Runspace.InvokeCommand(
                     "Remove-KshSite",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result2.ElementAt(0) }
+                        { "Identity", result3.ElementAt(0) }
                     }
                 );
-                var actual = result4.ElementAt(0);
+                var actual = result5.ElementAt(0);
             }
         }
 
@@ -290,7 +306,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Set-KshUniqueRoleAssignmentEnabled",
                     new Dictionary<string, object>()
                     {
-                        { "SecurableObject", result2.ElementAt(0) },
+                        { "List", result2.ElementAt(0) },
                         { "Enabled", true },
                         { "CopyRoleAssignments", true },
                         { "ClearSubscopes", true }
@@ -307,7 +323,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Set-KshUniqueRoleAssignmentEnabled",
                     new Dictionary<string, object>()
                     {
-                        { "SecurableObject", result2.ElementAt(0) },
+                        { "List", result2.ElementAt(0) },
                         { "Disabled", true }
                     }
                 );
@@ -357,7 +373,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Set-KshUniqueRoleAssignmentEnabled",
                     new Dictionary<string, object>()
                     {
-                        { "SecurableObject", result3.ElementAt(0) },
+                        { "ListItem", result3.ElementAt(0) },
                         { "Enabled", true },
                         { "CopyRoleAssignments", true },
                         { "ClearSubscopes", true }
@@ -374,7 +390,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Set-KshUniqueRoleAssignmentEnabled",
                     new Dictionary<string, object>()
                     {
-                        { "SecurableObject", result3.ElementAt(0) },
+                        { "ListItem", result3.ElementAt(0) },
                         { "Disabled", true }
                     }
                 );

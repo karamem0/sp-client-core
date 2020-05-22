@@ -58,6 +58,8 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Open-KshAttachmentFile](docs/Open-KshAttachmentFile.md)
     - [Remove-KshAttachmentFile](docs/Remove-KshAttachmentFile.md)
     - [Save-KshAttachmentFile](docs/Save-KshAttachmentFile.md)
+  - Changes
+    - [Get-KshChange](docs/Get-KshChange.md)
   - Columns
     - [Get-KshColumn](docs/Get-KshColumn.md)
     - [New-KshColumnBoolean](docs/New-KshColumnBoolean.md)

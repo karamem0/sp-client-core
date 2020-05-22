@@ -30,7 +30,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
 
         private readonly OAuthTokenCache oAuthTokenCache;
 
-        private readonly HttpClient httpClient = new HttpClient();
+        private readonly HttpClient httpClient;
 
         public ClientContext(Uri baseAddress, OAuthTokenCache oAuthTokenCache)
         {
@@ -44,6 +44,8 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
             }
             this.baseAddress = new Uri(baseAddress.ToString().TrimEnd('/'), UriKind.Absolute);
             this.oAuthTokenCache = oAuthTokenCache;
+            this.httpClient = new HttpClient();
+            this.httpClient.Timeout = Timeout.InfiniteTimeSpan;
         }
 
         public Uri BaseAddress
@@ -261,7 +263,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
             throw new InvalidOperationException(StringResources.ErrorMaxRetryCountExceeded);
         }
 
-        public T PostObject<T>(Uri requestUrl, object requestPayload) where T: ODataObject
+        public T PostObject<T>(Uri requestUrl, object requestPayload) where T : ODataObject
         {
             for (var count = 1; count <= ClientConstants.MaxRetryCount; count++)
             {

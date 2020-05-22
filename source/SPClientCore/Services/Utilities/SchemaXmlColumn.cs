@@ -37,17 +37,17 @@ namespace Karamem0.SharePoint.PowerShell.Services.Utilities
                 {
                     case "AllowMultipleValues":
                         element.SetAttributeValue("Mult", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "CalendarType":
                         var value = parameter.Value as CalendarType?;
                         if (value != null)
                         {
                             element.SetAttributeValue("CalType", new SchemaXmlValue((int)value.GetValueOrDefault()));
                         }
-                        continue;
+                        break;
                     case "ChoiceFormat":
                         element.SetAttributeValue("Format", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "Choices":
                         var choices = parameter.Value as IEnumerable<string>;
                         if (choices != null)
@@ -55,13 +55,13 @@ namespace Karamem0.SharePoint.PowerShell.Services.Utilities
                             element.Add(new XElement("CHOICES",
                                 choices.Select(choice => new XElement("CHOICE", new SchemaXmlValue(choice)))));
                         }
-                        continue;
+                        break;
                     case "ClientSideComponentId":
                         element.SetAttributeValue("ClientSideComponentId", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "ClientSideComponentProperties":
                         element.SetAttributeValue("ClientSideComponentProperties", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "Columns":
                         var columns = parameter.Value as IEnumerable<Column>;
                         if (columns != null)
@@ -71,127 +71,127 @@ namespace Karamem0.SharePoint.PowerShell.Services.Utilities
                                     new XAttribute("ID", new SchemaXmlValue(column.Id)),
                                     new XAttribute("Name", new SchemaXmlValue(column.Name))))));
                         }
-                        continue;
+                        break;
                     case "CurrencyLcid":
                         element.SetAttributeValue("LCID", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "CustomFormatter":
                         element.SetAttributeValue("CustomFormatter", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "DateFormat":
                         element.SetAttributeValue("Format", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "DefaultFormula":
                         element.SetElementValue("DefaultFormula", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "DefaultValue":
                         element.SetElementValue("Default", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "Description":
                         element.SetAttributeValue("Description", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "Direction":
                         element.SetAttributeValue("Direction", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "EnforceUniqueValues":
                         element.SetAttributeValue("EnforceUniqueValues", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "FillInChoice":
                         element.SetAttributeValue("FillInChoice", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "Formula":
                         element.SetElementValue("Formula", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "FriendlyFormat":
                         element.SetAttributeValue("FriendlyDisplayFormat", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "Group":
                         element.SetAttributeValue("Group", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "Hidden":
                         element.SetAttributeValue("CanToggleHidden", new SchemaXmlValue(parameter.Value));
                         element.SetAttributeValue("Hidden", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "Id":
                         element.SetAttributeValue("ID", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "Indexed":
                         element.SetAttributeValue("Indexed", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "JSLink":
                         element.SetAttributeValue("JSLink", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "MaxLength":
                         element.SetAttributeValue("Max", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "MaxValue":
                         element.SetAttributeValue("Max", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "MinValue":
                         element.SetAttributeValue("Min", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "LookupColumnName":
                         element.SetAttributeValue("ShowField", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "LookupListId":
                         element.SetAttributeValue("List", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "Name":
                         element.SetAttributeValue("Name", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "NoCrawl":
                         element.SetAttributeValue("NoCrawl", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "NumberFormat":
                         element.SetAttributeValue("Decimals", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "NumberOfLines":
                         element.SetAttributeValue("NumLines", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "OutputType":
                         element.SetAttributeValue("ResultType", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "ReadOnly":
                         element.SetAttributeValue("ReadOnly", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "RelationshipDeleteBehavior":
                         element.SetAttributeValue("RelationshipDeleteBehavior", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "Required":
                         element.SetAttributeValue("Required", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "RestrictedMode":
                         element.SetAttributeValue("RestrictedMode", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "RichText":
                         element.SetAttributeValue("RichText", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "RichTextMode":
                         element.SetAttributeValue("RichTextMode", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "SelectionGroupId":
                         element.SetAttributeValue("UserSelectionScope", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "SelectionMode":
                         element.SetAttributeValue("UserSelectionMode", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "ShowAsPercentage":
                         element.SetAttributeValue("Percentage", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "StaticName":
                         element.SetAttributeValue("StaticName", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "Title":
                         element.SetAttributeValue("DisplayName", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "UnlimitedLengthInDocumentLibrary":
                         element.SetAttributeValue("UnlimitedLengthInDocumentLibrary", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     case "UrlFormat":
                         element.SetAttributeValue("Format", new SchemaXmlValue(parameter.Value));
-                        continue;
+                        break;
                     default:
-                        continue;
+                        break;
                 }
             }
             return element.ToString(SaveOptions.DisableFormatting);

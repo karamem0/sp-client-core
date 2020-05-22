@@ -38,57 +38,64 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         }
                     }
                 );
-                var result2 = context.Runspace.InvokeCommand<Folder>(
-                    "Get-KshFolder",
+                var result2 = context.Runspace.InvokeCommand<List>(
+                    "Get-KshList",
                     new Dictionary<string, object>()
                     {
-                        { "FolderUrl", context.AppSettings["SitePageFolderUrl"] }
+                        { "LibraryType", "ClientRenderedSitePages" }
                     }
                 );
                 var result3 = context.Runspace.InvokeCommand(
                     "Add-KshSitePage",
                     new Dictionary<string, object>()
                     {
-                        { "Folder", result2.ElementAt(0) },
+                        { "List", result2.ElementAt(0) },
                         { "PageName", "Test Site Page 0" },
-                        { "LayoutType", "Article" }
+                        { "PageLayoutType", "Article" }
                     }
                 );
-                var result4 = context.Runspace.InvokeCommand<File>(
+                var result4 = context.Runspace.InvokeCommand<Folder>(
+                    "Get-KshFolder",
+                    new Dictionary<string, object>()
+                    {
+                        { "List", result2.ElementAt(0) }
+                    }
+                );
+                var result5 = context.Runspace.InvokeCommand<File>(
                     "Get-KshFile",
                     new Dictionary<string, object>()
                     {
-                        { "Folder", result2.ElementAt(0) },
+                        { "Folder", result4.ElementAt(0) },
                         { "FileName", "Test Site Page 0.aspx" }
                     }
                 );
-                var result5 = context.Runspace.InvokeCommand<ListItem>(
+                var result6 = context.Runspace.InvokeCommand<ListItem>(
                     "Get-KshListItem",
                     new Dictionary<string, object>()
                     {
-                        { "File", result4.ElementAt(0) }
+                        { "File", result5.ElementAt(0) }
                     }
                 );
-                var result6 = context.Runspace.InvokeCommand<SitePageComment>(
+                var result7 = context.Runspace.InvokeCommand<SitePageComment>(
                     "New-KshSitePageComment",
                     new Dictionary<string, object>()
                     {
-                        { "ListItem", result5.ElementAt(0) },
+                        { "ListItem", result6.ElementAt(0) },
                         { "Text", "Test Comment 0" }
                     }
                 );
-                var result7 = context.Runspace.InvokeCommand(
+                var result8 = context.Runspace.InvokeCommand(
                     "Remove-KshSitePageComment",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result6.ElementAt(0) }
+                        { "Identity", result7.ElementAt(0) }
                     }
                 );
-                var result8 = context.Runspace.InvokeCommand(
+                var result9 = context.Runspace.InvokeCommand(
                     "Remove-KshFile",
                     new Dictionary<string, object>()
                     {
-                        { "Identity", result4.ElementAt(0) }
+                        { "Identity", result5.ElementAt(0) }
                     }
                 );
             }

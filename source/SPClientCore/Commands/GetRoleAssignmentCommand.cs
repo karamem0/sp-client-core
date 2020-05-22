@@ -30,9 +30,9 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
         public RoleAssignment Identity { get; private set; }
 
-        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "ParamSet2")]
-        [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
-        public Site Site { get; private set; }
+        [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
+        [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
+        public SwitchParameter Site { get; private set; }
 
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet4")]
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet5")]
@@ -60,25 +60,13 @@ namespace Karamem0.SharePoint.PowerShell.Commands
             }
             if (this.ParameterSetName == "ParamSet2")
             {
-                if (this.Site == null)
-                {
-                    this.WriteObject(this.Service2.GetObject(this.Service1.GetObject(), this.PrincipalId));
-                }
-                else
-                {
-                    this.WriteObject(this.Service2.GetObject(this.Site, this.PrincipalId));
-                }
+                this.ValidateSwitchParameter(nameof(this.Site));
+                this.WriteObject(this.Service2.GetObject(this.Service1.GetObject(), this.PrincipalId));
             }
             if (this.ParameterSetName == "ParamSet3")
             {
-                if (this.Site == null)
-                {
-                    this.WriteObject(this.Service2.GetObjectEnumerable(this.Service1.GetObject()), this.NoEnumerate ? false : true);
-                }
-                else
-                {
-                    this.WriteObject(this.Service2.GetObjectEnumerable(this.Site), this.NoEnumerate ? false : true);
-                }
+                this.ValidateSwitchParameter(nameof(this.Site));
+                this.WriteObject(this.Service2.GetObjectEnumerable(this.Service1.GetObject()), this.NoEnumerate ? false : true);
             }
             if (this.ParameterSetName == "ParamSet4")
             {

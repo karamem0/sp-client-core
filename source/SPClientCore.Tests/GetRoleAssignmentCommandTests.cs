@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
     {
 
         [TestMethod()]
-        public void GetCurrentSiteRoleAssignments()
+        public void GetSiteRoleAssignments()
         {
             using (var context = new PSCmdletContext())
             {
@@ -42,43 +42,10 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Get-KshRoleAssignment",
                     new Dictionary<string, object>()
                     {
+                        { "Site", true }
                     }
                 );
                 var actual = result2.ToArray();
-            }
-        }
-
-        [TestMethod()]
-        public void GetSiteRoleAssignments()
-        {
-            using (var context = new PSCmdletContext())
-            {
-                var result1 = context.Runspace.InvokeCommand(
-                    "Connect-KshSite",
-                    new Dictionary<string, object>()
-                    {
-                        { "Url", context.AppSettings["BaseUrl"] },
-                        { "Credential", PSCredentialFactory.CreateCredential(
-                            context.AppSettings["LoginUserName"],
-                            context.AppSettings["LoginPassword"])
-                        }
-                    }
-                );
-                var result2 = context.Runspace.InvokeCommand<Site>(
-                    "Get-KshSite",
-                    new Dictionary<string, object>()
-                    {
-                        { "SiteUrl", context.AppSettings["Site1Url"] }
-                    }
-                );
-                var result3 = context.Runspace.InvokeCommand<RoleAssignment>(
-                    "Get-KshRoleAssignment",
-                    new Dictionary<string, object>()
-                    {
-                        { "Site", result2.ElementAt(0) }
-                    }
-                );
-                var actual = result3.ToArray();
             }
         }
 
@@ -159,33 +126,6 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void GetCurrentSiteRoleAssignmentByPrincipalId()
-        {
-            using (var context = new PSCmdletContext())
-            {
-                var result1 = context.Runspace.InvokeCommand(
-                    "Connect-KshSite",
-                    new Dictionary<string, object>()
-                    {
-                        { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                        { "Credential", PSCredentialFactory.CreateCredential(
-                            context.AppSettings["LoginUserName"],
-                            context.AppSettings["LoginPassword"])
-                        }
-                    }
-                );
-                var result2 = context.Runspace.InvokeCommand<RoleAssignment>(
-                    "Get-KshRoleAssignment",
-                    new Dictionary<string, object>()
-                    {
-                        { "PrincipalId", context.AppSettings["SiteRoleAssignment1Id"] }
-                    }
-                );
-                var actual = result2.ElementAt(0);
-            }
-        }
-
-        [TestMethod()]
         public void GetSiteRoleAssignmentByPrincipalId()
         {
             using (var context = new PSCmdletContext())
@@ -194,7 +134,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Connect-KshSite",
                     new Dictionary<string, object>()
                     {
-                        { "Url", context.AppSettings["BaseUrl"] },
+                        { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
                         { "Credential", PSCredentialFactory.CreateCredential(
                             context.AppSettings["LoginUserName"],
                             context.AppSettings["LoginPassword"])
@@ -212,7 +152,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Get-KshRoleAssignment",
                     new Dictionary<string, object>()
                     {
-                        { "Site", result2.ElementAt(0) },
+                        { "Site", true },
                         { "PrincipalId", context.AppSettings["SiteRoleAssignment1Id"] }
                     }
                 );

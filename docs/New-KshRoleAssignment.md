@@ -14,8 +14,7 @@ Creates a new role assignment.
 
 ### ParamSet1
 ```
-New-KshRoleAssignment [[-Site] <Site>] [-Principal] <Principal> [-RoleDefinition] <RoleDefinition>
- [<CommonParameters>]
+New-KshRoleAssignment [-Site] [-Principal] <Principal> [-RoleDefinition] <RoleDefinition> [<CommonParameters>]
 ```
 
 ### ParamSet2
@@ -31,13 +30,13 @@ New-KshRoleAssignment [-ListItem] <ListItem> [-Principal] <Principal> [-RoleDefi
 ```
 
 ## DESCRIPTION
-The New-KshRoleAssignment cmdlet adds a new role assignment to the site, list or list item.
+The New-KshRoleAssignment cmdlet adds a new role assignment to the current site, the specified list, or the specified list item.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> New-KshRoleAssignment -Site (Get-KshSite -SiteUrl '/sites/japan/hr') -Principal (Get-KshUser -Identity 'i:0#.f|membership|admin@example.onmicrosoft.com') -RoleDefinition (Get-KshRoleDefinition -RoleDefinitionName 'Full Control')
+PS C:\> New-KshRoleAssignment -Site -Principal (Get-KshUser -Identity 'i:0#.f|membership|admin@example.onmicrosoft.com') -RoleDefinition (Get-KshRoleDefinition -RoleDefinitionName 'Full Control')
 ```
 
 Creates a new role assignment.
@@ -105,14 +104,14 @@ Accept wildcard characters: False
 ```
 
 ### -Site
-Specifies the site.
+If specified, uses the current site.
 
 ```yaml
-Type: Site
+Type: SwitchParameter
 Parameter Sets: ParamSet1
 Aliases:
 
-Required: False
+Required: True
 Position: 0
 Default value: None
 Accept pipeline input: False

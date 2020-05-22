@@ -3659,6 +3659,592 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Get-KshChange</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>KshChange</command:noun>
+      <maml:description>
+        <maml:para>Retrieves changes.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-KshChange cmdlet retrieves changes of the current site collection, the current site, or the specified list.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-KshChange</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>List</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the list.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">List</command:parameterValue>
+          <dev:type>
+            <maml:name>List</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>BeginToken</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the change token for the beginning.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ChangeToken</command:parameterValue>
+          <dev:type>
+            <maml:name>ChangeToken</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>EndToken</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the change token for the ending.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ChangeToken</command:parameterValue>
+          <dev:type>
+            <maml:name>ChangeToken</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>FetchLimit</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the number of items.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int64</command:parameterValue>
+          <dev:type>
+            <maml:name>Int64</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NoEnumerate</maml:name>
+          <maml:Description>
+            <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Objects</maml:name>
+          <maml:Description>
+            <maml:para>Specifies objects to retrieve.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">None</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Item</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">List</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Site</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">SiteCollection</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">File</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Folder</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Alert</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">User</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Group</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ContentType</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Column</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">SecurityPolicy</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">View</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">All</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">ChangeObjects</command:parameterValue>
+          <dev:type>
+            <maml:name>ChangeObjects</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Operations</maml:name>
+          <maml:Description>
+            <maml:para>Specifies operations to retrieve.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">None</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Add</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Update</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">DeleteObject</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Rename</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Move</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Restore</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">RoleDefinitionAdd</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">RoleDefinitionDelete</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">RoleDefinitionUpdate</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">RoleAssignmentAdd</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">RoleAssignmentDelete</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">GroupMembershipAdd</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">GroupMembershipDelete</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">SystemUpdate</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Navigation</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">All</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">ChangeOperations</command:parameterValue>
+          <dev:type>
+            <maml:name>ChangeOperations</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>RecursiveAll</maml:name>
+          <maml:Description>
+            <maml:para>Specifies to retrieve recursively.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshChange</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>BeginToken</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the change token for the beginning.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ChangeToken</command:parameterValue>
+          <dev:type>
+            <maml:name>ChangeToken</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>EndToken</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the change token for the ending.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ChangeToken</command:parameterValue>
+          <dev:type>
+            <maml:name>ChangeToken</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>FetchLimit</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the number of items.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int64</command:parameterValue>
+          <dev:type>
+            <maml:name>Int64</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NoEnumerate</maml:name>
+          <maml:Description>
+            <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Objects</maml:name>
+          <maml:Description>
+            <maml:para>Specifies objects to retrieve.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">None</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Item</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">List</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Site</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">SiteCollection</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">File</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Folder</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Alert</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">User</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Group</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ContentType</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Column</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">SecurityPolicy</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">View</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">All</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">ChangeObjects</command:parameterValue>
+          <dev:type>
+            <maml:name>ChangeObjects</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Operations</maml:name>
+          <maml:Description>
+            <maml:para>Specifies operations to retrieve.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">None</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Add</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Update</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">DeleteObject</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Rename</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Move</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Restore</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">RoleDefinitionAdd</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">RoleDefinitionDelete</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">RoleDefinitionUpdate</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">RoleAssignmentAdd</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">RoleAssignmentDelete</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">GroupMembershipAdd</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">GroupMembershipDelete</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">SystemUpdate</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Navigation</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">All</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">ChangeOperations</command:parameterValue>
+          <dev:type>
+            <maml:name>ChangeOperations</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>RecursiveAll</maml:name>
+          <maml:Description>
+            <maml:para>Specifies to retrieve recursively.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Site</maml:name>
+          <maml:Description>
+            <maml:para>If specified, uses the current site.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshChange</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>BeginToken</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the change token for the beginning.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ChangeToken</command:parameterValue>
+          <dev:type>
+            <maml:name>ChangeToken</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>EndToken</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the change token for the ending.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ChangeToken</command:parameterValue>
+          <dev:type>
+            <maml:name>ChangeToken</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>FetchLimit</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the number of items.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int64</command:parameterValue>
+          <dev:type>
+            <maml:name>Int64</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NoEnumerate</maml:name>
+          <maml:Description>
+            <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Objects</maml:name>
+          <maml:Description>
+            <maml:para>Specifies objects to retrieve.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">None</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Item</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">List</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Site</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">SiteCollection</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">File</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Folder</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Alert</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">User</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Group</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ContentType</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Column</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">SecurityPolicy</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">View</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">All</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">ChangeObjects</command:parameterValue>
+          <dev:type>
+            <maml:name>ChangeObjects</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Operations</maml:name>
+          <maml:Description>
+            <maml:para>Specifies operations to retrieve.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">None</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Add</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Update</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">DeleteObject</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Rename</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Move</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Restore</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">RoleDefinitionAdd</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">RoleDefinitionDelete</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">RoleDefinitionUpdate</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">RoleAssignmentAdd</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">RoleAssignmentDelete</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">GroupMembershipAdd</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">GroupMembershipDelete</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">SystemUpdate</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Navigation</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">All</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">ChangeOperations</command:parameterValue>
+          <dev:type>
+            <maml:name>ChangeOperations</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>RecursiveAll</maml:name>
+          <maml:Description>
+            <maml:para>Specifies to retrieve recursively.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>SiteCollection</maml:name>
+          <maml:Description>
+            <maml:para>If specified, uses the current site colletion.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>BeginToken</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the change token for the beginning.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ChangeToken</command:parameterValue>
+        <dev:type>
+          <maml:name>ChangeToken</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>EndToken</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the change token for the ending.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ChangeToken</command:parameterValue>
+        <dev:type>
+          <maml:name>ChangeToken</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>FetchLimit</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the number of items.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int64</command:parameterValue>
+        <dev:type>
+          <maml:name>Int64</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>List</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the list.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">List</command:parameterValue>
+        <dev:type>
+          <maml:name>List</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>NoEnumerate</maml:name>
+        <maml:Description>
+          <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Objects</maml:name>
+        <maml:Description>
+          <maml:para>Specifies objects to retrieve.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ChangeObjects</command:parameterValue>
+        <dev:type>
+          <maml:name>ChangeObjects</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Operations</maml:name>
+        <maml:Description>
+          <maml:para>Specifies operations to retrieve.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ChangeOperations</command:parameterValue>
+        <dev:type>
+          <maml:name>ChangeOperations</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>RecursiveAll</maml:name>
+        <maml:Description>
+          <maml:para>Specifies to retrieve recursively.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Site</maml:name>
+        <maml:Description>
+          <maml:para>If specified, uses the current site.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>SiteCollection</maml:name>
+        <maml:Description>
+          <maml:para>If specified, uses the current site colletion.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Change</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshChange -SiteCollection -Objects All -Operations All</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves all changes for the current site collection.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshChange -Site -Objects All -Operations All</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves all changes for the current site.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 3 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshChange -List (Get-KshList -ListTitle 'Announcements') -Objects All -Operations All</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves all changes for the specified list.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Get-KshColumn</command:name>
       <command:verb>Get</command:verb>
       <command:noun>KshColumn</command:noun>
@@ -7820,7 +8406,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshRoleAssignment cmdlet retrieves role assignments of the specified site, list or list item.</maml:para>
+      <maml:para>The Get-KshRoleAssignment cmdlet retrieves role assignments of the current site, the specified list, or the specified list item.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -7946,18 +8532,6 @@
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Get-KshRoleAssignment</maml:name>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
-          <maml:name>Site</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the site.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Site</command:parameterValue>
-          <dev:type>
-            <maml:name>Site</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>NoEnumerate</maml:name>
           <maml:Description>
@@ -7969,21 +8543,20 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Site</maml:name>
+          <maml:Description>
+            <maml:para>If specified, uses the current site.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Get-KshRoleAssignment</maml:name>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
-          <maml:name>Site</maml:name>
-          <maml:Description>
-            <maml:para>Specifies the site.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Site</command:parameterValue>
-          <dev:type>
-            <maml:name>Site</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
           <maml:name>PrincipalId</maml:name>
           <maml:Description>
@@ -7995,6 +8568,17 @@
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Site</maml:name>
+          <maml:Description>
+            <maml:para>If specified, uses the current site.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
       </command:syntaxItem>
     </command:syntax>
@@ -8059,17 +8643,17 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Site</maml:name>
         <maml:Description>
-          <maml:para>Specifies the site.</maml:para>
+          <maml:para>If specified, uses the current site.</maml:para>
         </maml:Description>
-        <command:parameterValue required="true" variableLength="false">Site</command:parameterValue>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
-          <maml:name>Site</maml:name>
+          <maml:name>SwitchParameter</maml:name>
           <maml:uri />
         </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
+        <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
     </command:parameters>
     <command:inputTypes>
@@ -8100,7 +8684,7 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Get-KshRoleAssignment -Site (Get-KshSite -SiteUrl '/sites/japan/hr') -PrincipalId 1</dev:code>
+        <dev:code>PS C:\&gt; Get-KshRoleAssignment -Site -PrincipalId 1</dev:code>
         <dev:remarks>
           <maml:para>Retrieves a site role assignment by principal ID.</maml:para>
         </dev:remarks>
@@ -12633,7 +13217,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshUserPermission cmdlet retrieves user permissions for the specific securable object.</maml:para>
+      <maml:para>The Get-KshUserPermission cmdlet retrieves user permissions for the the specified site, list or list item.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -12704,17 +13288,16 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Site</maml:name>
           <maml:Description>
-            <maml:para>Specifies the site.</maml:para>
+            <maml:para>If specified, uses the current site.</maml:para>
           </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Site</command:parameterValue>
           <dev:type>
-            <maml:name>Site</maml:name>
+            <maml:name>SwitchParameter</maml:name>
             <maml:uri />
           </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
+          <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
       </command:syntaxItem>
     </command:syntax>
@@ -12743,17 +13326,17 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Site</maml:name>
         <maml:Description>
-          <maml:para>Specifies the site.</maml:para>
+          <maml:para>If specified, uses the current site.</maml:para>
         </maml:Description>
-        <command:parameterValue required="true" variableLength="false">Site</command:parameterValue>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
-          <maml:name>Site</maml:name>
+          <maml:name>SwitchParameter</maml:name>
           <maml:uri />
         </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
+        <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
         <maml:name>User</maml:name>
@@ -12796,7 +13379,7 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Get-KshUserPermission -User (Get-KshUser -UserName 'admin@example.onmicrosoft.com') -Site (Get-KshSite -SiteUrl '/sites/japan/hr')</dev:code>
+        <dev:code>PS C:\&gt; Get-KshUserPermission -User (Get-KshUser -UserName 'admin@example.onmicrosoft.com') -Site</dev:code>
         <dev:remarks>
           <maml:para>Retrieves user permissions for the site.</maml:para>
         </dev:remarks>
@@ -12828,7 +13411,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshUserProperty cmdlet retrieves properties of the specific user.</maml:para>
+      <maml:para>The Get-KshUserProperty cmdlet retrieves properties of the specified user.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -36227,7 +36810,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The New-KshRoleAssignment cmdlet adds a new role assignment to the site, list or list item.</maml:para>
+      <maml:para>The New-KshRoleAssignment cmdlet adds a new role assignment to the current site, the specified list, or the specified list item.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -36310,17 +36893,16 @@
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>New-KshRoleAssignment</maml:name>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>Site</maml:name>
           <maml:Description>
-            <maml:para>Specifies the site.</maml:para>
+            <maml:para>If specified, uses the current site.</maml:para>
           </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Site</command:parameterValue>
           <dev:type>
-            <maml:name>Site</maml:name>
+            <maml:name>SwitchParameter</maml:name>
             <maml:uri />
           </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
+          <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
           <maml:name>Principal</maml:name>
@@ -36397,17 +36979,17 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>Site</maml:name>
         <maml:Description>
-          <maml:para>Specifies the site.</maml:para>
+          <maml:para>If specified, uses the current site.</maml:para>
         </maml:Description>
-        <command:parameterValue required="true" variableLength="false">Site</command:parameterValue>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
-          <maml:name>Site</maml:name>
+          <maml:name>SwitchParameter</maml:name>
           <maml:uri />
         </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
+        <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
     </command:parameters>
     <command:inputTypes>
@@ -36438,7 +37020,7 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; New-KshRoleAssignment -Site (Get-KshSite -SiteUrl '/sites/japan/hr') -Principal (Get-KshUser -Identity 'i:0#.f|membership|admin@example.onmicrosoft.com') -RoleDefinition (Get-KshRoleDefinition -RoleDefinitionName 'Full Control')</dev:code>
+        <dev:code>PS C:\&gt; New-KshRoleAssignment -Site -Principal (Get-KshUser -Identity 'i:0#.f|membership|admin@example.onmicrosoft.com') -RoleDefinition (Get-KshRoleDefinition -RoleDefinitionName 'Full Control')</dev:code>
         <dev:remarks>
           <maml:para>Creates a new role assignment.</maml:para>
         </dev:remarks>
@@ -46285,22 +46867,21 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Set-KshUniqueRoleAssignmentEnabled cmdlet changes whether unique role assignment is enabled for the securable object.</maml:para>
+      <maml:para>The Set-KshUniqueRoleAssignmentEnabled cmdlet changes whether a unique role assignment is enabled for the current site, the specified list, or the specified list item.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Set-KshUniqueRoleAssignmentEnabled</maml:name>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>Site</maml:name>
           <maml:Description>
-            <maml:para>Specifies the site.</maml:para>
+            <maml:para>If specified, uses the current site.</maml:para>
           </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Site</command:parameterValue>
           <dev:type>
-            <maml:name>Site</maml:name>
+            <maml:name>SwitchParameter</maml:name>
             <maml:uri />
           </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
+          <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>ClearSubscopes</maml:name>
@@ -46434,17 +47015,16 @@
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Set-KshUniqueRoleAssignmentEnabled</maml:name>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
           <maml:name>Site</maml:name>
           <maml:Description>
-            <maml:para>Specifies the site.</maml:para>
+            <maml:para>If specified, uses the current site.</maml:para>
           </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Site</command:parameterValue>
           <dev:type>
-            <maml:name>Site</maml:name>
+            <maml:name>SwitchParameter</maml:name>
             <maml:uri />
           </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
+          <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Disabled</maml:name>
@@ -46584,17 +47164,17 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
         <maml:name>Site</maml:name>
         <maml:Description>
-          <maml:para>Specifies the site.</maml:para>
+          <maml:para>If specified, uses the current site.</maml:para>
         </maml:Description>
-        <command:parameterValue required="true" variableLength="false">Site</command:parameterValue>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
-          <maml:name>Site</maml:name>
+          <maml:name>SwitchParameter</maml:name>
           <maml:uri />
         </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
+        <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
     </command:parameters>
     <command:inputTypes>
@@ -46641,14 +47221,14 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Set-KshUniqueRoleAssignmentEnabled -Site (Get-KshSite -SiteUrl '/sites/japan/hr') -Enabled -CopyRoleAssignments -ClearSubscopes</dev:code>
+        <dev:code>PS C:\&gt; Set-KshUniqueRoleAssignmentEnabled -Site -Enabled -CopyRoleAssignments -ClearSubscopes</dev:code>
         <dev:remarks>
           <maml:para>Creates unique role assignments.</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 2 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Set-KshUniqueRoleAssignmentEnabled -Site (Get-KshSite -SiteUrl '/sites/japan/hr') -Disabled</dev:code>
+        <dev:code>PS C:\&gt; Set-KshUniqueRoleAssignmentEnabled -Site -Disabled</dev:code>
         <dev:remarks>
           <maml:para>Removes unique role assignments.</maml:para>
         </dev:remarks>

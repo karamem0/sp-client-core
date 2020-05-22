@@ -110,6 +110,36 @@
       </TableControl>
     </View>
     <View>
+      <Name>Karamem0.SharePoint.PowerShell.Models.Change</Name>
+      <ViewSelectedBy>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.Change</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <TableHeaders>
+          <TableColumnHeader>
+            <Label>ChangeToken</Label>
+          </TableColumnHeader>
+          <TableColumnHeader />
+          <TableColumnHeader />
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem>
+                <ScriptBlock>$_.ChangeToken.StringValue</ScriptBlock>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>ChangeType</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Time</PropertyName>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+    <View>
       <Name>Karamem0.SharePoint.PowerShell.Models.Column</Name>
       <ViewSelectedBy>
         <TypeName>Karamem0.SharePoint.PowerShell.Models.Column</TypeName>

@@ -58,6 +58,8 @@ SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant およ
     - [Open-KshAttachmentFile](docs/Open-KshAttachmentFile.md)
     - [Remove-KshAttachmentFile](docs/Remove-KshAttachmentFile.md)
     - [Save-KshAttachmentFile](docs/Save-KshAttachmentFile.md)
+  - 変更
+    - [Get-KshChange](docs/Get-KshChange.md)
   - 列
     - [Get-KshColumn](docs/Get-KshColumn.md)
     - [New-KshColumnBoolean](docs/New-KshColumnBoolean.md)

@@ -18,12 +18,12 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("Get-KshUserPermission")]
-    public class GetUserPermissionCommandTests
+    [TestCategory("Get-KshChange")]
+    public class GetChangeCommandTests
     {
 
         [TestMethod()]
-        public void GetSiteUserPermission()
+        public void GetSiteCollectionChanges()
         {
             using (var context = new PSCmdletContext())
             {
@@ -38,27 +38,23 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         }
                     }
                 );
-                var result2 = context.Runspace.InvokeCommand<User>(
-                    "Get-KshUser",
+                var result2 = context.Runspace.InvokeCommand<Change>(
+                    "Get-KshChange",
                     new Dictionary<string, object>()
                     {
-                        { "UserId", context.AppSettings["User1Id"] }
+                        { "SiteCollection", true },
+                        { "FetchLimit", 10 },
+                        { "Objects", "All" },
+                        { "Operations", "All" },
+                        { "RecursiveAll", true }
                     }
                 );
-                var result3 = context.Runspace.InvokeCommand<BasePermission>(
-                    "Get-KshUserPermission",
-                    new Dictionary<string, object>()
-                    {
-                        { "User", result2.ElementAt(0) },
-                        { "Site", true }
-                    }
-                );
-                var actual = result3.ElementAt(0);
+                var actual = result2.ToArray();
             }
         }
 
         [TestMethod()]
-        public void GetListUserPermission()
+        public void GetSiteChanges()
         {
             using (var context = new PSCmdletContext())
             {
@@ -73,79 +69,56 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         }
                     }
                 );
-                var result2 = context.Runspace.InvokeCommand<User>(
-                    "Get-KshUser",
+                var result2 = context.Runspace.InvokeCommand<Change>(
+                    "Get-KshChange",
                     new Dictionary<string, object>()
                     {
-                        { "UserId", context.AppSettings["User1Id"] }
+                        { "Site", true },
+                        { "FetchLimit", 10 },
+                        { "Objects", "All" },
+                        { "Operations", "All" },
+                        { "RecursiveAll", true }
                     }
                 );
-                var result3 = context.Runspace.InvokeCommand<List>(
+                var actual = result2.ToArray();
+            }
+        }
+
+        [TestMethod()]
+        public void GetListChanges()
+        {
+            using (var context = new PSCmdletContext())
+            {
+                var result1 = context.Runspace.InvokeCommand(
+                    "Connect-KshSite",
+                    new Dictionary<string, object>()
+                    {
+                        { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
+                        { "Credential", PSCredentialFactory.CreateCredential(
+                            context.AppSettings["LoginUserName"],
+                            context.AppSettings["LoginPassword"])
+                        }
+                    }
+                );
+                var result2 = context.Runspace.InvokeCommand<List>(
                     "Get-KshList",
                     new Dictionary<string, object>()
                     {
                         { "ListId", context.AppSettings["List1Id"] }
                     }
                 );
-                var result4 = context.Runspace.InvokeCommand<BasePermission>(
-                    "Get-KshUserPermission",
+                var result3 = context.Runspace.InvokeCommand<Change>(
+                    "Get-KshChange",
                     new Dictionary<string, object>()
                     {
-                        { "User", result2.ElementAt(0) },
-                        { "List", result3.ElementAt(0) }
+                        { "List", result2.ElementAt(0) },
+                        { "FetchLimit", 10 },
+                        { "Objects", "All" },
+                        { "Operations", "All" },
+                        { "RecursiveAll", true }
                     }
                 );
-                var actual = result4.ElementAt(0);
-            }
-        }
-
-        [TestMethod()]
-        public void GetListItemUserPermission()
-        {
-            using (var context = new PSCmdletContext())
-            {
-                var result1 = context.Runspace.InvokeCommand(
-                    "Connect-KshSite",
-                    new Dictionary<string, object>()
-                    {
-                        { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                        { "Credential", PSCredentialFactory.CreateCredential(
-                            context.AppSettings["LoginUserName"],
-                            context.AppSettings["LoginPassword"])
-                        }
-                    }
-                );
-                var result2 = context.Runspace.InvokeCommand<User>(
-                    "Get-KshUser",
-                    new Dictionary<string, object>()
-                    {
-                        { "UserId", context.AppSettings["User1Id"] }
-                    }
-                );
-                var result3 = context.Runspace.InvokeCommand<List>(
-                    "Get-KshList",
-                    new Dictionary<string, object>()
-                    {
-                        { "ListId", context.AppSettings["List1Id"] }
-                    }
-                );
-                var result4 = context.Runspace.InvokeCommand<ListItem>(
-                    "Get-KshListItem",
-                    new Dictionary<string, object>()
-                    {
-                        { "List", result3.ElementAt(0) },
-                        { "ItemId", context.AppSettings["ListItem1Id"] }
-                    }
-                );
-                var result5 = context.Runspace.InvokeCommand<BasePermission>(
-                    "Get-KshUserPermission",
-                    new Dictionary<string, object>()
-                    {
-                        { "User", result2.ElementAt(0) },
-                        { "ListItem", result4.ElementAt(0) }
-                    }
-                );
-                var actual = result5.ElementAt(0);
+                var actual = result3.ToArray();
             }
         }
 

@@ -254,32 +254,32 @@ function Install-TestSite {
         $appSettings.Site1Url = $site1.ServerRelativeUrl
         $appSettings.Site1Title = $site1.Title
 
+        Write-Progress -Activity 'Changing current site...' -Status 'Test Site 1'
+        Select-KshSite -Identity $site1
+
         Write-Progress -Activity 'Breaking role inheritance...' -Status 'Test Site 1'
-        Set-KshUniqueRoleAssignmentEnabled -Site $site1 -Enabled
+        Set-KshUniqueRoleAssignmentEnabled -Site -Enabled
 
         Write-Progress -Activity 'Creating site role assignments...' -Status 'Test Role Definition 1'
         $siteRoleAssignment1 = New-KshRoleAssignment `
-            -Site $site1 `
+            -Site `
             -Principal $group1 `
             -RoleDefinition $roleDefinition1
         $appSettings.SiteRoleAssignment1Id = $siteRoleAssignment1.PrincipalId
 
         Write-Progress -Activity 'Creating site role assignments...' -Status 'Test Role Definition 2'
         $siteRoleAssignment2 = New-KshRoleAssignment `
-            -Site $site1 `
+            -Site `
             -Principal $group2 `
             -RoleDefinition $roleDefinition2
         $appSettings.SiteRoleAssignment2Id = $siteRoleAssignment2.PrincipalId
 
         Write-Progress -Activity 'Creating site role assignments...' -Status 'Test Role Definition 3'
         $siteRoleAssignment3 = New-KshRoleAssignment `
-            -Site $site1 `
+            -Site `
             -Principal $group3 `
             -RoleDefinition $roleDefinition3
         $appSettings.SiteRoleAssignment3Id = $siteRoleAssignment3.PrincipalId
-
-        Write-Progress -Activity 'Changing current site...' -Status 'Test Site 1'
-        Select-KshSite -Identity $site1
 
         Write-Progress -Activity 'Creating sites...' -Status 'Test Site 2'
         $site2 = New-KshSite `
@@ -292,8 +292,11 @@ function Install-TestSite {
         $appSettings.Site2Url = $site2.ServerRelativeUrl
         $appSettings.Site2Title = $site2.Title
 
+        Write-Progress -Activity 'Changing current site...' -Status 'Test Site 2'
+        Select-KshSite -Identity $site2
+
         Write-Progress -Activity 'Breaking role inheritance...' -Status 'Test Site 2'
-        Set-KshUniqueRoleAssignmentEnabled -Site $site2 -Enabled
+        Set-KshUniqueRoleAssignmentEnabled -Site -Enabled
 
         Write-Progress -Activity 'Creating sites...' -Status 'Test Site 3'
         $site3 = New-KshSite `
@@ -306,8 +309,11 @@ function Install-TestSite {
         $appSettings.Site3Url = $site3.ServerRelativeUrl
         $appSettings.Site3Title = $site3.Title
 
+        Write-Progress -Activity 'Changing current site...' -Status 'Test Site 3'
+        Select-KshSite -Identity $site3
+
         Write-Progress -Activity 'Breaking role inheritance...' -Status 'Test Site 3'
-        Set-KshUniqueRoleAssignmentEnabled -Site $site3 -Enabled
+        Set-KshUniqueRoleAssignmentEnabled -Site -Enabled
 
         Write-Progress -Activity 'Changing current site...' -Status 'Test Site 2'
         Select-KshSite -Identity $site2
@@ -323,8 +329,11 @@ function Install-TestSite {
         $appSettings.Site4Url = $site4.ServerRelativeUrl
         $appSettings.Site4Title = $site4.Title
 
+        Write-Progress -Activity 'Changing current site...' -Status 'Test Site 4'
+        Select-KshSite -Identity $site4
+
         Write-Progress -Activity 'Breaking role inheritance...' -Status 'Test Site 4'
-        Set-KshUniqueRoleAssignmentEnabled -Site $site4 -Enabled
+        Set-KshUniqueRoleAssignmentEnabled -Site -Enabled
 
         Write-Progress -Activity 'Changing current site...' -Status 'Test Site 1'
         Select-KshSite -Identity $site1
@@ -1212,30 +1221,34 @@ function Install-TestSite {
         $appSettings.DocumentSet3Url = $documentSet3
 
         Write-Progress -Activity 'Retrieving site pages...' -Status 'Site Pages'
-        $sitePageFolder = Get-KshFolder -FolderUrl ($site1.ServerRelativeUrl + '/SitePages')
+        $sitePageList = Get-KshList -LibraryType 'ClientRenderedSitePages'
+        $sitePageFolder = Get-KshFolder -List $sitePageList
         $appSettings.SitePageFolderUrl = $sitePageFolder.ServerRelativeUrl
 
         Write-Progress -Activity 'Creating site pages...' -Status 'Test Site Page 1'
-        $sitePage1 = New-KshSitePage `
-            -Folder $sitePageFolder `
+        Add-KshSitePage `
+            -List $sitePageList `
             -PageName 'Test Site Page 1' `
-            -LayoutType 'Article'
+            -PageLayoutType 'Article'
+        $sitePage1 = Get-KshFile -FileUrl ($sitePageFolder.ServerRelativeUrl + '/Test Site Page 1.aspx')
         $appSettings.SitePage1Url = $sitePage1.ServerRelativeUrl
 
         Write-Progress -Activity 'Creating site pages...' -Status 'Test Site Page 2'
-        $sitePage2 = New-KshSitePage `
-            -Folder $sitePageFolder `
+        Add-KshSitePage `
+            -List $sitePageList `
             -PageName 'Test Site Page 2' `
-            -LayoutType 'Article'
+            -PageLayoutType 'Article'
+        $sitePage2 = Get-KshFile -FileUrl ($sitePageFolder.ServerRelativeUrl + '/Test Site Page 2.aspx')
         $appSettings.SitePage2Url = $sitePage2.ServerRelativeUrl
-    
+        
         Write-Progress -Activity 'Creating site pages...' -Status 'Test Site Page 3'
-        $sitePage3 = New-KshSitePage `
-            -Folder $sitePageFolder `
+        Add-KshSitePage `
+            -List $sitePageList `
             -PageName 'Test Site Page 3' `
-            -LayoutType 'Article'
+            -PageLayoutType 'Article'
+        $sitePage3 = Get-KshFile -FileUrl ($sitePageFolder.ServerRelativeUrl + '/Test Site Page 3.aspx')
         $appSettings.SitePage3Url = $sitePage3.ServerRelativeUrl
-
+    
         Write-Progress -Activity 'Creating site page comments...' -Status 'Test Comment 1'
         $sitePageComment1 = New-KshSitePageComment `
             -ListItem (Get-KshListItem -File $sitePage1) `

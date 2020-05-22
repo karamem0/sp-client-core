@@ -27,9 +27,9 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         {
         }
 
-        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "ParamSet2")]
-        public Site Site { get; private set; }
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+        public SwitchParameter Site { get; private set; }
 
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet3")]
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet4")]
@@ -63,20 +63,15 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         {
             if (this.ParameterSetName == "ParamSet1")
             {
+                this.ValidateSwitchParameter(nameof(this.Site));
                 this.ValidateSwitchParameter(nameof(this.Enabled));
-                if (this.Site == null)
-                {
-                    this.Service2.BreakObjectInheritance(this.Service1.GetObject(), this.CopyRoleAssignments, this.ClearSubscopes);
-                }
-                else
-                {
-                    this.Service2.BreakObjectInheritance(this.Site, this.CopyRoleAssignments, this.ClearSubscopes);
-                }
+                this.Service2.BreakObjectInheritance(this.Service1.GetObject(), this.CopyRoleAssignments, this.ClearSubscopes);
             }
             if (this.ParameterSetName == "ParamSet2")
             {
+                this.ValidateSwitchParameter(nameof(this.Site));
                 this.ValidateSwitchParameter(nameof(this.Disabled));
-                this.Service2.ResetObjectInheritance(this.Site);
+                this.Service2.ResetObjectInheritance(this.Service1.GetObject());
             }
             if (this.ParameterSetName == "ParamSet3")
             {

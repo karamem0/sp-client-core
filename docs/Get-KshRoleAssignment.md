@@ -19,12 +19,12 @@ Get-KshRoleAssignment [-Identity] <RoleAssignment> [<CommonParameters>]
 
 ### ParamSet2
 ```
-Get-KshRoleAssignment [[-Site] <Site>] [-PrincipalId] <Int32> [<CommonParameters>]
+Get-KshRoleAssignment [-Site] [-PrincipalId] <Int32> [<CommonParameters>]
 ```
 
 ### ParamSet3
 ```
-Get-KshRoleAssignment [[-Site] <Site>] [-NoEnumerate] [<CommonParameters>]
+Get-KshRoleAssignment [-Site] [-NoEnumerate] [<CommonParameters>]
 ```
 
 ### ParamSet4
@@ -48,13 +48,13 @@ Get-KshRoleAssignment [-ListItem] <ListItem> [-NoEnumerate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshRoleAssignment cmdlet retrieves role assignments of the specified site, list or list item.
+The Get-KshRoleAssignment cmdlet retrieves role assignments of the current site, the specified list, or the specified list item.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> Get-KshRoleAssignment -Site (Get-KshSite -SiteUrl '/sites/japan/hr') -PrincipalId 1
+PS C:\> Get-KshRoleAssignment -Site -PrincipalId 1
 ```
 
 Retrieves a site role assignment by principal ID.
@@ -158,15 +158,15 @@ Accept wildcard characters: False
 ```
 
 ### -Site
-Specifies the site.
+If specified, uses the current site.
 
 ```yaml
-Type: Site
+Type: SwitchParameter
 Parameter Sets: ParamSet2, ParamSet3
 Aliases:
 
-Required: False
-Position: 0
+Required: True
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

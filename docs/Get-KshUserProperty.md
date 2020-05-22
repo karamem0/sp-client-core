@@ -23,7 +23,7 @@ Get-KshUserProperty [-UserLoginName] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshUserProperty cmdlet retrieves properties of the specific user.
+The Get-KshUserProperty cmdlet retrieves properties of the specified user.
 
 ## EXAMPLES
 

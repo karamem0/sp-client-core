@@ -14,7 +14,7 @@ Retrieves an user permissions.
 
 ### ParamSet1
 ```
-Get-KshUserPermission [-User] <User> [[-Site] <Site>] [<CommonParameters>]
+Get-KshUserPermission [-User] <User> [-Site] [<CommonParameters>]
 ```
 
 ### ParamSet2
@@ -28,13 +28,13 @@ Get-KshUserPermission [-User] <User> [-ListItem] <ListItem> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshUserPermission cmdlet retrieves user permissions for the specific securable object.
+The Get-KshUserPermission cmdlet retrieves user permissions for the the specified site, list or list item.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> Get-KshUserPermission -User (Get-KshUser -UserName 'admin@example.onmicrosoft.com') -Site (Get-KshSite -SiteUrl '/sites/japan/hr')
+PS C:\> Get-KshUserPermission -User (Get-KshUser -UserName 'admin@example.onmicrosoft.com') -Site
 ```
 
 Retrieves user permissions for the site.
@@ -86,15 +86,15 @@ Accept wildcard characters: False
 ```
 
 ### -Site
-Specifies the site.
+If specified, uses the current site.
 
 ```yaml
-Type: Site
+Type: SwitchParameter
 Parameter Sets: ParamSet1
 Aliases:
 
-Required: False
-Position: 1
+Required: True
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

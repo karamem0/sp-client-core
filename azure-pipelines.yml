@@ -9,7 +9,7 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  buildVersion: '3.8.0'
+  buildVersion: '3.9.0'
   buildId: '$(Build.BuildId)'
   artifactName: 'SPClientCore'
   solutionName: 'SPClientCore'
