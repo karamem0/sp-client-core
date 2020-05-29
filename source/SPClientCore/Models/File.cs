@@ -40,6 +40,9 @@ namespace Karamem0.SharePoint.PowerShell.Models
         [JsonProperty()]
         public virtual string ContentTag { get; protected set; }
 
+        [JsonProperty("TimeCreated")]
+        public virtual DateTime Created { get; protected set; }
+
         [JsonProperty()]
         public virtual int CustomizedPageStatus { get; protected set; }
 
@@ -54,6 +57,9 @@ namespace Karamem0.SharePoint.PowerShell.Models
 
         [JsonProperty()]
         public virtual bool IrmEnabled { get; protected set; }
+
+        [JsonProperty("TimeLastModified")]
+        public virtual DateTime LastModified { get; protected set; }
 
         [JsonProperty()]
         public virtual long Length { get; protected set; }
@@ -78,12 +84,6 @@ namespace Karamem0.SharePoint.PowerShell.Models
 
         [JsonProperty()]
         public virtual string ServerRelativeUrl { get; protected set; }
-
-        [JsonProperty()]
-        public virtual DateTime TimeCreated { get; protected set; }
-
-        [JsonProperty()]
-        public virtual DateTime TimeLastModified { get; protected set; }
 
         [JsonProperty()]
         public virtual string Title { get; protected set; }

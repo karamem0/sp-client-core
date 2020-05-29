@@ -17,27 +17,27 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
 {
 
     [JsonObject()]
-    public class ODataMetadata
+    public class ODataV1Metadata
     {
 
-        public static ODataMetadata Create(Type type)
+        public static ODataV1Metadata Create(Type type)
         {
-            var attribute = type.GetCustomAttribute<ODataObjectAttribute>(false);
+            var attribute = type.GetCustomAttribute<ODataV1ObjectAttribute>(false);
             if (attribute != null)
             {
                 if (attribute.Name != null)
                 {
-                    return new ODataMetadata(null, null, attribute.Name);
+                    return new ODataV1Metadata(null, null, attribute.Name);
                 }
             }
             return null;
         }
 
-        public ODataMetadata()
+        public ODataV1Metadata()
         {
         }
 
-        public ODataMetadata(string id, Uri uri, string type)
+        public ODataV1Metadata(string id, Uri uri, string type)
         {
             this.Id = id;
             this.Uri = uri;

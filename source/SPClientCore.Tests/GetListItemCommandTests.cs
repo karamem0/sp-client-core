@@ -233,6 +233,33 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "ItemId", context.AppSettings["ListItem1Id"] }
                     }
                 );
+                var actual = result3.ElementAt(0);
+            }
+        }
+
+        [TestMethod()]
+        public void GetListItemByItemUrl()
+        {
+            using (var context = new PSCmdletContext())
+            {
+                var result1 = context.Runspace.InvokeCommand(
+                    "Connect-KshSite",
+                    new Dictionary<string, object>()
+                    {
+                        { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
+                        { "Credential", PSCredentialFactory.CreateCredential(
+                            context.AppSettings["LoginUserName"],
+                            context.AppSettings["LoginPassword"])
+                        }
+                    }
+                );
+                var result2 = context.Runspace.InvokeCommand<ListItem>(
+                    "Get-KshListItem",
+                    new Dictionary<string, object>()
+                    {
+                        { "ItemUrl", context.AppSettings["File1Url"] }
+                    }
+                );
                 var actual = result2.ElementAt(0);
             }
         }

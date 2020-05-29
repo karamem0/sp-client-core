@@ -17,7 +17,7 @@ namespace Karamem0.SharePoint.PowerShell.Models
 {
 
     [JsonObject()]
-    public class TenantSettings : ODataObject
+    public class TenantSettings : ODataV1Object
     {
 
         public TenantSettings()

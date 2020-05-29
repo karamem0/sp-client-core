@@ -34,6 +34,8 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         ListItem GetObject(List listObject, int listItemId);
 
+        ListItem GetObject(string listItemUrl);
+
         IEnumerable<ListItem> GetObjectEnumerable(List listObject);
 
         IEnumerable<ListItem> GetObjectEnumerable(List listObject, IReadOnlyDictionary<string, object> filterInformation);
@@ -207,6 +209,32 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
+        public ListItem GetObject(string listItemUrl)
+        {
+            if (listItemUrl == null)
+            {
+                throw new ArgumentNullException(nameof(listItemUrl));
+            }
+            var requestPayload = new ClientRequestPayload();
+            var objectPath1 = requestPayload.Add(
+                new ObjectPathStaticProperty(typeof(Context), "Current"));
+            var objectPath2 = requestPayload.Add(
+                new ObjectPathProperty(objectPath1.Id, "Web"));
+            var objectPath3 = requestPayload.Add(
+                new ObjectPathMethod(
+                    objectPath2.Id,
+                    "GetListItem",
+                    requestPayload.CreateParameter(listItemUrl)),
+                objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
+                objectPathId => new ClientActionQuery(objectPathId)
+                {
+                    Query = new ClientQuery(true, typeof(ListItem))
+                });
+            return this.ClientContext
+                .ProcessQuery(requestPayload)
+                .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
+        }
+
         public IEnumerable<ListItem> GetObjectEnumerable(List listObject)
         {
             if (listObject == null)
@@ -223,7 +251,8 @@ namespace Karamem0.SharePoint.PowerShell.Services
                     new ObjectPathMethod(
                         objectPath1.Id,
                         "GetItems",
-                        requestPayload.CreateParameter(new CamlQuery(new Dictionary<string, object>(){
+                        requestPayload.CreateParameter(new CamlQuery(new Dictionary<string, object>()
+                        {
                             { "ViewXml", "<View Scope=\"Recursive\"><RowLimit Paged=\"TRUE\">5000</RowLimit></View>" },
                             { "ListItemCollectionPosition", listItemCollectionPosition }
                         }))),

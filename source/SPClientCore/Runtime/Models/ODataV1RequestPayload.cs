@@ -17,10 +17,10 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
 {
 
     [JsonObject()]
-    public class ODataRequestPayload<T> where T : ODataObject
+    public class ODataV1RequestPayload<T> where T : ODataV1Object
     {
 
-        public ODataRequestPayload(IReadOnlyDictionary<string, object> parameters)
+        public ODataV1RequestPayload(IReadOnlyDictionary<string, object> parameters)
         {
             this.Entity = Activator.CreateInstance<T>();
             foreach (var property in this.Entity.GetType().GetDeclaringProperties())

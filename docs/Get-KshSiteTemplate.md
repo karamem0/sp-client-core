@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshSiteTemplate
 
 ## SYNOPSIS
-Retrieves a site template.
+Retrieves site templates.
 
 ## SYNTAX
 

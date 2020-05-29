@@ -18,7 +18,7 @@ namespace Karamem0.SharePoint.PowerShell.Models
 
     [JsonObject()]
     [ClientObject(Name = "Microsoft.Online.SharePoint.TenantAdministration.TenantLogEntry", Id = "{c13e16f4-3f73-48c7-9f72-c9c5b49f2694}")]
-    public class TenantLogEntry : ODataObject
+    public class TenantLogEntry : ClientObject
     {
 
         public TenantLogEntry()

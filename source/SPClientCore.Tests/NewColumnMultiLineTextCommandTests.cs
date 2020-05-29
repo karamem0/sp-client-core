@@ -124,7 +124,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "Group", "Test Column 0 Group" },
                         { "Hidden", true },
                         { "Id", "35aa78a6-66d7-472c-ab6b-d534193842af" },
-                        { "JSLink", "clienttemplates.js" },
+                        // { "JSLink", "clienttemplates.js" },
                         { "Name", "TestColumn0" },
                         { "NoCrawl", true },
                         { "NumberOfLines", 10 },

@@ -25,14 +25,14 @@ namespace Karamem0.SharePoint.PowerShell.Models
         {
         }
 
-        [JsonProperty()]
-        public virtual DateTime CreatedDate { get; protected set; }
+        [JsonProperty("CreatedDate")]
+        public virtual DateTime Created { get; protected set; }
 
         [JsonProperty()]
         public virtual Guid Id { get; protected set; }
 
-        [JsonProperty()]
-        public virtual DateTime LastModifiedDate { get; protected set; }
+        [JsonProperty("LastModifiedDate")]
+        public virtual DateTime LastModified { get; protected set; }
 
         [JsonProperty()]
         public virtual string Name { get; protected set; }

@@ -6,30 +6,23 @@
 // https://github.com/karamem0/SPClientCore/blob/master/LICENSE
 //
 
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models
 {
 
-    [JsonObject()]
-    public class ODataDeferred
+    public class ODataV1ObjectAttribute : Attribute   
     {
 
-        public ODataDeferred()
+        public ODataV1ObjectAttribute()
         {
         }
 
-        public ODataDeferred(Uri uri)
-        {
-            this.Uri = uri;
-        }
-
-        [JsonProperty("uri")]
-        public Uri Uri { get; private set; }
+        public string Name { get; set; }
 
     }
 

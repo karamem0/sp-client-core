@@ -81,12 +81,50 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                 Trace.WriteLine(responseContent);
                 try
                 {
-                    var responsePayload = JsonConvert.DeserializeObject<ODataResultPayload>(
+                    if (responseMessage.IsSuccessStatusCode)
+                    {
+                        return;
+                    }
+                    else if ((int)responseMessage.StatusCode == 429)
+                    {
+                        Thread.Sleep(responseMessage.Headers.RetryAfter.Delta.GetValueOrDefault(TimeSpan.FromSeconds(1)));
+                    }
+                    else
+                    {
+                        var responsePayload = JsonConvert.DeserializeObject<ODataResultPayload>(
+                            responseContent,
+                            JsonSerializerManager.JsonSerializerSettings);
+                        throw new InvalidOperationException(responsePayload.Error.Message.Value);
+                    }
+                }
+                catch (JsonException)
+                {
+                    throw new InvalidOperationException(responseContent);
+                }
+            }
+        }
+
+        public T GetObject<T>(Uri requestUrl) where T : ODataV1Object
+        {
+            for (var count = 1; count <= ClientConstants.MaxRetryCount; count++)
+            {
+                var requestMessage = new HttpRequestMessage(HttpMethod.Get, requestUrl);
+                requestMessage.Headers.Add("Authorization", "Bearer " + this.oAuthTokenCache.GetAccessToken());
+                requestMessage.Headers.Add("Accept", "application/json;odata=verbose");
+                requestMessage.Headers.Add("User-Agent", "NONISV|karamem0|SPClientCore/" + this.GetType().Assembly.GetName().Version.ToString(3));
+                Trace.WriteLine(requestMessage);
+                var responseMessage = this.httpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
+                var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                Trace.WriteLine(responseMessage);
+                Trace.WriteLine(responseContent);
+                try
+                {
+                    var responsePayload = JsonConvert.DeserializeObject<ODataV1ResultPayload<T>>(
                         responseContent,
                         JsonSerializerManager.JsonSerializerSettings);
                     if (responseMessage.IsSuccessStatusCode)
                     {
-                        return;
+                        return responsePayload.Entry;
                     }
                     else if ((int)responseMessage.StatusCode == 429)
                     {
@@ -102,15 +140,16 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                     throw new InvalidOperationException(responseContent);
                 }
             }
+            throw new InvalidOperationException(StringResources.ErrorMaxRetryCountExceeded);
         }
 
-        public T GetObject<T>(Uri requestUrl) where T : ODataObject
+        public T GetObjectV2<T>(Uri requestUrl) where T : ODataV2Object
         {
             for (var count = 1; count <= ClientConstants.MaxRetryCount; count++)
             {
                 var requestMessage = new HttpRequestMessage(HttpMethod.Get, requestUrl);
                 requestMessage.Headers.Add("Authorization", "Bearer " + this.oAuthTokenCache.GetAccessToken());
-                requestMessage.Headers.Add("Accept", "application/json;odata=verbose");
+                requestMessage.Headers.Add("Accept", "application/json");
                 requestMessage.Headers.Add("User-Agent", "NONISV|karamem0|SPClientCore/" + this.GetType().Assembly.GetName().Version.ToString(3));
                 Trace.WriteLine(requestMessage);
                 var responseMessage = this.httpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
@@ -119,12 +158,9 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                 Trace.WriteLine(responseContent);
                 try
                 {
-                    var responsePayload = JsonConvert.DeserializeObject<ODataResultPayload<T>>(
-                        responseContent,
-                        JsonSerializerManager.JsonSerializerSettings);
                     if (responseMessage.IsSuccessStatusCode)
                     {
-                        return responsePayload.Entry;
+                        return JsonConvert.DeserializeObject<T>(responseContent, JsonSerializerManager.JsonSerializerSettings);
                     }
                     else if ((int)responseMessage.StatusCode == 429)
                     {
@@ -132,6 +168,9 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                     }
                     else
                     {
+                        var responsePayload = JsonConvert.DeserializeObject<ODataResultPayload>(
+                            responseContent,
+                            JsonSerializerManager.JsonSerializerSettings);
                         throw new InvalidOperationException(responsePayload.Error.Message.Value);
                     }
                 }
@@ -192,9 +231,6 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                 Trace.WriteLine(responseContent);
                 try
                 {
-                    var responsePayload = JsonConvert.DeserializeObject<ODataResultPayload>(
-                        responseContent,
-                        JsonSerializerManager.JsonSerializerSettings);
                     if (responseMessage.IsSuccessStatusCode)
                     {
                         return;
@@ -205,6 +241,9 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                     }
                     else
                     {
+                        var responsePayload = JsonConvert.DeserializeObject<ODataResultPayload>(
+                            responseContent,
+                            JsonSerializerManager.JsonSerializerSettings);
                         throw new InvalidOperationException(responsePayload.Error.Message.Value);
                     }
                 }
@@ -239,9 +278,6 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                 Trace.WriteLine(responseContent);
                 try
                 {
-                    var responsePayload = JsonConvert.DeserializeObject<ODataResultPayload>(
-                        responseContent,
-                        JsonSerializerManager.JsonSerializerSettings);
                     if (responseMessage.IsSuccessStatusCode)
                     {
                         return;
@@ -252,6 +288,9 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                     }
                     else
                     {
+                        var responsePayload = JsonConvert.DeserializeObject<ODataResultPayload>(
+                            responseContent,
+                            JsonSerializerManager.JsonSerializerSettings);
                         throw new InvalidOperationException(responsePayload.Error.Message.Value);
                     }
                 }
@@ -263,7 +302,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
             throw new InvalidOperationException(StringResources.ErrorMaxRetryCountExceeded);
         }
 
-        public T PostObject<T>(Uri requestUrl, object requestPayload) where T : ODataObject
+        public T PostObject<T>(Uri requestUrl, object requestPayload) where T : ODataV1Object
         {
             for (var count = 1; count <= ClientConstants.MaxRetryCount; count++)
             {
@@ -286,7 +325,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                 Trace.WriteLine(responseContent);
                 try
                 {
-                    var responsePayload = JsonConvert.DeserializeObject<ODataResultPayload<T>>(
+                    var responsePayload = JsonConvert.DeserializeObject<ODataV1ResultPayload<T>>(
                         responseContent,
                         JsonSerializerManager.JsonSerializerSettings);
                     if (responseMessage.IsSuccessStatusCode)
@@ -332,7 +371,9 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
             Trace.WriteLine(responseContent);
             try
             {
-                var responsePayload = JsonConvert.DeserializeObject<ODataResultPayload>(responseContent);
+                var responsePayload = JsonConvert.DeserializeObject<ODataResultPayload>(
+                    responseContent,
+                    JsonSerializerManager.JsonSerializerSettings);
                 if (responsePayload.Error != null)
                 {
                     throw new InvalidOperationException(responsePayload.Error.Message.Value);
@@ -344,7 +385,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
             }
         }
 
-        public T PostStream<T>(Uri requestUrl, System.IO.Stream requestStream) where T : ODataObject
+        public T PostStream<T>(Uri requestUrl, System.IO.Stream requestStream) where T : ODataV1Object
         {
             if (requestUrl == null)
             {
@@ -366,7 +407,9 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
             Trace.WriteLine(responseContent);
             try
             {
-                var responsePayload = JsonConvert.DeserializeObject<ODataResultPayload<T>>(responseContent);
+                var responsePayload = JsonConvert.DeserializeObject<ODataV1ResultPayload<T>>(
+                    responseContent,
+                    JsonSerializerManager.JsonSerializerSettings);
                 if (responseMessage.IsSuccessStatusCode)
                 {
                     return responsePayload.Entry;

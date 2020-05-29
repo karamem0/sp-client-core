@@ -54,7 +54,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                     listItemObject.ObjectIdentity.Split(':').SkipLast(2).Last(),
                     listItemObject.Id)
                 .ConcatQuery(ODataQuery.Create<SitePageComment>());
-            var requestPayload = new ODataRequestPayload<SitePageCommentCreationInformation>(creationInformation);
+            var requestPayload = new ODataV1RequestPayload<SitePageCommentCreationInformation>(creationInformation);
             return this.ClientContext.PostObject<SitePageComment>(requestUrl, requestPayload.Entity);
         }
 
@@ -71,7 +71,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                     commentObject.ItemId,
                     commentObject.Id)
                 .ConcatQuery(ODataQuery.Create<SitePageComment>());
-            var requestPayload = new ODataRequestPayload<SitePageCommentCreationInformation>(creationInformation);
+            var requestPayload = new ODataV1RequestPayload<SitePageCommentCreationInformation>(creationInformation);
             return this.ClientContext.PostObject<SitePageComment>(requestUrl, requestPayload.Entity);
         }
 
@@ -123,7 +123,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                     listItemObject.ObjectIdentity.Split(':').SkipLast(2).Last(),
                     listItemObject.Id)
                 .ConcatQuery(ODataQuery.Create<SitePageComment>());
-            return this.ClientContext.GetObject<ODataObjectEnumerable<SitePageComment>>(requestUrl);
+            return this.ClientContext.GetObject<ODataV1ObjectEnumerable<SitePageComment>>(requestUrl);
         }
 
         public void RemoveObject(SitePageComment commentObject)

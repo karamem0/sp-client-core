@@ -17,8 +17,8 @@ namespace Karamem0.SharePoint.PowerShell.Models
 {
 
     [JsonObject()]
-    [ODataObject(Name = "Microsoft.SharePoint.Webhooks.Subscription")]
-    public class SubscriptionCreationInformation : ODataObject
+    [ODataV1Object(Name = "Microsoft.SharePoint.Webhooks.Subscription")]
+    public class SubscriptionCreationInformation : ODataV1Object
     {
 
         public SubscriptionCreationInformation()

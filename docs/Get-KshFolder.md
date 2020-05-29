@@ -42,35 +42,40 @@ Get-KshFolder [-Folder] <Folder> [-FolderName] <String> [<CommonParameters>]
 Get-KshFolder [-Folder] <Folder> [-NoEnumerate] [<CommonParameters>]
 ```
 
+### ParamSet7
+```
+Get-KshFolder [-NoEnumerate] [<CommonParameters>]
+```
+
 ## DESCRIPTION
 The Get-KshFolder cmdlet retrieves folders of the specified folder.
 
 ## EXAMPLES
 
-### Example 2
+### Example 1
 ```powershell
 PS C:\> Get-KshFolder -FolderId 'ca511d76-828d-4c86-a16c-c3a544eef5da'
 ```
 
 Retrieves a folder by folder ID.
 
-### Example 3
+### Example 2
 ```powershell
 PS C:\> Get-KshFolder -FolderUrl '/sites/japan/hr/Shared%20Documents/Templates'
 ```
 
 Retrieves a folder by folder URL.
 
-### Example 4
+### Example 3
 ```powershell
-PS C:\> Get-KshFolder -Folder '/sites/japan/hr/Shared%20Documents' -FolderName 'Templates'
+PS C:\> Get-KshFolder -Folder (Get-KshFolder -FolderUrl '/sites/japan/hr/Shared%20Documents') -FolderName 'Templates'
 ```
 
 Retrieves a folder by folder and folder name.
 
-### Example 5
+### Example 4
 ```powershell
-PS C:\> Get-KshFolder -Folder '/sites/japan/hr/Shared%20Documents'
+PS C:\> Get-KshFolder -Folder (Get-KshFolder -FolderUrl '/sites/japan/hr/Shared%20Documents')
 ```
 
 Retrieves all folders.
@@ -172,7 +177,7 @@ If specified, suppresses to enumerate objects.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: ParamSet6
+Parameter Sets: ParamSet6, ParamSet7
 Aliases:
 
 Required: False

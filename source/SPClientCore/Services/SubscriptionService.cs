@@ -57,7 +57,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             var requestUrl = listUrl
                 .ConcatPath("subscriptions")
                 .ConcatQuery(ODataQuery.Create<Subscription>());
-            var requestPayload = new ODataRequestPayload<SubscriptionCreationInformation>(
+            var requestPayload = new ODataV1RequestPayload<SubscriptionCreationInformation>(
                 creationInformation
                     .Concat(new Dictionary<string, object>()
                     {
@@ -110,7 +110,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             var requestUrl = this.ClientContext.BaseAddress
                 .ConcatPath("_api/web/lists('{0}')/subscriptions", listObject.Id)
                 .ConcatQuery(ODataQuery.Create<Subscription>());
-            return this.ClientContext.GetObject<ODataObjectEnumerable<Subscription>>(requestUrl);
+            return this.ClientContext.GetObject<ODataV1ObjectEnumerable<Subscription>>(requestUrl);
         }
 
         public void UpdateObject(Subscription subscriptionObject, IReadOnlyDictionary<string, object> modificationInformation)
@@ -128,7 +128,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                     "_api/web/lists('{0}')/subscriptions('{1}')",
                     subscriptionObject.Resource,
                     subscriptionObject.Id);
-            var requestPayload = new ODataRequestPayload<SubscriptionModificationInformation>(modificationInformation);
+            var requestPayload = new ODataV1RequestPayload<SubscriptionModificationInformation>(modificationInformation);
             this.ClientContext.PatchObject(requestUrl, requestPayload.Entity);
         }
 

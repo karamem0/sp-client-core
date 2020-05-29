@@ -65,7 +65,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
                     appName,
                     overwrite)
                 .ConcatQuery("$expand=ListItemAllFields&$select=ListItemAllFields/UniqueId");
-            var file = this.ClientContext.PostStream<ODataObject>(requestUrl, appContent);
+            var file = this.ClientContext.PostStream<ODataV1Object>(requestUrl, appContent);
             var item = file["ListItemAllFields"] as JToken;
             return this.GetObject(new Guid(item["UniqueId"].ToString()));
         }
@@ -98,7 +98,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
             var requestUrl = this.ClientContext.BaseAddress
                 .ConcatPath("_api/web/sitecollectionappcatalog/availableapps")
                 .ConcatQuery(ODataQuery.Create<App>());
-            return this.ClientContext.GetObject<ODataObjectEnumerable<App>>(requestUrl);
+            return this.ClientContext.GetObject<ODataV1ObjectEnumerable<App>>(requestUrl);
         }
 
         public void InstallObject(App appObject)

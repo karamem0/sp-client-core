@@ -28,8 +28,8 @@ namespace Karamem0.SharePoint.PowerShell.Models
         [JsonProperty("ContributorPrincipalNames")]
         public virtual IReadOnlyList<string> Contributors { get; protected set; }
 
-        [JsonProperty()]
-        public override DateTime CreatedDate { get; protected set; }
+        [JsonProperty("CreatedDate")]
+        public override DateTime Created { get; protected set; }
 
         [JsonProperty()]
         public virtual string Description { get; protected set; }
@@ -46,8 +46,8 @@ namespace Karamem0.SharePoint.PowerShell.Models
         [JsonProperty()]
         public virtual bool IsSystemGroup { get; protected set; }
 
-        [JsonProperty()]
-        public override DateTime LastModifiedDate { get; protected set; }
+        [JsonProperty("LastModifiedDate")]
+        public override DateTime LastModified { get; protected set; }
 
         [JsonProperty()]
         public override string Name { get; protected set; }

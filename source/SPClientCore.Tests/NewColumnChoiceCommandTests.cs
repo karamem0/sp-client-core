@@ -129,7 +129,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "Hidden", true },
                         { "Id", "35aa78a6-66d7-472c-ab6b-d534193842af" },
                         { "Indexed", true },
-                        { "JSLink", "clienttemplates.js" },
+                        // { "JSLink", "clienttemplates.js" },
                         { "Name", "TestColumn0" },
                         { "NoCrawl", true },
                         { "ReadOnly", true },

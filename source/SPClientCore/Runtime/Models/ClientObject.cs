@@ -62,7 +62,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
             }
         }
 
-        protected ClientObject()
+        public ClientObject()
         {
             this.ExtensionProperties = new Dictionary<string, JToken>();
         }

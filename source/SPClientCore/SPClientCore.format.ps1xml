@@ -274,6 +274,30 @@
       </TableControl>
     </View>
     <View>
+      <Name>Karamem0.SharePoint.PowerShell.Models.Drive</Name>
+      <ViewSelectedBy>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.Drive</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <TableHeaders>
+          <TableColumnHeader />
+          <TableColumnHeader />
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>Id</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Name</PropertyName>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+    <View>
       <Name>Karamem0.SharePoint.PowerShell.Models.Feature</Name>
       <ViewSelectedBy>
         <TypeName>Karamem0.SharePoint.PowerShell.Models.Feature</TypeName>
@@ -323,10 +347,10 @@
                 <PropertyName>Length</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>TimeCreated</PropertyName>
+                <PropertyName>Created</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>TimeLastModified</PropertyName>
+                <PropertyName>LastModified</PropertyName>
               </TableColumnItem>
             </TableColumnItems>
           </TableRowEntry>
@@ -383,10 +407,10 @@
                 <PropertyName>ItemCount</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>TimeCreated</PropertyName>
+                <PropertyName>Created</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>TimeLastModified</PropertyName>
+                <PropertyName>LastModified</PropertyName>
               </TableColumnItem>
             </TableColumnItems>
           </TableRowEntry>
@@ -778,7 +802,7 @@
                 <PropertyName>Name</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>LastModifiedDate</PropertyName>
+                <PropertyName>LastModified</PropertyName>
               </TableColumnItem>
             </TableColumnItems>
           </TableRowEntry>

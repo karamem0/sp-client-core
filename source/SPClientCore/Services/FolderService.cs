@@ -36,6 +36,8 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         Folder GetObject(Folder folderObject, string folderName);
 
+        IEnumerable<Folder> GetObjectEnumerable();
+
         IEnumerable<Folder> GetObjectEnumerable(Folder folderObject);
 
         Guid RecycleObject(Folder folderObject);
@@ -236,6 +238,26 @@ namespace Karamem0.SharePoint.PowerShell.Services
             return this.ClientContext
                 .ProcessQuery(requestPayload)
                 .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
+        }
+
+        public IEnumerable<Folder> GetObjectEnumerable()
+        {
+            var requestPayload = new ClientRequestPayload();
+            var objectPath1 = requestPayload.Add(
+                new ObjectPathStaticProperty(typeof(Context), "Current"));
+            var objectPath2 = requestPayload.Add(
+                new ObjectPathProperty(objectPath1.Id, "Web"));
+            var objectPath3 = requestPayload.Add(
+                new ObjectPathProperty(objectPath2.Id, "Folders"),
+                objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
+                objectPathId => new ClientActionQuery(objectPathId)
+                {
+                    Query = ClientQuery.Empty,
+                    ChildItemQuery = new ClientQuery(true)
+                });
+            return this.ClientContext
+                .ProcessQuery(requestPayload)
+                .ToObject<FolderEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
         public IEnumerable<Folder> GetObjectEnumerable(Folder folderObject)

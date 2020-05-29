@@ -38,12 +38,12 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
                 .SingleOrDefault();
         }
 
-        protected ClientValueObject()
+        public ClientValueObject()
         {
             this.ExtensionProperties = new Dictionary<string, JToken>();
         }
 
-        protected ClientValueObject(IReadOnlyDictionary<string, object> parameters)
+        public ClientValueObject(IReadOnlyDictionary<string, object> parameters)
         {
             if (parameters == null)
             {
@@ -82,7 +82,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
         }
 
         [JsonProperty("_ObjectType_")]
-        public string ObjectType { get; private set; }
+        internal string ObjectType { get; private set; }
 
         [JsonExtensionData()]
         protected Dictionary<string, JToken> ExtensionProperties { get; private set; }

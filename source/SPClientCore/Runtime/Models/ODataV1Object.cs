@@ -7,6 +7,7 @@
 //
 
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,15 +17,19 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
 {
 
     [JsonObject()]
-    public class ODataResultPayload<T> : ODataResultPayload where T : ODataObject
+    public class ODataV1Object : ODataObject
     {
 
-        public ODataResultPayload()
+        public ODataV1Object()
         {
+            this.Metadata = ODataV1Metadata.Create(this.GetType());
         }
 
-        [JsonProperty("d")]
-        public T Entry { get; private set; }
+        [JsonProperty("__deferred")]
+        internal ODataV1Deferred Deferred { get; private set; }
+
+        [JsonProperty("__metadata")]
+        internal ODataV1Metadata Metadata { get; private set; }
 
     }
 

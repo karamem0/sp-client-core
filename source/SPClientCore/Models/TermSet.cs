@@ -28,8 +28,8 @@ namespace Karamem0.SharePoint.PowerShell.Models
         [JsonProperty()]
         public virtual string Contact { get; protected set; }
 
-        [JsonProperty()]
-        public override DateTime CreatedDate { get; protected set; }
+        [JsonProperty("CreatedDate")]
+        public override DateTime Created { get; protected set; }
 
         [JsonProperty()]
         public override IReadOnlyDictionary<string, string> CustomProperties { get; protected set; }
@@ -49,8 +49,8 @@ namespace Karamem0.SharePoint.PowerShell.Models
         [JsonProperty()]
         public virtual bool IsOpenForTermCreation { get; protected set; }
 
-        [JsonProperty()]
-        public override DateTime LastModifiedDate { get; protected set; }
+        [JsonProperty("LastModifiedDate")]
+        public override DateTime LastModified { get; protected set; }
 
         [JsonProperty()]
         public override string Name { get; protected set; }

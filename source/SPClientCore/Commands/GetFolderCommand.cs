@@ -47,6 +47,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         public string FolderName { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet6")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet7")]
         public SwitchParameter NoEnumerate { get; private set; }
 
         protected override void ProcessRecordCore()
@@ -81,6 +82,10 @@ namespace Karamem0.SharePoint.PowerShell.Commands
             if (this.ParameterSetName == "ParamSet6")
             {
                 this.WriteObject(this.Service.GetObjectEnumerable(this.Folder), this.NoEnumerate ? false : true);
+            }
+            if (this.ParameterSetName == "ParamSet7")
+            {
+                this.WriteObject(this.Service.GetObjectEnumerable(), this.NoEnumerate ? false : true);
             }
         }
 

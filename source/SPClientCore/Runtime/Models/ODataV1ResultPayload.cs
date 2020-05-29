@@ -6,23 +6,25 @@
 // https://github.com/karamem0/SPClientCore/blob/master/LICENSE
 //
 
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models
 {
 
-    public class ODataObjectAttribute : Attribute   
+    [JsonObject()]
+    public class ODataV1ResultPayload<T> : ODataResultPayload where T : ODataV1Object
     {
 
-        public ODataObjectAttribute()
+        public ODataV1ResultPayload()
         {
         }
 
-        public string Name { get; set; }
+        [JsonProperty("d")]
+        public T Entry { get; private set; }
 
     }
 

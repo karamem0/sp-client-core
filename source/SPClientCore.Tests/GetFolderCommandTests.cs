@@ -42,6 +42,32 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Get-KshFolder",
                     new Dictionary<string, object>()
                     {
+                    }
+                );
+                var actual = result2.ToArray();
+            }
+        }
+
+        [TestMethod()]
+        public void GetFoldersByFolder()
+        {
+            using (var context = new PSCmdletContext())
+            {
+                var result1 = context.Runspace.InvokeCommand(
+                    "Connect-KshSite",
+                    new Dictionary<string, object>()
+                    {
+                        { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
+                        { "Credential", PSCredentialFactory.CreateCredential(
+                            context.AppSettings["LoginUserName"],
+                            context.AppSettings["LoginPassword"])
+                        }
+                    }
+                );
+                var result2 = context.Runspace.InvokeCommand<Folder>(
+                    "Get-KshFolder",
+                    new Dictionary<string, object>()
+                    {
                         { "FolderUrl", context.AppSettings["Folder1Url"] }
                     }
                 );

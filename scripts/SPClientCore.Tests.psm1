@@ -562,7 +562,7 @@ function Install-TestSite {
             -Choices @('Test Value 1', 'Test Value 2', 'Test Value 3') `
             -Name 'TestColumn3' `
             -Title 'Test Column 3'
-        $null = New-KshContentTypeColumn ` `
+        $null = New-KshContentTypeColumn `
             -ContentType $siteContentType1 `
             -Column $column3
         $null = New-KshContentTypeColumn `
@@ -1302,6 +1302,30 @@ function Install-TestSite {
 
         Write-Progress -Activity 'Changing current site...' -Status 'Root Site'
         Get-KshSite -SiteUrl $baseUrl | Select-KshSite
+
+        Write-Progress -Activity 'Creating storage entities...' -Status 'Test Entity 1'
+        Add-KshStorageEntity `
+            -Key 'Test Entity 1' `
+            -Value 'Test Value 1' `
+            -Description 'Test Value 1 Description' `
+            -Comment 'Test Value 1 Comment'
+        $appSettings.StorageEntity1Key = 'Test Entity 1'
+
+        Write-Progress -Activity 'Creating storage entities...' -Status 'Test Entity 2'
+        Add-KshStorageEntity `
+            -Key 'Test Entity 2' `
+            -Value 'Test Value 2' `
+            -Description 'Test Value 2 Description' `
+            -Comment 'Test Value 2 Comment'
+        $appSettings.StorageEntity2Key = 'Test Entity 2'
+
+        Write-Progress -Activity 'Creating storage entities...' -Status 'Test Entity 3'
+        Add-KshStorageEntity `
+            -Key 'Test Entity 3' `
+            -Value 'Test Value 3' `
+            -Description 'Test Value 3 Description' `
+            -Comment 'Test Value 3 Comment'
+        $appSettings.StorageEntity3Key = 'Test Entity 3'
 
         Write-Progress -Activity 'Retrieving app paths...' -Status 'Processing'
         $app0Path = Resolve-Path "$PSScriptRoot/TestApp0/sharepoint/solution/TestApp0.sppkg"

@@ -17,15 +17,15 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
 {
 
     [JsonObject()]
-    public class ODataObjectEnumerable<T> : ODataObject, IEnumerable<T>
+    public class ODataV1ObjectEnumerable<T> : ODataV1Object, IEnumerable<T> where T : ODataV1Object
     {
 
-        public ODataObjectEnumerable()
+        public ODataV1ObjectEnumerable()
         {
         }
 
         [JsonConstructor()]
-        public ODataObjectEnumerable(T[] results)
+        public ODataV1ObjectEnumerable(T[] results)
         {
             this.Entries = results;
         }

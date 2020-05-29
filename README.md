@@ -60,6 +60,10 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Save-KshAttachmentFile](docs/Save-KshAttachmentFile.md)
   - Changes
     - [Get-KshChange](docs/Get-KshChange.md)
+  - Client Components Properties
+    - [Add-KshStorageEntity](docs/Add-KshStorageEntity.md)
+    - [Get-KshStorageEntity](docs/Get-KshStorageEntity.md)
+    - [Remove-KshStorageEntity](docs/Remove-KshStorageEntity.md)
   - Columns
     - [Get-KshColumn](docs/Get-KshColumn.md)
     - [New-KshColumnBoolean](docs/New-KshColumnBoolean.md)
@@ -119,6 +123,8 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Remove-KshDocumentSetDefaultDocument](docs/Remove-KshDocumentSetDefaultDocument.md)
     - [Remove-KshDocumentSetSharedColumn](docs/Remove-KshDocumentSetSharedColumn.md)
     - [Remove-KshDocumentSetWelcomePageColumn](docs/Remove-KshDocumentSetWelcomePageColumn.md)
+  - Drives
+    - [Get-KshDrive](docs/Get-KshDrive.md)
   - Files
     - [Approve-KshFile](docs/Approve-KshFile.md)
     - [Deny-KshFile](docs/Deny-KshFile.md)

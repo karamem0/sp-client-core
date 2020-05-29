@@ -17,7 +17,7 @@ namespace Karamem0.SharePoint.PowerShell.Models
 {
 
     [JsonObject()]
-    public class SitePageComment : ODataObject
+    public class SitePageComment : ODataV1Object
     {
 
         public SitePageComment()
@@ -28,7 +28,7 @@ namespace Karamem0.SharePoint.PowerShell.Models
         public virtual Principal Author { get; protected set; }
 
         [JsonProperty("createdDate")]
-        public virtual DateTime CreatedDate { get; protected set; }
+        public virtual DateTime Created { get; protected set; }
 
         [JsonProperty("id")]
         public virtual int Id { get; protected set; }

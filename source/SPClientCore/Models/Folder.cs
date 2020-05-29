@@ -28,6 +28,9 @@ namespace Karamem0.SharePoint.PowerShell.Models
         [JsonProperty()]
         public virtual IReadOnlyCollection<ContentTypeId> ContentTypeOrder { get; protected set; }
 
+        [JsonProperty("TimeCreated")]
+        public virtual DateTime Created { get; protected set; }
+
         [JsonProperty()]
         public virtual bool Exists { get; protected set; }
 
@@ -37,6 +40,9 @@ namespace Karamem0.SharePoint.PowerShell.Models
         [JsonProperty()]
         public virtual int ItemCount { get; protected set; }
 
+        [JsonProperty("TimeLastModified")]
+        public virtual DateTime LastModified { get; protected set; }
+
         [JsonProperty()]
         public virtual string Name { get; protected set; }
 
@@ -45,12 +51,6 @@ namespace Karamem0.SharePoint.PowerShell.Models
 
         [JsonProperty()]
         public virtual string ServerRelativeUrl { get; protected set; }
-
-        [JsonProperty()]
-        public virtual DateTime TimeCreated { get; protected set; }
-
-        [JsonProperty()]
-        public virtual DateTime TimeLastModified { get; protected set; }
 
         [JsonProperty()]
         public virtual IReadOnlyCollection<ContentTypeId> UniqueContentTypeOrder { get; protected set; }

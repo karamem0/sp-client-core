@@ -17,7 +17,7 @@ namespace Karamem0.SharePoint.PowerShell.Models
 {
 
     [JsonObject()]
-    public class App : ODataObject
+    public class App : ODataV1Object
     {
 
         public App()

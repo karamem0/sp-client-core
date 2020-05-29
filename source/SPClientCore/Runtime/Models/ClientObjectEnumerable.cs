@@ -16,10 +16,10 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models
 {
 
-    public class ClientObjectEnumerable<T> : ClientObject, IEnumerable<T>
+    public abstract class ClientObjectEnumerable<T> : ClientObject, IEnumerable<T>
     {
 
-        public ClientObjectEnumerable()
+        protected ClientObjectEnumerable()
         {
         }
 

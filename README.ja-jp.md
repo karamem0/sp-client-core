@@ -27,7 +27,7 @@ CSOM の名前付けは非プログラマーにとって難解です。例えば
 
 ### 先端認証の使用
 
-SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant および Password Grant)。もしあなたが MFA を有効にしていても異なるデバイスの Web ブラウザーでログインすることができます。MFA を有効にしていないアカウントであれば、ユーザー名とパスワードを使ってログインできます (組織の承認が必要です)。
+SPClientCore は Azure AD 2.0 認証をサポートします (Device Code Grant および Password Grant)。もしあなたが MFA を有効にしていても異なるデバイスの Web ブラウザーでログインすることができます。MFA を有効にしていないアカウントであれば、ユーザー名とパスワードを使ってログインできます (組織の承認が必要です)。
 
 ## 依存関係
 
@@ -60,6 +60,10 @@ SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant およ
     - [Save-KshAttachmentFile](docs/Save-KshAttachmentFile.md)
   - 変更
     - [Get-KshChange](docs/Get-KshChange.md)
+  - クライアント コンポーネントのプロパティ
+    - [Add-KshStorageEntity](docs/Add-KshStorageEntity.md)
+    - [Get-KshStorageEntity](docs/Get-KshStorageEntity.md)
+    - [Remove-KshStorageEntity](docs/Remove-KshStorageEntity.md)
   - 列
     - [Get-KshColumn](docs/Get-KshColumn.md)
     - [New-KshColumnBoolean](docs/New-KshColumnBoolean.md)
@@ -119,6 +123,8 @@ SPClientCore は Azure AD 2.0 をサポートします (Device Code Grant およ
     - [Remove-KshDocumentSetDefaultDocument](docs/Remove-KshDocumentSetDefaultDocument.md)
     - [Remove-KshDocumentSetSharedColumn](docs/Remove-KshDocumentSetSharedColumn.md)
     - [Remove-KshDocumentSetWelcomePageColumn](docs/Remove-KshDocumentSetWelcomePageColumn.md)
+  - ドライブ
+    - [Get-KshDrive](docs/Get-KshDrive.md)
   - ファイル
     - [Approve-KshFile](docs/Approve-KshFile.md)
     - [Deny-KshFile](docs/Deny-KshFile.md)
