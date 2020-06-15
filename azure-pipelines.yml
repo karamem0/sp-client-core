@@ -9,7 +9,7 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  buildVersion: '3.10.0'
+  buildVersion: '3.10.1'
   buildId: '$(Build.BuildId)'
   artifactName: 'SPClientCore'
   solutionName: 'SPClientCore'
@@ -67,7 +67,7 @@ stages:
         pathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: '$(artifactName)'
         publishLocation: 'Container'
-- stage: PublishDevelop
+- stage: PublishAzureDevOps
   displayName: Publish stage
   dependsOn: Build
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
@@ -93,7 +93,7 @@ stages:
         command: push
         packagesToPush: '$(System.ArtifactsDirectory)/**/*.nupkg'
         publishVstsFeed: 'fdb6438d-6f58-4d5a-bfe7-0bc23503c733/87175348-f7e0-4bb0-8c79-3174dde590fe'
-- stage: PublishRelease
+- stage: PublishPSGallery
   displayName: Publish stage
   dependsOn: Build
   condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/'))

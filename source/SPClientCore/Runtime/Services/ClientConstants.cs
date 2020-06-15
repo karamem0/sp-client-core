@@ -21,6 +21,8 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
 
         public const int TenantServiceWaitSeconds = 10;
 
+        public const int ChunkSize = 10 * 1024 * 1024;
+
     }
 
 }

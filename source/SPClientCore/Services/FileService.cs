@@ -440,13 +440,78 @@ namespace Karamem0.SharePoint.PowerShell.Services
             {
                 throw new ArgumentNullException(nameof(fileContent));
             }
-            var requestUrl = this.ClientContext.BaseAddress
-                .ConcatPath(
-                    "_api/web/getfolderbyserverrelativeurl('{0}')/files/add(url='{1}',overwrite={2})",
-                    folderUrl,
-                    fileName,
-                    overwrite);
-            this.ClientContext.PostStream(requestUrl, fileContent);
+            fileContent.Position = 0;
+            if (fileContent.Length <= ClientConstants.ChunkSize)
+            {
+                var requestUrl = this.ClientContext.BaseAddress
+                    .ConcatPath(
+                        "_api/web/getfolderbyserverrelativeurl('{0}')/files/add(url='{1}',overwrite={2})",
+                        folderUrl,
+                        fileName,
+                        overwrite);
+                this.ClientContext.PostStream(requestUrl, fileContent);
+            }
+            else
+            {
+                var requestUrl = this.ClientContext.BaseAddress
+                    .ConcatPath(
+                        "_api/web/getfolderbyserverrelativeurl('{0}')/files/add(url='{1}',overwrite={2})",
+                        folderUrl,
+                        fileName,
+                        overwrite);
+                this.ClientContext.PostObject(requestUrl, null);
+                var uploadId = Guid.NewGuid();
+                var chunk = new byte[ClientConstants.ChunkSize];
+                var bytes = fileContent.Read(chunk, 0, chunk.Length);
+                if (bytes > 0)
+                {
+                    using (var stream = new System.IO.MemoryStream(chunk))
+                    {
+                        requestUrl = this.ClientContext.BaseAddress
+                            .ConcatPath(
+                                "_api/web/getfilebyserverrelativeurl('{0}/{1}')/startupload(uploadid='{2}')",
+                                folderUrl,
+                                fileName,
+                                uploadId);
+                        this.ClientContext.PostStream(requestUrl, stream);
+                    }
+                    var offset = bytes;
+                    while ((bytes = fileContent.Read(chunk, 0, chunk.Length)) > 0)
+                    {
+                        if (fileContent.Position < fileContent.Length)
+                        {
+                            using (var stream = new System.IO.MemoryStream(chunk))
+                            {
+                                requestUrl = this.ClientContext.BaseAddress
+                                    .ConcatPath(
+                                        "_api/web/getfilebyserverrelativeurl('{0}/{1}')/continueupload(uploadid='{2}',fileoffset={3})",
+                                        folderUrl,
+                                        fileName,
+                                        uploadId,
+                                        offset);
+                                this.ClientContext.PostStream(requestUrl, stream);
+                            }
+                        }
+                        else
+                        {
+                            var buffer = new byte[bytes];
+                            Array.Copy(chunk, buffer, buffer.Length);
+                            using (var stream = new System.IO.MemoryStream(buffer))
+                            {
+                                requestUrl = this.ClientContext.BaseAddress
+                                    .ConcatPath(
+                                        "_api/web/getfilebyserverrelativeurl('{0}/{1}')/finishupload(uploadid='{2}',fileoffset={3})",
+                                        folderUrl,
+                                        fileName,
+                                        uploadId,
+                                        offset);
+                                this.ClientContext.PostStream(requestUrl, stream);
+                            }
+                        }
+                        offset += bytes;
+                    }
+                }
+            }
         }
 
     }
