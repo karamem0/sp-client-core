@@ -19,7 +19,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
 {
 
     [JsonObject()]
-    public class OAuthToken : OAuthMessage
+    public class AadOAuthToken : OAuthMessage
     {
 
         private static readonly string BasePath = Path.Combine(
@@ -29,7 +29,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
 
         private static readonly string FileName = "oauthtoken.json";
 
-        public static OAuthToken Load()
+        public static AadOAuthToken Load()
         {
             var file = new FileInfo(Path.Combine(BasePath, FileName));
             if (file.Exists)
@@ -37,7 +37,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
                 using (var stream = file.OpenRead())
                 using (var reader = new JsonTextReader(new StreamReader(stream)))
                 {
-                    return JsonSerializerManager.JsonSerializer.Deserialize<OAuthToken>(reader);
+                    return JsonSerializerManager.JsonSerializer.Deserialize<AadOAuthToken>(reader);
                 }
             }
             else
@@ -46,7 +46,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
             }
         }
 
-        public OAuthToken()
+        public AadOAuthToken()
         {
         }
 

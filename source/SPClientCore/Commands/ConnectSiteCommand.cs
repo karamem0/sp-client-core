@@ -35,6 +35,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Common
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet2", Position = 0, ValueFromPipeline = true)]
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet3", Position = 0, ValueFromPipeline = true)]
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet4", Position = 0, ValueFromPipeline = true)]
+        [Parameter(Mandatory = true, ParameterSetName = "ParamSet5", Position = 0, ValueFromPipeline = true)]
         public Uri Url { get; private set; }
 
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
@@ -44,6 +45,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Common
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet4")]
+        [Parameter(Mandatory = true, ParameterSetName = "ParamSet5")]
         public string ClientId { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
@@ -65,19 +67,22 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Common
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet4")]
         public SwitchParameter Cached { get; private set; }
 
+        [Parameter(Mandatory = true, ParameterSetName = "ParamSet5")]
+        public string ClientSecret { get; private set; }
+
         protected override void ProcessRecordCore()
         {
-            if (this.Authority == null)
-            {
-                this.Authority = new Uri(OAuthConstants.Authority);
-            }
-            var oAuthContext = new OAuthContext(
-                this.Authority.GetAuthority(),
-                this.ClientId ?? OAuthConstants.ClientId,
-                this.Url.GetAuthority(),
-                this.UserMode);
             if (this.ParameterSetName == "ParamSet1")
             {
+                if (this.Authority == null)
+                {
+                    this.Authority = new Uri(OAuthConstants.AadAuthority);
+                }
+                var oAuthContext = new AadOAuthContext(
+                    this.Authority.GetAuthority(),
+                    this.ClientId ?? OAuthConstants.ClientId,
+                    this.Url.GetAuthority(),
+                    this.UserMode);
                 var oAuthDeviceCodeMessage = oAuthContext.AcquireDeviceCode();
                 if (oAuthDeviceCodeMessage is OAuthDeviceCode oAuthDeviceCode)
                 {
@@ -98,9 +103,9 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Common
                             Thread.Sleep(TimeSpan.FromSeconds(1));
                         }
                         var oAuthTokenMessage = oAuthContext.AcquireTokenByDeviceCode(oAuthDeviceCode.DeviceCode);
-                        if (oAuthTokenMessage is OAuthToken oAuthToken)
+                        if (oAuthTokenMessage is AadOAuthToken oAuthToken)
                         {
-                            ClientService.Register(new ClientContext(this.Url, new OAuthTokenCache(oAuthContext, oAuthToken)));
+                            ClientService.Register(new ClientContext(this.Url, new AadOAuthTokenCache(oAuthContext, oAuthToken)));
                         }
                         if (oAuthTokenMessage is OAuthError oAuthTokenError)
                         {
@@ -127,11 +132,20 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Common
             }
             if (this.ParameterSetName == "ParamSet2")
             {
+                if (this.Authority == null)
+                {
+                    this.Authority = new Uri(OAuthConstants.AadAuthority);
+                }
+                var oAuthContext = new AadOAuthContext(
+                    this.Authority.GetAuthority(),
+                    this.ClientId ?? OAuthConstants.ClientId,
+                    this.Url.GetAuthority(),
+                    this.UserMode);
                 var credential = this.Credential.GetNetworkCredential();
                 var oAuthMessage = oAuthContext.AcquireTokenByPassword(credential.UserName, credential.Password);
-                if (oAuthMessage is OAuthToken oAuthToken)
+                if (oAuthMessage is AadOAuthToken oAuthToken)
                 {
-                    ClientService.Register(new ClientContext(this.Url, new OAuthTokenCache(oAuthContext, oAuthToken)));
+                    ClientService.Register(new ClientContext(this.Url, new AadOAuthTokenCache(oAuthContext, oAuthToken)));
                 }
                 if (oAuthMessage is OAuthError oAuthError)
                 {
@@ -140,12 +154,21 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Common
             }
             if (this.ParameterSetName == "ParamSet3")
             {
+                if (this.Authority == null)
+                {
+                    this.Authority = new Uri(OAuthConstants.AadAuthority);
+                }
+                var oAuthContext = new AadOAuthContext(
+                    this.Authority.GetAuthority(),
+                    this.ClientId ?? OAuthConstants.ClientId,
+                    this.Url.GetAuthority(),
+                    this.UserMode);
                 var certificatePath = this.SessionState.Path.GetResolvedPSPathFromPSPath(this.CertificatePath)[0];
                 var certificateBytes = File.ReadAllBytes(Path.GetFullPath(certificatePath.Path));
                 var oAuthMessage = oAuthContext.AcquireTokenByCertificate(certificateBytes, this.CertificatePassword);
-                if (oAuthMessage is OAuthToken oAuthToken)
+                if (oAuthMessage is AadOAuthToken oAuthToken)
                 {
-                    ClientService.Register(new ClientContext(this.Url, new OAuthTokenCache(oAuthContext, oAuthToken)));
+                    ClientService.Register(new ClientContext(this.Url, new AadOAuthTokenCache(oAuthContext, oAuthToken)));
                 }
                 if (oAuthMessage is OAuthError oAuthError)
                 {
@@ -155,7 +178,33 @@ namespace Karamem0.SharePoint.PowerShell.Commands.Common
             if (this.ParameterSetName == "ParamSet4")
             {
                 this.ValidateSwitchParameter(nameof(this.Cached));
-                ClientService.Register(new ClientContext(this.Url, new OAuthTokenCache(oAuthContext)));
+                if (this.Authority == null)
+                {
+                    this.Authority = new Uri(OAuthConstants.AadAuthority);
+                }
+                var oAuthContext = new AadOAuthContext(
+                    this.Authority.GetAuthority(),
+                    this.ClientId ?? OAuthConstants.ClientId,
+                    this.Url.GetAuthority(),
+                    this.UserMode);
+                ClientService.Register(new ClientContext(this.Url, new AadOAuthTokenCache(oAuthContext)));
+            }
+            if (this.ParameterSetName == "ParamSet5")
+            {
+                var oAuthContext = new AcsOAuthContext(
+                    this.ClientId,
+                    this.ClientSecret,
+                    this.Url.GetAuthority()
+                );
+                var oAuthMessage = oAuthContext.AcquireToken();
+                if (oAuthMessage is AcsOAuthToken oAuthToken)
+                {
+                    ClientService.Register(new ClientContext(this.Url, new AcsOAuthTokenCache(oAuthContext, oAuthToken)));
+                }
+                if (oAuthMessage is OAuthError oAuthError)
+                {
+                    throw new InvalidOperationException(oAuthError.ErrorDescription);
+                }
             }
         }
 
