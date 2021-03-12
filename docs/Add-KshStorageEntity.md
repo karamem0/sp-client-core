@@ -25,7 +25,7 @@ The site must be a tenant app catalog site or a site collection app catalog site
 
 ### Example 1
 ```powershell
-PS C:\> Add-KshStorageEntity -Key 'Copyright' -Value 'Copyright (c) 2020 karamem0'
+PS C:\> Add-KshStorageEntity -Key 'Copyright' -Value 'Copyright (c) 2021 karamem0'
 ```
 
 Creates a storage entity.

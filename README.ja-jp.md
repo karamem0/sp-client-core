@@ -4,7 +4,7 @@
 
 PowerShell Core 向けの SharePoint サービス モジュール
 
-[![Build Status](https://dev.azure.com/karamem0jp/SPClientCore/_apis/build/status/SPClientCore?branchName=master)](https://dev.azure.com/karamem0jp/SPClientCore/_build/latest?definitionId=27&branchName=master)
+[![Build Status](https://dev.azure.com/karamem0jp/SPClientCore/_apis/build/status/SPClientCore?branchName=master)](https://dev.azure.com/karamem0jp/SPClientCore/_build/latest?definitionId=42&branchName=master)
 [![License](https://img.shields.io/github/license/karamem0/spclientcore.svg)](https://github.com/karamem0/spclientcore/blob/master/LICENSE)
 
 ## インストール
@@ -15,7 +15,9 @@ SPClientCore は [PowerShell Gallery](https://www.powershellgallery.com/packages
 
 ### PowerShell Core での動作
 
-はい、SPClientCore は PowerShell Core で動作し、また Windows PowerShell でも動作します。つまり、このモジュールを Windows はもちろん Mac や Linux でも使用できるということです (もちろんそのマシンに PowerShell Core がインストールされていればですが)。Windows 以外の環境で SharePoint Online を管理するには REST API を実行する方法しかありませんでした。しかし REST API は SharePoint クライアント ライブラリ (CSOM) に比べていくつかの問題を持っています。SPClientCore は SharePoint クライアント ライブラリと互換性のある API 呼び出しを行うことで完全な機能を提供します。
+はい、SPClientCore は PowerShell Core で動作し、また Windows PowerShell でも動作します。つまり、このモジュールを Windows はもちろん Mac や Linux でも使用できるということです (もちろんそのマシンに PowerShell Core がインストールされていればですが)。<del>Windows 以外の環境で SharePoint Online を管理するには REST API を実行する方法しかありませんでした。</del>しかし REST API は SharePoint クライアント ライブラリ (CSOM) に比べていくつかの問題を持っています。SPClientCore は SharePoint クライアント ライブラリと互換性のある API 呼び出しを行うことで完全な機能を提供します。
+
+*(更新) CSOM および PnP PowerShell は PowerShell Core をサポートしました。*
 
 ### 1 つのモジュールですべての管理を
 
@@ -31,8 +33,10 @@ SPClientCore は Azure AD 2.0 認証をサポートします (Device Code Grant 
 
 ## 依存関係
 
-- [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/3.1.0) (3.1.0)
-- [Microsoft.IdentityModel.JsonWebTokens](https://www.nuget.org/packages/Microsoft.IdentityModel.JsonWebTokens/5.6.0) (5.6.0)
+- [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/5.0.1) (5.0.1)
+- [Microsoft.Extensions.DependencyInjection.Abstractions](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection.Abstractions/5.0.0) (5.0.0)
+- [Microsoft.IdentityModel.JsonWebTokens](https://www.nuget.org/packages/Microsoft.IdentityModel.JsonWebTokens/6.8.0) (6.8.0)
+- [Microsoft.IdentityModel.JsonWebTokens](https://www.nuget.org/packages/Newtonsoft.Json/12.0.3) (12.0.3)
 
 ## コマンド リファレンス (英語)
 
@@ -127,6 +131,7 @@ SPClientCore は Azure AD 2.0 認証をサポートします (Device Code Grant 
     - [Get-KshDrive](docs/Get-KshDrive.md)
   - ファイル
     - [Approve-KshFile](docs/Approve-KshFile.md)
+    - [Copy-KshFile](docs/Copy-KshFile.md)
     - [Deny-KshFile](docs/Deny-KshFile.md)
     - [Get-KshFile](docs/Get-KshFile.md)
     - [Lock-KshFile](docs/Lock-KshFile.md)
@@ -144,9 +149,11 @@ SPClientCore は Azure AD 2.0 認証をサポートします (Device Code Grant 
     - [Restore-KshFileVersion](docs/Restore-KshFileVersion.md)
   - フォルダー
     - [Approve-KshFolder](docs/Approve-KshFolder.md)
+    - [Copy-KshFolder](docs/Copy-KshFolder.md)
     - [Deny-KshFolder](docs/Deny-KshFolder.md)
     - [Get-KshFolder](docs/Get-KshFolder.md)
     - [New-KshFolder](docs/New-KshFolder.md)
+    - [Move-KshFolder](docs/Move-KshFolder.md)
     - [Remove-KshFolder](docs/Remove-KshFolder.md)
     - [Suspend-KshFolder](docs/Suspend-KshFolder.md)
     - [Update-KshFolder](docs/Update-KshFolder.md)

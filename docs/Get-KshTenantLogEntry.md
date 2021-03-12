@@ -25,7 +25,7 @@ This cmdlet can be used only when connected to the SharePoint admin center.
 
 ### Example 1
 ```powershell
-PS C:\> Get-KshTenantLogEntry -BeginDateTime '2020/01/01 00:00:00' -EndDateTime '2020/01/31 23:59:59' -Rows 100
+PS C:\> Get-KshTenantLogEntry -BeginDateTime '2021/01/01 00:00:00' -EndDateTime '2021/01/31 23:59:59' -Rows 100
 ```
 
 Retrieves hub sites by period.

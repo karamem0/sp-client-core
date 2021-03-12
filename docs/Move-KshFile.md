@@ -12,9 +12,16 @@ Moves a file.
 
 ## SYNTAX
 
+### ParamSet1
 ```
-Move-KshFile [-Identity] <File> [-NewUrl] <Uri> [-Overwrite] [-AllowBrokenThickets] [-BypassApprovePermission]
- [-PassThru] [<CommonParameters>]
+Move-KshFile [-Identity] <File> [-NewUrl] <Uri> [-Overwrite] [-KeepBoth] [-ResetAuthorAndCreatedOnCopy]
+ [-RetainEditorAndModifiedOnMove] [-ShouldBypassSharedLocks] [<CommonParameters>]
+```
+
+### ParamSet2
+```
+Move-KshFile [-Identity] <File> [-NewUrl] <Uri> [-Overwrite] [-Legacy] [-AllowBrokenThickets]
+ [-BypassApprovePermission] [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,12 +29,19 @@ The Move-KshFile cmdlet moves a file to the specified URL.
 
 ## EXAMPLES
 
-### Example 1
+### Example 2
 ```powershell
-PS C:\> Move-KshFile -Identity (Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt') -NewUrl '/sites/japan/hr/Shared%20Documents/README_old.txt'
+PS C:\> Move-KshFile -Identity (Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt') -NewUrl 'https://example.sharepoint.com/Shared%20Documents/README.txt'
 ```
 
 Moves a file.
+
+### Example 2
+```powershell
+PS C:\> Move-KshFile -Identity (Get-KshFile -FileUrl '/sites/japan/hr/Shared%20Documents/README.txt') -NewUrl '/sites/japan/hr/Shared%20Documents/README_old.txt' -Legacy
+```
+
+Moves a file. (Use legacy API)
 
 ## PARAMETERS
 
@@ -36,7 +50,7 @@ If specified, completes the move operation even if supporting files are separate
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: ParamSet2
 Aliases:
 
 Required: False
@@ -51,7 +65,7 @@ If specified, approval permissions are not required if there are no published ve
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: ParamSet2
 Aliases:
 
 Required: False
@@ -73,6 +87,36 @@ Required: True
 Position: 0
 Default value: None
 Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -KeepBoth
+If specified, both file should be kept if a file already exists at the specified destination.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: ParamSet1
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Legacy
+If specified, uses legacy API.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: ParamSet2
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -111,7 +155,52 @@ If specified, returns the updated object.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: ParamSet2
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ResetAuthorAndCreatedOnCopy
+If specified, resets author and created datetime on the copied file.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: ParamSet1
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -RetainEditorAndModifiedOnMove
+If specified, retains editor and modified datetime on the moved file.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: ParamSet1
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ShouldBypassSharedLocks
+If specified, the shared locks on the source file should be by passed.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: ParamSet1
 Aliases:
 
 Required: False

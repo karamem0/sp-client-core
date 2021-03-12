@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2020 karamem0
+// Copyright (c) 2021 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models;
+using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.Services;
 using System;
@@ -21,6 +22,8 @@ namespace Karamem0.SharePoint.PowerShell.Services
     {
 
         void ApproveObject(Folder folderObject, string comment);
+
+        void CopyObject(Folder folderObject, Uri folderUrl, MoveCopyOptions moveCopyOptions);
 
         Folder CreateObject(Folder folderObject, string folderName);
 
@@ -39,6 +42,10 @@ namespace Karamem0.SharePoint.PowerShell.Services
         IEnumerable<Folder> GetObjectEnumerable();
 
         IEnumerable<Folder> GetObjectEnumerable(Folder folderObject);
+
+        void MoveObject(Folder folderObject, Uri folderUrl);
+
+        void MoveObject(Folder folderObject, Uri folderUrl, MoveCopyOptions moveCopyOptions);
 
         Guid RecycleObject(Folder folderObject);
 
@@ -79,6 +86,35 @@ namespace Karamem0.SharePoint.PowerShell.Services
                     requestPayload.CreateParameter("_ModerationComments"),
                     requestPayload.CreateParameter(comment)),
                 objectPathId => new ClientActionMethod(objectPathId, "Update"));
+            this.ClientContext.ProcessQuery(requestPayload);
+        }
+
+        public void CopyObject(Folder folderObject, Uri folderUrl, MoveCopyOptions moveCopyOptions)
+        {
+            if (folderObject == null)
+            {
+                throw new ArgumentNullException(nameof(folderObject));
+            }
+            if (folderUrl == null)
+            {
+                throw new ArgumentNullException(nameof(folderUrl));
+            }
+            if (moveCopyOptions == null)
+            {
+                throw new ArgumentNullException(nameof(moveCopyOptions));
+            }
+            var requestPayload = new ClientRequestPayload();
+            requestPayload.Actions.Add(
+                new ClientActionStaticMethod(
+                    typeof(MoveCopyUtil),
+                    "CopyFolder",
+                    requestPayload.CreateParameter(
+                        new Uri(this.ClientContext.BaseAddress.GetLeftPart(UriPartial.Authority))
+                            .ConcatPath(folderObject.ServerRelativeUrl)
+                            .ToString()),
+                    requestPayload.CreateParameter(folderUrl.ToString()),
+                    requestPayload.CreateParameter(moveCopyOptions)
+                ));
             this.ClientContext.ProcessQuery(requestPayload);
         }
 
@@ -280,6 +316,55 @@ namespace Karamem0.SharePoint.PowerShell.Services
             return this.ClientContext
                 .ProcessQuery(requestPayload)
                 .ToObject<FolderEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        }
+
+        public void MoveObject(Folder folderObject, Uri folderUrl)
+        {
+            if (folderObject == null)
+            {
+                throw new ArgumentNullException(nameof(folderObject));
+            }
+            if (folderUrl == null)
+            {
+                throw new ArgumentNullException(nameof(folderUrl));
+            }
+            var requestPayload = new ClientRequestPayload();
+            var objectPath = requestPayload.Add(
+                new ObjectPathIdentity(folderObject.ObjectIdentity),
+                objectPathId => new ClientActionMethod(
+                    objectPathId,
+                    "MoveTo",
+                    requestPayload.CreateParameter(folderUrl.ToString())));
+            this.ClientContext.ProcessQuery(requestPayload);
+        }
+
+        public void MoveObject(Folder folderObject, Uri folderUrl, MoveCopyOptions moveCopyOptions)
+        {
+            if (folderObject == null)
+            {
+                throw new ArgumentNullException(nameof(folderObject));
+            }
+            if (folderUrl == null)
+            {
+                throw new ArgumentNullException(nameof(folderUrl));
+            }
+            if (moveCopyOptions == null)
+            {
+                throw new ArgumentNullException(nameof(moveCopyOptions));
+            }
+            var requestPayload = new ClientRequestPayload();
+            requestPayload.Actions.Add(
+                new ClientActionStaticMethod(
+                    typeof(MoveCopyUtil),
+                    "MoveFolder",
+                    requestPayload.CreateParameter(
+                        new Uri(this.ClientContext.BaseAddress.GetLeftPart(UriPartial.Authority))
+                            .ConcatPath(folderObject.ServerRelativeUrl)
+                            .ToString()),
+                    requestPayload.CreateParameter(folderUrl.ToString()),
+                    requestPayload.CreateParameter(moveCopyOptions)
+                ));
+            this.ClientContext.ProcessQuery(requestPayload);
         }
 
         public Guid RecycleObject(Folder folderObject)

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2020 karamem0
+// Copyright (c) 2021 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -27,6 +27,10 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         void CheckOutObject(File fileObject);
 
+        void CopyObject(File fileObject, Uri fileUrl, bool overwrite);
+
+        void CopyObject(File fileObject, Uri fileUrl, bool overwrite, MoveCopyOptions moveCopyOptions);
+
         File CreateObject(Folder folderObject, IReadOnlyDictionary<string, object> creationInformation);
 
         void DenyObject(File fileObject, string comment);
@@ -48,6 +52,8 @@ namespace Karamem0.SharePoint.PowerShell.Services
         IEnumerable<File> GetObjectEnumerable(Folder folderObject);
 
         void MoveObject(File fileObject, Uri fileUrl, MoveOperations fileMoveOperations);
+
+        void MoveObject(File fileObject, Uri fileUrl, bool overwrite, MoveCopyOptions moveCopyOptions);
 
         void PublishObject(File fileObject, string comment);
 
@@ -115,6 +121,57 @@ namespace Karamem0.SharePoint.PowerShell.Services
             var objectPath = requestPayload.Add(
                 new ObjectPathIdentity(fileObject.ObjectIdentity),
                 objectPathId => new ClientActionMethod(objectPathId, "CheckOut"));
+            this.ClientContext.ProcessQuery(requestPayload);
+        }
+
+        public void CopyObject(File fileObject, Uri fileUrl, bool overwrite)
+        {
+            if (fileObject == null)
+            {
+                throw new ArgumentNullException(nameof(fileObject));
+            }
+            if (fileUrl == null)
+            {
+                throw new ArgumentNullException(nameof(fileUrl));
+            }
+            var requestPayload = new ClientRequestPayload();
+            var objectPath = requestPayload.Add(
+                new ObjectPathIdentity(fileObject.ObjectIdentity),
+                objectPathId => new ClientActionMethod(
+                    objectPathId,
+                    "CopyTo",
+                    requestPayload.CreateParameter(fileUrl.ToString()),
+                    requestPayload.CreateParameter(overwrite)));
+            this.ClientContext.ProcessQuery(requestPayload);
+        }
+
+        public void CopyObject(File fileObject, Uri fileUrl, bool overwrite, MoveCopyOptions moveCopyOptions)
+        {
+            if (fileObject == null)
+            {
+                throw new ArgumentNullException(nameof(fileObject));
+            }
+            if (fileUrl == null)
+            {
+                throw new ArgumentNullException(nameof(fileUrl));
+            }
+            if (moveCopyOptions == null)
+            {
+                throw new ArgumentNullException(nameof(moveCopyOptions));
+            }
+            var requestPayload = new ClientRequestPayload();
+            requestPayload.Actions.Add(
+                new ClientActionStaticMethod(
+                    typeof(MoveCopyUtil),
+                    "CopyFile",
+                    requestPayload.CreateParameter(
+                        new Uri(this.ClientContext.BaseAddress.GetLeftPart(UriPartial.Authority))
+                            .ConcatPath(fileObject.ServerRelativeUrl)
+                            .ToString()),
+                    requestPayload.CreateParameter(fileUrl.ToString()),
+                    requestPayload.CreateParameter(overwrite),
+                    requestPayload.CreateParameter(moveCopyOptions)
+                ));
             this.ClientContext.ProcessQuery(requestPayload);
         }
 
@@ -344,6 +401,36 @@ namespace Karamem0.SharePoint.PowerShell.Services
                     "MoveTo",
                     requestPayload.CreateParameter(fileUrl.ToString()),
                     requestPayload.CreateParameter(fileMoveOperations)));
+            this.ClientContext.ProcessQuery(requestPayload);
+        }
+
+        public void MoveObject(File fileObject, Uri fileUrl, bool overwrite, MoveCopyOptions moveCopyOptions)
+        {
+            if (fileObject == null)
+            {
+                throw new ArgumentNullException(nameof(fileObject));
+            }
+            if (fileUrl == null)
+            {
+                throw new ArgumentNullException(nameof(fileUrl));
+            }
+            if (moveCopyOptions == null)
+            {
+                throw new ArgumentNullException(nameof(moveCopyOptions));
+            }
+            var requestPayload = new ClientRequestPayload();
+            requestPayload.Actions.Add(
+                new ClientActionStaticMethod(
+                    typeof(MoveCopyUtil),
+                    "MoveFile",
+                    requestPayload.CreateParameter(
+                        new Uri(this.ClientContext.BaseAddress.GetLeftPart(UriPartial.Authority))
+                            .ConcatPath(fileObject.ServerRelativeUrl)
+                            .ToString()),
+                    requestPayload.CreateParameter(fileUrl.ToString()),
+                    requestPayload.CreateParameter(overwrite),
+                    requestPayload.CreateParameter(moveCopyOptions)
+                ));
             this.ClientContext.ProcessQuery(requestPayload);
         }
 

@@ -4,7 +4,7 @@
 
 SharePoint Service Module for PowerShell Core
 
-[![Build Status](https://dev.azure.com/karamem0jp/SPClientCore/_apis/build/status/SPClientCore?branchName=master)](https://dev.azure.com/karamem0jp/SPClientCore/_build/latest?definitionId=27&branchName=master)
+[![Build Status](https://dev.azure.com/karamem0jp/SPClientCore/_apis/build/status/SPClientCore?branchName=master)](https://dev.azure.com/karamem0jp/SPClientCore/_build/latest?definitionId=42&branchName=master)
 [![License](https://img.shields.io/github/license/karamem0/spclientcore.svg)](https://github.com/karamem0/spclientcore/blob/master/LICENSE)
 
 ## Installation
@@ -15,7 +15,9 @@ SPClientCore is published to [PowerShell Gallery](https://www.powershellgallery.
 
 ### Works with PowerShell Core
 
-Yes, SPClientCore works with PowerShell Core, also it works with Windows PowerShell. It means that you can use this module on Mac and Linux as well as Windows (of course if PowerShell Core is installed on the machine). There was only a way to run the SharePoint REST API to manage SharePoint Online in non-Windows environments. But SharePoint REST API has a few problems compared to the SharePoint Client Library (CSOM). SPClientCore provides full functionality by making compatible API calls with CSOM.
+Yes, SPClientCore works with PowerShell Core, also it works with Windows PowerShell. It means that you can use this module on Mac and Linux as well as Windows (of course if PowerShell Core is installed on the machine). <del>There was only a way to run the SharePoint REST API to manage SharePoint Online in non-Windows environments. </del>But SharePoint REST API has a few problems compared to the SharePoint Client Library (CSOM). SPClientCore provides full functionality by making compatible API calls with CSOM.
+
+*(UPDATE) CSOM and PnP PowerShell now supports PowerShell Core.*
 
 ### One module, manage all
 
@@ -31,8 +33,10 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
 
 ## Dependencies
 
-- [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/3.1.0) (3.1.0)
-- [Microsoft.IdentityModel.JsonWebTokens](https://www.nuget.org/packages/Microsoft.IdentityModel.JsonWebTokens/5.6.0) (5.6.0)
+- [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/5.0.1) (5.0.1)
+- [Microsoft.Extensions.DependencyInjection.Abstractions](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection.Abstractions/5.0.0) (5.0.0)
+- [Microsoft.IdentityModel.JsonWebTokens](https://www.nuget.org/packages/Microsoft.IdentityModel.JsonWebTokens/6.8.0) (6.8.0)
+- [Microsoft.IdentityModel.JsonWebTokens](https://www.nuget.org/packages/Newtonsoft.Json/12.0.3) (12.0.3)
 
 ## Command References
 
@@ -127,6 +131,7 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Get-KshDrive](docs/Get-KshDrive.md)
   - Files
     - [Approve-KshFile](docs/Approve-KshFile.md)
+    - [Copy-KshFile](docs/Copy-KshFile.md)
     - [Deny-KshFile](docs/Deny-KshFile.md)
     - [Get-KshFile](docs/Get-KshFile.md)
     - [Lock-KshFile](docs/Lock-KshFile.md)
@@ -144,8 +149,10 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Restore-KshFileVersion](docs/Restore-KshFileVersion.md)
   - Folders
     - [Approve-KshFolder](docs/Approve-KshFolder.md)
+    - [Copy-KshFolder](docs/Copy-KshFolder.md)
     - [Deny-KshFolder](docs/Deny-KshFolder.md)
     - [Get-KshFolder](docs/Get-KshFolder.md)
+    - [Move-KshFolder](docs/Move-KshFolder.md)
     - [New-KshFolder](docs/New-KshFolder.md)
     - [Remove-KshFolder](docs/Remove-KshFolder.md)
     - [Suspend-KshFolder](docs/Suspend-KshFolder.md)
