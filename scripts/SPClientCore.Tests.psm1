@@ -119,8 +119,6 @@ function Install-TestSite {
         $siteCollection = New-KshTenantSiteCollection `
             -Lcid 1033 `
             -Owner $credential.UserName `
-            -Template 'STS#0' `
-            -StorageMaxLevel 26214400 `
             -Title 'SPClientCore' `
             -Url $baseUrl
 
@@ -138,6 +136,9 @@ function Install-TestSite {
         Write-Progress -Activity 'Adding a site collection app catalog...' -Status 'Processing'
         Add-KshSiteCollectionAppCatalog -SiteCollection $siteCollection
 
+        Write-Progress -Activity 'Waiting...' -Status 'Processing'
+        Start-Sleep -Seconds 120
+
         Write-Progress -Activity 'Sign in...' -Status 'Processing'
         Connect-KshSite -Url $baseUrl -Credential $credential
 
@@ -148,26 +149,32 @@ function Install-TestSite {
         $group1 = New-KshGroup `
             -Description 'Test Group 1' `
             -Title 'Test Group 1'
+
+        Write-Progress -Activity 'Creating site groups...' -Status 'Test Group 2'
+        $group2 = New-KshGroup `
+            -Description 'Test Group 2' `
+            -Title 'Test Group 2'
+
+        Write-Progress -Activity 'Creating site groups...' -Status 'Test Group 3'
+        $group3 = New-KshGroup `
+            -Description 'Test Group 3' `
+            -Title 'Test Group 3'
+    
+        Write-Progress -Activity 'Updating site groups...' -Status 'Test Group 1'
         Set-KshGroupOwner `
             -Group $group1 `
             -Owner $group1
         $appSettings.Group1Id = $group1.Id
         $appSettings.Group1Name = $group1.Title
 
-        Write-Progress -Activity 'Creating site groups...' -Status 'Test Group 2'
-        $group2 = New-KshGroup `
-            -Description 'Test Group 2' `
-            -Title 'Test Group 2'
+        Write-Progress -Activity 'Updating site groups...' -Status 'Test Group 2'
         Set-KshGroupOwner `
             -Group $group2 `
             -Owner $group2
         $appSettings.Group2Id = $group2.Id
         $appSettings.Group2Name = $group2.Title
 
-        Write-Progress -Activity 'Creating site groups...' -Status 'Test Group 3'
-        $group3 = New-KshGroup `
-            -Description 'Test Group 3' `
-            -Title 'Test Group 3'
+        Write-Progress -Activity 'Updating site groups...' -Status 'Test Group 3'
         Set-KshGroupOwner `
             -Group $group3 `
             -Owner $group3

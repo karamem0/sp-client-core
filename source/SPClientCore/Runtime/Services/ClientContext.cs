@@ -46,6 +46,10 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
             this.oAuthTokenCache = oAuthTokenCache;
             this.httpClient = new HttpClient();
             this.httpClient.Timeout = Timeout.InfiniteTimeSpan;
+            this.httpClient.DefaultRequestHeaders.UserAgent.Add(
+                new ProductInfoHeaderValue(
+                    "NONISV|karamem0|SPClientCore",
+                    this.GetType().Assembly.GetName().Version.ToString(3)));
         }
 
         public Uri BaseAddress
@@ -66,12 +70,12 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
 
         public void DeleteObject(Uri requestUrl)
         {
+            var exceptions = new List<Exception>();
             for (var count = 1; count <= ClientConstants.MaxRetryCount; count++)
             {
                 var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
                 requestMessage.Headers.Add("Authorization", "Bearer " + this.oAuthTokenCache.GetAccessToken());
                 requestMessage.Headers.Add("Accept", "application/json;odata=verbose");
-                requestMessage.Headers.Add("User-Agent", "NONISV|karamem0|SPClientCore/" + this.GetType().Assembly.GetName().Version.ToString(3));
                 requestMessage.Headers.Add("X-HTTP-Method", "DELETE");
                 requestMessage.Headers.Add("If-Match", "*");
                 Trace.WriteLine(requestMessage);
@@ -87,6 +91,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                     }
                     else if ((int)responseMessage.StatusCode == 429)
                     {
+                        exceptions.Add(new InvalidOperationException(responseContent));
                         Thread.Sleep(responseMessage.Headers.RetryAfter.Delta.GetValueOrDefault(TimeSpan.FromSeconds(1)));
                     }
                     else
@@ -94,7 +99,8 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                         var responsePayload = JsonConvert.DeserializeObject<ODataResultPayload>(
                             responseContent,
                             JsonSerializerManager.JsonSerializerSettings);
-                        throw new InvalidOperationException(responsePayload.Error.Message.Value);
+                        exceptions.Add(new InvalidOperationException(responsePayload.Error.Message.Value));
+                        Thread.Sleep(TimeSpan.FromSeconds(count));
                     }
                 }
                 catch (JsonException)
@@ -102,16 +108,17 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                     throw new InvalidOperationException(responseContent);
                 }
             }
+            throw new AggregateException(StringResources.ErrorMaxRetryCountExceeded, exceptions);
         }
 
         public T GetObject<T>(Uri requestUrl) where T : ODataV1Object
         {
+            var exceptions = new List<Exception>();
             for (var count = 1; count <= ClientConstants.MaxRetryCount; count++)
             {
                 var requestMessage = new HttpRequestMessage(HttpMethod.Get, requestUrl);
                 requestMessage.Headers.Add("Authorization", "Bearer " + this.oAuthTokenCache.GetAccessToken());
                 requestMessage.Headers.Add("Accept", "application/json;odata=verbose");
-                requestMessage.Headers.Add("User-Agent", "NONISV|karamem0|SPClientCore/" + this.GetType().Assembly.GetName().Version.ToString(3));
                 Trace.WriteLine(requestMessage);
                 var responseMessage = this.httpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
                 var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
@@ -128,11 +135,13 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                     }
                     else if ((int)responseMessage.StatusCode == 429)
                     {
+                        exceptions.Add(new InvalidOperationException(responseContent));
                         Thread.Sleep(responseMessage.Headers.RetryAfter.Delta.GetValueOrDefault(TimeSpan.FromSeconds(1)));
                     }
                     else
                     {
-                        throw new InvalidOperationException(responsePayload.Error.Message.Value);
+                        exceptions.Add(new InvalidOperationException(responsePayload.Error.Message.Value));
+                        Thread.Sleep(TimeSpan.FromSeconds(count));
                     }
                 }
                 catch (JsonException)
@@ -140,17 +149,17 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                     throw new InvalidOperationException(responseContent);
                 }
             }
-            throw new InvalidOperationException(StringResources.ErrorMaxRetryCountExceeded);
+            throw new AggregateException(StringResources.ErrorMaxRetryCountExceeded, exceptions);
         }
 
         public T GetObjectV2<T>(Uri requestUrl) where T : ODataV2Object
         {
+            var exceptions = new List<Exception>();
             for (var count = 1; count <= ClientConstants.MaxRetryCount; count++)
             {
                 var requestMessage = new HttpRequestMessage(HttpMethod.Get, requestUrl);
                 requestMessage.Headers.Add("Authorization", "Bearer " + this.oAuthTokenCache.GetAccessToken());
                 requestMessage.Headers.Add("Accept", "application/json");
-                requestMessage.Headers.Add("User-Agent", "NONISV|karamem0|SPClientCore/" + this.GetType().Assembly.GetName().Version.ToString(3));
                 Trace.WriteLine(requestMessage);
                 var responseMessage = this.httpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
                 var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
@@ -164,6 +173,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                     }
                     else if ((int)responseMessage.StatusCode == 429)
                     {
+                        exceptions.Add(new InvalidOperationException(responseContent));
                         Thread.Sleep(responseMessage.Headers.RetryAfter.Delta.GetValueOrDefault(TimeSpan.FromSeconds(1)));
                     }
                     else
@@ -171,7 +181,8 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                         var responsePayload = JsonConvert.DeserializeObject<ODataResultPayload>(
                             responseContent,
                             JsonSerializerManager.JsonSerializerSettings);
-                        throw new InvalidOperationException(responsePayload.Error.Message.Value);
+                        exceptions.Add(new InvalidOperationException(responsePayload.Error.Message.Value));
+                        Thread.Sleep(TimeSpan.FromSeconds(count));
                     }
                 }
                 catch (JsonException)
@@ -179,7 +190,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                     throw new InvalidOperationException(responseContent);
                 }
             }
-            throw new InvalidOperationException(StringResources.ErrorMaxRetryCountExceeded);
+            throw new AggregateException(StringResources.ErrorMaxRetryCountExceeded, exceptions);
         }
 
         public System.IO.Stream GetStream(Uri requestUrl)
@@ -191,7 +202,6 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
             var requestMessage = new HttpRequestMessage(HttpMethod.Get, requestUrl);
             requestMessage.Headers.Add("Authorization", "Bearer " + this.oAuthTokenCache.GetAccessToken());
             requestMessage.Headers.Add("Accept", "application/json;odata=verbose");
-            requestMessage.Headers.Add("User-Agent", "NONISV|karamem0|SPClientCore/" + this.GetType().Assembly.GetName().Version.ToString(3));
             Trace.WriteLine(requestMessage);
             var responseMessage = this.httpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
             var responseStream = responseMessage.Content.ReadAsStreamAsync().GetAwaiter().GetResult();
@@ -208,12 +218,12 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
 
         public void PatchObject(Uri requestUrl, object requestPayload)
         {
+            var exceptions = new List<Exception>();
             for (var count = 1; count <= ClientConstants.MaxRetryCount; count++)
             {
                 var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
                 requestMessage.Headers.Add("Authorization", "Bearer " + this.oAuthTokenCache.GetAccessToken());
                 requestMessage.Headers.Add("Accept", "application/json;odata=verbose");
-                requestMessage.Headers.Add("User-Agent", "NONISV|karamem0|SPClientCore/" + this.GetType().Assembly.GetName().Version.ToString(3));
                 requestMessage.Headers.Add("X-HTTP-Method", "PATCH");
                 requestMessage.Headers.Add("If-Match", "*");
                 if (requestPayload != null)
@@ -237,6 +247,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                     }
                     else if ((int)responseMessage.StatusCode == 429)
                     {
+                        exceptions.Add(new InvalidOperationException(responseContent));
                         Thread.Sleep(responseMessage.Headers.RetryAfter.Delta.GetValueOrDefault(TimeSpan.FromSeconds(1)));
                     }
                     else
@@ -244,7 +255,8 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                         var responsePayload = JsonConvert.DeserializeObject<ODataResultPayload>(
                             responseContent,
                             JsonSerializerManager.JsonSerializerSettings);
-                        throw new InvalidOperationException(responsePayload.Error.Message.Value);
+                        exceptions.Add(new InvalidOperationException(responsePayload.Error.Message.Value));
+                        Thread.Sleep(TimeSpan.FromSeconds(count));
                     }
                 }
                 catch (JsonException)
@@ -252,17 +264,17 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                     throw new InvalidOperationException(responseContent);
                 }
             }
-            throw new InvalidOperationException(StringResources.ErrorMaxRetryCountExceeded);
+            throw new AggregateException(StringResources.ErrorMaxRetryCountExceeded, exceptions);
         }
 
         public void PostObject(Uri requestUrl, object requestPayload)
         {
+            var exceptions = new List<Exception>();
             for (var count = 1; count <= ClientConstants.MaxRetryCount; count++)
             {
                 var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
                 requestMessage.Headers.Add("Authorization", "Bearer " + this.oAuthTokenCache.GetAccessToken());
                 requestMessage.Headers.Add("Accept", "application/json;odata=verbose");
-                requestMessage.Headers.Add("User-Agent", "NONISV|karamem0|SPClientCore/" + this.GetType().Assembly.GetName().Version.ToString(3));
                 if (requestPayload != null)
                 {
                     var jsonContent = JsonConvert.SerializeObject(requestPayload, JsonSerializerManager.JsonSerializerSettings);
@@ -284,6 +296,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                     }
                     else if ((int)responseMessage.StatusCode == 429)
                     {
+                        exceptions.Add(new InvalidOperationException(responseContent));
                         Thread.Sleep(responseMessage.Headers.RetryAfter.Delta.GetValueOrDefault(TimeSpan.FromSeconds(1)));
                     }
                     else
@@ -291,7 +304,8 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                         var responsePayload = JsonConvert.DeserializeObject<ODataResultPayload>(
                             responseContent,
                             JsonSerializerManager.JsonSerializerSettings);
-                        throw new InvalidOperationException(responsePayload.Error.Message.Value);
+                        exceptions.Add(new InvalidOperationException(responsePayload.Error.Message.Value));
+                        Thread.Sleep(TimeSpan.FromSeconds(count));
                     }
                 }
                 catch (JsonException)
@@ -299,17 +313,17 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                     throw new InvalidOperationException(responseContent);
                 }
             }
-            throw new InvalidOperationException(StringResources.ErrorMaxRetryCountExceeded);
+            throw new AggregateException(StringResources.ErrorMaxRetryCountExceeded, exceptions);
         }
 
         public T PostObject<T>(Uri requestUrl, object requestPayload) where T : ODataV1Object
         {
+            var exceptions = new List<Exception>();
             for (var count = 1; count <= ClientConstants.MaxRetryCount; count++)
             {
                 var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
                 requestMessage.Headers.Add("Authorization", "Bearer " + this.oAuthTokenCache.GetAccessToken());
                 requestMessage.Headers.Add("Accept", "application/json;odata=verbose");
-                requestMessage.Headers.Add("User-Agent", "NONISV|karamem0|SPClientCore/" + this.GetType().Assembly.GetName().Version.ToString(3));
                 if (requestPayload != null)
                 {
                     var jsonContent = JsonConvert.SerializeObject(requestPayload, JsonSerializerManager.JsonSerializerSettings);
@@ -334,11 +348,13 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                     }
                     else if ((int)responseMessage.StatusCode == 429)
                     {
+                        exceptions.Add(new InvalidOperationException(responseContent));
                         Thread.Sleep(responseMessage.Headers.RetryAfter.Delta.GetValueOrDefault(TimeSpan.FromSeconds(1)));
                     }
                     else
                     {
-                        throw new InvalidOperationException(responsePayload.Error.Message.Value);
+                        exceptions.Add(new InvalidOperationException(responsePayload.Error.Message.Value));
+                        Thread.Sleep(TimeSpan.FromSeconds(count));
                     }
                 }
                 catch (JsonException)
@@ -346,7 +362,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                     throw new InvalidOperationException(responseContent);
                 }
             }
-            throw new InvalidOperationException(StringResources.ErrorMaxRetryCountExceeded);
+            throw new AggregateException(StringResources.ErrorMaxRetryCountExceeded, exceptions);
         }
 
         public void PostStream(Uri requestUrl, System.IO.Stream requestStream)
@@ -362,7 +378,6 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
             var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
             requestMessage.Headers.Add("Authorization", "Bearer " + this.oAuthTokenCache.GetAccessToken());
             requestMessage.Headers.Add("Accept", "application/json;odata=verbose");
-            requestMessage.Headers.Add("User-Agent", "NONISV|karamem0|SPClientCore/" + this.GetType().Assembly.GetName().Version.ToString(3));
             requestMessage.Content = new StreamContent(requestStream);
             Trace.WriteLine(requestMessage);
             var responseMessage = this.httpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
@@ -398,7 +413,6 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
             var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
             requestMessage.Headers.Add("Authorization", "Bearer " + this.oAuthTokenCache.GetAccessToken());
             requestMessage.Headers.Add("Accept", "application/json;odata=verbose");
-            requestMessage.Headers.Add("User-Agent", "NONISV|karamem0|SPClientCore/" + this.GetType().Assembly.GetName().Version.ToString(3));
             requestMessage.Content = new StreamContent(requestStream);
             Trace.WriteLine(requestMessage);
             var responseMessage = this.httpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
@@ -431,13 +445,13 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
             {
                 throw new ArgumentNullException(nameof(requestPayload));
             }
+            var exceptions = new List<Exception>();
             for (var count = 1; count <= ClientConstants.MaxRetryCount; count++)
             {
                 var requestContent = requestPayload.ToString();
                 var requestUrl = this.BaseAddress.ConcatPath("_vti_bin/client.svc/ProcessQuery");
                 var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
                 requestMessage.Headers.Add("Authorization", "Bearer " + this.oAuthTokenCache.GetAccessToken());
-                requestMessage.Headers.Add("User-Agent", "NONISV|karamem0|SPClientCore/" + this.GetType().Assembly.GetName().Version.ToString(3));
                 requestMessage.Content = new StringContent(requestContent, Encoding.UTF8);
                 requestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("text/xml");
                 Trace.WriteLine(requestMessage);
@@ -455,11 +469,13 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                     }
                     else
                     {
-                        throw new InvalidOperationException(responsePayload.ErrorInfo.ErrorMessage);
+                        exceptions.Add(new InvalidOperationException(responsePayload.ErrorInfo.ErrorMessage));
+                        Thread.Sleep(TimeSpan.FromSeconds(count));
                     }
                 }
                 else if ((int)responseMessage.StatusCode == 429)
                 {
+                    exceptions.Add(new InvalidOperationException(responseContent));
                     Thread.Sleep(responseMessage.Headers.RetryAfter.Delta.GetValueOrDefault(TimeSpan.FromSeconds(1)));
                 }
                 else
@@ -467,7 +483,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                     throw new InvalidOperationException(responseContent);
                 }
             }
-            throw new InvalidOperationException(StringResources.ErrorMaxRetryCountExceeded);
+            throw new AggregateException(StringResources.ErrorMaxRetryCountExceeded, exceptions);
         }
 
     }
