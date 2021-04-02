@@ -68,7 +68,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Get-KshSiteCollectionFeature",
                     new Dictionary<string, object>()
                     {
-                        { "FeatureId", "00bfea71-1c5e-4a24-b310-ba51c3eb7a57" }
+                        { "FeatureId", "88dc6e04-3256-401b-9851-8e07674bb0d6" }
                     }
                 );
                 var result3 = context.Runspace.InvokeCommand<Feature>(
@@ -102,7 +102,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Get-KshSiteCollectionFeature",
                     new Dictionary<string, object>()
                     {
-                        { "FeatureId", "00bfea71-1c5e-4a24-b310-ba51c3eb7a57" }
+                        { "FeatureId", "88dc6e04-3256-401b-9851-8e07674bb0d6" }
                     }
                 );
                 var actual = result2.ElementAt(0);

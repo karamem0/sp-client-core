@@ -18,12 +18,12 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("New-KshSitePageComment")]
-    public class NewSitePageCommentCommandTests
+    [TestCategory("New-KshComment")]
+    public class NewCommentCommandTests
     {
 
         [TestMethod()]
-        public void CreateSitePageComment()
+        public void CreateComment()
         {
             using (var context = new PSCmdletContext())
             {
@@ -76,8 +76,8 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "File", result5.ElementAt(0) }
                     }
                 );
-                var result7 = context.Runspace.InvokeCommand<SitePageComment>(
-                    "New-KshSitePageComment",
+                var result7 = context.Runspace.InvokeCommand<Comment>(
+                    "New-KshComment",
                     new Dictionary<string, object>()
                     {
                         { "ListItem", result6.ElementAt(0) },
@@ -85,7 +85,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     }
                 );
                 var result8 = context.Runspace.InvokeCommand(
-                    "Remove-KshSitePageComment",
+                    "Remove-KshComment",
                     new Dictionary<string, object>()
                     {
                         { "Identity", result7.ElementAt(0) }
@@ -156,16 +156,16 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "File", result5.ElementAt(0) }
                     }
                 );
-                var result7 = context.Runspace.InvokeCommand<SitePageComment>(
-                    "New-KshSitePageComment",
+                var result7 = context.Runspace.InvokeCommand<Comment>(
+                    "New-KshComment",
                     new Dictionary<string, object>()
                     {
                         { "ListItem", result6.ElementAt(0) },
                         { "Text", "Test Comment 0" }
                     }
                 );
-                var result8 = context.Runspace.InvokeCommand<SitePageComment>(
-                    "New-KshSitePageComment",
+                var result8 = context.Runspace.InvokeCommand<Comment>(
+                    "New-KshComment",
                     new Dictionary<string, object>()
                     {
                         { "Comment", result7.ElementAt(0) },
@@ -173,7 +173,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     }
                 );
                 var result9 = context.Runspace.InvokeCommand(
-                    "Remove-KshSitePageComment",
+                    "Remove-KshComment",
                     new Dictionary<string, object>()
                     {
                         { "Identity", result7.ElementAt(0) }

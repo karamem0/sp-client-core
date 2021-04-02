@@ -4,7 +4,7 @@
 
 PowerShell Core 向けの SharePoint サービス モジュール
 
-[![Build Status](https://dev.azure.com/karamem0jp/SPClientCore/_apis/build/status/SPClientCore?branchName=master)](https://dev.azure.com/karamem0jp/SPClientCore/_build/latest?definitionId=42&branchName=master)
+[![Build Status](https://dev.azure.com/karamem0/SPClientCore/_apis/build/status/SPClientCore?branchName=master)](https://dev.azure.com/karamem0/SPClientCore/_build/latest?definitionId=51&branchName=master)
 [![License](https://img.shields.io/github/license/karamem0/spclientcore.svg)](https://github.com/karamem0/spclientcore/blob/master/LICENSE)
 
 ## インストール
@@ -99,6 +99,10 @@ SPClientCore は Azure AD 2.0 認証をサポートします (Device Code Grant 
     - [Update-KshColumnText](docs/Update-KshColumnText.md)
     - [Update-KshColumnUrl](docs/Update-KshColumnUrl.md)
     - [Update-KshColumnUser](docs/Update-KshColumnUser.md)
+  - コメント
+    - [Get-KshComment](docs/Get-KshComment.md)
+    - [New-KshComment](docs/New-KshComment.md)
+    - [Remove-KshComment](docs/Remove-KshComment.md)
   - コンテンツ タイプ
     - [Get-KshContentType](docs/Get-KshContentType.md)
     - [New-KshContentType](docs/New-KshContentType.md)
@@ -248,10 +252,6 @@ SPClientCore は Azure AD 2.0 認証をサポートします (Device Code Grant 
     - [Add-KshSitePage](docs/Add-KshSitePage.md)
     - [Remove-KshSitePage](docs/Remove-KshSitePage.md)
     - [Set-KshSitePage](docs/Set-KshSitePage.md)
-  - サイト ページのコメント
-    - [Get-KshSitePageComment](docs/Get-KshSitePageComment.md)
-    - [New-KshSitePageComment](docs/New-KshSitePageComment.md)
-    - [Remove-KshSitePageComment](docs/Remove-KshSitePageComment.md)
   - サイト テンプレート
     - [Get-KshSiteTemplate](docs/Get-KshSiteTemplate.md)
   - テナントのアプリ
@@ -302,8 +302,6 @@ SPClientCore は Azure AD 2.0 認証をサポートします (Device Code Grant 
     - [New-KshTenantHubSite](docs/New-KshTenantHubSite.md)
     - [Remove-KshTenantHubSite](docs/Remove-KshTenantHubSite.md)
     - [Update-KshTenantHubSite](docs/Update-KshTenantHubSite.md)
-  - ログ
-    - [Get-KshTenantLogEntry](docs/Get-KshTenantLogEntry.md)
   - Office 365 CDN
     - [Get-KshTenantCdnEnabled](docs/Get-KshTenantCdnEnabled.md)
     - [Set-KshTenantCdnEnabled](docs/Set-KshTenantCdnEnabled.md)
@@ -312,6 +310,10 @@ SPClientCore は Azure AD 2.0 認証をサポートします (Device Code Grant 
     - [Remove-KshTenantCdnOrigin](docs/Remove-KshTenantCdnOrigin.md)
     - [Get-KshTenantCdnPolicy](docs/Get-KshTenantCdnPolicy.md)
     - [Set-KshTenantCdnPolicy](docs/Set-KshTenantCdnPolicy.md)
+  - 組織のニュース サイト
+    - [Get-KshTenantOrganizationNewsSite](docs/Get-KshTenantOrganizationNewsSite.md)
+    - [Add-KshTenantOrganizationNewsSite](docs/Add-KshTenantOrganizationNewsSite.md)
+    - [Remove-KshTenantOrganizationNewsSite](docs/Remove-KshTenantOrganizationNewsSite.md)
   - サイト コレクション
     - [Get-KshSiteCollection](docs/Get-KshSiteCollection.md)
     - [Get-KshTenantSiteCollection](docs/Get-KshTenantSiteCollection.md)

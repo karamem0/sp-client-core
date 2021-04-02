@@ -18,31 +18,31 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Services
 {
 
-    public interface ISitePageCommentService
+    public interface ICommentService
     {
 
-        SitePageComment CreateObject(ListItem listItemObject, IReadOnlyDictionary<string, object> creationInformation);
+        Comment CreateObject(ListItem listItemObject, IReadOnlyDictionary<string, object> creationInformation);
 
-        SitePageComment CreateObject(SitePageComment commentObject, IReadOnlyDictionary<string, object> creationInformation);
+        Comment CreateObject(Comment commentObject, IReadOnlyDictionary<string, object> creationInformation);
 
-        SitePageComment GetObject(SitePageComment commentObject);
+        Comment GetObject(Comment commentObject);
 
-        SitePageComment GetObject(ListItem listItemObject, int commentId);
+        Comment GetObject(ListItem listItemObject, int commentId);
 
-        IEnumerable<SitePageComment> GetObjectEnumerable(ListItem listItemObject);
+        IEnumerable<Comment> GetObjectEnumerable(ListItem listItemObject);
 
-        void RemoveObject(SitePageComment commentObject);
+        void RemoveObject(Comment commentObject);
 
     }
 
-    public class SitePageCommentService : ClientService, ISitePageCommentService
+    public class CommentService : ClientService, ICommentService
     {
 
-        public SitePageCommentService(ClientContext clientContext) : base(clientContext)
+        public CommentService(ClientContext clientContext) : base(clientContext)
         {
         }
 
-        public SitePageComment CreateObject(ListItem listItemObject, IReadOnlyDictionary<string, object> creationInformation)
+        public Comment CreateObject(ListItem listItemObject, IReadOnlyDictionary<string, object> creationInformation)
         {
             if (listItemObject == null)
             {
@@ -53,12 +53,12 @@ namespace Karamem0.SharePoint.PowerShell.Services
                     "_api/web/lists('{0}')/items({1})/comments",
                     listItemObject.ObjectIdentity.Split(':').SkipLast(2).Last(),
                     listItemObject.Id)
-                .ConcatQuery(ODataQuery.Create<SitePageComment>());
-            var requestPayload = new ODataV1RequestPayload<SitePageCommentCreationInformation>(creationInformation);
-            return this.ClientContext.PostObject<SitePageComment>(requestUrl, requestPayload.Entity);
+                .ConcatQuery(ODataQuery.Create<Comment>());
+            var requestPayload = new ODataV1RequestPayload<CommentCreationInformation>(creationInformation);
+            return this.ClientContext.PostObject<Comment>(requestUrl, requestPayload.Entity);
         }
 
-        public SitePageComment CreateObject(SitePageComment commentObject, IReadOnlyDictionary<string, object> creationInformation)
+        public Comment CreateObject(Comment commentObject, IReadOnlyDictionary<string, object> creationInformation)
         {
             if (commentObject == null)
             {
@@ -70,12 +70,12 @@ namespace Karamem0.SharePoint.PowerShell.Services
                     commentObject.ListId,
                     commentObject.ItemId,
                     commentObject.Id)
-                .ConcatQuery(ODataQuery.Create<SitePageComment>());
-            var requestPayload = new ODataV1RequestPayload<SitePageCommentCreationInformation>(creationInformation);
-            return this.ClientContext.PostObject<SitePageComment>(requestUrl, requestPayload.Entity);
+                .ConcatQuery(ODataQuery.Create<Comment>());
+            var requestPayload = new ODataV1RequestPayload<CommentCreationInformation>(creationInformation);
+            return this.ClientContext.PostObject<Comment>(requestUrl, requestPayload.Entity);
         }
 
-        public SitePageComment GetObject(SitePageComment commentObject)
+        public Comment GetObject(Comment commentObject)
         {
             if (commentObject == null)
             {
@@ -87,11 +87,11 @@ namespace Karamem0.SharePoint.PowerShell.Services
                     commentObject.ListId,
                     commentObject.ItemId,
                     commentObject.Id)
-                .ConcatQuery(ODataQuery.Create<SitePageComment>());
-            return this.ClientContext.GetObject<SitePageComment>(requestUrl);
+                .ConcatQuery(ODataQuery.Create<Comment>());
+            return this.ClientContext.GetObject<Comment>(requestUrl);
         }
 
-        public SitePageComment GetObject(ListItem listItemObject, int commentId)
+        public Comment GetObject(ListItem listItemObject, int commentId)
         {
             if (listItemObject == null)
             {
@@ -107,11 +107,11 @@ namespace Karamem0.SharePoint.PowerShell.Services
                     listItemObject.ObjectIdentity.Split(':').SkipLast(2).Last(),
                     listItemObject.Id,
                     commentId)
-                .ConcatQuery(ODataQuery.Create<SitePageComment>());
-            return this.ClientContext.GetObject<SitePageComment>(requestUrl);
+                .ConcatQuery(ODataQuery.Create<Comment>());
+            return this.ClientContext.GetObject<Comment>(requestUrl);
         }
 
-        public IEnumerable<SitePageComment> GetObjectEnumerable(ListItem listItemObject)
+        public IEnumerable<Comment> GetObjectEnumerable(ListItem listItemObject)
         {
             if (listItemObject == null)
             {
@@ -122,11 +122,11 @@ namespace Karamem0.SharePoint.PowerShell.Services
                     "_api/web/lists('{0}')/items({1})/comments",
                     listItemObject.ObjectIdentity.Split(':').SkipLast(2).Last(),
                     listItemObject.Id)
-                .ConcatQuery(ODataQuery.Create<SitePageComment>());
-            return this.ClientContext.GetObject<ODataV1ObjectEnumerable<SitePageComment>>(requestUrl);
+                .ConcatQuery(ODataQuery.Create<Comment>());
+            return this.ClientContext.GetObject<ODataV1ObjectEnumerable<Comment>>(requestUrl);
         }
 
-        public void RemoveObject(SitePageComment commentObject)
+        public void RemoveObject(Comment commentObject)
         {
             if (commentObject == null)
             {

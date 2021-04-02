@@ -18,17 +18,17 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands
 {
 
-    [Cmdlet("Remove", "KshSitePageComment")]
+    [Cmdlet("Remove", "KshComment")]
     [OutputType(typeof(void))]
-    public class RemoveSitePageCommentCommand : ClientObjectCmdlet<ISitePageCommentService>
+    public class RemoveCommentCommand : ClientObjectCmdlet<ICommentService>
     {
 
-        public RemoveSitePageCommentCommand()
+        public RemoveCommentCommand()
         {
         }
 
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public SitePageComment Identity { get; private set; }
+        public Comment Identity { get; private set; }
 
         protected override void ProcessRecordCore()
         {

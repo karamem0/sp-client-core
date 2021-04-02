@@ -18,17 +18,17 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands
 {
 
-    [Cmdlet("Get", "KshSitePageComment")]
-    [OutputType(typeof(SitePageComment))]
-    public class GetSitePageCommentCommand : ClientObjectCmdlet<ISitePageCommentService>
+    [Cmdlet("Get", "KshComment")]
+    [OutputType(typeof(Comment))]
+    public class GetCommentCommand : ClientObjectCmdlet<ICommentService>
     {
 
-        public GetSitePageCommentCommand()
+        public GetCommentCommand()
         {
         }
 
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
-        public SitePageComment Identity { get; private set; }
+        public Comment Identity { get; private set; }
 
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet3")]

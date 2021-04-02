@@ -18,12 +18,12 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("Get-KshSitePageComment")]
-    public class GetSitePageCommentCommandTests
+    [TestCategory("Get-KshComment")]
+    public class GetCommentCommandTests
     {
 
         [TestMethod()]
-        public void GetSitePageComments()
+        public void GetComments()
         {
             using (var context = new PSCmdletContext())
             {
@@ -52,8 +52,8 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "File", result2.ElementAt(0) }
                     }
                 );
-                var result4 = context.Runspace.InvokeCommand<SitePageComment>(
-                    "Get-KshSitePageComment",
+                var result4 = context.Runspace.InvokeCommand<Comment>(
+                    "Get-KshComment",
                     new Dictionary<string, object>()
                     {
                         { "ListItem", result3.ElementAt(0) }
@@ -64,7 +64,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void GetSitePageCommentByIdentity()
+        public void GetCommentByIdentity()
         {
             using (var context = new PSCmdletContext())
             {
@@ -93,16 +93,16 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "File", result2.ElementAt(0) }
                     }
                 );
-                var result4 = context.Runspace.InvokeCommand<SitePageComment>(
-                    "Get-KshSitePageComment",
+                var result4 = context.Runspace.InvokeCommand<Comment>(
+                    "Get-KshComment",
                     new Dictionary<string, object>()
                     {
                         { "ListItem", result3.ElementAt(0) },
-                        { "CommentId", context.AppSettings["SitePageComment1Id"] }
+                        { "CommentId", context.AppSettings["Comment1Id"] }
                     }
                 );
-                var result5 = context.Runspace.InvokeCommand<SitePageComment>(
-                    "Get-KshSitePageComment",
+                var result5 = context.Runspace.InvokeCommand<Comment>(
+                    "Get-KshComment",
                     new Dictionary<string, object>()
                     {
                         { "Identity", result4.ElementAt(0) }
@@ -113,7 +113,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
         }
 
         [TestMethod()]
-        public void GetSitePageCommentByCommentId()
+        public void GetCommentByCommentId()
         {
             using (var context = new PSCmdletContext())
             {
@@ -142,12 +142,12 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                         { "File", result2.ElementAt(0) }
                     }
                 );
-                var result4 = context.Runspace.InvokeCommand<SitePageComment>(
-                    "Get-KshSitePageComment",
+                var result4 = context.Runspace.InvokeCommand<Comment>(
+                    "Get-KshComment",
                     new Dictionary<string, object>()
                     {
                         { "ListItem", result3.ElementAt(0) },
-                        { "CommentId", context.AppSettings["SitePageComment1Id"] }
+                        { "CommentId", context.AppSettings["Comment1Id"] }
                     }
                 );
                 var actual = result4.ElementAt(0);

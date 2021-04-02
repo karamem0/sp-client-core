@@ -18,12 +18,12 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands
 {
 
-    [Cmdlet("New", "KshSitePageComment")]
-    [OutputType(typeof(SitePageComment))]
-    public class NewSitePageCommentCommand : ClientObjectCmdlet<ISitePageCommentService>
+    [Cmdlet("New", "KshComment")]
+    [OutputType(typeof(Comment))]
+    public class NewCommentCommand : ClientObjectCmdlet<ICommentService>
     {
 
-        public NewSitePageCommentCommand()
+        public NewCommentCommand()
         {
         }
 
@@ -31,7 +31,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         public ListItem ListItem { get; private set; }
 
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet2")]
-        public SitePageComment Comment { get; private set; }
+        public Comment Comment { get; private set; }
 
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]

@@ -5,43 +5,43 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-KshSitePageComment
+# Get-KshComment
 
 ## SYNOPSIS
-Retrieves one or more site page comment.
+Retrieves one or more comments.
 
 ## SYNTAX
 
 ### ParamSet1
 ```
-Get-KshSitePageComment [-Identity] <SitePageComment> [<CommonParameters>]
+Get-KshComment [-Identity] <Comment> [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-Get-KshSitePageComment [-ListItem] <ListItem> [-CommentId] <Int32> [<CommonParameters>]
+Get-KshComment [-ListItem] <ListItem> [-CommentId] <Int32> [<CommonParameters>]
 ```
 
 ### ParamSet3
 ```
-Get-KshSitePageComment [-ListItem] <ListItem> [-NoEnumerate] [<CommonParameters>]
+Get-KshComment [-ListItem] <ListItem> [-NoEnumerate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshSitePageComment cmdlet retrieves comments of the specified site page.
+The Get-KshComment cmdlet retrieves comments of the specified list item.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> Get-KshSitePageComment -ListItem (Get-KshListItem -List (Get-KshList -ListTitle 'Site Pages') -ItemId 1) -CommentId 1
+PS C:\> Get-KshComment -ListItem (Get-KshListItem -List (Get-KshList -ListTitle 'Site Pages') -ItemId 1) -CommentId 1
 ```
 
 Retrieves a comment by comment ID.
 
 ### Example 2
 ```powershell
-PS C:\> Get-KshSitePageComment -ListItem (Get-KshListItem -List (Get-KshList -ListTitle 'Site Pages') -ItemId 1)
+PS C:\> Get-KshComment -ListItem (Get-KshListItem -List (Get-KshList -ListTitle 'Site Pages') -ItemId 1)
 ```
 
 Retrieves all comments.
@@ -67,7 +67,7 @@ Accept wildcard characters: False
 Specifies the comment.
 
 ```yaml
-Type: SitePageComment
+Type: Comment
 Parameter Sets: ParamSet1
 Aliases:
 
@@ -113,11 +113,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.SitePageComment
+### Karamem0.SharePoint.PowerShell.Models.Comment
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.SitePageComment
+### Karamem0.SharePoint.PowerShell.Models.Comment
 
 ## NOTES
 

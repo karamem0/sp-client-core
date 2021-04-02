@@ -1315,6 +1315,85 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Add-KshTenantOrganizationNewsSite</command:name>
+      <command:verb>Add</command:verb>
+      <command:noun>KshTenantOrganizationNewsSite</command:noun>
+      <maml:description>
+        <maml:para>Adds an organization news site.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Add-KshTenantOrganizationNewsSite cmdlet adds an organization news site to the tenant. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Add-KshTenantOrganizationNewsSite</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Url</maml:name>
+          <maml:description>
+            <maml:para>Specifies the URL.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Url</maml:name>
+        <maml:description>
+          <maml:para>Specifies the URL.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Add-KshTenantOrganizationNewsSite -Url 'https://karamem0jp.sharepoint.com/sites/NewsSite'</dev:code>
+        <dev:remarks>
+          <maml:para>Adds an organization news site.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Add-KshTermCustomProperty</command:name>
       <command:verb>Add</command:verb>
       <command:noun>KshTermCustomProperty</command:noun>
@@ -5329,6 +5408,181 @@
         <dev:code>PS C:\&gt; Get-KshColumn</dev:code>
         <dev:remarks>
           <maml:para>Retrieves all columns of the current site.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-KshComment</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>KshComment</command:noun>
+      <maml:description>
+        <maml:para>Retrieves one or more comments.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-KshComment cmdlet retrieves comments of the specified list item.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-KshComment</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>ListItem</maml:name>
+          <maml:description>
+            <maml:para>Specifies the list item.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">ListItem</command:parameterValue>
+          <dev:type>
+            <maml:name>ListItem</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>CommentId</maml:name>
+          <maml:description>
+            <maml:para>Specifies the comment ID.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshComment</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Identity</maml:name>
+          <maml:description>
+            <maml:para>Specifies the comment.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Comment</command:parameterValue>
+          <dev:type>
+            <maml:name>Comment</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshComment</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>ListItem</maml:name>
+          <maml:description>
+            <maml:para>Specifies the list item.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">ListItem</command:parameterValue>
+          <dev:type>
+            <maml:name>ListItem</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NoEnumerate</maml:name>
+          <maml:description>
+            <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>CommentId</maml:name>
+        <maml:description>
+          <maml:para>Specifies the comment ID.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Identity</maml:name>
+        <maml:description>
+          <maml:para>Specifies the comment.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Comment</command:parameterValue>
+        <dev:type>
+          <maml:name>Comment</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>ListItem</maml:name>
+        <maml:description>
+          <maml:para>Specifies the list item.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">ListItem</command:parameterValue>
+        <dev:type>
+          <maml:name>ListItem</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>NoEnumerate</maml:name>
+        <maml:description>
+          <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Comment</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Comment</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshComment -ListItem (Get-KshListItem -List (Get-KshList -ListTitle 'Site Pages') -ItemId 1) -CommentId 1</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves a comment by comment ID.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshComment -ListItem (Get-KshListItem -List (Get-KshList -ListTitle 'Site Pages') -ItemId 1)</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves all comments.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -10720,181 +10974,6 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
-      <command:name>Get-KshSitePageComment</command:name>
-      <command:verb>Get</command:verb>
-      <command:noun>KshSitePageComment</command:noun>
-      <maml:description>
-        <maml:para>Retrieves one or more site page comment.</maml:para>
-      </maml:description>
-    </command:details>
-    <maml:description>
-      <maml:para>The Get-KshSitePageComment cmdlet retrieves comments of the specified site page.</maml:para>
-    </maml:description>
-    <command:syntax>
-      <command:syntaxItem>
-        <maml:name>Get-KshSitePageComment</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
-          <maml:name>ListItem</maml:name>
-          <maml:description>
-            <maml:para>Specifies the list item.</maml:para>
-          </maml:description>
-          <command:parameterValue required="true" variableLength="false">ListItem</command:parameterValue>
-          <dev:type>
-            <maml:name>ListItem</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
-          <maml:name>CommentId</maml:name>
-          <maml:description>
-            <maml:para>Specifies the comment ID.</maml:para>
-          </maml:description>
-          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
-          <dev:type>
-            <maml:name>Int32</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-      </command:syntaxItem>
-      <command:syntaxItem>
-        <maml:name>Get-KshSitePageComment</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
-          <maml:name>Identity</maml:name>
-          <maml:description>
-            <maml:para>Specifies the comment.</maml:para>
-          </maml:description>
-          <command:parameterValue required="true" variableLength="false">SitePageComment</command:parameterValue>
-          <dev:type>
-            <maml:name>SitePageComment</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-      </command:syntaxItem>
-      <command:syntaxItem>
-        <maml:name>Get-KshSitePageComment</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
-          <maml:name>ListItem</maml:name>
-          <maml:description>
-            <maml:para>Specifies the list item.</maml:para>
-          </maml:description>
-          <command:parameterValue required="true" variableLength="false">ListItem</command:parameterValue>
-          <dev:type>
-            <maml:name>ListItem</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>NoEnumerate</maml:name>
-          <maml:description>
-            <maml:para>If specified, suppresses to enumerate objects.</maml:para>
-          </maml:description>
-          <dev:type>
-            <maml:name>SwitchParameter</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>False</dev:defaultValue>
-        </command:parameter>
-      </command:syntaxItem>
-    </command:syntax>
-    <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
-        <maml:name>CommentId</maml:name>
-        <maml:description>
-          <maml:para>Specifies the comment ID.</maml:para>
-        </maml:description>
-        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
-        <dev:type>
-          <maml:name>Int32</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
-        <maml:name>Identity</maml:name>
-        <maml:description>
-          <maml:para>Specifies the comment.</maml:para>
-        </maml:description>
-        <command:parameterValue required="true" variableLength="false">SitePageComment</command:parameterValue>
-        <dev:type>
-          <maml:name>SitePageComment</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
-        <maml:name>ListItem</maml:name>
-        <maml:description>
-          <maml:para>Specifies the list item.</maml:para>
-        </maml:description>
-        <command:parameterValue required="true" variableLength="false">ListItem</command:parameterValue>
-        <dev:type>
-          <maml:name>ListItem</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>NoEnumerate</maml:name>
-        <maml:description>
-          <maml:para>If specified, suppresses to enumerate objects.</maml:para>
-        </maml:description>
-        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
-        <dev:type>
-          <maml:name>SwitchParameter</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>False</dev:defaultValue>
-      </command:parameter>
-    </command:parameters>
-    <command:inputTypes>
-      <command:inputType>
-        <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.SitePageComment</maml:name>
-        </dev:type>
-        <maml:description>
-          <maml:para></maml:para>
-        </maml:description>
-      </command:inputType>
-    </command:inputTypes>
-    <command:returnValues>
-      <command:returnValue>
-        <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.SitePageComment</maml:name>
-        </dev:type>
-        <maml:description>
-          <maml:para></maml:para>
-        </maml:description>
-      </command:returnValue>
-    </command:returnValues>
-    <maml:alertSet>
-      <maml:alert>
-        <maml:para></maml:para>
-      </maml:alert>
-    </maml:alertSet>
-    <command:examples>
-      <command:example>
-        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Get-KshSitePageComment -ListItem (Get-KshListItem -List (Get-KshList -ListTitle 'Site Pages') -ItemId 1) -CommentId 1</dev:code>
-        <dev:remarks>
-          <maml:para>Retrieves a comment by comment ID.</maml:para>
-        </dev:remarks>
-      </command:example>
-      <command:example>
-        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Get-KshSitePageComment -ListItem (Get-KshListItem -List (Get-KshList -ListTitle 'Site Pages') -ItemId 1)</dev:code>
-        <dev:remarks>
-          <maml:para>Retrieves all comments.</maml:para>
-        </dev:remarks>
-      </command:example>
-    </command:examples>
-    <command:relatedLinks />
-  </command:command>
-  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-    <command:details>
       <command:name>Get-KshSiteTemplate</command:name>
       <command:verb>Get</command:verb>
       <command:noun>KshSiteTemplate</command:noun>
@@ -12203,43 +12282,19 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
-      <command:name>Get-KshTenantLogEntry</command:name>
+      <command:name>Get-KshTenantOrganizationNewsSite</command:name>
       <command:verb>Get</command:verb>
-      <command:noun>KshTenantLogEntry</command:noun>
+      <command:noun>KshTenantOrganizationNewsSite</command:noun>
       <maml:description>
-        <maml:para>Retrieves one or more tenant logs.</maml:para>
+        <maml:para>Retrieves one or more organization news sites.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Get-KshTenantLogEntry cmdlet retrieves tenant logs. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
+      <maml:para>The Get-KshTenantOrganizationNewsSite cmdlet retrieves organization news sites. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
-        <maml:name>Get-KshTenantLogEntry</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>BeginDateTime</maml:name>
-          <maml:description>
-            <maml:para>Specifies the begin time to search for the logs.</maml:para>
-          </maml:description>
-          <command:parameterValue required="true" variableLength="false">DateTime</command:parameterValue>
-          <dev:type>
-            <maml:name>DateTime</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>EndDateTime</maml:name>
-          <maml:description>
-            <maml:para>Specifies the end time to search for the logs.</maml:para>
-          </maml:description>
-          <command:parameterValue required="true" variableLength="false">DateTime</command:parameterValue>
-          <dev:type>
-            <maml:name>DateTime</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
+        <maml:name>Get-KshTenantOrganizationNewsSite</maml:name>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>NoEnumerate</maml:name>
           <maml:description>
@@ -12251,45 +12306,9 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>Rows</maml:name>
-          <maml:description>
-            <maml:para>Specifies the number of rows.</maml:para>
-          </maml:description>
-          <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
-          <dev:type>
-            <maml:name>UInt32</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>BeginDateTime</maml:name>
-        <maml:description>
-          <maml:para>Specifies the begin time to search for the logs.</maml:para>
-        </maml:description>
-        <command:parameterValue required="true" variableLength="false">DateTime</command:parameterValue>
-        <dev:type>
-          <maml:name>DateTime</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>EndDateTime</maml:name>
-        <maml:description>
-          <maml:para>Specifies the end time to search for the logs.</maml:para>
-        </maml:description>
-        <command:parameterValue required="true" variableLength="false">DateTime</command:parameterValue>
-        <dev:type>
-          <maml:name>DateTime</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>NoEnumerate</maml:name>
         <maml:description>
@@ -12301,18 +12320,6 @@
           <maml:uri />
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>Rows</maml:name>
-        <maml:description>
-          <maml:para>Specifies the number of rows.</maml:para>
-        </maml:description>
-        <command:parameterValue required="true" variableLength="false">UInt32</command:parameterValue>
-        <dev:type>
-          <maml:name>UInt32</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
     </command:parameters>
     <command:inputTypes>
@@ -12328,7 +12335,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.TenantLogEntry</maml:name>
+          <maml:name>System.String</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -12343,9 +12350,9 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Get-KshTenantLogEntry -BeginDateTime '2021/01/01 00:00:00' -EndDateTime '2021/01/31 23:59:59' -Rows 100</dev:code>
+        <dev:code>PS C:\&gt; Get-KshTenantHubSite</dev:code>
         <dev:remarks>
-          <maml:para>Retrieves hub sites by period.</maml:para>
+          <maml:para>Retrieves all organization news sites.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -36371,6 +36378,156 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>New-KshComment</command:name>
+      <command:verb>New</command:verb>
+      <command:noun>KshComment</command:noun>
+      <maml:description>
+        <maml:para>Creates a new comment.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The New-KshComment cmdlet adds a new comment to the specified list item.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>New-KshComment</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Comment</maml:name>
+          <maml:description>
+            <maml:para>Specifies the comment.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Comment</command:parameterValue>
+          <dev:type>
+            <maml:name>Comment</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Text</maml:name>
+          <maml:description>
+            <maml:para>Specifies the text.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>New-KshComment</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>ListItem</maml:name>
+          <maml:description>
+            <maml:para>Specifies the list item.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">ListItem</command:parameterValue>
+          <dev:type>
+            <maml:name>ListItem</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Text</maml:name>
+          <maml:description>
+            <maml:para>Specifies the text.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Comment</maml:name>
+        <maml:description>
+          <maml:para>Specifies the comment.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Comment</command:parameterValue>
+        <dev:type>
+          <maml:name>Comment</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>ListItem</maml:name>
+        <maml:description>
+          <maml:para>Specifies the list item.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">ListItem</command:parameterValue>
+        <dev:type>
+          <maml:name>ListItem</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Text</maml:name>
+        <maml:description>
+          <maml:para>Specifies the text.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.ListItem</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Comment</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Comment</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; New-KshComment -ListItem (Get-KshListItem -List (Get-KshList -ListTitle 'Site Pages') -ItemId 1) -Text 'It is great!'</dev:code>
+        <dev:remarks>
+          <maml:para>Creates a new comment.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>New-KshContentType</command:name>
       <command:verb>New</command:verb>
       <command:noun>KshContentType</command:noun>
@@ -38907,156 +39064,6 @@
         <dev:code>PS C:\&gt; New-KshSiteCollectionApp -Content [System.IO.File]::OpenRead('C:\app.sppkg') -FileName 'app.sppkg'</dev:code>
         <dev:remarks>
           <maml:para>Creates a new app.</maml:para>
-        </dev:remarks>
-      </command:example>
-    </command:examples>
-    <command:relatedLinks />
-  </command:command>
-  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-    <command:details>
-      <command:name>New-KshSitePageComment</command:name>
-      <command:verb>New</command:verb>
-      <command:noun>KshSitePageComment</command:noun>
-      <maml:description>
-        <maml:para>Creates a new site page comment.</maml:para>
-      </maml:description>
-    </command:details>
-    <maml:description>
-      <maml:para>The New-KshSitePageComment cmdlet adds a new comment to the specified site page.</maml:para>
-    </maml:description>
-    <command:syntax>
-      <command:syntaxItem>
-        <maml:name>New-KshSitePageComment</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
-          <maml:name>Comment</maml:name>
-          <maml:description>
-            <maml:para>Specifies the comment.</maml:para>
-          </maml:description>
-          <command:parameterValue required="true" variableLength="false">SitePageComment</command:parameterValue>
-          <dev:type>
-            <maml:name>SitePageComment</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>Text</maml:name>
-          <maml:description>
-            <maml:para>Specifies the text.</maml:para>
-          </maml:description>
-          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-          <dev:type>
-            <maml:name>String</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-      </command:syntaxItem>
-      <command:syntaxItem>
-        <maml:name>New-KshSitePageComment</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
-          <maml:name>ListItem</maml:name>
-          <maml:description>
-            <maml:para>Specifies the list item.</maml:para>
-          </maml:description>
-          <command:parameterValue required="true" variableLength="false">ListItem</command:parameterValue>
-          <dev:type>
-            <maml:name>ListItem</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>Text</maml:name>
-          <maml:description>
-            <maml:para>Specifies the text.</maml:para>
-          </maml:description>
-          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-          <dev:type>
-            <maml:name>String</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-      </command:syntaxItem>
-    </command:syntax>
-    <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
-        <maml:name>Comment</maml:name>
-        <maml:description>
-          <maml:para>Specifies the comment.</maml:para>
-        </maml:description>
-        <command:parameterValue required="true" variableLength="false">SitePageComment</command:parameterValue>
-        <dev:type>
-          <maml:name>SitePageComment</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
-        <maml:name>ListItem</maml:name>
-        <maml:description>
-          <maml:para>Specifies the list item.</maml:para>
-        </maml:description>
-        <command:parameterValue required="true" variableLength="false">ListItem</command:parameterValue>
-        <dev:type>
-          <maml:name>ListItem</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>Text</maml:name>
-        <maml:description>
-          <maml:para>Specifies the text.</maml:para>
-        </maml:description>
-        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-        <dev:type>
-          <maml:name>String</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-    </command:parameters>
-    <command:inputTypes>
-      <command:inputType>
-        <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.ListItem</maml:name>
-        </dev:type>
-        <maml:description>
-          <maml:para></maml:para>
-        </maml:description>
-      </command:inputType>
-      <command:inputType>
-        <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.SitePageComment</maml:name>
-        </dev:type>
-        <maml:description>
-          <maml:para></maml:para>
-        </maml:description>
-      </command:inputType>
-    </command:inputTypes>
-    <command:returnValues>
-      <command:returnValue>
-        <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.SitePageComment</maml:name>
-        </dev:type>
-        <maml:description>
-          <maml:para></maml:para>
-        </maml:description>
-      </command:returnValue>
-    </command:returnValues>
-    <maml:alertSet>
-      <maml:alert>
-        <maml:para></maml:para>
-      </maml:alert>
-    </maml:alertSet>
-    <command:examples>
-      <command:example>
-        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; New-KshSitePageComment -ListItem (Get-KshListItem -List (Get-KshList -ListTitle 'Site Pages') -ItemId 1) -Text 'It is great!'</dev:code>
-        <dev:remarks>
-          <maml:para>Creates a new comment.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -41981,6 +41988,85 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Remove-KshComment</command:name>
+      <command:verb>Remove</command:verb>
+      <command:noun>KshComment</command:noun>
+      <maml:description>
+        <maml:para>Removes a comment.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Remove-KshComment cmdlet removes a comment from the list item.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Remove-KshComment</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Identity</maml:name>
+          <maml:description>
+            <maml:para>Specifies the comment.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Comment</command:parameterValue>
+          <dev:type>
+            <maml:name>Comment</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Identity</maml:name>
+        <maml:description>
+          <maml:para>Specifies the comment.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Comment</command:parameterValue>
+        <dev:type>
+          <maml:name>Comment</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.Comment</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Remove-KshComment -Identity (Get-KshComment -ListItem (Get-KshListItem -List (Get-KshList -ListTitle 'Site Pages') -ItemId 1) -CommentId 1)</dev:code>
+        <dev:remarks>
+          <maml:para>Removes a comment.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Remove-KshContentType</command:name>
       <command:verb>Remove</command:verb>
       <command:noun>KshContentType</command:noun>
@@ -44576,85 +44662,6 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
-      <command:name>Remove-KshSitePageComment</command:name>
-      <command:verb>Remove</command:verb>
-      <command:noun>KshSitePageComment</command:noun>
-      <maml:description>
-        <maml:para>Removes a site page comment.</maml:para>
-      </maml:description>
-    </command:details>
-    <maml:description>
-      <maml:para>The Remove-KshSitePageComment cmdlet removes a comment from the site page.</maml:para>
-    </maml:description>
-    <command:syntax>
-      <command:syntaxItem>
-        <maml:name>Remove-KshSitePageComment</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
-          <maml:name>Identity</maml:name>
-          <maml:description>
-            <maml:para>Specifies the comment.</maml:para>
-          </maml:description>
-          <command:parameterValue required="true" variableLength="false">SitePageComment</command:parameterValue>
-          <dev:type>
-            <maml:name>SitePageComment</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
-      </command:syntaxItem>
-    </command:syntax>
-    <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
-        <maml:name>Identity</maml:name>
-        <maml:description>
-          <maml:para>Specifies the comment.</maml:para>
-        </maml:description>
-        <command:parameterValue required="true" variableLength="false">SitePageComment</command:parameterValue>
-        <dev:type>
-          <maml:name>SitePageComment</maml:name>
-          <maml:uri />
-        </dev:type>
-        <dev:defaultValue>None</dev:defaultValue>
-      </command:parameter>
-    </command:parameters>
-    <command:inputTypes>
-      <command:inputType>
-        <dev:type>
-          <maml:name>Karamem0.SharePoint.PowerShell.Models.SitePageComment</maml:name>
-        </dev:type>
-        <maml:description>
-          <maml:para></maml:para>
-        </maml:description>
-      </command:inputType>
-    </command:inputTypes>
-    <command:returnValues>
-      <command:returnValue>
-        <dev:type>
-          <maml:name>None</maml:name>
-        </dev:type>
-        <maml:description>
-          <maml:para></maml:para>
-        </maml:description>
-      </command:returnValue>
-    </command:returnValues>
-    <maml:alertSet>
-      <maml:alert>
-        <maml:para></maml:para>
-      </maml:alert>
-    </maml:alertSet>
-    <command:examples>
-      <command:example>
-        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Remove-KshSitePageComment -Identity (Get-KshSitePageComment -ListItem (Get-KshListItem -List (Get-KshList -ListTitle 'Site Pages') -ItemId 1) -CommentId 1)</dev:code>
-        <dev:remarks>
-          <maml:para>Removes a comment.</maml:para>
-        </dev:remarks>
-      </command:example>
-    </command:examples>
-    <command:relatedLinks />
-  </command:command>
-  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-    <command:details>
       <command:name>Remove-KshStorageEntity</command:name>
       <command:verb>Remove</command:verb>
       <command:noun>KshStorageEntity</command:noun>
@@ -45267,6 +45274,85 @@
         <dev:code>PS C:\&gt; Remove-KshTenantHubSite -Identity (Get-KshTenantHubSite -HubSiteUrl 'https://example.sharepoint.com/sites/hub')</dev:code>
         <dev:remarks>
           <maml:para>Removes a hub site.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Remove-KshTenantOrganizationNewsSite</command:name>
+      <command:verb>Remove</command:verb>
+      <command:noun>KshTenantOrganizationNewsSite</command:noun>
+      <maml:description>
+        <maml:para>Removes an organization news site.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Remove-KshTenantOrganizationNewsSite cmdlet removes an organization news site. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Remove-KshTenantOrganizationNewsSite</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Url</maml:name>
+          <maml:description>
+            <maml:para>Specifies the URL.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Url</maml:name>
+        <maml:description>
+          <maml:para>Specifies the URL.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Remove-KshTenantOrganizationNewsSite -Url 'https://example.sharepoint.com/sites/news'</dev:code>
+        <dev:remarks>
+          <maml:para>Removes a organization news site.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>

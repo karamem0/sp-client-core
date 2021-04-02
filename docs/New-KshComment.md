@@ -5,31 +5,31 @@ online version:
 schema: 2.0.0
 ---
 
-# New-KshSitePageComment
+# New-KshComment
 
 ## SYNOPSIS
-Creates a new site page comment.
+Creates a new comment.
 
 ## SYNTAX
 
 ### ParamSet1
 ```
-New-KshSitePageComment [-ListItem] <ListItem> -Text <String> [<CommonParameters>]
+New-KshComment [-ListItem] <ListItem> -Text <String> [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-New-KshSitePageComment [-Comment] <SitePageComment> -Text <String> [<CommonParameters>]
+New-KshComment [-Comment] <Comment> -Text <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The New-KshSitePageComment cmdlet adds a new comment to the specified site page.
+The New-KshComment cmdlet adds a new comment to the specified list item.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> New-KshSitePageComment -ListItem (Get-KshListItem -List (Get-KshList -ListTitle 'Site Pages') -ItemId 1) -Text 'It is great!'
+PS C:\> New-KshComment -ListItem (Get-KshListItem -List (Get-KshList -ListTitle 'Site Pages') -ItemId 1) -Text 'It is great!'
 ```
 
 Creates a new comment.
@@ -40,7 +40,7 @@ Creates a new comment.
 Specifies the comment.
 
 ```yaml
-Type: SitePageComment
+Type: Comment
 Parameter Sets: ParamSet2
 Aliases:
 
@@ -88,11 +88,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### Karamem0.SharePoint.PowerShell.Models.ListItem
 
-### Karamem0.SharePoint.PowerShell.Models.SitePageComment
+### Karamem0.SharePoint.PowerShell.Models.Comment
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.SitePageComment
+### Karamem0.SharePoint.PowerShell.Models.Comment
 
 ## NOTES
 

@@ -24,11 +24,11 @@ namespace Karamem0.SharePoint.PowerShell.Models
         {
         }
 
+        [JsonProperty("createdBy")]
+        public virtual IdentitySet Author { get; protected set; }
+
         [JsonProperty("createdDateTime")]
         public virtual DateTime Created { get; protected set; }
-
-        [JsonProperty("createdBy")]
-        public virtual IdentitySet CreatedBy { get; protected set; }
 
         [JsonProperty("description")]
         public virtual string Description { get; protected set; }
@@ -36,14 +36,14 @@ namespace Karamem0.SharePoint.PowerShell.Models
         [JsonProperty("driveType")]
         public virtual DriveType DriveType { get; protected set; }
 
+        [JsonProperty("lastModifiedBy")]
+        public virtual IdentitySet Editor { get; protected set; }
+
         [JsonProperty("id")]
         public virtual string Id { get; protected set; }
 
         [JsonProperty("lastModifiedDateTime")]
         public virtual DateTime LastModified { get; protected set; }
-
-        [JsonProperty("lastModifiedBy")]
-        public virtual IdentitySet LastModifiedBy { get; protected set; }
 
         [JsonProperty("name")]
         public virtual string Name { get; protected set; }

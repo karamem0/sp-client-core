@@ -18,10 +18,10 @@ namespace Karamem0.SharePoint.PowerShell.Models
 
     [JsonObject()]
     [ODataV1Object(Name = "Microsoft.SharePoint.Comments.comment")]
-    public class SitePageCommentCreationInformation : ODataV1Object
+    public class CommentCreationInformation : ODataV1Object
     {
 
-        public SitePageCommentCreationInformation()
+        public CommentCreationInformation()
         {
         }
 

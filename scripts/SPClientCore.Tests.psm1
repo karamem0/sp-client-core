@@ -29,7 +29,7 @@ function Install-TestSite {
 
         $authorityUrl = $Url.GetLeftPart([System.UriPartial]::Authority)
         $adminUrl = $authorityUrl.Replace('.sharepoint.com', '-admin.sharepoint.com')
-        $baseUrl = $authorityUrl + '/sites/SPClientCore'
+        $baseUrl = $authorityUrl + '/sites/spclientcore'
 
         $credential = New-Object System.Net.NetworkCredential("$UserName@$DomainName", $Password)
         $credential = New-Object System.Management.Automation.PSCredential($credential.UserName, $credential.SecurePassword)
@@ -1256,29 +1256,29 @@ function Install-TestSite {
         $sitePage3 = Get-KshFile -FileUrl ($sitePageFolder.ServerRelativeUrl + '/Test Site Page 3.aspx')
         $appSettings.SitePage3Url = $sitePage3.ServerRelativeUrl
     
-        Write-Progress -Activity 'Creating site page comments...' -Status 'Test Comment 1'
-        $sitePageComment1 = New-KshSitePageComment `
+        Write-Progress -Activity 'Creating comments...' -Status 'Test Comment 1'
+        $comment1 = New-KshComment `
             -ListItem (Get-KshListItem -File $sitePage1) `
             -Text 'Test Comment 1'
-        $appSettings.SitePageComment1Id = $sitePageComment1.Id
+        $appSettings.Comment1Id = $comment1.Id
 
-        Write-Progress -Activity 'Creating site page comments...' -Status 'Test Comment 2'
-        $sitePageComment2 = New-KshSitePageComment `
-            -Comment $sitePageComment1 `
+        Write-Progress -Activity 'Creating comments...' -Status 'Test Comment 2'
+        $comment2 = New-KshComment `
+            -Comment $comment1 `
             -Text 'Test Comment 2'
-        $appSettings.SitePageComment2Id = $sitePageComment2.Id
+        $appSettings.Comment2Id = $comment2.Id
 
-        Write-Progress -Activity 'Creating site page comments...' -Status 'Test Comment 3'
-        $sitePageComment3 = New-KshSitePageComment `
-            -Comment $sitePageComment1 `
+        Write-Progress -Activity 'Creating comments...' -Status 'Test Comment 3'
+        $comment3 = New-KshComment `
+            -Comment $comment1 `
             -Text 'Test Comment 3'
-        $appSettings.SitePageComment3Id = $sitePageComment3.Id
+        $appSettings.Comment3Id = $comment3.Id
 
-        Write-Progress -Activity 'Creating site page comments...' -Status 'Test Comment 4'
-        $sitePageComment4 = New-KshSitePageComment `
-            -Comment $sitePageComment1 `
+        Write-Progress -Activity 'Creating comments...' -Status 'Test Comment 4'
+        $comment4 = New-KshComment `
+            -Comment $comment1 `
             -Text 'Test Comment 4'
-        $appSettings.SitePageComment4Id = $sitePageComment4.Id
+        $appSettings.Comment4Id = $comment4.Id
 
         Write-Progress -Activity 'Creating alerts...' -Status 'Test Alert 1'
         $alert1 = New-KshAlert `
@@ -1437,7 +1437,7 @@ function Uninstall-TestSite {
 
         $authorityUrl = $Url.GetLeftPart([System.UriPartial]::Authority)
         $adminUrl = $authorityUrl.Replace('.sharepoint.com', '-admin.sharepoint.com')
-        $baseUrl = $authorityUrl + '/sites/SPClientCore'
+        $baseUrl = $authorityUrl + '/sites/spclientcore'
 
         $credential = New-Object System.Net.NetworkCredential("$UserName@$DomainName", $Password)
         $credential = New-Object System.Management.Automation.PSCredential($credential.UserName, $credential.SecurePassword)

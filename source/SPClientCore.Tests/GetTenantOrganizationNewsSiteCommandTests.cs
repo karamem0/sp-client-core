@@ -18,12 +18,12 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("Remove-KshSitePageComment")]
-    public class RemoveSitePageCommentCommandTests
+    [TestCategory("Get-KshTenantOrganizationNewsSite")]
+    public class GetTenantOrganizationNewsSiteCommandTests
     {
 
         [TestMethod()]
-        public void RemoveSitePageComment()
+        public void GetOrganizationNewsSites()
         {
             using (var context = new PSCmdletContext())
             {
@@ -31,73 +31,64 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     "Connect-KshSite",
                     new Dictionary<string, object>()
                     {
-                        { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
+                        { "Url", context.AppSettings["AdminUrl"] },
                         { "Credential", PSCredentialFactory.CreateCredential(
                             context.AppSettings["LoginUserName"],
                             context.AppSettings["LoginPassword"])
                         }
                     }
                 );
-                var result2 = context.Runspace.InvokeCommand<List>(
-                    "Get-KshList",
+                var result2 = context.Runspace.InvokeCommand<TenantSiteCollection>(
+                    "New-KshTenantSiteCollection",
                     new Dictionary<string, object>()
                     {
-                        { "LibraryType", "ClientRenderedSitePages" }
+                        { "Owner", context.AppSettings["LoginUserName"] },
+                        { "Template", "SITEPAGEPUBLISHING#0" },
+                        { "Url", context.AppSettings["AuthorityUrl"] + "/sites/TestSite0" }
                     }
                 );
                 var result3 = context.Runspace.InvokeCommand(
-                    "Add-KshSitePage",
+                    "Add-KshTenantOrganizationNewsSite",
                     new Dictionary<string, object>()
                     {
-                        { "List", result2.ElementAt(0) },
-                        { "PageName", "Test Site Page 0" },
-                        { "PageLayoutType", "Article" }
+                        { "Url", result2.ElementAt(0).Url }
                     }
                 );
-                var result4 = context.Runspace.InvokeCommand<Folder>(
-                    "Get-KshFolder",
+                var result4 = context.Runspace.InvokeCommand<string>(
+                    "Get-KshTenantOrganizationNewsSite",
                     new Dictionary<string, object>()
                     {
-                        { "List", result2.ElementAt(0) }
                     }
                 );
-                var result5 = context.Runspace.InvokeCommand<File>(
-                    "Get-KshFile",
+                var result5 = context.Runspace.InvokeCommand(
+                    "Remove-KshTenantOrganizationNewsSite",
                     new Dictionary<string, object>()
                     {
-                        { "Folder", result4.ElementAt(0) },
-                        { "FileName", "Test Site Page 0.aspx" }
+                        { "Url", result2.ElementAt(0).Url }
                     }
                 );
-                var result6 = context.Runspace.InvokeCommand<ListItem>(
-                    "Get-KshListItem",
+                var result6 = context.Runspace.InvokeCommand(
+                    "Remove-KshTenantSiteCollection",
                     new Dictionary<string, object>()
                     {
-                        { "File", result5.ElementAt(0) }
+                        { "Identity", result2.ElementAt(0) }
                     }
                 );
-                var result7 = context.Runspace.InvokeCommand<SitePageComment>(
-                    "New-KshSitePageComment",
+                var result7 = context.Runspace.InvokeCommand<TenantDeletedSiteCollection>(
+                    "Get-KshTenantDeletedSiteCollection",
                     new Dictionary<string, object>()
                     {
-                        { "ListItem", result6.ElementAt(0) },
-                        { "Text", "Test Comment 0" }
+                        { "SiteCollectionUrl", result2.ElementAt(0).Url }
                     }
                 );
                 var result8 = context.Runspace.InvokeCommand(
-                    "Remove-KshSitePageComment",
+                    "Remove-KshTenantDeletedSiteCollection",
                     new Dictionary<string, object>()
                     {
                         { "Identity", result7.ElementAt(0) }
                     }
                 );
-                var result9 = context.Runspace.InvokeCommand(
-                    "Remove-KshFile",
-                    new Dictionary<string, object>()
-                    {
-                        { "Identity", result5.ElementAt(0) }
-                    }
-                );
+                var actual = result4.ElementAt(0);
             }
         }
 

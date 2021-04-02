@@ -700,9 +700,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.SitePageComment</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.Comment</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.SitePageComment</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.Comment</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>

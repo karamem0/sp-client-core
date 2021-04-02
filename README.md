@@ -4,7 +4,7 @@
 
 SharePoint Service Module for PowerShell Core
 
-[![Build Status](https://dev.azure.com/karamem0jp/SPClientCore/_apis/build/status/SPClientCore?branchName=master)](https://dev.azure.com/karamem0jp/SPClientCore/_build/latest?definitionId=42&branchName=master)
+[![Build Status](https://dev.azure.com/karamem0/SPClientCore/_apis/build/status/SPClientCore?branchName=master)](https://dev.azure.com/karamem0/SPClientCore/_build/latest?definitionId=51&branchName=master)
 [![License](https://img.shields.io/github/license/karamem0/spclientcore.svg)](https://github.com/karamem0/spclientcore/blob/master/LICENSE)
 
 ## Installation
@@ -99,6 +99,10 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Update-KshColumnText](docs/Update-KshColumnText.md)
     - [Update-KshColumnUrl](docs/Update-KshColumnUrl.md)
     - [Update-KshColumnUser](docs/Update-KshColumnUser.md)
+  - Comments
+    - [Get-KshComment](docs/Get-KshComment.md)
+    - [New-KshComment](docs/New-KshComment.md)
+    - [Remove-KshComment](docs/Remove-KshComment.md)
   - Content Types
     - [Get-KshContentType](docs/Get-KshContentType.md)
     - [New-KshContentType](docs/New-KshContentType.md)
@@ -248,10 +252,6 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Add-KshSitePage](docs/Add-KshSitePage.md)
     - [Remove-KshSitePage](docs/Remove-KshSitePage.md)
     - [Set-KshSitePage](docs/Set-KshSitePage.md)
-  - Site Page Comments
-    - [Get-KshSitePageComment](docs/Get-KshSitePageComment.md)
-    - [New-KshSitePageComment](docs/New-KshSitePageComment.md)
-    - [Remove-KshSitePageComment](docs/Remove-KshSitePageComment.md)
   - Site Templates
     - [Get-KshSiteTemplate](docs/Get-KshSiteTemplate.md)
   - Tenant Apps
@@ -302,8 +302,6 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [New-KshTenantHubSite](docs/New-KshTenantHubSite.md)
     - [Remove-KshTenantHubSite](docs/Remove-KshTenantHubSite.md)
     - [Update-KshTenantHubSite](docs/Update-KshTenantHubSite.md)
-  - Logs
-    - [Get-KshTenantLogEntry](docs/Get-KshTenantLogEntry.md)
   - Office 365 CDN
     - [Get-KshTenantCdnEnabled](docs/Get-KshTenantCdnEnabled.md)
     - [Set-KshTenantCdnEnabled](docs/Set-KshTenantCdnEnabled.md)
@@ -312,6 +310,10 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Remove-KshTenantCdnOrigin](docs/Remove-KshTenantCdnOrigin.md)
     - [Get-KshTenantCdnPolicy](docs/Get-KshTenantCdnPolicy.md)
     - [Set-KshTenantCdnPolicy](docs/Set-KshTenantCdnPolicy.md)
+  - Organization News Sites
+    - [Get-KshTenantOrganizationNewsSite](docs/Get-KshTenantOrganizationNewsSite.md)
+    - [Add-KshTenantOrganizationNewsSite](docs/Add-KshTenantOrganizationNewsSite.md)
+    - [Remove-KshTenantOrganizationNewsSite](docs/Remove-KshTenantOrganizationNewsSite.md)
   - Site Collections
     - [Get-KshSiteCollection](docs/Get-KshSiteCollection.md)
     - [Get-KshTenantSiteCollection](docs/Get-KshTenantSiteCollection.md)

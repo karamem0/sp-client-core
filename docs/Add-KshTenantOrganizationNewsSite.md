@@ -5,43 +5,44 @@ online version:
 schema: 2.0.0
 ---
 
-# Remove-KshSitePageComment
+# Add-KshTenantOrganizationNewsSite
 
 ## SYNOPSIS
-Removes a site page comment.
+Adds an organization news site.
 
 ## SYNTAX
 
 ```
-Remove-KshSitePageComment [-Identity] <SitePageComment> [<CommonParameters>]
+Add-KshTenantOrganizationNewsSite -Url <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Remove-KshSitePageComment cmdlet removes a comment from the site page.
+The Add-KshTenantOrganizationNewsSite cmdlet adds an organization news site to the tenant.
+This cmdlet can be used only when connected to the SharePoint admin center.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> Remove-KshSitePageComment -Identity (Get-KshSitePageComment -ListItem (Get-KshListItem -List (Get-KshList -ListTitle 'Site Pages') -ItemId 1) -CommentId 1)
+PS C:\> Add-KshTenantOrganizationNewsSite -Url 'https://karamem0jp.sharepoint.com/sites/NewsSite'
 ```
 
-Removes a comment.
+Adds an organization news site.
 
 ## PARAMETERS
 
-### -Identity
-Specifies the comment.
+### -Url
+Specifies the URL.
 
 ```yaml
-Type: SitePageComment
+Type: String
 Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 0
+Position: Named
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -50,7 +51,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.SitePageComment
+### None
 
 ## OUTPUTS
 
