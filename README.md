@@ -36,7 +36,7 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
 - [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/5.0.1) (5.0.1)
 - [Microsoft.Extensions.DependencyInjection.Abstractions](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection.Abstractions/5.0.0) (5.0.0)
 - [Microsoft.IdentityModel.JsonWebTokens](https://www.nuget.org/packages/Microsoft.IdentityModel.JsonWebTokens/6.8.0) (6.8.0)
-- [Microsoft.IdentityModel.JsonWebTokens](https://www.nuget.org/packages/Newtonsoft.Json/12.0.3) (12.0.3)
+- [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/12.0.3) (12.0.3)
 
 ## Command References
 
@@ -290,6 +290,7 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Update-KshSubscription](docs/Update-KshSubscription.md)
 - Tenant Administration
   - Deleted Site Collections
+    - [Get-KshTenantDeletedPersonalSiteCollection](docs/Get-KshTenantDeletedPersonalSiteCollection.md)
     - [Get-KshTenantDeletedSiteCollection](docs/Get-KshTenantDeletedSiteCollection.md)
     - [Remove-KshTenantDeletedSiteCollection](docs/Remove-KshTenantDeletedSiteCollection.md)
     - [Restore-KshTenantDeletedSiteCollection](docs/Restore-KshTenantDeletedSiteCollection.md)
@@ -324,6 +325,9 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Update-KshTenantSiteCollection](docs/Update-KshTenantSiteCollection.md)
   - Site Templates
     - [Get-KshTenantSiteTemplate](docs/Get-KshTenantSiteTemplate.md)
+  - Tenant
+    - [Get-KshTenant](docs/Get-KshTenant.md)
+    - [Set-KshTenant](docs/Set-KshTenant.md)
   - Themes
     - [Get-KshTenantTheme](docs/Get-KshTenantTheme.md)
     - [New-KshTenantTheme](docs/New-KshTenantTheme.md)

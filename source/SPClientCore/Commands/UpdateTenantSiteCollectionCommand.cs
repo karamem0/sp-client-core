@@ -49,7 +49,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-        public BlockDownloadLinksFileTypes BlockDownloadLinksFileType { get; private set; }
+        public BlockDownloadLinksFileType BlockDownloadLinksFileType { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]

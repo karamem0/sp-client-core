@@ -44,7 +44,7 @@ namespace Karamem0.SharePoint.PowerShell.Models
         public virtual int AverageResourceUsage { get; protected set; }
 
         [JsonProperty()]
-        public virtual BlockDownloadLinksFileTypes BlockDownloadLinksFileType { get; protected set; }
+        public virtual BlockDownloadLinksFileType BlockDownloadLinksFileType { get; protected set; }
 
         [JsonProperty()]
         public virtual bool CommentsOnSitePagesDisabled { get; protected set; }

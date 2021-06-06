@@ -14,12 +14,14 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Models
 {
 
-    public enum BlockDownloadLinksFileTypes
+    public enum ImageTaggingChoice
     {
 
-        WebPreviewableFiles = 1,
+        Disabled = 0,
 
-        ServerRenderedFilesOnly = 2,
+        Basic = 1,
+
+        Enhanced = 2,
 
     }
 

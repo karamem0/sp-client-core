@@ -16,7 +16,7 @@ Updates a site collection.
 ```
 Update-KshTenantSiteCollection [-Identity] <TenantSiteCollection>
  [-AllowDownloadingNonWebViewableFiles <Boolean>] [-AllowEditing <Boolean>]
- [-AnonymousLinkExpirationInDays <Int32>] [-BlockDownloadLinksFileType <BlockDownloadLinksFileTypes>]
+ [-AnonymousLinkExpirationInDays <Int32>] [-BlockDownloadLinksFileType <BlockDownloadLinksFileType>]
  [-CommentsOnSitePagesDisabled <Boolean>] [-ConditionalAccessPolicy <ConditionalAccessPolicyType>]
  [-DefaultLinkPermission <SharingPermissionType>] [-DefaultLinkToExistingAccess <Boolean>]
  [-DefaultSharingLinkType <SharingLinkType>] [-DenyAddAndCustomizePages <DenyAddAndCustomizePagesStatus>]
@@ -36,7 +36,7 @@ Update-KshTenantSiteCollection [-Identity] <TenantSiteCollection>
 ```
 Update-KshTenantSiteCollection [-Identity] <TenantSiteCollection>
  [-AllowDownloadingNonWebViewableFiles <Boolean>] [-AllowEditing <Boolean>]
- [-AnonymousLinkExpirationInDays <Int32>] [-BlockDownloadLinksFileType <BlockDownloadLinksFileTypes>]
+ [-AnonymousLinkExpirationInDays <Int32>] [-BlockDownloadLinksFileType <BlockDownloadLinksFileType>]
  [-CommentsOnSitePagesDisabled <Boolean>] [-ConditionalAccessPolicy <ConditionalAccessPolicyType>]
  [-DefaultLinkPermission <SharingPermissionType>] [-DefaultLinkToExistingAccess <Boolean>]
  [-DefaultSharingLinkType <SharingLinkType>] [-DenyAddAndCustomizePages <DenyAddAndCustomizePagesStatus>]
@@ -116,7 +116,7 @@ Accept wildcard characters: False
 Specifies the block download links file type.
 
 ```yaml
-Type: BlockDownloadLinksFileTypes
+Type: BlockDownloadLinksFileType
 Parameter Sets: (All)
 Aliases:
 Accepted values: WebPreviewableFiles, ServerRenderedFilesOnly

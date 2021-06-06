@@ -22,6 +22,8 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         Tenant GetObject();
 
+        void UpdateObject(IReadOnlyDictionary<string, object> modificationInformation);
+
     }
 
     public class TenantService : ClientService, ITenantService
@@ -39,11 +41,27 @@ namespace Karamem0.SharePoint.PowerShell.Services
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {
-                    Query = ClientQuery.Empty
+                    Query = new ClientQuery(true, typeof(Tenant))
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
                 .ToObject<Tenant>(requestPayload.GetActionId<ClientActionQuery>());
+        }
+
+        public void UpdateObject(IReadOnlyDictionary<string, object> modificationInformation)
+        {
+            if (modificationInformation == null)
+            {
+                throw new ArgumentNullException(nameof(modificationInformation));
+            }
+            var requestPayload = new ClientRequestPayload();
+            var objectPath1 = requestPayload.Add(
+                new ObjectPathConstructor(typeof(Tenant)),
+                requestPayload.CreateSetPropertyDelegates(typeof(Tenant), modificationInformation).ToArray());
+            var objectPath2 = requestPayload.Add(
+                objectPath1,
+                objectPathId => new ClientActionMethod(objectPathId, "Update"));
+            this.ClientContext.ProcessQuery(requestPayload);
         }
 
     }

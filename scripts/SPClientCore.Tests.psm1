@@ -29,7 +29,6 @@ function Install-TestSite {
 
         $authorityUrl = $Url.GetLeftPart([System.UriPartial]::Authority)
         $adminUrl = $authorityUrl.Replace('.sharepoint.com', '-admin.sharepoint.com')
-        $baseUrl = $authorityUrl + '/sites/spclientcore'
 
         $credential = New-Object System.Net.NetworkCredential("$UserName@$DomainName", $Password)
         $credential = New-Object System.Management.Automation.PSCredential($credential.UserName, $credential.SecurePassword)
@@ -37,7 +36,7 @@ function Install-TestSite {
         $appSettings.LoginDomainName = $DomainName
         $appSettings.LoginUserName = "$UserName@$DomainName"
         $appSettings.LoginPassword = $Password
-        $appSettings.BaseUrl = $baseUrl
+        $appSettings.BaseUrl = $Url
         $appSettings.AuthorityUrl = $authorityUrl
         $appSettings.AdminUrl = $adminUrl
 
@@ -120,7 +119,7 @@ function Install-TestSite {
             -Lcid 1033 `
             -Owner $credential.UserName `
             -Title 'SPClientCore' `
-            -Url $baseUrl
+            -Url $Url
 
         Write-Progress -Activity 'Updating a site collection...' -Status 'Processing'
         $siteCollection = Update-KshTenantSiteCollection `
@@ -140,7 +139,7 @@ function Install-TestSite {
         Start-Sleep -Seconds 120
 
         Write-Progress -Activity 'Sign in...' -Status 'Processing'
-        Connect-KshSite -Url $baseUrl -Credential $credential
+        Connect-KshSite -Url $Url -Credential $credential
 
         Write-Progress -Activity 'Removing site groups...' -Status 'Processing'
         Get-KshGroup | Remove-KshGroup
@@ -517,7 +516,7 @@ function Install-TestSite {
         $appSettings.SiteContentType6Id = $siteContentType6.StringId
 
         Write-Progress -Activity 'Changing current site...' -Status 'Root Site'
-        Get-KshSite -SiteUrl $baseUrl | Select-KshSite
+        Get-KshSite -SiteUrl $Url | Select-KshSite
 
         Write-Progress -Activity 'Retrieving content types....' -Status 'Processing'
         $docsetContentType = Get-KshContentType -ContentTypeId '0x0120D520'
@@ -1308,7 +1307,7 @@ function Install-TestSite {
         $appSettings.Alert3Id = $alert3.Id
 
         Write-Progress -Activity 'Changing current site...' -Status 'Root Site'
-        Get-KshSite -SiteUrl $baseUrl | Select-KshSite
+        Get-KshSite -SiteUrl $Url | Select-KshSite
 
         Write-Progress -Activity 'Creating storage entities...' -Status 'Test Entity 1'
         Add-KshStorageEntity `
@@ -1437,7 +1436,6 @@ function Uninstall-TestSite {
 
         $authorityUrl = $Url.GetLeftPart([System.UriPartial]::Authority)
         $adminUrl = $authorityUrl.Replace('.sharepoint.com', '-admin.sharepoint.com')
-        $baseUrl = $authorityUrl + '/sites/spclientcore'
 
         $credential = New-Object System.Net.NetworkCredential("$UserName@$DomainName", $Password)
         $credential = New-Object System.Management.Automation.PSCredential($credential.UserName, $credential.SecurePassword)
@@ -1446,11 +1444,11 @@ function Uninstall-TestSite {
         Connect-KshSite -Url $adminUrl -Credential $credential
         
         Write-Progress -Activity 'Removing site collection app catalogs...' -Status 'Processing'
-        Get-KshSiteCollectionAppCatalog -SiteCollectionUrl $baseUrl | Remove-KshSiteCollectionAppCatalog
+        Get-KshSiteCollectionAppCatalog -SiteCollectionUrl $Url | Remove-KshSiteCollectionAppCatalog
 
         Write-Progress -Activity 'Removing a site collection...' -Status 'Processing'
-        Get-KshTenantSiteCollection -SiteCollectionUrl $baseUrl | Remove-KshTenantSiteCollection
-        Get-KshTenantDeletedSiteCollection -SiteCollectionUrl $baseUrl | Remove-KshTenantDeletedSiteCollection
+        Get-KshTenantSiteCollection -SiteCollectionUrl $Url | Remove-KshTenantSiteCollection
+        Get-KshTenantDeletedSiteCollection -SiteCollectionUrl $Url | Remove-KshTenantDeletedSiteCollection
 
         Write-Progress -Activity 'Retrieving term groups...' -Status 'Processing'
         $termGroup1 = Get-KshTermGroup -TermGroupName 'Test Term Group 1'
