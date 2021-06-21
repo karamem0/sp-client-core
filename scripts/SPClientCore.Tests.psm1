@@ -3,7 +3,7 @@
 #
 # This software is released under the MIT License.
 #
-# https://github.com/karamem0/SPClientCore/blob/master/LICENSE
+# https://github.com/karamem0/spclientcore/blob/master/LICENSE
 #
 
 function Install-TestSite {
