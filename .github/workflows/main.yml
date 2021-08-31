@@ -1,13 +1,13 @@
 on:
   push:
     branches:
-      - master
+      - main
       - develop
     tags:
       - v*.*.*
 
 env:
-  BUILD_VERSION: 4.0.0.${{github.run_number}}
+  BUILD_VERSION: 4.0.1.${{github.run_number}}
 
 jobs:
   build:
@@ -47,7 +47,7 @@ jobs:
           path: artifact/spclientcore
   publish:
     needs: build
-    if: startsWith(github.ref, 'refs/tags/v')
+    if: contains(github.ref, 'refs/tags/')
     runs-on: windows-latest
     steps:
       - name: Download artifact
@@ -55,6 +55,17 @@ jobs:
         with:
           name: spclientcore
           path: spclientcore
+      - name: Archive artifact
+        shell: pwsh
+        run: |
+          Compress-Archive -Path spclientcore/* -DestinationPath spclientcore_${{env.BUILD_VERSION}}.zip
+      - name: Create release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        with:
+          files: |
+            spclientcore_${{env.BUILD_VERSION}}.zip
       - name: Publish to PowerShell Gallery
         shell: pwsh
         run: |

@@ -50147,7 +50147,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Set-KshTermDescription cmdlet changes properties of the tenant.</maml:para>
+      <maml:para>The Set-KshTenant cmdlet changes properties of the tenant.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>

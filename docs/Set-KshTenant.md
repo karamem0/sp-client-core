@@ -79,7 +79,7 @@ Set-KshTenant [-AddressbarLinkPermission <AddressbarLinkPermissions>]
 ```
 
 ## DESCRIPTION
-The Set-KshTermDescription cmdlet changes properties of the tenant.
+The Set-KshTenant cmdlet changes properties of the tenant.
 
 ## EXAMPLES
 
