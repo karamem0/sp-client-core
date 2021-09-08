@@ -7,7 +7,7 @@ on:
       - v*.*.*
 
 env:
-  BUILD_VERSION: 4.0.1.${{github.run_number}}
+  BUILD_VERSION: 4.0.2.${{github.run_number}}
 
 jobs:
   build:
@@ -24,7 +24,7 @@ jobs:
           dotnet restore ${{env.TARGET_FILE}}
           dotnet publish ${{env.TARGET_FILE}} -c Release -o artifact/spclientcore -p:Version=${{env.BUILD_VERSION}} -p:FileVersion=${{env.BUILD_VERSION}}
         env:
-          TARGET_FILE: source/SPClientCore/SPClientCore.csproj
+          TARGET_FILE: source/Karamem0.SPClientCore/Karamem0.SPClientCore.csproj
       - name: Update .nuspec file
         shell: pwsh
         run: |

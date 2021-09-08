@@ -19,7 +19,7 @@ Get-KshTenantTheme -Identity <TenantTheme> [<CommonParameters>]
 
 ### ParamSet2
 ```
-Get-KshTenantTheme -ThemeName <String> [-NoEnumerate] [<CommonParameters>]
+Get-KshTenantTheme -ThemeName <String> [<CommonParameters>]
 ```
 
 ### ParamSet3
@@ -69,7 +69,7 @@ If specified, suppresses to enumerate objects.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: ParamSet2, ParamSet3
+Parameter Sets: ParamSet3
 Aliases:
 
 Required: False

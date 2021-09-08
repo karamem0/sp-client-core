@@ -17,11 +17,12 @@ Creates a new column of lookup type.
 New-KshColumnLookup [-List] <List> [-AllowMultipleValues <Boolean>] [-ClientSideComponentId <String>]
  [-ClientSideComponentProperties <String>] [-CustomFormatter <String>] [-Description <String>]
  [-Direction <String>] [-EnforceUniqueValues <Boolean>] [-Group <String>] [-Hidden <Boolean>] [-Id <Guid>]
- [-Indexed <Boolean>] [-JSLink <String>] -LookupColumnName <String> -LookupListId <Guid> -Name <String>
- [-NoCrawl <Boolean>] [-ReadOnly <Boolean>] [-RelationshipDeleteBehavior <RelationshipDeleteBehaviorType>]
- [-Required <Boolean>] [-StaticName <String>] [-Title <String>] [-UnlimitedLengthInDocumentLibrary <Boolean>]
- [-AddToDefaultContentType] [-AddToNoContentType] [-AddToAllContentTypes] [-AddColumnInternalNameHint]
- [-AddColumnToDefaultView] [-AddColumnCheckDisplayName] [-AddToDefaultView] [<CommonParameters>]
+ [-Indexed <Boolean>] [-JSLink <String>] -LookupColumnName <String> -LookupListId <Guid> [-LookupSiteId <Guid>]
+ -Name <String> [-NoCrawl <Boolean>] [-ReadOnly <Boolean>]
+ [-RelationshipDeleteBehavior <RelationshipDeleteBehaviorType>] [-Required <Boolean>] [-StaticName <String>]
+ [-Title <String>] [-UnlimitedLengthInDocumentLibrary <Boolean>] [-AddToDefaultContentType]
+ [-AddToNoContentType] [-AddToAllContentTypes] [-AddColumnInternalNameHint] [-AddColumnToDefaultView]
+ [-AddColumnCheckDisplayName] [-AddToDefaultView] [<CommonParameters>]
 ```
 
 ### ParamSet2
@@ -29,11 +30,12 @@ New-KshColumnLookup [-List] <List> [-AllowMultipleValues <Boolean>] [-ClientSide
 New-KshColumnLookup [-AllowMultipleValues <Boolean>] [-ClientSideComponentId <String>]
  [-ClientSideComponentProperties <String>] [-CustomFormatter <String>] [-Description <String>]
  [-Direction <String>] [-EnforceUniqueValues <Boolean>] [-Group <String>] [-Hidden <Boolean>] [-Id <Guid>]
- [-Indexed <Boolean>] [-JSLink <String>] -LookupColumnName <String> -LookupListId <Guid> -Name <String>
- [-NoCrawl <Boolean>] [-ReadOnly <Boolean>] [-RelationshipDeleteBehavior <RelationshipDeleteBehaviorType>]
- [-Required <Boolean>] [-StaticName <String>] [-Title <String>] [-UnlimitedLengthInDocumentLibrary <Boolean>]
- [-AddToDefaultContentType] [-AddToNoContentType] [-AddToAllContentTypes] [-AddColumnInternalNameHint]
- [-AddColumnToDefaultView] [-AddColumnCheckDisplayName] [-AddToDefaultView] [<CommonParameters>]
+ [-Indexed <Boolean>] [-JSLink <String>] -LookupColumnName <String> -LookupListId <Guid> [-LookupSiteId <Guid>]
+ -Name <String> [-NoCrawl <Boolean>] [-ReadOnly <Boolean>]
+ [-RelationshipDeleteBehavior <RelationshipDeleteBehaviorType>] [-Required <Boolean>] [-StaticName <String>]
+ [-Title <String>] [-UnlimitedLengthInDocumentLibrary <Boolean>] [-AddToDefaultContentType]
+ [-AddToNoContentType] [-AddToAllContentTypes] [-AddColumnInternalNameHint] [-AddColumnToDefaultView]
+ [-AddColumnCheckDisplayName] [-AddToDefaultView] [<CommonParameters>]
 ```
 
 ### ParamSet3
@@ -41,10 +43,10 @@ New-KshColumnLookup [-AllowMultipleValues <Boolean>] [-ClientSideComponentId <St
 New-KshColumnLookup [-AllowMultipleValues <Boolean>] [-ClientSideComponentId <String>]
  [-ClientSideComponentProperties <String>] [-CustomFormatter <String>] [-Description <String>]
  [-Direction <String>] [-EnforceUniqueValues <Boolean>] [-Group <String>] [-Hidden <Boolean>] [-Id <Guid>]
- [-Indexed <Boolean>] [-JSLink <String>] -LookupColumnName <String> -LookupListId <Guid> -Name <String>
- [-NoCrawl <Boolean>] [-ReadOnly <Boolean>] [-RelationshipDeleteBehavior <RelationshipDeleteBehaviorType>]
- [-Required <Boolean>] [-StaticName <String>] [-Title <String>] [-UnlimitedLengthInDocumentLibrary <Boolean>]
- [-WhatIf] [<CommonParameters>]
+ [-Indexed <Boolean>] [-JSLink <String>] -LookupColumnName <String> -LookupListId <Guid> [-LookupSiteId <Guid>]
+ -Name <String> [-NoCrawl <Boolean>] [-ReadOnly <Boolean>]
+ [-RelationshipDeleteBehavior <RelationshipDeleteBehaviorType>] [-Required <Boolean>] [-StaticName <String>]
+ [-Title <String>] [-UnlimitedLengthInDocumentLibrary <Boolean>] [-WhatIf] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -385,6 +387,21 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -LookupSiteId
+Specifies the lookup site ID.
+
+```yaml
+Type: Guid
+Parameter Sets: (All)
+Aliases:
+
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False

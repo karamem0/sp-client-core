@@ -17,9 +17,10 @@ Update-KshColumnLookup [-Identity] <Column> [-AllowMultipleValues <Boolean>] [-C
  [-ClientSideComponentProperties <String>] [-CustomFormatter <String>] [-Description <String>]
  [-Direction <String>] [-EnforceUniqueValues <Boolean>] [-Group <String>] [-Hidden <Boolean>]
  [-Indexed <Boolean>] [-JSLink <String>] [-LookupColumnName <String>] [-LookupListId <Guid>]
- [-NoCrawl <Boolean>] [-ReadOnly <Boolean>] [-RelationshipDeleteBehavior <RelationshipDeleteBehaviorType>]
- [-Required <Boolean>] [-StaticName <String>] [-Title <String>] [-UnlimitedLengthInDocumentLibrary <Boolean>]
- [-PushChanges] [-PassThru] [<CommonParameters>]
+ [-LookupSiteId <Guid>] [-NoCrawl <Boolean>] [-ReadOnly <Boolean>]
+ [-RelationshipDeleteBehavior <RelationshipDeleteBehaviorType>] [-Required <Boolean>] [-StaticName <String>]
+ [-Title <String>] [-UnlimitedLengthInDocumentLibrary <Boolean>] [-PushChanges] [-PassThru]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -234,6 +235,21 @@ Accept wildcard characters: False
 
 ### -LookupListId
 Specifies the lookup list ID.
+
+```yaml
+Type: Guid
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -LookupSiteId
+Specifies the lookup site ID.
 
 ```yaml
 Type: Guid

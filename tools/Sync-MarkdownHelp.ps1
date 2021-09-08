@@ -6,9 +6,9 @@
 # https://github.com/karamem0/spclientcore/blob/master/LICENSE
 #
 
-$SOURCE_PATH = "$PSScriptRoot/../source/SPClientCore"
-$SOURCE_HELP_FILE_PATH = "$PSScriptRoot/../source/SPClientCore/bin/Debug/netstandard2.0/publish/SPClientCore.dll-Help.xml"
-$SOURCE_MODULE_PATH = "$PSScriptRoot/../source/SPClientCore/bin/Debug/netstandard2.0/publish/SPClientCore.psd1"
+$SOURCE_PATH = "$PSScriptRoot/../source/Karamem0.SPClientCore"
+$SOURCE_HELP_FILE_PATH = "$PSScriptRoot/../source/Karamem0.SPClientCore/bin/Debug/netstandard2.0/publish/SPClientCore.dll-help.xml"
+$SOURCE_MODULE_PATH = "$PSScriptRoot/../source/Karamem0.SPClientCore/bin/Debug/netstandard2.0/publish/SPClientCore.psd1"
 $DOCS_PATH = "$PSScriptRoot/../docs"
 
 dotnet publish $SOURCE_PATH
