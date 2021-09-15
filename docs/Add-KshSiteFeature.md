@@ -1,5 +1,5 @@
 ---
-external help file: SPClientCore.dll-Help.xml
+external help file: SPClientCore.dll-help.xml
 Module Name: SPClientCore
 online version:
 schema: 2.0.0

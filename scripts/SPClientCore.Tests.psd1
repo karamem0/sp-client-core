@@ -3,7 +3,7 @@
 #
 # This software is released under the MIT License.
 #
-# https://github.com/karamem0/spclientcore/blob/master/LICENSE
+# https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 #
 
 @{
@@ -92,10 +92,10 @@ PrivateData = @{
         # Tags = @()
 
         # A URL to the license for this module.
-        LicenseUri = 'https://github.com/karamem0/spclientcore/blob/master/LICENSE'
+        LicenseUri = 'https://github.com/karamem0/sp-client-core/blob/main/LICENSE'
 
         # A URL to the main website for this project.
-        ProjectUri = 'https://github.com/karamem0/spclientcore'
+        ProjectUri = 'https://github.com/karamem0/sp-client-core'
 
         # A URL to an icon representing this module.
         # IconUri = ''

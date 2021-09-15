@@ -3,7 +3,7 @@
 #
 # This software is released under the MIT License.
 #
-# https://github.com/karamem0/spclientcore/blob/master/LICENSE
+# https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 #
 
 function Install-TestSite {
@@ -40,8 +40,8 @@ function Install-TestSite {
         $appSettings.AuthorityUrl = $authorityUrl
         $appSettings.AdminUrl = $adminUrl
 
-        $tenantSettings = Get-KshTenantSettings
-        $appSettings.TenantAppCatalogUrl = $tenantSettings.AppCatalogUrl
+        $tenantAppCatalogUrl = Get-KshTenantAppCatalog
+        $appSettings.TenantAppCatalogUrl = $tenantAppCatalogUrl
 
         Write-Progress -Activity 'Sign in...' -Status 'Processing'
         Connect-KshSite -Url $adminUrl -Credential $credential
@@ -188,8 +188,8 @@ function Install-TestSite {
 
         Write-Progress -Activity 'Creating site users...' -Status 'Test User 1'
         $user1 = New-KshUser `
-            -Email "testuser1@$DomainName" `
-            -LoginName "i:0#.f|membership|testuser1@$DomainName" `
+            -Email "testuser001@$DomainName" `
+            -LoginName "i:0#.f|membership|testuser001@$DomainName" `
             -Title 'Test User 1'
         $appSettings.User1Id = $user1.Id
         $appSettings.User1LoginName = $user1.LoginName
@@ -198,8 +198,8 @@ function Install-TestSite {
 
         Write-Progress -Activity 'Creating site users...' -Status 'Test User 2'
         $user2 = New-KshUser `
-            -Email "testuser2@$DomainName" `
-            -LoginName "i:0#.f|membership|testuser2@$DomainName" `
+            -Email "testuser002@$DomainName" `
+            -LoginName "i:0#.f|membership|testuser002@$DomainName" `
             -Title 'Test User 2'
         $appSettings.User2Id = $user2.Id
         $appSettings.User2LoginName = $user2.LoginName
@@ -208,8 +208,8 @@ function Install-TestSite {
 
         Write-Progress -Activity 'Creating site users...' -Status 'Test User 3'
         $user3 = New-KshUser `
-            -Email "testuser3@$DomainName" `
-            -LoginName "i:0#.f|membership|testuser3@$DomainName" `
+            -Email "testuser003@$DomainName" `
+            -LoginName "i:0#.f|membership|testuser003@$DomainName" `
             -Title 'Test User 3'
         $appSettings.User3Id = $user3.Id
         $appSettings.User3LoginName = $user3.LoginName
@@ -1343,7 +1343,7 @@ function Install-TestSite {
         $appSettings.Alert3Id = $alert3.Id
 
         Write-Progress -Activity 'Sign in...' -Status 'Processing'
-        Connect-KshSite -Url $tenantSettings.AppCatalogUrl -Credential $credential
+        Connect-KshSite -Url $tenantAppCatalogUrl -Credential $credential
 
         Write-Progress -Activity 'Creating storage entities...' -Status 'Test Entity 1'
         Add-KshStorageEntity `
@@ -1521,8 +1521,8 @@ function Uninstall-TestSite {
         Remove-KshTermGroup -Identity $termGroup3
 
         Write-Progress -Activity 'Sign in...' -Status 'Processing'
-        $tenantSettings = Get-KshTenantSettings
-        Connect-KshSite -Url $tenantSettings.AppCatalogUrl -Credential $credential
+        $tenantAppCatalogUrl = Get-KshTenantAppCatalog
+        Connect-KshSite -Url $tenantAppCatalogUrl -Credential $credential
 
         Write-Progress -Activity 'Removing tenant apps...' -Status 'Processing'
         Get-KshTenantApp | Where-Object { $_.Title -eq 'TestApp1' } | Remove-KshTenantApp

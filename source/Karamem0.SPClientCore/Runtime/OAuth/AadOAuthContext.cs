@@ -3,7 +3,7 @@
 //
 // This software is released under the MIT License.
 //
-// https://github.com/karamem0/spclientcore/blob/master/LICENSE
+// https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
 using Karamem0.SharePoint.PowerShell.Runtime.Common;
@@ -36,21 +36,9 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
 
         public AadOAuthContext(string authority, string clientId, string resource, bool userMode)
         {
-            if (string.IsNullOrEmpty(authority))
-            {
-                throw new ArgumentNullException(nameof(authority));
-            }
-            if (string.IsNullOrEmpty(clientId))
-            {
-                throw new ArgumentNullException(nameof(clientId));
-            }
-            if (string.IsNullOrEmpty(resource))
-            {
-                throw new ArgumentNullException(nameof(resource));
-            }
-            this.authority = authority;
-            this.clientId = clientId;
-            this.resource = resource;
+            this.authority = authority ?? throw new ArgumentNullException(nameof(authority));
+            this.clientId = clientId ?? throw new ArgumentNullException(nameof(clientId));
+            this.resource = resource ?? throw new ArgumentNullException(nameof(resource));
             this.userMode = userMode;
             this.tenantIdResolver = new TenantIdResolver(this.HttpClient, new Uri(this.resource, UriKind.Absolute));
         }
@@ -96,10 +84,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
 
         public OAuthMessage AcquireTokenByDeviceCode(string deviceCode)
         {
-            if (string.IsNullOrEmpty(deviceCode))
-            {
-                throw new ArgumentNullException(nameof(deviceCode));
-            }
+            _ = deviceCode ?? throw new ArgumentNullException(nameof(deviceCode));
             var tenantId = this.tenantIdResolver.Resolve();
             var requestUrl = new Uri(this.authority, UriKind.Absolute)
                 .ConcatPath(tenantId)
@@ -142,14 +127,8 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
 
         public OAuthMessage AcquireTokenByPassword(string userName, string password)
         {
-            if (string.IsNullOrEmpty(userName))
-            {
-                throw new ArgumentNullException(nameof(userName));
-            }
-            if (string.IsNullOrEmpty(password))
-            {
-                throw new ArgumentNullException(nameof(password));
-            }
+            _ = userName ?? throw new ArgumentNullException(nameof(userName));
+            _ = password ?? throw new ArgumentNullException(nameof(password));
             var tenantId = this.tenantIdResolver.Resolve();
             var requestUrl = new Uri(this.authority, UriKind.Absolute)
                 .ConcatPath(tenantId)
@@ -193,10 +172,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
 
         public OAuthMessage AcquireTokenByRefreshToken(string refreshToken)
         {
-            if (string.IsNullOrEmpty(refreshToken))
-            {
-                throw new ArgumentNullException(nameof(refreshToken));
-            }
+            _ = refreshToken ?? throw new ArgumentNullException(nameof(refreshToken));
             var tenantId = this.tenantIdResolver.Resolve();
             var requestUrl = new Uri(this.authority, UriKind.Absolute)
                 .ConcatPath(tenantId)
@@ -239,14 +215,8 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
 
         public OAuthMessage AcquireTokenByCertificate(byte[] certBytes, SecureString certPassword)
         {
-            if (certBytes == null)
-            {
-                throw new ArgumentNullException(nameof(certBytes));
-            }
-            if (certPassword == null)
-            {
-                throw new ArgumentNullException(nameof(certPassword));
-            }
+            _ = certBytes ?? throw new ArgumentNullException(nameof(certBytes));
+            _ = certPassword ?? throw new ArgumentNullException(nameof(certPassword));
             var tenantId = this.tenantIdResolver.Resolve();
             var requestUrl = new Uri(this.authority, UriKind.Absolute)
                 .ConcatPath(tenantId)

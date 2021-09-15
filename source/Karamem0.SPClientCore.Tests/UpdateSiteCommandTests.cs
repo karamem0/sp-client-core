@@ -3,7 +3,7 @@
 //
 // This software is released under the MIT License.
 //
-// https://github.com/karamem0/spclientcore/blob/master/LICENSE
+// https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
 using Karamem0.SharePoint.PowerShell.Models;
@@ -53,9 +53,9 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     { "Identity", result2.ElementAt(0) },
                     { "AllowAutomaticASPXPageIndexing", true },
                     { "AlternateCssUrl", "style.css" },
-                    //{ "AssociatedMemberGroup", null },
-                    //{ "AssociatedOwnerGroup", null },
-                    //{ "AssociatedVisitorGroup", null },
+                    // { "AssociatedMemberGroup", null },
+                    // { "AssociatedOwnerGroup", null },
+                    // { "AssociatedVisitorGroup", null },
                     { "CommentsOnSitePagesDisabled", true },
                     { "ContainsConfidentialInfo", true },
                     { "CustomMasterUrl", result2.ElementAt(0).ServerRelativeUrl + "/_catalogs/masterpage/oslo.master" },
@@ -70,18 +70,18 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     { "HeaderLayout", "Standard" },
                     { "HorizontalQuickLaunch", true },
                     { "LogoAlignment", "Left" },
-                    { "MasterUrl", result2.ElementAt(0).ServerRelativeUrl + "/_catalogs/masterpage/oslo.master" },
+                    // { "MasterUrl", result2.ElementAt(0).ServerRelativeUrl + "/_catalogs/masterpage/oslo.master" },
                     { "MembersCanShare", true },
                     { "MegaMenuEnabled", true },
                     { "NavAudienceTargetingEnabled", true },
-                    { "NoCrawl", true },
+                    // { "NoCrawl", true },
                     { "ObjectCacheEnabled", true },
                     { "QuickLaunchEnabled", true },
                     { "OverwriteTranslationsOnChange", true },
                     { "RequestAccessEmail", "someone@example.com" },
-                    { "SaveSiteAsTemplateEnabled", true },
+                    // { "SaveSiteAsTemplateEnabled", true },
                     { "SearchScope", "DefaultScope" },
-                    { "ServerRelativeUrl", "TestSite9" },
+                    // { "ServerRelativeUrl", "TestSite9" },
                     { "SiteLogoDescription", "Test Site 9 Description" },
                     { "SiteLogoUrl", result2.ElementAt(0).ServerRelativeUrl + "/_layouts/15/images/siteicon.png" },
                     { "SyndicationEnabled", true },

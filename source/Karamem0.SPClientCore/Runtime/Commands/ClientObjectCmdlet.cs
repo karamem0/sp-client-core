@@ -3,7 +3,7 @@
 //
 // This software is released under the MIT License.
 //
-// https://github.com/karamem0/spclientcore/blob/master/LICENSE
+// https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
 using Karamem0.SharePoint.PowerShell.Resources;
@@ -36,10 +36,12 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Commands
             }
             catch (PipelineStoppedException)
             {
+                listener.Flush();
                 throw;
             }
             catch (Exception ex)
             {
+                listener.Flush();
                 this.WriteError(new ErrorRecord(ex, "Exception", ErrorCategory.NotSpecified, null));
             }
             finally

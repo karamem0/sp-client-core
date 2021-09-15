@@ -6,8 +6,8 @@
     <authors>karamem0</authors>
     <owners>karamem0</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <licenseUrl>https://github.com/karamem0/spclientcore/blob/master/LICENSE</licenseUrl>
-    <projectUrl>https://github.com/karamem0/spclientcore</projectUrl>
+    <licenseUrl>https://github.com/karamem0/sp-client-core/blob/main/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/karamem0/sp-client-core</projectUrl>
     <description>SharePoint Service Module for PowerShell</description>
     <releaseNotes></releaseNotes>
     <copyright>Copyright (c) 2021 karamem0</copyright>

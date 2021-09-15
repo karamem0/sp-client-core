@@ -3,7 +3,7 @@
 //
 // This software is released under the MIT License.
 //
-// https://github.com/karamem0/spclientcore/blob/master/LICENSE
+// https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
 using System;
@@ -20,10 +20,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Common
 
         public static Dictionary<TKey, TValue> ToDictionary<TKey, TValue>(this Hashtable hashtable)
         {
-            if (hashtable == null)
-            {
-                throw new ArgumentNullException(nameof(hashtable));
-            }
+            _ = hashtable ?? throw new ArgumentNullException(nameof(hashtable));
             return hashtable.Keys.Cast<object>().ToDictionary(key => (TKey)key, key => (TValue)hashtable[key]);
         }
 

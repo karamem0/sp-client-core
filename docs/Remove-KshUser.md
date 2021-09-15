@@ -1,5 +1,5 @@
 ---
-external help file: SPClientCore.dll-Help.xml
+external help file: SPClientCore.dll-help.xml
 Module Name: SPClientCore
 online version:
 schema: 2.0.0
@@ -23,7 +23,7 @@ The Remove-KshUser cmdlet removes a user from the current site.
 
 ### Example 1
 ```powershell
-PS C:\> Remove-KshUser -Identity (Get-KshUser -Identity 'i:0#.f|membership|admin@example.onmicrosoft.com')
+PS C:\> Remove-KshUser -Identity (Get-KshUser -UserName 'i:0#.f|membership|admin@example.onmicrosoft.com')
 ```
 
 Removes a user from the current site.

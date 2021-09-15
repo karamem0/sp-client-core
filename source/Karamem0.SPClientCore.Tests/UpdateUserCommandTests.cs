@@ -3,7 +3,7 @@
 //
 // This software is released under the MIT License.
 //
-// https://github.com/karamem0/spclientcore/blob/master/LICENSE
+// https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
 using Karamem0.SharePoint.PowerShell.Models;
@@ -41,7 +41,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 "New-KshUser",
                 new Dictionary<string, object>()
                 {
-                    { "LoginName", "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"] }
+                    { "LoginName", "i:0#.f|membership|testuser000@" + context.AppSettings["LoginDomainName"] }
                 }
             );
             var result3 = context.Runspace.InvokeCommand<User>(
@@ -49,7 +49,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 new Dictionary<string, object>()
                 {
                     { "Identity", result2.ElementAt(0) },
-                    { "Email", "testuser0@example.com" },
+                    { "Email", "testuser000@example.com" },
                     { "IsSiteCollectionAdmin", true },
                     { "Title", "Test User 9" },
                     { "PassThru", true }

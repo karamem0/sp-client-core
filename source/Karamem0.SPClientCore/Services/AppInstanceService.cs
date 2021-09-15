@@ -3,7 +3,7 @@
 //
 // This software is released under the MIT License.
 //
-// https://github.com/karamem0/spclientcore/blob/master/LICENSE
+// https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
 using Karamem0.SharePoint.PowerShell.Models;
@@ -37,10 +37,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         public AppInstance GetObject(Guid appInstanceId)
         {
-            if (appInstanceId == default)
-            {
-                throw new ArgumentNullException(nameof(appInstanceId));
-            }
+            _ = (appInstanceId != default) ? appInstanceId : throw new ArgumentNullException(nameof(appInstanceId));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathStaticProperty(typeof(Context), "Current"));
@@ -87,10 +84,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         public IEnumerable<AppInstance> GetObjectEnumerable(Guid appProductId)
         {
-            if (appProductId == default)
-            {
-                throw new ArgumentNullException(nameof(appProductId));
-            }
+            _ = (appProductId != default) ? appProductId : throw new ArgumentNullException(nameof(appProductId));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathStaticProperty(typeof(Context), "Current"));

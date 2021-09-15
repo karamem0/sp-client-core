@@ -3,7 +3,7 @@
 //
 // This software is released under the MIT License.
 //
-// https://github.com/karamem0/spclientcore/blob/master/LICENSE
+// https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
 using System;
@@ -21,10 +21,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
 
         public ObjectPathConstructor(Type type)
         {
-            if (type == null)
-            {
-                throw new ArgumentNullException(nameof(type));
-            }
+            _ = type ?? throw new ArgumentNullException(nameof(type));
             this.TypeId = ClientObjectAttribute.GetId(type);
         }
 

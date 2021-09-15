@@ -1,33 +1,32 @@
 ---
-external help file: SPClientCore.dll-Help.xml
+external help file: SPClientCore.dll-help.xml
 Module Name: SPClientCore
 online version:
 schema: 2.0.0
 ---
 
-# Get-KshTenantSettings
+# Get-KshTenantAppCatalog
 
 ## SYNOPSIS
-Retrieves tenant settings.
+Retrieves a tenant app catalog.
 
 ## SYNTAX
 
 ```
-Get-KshTenantSettings [<CommonParameters>]
+Get-KshTenantAppCatalog [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshTenantSettings cmdlet retrieves tenant settings.
-This cmdlet can be used only when connected to the SharePoint admin center.
+The Get-KshTenantAppCatalog cmdlet retrieves a tenant app catalog.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> Get-KshTenantSettings
+PS C:\> Get-KshTenantAppCatalog
 ```
 
-Retrieves tenant settings.
+Retrieves a tenant app catalog.
 
 ## PARAMETERS
 
@@ -40,7 +39,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.TenantSettings
+### System.String
 
 ## NOTES
 

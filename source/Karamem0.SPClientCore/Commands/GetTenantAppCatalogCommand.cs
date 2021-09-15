@@ -3,7 +3,7 @@
 //
 // This software is released under the MIT License.
 //
-// https://github.com/karamem0/spclientcore/blob/master/LICENSE
+// https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
 using Karamem0.SharePoint.PowerShell.Models;
@@ -18,18 +18,22 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands
 {
 
-    [Cmdlet("Get", "KshTenantSettings")]
-    [OutputType(typeof(TenantSettings))]
-    public class GetTenantSettingsCommand : ClientObjectCmdlet<ITenantSettingsService>
+    [Cmdlet("Get", "KshTenantAppCatalog")]
+    [OutputType(typeof(string))]
+    public class GetTenantAppCatalogCommand : ClientObjectCmdlet<ITenantSettingsService>
     {
 
-        public GetTenantSettingsCommand()
+        public GetTenantAppCatalogCommand()
         {
         }
 
         protected override void ProcessRecordCore(ref List<object> outputs)
         {
-            outputs.Add(this.Service.GetObject());
+            var tenantSettingsObject = this.Service.GetObject();
+            if (tenantSettingsObject != null)
+            {
+                outputs.Add(tenantSettingsObject.AppCatalogUrl);
+            }
         }
 
     }

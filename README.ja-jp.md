@@ -4,8 +4,8 @@
 
 PowerShell 向けの SharePoint サービス モジュール
 
-[![.github/workflows/main.yml](https://github.com/karamem0/spclientcore/actions/workflows/main.yml/badge.svg)](https://github.com/karamem0/spclientcore/actions/workflows/main.yml)
-[![License](https://img.shields.io/github/license/karamem0/spclientcore.svg)](https://github.com/karamem0/spclientcore/blob/master/LICENSE)
+[![.github/workflows/main.yml](https://github.com/karamem0/sp-client-core/actions/workflows/main.yml/badge.svg)](https://github.com/karamem0/sp-client-core/actions/workflows/main.yml)
+[![License](https://img.shields.io/github/license/karamem0/sp-client-core.svg)](https://github.com/karamem0/sp-client-core/blob/main/LICENSE)
 
 ## インストール
 
@@ -209,6 +209,8 @@ SPClientCore は Azure AD 2.0 認証をサポートします (Device Code Grant 
     - [New-KshNavigationNode](docs/New-KshNavigationNode.md)
     - [Remove-KshNavigationNode](docs/Remove-KshNavigationNode.md)
     - [Update-KshNavigationNode](docs/Update-KshNavigationNode.md)
+  - プロパティ
+    - [Get-KshProperty](docs/Get-KshProperty.md)
   - ごみ箱
     - [Get-KshRecycleBinItem](docs/Get-KshRecycleBinItem.md)
     - [Move-KshRecycleBinItem](docs/Move-KshRecycleBinItem.md)
@@ -273,8 +275,8 @@ SPClientCore は Azure AD 2.0 認証をサポートします (Device Code Grant 
     - [Remove-KshTenantApp](docs/Remove-KshTenantApp.md)
     - [Uninstall-KshTenantApp](docs/Uninstall-KshTenantApp.md)
     - [Unpublish-KshTenantApp](docs/Unpublish-KshTenantApp.md)
-  - テナントの設定
-    - [Get-KshTenantSettings](docs/Get-KshTenantSettings.md)
+  - テナントのアプリ カタログ
+    - [Get-KshTenantAppCatalog](docs/Get-KshTenantAppCatalog.md)
   - ユーザー
     - [Get-KshUser](docs/Get-KshUser.md)
     - [New-KshUser](docs/New-KshUser.md)
@@ -344,6 +346,11 @@ SPClientCore は Azure AD 2.0 認証をサポートします (Device Code Grant 
     - [New-KshTenantTheme](docs/New-KshTenantTheme.md)
     - [Remove-KshTenantTheme](docs/Remove-KshTenantTheme.md)
     - [Update-KshTenantTheme](docs/Update-KshTenantTheme.md)
+  - ユーザー
+    - [Get-KshTenantUser](docs/Get-KshTenantUser.md)
+    - [New-KshTenantUser](docs/New-KshTenantUser.md)
+    - [Remove-KshTenantUser](docs/Remove-KshTenantUser.md)
+    - [Update-KshTenantUser](docs/Update-KshTenantUser.md)
 - 管理されたメタデータ
   - カスタム プロパティ
     - [Add-KshTermCustomProperty](docs/Add-KshTermCustomProperty.md)

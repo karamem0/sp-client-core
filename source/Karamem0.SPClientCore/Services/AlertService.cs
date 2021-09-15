@@ -3,7 +3,7 @@
 //
 // This software is released under the MIT License.
 //
-// https://github.com/karamem0/spclientcore/blob/master/LICENSE
+// https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
 using Karamem0.SharePoint.PowerShell.Models;
@@ -43,10 +43,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         public Guid CreateObject(IReadOnlyDictionary<string, object> creationInformation)
         {
-            if (creationInformation == null)
-            {
-                throw new ArgumentNullException(nameof(creationInformation));
-            }
+            _ = creationInformation ?? throw new ArgumentNullException(nameof(creationInformation));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathStaticProperty(typeof(Context), "Current"));
@@ -67,10 +64,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         public override Alert GetObject(Alert clientObject)
         {
-            if (clientObject == null)
-            {
-                throw new ArgumentNullException(nameof(clientObject));
-            }
+            _ = clientObject ?? throw new ArgumentNullException(nameof(clientObject));
             var conditions = new List<string>();
             if (clientObject.AlertFrequency != AlertFrequency.Immediate)
             {
@@ -95,10 +89,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         public Alert GetObject(Guid alertId)
         {
-            if (alertId == default)
-            {
-                throw new ArgumentNullException(nameof(alertId));
-            }
+            _ = (alertId != default) ? alertId : throw new ArgumentNullException(nameof(alertId));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathStaticProperty(typeof(Context), "Current"));
@@ -143,6 +134,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         public override void RemoveObject(Alert alertObject)
         {
+            _ = alertObject ?? throw new ArgumentNullException(nameof(alertObject));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathStaticProperty(typeof(Context), "Current"));
@@ -161,14 +153,8 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         public override void UpdateObject(Alert alertObject, IReadOnlyDictionary<string, object> modificationInformation)
         {
-            if (alertObject == null)
-            {
-                throw new ArgumentNullException(nameof(alertObject));
-            }
-            if (modificationInformation == null)
-            {
-                throw new ArgumentNullException(nameof(modificationInformation));
-            }
+            _ = alertObject ?? throw new ArgumentNullException(nameof(alertObject));
+            _ = modificationInformation ?? throw new ArgumentNullException(nameof(modificationInformation));
             var requestPayload = new ClientRequestPayload();
             var objectName = alertObject.ObjectType;
             var objectType = ClientObject.GetType(objectName);

@@ -3,7 +3,7 @@
 //
 // This software is released under the MIT License.
 //
-// https://github.com/karamem0/spclientcore/blob/master/LICENSE
+// https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
 using Karamem0.SharePoint.PowerShell.Runtime.Common;
@@ -49,10 +49,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
 
         public ObjectPath Add(ObjectPath objectPath, params ClientActionDelegate[] delegates)
         {
-            if (objectPath == null)
-            {
-                throw new ArgumentNullException(nameof(objectPath));
-            }
+            _ = objectPath ?? throw new ArgumentNullException(nameof(objectPath));
             if (this.ObjectPaths.Count(item => item.Id == objectPath.Id) == 0)
             {
                 this.ObjectPaths.Add(objectPath);

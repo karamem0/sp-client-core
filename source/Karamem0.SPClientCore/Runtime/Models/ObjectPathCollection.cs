@@ -3,7 +3,7 @@
 //
 // This software is released under the MIT License.
 //
-// https://github.com/karamem0/spclientcore/blob/master/LICENSE
+// https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
 using System;
@@ -29,10 +29,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
 
         public void Add(ObjectPath item)
         {
-            if (item == null)
-            {
-                throw new ArgumentNullException(nameof(item));
-            }
+            _ = item ?? throw new ArgumentNullException(nameof(item));
             this.collection.Add(item.Id, item);
         }
 

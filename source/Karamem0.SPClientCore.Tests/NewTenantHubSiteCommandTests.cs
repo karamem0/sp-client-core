@@ -3,7 +3,7 @@
 //
 // This software is released under the MIT License.
 //
-// https://github.com/karamem0/spclientcore/blob/master/LICENSE
+// https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
 using Karamem0.SharePoint.PowerShell.Models;
@@ -60,7 +60,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     { "Description", "Test Hub Site 0 Description" },
                     { "EnablePermissionsSync", true },
                     { "HideNameInNavigation", true },
-                    { "LogoUrl", context.AppSettings["BaseUrl"] + "/_layouts/15/images/siteIcon.png" },
+                    { "LogoUrl", result3.ElementAt(0).Url + "/_layouts/15/images/siteIcon.png" },
                     { "SiteCollectionId", result3.ElementAt(0).Id },
                     { "SiteCollectionUrl", result3.ElementAt(0).Url },
                     { "Title", "Test Hub Site 0" }

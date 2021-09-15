@@ -4,8 +4,8 @@
 
 SharePoint Service Module for PowerShell
 
-[![.github/workflows/main.yml](https://github.com/karamem0/spclientcore/actions/workflows/main.yml/badge.svg)](https://github.com/karamem0/spclientcore/actions/workflows/main.yml)
-[![License](https://img.shields.io/github/license/karamem0/spclientcore.svg)](https://github.com/karamem0/spclientcore/blob/master/LICENSE)
+[![.github/workflows/main.yml](https://github.com/karamem0/sp-client-core/actions/workflows/main.yml/badge.svg)](https://github.com/karamem0/sp-client-core/actions/workflows/main.yml)
+[![License](https://img.shields.io/github/license/karamem0/sp-client-core.svg)](https://github.com/karamem0/sp-client-core/blob/main/LICENSE)
 
 ## Installation
 
@@ -209,6 +209,8 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [New-KshNavigationNode](docs/New-KshNavigationNode.md)
     - [Remove-KshNavigationNode](docs/Remove-KshNavigationNode.md)
     - [Update-KshNavigationNode](docs/Update-KshNavigationNode.md)
+  - Properties
+    - [Get-KshProperty](docs/Get-KshProperty.md)
   - Recycle Bin Items
     - [Get-KshRecycleBinItem](docs/Get-KshRecycleBinItem.md)
     - [Move-KshRecycleBinItem](docs/Move-KshRecycleBinItem.md)
@@ -273,8 +275,8 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Remove-KshTenantApp](docs/Remove-KshTenantApp.md)
     - [Uninstall-KshTenantApp](docs/Uninstall-KshTenantApp.md)
     - [Unpublish-KshTenantApp](docs/Unpublish-KshTenantApp.md)
-  - Tenant Settings
-    - [Get-KshTenantSettings](docs/Get-KshTenantSettings.md)
+  - Tenant App Catalog
+    - [Get-KshTenantAppCatalog](docs/Get-KshTenantAppCatalog.md)
   - Users
     - [Get-KshUser](docs/Get-KshUser.md)
     - [New-KshUser](docs/New-KshUser.md)
@@ -344,6 +346,11 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [New-KshTenantTheme](docs/New-KshTenantTheme.md)
     - [Remove-KshTenantTheme](docs/Remove-KshTenantTheme.md)
     - [Update-KshTenantTheme](docs/Update-KshTenantTheme.md)
+  - Users
+    - [Get-KshTenantUser](docs/Get-KshTenantUser.md)
+    - [New-KshTenantUser](docs/New-KshTenantUser.md)
+    - [Remove-KshTenantUser](docs/Remove-KshTenantUser.md)
+    - [Update-KshTenantUser](docs/Update-KshTenantUser.md)
 - Managed Metadata
   - Custom Properties
     - [Add-KshTermCustomProperty](docs/Add-KshTermCustomProperty.md)

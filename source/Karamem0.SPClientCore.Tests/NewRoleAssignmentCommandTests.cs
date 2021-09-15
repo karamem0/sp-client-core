@@ -3,7 +3,7 @@
 //
 // This software is released under the MIT License.
 //
-// https://github.com/karamem0/spclientcore/blob/master/LICENSE
+// https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
 using Karamem0.SharePoint.PowerShell.Models;
@@ -41,8 +41,8 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 "New-KshUser",
                 new Dictionary<string, object>()
                 {
-                    { "Email", "testuser0@" + context.AppSettings["LoginDomainName"] },
-                    { "LoginName", "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"] },
+                    { "Email", "testuser000@" + context.AppSettings["LoginDomainName"] },
+                    { "LoginName", "i:0#.f|membership|testuser000@" + context.AppSettings["LoginDomainName"] },
                     { "Title", "Test User 0" }
                 }
             );
@@ -105,8 +105,8 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 "New-KshUser",
                 new Dictionary<string, object>()
                 {
-                    { "Email", "testuser0@" + context.AppSettings["LoginDomainName"] },
-                    { "LoginName", "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"] },
+                    { "Email", "testuser000@" + context.AppSettings["LoginDomainName"] },
+                    { "LoginName", "i:0#.f|membership|testuser000@" + context.AppSettings["LoginDomainName"] },
                     { "Title", "Test User 0" }
                 }
             );
@@ -177,8 +177,8 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 "New-KshUser",
                 new Dictionary<string, object>()
                 {
-                    { "Email", "testuser0@" + context.AppSettings["LoginDomainName"] },
-                    { "LoginName", "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"] },
+                    { "Email", "testuser000@" + context.AppSettings["LoginDomainName"] },
+                    { "LoginName", "i:0#.f|membership|testuser000@" + context.AppSettings["LoginDomainName"] },
                     { "Title", "Test User 0" }
                 }
             );

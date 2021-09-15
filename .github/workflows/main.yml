@@ -7,7 +7,7 @@ on:
       - v*.*.*
 
 env:
-  BUILD_VERSION: 4.0.2.${{github.run_number}}
+  BUILD_VERSION: 4.1.0.${{github.run_number}}
 
 jobs:
   build:
@@ -15,6 +15,11 @@ jobs:
     steps:
       - name: Checkout repos
         uses: actions/checkout@v2
+      - name: Setup NuGet
+        uses: nuget/setup-nuget@v1
+        with:
+          nuget-api-key: ${{secrets.NUGET_API_KEY}}
+          nuget-version: '5.x'
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
         with:
@@ -22,7 +27,7 @@ jobs:
       - name: Build source
         run: |
           dotnet restore ${{env.TARGET_FILE}}
-          dotnet publish ${{env.TARGET_FILE}} -c Release -o artifact/spclientcore -p:Version=${{env.BUILD_VERSION}} -p:FileVersion=${{env.BUILD_VERSION}}
+          dotnet publish ${{env.TARGET_FILE}} -c Release -o artifact/sp-client-core -p:Version=${{env.BUILD_VERSION}} -p:FileVersion=${{env.BUILD_VERSION}}
         env:
           TARGET_FILE: source/Karamem0.SPClientCore/Karamem0.SPClientCore.csproj
       - name: Update .nuspec file
@@ -32,19 +37,22 @@ jobs:
           $xml.package.metadata.version = "${{env.BUILD_VERSION}}"
           $xml.Save("${{env.TARGET_FILE}}")
         env:
-          TARGET_FILE: artifact/spclientcore/SPClientCore.nuspec
+          TARGET_FILE: artifact/sp-client-core/SPClientCore.nuspec
       - name: Update .psd1 file
         shell: pwsh
         run: |
           Import-Module -Name (Resolve-Path -Path "${{env.TARGET_FILE}}")
           Update-ModuleManifest -Path "${{env.TARGET_FILE}}" -ModuleVersion "${{env.BUILD_VERSION}}" -CmdletsToExport (Get-Command -Module SPClientCore | %{ $_.Name })
         env:
-          TARGET_FILE: artifact/spclientcore/SPClientCore.psd1
+          TARGET_FILE: artifact/sp-client-core/SPClientCore.psd1
+      - name: Package .nuspec file
+        run: |
+          nuget pack artifact/sp-client-core/SPClientCore.nuspec -OutputDirectory artifact
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: spclientcore
-          path: artifact/spclientcore
+          name: sp-client-core
+          path: artifact/sp-client-core
   publish:
     needs: build
     if: contains(github.ref, 'refs/tags/')
@@ -53,20 +61,20 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v2
         with:
-          name: spclientcore
-          path: spclientcore
+          name: sp-client-core
+          path: SPClientCore
       - name: Archive artifact
         shell: pwsh
         run: |
-          Compress-Archive -Path spclientcore/* -DestinationPath spclientcore_${{env.BUILD_VERSION}}.zip
+          Compress-Archive -Path SPClientCore/* -DestinationPath SPClientCore_${{env.BUILD_VERSION}}.zip
       - name: Create release
         uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         with:
           files: |
-            spclientcore_${{env.BUILD_VERSION}}.zip
+            SPClientCore_${{env.BUILD_VERSION}}.zip
       - name: Publish to PowerShell Gallery
         shell: pwsh
         run: |
-          Publish-Module -Path spclientcore -NugetApiKey ${{secrets.NUGET_API_KEY}}
+          Publish-Module -Path SPClientCore -NugetApiKey ${{secrets.NUGET_API_KEY}}

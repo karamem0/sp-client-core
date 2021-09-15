@@ -3,7 +3,7 @@
 //
 // This software is released under the MIT License.
 //
-// https://github.com/karamem0/spclientcore/blob/master/LICENSE
+// https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
 using Karamem0.SharePoint.PowerShell.Resources;
@@ -79,14 +79,8 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
             Func<HttpResponseMessage, Task<T>> responseCallback
         )
         {
-            if (requestCallback == null)
-            {
-                throw new ArgumentNullException(nameof(requestCallback));
-            }
-            if (responseCallback == null)
-            {
-                throw new ArgumentNullException(nameof(responseCallback));
-            }
+            _ = requestCallback ?? throw new ArgumentNullException(nameof(requestCallback));
+            _ = responseCallback ?? throw new ArgumentNullException(nameof(responseCallback));
             var syncContext = SynchronizationContext.Current as ClientHttpSynchronizationContext;
             try
             {

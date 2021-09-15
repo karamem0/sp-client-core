@@ -1,5 +1,5 @@
 ---
-external help file: SPClientCore.dll-Help.xml
+external help file: SPClientCore.dll-help.xml
 Module Name: SPClientCore
 online version:
 schema: 2.0.0
@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshTenant
 
 ## SYNOPSIS
-Retrieves the tenant.
+Retrieves a tenant.
 
 ## SYNTAX
 
@@ -17,7 +17,7 @@ Get-KshTenant [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshTenant cmdlet retrieves the tenant.
+The Get-KshTenant cmdlet retrieves a tenant.
 
 ## EXAMPLES
 
@@ -26,7 +26,7 @@ The Get-KshTenant cmdlet retrieves the tenant.
 PS C:\> Get-KshTenant
 ```
 
-Retrieves the tenant.
+Retrieves a tenant.
 
 ## PARAMETERS
 

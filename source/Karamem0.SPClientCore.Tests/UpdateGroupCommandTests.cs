@@ -3,7 +3,7 @@
 //
 // This software is released under the MIT License.
 //
-// https://github.com/karamem0/spclientcore/blob/master/LICENSE
+// https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
 using Karamem0.SharePoint.PowerShell.Models;
@@ -54,7 +54,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     { "AutoAcceptRequestToJoinLeave", true },
                     { "Description", "Test Group 0 Description" },
                     { "OnlyAllowMembersViewMembership", true },
-                    { "RequestToJoinLeaveEmailSetting", "testuser0@example.com" },
+                    { "RequestToJoinLeaveEmailSetting", "testuser000@example.com" },
                     { "Title", "Test Group 0" },
                     { "PassThru", true }
                 }

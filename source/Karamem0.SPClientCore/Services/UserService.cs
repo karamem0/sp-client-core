@@ -3,7 +3,7 @@
 //
 // This software is released under the MIT License.
 //
-// https://github.com/karamem0/spclientcore/blob/master/LICENSE
+// https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
 using Karamem0.SharePoint.PowerShell.Models;
@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Karamem0.SharePoint.PowerShell.Services
 {
@@ -34,9 +35,9 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         IEnumerable<User> GetObjectEnumerable();
 
-        void UpdateObject(User userObject, IReadOnlyDictionary<string, object> modificationInformation);
-
         void RemoveObject(User userObject);
+
+        void UpdateObject(User userObject, IReadOnlyDictionary<string, object> modificationInformation);
 
     }
 
@@ -49,10 +50,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         public User CreateObject(IReadOnlyDictionary<string, object> creationInformation)
         {
-            if (creationInformation == null)
-            {
-                throw new ArgumentNullException(nameof(creationInformation));
-            }
+            _ = creationInformation ?? throw new ArgumentNullException(nameof(creationInformation));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathStaticProperty(typeof(Context), "Current"));
@@ -77,10 +75,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         public User EnsureObject(string userLoginName)
         {
-            if (userLoginName == null)
-            {
-                throw new ArgumentNullException(nameof(userLoginName));
-            }
+            _ = userLoginName ?? throw new ArgumentNullException(nameof(userLoginName));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathStaticProperty(typeof(Context), "Current"));
@@ -122,10 +117,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         public User GetObject(int userId)
         {
-            if (userId == default)
-            {
-                throw new ArgumentNullException(nameof(userId));
-            }
+            _ = (userId != default) ? userId : throw new ArgumentNullException(nameof(userId));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathStaticProperty(typeof(Context), "Current"));
@@ -150,11 +142,8 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         public User GetObject(string userName)
         {
-            if (userName == null)
-            {
-                throw new ArgumentNullException(nameof(userName));
-            }
-            if (System.Text.RegularExpressions.Regex.IsMatch(userName, "^[ci]:0"))
+            _ = userName ?? throw new ArgumentNullException(nameof(userName));
+            if (Regex.IsMatch(userName, "^[ci]:0"))
             {
                 var requestPayload = new ClientRequestPayload();
                 var objectPath1 = requestPayload.Add(

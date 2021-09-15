@@ -3,7 +3,7 @@
 //
 // This software is released under the MIT License.
 //
-// https://github.com/karamem0/spclientcore/blob/master/LICENSE
+// https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
@@ -24,10 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
 
         public virtual T GetObject(T clientObject)
         {
-            if (clientObject == null)
-            {
-                throw new ArgumentNullException(nameof(clientObject));
-            }
+            _ = clientObject ?? throw new ArgumentNullException(nameof(clientObject));
             var requestPayload = new ClientRequestPayload();
             var objectPath = requestPayload.Add(
                 new ObjectPathIdentity(clientObject.ObjectIdentity),
@@ -43,10 +40,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
 
         public virtual void RemoveObject(T clientObject)
         {
-            if (clientObject == null)
-            {
-                throw new ArgumentNullException(nameof(clientObject));
-            }
+            _ = clientObject ?? throw new ArgumentNullException(nameof(clientObject));
             var requestPayload = new ClientRequestPayload();
             var objectPath = requestPayload.Add(
                 new ObjectPathIdentity(clientObject.ObjectIdentity),
@@ -56,14 +50,8 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
 
         public virtual void UpdateObject(T clientObject, IReadOnlyDictionary<string, object> modificationInformation)
         {
-            if (clientObject == null)
-            {
-                throw new ArgumentNullException(nameof(clientObject));
-            }
-            if (modificationInformation == null)
-            {
-                throw new ArgumentNullException(nameof(modificationInformation));
-            }
+            _ = clientObject ?? throw new ArgumentNullException(nameof(clientObject));
+            _ = modificationInformation ?? throw new ArgumentNullException(nameof(modificationInformation));
             var requestPayload = new ClientRequestPayload();
             var objectName = clientObject.ObjectType;
             var objectType = ClientObject.GetType(objectName);

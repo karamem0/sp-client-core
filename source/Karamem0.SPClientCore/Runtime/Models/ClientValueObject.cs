@@ -3,7 +3,7 @@
 //
 // This software is released under the MIT License.
 //
-// https://github.com/karamem0/spclientcore/blob/master/LICENSE
+// https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
 using Karamem0.SharePoint.PowerShell.Runtime.Common;
@@ -45,10 +45,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
 
         public ClientValueObject(IReadOnlyDictionary<string, object> parameters)
         {
-            if (parameters == null)
-            {
-                throw new ArgumentNullException(nameof(parameters));
-            }
+            _ = parameters ?? throw new ArgumentNullException(nameof(parameters));
             foreach (var propertyInfo in this.GetType().GetDeclaringProperties())
             {
                 if (parameters.TryGetValue(propertyInfo.Name, out var value))

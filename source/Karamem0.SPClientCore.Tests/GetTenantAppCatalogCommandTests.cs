@@ -3,7 +3,7 @@
 //
 // This software is released under the MIT License.
 //
-// https://github.com/karamem0/spclientcore/blob/master/LICENSE
+// https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
 using Karamem0.SharePoint.PowerShell.Models;
@@ -18,12 +18,12 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("Get-KshTenantSettings")]
-    public class GetTenantSettingsCommandTests
+    [TestCategory("Get-KshTenantAppCatalog")]
+    public class GetTenantAppCatalogCommandTests
     {
 
         [TestMethod()]
-        public void GetTenantSettings()
+        public void GetTenantAppCatalog()
         {
             using var context = new PSCmdletContext();
             var result1 = context.Runspace.InvokeCommand(
@@ -37,8 +37,8 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     }
                 }
             );
-            var result2 = context.Runspace.InvokeCommand<TenantSettings>(
-                "Get-KshTenantSettings",
+            var result2 = context.Runspace.InvokeCommand<string>(
+                "Get-KshTenantAppCatalog",
                 new Dictionary<string, object>()
                 {
                 }

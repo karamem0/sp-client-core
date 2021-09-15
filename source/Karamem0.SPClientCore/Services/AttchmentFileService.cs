@@ -3,7 +3,7 @@
 //
 // This software is released under the MIT License.
 //
-// https://github.com/karamem0/spclientcore/blob/master/LICENSE
+// https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
 using Karamem0.SharePoint.PowerShell.Models;
@@ -46,10 +46,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         public System.IO.Stream DownloadObject(AttachmentFile attachmentFileObject)
         {
-            if (attachmentFileObject == null)
-            {
-                throw new ArgumentNullException(nameof(attachmentFileObject));
-            }
+            _ = attachmentFileObject ?? throw new ArgumentNullException(nameof(attachmentFileObject));
             var requestUrl = this.ClientContext.BaseAddress
                 .ConcatPath(
                     "_api/web/getfilebyserverrelativeurl('{0}')/openbinarystream",
@@ -59,14 +56,8 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         public AttachmentFile GetObject(ListItem listItemObject, string attachmentFileName)
         {
-            if (listItemObject == null)
-            {
-                throw new ArgumentNullException(nameof(listItemObject));
-            }
-            if (attachmentFileName == null)
-            {
-                throw new ArgumentNullException(nameof(attachmentFileName));
-            }
+            _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
+            _ = attachmentFileName ?? throw new ArgumentNullException(nameof(attachmentFileName));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathIdentity(listItemObject.ObjectIdentity));
@@ -89,10 +80,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         public IEnumerable<AttachmentFile> GetObjectEnumerable(ListItem listItemObject)
         {
-            if (listItemObject == null)
-            {
-                throw new ArgumentNullException(nameof(listItemObject));
-            }
+            _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathIdentity(listItemObject.ObjectIdentity));
@@ -111,10 +99,7 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         public void RecycleObject(AttachmentFile attachmentFileObject)
         {
-            if (attachmentFileObject == null)
-            {
-                throw new ArgumentNullException(nameof(attachmentFileObject));
-            }
+            _ = attachmentFileObject ?? throw new ArgumentNullException(nameof(attachmentFileObject));
             var requestPayload = new ClientRequestPayload();
             var objectPath = requestPayload.Add(
                 new ObjectPathIdentity(attachmentFileObject.ObjectIdentity),
@@ -124,18 +109,9 @@ namespace Karamem0.SharePoint.PowerShell.Services
 
         public void UploadObject(ListItem listItemObject, string attachmentFileName, System.IO.Stream attachmentFileContent)
         {
-            if (listItemObject == null)
-            {
-                throw new ArgumentNullException(nameof(listItemObject));
-            }
-            if (attachmentFileName == null)
-            {
-                throw new ArgumentNullException(nameof(attachmentFileName));
-            }
-            if (attachmentFileContent == null)
-            {
-                throw new ArgumentNullException(nameof(attachmentFileContent));
-            }
+            _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
+            _ = attachmentFileName ?? throw new ArgumentNullException(nameof(attachmentFileName));
+            _ = attachmentFileContent ?? throw new ArgumentNullException(nameof(attachmentFileContent));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathIdentity(listItemObject.ObjectIdentity));
