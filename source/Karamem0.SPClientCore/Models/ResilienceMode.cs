@@ -14,12 +14,14 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Models
 {
 
-    public enum TenantBrowseUserInfoPolicyValue
+    public enum ResilienceMode
     {
 
-        ApplyToNoUsers = 0,
+        Default = 0,
 
-        ApplyToGuestAndExternalUsers = 1,
+        Enabled = 1,
+
+        Disabled = 2,
 
     }
 

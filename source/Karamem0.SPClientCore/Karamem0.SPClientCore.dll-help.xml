@@ -51174,6 +51174,23 @@
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AuthenticationContextResilienceMode</maml:name>
+          <maml:description>
+            <maml:para>Specifies the authentication context resilience mode.</maml:para>
+          </maml:description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">Default</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Enabled</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Disabled</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">ResilienceMode</command:parameterValue>
+          <dev:type>
+            <maml:name>ResilienceMode</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>BccExternalSharingInvitations</maml:name>
           <maml:description>
             <maml:para>Specifies whether to allow external sharing invitations to be sent as Bcc.</maml:para>
@@ -51270,9 +51287,9 @@
             <command:parameterValue required="false" command:variableLength="false">ApplyToNoUsers</command:parameterValue>
             <command:parameterValue required="false" command:variableLength="false">ApplyToGuestAndExternalUsers</command:parameterValue>
           </command:parameterValueGroup>
-          <command:parameterValue required="true" variableLength="false">TenantBrowseUserInfoPolicyValue</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">TenantBrowseUserInfoPolicyType</command:parameterValue>
           <dev:type>
-            <maml:name>TenantBrowseUserInfoPolicyValue</maml:name>
+            <maml:name>TenantBrowseUserInfoPolicyType</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -51286,9 +51303,9 @@
             <command:parameterValue required="false" command:variableLength="false">ApplyToNoUsers</command:parameterValue>
             <command:parameterValue required="false" command:variableLength="false">ApplyToGuestAndExternalUsers</command:parameterValue>
           </command:parameterValueGroup>
-          <command:parameterValue required="true" variableLength="false">TenantBrowseUserInfoPolicyValue</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">TenantBrowseUserInfoPolicyType</command:parameterValue>
           <dev:type>
-            <maml:name>TenantBrowseUserInfoPolicyValue</maml:name>
+            <maml:name>TenantBrowseUserInfoPolicyType</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -52765,6 +52782,18 @@
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>AuthenticationContextResilienceMode</maml:name>
+        <maml:description>
+          <maml:para>Specifies the authentication context resilience mode.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">ResilienceMode</command:parameterValue>
+        <dev:type>
+          <maml:name>ResilienceMode</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>BccExternalSharingInvitations</maml:name>
         <maml:description>
           <maml:para>Specifies whether to allow external sharing invitations to be sent as Bcc.</maml:para>
@@ -52853,9 +52882,9 @@
         <maml:description>
           <maml:para>Specifies whether to enable block the user info visibility in OneDrive.</maml:para>
         </maml:description>
-        <command:parameterValue required="true" variableLength="false">TenantBrowseUserInfoPolicyValue</command:parameterValue>
+        <command:parameterValue required="true" variableLength="false">TenantBrowseUserInfoPolicyType</command:parameterValue>
         <dev:type>
-          <maml:name>TenantBrowseUserInfoPolicyValue</maml:name>
+          <maml:name>TenantBrowseUserInfoPolicyType</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -52865,9 +52894,9 @@
         <maml:description>
           <maml:para>Specifies whether to enable block the user info visibility in SharePoint.</maml:para>
         </maml:description>
-        <command:parameterValue required="true" variableLength="false">TenantBrowseUserInfoPolicyValue</command:parameterValue>
+        <command:parameterValue required="true" variableLength="false">TenantBrowseUserInfoPolicyType</command:parameterValue>
         <dev:type>
-          <maml:name>TenantBrowseUserInfoPolicyValue</maml:name>
+          <maml:name>TenantBrowseUserInfoPolicyType</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -69720,6 +69749,30 @@
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AuthenticationContextName</maml:name>
+          <maml:description>
+            <maml:para>Specifies the authentication context name.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AuthenticationContextStrength</maml:name>
+          <maml:description>
+            <maml:para>Specifies the authentication context strength.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>BlockDownloadLinksFileType</maml:name>
           <maml:description>
             <maml:para>Specifies the block download links file type.</maml:para>
@@ -69731,6 +69784,30 @@
           <command:parameterValue required="true" variableLength="false">BlockDownloadLinksFileType</command:parameterValue>
           <dev:type>
             <maml:name>BlockDownloadLinksFileType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>BlockDownloadMicrosoft365GroupIds</maml:name>
+          <maml:description>
+            <maml:para>Specifies the Microsoft 365 group IDs to block download.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Guid[]</command:parameterValue>
+          <dev:type>
+            <maml:name>Guid[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>BlockDownloadPolicy</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to block download.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -69855,9 +69932,9 @@
             <command:parameterValue required="false" command:variableLength="false">Disabled</command:parameterValue>
             <command:parameterValue required="false" command:variableLength="false">NotDisabled</command:parameterValue>
           </command:parameterValueGroup>
-          <command:parameterValue required="true" variableLength="false">CompanyWideSharingLinksPolicy</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">CompanyWideSharingLinksPolicyType</command:parameterValue>
           <dev:type>
-            <maml:name>CompanyWideSharingLinksPolicy</maml:name>
+            <maml:name>CompanyWideSharingLinksPolicyType</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -69872,9 +69949,9 @@
             <command:parameterValue required="false" command:variableLength="false">Disabled</command:parameterValue>
             <command:parameterValue required="false" command:variableLength="false">NotDisabled</command:parameterValue>
           </command:parameterValueGroup>
-          <command:parameterValue required="true" variableLength="false">FlowsPolicy</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">FlowsPolicyType</command:parameterValue>
           <dev:type>
-            <maml:name>FlowsPolicy</maml:name>
+            <maml:name>FlowsPolicyType</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -69887,6 +69964,54 @@
           <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
           <dev:type>
             <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>InformationBarriersMode</maml:name>
+          <maml:description>
+            <maml:para>Specifies the information barriers mode.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>InformationBarriersSegments</maml:name>
+          <maml:description>
+            <maml:para>Specifies the information barriers segments.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Guid[]</command:parameterValue>
+          <dev:type>
+            <maml:name>Guid[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>InformationBarriersSegmentsToAdd</maml:name>
+          <maml:description>
+            <maml:para>Specifies the information barriers segments to add.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Guid[]</command:parameterValue>
+          <dev:type>
+            <maml:name>Guid[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>InformationBarriersSegmentsToRemove</maml:name>
+          <maml:description>
+            <maml:para>Specifies the information barriers segments to remove.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Guid[]</command:parameterValue>
+          <dev:type>
+            <maml:name>Guid[]</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -69908,6 +70033,22 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>MediaTranscription</maml:name>
+          <maml:description>
+            <maml:para>Specifies the media transcription.</maml:para>
+          </maml:description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">Enabled</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Disabled</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">MediaTranscriptionPolicyType</command:parameterValue>
+          <dev:type>
+            <maml:name>MediaTranscriptionPolicyType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>NoWait</maml:name>
           <maml:description>
@@ -69918,6 +70059,47 @@
             <maml:uri />
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>OverrideBlockUserInfoVisibility</maml:name>
+          <maml:description>
+            <maml:para>Specifies the block user info visibility to override.</maml:para>
+          </maml:description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">Default</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ApplyToNoUsers</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ApplyToGuestAndExternalUsers</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">SiteUserInfoVisibilityPolicyType</command:parameterValue>
+          <dev:type>
+            <maml:name>SiteUserInfoVisibilityPolicyType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>OverrideTenantAnonymousLinkExpirationPolicy</maml:name>
+          <maml:description>
+            <maml:para>Specifies the tenant anonymous link expiration policy to override.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>OverrideTenantExternalUserExpirationPolicy</maml:name>
+          <maml:description>
+            <maml:para>Specifies the tenant external user expiration policy to override.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Owner</maml:name>
@@ -69980,6 +70162,30 @@
           <command:parameterValue required="true" variableLength="false">SandboxedCodeActivationCapabilities</command:parameterValue>
           <dev:type>
             <maml:name>SandboxedCodeActivationCapabilities</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>SensitivityLabel</maml:name>
+          <maml:description>
+            <maml:para>Specifies the sensitivity label.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+          <dev:type>
+            <maml:name>Guid</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>SensitivityLabel2</maml:name>
+          <maml:description>
+            <maml:para>Specifies the sensitivity label.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -70068,7 +70274,7 @@
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>StorageMaxLevel</maml:name>
+          <maml:name>StorageMaximumLevel</maml:name>
           <maml:description>
             <maml:para>Specifies the maximum quota of the storage.</maml:para>
           </maml:description>
@@ -70092,6 +70298,18 @@
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>TimeZoneId</maml:name>
+          <maml:description>
+            <maml:para>Specifies the time zone ID.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Title</maml:name>
           <maml:description>
             <maml:para>Specifies the title.</maml:para>
@@ -70104,7 +70322,7 @@
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>UserCodeMaxLevel</maml:name>
+          <maml:name>UserCodeMaximumLevel</maml:name>
           <maml:description>
             <maml:para>Specifies the maximum quota of the server resource.</maml:para>
           </maml:description>
@@ -70179,6 +70397,30 @@
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AuthenticationContextName</maml:name>
+          <maml:description>
+            <maml:para>Specifies the authentication context name.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AuthenticationContextStrength</maml:name>
+          <maml:description>
+            <maml:para>Specifies the authentication context strength.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>BlockDownloadLinksFileType</maml:name>
           <maml:description>
             <maml:para>Specifies the block download links file type.</maml:para>
@@ -70190,6 +70432,30 @@
           <command:parameterValue required="true" variableLength="false">BlockDownloadLinksFileType</command:parameterValue>
           <dev:type>
             <maml:name>BlockDownloadLinksFileType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>BlockDownloadMicrosoft365GroupIds</maml:name>
+          <maml:description>
+            <maml:para>Specifies the Microsoft 365 group IDs to block download.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Guid[]</command:parameterValue>
+          <dev:type>
+            <maml:name>Guid[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>BlockDownloadPolicy</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to block download.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -70314,9 +70580,9 @@
             <command:parameterValue required="false" command:variableLength="false">Disabled</command:parameterValue>
             <command:parameterValue required="false" command:variableLength="false">NotDisabled</command:parameterValue>
           </command:parameterValueGroup>
-          <command:parameterValue required="true" variableLength="false">CompanyWideSharingLinksPolicy</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">CompanyWideSharingLinksPolicyType</command:parameterValue>
           <dev:type>
-            <maml:name>CompanyWideSharingLinksPolicy</maml:name>
+            <maml:name>CompanyWideSharingLinksPolicyType</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -70331,9 +70597,9 @@
             <command:parameterValue required="false" command:variableLength="false">Disabled</command:parameterValue>
             <command:parameterValue required="false" command:variableLength="false">NotDisabled</command:parameterValue>
           </command:parameterValueGroup>
-          <command:parameterValue required="true" variableLength="false">FlowsPolicy</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">FlowsPolicyType</command:parameterValue>
           <dev:type>
-            <maml:name>FlowsPolicy</maml:name>
+            <maml:name>FlowsPolicyType</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -70351,6 +70617,54 @@
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>InformationBarriersMode</maml:name>
+          <maml:description>
+            <maml:para>Specifies the information barriers mode.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>InformationBarriersSegments</maml:name>
+          <maml:description>
+            <maml:para>Specifies the information barriers segments.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Guid[]</command:parameterValue>
+          <dev:type>
+            <maml:name>Guid[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>InformationBarriersSegmentsToAdd</maml:name>
+          <maml:description>
+            <maml:para>Specifies the information barriers segments to add.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Guid[]</command:parameterValue>
+          <dev:type>
+            <maml:name>Guid[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>InformationBarriersSegmentsToRemove</maml:name>
+          <maml:description>
+            <maml:para>Specifies the information barriers segments to remove.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Guid[]</command:parameterValue>
+          <dev:type>
+            <maml:name>Guid[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>LimitedAccessFileType</maml:name>
           <maml:description>
             <maml:para>Specifies the limited access file type.</maml:para>
@@ -70363,6 +70677,63 @@
           <command:parameterValue required="true" variableLength="false">LimitedAccessFileType</command:parameterValue>
           <dev:type>
             <maml:name>LimitedAccessFileType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>MediaTranscription</maml:name>
+          <maml:description>
+            <maml:para>Specifies the media transcription.</maml:para>
+          </maml:description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">Enabled</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Disabled</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">MediaTranscriptionPolicyType</command:parameterValue>
+          <dev:type>
+            <maml:name>MediaTranscriptionPolicyType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>OverrideBlockUserInfoVisibility</maml:name>
+          <maml:description>
+            <maml:para>Specifies the block user info visibility to override.</maml:para>
+          </maml:description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">Default</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ApplyToNoUsers</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ApplyToGuestAndExternalUsers</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">SiteUserInfoVisibilityPolicyType</command:parameterValue>
+          <dev:type>
+            <maml:name>SiteUserInfoVisibilityPolicyType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>OverrideTenantAnonymousLinkExpirationPolicy</maml:name>
+          <maml:description>
+            <maml:para>Specifies the tenant anonymous link expiration policy to override.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>OverrideTenantExternalUserExpirationPolicy</maml:name>
+          <maml:description>
+            <maml:para>Specifies the tenant external user expiration policy to override.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -70444,6 +70815,30 @@
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>SensitivityLabel</maml:name>
+          <maml:description>
+            <maml:para>Specifies the sensitivity label.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+          <dev:type>
+            <maml:name>Guid</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>SensitivityLabel2</maml:name>
+          <maml:description>
+            <maml:para>Specifies the sensitivity label.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>SharingAllowedDomainList</maml:name>
           <maml:description>
             <maml:para>Specifies the list of domain to allow sharing.</maml:para>
@@ -70527,7 +70922,7 @@
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>StorageMaxLevel</maml:name>
+          <maml:name>StorageMaximumLevel</maml:name>
           <maml:description>
             <maml:para>Specifies the maximum quota of the storage.</maml:para>
           </maml:description>
@@ -70551,6 +70946,18 @@
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>TimeZoneId</maml:name>
+          <maml:description>
+            <maml:para>Specifies the time zone ID.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Title</maml:name>
           <maml:description>
             <maml:para>Specifies the title.</maml:para>
@@ -70563,7 +70970,7 @@
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-          <maml:name>UserCodeMaxLevel</maml:name>
+          <maml:name>UserCodeMaximumLevel</maml:name>
           <maml:description>
             <maml:para>Specifies the maximum quota of the server resource.</maml:para>
           </maml:description>
@@ -70626,6 +71033,30 @@
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>AuthenticationContextName</maml:name>
+        <maml:description>
+          <maml:para>Specifies the authentication context name.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>AuthenticationContextStrength</maml:name>
+        <maml:description>
+          <maml:para>Specifies the authentication context strength.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>BlockDownloadLinksFileType</maml:name>
         <maml:description>
           <maml:para>Specifies the block download links file type.</maml:para>
@@ -70633,6 +71064,30 @@
         <command:parameterValue required="true" variableLength="false">BlockDownloadLinksFileType</command:parameterValue>
         <dev:type>
           <maml:name>BlockDownloadLinksFileType</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>BlockDownloadMicrosoft365GroupIds</maml:name>
+        <maml:description>
+          <maml:para>Specifies the Microsoft 365 group IDs to block download.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Guid[]</command:parameterValue>
+        <dev:type>
+          <maml:name>Guid[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>BlockDownloadPolicy</maml:name>
+        <maml:description>
+          <maml:para>Specifies whether to block download.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -70726,9 +71181,9 @@
         <maml:description>
           <maml:para>Specifies the company-wide sharing links policy.</maml:para>
         </maml:description>
-        <command:parameterValue required="true" variableLength="false">CompanyWideSharingLinksPolicy</command:parameterValue>
+        <command:parameterValue required="true" variableLength="false">CompanyWideSharingLinksPolicyType</command:parameterValue>
         <dev:type>
-          <maml:name>CompanyWideSharingLinksPolicy</maml:name>
+          <maml:name>CompanyWideSharingLinksPolicyType</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -70738,9 +71193,9 @@
         <maml:description>
           <maml:para>Specifies the Microsoft Flow policy.</maml:para>
         </maml:description>
-        <command:parameterValue required="true" variableLength="false">FlowsPolicy</command:parameterValue>
+        <command:parameterValue required="true" variableLength="false">FlowsPolicyType</command:parameterValue>
         <dev:type>
-          <maml:name>FlowsPolicy</maml:name>
+          <maml:name>FlowsPolicyType</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -70770,6 +71225,54 @@
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>InformationBarriersMode</maml:name>
+        <maml:description>
+          <maml:para>Specifies the information barriers mode.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>InformationBarriersSegments</maml:name>
+        <maml:description>
+          <maml:para>Specifies the information barriers segments.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Guid[]</command:parameterValue>
+        <dev:type>
+          <maml:name>Guid[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>InformationBarriersSegmentsToAdd</maml:name>
+        <maml:description>
+          <maml:para>Specifies the information barriers segments to add.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Guid[]</command:parameterValue>
+        <dev:type>
+          <maml:name>Guid[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>InformationBarriersSegmentsToRemove</maml:name>
+        <maml:description>
+          <maml:para>Specifies the information barriers segments to remove.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Guid[]</command:parameterValue>
+        <dev:type>
+          <maml:name>Guid[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>LimitedAccessFileType</maml:name>
         <maml:description>
           <maml:para>Specifies the limited access file type.</maml:para>
@@ -70777,6 +71280,18 @@
         <command:parameterValue required="true" variableLength="false">LimitedAccessFileType</command:parameterValue>
         <dev:type>
           <maml:name>LimitedAccessFileType</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>MediaTranscription</maml:name>
+        <maml:description>
+          <maml:para>Specifies the media transcription.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">MediaTranscriptionPolicyType</command:parameterValue>
+        <dev:type>
+          <maml:name>MediaTranscriptionPolicyType</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -70792,6 +71307,42 @@
           <maml:uri />
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>OverrideBlockUserInfoVisibility</maml:name>
+        <maml:description>
+          <maml:para>Specifies the block user info visibility to override.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">SiteUserInfoVisibilityPolicyType</command:parameterValue>
+        <dev:type>
+          <maml:name>SiteUserInfoVisibilityPolicyType</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>OverrideTenantAnonymousLinkExpirationPolicy</maml:name>
+        <maml:description>
+          <maml:para>Specifies the tenant anonymous link expiration policy to override.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>OverrideTenantExternalUserExpirationPolicy</maml:name>
+        <maml:description>
+          <maml:para>Specifies the tenant external user expiration policy to override.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Owner</maml:name>
@@ -70849,6 +71400,30 @@
         <command:parameterValue required="true" variableLength="false">SandboxedCodeActivationCapabilities</command:parameterValue>
         <dev:type>
           <maml:name>SandboxedCodeActivationCapabilities</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>SensitivityLabel</maml:name>
+        <maml:description>
+          <maml:para>Specifies the sensitivity label.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+        <dev:type>
+          <maml:name>Guid</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>SensitivityLabel2</maml:name>
+        <maml:description>
+          <maml:para>Specifies the sensitivity label.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -70926,7 +71501,7 @@
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>StorageMaxLevel</maml:name>
+        <maml:name>StorageMaximumLevel</maml:name>
         <maml:description>
           <maml:para>Specifies the maximum quota of the storage.</maml:para>
         </maml:description>
@@ -70950,6 +71525,18 @@
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>TimeZoneId</maml:name>
+        <maml:description>
+          <maml:para>Specifies the time zone ID.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Title</maml:name>
         <maml:description>
           <maml:para>Specifies the title.</maml:para>
@@ -70962,7 +71549,7 @@
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
-        <maml:name>UserCodeMaxLevel</maml:name>
+        <maml:name>UserCodeMaximumLevel</maml:name>
         <maml:description>
           <maml:para>Specifies the maximum quota of the server resource.</maml:para>
         </maml:description>

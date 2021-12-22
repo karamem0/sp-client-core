@@ -18,11 +18,12 @@ Set-KshTenant [-AddressbarLinkPermission <AddressbarLinkPermissions>]
  [-AllowedDomainListForSyncClient <Guid[]>] [-AllowEditing <Boolean>]
  [-AllowLimitedAccessOnUnmanagedDevices <Boolean>] [-AllowOverrideForBlockUserInfoVisibility <Boolean>]
  [-AnyoneLinkTrackUsers <Boolean>] [-ApplyAppEnforcedRestrictionsToAdHocRecipients <Boolean>]
- [-BccExternalSharingInvitations <Boolean>] [-BccExternalSharingInvitationsList <String>]
- [-BlockAccessOnUnmanagedDevices <Boolean>] [-BlockDownloadLinksFileType <BlockDownloadLinksFileType>]
- [-BlockMacSync <Boolean>] [-BlockSendLabelMismatchEmail <Boolean>] [-BlockUserInfoVisibility <String>]
- [-BlockUserInfoVisibilityInOneDrive <TenantBrowseUserInfoPolicyValue>]
- [-BlockUserInfoVisibilityInSharePoint <TenantBrowseUserInfoPolicyValue>] [-CommentsOnFilesDisabled <Boolean>]
+ [-AuthenticationContextResilienceMode <ResilienceMode>] [-BccExternalSharingInvitations <Boolean>]
+ [-BccExternalSharingInvitationsList <String>] [-BlockAccessOnUnmanagedDevices <Boolean>]
+ [-BlockDownloadLinksFileType <BlockDownloadLinksFileType>] [-BlockMacSync <Boolean>]
+ [-BlockSendLabelMismatchEmail <Boolean>] [-BlockUserInfoVisibility <String>]
+ [-BlockUserInfoVisibilityInOneDrive <TenantBrowseUserInfoPolicyType>]
+ [-BlockUserInfoVisibilityInSharePoint <TenantBrowseUserInfoPolicyType>] [-CommentsOnFilesDisabled <Boolean>]
  [-CommentsOnListItemsDisabled <Boolean>] [-CommentsOnSitePagesDisabled <Boolean>]
  [-CompatibilityRange <String>] [-ConditionalAccessPolicy <ConditionalAccessPolicyType>]
  [-ConditionalAccessPolicyErrorHelpLink <String>] [-ContentTypeSyncSiteTemplatesList <String[]>]
@@ -228,6 +229,22 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -AuthenticationContextResilienceMode
+Specifies the authentication context resilience mode.
+
+```yaml
+Type: ResilienceMode
+Parameter Sets: (All)
+Aliases:
+Accepted values: Default, Enabled, Disabled
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -BccExternalSharingInvitations
 Specifies whether to allow external sharing invitations to be sent as Bcc.
 
@@ -338,7 +355,7 @@ Accept wildcard characters: False
 Specifies whether to enable block the user info visibility in OneDrive.
 
 ```yaml
-Type: TenantBrowseUserInfoPolicyValue
+Type: TenantBrowseUserInfoPolicyType
 Parameter Sets: (All)
 Aliases:
 Accepted values: ApplyToNoUsers, ApplyToGuestAndExternalUsers
@@ -354,7 +371,7 @@ Accept wildcard characters: False
 Specifies whether to enable block the user info visibility in SharePoint.
 
 ```yaml
-Type: TenantBrowseUserInfoPolicyValue
+Type: TenantBrowseUserInfoPolicyType
 Parameter Sets: (All)
 Aliases:
 Accepted values: ApplyToNoUsers, ApplyToGuestAndExternalUsers

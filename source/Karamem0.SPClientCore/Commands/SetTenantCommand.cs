@@ -73,6 +73,9 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         // public string[] AllowSelectSecurityGroupsInOneDriveListInTenant { get; private set; }
 
         [Parameter(Mandatory = false)]
+        public ResilienceMode AuthenticationContextResilienceMode { get; private set; }
+
+        [Parameter(Mandatory = false)]
         public bool BccExternalSharingInvitations { get; private set; }
 
         [Parameter(Mandatory = false)]
@@ -106,10 +109,10 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         public string BlockUserInfoVisibility { get; private set; }
 
         [Parameter(Mandatory = false)]
-        public TenantBrowseUserInfoPolicyValue BlockUserInfoVisibilityInOneDrive { get; private set; }
+        public TenantBrowseUserInfoPolicyType BlockUserInfoVisibilityInOneDrive { get; private set; }
 
         [Parameter(Mandatory = false)]
-        public TenantBrowseUserInfoPolicyValue BlockUserInfoVisibilityInSharePoint { get; private set; }
+        public TenantBrowseUserInfoPolicyType BlockUserInfoVisibilityInSharePoint { get; private set; }
 
         // [Parameter(Mandatory = false)]
         // public ChannelMeetingRecordingPermissionType ChannelMeetingRecordingPermission { get; private set; }
@@ -158,6 +161,9 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = false)]
         public bool DisableCustomAppAuthentication { get; private set; }
+
+        // [Parameter(Mandatory = false)]
+        // public bool DisableListSync { get; private set; }
 
         [Parameter(Mandatory = false)]
         public Guid[] DisabledModernListTemplateIds { get; private set; }
@@ -269,6 +275,9 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = false)]
         public bool IncludeAtAGlanceInShareEmails { get; private set; }
+
+        // [Parameter(Mandatory = false)]
+        // public bool InformationBarriersImplicitGroupBased { get; private set; }
 
         [Parameter(Mandatory = false)]
         public bool InformationBarriersSuspension { get; private set; }

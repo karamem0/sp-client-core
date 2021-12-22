@@ -49,7 +49,23 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+        public string AuthenticationContextStrength { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+        public string AuthenticationContextName { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
         public BlockDownloadLinksFileType BlockDownloadLinksFileType { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+        public Guid[] BlockDownloadMicrosoft365GroupIds { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+        public bool BlockDownloadPolicy { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -81,15 +97,31 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-        public CompanyWideSharingLinksPolicy DisableCompanyWideSharingLinks { get; private set; }
+        public CompanyWideSharingLinksPolicyType DisableCompanyWideSharingLinks { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-        public FlowsPolicy DisableFlows { get; private set; }
+        public FlowsPolicyType DisableFlows { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
         public int ExternalUserExpirationInDays { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+        public string InformationBarriersMode { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+        public Guid[] InformationBarriersSegments { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+        public Guid[] InformationBarriersSegmentsToAdd { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+        public Guid[] InformationBarriersSegmentsToRemove { get; private set; }
 
         // [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         // [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -98,6 +130,22 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
         public LimitedAccessFileType LimitedAccessFileType { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+        public MediaTranscriptionPolicyType MediaTranscription { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+        public SiteUserInfoVisibilityPolicyType OverrideBlockUserInfoVisibility { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+        public bool OverrideTenantAnonymousLinkExpirationPolicy { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+        public bool OverrideTenantExternalUserExpirationPolicy { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -117,11 +165,19 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-        public virtual string SharingAllowedDomainList { get; protected set; }
+        public Guid SensitivityLabel { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-        public virtual string SharingBlockedDomainList { get; protected set; }
+        public string SensitivityLabel2 { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+        public string SharingAllowedDomainList { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+        public string SharingBlockedDomainList { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -141,7 +197,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-        public long StorageMaxLevel { get; private set; }
+        public long StorageMaximumLevel { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -149,11 +205,15 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+        public int TimeZoneId { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
         public string Title { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-        public double UserCodeMaxLevel { get; private set; }
+        public double UserCodeMaximumLevel { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]

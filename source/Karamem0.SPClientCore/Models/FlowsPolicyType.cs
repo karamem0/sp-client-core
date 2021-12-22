@@ -14,7 +14,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Models
 {
 
-    public enum CompanyWideSharingLinksPolicy
+    public enum FlowsPolicyType
     {
 
         Unknown = 0,

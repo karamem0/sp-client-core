@@ -14,14 +14,16 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Models
 {
 
-    public enum FlowsPolicy
+    public enum TeamsChannelType
     {
 
-        Unknown = 0,
+        None = 0,
 
-        Disabled = 1,
+        PrivateChannel = 1,
 
-        NotDisabled = 2,
+        SharedChannel = 2,
+
+        StandardChannel = 3,
 
     }
 

@@ -140,8 +140,9 @@ namespace Karamem0.SharePoint.PowerShell.Services
             var objectPath2 = requestPayload.Add(
                 new ObjectPathMethod(
                     objectPath1.Id,
-                    "RestoreDeletedSite",
-                    requestPayload.CreateParameter(siteCollectionObject.Url)),
+                    "RestoreDeletedSitePreferId",
+                    requestPayload.CreateParameter(siteCollectionObject.Url),
+                    requestPayload.CreateParameter(siteCollectionObject.Id)),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {

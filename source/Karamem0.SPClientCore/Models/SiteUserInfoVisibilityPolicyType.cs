@@ -14,18 +14,14 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Models
 {
 
-    public enum TemplateFileType
+    public enum SiteUserInfoVisibilityPolicyType
     {
 
-        Invalid = -1,
+        Default = 0,
 
-        StandardPage = 0,
+        ApplyToNoUsers = 1,
 
-        WikiPage = 1,
-
-        FormPage = 2,
-
-        ClientSidePage = 3,
+        ApplyToGuestAndExternalUsers = 2,
 
     }
 

@@ -73,6 +73,9 @@ namespace Karamem0.SharePoint.PowerShell.Models
         [JsonProperty()]
         public virtual bool ApplyAppEnforcedRestrictionsToAdHocRecipients { get; protected set; }
 
+        [JsonProperty("AuthContextResilienceMode")]
+        public virtual ResilienceMode AuthenticationContextResilienceMode { get; protected set; }
+
         [JsonProperty()]
         public virtual bool BccExternalSharingInvitations { get; protected set; }
 
@@ -107,10 +110,10 @@ namespace Karamem0.SharePoint.PowerShell.Models
         public virtual string BlockUserInfoVisibility { get; protected set; }
 
         [JsonProperty()]
-        public virtual TenantBrowseUserInfoPolicyValue BlockUserInfoVisibilityInOneDrive { get; protected set; }
+        public virtual TenantBrowseUserInfoPolicyType BlockUserInfoVisibilityInOneDrive { get; protected set; }
 
         [JsonProperty()]
-        public virtual TenantBrowseUserInfoPolicyValue BlockUserInfoVisibilityInSharePoint { get; protected set; }
+        public virtual TenantBrowseUserInfoPolicyType BlockUserInfoVisibilityInSharePoint { get; protected set; }
 
         [JsonProperty()]
         public virtual ChannelMeetingRecordingPermissionType ChannelMeetingRecordingPermission { get; protected set; }
@@ -161,6 +164,9 @@ namespace Karamem0.SharePoint.PowerShell.Models
         public virtual bool DisableCustomAppAuthentication { get; protected set; }
 
         [JsonProperty()]
+        public virtual bool DisableListSync { get; protected set; }
+
+        [JsonProperty()]
         public virtual IReadOnlyCollection<Guid> DisabledModernListTemplateIds { get; protected set; }
 
         [JsonProperty()]
@@ -208,8 +214,8 @@ namespace Karamem0.SharePoint.PowerShell.Models
         [JsonProperty("EnableAzureADB2BIntegration")]
         public virtual bool EnableAzureAdB2BIntegration { get; protected set; }
 
-        // [JsonProperty("EnabledFlightAllowAADB2BSkipCheckingOTP")]
-        // public virtual bool EnabledFlightAllowAzureAdB2BSkipCheckingOneTimePassword { get; protected set; }
+        [JsonProperty("EnabledFlightAllowAADB2BSkipCheckingOTP")]
+        public virtual bool EnabledFlightAllowAzureAdB2BSkipCheckingOneTimePassword { get; protected set; }
 
         [JsonProperty()]
         public virtual bool EnableGuestSignInAcceleration { get; protected set; }
@@ -273,6 +279,9 @@ namespace Karamem0.SharePoint.PowerShell.Models
 
         [JsonProperty()]
         public virtual bool IncludeAtAGlanceInShareEmails { get; protected set; }
+
+        [JsonProperty("IBImplicitGroupBased")]
+        public virtual bool InformationBarriersImplicitGroupBased { get; protected set; }
 
         [JsonProperty()]
         public virtual bool InformationBarriersSuspension { get; protected set; }
@@ -471,6 +480,9 @@ namespace Karamem0.SharePoint.PowerShell.Models
 
         [JsonProperty()]
         public virtual DateTime StreamLaunchConfigLastUpdated { get; protected set; }
+
+        [JsonProperty()]
+        public virtual int StreamLaunchConfigUpdateCount { get; protected set; }
 
         [JsonProperty()]
         public virtual long StorageQuota { get; protected set; }

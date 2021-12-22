@@ -14,18 +14,12 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Models
 {
 
-    public enum TemplateFileType
+    public enum TenantBrowseUserInfoPolicyType
     {
 
-        Invalid = -1,
+        ApplyToNoUsers = 0,
 
-        StandardPage = 0,
-
-        WikiPage = 1,
-
-        FormPage = 2,
-
-        ClientSidePage = 3,
+        ApplyToGuestAndExternalUsers = 1,
 
     }
 

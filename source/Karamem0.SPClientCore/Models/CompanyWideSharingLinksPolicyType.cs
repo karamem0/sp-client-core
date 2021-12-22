@@ -14,18 +14,14 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Models
 {
 
-    public enum TemplateFileType
+    public enum CompanyWideSharingLinksPolicyType
     {
 
-        Invalid = -1,
+        Unknown = 0,
 
-        StandardPage = 0,
+        Disabled = 1,
 
-        WikiPage = 1,
-
-        FormPage = 2,
-
-        ClientSidePage = 3,
+        NotDisabled = 2,
 
     }
 
