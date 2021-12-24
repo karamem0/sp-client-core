@@ -34,20 +34,25 @@ Get-KshFile [-App] <App> [<CommonParameters>]
 
 ### ParamSet5
 ```
-Get-KshFile [-FileId] <Guid> [<CommonParameters>]
+Get-KshFile [-ListItem] <ListItem> [<CommonParameters>]
 ```
 
 ### ParamSet6
 ```
-Get-KshFile [-FileUrl] <Uri> [<CommonParameters>]
+Get-KshFile [-FileId] <Guid> [<CommonParameters>]
 ```
 
 ### ParamSet7
 ```
-Get-KshFile [-Folder] <Folder> [-FileName] <String> [<CommonParameters>]
+Get-KshFile [-FileUrl] <Uri> [<CommonParameters>]
 ```
 
 ### ParamSet8
+```
+Get-KshFile [-Folder] <Folder> [-FileName] <String> [<CommonParameters>]
+```
+
+### ParamSet9
 ```
 Get-KshFile [-Folder] <Folder> [-NoEnumerate] [<CommonParameters>]
 ```
@@ -122,7 +127,7 @@ Specifies the file ID.
 
 ```yaml
 Type: Guid
-Parameter Sets: ParamSet5
+Parameter Sets: ParamSet6
 Aliases:
 
 Required: True
@@ -137,7 +142,7 @@ Specifies the file name.
 
 ```yaml
 Type: String
-Parameter Sets: ParamSet7
+Parameter Sets: ParamSet8
 Aliases:
 
 Required: True
@@ -152,7 +157,7 @@ Specifies the file URL.
 
 ```yaml
 Type: Uri
-Parameter Sets: ParamSet6
+Parameter Sets: ParamSet7
 Aliases:
 
 Required: True
@@ -182,7 +187,7 @@ Specifies the folder.
 
 ```yaml
 Type: Folder
-Parameter Sets: ParamSet7, ParamSet8
+Parameter Sets: ParamSet8, ParamSet9
 Aliases:
 
 Required: True
@@ -207,12 +212,27 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
+### -ListItem
+Specifies the list item.
+
+```yaml
+Type: ListItem
+Parameter Sets: ParamSet5
+Aliases:
+
+Required: True
+Position: 0
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
 ### -NoEnumerate
 If specified, suppresses to enumerate objects.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: ParamSet8
+Parameter Sets: ParamSet9
 Aliases:
 
 Required: False
@@ -227,17 +247,15 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.File
-
-### Karamem0.SharePoint.PowerShell.Models.AttachmentFile
-
-### Karamem0.SharePoint.PowerShell.Models.FileVersion
-
-### Karamem0.SharePoint.PowerShell.Models.App
+### Karamem0.SharePoint.PowerShell.Models.V1.File
+### Karamem0.SharePoint.PowerShell.Models.V1.AttachmentFile
+### Karamem0.SharePoint.PowerShell.Models.V1.FileVersion
+### Karamem0.SharePoint.PowerShell.Models.V1.App
+### Karamem0.SharePoint.PowerShell.Models.V1.ListItem
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.File
+### Karamem0.SharePoint.PowerShell.Models.V1.File
 
 ## NOTES
 

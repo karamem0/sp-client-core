@@ -1,14 +1,14 @@
 //
-// Copyright (c) 2021 karamem0
+// Copyright (c) 2022 karamem0
 //
 // This software is released under the MIT License.
 //
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
-using Karamem0.SharePoint.PowerShell.Models;
+using Karamem0.SharePoint.PowerShell.Models.V1;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
-using Karamem0.SharePoint.PowerShell.Services;
+using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,20 +41,20 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet3")]
         public ListItem ListItem { get; private set; }
 
-        protected override void ProcessRecordCore(ref List<object> outputs)
+        protected override void ProcessRecordCore()
         {
             if (this.ParameterSetName == "ParamSet1")
             {
                 this.ValidateSwitchParameter(nameof(this.Site));
-                outputs.Add(this.Service2.GetObject(this.User, this.Service1.GetObject()));
+                this.Outputs.Add(this.Service2.GetObject(this.User, this.Service1.GetObject()));
             }
             if (this.ParameterSetName == "ParamSet2")
             {
-                outputs.Add(this.Service2.GetObject(this.User, this.List));
+                this.Outputs.Add(this.Service2.GetObject(this.User, this.List));
             }
             if (this.ParameterSetName == "ParamSet3")
             {
-                outputs.Add(this.Service2.GetObject(this.User, this.ListItem));
+                this.Outputs.Add(this.Service2.GetObject(this.User, this.ListItem));
             }
         }
 

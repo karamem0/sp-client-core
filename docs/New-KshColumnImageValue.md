@@ -1,0 +1,151 @@
+---
+external help file: SPClientCore.dll-help.xml
+Module Name: SPClientCore
+online version:
+schema: 2.0.0
+---
+
+# New-KshColumnImageValue
+
+## SYNOPSIS
+Creates a image column value.
+
+## SYNTAX
+
+### ParamSet1
+```
+New-KshColumnImageValue -ImageItem <ImageItem> [-ColumnName <String>] [<CommonParameters>]
+```
+
+### ParamSet2
+```
+New-KshColumnImageValue [-ColumnName <String>] [-FileName <String>] [-ServerUrl <String>]
+ [-ServerRelativeUrl <String>] [-Id <Guid>] [<CommonParameters>]
+```
+
+## DESCRIPTION
+The New-KshColumnImageValue cmdlet creates a new image column value from image information.
+This is provided for the [Add-KshListItem](Add-KshListItem.md) cmdlet and [Set-KshListItem](Set-KshListItem.md) cmdlet.
+
+## EXAMPLES
+
+### Example 1
+```powershell
+PS C:\> New-KshColumnImageValue -ImageItem (Save-KshImage -List (Get-KshList -ListTitle 'Announcements') -Content ([System.IO.File]::OpenRead('C:\Profile.png')) -FileName 'Profile.png') -ColumnName 'ImageColumn'
+```
+
+Creates a new image column value from saved image.
+
+### Example 1
+```powershell
+PS C:\> New-KshColumnImageValue -ServerRelativeUrl '/sites/japan/hr/SiteAssets/Profile.png'
+```
+
+Creates a new image column value from server relative URL.
+
+## PARAMETERS
+
+### -ColumnName
+Specifies the column name.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -FileName
+Specifies the file name.
+
+```yaml
+Type: String
+Parameter Sets: ParamSet2
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Id
+Specifies the ID.
+
+```yaml
+Type: Guid
+Parameter Sets: ParamSet2
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ImageItem
+Specifies the image item.
+
+```yaml
+Type: ImageItem
+Parameter Sets: ParamSet1
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ServerRelativeUrl
+Specifies the server relative URL.
+
+```yaml
+Type: String
+Parameter Sets: ParamSet2
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ServerUrl
+Specifies the root URL.
+
+```yaml
+Type: String
+Parameter Sets: ParamSet2
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### None
+
+## OUTPUTS
+
+### Karamem0.SharePoint.PowerShell.Models.V1.ColumnImageValue
+
+## NOTES
+
+## RELATED LINKS

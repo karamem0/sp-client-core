@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2021 karamem0
+// Copyright (c) 2022 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -48,7 +48,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
             _ = this.ClientContext.ProcessQuery(requestPayload);
         }
 
-        public virtual void UpdateObject(T clientObject, IReadOnlyDictionary<string, object> modificationInformation)
+        public virtual void SetObject(T clientObject, IReadOnlyDictionary<string, object> modificationInformation)
         {
             _ = clientObject ?? throw new ArgumentNullException(nameof(clientObject));
             _ = modificationInformation ?? throw new ArgumentNullException(nameof(modificationInformation));

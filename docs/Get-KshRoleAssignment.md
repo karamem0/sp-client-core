@@ -177,11 +177,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.RoleAssignment
+### Karamem0.SharePoint.PowerShell.Models.V1.RoleAssignment
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.RoleAssignment
+### Karamem0.SharePoint.PowerShell.Models.V1.RoleAssignment
 
 ## NOTES
 

@@ -29,20 +29,25 @@ Get-KshListItem [-File] <File> [<CommonParameters>]
 
 ### ParamSet4
 ```
-Get-KshListItem [-ItemUrl] <String> [<CommonParameters>]
+Get-KshListItem [-DriveItem] <DriveItem> [<CommonParameters>]
 ```
 
 ### ParamSet5
 ```
-Get-KshListItem [-List] <List> [-ItemId] <Int32> [<CommonParameters>]
+Get-KshListItem [-ItemUrl] <String> [<CommonParameters>]
 ```
 
 ### ParamSet6
 ```
-Get-KshListItem [-List] <List> [-All] [-NoEnumerate] [<CommonParameters>]
+Get-KshListItem [-List] <List> [-ItemId] <Int32> [<CommonParameters>]
 ```
 
 ### ParamSet7
+```
+Get-KshListItem [-List] <List> [-All] [-NoEnumerate] [<CommonParameters>]
+```
+
+### ParamSet8
 ```
 Get-KshListItem [-List] <List> [-FolderServerRelativeUrl <String>]
  [-ListItemCollectionPosition <ListItemCollectionPosition>] [-ViewXml <String>] [-NoEnumerate]
@@ -97,13 +102,28 @@ This parameter is effective if there are more than 5000 items.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: ParamSet6
+Parameter Sets: ParamSet7
 Aliases:
 
 Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DriveItem
+Specifies the drive item.
+
+```yaml
+Type: DriveItem
+Parameter Sets: ParamSet4
+Aliases:
+
+Required: True
+Position: 0
+Default value: None
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
@@ -142,7 +162,7 @@ Specifies the site relative URL of folder.
 
 ```yaml
 Type: String
-Parameter Sets: ParamSet7
+Parameter Sets: ParamSet8
 Aliases:
 
 Required: False
@@ -172,7 +192,7 @@ Specifies the list item ID.
 
 ```yaml
 Type: Int32
-Parameter Sets: ParamSet5
+Parameter Sets: ParamSet6
 Aliases:
 
 Required: True
@@ -187,7 +207,7 @@ Specifies the list item URL.
 
 ```yaml
 Type: String
-Parameter Sets: ParamSet4
+Parameter Sets: ParamSet5
 Aliases:
 
 Required: True
@@ -202,7 +222,7 @@ Specifies the list.
 
 ```yaml
 Type: List
-Parameter Sets: ParamSet5, ParamSet6, ParamSet7
+Parameter Sets: ParamSet6, ParamSet7, ParamSet8
 Aliases:
 
 Required: True
@@ -217,7 +237,7 @@ Specifies the starting position.
 
 ```yaml
 Type: ListItemCollectionPosition
-Parameter Sets: ParamSet7
+Parameter Sets: ParamSet8
 Aliases:
 
 Required: False
@@ -232,7 +252,7 @@ If specified, suppresses to enumerate objects.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: ParamSet6, ParamSet7
+Parameter Sets: ParamSet7, ParamSet8
 Aliases:
 
 Required: False
@@ -248,7 +268,7 @@ For more information, see [reference](https://docs.microsoft.com/en-us/sharepoin
 
 ```yaml
 Type: String
-Parameter Sets: ParamSet7
+Parameter Sets: ParamSet8
 Aliases:
 
 Required: False
@@ -263,15 +283,14 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.ListItem
-
-### Karamem0.SharePoint.PowerShell.Models.Folder
-
-### Karamem0.SharePoint.PowerShell.Models.File
+### Karamem0.SharePoint.PowerShell.Models.V1.ListItem
+### Karamem0.SharePoint.PowerShell.Models.V1.Folder
+### Karamem0.SharePoint.PowerShell.Models.V1.File
+### Karamem0.SharePoint.PowerShell.Models.V2.DriveItem
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.ListItem
+### Karamem0.SharePoint.PowerShell.Models.V1.ListItem
 
 ## NOTES
 

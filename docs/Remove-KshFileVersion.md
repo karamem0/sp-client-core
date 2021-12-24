@@ -120,7 +120,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.FileVersion
+### Karamem0.SharePoint.PowerShell.Models.V1.FileVersion
 
 ## OUTPUTS
 

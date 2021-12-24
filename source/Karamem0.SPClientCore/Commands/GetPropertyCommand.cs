@@ -1,14 +1,14 @@
 //
-// Copyright (c) 2021 karamem0
+// Copyright (c) 2022 karamem0
 //
 // This software is released under the MIT License.
 //
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
-using Karamem0.SharePoint.PowerShell.Models;
+using Karamem0.SharePoint.PowerShell.Models.V1;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
-using Karamem0.SharePoint.PowerShell.Services;
+using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,27 +42,27 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet5")]
         public Site Site { get; private set; }
 
-        protected override void ProcessRecordCore(ref List<object> outputs)
+        protected override void ProcessRecordCore()
         {
             if (this.ParameterSetName == "ParamSet1")
             {
-                outputs.Add(this.Service.GetObject(this.Alert));
+                this.Outputs.Add(this.Service.GetObject(this.Alert));
             }
             if (this.ParameterSetName == "ParamSet2")
             {
-                outputs.Add(this.Service.GetObject(this.File));
+                this.Outputs.Add(this.Service.GetObject(this.File));
             }
             if (this.ParameterSetName == "ParamSet3")
             {
-                outputs.Add(this.Service.GetObject(this.Folder));
+                this.Outputs.Add(this.Service.GetObject(this.Folder));
             }
             if (this.ParameterSetName == "ParamSet4")
             {
-                outputs.Add(this.Service.GetObject(this.ListItem));
+                this.Outputs.Add(this.Service.GetObject(this.ListItem));
             }
             if (this.ParameterSetName == "ParamSet5")
             {
-                outputs.Add(this.Service.GetObject(this.Site));
+                this.Outputs.Add(this.Service.GetObject(this.Site));
             }
         }
 

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2021 karamem0
+// Copyright (c) 2022 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -7,7 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
-using Karamem0.SharePoint.PowerShell.Services;
+using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +38,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = false)]
         public string Comment { get; private set; }
 
-        protected override void ProcessRecordCore(ref List<object> outputs)
+        protected override void ProcessRecordCore()
         {
             this.Service.AddObject(this.Key, this.Value, this.Description, this.Comment);
         }

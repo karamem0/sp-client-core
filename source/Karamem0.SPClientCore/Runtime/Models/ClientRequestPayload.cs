@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2021 karamem0
+// Copyright (c) 2022 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -137,6 +137,14 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
                 .OfType<T>()
                 .Select(action => action.Id)
                 .LastOrDefault();
+        }
+
+        public IEnumerable<long> GetActionIds<T>() where T : ClientAction
+        {
+            return this.Actions
+                .OfType<T>()
+                .Select(action => action.Id)
+                .ToArray();
         }
 
     }

@@ -2,9 +2,9 @@
 <Configuration>
   <ViewDefinitions>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.Alert</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.Alert</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.Alert</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.Alert</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -38,9 +38,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.App</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.App</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.App</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.App</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -62,9 +62,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.AppInstance</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.AppInstance</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.AppInstance</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.AppInstance</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -86,9 +86,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.AttachmentFile</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.AttachmentFile</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.AttachmentFile</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.AttachmentFile</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -110,9 +110,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.Change</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.Change</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.Change</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.Change</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -140,9 +140,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.Column</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.Column</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.Column</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.Column</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -168,9 +168,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.Comment</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.Comment</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.Comment</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.Comment</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -198,9 +198,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.ContentType</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.ContentType</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.ContentType</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.ContentType</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -230,9 +230,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.ContentTypeColumn</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.ContentTypeColumn</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.ContentTypeColumn</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.ContentTypeColumn</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -254,9 +254,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.DefaultDocument</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.DefaultDocument</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.DefaultDocument</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.DefaultDocument</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -280,9 +280,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.DocumentLibraryInformation</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.DocumentLibraryInformation</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.DocumentLibraryInformation</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.DocumentLibraryInformation</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -304,33 +304,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.Drive</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.Feature</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.Drive</TypeName>
-      </ViewSelectedBy>
-      <TableControl>
-        <TableHeaders>
-          <TableColumnHeader />
-          <TableColumnHeader />
-        </TableHeaders>
-        <TableRowEntries>
-          <TableRowEntry>
-            <TableColumnItems>
-              <TableColumnItem>
-                <PropertyName>Id</PropertyName>
-              </TableColumnItem>
-              <TableColumnItem>
-                <PropertyName>Name</PropertyName>
-              </TableColumnItem>
-            </TableColumnItems>
-          </TableRowEntry>
-        </TableRowEntries>
-      </TableControl>
-    </View>
-    <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.Feature</Name>
-      <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.Feature</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.Feature</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -352,20 +328,16 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.File</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.File</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.File</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.File</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
           <TableColumnHeader />
           <TableColumnHeader />
-          <TableColumnHeader>
-            <Label>Created</Label>
-          </TableColumnHeader>
-          <TableColumnHeader>
-            <Label>Modified</Label>
-          </TableColumnHeader>
+          <TableColumnHeader />
+          <TableColumnHeader />
         </TableHeaders>
         <TableRowEntries>
           <TableRowEntry>
@@ -388,9 +360,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.FileVersion</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.FileVersion</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.FileVersion</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.FileVersion</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -412,20 +384,16 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.Folder</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.Folder</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.Folder</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.Folder</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
           <TableColumnHeader />
           <TableColumnHeader />
-          <TableColumnHeader>
-            <Label>Created</Label>
-          </TableColumnHeader>
-          <TableColumnHeader>
-            <Label>Modified</Label>
-          </TableColumnHeader>
+          <TableColumnHeader />
+          <TableColumnHeader />
         </TableHeaders>
         <TableRowEntries>
           <TableRowEntry>
@@ -448,9 +416,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.Group</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.Group</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.Group</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.Group</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -476,9 +444,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.HubSite</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.HubSite</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.HubSite</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.HubSite</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -500,9 +468,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.LikedUser</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.LikedUser</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.LikedUser</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.LikedUser</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -528,9 +496,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.List</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.List</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.List</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.List</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -556,9 +524,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.ListItem</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.ListItem</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.ListItem</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.ListItem</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -600,9 +568,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.ListTemplate</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.ListTemplate</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.ListTemplate</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.ListTemplate</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -624,9 +592,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.NavigationNode</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.NavigationNode</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.NavigationNode</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.NavigationNode</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -652,9 +620,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.RecycleBinItem</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.RecycleBinItem</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.RecycleBinItem</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.RecycleBinItem</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -680,9 +648,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.RoleAssignment</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.RoleAssignment</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.RoleAssignment</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.RoleAssignment</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -704,9 +672,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.Site</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.Site</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.Site</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.Site</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -738,9 +706,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.SiteCollection</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.SiteCollection</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.SiteCollection</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.SiteCollection</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -762,9 +730,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.SiteCollectionAppCatalog</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.SiteCollectionAppCatalog</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.SiteCollectionAppCatalog</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.SiteCollectionAppCatalog</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -786,9 +754,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.SiteTemplate</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.SiteTemplate</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.SiteTemplate</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.SiteTemplate</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -814,9 +782,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.StorageEntity</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.StorageEntity</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.StorageEntity</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.StorageEntity</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -838,9 +806,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.Subscription</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.Subscription</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.Subscription</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.Subscription</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -862,9 +830,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.TaxonomyItem</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.TaxonomyItem</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.TaxonomyItem</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.TaxonomyItem</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -890,9 +858,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.TenantDeletedSiteCollection</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.TenantDeletedSiteCollection</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.TenantDeletedSiteCollection</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.TenantDeletedSiteCollection</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -910,9 +878,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.TenantSiteCollection</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.TenantSiteCollection</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.TenantSiteCollection</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.TenantSiteCollection</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -938,9 +906,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.TenantSiteTemplate</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.TenantSiteTemplate</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.TenantSiteTemplate</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.TenantSiteTemplate</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -966,9 +934,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.TermLabel</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.TermLabel</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.TermLabel</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.TermLabel</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -994,9 +962,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.User</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.User</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.User</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.User</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -1022,9 +990,9 @@
       </TableControl>
     </View>
     <View>
-      <Name>Karamem0.SharePoint.PowerShell.Models.View</Name>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.View</Name>
       <ViewSelectedBy>
-        <TypeName>Karamem0.SharePoint.PowerShell.Models.View</TypeName>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.View</TypeName>
       </ViewSelectedBy>
       <TableControl>
         <TableHeaders>
@@ -1043,6 +1011,70 @@
               </TableColumnItem>
               <TableColumnItem>
                 <PropertyName>ServerRelativeUrl</PropertyName>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+    <View>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V2.Drive</Name>
+      <ViewSelectedBy>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V2.Drive</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <TableHeaders>
+          <TableColumnHeader />
+          <TableColumnHeader />
+          <TableColumnHeader />
+          <TableColumnHeader />
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>Id</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Name</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Created</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>LastModified</PropertyName>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+    <View>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V2.DriveItem</Name>
+      <ViewSelectedBy>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V2.DriveItem</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <TableHeaders>
+          <TableColumnHeader />
+          <TableColumnHeader />
+          <TableColumnHeader />
+          <TableColumnHeader />
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>Id</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Name</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Created</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>LastModified</PropertyName>
               </TableColumnItem>
             </TableColumnItems>
           </TableRowEntry>

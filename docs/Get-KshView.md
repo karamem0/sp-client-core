@@ -140,11 +140,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.View
+### Karamem0.SharePoint.PowerShell.Models.V1.View
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.View
+### Karamem0.SharePoint.PowerShell.Models.V1.View
 
 ## NOTES
 

@@ -96,11 +96,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.ListItem
+### Karamem0.SharePoint.PowerShell.Models.V1.ListItem
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.AttachmentFile
+### Karamem0.SharePoint.PowerShell.Models.V1.AttachmentFile
 
 ## NOTES
 

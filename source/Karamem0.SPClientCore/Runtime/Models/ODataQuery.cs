@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2021 karamem0
+// Copyright (c) 2022 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -20,9 +20,9 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
     public static class ODataQuery
     {
 
-        public static string Create<T>() where T : ODataObject
+        public static string CreateSelect<T>() where T : ODataObject
         {
-            var select = Enumerable.Repeat("*", 1).Union(typeof(T)
+            var properties = Enumerable.Repeat("*", 1).Union(typeof(T)
                 .GetProperties(BindingFlags.Instance | BindingFlags.Public)
                 .Where(property => Attribute.IsDefined(property, typeof(JsonPropertyAttribute)))
                 .Where(property =>
@@ -40,7 +40,20 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
                 .Select(property => property.Name));
             return UriQuery.Create(new Dictionary<string, object>
             {
-                { "$select", string.Join(",", select) }
+                { "$select", string.Join(",", properties) }
+            });
+        }
+
+        public static string CreateExpand<T>() where T : ODataObject
+        {
+            var properties = typeof(T)
+                .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+                .Where(property => Attribute.IsDefined(property, typeof(JsonPropertyAttribute)))
+                .Where(property => property.PropertyType.IsSubclassOf(typeof(ODataObject)))
+                .Select(property => property.Name);
+            return UriQuery.Create(new Dictionary<string, object>
+            {
+                { "$expand", string.Join(",", properties) }
             });
         }
 

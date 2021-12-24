@@ -1,12 +1,12 @@
 //
-// Copyright (c) 2021 karamem0
+// Copyright (c) 2022 karamem0
 //
 // This software is released under the MIT License.
 //
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
-using Karamem0.SharePoint.PowerShell.Models;
+using Karamem0.SharePoint.PowerShell.Models.V1;
 using Karamem0.SharePoint.PowerShell.Tests.Runtime;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -38,7 +38,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 }
             );
             var result2 = context.Runspace.InvokeCommand<TenantSiteCollection>(
-                "New-KshTenantSiteCollection",
+                "Add-KshTenantSiteCollection",
                 new Dictionary<string, object>()
                 {
                     { "Owner", context.AppSettings["LoginUserName"] },
@@ -54,7 +54,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 }
             );
             var result4 = context.Runspace.InvokeCommand<HubSite>(
-                "New-KshTenantHubSite",
+                "Add-KshTenantHubSite",
                 new Dictionary<string, object>()
                 {
                     { "SiteCollectionId", result3.ElementAt(0).Id },
@@ -115,7 +115,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 }
             );
             var result2 = context.Runspace.InvokeCommand<TenantSiteCollection>(
-                "New-KshTenantSiteCollection",
+                "Add-KshTenantSiteCollection",
                 new Dictionary<string, object>()
                 {
                     { "Owner", context.AppSettings["LoginUserName"] },
@@ -131,7 +131,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 }
             );
             var result4 = context.Runspace.InvokeCommand<HubSite>(
-                "New-KshTenantHubSite",
+                "Add-KshTenantHubSite",
                 new Dictionary<string, object>()
                 {
                     { "SiteCollectionId", result3.ElementAt(0).Id },
@@ -193,7 +193,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 }
             );
             var result2 = context.Runspace.InvokeCommand<TenantSiteCollection>(
-                "New-KshTenantSiteCollection",
+                "Add-KshTenantSiteCollection",
                 new Dictionary<string, object>()
                 {
                     { "Owner", context.AppSettings["LoginUserName"] },
@@ -209,7 +209,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 }
             );
             var result4 = context.Runspace.InvokeCommand<HubSite>(
-                "New-KshTenantHubSite",
+                "Add-KshTenantHubSite",
                 new Dictionary<string, object>()
                 {
                     { "SiteCollectionId", result3.ElementAt(0).Id },

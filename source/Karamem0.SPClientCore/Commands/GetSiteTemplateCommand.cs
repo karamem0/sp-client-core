@@ -1,14 +1,14 @@
 //
-// Copyright (c) 2021 karamem0
+// Copyright (c) 2022 karamem0
 //
 // This software is released under the MIT License.
 //
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
-using Karamem0.SharePoint.PowerShell.Models;
+using Karamem0.SharePoint.PowerShell.Models.V1;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
-using Karamem0.SharePoint.PowerShell.Services;
+using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,12 +36,12 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = false, Position = 2, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-        public uint Lcid { get; private set; }
+        public uint? Lcid { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
         public SwitchParameter NoEnumerate { get; private set; }
 
-        protected override void ProcessRecordCore(ref List<object> outputs)
+        protected override void ProcessRecordCore()
         {
             if (this.Lcid == default)
             {
@@ -53,17 +53,17 @@ namespace Karamem0.SharePoint.PowerShell.Commands
             }
             if (this.ParameterSetName == "ParamSet1")
             {
-                outputs.Add(this.Service2.GetObject(this.SiteTemplateName, this.Lcid, this.IncludeCrossLanguage));
+                this.Outputs.Add(this.Service2.GetObject(this.SiteTemplateName, this.Lcid, this.IncludeCrossLanguage));
             }
             if (this.ParameterSetName == "ParamSet2")
             {
                 if (this.NoEnumerate)
                 {
-                    outputs.Add(this.Service2.GetObjectEnumerable(this.Lcid, this.IncludeCrossLanguage));
+                    this.Outputs.Add(this.Service2.GetObjectEnumerable(this.Lcid, this.IncludeCrossLanguage));
                 }
                 else
                 {
-                    outputs.AddRange(this.Service2.GetObjectEnumerable(this.Lcid, this.IncludeCrossLanguage));
+                    this.Outputs.AddRange(this.Service2.GetObjectEnumerable(this.Lcid, this.IncludeCrossLanguage));
                 }
             }
         }

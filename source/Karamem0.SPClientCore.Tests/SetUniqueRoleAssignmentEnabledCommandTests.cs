@@ -1,12 +1,12 @@
 //
-// Copyright (c) 2021 karamem0
+// Copyright (c) 2022 karamem0
 //
 // This software is released under the MIT License.
 //
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
-using Karamem0.SharePoint.PowerShell.Models;
+using Karamem0.SharePoint.PowerShell.Models.V1;
 using Karamem0.SharePoint.PowerShell.Tests.Runtime;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -39,7 +39,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 }
             );
             var result2 = context.Runspace.InvokeCommand<Site>(
-                "New-KshSite",
+                "Add-KshSite",
                 new Dictionary<string, object>()
                 {
                     { "ServerRelativeUrl", "TestSite0" }
@@ -102,7 +102,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 }
             );
             var result2 = context.Runspace.InvokeCommand<List>(
-                "New-KshList",
+                "Add-KshList",
                 new Dictionary<string, object>()
                 {
                     { "Template", "GenericList" },
@@ -165,7 +165,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 }
             );
             var result3 = context.Runspace.InvokeCommand<ListItem>(
-                "New-KshListItem",
+                "Add-KshListItem",
                 new Dictionary<string, object>()
                 {
                     { "List", result2.ElementAt(0) },
@@ -221,7 +221,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 }
             );
             var result2 = context.Runspace.InvokeCommand<Site>(
-                "New-KshSite",
+                "Add-KshSite",
                 new Dictionary<string, object>()
                 {
                     { "ServerRelativeUrl", "TestSite0" }
@@ -286,7 +286,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 }
             );
             var result2 = context.Runspace.InvokeCommand<List>(
-                "New-KshList",
+                "Add-KshList",
                 new Dictionary<string, object>()
                 {
                     { "Template", "GenericList" },
@@ -351,7 +351,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 }
             );
             var result3 = context.Runspace.InvokeCommand<ListItem>(
-                "New-KshListItem",
+                "Add-KshListItem",
                 new Dictionary<string, object>()
                 {
                     { "List", result2.ElementAt(0) },

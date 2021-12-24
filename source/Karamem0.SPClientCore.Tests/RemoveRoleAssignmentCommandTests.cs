@@ -1,12 +1,12 @@
 //
-// Copyright (c) 2021 karamem0
+// Copyright (c) 2022 karamem0
 //
 // This software is released under the MIT License.
 //
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
-using Karamem0.SharePoint.PowerShell.Models;
+using Karamem0.SharePoint.PowerShell.Models.V1;
 using Karamem0.SharePoint.PowerShell.Tests.Runtime;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -38,7 +38,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 }
             );
             var result2 = context.Runspace.InvokeCommand<User>(
-                "New-KshUser",
+                "Add-KshUser",
                 new Dictionary<string, object>()
                 {
                     { "Email", "testuser000@" + context.AppSettings["LoginDomainName"] },
@@ -54,7 +54,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 }
             );
             var result4 = context.Runspace.InvokeCommand<RoleAssignment>(
-                "New-KshRoleAssignment",
+                "Add-KshRoleAssignment",
                 new Dictionary<string, object>()
                 {
                     { "Site", true },
@@ -101,7 +101,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 }
             );
             var result3 = context.Runspace.InvokeCommand<User>(
-                "New-KshUser",
+                "Add-KshUser",
                 new Dictionary<string, object>()
                 {
                     { "Email", "testuser000@" + context.AppSettings["LoginDomainName"] },
@@ -117,7 +117,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 }
             );
             var result5 = context.Runspace.InvokeCommand<RoleAssignment>(
-                "New-KshRoleAssignment",
+                "Add-KshRoleAssignment",
                 new Dictionary<string, object>()
                 {
                     { "List", result2.ElementAt(0) },
@@ -172,7 +172,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 }
             );
             var result4 = context.Runspace.InvokeCommand<User>(
-                "New-KshUser",
+                "Add-KshUser",
                 new Dictionary<string, object>()
                 {
                     { "Email", "testuser000@" + context.AppSettings["LoginDomainName"] },
@@ -188,7 +188,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 }
             );
             var result6 = context.Runspace.InvokeCommand<RoleAssignment>(
-                "New-KshRoleAssignment",
+                "Add-KshRoleAssignment",
                 new Dictionary<string, object>()
                 {
                     { "ListItem", result3.ElementAt(0) },

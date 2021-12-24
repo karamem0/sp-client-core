@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2021 karamem0
+// Copyright (c) 2022 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -58,6 +58,28 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
             else
             {
                 return jsonToken.ToObject<T>(JsonSerializerManager.JsonSerializer);
+            }
+        }
+
+        public IEnumerable<T> ToObjectEnumerable<T>(IEnumerable<long> ids)
+        {
+            foreach (var id in ids)
+            {
+                var jsonToken = this.ClientObjects[id];
+                if (jsonToken.Type == JTokenType.Null)
+                {
+                    yield return default;
+                }
+                if (typeof(T).IsSubclassOf(typeof(ClientObject)))
+                {
+                    var objectName = jsonToken["_ObjectType_"].ToString();
+                    var objectType = ClientObject.GetType<T>(objectName);
+                    yield return (T)jsonToken.ToObject(objectType, JsonSerializerManager.JsonSerializer);
+                }
+                else
+                {
+                    yield return jsonToken.ToObject<T>(JsonSerializerManager.JsonSerializer);
+                }
             }
         }
 

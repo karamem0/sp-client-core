@@ -1,14 +1,14 @@
 //
-// Copyright (c) 2021 karamem0
+// Copyright (c) 2022 karamem0
 //
 // This software is released under the MIT License.
 //
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
-using Karamem0.SharePoint.PowerShell.Models;
+using Karamem0.SharePoint.PowerShell.Models.V1;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
-using Karamem0.SharePoint.PowerShell.Services;
+using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -76,7 +76,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
         public SwitchParameter NoEnumerate { get; private set; }
 
-        protected override void ProcessRecordCore(ref List<object> outputs)
+        protected override void ProcessRecordCore()
         {
             var changeQuery = new ChangeQuery(this.MyInvocation.BoundParameters);
             if (this.ParameterSetName == "ParamSet1")
@@ -84,11 +84,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands
                 this.ValidateSwitchParameter(nameof(this.SiteCollection));
                 if (this.NoEnumerate)
                 {
-                    outputs.Add(this.Service3.GetObjectEnumerable(this.Service1.GetObject(), changeQuery));
+                    this.Outputs.Add(this.Service3.GetObjectEnumerable(this.Service1.GetObject(), changeQuery));
                 }
                 else
                 {
-                    outputs.AddRange(this.Service3.GetObjectEnumerable(this.Service1.GetObject(), changeQuery));
+                    this.Outputs.AddRange(this.Service3.GetObjectEnumerable(this.Service1.GetObject(), changeQuery));
                 }
             }
             if (this.ParameterSetName == "ParamSet2")
@@ -96,22 +96,22 @@ namespace Karamem0.SharePoint.PowerShell.Commands
                 this.ValidateSwitchParameter(nameof(this.Site));
                 if (this.NoEnumerate)
                 {
-                    outputs.Add(this.Service3.GetObjectEnumerable(this.Service2.GetObject(), changeQuery));
+                    this.Outputs.Add(this.Service3.GetObjectEnumerable(this.Service2.GetObject(), changeQuery));
                 }
                 else
                 {
-                    outputs.AddRange(this.Service3.GetObjectEnumerable(this.Service2.GetObject(), changeQuery));
+                    this.Outputs.AddRange(this.Service3.GetObjectEnumerable(this.Service2.GetObject(), changeQuery));
                 }
             }
             if (this.ParameterSetName == "ParamSet3")
             {
                 if (this.NoEnumerate)
                 {
-                    outputs.Add(this.Service3.GetObjectEnumerable(this.List, changeQuery));
+                    this.Outputs.Add(this.Service3.GetObjectEnumerable(this.List, changeQuery));
                 }
                 else
                 {
-                    outputs.AddRange(this.Service3.GetObjectEnumerable(this.List, changeQuery));
+                    this.Outputs.AddRange(this.Service3.GetObjectEnumerable(this.List, changeQuery));
                 }
             }
         }

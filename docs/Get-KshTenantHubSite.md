@@ -110,7 +110,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.HubSite
+### Karamem0.SharePoint.PowerShell.Models.V1.HubSite
 
 ## NOTES
 

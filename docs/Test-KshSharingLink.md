@@ -54,7 +54,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.SharingLinkKind
+### Karamem0.SharePoint.PowerShell.Models.V1.SharingLinkKind
 
 ## NOTES
 

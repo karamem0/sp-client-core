@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2021 karamem0
+// Copyright (c) 2022 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -110,8 +110,15 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                 async responseMessage =>
                 {
                     var responseContent = await responseMessage.Content.ReadAsStringAsync();
-                    var responsePayload = JsonSerializerManager.JsonSerializer.Deserialize<T>(responseContent);
-                    return responsePayload;
+                    var responsePayload = JsonSerializerManager.JsonSerializer.Deserialize<JToken>(responseContent);
+                    if (responsePayload.Value<bool>("@odata.null"))
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        return responsePayload.ToObject<T>();
+                    }
                 });
         }
 

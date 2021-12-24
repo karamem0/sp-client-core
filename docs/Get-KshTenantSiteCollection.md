@@ -166,11 +166,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.TenantSiteCollection
+### Karamem0.SharePoint.PowerShell.Models.V1.TenantSiteCollection
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.TenantSiteCollection
+### Karamem0.SharePoint.PowerShell.Models.V1.TenantSiteCollection
 
 ## NOTES
 

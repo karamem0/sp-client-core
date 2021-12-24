@@ -1,14 +1,14 @@
 //
-// Copyright (c) 2021 karamem0
+// Copyright (c) 2022 karamem0
 //
 // This software is released under the MIT License.
 //
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
-using Karamem0.SharePoint.PowerShell.Models;
+using Karamem0.SharePoint.PowerShell.Models.V1;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
-using Karamem0.SharePoint.PowerShell.Services;
+using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,18 +37,18 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
         public SwitchParameter NoEnumerate { get; private set; }
 
-        protected override void ProcessRecordCore(ref List<object> outputs)
+        protected override void ProcessRecordCore()
         {
             if (this.ParameterSetName == "ParamSet1")
             {
                 this.ValidateSwitchParameter(nameof(this.Public));
                 if (this.NoEnumerate)
                 {
-                    outputs.Add(this.Service.GetPolicyEnumerable(TenantCdnType.Public));
+                    this.Outputs.Add(this.Service.GetPolicyEnumerable(TenantCdnType.Public));
                 }
                 else
                 {
-                    outputs.AddRange(this.Service.GetPolicyEnumerable(TenantCdnType.Public));
+                    this.Outputs.AddRange(this.Service.GetPolicyEnumerable(TenantCdnType.Public));
                 }
             }
             if (this.ParameterSetName == "ParamSet2")
@@ -56,11 +56,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands
                 this.ValidateSwitchParameter(nameof(this.Private));
                 if (this.NoEnumerate)
                 {
-                    outputs.Add(this.Service.GetPolicyEnumerable(TenantCdnType.Private));
+                    this.Outputs.Add(this.Service.GetPolicyEnumerable(TenantCdnType.Private));
                 }
                 else
                 {
-                    outputs.AddRange(this.Service.GetPolicyEnumerable(TenantCdnType.Private));
+                    this.Outputs.AddRange(this.Service.GetPolicyEnumerable(TenantCdnType.Private));
                 }
             }
         }

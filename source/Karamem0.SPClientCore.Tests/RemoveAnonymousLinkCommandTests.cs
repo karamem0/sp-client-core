@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2021 karamem0
+// Copyright (c) 2022 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -37,7 +37,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 }
             );
             var result2 = context.Runspace.InvokeCommand<string>(
-                "New-KshAnonymousLink",
+                "Add-KshAnonymousLink",
                 new Dictionary<string, object>()
                 {
                     { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["File1Url"] },

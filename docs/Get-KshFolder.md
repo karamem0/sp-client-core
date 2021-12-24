@@ -24,25 +24,30 @@ Get-KshFolder [-List] <List> [<CommonParameters>]
 
 ### ParamSet3
 ```
-Get-KshFolder [-FolderId] <Guid> [<CommonParameters>]
+Get-KshFolder [-ListItem] <ListItem> [<CommonParameters>]
 ```
 
 ### ParamSet4
 ```
-Get-KshFolder [-FolderUrl] <Uri> [<CommonParameters>]
+Get-KshFolder [-FolderId] <Guid> [<CommonParameters>]
 ```
 
 ### ParamSet5
 ```
-Get-KshFolder [-Folder] <Folder> [-FolderName] <String> [<CommonParameters>]
+Get-KshFolder [-FolderUrl] <Uri> [<CommonParameters>]
 ```
 
 ### ParamSet6
 ```
-Get-KshFolder [-Folder] <Folder> [-NoEnumerate] [<CommonParameters>]
+Get-KshFolder [-Folder] <Folder> [-FolderName] <String> [<CommonParameters>]
 ```
 
 ### ParamSet7
+```
+Get-KshFolder [-Folder] <Folder> [-NoEnumerate] [<CommonParameters>]
+```
+
+### ParamSet8
 ```
 Get-KshFolder [-NoEnumerate] [<CommonParameters>]
 ```
@@ -87,7 +92,7 @@ Specifies the parent folder.
 
 ```yaml
 Type: Folder
-Parameter Sets: ParamSet5, ParamSet6
+Parameter Sets: ParamSet6, ParamSet7
 Aliases:
 
 Required: True
@@ -102,7 +107,7 @@ Specifies the folder ID.
 
 ```yaml
 Type: Guid
-Parameter Sets: ParamSet3
+Parameter Sets: ParamSet4
 Aliases:
 
 Required: True
@@ -117,7 +122,7 @@ Specifies the folder name.
 
 ```yaml
 Type: String
-Parameter Sets: ParamSet5
+Parameter Sets: ParamSet6
 Aliases:
 
 Required: True
@@ -132,7 +137,7 @@ Specifies the folder URL.
 
 ```yaml
 Type: Uri
-Parameter Sets: ParamSet4
+Parameter Sets: ParamSet5
 Aliases:
 
 Required: True
@@ -172,12 +177,27 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
+### -ListItem
+Specifies the list item.
+
+```yaml
+Type: ListItem
+Parameter Sets: ParamSet3
+Aliases:
+
+Required: True
+Position: 0
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
 ### -NoEnumerate
 If specified, suppresses to enumerate objects.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: ParamSet6, ParamSet7
+Parameter Sets: ParamSet7, ParamSet8
 Aliases:
 
 Required: False
@@ -192,13 +212,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.Folder
-
-### Karamem0.SharePoint.PowerShell.Models.List
+### Karamem0.SharePoint.PowerShell.Models.V1.Folder
+### Karamem0.SharePoint.PowerShell.Models.V1.List
+### Karamem0.SharePoint.PowerShell.Models.V1.ListItem
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.Folder
+### Karamem0.SharePoint.PowerShell.Models.V1.Folder
 
 ## NOTES
 

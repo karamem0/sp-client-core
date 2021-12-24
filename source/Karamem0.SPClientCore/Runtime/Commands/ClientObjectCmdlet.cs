@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2021 karamem0
+// Copyright (c) 2022 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -22,17 +22,20 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Commands
 
         protected ClientObjectCmdlet()
         {
+            this.Outputs = new List<object>();
         }
+
+        protected List<object> Outputs { get; private set; }
 
         protected override void ProcessRecord()
         {
             var listener = Trace.Listeners[Trace.Listeners.Add(new ClientObjectCmdletTraceListener(this))];
             try
             {
-                var outputs = new List<object>();
-                this.ProcessRecordCore(ref outputs);
+                this.Outputs.Clear();
+                this.ProcessRecordCore();
                 listener.Flush();
-                this.WriteObject(outputs, true);
+                this.WriteObject(this.Outputs, true);
             }
             catch (PipelineStoppedException)
             {
@@ -50,7 +53,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Commands
             }
         }
 
-        protected abstract void ProcessRecordCore(ref List<object> outputs);
+        protected abstract void ProcessRecordCore();
 
         public void ValidateSwitchParameter(string parameterName)
         {

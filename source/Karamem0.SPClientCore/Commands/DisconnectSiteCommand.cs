@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2021 karamem0
+// Copyright (c) 2022 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -34,7 +34,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = false, Position = 0, ValueFromPipeline = true)]
         public Uri Url { get; private set; }
 
-        protected override void ProcessRecordCore(ref List<object> outputs)
+        protected override void ProcessRecordCore()
         {
             if (this.Url == null)
             {

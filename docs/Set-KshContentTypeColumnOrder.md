@@ -88,7 +88,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.ContentType
+### None
 
 ## OUTPUTS
 

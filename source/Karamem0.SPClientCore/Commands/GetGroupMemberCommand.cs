@@ -1,14 +1,14 @@
 //
-// Copyright (c) 2021 karamem0
+// Copyright (c) 2022 karamem0
 //
 // This software is released under the MIT License.
 //
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
-using Karamem0.SharePoint.PowerShell.Models;
+using Karamem0.SharePoint.PowerShell.Models.V1;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
-using Karamem0.SharePoint.PowerShell.Services;
+using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +33,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         public Group Group { get; private set; }
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet1")]
-        public int MemberId { get; private set; }
+        public int? MemberId { get; private set; }
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
         public string MemberName { get; private set; }
@@ -41,25 +41,25 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
         public SwitchParameter NoEnumerate { get; private set; }
 
-        protected override void ProcessRecordCore(ref List<object> outputs)
+        protected override void ProcessRecordCore()
         {
             if (this.ParameterSetName == "ParamSet1")
             {
-                outputs.Add(this.Service.GetObject(this.Group, this.MemberId));
+                this.Outputs.Add(this.Service.GetObject(this.Group, this.MemberId));
             }
             if (this.ParameterSetName == "ParamSet2")
             {
-                outputs.Add(this.Service.GetObject(this.Group, this.MemberName));
+                this.Outputs.Add(this.Service.GetObject(this.Group, this.MemberName));
             }
             if (this.ParameterSetName == "ParamSet3")
             {
                 if (this.NoEnumerate)
                 {
-                    outputs.Add(this.Service.GetObjectEnumerable(this.Group));
+                    this.Outputs.Add(this.Service.GetObjectEnumerable(this.Group));
                 }
                 else
                 {
-                    outputs.AddRange(this.Service.GetObjectEnumerable(this.Group));
+                    this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.Group));
                 }
             }
         }

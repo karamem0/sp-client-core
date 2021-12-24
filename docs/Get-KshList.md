@@ -29,25 +29,30 @@ Get-KshList [-View] <View> [<CommonParameters>]
 
 ### ParamSet4
 ```
-Get-KshList [-ListId] <Guid> [<CommonParameters>]
+Get-KshList [-Drive] <Drive> [<CommonParameters>]
 ```
 
 ### ParamSet5
 ```
-Get-KshList [-ListUrl] <Uri> [<CommonParameters>]
+Get-KshList [-ListId] <Guid> [<CommonParameters>]
 ```
 
 ### ParamSet6
 ```
-Get-KshList [-ListTitle] <String> [<CommonParameters>]
+Get-KshList [-ListUrl] <Uri> [<CommonParameters>]
 ```
 
 ### ParamSet7
 ```
-Get-KshList [-LibraryType] <LibraryType> [<CommonParameters>]
+Get-KshList [-ListTitle] <String> [<CommonParameters>]
 ```
 
 ### ParamSet8
+```
+Get-KshList [-LibraryType] <LibraryType> [<CommonParameters>]
+```
+
+### ParamSet9
 ```
 Get-KshList [-NoEnumerate] [<CommonParameters>]
 ```
@@ -108,6 +113,21 @@ Retrieves all lists.
 
 ## PARAMETERS
 
+### -Drive
+Specifies the drive.
+
+```yaml
+Type: Drive
+Parameter Sets: ParamSet4
+Aliases:
+
+Required: True
+Position: 0
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
 ### -Identity
 Specifies the list.
 
@@ -128,7 +148,7 @@ Specifies the library type.
 
 ```yaml
 Type: LibraryType
-Parameter Sets: ParamSet7
+Parameter Sets: ParamSet8
 Aliases:
 Accepted values: SitePages, ClientRenderedSitePages, SiteAssets
 
@@ -144,7 +164,7 @@ Specifies the list ID.
 
 ```yaml
 Type: Guid
-Parameter Sets: ParamSet4
+Parameter Sets: ParamSet5
 Aliases:
 
 Required: True
@@ -174,7 +194,7 @@ Specifies the list title.
 
 ```yaml
 Type: String
-Parameter Sets: ParamSet6
+Parameter Sets: ParamSet7
 Aliases:
 
 Required: True
@@ -189,7 +209,7 @@ Specifies the list URL.
 
 ```yaml
 Type: Uri
-Parameter Sets: ParamSet5
+Parameter Sets: ParamSet6
 Aliases:
 
 Required: True
@@ -204,7 +224,7 @@ If specified, suppresses to enumerate objects.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: ParamSet8
+Parameter Sets: ParamSet9
 Aliases:
 
 Required: False
@@ -234,15 +254,14 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.List
-
-### Karamem0.SharePoint.PowerShell.Models.ListItem
-
-### Karamem0.SharePoint.PowerShell.Models.View
+### Karamem0.SharePoint.PowerShell.Models.V1.List
+### Karamem0.SharePoint.PowerShell.Models.V1.ListItem
+### Karamem0.SharePoint.PowerShell.Models.V1.View
+### Karamem0.SharePoint.PowerShell.Models.V2.Drive
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.List
+### Karamem0.SharePoint.PowerShell.Models.V1.List
 
 ## NOTES
 

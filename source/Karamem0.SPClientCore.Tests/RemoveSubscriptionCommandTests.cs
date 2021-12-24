@@ -1,12 +1,12 @@
 //
-// Copyright (c) 2021 karamem0
+// Copyright (c) 2022 karamem0
 //
 // This software is released under the MIT License.
 //
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
-using Karamem0.SharePoint.PowerShell.Models;
+using Karamem0.SharePoint.PowerShell.Models.V1;
 using Karamem0.SharePoint.PowerShell.Tests.Runtime;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -45,11 +45,11 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 }
             );
             var result3 = context.Runspace.InvokeCommand<Subscription>(
-                "New-KshSubscription",
+                "Add-KshSubscription",
                 new Dictionary<string, object>()
                 {
                     { "List", result2.ElementAt(0) },
-                    { "NotificationUrl", "https://prod-20.southeastasia.logic.azure.com/workflows/dd8e16aab0a94a3392b6fcc14ea83c1a/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=SmQKf3e89WOOdQ_hPjV2MHY8X35n61EqXBJIvHLPoBg" },
+                    { "NotificationUrl", "https://prod-25.southeastasia.logic.azure.com/workflows/e9ff38cb65b448b19ebef87a615d7d5b/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=S3zpdmaFJ2HXhLVqsP1tPdbA9MEztwY5KjEDcSLO-tg" },
                     { "ExpirationDateTime", DateTime.UtcNow.AddDays(1) }
                 }
             );

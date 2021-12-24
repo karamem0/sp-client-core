@@ -51,7 +51,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.HubSite
+### Karamem0.SharePoint.PowerShell.Models.V1.HubSite
 
 ## OUTPUTS
 

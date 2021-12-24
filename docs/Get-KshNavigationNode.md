@@ -113,11 +113,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.NavigationNode
+### Karamem0.SharePoint.PowerShell.Models.V1.NavigationNode
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.NavigationNode
+### Karamem0.SharePoint.PowerShell.Models.V1.NavigationNode
 
 ## NOTES
 

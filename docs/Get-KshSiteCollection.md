@@ -72,11 +72,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.SiteCollection
+### Karamem0.SharePoint.PowerShell.Models.V1.SiteCollection
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.SiteCollection
+### Karamem0.SharePoint.PowerShell.Models.V1.SiteCollection
 
 ## NOTES
 

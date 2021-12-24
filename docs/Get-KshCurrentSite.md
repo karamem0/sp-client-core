@@ -39,7 +39,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.Site
+### Karamem0.SharePoint.PowerShell.Models.V1.Site
 
 ## NOTES
 

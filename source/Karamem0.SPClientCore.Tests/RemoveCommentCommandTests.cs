@@ -1,12 +1,12 @@
 //
-// Copyright (c) 2021 karamem0
+// Copyright (c) 2022 karamem0
 //
 // This software is released under the MIT License.
 //
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
-using Karamem0.SharePoint.PowerShell.Models;
+using Karamem0.SharePoint.PowerShell.Models.V1;
 using Karamem0.SharePoint.PowerShell.Tests.Runtime;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -76,7 +76,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 }
             );
             var result7 = context.Runspace.InvokeCommand<Comment>(
-                "New-KshComment",
+                "Add-KshComment",
                 new Dictionary<string, object>()
                 {
                     { "ListItem", result6.ElementAt(0) },

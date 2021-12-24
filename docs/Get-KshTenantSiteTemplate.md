@@ -99,7 +99,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.TenantSiteTemplate
+### Karamem0.SharePoint.PowerShell.Models.V1.TenantSiteTemplate
 
 ## NOTES
 

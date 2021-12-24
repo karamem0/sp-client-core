@@ -1,14 +1,14 @@
 //
-// Copyright (c) 2021 karamem0
+// Copyright (c) 2022 karamem0
 //
 // This software is released under the MIT License.
 //
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
-using Karamem0.SharePoint.PowerShell.Models;
+using Karamem0.SharePoint.PowerShell.Models.V1;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
-using Karamem0.SharePoint.PowerShell.Services;
+using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,7 +45,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet3")]
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet6")]
-        public Guid TermId { get; private set; }
+        public Guid? TermId { get; private set; }
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet4")]
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet7")]
@@ -55,52 +55,52 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet8")]
         public SwitchParameter NoEnumerate { get; private set; }
 
-        protected override void ProcessRecordCore(ref List<object> outputs)
+        protected override void ProcessRecordCore()
         {
             if (this.ParameterSetName == "ParamSet1")
             {
-                outputs.Add(this.Service.GetObject(this.Identity));
+                this.Outputs.Add(this.Service.GetObject(this.Identity));
             }
             if (this.ParameterSetName == "ParamSet2")
             {
-                outputs.Add(this.Service.GetObject(this.TermLabel));
+                this.Outputs.Add(this.Service.GetObject(this.TermLabel));
             }
             if (this.ParameterSetName == "ParamSet3")
             {
-                outputs.Add(this.Service.GetObject(this.TermSet, this.TermId));
+                this.Outputs.Add(this.Service.GetObject(this.TermSet, this.TermId));
             }
             if (this.ParameterSetName == "ParamSet4")
             {
-                outputs.Add(this.Service.GetObject(this.TermSet, this.TermName));
+                this.Outputs.Add(this.Service.GetObject(this.TermSet, this.TermName));
             }
             if (this.ParameterSetName == "ParamSet5")
             {
                 if (this.NoEnumerate)
                 {
-                    outputs.Add(this.Service.GetObjectEnumerable(this.TermSet));
+                    this.Outputs.Add(this.Service.GetObjectEnumerable(this.TermSet));
                 }
                 else
                 {
-                    outputs.AddRange(this.Service.GetObjectEnumerable(this.TermSet));
+                    this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.TermSet));
                 }
             }
             if (this.ParameterSetName == "ParamSet6")
             {
-                outputs.Add(this.Service.GetObject(this.Term, this.TermId));
+                this.Outputs.Add(this.Service.GetObject(this.Term, this.TermId));
             }
             if (this.ParameterSetName == "ParamSet7")
             {
-                outputs.Add(this.Service.GetObject(this.Term, this.TermName));
+                this.Outputs.Add(this.Service.GetObject(this.Term, this.TermName));
             }
             if (this.ParameterSetName == "ParamSet8")
             {
                 if (this.NoEnumerate)
                 {
-                    outputs.Add(this.Service.GetObjectEnumerable(this.Term));
+                    this.Outputs.Add(this.Service.GetObjectEnumerable(this.Term));
                 }
                 else
                 {
-                    outputs.AddRange(this.Service.GetObjectEnumerable(this.Term));
+                    this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.Term));
                 }
             }
         }

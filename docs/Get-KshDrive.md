@@ -19,10 +19,15 @@ Get-KshDrive [-Identity] <Drive> [<CommonParameters>]
 
 ### ParamSet2
 ```
-Get-KshDrive [-DriveId] <String> [<CommonParameters>]
+Get-KshDrive [-List] <List> [<CommonParameters>]
 ```
 
 ### ParamSet3
+```
+Get-KshDrive [-DriveId] <String> [<CommonParameters>]
+```
+
+### ParamSet4
 ```
 Get-KshDrive [-NoEnumerate] [<CommonParameters>]
 ```
@@ -42,6 +47,13 @@ Retrieves a drive by drive ID.
 
 ### Example 2
 ```powershell
+PS C:\> Get-KshDrive -List (Get-KshList -ListId 'a01f8e07-290f-4644-9db8-85bb00b85e74')
+```
+
+Retrieves a drive by list.
+
+### Example 3
+```powershell
 PS C:\> Get-KshDrive
 ```
 
@@ -54,7 +66,7 @@ Specifies the drive ID.
 
 ```yaml
 Type: String
-Parameter Sets: ParamSet2
+Parameter Sets: ParamSet3
 Aliases:
 
 Required: True
@@ -79,12 +91,27 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
+### -List
+Specifies the list.
+
+```yaml
+Type: List
+Parameter Sets: ParamSet2
+Aliases:
+
+Required: True
+Position: 0
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -NoEnumerate
 If specified, suppresses to enumerate objects.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: ParamSet3
+Parameter Sets: ParamSet4
 Aliases:
 
 Required: False
@@ -99,11 +126,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.Drive
+### Karamem0.SharePoint.PowerShell.Models.V2.Drive
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.Drive
+### Karamem0.SharePoint.PowerShell.Models.V2.Drive
 
 ## NOTES
 

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2021 karamem0
+// Copyright (c) 2022 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -7,7 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
-using Karamem0.SharePoint.PowerShell.Services;
+using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,23 +26,23 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         {
         }
 
-        protected override void ProcessRecordCore(ref List<object> outputs)
+        protected override void ProcessRecordCore()
         {
             try
             {
                 var tenant = this.Service.GetObject();
                 if (tenant != null)
                 {
-                    outputs.Add(true);
+                    this.Outputs.Add(true);
                 }
                 else
                 {
-                    outputs.Add(false);
+                    this.Outputs.Add(false);
                 }
             }
             catch
             {
-                outputs.Add(false);
+                this.Outputs.Add(false);
             }
         }
 

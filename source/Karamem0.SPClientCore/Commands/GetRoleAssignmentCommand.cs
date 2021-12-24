@@ -1,14 +1,14 @@
 //
-// Copyright (c) 2021 karamem0
+// Copyright (c) 2022 karamem0
 //
 // This software is released under the MIT License.
 //
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
-using Karamem0.SharePoint.PowerShell.Models;
+using Karamem0.SharePoint.PowerShell.Models.V1;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
-using Karamem0.SharePoint.PowerShell.Services;
+using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,64 +45,64 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet4")]
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet6")]
-        public int PrincipalId { get; private set; }
+        public int? PrincipalId { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet5")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet7")]
         public SwitchParameter NoEnumerate { get; private set; }
 
-        protected override void ProcessRecordCore(ref List<object> outputs)
+        protected override void ProcessRecordCore()
         {
             if (this.ParameterSetName == "ParamSet1")
             {
-                outputs.Add(this.Service2.GetObject(this.Identity));
+                this.Outputs.Add(this.Service2.GetObject(this.Identity));
             }
             if (this.ParameterSetName == "ParamSet2")
             {
                 this.ValidateSwitchParameter(nameof(this.Site));
-                outputs.Add(this.Service2.GetObject(this.Service1.GetObject(), this.PrincipalId));
+                this.Outputs.Add(this.Service2.GetObject(this.Service1.GetObject(), this.PrincipalId));
             }
             if (this.ParameterSetName == "ParamSet3")
             {
                 this.ValidateSwitchParameter(nameof(this.Site));
                 if (this.NoEnumerate)
                 {
-                    outputs.Add(this.Service2.GetObjectEnumerable(this.Service1.GetObject()));
+                    this.Outputs.Add(this.Service2.GetObjectEnumerable(this.Service1.GetObject()));
                 }
                 else
                 {
-                    outputs.AddRange(this.Service2.GetObjectEnumerable(this.Service1.GetObject()));
+                    this.Outputs.AddRange(this.Service2.GetObjectEnumerable(this.Service1.GetObject()));
                 }
             }
             if (this.ParameterSetName == "ParamSet4")
             {
-                outputs.Add(this.Service2.GetObject(this.List, this.PrincipalId));
+                this.Outputs.Add(this.Service2.GetObject(this.List, this.PrincipalId));
             }
             if (this.ParameterSetName == "ParamSet5")
             {
                 if (this.NoEnumerate)
                 {
-                    outputs.Add(this.Service2.GetObjectEnumerable(this.List));
+                    this.Outputs.Add(this.Service2.GetObjectEnumerable(this.List));
                 }
                 else
                 {
-                    outputs.AddRange(this.Service2.GetObjectEnumerable(this.List));
+                    this.Outputs.AddRange(this.Service2.GetObjectEnumerable(this.List));
                 }
             }
             if (this.ParameterSetName == "ParamSet6")
             {
-                outputs.Add(this.Service2.GetObject(this.ListItem, this.PrincipalId));
+                this.Outputs.Add(this.Service2.GetObject(this.ListItem, this.PrincipalId));
             }
             if (this.ParameterSetName == "ParamSet7")
             {
                 if (this.NoEnumerate)
                 {
-                    outputs.Add(this.Service2.GetObjectEnumerable(this.ListItem));
+                    this.Outputs.Add(this.Service2.GetObjectEnumerable(this.ListItem));
                 }
                 else
                 {
-                    outputs.AddRange(this.Service2.GetObjectEnumerable(this.ListItem));
+                    this.Outputs.AddRange(this.Service2.GetObjectEnumerable(this.ListItem));
                 }
             }
         }

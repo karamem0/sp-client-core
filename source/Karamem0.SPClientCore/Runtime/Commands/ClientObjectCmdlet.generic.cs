@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2021 karamem0
+// Copyright (c) 2022 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -71,6 +71,31 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Commands
         protected T2 Service2 { get; private set; }
 
         protected T3 Service3 { get; private set; }
+
+    }
+
+    public abstract class ClientObjectCmdlet<T1, T2, T3, T4> : ClientObjectCmdlet
+    {
+
+        protected ClientObjectCmdlet()
+        {
+            if (ClientService.ServiceProvider == null)
+            {
+                throw new InvalidOperationException(StringResources.ErrorNotConnected);
+            }
+            this.Service1 = ClientService.ServiceProvider.GetService<T1>();
+            this.Service2 = ClientService.ServiceProvider.GetService<T2>();
+            this.Service3 = ClientService.ServiceProvider.GetService<T3>();
+            this.Service4 = ClientService.ServiceProvider.GetService<T4>();
+        }
+
+        protected T1 Service1 { get; private set; }
+
+        protected T2 Service2 { get; private set; }
+
+        protected T3 Service3 { get; private set; }
+
+        protected T4 Service4 { get; private set; }
 
     }
 

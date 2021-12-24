@@ -78,11 +78,12 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### None
+### Karamem0.SharePoint.PowerShell.Models.V1.Comment
+### Karamem0.SharePoint.PowerShell.Models.V1.ListItem
 
 ## OUTPUTS
 
-### System.Void
+### None
 
 ## NOTES
 

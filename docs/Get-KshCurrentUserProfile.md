@@ -35,11 +35,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### なぁE
+### None
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.UserProfile
+### Karamem0.SharePoint.PowerShell.Models.V1.UserProfile
 
 ## NOTES
 

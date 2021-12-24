@@ -1,14 +1,14 @@
 //
-// Copyright (c) 2021 karamem0
+// Copyright (c) 2022 karamem0
 //
 // This software is released under the MIT License.
 //
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
-using Karamem0.SharePoint.PowerShell.Models;
+using Karamem0.SharePoint.PowerShell.Models.V1;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
-using Karamem0.SharePoint.PowerShell.Services;
+using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,76 +39,83 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet4")]
         public App App { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet5")]
-        public Guid FileId { get; private set; }
+        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet5")]
+        public ListItem ListItem { get; private set; }
 
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet6")]
-        public Uri FileUrl { get; private set; }
+        public Guid? FileId { get; private set; }
 
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet7")]
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet8")]
+        public Uri FileUrl { get; private set; }
+
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet8")]
+        [Parameter(Mandatory = true, ParameterSetName = "ParamSet9")]
         public Folder Folder { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet7")]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet8")]
         public string FileName { get; private set; }
 
-        [Parameter(Mandatory = false, ParameterSetName = "ParamSet8")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet9")]
         public SwitchParameter NoEnumerate { get; private set; }
 
-        protected override void ProcessRecordCore(ref List<object> outputs)
+        protected override void ProcessRecordCore()
         {
             if (this.ParameterSetName == "ParamSet1")
             {
-                outputs.Add(this.Service.GetObject(this.Identity));
+                this.Outputs.Add(this.Service.GetObject(this.Identity));
             }
             if (this.ParameterSetName == "ParamSet2")
             {
                 var fileUrl = new Uri(this.AttachmentFile.ServerRelativeUrl, UriKind.RelativeOrAbsolute);
                 if (fileUrl.IsAbsoluteUri)
                 {
-                    outputs.Add(this.Service.GetObject(new Uri(fileUrl.AbsolutePath, UriKind.Relative)));
+                    this.Outputs.Add(this.Service.GetObject(new Uri(fileUrl.AbsolutePath, UriKind.Relative)));
                 }
                 else
                 {
-                    outputs.Add(this.Service.GetObject(fileUrl));
+                    this.Outputs.Add(this.Service.GetObject(fileUrl));
                 }
             }
             if (this.ParameterSetName == "ParamSet3")
             {
-                outputs.Add(this.Service.GetObject(this.FileVersion));
+                this.Outputs.Add(this.Service.GetObject(this.FileVersion));
             }
             if (this.ParameterSetName == "ParamSet4")
             {
-                outputs.Add(this.Service.GetObject(this.App));
+                this.Outputs.Add(this.Service.GetObject(this.App));
             }
             if (this.ParameterSetName == "ParamSet5")
             {
-                outputs.Add(this.Service.GetObject(this.FileId));
+                this.Outputs.Add(this.Service.GetObject(this.ListItem));
             }
             if (this.ParameterSetName == "ParamSet6")
             {
-                if (this.FileUrl.IsAbsoluteUri)
-                {
-                    outputs.Add(this.Service.GetObject(new Uri(this.FileUrl.AbsolutePath, UriKind.Relative)));
-                }
-                else
-                {
-                    outputs.Add(this.Service.GetObject(this.FileUrl));
-                }
+                this.Outputs.Add(this.Service.GetObject(this.FileId));
             }
             if (this.ParameterSetName == "ParamSet7")
             {
-                outputs.Add(this.Service.GetObject(this.Folder, this.FileName));
-            }
-            if (this.ParameterSetName == "ParamSet8")
-            {
-                if (this.NoEnumerate)
+                if (this.FileUrl.IsAbsoluteUri)
                 {
-                    outputs.Add(this.Service.GetObjectEnumerable(this.Folder));
+                    this.Outputs.Add(this.Service.GetObject(new Uri(this.FileUrl.AbsolutePath, UriKind.Relative)));
                 }
                 else
                 {
-                    outputs.AddRange(this.Service.GetObjectEnumerable(this.Folder));
+                    this.Outputs.Add(this.Service.GetObject(this.FileUrl));
+                }
+            }
+            if (this.ParameterSetName == "ParamSet8")
+            {
+                this.Outputs.Add(this.Service.GetObject(this.Folder, this.FileName));
+            }
+            if (this.ParameterSetName == "ParamSet9")
+            {
+                if (this.NoEnumerate)
+                {
+                    this.Outputs.Add(this.Service.GetObjectEnumerable(this.Folder));
+                }
+                else
+                {
+                    this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.Folder));
                 }
             }
         }

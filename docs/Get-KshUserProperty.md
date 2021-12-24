@@ -71,11 +71,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.UserProperty
+### Karamem0.SharePoint.PowerShell.Models.V1.UserProperty
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.UserProperty
+### Karamem0.SharePoint.PowerShell.Models.V1.UserProperty
 
 ## NOTES
 

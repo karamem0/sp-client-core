@@ -78,7 +78,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.RecycleBinItem
+### Karamem0.SharePoint.PowerShell.Models.V1.RecycleBinItem
 
 ## OUTPUTS
 

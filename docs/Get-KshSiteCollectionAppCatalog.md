@@ -138,11 +138,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### None
+### Karamem0.SharePoint.PowerShell.Models.V1.SiteCollectionAppCatalog
 
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.SiteCollectionAppCatalog
+### Karamem0.SharePoint.PowerShell.Models.V1.SiteCollectionAppCatalog
 
 ## NOTES
 
