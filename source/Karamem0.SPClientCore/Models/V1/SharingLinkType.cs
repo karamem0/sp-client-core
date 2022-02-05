@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
 
         Internal = 2,
 
-        AnonymousAccess = 2,
+        AnonymousAccess = 3,
 
     }
 
