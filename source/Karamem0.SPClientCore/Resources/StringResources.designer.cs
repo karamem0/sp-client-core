@@ -176,5 +176,14 @@ namespace Karamem0.SharePoint.PowerShell.Resources {
                 return ResourceManager.GetString("ErrorValueIsNotRelativeUrl", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The &apos;{0}&apos; is now obsolete and has been deprecated. Please use &apos;{1}&apos; instead.
+        /// </summary>
+        public static string WarningCmdletIsObsolete {
+            get {
+                return ResourceManager.GetString("WarningCmdletIsObsolete", resourceCulture);
+            }
+        }
     }
 }

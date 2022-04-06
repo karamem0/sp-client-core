@@ -28,7 +28,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         }
 
         [Parameter(Mandatory = false)]
-        public AddressbarLinkPermissions AddressbarLinkPermission { get; private set; }
+        public TenantRoleType AddressbarLinkPermission { get; private set; }
 
         // [Parameter(Mandatory = false)]
         // public string AIBuilderDefaultPowerAppsEnvironment { get; private set; }
@@ -53,6 +53,9 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = false)]
         public bool AllowEditing { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public bool AllowEveryoneExceptExternalUsersClaimInPrivateSite { get; private set; }
 
         // [Parameter(Mandatory = false)]
         // public bool AllowGuestUserShareToUsersNotInSiteCollection { get; private set; }
@@ -137,6 +140,15 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = false)]
         public string[] ContentTypeSyncSiteTemplatesList { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public TenantRoleType CoreLoopDefaultSharingLinkRole { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public SharingScope CoreLoopDefaultSharingLinkScope { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public SharingCapabilities CoreLoopSharingCapability { get; private set; }
 
         [Parameter(Mandatory = false)]
         public string CustomizedExternalSharingServiceUrl { get; private set; }
@@ -352,6 +364,15 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         public bool OneDriveForGuestsEnabled { get; private set; }
 
         [Parameter(Mandatory = false)]
+        public TenantRoleType OneDriveLoopDefaultSharingLinkRole { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public SharingScope OneDriveLoopDefaultSharingLinkScope { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public SharingCapabilities OneDriveLoopSharingCapability { get; private set; }
+
+        [Parameter(Mandatory = false)]
         public SharingState OneDriveMembersCanShare { get; private set; }
 
         [Parameter(Mandatory = false)]
@@ -380,6 +401,12 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = false)]
         public bool ProvisionSharedWithEveryoneFolder { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public bool ReduceTempTokenLifetimeEnabled { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public int ReduceTempTokenLifetimeValue { get; private set; }
 
         [Parameter(Mandatory = false)]
         public bool RequireAcceptingAccountMatchInvitedAccount { get; private set; }

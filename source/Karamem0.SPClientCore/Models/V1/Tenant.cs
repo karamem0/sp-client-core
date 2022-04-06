@@ -26,7 +26,7 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         }
 
         [JsonProperty()]
-        public virtual AddressbarLinkPermissions AddressbarLinkPermission { get; protected set; }
+        public virtual TenantRoleType AddressbarLinkPermission { get; protected set; }
 
         [JsonProperty()]
         public virtual string AIBuilderDefaultPowerAppsEnvironment { get; protected set; }
@@ -54,6 +54,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
 
         [JsonProperty()]
         public virtual bool AllowEditing { get; protected set; }
+
+        [JsonProperty()]
+        public virtual bool AllowEveryoneExceptExternalUsersClaimInPrivateSite { get; protected set; }
 
         [JsonProperty()]
         public virtual bool AllowGuestUserShareToUsersNotInSiteCollection { get; protected set; }
@@ -138,6 +141,15 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
 
         [JsonProperty()]
         public virtual IReadOnlyCollection<string> ContentTypeSyncSiteTemplatesList { get; protected set; }
+
+        [JsonProperty()]
+        public virtual TenantRoleType CoreLoopDefaultSharingLinkRole { get; protected set; }
+
+        [JsonProperty()]
+        public virtual SharingScope CoreLoopDefaultSharingLinkScope { get; protected set; }
+
+        [JsonProperty()]
+        public virtual SharingCapabilities CoreLoopSharingCapability { get; protected set; }
 
         [JsonProperty()]
         public virtual string CustomizedExternalSharingServiceUrl { get; protected set; }
@@ -367,6 +379,15 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         [JsonProperty()]
         public virtual bool OneDriveForGuestsEnabled { get; protected set; }
 
+        [JsonProperty()]
+        public virtual TenantRoleType OneDriveLoopDefaultSharingLinkRole { get; protected set; }
+
+        [JsonProperty()]
+        public virtual SharingScope OneDriveLoopDefaultSharingLinkScope { get; protected set; }
+
+        [JsonProperty()]
+        public virtual SharingCapabilities OneDriveLoopSharingCapability { get; protected set; }
+
         [JsonProperty("ODBMembersCanShare")]
         public virtual SharingState OneDriveMembersCanShare { get; protected set; }
 
@@ -411,6 +432,12 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
 
         [JsonProperty()]
         public virtual bool RequireAcceptingAccountMatchInvitedAccount { get; protected set; }
+
+        [JsonProperty()]
+        public virtual bool ReduceTempTokenLifetimeEnabled { get; protected set; }
+
+        [JsonProperty()]
+        public virtual int ReduceTempTokenLifetimeValue { get; protected set; }
 
         [JsonProperty()]
         public virtual int RequireAnonymousLinksExpireInDays { get; protected set; }

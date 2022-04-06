@@ -131,6 +131,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         public virtual Guid Id { get; protected set; }
 
         [JsonProperty()]
+        public virtual bool IsEduClass { get; protected set; }
+
+        [JsonProperty()]
         public virtual bool IsHomepageModernized { get; protected set; }
 
         [JsonProperty()]

@@ -95,6 +95,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         public virtual FlowsPolicyType DisableFlows { get; protected set; }
 
         [JsonProperty()]
+        public virtual IReadOnlyCollection<Guid> ExcludedBlockDownloadGroupIds { get; protected set; }
+
+        [JsonProperty()]
         public virtual int ExternalUserExpirationInDays { get; protected set; }
 
         [JsonProperty()]
@@ -149,6 +152,18 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         public virtual string LockState { get; protected set; }
 
         [JsonProperty()]
+        public virtual TenantRoleType LoopDefaultSharingLinkRole { get; protected set; }
+
+        [JsonProperty()]
+        public virtual SharingScope LoopDefaultSharingLinkScope { get; protected set; }
+
+        [JsonProperty()]
+        public virtual bool LoopOverrideSharingCapability { get; protected set; }
+
+        [JsonProperty()]
+        public virtual SharingCapabilities LoopSharingCapability { get; protected set; }
+
+        [JsonProperty()]
         public virtual MediaTranscriptionPolicyType MediaTranscription { get; protected set; }
 
         // [JsonProperty()]
@@ -177,6 +192,12 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
 
         [JsonProperty()]
         public virtual PWAEnabledStatus PWAEnabled { get; protected set; }
+
+        [JsonProperty()]
+        public virtual bool ReadOnlyAccessPolicy { get; protected set; }
+
+        [JsonProperty()]
+        public virtual bool ReadOnlyForUnmanagedDevices { get; protected set; }
 
         [JsonProperty()]
         public virtual Guid RelatedGroupId { get; protected set; }
@@ -249,6 +270,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
 
         [JsonProperty()]
         public virtual string Title { get; protected set; }
+
+        [JsonProperty()]
+        public virtual IReadOnlyCollection<ResourceEntry> TitleTranslations { get; protected set; }
 
         [JsonProperty()]
         public virtual string Url { get; protected set; }

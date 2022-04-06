@@ -22,20 +22,25 @@ Set-KshTenantSiteCollection [-Identity] <TenantSiteCollection> [-AllowDownloadin
  [-DefaultLinkPermission <SharingPermissionType>] [-DefaultLinkToExistingAccess <Boolean>]
  [-DefaultSharingLinkType <SharingLinkType>] [-DenyAddAndCustomizePages <DenyAddAndCustomizePagesStatus>]
  [-DisableAppViews <AppViewsPolicy>] [-DisableCompanyWideSharingLinks <CompanyWideSharingLinksPolicyType>]
- [-DisableFlows <FlowsPolicyType>] [-ExternalUserExpirationInDays <Int32>] [-InformationBarriersMode <String>]
+ [-DisableFlows <FlowsPolicyType>] [-ExcludedBlockDownloadGroupIds <Guid[]>]
+ [-ExternalUserExpirationInDays <Int32>] [-InformationBarriersMode <String>]
  [-InformationBarriersSegments <Guid[]>] [-InformationBarriersSegmentsToAdd <Guid[]>]
  [-InformationBarriersSegmentsToRemove <Guid[]>] [-LimitedAccessFileType <LimitedAccessFileType>]
+ [-LoopDefaultSharingLinkRole <TenantRoleType>] [-LoopDefaultSharingLinkScope <SharingScope>]
+ [-LoopOverrideSharingCapability <Boolean>] [-LoopSharingCapability <SharingCapabilities>]
  [-MediaTranscription <MediaTranscriptionPolicyType>]
  [-OverrideBlockUserInfoVisibility <SiteUserInfoVisibilityPolicyType>]
  [-OverrideTenantAnonymousLinkExpirationPolicy <Boolean>]
  [-OverrideTenantExternalUserExpirationPolicy <Boolean>] [-Owner <String>] [-PWAEnabled <PWAEnabledStatus>]
+ [-ReadOnlyAccessPolicy <Boolean>] [-ReadOnlyForUnmanagedDevices <Boolean>]
  [-RestrictedToRegion <RestrictedToRegion>]
  [-SandboxedCodeActivationCapability <SandboxedCodeActivationCapabilities>] [-SensitivityLabel <Guid>]
  [-SensitivityLabel2 <String>] [-SharingAllowedDomainList <String>] [-SharingBlockedDomainList <String>]
  [-SharingCapability <SharingCapabilities>] [-SharingDomainRestrictionMode <SharingDomainRestrictionMode>]
  [-ShowPeoplePickerSuggestionsForGuestUsers <Boolean>] [-SocialBarOnSitePagesDisabled <Boolean>]
  [-StorageMaximumLevel <Int64>] [-StorageWarningLevel <Int64>] [-TimeZoneId <Int32>] [-Title <String>]
- [-UserCodeMaximumLevel <Double>] [-UserCodeWarningLevel <Double>] [-PassThru] [<CommonParameters>]
+ [-TitleTranslations <ResourceEntry[]>] [-UserCodeMaximumLevel <Double>] [-UserCodeWarningLevel <Double>]
+ [-PassThru] [<CommonParameters>]
 ```
 
 ### ParamSet2
@@ -48,20 +53,25 @@ Set-KshTenantSiteCollection [-Identity] <TenantSiteCollection> [-AllowDownloadin
  [-DefaultLinkPermission <SharingPermissionType>] [-DefaultLinkToExistingAccess <Boolean>]
  [-DefaultSharingLinkType <SharingLinkType>] [-DenyAddAndCustomizePages <DenyAddAndCustomizePagesStatus>]
  [-DisableAppViews <AppViewsPolicy>] [-DisableCompanyWideSharingLinks <CompanyWideSharingLinksPolicyType>]
- [-DisableFlows <FlowsPolicyType>] [-ExternalUserExpirationInDays <Int32>] [-InformationBarriersMode <String>]
+ [-DisableFlows <FlowsPolicyType>] [-ExcludedBlockDownloadGroupIds <Guid[]>]
+ [-ExternalUserExpirationInDays <Int32>] [-InformationBarriersMode <String>]
  [-InformationBarriersSegments <Guid[]>] [-InformationBarriersSegmentsToAdd <Guid[]>]
  [-InformationBarriersSegmentsToRemove <Guid[]>] [-LimitedAccessFileType <LimitedAccessFileType>]
+ [-LoopDefaultSharingLinkRole <TenantRoleType>] [-LoopDefaultSharingLinkScope <SharingScope>]
+ [-LoopOverrideSharingCapability <Boolean>] [-LoopSharingCapability <SharingCapabilities>]
  [-MediaTranscription <MediaTranscriptionPolicyType>]
  [-OverrideBlockUserInfoVisibility <SiteUserInfoVisibilityPolicyType>]
  [-OverrideTenantAnonymousLinkExpirationPolicy <Boolean>]
  [-OverrideTenantExternalUserExpirationPolicy <Boolean>] [-Owner <String>] [-PWAEnabled <PWAEnabledStatus>]
+ [-ReadOnlyAccessPolicy <Boolean>] [-ReadOnlyForUnmanagedDevices <Boolean>]
  [-RestrictedToRegion <RestrictedToRegion>]
  [-SandboxedCodeActivationCapability <SandboxedCodeActivationCapabilities>] [-SensitivityLabel <Guid>]
  [-SensitivityLabel2 <String>] [-SharingAllowedDomainList <String>] [-SharingBlockedDomainList <String>]
  [-SharingCapability <SharingCapabilities>] [-SharingDomainRestrictionMode <SharingDomainRestrictionMode>]
  [-ShowPeoplePickerSuggestionsForGuestUsers <Boolean>] [-SocialBarOnSitePagesDisabled <Boolean>]
  [-StorageMaximumLevel <Int64>] [-StorageWarningLevel <Int64>] [-TimeZoneId <Int32>] [-Title <String>]
- [-UserCodeMaximumLevel <Double>] [-UserCodeWarningLevel <Double>] [-NoWait] [<CommonParameters>]
+ [-TitleTranslations <ResourceEntry[]>] [-UserCodeMaximumLevel <Double>] [-UserCodeWarningLevel <Double>]
+ [-NoWait] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -222,7 +232,7 @@ Specifies the conditional access policy.
 Type: ConditionalAccessPolicyType
 Parameter Sets: (All)
 Aliases:
-Accepted values: AllowFullAccess, AllowLimitedAccess, BlockAccess
+Accepted values: AllowFullAccess, AllowLimitedAccess, BlockAccess, AuthenticationContext
 
 Required: False
 Position: Named
@@ -342,6 +352,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -ExcludedBlockDownloadGroupIds
+Specifies the excluded group IDs that blocked download.
+
+```yaml
+Type: Guid[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -ExternalUserExpirationInDays
 Specifies the days that external user to be expired.
 
@@ -440,6 +465,69 @@ Type: LimitedAccessFileType
 Parameter Sets: (All)
 Aliases:
 Accepted values: OfficeOnlineFilesOnly, WebPreviewableFiles, OtherFiles
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -LoopDefaultSharingLinkRole
+Specifies the Loop default sharing link role.
+
+```yaml
+Type: TenantRoleType
+Parameter Sets: (All)
+Aliases:
+Accepted values: None, View, Edit, Owner, LimitedView, LimitedEdit, Review, RestrictedView, Submit, ManageList
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -LoopDefaultSharingLinkScope
+Specifies the Loop default sharing link scope.
+
+```yaml
+Type: SharingScope
+Parameter Sets: (All)
+Aliases:
+Accepted values: Anyone, Organization, SpecificPeople, Uninitialized
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -LoopOverrideSharingCapability
+Specifies whether to override Loop sharing capability.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -LoopSharingCapability
+Specifies the Loop sharing capability.
+
+```yaml
+Type: SharingCapabilities
+Parameter Sets: (All)
+Aliases:
+Accepted values: Disabled, ExternalUserSharingOnly, ExternalUserAndGuestSharing, ExistingExternalUserSharingOnly
 
 Required: False
 Position: Named
@@ -562,6 +650,36 @@ If specified, returns the updated object.
 ```yaml
 Type: SwitchParameter
 Parameter Sets: ParamSet1
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ReadOnlyAccessPolicy
+Specifies whether to enable read-only access policy.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ReadOnlyForUnmanagedDevices
+Specifies whether to make unmanaged devices to be read-only.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
 Aliases:
 
 Required: False
@@ -775,6 +893,21 @@ Specifies the title.
 
 ```yaml
 Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -TitleTranslations
+Specifies the title translations.
+
+```yaml
+Type: ResourceEntry[]
 Parameter Sets: (All)
 Aliases:
 

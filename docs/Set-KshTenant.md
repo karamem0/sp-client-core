@@ -13,9 +13,9 @@ Changes the tenant.
 ## SYNTAX
 
 ```
-Set-KshTenant [-AddressbarLinkPermission <AddressbarLinkPermissions>]
- [-AllowCommentsTextOnEmailEnabled <Boolean>] [-AllowDownloadingNonWebViewableFiles <Boolean>]
- [-AllowedDomainListForSyncClient <Guid[]>] [-AllowEditing <Boolean>]
+Set-KshTenant [-AddressbarLinkPermission <TenantRoleType>] [-AllowCommentsTextOnEmailEnabled <Boolean>]
+ [-AllowDownloadingNonWebViewableFiles <Boolean>] [-AllowedDomainListForSyncClient <Guid[]>]
+ [-AllowEditing <Boolean>] [-AllowEveryoneExceptExternalUsersClaimInPrivateSite <Boolean>]
  [-AllowLimitedAccessOnUnmanagedDevices <Boolean>] [-AllowOverrideForBlockUserInfoVisibility <Boolean>]
  [-AnyoneLinkTrackUsers <Boolean>] [-ApplyAppEnforcedRestrictionsToAdHocRecipients <Boolean>]
  [-AuthenticationContextResilienceMode <ResilienceMode>] [-BccExternalSharingInvitations <Boolean>]
@@ -27,9 +27,10 @@ Set-KshTenant [-AddressbarLinkPermission <AddressbarLinkPermissions>]
  [-CommentsOnListItemsDisabled <Boolean>] [-CommentsOnSitePagesDisabled <Boolean>]
  [-CompatibilityRange <String>] [-ConditionalAccessPolicy <ConditionalAccessPolicyType>]
  [-ConditionalAccessPolicyErrorHelpLink <String>] [-ContentTypeSyncSiteTemplatesList <String[]>]
- [-CustomizedExternalSharingServiceUrl <String>] [-DefaultContentCenterSite <SiteInfoForSitePicker>]
- [-DefaultLinkPermission <SharingPermissionType>] [-DefaultOneDriveMode <String>]
- [-DefaultSharingLinkType <SharingLinkType>] [-DisableAddToOneDrive <Boolean>]
+ [-CoreLoopDefaultSharingLinkRole <TenantRoleType>] [-CoreLoopDefaultSharingLinkScope <SharingScope>]
+ [-CoreLoopSharingCapability <SharingCapabilities>] [-CustomizedExternalSharingServiceUrl <String>]
+ [-DefaultContentCenterSite <SiteInfoForSitePicker>] [-DefaultLinkPermission <SharingPermissionType>]
+ [-DefaultOneDriveMode <String>] [-DefaultSharingLinkType <SharingLinkType>] [-DisableAddToOneDrive <Boolean>]
  [-DisableBackToClassic <Boolean>] [-DisableCustomAppAuthentication <Boolean>]
  [-DisabledModernListTemplateIds <Guid[]>] [-DisabledWebPartIds <Guid[]>]
  [-DisableOutlookPSTVersionTrimming <Boolean>] [-DisablePersonalListCreation <Boolean>]
@@ -61,11 +62,14 @@ Set-KshTenant [-AddressbarLinkPermission <AddressbarLinkPermissions>]
  [-NotificationsInSharePointEnabled <Boolean>] [-NotifyOwnersWhenInvitationsAccepted <Boolean>]
  [-NotifyOwnersWhenItemsReshared <Boolean>] [-OfficeClientAdalDisabled <Boolean>]
  [-OneDriveAccessRequests <SharingState>] [-OneDriveForGuestsEnabled <Boolean>]
- [-OneDriveMembersCanShare <SharingState>] [-OneDriveSharingCapability <SharingCapabilities>]
- [-OneDriveStorageQuota <Int64>] [-OptOutOfGrooveBlock <Boolean>] [-OptOutOfGrooveSoftBlock <Boolean>]
+ [-OneDriveLoopDefaultSharingLinkRole <TenantRoleType>] [-OneDriveLoopDefaultSharingLinkScope <SharingScope>]
+ [-OneDriveLoopSharingCapability <SharingCapabilities>] [-OneDriveMembersCanShare <SharingState>]
+ [-OneDriveSharingCapability <SharingCapabilities>] [-OneDriveStorageQuota <Int64>]
+ [-OptOutOfGrooveBlock <Boolean>] [-OptOutOfGrooveSoftBlock <Boolean>]
  [-OrphanedPersonalSitesRetentionPeriod <Int32>] [-OwnerAnonymousNotification <Boolean>]
  [-PermissiveBrowserFileHandlingOverride <Boolean>] [-PreventExternalUsersFromResharing <Boolean>]
- [-ProvisionSharedWithEveryoneFolder <Boolean>] [-RequireAcceptingAccountMatchInvitedAccount <Boolean>]
+ [-ProvisionSharedWithEveryoneFolder <Boolean>] [-ReduceTempTokenLifetimeEnabled <Boolean>]
+ [-ReduceTempTokenLifetimeValue <Int32>] [-RequireAcceptingAccountMatchInvitedAccount <Boolean>]
  [-RequireAnonymousLinksExpireInDays <Int32>] [-SearchResolveExactEmailOrUpn <Boolean>]
  [-SharingAllowedDomainList <String>] [-SharingBlockedDomainList <String>]
  [-SharingCapability <SharingCapabilities>] [-SharingDomainRestrictionMode <SharingDomainRestrictionMode>]
@@ -97,7 +101,7 @@ Changes properties of the tenant.
 Specifies the address bar link permission.
 
 ```yaml
-Type: AddressbarLinkPermissions
+Type: TenantRoleType
 Parameter Sets: (All)
 Aliases:
 Accepted values: None, View, Edit, Owner, LimitedView, LimitedEdit, Review, RestrictedView, Submit, ManageList
@@ -141,6 +145,21 @@ Accept wildcard characters: False
 
 ### -AllowEditing
 Specifies whether to allow editing.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AllowEveryoneExceptExternalUsersClaimInPrivateSite
+Specifies whether to allow "Everyone except external users" claim in private site.
 
 ```yaml
 Type: Boolean
@@ -450,7 +469,7 @@ Specifies the conditional access policy type.
 Type: ConditionalAccessPolicyType
 Parameter Sets: (All)
 Aliases:
-Accepted values: AllowFullAccess, AllowLimitedAccess, BlockAccess
+Accepted values: AllowFullAccess, AllowLimitedAccess, BlockAccess, AuthenticationContext
 
 Required: False
 Position: Named
@@ -481,6 +500,54 @@ Specifies the list of site template that synchronize content types.
 Type: String[]
 Parameter Sets: (All)
 Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -CoreLoopDefaultSharingLinkRole
+Specifies the Loop default sharing link role for SharePoint.
+
+```yaml
+Type: TenantRoleType
+Parameter Sets: (All)
+Aliases:
+Accepted values: None, View, Edit, Owner, LimitedView, LimitedEdit, Review, RestrictedView, Submit, ManageList
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -CoreLoopDefaultSharingLinkScope
+Specifies the Loop default sharing link scope for SharePoint.
+
+```yaml
+Type: SharingScope
+Parameter Sets: (All)
+Aliases:
+Accepted values: Anyone, Organization, SpecificPeople, Uninitialized
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -CoreLoopSharingCapability
+Specifies the Loop sharing capavility for SharePoint.
+
+```yaml
+Type: SharingCapabilities
+Parameter Sets: (All)
+Aliases:
+Accepted values: Disabled, ExternalUserSharingOnly, ExternalUserAndGuestSharing, ExistingExternalUserSharingOnly
 
 Required: False
 Position: Named
@@ -1503,6 +1570,54 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -OneDriveLoopDefaultSharingLinkRole
+Specifies the Loop default sharing link role for OneDrive.
+
+```yaml
+Type: TenantRoleType
+Parameter Sets: (All)
+Aliases:
+Accepted values: None, View, Edit, Owner, LimitedView, LimitedEdit, Review, RestrictedView, Submit, ManageList
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -OneDriveLoopDefaultSharingLinkScope
+Specifies the Loop default sharing link scope for OneDrive.
+
+```yaml
+Type: SharingScope
+Parameter Sets: (All)
+Aliases:
+Accepted values: Anyone, Organization, SpecificPeople, Uninitialized
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -OneDriveLoopSharingCapability
+Specifies the Loop sharing capability for OneDrive.
+
+```yaml
+Type: SharingCapabilities
+Parameter Sets: (All)
+Aliases:
+Accepted values: Disabled, ExternalUserSharingOnly, ExternalUserAndGuestSharing, ExistingExternalUserSharingOnly
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -OneDriveMembersCanShare
 Specifies the policy on re-sharing behavior in OneDrive.
 
@@ -1645,6 +1760,36 @@ Specifies whether to provision \[Shared with Everyone\] folder.
 
 ```yaml
 Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ReduceTempTokenLifetimeEnabled
+Specifies whether to enable reduce temporary token lifetime.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ReduceTempTokenLifetimeValue
+Specifies the value of reduce temporary token lifetime.
+
+```yaml
+Type: Int32
 Parameter Sets: (All)
 Aliases:
 

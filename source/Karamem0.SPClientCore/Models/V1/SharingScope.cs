@@ -14,28 +14,16 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Models.V1
 {
 
-    public enum AddressbarLinkPermissions
+    public enum SharingScope
     {
 
-        None = 0,
+        Uninitialized = -1,
 
-        View = 1,
+        Anyone = 0,
 
-        Edit = 2,
+        Organization = 1,
 
-        Owner = 3,
-
-        LimitedView = 4,
-
-        LimitedEdit = 5,
-
-        Review = 6,
-
-        RestrictedView = 7,
-
-        Submit = 8,
-
-        ManageList = 9,
+        SpecificPeople = 2,
 
     }
 

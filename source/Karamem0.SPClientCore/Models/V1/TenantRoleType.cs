@@ -14,16 +14,28 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Models.V1
 {
 
-    public enum ConditionalAccessPolicyType
+    public enum TenantRoleType
     {
 
-        AllowFullAccess = 0,
+        None = 0,
 
-        AllowLimitedAccess = 1,
+        View = 1,
 
-        BlockAccess = 2,
+        Edit = 2,
 
-        AuthenticationContext = 3,
+        Owner = 3,
+
+        LimitedView = 4,
+
+        LimitedEdit = 5,
+
+        Review = 6,
+
+        RestrictedView = 7,
+
+        Submit = 8,
+
+        ManageList = 9,
 
     }
 

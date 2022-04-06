@@ -157,6 +157,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         [JsonProperty()]
         public virtual string Url { get; protected set; }
 
+        [JsonProperty()]
+        public virtual bool WriteLocked { get; protected set; }
+
     }
 
 }

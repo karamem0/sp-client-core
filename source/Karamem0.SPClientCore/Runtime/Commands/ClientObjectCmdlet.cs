@@ -29,6 +29,13 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Commands
 
         protected override void ProcessRecord()
         {
+            if (string.Compare(this.MyInvocation.InvocationName, this.MyInvocation.MyCommand.Name, true) != 0)
+            {
+                this.WriteWarning(string.Format(
+                    StringResources.WarningCmdletIsObsolete,
+                    this.MyInvocation.InvocationName,
+                    this.MyInvocation.MyCommand.Name));
+            }
             var listener = Trace.Listeners[Trace.Listeners.Add(new ClientObjectCmdletTraceListener(this))];
             try
             {
