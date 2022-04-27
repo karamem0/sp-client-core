@@ -13,7 +13,7 @@ Creates a new list item.
 ## SYNTAX
 
 ```
-Add-KshListItem [-List] <List> [-Value] <Hashtable[]> [-NoEnumerate] [<CommonParameters>]
+Add-KshListItem [-List] <List> [-Value] <PSObject[]> [-NoEnumerate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -64,7 +64,7 @@ Accept wildcard characters: False
 Specifies the column values.
 
 ```yaml
-Type: Hashtable[]
+Type: PSObject[]
 Parameter Sets: (All)
 Aliases:
 

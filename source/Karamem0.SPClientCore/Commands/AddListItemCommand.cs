@@ -34,7 +34,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         public List List { get; private set; }
 
         [Parameter(Mandatory = true, Position = 1)]
-        public Hashtable[] Value { get; private set; }
+        public PSObject[] Value { get; private set; }
 
         [Parameter(Mandatory = false)]
         public SwitchParameter NoEnumerate { get; private set; }
@@ -46,7 +46,19 @@ namespace Karamem0.SharePoint.PowerShell.Commands
                 this.Outputs.Add(this.Service.AddObjectEnumerable(
                     this.List,
                     this.Value
-                        .Select(value => value.ToDictionary<string, object>())
+                        .Select(value =>
+                        {
+                            if (value.BaseObject is Hashtable hashtable)
+                            {
+                                return hashtable.ToDictionary<string, object>();
+                            }
+                            else
+                            {
+                                return value.Properties.ToDictionary(
+                                    property => property.Name,
+                                    property => property.Value);
+                            }
+                        })
                         .ToArray()));
             }
             else
@@ -54,7 +66,19 @@ namespace Karamem0.SharePoint.PowerShell.Commands
                 this.Outputs.AddRange(this.Service.AddObjectEnumerable(
                     this.List,
                     this.Value
-                        .Select(value => value.ToDictionary<string, object>())
+                        .Select(value =>
+                        {
+                            if (value.BaseObject is Hashtable hashtable)
+                            {
+                                return hashtable.ToDictionary<string, object>();
+                            }
+                            else
+                            {
+                                return value.Properties.ToDictionary(
+                                    property => property.Name,
+                                    property => property.Value);
+                            }
+                        })
                         .ToArray()));
             }
         }

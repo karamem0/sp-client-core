@@ -21776,7 +21776,7 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Add-KshFile -Folder '/sites/japan/hr/Shared%20Documents' -Content ([System.Text.Encoding]::UTF8.GetBytes('Contact: admin@example.onmicrosoft.com')) -FileName 'README.txt'</dev:code>
+        <dev:code>PS C:\&gt; Add-KshFile -Folder (Get-KshFolder -FolderUrl '/sites/japan/hr/Shared%20Documents') -Content ([System.Text.Encoding]::UTF8.GetBytes('Contact: admin@example.onmicrosoft.com')) -FileName 'README.txt'</dev:code>
         <dev:remarks>
           <maml:para>Creates a new file.</maml:para>
         </dev:remarks>
@@ -22328,9 +22328,9 @@
           <maml:description>
             <maml:para>Specifies the column values.</maml:para>
           </maml:description>
-          <command:parameterValue required="true" variableLength="false">Hashtable[]</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">PSObject[]</command:parameterValue>
           <dev:type>
-            <maml:name>Hashtable[]</maml:name>
+            <maml:name>PSObject[]</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -22378,9 +22378,9 @@
         <maml:description>
           <maml:para>Specifies the column values.</maml:para>
         </maml:description>
-        <command:parameterValue required="true" variableLength="false">Hashtable[]</command:parameterValue>
+        <command:parameterValue required="true" variableLength="false">PSObject[]</command:parameterValue>
         <dev:type>
-          <maml:name>Hashtable[]</maml:name>
+          <maml:name>PSObject[]</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -50715,7 +50715,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Save-KshFile cmdlet adds a new file to the specified folder. Maximum file size is 2GB.</maml:para>
+      <maml:para>The Save-KshFile cmdlet adds a new file to the specified folder.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -62511,14 +62511,14 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Value</maml:name>
           <maml:description>
             <maml:para>Specifies the column values.</maml:para>
           </maml:description>
-          <command:parameterValue required="true" variableLength="false">Hashtable</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">PSObject</command:parameterValue>
           <dev:type>
-            <maml:name>Hashtable</maml:name>
+            <maml:name>PSObject</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -62562,14 +62562,14 @@
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Value</maml:name>
         <maml:description>
           <maml:para>Specifies the column values.</maml:para>
         </maml:description>
-        <command:parameterValue required="true" variableLength="false">Hashtable</command:parameterValue>
+        <command:parameterValue required="true" variableLength="false">PSObject</command:parameterValue>
         <dev:type>
-          <maml:name>Hashtable</maml:name>
+          <maml:name>PSObject</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
