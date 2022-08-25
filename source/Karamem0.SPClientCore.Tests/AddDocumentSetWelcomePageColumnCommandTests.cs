@@ -18,7 +18,6 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("Add-KshDocumentSetWelcomePageColumn")]
     public class AddDocumentSetWelcomePageColumnCommandTests
     {
 

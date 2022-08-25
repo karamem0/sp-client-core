@@ -19,23 +19,23 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
 
         None = 0,
 
-        Guest = 1,
+        View = 1,
 
-        Reader = 2,
+        Edit = 2,
 
-        Contributor = 3,
+        Owner = 3,
 
-        WebDesigner = 4,
+        LimitedView = 4,
 
-        Administrator = 5,
+        LimitedEdit = 5,
 
-        Editor = 6,
+        Review = 6,
 
-        Reviewer = 7,
+        RestrictedView = 7,
 
-        RestrictedReader = 8,
+        Submit = 8,
 
-        System = 255,
+        ManageList = 9,
 
     }
 

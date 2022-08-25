@@ -18,7 +18,6 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("Set-KshTerm")]
     public class SetTermCommandTests
     {
 

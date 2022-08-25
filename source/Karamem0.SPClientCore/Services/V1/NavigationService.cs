@@ -22,7 +22,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
 
         Navigation GetObject();
 
-        void SetObject(IReadOnlyDictionary<string, object> modificationInformation);
+        void SetObject(IReadOnlyDictionary<string, object> modificationInfo);
 
     }
 
@@ -52,9 +52,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 .ToObject<Navigation>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
-        public void SetObject(IReadOnlyDictionary<string, object> modificationInformation)
+        public void SetObject(IReadOnlyDictionary<string, object> modificationInfo)
         {
-            _ = modificationInformation ?? throw new ArgumentNullException(nameof(modificationInformation));
+            _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathStaticProperty(typeof(Context), "Current"));
@@ -62,7 +62,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 new ObjectPathProperty(objectPath1.Id, "Web"));
             var objectPath3 = requestPayload.Add(
                 new ObjectPathProperty(objectPath2.Id, "Navigation"),
-                requestPayload.CreateSetPropertyDelegates(typeof(Navigation), modificationInformation).ToArray());
+                requestPayload.CreateSetPropertyDelegates(typeof(Navigation), modificationInfo).ToArray());
             var objectPath4 = requestPayload.Add(
                 objectPath2,
                 objectPathId => new ClientActionMethod(objectPathId, "Update"));

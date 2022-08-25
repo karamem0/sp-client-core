@@ -20,11 +20,11 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
     public interface IDocumentLibraryService
     {
 
-        DocumentLibraryInformation GetObject();
+        DocumentLibraryInfo GetObject();
 
-        IEnumerable<DocumentLibraryInformation> GetObjectEnumerable();
+        IEnumerable<DocumentLibraryInfo> GetObjectEnumerable();
 
-        IEnumerable<DocumentLibraryInformation> GetObjectEnumerable(bool includePageLibraries);
+        IEnumerable<DocumentLibraryInfo> GetObjectEnumerable(bool includePageLibraries);
 
     }
 
@@ -35,7 +35,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
         {
         }
 
-        public DocumentLibraryInformation GetObject()
+        public DocumentLibraryInfo GetObject()
         {
             var requestPayload = new ClientRequestPayload();
             requestPayload.Actions.Add(
@@ -46,10 +46,10 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 ));
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<DocumentLibraryInformation>(requestPayload.GetActionId<ClientActionStaticMethod>());
+                .ToObject<DocumentLibraryInfo>(requestPayload.GetActionId<ClientActionStaticMethod>());
         }
 
-        public IEnumerable<DocumentLibraryInformation> GetObjectEnumerable()
+        public IEnumerable<DocumentLibraryInfo> GetObjectEnumerable()
         {
             var requestPayload = new ClientRequestPayload();
             requestPayload.Actions.Add(
@@ -60,10 +60,10 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 ));
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<List<DocumentLibraryInformation>>(requestPayload.GetActionId<ClientActionStaticMethod>());
+                .ToObject<List<DocumentLibraryInfo>>(requestPayload.GetActionId<ClientActionStaticMethod>());
         }
 
-        public IEnumerable<DocumentLibraryInformation> GetObjectEnumerable(bool includePageLibraries)
+        public IEnumerable<DocumentLibraryInfo> GetObjectEnumerable(bool includePageLibraries)
         {
             var requestPayload = new ClientRequestPayload();
             requestPayload.Actions.Add(
@@ -75,7 +75,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 ));
             return this.ClientContext
                 .ProcessQuery(requestPayload)
-                .ToObject<List<DocumentLibraryInformation>>(requestPayload.GetActionId<ClientActionStaticMethod>());
+                .ToObject<List<DocumentLibraryInfo>>(requestPayload.GetActionId<ClientActionStaticMethod>());
         }
 
     }

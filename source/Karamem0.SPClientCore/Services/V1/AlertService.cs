@@ -20,7 +20,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
     public interface IAlertService
     {
 
-        Guid AddObject(IReadOnlyDictionary<string, object> creationInformation);
+        Guid AddObject(IReadOnlyDictionary<string, object> creationInfo);
 
         Alert GetObject(Alert alertObject);
 
@@ -30,7 +30,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
 
         void RemoveObject(Alert alertObject);
 
-        void SetObject(Alert alertObject, IReadOnlyDictionary<string, object> modificationInformation);
+        void SetObject(Alert alertObject, IReadOnlyDictionary<string, object> modificationInfo);
 
     }
 
@@ -41,9 +41,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
         {
         }
 
-        public Guid AddObject(IReadOnlyDictionary<string, object> creationInformation)
+        public Guid AddObject(IReadOnlyDictionary<string, object> creationInfo)
         {
-            _ = creationInformation ?? throw new ArgumentNullException(nameof(creationInformation));
+            _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathStaticProperty(typeof(Context), "Current"));
@@ -56,7 +56,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 objectPathId => new ClientActionMethod(
                     objectPathId,
                     "Add",
-                    requestPayload.CreateParameter(new AlertCreationInformation(creationInformation))));
+                    requestPayload.CreateParameter(new AlertCreationInfo(creationInfo))));
             return this.ClientContext
                 .ProcessQuery(requestPayload)
                 .ToObject<Guid>(requestPayload.GetActionId<ClientActionMethod>());
@@ -151,16 +151,16 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
             _ = this.ClientContext.ProcessQuery(requestPayload);
         }
 
-        public override void SetObject(Alert alertObject, IReadOnlyDictionary<string, object> modificationInformation)
+        public override void SetObject(Alert alertObject, IReadOnlyDictionary<string, object> modificationInfo)
         {
             _ = alertObject ?? throw new ArgumentNullException(nameof(alertObject));
-            _ = modificationInformation ?? throw new ArgumentNullException(nameof(modificationInformation));
+            _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectName = alertObject.ObjectType;
             var objectType = ClientObject.GetType(objectName);
             var objectPath1 = requestPayload.Add(
                 new ObjectPathIdentity(alertObject.ObjectIdentity),
-                requestPayload.CreateSetPropertyDelegates(alertObject, modificationInformation).ToArray());
+                requestPayload.CreateSetPropertyDelegates(alertObject, modificationInfo).ToArray());
             var objectPath2 = requestPayload.Add(
                 objectPath1,
                 objectPathId => new ClientActionMethod(objectPathId, "UpdateAlert"));

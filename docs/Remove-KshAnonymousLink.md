@@ -13,7 +13,7 @@ Removes an anonymous link.
 ## SYNTAX
 
 ```
-Remove-KshAnonymousLink [-Url] <String> [-IsEditLink] <Boolean> [-RemoveAssociatedSharingLinkGroup] <Boolean>
+Remove-KshAnonymousLink [-Url] <Uri> [-IsEditLink] <Boolean> [-RemoveAssociatedSharingLinkGroup] <Boolean>
  [<CommonParameters>]
 ```
 
@@ -65,7 +65,7 @@ Accept wildcard characters: False
 Specifies the URL.
 
 ```yaml
-Type: String
+Type: Uri
 Parameter Sets: (All)
 Aliases:
 

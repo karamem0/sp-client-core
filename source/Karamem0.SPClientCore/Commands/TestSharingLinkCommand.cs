@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -28,11 +29,20 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         }
 
         [Parameter(Mandatory = true)]
-        public string Url { get; private set; }
+        public Uri Url { get; private set; }
 
         protected override void ProcessRecordCore()
         {
-            this.Outputs.Add(this.Service.GetSharingLinkKind(this.Url));
+            if (this.Url.IsAbsoluteUri)
+            {
+                this.Outputs.Add(this.Service.GetSharingLinkKind(this.Url));
+            }
+            else
+            {
+                throw new ArgumentException(
+                    string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.Url),
+                    nameof(this.Url));
+            }
         }
 
     }

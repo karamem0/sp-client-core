@@ -13,7 +13,7 @@ Updates a list item.
 ## SYNTAX
 
 ```
-Set-KshListItem [-Identity] <ListItem> [-Value <Hashtable>] [-SystemUpdate] [-PassThru] [<CommonParameters>]
+Set-KshListItem [-Identity] <ListItem> -Value <PSObject> [-SystemUpdate] [-PassThru] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -79,11 +79,11 @@ Accept wildcard characters: False
 Specifies the column values.
 
 ```yaml
-Type: Hashtable
+Type: PSObject
 Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False

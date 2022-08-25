@@ -48,16 +48,16 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
             _ = this.ClientContext.ProcessQuery(requestPayload);
         }
 
-        public virtual void SetObject(T clientObject, IReadOnlyDictionary<string, object> modificationInformation)
+        public virtual void SetObject(T clientObject, IReadOnlyDictionary<string, object> modificationInfo)
         {
             _ = clientObject ?? throw new ArgumentNullException(nameof(clientObject));
-            _ = modificationInformation ?? throw new ArgumentNullException(nameof(modificationInformation));
+            _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectName = clientObject.ObjectType;
             var objectType = ClientObject.GetType(objectName);
             var objectPath1 = requestPayload.Add(
                 new ObjectPathIdentity(clientObject.ObjectIdentity),
-                requestPayload.CreateSetPropertyDelegates(clientObject, modificationInformation).ToArray());
+                requestPayload.CreateSetPropertyDelegates(clientObject, modificationInfo).ToArray());
             var objectPath2 = requestPayload.Add(
                 objectPath1,
                 objectPathId => new ClientActionMethod(objectPathId, "Update"));

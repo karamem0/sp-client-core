@@ -26,7 +26,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
 
         RegionalSettings GetObject();
 
-        void SetObject(IReadOnlyDictionary<string, object> modificationInformation);
+        void SetObject(IReadOnlyDictionary<string, object> modificationInfo);
 
     }
 
@@ -100,7 +100,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 .ToObject<RegionalSettings>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
-        public void SetObject(IReadOnlyDictionary<string, object> modificationInformation)
+        public void SetObject(IReadOnlyDictionary<string, object> modificationInfo)
         {
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
@@ -111,7 +111,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 new ObjectPathProperty(objectPath2.Id, "RegionalSettings"));
             var objectPath4 = requestPayload.Add(
                 objectPath3,
-                requestPayload.CreateSetPropertyDelegates(typeof(RegionalSettings), modificationInformation).ToArray());
+                requestPayload.CreateSetPropertyDelegates(typeof(RegionalSettings), modificationInfo).ToArray());
             var objectPath5 = requestPayload.Add(
                 objectPath4,
                 objectPathId => new ClientActionMethod(objectPathId, "Update"));

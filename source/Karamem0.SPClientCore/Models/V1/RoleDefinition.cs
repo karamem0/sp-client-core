@@ -44,7 +44,7 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         public virtual int Order { get; protected set; }
 
         [JsonProperty()]
-        public virtual RoleType RoleTypeKind { get; protected set; }
+        public virtual RoleTypeKind RoleTypeKind { get; protected set; }
 
     }
 

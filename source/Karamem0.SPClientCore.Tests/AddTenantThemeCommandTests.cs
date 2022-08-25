@@ -19,7 +19,6 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("Add-KshTenantTheme")]
     public class AddTenantThemeCommandTests
     {
 

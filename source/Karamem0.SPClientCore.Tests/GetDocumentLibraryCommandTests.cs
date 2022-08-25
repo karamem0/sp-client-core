@@ -18,7 +18,6 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("Get-KshDocumentLibrary")]
     public class GetDocumentLibraryCommandTests
     {
 
@@ -37,7 +36,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     }
                 }
             );
-            var result2 = context.Runspace.InvokeCommand<DocumentLibraryInformation>(
+            var result2 = context.Runspace.InvokeCommand<DocumentLibraryInfo>(
                 "Get-KshDocumentLibrary",
                 new Dictionary<string, object>()
                 {
@@ -61,7 +60,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     }
                 }
             );
-            var result2 = context.Runspace.InvokeCommand<DocumentLibraryInformation>(
+            var result2 = context.Runspace.InvokeCommand<DocumentLibraryInfo>(
                 "Get-KshDocumentLibrary",
                 new Dictionary<string, object>()
                 {
@@ -87,7 +86,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     }
                 }
             );
-            var result2 = context.Runspace.InvokeCommand<DocumentLibraryInformation>(
+            var result2 = context.Runspace.InvokeCommand<DocumentLibraryInfo>(
                 "Get-KshDocumentLibrary",
                 new Dictionary<string, object>()
                 {

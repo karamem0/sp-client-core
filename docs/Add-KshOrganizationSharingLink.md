@@ -13,7 +13,7 @@ Creates a new organization sharing link.
 ## SYNTAX
 
 ```
-Add-KshOrganizationSharingLink -Url <String> -IsEditLink <Boolean> [<CommonParameters>]
+Add-KshOrganizationSharingLink -Url <Uri> -IsEditLink <Boolean> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -49,7 +49,7 @@ Accept wildcard characters: False
 Specifies the URL.
 
 ```yaml
-Type: String
+Type: Uri
 Parameter Sets: (All)
 Aliases:
 

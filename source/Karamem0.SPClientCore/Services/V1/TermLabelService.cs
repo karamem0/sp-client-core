@@ -37,9 +37,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
 
         void SetObjectAsDefault(TermLabel termLabelObject);
 
-        void SetObject(TermLabel termLabelObject, IReadOnlyDictionary<string, object> modificationInformation);
+        void SetObject(TermLabel termLabelObject, IReadOnlyDictionary<string, object> modificationInfo);
 
-        void SetObjectAwait(TermLabel termLabelObject, IReadOnlyDictionary<string, object> modificationInformation);
+        void SetObjectAwait(TermLabel termLabelObject, IReadOnlyDictionary<string, object> modificationInfo);
 
     }
 
@@ -166,18 +166,18 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 objectPathId => new ClientActionMethod(objectPathId, "CommitAll"));
             _ = this.ClientContext.ProcessQuery(requestPayload);
         }
-        public override void SetObject(TermLabel termLabelObject, IReadOnlyDictionary<string, object> modificationInformation)
+        public override void SetObject(TermLabel termLabelObject, IReadOnlyDictionary<string, object> modificationInfo)
         {
             _ = termLabelObject ?? throw new ArgumentNullException(nameof(termLabelObject));
-            _ = modificationInformation ?? throw new ArgumentNullException(nameof(modificationInformation));
-            this.SetObjectAwait(termLabelObject, modificationInformation);
+            _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
+            this.SetObjectAwait(termLabelObject, modificationInfo);
             var termLabelObjectIdentity = Regex.Replace(
                 termLabelObject.ObjectIdentity,
                 ";(.+);(.+);(.+)$",
                 string.Format(
                     ";{0};{1};$3",
-                    modificationInformation.GetValueOrDefault(nameof(TermLabel.Lcid), "$1"),
-                    modificationInformation.GetValueOrDefault(nameof(TermLabel.Name), "$2")));
+                    modificationInfo.GetValueOrDefault(nameof(TermLabel.Lcid), "$1"),
+                    modificationInfo.GetValueOrDefault(nameof(TermLabel.Name), "$2")));
             while (true)
             {
                 var requestPayload = new ClientRequestPayload();
@@ -195,16 +195,16 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
             }
         }
 
-        public void SetObjectAwait(TermLabel termLabelObject, IReadOnlyDictionary<string, object> modificationInformation)
+        public void SetObjectAwait(TermLabel termLabelObject, IReadOnlyDictionary<string, object> modificationInfo)
         {
             _ = termLabelObject ?? throw new ArgumentNullException(nameof(termLabelObject));
-            _ = modificationInformation ?? throw new ArgumentNullException(nameof(modificationInformation));
+            _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathIdentity(termLabelObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
                 objectPath1,
-                requestPayload.CreateSetPropertyDelegates(termLabelObject, modificationInformation).ToArray());
+                requestPayload.CreateSetPropertyDelegates(termLabelObject, modificationInfo).ToArray());
             var objectPath3 = requestPayload.Add(
                 new ObjectPathProperty(objectPath2.Id, "Term"));
             var objectPath4 = requestPayload.Add(

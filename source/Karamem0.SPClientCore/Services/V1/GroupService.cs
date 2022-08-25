@@ -20,7 +20,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
     public interface IGroupService
     {
 
-        Group AddObject(IReadOnlyDictionary<string, object> creationInformation);
+        Group AddObject(IReadOnlyDictionary<string, object> creationInfo);
 
         Group GetObject(Group groupObject);
 
@@ -32,7 +32,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
 
         void RemoveObject(Group groupObject);
 
-        void SetObject(Group groupObject, IReadOnlyDictionary<string, object> modificationInformation);
+        void SetObject(Group groupObject, IReadOnlyDictionary<string, object> modificationInfo);
 
     }
 
@@ -43,9 +43,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
         {
         }
 
-        public Group AddObject(IReadOnlyDictionary<string, object> creationInformation)
+        public Group AddObject(IReadOnlyDictionary<string, object> creationInfo)
         {
-            _ = creationInformation ?? throw new ArgumentNullException(nameof(creationInformation));
+            _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathStaticProperty(typeof(Context), "Current"));
@@ -57,7 +57,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 new ObjectPathMethod(
                     objectPath3.Id,
                     "Add",
-                    requestPayload.CreateParameter(new GroupCreationInformation(creationInformation))),
+                    requestPayload.CreateParameter(new GroupCreationInfo(creationInfo))),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {

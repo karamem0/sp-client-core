@@ -20,7 +20,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
     public interface IViewService
     {
 
-        View AddObject(List listObject, IReadOnlyDictionary<string, object> creationInformation);
+        View AddObject(List listObject, IReadOnlyDictionary<string, object> creationInfo);
 
         View GetObject(View viewObject);
 
@@ -32,7 +32,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
 
         void RemoveObject(View viewObject);
 
-        void SetObject(View viewObject, IReadOnlyDictionary<string, object> modificationInformation);
+        void SetObject(View viewObject, IReadOnlyDictionary<string, object> modificationInfo);
 
     }
 
@@ -43,10 +43,10 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
         {
         }
 
-        public View AddObject(List listObject, IReadOnlyDictionary<string, object> creationInformation)
+        public View AddObject(List listObject, IReadOnlyDictionary<string, object> creationInfo)
         {
             _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
-            _ = creationInformation ?? throw new ArgumentNullException(nameof(creationInformation));
+            _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathIdentity(listObject.ObjectIdentity));
@@ -56,7 +56,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 new ObjectPathMethod(
                     objectPath2.Id,
                     "Add",
-                    requestPayload.CreateParameter(new ViewCreationInformation(creationInformation))),
+                    requestPayload.CreateParameter(new ViewCreationInfo(creationInfo))),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {

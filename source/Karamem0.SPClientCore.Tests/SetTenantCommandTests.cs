@@ -17,7 +17,6 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("Set-KshTenant")]
     public class SetTenantCommandTests
     {
 
@@ -43,9 +42,11 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     // { "AddressbarLinkPermission", "None" },
                     // { "AIBuilderDefaultPowerAppsEnvironment", null },
                     // { "AIBuilderEnabled", false },
+                    // { "AIBuilderEnabledInContentCenter", 0 },
                     // { "AIBuilderSiteInfoList", null },
                     // { "AIBuilderSiteList", null },
                     // { "AIBuilderSiteListFileName", null },
+                    // { "AllowAnonymousMeetingParticipantsToAccessWhiteboards", "Unspecified" },
                     // { "AllowCommentsTextOnEmailEnabled", true },
                     // { "AllowDownloadingNonWebViewableFiles", true },
                     // { "AllowedDomainListForSyncClient", Array.Empty<Guid>() },
@@ -81,6 +82,9 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     // { "CoreLoopDefaultSharingLinkRole", "None" },
                     // { "CoreLoopDefaultSharingLinkScope", "Uninitialized" },
                     // { "CoreLoopSharingCapability", "ExternalUserAndGuestSharing" },
+                    // { "CoreRequestFilesLinkEnabled", true },
+                    // { "CoreRequestFilesLinkExpirationInDays", -1 },
+                    // { "CoreSharingCapability", "ExternalUserAndGuestSharing" },
                     // { "CustomizedExternalSharingServiceUrl", null },
                     // { "DefaultContentCenterSite", null },
                     // { "DefaultLinkPermission", "Edit" },
@@ -110,6 +114,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     // { "EnableMinimumVersionRequirement", true },
                     // { "EnableMipSiteLabel", false },
                     // { "EnablePromotedFileHandlers", true },
+                    // { "EnableRestrictedAccessControl", false },
                     // { "ExcludedFileExtensionsForSyncClient", Array.Empty<string>() },
                     // { "ExternalServicesEnabled", true },
                     // { "ExternalUserExpirationRequired", false },
@@ -135,6 +140,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     // { "IsAppBarTemporarilyDisabled", false },
                     // { "IsCollabMeetingNotesFluidEnabled", true },
                     // { "IsFluidEnabled", true },
+                    // { "IsLoopEnabled", true },
                     // { "IsUnmanagedSyncClientForTenantRestricted", false },
                     // { "IsWhiteboardFluidEnabled", true },
                     // { "LabelMismatchEmailHelpLink", null },
@@ -149,6 +155,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     // { "NotificationsInSharePointEnabled", true },
                     // { "NotifyOwnersWhenInvitationsAccepted", true },
                     // { "NotifyOwnersWhenItemsReshared", true },
+                    // { "OCRAdminEnabled", false },
                     // { "OfficeClientAdalDisabled", false },
                     // { "OneDriveAccessRequests", "Unspecified" },
                     // { "OneDriveForGuestsEnabled", false },
@@ -156,6 +163,8 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     // { "OneDriveLoopDefaultSharingLinkScope", "Uninitialized" },
                     // { "OneDriveLoopSharingCapability", "ExternalUserAndGuestSharing" },
                     // { "OneDriveMembersCanShare", "Unspecified" },
+                    // { "OneDriveRequestFilesLinkEnabled", true },
+                    // { "OneDriveRequestFilesLinkExpirationInDays", -1 },
                     // { "OneDriveSharingCapability", "ExternalUserAndGuestSharing" },
                     // { "OneDriveStorageQuota", 1048576 },
                     // { "OptOutOfGrooveBlock", false },
@@ -177,6 +186,9 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     // { "ShowAllUsersClaim", false },
                     // { "ShowEveryoneClaim", false },
                     // { "ShowEveryoneExceptExternalUsersClaim", true },
+                    // { "ShowOpenInDesktopOptionForSyncedFiles", false },
+                    // { "ShowPeoplePickerSuggestionsForGuestUsers", false },
+                    // { "ShowPeoplePickerGroupSuggestionsForInformationBarriers", false },
                     // { "SignInAccelerationDomain", null },
                     // { "SocialBarOnSitePagesDisabled", false },
                     // { "SpecialCharactersStateInFileFolderNames", "Allowed" },

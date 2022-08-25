@@ -18,7 +18,6 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("Get-KshTenantHomeSite")]
     public class GetTenantHomeSiteCommandTests
     {
 
@@ -37,56 +36,13 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     }
                 }
             );
-            var result2 = context.Runspace.InvokeCommand<TenantSiteCollection>(
-                "Add-KshTenantSiteCollection",
-                new Dictionary<string, object>()
-                {
-                    { "Owner", context.AppSettings["LoginUserName"] },
-                    { "Template", "SITEPAGEPUBLISHING#0" },
-                    { "Url", context.AppSettings["AuthorityUrl"] + "/sites/TestSite0" }
-                }
-            );
-            var result3 = context.Runspace.InvokeCommand(
-                "Set-KshTenantHomeSite",
-                new Dictionary<string, object>()
-                {
-                    { "Url", result2.ElementAt(0).Url }
-                }
-            );
-            var result4 = context.Runspace.InvokeCommand<string>(
+            var result2 = context.Runspace.InvokeCommand<string>(
                 "Get-KshTenantHomeSite",
                 new Dictionary<string, object>()
                 {
                 }
             );
-            var result5 = context.Runspace.InvokeCommand(
-                "Remove-KshTenantHomeSite",
-                new Dictionary<string, object>()
-                {
-                }
-            );
-            var result6 = context.Runspace.InvokeCommand(
-                "Remove-KshTenantSiteCollection",
-                new Dictionary<string, object>()
-                {
-                    { "Identity", result2.ElementAt(0) }
-                }
-            );
-            var result7 = context.Runspace.InvokeCommand<TenantDeletedSiteCollection>(
-                "Get-KshTenantDeletedSiteCollection",
-                new Dictionary<string, object>()
-                {
-                    { "SiteCollectionUrl", result2.ElementAt(0).Url }
-                }
-            );
-            var result8 = context.Runspace.InvokeCommand(
-                "Remove-KshTenantDeletedSiteCollection",
-                new Dictionary<string, object>()
-                {
-                    { "Identity", result7.ElementAt(0) }
-                }
-            );
-            var actual = result4.ElementAt(0);
+            var actual = result2.ElementAt(0);
         }
 
     }

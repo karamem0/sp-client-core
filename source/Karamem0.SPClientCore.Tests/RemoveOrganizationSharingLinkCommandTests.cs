@@ -17,7 +17,6 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("Remove-KshOrganizationSharingLink")]
     public class RemoveOrganizationSharingLinkCommandTests
     {
 

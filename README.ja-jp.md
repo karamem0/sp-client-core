@@ -33,10 +33,12 @@ SPClientCore は Azure AD 2.0 認証をサポートします (Device Code Grant 
 
 ## 依存関係
 
-- [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/5.0.2) (5.0.2)
+- [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights/2.13.1) (2.13.1)
+- [Microsoft.ApplicationInsights.WorkerService](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WorkerService/2.13.1) (2.13.1)
+- [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/5.0.0) (5.0.0)
 - [Microsoft.Extensions.DependencyInjection.Abstractions](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection.Abstractions/5.0.0) (5.0.0)
-- [Microsoft.IdentityModel.JsonWebTokens](https://www.nuget.org/packages/Microsoft.IdentityModel.JsonWebTokens/6.15.0) (6.15.0)
-- [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/13.0.1) (13.0.1)
+- [Microsoft.IdentityModel.JsonWebTokens](https://www.nuget.org/packages/Microsoft.IdentityModel.JsonWebTokens/5.5.0) (5.5.0)
+- [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/12.0.3) (12.0.3)
 - [PowerShellStandard.Library](https://www.nuget.org/packages/PowerShellStandard.Library/5.1.0) (5.1.0)
 
 ## コマンド リファレンス (英語)
@@ -139,6 +141,10 @@ SPClientCore は Azure AD 2.0 認証をサポートします (Device Code Grant 
     - [Get-KshDrive](docs/Get-KshDrive.md)
   - ドライブ アイテム
     - [Get-KshDriveItem](docs/Get-KshDriveItem.md)
+  - 外部共有
+    - [Get-KshSharingInfo](docs/Get-KshSharingInfo.md)
+    - [Get-KshSharingSettings](docs/Get-KshSharingSettings.md)
+    - [Test-KshExternalUserSharing](docs/Test-KshExternalUserSharing.md)
   - ファイル
     - [Get-KshFile](docs/Get-KshFile.md)
     - [Add-KshFile](docs/Add-KshFile.md)
@@ -288,6 +294,7 @@ SPClientCore は Azure AD 2.0 認証をサポートします (Device Code Grant 
     - [Remove-KshUser](docs/Remove-KshUser.md)
     - [Set-KshUser](docs/Set-KshUser.md)
     - [Resolve-KshUser](docs/Resolve-KshUser.md)
+    - [Add-KshExternalUser](docs/Get-KshExternalUser.md)
   - ユーザーの権限
     - [Get-KshUserPermission](docs/Get-KshUserPermission.md)
   - ユーザー プロパティ
@@ -356,6 +363,8 @@ SPClientCore は Azure AD 2.0 認証をサポートします (Device Code Grant 
     - [Add-KshTenantUser](docs/Add-KshTenantUser.md)
     - [Remove-KshTenantUser](docs/Remove-KshTenantUser.md)
     - [Set-KshTenantUser](docs/Set-KshTenantUser.md)
+    - [Get-KshTenantExternalUser](docs/Get-KshTenantExternalUser.md)
+    - [Remove-KshTenantExternalUser](docs/Remove-KshTenantExternalUser.md)
 - 管理されたメタデータ
   - カスタム プロパティ
     - [Add-KshTermCustomProperty](docs/Add-KshTermCustomProperty.md)

@@ -22,9 +22,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
     public interface ITenantSiteCollectionService
     {
 
-        TenantOperationResult AddObject(IReadOnlyDictionary<string, object> creationInformation);
+        TenantOperationResult AddObject(IReadOnlyDictionary<string, object> creationInfo);
 
-        void AddObjectAwait(IReadOnlyDictionary<string, object> creationInformation);
+        void AddObjectAwait(IReadOnlyDictionary<string, object> creationInfo);
 
         TenantSiteCollection GetObject(TenantSiteCollection siteCollectionObject);
 
@@ -36,7 +36,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
 
         IEnumerable<TenantSiteCollection> GetObjectEnumerable();
 
-        IEnumerable<TenantSiteCollection> GetObjectEnumerable(IReadOnlyDictionary<string, object> filterInformation);
+        IEnumerable<TenantSiteCollection> GetObjectEnumerable(IReadOnlyDictionary<string, object> filterInfo);
 
         TenantOperationResult LockObject(TenantSiteCollection siteCollectionObject);
 
@@ -46,9 +46,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
 
         void RemoveObjectAwait(TenantSiteCollection siteCollectionObject);
 
-        TenantOperationResult SetObject(TenantSiteCollection siteCollectionObject, IReadOnlyDictionary<string, object> modificationInformation);
+        TenantOperationResult SetObject(TenantSiteCollection siteCollectionObject, IReadOnlyDictionary<string, object> modificationInfo);
 
-        void SetObjectAwait(TenantSiteCollection siteCollectionObject, IReadOnlyDictionary<string, object> modificationInformation);
+        void SetObjectAwait(TenantSiteCollection siteCollectionObject, IReadOnlyDictionary<string, object> modificationInfo);
 
         TenantOperationResult UnlockObject(TenantSiteCollection siteCollectionObject);
 
@@ -63,9 +63,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
         {
         }
 
-        public TenantOperationResult AddObject(IReadOnlyDictionary<string, object> creationInformation)
+        public TenantOperationResult AddObject(IReadOnlyDictionary<string, object> creationInfo)
         {
-            _ = creationInformation ?? throw new ArgumentNullException(nameof(creationInformation));
+            _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathConstructor(typeof(Tenant)));
@@ -73,7 +73,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 new ObjectPathMethod(
                     objectPath1.Id,
                     "CreateSite",
-                    requestPayload.CreateParameter(new TenantSiteCollectionCreationInformation(creationInformation))),
+                    requestPayload.CreateParameter(new TenantSiteCollectionCreationInfo(creationInfo))),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {
@@ -84,9 +84,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
-        public void AddObjectAwait(IReadOnlyDictionary<string, object> creationInformation)
+        public void AddObjectAwait(IReadOnlyDictionary<string, object> creationInfo)
         {
-            this.WaitObject(this.AddObject(creationInformation));
+            this.WaitObject(this.AddObject(creationInfo));
         }
 
         public TenantSiteCollection GetObject(TenantSiteCollection siteCollectionObject)
@@ -182,7 +182,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 .ToObject<TenantSiteCollectionEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
-        public IEnumerable<TenantSiteCollection> GetObjectEnumerable(IReadOnlyDictionary<string, object> filterInformation)
+        public IEnumerable<TenantSiteCollection> GetObjectEnumerable(IReadOnlyDictionary<string, object> filterInfo)
         {
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
@@ -191,7 +191,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                     new ObjectPathMethod(
                     objectPath1.Id,
                     "GetSitePropertiesFromSharePointByFilters",
-                    requestPayload.CreateParameter(new TenantSiteCollectionFilter(filterInformation))
+                    requestPayload.CreateParameter(new TenantSiteCollectionFilter(filterInfo))
                 ),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
@@ -258,14 +258,14 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
             this.WaitObject(this.RemoveObject(siteCollectionObject));
         }
 
-        public TenantOperationResult SetObject(TenantSiteCollection siteCollectionObject, IReadOnlyDictionary<string, object> modificationInformation)
+        public TenantOperationResult SetObject(TenantSiteCollection siteCollectionObject, IReadOnlyDictionary<string, object> modificationInfo)
         {
             _ = siteCollectionObject ?? throw new ArgumentNullException(nameof(siteCollectionObject));
-            _ = modificationInformation ?? throw new ArgumentNullException(nameof(modificationInformation));
+            _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathIdentity(siteCollectionObject.ObjectIdentity),
-                requestPayload.CreateSetPropertyDelegates(siteCollectionObject, modificationInformation).ToArray());
+                requestPayload.CreateSetPropertyDelegates(siteCollectionObject, modificationInfo).ToArray());
             var objectPath2 = requestPayload.Add(
                 new ObjectPathMethod(objectPath1.Id, "Update"),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -278,9 +278,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
-        public void SetObjectAwait(TenantSiteCollection siteCollectionObject, IReadOnlyDictionary<string, object> modificationInformation)
+        public void SetObjectAwait(TenantSiteCollection siteCollectionObject, IReadOnlyDictionary<string, object> modificationInfo)
         {
-            this.WaitObject(this.SetObject(siteCollectionObject, modificationInformation));
+            this.WaitObject(this.SetObject(siteCollectionObject, modificationInfo));
         }
 
         public TenantOperationResult UnlockObject(TenantSiteCollection siteCollectionObject)

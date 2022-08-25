@@ -14,12 +14,12 @@ Creates a new anonymous link.
 
 ### ParamSet1
 ```
-Add-KshAnonymousLink -Url <String> -IsEditLink <Boolean> [<CommonParameters>]
+Add-KshAnonymousLink -Url <Uri> -IsEditLink <Boolean> [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-Add-KshAnonymousLink -Url <String> -IsEditLink <Boolean> -Expiration <DateTime> [<CommonParameters>]
+Add-KshAnonymousLink -Url <Uri> -IsEditLink <Boolean> -Expiration <DateTime> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -71,7 +71,7 @@ Accept wildcard characters: False
 Specifies the URL.
 
 ```yaml
-Type: String
+Type: Uri
 Parameter Sets: (All)
 Aliases:
 

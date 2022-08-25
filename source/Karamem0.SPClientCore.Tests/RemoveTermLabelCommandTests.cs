@@ -18,7 +18,6 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("Remove-KshTermLabel")]
     public class RemoveTermLabelCommandTests
     {
 

@@ -20,7 +20,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
     public interface IRoleDefinitionService
     {
 
-        RoleDefinition AddObject(IReadOnlyDictionary<string, object> creationInformation);
+        RoleDefinition AddObject(IReadOnlyDictionary<string, object> creationInfo);
 
         RoleDefinition GetObject(RoleDefinition roleDefinitionObject);
 
@@ -32,7 +32,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
 
         void RemoveObject(RoleDefinition roleDefinitionObject);
 
-        void SetObject(RoleDefinition roleDefinitionObject, IReadOnlyDictionary<string, object> modificationInformation);
+        void SetObject(RoleDefinition roleDefinitionObject, IReadOnlyDictionary<string, object> modificationInfo);
 
     }
 
@@ -43,9 +43,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
         {
         }
 
-        public RoleDefinition AddObject(IReadOnlyDictionary<string, object> creationInformation)
+        public RoleDefinition AddObject(IReadOnlyDictionary<string, object> creationInfo)
         {
-            _ = creationInformation ?? throw new ArgumentNullException(nameof(creationInformation));
+            _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathStaticProperty(typeof(Context), "Current"));
@@ -57,7 +57,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 new ObjectPathMethod(
                     objectPath3.Id,
                     "Add",
-                    requestPayload.CreateParameter(new RoleDefinitionCreationInformation(creationInformation))),
+                    requestPayload.CreateParameter(new RoleDefinitionCreationInfo(creationInfo))),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {

@@ -24,7 +24,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
 
         void RemoveObject(Folder folderObject, string pageName);
 
-        void SetObject(Folder folderObject, string pageName, IReadOnlyDictionary<string, object> modificationInformation);
+        void SetObject(Folder folderObject, string pageName, IReadOnlyDictionary<string, object> modificationInfo);
 
     }
 
@@ -98,11 +98,11 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
             _ = this.ClientContext.ProcessQuery(requestPayload);
         }
 
-        public void SetObject(Folder folderObject, string pageName, IReadOnlyDictionary<string, object> modificationInformation)
+        public void SetObject(Folder folderObject, string pageName, IReadOnlyDictionary<string, object> modificationInfo)
         {
             _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
             _ = pageName ?? throw new ArgumentNullException(nameof(pageName));
-            _ = modificationInformation ?? throw new ArgumentNullException(nameof(modificationInformation));
+            _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
             var fileName = System.IO.Path.ChangeExtension(pageName, ".aspx");
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
@@ -116,7 +116,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                     requestPayload.CreateParameter(fileName)));
             var objectPath4 = requestPayload.Add(
                 new ObjectPathProperty(objectPath3.Id, "ListItemAllFields"));
-            if (modificationInformation.ContainsKey("PageLayoutType"))
+            if (modificationInfo.ContainsKey("PageLayoutType"))
             {
                 var objectPath5 = requestPayload.Add(
                     objectPath4,
@@ -124,9 +124,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                         objectPathId,
                         "SetFieldValue",
                         requestPayload.CreateParameter("PageLayoutType"),
-                        requestPayload.CreateParameter(modificationInformation["PageLayoutType"].ToString())));
+                        requestPayload.CreateParameter(modificationInfo["PageLayoutType"].ToString())));
             }
-            if (modificationInformation.ContainsKey("Title"))
+            if (modificationInfo.ContainsKey("Title"))
             {
                 var objectPath5 = requestPayload.Add(
                     objectPath4,
@@ -134,7 +134,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                         objectPathId,
                         "SetFieldValue",
                         requestPayload.CreateParameter("Title"),
-                        requestPayload.CreateParameter(modificationInformation["Title"])));
+                        requestPayload.CreateParameter(modificationInfo["Title"])));
             }
             var objectPath6 = requestPayload.Add(
                 objectPath4,

@@ -304,6 +304,34 @@
       </TableControl>
     </View>
     <View>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.ExternalUser</Name>
+      <ViewSelectedBy>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.ExternalUser</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <TableHeaders>
+          <TableColumnHeader />
+          <TableColumnHeader />
+          <TableColumnHeader />
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>DisplayName</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>InvitedAs</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>AcceptedAs</PropertyName>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+    <View>
       <Name>Karamem0.SharePoint.PowerShell.Models.V1.Feature</Name>
       <ViewSelectedBy>
         <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.Feature</TypeName>

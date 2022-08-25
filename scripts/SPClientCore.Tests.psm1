@@ -21,7 +21,10 @@ function Install-TestSite {
         $Password,
         [Parameter(Mandatory = $true)]
         [string]
-        $DomainName
+        $DomainName,
+        [Parameter(Mandatory = $true)]
+        [string]
+        $ExternalUserName
     )
 
     process {
@@ -36,6 +39,7 @@ function Install-TestSite {
         $appSettings.LoginDomainName = $DomainName
         $appSettings.LoginUserName = "$UserName@$DomainName"
         $appSettings.LoginPassword = $Password
+        $appSettings.ExternalUserName = $ExternalUserName
         $appSettings.BaseUrl = $Url
         $appSettings.AuthorityUrl = $authorityUrl
         $appSettings.AdminUrl = $adminUrl
@@ -61,7 +65,7 @@ function Install-TestSite {
         $appSettings.TermGroup3Id = $termGroup3.Id
         $appSettings.TermGroup3Name = $termGroup3.Name
 
-        Write-Progress -Activity 'Waiting...' -Status 'Processing'
+        Write-Progress -Activity 'Creating term sets...' -Status 'Waiting'
         Start-Sleep -Seconds 15
 
         Write-Progress -Activity 'Creating term sets...' -Status 'Test Term Set 1'
@@ -88,7 +92,7 @@ function Install-TestSite {
         $appSettings.TermSet3Id = $termSet3.Id
         $appSettings.TermSet3Name = $termSet3.Name
 
-        Write-Progress -Activity 'Waiting...' -Status 'Processing'
+        Write-Progress -Activity 'Creating terms...' -Status 'Waiting'
         Start-Sleep -Seconds 15
 
         Write-Progress -Activity 'Creating terms...' -Status 'Test Term 1'
@@ -130,7 +134,7 @@ function Install-TestSite {
             -Title 'SPClientCore' `
             -Url $Url
 
-        Write-Progress -Activity 'Waiting...' -Status 'Processing'
+        Write-Progress -Activity 'Updating a site collection...' -Status 'Waiting'
         Start-Sleep -Seconds 60
 
         Write-Progress -Activity 'Updating a site collection...' -Status 'Processing'
@@ -139,7 +143,7 @@ function Install-TestSite {
             -SharingCapability ExternalUserAndGuestSharing `
             -PassThru
 
-        Write-Progress -Activity 'Waiting...' -Status 'Processing'
+        Write-Progress -Activity 'Retrieving a site collection...' -Status 'Waiting'
         Start-Sleep -Seconds 60
 
         Write-Progress -Activity 'Retrieving a site collection....' -Status 'Processing'
@@ -170,6 +174,14 @@ function Install-TestSite {
         $group3 = Add-KshGroup `
             -Description 'Test Group 3' `
             -Title 'Test Group 3'
+
+        Write-Progress -Activity 'Retrieving site groups...' -Status 'Waiting'
+        Start-Sleep -Seconds 15
+
+        Write-Progress -Activity 'Retrieving site groups...' -Status 'Processing'
+        $group1 = Get-KshGroup -GroupTitle 'Test Group 1'
+        $group2 = Get-KshGroup -GroupTitle 'Test Group 2'
+        $group3 = Get-KshGroup -GroupTitle 'Test Group 3'
 
         Write-Progress -Activity 'Updating site groups...' -Status 'Test Group 1'
         Set-KshGroupOwner `
@@ -1539,7 +1551,10 @@ function Uninstall-TestSite {
         $Password,
         [Parameter(Mandatory = $true)]
         [string]
-        $DomainName
+        $DomainName,
+        [Parameter(Mandatory = $true)]
+        [string]
+        $ExternalUserName
     )
 
     process {
@@ -1560,7 +1575,7 @@ function Uninstall-TestSite {
         Get-KshTenantSiteCollection -SiteCollectionUrl $Url | Remove-KshTenantSiteCollection
         Get-KshTenantDeletedSiteCollection -SiteCollectionUrl $Url | Remove-KshTenantDeletedSiteCollection
 
-        Write-Progress -Activity 'Waiting...' -Status 'Processing'
+        Write-Progress -Activity 'Retrieving term groups...' -Status 'Waiting'
         Start-Sleep -Seconds 15
 
         Write-Progress -Activity 'Retrieving term groups...' -Status 'Processing'
@@ -1587,7 +1602,7 @@ function Uninstall-TestSite {
         Write-Progress -Activity 'Removing terms...' -Status 'Processing'
         Remove-KshTerm -Identity $term1
 
-        Write-Progress -Activity 'Waiting...' -Status 'Processing'
+        Write-Progress -Activity 'Removing term sets...' -Status 'Waiting'
         Start-Sleep -Seconds 15
 
         Write-Progress -Activity 'Removing term sets...' -Status 'Processing'
@@ -1595,16 +1610,13 @@ function Uninstall-TestSite {
         Remove-KshTermSet -Identity $termSet2
         Remove-KshTermSet -Identity $termSet3
 
-        Write-Progress -Activity 'Waiting...' -Status 'Processing'
+        Write-Progress -Activity 'Removing term groups...' -Status 'Waiting'
         Start-Sleep -Seconds 15
 
         Write-Progress -Activity 'Removing term groups...' -Status 'Processing'
         Remove-KshTermGroup -Identity $termGroup1
         Remove-KshTermGroup -Identity $termGroup2
         Remove-KshTermGroup -Identity $termGroup3
-
-        Write-Progress -Activity 'Waiting...' -Status 'Processing'
-        Start-Sleep -Seconds 15
 
         Write-Progress -Activity 'Sign in...' -Status 'Processing'
         $tenantAppCatalogUrl = Get-KshTenantAppCatalog

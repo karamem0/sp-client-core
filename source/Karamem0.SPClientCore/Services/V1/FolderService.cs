@@ -53,7 +53,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
 
         void RemoveObject(Folder folderObject);
 
-        void SetObject(Folder folderObject, IReadOnlyDictionary<string, object> modificationInformation);
+        void SetObject(Folder folderObject, IReadOnlyDictionary<string, object> modificationInfo);
 
         void SuspendObject(Folder folderObject, string comment);
 

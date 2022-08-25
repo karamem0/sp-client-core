@@ -13,11 +13,14 @@ Changes the tenant.
 ## SYNTAX
 
 ```
-Set-KshTenant [-AddressbarLinkPermission <TenantRoleType>] [-AllowCommentsTextOnEmailEnabled <Boolean>]
- [-AllowDownloadingNonWebViewableFiles <Boolean>] [-AllowedDomainListForSyncClient <Guid[]>]
- [-AllowEditing <Boolean>] [-AllowEveryoneExceptExternalUsersClaimInPrivateSite <Boolean>]
- [-AllowLimitedAccessOnUnmanagedDevices <Boolean>] [-AllowOverrideForBlockUserInfoVisibility <Boolean>]
- [-AnyoneLinkTrackUsers <Boolean>] [-ApplyAppEnforcedRestrictionsToAdHocRecipients <Boolean>]
+Set-KshTenant [-AddressbarLinkPermission <RoleType>]
+ [-AllowAnonymousMeetingParticipantsToAccessWhiteboards <SharingState>]
+ [-AllowCommentsTextOnEmailEnabled <Boolean>] [-AllowDownloadingNonWebViewableFiles <Boolean>]
+ [-AllowedDomainListForSyncClient <Guid[]>] [-AllowEditing <Boolean>]
+ [-AllowEveryoneExceptExternalUsersClaimInPrivateSite <Boolean>]
+ [-AllowGuestUserShareToUsersNotInSiteCollection <Boolean>] [-AllowLimitedAccessOnUnmanagedDevices <Boolean>]
+ [-AllowOverrideForBlockUserInfoVisibility <Boolean>] [-AnyoneLinkTrackUsers <Boolean>]
+ [-ApplyAppEnforcedRestrictionsToAdHocRecipients <Boolean>]
  [-AuthenticationContextResilienceMode <ResilienceMode>] [-BccExternalSharingInvitations <Boolean>]
  [-BccExternalSharingInvitationsList <String>] [-BlockAccessOnUnmanagedDevices <Boolean>]
  [-BlockDownloadLinksFileType <BlockDownloadLinksFileType>] [-BlockMacSync <Boolean>]
@@ -27,10 +30,12 @@ Set-KshTenant [-AddressbarLinkPermission <TenantRoleType>] [-AllowCommentsTextOn
  [-CommentsOnListItemsDisabled <Boolean>] [-CommentsOnSitePagesDisabled <Boolean>]
  [-CompatibilityRange <String>] [-ConditionalAccessPolicy <ConditionalAccessPolicyType>]
  [-ConditionalAccessPolicyErrorHelpLink <String>] [-ContentTypeSyncSiteTemplatesList <String[]>]
- [-CoreLoopDefaultSharingLinkRole <TenantRoleType>] [-CoreLoopDefaultSharingLinkScope <SharingScope>]
- [-CoreLoopSharingCapability <SharingCapabilities>] [-CustomizedExternalSharingServiceUrl <String>]
- [-DefaultContentCenterSite <SiteInfoForSitePicker>] [-DefaultLinkPermission <SharingPermissionType>]
- [-DefaultOneDriveMode <String>] [-DefaultSharingLinkType <SharingLinkType>] [-DisableAddToOneDrive <Boolean>]
+ [-CoreLoopDefaultSharingLinkRole <RoleType>] [-CoreLoopDefaultSharingLinkScope <SharingScope>]
+ [-CoreLoopSharingCapability <SharingCapabilities>] [-CoreRequestFilesLinkEnabled <Boolean>]
+ [-CoreRequestFilesLinkExpirationInDays <Int32>] [-CoreSharingCapability <SharingCapabilities>]
+ [-CustomizedExternalSharingServiceUrl <String>] [-DefaultContentCenterSite <SiteInfoForSitePicker>]
+ [-DefaultLinkPermission <SharingPermissionType>] [-DefaultOneDriveMode <String>]
+ [-DefaultSharingLinkType <SharingLinkType>] [-DisableAddToOneDrive <Boolean>]
  [-DisableBackToClassic <Boolean>] [-DisableCustomAppAuthentication <Boolean>]
  [-DisabledModernListTemplateIds <Guid[]>] [-DisabledWebPartIds <Guid[]>]
  [-DisableOutlookPSTVersionTrimming <Boolean>] [-DisablePersonalListCreation <Boolean>]
@@ -41,18 +46,18 @@ Set-KshTenant [-AddressbarLinkPermission <TenantRoleType>] [-AllowCommentsTextOn
  [-EmailAttestationRequired <Boolean>] [-EnableAIPIntegration <Boolean>] [-EnableAutoNewsDigest <Boolean>]
  [-EnableAzureAdB2BIntegration <Boolean>] [-EnableGuestSignInAcceleration <Boolean>]
  [-EnableMinimumVersionRequirement <Boolean>] [-EnableMipSiteLabel <Boolean>]
- [-EnablePromotedFileHandlers <Boolean>] [-ExcludedFileExtensionsForSyncClient <String[]>]
- [-ExternalServicesEnabled <Boolean>] [-ExternalUserExpirationRequired <Boolean>]
- [-ExternalUserExpireInDays <Int32>] [-FileAnonymousLinkType <AnonymousLinkType>]
- [-FilePickerExternalImageSearchEnabled <Boolean>] [-FolderAnonymousLinkType <AnonymousLinkType>]
- [-GuestSharingGroupAllowListInTenant <String>]
+ [-EnablePromotedFileHandlers <Boolean>] [-EnableRestrictedAccessControl <Boolean>]
+ [-ExcludedFileExtensionsForSyncClient <String[]>] [-ExternalServicesEnabled <Boolean>]
+ [-ExternalUserExpirationRequired <Boolean>] [-ExternalUserExpireInDays <Int32>]
+ [-FileAnonymousLinkType <AnonymousLinkType>] [-FilePickerExternalImageSearchEnabled <Boolean>]
+ [-FolderAnonymousLinkType <AnonymousLinkType>] [-GuestSharingGroupAllowListInTenant <String>]
  [-GuestSharingGroupAllowListInTenantByPrincipalIdentity <String[]>]
  [-HasAdminCompletedCUConfiguration <Boolean>] [-HideDefaultThemes <Boolean>]
  [-HideSyncButtonOnDocLib <Boolean>] [-HideSyncButtonOnOneDrive <Boolean>]
  [-ImageTaggingOption <ImageTaggingChoice>] [-IncludeAtAGlanceInShareEmails <Boolean>]
  [-InformationBarriersSuspension <Boolean>] [-IPAddressAllowList <String>] [-IPAddressEnforcement <Boolean>]
  [-IPAddressWacTokenLifetime <Int32>] [-IsAppBarTemporarilyDisabled <Boolean>]
- [-IsCollabMeetingNotesFluidEnabled <Boolean>] [-IsFluidEnabled <Boolean>]
+ [-IsCollabMeetingNotesFluidEnabled <Boolean>] [-IsFluidEnabled <Boolean>] [-IsLoopEnabled <Boolean>]
  [-IsUnmanagedSyncClientForTenantRestricted <Boolean>] [-IsWhiteboardFluidEnabled <Boolean>]
  [-LabelMismatchEmailHelpLink <String>] [-LegacyAuthProtocolsEnabled <Boolean>]
  [-LimitedAccessFileType <LimitedAccessFileType>] [-MachineLearningCaptureEnabled <Boolean>]
@@ -62,8 +67,9 @@ Set-KshTenant [-AddressbarLinkPermission <TenantRoleType>] [-AllowCommentsTextOn
  [-NotificationsInSharePointEnabled <Boolean>] [-NotifyOwnersWhenInvitationsAccepted <Boolean>]
  [-NotifyOwnersWhenItemsReshared <Boolean>] [-OfficeClientAdalDisabled <Boolean>]
  [-OneDriveAccessRequests <SharingState>] [-OneDriveForGuestsEnabled <Boolean>]
- [-OneDriveLoopDefaultSharingLinkRole <TenantRoleType>] [-OneDriveLoopDefaultSharingLinkScope <SharingScope>]
+ [-OneDriveLoopDefaultSharingLinkRole <RoleType>] [-OneDriveLoopDefaultSharingLinkScope <SharingScope>]
  [-OneDriveLoopSharingCapability <SharingCapabilities>] [-OneDriveMembersCanShare <SharingState>]
+ [-OneDriveRequestFilesLinkEnabled <Boolean>] [-OneDriveRequestFilesLinkExpirationInDays <Int32>]
  [-OneDriveSharingCapability <SharingCapabilities>] [-OneDriveStorageQuota <Int64>]
  [-OptOutOfGrooveBlock <Boolean>] [-OptOutOfGrooveSoftBlock <Boolean>]
  [-OrphanedPersonalSitesRetentionPeriod <Int32>] [-OwnerAnonymousNotification <Boolean>]
@@ -74,7 +80,8 @@ Set-KshTenant [-AddressbarLinkPermission <TenantRoleType>] [-AllowCommentsTextOn
  [-SharingAllowedDomainList <String>] [-SharingBlockedDomainList <String>]
  [-SharingCapability <SharingCapabilities>] [-SharingDomainRestrictionMode <SharingDomainRestrictionMode>]
  [-ShowAllUsersClaim <Boolean>] [-ShowEveryoneClaim <Boolean>]
- [-ShowEveryoneExceptExternalUsersClaim <Boolean>] [-SignInAccelerationDomain <String>]
+ [-ShowEveryoneExceptExternalUsersClaim <Boolean>] [-ShowPeoplePickerSuggestionsForGuestUsers <Boolean>]
+ [-ShowPeoplePickerGroupSuggestionsForInformationBarriers <Boolean>] [-SignInAccelerationDomain <String>]
  [-SocialBarOnSitePagesDisabled <Boolean>] [-SpecialCharactersStateInFileFolderNames <SpecialCharactersState>]
  [-StartASiteFormUrl <String>] [-StopNew2010Workflows <Boolean>] [-StopNew2013Workflows <Boolean>]
  [-SyncAzureAdB2BManagementPolicy <Boolean>] [-SyncPrivacyProfileProperties <Boolean>]
@@ -101,10 +108,26 @@ Changes properties of the tenant.
 Specifies the address bar link permission.
 
 ```yaml
-Type: TenantRoleType
+Type: RoleType
 Parameter Sets: (All)
 Aliases:
 Accepted values: None, View, Edit, Owner, LimitedView, LimitedEdit, Review, RestrictedView, Submit, ManageList
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AllowAnonymousMeetingParticipantsToAccessWhiteboards
+Specifies whether to allow anonymous meeting participants to access the whiteboards.
+
+```yaml
+Type: SharingState
+Parameter Sets: (All)
+Aliases:
+Accepted values: Unspecified, On, Off
 
 Required: False
 Position: Named
@@ -160,6 +183,21 @@ Accept wildcard characters: False
 
 ### -AllowEveryoneExceptExternalUsersClaimInPrivateSite
 Specifies whether to allow "Everyone except external users" claim in private site.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AllowGuestUserShareToUsersNotInSiteCollection
+Specifies whether to allow guests to share to users not in the site collection.
 
 ```yaml
 Type: Boolean
@@ -509,10 +547,10 @@ Accept wildcard characters: False
 ```
 
 ### -CoreLoopDefaultSharingLinkRole
-Specifies the Loop default sharing link role for SharePoint.
+Specifies the Microsoft Loop default sharing link role for SharePoint.
 
 ```yaml
-Type: TenantRoleType
+Type: RoleType
 Parameter Sets: (All)
 Aliases:
 Accepted values: None, View, Edit, Owner, LimitedView, LimitedEdit, Review, RestrictedView, Submit, ManageList
@@ -525,7 +563,7 @@ Accept wildcard characters: False
 ```
 
 ### -CoreLoopDefaultSharingLinkScope
-Specifies the Loop default sharing link scope for SharePoint.
+Specifies the Microsoft Loop default sharing link scope for SharePoint.
 
 ```yaml
 Type: SharingScope
@@ -541,7 +579,53 @@ Accept wildcard characters: False
 ```
 
 ### -CoreLoopSharingCapability
-Specifies the Loop sharing capavility for SharePoint.
+Specifies the Microsoft Loop sharing capavility for SharePoint.
+
+```yaml
+Type: SharingCapabilities
+Parameter Sets: (All)
+Aliases:
+Accepted values: Disabled, ExternalUserSharingOnly, ExternalUserAndGuestSharing, ExistingExternalUserSharingOnly
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -CoreRequestFilesLinkEnabled
+Specifies whether to enable request files link.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -CoreRequestFilesLinkExpirationInDays
+Specifies the days that the request files link will be expired.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -CoreSharingCapability
+Specifies the sharing capability.
 
 ```yaml
 Type: SharingCapabilities
@@ -978,6 +1062,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -EnableRestrictedAccessControl
+Specifies whether to enable the restricted access control.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -ExcludedFileExtensionsForSyncClient
 Specifies the file extensions that excluded for sync client.
 
@@ -1311,6 +1410,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -IsLoopEnabled
+Specifies whether to enable Microsoft Loop.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -IsUnmanagedSyncClientForTenantRestricted
 Specifies whether unmanaged sync client for client is restricted.
 
@@ -1571,10 +1685,10 @@ Accept wildcard characters: False
 ```
 
 ### -OneDriveLoopDefaultSharingLinkRole
-Specifies the Loop default sharing link role for OneDrive.
+Specifies the Microsoft Loop default sharing link role for OneDrive.
 
 ```yaml
-Type: TenantRoleType
+Type: RoleType
 Parameter Sets: (All)
 Aliases:
 Accepted values: None, View, Edit, Owner, LimitedView, LimitedEdit, Review, RestrictedView, Submit, ManageList
@@ -1587,7 +1701,7 @@ Accept wildcard characters: False
 ```
 
 ### -OneDriveLoopDefaultSharingLinkScope
-Specifies the Loop default sharing link scope for OneDrive.
+Specifies the Microsoft Loop default sharing link scope for OneDrive.
 
 ```yaml
 Type: SharingScope
@@ -1603,7 +1717,7 @@ Accept wildcard characters: False
 ```
 
 ### -OneDriveLoopSharingCapability
-Specifies the Loop sharing capability for OneDrive.
+Specifies the Microsoft Loop sharing capability for OneDrive.
 
 ```yaml
 Type: SharingCapabilities
@@ -1626,6 +1740,36 @@ Type: SharingState
 Parameter Sets: (All)
 Aliases:
 Accepted values: Unspecified, On, Off
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -OneDriveRequestFilesLinkEnabled
+Specifies whether to enable request files link for OneDrive.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -OneDriveRequestFilesLinkExpirationInDays
+Specifies the days that the request files link will be expired for OneDrive.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
 
 Required: False
 Position: Named
@@ -1939,6 +2083,36 @@ Accept wildcard characters: False
 
 ### -ShowEveryoneExceptExternalUsersClaim
 Specifies whether to show \[Everyone except external users\] claim.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ShowPeoplePickerGroupSuggestionsForInformationBarriers
+Specifies whether the people picker group show suggestions for information barriers.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ShowPeoplePickerSuggestionsForGuestUsers
+Specifies whether the people picker show suggestions for guest users.
 
 ```yaml
 Type: Boolean

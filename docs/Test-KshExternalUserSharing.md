@@ -1,0 +1,87 @@
+---
+external help file: SPClientCore.dll-help.xml
+Module Name: SPClientCore
+online version:
+schema: 2.0.0
+---
+
+# Test-KshExternalUserSharing
+
+## SYNOPSIS
+Checks whether the site or list allows external sharing.
+
+## SYNTAX
+
+### ParamSet1
+```
+Test-KshExternalUserSharing [-Site] [<CommonParameters>]
+```
+
+### ParamSet2
+```
+Test-KshExternalUserSharing [-List] <List> [<CommonParameters>]
+```
+
+## DESCRIPTION
+The Test-KshExternalUserSharing cmdlet returns a value that indicates the site or list allows external sharing.
+
+## EXAMPLES
+
+### Example 1
+```powershell
+PS C:\> Test-KshExternalUserSharing -Site
+```
+
+Checks the external sharing of the site.
+
+### Example 2
+```powershell
+PS C:\> Test-KshExternalUserSharing -List (Get-KshList -ListId 'a01f8e07-290f-4644-9db8-85bb00b85e74')
+```
+
+Checks the external sharing of the list.
+
+## PARAMETERS
+
+### -List
+Specifies the list.
+
+```yaml
+Type: List
+Parameter Sets: ParamSet2
+Aliases:
+
+Required: True
+Position: 0
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Site
+If specified, uses the current site.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: ParamSet1
+Aliases:
+
+Required: True
+Position: 0
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### None
+## OUTPUTS
+
+### System.Boolean
+## NOTES
+
+## RELATED LINKS

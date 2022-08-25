@@ -22,7 +22,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
     public class AadOAuthTokenDictionary : Dictionary<string, AadOAuthToken>
     {
 
-        private static readonly JsonSerializer JsonSerializer = new JsonSerializer();
+        private static readonly JsonSerializer JsonSerializer = JsonSerializer.Create();
 
         private static readonly FileInfo FileInfo = new FileInfo(
             Path.Combine(

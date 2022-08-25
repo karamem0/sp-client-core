@@ -13,7 +13,7 @@ Removes an organization sharing link.
 ## SYNTAX
 
 ```
-Remove-KshOrganizationSharingLink [-Url] <String> [-IsEditLink] <Boolean>
+Remove-KshOrganizationSharingLink [-Url] <Uri> [-IsEditLink] <Boolean>
  [-RemoveAssociatedSharingLinkGroup] <Boolean> [<CommonParameters>]
 ```
 
@@ -65,7 +65,7 @@ Accept wildcard characters: False
 Specifies the URL.
 
 ```yaml
-Type: String
+Type: Uri
 Parameter Sets: (All)
 Aliases:
 

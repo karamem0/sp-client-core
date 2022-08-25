@@ -32,7 +32,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
 
         void RemoveObject(TermGroup termGroupObject);
 
-        void SetObject(TermGroup termGroupObject, IReadOnlyDictionary<string, object> modificationInformation);
+        void SetObject(TermGroup termGroupObject, IReadOnlyDictionary<string, object> modificationInfo);
 
     }
 
@@ -140,16 +140,16 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 .ToObject<TermGroupEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
-        public override void SetObject(TermGroup termGroupObject, IReadOnlyDictionary<string, object> modificationInformation)
+        public override void SetObject(TermGroup termGroupObject, IReadOnlyDictionary<string, object> modificationInfo)
         {
             _ = termGroupObject ?? throw new ArgumentNullException(nameof(termGroupObject));
-            _ = modificationInformation ?? throw new ArgumentNullException(nameof(modificationInformation));
+            _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathIdentity(termGroupObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
                 objectPath1,
-                requestPayload.CreateSetPropertyDelegates(termGroupObject, modificationInformation).ToArray());
+                requestPayload.CreateSetPropertyDelegates(termGroupObject, modificationInfo).ToArray());
             var objectPath3 = requestPayload.Add(
                 new ObjectPathProperty(objectPath2.Id, "TermStore"),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId));

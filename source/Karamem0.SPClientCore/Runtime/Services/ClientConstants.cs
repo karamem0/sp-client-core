@@ -27,6 +27,8 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
 
         public const int ChunkSize = 10 * 1024 * 1024;
 
+        public const int PageSize = 25;
+
     }
 
 }

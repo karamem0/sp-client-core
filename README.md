@@ -33,10 +33,12 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
 
 ## Dependencies
 
-- [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/5.0.2) (5.0.2)
+- [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights/2.13.1) (2.13.1)
+- [Microsoft.ApplicationInsights.WorkerService](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WorkerService/2.13.1) (2.13.1)
+- [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/5.0.0) (5.0.0)
 - [Microsoft.Extensions.DependencyInjection.Abstractions](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection.Abstractions/5.0.0) (5.0.0)
-- [Microsoft.IdentityModel.JsonWebTokens](https://www.nuget.org/packages/Microsoft.IdentityModel.JsonWebTokens/6.15.0) (6.15.0)
-- [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/13.0.1) (13.0.1)
+- [Microsoft.IdentityModel.JsonWebTokens](https://www.nuget.org/packages/Microsoft.IdentityModel.JsonWebTokens/5.5.0) (5.5.0)
+- [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/12.0.3) (12.0.3)
 - [PowerShellStandard.Library](https://www.nuget.org/packages/PowerShellStandard.Library/5.1.0) (5.1.0)
 
 ## Command References
@@ -139,6 +141,10 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Get-KshDrive](docs/Get-KshDrive.md)
   - Drive Items
     - [Get-KshDriveItem](docs/Get-KshDriveItem.md)
+  - External Sharing
+    - [Get-KshSharingInfo](docs/Get-KshSharingInfo.md)
+    - [Get-KshSharingSettings](docs/Get-KshSharingSettings.md)
+    - [Test-KshExternalUserSharing](docs/Test-KshExternalUserSharing.md)
   - Files
     - [Get-KshFile](docs/Get-KshFile.md)
     - [Add-KshFile](docs/Add-KshFile.md)
@@ -288,6 +294,7 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Remove-KshUser](docs/Remove-KshUser.md)
     - [Set-KshUser](docs/Set-KshUser.md)
     - [Resolve-KshUser](docs/Resolve-KshUser.md)
+    - [Add-KshExternalUser](docs/Get-KshExternalUser.md)
   - User Permissions
     - [Get-KshUserPermission](docs/Get-KshUserPermission.md)
   - User Properties
@@ -312,11 +319,11 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Get-KshTenantDeletedSiteCollection](docs/Get-KshTenantDeletedSiteCollection.md)
     - [Remove-KshTenantDeletedSiteCollection](docs/Remove-KshTenantDeletedSiteCollection.md)
     - [Restore-KshTenantDeletedSiteCollection](docs/Restore-KshTenantDeletedSiteCollection.md)
-  - Home site
+  - Home Site
     - [Get-KshTenantHomeSite](docs/Get-KshTenantHomeSite.md)
     - [Remove-KshTenantHomeSite](docs/Remove-KshTenantHomeSite.md)
     - [Set-KshTenantHomeSite](docs/Set-KshTenantHomeSite.md)
-  - Hub sites
+  - Hub Sites
     - [Get-KshTenantHubSite](docs/Get-KshTenantHubSite.md)
     - [Add-KshTenantHubSite](docs/Add-KshTenantHubSite.md)
     - [Remove-KshTenantHubSite](docs/Remove-KshTenantHubSite.md)
@@ -356,6 +363,8 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
     - [Add-KshTenantUser](docs/Add-KshTenantUser.md)
     - [Remove-KshTenantUser](docs/Remove-KshTenantUser.md)
     - [Set-KshTenantUser](docs/Set-KshTenantUser.md)
+    - [Get-KshTenantExternalUser](docs/Get-KshTenantExternalUser.md)
+    - [Remove-KshTenantExternalUser](docs/Remove-KshTenantExternalUser.md)
 - Managed Metadata
   - Custom Properties
     - [Add-KshTermCustomProperty](docs/Add-KshTermCustomProperty.md)

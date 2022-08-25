@@ -20,17 +20,30 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
     public interface ISharingLinkService
     {
 
-        string CreateAnonymousLink(string url, bool isEditLink);
+        string CreateAnonymousLink(Uri url, bool isEditLink);
 
-        string CreateAnonymousLink(string url, bool isEditLink, DateTime expiration);
+        string CreateAnonymousLink(Uri url, bool isEditLink, DateTime expiration);
 
-        string CreateOrganizationSharingLink(string url, bool isEditLink);
+        string CreateOrganizationSharingLink(Uri url, bool isEditLink);
 
-        SharingLinkKind GetSharingLinkKind(string url);
+        SharingInfo GetSharingInfo(
+            Uri url,
+            bool excludeCurrentUser,
+            bool excludeSiteAdmin,
+            bool excludeSecurityGroups,
+            bool retrieveAnonymousLinks,
+            bool retrieveUserInfoDetails,
+            bool checkForAccessRequests,
+            bool retrievePermissionLevels
+        );
 
-        void RemoveAnonymousLink(string url, bool isEditLink, bool removeAssociatedSharingLinkGroup);
+        SharingSettings GetSharingSettings(Uri url, int groupId, bool useSimplifiedRoles);
 
-        void RemoveOrganizationSharingLink(string url, bool isEditLink, bool removeAssociatedSharingLinkGroup);
+        SharingLinkKind GetSharingLinkKind(Uri url);
+
+        void RemoveAnonymousLink(Uri url, bool isEditLink, bool removeAssociatedSharingLinkGroup);
+
+        void RemoveOrganizationSharingLink(Uri url, bool isEditLink, bool removeAssociatedSharingLinkGroup);
 
     }
 
@@ -41,7 +54,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
         {
         }
 
-        public string CreateAnonymousLink(string url, bool isEditLink)
+        public string CreateAnonymousLink(Uri url, bool isEditLink)
         {
             _ = url ?? throw new ArgumentNullException(nameof(url));
             var requestPayload = new ClientRequestPayload();
@@ -49,7 +62,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 new ClientActionStaticMethod(
                     typeof(Site),
                     "CreateAnonymousLink",
-                    requestPayload.CreateParameter(url),
+                    requestPayload.CreateParameter(url.ToString()),
                     requestPayload.CreateParameter(isEditLink)
                 ));
             return this.ClientContext
@@ -57,7 +70,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 .ToObject<string>(requestPayload.GetActionId<ClientActionStaticMethod>());
         }
 
-        public string CreateAnonymousLink(string url, bool isEditLink, DateTime expiration)
+        public string CreateAnonymousLink(Uri url, bool isEditLink, DateTime expiration)
         {
             _ = url ?? throw new ArgumentNullException(nameof(url));
             var requestPayload = new ClientRequestPayload();
@@ -65,7 +78,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 new ClientActionStaticMethod(
                     typeof(Site),
                     "CreateAnonymousLinkWithExpiration",
-                    requestPayload.CreateParameter(url),
+                    requestPayload.CreateParameter(url.ToString()),
                     requestPayload.CreateParameter(isEditLink),
                     requestPayload.CreateParameter(expiration.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'sszzz"))
                 ));
@@ -74,7 +87,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 .ToObject<string>(requestPayload.GetActionId<ClientActionStaticMethod>());
         }
 
-        public string CreateOrganizationSharingLink(string url, bool isEditLink)
+        public string CreateOrganizationSharingLink(Uri url, bool isEditLink)
         {
             _ = url ?? throw new ArgumentNullException(nameof(url));
             var requestPayload = new ClientRequestPayload();
@@ -82,7 +95,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 new ClientActionStaticMethod(
                     typeof(Site),
                     "CreateOrganizationSharingLink",
-                    requestPayload.CreateParameter(url),
+                    requestPayload.CreateParameter(url.ToString()),
                     requestPayload.CreateParameter(isEditLink)
                 ));
             return this.ClientContext
@@ -90,7 +103,63 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 .ToObject<string>(requestPayload.GetActionId<ClientActionStaticMethod>());
         }
 
-        public SharingLinkKind GetSharingLinkKind(string url)
+        public SharingInfo GetSharingInfo(
+            Uri url,
+            bool excludeCurrentUser,
+            bool excludeSiteAdmin,
+            bool excludeSecurityGroups,
+            bool retrieveAnonymousLinks,
+            bool retrieveUserInfoDetails,
+            bool checkForAccessRequests,
+            bool retrievePermissionLevels
+        )
+        {
+            _ = url ?? throw new ArgumentNullException(nameof(url));
+            var requestPayload = new ClientRequestPayload();
+            var objectPath1 = requestPayload.Add(
+                new ObjectPathStaticMethod(
+                    typeof(SharingInfo),
+                    "GetObjectSharingInformationByUrl",
+                    requestPayload.CreateParameter(url.ToString()),
+                    requestPayload.CreateParameter(excludeCurrentUser),
+                    requestPayload.CreateParameter(excludeSiteAdmin),
+                    requestPayload.CreateParameter(excludeSecurityGroups),
+                    requestPayload.CreateParameter(retrieveAnonymousLinks),
+                    requestPayload.CreateParameter(retrieveUserInfoDetails),
+                    requestPayload.CreateParameter(checkForAccessRequests),
+                    requestPayload.CreateParameter(retrievePermissionLevels)
+                ),
+                objectPath => new ClientActionQuery(objectPath)
+                {
+                    Query = new ClientQuery(true, typeof(SharingInfo))
+                });
+            return this.ClientContext
+                .ProcessQuery(requestPayload)
+                .ToObject<SharingInfo>(requestPayload.GetActionId<ClientActionQuery>());
+        }
+
+        public SharingSettings GetSharingSettings(Uri url, int groupId, bool useSimplifiedRoles)
+        {
+            _ = url ?? throw new ArgumentNullException(nameof(url));
+            var requestPayload = new ClientRequestPayload();
+            var objectPath1 = requestPayload.Add(
+                new ObjectPathStaticMethod(
+                    typeof(Site),
+                    "GetObjectSharingSettings",
+                    requestPayload.CreateParameter(url.ToString()),
+                    requestPayload.CreateParameter(groupId),
+                    requestPayload.CreateParameter(useSimplifiedRoles)
+                ),
+                objectPath => new ClientActionQuery(objectPath)
+                {
+                    Query = new ClientQuery(true, typeof(SharingSettings))
+                });
+            return this.ClientContext
+                .ProcessQuery(requestPayload)
+                .ToObject<SharingSettings>(requestPayload.GetActionId<ClientActionQuery>());
+        }
+
+        public SharingLinkKind GetSharingLinkKind(Uri url)
         {
             _ = url ?? throw new ArgumentNullException(nameof(url));
             var requestPayload = new ClientRequestPayload();
@@ -98,14 +167,14 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 new ClientActionStaticMethod(
                     typeof(Site),
                     "GetSharingLinkKind",
-                    requestPayload.CreateParameter(url)
+                    requestPayload.CreateParameter(url.ToString())
                 ));
             return this.ClientContext
                 .ProcessQuery(requestPayload)
                 .ToObject<SharingLinkKind>(requestPayload.GetActionId<ClientActionStaticMethod>());
         }
 
-        public void RemoveAnonymousLink(string url, bool isEditLink, bool removeAssociatedSharingLinkGroup)
+        public void RemoveAnonymousLink(Uri url, bool isEditLink, bool removeAssociatedSharingLinkGroup)
         {
             _ = url ?? throw new ArgumentNullException(nameof(url));
             var requestPayload = new ClientRequestPayload();
@@ -113,14 +182,14 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 new ClientActionStaticMethod(
                     typeof(Site),
                     "DeleteAnonymousLinkForObject",
-                    requestPayload.CreateParameter(url),
+                    requestPayload.CreateParameter(url.ToString()),
                     requestPayload.CreateParameter(isEditLink),
                     requestPayload.CreateParameter(removeAssociatedSharingLinkGroup)
             ));
             _ = this.ClientContext.ProcessQuery(requestPayload);
         }
 
-        public void RemoveOrganizationSharingLink(string url, bool isEditLink, bool removeAssociatedSharingLinkGroup)
+        public void RemoveOrganizationSharingLink(Uri url, bool isEditLink, bool removeAssociatedSharingLinkGroup)
         {
             _ = url ?? throw new ArgumentNullException(nameof(url));
             var requestPayload = new ClientRequestPayload();
@@ -128,7 +197,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 new ClientActionStaticMethod(
                     typeof(Site),
                     "DestroyOrganizationSharingLink",
-                    requestPayload.CreateParameter(url),
+                    requestPayload.CreateParameter(url.ToString()),
                     requestPayload.CreateParameter(isEditLink),
                     requestPayload.CreateParameter(removeAssociatedSharingLinkGroup)
             ));

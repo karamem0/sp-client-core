@@ -21,7 +21,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
     public interface IContentTypeColumnService
     {
 
-        ContentTypeColumn AddObject(ContentType contentTypeObject, IReadOnlyDictionary<string, object> creationInformation, bool pushChanges);
+        ContentTypeColumn AddObject(ContentType contentTypeObject, IReadOnlyDictionary<string, object> creationInfo, bool pushChanges);
 
         ContentTypeColumn GetObject(ContentTypeColumn contentTypeColumnObject);
 
@@ -33,7 +33,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
 
         void ReorderObject(ContentType contentTypeObject, IEnumerable<string> contentTypeColumnNames, bool pushChanges);
 
-        void SetObject(ContentTypeColumn contentTypeColumnObject, IReadOnlyDictionary<string, object> modificationInformation, bool pushChanges);
+        void SetObject(ContentTypeColumn contentTypeColumnObject, IReadOnlyDictionary<string, object> modificationInfo, bool pushChanges);
 
     }
 
@@ -44,10 +44,10 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
         {
         }
 
-        public ContentTypeColumn AddObject(ContentType contentTypeObject, IReadOnlyDictionary<string, object> creationInformation, bool pushChanges)
+        public ContentTypeColumn AddObject(ContentType contentTypeObject, IReadOnlyDictionary<string, object> creationInfo, bool pushChanges)
         {
             _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
-            _ = creationInformation ?? throw new ArgumentNullException(nameof(creationInformation));
+            _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
@@ -57,7 +57,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 new ObjectPathMethod(
                     objectPath2.Id,
                     "Add",
-                    requestPayload.CreateParameter(new ContentTypeColumnCreationInformation(creationInformation))),
+                    requestPayload.CreateParameter(new ContentTypeColumnCreationInfo(creationInfo))),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {
@@ -161,10 +161,10 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
             _ = this.ClientContext.ProcessQuery(requestPayload);
         }
 
-        public void SetObject(ContentTypeColumn contentTypeColumnObject, IReadOnlyDictionary<string, object> modificationInformation, bool pushChanges)
+        public void SetObject(ContentTypeColumn contentTypeColumnObject, IReadOnlyDictionary<string, object> modificationInfo, bool pushChanges)
         {
             _ = contentTypeColumnObject ?? throw new ArgumentNullException(nameof(contentTypeColumnObject));
-            _ = modificationInformation ?? throw new ArgumentNullException(nameof(modificationInformation));
+            _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathIdentity(string.Join(":", contentTypeColumnObject.ObjectIdentity.Split(':').SkipLast(2))));
@@ -172,7 +172,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 new ObjectPathIdentity(contentTypeColumnObject.ObjectIdentity));
             var objectPath3 = requestPayload.Add(
                 objectPath2,
-                requestPayload.CreateSetPropertyDelegates(contentTypeColumnObject, modificationInformation).ToArray());
+                requestPayload.CreateSetPropertyDelegates(contentTypeColumnObject, modificationInfo).ToArray());
             var objectPath4 = requestPayload.Add(
                 objectPath1,
                 objectPathId => new ClientActionMethod(

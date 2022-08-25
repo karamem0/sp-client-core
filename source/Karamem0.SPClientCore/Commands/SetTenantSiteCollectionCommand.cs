@@ -138,7 +138,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-        public TenantRoleType LoopDefaultSharingLinkRole { get; private set; }
+        public RoleType LoopDefaultSharingLinkRole { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -183,6 +183,18 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
         public bool ReadOnlyForUnmanagedDevices { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+        public bool RequestFilesLinkEnabled { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+        public int RequestFilesLinkExpirationInDays { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+        public bool RestrictedAccessControl { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]

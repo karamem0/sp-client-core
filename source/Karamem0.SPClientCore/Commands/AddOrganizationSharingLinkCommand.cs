@@ -6,6 +6,7 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -28,14 +29,24 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         }
 
         [Parameter(Mandatory = true)]
-        public string Url { get; private set; }
+        public Uri Url { get; private set; }
 
         [Parameter(Mandatory = true)]
         public bool IsEditLink { get; private set; }
 
         protected override void ProcessRecordCore()
         {
-            this.Outputs.Add(this.Service.CreateOrganizationSharingLink(this.Url, this.IsEditLink));
+            if (this.Url.IsAbsoluteUri)
+            {
+                this.Outputs.Add(this.Service.CreateOrganizationSharingLink(this.Url, this.IsEditLink));
+            }
+            else
+            {
+                throw new ArgumentException(
+                    string.Format(
+                        StringResources.ErrorValueIsNotAbsoluteUrl, this.Url),
+                    nameof(this.Url));
+            }
         }
 
     }

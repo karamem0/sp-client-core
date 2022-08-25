@@ -21,7 +21,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
     public interface ITenantUserService
     {
 
-        User AddObject(Uri siteCollectionUrl, IReadOnlyDictionary<string, object> creationInformation);
+        User AddObject(Uri siteCollectionUrl, IReadOnlyDictionary<string, object> creationInfo);
 
         User GetObject(Uri siteCollectionUrl, int? userId);
 
@@ -44,9 +44,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
         {
         }
 
-        public User AddObject(Uri siteCollectionUrl, IReadOnlyDictionary<string, object> creationInformation)
+        public User AddObject(Uri siteCollectionUrl, IReadOnlyDictionary<string, object> creationInfo)
         {
-            _ = creationInformation ?? throw new ArgumentNullException(nameof(creationInformation));
+            _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathConstructor(typeof(Tenant)));
@@ -63,7 +63,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 new ObjectPathMethod(
                     objectPath4.Id,
                     "Add",
-                    requestPayload.CreateParameter(new UserCreationInformation(creationInformation))),
+                    requestPayload.CreateParameter(new UserCreationInfo(creationInfo))),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {

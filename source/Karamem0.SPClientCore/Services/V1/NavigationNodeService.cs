@@ -20,11 +20,11 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
     public interface INavigationNodeService
     {
 
-        NavigationNode AddObject(NavigationNode navigationNodeObject, IReadOnlyDictionary<string, object> creationInformation);
+        NavigationNode AddObject(NavigationNode navigationNodeObject, IReadOnlyDictionary<string, object> creationInfo);
 
-        NavigationNode AddObjectToQuickLaunch(IReadOnlyDictionary<string, object> creationInformation);
+        NavigationNode AddObjectToQuickLaunch(IReadOnlyDictionary<string, object> creationInfo);
 
-        NavigationNode AddObjectToTopNavigationBar(IReadOnlyDictionary<string, object> creationInformation);
+        NavigationNode AddObjectToTopNavigationBar(IReadOnlyDictionary<string, object> creationInfo);
 
         NavigationNode GetObject(NavigationNode navigationNodeObject);
 
@@ -34,7 +34,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
 
         void RemoveObject(NavigationNode navigationNodeObject);
 
-        void SetObject(NavigationNode navigationNodeObject, IReadOnlyDictionary<string, object> modificationInformation);
+        void SetObject(NavigationNode navigationNodeObject, IReadOnlyDictionary<string, object> modificationInfo);
 
     }
 
@@ -45,10 +45,10 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
         {
         }
 
-        public NavigationNode AddObject(NavigationNode navigationNodeObject, IReadOnlyDictionary<string, object> creationInformation)
+        public NavigationNode AddObject(NavigationNode navigationNodeObject, IReadOnlyDictionary<string, object> creationInfo)
         {
             _ = navigationNodeObject ?? throw new ArgumentNullException(nameof(navigationNodeObject));
-            _ = creationInformation ?? throw new ArgumentNullException(nameof(creationInformation));
+            _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathIdentity(navigationNodeObject.ObjectIdentity));
@@ -58,7 +58,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 new ObjectPathMethod(
                     objectPath2.Id,
                     "Add",
-                    requestPayload.CreateParameter(new NavigationNodeCreationInformation(creationInformation))),
+                    requestPayload.CreateParameter(new NavigationNodeCreationInfo(creationInfo))),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {
@@ -69,9 +69,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 .ToObject<NavigationNode>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
-        public NavigationNode AddObjectToQuickLaunch(IReadOnlyDictionary<string, object> creationInformation)
+        public NavigationNode AddObjectToQuickLaunch(IReadOnlyDictionary<string, object> creationInfo)
         {
-            _ = creationInformation ?? throw new ArgumentNullException(nameof(creationInformation));
+            _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathStaticProperty(typeof(Context), "Current"));
@@ -85,7 +85,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 new ObjectPathMethod(
                     objectPath4.Id,
                     "Add",
-                    requestPayload.CreateParameter(new NavigationNodeCreationInformation(creationInformation))),
+                    requestPayload.CreateParameter(new NavigationNodeCreationInfo(creationInfo))),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {
@@ -96,9 +96,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 .ToObject<NavigationNode>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
-        public NavigationNode AddObjectToTopNavigationBar(IReadOnlyDictionary<string, object> creationInformation)
+        public NavigationNode AddObjectToTopNavigationBar(IReadOnlyDictionary<string, object> creationInfo)
         {
-            _ = creationInformation ?? throw new ArgumentNullException(nameof(creationInformation));
+            _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathStaticProperty(typeof(Context), "Current"));
@@ -112,7 +112,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 new ObjectPathMethod(
                     objectPath4.Id,
                     "Add",
-                    requestPayload.CreateParameter(new NavigationNodeCreationInformation(creationInformation))),
+                    requestPayload.CreateParameter(new NavigationNodeCreationInfo(creationInfo))),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {

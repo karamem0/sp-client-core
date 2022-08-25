@@ -26,13 +26,16 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         }
 
         [JsonProperty()]
-        public virtual TenantRoleType AddressbarLinkPermission { get; protected set; }
+        public virtual RoleType AddressbarLinkPermission { get; protected set; }
 
         [JsonProperty()]
         public virtual string AIBuilderDefaultPowerAppsEnvironment { get; protected set; }
 
         [JsonProperty()]
         public virtual bool AIBuilderEnabled { get; protected set; }
+
+        [JsonProperty()]
+        public virtual int AIBuilderEnabledInContentCenter { get; protected set; }
 
         [JsonProperty()]
         public virtual IReadOnlyCollection<SiteInfoForSitePicker> AIBuilderSiteInfoList { get; protected set; }
@@ -42,6 +45,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
 
         [JsonProperty()]
         public virtual string AIBuilderSiteListFileName { get; protected set; }
+
+        [JsonProperty()]
+        public virtual SharingState AllowAnonymousMeetingParticipantsToAccessWhiteboards { get; protected set; }
 
         [JsonProperty()]
         public virtual bool AllowCommentsTextOnEmailEnabled { get; protected set; }
@@ -92,6 +98,12 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         public virtual BlockDownloadLinksFileType BlockDownloadLinksFileType { get; protected set; }
 
         [JsonProperty()]
+        public virtual string[] BlockDownloadFileTypeIds { get; protected set; }
+
+        [JsonProperty()]
+        public virtual bool BlockDownloadFileTypePolicy { get; protected set; }
+
+        [JsonProperty()]
         public virtual bool BlockDownloadOfAllFilesForGuests { get; protected set; }
 
         [JsonProperty()]
@@ -118,8 +130,8 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         [JsonProperty()]
         public virtual TenantBrowseUserInfoPolicyType BlockUserInfoVisibilityInSharePoint { get; protected set; }
 
-        [JsonProperty()]
-        public virtual ChannelMeetingRecordingPermissionType ChannelMeetingRecordingPermission { get; protected set; }
+        // [JsonProperty()]
+        // public virtual ChannelMeetingRecordingPermissionType ChannelMeetingRecordingPermission { get; protected set; }
 
         [JsonProperty()]
         public virtual bool CommentsOnFilesDisabled { get; protected set; }
@@ -143,13 +155,22 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         public virtual IReadOnlyCollection<string> ContentTypeSyncSiteTemplatesList { get; protected set; }
 
         [JsonProperty()]
-        public virtual TenantRoleType CoreLoopDefaultSharingLinkRole { get; protected set; }
+        public virtual RoleType CoreLoopDefaultSharingLinkRole { get; protected set; }
 
         [JsonProperty()]
         public virtual SharingScope CoreLoopDefaultSharingLinkScope { get; protected set; }
 
         [JsonProperty()]
         public virtual SharingCapabilities CoreLoopSharingCapability { get; protected set; }
+
+        [JsonProperty()]
+        public virtual bool CoreRequestFilesLinkEnabled { get; protected set; }
+
+        [JsonProperty()]
+        public virtual int CoreRequestFilesLinkExpirationInDays { get; protected set; }
+
+        [JsonProperty()]
+        public virtual SharingCapabilities CoreSharingCapability { get; protected set; }
 
         [JsonProperty()]
         public virtual string CustomizedExternalSharingServiceUrl { get; protected set; }
@@ -242,6 +263,12 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         public virtual bool EnablePromotedFileHandlers { get; protected set; }
 
         [JsonProperty()]
+        public virtual bool EnableRestrictedAccessControl { get; protected set; }
+
+        [JsonProperty()]
+        public virtual Guid[] ExcludedBlockDownloadGroupIds { get; protected set; }
+
+        [JsonProperty()]
         public virtual IReadOnlyCollection<string> ExcludedFileExtensionsForSyncClient { get; protected set; }
 
         [JsonProperty()]
@@ -320,10 +347,16 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         public virtual bool IsHubSitesMultiGeoFlightEnabled { get; protected set; }
 
         [JsonProperty()]
+        public virtual bool IsLoopEnabled { get; protected set; }
+
+        [JsonProperty()]
         public virtual bool IsMnAFlightEnabled { get; protected set; }
 
         [JsonProperty()]
         public virtual bool IsMultiGeo { get; protected set; }
+
+        [JsonProperty()]
+        public virtual bool IsMultipleHomeSitesFlightEnabled { get; protected set; }
 
         [JsonProperty()]
         public virtual bool IsUnmanagedSyncClientForTenantRestricted { get; protected set; }
@@ -370,6 +403,18 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         [JsonProperty()]
         public virtual bool NotifyOwnersWhenItemsReshared { get; protected set; }
 
+        [JsonProperty()]
+        public virtual bool OCRAdminEnabled { get; protected set; }
+
+        [JsonProperty()]
+        public virtual string OCRAdminSiteListFileName { get; protected set; }
+
+        [JsonProperty()]
+        public virtual bool OCRComplianceEnabled { get; protected set; }
+
+        [JsonProperty()]
+        public virtual string OCRComplianceSiteListFileName { get; protected set; }
+
         [JsonProperty("OfficeClientADALDisabled")]
         public virtual bool OfficeClientAdalDisabled { get; protected set; }
 
@@ -380,7 +425,7 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         public virtual bool OneDriveForGuestsEnabled { get; protected set; }
 
         [JsonProperty()]
-        public virtual TenantRoleType OneDriveLoopDefaultSharingLinkRole { get; protected set; }
+        public virtual RoleType OneDriveLoopDefaultSharingLinkRole { get; protected set; }
 
         [JsonProperty()]
         public virtual SharingScope OneDriveLoopDefaultSharingLinkScope { get; protected set; }
@@ -390,6 +435,12 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
 
         [JsonProperty("ODBMembersCanShare")]
         public virtual SharingState OneDriveMembersCanShare { get; protected set; }
+
+        [JsonProperty()]
+        public virtual bool OneDriveRequestFilesLinkEnabled { get; protected set; }
+
+        [JsonProperty()]
+        public virtual int OneDriveRequestFilesLinkExpirationInDays { get; protected set; }
 
         [JsonProperty("ODBSharingCapability")]
         public virtual SharingCapabilities OneDriveSharingCapability { get; protected set; }
@@ -478,11 +529,17 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         [JsonProperty()]
         public virtual bool ShowEveryoneExceptExternalUsersClaim { get; protected set; }
 
+        [JsonProperty()]
+        public virtual bool ShowOpenInDesktopOptionForSyncedFiles { get; protected set; }
+
         [JsonProperty("ShowNGSCDialogForSyncOnODB")]
         public virtual bool ShowNextGenerationSyncClientDialogForSyncOnOneDrive { get; protected set; }
 
         [JsonProperty()]
         public virtual bool ShowPeoplePickerSuggestionsForGuestUsers { get; protected set; }
+
+        [JsonProperty("ShowPeoplePickerGroupSuggestionsForIB")]
+        public virtual bool ShowPeoplePickerGroupSuggestionsForInformationBarriers { get; protected set; }
 
         [JsonProperty()]
         public virtual string SignInAccelerationDomain { get; protected set; }

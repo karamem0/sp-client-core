@@ -6,6 +6,7 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -27,7 +28,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         }
 
         [Parameter(Mandatory = true, Position = 0)]
-        public string Url { get; private set; }
+        public Uri Url { get; private set; }
 
         [Parameter(Mandatory = true, Position = 1)]
         public bool IsEditLink { get; private set; }
@@ -37,7 +38,16 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         protected override void ProcessRecordCore()
         {
-            this.Service.RemoveOrganizationSharingLink(this.Url, this.IsEditLink, this.RemoveAssociatedSharingLinkGroup);
+            if (this.Url.IsAbsoluteUri)
+            {
+                this.Service.RemoveOrganizationSharingLink(this.Url, this.IsEditLink, this.RemoveAssociatedSharingLinkGroup);
+            }
+            else
+            {
+                throw new ArgumentException(
+                    string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.Url),
+                    nameof(this.Url));
+            }
         }
 
     }

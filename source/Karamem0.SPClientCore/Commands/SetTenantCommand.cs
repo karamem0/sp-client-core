@@ -28,7 +28,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         }
 
         [Parameter(Mandatory = false)]
-        public TenantRoleType AddressbarLinkPermission { get; private set; }
+        public RoleType AddressbarLinkPermission { get; private set; }
 
         // [Parameter(Mandatory = false)]
         // public string AIBuilderDefaultPowerAppsEnvironment { get; private set; }
@@ -37,10 +37,16 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         // public bool AIBuilderEnabled { get; private set; }
 
         // [Parameter(Mandatory = false)]
+        // public int AIBuilderEnabledInContentCenter { get; private set; }
+
+        // [Parameter(Mandatory = false)]
         // public Guid[] AIBuilderSiteList { get; private set; }
 
         // [Parameter(Mandatory = false)]
         // public string AIBuilderSiteListFileName { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public SharingState AllowAnonymousMeetingParticipantsToAccessWhiteboards { get; private set; }
 
         [Parameter(Mandatory = false)]
         public bool AllowCommentsTextOnEmailEnabled { get; private set; }
@@ -57,8 +63,8 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = false)]
         public bool AllowEveryoneExceptExternalUsersClaimInPrivateSite { get; private set; }
 
-        // [Parameter(Mandatory = false)]
-        // public bool AllowGuestUserShareToUsersNotInSiteCollection { get; private set; }
+        [Parameter(Mandatory = false)]
+        public bool AllowGuestUserShareToUsersNotInSiteCollection { get; private set; }
 
         [Parameter(Mandatory = false)]
         public bool AllowLimitedAccessOnUnmanagedDevices { get; private set; }
@@ -142,13 +148,22 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         public string[] ContentTypeSyncSiteTemplatesList { get; private set; }
 
         [Parameter(Mandatory = false)]
-        public TenantRoleType CoreLoopDefaultSharingLinkRole { get; private set; }
+        public RoleType CoreLoopDefaultSharingLinkRole { get; private set; }
 
         [Parameter(Mandatory = false)]
         public SharingScope CoreLoopDefaultSharingLinkScope { get; private set; }
 
         [Parameter(Mandatory = false)]
         public SharingCapabilities CoreLoopSharingCapability { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public bool CoreRequestFilesLinkEnabled { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public int CoreRequestFilesLinkExpirationInDays { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public SharingCapabilities CoreSharingCapability { get; private set; }
 
         [Parameter(Mandatory = false)]
         public string CustomizedExternalSharingServiceUrl { get; private set; }
@@ -238,6 +253,9 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         public bool EnablePromotedFileHandlers { get; private set; }
 
         [Parameter(Mandatory = false)]
+        public bool EnableRestrictedAccessControl { get; private set; }
+
+        [Parameter(Mandatory = false)]
         public string[] ExcludedFileExtensionsForSyncClient { get; private set; }
 
         [Parameter(Mandatory = false)]
@@ -313,6 +331,9 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         public bool IsFluidEnabled { get; private set; }
 
         [Parameter(Mandatory = false)]
+        public bool IsLoopEnabled { get; private set; }
+
+        [Parameter(Mandatory = false)]
         public bool IsUnmanagedSyncClientForTenantRestricted { get; private set; }
 
         [Parameter(Mandatory = false)]
@@ -343,16 +364,28 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         public string NoAccessRedirectUrl { get; private set; }
 
         [Parameter(Mandatory = false)]
-        public virtual bool NotificationsInOneDriveEnabled { get; private set; }
+        public bool NotificationsInOneDriveEnabled { get; private set; }
 
         [Parameter(Mandatory = false)]
-        public virtual bool NotificationsInSharePointEnabled { get; private set; }
+        public bool NotificationsInSharePointEnabled { get; private set; }
 
         [Parameter(Mandatory = false)]
-        public virtual bool NotifyOwnersWhenInvitationsAccepted { get; private set; }
+        public bool NotifyOwnersWhenInvitationsAccepted { get; private set; }
 
         [Parameter(Mandatory = false)]
-        public virtual bool NotifyOwnersWhenItemsReshared { get; private set; }
+        public bool NotifyOwnersWhenItemsReshared { get; private set; }
+
+        // [Parameter(Mandatory = false)]
+        // public bool OCRAdminEnabled { get; private set; }
+
+        // [Parameter(Mandatory = false)]
+        // public string OCRAdminSiteListFileName { get; private set; }
+
+        // [Parameter(Mandatory = false)]
+        // public bool OCRComplianceEnabled { get; private set; }
+
+        // [Parameter(Mandatory = false)]
+        // public string OCRComplianceSiteListFileName { get; private set; }
 
         [Parameter(Mandatory = false)]
         public bool OfficeClientAdalDisabled { get; private set; }
@@ -364,7 +397,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         public bool OneDriveForGuestsEnabled { get; private set; }
 
         [Parameter(Mandatory = false)]
-        public TenantRoleType OneDriveLoopDefaultSharingLinkRole { get; private set; }
+        public RoleType OneDriveLoopDefaultSharingLinkRole { get; private set; }
 
         [Parameter(Mandatory = false)]
         public SharingScope OneDriveLoopDefaultSharingLinkScope { get; private set; }
@@ -374,6 +407,12 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = false)]
         public SharingState OneDriveMembersCanShare { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public bool OneDriveRequestFilesLinkEnabled { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public int OneDriveRequestFilesLinkExpirationInDays { get; private set; }
 
         [Parameter(Mandatory = false)]
         public SharingCapabilities OneDriveSharingCapability { get; private set; }
@@ -394,10 +433,10 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         public bool OwnerAnonymousNotification { get; private set; }
 
         [Parameter(Mandatory = false)]
-        public virtual bool PermissiveBrowserFileHandlingOverride { get; private set; }
+        public bool PermissiveBrowserFileHandlingOverride { get; private set; }
 
         [Parameter(Mandatory = false)]
-        public virtual bool PreventExternalUsersFromResharing { get; private set; }
+        public bool PreventExternalUsersFromResharing { get; private set; }
 
         [Parameter(Mandatory = false)]
         public bool ProvisionSharedWithEveryoneFolder { get; private set; }
@@ -437,6 +476,15 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = false)]
         public bool ShowEveryoneExceptExternalUsersClaim { get; private set; }
+
+        // [Parameter(Mandatory = false)]
+        // public bool ShowOpenInDesktopOptionForSyncedFiles { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public bool ShowPeoplePickerSuggestionsForGuestUsers { get; private set; }
+
+        [Parameter(Mandatory = false)]
+        public bool ShowPeoplePickerGroupSuggestionsForInformationBarriers { get; private set; }
 
         [Parameter(Mandatory = false)]
         public string SignInAccelerationDomain { get; private set; }

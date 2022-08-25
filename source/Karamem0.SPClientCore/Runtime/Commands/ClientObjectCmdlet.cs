@@ -7,6 +7,8 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Resources;
+using Karamem0.SharePoint.PowerShell.Runtime.ApplicationInsights;
+using Microsoft.ApplicationInsights;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -29,6 +31,8 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Commands
 
         protected override void ProcessRecord()
         {
+            var telemetry = TelemetryClientFactory.Create();
+            var stopwatch = new Stopwatch();
             if (string.Compare(this.MyInvocation.InvocationName, this.MyInvocation.MyCommand.Name, true) != 0)
             {
                 this.WriteWarning(string.Format(
@@ -39,6 +43,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Commands
             var listener = Trace.Listeners[Trace.Listeners.Add(new ClientObjectCmdletTraceListener(this))];
             try
             {
+                stopwatch.Start();
                 this.Outputs.Clear();
                 this.ProcessRecordCore();
                 listener.Flush();
@@ -53,10 +58,13 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Commands
             {
                 listener.Flush();
                 this.WriteError(new ErrorRecord(ex, "Exception", ErrorCategory.NotSpecified, null));
+                telemetry.TrackException(ex);
             }
             finally
             {
                 Trace.Listeners.Remove(listener);
+                stopwatch.Stop();
+                telemetry.GetMetric(this.MyInvocation.InvocationName).TrackValue(stopwatch.ElapsedMilliseconds);
             }
         }
 

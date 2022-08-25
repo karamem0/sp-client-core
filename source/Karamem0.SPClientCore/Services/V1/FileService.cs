@@ -31,7 +31,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
 
         void CopyObject(File fileObject, Uri fileUrl, bool overwrite, MoveCopyOptions moveCopyOptions);
 
-        File AddObject(Folder folderObject, IReadOnlyDictionary<string, object> creationInformation);
+        File AddObject(Folder folderObject, IReadOnlyDictionary<string, object> creationInfo);
 
         void DenyObject(File fileObject, string comment);
 
@@ -63,7 +63,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
 
         void RemoveObject(File fileObject, bool force);
 
-        void SetObject(File fileObject, IReadOnlyDictionary<string, object> modificationInformation);
+        void SetObject(File fileObject, IReadOnlyDictionary<string, object> modificationInfo);
 
         void UndoCheckOutObject(File fileObject);
 
@@ -153,10 +153,10 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
             _ = this.ClientContext.ProcessQuery(requestPayload);
         }
 
-        public File AddObject(Folder folderObject, IReadOnlyDictionary<string, object> creationInformation)
+        public File AddObject(Folder folderObject, IReadOnlyDictionary<string, object> creationInfo)
         {
             _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
-            _ = creationInformation ?? throw new ArgumentNullException(nameof(creationInformation));
+            _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathIdentity(folderObject.ObjectIdentity));
@@ -166,7 +166,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 new ObjectPathMethod(
                     objectPath2.Id,
                     "Add",
-                    requestPayload.CreateParameter(new FileCreationInformation(creationInformation))),
+                    requestPayload.CreateParameter(new FileCreationInfo(creationInfo))),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {

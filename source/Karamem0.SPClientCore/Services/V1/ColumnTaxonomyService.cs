@@ -22,13 +22,13 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
     public interface IColumnTaxonomyService
     {
 
-        ColumnTaxonomy AddObject(IReadOnlyDictionary<string, object> creationInformation, bool addToDefaultView, AddColumnOptions addColumnOptions);
+        ColumnTaxonomy AddObject(IReadOnlyDictionary<string, object> creationInfo, bool addToDefaultView, AddColumnOptions addColumnOptions);
 
-        ColumnTaxonomy AddObject(List listObject, IReadOnlyDictionary<string, object> creationInformation, bool addToDefaultView, AddColumnOptions addColumnOptions);
+        ColumnTaxonomy AddObject(List listObject, IReadOnlyDictionary<string, object> creationInfo, bool addToDefaultView, AddColumnOptions addColumnOptions);
 
         void RemoveObject(ColumnTaxonomy columnTaxonomyObject);
 
-        void SetObject(ColumnTaxonomy columnTaxonomyObject, IReadOnlyDictionary<string, object> modificationInformation);
+        void SetObject(ColumnTaxonomy columnTaxonomyObject, IReadOnlyDictionary<string, object> modificationInfo);
 
         void SetObjectValue(ColumnTaxonomy columnTaxonomyObject, ListItem listItemObject, IEnumerable<Term> termCollection, uint lcid);
 
@@ -41,9 +41,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
         {
         }
 
-        public ColumnTaxonomy AddObject(IReadOnlyDictionary<string, object> creationInformation, bool addToDefaultView, AddColumnOptions addColumnOptions)
+        public ColumnTaxonomy AddObject(IReadOnlyDictionary<string, object> creationInfo, bool addToDefaultView, AddColumnOptions addColumnOptions)
         {
-            _ = creationInformation ?? throw new ArgumentNullException(nameof(creationInformation));
+            _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathStaticProperty(typeof(Context), "Current"));
@@ -57,7 +57,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                     "AddFieldAsXml",
                     requestPayload.CreateParameter(SchemaXmlColumn.Create(
                         new XElement("Field", new XAttribute("Type", "TaxonomyFieldType")),
-                        creationInformation)),
+                        creationInfo)),
                     requestPayload.CreateParameter(addToDefaultView),
                     requestPayload.CreateParameter(addColumnOptions)),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -70,10 +70,10 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 .ToObject<ColumnTaxonomy>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
-        public ColumnTaxonomy AddObject(List listObject, IReadOnlyDictionary<string, object> creationInformation, bool addToDefaultView, AddColumnOptions addColumnOptions)
+        public ColumnTaxonomy AddObject(List listObject, IReadOnlyDictionary<string, object> creationInfo, bool addToDefaultView, AddColumnOptions addColumnOptions)
         {
             _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
-            _ = creationInformation ?? throw new ArgumentNullException(nameof(creationInformation));
+            _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathIdentity(listObject.ObjectIdentity));
@@ -85,7 +85,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                     "AddFieldAsXml",
                     requestPayload.CreateParameter(SchemaXmlColumn.Create(
                         new XElement("Field", new XAttribute("Type", "TaxonomyFieldType")),
-                        creationInformation)),
+                        creationInfo)),
                     requestPayload.CreateParameter(addToDefaultView),
                     requestPayload.CreateParameter(addColumnOptions)),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),

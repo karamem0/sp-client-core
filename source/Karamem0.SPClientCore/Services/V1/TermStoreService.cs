@@ -22,7 +22,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
 
         TermStore GetObject();
 
-        void SetObject(IReadOnlyDictionary<string, object> modificationInformation);
+        void SetObject(IReadOnlyDictionary<string, object> modificationInfo);
 
     }
 
@@ -50,9 +50,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 .ToObject<TermStore>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
-        public void SetObject(IReadOnlyDictionary<string, object> modificationInformation)
+        public void SetObject(IReadOnlyDictionary<string, object> modificationInfo)
         {
-            _ = modificationInformation ?? throw new ArgumentNullException(nameof(modificationInformation));
+            _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession"));
@@ -61,7 +61,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
             var objectPath3 = requestPayload.Add(
                 objectPath2,
-                requestPayload.CreateSetPropertyDelegates(typeof(TermStore), modificationInformation).ToArray());
+                requestPayload.CreateSetPropertyDelegates(typeof(TermStore), modificationInfo).ToArray());
             var objectPath4 = requestPayload.Add(
                 objectPath2,
                 objectPathId => new ClientActionMethod(objectPathId, "CommitAll"));

@@ -21,9 +21,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
     public interface ICommentService
     {
 
-        Comment AddObject(ListItem listItemObject, IReadOnlyDictionary<string, object> creationInformation);
+        Comment AddObject(ListItem listItemObject, IReadOnlyDictionary<string, object> creationInfo);
 
-        Comment AddObject(Comment commentObject, IReadOnlyDictionary<string, object> creationInformation);
+        Comment AddObject(Comment commentObject, IReadOnlyDictionary<string, object> creationInfo);
 
         Comment GetObject(Comment commentObject);
 
@@ -42,7 +42,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
         {
         }
 
-        public Comment AddObject(ListItem listItemObject, IReadOnlyDictionary<string, object> creationInformation)
+        public Comment AddObject(ListItem listItemObject, IReadOnlyDictionary<string, object> creationInfo)
         {
             _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
             var requestUrl = this.ClientContext.BaseAddress
@@ -51,11 +51,11 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                     listItemObject.ObjectIdentity.Split(':').SkipLast(2).Last(),
                     listItemObject.Id)
                 .ConcatQuery(ODataQuery.CreateSelect<Comment>());
-            var requestPayload = new ODataV1RequestPayload<CommentCreationInformation>(creationInformation);
+            var requestPayload = new ODataV1RequestPayload<CommentCreationInfo>(creationInfo);
             return this.ClientContext.PostObject<Comment>(requestUrl, requestPayload.Entity);
         }
 
-        public Comment AddObject(Comment commentObject, IReadOnlyDictionary<string, object> creationInformation)
+        public Comment AddObject(Comment commentObject, IReadOnlyDictionary<string, object> creationInfo)
         {
             _ = commentObject ?? throw new ArgumentNullException(nameof(commentObject));
             var requestUrl = this.ClientContext.BaseAddress
@@ -65,7 +65,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                     commentObject.ItemId,
                     commentObject.Id)
                 .ConcatQuery(ODataQuery.CreateSelect<Comment>());
-            var requestPayload = new ODataV1RequestPayload<CommentCreationInformation>(creationInformation);
+            var requestPayload = new ODataV1RequestPayload<CommentCreationInfo>(creationInfo);
             return this.ClientContext.PostObject<Comment>(requestUrl, requestPayload.Entity);
         }
 

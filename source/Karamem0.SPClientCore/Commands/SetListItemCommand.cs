@@ -33,8 +33,8 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
         public ListItem Identity { get; private set; }
 
-        [Parameter(Mandatory = false)]
-        public Hashtable Value { get; private set; }
+        [Parameter(Mandatory = true)]
+        public PSObject Value { get; private set; }
 
         [Parameter(Mandatory = false)]
         public SwitchParameter SystemUpdate { get; private set; }
@@ -44,7 +44,22 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         protected override void ProcessRecordCore()
         {
-            this.Service.SetObject(this.Identity, this.Value?.ToDictionary<string, object>(), this.SystemUpdate);
+            if (this.Value.BaseObject is Hashtable hashtable)
+            {
+                this.Service.SetObject(
+                    this.Identity,
+                    hashtable.ToDictionary<string, object>(),
+                    this.SystemUpdate);
+            }
+            else
+            {
+                this.Service.SetObject(
+                    this.Identity,
+                    this.Value.Properties.ToDictionary(
+                        property => property.Name,
+                        property => property.Value),
+                    this.SystemUpdate);
+            }
             if (this.PassThru)
             {
                 this.Outputs.Add(this.Service.GetObject(this.Identity));

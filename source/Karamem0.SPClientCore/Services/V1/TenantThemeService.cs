@@ -21,7 +21,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
     public interface ITenantThemeService
     {
 
-        bool AddObject(string themeName, IReadOnlyDictionary<string, object> creationInformation);
+        bool AddObject(string themeName, IReadOnlyDictionary<string, object> creationInfo);
 
         TenantTheme GetObject(TenantTheme themeObject);
 
@@ -33,9 +33,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
 
         void RemoveObject(string themeName);
 
-        bool SetObject(TenantTheme themeObject, IReadOnlyDictionary<string, object> modificationInformation);
+        bool SetObject(TenantTheme themeObject, IReadOnlyDictionary<string, object> modificationInfo);
 
-        bool SetObject(string themeName, IReadOnlyDictionary<string, object> modificationInformation);
+        bool SetObject(string themeName, IReadOnlyDictionary<string, object> modificationInfo);
 
     }
 
@@ -46,10 +46,10 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
         {
         }
 
-        public bool AddObject(string themeName, IReadOnlyDictionary<string, object> creationInformation)
+        public bool AddObject(string themeName, IReadOnlyDictionary<string, object> creationInfo)
         {
             _ = themeName ?? throw new ArgumentNullException(nameof(themeName));
-            _ = creationInformation ?? throw new ArgumentNullException(nameof(creationInformation));
+            _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathConstructor(typeof(Tenant)));
@@ -59,7 +59,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                     objectPathId,
                     "AddTenantTheme",
                     requestPayload.CreateParameter(themeName),
-                    requestPayload.CreateParameter(JsonConvert.SerializeObject(new TenantThemeCreationInformation(creationInformation)))));
+                    requestPayload.CreateParameter(JsonConvert.SerializeObject(new TenantThemeCreationInfo(creationInfo)))));
             return this.ClientContext
                 .ProcessQuery(requestPayload)
                 .ToObject<bool>(requestPayload.GetActionId<ClientActionMethod>());
@@ -131,16 +131,16 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
             _ = this.ClientContext.ProcessQuery(requestPayload);
         }
 
-        public bool SetObject(TenantTheme themeObject, IReadOnlyDictionary<string, object> modificationInformation)
+        public bool SetObject(TenantTheme themeObject, IReadOnlyDictionary<string, object> modificationInfo)
         {
             _ = themeObject ?? throw new ArgumentNullException(nameof(themeObject));
-            return this.SetObject(themeObject.Name, modificationInformation);
+            return this.SetObject(themeObject.Name, modificationInfo);
         }
 
-        public bool SetObject(string themeName, IReadOnlyDictionary<string, object> modificationInformation)
+        public bool SetObject(string themeName, IReadOnlyDictionary<string, object> modificationInfo)
         {
             _ = themeName ?? throw new ArgumentNullException(nameof(themeName));
-            _ = modificationInformation ?? throw new ArgumentNullException(nameof(modificationInformation));
+            _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathConstructor(typeof(Tenant)));
@@ -150,7 +150,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                     objectPathId,
                     "UpdateTenantTheme",
                     requestPayload.CreateParameter(themeName),
-                    requestPayload.CreateParameter(JsonConvert.SerializeObject(new TenantThemeCreationInformation(modificationInformation)))));
+                    requestPayload.CreateParameter(JsonConvert.SerializeObject(new TenantThemeCreationInfo(modificationInfo)))));
             return this.ClientContext
                 .ProcessQuery(requestPayload)
                 .ToObject<bool>(requestPayload.GetActionId<ClientActionMethod>());

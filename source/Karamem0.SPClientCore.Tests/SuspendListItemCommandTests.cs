@@ -19,7 +19,6 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("Suspend-KshListItem")]
     public class SuspendListItemCommandTests
     {
 

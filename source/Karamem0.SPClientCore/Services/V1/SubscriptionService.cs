@@ -21,7 +21,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
     public interface ISubscriptionService
     {
 
-        Subscription AddObject(List listObject, IReadOnlyDictionary<string, object> creationInformation);
+        Subscription AddObject(List listObject, IReadOnlyDictionary<string, object> creationInfo);
 
         Subscription GetObject(Subscription subscriptionObject);
 
@@ -31,7 +31,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
 
         void RemoveObject(Subscription subscriptionObject);
 
-        void SetObject(Subscription subscriptionObject, IReadOnlyDictionary<string, object> modificationInformation);
+        void SetObject(Subscription subscriptionObject, IReadOnlyDictionary<string, object> modificationInfo);
 
     }
 
@@ -42,17 +42,17 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
         {
         }
 
-        public Subscription AddObject(List listObject, IReadOnlyDictionary<string, object> creationInformation)
+        public Subscription AddObject(List listObject, IReadOnlyDictionary<string, object> creationInfo)
         {
             _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
-            _ = creationInformation ?? throw new ArgumentNullException(nameof(creationInformation));
+            _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
             var listUrl = this.ClientContext.BaseAddress
                 .ConcatPath("_api/web/lists('{0}')", listObject.Id);
             var requestUrl = listUrl
                 .ConcatPath("subscriptions")
                 .ConcatQuery(ODataQuery.CreateSelect<Subscription>());
-            var requestPayload = new ODataV1RequestPayload<SubscriptionCreationInformation>(
-                creationInformation
+            var requestPayload = new ODataV1RequestPayload<SubscriptionCreationInfo>(
+                creationInfo
                     .Concat(new Dictionary<string, object>()
                     {
                         { "Resource", listUrl.ToString() }
@@ -106,16 +106,16 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
             this.ClientContext.DeleteObject(requestUrl);
         }
 
-        public void SetObject(Subscription subscriptionObject, IReadOnlyDictionary<string, object> modificationInformation)
+        public void SetObject(Subscription subscriptionObject, IReadOnlyDictionary<string, object> modificationInfo)
         {
             _ = subscriptionObject ?? throw new ArgumentNullException(nameof(subscriptionObject));
-            _ = modificationInformation ?? throw new ArgumentNullException(nameof(modificationInformation));
+            _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
             var requestUrl = this.ClientContext.BaseAddress
                 .ConcatPath(
                     "_api/web/lists('{0}')/subscriptions('{1}')",
                     subscriptionObject.Resource,
                     subscriptionObject.Id);
-            var requestPayload = new ODataV1RequestPayload<SubscriptionModificationInformation>(modificationInformation);
+            var requestPayload = new ODataV1RequestPayload<SubscriptionModificationInfo>(modificationInfo);
             this.ClientContext.PatchObject(requestUrl, requestPayload.Entity);
         }
 

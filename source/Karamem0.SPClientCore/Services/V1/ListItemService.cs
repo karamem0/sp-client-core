@@ -21,9 +21,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
     public interface IListItemService
     {
 
-        ListItem AddObject(List listObject, IReadOnlyDictionary<string, object> creationInformation);
+        ListItem AddObject(List listObject, IReadOnlyDictionary<string, object> creationInfo);
 
-        IEnumerable<ListItem> AddObjectEnumerable(List listObject, IReadOnlyCollection<IReadOnlyDictionary<string, object>> creationInformations);
+        IEnumerable<ListItem> AddObjectEnumerable(List listObject, IReadOnlyCollection<IReadOnlyDictionary<string, object>> creationInfos);
 
         void ApproveObject(ListItem listItemObject, string comment);
 
@@ -43,13 +43,13 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
 
         IEnumerable<ListItem> GetObjectEnumerable(List listObject);
 
-        IEnumerable<ListItem> GetObjectEnumerable(List listObject, IReadOnlyDictionary<string, object> filterInformation);
+        IEnumerable<ListItem> GetObjectEnumerable(List listObject, IReadOnlyDictionary<string, object> filterInfo);
 
         Guid RecycleObject(ListItem listItemObject);
 
         void RemoveObject(ListItem listItemObject);
 
-        void SetObject(ListItem listItemObject, IReadOnlyDictionary<string, object> modificationInformation, bool useSyetemUpdate);
+        void SetObject(ListItem listItemObject, IReadOnlyDictionary<string, object> modificationInfo, bool useSyetemUpdate);
 
         void SuspendObject(ListItem listItemObject, string comment);
 
@@ -62,14 +62,14 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
         {
         }
 
-        public ListItem AddObject(List listObject, IReadOnlyDictionary<string, object> creationInformation)
+        public ListItem AddObject(List listObject, IReadOnlyDictionary<string, object> creationInfo)
         {
             _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
-            _ = creationInformation ?? throw new ArgumentNullException(nameof(creationInformation));
+            _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
             var requestPayload = new ClientRequestPayload();
             var delegates = new List<ClientActionDelegate>();
             delegates.Add(objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
-            delegates.AddRange(creationInformation.Select(parameter =>
+            delegates.AddRange(creationInfo.Select(parameter =>
                 new ClientActionDelegate(objectPathId =>
                     new ClientActionMethod(objectPathId, "SetFieldValue",
                     requestPayload.CreateParameter(parameter.Key),
@@ -85,25 +85,25 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 new ObjectPathMethod(
                     objectPath1.Id,
                     "AddItem",
-                    requestPayload.CreateParameter(new ListItemCreationInformation())));
+                    requestPayload.CreateParameter(new ListItemCreationInfo())));
             var objectPath3 = requestPayload.Add(objectPath2, delegates.ToArray());
             return this.ClientContext
                 .ProcessQuery(requestPayload)
                 .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
-        public IEnumerable<ListItem> AddObjectEnumerable(List listObject, IReadOnlyCollection<IReadOnlyDictionary<string, object>> creationInformations)
+        public IEnumerable<ListItem> AddObjectEnumerable(List listObject, IReadOnlyCollection<IReadOnlyDictionary<string, object>> creationInfos)
         {
             _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
-            _ = creationInformations ?? throw new ArgumentNullException(nameof(creationInformations));
+            _ = creationInfos ?? throw new ArgumentNullException(nameof(creationInfos));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathIdentity(listObject.ObjectIdentity));
-            foreach (var creationInformation in creationInformations)
+            foreach (var creationInfo in creationInfos)
             {
                 var delegates = new List<ClientActionDelegate>();
                 delegates.Add(objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
-                delegates.AddRange(creationInformation.Select(parameter =>
+                delegates.AddRange(creationInfo.Select(parameter =>
                     new ClientActionDelegate(objectPathId =>
                         new ClientActionMethod(objectPathId, "SetFieldValue",
                         requestPayload.CreateParameter(parameter.Key),
@@ -117,7 +117,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                     new ObjectPathMethod(
                         objectPath1.Id,
                         "AddItem",
-                        requestPayload.CreateParameter(new ListItemCreationInformation())));
+                        requestPayload.CreateParameter(new ListItemCreationInfo())));
                 var objectPath3 = requestPayload.Add(objectPath2, delegates.ToArray());
             }
             return this.ClientContext
@@ -328,10 +328,10 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
             while (listItemCollectionPosition != null);
         }
 
-        public IEnumerable<ListItem> GetObjectEnumerable(List listObject, IReadOnlyDictionary<string, object> filterInformation)
+        public IEnumerable<ListItem> GetObjectEnumerable(List listObject, IReadOnlyDictionary<string, object> filterInfo)
         {
             _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
-            _ = filterInformation ?? throw new ArgumentNullException(nameof(filterInformation));
+            _ = filterInfo ?? throw new ArgumentNullException(nameof(filterInfo));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathIdentity(listObject.ObjectIdentity));
@@ -339,7 +339,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 new ObjectPathMethod(
                     objectPath1.Id,
                     "GetItems",
-                    requestPayload.CreateParameter(new CamlQuery(filterInformation))),
+                    requestPayload.CreateParameter(new CamlQuery(filterInfo))),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {
@@ -363,14 +363,14 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 .ToObject<Guid>(requestPayload.GetActionId<ClientActionMethod>());
         }
 
-        public void SetObject(ListItem listItemObject, IReadOnlyDictionary<string, object> modificationInformation, bool useSyetemUpdate)
+        public void SetObject(ListItem listItemObject, IReadOnlyDictionary<string, object> modificationInfo, bool useSyetemUpdate)
         {
             _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
-            _ = modificationInformation ?? throw new ArgumentNullException(nameof(modificationInformation));
+            _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathIdentity(listItemObject.ObjectIdentity),
-                modificationInformation.Select(parameter =>
+                modificationInfo.Select(parameter =>
                     new ClientActionDelegate(objectPathId =>
                         new ClientActionMethod(
                             objectPathId,

@@ -18,7 +18,6 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("Restore-KshFileVersion")]
     public class RestoreFileVersionCommandTests
     {
 

@@ -485,9 +485,9 @@
           <maml:description>
             <maml:para>Specifies the URL.</maml:para>
           </maml:description>
-          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
           <dev:type>
-            <maml:name>String</maml:name>
+            <maml:name>Uri</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -524,9 +524,9 @@
         <maml:description>
           <maml:para>Specifies the URL.</maml:para>
         </maml:description>
-        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
         <dev:type>
-          <maml:name>String</maml:name>
+          <maml:name>Uri</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -21635,6 +21635,569 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Add-KshExternalUser</command:name>
+      <command:verb>Add</command:verb>
+      <command:noun>KshExternalUser</command:noun>
+      <maml:description>
+        <maml:para>Creates a new external user.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Add-KshExternalUser cmdlet adds a new external user to the current site or the specified file or folder.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Add-KshExternalUser</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>Site</maml:name>
+          <maml:description>
+            <maml:para>If specified, uses the current site.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>UserId</maml:name>
+          <maml:description>
+            <maml:para>Specifies the user ID.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>Role</maml:name>
+          <maml:description>
+            <maml:para>Specifies the role.</maml:para>
+          </maml:description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">None</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">View</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Edit</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Owner</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">LimitedView</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">LimitedEdit</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Review</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">RestrictedView</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Submit</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ManageList</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">RoleType</command:parameterValue>
+          <dev:type>
+            <maml:name>RoleType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AdditivePermission</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to add permissions to the external user.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AllowExternalSharing</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to allow external sharing.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>CustomMessage</maml:name>
+          <maml:description>
+            <maml:para>Specifies the custom message.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NoEnumerate</maml:name>
+          <maml:description>
+            <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>SendServerManagedNotification</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to send server managed notification.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Add-KshExternalUser</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>File</maml:name>
+          <maml:description>
+            <maml:para>Specifies the file.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">File</command:parameterValue>
+          <dev:type>
+            <maml:name>File</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>UserId</maml:name>
+          <maml:description>
+            <maml:para>Specifies the user ID.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>Role</maml:name>
+          <maml:description>
+            <maml:para>Specifies the role.</maml:para>
+          </maml:description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">None</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">View</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Edit</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Owner</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">LimitedView</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">LimitedEdit</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Review</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">RestrictedView</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Submit</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ManageList</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">RoleType</command:parameterValue>
+          <dev:type>
+            <maml:name>RoleType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AdditivePermission</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to add permissions to the external user.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>CustomMessage</maml:name>
+          <maml:description>
+            <maml:para>Specifies the custom message.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>IncludeAnonymousLinksInNotification</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to include the anonymous links in notification.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PropagateAcl</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to propagate ACL.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>SendServerManagedNotification</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to send server managed notification.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ValidateExistingPermissions</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to validate existing permissions.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Add-KshExternalUser</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>Folder</maml:name>
+          <maml:description>
+            <maml:para>Specifies the folder.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Folder</command:parameterValue>
+          <dev:type>
+            <maml:name>Folder</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>UserId</maml:name>
+          <maml:description>
+            <maml:para>Specifies the user ID.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>Role</maml:name>
+          <maml:description>
+            <maml:para>Specifies the role.</maml:para>
+          </maml:description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">None</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">View</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Edit</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Owner</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">LimitedView</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">LimitedEdit</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Review</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">RestrictedView</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Submit</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ManageList</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">RoleType</command:parameterValue>
+          <dev:type>
+            <maml:name>RoleType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AdditivePermission</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to add permissions to the external user.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>CustomMessage</maml:name>
+          <maml:description>
+            <maml:para>Specifies the custom message.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>IncludeAnonymousLinksInNotification</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to include the anonymous links in notification.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PropagateAcl</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to propagate ACL.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>SendServerManagedNotification</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to send server managed notification.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ValidateExistingPermissions</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to validate existing permissions.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>AdditivePermission</maml:name>
+        <maml:description>
+          <maml:para>Specifies whether to add permissions to the external user.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>AllowExternalSharing</maml:name>
+        <maml:description>
+          <maml:para>Specifies whether to allow external sharing.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>CustomMessage</maml:name>
+        <maml:description>
+          <maml:para>Specifies the custom message.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>File</maml:name>
+        <maml:description>
+          <maml:para>Specifies the file.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">File</command:parameterValue>
+        <dev:type>
+          <maml:name>File</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>Folder</maml:name>
+        <maml:description>
+          <maml:para>Specifies the folder.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Folder</command:parameterValue>
+        <dev:type>
+          <maml:name>Folder</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>IncludeAnonymousLinksInNotification</maml:name>
+        <maml:description>
+          <maml:para>Specifies whether to include the anonymous links in notification.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>NoEnumerate</maml:name>
+        <maml:description>
+          <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>PropagateAcl</maml:name>
+        <maml:description>
+          <maml:para>Specifies whether to propagate ACL.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>Role</maml:name>
+        <maml:description>
+          <maml:para>Specifies the role.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">RoleType</command:parameterValue>
+        <dev:type>
+          <maml:name>RoleType</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>SendServerManagedNotification</maml:name>
+        <maml:description>
+          <maml:para>Specifies whether to send server managed notification.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>Site</maml:name>
+        <maml:description>
+          <maml:para>If specified, uses the current site.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>UserId</maml:name>
+        <maml:description>
+          <maml:para>Specifies the user ID.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>String[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ValidateExistingPermissions</maml:name>
+        <maml:description>
+          <maml:para>Specifies whether to validate existing permissions.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.V1.UserSharingResult</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Add-KshExternalUser -Site -UserId 'someone@contoso.com'</dev:code>
+        <dev:remarks>
+          <maml:para>Creates a new user to the current site.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Add-KshFile</command:name>
       <command:verb>Add</command:verb>
       <command:noun>KshFile</command:noun>
@@ -21776,7 +22339,7 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Add-KshFile -Folder '/sites/japan/hr/Shared%20Documents' -Content ([System.Text.Encoding]::UTF8.GetBytes('Contact: admin@example.onmicrosoft.com')) -FileName 'README.txt'</dev:code>
+        <dev:code>PS C:\&gt; Add-KshFile -Folder (Get-KshFolder -FolderUrl '/sites/japan/hr/Shared%20Documents') -Content ([System.Text.Encoding]::UTF8.GetBytes('Contact: admin@example.onmicrosoft.com')) -FileName 'README.txt'</dev:code>
         <dev:remarks>
           <maml:para>Creates a new file.</maml:para>
         </dev:remarks>
@@ -22328,9 +22891,9 @@
           <maml:description>
             <maml:para>Specifies the column values.</maml:para>
           </maml:description>
-          <command:parameterValue required="true" variableLength="false">Hashtable[]</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">PSObject[]</command:parameterValue>
           <dev:type>
-            <maml:name>Hashtable[]</maml:name>
+            <maml:name>PSObject[]</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -22378,9 +22941,9 @@
         <maml:description>
           <maml:para>Specifies the column values.</maml:para>
         </maml:description>
-        <command:parameterValue required="true" variableLength="false">Hashtable[]</command:parameterValue>
+        <command:parameterValue required="true" variableLength="false">PSObject[]</command:parameterValue>
         <dev:type>
-          <maml:name>Hashtable[]</maml:name>
+          <maml:name>PSObject[]</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -22825,9 +23388,9 @@
           <maml:description>
             <maml:para>Specifies the URL.</maml:para>
           </maml:description>
-          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
           <dev:type>
-            <maml:name>String</maml:name>
+            <maml:name>Uri</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -22852,9 +23415,9 @@
         <maml:description>
           <maml:para>Specifies the URL.</maml:para>
         </maml:description>
-        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
         <dev:type>
-          <maml:name>String</maml:name>
+          <maml:name>Uri</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -36800,6 +37363,380 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Get-KshSharingInfo</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>KshSharingInfo</command:noun>
+      <maml:description>
+        <maml:para>Retrieves a sharing information.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-KshSharingInfo cmdlet retrieves a sharing information of the specified URL.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-KshSharingInfo</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>CheckForAccessRequests</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to check for access requests.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ExcludeCurrentUser</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to exclude the current user.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ExcludeSecurityGroups</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to exclude security groups.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ExcludeSiteAdmin</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to exclude the site administrators.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>RetrieveAnonymousLinks</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to retrieve anonymous links.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>RetrievePermissionLevels</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to retrieve permission levels.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>RetrieveUserInfoDetails</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to retrieve user information details.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Url</maml:name>
+          <maml:description>
+            <maml:para>Specifies the URL.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
+          <dev:type>
+            <maml:name>Uri</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>CheckForAccessRequests</maml:name>
+        <maml:description>
+          <maml:para>Specifies whether to check for access requests.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ExcludeCurrentUser</maml:name>
+        <maml:description>
+          <maml:para>Specifies whether to exclude the current user.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ExcludeSecurityGroups</maml:name>
+        <maml:description>
+          <maml:para>Specifies whether to exclude security groups.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ExcludeSiteAdmin</maml:name>
+        <maml:description>
+          <maml:para>Specifies whether to exclude the site administrators.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>RetrieveAnonymousLinks</maml:name>
+        <maml:description>
+          <maml:para>Specifies whether to retrieve anonymous links.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>RetrievePermissionLevels</maml:name>
+        <maml:description>
+          <maml:para>Specifies whether to retrieve permission levels.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>RetrieveUserInfoDetails</maml:name>
+        <maml:description>
+          <maml:para>Specifies whether to retrieve user information details.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Url</maml:name>
+        <maml:description>
+          <maml:para>Specifies the URL.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
+        <dev:type>
+          <maml:name>Uri</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.V1.SharingInfo</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshSharingInfo -Url 'https://example.sharepoint.com/Shared%20Documents/README.txt'</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves a sharing information.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-KshSharingSettings</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>KshSharingSettings</command:noun>
+      <maml:description>
+        <maml:para>Retrieves a sharing settings.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-KshSharingSettings cmdlet retrieves a sharing settings of the specified URL.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-KshSharingSettings</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>GroupId</maml:name>
+          <maml:description>
+            <maml:para>Specifies the group ID.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Url</maml:name>
+          <maml:description>
+            <maml:para>Specifies the URL.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
+          <dev:type>
+            <maml:name>Uri</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>UseSimplifiedRoles</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to use simplified roles.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>GroupId</maml:name>
+        <maml:description>
+          <maml:para>Specifies the group ID.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Url</maml:name>
+        <maml:description>
+          <maml:para>Specifies the URL.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
+        <dev:type>
+          <maml:name>Uri</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>UseSimplifiedRoles</maml:name>
+        <maml:description>
+          <maml:para>Specifies whether to use simplified roles.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.V1.SharingSettings</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshSharingSettings -Url 'https://example.sharepoint.com/Shared%20Documents/README.txt'</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves a sharing settings.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Get-KshSite</command:name>
       <command:verb>Get</command:verb>
       <command:noun>KshSite</command:noun>
@@ -39117,6 +40054,167 @@
         <dev:code>PS C:\&gt; Get-KshTenantDeletedSiteCollection</dev:code>
         <dev:remarks>
           <maml:para>Retrieves all deleted site collections.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-KshTenantExternalUser</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>KshTenantExternalUser</command:noun>
+      <maml:description>
+        <maml:para>Retrieves one or more external users.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-KshTenantExternalUser cmdlet retrieves external users of the tenant or the specified site collection. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-KshTenantExternalUser</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>SiteCollectionUrl</maml:name>
+          <maml:description>
+            <maml:para>Specifies the site collection URL.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Filter</maml:name>
+          <maml:description>
+            <maml:para>Specifies the filter that forward matches first name, last name, or email address.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NoEnumerate</maml:name>
+          <maml:description>
+            <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>SortOrder</maml:name>
+          <maml:description>
+            <maml:para>Specifies the sort order.</maml:para>
+          </maml:description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">Ascending</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Descending</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">SortOrder</command:parameterValue>
+          <dev:type>
+            <maml:name>SortOrder</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Filter</maml:name>
+        <maml:description>
+          <maml:para>Specifies the filter that forward matches first name, last name, or email address.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>NoEnumerate</maml:name>
+        <maml:description>
+          <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>SiteCollectionUrl</maml:name>
+        <maml:description>
+          <maml:para>Specifies the site collection URL.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>SortOrder</maml:name>
+        <maml:description>
+          <maml:para>Specifies the sort order.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">SortOrder</command:parameterValue>
+        <dev:type>
+          <maml:name>SortOrder</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.V1.ExternalUser</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; KshTenantExternalUser -SiteCollectionUrl 'https://example.sharepoint.com/sites/japan'</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves all users of the specified site collection.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; KshTenantExternalUser</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves all users of the tenant.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -45194,9 +46292,9 @@
           <maml:description>
             <maml:para>Specifies the URL.</maml:para>
           </maml:description>
-          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
           <dev:type>
-            <maml:name>String</maml:name>
+            <maml:name>Uri</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -45257,9 +46355,9 @@
         <maml:description>
           <maml:para>Specifies the URL.</maml:para>
         </maml:description>
-        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
         <dev:type>
-          <maml:name>String</maml:name>
+          <maml:name>Uri</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -47210,9 +48308,9 @@
           <maml:description>
             <maml:para>Specifies the URL.</maml:para>
           </maml:description>
-          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
           <dev:type>
-            <maml:name>String</maml:name>
+            <maml:name>Uri</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -47273,9 +48371,9 @@
         <maml:description>
           <maml:para>Specifies the URL.</maml:para>
         </maml:description>
-        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
         <dev:type>
-          <maml:name>String</maml:name>
+          <maml:name>Uri</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -48651,6 +49749,85 @@
         <dev:code>PS C:\&gt; Remove-KshTenantDeletedSiteCollection -Identity (Get-KshTenantDeletedSiteCollection -SiteCollectionUrl 'https://example.sharepoint.com/sites/hub')</dev:code>
         <dev:remarks>
           <maml:para>Removes a deleted site collection.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Remove-KshTenantExternalUser</command:name>
+      <command:verb>Remove</command:verb>
+      <command:noun>KshTenantExternalUser</command:noun>
+      <maml:description>
+        <maml:para>Removes an external user.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Remove-KshTenantExternalUser cmdlet removes an external user from the tenant. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Remove-KshTenantExternalUser</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>User</maml:name>
+          <maml:description>
+            <maml:para>Specifies the external user.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">ExternalUser</command:parameterValue>
+          <dev:type>
+            <maml:name>ExternalUser</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>User</maml:name>
+        <maml:description>
+          <maml:para>Specifies the external user.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">ExternalUser</command:parameterValue>
+        <dev:type>
+          <maml:name>ExternalUser</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.V1.ExternalUser</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Void</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Remove-KshTenantExternalUser -User (KshTenantExternalUser -Filter 'someone@contoso.com')</dev:code>
+        <dev:remarks>
+          <maml:para>Removes an external user.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -50715,7 +51892,7 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>The Save-KshFile cmdlet adds a new file to the specified folder. Maximum file size is 2GB.</maml:para>
+      <maml:para>The Save-KshFile cmdlet adds a new file to the specified folder.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -62511,14 +63688,14 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Value</maml:name>
           <maml:description>
             <maml:para>Specifies the column values.</maml:para>
           </maml:description>
-          <command:parameterValue required="true" variableLength="false">Hashtable</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">PSObject</command:parameterValue>
           <dev:type>
-            <maml:name>Hashtable</maml:name>
+            <maml:name>PSObject</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -62562,14 +63739,14 @@
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Value</maml:name>
         <maml:description>
           <maml:para>Specifies the column values.</maml:para>
         </maml:description>
-        <command:parameterValue required="true" variableLength="false">Hashtable</command:parameterValue>
+        <command:parameterValue required="true" variableLength="false">PSObject</command:parameterValue>
         <dev:type>
-          <maml:name>Hashtable</maml:name>
+          <maml:name>PSObject</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -64811,9 +65988,26 @@
             <command:parameterValue required="false" command:variableLength="false">Submit</command:parameterValue>
             <command:parameterValue required="false" command:variableLength="false">ManageList</command:parameterValue>
           </command:parameterValueGroup>
-          <command:parameterValue required="true" variableLength="false">TenantRoleType</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">RoleType</command:parameterValue>
           <dev:type>
-            <maml:name>TenantRoleType</maml:name>
+            <maml:name>RoleType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AllowAnonymousMeetingParticipantsToAccessWhiteboards</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to allow anonymous meeting participants to access the whiteboards.</maml:para>
+          </maml:description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">Unspecified</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">On</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Off</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">SharingState</command:parameterValue>
+          <dev:type>
+            <maml:name>SharingState</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -64858,6 +66052,18 @@
           <maml:name>AllowEveryoneExceptExternalUsersClaimInPrivateSite</maml:name>
           <maml:description>
             <maml:para>Specifies whether to allow "Everyone except external users" claim in private site.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>AllowGuestUserShareToUsersNotInSiteCollection</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to allow guests to share to users not in the site collection.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
@@ -65156,7 +66362,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>CoreLoopDefaultSharingLinkRole</maml:name>
           <maml:description>
-            <maml:para>Specifies the Loop default sharing link role for SharePoint.</maml:para>
+            <maml:para>Specifies the Microsoft Loop default sharing link role for SharePoint.</maml:para>
           </maml:description>
           <command:parameterValueGroup>
             <command:parameterValue required="false" command:variableLength="false">None</command:parameterValue>
@@ -65170,9 +66376,9 @@
             <command:parameterValue required="false" command:variableLength="false">Submit</command:parameterValue>
             <command:parameterValue required="false" command:variableLength="false">ManageList</command:parameterValue>
           </command:parameterValueGroup>
-          <command:parameterValue required="true" variableLength="false">TenantRoleType</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">RoleType</command:parameterValue>
           <dev:type>
-            <maml:name>TenantRoleType</maml:name>
+            <maml:name>RoleType</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -65180,7 +66386,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>CoreLoopDefaultSharingLinkScope</maml:name>
           <maml:description>
-            <maml:para>Specifies the Loop default sharing link scope for SharePoint.</maml:para>
+            <maml:para>Specifies the Microsoft Loop default sharing link scope for SharePoint.</maml:para>
           </maml:description>
           <command:parameterValueGroup>
             <command:parameterValue required="false" command:variableLength="false">Anyone</command:parameterValue>
@@ -65198,7 +66404,49 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>CoreLoopSharingCapability</maml:name>
           <maml:description>
-            <maml:para>Specifies the Loop sharing capavility for SharePoint.</maml:para>
+            <maml:para>Specifies the Microsoft Loop sharing capavility for SharePoint.</maml:para>
+          </maml:description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">Disabled</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ExternalUserSharingOnly</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ExternalUserAndGuestSharing</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ExistingExternalUserSharingOnly</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">SharingCapabilities</command:parameterValue>
+          <dev:type>
+            <maml:name>SharingCapabilities</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>CoreRequestFilesLinkEnabled</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to enable request files link.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>CoreRequestFilesLinkExpirationInDays</maml:name>
+          <maml:description>
+            <maml:para>Specifies the days that the request files link will be expired.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>CoreSharingCapability</maml:name>
+          <maml:description>
+            <maml:para>Specifies the sharing capability.</maml:para>
           </maml:description>
           <command:parameterValueGroup>
             <command:parameterValue required="false" command:variableLength="false">Disabled</command:parameterValue>
@@ -65561,6 +66809,18 @@
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>EnableRestrictedAccessControl</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to enable the restricted access control.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>ExcludedFileExtensionsForSyncClient</maml:name>
           <maml:description>
             <maml:para>Specifies the file extensions that excluded for sync client.</maml:para>
@@ -65840,6 +67100,18 @@
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>IsLoopEnabled</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to enable Microsoft Loop.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>IsUnmanagedSyncClientForTenantRestricted</maml:name>
           <maml:description>
             <maml:para>Specifies whether unmanaged sync client for client is restricted.</maml:para>
@@ -66064,7 +67336,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>OneDriveLoopDefaultSharingLinkRole</maml:name>
           <maml:description>
-            <maml:para>Specifies the Loop default sharing link role for OneDrive.</maml:para>
+            <maml:para>Specifies the Microsoft Loop default sharing link role for OneDrive.</maml:para>
           </maml:description>
           <command:parameterValueGroup>
             <command:parameterValue required="false" command:variableLength="false">None</command:parameterValue>
@@ -66078,9 +67350,9 @@
             <command:parameterValue required="false" command:variableLength="false">Submit</command:parameterValue>
             <command:parameterValue required="false" command:variableLength="false">ManageList</command:parameterValue>
           </command:parameterValueGroup>
-          <command:parameterValue required="true" variableLength="false">TenantRoleType</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">RoleType</command:parameterValue>
           <dev:type>
-            <maml:name>TenantRoleType</maml:name>
+            <maml:name>RoleType</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -66088,7 +67360,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>OneDriveLoopDefaultSharingLinkScope</maml:name>
           <maml:description>
-            <maml:para>Specifies the Loop default sharing link scope for OneDrive.</maml:para>
+            <maml:para>Specifies the Microsoft Loop default sharing link scope for OneDrive.</maml:para>
           </maml:description>
           <command:parameterValueGroup>
             <command:parameterValue required="false" command:variableLength="false">Anyone</command:parameterValue>
@@ -66106,7 +67378,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>OneDriveLoopSharingCapability</maml:name>
           <maml:description>
-            <maml:para>Specifies the Loop sharing capability for OneDrive.</maml:para>
+            <maml:para>Specifies the Microsoft Loop sharing capability for OneDrive.</maml:para>
           </maml:description>
           <command:parameterValueGroup>
             <command:parameterValue required="false" command:variableLength="false">Disabled</command:parameterValue>
@@ -66134,6 +67406,30 @@
           <command:parameterValue required="true" variableLength="false">SharingState</command:parameterValue>
           <dev:type>
             <maml:name>SharingState</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>OneDriveRequestFilesLinkEnabled</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to enable request files link for OneDrive.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>OneDriveRequestFilesLinkExpirationInDays</maml:name>
+          <maml:description>
+            <maml:para>Specifies the days that the request files link will be expired for OneDrive.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -66408,6 +67704,30 @@
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ShowPeoplePickerGroupSuggestionsForInformationBarriers</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether the people picker group show suggestions for information barriers.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ShowPeoplePickerSuggestionsForGuestUsers</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether the people picker show suggestions for guest users.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>SignInAccelerationDomain</maml:name>
           <maml:description>
             <maml:para>Specifies the sign-in acceleration domain.</maml:para>
@@ -66576,9 +67896,21 @@
         <maml:description>
           <maml:para>Specifies the address bar link permission.</maml:para>
         </maml:description>
-        <command:parameterValue required="true" variableLength="false">TenantRoleType</command:parameterValue>
+        <command:parameterValue required="true" variableLength="false">RoleType</command:parameterValue>
         <dev:type>
-          <maml:name>TenantRoleType</maml:name>
+          <maml:name>RoleType</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>AllowAnonymousMeetingParticipantsToAccessWhiteboards</maml:name>
+        <maml:description>
+          <maml:para>Specifies whether to allow anonymous meeting participants to access the whiteboards.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">SharingState</command:parameterValue>
+        <dev:type>
+          <maml:name>SharingState</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -66623,6 +67955,18 @@
         <maml:name>AllowEveryoneExceptExternalUsersClaimInPrivateSite</maml:name>
         <maml:description>
           <maml:para>Specifies whether to allow "Everyone except external users" claim in private site.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>AllowGuestUserShareToUsersNotInSiteCollection</maml:name>
+        <maml:description>
+          <maml:para>Specifies whether to allow guests to share to users not in the site collection.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
         <dev:type>
@@ -66898,11 +68242,11 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>CoreLoopDefaultSharingLinkRole</maml:name>
         <maml:description>
-          <maml:para>Specifies the Loop default sharing link role for SharePoint.</maml:para>
+          <maml:para>Specifies the Microsoft Loop default sharing link role for SharePoint.</maml:para>
         </maml:description>
-        <command:parameterValue required="true" variableLength="false">TenantRoleType</command:parameterValue>
+        <command:parameterValue required="true" variableLength="false">RoleType</command:parameterValue>
         <dev:type>
-          <maml:name>TenantRoleType</maml:name>
+          <maml:name>RoleType</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -66910,7 +68254,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>CoreLoopDefaultSharingLinkScope</maml:name>
         <maml:description>
-          <maml:para>Specifies the Loop default sharing link scope for SharePoint.</maml:para>
+          <maml:para>Specifies the Microsoft Loop default sharing link scope for SharePoint.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">SharingScope</command:parameterValue>
         <dev:type>
@@ -66922,7 +68266,43 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>CoreLoopSharingCapability</maml:name>
         <maml:description>
-          <maml:para>Specifies the Loop sharing capavility for SharePoint.</maml:para>
+          <maml:para>Specifies the Microsoft Loop sharing capavility for SharePoint.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">SharingCapabilities</command:parameterValue>
+        <dev:type>
+          <maml:name>SharingCapabilities</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>CoreRequestFilesLinkEnabled</maml:name>
+        <maml:description>
+          <maml:para>Specifies whether to enable request files link.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>CoreRequestFilesLinkExpirationInDays</maml:name>
+        <maml:description>
+          <maml:para>Specifies the days that the request files link will be expired.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>CoreSharingCapability</maml:name>
+        <maml:description>
+          <maml:para>Specifies the sharing capability.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">SharingCapabilities</command:parameterValue>
         <dev:type>
@@ -67268,6 +68648,18 @@
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>EnableRestrictedAccessControl</maml:name>
+        <maml:description>
+          <maml:para>Specifies whether to enable the restricted access control.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>ExcludedFileExtensionsForSyncClient</maml:name>
         <maml:description>
           <maml:para>Specifies the file extensions that excluded for sync client.</maml:para>
@@ -67532,6 +68924,18 @@
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>IsLoopEnabled</maml:name>
+        <maml:description>
+          <maml:para>Specifies whether to enable Microsoft Loop.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>IsUnmanagedSyncClientForTenantRestricted</maml:name>
         <maml:description>
           <maml:para>Specifies whether unmanaged sync client for client is restricted.</maml:para>
@@ -67738,11 +69142,11 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>OneDriveLoopDefaultSharingLinkRole</maml:name>
         <maml:description>
-          <maml:para>Specifies the Loop default sharing link role for OneDrive.</maml:para>
+          <maml:para>Specifies the Microsoft Loop default sharing link role for OneDrive.</maml:para>
         </maml:description>
-        <command:parameterValue required="true" variableLength="false">TenantRoleType</command:parameterValue>
+        <command:parameterValue required="true" variableLength="false">RoleType</command:parameterValue>
         <dev:type>
-          <maml:name>TenantRoleType</maml:name>
+          <maml:name>RoleType</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -67750,7 +69154,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>OneDriveLoopDefaultSharingLinkScope</maml:name>
         <maml:description>
-          <maml:para>Specifies the Loop default sharing link scope for OneDrive.</maml:para>
+          <maml:para>Specifies the Microsoft Loop default sharing link scope for OneDrive.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">SharingScope</command:parameterValue>
         <dev:type>
@@ -67762,7 +69166,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>OneDriveLoopSharingCapability</maml:name>
         <maml:description>
-          <maml:para>Specifies the Loop sharing capability for OneDrive.</maml:para>
+          <maml:para>Specifies the Microsoft Loop sharing capability for OneDrive.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">SharingCapabilities</command:parameterValue>
         <dev:type>
@@ -67779,6 +69183,30 @@
         <command:parameterValue required="true" variableLength="false">SharingState</command:parameterValue>
         <dev:type>
           <maml:name>SharingState</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>OneDriveRequestFilesLinkEnabled</maml:name>
+        <maml:description>
+          <maml:para>Specifies whether to enable request files link for OneDrive.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>OneDriveRequestFilesLinkExpirationInDays</maml:name>
+        <maml:description>
+          <maml:para>Specifies the days that the request files link will be expired for OneDrive.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -68027,6 +69455,30 @@
         <maml:name>ShowEveryoneExceptExternalUsersClaim</maml:name>
         <maml:description>
           <maml:para>Specifies whether to show [Everyone except external users] claim.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ShowPeoplePickerGroupSuggestionsForInformationBarriers</maml:name>
+        <maml:description>
+          <maml:para>Specifies whether the people picker group show suggestions for information barriers.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ShowPeoplePickerSuggestionsForGuestUsers</maml:name>
+        <maml:description>
+          <maml:para>Specifies whether the people picker show suggestions for guest users.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
         <dev:type>
@@ -69305,9 +70757,9 @@
             <command:parameterValue required="false" command:variableLength="false">Submit</command:parameterValue>
             <command:parameterValue required="false" command:variableLength="false">ManageList</command:parameterValue>
           </command:parameterValueGroup>
-          <command:parameterValue required="true" variableLength="false">TenantRoleType</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">RoleType</command:parameterValue>
           <dev:type>
-            <maml:name>TenantRoleType</maml:name>
+            <maml:name>RoleType</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -69473,6 +70925,42 @@
           <maml:name>ReadOnlyForUnmanagedDevices</maml:name>
           <maml:description>
             <maml:para>Specifies whether to make unmanaged devices to be read-only.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>RequestFilesLinkEnabled</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to enable to request files link.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>RequestFilesLinkExpirationInDays</maml:name>
+          <maml:description>
+            <maml:para>Specifies the days that request files link to be expired.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>RestrictedAccessControl</maml:name>
+          <maml:description>
+            <maml:para>Specifies the restricted access control.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
@@ -70074,9 +71562,9 @@
             <command:parameterValue required="false" command:variableLength="false">Submit</command:parameterValue>
             <command:parameterValue required="false" command:variableLength="false">ManageList</command:parameterValue>
           </command:parameterValueGroup>
-          <command:parameterValue required="true" variableLength="false">TenantRoleType</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">RoleType</command:parameterValue>
           <dev:type>
-            <maml:name>TenantRoleType</maml:name>
+            <maml:name>RoleType</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -70242,6 +71730,42 @@
           <maml:name>ReadOnlyForUnmanagedDevices</maml:name>
           <maml:description>
             <maml:para>Specifies whether to make unmanaged devices to be read-only.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>RequestFilesLinkEnabled</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to enable to request files link.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>RequestFilesLinkExpirationInDays</maml:name>
+          <maml:description>
+            <maml:para>Specifies the days that request files link to be expired.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>RestrictedAccessControl</maml:name>
+          <maml:description>
+            <maml:para>Specifies the restricted access control.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
@@ -70785,9 +72309,9 @@
         <maml:description>
           <maml:para>Specifies the Loop default sharing link role.</maml:para>
         </maml:description>
-        <command:parameterValue required="true" variableLength="false">TenantRoleType</command:parameterValue>
+        <command:parameterValue required="true" variableLength="false">RoleType</command:parameterValue>
         <dev:type>
-          <maml:name>TenantRoleType</maml:name>
+          <maml:name>RoleType</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -70940,6 +72464,42 @@
         <maml:name>ReadOnlyForUnmanagedDevices</maml:name>
         <maml:description>
           <maml:para>Specifies whether to make unmanaged devices to be read-only.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>RequestFilesLinkEnabled</maml:name>
+        <maml:description>
+          <maml:para>Specifies whether to enable to request files link.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>RequestFilesLinkExpirationInDays</maml:name>
+        <maml:description>
+          <maml:para>Specifies the days that request files link to be expired.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>RestrictedAccessControl</maml:name>
+        <maml:description>
+          <maml:para>Specifies the restricted access control.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
         <dev:type>
@@ -74426,6 +75986,118 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Test-KshExternalUserSharing</command:name>
+      <command:verb>Test</command:verb>
+      <command:noun>KshExternalUserSharing</command:noun>
+      <maml:description>
+        <maml:para>Checks whether the site or list allows external sharing.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Test-KshExternalUserSharing cmdlet returns a value that indicates the site or list allows external sharing.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Test-KshExternalUserSharing</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>List</maml:name>
+          <maml:description>
+            <maml:para>Specifies the list.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">List</command:parameterValue>
+          <dev:type>
+            <maml:name>List</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Test-KshExternalUserSharing</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>Site</maml:name>
+          <maml:description>
+            <maml:para>If specified, uses the current site.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>List</maml:name>
+        <maml:description>
+          <maml:para>Specifies the list.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">List</command:parameterValue>
+        <dev:type>
+          <maml:name>List</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>Site</maml:name>
+        <maml:description>
+          <maml:para>If specified, uses the current site.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Boolean</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Test-KshExternalUserSharing -Site</dev:code>
+        <dev:remarks>
+          <maml:para>Checks the external sharing of the site.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Test-KshExternalUserSharing -List (Get-KshList -ListId 'a01f8e07-290f-4644-9db8-85bb00b85e74')</dev:code>
+        <dev:remarks>
+          <maml:para>Checks the external sharing of the list.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Test-KshSharingLink</command:name>
       <command:verb>Test</command:verb>
       <command:noun>KshSharingLink</command:noun>
@@ -74444,9 +76116,9 @@
           <maml:description>
             <maml:para>Specifies the URL.</maml:para>
           </maml:description>
-          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
           <dev:type>
-            <maml:name>String</maml:name>
+            <maml:name>Uri</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -74459,9 +76131,9 @@
         <maml:description>
           <maml:para>Specifies the URL.</maml:para>
         </maml:description>
-        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
         <dev:type>
-          <maml:name>String</maml:name>
+          <maml:name>Uri</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>

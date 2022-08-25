@@ -26,14 +26,15 @@ Set-KshTenantSiteCollection [-Identity] <TenantSiteCollection> [-AllowDownloadin
  [-ExternalUserExpirationInDays <Int32>] [-InformationBarriersMode <String>]
  [-InformationBarriersSegments <Guid[]>] [-InformationBarriersSegmentsToAdd <Guid[]>]
  [-InformationBarriersSegmentsToRemove <Guid[]>] [-LimitedAccessFileType <LimitedAccessFileType>]
- [-LoopDefaultSharingLinkRole <TenantRoleType>] [-LoopDefaultSharingLinkScope <SharingScope>]
+ [-LoopDefaultSharingLinkRole <RoleType>] [-LoopDefaultSharingLinkScope <SharingScope>]
  [-LoopOverrideSharingCapability <Boolean>] [-LoopSharingCapability <SharingCapabilities>]
  [-MediaTranscription <MediaTranscriptionPolicyType>]
  [-OverrideBlockUserInfoVisibility <SiteUserInfoVisibilityPolicyType>]
  [-OverrideTenantAnonymousLinkExpirationPolicy <Boolean>]
  [-OverrideTenantExternalUserExpirationPolicy <Boolean>] [-Owner <String>] [-PWAEnabled <PWAEnabledStatus>]
  [-ReadOnlyAccessPolicy <Boolean>] [-ReadOnlyForUnmanagedDevices <Boolean>]
- [-RestrictedToRegion <RestrictedToRegion>]
+ [-RequestFilesLinkEnabled <Boolean>] [-RequestFilesLinkExpirationInDays <Int32>]
+ [-RestrictedAccessControl <Boolean>] [-RestrictedToRegion <RestrictedToRegion>]
  [-SandboxedCodeActivationCapability <SandboxedCodeActivationCapabilities>] [-SensitivityLabel <Guid>]
  [-SensitivityLabel2 <String>] [-SharingAllowedDomainList <String>] [-SharingBlockedDomainList <String>]
  [-SharingCapability <SharingCapabilities>] [-SharingDomainRestrictionMode <SharingDomainRestrictionMode>]
@@ -57,14 +58,15 @@ Set-KshTenantSiteCollection [-Identity] <TenantSiteCollection> [-AllowDownloadin
  [-ExternalUserExpirationInDays <Int32>] [-InformationBarriersMode <String>]
  [-InformationBarriersSegments <Guid[]>] [-InformationBarriersSegmentsToAdd <Guid[]>]
  [-InformationBarriersSegmentsToRemove <Guid[]>] [-LimitedAccessFileType <LimitedAccessFileType>]
- [-LoopDefaultSharingLinkRole <TenantRoleType>] [-LoopDefaultSharingLinkScope <SharingScope>]
+ [-LoopDefaultSharingLinkRole <RoleType>] [-LoopDefaultSharingLinkScope <SharingScope>]
  [-LoopOverrideSharingCapability <Boolean>] [-LoopSharingCapability <SharingCapabilities>]
  [-MediaTranscription <MediaTranscriptionPolicyType>]
  [-OverrideBlockUserInfoVisibility <SiteUserInfoVisibilityPolicyType>]
  [-OverrideTenantAnonymousLinkExpirationPolicy <Boolean>]
  [-OverrideTenantExternalUserExpirationPolicy <Boolean>] [-Owner <String>] [-PWAEnabled <PWAEnabledStatus>]
  [-ReadOnlyAccessPolicy <Boolean>] [-ReadOnlyForUnmanagedDevices <Boolean>]
- [-RestrictedToRegion <RestrictedToRegion>]
+ [-RequestFilesLinkEnabled <Boolean>] [-RequestFilesLinkExpirationInDays <Int32>]
+ [-RestrictedAccessControl <Boolean>] [-RestrictedToRegion <RestrictedToRegion>]
  [-SandboxedCodeActivationCapability <SandboxedCodeActivationCapabilities>] [-SensitivityLabel <Guid>]
  [-SensitivityLabel2 <String>] [-SharingAllowedDomainList <String>] [-SharingBlockedDomainList <String>]
  [-SharingCapability <SharingCapabilities>] [-SharingDomainRestrictionMode <SharingDomainRestrictionMode>]
@@ -477,7 +479,7 @@ Accept wildcard characters: False
 Specifies the Loop default sharing link role.
 
 ```yaml
-Type: TenantRoleType
+Type: RoleType
 Parameter Sets: (All)
 Aliases:
 Accepted values: None, View, Edit, Owner, LimitedView, LimitedEdit, Review, RestrictedView, Submit, ManageList
@@ -676,6 +678,51 @@ Accept wildcard characters: False
 
 ### -ReadOnlyForUnmanagedDevices
 Specifies whether to make unmanaged devices to be read-only.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -RequestFilesLinkEnabled
+Specifies whether to enable to request files link.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -RequestFilesLinkExpirationInDays
+Specifies the days that request files link to be expired.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -RestrictedAccessControl
+Specifies the restricted access control.
 
 ```yaml
 Type: Boolean

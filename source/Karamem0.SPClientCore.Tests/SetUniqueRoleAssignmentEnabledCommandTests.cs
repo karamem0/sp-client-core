@@ -19,7 +19,6 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("Set-KshUniqueRoleAssignmentEnabled")]
     public class SetUniqueRoleAssignmentEnabledCommandTests
     {
 

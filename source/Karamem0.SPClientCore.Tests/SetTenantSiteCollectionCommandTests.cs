@@ -18,7 +18,6 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("Set-KshTenantSiteCollection")]
     public class SetTenantSiteCollectionCommandTests
     {
 
@@ -88,6 +87,9 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     { "Owner", context.AppSettings["User1Email"] },
                     { "PWAEnabled", "Disabled" },
                     { "ReadOnlyAccessPolicy", true },
+                    // { "RequestFilesLinkEnabled", true },
+                    // { "RequestFilesLinkExpirationInDays", 90 },
+                    { "RestrictedAccessControl", true },
                     { "ReadOnlyForUnmanagedDevices", true },
                     { "RestrictedToRegion", "BlockFull" },
                     { "SandboxedCodeActivationCapability", "Enabled" },

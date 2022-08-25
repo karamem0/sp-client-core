@@ -18,7 +18,6 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("Restore-KshTenantDeletedSiteCollection")]
     public class RestoreTenantDeletedSiteCollectionCommandTests
     {
 

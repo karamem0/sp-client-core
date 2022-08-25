@@ -42,7 +42,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
 
         void RemoveObject(Term termObject);
 
-        void SetObject(Term termObject, IReadOnlyDictionary<string, object> modificationInformation);
+        void SetObject(Term termObject, IReadOnlyDictionary<string, object> modificationInfo);
 
     }
 
@@ -232,16 +232,16 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
             _ = this.ClientContext.ProcessQuery(requestPayload);
         }
 
-        public override void SetObject(Term termObject, IReadOnlyDictionary<string, object> modificationInformation)
+        public override void SetObject(Term termObject, IReadOnlyDictionary<string, object> modificationInfo)
         {
             _ = termObject ?? throw new ArgumentNullException(nameof(termObject));
-            _ = modificationInformation ?? throw new ArgumentNullException(nameof(modificationInformation));
+            _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathIdentity(termObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(
                 objectPath1,
-                requestPayload.CreateSetPropertyDelegates(termObject, modificationInformation).ToArray());
+                requestPayload.CreateSetPropertyDelegates(termObject, modificationInfo).ToArray());
             var objectPath3 = requestPayload.Add(
                 new ObjectPathProperty(objectPath2.Id, "TermStore"));
             var objectPath4 = requestPayload.Add(

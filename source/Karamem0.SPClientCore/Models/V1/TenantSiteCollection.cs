@@ -152,7 +152,7 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         public virtual string LockState { get; protected set; }
 
         [JsonProperty()]
-        public virtual TenantRoleType LoopDefaultSharingLinkRole { get; protected set; }
+        public virtual RoleType LoopDefaultSharingLinkRole { get; protected set; }
 
         [JsonProperty()]
         public virtual SharingScope LoopDefaultSharingLinkScope { get; protected set; }
@@ -201,6 +201,15 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
 
         [JsonProperty()]
         public virtual Guid RelatedGroupId { get; protected set; }
+
+        [JsonProperty()]
+        public virtual bool RequestFilesLinkEnabled { get; protected set; }
+
+        [JsonProperty()]
+        public virtual int RequestFilesLinkExpirationInDays { get; protected set; }
+
+        [JsonProperty()]
+        public virtual bool RestrictedAccessControl { get; protected set; }
 
         [JsonProperty()]
         public virtual RestrictedToRegion RestrictedToRegion { get; protected set; }

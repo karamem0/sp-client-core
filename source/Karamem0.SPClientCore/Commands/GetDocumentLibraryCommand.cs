@@ -19,7 +19,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 {
 
     [Cmdlet("Get", "KshDocumentLibrary")]
-    [OutputType(typeof(DocumentLibraryInformation))]
+    [OutputType(typeof(DocumentLibraryInfo))]
     public class GetDocumentLibraryCommand : ClientObjectCmdlet<IDocumentLibraryService>
     {
 

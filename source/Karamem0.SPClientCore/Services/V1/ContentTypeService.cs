@@ -20,9 +20,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
     public interface IContentTypeService
     {
 
-        ContentType AddObject(IReadOnlyDictionary<string, object> creationInformation);
+        ContentType AddObject(IReadOnlyDictionary<string, object> creationInfo);
 
-        ContentType AddObject(List listObject, IReadOnlyDictionary<string, object> creationInformation);
+        ContentType AddObject(List listObject, IReadOnlyDictionary<string, object> creationInfo);
 
         ContentType AddObject(List listObject, ContentType contentTypeObject);
 
@@ -38,7 +38,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
 
         void RemoveObject(ContentType contentTypeObject);
 
-        void SetObject(ContentType contentTypeObject, IReadOnlyDictionary<string, object> modificationInformation);
+        void SetObject(ContentType contentTypeObject, IReadOnlyDictionary<string, object> modificationInfo);
 
     }
 
@@ -49,9 +49,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
         {
         }
 
-        public ContentType AddObject(IReadOnlyDictionary<string, object> creationInformation)
+        public ContentType AddObject(IReadOnlyDictionary<string, object> creationInfo)
         {
-            _ = creationInformation ?? throw new ArgumentNullException(nameof(creationInformation));
+            _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathStaticProperty(typeof(Context), "Current"));
@@ -63,7 +63,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 new ObjectPathMethod(
                     objectPath3.Id,
                     "Add",
-                    requestPayload.CreateParameter(new ContentTypeCreationInformation(creationInformation))),
+                    requestPayload.CreateParameter(new ContentTypeCreationInfo(creationInfo))),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {
@@ -74,10 +74,10 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 .ToObject<ContentType>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
-        public ContentType AddObject(List listObject, IReadOnlyDictionary<string, object> creationInformation)
+        public ContentType AddObject(List listObject, IReadOnlyDictionary<string, object> creationInfo)
         {
             _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
-            _ = creationInformation ?? throw new ArgumentNullException(nameof(creationInformation));
+            _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathIdentity(listObject.ObjectIdentity),
@@ -89,7 +89,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 new ObjectPathMethod(
                     objectPath2.Id,
                     "Add",
-                    requestPayload.CreateParameter(new ContentTypeCreationInformation(creationInformation))),
+                    requestPayload.CreateParameter(new ContentTypeCreationInfo(creationInfo))),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {

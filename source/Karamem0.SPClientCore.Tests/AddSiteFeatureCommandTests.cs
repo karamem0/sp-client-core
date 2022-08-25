@@ -18,7 +18,6 @@ namespace Karamem0.SharePoint.PowerShell.Tests
 {
 
     [TestClass()]
-    [TestCategory("Add-KshSiteFeature")]
     public class AddSiteFeatureCommandTests
     {
 

@@ -18,7 +18,7 @@ Save-KshFile -Folder <Folder> -Content <Stream> -FileName <String> [-Overwrite <
 ```
 
 ## DESCRIPTION
-The Save-KshFile cmdlet adds a new file to the specified folder. Maximum file size is 2GB.
+The Save-KshFile cmdlet adds a new file to the specified folder.
 
 ## EXAMPLES
 

@@ -31,8 +31,8 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         [JsonProperty()]
         public virtual int Id { get; protected set; }
 
-        [JsonProperty()]
-        public virtual TimeZoneInformation Information { get; protected set; }
+        [JsonProperty("Information")]
+        public virtual TimeZoneInfo TimeZoneInfo { get; protected set; }
 
     }
 

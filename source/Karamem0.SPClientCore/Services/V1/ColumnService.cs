@@ -21,9 +21,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
     public interface IColumnService
     {
 
-        Column AddObject(ColumnType columnType, IReadOnlyDictionary<string, object> creationInformation, bool addToDefaultView, AddColumnOptions addColumnOptions);
+        Column AddObject(ColumnType columnType, IReadOnlyDictionary<string, object> creationInfo, bool addToDefaultView, AddColumnOptions addColumnOptions);
 
-        Column AddObject(List listObject, ColumnType columnType, IReadOnlyDictionary<string, object> creationInformation, bool addToDefaultView, AddColumnOptions addColumnOptions);
+        Column AddObject(List listObject, ColumnType columnType, IReadOnlyDictionary<string, object> creationInfo, bool addToDefaultView, AddColumnOptions addColumnOptions);
 
         Column GetObject(Column columnObject);
 
@@ -47,9 +47,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
 
         void RemoveObject(Column columnObject);
 
-        void SetObject(Column columnObject, IReadOnlyDictionary<string, object> modificationInformation);
+        void SetObject(Column columnObject, IReadOnlyDictionary<string, object> modificationInfo);
 
-        void SetObject(Column columnObject, IReadOnlyDictionary<string, object> modificationInformation, bool pushChanges);
+        void SetObject(Column columnObject, IReadOnlyDictionary<string, object> modificationInfo, bool pushChanges);
 
     }
 
@@ -60,9 +60,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
         {
         }
 
-        public Column AddObject(ColumnType columnType, IReadOnlyDictionary<string, object> creationInformation, bool addToDefaultView, AddColumnOptions addColumnOptions)
+        public Column AddObject(ColumnType columnType, IReadOnlyDictionary<string, object> creationInfo, bool addToDefaultView, AddColumnOptions addColumnOptions)
         {
-            _ = creationInformation ?? throw new ArgumentNullException(nameof(creationInformation));
+            _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathStaticProperty(typeof(Context), "Current"));
@@ -74,7 +74,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 new ObjectPathMethod(
                     objectPath3.Id,
                     "AddFieldAsXml",
-                    requestPayload.CreateParameter(SchemaXmlColumn.Create(columnType, creationInformation)),
+                    requestPayload.CreateParameter(SchemaXmlColumn.Create(columnType, creationInfo)),
                     requestPayload.CreateParameter(addToDefaultView),
                     requestPayload.CreateParameter(addColumnOptions)),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -87,10 +87,10 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
-        public Column AddObject(List listObject, ColumnType columnType, IReadOnlyDictionary<string, object> creationInformation, bool addToDefaultView, AddColumnOptions addColumnOptions)
+        public Column AddObject(List listObject, ColumnType columnType, IReadOnlyDictionary<string, object> creationInfo, bool addToDefaultView, AddColumnOptions addColumnOptions)
         {
             _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
-            _ = creationInformation ?? throw new ArgumentNullException(nameof(creationInformation));
+            _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathIdentity(listObject.ObjectIdentity));
@@ -100,7 +100,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 new ObjectPathMethod(
                     objectPath2.Id,
                     "AddFieldAsXml",
-                    requestPayload.CreateParameter(SchemaXmlColumn.Create(columnType, creationInformation)),
+                    requestPayload.CreateParameter(SchemaXmlColumn.Create(columnType, creationInfo)),
                     requestPayload.CreateParameter(addToDefaultView),
                     requestPayload.CreateParameter(addColumnOptions)),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -317,10 +317,10 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 .ToObject<ColumnEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
 
-        public override void SetObject(Column columnObject, IReadOnlyDictionary<string, object> modificationInformation)
+        public override void SetObject(Column columnObject, IReadOnlyDictionary<string, object> modificationInfo)
         {
             _ = columnObject ?? throw new ArgumentNullException(nameof(columnObject));
-            _ = modificationInformation ?? throw new ArgumentNullException(nameof(modificationInformation));
+            _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectName = columnObject.ObjectType;
             var objectType = ClientObject.GetType(objectName);
@@ -329,15 +329,15 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 objectPathId => new ClientActionSetProperty(
                     objectPathId,
                     "SchemaXml",
-                    requestPayload.CreateParameter(SchemaXmlColumn.Create(columnObject.SchemaXml, modificationInformation))),
+                    requestPayload.CreateParameter(SchemaXmlColumn.Create(columnObject.SchemaXml, modificationInfo))),
                 objectPathId => new ClientActionMethod(objectPathId, "Update"));
             _ = this.ClientContext.ProcessQuery(requestPayload);
         }
 
-        public void SetObject(Column columnObject, IReadOnlyDictionary<string, object> modificationInformation, bool pushChanges)
+        public void SetObject(Column columnObject, IReadOnlyDictionary<string, object> modificationInfo, bool pushChanges)
         {
             _ = columnObject ?? throw new ArgumentNullException(nameof(columnObject));
-            _ = modificationInformation ?? throw new ArgumentNullException(nameof(modificationInformation));
+            _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectName = columnObject.ObjectType;
             var objectType = ClientObject.GetType(objectName);
@@ -346,7 +346,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 objectPathId => new ClientActionSetProperty(
                     objectPathId,
                     "SchemaXml",
-                    requestPayload.CreateParameter(SchemaXmlColumn.Create(columnObject.SchemaXml, modificationInformation))),
+                    requestPayload.CreateParameter(SchemaXmlColumn.Create(columnObject.SchemaXml, modificationInfo))),
                 objectPathId => new ClientActionMethod(
                     objectPathId,
                     "UpdateAndPushChanges",

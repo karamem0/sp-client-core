@@ -13,7 +13,7 @@ Checks the sharing link kind for the URL.
 ## SYNTAX
 
 ```
-Test-KshSharingLink -Url <String> [<CommonParameters>]
+Test-KshSharingLink -Url <Uri> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -34,7 +34,7 @@ Checks the sharing link.
 Specifies the URL.
 
 ```yaml
-Type: String
+Type: Uri
 Parameter Sets: (All)
 Aliases:
 

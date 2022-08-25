@@ -20,7 +20,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
     public interface ITenantHubSiteService
     {
 
-        HubSite AddObject(string siteCollectionUrl, IReadOnlyDictionary<string, object> creationInformation);
+        HubSite AddObject(string siteCollectionUrl, IReadOnlyDictionary<string, object> creationInfo);
 
         HubSite GetObject(Guid? hubSiteId);
 
@@ -30,7 +30,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
 
         void RemoveObject(HubSite hubSiteObject);
 
-        void SetObject(HubSite hubSiteObject, IReadOnlyDictionary<string, object> modificationInformation);
+        void SetObject(HubSite hubSiteObject, IReadOnlyDictionary<string, object> modificationInfo);
 
     }
 
@@ -41,10 +41,10 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
         {
         }
 
-        public HubSite AddObject(string siteCollectionUrl, IReadOnlyDictionary<string, object> creationInformation)
+        public HubSite AddObject(string siteCollectionUrl, IReadOnlyDictionary<string, object> creationInfo)
         {
             _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));
-            _ = creationInformation ?? throw new ArgumentNullException(nameof(creationInformation));
+            _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathConstructor(typeof(Tenant)));
@@ -53,7 +53,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                     objectPath1.Id,
                     "RegisterHubSiteWithCreationInformation",
                     requestPayload.CreateParameter(siteCollectionUrl),
-                    requestPayload.CreateParameter(new HubSiteCreationInformation(creationInformation))),
+                    requestPayload.CreateParameter(new HubSiteCreationInfo(creationInfo))),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {
@@ -139,10 +139,10 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
             _ = this.ClientContext.ProcessQuery(requestPayload);
         }
 
-        public override void SetObject(HubSite hubSiteObject, IReadOnlyDictionary<string, object> modificationInformation)
+        public override void SetObject(HubSite hubSiteObject, IReadOnlyDictionary<string, object> modificationInfo)
         {
             _ = hubSiteObject ?? throw new ArgumentNullException(nameof(hubSiteObject));
-            _ = modificationInformation ?? throw new ArgumentNullException(nameof(modificationInformation));
+            _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
                 new ObjectPathConstructor(typeof(Tenant)));
@@ -158,7 +158,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 });
             var objectPath3 = requestPayload.Add(
                 objectPath2,
-                requestPayload.CreateSetPropertyDelegates(hubSiteObject, modificationInformation).ToArray());
+                requestPayload.CreateSetPropertyDelegates(hubSiteObject, modificationInfo).ToArray());
             var objectPath4 = requestPayload.Add(
                 objectPath3,
                 objectPathId => new ClientActionMethod(objectPathId, "Update"));
