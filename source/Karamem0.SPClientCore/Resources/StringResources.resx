@@ -135,6 +135,9 @@
   <data name="ErrorOperationTimeout" xml:space="preserve">
     <value>The operation timed out</value>
   </data>
+  <data name="ErrorUnknown" xml:space="preserve">
+    <value>An unknown error has occurred</value>
+  </data>
   <data name="ErrorValueIsInvalid" xml:space="preserve">
     <value>The value is invalid</value>
   </data>

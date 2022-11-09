@@ -115,6 +115,15 @@ namespace Karamem0.SharePoint.PowerShell.Resources {
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to An unknown error has occurred.
+        /// </summary>
+        public static string ErrorUnknown {
+            get {
+                return ResourceManager.GetString("ErrorUnknown", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to The value cannot be less than &apos;{0}&apos;.
         /// </summary>
         public static string ErrorValueCannotBeLessThan {

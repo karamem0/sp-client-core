@@ -9,6 +9,7 @@
 using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
+using Karamem0.SharePoint.PowerShell.Runtime.OAuth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -93,31 +94,40 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                     {
                         return await responseCallback.Invoke(responseMessage);
                     }
-                    else if ((int)responseMessage.StatusCode == 429 ||
-                            (int)responseMessage.StatusCode == 502 ||
-                            (int)responseMessage.StatusCode == 503)
-                    {
-                        errorCount += 1;
-                        if (errorCount > ClientConstants.MaxRetryCount)
-                        {
-                            throw new InvalidOperationException(StringResources.ErrorMaxRetryCountExceeded);
-                        }
-                        await Task.Delay(responseMessage.Headers.RetryAfter.Delta.GetValueOrDefault(TimeSpan.FromSeconds(errorCount + 1)));
-                    }
                     else
                     {
-                        var responseContent = await responseMessage.Content.ReadAsStringAsync();
-                        if (JsonSerializerManager.JsonSerializer.TryDeserialize(
-                            responseContent,
-                            out ODataV1ResultPayload v1Payload))
+                        var statusCode = (int)responseMessage.StatusCode;
+                        if (statusCode == 429 || statusCode == 502 || statusCode == 503)
                         {
-                            throw new InvalidOperationException(v1Payload.Error.Message.Value);
+                            errorCount += 1;
+                            if (errorCount > ClientConstants.MaxRetryCount)
+                            {
+                                throw new InvalidOperationException(StringResources.ErrorMaxRetryCountExceeded);
+                            }
+                            await Task.Delay(responseMessage.Headers.RetryAfter.Delta.GetValueOrDefault(TimeSpan.FromSeconds(errorCount + 1)));
                         }
-                        if (JsonSerializerManager.JsonSerializer.TryDeserialize(
-                            responseContent,
-                            out ODataV2ResultPayload v2Payload))
+                        else
                         {
-                            throw new InvalidOperationException(v2Payload.Error.Message);
+                            var responseContent = await responseMessage.Content.ReadAsStringAsync();
+                            if (JsonSerializerManager.JsonSerializer.TryDeserialize(
+                                responseContent,
+                                out OAuthError oAuthError))
+                            {
+                                throw new InvalidOperationException(oAuthError.ErrorDescription);
+                            }
+                            if (JsonSerializerManager.JsonSerializer.TryDeserialize(
+                                responseContent,
+                                out ODataV1ResultPayload v1Payload))
+                            {
+                                throw new InvalidOperationException(v1Payload.Error.Message.Value);
+                            }
+                            if (JsonSerializerManager.JsonSerializer.TryDeserialize(
+                                responseContent,
+                                out ODataV2ResultPayload v2Payload))
+                            {
+                                throw new InvalidOperationException(v2Payload.Error.Message);
+                            }
+                            throw new InvalidOperationException(StringResources.ErrorUnknown);
                         }
                     }
                 }
