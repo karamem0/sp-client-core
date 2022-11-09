@@ -72,14 +72,17 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = false)]
         public bool AllowOverrideForBlockUserInfoVisibility { get; private set; }
 
+        // [Parameter(Mandatory = false)]
+        // public string[] AllowSelectSecurityGroupsInOneDriveListInTenant { get; private set; }
+
+        // [Parameter(Mandatory = false)]
+        // public bool AllowSelectSecurityGroupsInSharePointSitesList { get; protected set; }
+
         [Parameter(Mandatory = false)]
         public bool AnyoneLinkTrackUsers { get; private set; }
 
         [Parameter(Mandatory = false)]
         public bool ApplyAppEnforcedRestrictionsToAdHocRecipients { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public string[] AllowSelectSecurityGroupsInOneDriveListInTenant { get; private set; }
 
         [Parameter(Mandatory = false)]
         public ResilienceMode AuthenticationContextResilienceMode { get; private set; }
@@ -147,6 +150,15 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = false)]
         public string[] ContentTypeSyncSiteTemplatesList { get; private set; }
 
+        // [Parameter(Mandatory = false)]
+        // public bool CoreDefaultLinkToExistingAccess { get; private set; }
+
+        // [Parameter(Mandatory = false)]
+        // public RoleType CoreDefaultSharingLinkRole { get; private set; }
+
+        // [Parameter(Mandatory = false)]
+        // public SharingScope CoreDefaultSharingLinkScope { get; private set; }
+
         [Parameter(Mandatory = false)]
         public RoleType CoreLoopDefaultSharingLinkRole { get; private set; }
 
@@ -179,6 +191,9 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = false)]
         public SharingLinkType DefaultSharingLinkType { get; private set; }
+
+        // [Parameter(Mandatory = false)]
+        // public bool DenySelectSecurityGroupsInSharePointSitesList { get; private set; }
 
         [Parameter(Mandatory = false)]
         public bool DisableAddToOneDrive { get; private set; }
@@ -337,6 +352,9 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         public bool IsUnmanagedSyncClientForTenantRestricted { get; private set; }
 
         [Parameter(Mandatory = false)]
+        public bool IsVivaHomeFlightEnabled { get; private set; }
+
+        [Parameter(Mandatory = false)]
         public bool IsWhiteboardFluidEnabled { get; private set; }
 
         [Parameter(Mandatory = false)]
@@ -376,22 +394,34 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         public bool NotifyOwnersWhenItemsReshared { get; private set; }
 
         // [Parameter(Mandatory = false)]
-        // public bool OCRAdminEnabled { get; private set; }
-
-        // [Parameter(Mandatory = false)]
         // public string OCRAdminSiteListFileName { get; private set; }
 
         // [Parameter(Mandatory = false)]
-        // public bool OCRComplianceEnabled { get; private set; }
+        // public string OCRComplianceSiteListFileName { get; private set; }
 
         // [Parameter(Mandatory = false)]
-        // public string OCRComplianceSiteListFileName { get; private set; }
+        // public int OCRModeForAdminSites { get; protected set; }
+
+        // [Parameter(Mandatory = false)]
+        // public int OCRModeForComplianceOneDrives { get; protected set; }
+
+        // [Parameter(Mandatory = false)]
+        // public int OCRModeForComplianceSites { get; protected set; }
 
         [Parameter(Mandatory = false)]
         public bool OfficeClientAdalDisabled { get; private set; }
 
         [Parameter(Mandatory = false)]
         public SharingState OneDriveAccessRequests { get; private set; }
+
+        // [Parameter(Mandatory = false)]
+        // public bool OneDriveDefaultLinkToExistingAccess { get; protected set; }
+
+        // [Parameter(Mandatory = false)]
+        // public int OneDriveDefaultShareLinkRole { get; protected set; }
+
+        // [Parameter(Mandatory = false)]
+        // public int OneDriveDefaultShareLinkScope { get; protected set; }
 
         [Parameter(Mandatory = false)]
         public bool OneDriveForGuestsEnabled { get; private set; }
@@ -515,6 +545,9 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = false)]
         public bool SyncPrivacyProfileProperties { get; private set; }
+
+        // [Parameter(Mandatory = false)]
+        // public int TlsTokenBindingPolicyValue { get; protected set; }
 
         [Parameter(Mandatory = false)]
         public bool UseFindPeopleInPeoplePicker { get; private set; }

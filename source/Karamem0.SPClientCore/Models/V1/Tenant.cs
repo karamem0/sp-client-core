@@ -74,7 +74,10 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         public virtual bool AllowOverrideForBlockUserInfoVisibility { get; protected set; }
 
         [JsonProperty("AllowSelectSGsInODBListInTenant")]
-        public virtual IReadOnlyCollection<string> AllowSelectSharingGroupsInOneDriveListInTenant { get; protected set; }
+        public virtual IReadOnlyCollection<string> AllowSelectSecurityGroupsInOneDriveListInTenant { get; protected set; }
+
+        [JsonProperty("AllowSelectSecurityGroupsInSPSitesList")]
+        public virtual bool AllowSelectSecurityGroupsInSharePointSitesList { get; protected set; }
 
         [JsonProperty()]
         public virtual bool AnyoneLinkTrackUsers { get; protected set; }
@@ -155,6 +158,15 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         public virtual IReadOnlyCollection<string> ContentTypeSyncSiteTemplatesList { get; protected set; }
 
         [JsonProperty()]
+        public virtual bool CoreDefaultLinkToExistingAccess { get; protected set; }
+
+        [JsonProperty("CoreDefaultShareLinkRole")]
+        public virtual RoleType CoreDefaultSharingLinkRole { get; protected set; }
+
+        [JsonProperty("CoreDefaultShareLinkScope")]
+        public virtual SharingScope CoreDefaultSharingLinkScope { get; protected set; }
+
+        [JsonProperty()]
         public virtual RoleType CoreLoopDefaultSharingLinkRole { get; protected set; }
 
         [JsonProperty()]
@@ -186,6 +198,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
 
         [JsonProperty()]
         public virtual SharingLinkType DefaultSharingLinkType { get; protected set; }
+
+        [JsonProperty("DenySelectSecurityGroupsInSPSitesList")]
+        public virtual bool DenySelectSecurityGroupsInSharePointSitesList { get; protected set; }
 
         [JsonProperty()]
         public virtual bool DisableAddToOneDrive { get; protected set; }
@@ -364,6 +379,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         [JsonProperty()]
         public virtual bool IsUnmanagedSyncClientRestrictionFlightEnabled { get; protected set; }
 
+        [JsonProperty()]
+        public virtual bool IsVivaHomeFlightEnabled { get; private set; }
+
         [JsonProperty("IsWBFluidEnabled")]
         public virtual bool IsWhiteboardFluidEnabled { get; protected set; }
 
@@ -404,22 +422,34 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         public virtual bool NotifyOwnersWhenItemsReshared { get; protected set; }
 
         [JsonProperty()]
-        public virtual bool OCRAdminEnabled { get; protected set; }
-
-        [JsonProperty()]
         public virtual string OCRAdminSiteListFileName { get; protected set; }
 
         [JsonProperty()]
-        public virtual bool OCRComplianceEnabled { get; protected set; }
+        public virtual string OCRComplianceSiteListFileName { get; protected set; }
 
         [JsonProperty()]
-        public virtual string OCRComplianceSiteListFileName { get; protected set; }
+        public virtual int OCRModeForAdminSites { get; protected set; }
+
+        [JsonProperty("OCRModeForComplianceODBs")]
+        public virtual int OCRModeForComplianceOneDrives { get; protected set; }
+
+        [JsonProperty()]
+        public virtual int OCRModeForComplianceSites { get; protected set; }
 
         [JsonProperty("OfficeClientADALDisabled")]
         public virtual bool OfficeClientAdalDisabled { get; protected set; }
 
         [JsonProperty("ODBAccessRequests")]
         public virtual SharingState OneDriveAccessRequests { get; protected set; }
+
+        [JsonProperty()]
+        public virtual bool OneDriveDefaultLinkToExistingAccess { get; protected set; }
+
+        [JsonProperty()]
+        public virtual int OneDriveDefaultShareLinkRole { get; protected set; }
+
+        [JsonProperty()]
+        public virtual int OneDriveDefaultShareLinkScope { get; protected set; }
 
         [JsonProperty()]
         public virtual bool OneDriveForGuestsEnabled { get; protected set; }
@@ -579,6 +609,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
 
         [JsonProperty()]
         public virtual bool SyncPrivacyProfileProperties { get; protected set; }
+
+        [JsonProperty()]
+        public virtual int TlsTokenBindingPolicyValue { get; protected set; }
 
         [JsonProperty()]
         public virtual bool UseFindPeopleInPeoplePicker { get; protected set; }

@@ -7,14 +7,14 @@ on:
       - v*.*.*
 
 env:
-  BUILD_VERSION: 5.1.0.${{github.run_number}}
+  BUILD_VERSION: 5.1.1.${{github.run_number}}
 
 jobs:
   build:
     runs-on: windows-latest
     steps:
       - name: Checkout repos
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Setup NuGet
         uses: nuget/setup-nuget@v1
         with:
@@ -54,7 +54,7 @@ jobs:
         env:
           TARGET_FILE: artifact/SPClientCore.psd1
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: sp-client-core
           path: artifact
@@ -64,7 +64,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: sp-client-core
           path: SPClientCore
