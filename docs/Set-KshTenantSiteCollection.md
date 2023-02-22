@@ -1,5 +1,5 @@
 ---
-external help file: SPClientCore.dll-help.xml
+external help file: SPClientCore.dll-Help.xml
 Module Name: SPClientCore
 online version:
 schema: 2.0.0
@@ -77,8 +77,7 @@ Set-KshTenantSiteCollection [-Identity] <TenantSiteCollection> [-AllowDownloadin
 ```
 
 ## DESCRIPTION
-The Set-KshTenantSiteCollection cmdlet updates properties of the site collection.
-This cmdlet can be used only when connected to the SharePoint admin center.
+The Set-KshTenantSiteCollection cmdlet updates properties of the site collection. This cmdlet can be used only when connected to the SharePoint admin center.
 
 ## EXAMPLES
 
@@ -799,7 +798,7 @@ Accept wildcard characters: False
 ```
 
 ### -SharingAllowedDomainList
-Specifies the list of domain to allow sharing.
+Specifies the list of domains to allow sharing.
 
 ```yaml
 Type: String
@@ -814,7 +813,7 @@ Accept wildcard characters: False
 ```
 
 ### -SharingBlockedDomainList
-Specifies the list of domain to block sharing.
+Specifies the list of domains to block sharing.
 
 ```yaml
 Type: String

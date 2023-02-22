@@ -1,5 +1,5 @@
 ---
-external help file: SPClientCore.dll-help.xml
+external help file: SPClientCore.dll-Help.xml
 Module Name: SPClientCore
 online version:
 schema: 2.0.0
@@ -28,8 +28,7 @@ Get-KshTenantDeletedSiteCollection [-NoEnumerate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshTenantDeletedSiteCollection cmdlet retrieves deleted site collections.
-This cmdlet can be used only when connected to the SharePoint admin center.
+The Get-KshTenantDeletedSiteCollection cmdlet retrieves deleted site collections. This cmdlet can be used only when connected to the SharePoint admin center.
 
 ## EXAMPLES
 

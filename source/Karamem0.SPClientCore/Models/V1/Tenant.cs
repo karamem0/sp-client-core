@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2022 karamem0
+// Copyright (c) 2023 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -85,6 +85,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         [JsonProperty()]
         public virtual bool ApplyAppEnforcedRestrictionsToAdHocRecipients { get; protected set; }
 
+        [JsonProperty()]
+        public virtual string ArchiveRedirectUrl { get; protected set; }
+
         [JsonProperty("AuthContextResilienceMode")]
         public virtual ResilienceMode AuthenticationContextResilienceMode { get; protected set; }
 
@@ -158,6 +161,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         public virtual IReadOnlyCollection<string> ContentTypeSyncSiteTemplatesList { get; protected set; }
 
         [JsonProperty()]
+        public virtual int CoreBlockGuestsAsSiteAdmin { get; protected set; }
+
+        [JsonProperty()]
         public virtual bool CoreDefaultLinkToExistingAccess { get; protected set; }
 
         [JsonProperty("CoreDefaultShareLinkRole")]
@@ -212,6 +218,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         public virtual bool DisableCustomAppAuthentication { get; protected set; }
 
         [JsonProperty()]
+        public virtual bool DisableDocumentLibraryDefaultLabeling { get; protected set; }
+
+        [JsonProperty()]
         public virtual bool DisableListSync { get; protected set; }
 
         [JsonProperty()]
@@ -231,6 +240,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
 
         [JsonProperty()]
         public virtual bool DisableSpacesActivation { get; protected set; }
+
+        [JsonProperty()]
+        public virtual bool DisableVivaConnectionsAnalytics { get; protected set; }
 
         [JsonProperty()]
         public virtual bool DisallowInfectedFileDownload { get; protected set; }
@@ -255,6 +267,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
 
         [JsonProperty()]
         public virtual bool EnableAIPIntegration { get; protected set; }
+
+        [JsonProperty()]
+        public virtual bool EnableAutoExpirationVersionTrim { get; protected set; }
 
         [JsonProperty()]
         public virtual bool EnableAutoNewsDigest { get; protected set; }
@@ -287,6 +302,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         public virtual IReadOnlyCollection<string> ExcludedFileExtensionsForSyncClient { get; protected set; }
 
         [JsonProperty()]
+        public virtual int ExpireVersionsAfterDays { get; protected set; }
+
+        [JsonProperty()]
         public virtual bool ExternalServicesEnabled { get; protected set; }
 
         [JsonProperty()]
@@ -300,6 +318,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
 
         [JsonProperty()]
         public virtual bool FilePickerExternalImageSearchEnabled { get; protected set; }
+
+        [JsonProperty()]
+        public virtual string FileVersionPolicyXml { get; protected set; }
 
         [JsonProperty()]
         public virtual AnonymousLinkType FolderAnonymousLinkType { get; protected set; }
@@ -356,6 +377,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         public virtual bool IsCollabMeetingNotesFluidEnabled { get; protected set; }
 
         [JsonProperty()]
+        public virtual bool IsEnableAppAuthPopUpEnabled { get; protected set; }
+
+        [JsonProperty()]
         public virtual bool IsFluidEnabled { get; protected set; }
 
         [JsonProperty()]
@@ -382,6 +406,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         [JsonProperty()]
         public virtual bool IsVivaHomeFlightEnabled { get; private set; }
 
+        [JsonProperty()]
+        public virtual bool IsVivaHomeGAFlightEnabled { get; protected set; }
+
         [JsonProperty("IsWBFluidEnabled")]
         public virtual bool IsWhiteboardFluidEnabled { get; protected set; }
 
@@ -396,6 +423,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
 
         [JsonProperty()]
         public virtual bool MachineLearningCaptureEnabled { get; protected set; }
+
+        [JsonProperty()]
+        public virtual int MajorVersionLimit { get; protected set; }
 
         [JsonProperty()]
         public virtual SensitiveByDefaultState MarkNewFilesSensitiveByDefault { get; protected set; }
@@ -443,13 +473,16 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         public virtual SharingState OneDriveAccessRequests { get; protected set; }
 
         [JsonProperty()]
+        public virtual int OneDriveBlockGuestsAsSiteAdmin { get; protected set; }
+
+        [JsonProperty()]
         public virtual bool OneDriveDefaultLinkToExistingAccess { get; protected set; }
 
-        [JsonProperty()]
-        public virtual int OneDriveDefaultShareLinkRole { get; protected set; }
+        [JsonProperty("OneDriveDefaultShareLinkRole")]
+        public virtual RoleType OneDriveDefaultSharingLinkRole { get; protected set; }
 
-        [JsonProperty()]
-        public virtual int OneDriveDefaultShareLinkScope { get; protected set; }
+        [JsonProperty("OneDriveDefaultShareLinkScope")]
+        public virtual SharingScope OneDriveDefaultSharingLinkScope { get; protected set; }
 
         [JsonProperty()]
         public virtual bool OneDriveForGuestsEnabled { get; protected set; }
@@ -512,19 +545,22 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         public virtual IReadOnlyCollection<string> PublicCdnOrigins { get; protected set; }
 
         [JsonProperty()]
-        public virtual bool RequireAcceptingAccountMatchInvitedAccount { get; protected set; }
-
-        [JsonProperty()]
         public virtual bool ReduceTempTokenLifetimeEnabled { get; protected set; }
 
         [JsonProperty()]
         public virtual int ReduceTempTokenLifetimeValue { get; protected set; }
 
         [JsonProperty()]
+        public virtual bool RequireAcceptingAccountMatchInvitedAccount { get; protected set; }
+
+        [JsonProperty()]
         public virtual int RequireAnonymousLinksExpireInDays { get; protected set; }
 
         [JsonProperty()]
         public virtual bool RestrictedOneDriveLicense { get; protected set; }
+
+        [JsonProperty()]
+        public virtual bool RestrictedSharePointLicense { get; protected set; }
 
         [JsonProperty()]
         public virtual double ResourceQuota { get; protected set; }

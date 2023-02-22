@@ -1,5 +1,5 @@
 ---
-external help file: SPClientCore.dll-help.xml
+external help file: SPClientCore.dll-Help.xml
 Module Name: SPClientCore
 online version:
 schema: 2.0.0
@@ -17,8 +17,7 @@ Add-KshTenantOrganizationNewsSite -Url <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Add-KshTenantOrganizationNewsSite cmdlet adds an organization news site to the tenant.
-This cmdlet can be used only when connected to the SharePoint admin center.
+The Add-KshTenantOrganizationNewsSite cmdlet adds an organization news site to the tenant. This cmdlet can be used only when connected to the SharePoint admin center.
 
 ## EXAMPLES
 

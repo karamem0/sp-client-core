@@ -1,5 +1,5 @@
 ---
-external help file: SPClientCore.dll-help.xml
+external help file: SPClientCore.dll-Help.xml
 Module Name: SPClientCore
 online version:
 schema: 2.0.0
@@ -43,8 +43,7 @@ Get-KshTenantUser [-SiteCollectionUrl] <Uri> [-NoEnumerate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshTenantUser cmdlet retrieves users of the specified site collection.
-This cmdlet can be used only when connected to the SharePoint admin center.
+The Get-KshTenantUser cmdlet retrieves users of the specified site collection. This cmdlet can be used only when connected to the SharePoint admin center.
 
 ## EXAMPLES
 

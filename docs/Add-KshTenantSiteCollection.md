@@ -1,5 +1,5 @@
 ---
-external help file: SPClientCore.dll-help.xml
+external help file: SPClientCore.dll-Help.xml
 Module Name: SPClientCore
 online version:
 schema: 2.0.0
@@ -29,8 +29,7 @@ Add-KshTenantSiteCollection [-CompatibilityLevel <Int32>] [-Lcid <UInt32>] -Owne
 ```
 
 ## DESCRIPTION
-The Add-KshTenantSiteCollection cmdlet adds a new site collection to the tenant.
-This cmdlet can be used only when connected to the SharePoint admin center.
+The Add-KshTenantSiteCollection cmdlet adds a new site collection to the tenant. This cmdlet can be used only when connected to the SharePoint admin center.
 
 ## EXAMPLES
 

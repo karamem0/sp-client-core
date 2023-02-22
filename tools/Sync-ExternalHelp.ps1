@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2022 karamem0
+# Copyright (c) 2023 karamem0
 #
 # This software is released under the MIT License.
 #
@@ -7,7 +7,7 @@
 #
 
 $DOCS_PATH = "$PSScriptRoot/../docs"
-$SOURCE_PATH = "$PSScriptRoot/../source/Karamem0.SPClientCore/Karamem0.SPClientCore.dll-help.xml"
+$SOURCE_PATH = "$PSScriptRoot/../source/Karamem0.SPClientCore/Karamem0.SPClientCore.dll-Help.xml"
 
 Import-Module -Name 'platyPS'
 New-ExternalHelp -Path $DOCS_PATH -OutputPath $SOURCE_PATH -Force

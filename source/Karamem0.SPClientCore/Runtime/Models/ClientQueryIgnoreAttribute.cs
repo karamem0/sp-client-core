@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2022 karamem0
+// Copyright (c) 2023 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -14,10 +14,14 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models
 {
 
-    public class ClientQueryConditionAttribute : Attribute
+    public class ClientQueryIgnoreAttribute : Attribute
     {
 
-        public ClientQueryConditionAttribute(string name)
+        public ClientQueryIgnoreAttribute()
+        {
+        }
+
+        public ClientQueryIgnoreAttribute(string name)
         {
             this.Name = name;
         }

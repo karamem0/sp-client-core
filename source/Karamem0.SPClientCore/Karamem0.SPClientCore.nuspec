@@ -10,6 +10,6 @@
     <projectUrl>https://github.com/karamem0/sp-client-core</projectUrl>
     <description>SharePoint Service Module for PowerShell</description>
     <releaseNotes></releaseNotes>
-    <copyright>Copyright (c) 2022 karamem0</copyright>
+    <copyright>Copyright (c) 2023 karamem0</copyright>
   </metadata>
 </package>

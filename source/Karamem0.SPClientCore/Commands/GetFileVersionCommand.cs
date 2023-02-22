@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2022 karamem0
+// Copyright (c) 2023 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -35,7 +35,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         public File File { get; private set; }
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
-        public int? FileVersionId { get; private set; }
+        public int FileVersionId { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
         public SwitchParameter NoEnumerate { get; private set; }

@@ -1,0 +1,61 @@
+---
+external help file: SPClientCore.dll-Help.xml
+Module Name: SPClientCore
+online version:
+schema: 2.0.0
+---
+
+# Get-KshTenantSiteScriptFromList
+
+## SYNOPSIS
+Retrieves a site script from a list.
+
+## SYNTAX
+
+```
+Get-KshTenantSiteScriptFromList [-ListUrl] <String> [<CommonParameters>]
+```
+
+## DESCRIPTION
+The Get-KshTenantSiteScriptFromList cmdlet retrieves a site script from the specified list. This cmdlet can be used only when connected to the SharePoint admin center.
+
+## EXAMPLES
+
+### Example 1
+```powershell
+PS C:\> Get-KshTenantSiteScriptFromList -ListUrl "https://example.sharepoint.com/sites/japan/Lists/Announcements"
+```
+
+Retrieves a site script from a list.
+
+## PARAMETERS
+
+### -ListUrl
+Specifies the list URL.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 0
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### None
+
+## OUTPUTS
+
+### System.String
+
+## NOTES
+
+## RELATED LINKS

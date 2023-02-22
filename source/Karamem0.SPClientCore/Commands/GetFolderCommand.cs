@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2022 karamem0
+// Copyright (c) 2023 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -37,7 +37,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         public ListItem ListItem { get; private set; }
 
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet4")]
-        public Guid? FolderId { get; private set; }
+        public Guid FolderId { get; private set; }
 
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet5")]
         public Uri FolderUrl { get; private set; }

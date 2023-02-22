@@ -1,5 +1,5 @@
 ---
-external help file: SPClientCore.dll-help.xml
+external help file: SPClientCore.dll-Help.xml
 Module Name: SPClientCore
 online version:
 schema: 2.0.0
@@ -25,8 +25,7 @@ Add-KshTenantUser [-SiteCollectionUrl] <Uri> [-Email <String>] -LoginName <Strin
 ```
 
 ## DESCRIPTION
-The Add-KshTenantUser cmdlet adds a new user to the specified site collection.
-This cmdlet can be used only when connected to the SharePoint admin center.
+The Add-KshTenantUser cmdlet adds a new user to the specified site collection. This cmdlet can be used only when connected to the SharePoint admin center.
 
 ## EXAMPLES
 

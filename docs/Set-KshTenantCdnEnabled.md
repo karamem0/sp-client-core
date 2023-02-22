@@ -1,5 +1,5 @@
 ---
-external help file: SPClientCore.dll-help.xml
+external help file: SPClientCore.dll-Help.xml
 Module Name: SPClientCore
 online version:
 schema: 2.0.0
@@ -23,8 +23,7 @@ Set-KshTenantCdnEnabled [-Private] -Enabled <Boolean> [-NoDefaultOrigins] [<Comm
 ```
 
 ## DESCRIPTION
-The Set-KshTenantCdnEnabled cmdlet changes whether Office 365 CDN is enabled in the tenant.
-This cmdlet can be used only when connected to the SharePoint admin center.
+The Set-KshTenantCdnEnabled cmdlet changes whether Office 365 CDN is enabled in the tenant. This cmdlet can be used only when connected to the SharePoint admin center.
 
 ## EXAMPLES
 

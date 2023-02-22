@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2022 karamem0
+// Copyright (c) 2023 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -48,7 +48,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 new Dictionary<string, object>()
                 {
                     { "List", result2.ElementAt(0) },
-                    { "NotificationUrl", "https://prod-25.southeastasia.logic.azure.com/workflows/e9ff38cb65b448b19ebef87a615d7d5b/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=S3zpdmaFJ2HXhLVqsP1tPdbA9MEztwY5KjEDcSLO-tg" },
+                    { "NotificationUrl", "https://prod-27.southeastasia.logic.azure.com:443/workflows/e0484ceabd3047589d7e2918850edc19/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=czHX2Z5ZeAwjttKjZLqcZgs095WwJqirWY84jIsFLvI" },
                     { "ExpirationDateTime", DateTime.UtcNow.AddDays(1) }
                 }
             );

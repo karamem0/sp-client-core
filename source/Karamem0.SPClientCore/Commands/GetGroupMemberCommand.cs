@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2022 karamem0
+// Copyright (c) 2023 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -33,7 +33,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         public Group Group { get; private set; }
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet1")]
-        public int? MemberId { get; private set; }
+        public int MemberId { get; private set; }
 
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
         public string MemberName { get; private set; }

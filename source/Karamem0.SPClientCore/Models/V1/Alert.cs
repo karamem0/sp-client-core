@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2022 karamem0
+// Copyright (c) 2023 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -31,8 +31,8 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         [JsonProperty()]
         public virtual string AlertTemplateName { get; protected set; }
 
+        [ClientQueryIgnore("NotImmediate")]
         [JsonProperty()]
-        [ClientQueryCondition("NotImmediate")]
         public virtual DateTime AlertTime { get; protected set; }
 
         [JsonProperty()]
@@ -56,8 +56,8 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         [JsonProperty("ListID")]
         public virtual Guid ListId { get; protected set; }
 
+        [ClientQueryIgnore("ListItem")]
         [JsonProperty("ItemID")]
-        [ClientQueryCondition("ListItem")]
         public virtual int ListItemId { get; protected set; }
 
         [JsonProperty()]

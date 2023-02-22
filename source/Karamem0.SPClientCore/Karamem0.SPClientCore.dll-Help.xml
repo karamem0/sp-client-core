@@ -24841,7 +24841,7 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Add-KshStorageEntity -Key 'Copyright' -Value 'Copyright (c) 2022 karamem0'</dev:code>
+        <dev:code>PS C:\&gt; Add-KshStorageEntity -Key 'Copyright' -Value 'Copyright (c) 2023 karamem0'</dev:code>
         <dev:remarks>
           <maml:para>Creates a storage entity.</maml:para>
         </dev:remarks>
@@ -25499,6 +25499,257 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Add-KshTenantListDesign</command:name>
+      <command:verb>Add</command:verb>
+      <command:noun>KshTenantListDesign</command:noun>
+      <maml:description>
+        <maml:para>Creates a new list design.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Add-KshTenantListDesign cmdlet adds a new list design to the tenant. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Add-KshTenantListDesign</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Description</maml:name>
+          <maml:description>
+            <maml:para>Specifies the description.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ListColor</maml:name>
+          <maml:description>
+            <maml:para>Specifies the list color.</maml:para>
+          </maml:description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">DarkRed</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Red</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Orange</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Green</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">DarkGreen</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Teal</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Blue</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">NavyBlue</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">BluePurple</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">DarkBlue</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Lavendar</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Pink</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">TenantListDesignColor</command:parameterValue>
+          <dev:type>
+            <maml:name>TenantListDesignColor</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ListIcon</maml:name>
+          <maml:description>
+            <maml:para>Specifies the list icon.</maml:para>
+          </maml:description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">Bug</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Calendar</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">BullseyeTarget</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ClipboardList</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Airplane</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Rocket</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Color</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Insights</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">CubeShape</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">TestBeakerSolid</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Robot</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Savings</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">TenantListDesignIcon</command:parameterValue>
+          <dev:type>
+            <maml:name>TenantListDesignIcon</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>SiteScriptIds</maml:name>
+          <maml:description>
+            <maml:para>Specifies the list of site script IDs.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Guid[]</command:parameterValue>
+          <dev:type>
+            <maml:name>Guid[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>TemplateFeatures</maml:name>
+          <maml:description>
+            <maml:para>Specifies the list of template features.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ThumbnailUrl</maml:name>
+          <maml:description>
+            <maml:para>Specifies the thumbnail URL.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Title</maml:name>
+          <maml:description>
+            <maml:para>Specifies the title.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Description</maml:name>
+        <maml:description>
+          <maml:para>Specifies the description.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ListColor</maml:name>
+        <maml:description>
+          <maml:para>Specifies the list color.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">TenantListDesignColor</command:parameterValue>
+        <dev:type>
+          <maml:name>TenantListDesignColor</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ListIcon</maml:name>
+        <maml:description>
+          <maml:para>Specifies the list icon.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">TenantListDesignIcon</command:parameterValue>
+        <dev:type>
+          <maml:name>TenantListDesignIcon</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>SiteScriptIds</maml:name>
+        <maml:description>
+          <maml:para>Specifies the list of site script IDs.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Guid[]</command:parameterValue>
+        <dev:type>
+          <maml:name>Guid[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>TemplateFeatures</maml:name>
+        <maml:description>
+          <maml:para>Specifies the list of template features.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>String[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ThumbnailUrl</maml:name>
+        <maml:description>
+          <maml:para>Specifies the thumbnail URL.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Title</maml:name>
+        <maml:description>
+          <maml:para>Specifies the title.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.V1.TenantListDesign</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Add-KshTenantListDesign -Title "Custom List Design" -SiteScriptIds "c14cea4e-2b08-4c9f-bd51-8da187decdb5"</dev:code>
+        <dev:remarks>
+          <maml:para>Creates a new list design.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Add-KshTenantOrganizationNewsSite</command:name>
       <command:verb>Add</command:verb>
       <command:noun>KshTenantOrganizationNewsSite</command:noun>
@@ -25913,6 +26164,404 @@
         <dev:code>PS C:\&gt; Add-KshTenantSiteCollection -Owner 'admin@example.onmicrosoft.com' -Url 'https://example.sharepoint.com/sites/hub'</dev:code>
         <dev:remarks>
           <maml:para>Creates a new site collection.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Add-KshTenantSiteDesign</command:name>
+      <command:verb>Add</command:verb>
+      <command:noun>KshTenantSiteDesign</command:noun>
+      <maml:description>
+        <maml:para>Creates a new site design.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Add-KshTenantSiteDesign cmdlet adds a new site design to the tenant. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Add-KshTenantSiteDesign</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Description</maml:name>
+          <maml:description>
+            <maml:para>Specifies the description.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>DesignPackageId</maml:name>
+          <maml:description>
+            <maml:para>Specifies the design package ID.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+          <dev:type>
+            <maml:name>Guid</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>IsDefault</maml:name>
+          <maml:description>
+            <maml:para>If specified, sets the site design as default.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PreviewImageAltText</maml:name>
+          <maml:description>
+            <maml:para>Specifies the alternative preview image URL.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>PreviewImageUrl</maml:name>
+          <maml:description>
+            <maml:para>Specifies the preview image URL.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>SiteScriptIds</maml:name>
+          <maml:description>
+            <maml:para>Specifies the list of site script IDs.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>SiteTemplate</maml:name>
+          <maml:description>
+            <maml:para>Specifies the site template.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ThumbnailUrl</maml:name>
+          <maml:description>
+            <maml:para>Specifies the thumbnail URL.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Title</maml:name>
+          <maml:description>
+            <maml:para>Specifies the title.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Description</maml:name>
+        <maml:description>
+          <maml:para>Specifies the description.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>DesignPackageId</maml:name>
+        <maml:description>
+          <maml:para>Specifies the design package ID.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+        <dev:type>
+          <maml:name>Guid</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>IsDefault</maml:name>
+        <maml:description>
+          <maml:para>If specified, sets the site design as default.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>PreviewImageAltText</maml:name>
+        <maml:description>
+          <maml:para>Specifies the alternative preview image URL.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>PreviewImageUrl</maml:name>
+        <maml:description>
+          <maml:para>Specifies the preview image URL.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>SiteScriptIds</maml:name>
+        <maml:description>
+          <maml:para>Specifies the list of site script IDs.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>String[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>SiteTemplate</maml:name>
+        <maml:description>
+          <maml:para>Specifies the site template.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ThumbnailUrl</maml:name>
+        <maml:description>
+          <maml:para>Specifies the thumbnail URL.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Title</maml:name>
+        <maml:description>
+          <maml:para>Specifies the title.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.V1.TenantSiteDesign</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Add-KshTenantListDesign -Title "Custom Site Design" -SiteScriptIds "60729fc8-3ba5-4ea1-9a35-478932b26182"</dev:code>
+        <dev:remarks>
+          <maml:para>Creates a new site design.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Add-KshTenantSiteScript</command:name>
+      <command:verb>Add</command:verb>
+      <command:noun>KshTenantSiteScript</command:noun>
+      <maml:description>
+        <maml:para>Creates a new site script.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Add-KshTenantSiteScript cmdlet adds a new site script to the tenant. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Add-KshTenantSiteScript</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Content</maml:name>
+          <maml:description>
+            <maml:para>Specifies the content.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Description</maml:name>
+          <maml:description>
+            <maml:para>Specifies the description.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Title</maml:name>
+          <maml:description>
+            <maml:para>Specifies the title.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Content</maml:name>
+        <maml:description>
+          <maml:para>Specifies the content.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Description</maml:name>
+        <maml:description>
+          <maml:para>Specifies the description.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Title</maml:name>
+        <maml:description>
+          <maml:para>Specifies the title.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.V1.TenantSiteScript</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Add-KshTenantSiteScript -Title "Custom Site Script" -Content (Get-KshTenantSiteScriptFromSite -SiteUrl "https://example.sharepoint.com/sites/japan" -IncludeBranding -IncludeRegionalSettings -IncludeTheme)</dev:code>
+        <dev:remarks>
+          <maml:para>Creates a new site script.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -29824,6 +30473,85 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Disable-KshComment</command:name>
+      <command:verb>Disable</command:verb>
+      <command:noun>KshComment</command:noun>
+      <maml:description>
+        <maml:para>Disables comments.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Disable-KshTerm cmdlet disables comments for the specified list item.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Disable-KshComment</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Identity</maml:name>
+          <maml:description>
+            <maml:para>Specifies the list item.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">ListItem</command:parameterValue>
+          <dev:type>
+            <maml:name>ListItem</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Identity</maml:name>
+        <maml:description>
+          <maml:para>Specifies the list item.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">ListItem</command:parameterValue>
+        <dev:type>
+          <maml:name>ListItem</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.V1.ListItem</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Disable-KshComment -Identity (Get-KshListItem -List (Get-KshList -ListTitle 'Site Pages') -ItemId 1)</dev:code>
+        <dev:remarks>
+          <maml:para>Disables comments.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Disable-KshLike</command:name>
       <command:verb>Disable</command:verb>
       <command:noun>KshLike</command:noun>
@@ -30126,6 +30854,85 @@
         <dev:code>PS C:\&gt; Disconnect-KshSite</dev:code>
         <dev:remarks>
           <maml:para>Disconnects the current connection. The connection cache will also be deleted.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Enable-KshComment</command:name>
+      <command:verb>Enable</command:verb>
+      <command:noun>KshComment</command:noun>
+      <maml:description>
+        <maml:para>Enables comments.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Enable-KshTerm cmdlet enables comments for the specified list item.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Enable-KshComment</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Identity</maml:name>
+          <maml:description>
+            <maml:para>Specifies the list item.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">ListItem</command:parameterValue>
+          <dev:type>
+            <maml:name>ListItem</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Identity</maml:name>
+        <maml:description>
+          <maml:para>Specifies the list item.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">ListItem</command:parameterValue>
+        <dev:type>
+          <maml:name>ListItem</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.V1.ListItem</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Enable-KshComment -Identity (Get-KshListItem -List (Get-KshList -ListTitle 'Site Pages') -ItemId 1)</dev:code>
+        <dev:remarks>
+          <maml:para>Enables comments.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -40422,6 +41229,145 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Get-KshTenantListDesign</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>KshTenantListDesign</command:noun>
+      <maml:description>
+        <maml:para>Retrieves one or more list designs.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-KshTenantListDesign cmdlet retrieves list designs. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-KshTenantListDesign</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Identity</maml:name>
+          <maml:description>
+            <maml:para>Specifies the list design.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">TenantListDesign</command:parameterValue>
+          <dev:type>
+            <maml:name>TenantListDesign</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshTenantListDesign</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>ListDesignId</maml:name>
+          <maml:description>
+            <maml:para>Specifies the list design ID.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+          <dev:type>
+            <maml:name>Guid</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshTenantListDesign</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NoEnumerate</maml:name>
+          <maml:description>
+            <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Identity</maml:name>
+        <maml:description>
+          <maml:para>Specifies the list design.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">TenantListDesign</command:parameterValue>
+        <dev:type>
+          <maml:name>TenantListDesign</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>ListDesignId</maml:name>
+        <maml:description>
+          <maml:para>Specifies the list design ID.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+        <dev:type>
+          <maml:name>Guid</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>NoEnumerate</maml:name>
+        <maml:description>
+          <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.V1.TenantListDesign</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.V1.TenantListDesign</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshTenantListDesign -ListDesignId "df3a2598-5f30-4bdc-8625-cf6d7c5db6b9"</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves a list design by list design ID.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshTenantListDesign</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves all list designs.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Get-KshTenantOrganizationNewsSite</command:name>
       <command:verb>Get</command:verb>
       <command:noun>KshTenantOrganizationNewsSite</command:noun>
@@ -40723,6 +41669,574 @@
         <dev:code>PS C:\&gt; Get-KshTenantSiteCollection -Template 'STS#0'</dev:code>
         <dev:remarks>
           <maml:para>Retrieves team site (classic experience) site collections.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-KshTenantSiteDesign</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>KshTenantSiteDesign</command:noun>
+      <maml:description>
+        <maml:para>Retrieves one or more site designs.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-KshTenantSiteDesign cmdlet retrieves site designs. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-KshTenantSiteDesign</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Identity</maml:name>
+          <maml:description>
+            <maml:para>Specifies the site design.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">TenantSiteDesign</command:parameterValue>
+          <dev:type>
+            <maml:name>TenantSiteDesign</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshTenantSiteDesign</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NoEnumerate</maml:name>
+          <maml:description>
+            <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshTenantSiteDesign</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>SiteDesignId</maml:name>
+          <maml:description>
+            <maml:para>Specifies the site design ID.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+          <dev:type>
+            <maml:name>Guid</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Identity</maml:name>
+        <maml:description>
+          <maml:para>Specifies the site design.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">TenantSiteDesign</command:parameterValue>
+        <dev:type>
+          <maml:name>TenantSiteDesign</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>NoEnumerate</maml:name>
+        <maml:description>
+          <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>SiteDesignId</maml:name>
+        <maml:description>
+          <maml:para>Specifies the site design ID.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+        <dev:type>
+          <maml:name>Guid</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.V1.TenantSiteDesign</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.V1.TenantSiteDesign</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshTenantSiteDesign -SiteDesignId "fabdb184-cdc3-495d-a961-523a824045f9"</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves a site design by site design ID.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshTenantSiteDesign</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves all site designs.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-KshTenantSiteScript</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>KshTenantSiteScript</command:noun>
+      <maml:description>
+        <maml:para>Retrieves one or more site scripts.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-KshTenantSiteScript cmdlet retrieves site scripts. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-KshTenantSiteScript</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Identity</maml:name>
+          <maml:description>
+            <maml:para>Specifies the site script.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">TenantSiteScript</command:parameterValue>
+          <dev:type>
+            <maml:name>TenantSiteScript</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshTenantSiteScript</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NoEnumerate</maml:name>
+          <maml:description>
+            <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-KshTenantSiteScript</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>SiteScriptId</maml:name>
+          <maml:description>
+            <maml:para>Specifies the site script ID.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+          <dev:type>
+            <maml:name>Guid</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Identity</maml:name>
+        <maml:description>
+          <maml:para>Specifies the site script.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">TenantSiteScript</command:parameterValue>
+        <dev:type>
+          <maml:name>TenantSiteScript</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>NoEnumerate</maml:name>
+        <maml:description>
+          <maml:para>If specified, suppresses to enumerate objects.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>SiteScriptId</maml:name>
+        <maml:description>
+          <maml:para>Specifies the site script ID.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Guid</command:parameterValue>
+        <dev:type>
+          <maml:name>Guid</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.V1.TenantSiteScript</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.V1.TenantSiteScript</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshTenantSiteScript -SiteScriptId "c14cea4e-2b08-4c9f-bd51-8da187decdb5"</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves a site script by site script ID.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-KshTenantSiteScriptFromList</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>KshTenantSiteScriptFromList</command:noun>
+      <maml:description>
+        <maml:para>Retrieves a site script from a list.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-KshTenantSiteScriptFromList cmdlet retrieves a site script from the specified list. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-KshTenantSiteScriptFromList</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>ListUrl</maml:name>
+          <maml:description>
+            <maml:para>Specifies the list URL.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>ListUrl</maml:name>
+        <maml:description>
+          <maml:para>Specifies the list URL.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshTenantSiteScriptFromList -ListUrl "https://example.sharepoint.com/sites/japan/Lists/Announcements"</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves a site script from a list.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-KshTenantSiteScriptFromSite</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>KshTenantSiteScriptFromSite</command:noun>
+      <maml:description>
+        <maml:para>Retrieves a site script from a site.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Get-KshTenantSiteScriptFromSite cmdlet retrieves a site script from the specified site. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-KshTenantSiteScriptFromSite</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>SiteUrl</maml:name>
+          <maml:description>
+            <maml:para>If specified, includes the site URL.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>IncludeBranding</maml:name>
+          <maml:description>
+            <maml:para>If specified, includes the branding information.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>IncludeLinksToExportedItems</maml:name>
+          <maml:description>
+            <maml:para>If specified, includes the list of link to exported items.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>IncludeRegionalSettings</maml:name>
+          <maml:description>
+            <maml:para>If specified, includes the regional settings.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>IncludeSiteExternalSharingCapability</maml:name>
+          <maml:description>
+            <maml:para>If specified, includes the site external sharing capability.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>IncludeTheme</maml:name>
+          <maml:description>
+            <maml:para>If specified, includes the theme.</maml:para>
+          </maml:description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>IncludedLists</maml:name>
+          <maml:description>
+            <maml:para>Specifies the list of lists to be included.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>IncludeBranding</maml:name>
+        <maml:description>
+          <maml:para>If specified, includes the branding information.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>IncludeLinksToExportedItems</maml:name>
+        <maml:description>
+          <maml:para>If specified, includes the list of link to exported items.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>IncludeRegionalSettings</maml:name>
+        <maml:description>
+          <maml:para>If specified, includes the regional settings.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>IncludeSiteExternalSharingCapability</maml:name>
+        <maml:description>
+          <maml:para>If specified, includes the site external sharing capability.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>IncludeTheme</maml:name>
+        <maml:description>
+          <maml:para>If specified, includes the theme.</maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>IncludedLists</maml:name>
+        <maml:description>
+          <maml:para>Specifies the list of lists to be included.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>String[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>SiteUrl</maml:name>
+        <maml:description>
+          <maml:para>If specified, includes the site URL.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-KshTenantSiteScriptFromSite -SiteUrl "https://example.sharepoint.com/sites/japan"</dev:code>
+        <dev:remarks>
+          <maml:para>Retrieves a site script from a site.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -49810,7 +51324,7 @@
     <command:returnValues>
       <command:returnValue>
         <dev:type>
-          <maml:name>System.Void</maml:name>
+          <maml:name>None</maml:name>
         </dev:type>
         <maml:description>
           <maml:para></maml:para>
@@ -49961,6 +51475,85 @@
         <dev:code>PS C:\&gt; Remove-KshTenantHubSite -Identity (Get-KshTenantHubSite -HubSiteUrl 'https://example.sharepoint.com/sites/hub')</dev:code>
         <dev:remarks>
           <maml:para>Removes a hub site.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Remove-KshTenantListDesign</command:name>
+      <command:verb>Remove</command:verb>
+      <command:noun>KshTenantListDesign</command:noun>
+      <maml:description>
+        <maml:para>Removes a list design.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Remove-KshTenantListDesign cmdlet removes a list design. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Remove-KshTenantListDesign</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Identity</maml:name>
+          <maml:description>
+            <maml:para>Specifies the list design.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">TenantListDesign</command:parameterValue>
+          <dev:type>
+            <maml:name>TenantListDesign</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Identity</maml:name>
+        <maml:description>
+          <maml:para>Specifies the list design.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">TenantListDesign</command:parameterValue>
+        <dev:type>
+          <maml:name>TenantListDesign</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.V1.TenantListDesign</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Remove-KshTenantListDesign -Identity (Get-KshTenantListDesign -SiteScriptId "df3a2598-5f30-4bdc-8625-cf6d7c5db6b9")</dev:code>
+        <dev:remarks>
+          <maml:para>Removes a list design.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -50142,6 +51735,164 @@
         <dev:code>PS C:\&gt; Remove-KshTenantSiteCollection -Identity (Get-KshTenantSiteCollection -SiteCollectionUrl 'https://example.sharepoint.com/sites/hub')</dev:code>
         <dev:remarks>
           <maml:para>Removes a site collection.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Remove-KshTenantSiteDesign</command:name>
+      <command:verb>Remove</command:verb>
+      <command:noun>KshTenantSiteDesign</command:noun>
+      <maml:description>
+        <maml:para>Removes a site design.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Remove-KshTenantSiteDesign cmdlet removes a list design. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Remove-KshTenantSiteDesign</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Identity</maml:name>
+          <maml:description>
+            <maml:para>Specifies the site design.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">TenantSiteDesign</command:parameterValue>
+          <dev:type>
+            <maml:name>TenantSiteDesign</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Identity</maml:name>
+        <maml:description>
+          <maml:para>Specifies the site design.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">TenantSiteDesign</command:parameterValue>
+        <dev:type>
+          <maml:name>TenantSiteDesign</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.V1.TenantSiteDesign</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Remove-KshTenantSiteDesign -Identity (Get-KshTenantSiteDesign -SiteScriptId "fabdb184-cdc3-495d-a961-523a824045f9")</dev:code>
+        <dev:remarks>
+          <maml:para>Removes a site design.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Remove-KshTenantSiteScript</command:name>
+      <command:verb>Remove</command:verb>
+      <command:noun>KshTenantSiteScript</command:noun>
+      <maml:description>
+        <maml:para>Removes a site script.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>The Remove-KshTenantSiteScript cmdlet removes a site script. This cmdlet can be used only when connected to the SharePoint admin center.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Remove-KshTenantSiteScript</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Identity</maml:name>
+          <maml:description>
+            <maml:para>Specifies the site script.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">TenantSiteScript</command:parameterValue>
+          <dev:type>
+            <maml:name>TenantSiteScript</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Identity</maml:name>
+        <maml:description>
+          <maml:para>Specifies the site script.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">TenantSiteScript</command:parameterValue>
+        <dev:type>
+          <maml:name>TenantSiteScript</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>Karamem0.SharePoint.PowerShell.Models.V1.TenantSiteScript</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Remove-KshTenantSiteScript -Identity (Get-KshTenantSiteScript -SiteScriptId "9595dd35-ca86-499b-aa22-06b73a4b17aa")</dev:code>
+        <dev:remarks>
+          <maml:para>Removes a site script.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -66350,7 +68101,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>ContentTypeSyncSiteTemplatesList</maml:name>
           <maml:description>
-            <maml:para>Specifies the list of site template that synchronize content types.</maml:para>
+            <maml:para>Specifies the list of site templates that synchronize content types.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
           <dev:type>
@@ -66535,7 +68286,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>DisableAddToOneDrive</maml:name>
           <maml:description>
-            <maml:para>Specifies whether to disable [Add to OneDrive] shortcut.</maml:para>
+            <maml:para>Specifies whether to disable Add to OneDrive shortcut.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
@@ -66547,7 +68298,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>DisableBackToClassic</maml:name>
           <maml:description>
-            <maml:para>Specifies whether to disable [Back to classic] shortcut.</maml:para>
+            <maml:para>Specifies whether to disable Back to classic shortcut.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
@@ -66679,7 +68430,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>DisplayStartASiteOption</maml:name>
           <maml:description>
-            <maml:para>Specifies whether to display [Start a site] option.</maml:para>
+            <maml:para>Specifies whether to display Start a site option.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
@@ -66965,7 +68716,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>HideSyncButtonOnDocLib</maml:name>
           <maml:description>
-            <maml:para>Specifies whether to hide [Sync] button on document library.</maml:para>
+            <maml:para>Specifies whether to hide Sync button on document library.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
@@ -66977,7 +68728,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>HideSyncButtonOnOneDrive</maml:name>
           <maml:description>
-            <maml:para>Specifies whether to [Sync] button on OneDrive.</maml:para>
+            <maml:para>Specifies whether to Sync button on OneDrive.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
@@ -66989,7 +68740,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>IPAddressAllowList</maml:name>
           <maml:description>
-            <maml:para>Specifies the allowed list of IP address.</maml:para>
+            <maml:para>Specifies the allowed list of IP addresses.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -67043,6 +68794,18 @@
           <maml:name>IncludeAtAGlanceInShareEmails</maml:name>
           <maml:description>
             <maml:para>Specifies whether sharing emails include "At a glance" content.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>InformationBarriersImplicitGroupBased</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to apply implicit Microsoft 365 Group based information barriers.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
@@ -67124,6 +68887,18 @@
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>IsVivaHomeFlightEnabled</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to enable Microsoft Viva Home flight.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>IsWhiteboardFluidEnabled</maml:name>
           <maml:description>
             <maml:para>Specifies whether to enable Fluid Framework to Microsoft Whiteboard.</maml:para>
@@ -67184,6 +68959,18 @@
           <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
             <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>MajorVersionLimit</maml:name>
+          <maml:description>
+            <maml:para>Specifies the limit number of major version.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -67539,7 +69326,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>ProvisionSharedWithEveryoneFolder</maml:name>
           <maml:description>
-            <maml:para>Specifies whether to provision [Shared with Everyone] folder.</maml:para>
+            <maml:para>Specifies whether to provision Shared with Everyone folder.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
@@ -67670,7 +69457,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>ShowAllUsersClaim</maml:name>
           <maml:description>
-            <maml:para>Specifies whether to show [All users] claim.</maml:para>
+            <maml:para>Specifies whether to show All users claim.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
@@ -67682,7 +69469,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>ShowEveryoneClaim</maml:name>
           <maml:description>
-            <maml:para>Specifies whether to show [Everyone] claim.</maml:para>
+            <maml:para>Specifies whether to show Everyone claim.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
@@ -67694,7 +69481,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>ShowEveryoneExceptExternalUsersClaim</maml:name>
           <maml:description>
-            <maml:para>Specifies whether to show [Everyone except external users] claim.</maml:para>
+            <maml:para>Specifies whether to show Everyone except external users claim.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
@@ -67771,7 +69558,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>StartASiteFormUrl</maml:name>
           <maml:description>
-            <maml:para>Specifies the [Start a site] form URL.</maml:para>
+            <maml:para>Specifies the Start a site form URL.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -67844,6 +69631,42 @@
           <maml:name>UsePersistentCookiesForExplorerView</maml:name>
           <maml:description>
             <maml:para>Specifies whether to use persistent cookies for the explorer view.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>UserVoiceForFeedbackEnabled</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to enable User Voice Feedback button.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ViewInFileExplorerEnabled</maml:name>
+          <maml:description>
+            <maml:para>Specifies whether to enable View in Explorer button.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>ViewersCanCommentOnMediaDisabled</maml:name>
+          <maml:description>
+            <maml:para>Specify whether to disable to allow viewers to comment on media.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
@@ -68230,7 +70053,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>ContentTypeSyncSiteTemplatesList</maml:name>
         <maml:description>
-          <maml:para>Specifies the list of site template that synchronize content types.</maml:para>
+          <maml:para>Specifies the list of site templates that synchronize content types.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
         <dev:type>
@@ -68374,7 +70197,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>DisableAddToOneDrive</maml:name>
         <maml:description>
-          <maml:para>Specifies whether to disable [Add to OneDrive] shortcut.</maml:para>
+          <maml:para>Specifies whether to disable Add to OneDrive shortcut.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
         <dev:type>
@@ -68386,7 +70209,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>DisableBackToClassic</maml:name>
         <maml:description>
-          <maml:para>Specifies whether to disable [Back to classic] shortcut.</maml:para>
+          <maml:para>Specifies whether to disable Back to classic shortcut.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
         <dev:type>
@@ -68518,7 +70341,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>DisplayStartASiteOption</maml:name>
         <maml:description>
-          <maml:para>Specifies whether to display [Start a site] option.</maml:para>
+          <maml:para>Specifies whether to display Start a site option.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
         <dev:type>
@@ -68794,7 +70617,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>HideSyncButtonOnDocLib</maml:name>
         <maml:description>
-          <maml:para>Specifies whether to hide [Sync] button on document library.</maml:para>
+          <maml:para>Specifies whether to hide Sync button on document library.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
         <dev:type>
@@ -68806,7 +70629,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>HideSyncButtonOnOneDrive</maml:name>
         <maml:description>
-          <maml:para>Specifies whether to [Sync] button on OneDrive.</maml:para>
+          <maml:para>Specifies whether to Sync button on OneDrive.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
         <dev:type>
@@ -68818,7 +70641,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>IPAddressAllowList</maml:name>
         <maml:description>
-          <maml:para>Specifies the allowed list of IP address.</maml:para>
+          <maml:para>Specifies the allowed list of IP addresses.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -68867,6 +70690,18 @@
         <maml:name>IncludeAtAGlanceInShareEmails</maml:name>
         <maml:description>
           <maml:para>Specifies whether sharing emails include "At a glance" content.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>InformationBarriersImplicitGroupBased</maml:name>
+        <maml:description>
+          <maml:para>Specifies whether to apply implicit Microsoft 365 Group based information barriers.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
         <dev:type>
@@ -68948,6 +70783,18 @@
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>IsVivaHomeFlightEnabled</maml:name>
+        <maml:description>
+          <maml:para>Specifies whether to enable Microsoft Viva Home flight.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>IsWhiteboardFluidEnabled</maml:name>
         <maml:description>
           <maml:para>Specifies whether to enable Fluid Framework to Microsoft Whiteboard.</maml:para>
@@ -69003,6 +70850,18 @@
         <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
         <dev:type>
           <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>MajorVersionLimit</maml:name>
+        <maml:description>
+          <maml:para>Specifies the limit number of major version.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -69310,7 +71169,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>ProvisionSharedWithEveryoneFolder</maml:name>
         <maml:description>
-          <maml:para>Specifies whether to provision [Shared with Everyone] folder.</maml:para>
+          <maml:para>Specifies whether to provision Shared with Everyone folder.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
         <dev:type>
@@ -69430,7 +71289,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>ShowAllUsersClaim</maml:name>
         <maml:description>
-          <maml:para>Specifies whether to show [All users] claim.</maml:para>
+          <maml:para>Specifies whether to show All users claim.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
         <dev:type>
@@ -69442,7 +71301,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>ShowEveryoneClaim</maml:name>
         <maml:description>
-          <maml:para>Specifies whether to show [Everyone] claim.</maml:para>
+          <maml:para>Specifies whether to show Everyone claim.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
         <dev:type>
@@ -69454,7 +71313,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>ShowEveryoneExceptExternalUsersClaim</maml:name>
         <maml:description>
-          <maml:para>Specifies whether to show [Everyone except external users] claim.</maml:para>
+          <maml:para>Specifies whether to show Everyone except external users claim.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
         <dev:type>
@@ -69526,7 +71385,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>StartASiteFormUrl</maml:name>
         <maml:description>
-          <maml:para>Specifies the [Start a site] form URL.</maml:para>
+          <maml:para>Specifies the Start a site form URL.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -69599,6 +71458,42 @@
         <maml:name>UsePersistentCookiesForExplorerView</maml:name>
         <maml:description>
           <maml:para>Specifies whether to use persistent cookies for the explorer view.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>UserVoiceForFeedbackEnabled</maml:name>
+        <maml:description>
+          <maml:para>Specifies whether to enable User Voice Feedback button.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ViewInFileExplorerEnabled</maml:name>
+        <maml:description>
+          <maml:para>Specifies whether to enable View in Explorer button.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>ViewersCanCommentOnMediaDisabled</maml:name>
+        <maml:description>
+          <maml:para>Specify whether to disable to allow viewers to comment on media.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
         <dev:type>
@@ -71032,7 +72927,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>SharingAllowedDomainList</maml:name>
           <maml:description>
-            <maml:para>Specifies the list of domain to allow sharing.</maml:para>
+            <maml:para>Specifies the list of domains to allow sharing.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -71044,7 +72939,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>SharingBlockedDomainList</maml:name>
           <maml:description>
-            <maml:para>Specifies the list of domain to block sharing.</maml:para>
+            <maml:para>Specifies the list of domains to block sharing.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -71837,7 +73732,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>SharingAllowedDomainList</maml:name>
           <maml:description>
-            <maml:para>Specifies the list of domain to allow sharing.</maml:para>
+            <maml:para>Specifies the list of domains to allow sharing.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -71849,7 +73744,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>SharingBlockedDomainList</maml:name>
           <maml:description>
-            <maml:para>Specifies the list of domain to block sharing.</maml:para>
+            <maml:para>Specifies the list of domains to block sharing.</maml:para>
           </maml:description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -72559,7 +74454,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>SharingAllowedDomainList</maml:name>
         <maml:description>
-          <maml:para>Specifies the list of domain to allow sharing.</maml:para>
+          <maml:para>Specifies the list of domains to allow sharing.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -72571,7 +74466,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>SharingBlockedDomainList</maml:name>
         <maml:description>
-          <maml:para>Specifies the list of domain to block sharing.</maml:para>
+          <maml:para>Specifies the list of domains to block sharing.</maml:para>
         </maml:description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>

@@ -1,5 +1,5 @@
 ---
-external help file: SPClientCore.dll-help.xml
+external help file: SPClientCore.dll-Help.xml
 Module Name: SPClientCore
 online version:
 schema: 2.0.0
@@ -55,13 +55,14 @@ Set-KshTenant [-AddressbarLinkPermission <RoleType>]
  [-HasAdminCompletedCUConfiguration <Boolean>] [-HideDefaultThemes <Boolean>]
  [-HideSyncButtonOnDocLib <Boolean>] [-HideSyncButtonOnOneDrive <Boolean>]
  [-ImageTaggingOption <ImageTaggingChoice>] [-IncludeAtAGlanceInShareEmails <Boolean>]
- [-InformationBarriersSuspension <Boolean>] [-IPAddressAllowList <String>] [-IPAddressEnforcement <Boolean>]
- [-IPAddressWacTokenLifetime <Int32>] [-IsAppBarTemporarilyDisabled <Boolean>]
- [-IsCollabMeetingNotesFluidEnabled <Boolean>] [-IsFluidEnabled <Boolean>] [-IsLoopEnabled <Boolean>]
- [-IsUnmanagedSyncClientForTenantRestricted <Boolean>] [-IsWhiteboardFluidEnabled <Boolean>]
+ [-InformationBarriersImplicitGroupBased <Boolean>] [-InformationBarriersSuspension <Boolean>]
+ [-IPAddressAllowList <String>] [-IPAddressEnforcement <Boolean>] [-IPAddressWacTokenLifetime <Int32>]
+ [-IsAppBarTemporarilyDisabled <Boolean>] [-IsCollabMeetingNotesFluidEnabled <Boolean>]
+ [-IsFluidEnabled <Boolean>] [-IsLoopEnabled <Boolean>] [-IsUnmanagedSyncClientForTenantRestricted <Boolean>]
+ [-IsVivaHomeFlightEnabled <Boolean>] [-IsWhiteboardFluidEnabled <Boolean>]
  [-LabelMismatchEmailHelpLink <String>] [-LegacyAuthProtocolsEnabled <Boolean>]
  [-LimitedAccessFileType <LimitedAccessFileType>] [-MachineLearningCaptureEnabled <Boolean>]
- [-MarkNewFilesSensitiveByDefault <SensitiveByDefaultState>]
+ [-MajorVersionLimit <Int32>] [-MarkNewFilesSensitiveByDefault <SensitiveByDefaultState>]
  [-MediaTranscription <MediaTranscriptionPolicyType>] [-MobileFriendlyUrlEnabledInTenant <Boolean>]
  [-NoAccessRedirectUrl <String>] [-NotificationsInOneDriveEnabled <Boolean>]
  [-NotificationsInSharePointEnabled <Boolean>] [-NotifyOwnersWhenInvitationsAccepted <Boolean>]
@@ -86,8 +87,10 @@ Set-KshTenant [-AddressbarLinkPermission <RoleType>]
  [-StartASiteFormUrl <String>] [-StopNew2010Workflows <Boolean>] [-StopNew2013Workflows <Boolean>]
  [-SyncAzureAdB2BManagementPolicy <Boolean>] [-SyncPrivacyProfileProperties <Boolean>]
  [-UseFindPeopleInPeoplePicker <Boolean>] [-UsePersistentCookiesForExplorerView <Boolean>]
- [-WhoCanShareAllowListInTenant <String>] [-WhoCanShareAllowListInTenantByPrincipalIdentity <String[]>]
- [-Workflow2010Disabled <Boolean>] [<CommonParameters>]
+ [-UserVoiceForFeedbackEnabled <Boolean>] [-ViewersCanCommentOnMediaDisabled <Boolean>]
+ [-ViewInFileExplorerEnabled <Boolean>] [-WhoCanShareAllowListInTenant <String>]
+ [-WhoCanShareAllowListInTenantByPrincipalIdentity <String[]>] [-Workflow2010Disabled <Boolean>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -532,7 +535,7 @@ Accept wildcard characters: False
 ```
 
 ### -ContentTypeSyncSiteTemplatesList
-Specifies the list of site template that synchronize content types.
+Specifies the list of site templates that synchronize content types.
 
 ```yaml
 Type: String[]
@@ -718,7 +721,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisableAddToOneDrive
-Specifies whether to disable \[Add to OneDrive\] shortcut.
+Specifies whether to disable **Add to OneDrive** shortcut.
 
 ```yaml
 Type: Boolean
@@ -733,7 +736,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisableBackToClassic
-Specifies whether to disable \[Back to classic\] shortcut.
+Specifies whether to disable **Back to classic** shortcut.
 
 ```yaml
 Type: Boolean
@@ -898,7 +901,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayStartASiteOption
-Specifies whether to display \[Start a site\] option.
+Specifies whether to display **Start a site** option.
 
 ```yaml
 Type: Boolean
@@ -1245,7 +1248,7 @@ Accept wildcard characters: False
 ```
 
 ### -HideSyncButtonOnDocLib
-Specifies whether to hide \[Sync\] button on document library.
+Specifies whether to hide **Sync** button on document library.
 
 ```yaml
 Type: Boolean
@@ -1260,7 +1263,7 @@ Accept wildcard characters: False
 ```
 
 ### -HideSyncButtonOnOneDrive
-Specifies whether to \[Sync\] button on OneDrive.
+Specifies whether to **Sync** button on OneDrive.
 
 ```yaml
 Type: Boolean
@@ -1275,7 +1278,7 @@ Accept wildcard characters: False
 ```
 
 ### -IPAddressAllowList
-Specifies the allowed list of IP address.
+Specifies the allowed list of IP addresses.
 
 ```yaml
 Type: String
@@ -1337,6 +1340,21 @@ Accept wildcard characters: False
 
 ### -IncludeAtAGlanceInShareEmails
 Specifies whether sharing emails include "At a glance" content.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -InformationBarriersImplicitGroupBased
+Specifies whether to apply implicit Microsoft 365 Group based information barriers.
 
 ```yaml
 Type: Boolean
@@ -1440,6 +1458,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -IsVivaHomeFlightEnabled
+Specifies whether to enable Microsoft Viva Home flight.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -IsWhiteboardFluidEnabled
 Specifies whether to enable Fluid Framework to Microsoft Whiteboard.
 
@@ -1506,6 +1539,21 @@ Specifies whether to enable the machine learning capturing.
 
 ```yaml
 Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -MajorVersionLimit
+Specifies the limit number of major version.
+
+```yaml
+Type: Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -1900,7 +1948,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProvisionSharedWithEveryoneFolder
-Specifies whether to provision \[Shared with Everyone\] folder.
+Specifies whether to provision **Shared with Everyone** folder.
 
 ```yaml
 Type: Boolean
@@ -2052,7 +2100,7 @@ Accept wildcard characters: False
 ```
 
 ### -ShowAllUsersClaim
-Specifies whether to show \[All users\] claim.
+Specifies whether to show **All users** claim.
 
 ```yaml
 Type: Boolean
@@ -2067,7 +2115,7 @@ Accept wildcard characters: False
 ```
 
 ### -ShowEveryoneClaim
-Specifies whether to show \[Everyone\] claim.
+Specifies whether to show **Everyone** claim.
 
 ```yaml
 Type: Boolean
@@ -2082,7 +2130,7 @@ Accept wildcard characters: False
 ```
 
 ### -ShowEveryoneExceptExternalUsersClaim
-Specifies whether to show \[Everyone except external users\] claim.
+Specifies whether to show **Everyone except external users** claim.
 
 ```yaml
 Type: Boolean
@@ -2173,7 +2221,7 @@ Accept wildcard characters: False
 ```
 
 ### -StartASiteFormUrl
-Specifies the \[Start a site\] form URL.
+Specifies the **Start a site** form URL.
 
 ```yaml
 Type: String
@@ -2264,6 +2312,51 @@ Accept wildcard characters: False
 
 ### -UsePersistentCookiesForExplorerView
 Specifies whether to use persistent cookies for the explorer view.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -UserVoiceForFeedbackEnabled
+Specifies whether to enable **User Voice Feedback** button.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ViewInFileExplorerEnabled
+Specifies whether to enable **View in Explorer** button.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ViewersCanCommentOnMediaDisabled
+Specify whether to disable to allow viewers to comment on media.
 
 ```yaml
 Type: Boolean

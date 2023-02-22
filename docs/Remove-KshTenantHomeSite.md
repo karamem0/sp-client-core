@@ -1,5 +1,5 @@
 ---
-external help file: SPClientCore.dll-help.xml
+external help file: SPClientCore.dll-Help.xml
 Module Name: SPClientCore
 online version:
 schema: 2.0.0
@@ -17,8 +17,7 @@ Remove-KshTenantHomeSite [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Remove-KshTenantHomeSite cmdlet removes a home site.
-This cmdlet can be used only when connected to the SharePoint admin center.
+The Remove-KshTenantHomeSite cmdlet removes a home site. This cmdlet can be used only when connected to the SharePoint admin center.
 
 ## EXAMPLES
 

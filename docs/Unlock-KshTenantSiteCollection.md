@@ -1,5 +1,5 @@
 ---
-external help file: SPClientCore.dll-help.xml
+external help file: SPClientCore.dll-Help.xml
 Module Name: SPClientCore
 online version:
 schema: 2.0.0
@@ -23,8 +23,7 @@ Unlock-KshTenantSiteCollection [-Identity] <TenantSiteCollection> [-NoWait] [<Co
 ```
 
 ## DESCRIPTION
-The Unlock-KshTenantSiteCollection cmdlet sets lock state of a site collection to Unlock.
-This cmdlet can be used only when connected to the SharePoint admin center.
+The Unlock-KshTenantSiteCollection cmdlet sets lock state of a site collection to Unlock. This cmdlet can be used only when connected to the SharePoint admin center.
 
 ## EXAMPLES
 

@@ -1,5 +1,5 @@
 ---
-external help file: SPClientCore.dll-help.xml
+external help file: SPClientCore.dll-Help.xml
 Module Name: SPClientCore
 online version:
 schema: 2.0.0
@@ -23,8 +23,7 @@ Restore-KshTenantDeletedSiteCollection [-Identity] <TenantDeletedSiteCollection>
 ```
 
 ## DESCRIPTION
-The Restore-KshTenantDeletedSiteCollection cmdlet marks an deleted site collection as active.
-This cmdlet can be used only when connected to the SharePoint admin center.
+The Restore-KshTenantDeletedSiteCollection cmdlet marks an deleted site collection as active. This cmdlet can be used only when connected to the SharePoint admin center.
 
 ## EXAMPLES
 

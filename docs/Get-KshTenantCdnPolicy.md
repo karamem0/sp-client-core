@@ -1,5 +1,5 @@
 ---
-external help file: SPClientCore.dll-help.xml
+external help file: SPClientCore.dll-Help.xml
 Module Name: SPClientCore
 online version:
 schema: 2.0.0
@@ -23,8 +23,7 @@ Get-KshTenantCdnPolicy [-Private] [-NoEnumerate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The Get-KshTenantCdnPolicy cmdlet retrieves Office 365 CDN policies applied to the tenant.
-This cmdlet can be used only when connected to the SharePoint admin center.
+The Get-KshTenantCdnPolicy cmdlet retrieves Office 365 CDN policies applied to the tenant. This cmdlet can be used only when connected to the SharePoint admin center.
 
 ## EXAMPLES
 

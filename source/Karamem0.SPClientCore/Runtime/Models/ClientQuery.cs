@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2022 karamem0
+// Copyright (c) 2023 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -37,14 +37,21 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
                 .Where(propertyInfo => propertyInfo.IsDefined(typeof(JsonPropertyAttribute)))
                 .Where(propertyInfo =>
                 {
-                    var conditionAttribute = propertyInfo.GetCustomAttribute<ClientQueryConditionAttribute>();
+                    var conditionAttribute = propertyInfo.GetCustomAttribute<ClientQueryIgnoreAttribute>();
                     if (conditionAttribute == null)
                     {
                         return true;
                     }
                     else
                     {
-                        return conditions.Contains(conditionAttribute.Name);
+                        if (conditionAttribute.Name == null)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return conditions.Contains(conditionAttribute.Name);
+                        }
                     }
                 })
                 .Select(propertyInfo =>

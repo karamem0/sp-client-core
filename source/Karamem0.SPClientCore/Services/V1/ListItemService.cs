@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2022 karamem0
+// Copyright (c) 2023 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -174,7 +174,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {
-                    Query = new ClientQuery(true)
+                    Query = new ClientQuery(true, typeof(ListItem))
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
@@ -192,7 +192,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {
-                    Query = new ClientQuery(true)
+                    Query = new ClientQuery(true, typeof(ListItem))
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)
@@ -210,7 +210,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {
-                    Query = new ClientQuery(true)
+                    Query = new ClientQuery(true, typeof(ListItem))
                 });
             return this.ClientContext
                 .ProcessQuery(requestPayload)

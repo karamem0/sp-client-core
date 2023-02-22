@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2022 karamem0
+// Copyright (c) 2023 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -45,7 +45,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet4")]
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet6")]
-        public int? PrincipalId { get; private set; }
+        public int PrincipalId { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet5")]

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2022 karamem0
+// Copyright (c) 2023 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -31,7 +31,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         public Feature Identity { get; private set; }
 
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
-        public Guid? FeatureId { get; private set; }
+        public Guid FeatureId { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
         public SwitchParameter NoEnumerate { get; private set; }

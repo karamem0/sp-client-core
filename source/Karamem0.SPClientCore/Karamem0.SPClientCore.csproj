@@ -9,7 +9,7 @@
     <Company>karamem0</Company>
     <Product>SPClientCore</Product>
     <Description>SharePoint Service Module for PowerShell</Description>
-    <Copyright>Copyright (c) 2022 karamem0</Copyright>
+    <Copyright>Copyright (c) 2023 karamem0</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/karamem0/sp-client-core</PackageProjectUrl>
     <AssemblyName>SPClientCore</AssemblyName>

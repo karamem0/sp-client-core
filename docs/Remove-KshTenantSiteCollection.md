@@ -1,5 +1,5 @@
 ---
-external help file: SPClientCore.dll-help.xml
+external help file: SPClientCore.dll-Help.xml
 Module Name: SPClientCore
 online version:
 schema: 2.0.0
@@ -23,8 +23,7 @@ Remove-KshTenantSiteCollection [-Identity] <TenantSiteCollection> [-NoWait] [<Co
 ```
 
 ## DESCRIPTION
-The Remove-KshTenantSiteCollection cmdlet removes a deleted site collection.
-This cmdlet can be used only when connected to the SharePoint admin center.
+The Remove-KshTenantSiteCollection cmdlet removes a deleted site collection. This cmdlet can be used only when connected to the SharePoint admin center.
 
 ## EXAMPLES
 

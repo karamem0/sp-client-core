@@ -1,5 +1,5 @@
 ---
-external help file: SPClientCore.dll-help.xml
+external help file: SPClientCore.dll-Help.xml
 Module Name: SPClientCore
 online version:
 schema: 2.0.0
@@ -19,8 +19,7 @@ Add-KshTenantHubSite [-Description <String>] [-EnablePermissionsSync <Boolean>]
 ```
 
 ## DESCRIPTION
-The Add-KshTenantHubSite cmdlet adds a new hub site to the tenant.
-This cmdlet can be used only when connected to the SharePoint admin center.
+The Add-KshTenantHubSite cmdlet adds a new hub site to the tenant. This cmdlet can be used only when connected to the SharePoint admin center.
 
 ## EXAMPLES
 

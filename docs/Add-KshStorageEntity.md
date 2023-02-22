@@ -1,5 +1,5 @@
 ---
-external help file: SPClientCore.dll-help.xml
+external help file: SPClientCore.dll-Help.xml
 Module Name: SPClientCore
 online version:
 schema: 2.0.0
@@ -25,7 +25,7 @@ The site must be a tenant app catalog site or a site collection app catalog site
 
 ### Example 1
 ```powershell
-PS C:\> Add-KshStorageEntity -Key 'Copyright' -Value 'Copyright (c) 2022 karamem0'
+PS C:\> Add-KshStorageEntity -Key 'Copyright' -Value 'Copyright (c) 2023 karamem0'
 ```
 
 Creates a storage entity.

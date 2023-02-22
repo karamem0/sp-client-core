@@ -906,6 +906,34 @@
       </TableControl>
     </View>
     <View>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.TenantListDesign</Name>
+      <ViewSelectedBy>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.TenantListDesign</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <TableHeaders>
+          <TableColumnHeader />
+          <TableColumnHeader />
+          <TableColumnHeader />
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>Id</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Title</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Version</PropertyName>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+    <View>
       <Name>Karamem0.SharePoint.PowerShell.Models.V1.TenantSiteCollection</Name>
       <ViewSelectedBy>
         <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.TenantSiteCollection</TypeName>
@@ -927,6 +955,62 @@
               </TableColumnItem>
               <TableColumnItem>
                 <PropertyName>Owner</PropertyName>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+    <View>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.TenantSiteDesign</Name>
+      <ViewSelectedBy>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.TenantSiteDesign</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <TableHeaders>
+          <TableColumnHeader />
+          <TableColumnHeader />
+          <TableColumnHeader />
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>Id</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Title</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Version</PropertyName>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+    <View>
+      <Name>Karamem0.SharePoint.PowerShell.Models.V1.TenantSiteScript</Name>
+      <ViewSelectedBy>
+        <TypeName>Karamem0.SharePoint.PowerShell.Models.V1.TenantSiteScript</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <TableHeaders>
+          <TableColumnHeader />
+          <TableColumnHeader />
+          <TableColumnHeader />
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>Id</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Title</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>Version</PropertyName>
               </TableColumnItem>
             </TableColumnItems>
           </TableRowEntry>

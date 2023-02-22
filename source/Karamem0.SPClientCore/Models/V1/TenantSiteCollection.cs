@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2022 karamem0
+// Copyright (c) 2023 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -47,6 +47,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         public virtual int AverageResourceUsage { get; protected set; }
 
         [JsonProperty()]
+        public virtual bool AuthenticationContextLimitedAccess { get; protected set; }
+
+        [JsonProperty()]
         public virtual BlockDownloadLinksFileType BlockDownloadLinksFileType { get; protected set; }
 
         [JsonProperty()]
@@ -54,6 +57,12 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
 
         [JsonProperty()]
         public virtual bool BlockDownloadPolicy { get; protected set; }
+
+        [JsonProperty()]
+        public virtual bool BlockGuestsAsSiteAdmin { get; protected set; }
+
+        [JsonProperty()]
+        public virtual bool ClearRestrictedAccessControl { get; protected set; }
 
         [JsonProperty()]
         public virtual bool CommentsOnSitePagesDisabled { get; protected set; }
@@ -76,6 +85,12 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         [JsonProperty()]
         public virtual bool DefaultLinkToExistingAccessReset { get; protected set; }
 
+        [JsonProperty("DefaultShareLinkRole")]
+        public virtual RoleType DefaultSharingLinkRole { get; protected set; }
+
+        [JsonProperty("DefaultShareLinkScope")]
+        public virtual SharingScope DefaultSharingLinkScope { get; protected set; }
+
         [JsonProperty()]
         public virtual SharingLinkType DefaultSharingLinkType { get; protected set; }
 
@@ -96,6 +111,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
 
         [JsonProperty()]
         public virtual IReadOnlyCollection<Guid> ExcludedBlockDownloadGroupIds { get; protected set; }
+
+        [JsonProperty()]
+        public virtual bool ExcludeBlockDownloadPolicySiteOwners { get; protected set; }
 
         [JsonProperty()]
         public virtual int ExternalUserExpirationInDays { get; protected set; }
@@ -173,6 +191,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         public virtual SiteUserInfoVisibilityPolicyType OverrideBlockUserInfoVisibility { get; protected set; }
 
         [JsonProperty()]
+        public virtual bool OverrideSharingCapability { get; protected set; }
+
+        [JsonProperty()]
         public virtual bool OverrideTenantAnonymousLinkExpirationPolicy { get; protected set; }
 
         [JsonProperty()]
@@ -197,6 +218,9 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         public virtual bool ReadOnlyAccessPolicy { get; protected set; }
 
         [JsonProperty()]
+        public virtual bool ReadOnlyForBlockDownloadPolicy { get; protected set; }
+
+        [JsonProperty()]
         public virtual bool ReadOnlyForUnmanagedDevices { get; protected set; }
 
         [JsonProperty()]
@@ -210,6 +234,15 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
 
         [JsonProperty()]
         public virtual bool RestrictedAccessControl { get; protected set; }
+
+        [JsonProperty()]
+        public virtual IReadOnlyCollection<Guid> RestrictedAccessControlGroups { get; protected set; }
+
+        [JsonProperty()]
+        public virtual IReadOnlyCollection<Guid> RestrictedAccessControlGroupsToAdd { get; protected set; }
+
+        [JsonProperty()]
+        public virtual IReadOnlyCollection<Guid> RestrictedAccessControlGroupsToRemove { get; protected set; }
 
         [JsonProperty()]
         public virtual RestrictedToRegion RestrictedToRegion { get; protected set; }

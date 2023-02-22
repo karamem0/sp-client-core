@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2022 karamem0
+// Copyright (c) 2023 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -27,7 +27,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         }
 
         [Parameter(Mandatory = true, Position = 0)]
-        public uint? Lcid { get; private set; }
+        public uint Lcid { get; private set; }
 
         protected override void ProcessRecordCore()
         {

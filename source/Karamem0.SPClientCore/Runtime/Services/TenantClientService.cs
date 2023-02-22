@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2022 karamem0
+// Copyright (c) 2023 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -40,7 +40,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
                     throw new InvalidOperationException(StringResources.ErrorOperationTimeout);
                 }
                 var requestPayload = new ClientRequestPayload();
-                var objectPath = requestPayload.Add(
+                var objectPath1 = requestPayload.Add(
                     new ObjectPathIdentity(operationResultObject.ObjectIdentity),
                     objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                     objectPathId => new ClientActionQuery(objectPathId)

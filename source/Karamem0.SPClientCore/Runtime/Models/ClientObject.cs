@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2022 karamem0
+// Copyright (c) 2023 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -70,13 +70,14 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
         [JsonIgnore()]
         public object this[string key] =>
             this.ExtensionProperties
-                .Select(item => ClientResultValue.Create(item))
                 .Where(item => item.Key == key)
+                .Select(item => ClientResultValue.Create(item))
                 .Select(item => item.Value)
                 .SingleOrDefault();
 
         [JsonIgnore()]
         public IEnumerable<string> ExtensionKeys => this.ExtensionProperties
+            .Where(item => item.Value != null)
             .Select(item => ClientResultValue.Create(item))
             .Select(item => item.Key)
             .ToArray();

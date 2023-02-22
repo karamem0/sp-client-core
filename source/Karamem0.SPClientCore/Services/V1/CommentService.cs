@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2022 karamem0
+// Copyright (c) 2023 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -32,6 +32,8 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
         IEnumerable<Comment> GetObjectEnumerable(ListItem listItemObject);
 
         void RemoveObject(Comment commentObject);
+
+        void SetDisabled(ListItem listItemObject, bool disabled);
 
     }
 
@@ -118,6 +120,19 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1
                     commentObject.ItemId,
                     commentObject.Id);
             this.ClientContext.DeleteObject(requestUrl);
+        }
+
+        public void SetDisabled(ListItem listItemObject, bool disabled)
+        {
+            _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
+            var requestPayload = new ClientRequestPayload();
+            var objectPath1 = requestPayload.Add(
+                new ObjectPathIdentity(listItemObject.ObjectIdentity),
+                objectPathId => new ClientActionMethod(
+                    objectPathId,
+                    "SetCommentsDisabled",
+                    requestPayload.CreateParameter(disabled)));
+            _ = this.ClientContext.ProcessQuery(requestPayload);
         }
 
     }

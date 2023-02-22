@@ -1,5 +1,5 @@
 ---
-external help file: SPClientCore.dll-help.xml
+external help file: SPClientCore.dll-Help.xml
 Module Name: SPClientCore
 online version:
 schema: 2.0.0
@@ -19,8 +19,7 @@ Set-KshTenantHubSite [-Identity] <HubSite> [-Description <String>] [-EnablePermi
 ```
 
 ## DESCRIPTION
-The Set-KshTenantHubSite cmdlet updates properties of the hub site.
-This cmdlet can be used only when connected to the SharePoint admin center.
+The Set-KshTenantHubSite cmdlet updates properties of the hub site. This cmdlet can be used only when connected to the SharePoint admin center.
 
 ## EXAMPLES
 

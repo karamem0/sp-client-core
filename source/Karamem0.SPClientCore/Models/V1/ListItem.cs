@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2022 karamem0
+// Copyright (c) 2023 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -34,18 +34,22 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         [JsonProperty()]
         public virtual ColumnLookupValue AppEditor { get; protected set; }
 
+        [ClientQueryIgnore()]
         [JsonProperty()]
         public virtual bool Attachments { get; protected set; }
 
         [JsonProperty()]
         public virtual ColumnUserValue Author { get; protected set; }
 
+        [ClientQueryIgnore()]
         [JsonProperty("CheckedOutTitle")]
         public virtual ColumnLookupValue CheckOutTitle { get; protected set; }
 
+        [ClientQueryIgnore()]
         [JsonProperty()]
         public virtual ColumnUserValue CheckOutUser { get; protected set; }
 
+        [ClientQueryIgnore()]
         [JsonProperty("CheckedOutUserId")]
         public virtual ColumnLookupValue CheckOutUserId { get; protected set; }
 
@@ -53,7 +57,10 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         public virtual DateTime Created { get; protected set; }
 
         [JsonProperty()]
-        public virtual string ComplianceAssetId { get; protected set; }
+        public virtual bool CommentsDisabled { get; protected set; }
+
+        [JsonProperty()]
+        public virtual CommentsDisabledScope CommentsDisabledScope { get; protected set; }
 
         [JsonProperty()]
         public virtual ContentTypeId ContentTypeId { get; protected set; }
@@ -64,6 +71,7 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         [JsonProperty()]
         public virtual string DisplayName { get; protected set; }
 
+        [ClientQueryIgnore()]
         [JsonProperty()]
         public virtual string DocConcurrencyNumber { get; protected set; }
 
@@ -97,6 +105,7 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         [JsonProperty()]
         public virtual int ItemChildCount { get; protected set; }
 
+        [ClientQueryIgnore()]
         [JsonProperty()]
         public virtual string IsCheckedoutToLocal { get; protected set; }
 
@@ -106,6 +115,7 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         [JsonProperty()]
         public virtual DateTime Modified { get; protected set; }
 
+        [ClientQueryIgnore()]
         [JsonProperty()]
         public virtual ColumnLookupValue ParentLeafName { get; protected set; }
 
@@ -139,6 +149,7 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         [JsonProperty()]
         public virtual Guid UniqueId { get; protected set; }
 
+        [ClientQueryIgnore()]
         [JsonProperty()]
         public virtual ColumnLookupValue VirusStatus { get; protected set; }
 

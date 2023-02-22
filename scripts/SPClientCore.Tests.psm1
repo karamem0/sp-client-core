@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2022 karamem0
+# Copyright (c) 2023 karamem0
 #
 # This software is released under the MIT License.
 #
@@ -153,6 +153,78 @@ function Install-TestSite {
 
         Write-Progress -Activity 'Adding a site collection app catalog...' -Status 'Processing'
         Add-KshSiteCollectionAppCatalog -SiteCollection $siteCollection
+
+        Write-Progress -Activity 'Adding list scripts...' -Status 'Test List Script 1'
+        $listScript1 = Add-KshTenantSiteScript `
+            -Content '{"actions":[{"verb":"createSPList","listName":"Test List 1","templateType":101,"subactions":[]}]}' `
+            -Title 'Test List Script 1'
+        $appSettings.ListScript1Id = $listScript1.Id
+
+        Write-Progress -Activity 'Adding list scripts...' -Status 'Test List Script 2'
+        $listScript2 = Add-KshTenantSiteScript `
+            -Content '{"actions":[{"verb":"createSPList","listName":"Test List 2","templateType":101,"subactions":[]}]}' `
+            -Title 'Test List Script 2'
+        $appSettings.ListScript2Id = $listScript2.Id
+
+        Write-Progress -Activity 'Adding list scripts...' -Status 'Test List Script 3'
+        $listScript3 = Add-KshTenantSiteScript `
+            -Content '{"actions":[{"verb":"createSPList","listName":"Test List 3","templateType":101,"subactions":[]}]}' `
+            -Title 'Test List Script 3'
+        $appSettings.ListScript3Id = $listScript3.Id
+
+        Write-Progress -Activity 'Adding site scripts...' -Status 'Test Site Script 1'
+        $siteScript1 = Add-KshTenantSiteScript `
+            -Content '{"actions":[{"verb":"setSiteBranding"}]}' `
+            -Title 'Test Site Script 1'
+        $appSettings.SiteScript1Id = $siteScript1.Id
+
+        Write-Progress -Activity 'Adding site scripts...' -Status 'Test Site Script 2'
+        $siteScript2 = Add-KshTenantSiteScript `
+            -Content '{"actions":[{"verb":"setSiteBranding"}]}' `
+            -Title 'Test Site Script 2'
+        $appSettings.SiteScript5Id = $siteScript2.Id
+
+        Write-Progress -Activity 'Adding site scripts...' -Status 'Test Site Script 3'
+        $siteScript3 = Add-KshTenantSiteScript `
+            -Content '{"actions":[{"verb":"setSiteBranding"}]}' `
+            -Title 'Test Site Script 3'
+        $appSettings.SiteScript6Id = $siteScript3.Id
+
+        Write-Progress -Activity 'Adding list designs...' -Status 'Test List Design 1'
+        $listDesign1 = Add-KshTenantListDesign `
+            -SiteScriptIds @($listScript1.Id) `
+            -Title 'Test List Design 1'
+        $appSettings.ListDesign1Id = $listDesign1.Id
+
+        Write-Progress -Activity 'Adding list designs...' -Status 'Test List Design 2'
+        $listDesign2 = Add-KshTenantListDesign `
+            -SiteScriptIds @($listScript2.Id) `
+            -Title 'Test List Design 2'
+        $appSettings.ListDesign2Id = $listDesign2.Id
+
+        Write-Progress -Activity 'Adding list designs...' -Status 'Test List Design 3'
+        $listDesign3 = Add-KshTenantListDesign `
+            -SiteScriptIds @($listScript3.Id) `
+            -Title 'Test List Design 3'
+        $appSettings.ListDesign3Id = $listDesign3.Id
+
+        Write-Progress -Activity 'Adding site designs...' -Status 'Test Site Design 1'
+        $siteDesign1 = Add-KshTenantSiteDesign `
+            -SiteScriptIds @($siteScript1.Id) `
+            -Title 'Test Site Design 1'
+        $appSettings.SiteDesign1Id = $siteDesign1.Id
+
+        Write-Progress -Activity 'Adding site designs...' -Status 'Test Site Design 2'
+        $siteDesign2 = Add-KshTenantSiteDesign `
+            -SiteScriptIds @($siteScript2.Id) `
+            -Title 'Test Site Design 2'
+        $appSettings.SiteDesign2Id = $siteDesign2.Id
+
+        Write-Progress -Activity 'Adding site designs...' -Status 'Test Site Design 3'
+        $siteDesign3 = Add-KshTenantSiteDesign `
+            -SiteScriptIds @($siteScript3.Id) `
+            -Title 'Test Site Design 3'
+        $appSettings.SiteDesign3Id = $siteDesign3.Id
 
         Write-Progress -Activity 'Sign in...' -Status 'Processing'
         Connect-KshSite -Url $Url -Credential $credential
@@ -1617,6 +1689,15 @@ function Uninstall-TestSite {
         Remove-KshTermGroup -Identity $termGroup1
         Remove-KshTermGroup -Identity $termGroup2
         Remove-KshTermGroup -Identity $termGroup3
+
+        Write-Progress -Activity 'Removing site scripts...' -Status 'Processing'
+        Get-KshTenantSiteScript | Remove-KshTenantSiteScript
+
+        Write-Progress -Activity 'Removing list designs...' -Status 'Processing'
+        Get-KshTenantListDesign | Remove-KshTenantListDesign
+
+        Write-Progress -Activity 'Removing site designs...' -Status 'Processing'
+        Get-KshTenantSiteDesign | Remove-KshTenantSiteDesign
 
         Write-Progress -Activity 'Sign in...' -Status 'Processing'
         $tenantAppCatalogUrl = Get-KshTenantAppCatalog

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2022 karamem0
+// Copyright (c) 2023 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -38,7 +38,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         public Uri SiteCollectionUrl { get; private set; }
 
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet4")]
-        public Guid? SiteCollectionId { get; private set; }
+        public Guid SiteCollectionId { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]

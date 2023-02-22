@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2022 karamem0
+// Copyright (c) 2023 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -26,7 +26,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
         {
             _ = clientObject ?? throw new ArgumentNullException(nameof(clientObject));
             var requestPayload = new ClientRequestPayload();
-            var objectPath = requestPayload.Add(
+            var objectPath1 = requestPayload.Add(
                 new ObjectPathIdentity(clientObject.ObjectIdentity),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
@@ -42,7 +42,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services
         {
             _ = clientObject ?? throw new ArgumentNullException(nameof(clientObject));
             var requestPayload = new ClientRequestPayload();
-            var objectPath = requestPayload.Add(
+            var objectPath1 = requestPayload.Add(
                 new ObjectPathIdentity(clientObject.ObjectIdentity),
                 objectPathId => new ClientActionMethod(objectPathId, "DeleteObject"));
             _ = this.ClientContext.ProcessQuery(requestPayload);

@@ -1,5 +1,5 @@
 ---
-external help file: SPClientCore.dll-help.xml
+external help file: SPClientCore.dll-Help.xml
 Module Name: SPClientCore
 online version:
 schema: 2.0.0
@@ -23,8 +23,7 @@ Set-KshTenantCdnPolicy [-Private] -Type <TenantCdnPolicyType> -Value <String> [<
 ```
 
 ## DESCRIPTION
-The Set-KshTenantCdnPolicy cmdlet changes the value of Office 365 CDN policy.
-This cmdlet can be used only when connected to the SharePoint admin center.
+The Set-KshTenantCdnPolicy cmdlet changes the value of Office 365 CDN policy. This cmdlet can be used only when connected to the SharePoint admin center.
 
 ## EXAMPLES
 
