@@ -220,8 +220,8 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         [JsonProperty()]
         public virtual bool DisableDocumentLibraryDefaultLabeling { get; protected set; }
 
-        [JsonProperty()]
-        public virtual bool DisableListSync { get; protected set; }
+        // [JsonProperty()]
+        // public virtual bool DisableListSync { get; protected set; }
 
         [JsonProperty()]
         public virtual IReadOnlyCollection<Guid> DisabledModernListTemplateIds { get; protected set; }

@@ -20,22 +20,16 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
 
         public static Guid GetId(Type type)
         {
-            var objectAttribute = type.GetCustomAttribute<ClientObjectAttribute>();
-            if (objectAttribute == null)
-            {
-                throw new InvalidOperationException();
-            }
-            return Guid.Parse(objectAttribute.Id);
+            var objectAttribute = type.GetCustomAttribute<ClientObjectAttribute>() ?? throw new InvalidOperationException();
+            var objectId = Guid.Parse(objectAttribute.Id);
+            return objectId;
         }
 
         public static string GetName(Type type)
         {
-            var objectAttribute = type.GetCustomAttribute<ClientObjectAttribute>();
-            if (objectAttribute == null)
-            {
-                throw new InvalidOperationException();
-            }
-            return objectAttribute.Name;
+            var objectAttribute = type.GetCustomAttribute<ClientObjectAttribute>() ?? throw new InvalidOperationException();
+            var objectName = objectAttribute.Name;
+            return objectName;
         }
 
         public ClientObjectAttribute()

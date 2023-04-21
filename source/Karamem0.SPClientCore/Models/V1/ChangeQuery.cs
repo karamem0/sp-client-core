@@ -48,7 +48,7 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
                         foreach (var e in Enum.GetValues(typeof(ChangeObjects)).Cast<Enum>().Where(e => objects.HasFlag(e)))
                         {
                             var property = this.GetType().GetProperty(Enum.GetName(typeof(ChangeObjects), e));
-                            if (property != null)
+                            if (property is object)
                             {
                                 property.SetValue(this, true);
                             }
@@ -59,7 +59,7 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
                         foreach (var e in Enum.GetValues(typeof(ChangeOperations)).Cast<Enum>().Where(e => operations.HasFlag(e)))
                         {
                             var property = this.GetType().GetProperty(Enum.GetName(typeof(ChangeOperations), e));
-                            if (property != null)
+                            if (property is object)
                             {
                                 property.SetValue(this, true);
                             }

@@ -7,7 +7,7 @@ on:
       - v*.*.*
 
 env:
-  BUILD_VERSION: 5.2.0.${{github.run_number}}
+  BUILD_VERSION: 5.3.0.${{github.run_number}}
 
 jobs:
   build:
@@ -27,7 +27,7 @@ jobs:
       - name: Build source
         run: |
           dotnet restore ${{env.TARGET_FILE}}
-          dotnet publish ${{env.TARGET_FILE}} -c Release -o artifact -p:Version=${{env.BUILD_VERSION}} -p:FileVersion=${{env.BUILD_VERSION}}
+          dotnet publish ${{env.TARGET_FILE}} -c Release -p:PublishDir=build -p:Version=${{env.BUILD_VERSION}} -p:FileVersion=${{env.BUILD_VERSION}}
         env:
           TARGET_FILE: source/Karamem0.SPClientCore/Karamem0.SPClientCore.csproj
       - name: Update .config.json file
@@ -37,7 +37,7 @@ jobs:
           $json.APPLICATIONINSIGHTS_CONNECTION_STRING = "${{secrets.APPLICATIONINSIGHTS_CONNECTION_STRING}}"
           $json | ConvertTo-Json | Set-Content -Path "${{env.TARGET_FILE}}"
         env:
-          TARGET_FILE: artifact/SPClientCore.config.json
+          TARGET_FILE: source/Karamem0.SPClientCore/build/SPClientCore.config.json
       - name: Update .nuspec file
         shell: pwsh
         run: |
@@ -45,19 +45,19 @@ jobs:
           $xml.package.metadata.version = "${{env.BUILD_VERSION}}"
           $xml.Save("${{env.TARGET_FILE}}")
         env:
-          TARGET_FILE: artifact/SPClientCore.nuspec
+          TARGET_FILE: source/Karamem0.SPClientCore/build/SPClientCore.nuspec
       - name: Update .psd1 file
         shell: pwsh
         run: |
           Import-Module -Name (Resolve-Path -Path "${{env.TARGET_FILE}}")
           Update-ModuleManifest -Path "${{env.TARGET_FILE}}" -ModuleVersion "${{env.BUILD_VERSION}}" -CmdletsToExport (Get-Command -Module SPClientCore | %{ $_.Name })
         env:
-          TARGET_FILE: artifact/SPClientCore.psd1
+          TARGET_FILE: source/Karamem0.SPClientCore/build/SPClientCore.psd1
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: sp-client-core
-          path: artifact
+          path: source/Karamem0.SPClientCore/build
   publish:
     needs: build
     if: contains(github.ref, 'refs/tags/')
