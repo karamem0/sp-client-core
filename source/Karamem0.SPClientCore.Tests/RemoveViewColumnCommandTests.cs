@@ -94,6 +94,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 }
             );
             var actual = result7.ToArray();
+            Assert.IsNotNull(actual);
         }
 
         [TestMethod()]

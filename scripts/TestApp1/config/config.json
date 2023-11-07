@@ -1,18 +1,18 @@
 {
-    "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
-    "version": "2.0",
-    "bundles": {
-        "testapp1": {
-            "components": [
-                {
-                    "entrypoint": "./lib/webparts/TestApp1/TestApp1WebPart.js",
-                    "manifest": "./src/webparts/TestApp1/TestApp1WebPart.manifest.json"
-                }
-            ]
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "testapp1": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/testapp1/TestApp1WebPart.js",
+          "manifest": "./src/webparts/testapp1/TestApp1WebPart.manifest.json"
         }
-    },
-    "externals": {},
-    "localizedResources": {
-        "TestApp1WebPartStrings": "lib/webparts/TestApp1/loc/{locale}.js"
+      ]
     }
+  },
+  "externals": {},
+  "localizedResources": {
+    "TestApp1WebPartStrings": "lib/webparts/testapp1/loc/{locale}.js"
+  }
 }

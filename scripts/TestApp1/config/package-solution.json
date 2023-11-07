@@ -1,14 +1,40 @@
 {
-    "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
-    "solution": {
-        "name": "TestApp1",
-        "id": "439a6a54-93da-4cc0-8523-0842e5e0587d",
-        "version": "1.0.0.0",
-        "includeClientSideAssets": true,
-        "skipFeatureDeployment": true,
-        "isDomainIsolated": false
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "TestApp1",
+    "id": "439a6a54-93da-4cc0-8523-0842e5e0587d",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": ""
     },
-    "paths": {
-        "zippedPackage": "solution/TestApp1.sppkg"
-    }
+    "metadata": {
+      "shortDescription": {
+        "default": "TestApp1"
+      },
+      "longDescription": {
+        "default": "TestApp1"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "TestApp1 Feature",
+        "description": "The feature that activates elements of the TestApp1 solution.",
+        "id": "d7a0d592-9293-4754-907a-2522bb131a4e",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/TestApp1.sppkg"
+  }
 }

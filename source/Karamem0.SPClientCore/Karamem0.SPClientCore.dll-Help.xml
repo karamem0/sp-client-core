@@ -29307,7 +29307,7 @@
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 3 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Connect-KshSite -Url 'https://example.sharepoint.com' -ClientId 'e157e5b9-f2df-4417-991d-60546d11c21d' -CertificatePath 'C:\Certificate.pfx' -CertificatePassword 'P@ssw0rd'</dev:code>
+        <dev:code>PS C:\&gt; Connect-KshSite -Url 'https://example.sharepoint.com' -ClientId 'e157e5b9-f2df-4417-991d-60546d11c21d' -CertificatePath 'C:\Certificate.pfx' -CertificatePassword '********'</dev:code>
         <dev:remarks>
           <maml:para>Connects to a site with client certificate.</maml:para>
         </dev:remarks>
@@ -29321,7 +29321,7 @@
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 5 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Connect-KshSite -Url 'https://example.sharepoint.com' -ClientId '0c51fcfc-73d3-4179-b541-c63ad7c0e36f' -ClientSecret 'MPKzUeOEK45gZOTx0yBTv9pAgQReINaYsY9CJnXsAFk='</dev:code>
+        <dev:code>PS C:\&gt; Connect-KshSite -Url 'https://example.sharepoint.com' -ClientId '0c51fcfc-****-****-****-*************' -ClientSecret '********'</dev:code>
         <dev:remarks>
           <maml:para>Connects to a site with client secret.</maml:para>
         </dev:remarks>

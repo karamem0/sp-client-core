@@ -30,24 +30,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = false)]
         public RoleType AddressbarLinkPermission { get; private set; }
 
-        // [Parameter(Mandatory = false)]
-        // public string AIBuilderDefaultPowerAppsEnvironment { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public bool AIBuilderEnabled { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public int AIBuilderEnabledInContentCenter { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public SiteInfoForSitePicker[] AIBuilderSiteInfoList { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public Guid[] AIBuilderSiteList { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public string AIBuilderSiteListFileName { get; private set; }
-
         [Parameter(Mandatory = false)]
         public SharingState AllowAnonymousMeetingParticipantsToAccessWhiteboards { get; private set; }
 
@@ -75,20 +57,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = false)]
         public bool AllowOverrideForBlockUserInfoVisibility { get; private set; }
 
-        // [Parameter(Mandatory = false)]
-        // public string[] AllowSelectSecurityGroupsInOneDriveListInTenant { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public bool AllowSelectSecurityGroupsInSharePointSitesList { get; private set; }
-
         [Parameter(Mandatory = false)]
         public bool AnyoneLinkTrackUsers { get; private set; }
 
         [Parameter(Mandatory = false)]
         public bool ApplyAppEnforcedRestrictionsToAdHocRecipients { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public string ArchiveRedirectUrl { get; private set; }
 
         [Parameter(Mandatory = false)]
         public ResilienceMode AuthenticationContextResilienceMode { get; private set; }
@@ -105,24 +78,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = false)]
         public BlockDownloadLinksFileType BlockDownloadLinksFileType { get; private set; }
 
-        // [Parameter(Mandatory = false)]
-        // public string[] BlockDownloadFileTypeIds { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public bool BlockDownloadFileTypePolicy { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public bool BlockDownloadOfAllFilesForGuests { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public bool BlockDownloadOfAllFilesOnUnmanagedDevices { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public bool BlockDownloadOfViewableFilesForGuests { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public bool BlockDownloadOfViewableFilesOnUnmanagedDevices { get; private set; }
-
         [Parameter(Mandatory = false)]
         public bool BlockMacSync { get; private set; }
 
@@ -137,9 +92,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = false)]
         public TenantBrowseUserInfoPolicyType BlockUserInfoVisibilityInSharePoint { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public ChannelMeetingRecordingPermissionType ChannelMeetingRecordingPermission { get; private set; }
 
         [Parameter(Mandatory = false)]
         public bool CommentsOnFilesDisabled { get; private set; }
@@ -161,18 +113,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = false)]
         public string[] ContentTypeSyncSiteTemplatesList { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public int CoreBlockGuestsAsSiteAdmin { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public bool CoreDefaultLinkToExistingAccess { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public RoleType CoreDefaultSharingLinkRole { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public SharingScope CoreDefaultSharingLinkScope { get; private set; }
 
         [Parameter(Mandatory = false)]
         public RoleType CoreLoopDefaultSharingLinkRole { get; private set; }
@@ -207,9 +147,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = false)]
         public SharingLinkType DefaultSharingLinkType { get; private set; }
 
-        // [Parameter(Mandatory = false)]
-        // public bool DenySelectSecurityGroupsInSharePointSitesList { get; private set; }
-
         [Parameter(Mandatory = false)]
         public bool DisableAddToOneDrive { get; private set; }
 
@@ -218,12 +155,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = false)]
         public bool DisableCustomAppAuthentication { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public bool DisableDocumentLibraryDefaultLabeling { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public bool DisableListSync { get; private set; }
 
         [Parameter(Mandatory = false)]
         public Guid[] DisabledModernListTemplateIds { get; private set; }
@@ -242,9 +173,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = false)]
         public bool DisableSpacesActivation { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public bool DisableVivaConnectionsAnalytics { get; private set; }
 
         [Parameter(Mandatory = false)]
         public bool DisallowInfectedFileDownload { get; private set; }
@@ -270,17 +198,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = false)]
         public bool EnableAIPIntegration { get; private set; }
 
-        // [Parameter(Mandatory = false)]
-        // public bool EnableAutoExpirationVersionTrim { get; private set; }
-
         [Parameter(Mandatory = false)]
         public bool EnableAutoNewsDigest { get; private set; }
 
         [Parameter(Mandatory = false)]
         public bool EnableAzureAdB2BIntegration { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public bool EnabledFlightAllowAzureAdB2BSkipCheckingOneTimePassword { get; private set; }
 
         [Parameter(Mandatory = false)]
         public bool EnableGuestSignInAcceleration { get; private set; }
@@ -297,14 +219,8 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = false)]
         public bool EnableRestrictedAccessControl { get; private set; }
 
-        // [Parameter(Mandatory = false)]
-        // public Guid[] ExcludedBlockDownloadGroupIds { get; private set; }
-
         [Parameter(Mandatory = false)]
         public string[] ExcludedFileExtensionsForSyncClient { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public int ExpireVersionsAfterDays { get; private set; }
 
         [Parameter(Mandatory = false)]
         public bool ExternalServicesEnabled { get; private set; }
@@ -321,9 +237,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = false)]
         public bool FilePickerExternalImageSearchEnabled { get; private set; }
 
-        // [Parameter(Mandatory = false)]
-        // public string FileVersionPolicyXml { get; private set; }
-
         [Parameter(Mandatory = false)]
         public AnonymousLinkType FolderAnonymousLinkType { get; private set; }
 
@@ -335,12 +248,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = false)]
         public bool HasAdminCompletedCUConfiguration { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public bool HasIntelligentContentServicesCapability { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public bool HasTopicExperiencesCapability { get; private set; }
 
         [Parameter(Mandatory = false)]
         public bool HideDefaultThemes { get; private set; }
@@ -378,38 +285,17 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = false)]
         public bool IsCollabMeetingNotesFluidEnabled { get; private set; }
 
-        // [Parameter(Mandatory = false)]
-        // public bool IsEnableAppAuthPopUpEnabled { get; private set; }
-
         [Parameter(Mandatory = false)]
         public bool IsFluidEnabled { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public bool IsHubSitesMultiGeoFlightEnabled { get; private set; }
 
         [Parameter(Mandatory = false)]
         public bool IsLoopEnabled { get; private set; }
 
-        // [Parameter(Mandatory = false)]
-        // public bool IsMnAFlightEnabled { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public bool IsMultiGeo { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public bool IsMultipleHomeSitesFlightEnabled { get; private set; }
-
         [Parameter(Mandatory = false)]
         public bool IsUnmanagedSyncClientForTenantRestricted { get; private set; }
 
-        // [Parameter(Mandatory = false)]
-        // public bool IsUnmanagedSyncClientRestrictionFlightEnabled { get; private set; }
-
         [Parameter(Mandatory = false)]
         public bool IsVivaHomeFlightEnabled { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public bool IsVivaHomeGAFlightEnabled { get; private set; }
 
         [Parameter(Mandatory = false)]
         public bool IsWhiteboardFluidEnabled { get; private set; }
@@ -453,38 +339,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = false)]
         public bool NotifyOwnersWhenItemsReshared { get; private set; }
 
-        // [Parameter(Mandatory = false)]
-        // public string OCRAdminSiteListFileName { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public string OCRComplianceSiteListFileName { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public int OCRModeForAdminSites { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public int OCRModeForComplianceOneDrives { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public int OCRModeForComplianceSites { get; private set; }
-
         [Parameter(Mandatory = false)]
         public bool OfficeClientAdalDisabled { get; private set; }
 
         [Parameter(Mandatory = false)]
         public SharingState OneDriveAccessRequests { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public int OneDriveBlockGuestsAsSiteAdmin { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public bool OneDriveDefaultLinkToExistingAccess { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public RoleType OneDriveDefaultSharingLinkRole { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public SharingScope OneDriveDefaultSharingLinkScope { get; private set; }
 
         [Parameter(Mandatory = false)]
         public bool OneDriveForGuestsEnabled { get; private set; }
@@ -519,9 +378,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = false)]
         public bool OptOutOfGrooveSoftBlock { get; private set; }
 
-        // [Parameter(Mandatory = false)]
-        // public string OrgNewsSiteUrl { get; private set; }
-
         [Parameter(Mandatory = false)]
         public int OrphanedPersonalSitesRetentionPeriod { get; private set; }
 
@@ -537,15 +393,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = false)]
         public bool ProvisionSharedWithEveryoneFolder { get; private set; }
 
-        // [Parameter(Mandatory = false)]
-        // public string PublicCdnAllowedFileTypes { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public bool PublicCdnEnabled { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public string[] PublicCdnOrigins { get; private set; }
-
         [Parameter(Mandatory = false)]
         public bool ReduceTempTokenLifetimeEnabled { get; private set; }
 
@@ -557,21 +404,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = false)]
         public int RequireAnonymousLinksExpireInDays { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public bool RestrictedOneDriveLicense { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public bool RestrictedSharePointLicense { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public double ResourceQuota { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public double ResourceQuotaAllocated { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public string RootSiteUrl { get; private set; }
 
         [Parameter(Mandatory = false)]
         public bool SearchResolveExactEmailOrUpn { get; private set; }
@@ -597,12 +429,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = false)]
         public bool ShowEveryoneExceptExternalUsersClaim { get; private set; }
 
-        // [Parameter(Mandatory = false)]
-        // public bool ShowOpenInDesktopOptionForSyncedFiles { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public bool ShowNextGenerationSyncClientDialogForSyncOnOneDrive { get; private set; }
-
         [Parameter(Mandatory = false)]
         public bool ShowPeoplePickerSuggestionsForGuestUsers { get; private set; }
 
@@ -627,29 +453,8 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = false)]
         public bool StopNew2013Workflows { get; private set; }
 
-        // [Parameter(Mandatory = false)]
-        // public int StreamLaunchConfig { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public DateTime StreamLaunchConfigLastUpdated { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public int StreamLaunchConfigUpdateCount { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public long StorageQuota { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public long StorageQuotaAllocated { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public bool SyncAzureAdB2BManagementPolicy { get; private set; }
-
         [Parameter(Mandatory = false)]
         public bool SyncPrivacyProfileProperties { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public int TlsTokenBindingPolicyValue { get; private set; }
 
         [Parameter(Mandatory = false)]
         public bool UseFindPeopleInPeoplePicker { get; private set; }
@@ -674,9 +479,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = false)]
         public bool Workflow2010Disabled { get; private set; }
-
-        // [Parameter(Mandatory = false)]
-        // public Workflows2013State Workflows2013State { get; private set; }
 
         protected override void ProcessRecordCore()
         {

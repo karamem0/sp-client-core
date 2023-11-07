@@ -243,7 +243,6 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     // { "StreamLaunchConfig", 0 },
                     // { "StreamLaunchConfigLastUpdated", null },
                     // { "StreamLaunchConfigUpdateCount", 0 },
-                    // { "SyncAzureAdB2BManagementPolicy", true },
                     // { "SyncPrivacyProfileProperties", true },
                     // { "TlsTokenBindingPolicyValue", 0 },
                     // { "UseFindPeopleInPeoplePicker", false },

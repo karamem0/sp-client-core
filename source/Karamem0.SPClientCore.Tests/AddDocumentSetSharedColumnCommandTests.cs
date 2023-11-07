@@ -74,6 +74,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 }
             );
             var actual = result5.ToArray();
+            Assert.IsNotNull(actual);
         }
 
     }

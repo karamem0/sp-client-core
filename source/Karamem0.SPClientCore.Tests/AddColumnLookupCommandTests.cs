@@ -90,6 +90,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 }
             );
             var actual = result3.ElementAt(0);
+            Assert.IsNotNull(actual);
         }
 
         [TestMethod()]
@@ -161,6 +162,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 }
             );
             var actual = result3.ElementAt(0);
+            Assert.IsNotNull(actual);
         }
 
         [TestMethod()]
@@ -225,6 +227,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 }
             );
             var actual = result2.ElementAt(0);
+            Assert.IsNotNull(actual);
         }
 
         [TestMethod()]
@@ -289,6 +292,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 }
             );
             var actual = result2.ElementAt(0);
+            Assert.IsNotNull(actual);
         }
 
     }

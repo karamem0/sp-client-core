@@ -80,7 +80,16 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         public virtual bool AllowSelectSecurityGroupsInSharePointSitesList { get; protected set; }
 
         [JsonProperty()]
+        public virtual bool AllowSensitivityLabelOnRecords { get; protected set; }
+
+        [JsonProperty()]
+        public virtual string AmplifyAdminSettings { get; protected set; }
+
+        [JsonProperty()]
         public virtual bool AnyoneLinkTrackUsers { get; protected set; }
+
+        [JsonProperty()]
+        public virtual bool AppBypassInformationBarriers { get; protected set; }
 
         [JsonProperty()]
         public virtual bool ApplyAppEnforcedRestrictionsToAdHocRecipients { get; protected set; }
@@ -101,13 +110,16 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
         public virtual bool BlockAccessOnUnmanagedDevices { get; protected set; }
 
         [JsonProperty()]
-        public virtual BlockDownloadLinksFileType BlockDownloadLinksFileType { get; protected set; }
+        public virtual bool BlockAppAceessWithAuthenticationContext { get; protected set; }
 
         [JsonProperty()]
         public virtual string[] BlockDownloadFileTypeIds { get; protected set; }
 
         [JsonProperty()]
         public virtual bool BlockDownloadFileTypePolicy { get; protected set; }
+
+        [JsonProperty()]
+        public virtual BlockDownloadLinksFileType BlockDownloadLinksFileType { get; protected set; }
 
         [JsonProperty()]
         public virtual bool BlockDownloadOfAllFilesForGuests { get; protected set; }
@@ -135,9 +147,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
 
         [JsonProperty()]
         public virtual TenantBrowseUserInfoPolicyType BlockUserInfoVisibilityInSharePoint { get; protected set; }
-
-        // [JsonProperty()]
-        // public virtual ChannelMeetingRecordingPermissionType ChannelMeetingRecordingPermission { get; protected set; }
 
         [JsonProperty()]
         public virtual bool CommentsOnFilesDisabled { get; protected set; }
@@ -219,9 +228,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
 
         [JsonProperty()]
         public virtual bool DisableDocumentLibraryDefaultLabeling { get; protected set; }
-
-        // [JsonProperty()]
-        // public virtual bool DisableListSync { get; protected set; }
 
         [JsonProperty()]
         public virtual IReadOnlyCollection<Guid> DisabledModernListTemplateIds { get; protected set; }
@@ -639,9 +645,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1
 
         [JsonProperty()]
         public virtual long StorageQuotaAllocated { get; protected set; }
-
-        [JsonProperty("SyncAadB2BManagementPolicy")]
-        public virtual bool SyncAzureAdB2BManagementPolicy { get; protected set; }
 
         [JsonProperty()]
         public virtual bool SyncPrivacyProfileProperties { get; protected set; }

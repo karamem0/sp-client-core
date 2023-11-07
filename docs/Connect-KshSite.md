@@ -60,7 +60,7 @@ Connects to a site with user name and password.
 
 ### Example 3
 ```powershell
-PS C:\> Connect-KshSite -Url 'https://example.sharepoint.com' -ClientId 'e157e5b9-f2df-4417-991d-60546d11c21d' -CertificatePath 'C:\Certificate.pfx' -CertificatePassword 'P@ssw0rd'
+PS C:\> Connect-KshSite -Url 'https://example.sharepoint.com' -ClientId 'e157e5b9-f2df-4417-991d-60546d11c21d' -CertificatePath 'C:\Certificate.pfx' -CertificatePassword '********'
 ```
 
 Connects to a site with client certificate.
@@ -74,7 +74,7 @@ Connects to a site with cached credentials.
 
 ### Example 5
 ```powershell
-PS C:\> Connect-KshSite -Url 'https://example.sharepoint.com' -ClientId '0c51fcfc-73d3-4179-b541-c63ad7c0e36f' -ClientSecret 'MPKzUeOEK45gZOTx0yBTv9pAgQReINaYsY9CJnXsAFk='
+PS C:\> Connect-KshSite -Url 'https://example.sharepoint.com' -ClientId '0c51fcfc-****-****-****-*************' -ClientSecret '********'
 ```
 
 Connects to a site with client secret.

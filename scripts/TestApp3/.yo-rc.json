@@ -1,12 +1,21 @@
 {
-    "@microsoft/generator-sharepoint": {
-        "version": "1.9.1",
-        "libraryName": "TestApp3",
-        "libraryId": "b0197e98-53da-47ca-a534-b7adbcbb9aa7",
-        "environment": "spo",
-        "packageManager": "npm",
-        "isCreatingSolution": true,
-        "isDomainIsolated": false,
-        "componentType": "webpart"
-    }
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "nodeVersion": "18.17.1",
+    "sdksVersions": {
+      "@microsoft/microsoft-graph-client": "3.0.2",
+      "@microsoft/teams-js": "2.12.0"
+    },
+    "version": "1.18.0",
+    "libraryName": "TestApp3",
+    "libraryId": "26c9160e-6db9-4c60-9571-5419b7c3da3b",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "TestApp3",
+    "solutionShortDescription": "TestApp3 description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
 }

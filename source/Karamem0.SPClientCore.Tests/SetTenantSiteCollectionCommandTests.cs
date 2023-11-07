@@ -50,15 +50,15 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 new Dictionary<string, object>()
                 {
                     { "Identity", result2.ElementAt(0) },
+                    { "AllowAnonymousMeetingParticipantsToAccessWhiteboards", "Unspecified" },
                     { "AllowDownloadingNonWebViewableFiles", true },
                     { "AllowEditing", true },
-                    // { "AllowSelfServiceUpgrade", false },
                     { "AnonymousLinkExpirationInDays", 90 },
                     { "AuthenticationContextStrength", null },
                     { "AuthenticationContextName", null },
                     { "BlockDownloadLinksFileType", "ServerRenderedFilesOnly" },
                     { "BlockDownloadMicrosoft365GroupIds", null },
-                    { "BlockDownloadPolicy", true },
+                    { "BlockDownloadPolicy", false },
                     { "CommentsOnSitePagesDisabled", true },
                     { "ConditionalAccessPolicy", "BlockAccess" },
                     { "DefaultLinkPermission", "Edit" },
@@ -70,16 +70,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     { "DisableFlows", "NotDisabled" },
                     { "ExcludedBlockDownloadGroupIds", null },
                     { "ExternalUserExpirationInDays", 90 },
-                    // { "InformationBarriersMode", null },
-                    // { "InformationBarriersSegments", null },
-                    // { "InformationBarriersSegmentsToAdd", null },
-                    // { "InformationBarriersSegmentsToRemove", null },
-                    // { "Lcid", 1041 },
                     { "LimitedAccessFileType", "OfficeOnlineFilesOnly" },
-                    { "LoopDefaultSharingLinkRole", "None" },
-                    { "LoopDefaultSharingLinkScope", "Uninitialized" },
-                    { "LoopOverrideSharingCapability", false },
-                    { "LoopSharingCapability", "Disabled" },
                     { "MediaTranscription", "Enabled" },
                     { "OverrideBlockUserInfoVisibility", "ApplyToGuestAndExternalUsers" },
                     { "OverrideTenantAnonymousLinkExpirationPolicy", true },
@@ -87,9 +78,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     { "Owner", context.AppSettings["User1Email"] },
                     { "PWAEnabled", "Disabled" },
                     { "ReadOnlyAccessPolicy", true },
-                    // { "RequestFilesLinkEnabled", true },
-                    // { "RequestFilesLinkExpirationInDays", 90 },
-                    { "RestrictedAccessControl", true },
+                    { "RestrictedAccessControl", false },
                     { "ReadOnlyForUnmanagedDevices", true },
                     { "RestrictedToRegion", "BlockFull" },
                     { "SandboxedCodeActivationCapability", "Enabled" },
@@ -105,7 +94,6 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     { "StorageWarningLevel", 25574400 },
                     { "TimeZoneId", 20 },
                     { "Title", "Test Site 9" },
-                    // { "TitleTranslations", null },
                     { "UserCodeMaximumLevel", 300 },
                     { "UserCodeWarningLevel", 100 },
                     { "PassThru", true }
@@ -133,6 +121,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                 }
             );
             var actual = result3.ElementAt(0);
+            Assert.IsNotNull(actual);
         }
 
     }

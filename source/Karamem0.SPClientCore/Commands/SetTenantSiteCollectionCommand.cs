@@ -34,15 +34,15 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+        public SharingState AllowAnonymousMeetingParticipantsToAccessWhiteboards { get; private set; }
+
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
         public bool AllowDownloadingNonWebViewableFiles { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
         public bool AllowEditing { get; private set; }
-
-        // [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
-        // [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-        // public bool AllowSelfServiceUpgrade { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -128,29 +128,9 @@ namespace Karamem0.SharePoint.PowerShell.Commands
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
         public Guid[] InformationBarriersSegmentsToRemove { get; private set; }
 
-        // [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
-        // [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-        // public uint Lcid { get; private set; }
-
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
         public LimitedAccessFileType LimitedAccessFileType { get; private set; }
-
-        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-        public RoleType LoopDefaultSharingLinkRole { get; private set; }
-
-        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-        public SharingScope LoopDefaultSharingLinkScope { get; private set; }
-
-        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-        public bool LoopOverrideSharingCapability { get; private set; }
-
-        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-        public SharingCapabilities LoopSharingCapability { get; private set; }
 
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
         [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]

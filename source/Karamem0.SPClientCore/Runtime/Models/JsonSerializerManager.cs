@@ -28,6 +28,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models
                         new JsonDateTimeConverter(),
                         new JsonGuidConverter()
                     },
+                    MaxDepth = 128,
                     NullValueHandling = NullValueHandling.Ignore
                 }));
 
