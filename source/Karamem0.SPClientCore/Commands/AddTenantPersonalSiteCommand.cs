@@ -17,18 +17,21 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands
 {
 
-    [Cmdlet("Get", "KshTenantHomeSite")]
-    [OutputType(typeof(string))]
-    public class GetTenantHomeSiteCommand : ClientObjectCmdlet<ITenantHomeSiteService>
+    [Cmdlet("Add", "KshTenantPersonalSite")]
+    [OutputType(typeof(void))]
+    public class AddTenantPersonalSiteCommand : ClientObjectCmdlet<ITenantPersonalSiteService>
     {
 
-        public GetTenantHomeSiteCommand()
+        public AddTenantPersonalSiteCommand()
         {
         }
 
+        [Parameter(Mandatory = true)]
+        public string[] UserId { get; private set; }
+
         protected override void ProcessRecordCore()
         {
-            this.Outputs.Add(this.Service.GetObject());
+            this.Service.AddObjectAwait(this.UserId);
         }
 
     }

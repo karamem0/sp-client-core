@@ -7,7 +7,7 @@ on:
       - v*.*.*
 
 env:
-  BUILD_VERSION: 5.3.1.${{github.run_number}}
+  BUILD_VERSION: 5.4.0.${{github.run_number}}
 
 jobs:
   build:
@@ -23,11 +23,19 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 3.1.x
-      - name: Build source
+          dotnet-version: 6.0.x
+      - name: Restore source
         run: |
           dotnet restore ${{env.TARGET_FILE}}
-          dotnet publish ${{env.TARGET_FILE}} -c Release -p:PublishDir=build -p:Version=${{env.BUILD_VERSION}} -p:FileVersion=${{env.BUILD_VERSION}}
+        env:
+          TARGET_FILE: source/Karamem0.SPClientCore/Karamem0.SPClientCore.csproj
+      - name: Build source
+        run: |
+          dotnet publish ${{env.TARGET_FILE}} `
+            -c Release `
+            -p:PublishDir=build `
+            -p:Version=${{env.BUILD_VERSION}} `
+            -p:FileVersion=${{env.BUILD_VERSION}}
         env:
           TARGET_FILE: source/Karamem0.SPClientCore/Karamem0.SPClientCore.csproj
       - name: Update .config.json file
