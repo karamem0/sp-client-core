@@ -17,7 +17,7 @@ Set-KshColumnGeolocation [-Identity] <Column> [-ClientSideComponentId <String>]
  [-ClientSideComponentProperties <String>] [-CustomFormatter <String>] [-Description <String>]
  [-Direction <String>] [-Group <String>] [-Hidden <Boolean>] [-JSLink <String>] [-NoCrawl <Boolean>]
  [-ReadOnly <Boolean>] [-Required <Boolean>] [-StaticName <String>] [-Title <String>] [-PushChanges]
- [-PassThru] [<CommonParameters>]
+ [-PassThru] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -266,6 +266,21 @@ Specifies the title.
 Type: String
 Parameter Sets: (All)
 Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ProgressAction
+{{ Fill ProgressAction Description }}
+
+```yaml
+Type: ActionPreference
+Parameter Sets: (All)
+Aliases: proga
 
 Required: False
 Position: Named

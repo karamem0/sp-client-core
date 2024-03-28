@@ -14,12 +14,12 @@ Removes a file.
 
 ### ParamSet1
 ```
-Remove-KshFile [-Identity] <File> [-Force] [<CommonParameters>]
+Remove-KshFile [-Identity] <File> [-Force] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-Remove-KshFile [-Identity] <File> [-RecycleBin] [<CommonParameters>]
+Remove-KshFile [-Identity] <File> [-RecycleBin] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -82,6 +82,21 @@ Parameter Sets: ParamSet2
 Aliases:
 
 Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ProgressAction
+{{ Fill ProgressAction Description }}
+
+```yaml
+Type: ActionPreference
+Parameter Sets: (All)
+Aliases: proga
+
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False

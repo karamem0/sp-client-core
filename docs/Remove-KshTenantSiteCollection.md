@@ -14,12 +14,14 @@ Removes a site collection.
 
 ### ParamSet1
 ```
-Remove-KshTenantSiteCollection [-Identity] <TenantSiteCollection> [<CommonParameters>]
+Remove-KshTenantSiteCollection [-Identity] <TenantSiteCollection> [-ProgressAction <ActionPreference>]
+ [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-Remove-KshTenantSiteCollection [-Identity] <TenantSiteCollection> [-NoWait] [<CommonParameters>]
+Remove-KshTenantSiteCollection [-Identity] <TenantSiteCollection> [-NoWait]
+ [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -60,6 +62,21 @@ Parameter Sets: ParamSet2
 Aliases:
 
 Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ProgressAction
+{{ Fill ProgressAction Description }}
+
+```yaml
+Type: ActionPreference
+Parameter Sets: (All)
+Aliases: proga
+
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False

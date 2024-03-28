@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -31,7 +31,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1.Utilities
             switch (this.value)
             {
                 case null:
-                    return null;
+                    return "";
                 case Enum enumValue:
                     return enumValue.ToString();
                 case bool boolValue:
@@ -69,8 +69,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1.Utilities
                 case SwitchParameter switchValue:
                     return switchValue.ToBool().ToString().ToUpper();
                 default:
-                    throw new InvalidOperationException(
-                        string.Format(StringResources.ErrorValueIsInvalid, this.value.ToString()));
+                    throw new NotImplementedException(string.Format(StringResources.ErrorValueIsInvalid, this.value));
             }
         }
 

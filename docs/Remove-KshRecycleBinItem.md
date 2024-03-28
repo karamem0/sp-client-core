@@ -14,17 +14,17 @@ Removes a recycle bin item.
 
 ### ParamSet1
 ```
-Remove-KshRecycleBinItem [-Identity] <RecycleBinItem> [<CommonParameters>]
+Remove-KshRecycleBinItem [-Identity] <RecycleBinItem> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-Remove-KshRecycleBinItem [-All] [<CommonParameters>]
+Remove-KshRecycleBinItem [-All] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet3
 ```
-Remove-KshRecycleBinItem [-All] [-SecondStage] [<CommonParameters>]
+Remove-KshRecycleBinItem [-All] [-SecondStage] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -87,6 +87,21 @@ Parameter Sets: ParamSet3
 Aliases:
 
 Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ProgressAction
+{{ Fill ProgressAction Description }}
+
+```yaml
+Type: ActionPreference
+Parameter Sets: (All)
+Aliases: proga
+
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False

@@ -13,7 +13,8 @@ Retrieves document set allowed content types.
 ## SYNTAX
 
 ```
-Get-KshDocumentSetAllowedContentType [-ContentType] <ContentType> [-NoEnumerate] [<CommonParameters>]
+Get-KshDocumentSetAllowedContentType [-ContentType] <ContentType> [-NoEnumerate]
+ [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -52,6 +53,21 @@ If specified, suppresses to enumerate objects.
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ProgressAction
+{{ Fill ProgressAction Description }}
+
+```yaml
+Type: ActionPreference
+Parameter Sets: (All)
+Aliases: proga
 
 Required: False
 Position: Named

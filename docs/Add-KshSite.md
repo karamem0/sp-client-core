@@ -14,7 +14,8 @@ Creates a new site.
 
 ```
 Add-KshSite [-Description <String>] [-Lcid <UInt32>] [-ServerRelativeUrl <String>] [-Template <String>]
- [-Title <String>] [-UseSamePermissionsAsParentSite <Boolean>] [<CommonParameters>]
+ [-Title <String>] [-UseSamePermissionsAsParentSite <Boolean>] [-ProgressAction <ActionPreference>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -114,6 +115,21 @@ If specified, the site will inherit permissions from its parent site.
 Type: Boolean
 Parameter Sets: (All)
 Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ProgressAction
+{{ Fill ProgressAction Description }}
+
+```yaml
+Type: ActionPreference
+Parameter Sets: (All)
+Aliases: proga
 
 Required: False
 Position: Named

@@ -22,7 +22,7 @@ Set-KshList [-Identity] <List> [-ContentTypesEnabled <Boolean>] [-DefaultContent
  [-IrmExpire <Boolean>] [-IrmReject <Boolean>] [-IsApplicationList <Boolean>]
  [-LastItemModifiedDate <DateTime>] [-MultipleDataList <Boolean>] [-NoCrawl <Boolean>]
  [-OnQuickLaunch <Boolean>] [-Title <String>] [-ValidationFormula <String>] [-ValidationMessage <String>]
- [-PassThru] [<CommonParameters>]
+ [-PassThru] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -497,6 +497,21 @@ Specifies the validation message.
 Type: String
 Parameter Sets: (All)
 Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ProgressAction
+{{ Fill ProgressAction Description }}
+
+```yaml
+Type: ActionPreference
+Parameter Sets: (All)
+Aliases: proga
 
 Required: False
 Position: Named

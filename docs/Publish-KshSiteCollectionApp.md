@@ -13,7 +13,8 @@ Deploys the site collection app.
 ## SYNTAX
 
 ```
-Publish-KshSiteCollectionApp [-Identity] <App> [-PassThru] [<CommonParameters>]
+Publish-KshSiteCollectionApp [-Identity] <App> [-PassThru] [-ProgressAction <ActionPreference>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -52,6 +53,21 @@ If specified, returns the updated object.
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ProgressAction
+{{ Fill ProgressAction Description }}
+
+```yaml
+Type: ActionPreference
+Parameter Sets: (All)
+Aliases: proga
 
 Required: False
 Position: Named

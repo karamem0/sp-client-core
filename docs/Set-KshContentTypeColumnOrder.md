@@ -14,7 +14,7 @@ Reorders content type columns.
 
 ```
 Set-KshContentTypeColumnOrder [-ContentType] <ContentType> -ContentTypeColumns <String[]> [-PushChanges]
- [<CommonParameters>]
+ [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -75,6 +75,21 @@ If Specified, propagates changes to all content types that use the content type.
 Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ProgressAction
+{{ Fill ProgressAction Description }}
+
+```yaml
+Type: ActionPreference
+Parameter Sets: (All)
+Aliases: proga
 
 Required: False
 Position: Named

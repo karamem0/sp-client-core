@@ -14,12 +14,13 @@ Removes an attachment file.
 
 ### ParamSet1
 ```
-Remove-KshAttachmentFile [-Identity] <AttachmentFile> [<CommonParameters>]
+Remove-KshAttachmentFile [-Identity] <AttachmentFile> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-Remove-KshAttachmentFile [-Identity] <AttachmentFile> [-RecycleBin] [<CommonParameters>]
+Remove-KshAttachmentFile [-Identity] <AttachmentFile> [-RecycleBin] [-ProgressAction <ActionPreference>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -67,6 +68,21 @@ Parameter Sets: ParamSet2
 Aliases:
 
 Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ProgressAction
+{{ Fill ProgressAction Description }}
+
+```yaml
+Type: ActionPreference
+Parameter Sets: (All)
+Aliases: proga
+
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False

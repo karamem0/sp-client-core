@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -21,7 +21,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 {
 
     [Cmdlet("Add", "KshColumnBoolean")]
-    [Alias("New-KshColumnBoolean")]
     [OutputType(typeof(Column))]
     public class AddColumnBooleanCommand : ClientObjectCmdlet<IColumnService>
     {

@@ -14,17 +14,19 @@ Removes a view column.
 
 ### ParamSet1
 ```
-Remove-KshViewColumn [-View] <View> [-Column] <Column> [<CommonParameters>]
+Remove-KshViewColumn [-View] <View> [-Column] <Column> [-ProgressAction <ActionPreference>]
+ [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-Remove-KshViewColumn [-View] <View> [-ColumnName] <String> [<CommonParameters>]
+Remove-KshViewColumn [-View] <View> [-ColumnName] <String> [-ProgressAction <ActionPreference>]
+ [<CommonParameters>]
 ```
 
 ### ParamSet3
 ```
-Remove-KshViewColumn [-View] <View> [-All] [<CommonParameters>]
+Remove-KshViewColumn [-View] <View> [-All] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -103,6 +105,21 @@ Aliases:
 
 Required: True
 Position: 0
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ProgressAction
+{{ Fill ProgressAction Description }}
+
+```yaml
+Type: ActionPreference
+Parameter Sets: (All)
+Aliases: proga
+
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -19,7 +19,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 {
 
     [Cmdlet("Add", "KshView")]
-    [Alias("New-KshView")]
     [OutputType(typeof(View))]
     public class AddViewCommand : ClientObjectCmdlet<IViewService>
     {

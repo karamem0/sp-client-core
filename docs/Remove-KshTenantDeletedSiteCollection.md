@@ -14,12 +14,14 @@ Removes a deleted site collection.
 
 ### ParamSet1
 ```
-Remove-KshTenantDeletedSiteCollection [-Identity] <TenantDeletedSiteCollection> [<CommonParameters>]
+Remove-KshTenantDeletedSiteCollection [-Identity] <TenantDeletedSiteCollection>
+ [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-Remove-KshTenantDeletedSiteCollection [-Identity] <TenantDeletedSiteCollection> [-NoWait] [<CommonParameters>]
+Remove-KshTenantDeletedSiteCollection [-Identity] <TenantDeletedSiteCollection> [-NoWait]
+ [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -60,6 +62,21 @@ Parameter Sets: ParamSet2
 Aliases:
 
 Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ProgressAction
+{{ Fill ProgressAction Description }}
+
+```yaml
+Type: ActionPreference
+Parameter Sets: (All)
+Aliases: proga
+
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False

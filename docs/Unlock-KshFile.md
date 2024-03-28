@@ -15,12 +15,12 @@ Checks in a file.
 ### ParamSet1
 ```
 Unlock-KshFile [-Identity] <File> [-Comment <String>] [-CheckInType <CheckInType>] [-PassThru]
- [<CommonParameters>]
+ [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-Unlock-KshFile [-Identity] <File> [-Undo] [-PassThru] [<CommonParameters>]
+Unlock-KshFile [-Identity] <File> [-Undo] [-PassThru] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -114,6 +114,21 @@ Parameter Sets: ParamSet2
 Aliases:
 
 Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ProgressAction
+{{ Fill ProgressAction Description }}
+
+```yaml
+Type: ActionPreference
+Parameter Sets: (All)
+Aliases: proga
+
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False

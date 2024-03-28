@@ -15,7 +15,8 @@ Retrieves a sharing information.
 ```
 Get-KshSharingInfo -Url <Uri> [-CheckForAccessRequests <Boolean>] [-ExcludeCurrentUser <Boolean>]
  [-ExcludeSecurityGroups <Boolean>] [-ExcludeSiteAdmin <Boolean>] [-RetrieveAnonymousLinks <Boolean>]
- [-RetrievePermissionLevels <Boolean>] [-RetrieveUserInfoDetails <Boolean>] [<CommonParameters>]
+ [-RetrievePermissionLevels <Boolean>] [-RetrieveUserInfoDetails <Boolean>]
+ [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -146,6 +147,21 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ProgressAction
+{{ Fill ProgressAction Description }}
+
+```yaml
+Type: ActionPreference
+Parameter Sets: (All)
+Aliases: proga
+
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False

@@ -14,12 +14,14 @@ Removes a custom property of the term set or term.
 
 ### ParamSet1
 ```
-Remove-KshTermCustomProperty [-TermSet] <TermSet> [-Name] <String> [<CommonParameters>]
+Remove-KshTermCustomProperty [-TermSet] <TermSet> [-Name] <String> [-ProgressAction <ActionPreference>]
+ [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-Remove-KshTermCustomProperty [-Term] <Term> [-Name] <String> [<CommonParameters>]
+Remove-KshTermCustomProperty [-Term] <Term> [-Name] <String> [-ProgressAction <ActionPreference>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -83,6 +85,21 @@ Aliases:
 
 Required: True
 Position: 0
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ProgressAction
+{{ Fill ProgressAction Description }}
+
+```yaml
+Type: ActionPreference
+Parameter Sets: (All)
+Aliases: proga
+
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

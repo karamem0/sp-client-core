@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -29,15 +29,6 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Common
             {
                 yield return collection.Take(size);
                 collection = collection.Skip(size);
-            }
-        }
-
-        public static IEnumerable<T> SkipLast<T>(this IEnumerable<T> collection, int count)
-        {
-            var array = collection.ToArray();
-            for (var index = 0; index < array.Length - count; index++)
-            {
-                yield return array[index];
             }
         }
 

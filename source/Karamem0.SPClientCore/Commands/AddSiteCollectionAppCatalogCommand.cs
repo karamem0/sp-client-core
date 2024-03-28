@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -20,7 +20,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands
 {
 
     [Cmdlet("Add", "KshSiteCollectionAppCatalog")]
-    [OutputType(typeof(void))]
+    [OutputType((Type[])null)]
     public class AddSiteCollectionAppCatalogCommand : ClientObjectCmdlet<ISiteCollectionAppCatalogService>
     {
 

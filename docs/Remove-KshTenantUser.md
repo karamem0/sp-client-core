@@ -14,12 +14,14 @@ Removes a user.
 
 ### ParamSet1
 ```
-Remove-KshTenantUser [-SiteCollection] <TenantSiteCollection> [-User] <User> [<CommonParameters>]
+Remove-KshTenantUser [-SiteCollection] <TenantSiteCollection> [-User] <User>
+ [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-Remove-KshTenantUser [-SiteCollectionUrl] <Uri> [-User] <User> [<CommonParameters>]
+Remove-KshTenantUser [-SiteCollectionUrl] <Uri> [-User] <User> [-ProgressAction <ActionPreference>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -76,6 +78,21 @@ Aliases:
 
 Required: True
 Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ProgressAction
+{{ Fill ProgressAction Description }}
+
+```yaml
+Type: ActionPreference
+Parameter Sets: (All)
+Aliases: proga
+
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

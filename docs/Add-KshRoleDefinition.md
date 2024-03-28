@@ -14,7 +14,7 @@ Creates a new role definition.
 
 ```
 Add-KshRoleDefinition [-BasePermission <BasePermission>] [-Description <String>] -Name <String>
- [-Order <Int32>] [<CommonParameters>]
+ [-Order <Int32>] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -83,6 +83,21 @@ Specifies the order.
 Type: Int32
 Parameter Sets: (All)
 Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ProgressAction
+{{ Fill ProgressAction Description }}
+
+```yaml
+Type: ActionPreference
+Parameter Sets: (All)
+Aliases: proga
 
 Required: False
 Position: Named

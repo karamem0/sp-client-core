@@ -14,17 +14,18 @@ Removes a file version.
 
 ### ParamSet1
 ```
-Remove-KshFileVersion [-Identity] <FileVersion> [<CommonParameters>]
+Remove-KshFileVersion [-Identity] <FileVersion> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-Remove-KshFileVersion [-Identity] <FileVersion> [-RecycleBin] [<CommonParameters>]
+Remove-KshFileVersion [-Identity] <FileVersion> [-RecycleBin] [-ProgressAction <ActionPreference>]
+ [<CommonParameters>]
 ```
 
 ### ParamSet3
 ```
-Remove-KshFileVersion [-File] <File> [-All] [<CommonParameters>]
+Remove-KshFileVersion [-File] <File> [-All] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -109,6 +110,21 @@ Parameter Sets: ParamSet2
 Aliases:
 
 Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ProgressAction
+{{ Fill ProgressAction Description }}
+
+```yaml
+Type: ActionPreference
+Parameter Sets: (All)
+Aliases: proga
+
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False

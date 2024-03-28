@@ -14,12 +14,13 @@ Removes a list item.
 
 ### ParamSet1
 ```
-Remove-KshListItem [-Identity] <ListItem> [<CommonParameters>]
+Remove-KshListItem [-Identity] <ListItem> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-Remove-KshListItem [-Identity] <ListItem> [-RecycleBin] [<CommonParameters>]
+Remove-KshListItem [-Identity] <ListItem> [-RecycleBin] [-ProgressAction <ActionPreference>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -67,6 +68,21 @@ Parameter Sets: ParamSet2
 Aliases:
 
 Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ProgressAction
+{{ Fill ProgressAction Description }}
+
+```yaml
+Type: ActionPreference
+Parameter Sets: (All)
+Aliases: proga
+
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False

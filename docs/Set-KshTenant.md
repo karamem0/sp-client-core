@@ -85,12 +85,11 @@ Set-KshTenant [-AddressbarLinkPermission <RoleType>]
  [-ShowPeoplePickerGroupSuggestionsForInformationBarriers <Boolean>] [-SignInAccelerationDomain <String>]
  [-SocialBarOnSitePagesDisabled <Boolean>] [-SpecialCharactersStateInFileFolderNames <SpecialCharactersState>]
  [-StartASiteFormUrl <String>] [-StopNew2010Workflows <Boolean>] [-StopNew2013Workflows <Boolean>]
- [-SyncAzureAdB2BManagementPolicy <Boolean>] [-SyncPrivacyProfileProperties <Boolean>]
- [-UseFindPeopleInPeoplePicker <Boolean>] [-UsePersistentCookiesForExplorerView <Boolean>]
- [-UserVoiceForFeedbackEnabled <Boolean>] [-ViewersCanCommentOnMediaDisabled <Boolean>]
- [-ViewInFileExplorerEnabled <Boolean>] [-WhoCanShareAllowListInTenant <String>]
- [-WhoCanShareAllowListInTenantByPrincipalIdentity <String[]>] [-Workflow2010Disabled <Boolean>]
- [<CommonParameters>]
+ [-SyncPrivacyProfileProperties <Boolean>] [-UseFindPeopleInPeoplePicker <Boolean>]
+ [-UsePersistentCookiesForExplorerView <Boolean>] [-UserVoiceForFeedbackEnabled <Boolean>]
+ [-ViewersCanCommentOnMediaDisabled <Boolean>] [-ViewInFileExplorerEnabled <Boolean>]
+ [-WhoCanShareAllowListInTenant <String>] [-WhoCanShareAllowListInTenantByPrincipalIdentity <String[]>]
+ [-Workflow2010Disabled <Boolean>] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -2265,21 +2264,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -SyncAzureAdB2BManagementPolicy
-Specifies whether to synchronize Azure AD management policy.
-
-```yaml
-Type: Boolean
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -SyncPrivacyProfileProperties
 Specifies whether to synchronize privacy profile properties.
 
@@ -2407,6 +2391,21 @@ Specifies whether to disable SharePoint 2010 workflows.
 Type: Boolean
 Parameter Sets: (All)
 Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ProgressAction
+{{ Fill ProgressAction Description }}
+
+```yaml
+Type: ActionPreference
+Parameter Sets: (All)
+Aliases: proga
 
 Required: False
 Position: Named
