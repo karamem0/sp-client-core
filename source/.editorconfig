@@ -111,6 +111,7 @@ csharp_preferred_modifier_order = public,private,protected,internal,static,exter
 # Code-block preferences
 csharp_prefer_braces = true:warning
 csharp_prefer_simple_using_statement = true:warning
+csharp_style_namespace_declarations = file_scoped:warning
 
 # Expression-level preferences
 csharp_prefer_simple_default_expression = true:warning
@@ -215,12 +216,16 @@ dotnet_naming_style.begins_with_i.required_suffix =
 dotnet_naming_style.begins_with_i.word_separator =
 dotnet_naming_style.begins_with_i.capitalization = pascal_case
 
+# CA1861: Avoid constant arrays as arguments
+dotnet_diagnostic.CA1861.severity = none
+
 # IDE0005: Using directive is unnecessary
 dotnet_diagnostic.IDE0005.severity = none
 # IDE0010: Add missing cases to switch statement
 dotnet_diagnostic.IDE0010.severity = none
 # IDE0059: Remove unnecessary value assignment
 dotnet_diagnostic.IDE0059.severity = none
-
+# IDE0120: Simplify LINQ expression
 dotnet_diagnostic.IDE0120.severity = none
+# IDE0130: Namespace does not match folder structure
 dotnet_diagnostic.IDE0130.severity = none

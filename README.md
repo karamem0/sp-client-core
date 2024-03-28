@@ -4,7 +4,7 @@
 
 SharePoint Service Module for PowerShell
 
-[![.github/workflows/main.yml](https://github.com/karamem0/sp-client-core/actions/workflows/main.yml/badge.svg)](https://github.com/karamem0/sp-client-core/actions/workflows/main.yml)
+[![.github/workflows/workflow.yml](https://github.com/karamem0/sp-client-core/actions/workflows/workflow.yml/badge.svg)](https://github.com/karamem0/sp-client-core/actions/workflows/workflow.yml)
 [![License](https://img.shields.io/github/license/karamem0/sp-client-core.svg)](https://github.com/karamem0/sp-client-core/blob/main/LICENSE)
 
 ## Installation

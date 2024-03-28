@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -62,7 +62,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     // { "ClientSideComponentId", null },
                     // { "ClientSideComponentProperties", null },
                     { "Choices", new[] { "Test Value 1", "Test Value 2", "Test Value 3" } },
-                    { "CustomFormatter", "{ \"txtContent\": \"@currentField\" }" },
+                    { "CustomFormatter", /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }" },
                     { "DefaultValue", "Test Value 1" },
                     { "Direction", "none" },
                     { "Description", "Test Column 0 Description" },
@@ -131,7 +131,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     // { "ClientSideComponentId", null },
                     // { "ClientSideComponentProperties", null },
                     { "Choices", new[] { "Test Value 1", "Test Value 2", "Test Value 3" } },
-                    { "CustomFormatter", "{ \"txtContent\": \"@currentField\" }" },
+                    { "CustomFormatter", /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }" },
                     { "DefaultValue", "Test Value 1" },
                     { "Direction", "none" },
                     { "Description", "Test Column 0 Description" },

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -52,7 +52,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     { "ChoiceFormat", "RadioButtons" },
                     // { "ClientSideComponentId", null },
                     // { "ClientSideComponentProperties", null },
-                    { "CustomFormatter", "{ \"txtContent\": \"@currentField\" }" },
+                    { "CustomFormatter", /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }" },
                     { "DefaultValue", "Test Value 1" },
                     { "Description", "Test Column 0 Description" },
                     { "Direction", "none" },
@@ -116,7 +116,7 @@ namespace Karamem0.SharePoint.PowerShell.Tests
                     { "ChoiceFormat", "RadioButtons" },
                     // { "ClientSideComponentId", null },
                     // { "ClientSideComponentProperties", null },
-                    { "CustomFormatter", "{ \"txtContent\": \"@currentField\" }" },
+                    { "CustomFormatter", /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }" },
                     { "DefaultValue", "Test Value 1" },
                     { "Description", "Test Column 0 Description" },
                     { "Direction", "none" },

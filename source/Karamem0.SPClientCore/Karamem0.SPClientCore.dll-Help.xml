@@ -24841,7 +24841,7 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Add-KshStorageEntity -Key 'Copyright' -Value 'Copyright (c) 2023 karamem0'</dev:code>
+        <dev:code>PS C:\&gt; Add-KshStorageEntity -Key 'Copyright' -Value 'Copyright (c) 2018-2024 karamem0'</dev:code>
         <dev:remarks>
           <maml:para>Creates a storage entity.</maml:para>
         </dev:remarks>
