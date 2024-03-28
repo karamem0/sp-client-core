@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,46 +13,37 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.Models
+namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
+
+public static class JsonSerializerExtensions
 {
 
-    public static class JsonSerializerExtensions
+    public static T Deserialize<T>(this JsonSerializer serializer, string value)
     {
+        using var reader = new StringReader(value);
+        return serializer.Deserialize<T>(new JsonTextReader(reader));
+    }
 
-        public static T Deserialize<T>(this JsonSerializer serializer, string value)
+    public static bool TryDeserialize<T>(this JsonSerializer serializer, string value, out T result)
+    {
+        try
         {
-            using (var reader = new StringReader(value))
-            {
-                return serializer.Deserialize<T>(new JsonTextReader(reader));
-            }
+            using var reader = new StringReader(value);
+            result = serializer.Deserialize<T>(new JsonTextReader(reader));
+            return true;
         }
-
-        public static bool TryDeserialize<T>(this JsonSerializer serializer, string value, out T result)
+        catch (JsonException)
         {
-            try
-            {
-                using (var reader = new StringReader(value))
-                {
-                    result = serializer.Deserialize<T>(new JsonTextReader(reader));
-                    return true;
-                }
-            }
-            catch (JsonException)
-            {
-                result = default;
-                return false;
-            }
+            result = default;
+            return false;
         }
+    }
 
-        public static string Serialize<T>(this JsonSerializer serializer, T value)
-        {
-            using (var writer = new StringWriter())
-            {
-                serializer.Serialize(new JsonTextWriter(writer), value);
-                return writer.ToString();
-            }
-        }
-
+    public static string Serialize<T>(this JsonSerializer serializer, T value)
+    {
+        using var writer = new StringWriter();
+        serializer.Serialize(new JsonTextWriter(writer), value);
+        return writer.ToString();
     }
 
 }

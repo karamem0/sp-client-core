@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -14,27 +14,23 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.New, "KshContentTypeId")]
+[OutputType(typeof(ContentTypeId))]
+public class NewContentTypeIdCommand : ClientObjectCmdlet
 {
 
-    [Cmdlet("New", "KshContentTypeId")]
-    [Alias("Initialize-KshContentTypeId")]
-    [OutputType(typeof(ContentTypeId))]
-    public class NewContentTypeIdCommand : ClientObjectCmdlet
+    public NewContentTypeIdCommand()
     {
+    }
 
-        public NewContentTypeIdCommand()
-        {
-        }
+    [Parameter(Mandatory = true, Position = 0)]
+    public string StringValue { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0)]
-        public string StringValue { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Outputs.Add(new ContentTypeId(this.StringValue));
-        }
-
+    protected override void ProcessRecordCore()
+    {
+        this.Outputs.Add(new ContentTypeId(this.StringValue));
     }
 
 }

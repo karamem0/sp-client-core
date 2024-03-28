@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -7,7 +7,9 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
+using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
 using System.Collections.Generic;
@@ -15,27 +17,32 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Remove, "KshTenantSiteCollection", SupportsShouldProcess = true, ConfirmImpact = ConfirmImpact.High)]
+[OutputType((Type[])null)]
+public class RemoveTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteCollectionService>
 {
 
-    [Cmdlet("Remove", "KshTenantSiteCollection")]
-    [OutputType(typeof(void))]
-    public class RemoveTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteCollectionService>
+    public RemoveTenantSiteCollectionCommand()
     {
+    }
 
-        public RemoveTenantSiteCollectionCommand()
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet2")]
+    public TenantSiteCollection Identity { get; private set; }
+
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
+    public SwitchParameter NoWait { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        if (this.ShouldProcess(this.Identity.Title, VerbsCommon.Remove))
         {
-        }
-
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet2")]
-        public TenantSiteCollection Identity { get; private set; }
-
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-        public SwitchParameter NoWait { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
+            if (new Uri(this.Identity.Url).AbsolutePath == "/")
+            {
+                throw new InvalidOperationException(StringResources.ErrorCannotDeleteRootSiteCollection);
+            }
             if (this.ParameterSetName == "ParamSet1")
             {
                 this.Service.RemoveObjectAwait(this.Identity);
@@ -46,7 +53,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands
                 _ = this.Service.RemoveObject(this.Identity);
             }
         }
-
     }
 
 }

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,30 +15,26 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Add, "KshFolder")]
+[OutputType(typeof(Folder))]
+public class AddFolderCommand : ClientObjectCmdlet<IFolderService>
 {
 
-    [Cmdlet("Add", "KshFolder")]
-    [Alias("New-KshFolder")]
-    [OutputType(typeof(Folder))]
-    public class AddFolderCommand : ClientObjectCmdlet<IFolderService>
+    public AddFolderCommand()
     {
+    }
 
-        public AddFolderCommand()
-        {
-        }
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    public Folder Folder { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public Folder Folder { get; private set; }
+    [Parameter(Mandatory = true)]
+    public string FolderName { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public string FolderName { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Outputs.Add(this.Service.AddObject(this.Folder, this.FolderName));
-        }
-
+    protected override void ProcessRecordCore()
+    {
+        this.Outputs.Add(this.Service.AddObject(this.Folder, this.FolderName));
     }
 
 }

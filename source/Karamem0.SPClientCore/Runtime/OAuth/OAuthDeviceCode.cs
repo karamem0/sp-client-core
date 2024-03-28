@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -12,35 +12,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
+namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth;
+
+[JsonObject()]
+public class OAuthDeviceCode : OAuthMessage
 {
 
-    [JsonObject()]
-    public class OAuthDeviceCode : OAuthMessage
+    public OAuthDeviceCode()
     {
-
-        public OAuthDeviceCode()
-        {
-        }
-
-        [JsonProperty("user_code")]
-        public string UserCode { get; private set; }
-
-        [JsonProperty("device_code")]
-        public string DeviceCode { get; private set; }
-
-        [JsonProperty("verification_url")]
-        public string VerificationUrl { get; private set; }
-
-        [JsonProperty("expires_in")]
-        public int ExpiresIn { get; private set; }
-
-        [JsonProperty("interval")]
-        public int Interval { get; private set; }
-
-        [JsonProperty("message")]
-        public string Message { get; private set; }
-
     }
+
+    [JsonProperty("user_code")]
+    public string UserCode { get; private set; }
+
+    [JsonProperty("device_code")]
+    public string DeviceCode { get; private set; }
+
+    [JsonProperty("verification_url")]
+    public string VerificationUrl { get; private set; }
+
+    [JsonProperty("expires_in")]
+    public int ExpiresIn { get; private set; }
+
+    [JsonProperty("interval")]
+    public int Interval { get; private set; }
+
+    [JsonProperty("message")]
+    public string Message { get; private set; }
 
 }

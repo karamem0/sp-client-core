@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,55 +15,51 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Set, "KshGroup")]
+[OutputType(typeof(Group))]
+public class SetGroupCommand : ClientObjectCmdlet<IGroupService>
 {
 
-    [Cmdlet("Set", "KshGroup")]
-    [Alias("Update-KshGroup")]
-    [OutputType(typeof(Group))]
-    public class SetGroupCommand : ClientObjectCmdlet<IGroupService>
+    public SetGroupCommand()
     {
+    }
 
-        public SetGroupCommand()
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    public Group Identity { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public bool AllowMembersEditMembership { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public bool AllowRequestToJoinLeave { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public bool AutoAcceptRequestToJoinLeave { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public string Description { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public bool OnlyAllowMembersViewMembership { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public string RequestToJoinLeaveEmailSetting { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public string Title { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public SwitchParameter PassThru { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        this.Service.SetObject(this.Identity, this.MyInvocation.BoundParameters);
+        if (this.PassThru)
         {
+            this.Outputs.Add(this.Service.GetObject(this.Identity));
         }
-
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public Group Identity { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public bool AllowMembersEditMembership { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public bool AllowRequestToJoinLeave { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public bool AutoAcceptRequestToJoinLeave { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public string Description { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public bool OnlyAllowMembersViewMembership { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public string RequestToJoinLeaveEmailSetting { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public string Title { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public SwitchParameter PassThru { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Service.SetObject(this.Identity, this.MyInvocation.BoundParameters);
-            if (this.PassThru)
-            {
-                this.Outputs.Add(this.Service.GetObject(this.Identity));
-            }
-        }
-
     }
 
 }

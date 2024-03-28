@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,32 +15,32 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Remove, "KshDocumentSetAllowedContentType", SupportsShouldProcess = true, ConfirmImpact = ConfirmImpact.High)]
+[OutputType((Type[])null)]
+public class RemoveDocumentSetAllowedContentTypeCommand : ClientObjectCmdlet<IDocumentSetAllowedContentTypeService>
 {
 
-    [Cmdlet("Remove", "KshDocumentSetAllowedContentType")]
-    [OutputType(typeof(void))]
-    public class RemoveDocumentSetAllowedContentTypeCommand : ClientObjectCmdlet<IDocumentSetAllowedContentTypeService>
+    public RemoveDocumentSetAllowedContentTypeCommand()
     {
+    }
 
-        public RemoveDocumentSetAllowedContentTypeCommand()
-        {
-        }
+    [Parameter(Mandatory = true, Position = 0)]
+    public ContentType ContentType { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0)]
-        public ContentType ContentType { get; private set; }
+    [Parameter(Mandatory = true, Position = 1)]
+    public ContentType AllowedContentType { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 1)]
-        public ContentType AllowedContentType { get; private set; }
+    [Parameter(Mandatory = false)]
+    public SwitchParameter PushChanges { get; private set; }
 
-        [Parameter(Mandatory = false)]
-        public SwitchParameter PushChanges { get; private set; }
-
-        protected override void ProcessRecordCore()
+    protected override void ProcessRecordCore()
+    {
+        if (this.ShouldProcess(this.AllowedContentType.Name, VerbsCommon.Remove))
         {
             this.Service.RemoveObject(this.ContentType, this.AllowedContentType, this.PushChanges);
         }
-
     }
 
 }

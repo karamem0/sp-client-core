@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,36 +15,33 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsLifecycle.Approve, "KshFolder")]
+[OutputType(typeof(Folder))]
+public class ApproveFolderCommand : ClientObjectCmdlet<IFolderService>
 {
 
-    [Cmdlet("Approve", "KshFolder")]
-    [OutputType(typeof(Folder))]
-    public class ApproveFolderCommand : ClientObjectCmdlet<IFolderService>
+    public ApproveFolderCommand()
     {
+    }
 
-        public ApproveFolderCommand()
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    public Folder Identity { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public string Comment { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public SwitchParameter PassThru { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        this.Service.ApproveObject(this.Identity, this.Comment);
+        if (this.PassThru)
         {
+            this.Outputs.Add(this.Service.GetObject(this.Identity));
         }
-
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public Folder Identity { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public string Comment { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public SwitchParameter PassThru { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Service.ApproveObject(this.Identity, this.Comment);
-            if (this.PassThru)
-            {
-                this.Outputs.Add(this.Service.GetObject(this.Identity));
-            }
-        }
-
     }
 
 }

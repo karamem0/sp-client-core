@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -17,55 +17,51 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Set, "KshListItem")]
+[OutputType(typeof(ListItem))]
+public class SetListItemCommand : ClientObjectCmdlet<IListItemService>
 {
 
-    [Cmdlet("Set", "KshListItem")]
-    [Alias("Update-KshListItem")]
-    [OutputType(typeof(ListItem))]
-    public class SetListItemCommand : ClientObjectCmdlet<IListItemService>
+    public SetListItemCommand()
     {
+    }
 
-        public SetListItemCommand()
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    public ListItem Identity { get; private set; }
+
+    [Parameter(Mandatory = true)]
+    public PSObject Value { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SystemUpdate { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public SwitchParameter PassThru { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        if (this.Value.BaseObject is Hashtable hashtable)
         {
+            this.Service.SetObject(
+                this.Identity,
+                hashtable.ToDictionary<string, object>(),
+                this.SystemUpdate);
         }
-
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public ListItem Identity { get; private set; }
-
-        [Parameter(Mandatory = true)]
-        public PSObject Value { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public SwitchParameter SystemUpdate { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public SwitchParameter PassThru { get; private set; }
-
-        protected override void ProcessRecordCore()
+        else
         {
-            if (this.Value.BaseObject is Hashtable hashtable)
-            {
-                this.Service.SetObject(
-                    this.Identity,
-                    hashtable.ToDictionary<string, object>(),
-                    this.SystemUpdate);
-            }
-            else
-            {
-                this.Service.SetObject(
-                    this.Identity,
-                    this.Value.Properties.ToDictionary(
-                        property => property.Name,
-                        property => property.Value),
-                    this.SystemUpdate);
-            }
-            if (this.PassThru)
-            {
-                this.Outputs.Add(this.Service.GetObject(this.Identity));
-            }
+            this.Service.SetObject(
+                this.Identity,
+                this.Value.Properties.ToDictionary(
+                    property => property.Name,
+                    property => property.Value),
+                this.SystemUpdate);
         }
-
+        if (this.PassThru)
+        {
+            this.Outputs.Add(this.Service.GetObject(this.Identity));
+        }
     }
 
 }

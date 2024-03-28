@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,39 +13,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.ChangeFolder", Id = "{3b97573d-cee5-446a-853d-57ea0acf8aa4}")]
+[JsonObject()]
+public class ChangeFolder : Change
 {
 
-    [ClientObject(Name = "SP.ChangeFolder", Id = "{3b97573d-cee5-446a-853d-57ea0acf8aa4}")]
-    [JsonObject()]
-    public class ChangeFolder : Change
+    public ChangeFolder()
     {
-
-        public ChangeFolder()
-        {
-        }
-
-        [JsonProperty()]
-        public override ChangeToken ChangeToken { get; protected set; }
-
-        [JsonProperty()]
-        public override ChangeType ChangeType { get; protected set; }
-
-        [JsonProperty()]
-        public override string RelativeTime { get; protected set; }
-
-        [JsonProperty("SiteId")]
-        public override Guid SiteCollectionId { get; protected set; }
-
-        [JsonProperty("WebId")]
-        public virtual Guid SiteId { get; protected set; }
-
-        [JsonProperty()]
-        public override DateTime Time { get; protected set; }
-
-        [JsonProperty()]
-        public virtual Guid UniqueId { get; protected set; }
-
     }
+
+    [JsonProperty()]
+    public override ChangeToken ChangeToken { get; protected set; }
+
+    [JsonProperty()]
+    public override ChangeType ChangeType { get; protected set; }
+
+    [JsonProperty()]
+    public override string RelativeTime { get; protected set; }
+
+    [JsonProperty("SiteId")]
+    public override Guid SiteCollectionId { get; protected set; }
+
+    [JsonProperty("WebId")]
+    public virtual Guid SiteId { get; protected set; }
+
+    [JsonProperty()]
+    public override DateTime Time { get; protected set; }
+
+    [JsonProperty()]
+    public virtual Guid UniqueId { get; protected set; }
 
 }

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -16,57 +16,52 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
+namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth;
+
+public class AadOAuthTokenDictionary : Dictionary<string, AadOAuthToken>
 {
 
-    public class AadOAuthTokenDictionary : Dictionary<string, AadOAuthToken>
+    private static readonly JsonSerializer JsonSerializer = JsonSerializer.Create();
+
+    private static readonly FileInfo FileInfo = new(
+        Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+            ".spclientcore",
+            "oauthtoken.json"
+        ));
+
+    public static AadOAuthTokenDictionary Load()
     {
-
-        private static readonly JsonSerializer JsonSerializer = JsonSerializer.Create();
-
-        private static readonly FileInfo FileInfo = new FileInfo(
-            Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
-                ".spclientcore",
-                "oauthtoken.json"
-            ));
-
-        public static AadOAuthTokenDictionary Load()
+        if (FileInfo.Exists)
         {
-            if (FileInfo.Exists)
+            var json = File.ReadAllText(FileInfo.FullName);
+            if (JsonSerializer.TryDeserialize(json, out AadOAuthTokenDictionary oAuthTokens))
             {
-                var json = File.ReadAllText(FileInfo.FullName);
-                if (JsonSerializer.TryDeserialize(json, out AadOAuthTokenDictionary oAuthTokens))
-                {
-                    return oAuthTokens;
-                }
-                if (JsonSerializer.TryDeserialize(json, out AadOAuthToken oAuthToken))
-                {
-                    var jwtToken = new JsonWebToken(oAuthToken.AccessToken);
-                    var jwtAudience = jwtToken.GetPayloadValue<string>("aud");
-                    return new AadOAuthTokenDictionary()
-                    {
-                        { jwtAudience, oAuthToken }
-                    };
-                }
+                return oAuthTokens;
             }
-            return new AadOAuthTokenDictionary();
-        }
-
-        public AadOAuthTokenDictionary()
-        {
-        }
-
-        public void Save()
-        {
-            FileInfo.Directory.Create();
-            using (var stream = FileInfo.Open(FileMode.Create, FileAccess.Write))
-            using (var writer = new JsonTextWriter(new StreamWriter(stream)))
+            if (JsonSerializer.TryDeserialize(json, out AadOAuthToken oAuthToken))
             {
-                JsonSerializer.Serialize(writer, this);
+                var jwtToken = new JsonWebToken(oAuthToken.AccessToken);
+                var jwtAudience = jwtToken.GetPayloadValue<string>("aud");
+                return new AadOAuthTokenDictionary()
+                {
+                    { jwtAudience, oAuthToken }
+                };
             }
         }
+        return [];
+    }
 
+    public AadOAuthTokenDictionary()
+    {
+    }
+
+    public void Save()
+    {
+        FileInfo.Directory.Create();
+        using var stream = FileInfo.Open(FileMode.Create, FileAccess.Write);
+        using var writer = new JsonTextWriter(new StreamWriter(stream));
+        JsonSerializer.Serialize(writer, this);
     }
 
 }

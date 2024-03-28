@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,26 +15,23 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Get, "KshGroupOwner")]
+[OutputType(typeof(Principal))]
+public class GetGroupOwnerCommand : ClientObjectCmdlet<IGroupOwnerService>
 {
 
-    [Cmdlet("Get", "KshGroupOwner")]
-    [OutputType(typeof(Principal))]
-    public class GetGroupOwnerCommand : ClientObjectCmdlet<IGroupOwnerService>
+    public GetGroupOwnerCommand()
     {
+    }
 
-        public GetGroupOwnerCommand()
-        {
-        }
+    [Parameter(Mandatory = true, Position = 0)]
+    public Group Group { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0)]
-        public Group Group { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Outputs.Add(this.Service.GetObject(this.Group));
-        }
-
+    protected override void ProcessRecordCore()
+    {
+        this.Outputs.Add(this.Service.GetObject(this.Group));
     }
 
 }

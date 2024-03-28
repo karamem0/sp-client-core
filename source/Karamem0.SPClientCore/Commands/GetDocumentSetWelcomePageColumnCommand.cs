@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,36 +15,33 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Get, "KshDocumentSetWelcomePageColumn")]
+[OutputType(typeof(Column))]
+public class GetDocumentSetWelcomePageColumnCommand : ClientObjectCmdlet<IDocumentSetWelcomePageColumnService>
 {
 
-    [Cmdlet("Get", "KshDocumentSetWelcomePageColumn")]
-    [OutputType(typeof(Column))]
-    public class GetDocumentSetWelcomePageColumnCommand : ClientObjectCmdlet<IDocumentSetWelcomePageColumnService>
+    public GetDocumentSetWelcomePageColumnCommand()
     {
+    }
 
-        public GetDocumentSetWelcomePageColumnCommand()
+    [Parameter(Mandatory = true, Position = 0)]
+    public ContentType ContentType { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public SwitchParameter NoEnumerate { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        if (this.NoEnumerate)
         {
+            this.Outputs.Add(this.Service.GetObjectEnumerable(this.ContentType));
         }
-
-        [Parameter(Mandatory = true, Position = 0)]
-        public ContentType ContentType { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public SwitchParameter NoEnumerate { get; private set; }
-
-        protected override void ProcessRecordCore()
+        else
         {
-            if (this.NoEnumerate)
-            {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.ContentType));
-            }
-            else
-            {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.ContentType));
-            }
+            this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.ContentType));
         }
-
     }
 
 }

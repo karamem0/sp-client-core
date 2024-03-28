@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,18 +13,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.UserCollection", Id = "{e090781e-8899-4672-9b3d-a78f49fad19d}")]
+[JsonObject()]
+public class UserEnumerable : ClientObjectEnumerable<User>
 {
 
-    [ClientObject(Name = "SP.UserCollection", Id = "{e090781e-8899-4672-9b3d-a78f49fad19d}")]
-    [JsonObject()]
-    public class UserEnumerable : ClientObjectEnumerable<User>
+    public UserEnumerable()
     {
-
-        public UserEnumerable()
-        {
-        }
-
     }
 
 }

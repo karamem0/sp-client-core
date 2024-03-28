@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -16,65 +16,60 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Get, "KshSharingInfo")]
+[OutputType(typeof(SharingInfo))]
+public class GetSharingInfoCommand : ClientObjectCmdlet<ISharingLinkService>
 {
 
-    [Cmdlet("Get", "KshSharingInfo")]
-    [OutputType(typeof(SharingInfo))]
-    public class GetSharingInfoCommand : ClientObjectCmdlet<ISharingLinkService>
+    public GetSharingInfoCommand()
     {
+    }
 
-        public GetSharingInfoCommand()
+    [Parameter(Mandatory = true)]
+    public Uri Url { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public bool CheckForAccessRequests { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public bool ExcludeCurrentUser { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public bool ExcludeSecurityGroups { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public bool ExcludeSiteAdmin { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public bool RetrieveAnonymousLinks { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public bool RetrievePermissionLevels { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public bool RetrieveUserInfoDetails { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        if (this.Url.IsAbsoluteUri)
         {
+            this.Outputs.Add(this.Service.GetSharingInfo(
+                this.Url,
+                this.ExcludeCurrentUser,
+                this.ExcludeSiteAdmin,
+                this.ExcludeSecurityGroups,
+                this.RetrieveAnonymousLinks,
+                this.RetrieveUserInfoDetails,
+                this.CheckForAccessRequests,
+                this.RetrievePermissionLevels
+            ));
         }
-
-        [Parameter(Mandatory = true)]
-        public Uri Url { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public bool CheckForAccessRequests { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public bool ExcludeCurrentUser { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public bool ExcludeSecurityGroups { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public bool ExcludeSiteAdmin { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public bool RetrieveAnonymousLinks { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public bool RetrievePermissionLevels { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public bool RetrieveUserInfoDetails { get; private set; }
-
-        protected override void ProcessRecordCore()
+        else
         {
-            if (this.Url.IsAbsoluteUri)
-            {
-                this.Outputs.Add(this.Service.GetSharingInfo(
-                    this.Url,
-                    this.ExcludeCurrentUser,
-                    this.ExcludeSiteAdmin,
-                    this.ExcludeSecurityGroups,
-                    this.RetrieveAnonymousLinks,
-                    this.RetrieveUserInfoDetails,
-                    this.CheckForAccessRequests,
-                    this.RetrievePermissionLevels
-                ));
-            }
-            else
-            {
-                throw new ArgumentException(
-                    string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.Url),
-                    nameof(this.Url));
-            }
+            throw new InvalidOperationException(string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.Url));
         }
-
     }
 
 }

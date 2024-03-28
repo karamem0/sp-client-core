@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -11,22 +11,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+public enum ModerationStatusType
 {
 
-    public enum ModerationStatusType
-    {
+    Approved = 0,
 
-        Approved = 0,
+    Denied = 1,
 
-        Denied = 1,
+    Pending = 2,
 
-        Pending = 2,
+    Draft = 3,
 
-        Draft = 3,
-
-        Scheduled = 4,
-
-    }
+    Scheduled = 4,
 
 }

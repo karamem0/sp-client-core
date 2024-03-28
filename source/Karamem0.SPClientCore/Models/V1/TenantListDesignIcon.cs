@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -11,36 +11,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+public enum TenantListDesignIcon
 {
 
-    public enum TenantListDesignIcon
-    {
+    Bug = 0,
 
-        Bug = 0,
+    Calendar = 1,
 
-        Calendar = 1,
+    BullseyeTarget = 1,
 
-        BullseyeTarget = 1,
+    ClipboardList = 2,
 
-        ClipboardList = 2,
+    Airplane = 3,
 
-        Airplane = 3,
+    Rocket = 4,
 
-        Rocket = 4,
+    Color = 5,
 
-        Color = 5,
+    Insights = 6,
 
-        Insights = 6,
+    CubeShape = 7,
 
-        CubeShape = 7,
+    TestBeakerSolid = 8,
 
-        TestBeakerSolid = 8,
+    Robot = 9,
 
-        Robot = 9,
-
-        Savings = 10,
-
-    }
+    Savings = 10,
 
 }

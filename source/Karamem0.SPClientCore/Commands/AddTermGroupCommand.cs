@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,34 +15,30 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Add, "KshTermGroup")]
+[OutputType(typeof(TermGroup))]
+public class AddTermGroupCommand : ClientObjectCmdlet<ITermGroupService>
 {
 
-    [Cmdlet("Add", "KshTermGroup")]
-    [Alias("New-KshTermGroup")]
-    [OutputType(typeof(TermGroup))]
-    public class AddTermGroupCommand : ClientObjectCmdlet<ITermGroupService>
+    public AddTermGroupCommand()
     {
+    }
 
-        public AddTermGroupCommand()
+    [Parameter(Mandatory = false)]
+    public Guid Id { get; private set; }
+
+    [Parameter(Mandatory = true)]
+    public string Name { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        if (this.Id == default)
         {
+            this.Id = Guid.NewGuid();
         }
-
-        [Parameter(Mandatory = false)]
-        public Guid Id { get; private set; }
-
-        [Parameter(Mandatory = true)]
-        public string Name { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            if (this.Id == default)
-            {
-                this.Id = Guid.NewGuid();
-            }
-            this.Outputs.Add(this.Service.AddObject(this.Name, this.Id));
-        }
-
+        this.Outputs.Add(this.Service.AddObject(this.Name, this.Id));
     }
 
 }

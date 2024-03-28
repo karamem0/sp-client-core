@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,26 +15,23 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsLifecycle.Enable, "KshComment")]
+[OutputType((Type[])null)]
+public class EnableCommentCommand : ClientObjectCmdlet<ICommentService>
 {
 
-    [Cmdlet("Enable", "KshComment")]
-    [OutputType(typeof(void))]
-    public class EnableCommentCommand : ClientObjectCmdlet<ICommentService>
+    public EnableCommentCommand()
     {
+    }
 
-        public EnableCommentCommand()
-        {
-        }
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    public ListItem Identity { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public ListItem Identity { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Service.SetDisabled(this.Identity, false);
-        }
-
+    protected override void ProcessRecordCore()
+    {
+        this.Service.SetDisabled(this.Identity, false);
     }
 
 }

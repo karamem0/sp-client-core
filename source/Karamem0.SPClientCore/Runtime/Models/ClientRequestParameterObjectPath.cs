@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,21 +13,18 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.Models
+namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
+
+[XmlType("Parameter", Namespace = "http://schemas.microsoft.com/sharepoint/clientquery/2009")]
+public class ClientRequestParameterObjectPath : ClientRequestParameter
 {
 
-    [XmlType("Parameter", Namespace = "http://schemas.microsoft.com/sharepoint/clientquery/2009")]
-    public class ClientRequestParameterObjectPath : ClientRequestParameter
+    public ClientRequestParameterObjectPath(ObjectPath objectPath)
     {
-
-        public ClientRequestParameterObjectPath(ObjectPath objectPath)
-        {
-            this.ObjectPathId = objectPath.Id;
-        }
-
-        [XmlAttribute()]
-        public virtual long ObjectPathId { get; protected set; }
-
+        this.ObjectPathId = objectPath.Id;
     }
+
+    [XmlAttribute()]
+    public virtual long ObjectPathId { get; protected set; }
 
 }

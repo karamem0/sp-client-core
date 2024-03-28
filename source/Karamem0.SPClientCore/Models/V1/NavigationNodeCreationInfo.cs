@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,37 +13,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.NavigationNodeCreationInformation", Id = "{7aaaa605-79a9-4fda-ae1e-db952e5083e0}")]
+[JsonObject()]
+public class NavigationNodeCreationInfo : ClientValueObject
 {
 
-    [ClientObject(Name = "SP.NavigationNodeCreationInformation", Id = "{7aaaa605-79a9-4fda-ae1e-db952e5083e0}")]
-    [JsonObject()]
-    public class NavigationNodeCreationInfo : ClientValueObject
+    public NavigationNodeCreationInfo()
     {
-
-        public NavigationNodeCreationInfo()
-        {
-        }
-
-        public NavigationNodeCreationInfo(IReadOnlyDictionary<string, object> parameters) : base(parameters)
-        {
-        }
-
-        [JsonProperty()]
-        public virtual bool AsLastNode { get; protected set; }
-
-        [JsonProperty()]
-        public virtual bool IsExternal { get; protected set; }
-
-        [JsonProperty()]
-        public virtual NavigationNode PreviousNode { get; protected set; }
-
-        [JsonProperty()]
-        public virtual string Title { get; protected set; }
-
-        [JsonProperty()]
-        public virtual string Url { get; protected set; }
-
     }
+
+    public NavigationNodeCreationInfo(IReadOnlyDictionary<string, object> parameters) : base(parameters)
+    {
+    }
+
+    [JsonProperty()]
+    public virtual bool AsLastNode { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool IsExternal { get; protected set; }
+
+    [JsonProperty()]
+    public virtual NavigationNode PreviousNode { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string Title { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string Url { get; protected set; }
 
 }

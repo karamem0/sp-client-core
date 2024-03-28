@@ -2,14 +2,15 @@
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
     <PackageId>SPClientCore</PackageId>
     <Version>0.0.0.0</Version>
     <Authors>karamem0</Authors>
     <Company>karamem0</Company>
     <Product>SPClientCore</Product>
     <Description>SharePoint Service Module for PowerShell</Description>
-    <Copyright>Copyright (c) 2023 karamem0</Copyright>
+    <Copyright>Copyright (c) 2018-2024 karamem0</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/karamem0/sp-client-core</PackageProjectUrl>
     <AssemblyName>SPClientCore</AssemblyName>
@@ -21,15 +22,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.ApplicationInsights" Version="2.13.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.0.2" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.1.0" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.0.2" />
-    <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="5.5.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.1" />
-    <PackageReference Include="PowerShellStandard.Library" Version="5.1.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights" Version="2.21.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
+    <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="8.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="PowerShellStandard.Library" Version="5.1.1" />
   </ItemGroup>
 
   <ItemGroup>

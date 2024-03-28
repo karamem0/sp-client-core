@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,34 +13,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.ContentTypeCreationInformation", Id = "{168f3091-4554-4f14-8866-b20d48e45b54}")]
+[JsonObject()]
+public class ContentTypeCreationInfo : ClientValueObject
 {
 
-    [ClientObject(Name = "SP.ContentTypeCreationInformation", Id = "{168f3091-4554-4f14-8866-b20d48e45b54}")]
-    [JsonObject()]
-    public class ContentTypeCreationInfo : ClientValueObject
+    public ContentTypeCreationInfo()
     {
-
-        public ContentTypeCreationInfo()
-        {
-        }
-
-        public ContentTypeCreationInfo(IReadOnlyDictionary<string, object> parameters) : base(parameters)
-        {
-        }
-
-        [JsonProperty()]
-        public virtual string Description { get; protected set; }
-
-        [JsonProperty()]
-        public virtual string Group { get; protected set; }
-
-        [JsonProperty()]
-        public virtual string Name { get; protected set; }
-
-        [JsonProperty("ParentContentType")]
-        public virtual ContentType ContentType { get; protected set; }
-
     }
+
+    public ContentTypeCreationInfo(IReadOnlyDictionary<string, object> parameters) : base(parameters)
+    {
+    }
+
+    [JsonProperty()]
+    public virtual string Description { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string Group { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string Name { get; protected set; }
+
+    [JsonProperty("ParentContentType")]
+    public virtual ContentType ContentType { get; protected set; }
 
 }

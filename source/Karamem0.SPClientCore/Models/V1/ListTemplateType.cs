@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -11,54 +11,51 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+public enum ListTemplateType
 {
 
-    public enum ListTemplateType
-    {
+    InvalidType = -1,
 
-        InvalidType = -1,
+    NoListTemplate = 0,
 
-        NoListTemplate = 0,
+    GenericList = 100,
 
-        GenericList = 100,
+    DocumentLibrary = 101,
 
-        DocumentLibrary = 101,
+    Survey = 102,
 
-        Survey = 102,
+    Links = 103,
 
-        Links = 103,
+    Announcements = 104,
 
-        Announcements = 104,
+    Contacts = 105,
 
-        Contacts = 105,
+    Events = 106,
 
-        Events = 106,
+    Tasks = 107,
 
-        Tasks = 107,
+    DiscussionBoard = 108,
 
-        DiscussionBoard = 108,
+    PictureLibrary = 109,
 
-        PictureLibrary = 109,
+    DataSources = 110,
 
-        DataSources = 110,
+    XmlForm = 115,
 
-        XmlForm = 115,
+    NoCodeWorkflows = 117,
 
-        NoCodeWorkflows = 117,
+    WorkflowProcess = 118,
 
-        WorkflowProcess = 118,
+    WebPageLibrary = 119,
 
-        WebPageLibrary = 119,
+    CustomGrid = 120,
 
-        CustomGrid = 120,
+    WorkflowHistory = 140,
 
-        WorkflowHistory = 140,
+    GanttTasks = 150,
 
-        GanttTasks = 150,
-
-        IssuesTracking = 1100,
-
-    }
+    IssuesTracking = 1100,
 
 }

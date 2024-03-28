@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,29 +15,26 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Add, "KshGroupMember")]
+[OutputType((Type[])null)]
+public class AddGroupMemberCommand : ClientObjectCmdlet<IGroupMemberService>
 {
 
-    [Cmdlet("Add", "KshGroupMember")]
-    [OutputType(typeof(void))]
-    public class AddGroupMemberCommand : ClientObjectCmdlet<IGroupMemberService>
+    public AddGroupMemberCommand()
     {
+    }
 
-        public AddGroupMemberCommand()
-        {
-        }
+    [Parameter(Mandatory = true, Position = 0)]
+    public Group Group { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0)]
-        public Group Group { get; private set; }
+    [Parameter(Mandatory = true)]
+    public User Member { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public User Member { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            _ = this.Service.AddObject(this.Group, this.Member);
-        }
-
+    protected override void ProcessRecordCore()
+    {
+        _ = this.Service.AddObject(this.Group, this.Member);
     }
 
 }

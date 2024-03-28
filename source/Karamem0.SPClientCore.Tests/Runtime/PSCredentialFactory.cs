@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -14,27 +14,24 @@ using System.Net;
 using System.Security;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Tests.Runtime
+namespace Karamem0.SharePoint.PowerShell.Tests.Runtime;
+
+public static class PSCredentialFactory
 {
 
-    public static class PSCredentialFactory
+    public static PSCredential CreateCredential(string userName, string password)
     {
+        return CreateCredential(new NetworkCredential(userName, password));
+    }
 
-        public static PSCredential CreateCredential(string userName, string password)
-        {
-            return CreateCredential(new NetworkCredential(userName, password));
-        }
+    public static PSCredential CreateCredential(string userName, SecureString password)
+    {
+        return CreateCredential(new NetworkCredential(userName, password));
+    }
 
-        public static PSCredential CreateCredential(string userName, SecureString password)
-        {
-            return CreateCredential(new NetworkCredential(userName, password));
-        }
-
-        public static PSCredential CreateCredential(NetworkCredential credential)
-        {
-            return new PSCredential(credential.UserName, credential.SecurePassword);
-        }
-
+    public static PSCredential CreateCredential(NetworkCredential credential)
+    {
+        return new PSCredential(credential.UserName, credential.SecurePassword);
     }
 
 }

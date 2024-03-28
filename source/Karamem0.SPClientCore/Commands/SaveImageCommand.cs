@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,44 +15,41 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsData.Save, "KshImage")]
+[OutputType(typeof(ImageItem))]
+public class SaveImageCommand : ClientObjectCmdlet<IImageService>
 {
 
-    [Cmdlet("Save", "KshImage")]
-    [OutputType(typeof(ImageItem))]
-    public class SaveImageCommand : ClientObjectCmdlet<IImageService>
+    public SaveImageCommand()
     {
+    }
 
-        public SaveImageCommand()
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
+    public List List { get; private set; }
+
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
+    public ListItem ListItem { get; private set; }
+
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
+    public System.IO.Stream Content { get; private set; }
+
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
+    public string FileName { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        if (this.ParameterSetName == "ParamSet1")
         {
+            this.Outputs.Add(this.Service.UploadObject(this.List, this.FileName, this.Content));
         }
-
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
-        public List List { get; private set; }
-
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-        public ListItem ListItem { get; private set; }
-
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-        public System.IO.Stream Content { get; private set; }
-
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-        public string FileName { get; private set; }
-
-        protected override void ProcessRecordCore()
+        if (this.ParameterSetName == "ParamSet2")
         {
-            if (this.ParameterSetName == "ParamSet1")
-            {
-                this.Outputs.Add(this.Service.UploadObject(this.List, this.FileName, this.Content));
-            }
-            if (this.ParameterSetName == "ParamSet2")
-            {
-                this.Outputs.Add(this.Service.UploadObject(this.ListItem, this.FileName, this.Content));
-            }
+            this.Outputs.Add(this.Service.UploadObject(this.ListItem, this.FileName, this.Content));
         }
-
     }
 
 }

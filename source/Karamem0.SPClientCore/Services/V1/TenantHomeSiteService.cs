@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -14,70 +14,67 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Services.V1
+namespace Karamem0.SharePoint.PowerShell.Services.V1;
+
+public interface ITenantHomeSiteService
 {
 
-    public interface ITenantHomeSiteService
+    string GetObject();
+
+    void RemoveObject();
+
+    void SetObject(string homeSiteUrl);
+
+}
+
+public class TenantHomeSiteService : ClientService, ITenantHomeSiteService
+{
+
+    public TenantHomeSiteService(ClientContext clientContext) : base(clientContext)
     {
-
-        string GetObject();
-
-        void RemoveObject();
-
-        void SetObject(string homeSiteUrl);
-
     }
 
-    public class TenantHomeSiteService : ClientService, ITenantHomeSiteService
+    public string GetObject()
     {
+        var requestPayload = new ClientRequestPayload();
+        var objectPath1 = requestPayload.Add(
+            new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath2 = requestPayload.Add(
+            objectPath1,
+            objectPathId => new ClientActionMethod(
+                objectPathId,
+                "GetSPHSiteUrl"));
+        return this.ClientContext
+            .ProcessQuery(requestPayload)
+            .ToObject<string>(requestPayload.GetActionId<ClientActionMethod>());
+    }
 
-        public TenantHomeSiteService(ClientContext clientContext) : base(clientContext)
-        {
-        }
+    public void RemoveObject()
+    {
+        var requestPayload = new ClientRequestPayload();
+        var objectPath1 = requestPayload.Add(
+            new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath2 = requestPayload.Add(
+            objectPath1,
+            objectPathId => new ClientActionMethod(
+                objectPathId,
+                "RemoveSPHSite"));
+        _ = this.ClientContext.ProcessQuery(requestPayload);
+    }
 
-        public string GetObject()
-        {
-            var requestPayload = new ClientRequestPayload();
-            var objectPath1 = requestPayload.Add(
-                new ObjectPathConstructor(typeof(Tenant)));
-            var objectPath2 = requestPayload.Add(
-                objectPath1,
-                objectPathId => new ClientActionMethod(
-                    objectPathId,
-                    "GetSPHSiteUrl"));
-            return this.ClientContext
-                .ProcessQuery(requestPayload)
-                .ToObject<string>(requestPayload.GetActionId<ClientActionMethod>());
-        }
-
-        public void RemoveObject()
-        {
-            var requestPayload = new ClientRequestPayload();
-            var objectPath1 = requestPayload.Add(
-                new ObjectPathConstructor(typeof(Tenant)));
-            var objectPath2 = requestPayload.Add(
-                objectPath1,
-                objectPathId => new ClientActionMethod(
-                    objectPathId,
-                    "RemoveSPHSite"));
-            _ = this.ClientContext.ProcessQuery(requestPayload);
-        }
-
-        public void SetObject(string homeSiteUrl)
-        {
-            _ = homeSiteUrl ?? throw new ArgumentNullException(nameof(homeSiteUrl));
-            var requestPayload = new ClientRequestPayload();
-            var objectPath1 = requestPayload.Add(
-                new ObjectPathConstructor(typeof(Tenant)));
-            var objectPath2 = requestPayload.Add(
-                objectPath1,
-                objectPathId => new ClientActionMethod(
-                    objectPathId,
-                    "SetSPHSite",
-                    requestPayload.CreateParameter(homeSiteUrl)));
-            _ = this.ClientContext.ProcessQuery(requestPayload);
-        }
-
+    public void SetObject(string homeSiteUrl)
+    {
+        _ = homeSiteUrl ?? throw new ArgumentNullException(nameof(homeSiteUrl));
+        var requestPayload = new ClientRequestPayload();
+        var objectPath1 = requestPayload.Add(
+            new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath2 = requestPayload.Add(
+            objectPath1,
+            objectPathId => new ClientActionMethod(
+                objectPathId,
+                "SetSPHSite",
+                requestPayload.CreateParameter(homeSiteUrl)));
+        _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
 }

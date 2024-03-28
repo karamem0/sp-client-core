@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -11,44 +11,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+public enum CalendarType
 {
 
-    public enum CalendarType
-    {
+    None = 0,
 
-        None = 0,
+    Gregorian = 1,
 
-        Gregorian = 1,
+    Japan = 3,
 
-        Japan = 3,
+    Taiwan = 4,
 
-        Taiwan = 4,
+    Korea = 5,
 
-        Korea = 5,
+    Hijri = 6,
 
-        Hijri = 6,
+    Thai = 7,
 
-        Thai = 7,
+    Hebrew = 8,
 
-        Hebrew = 8,
+    GregorianMEFrench = 9,
 
-        GregorianMEFrench = 9,
+    GregorianArabic = 10,
 
-        GregorianArabic = 10,
+    GregorianXLITEnglish = 11,
 
-        GregorianXLITEnglish = 11,
+    GregorianXLITFrench = 12,
 
-        GregorianXLITFrench = 12,
+    KoreaJapanLunar = 14,
 
-        KoreaJapanLunar = 14,
+    ChineseLunar = 15,
 
-        ChineseLunar = 15,
+    SakaEra = 16,
 
-        SakaEra = 16,
-
-        UmAlQura = 23,
-
-    }
+    UmAlQura = 23,
 
 }

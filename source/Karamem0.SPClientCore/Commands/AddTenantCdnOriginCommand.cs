@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,42 +15,39 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Add, "KshTenantCdnOrigin")]
+[OutputType((Type[])null)]
+public class AddTenantCdnOriginCommand : ClientObjectCmdlet<ITenantCdnService>
 {
 
-    [Cmdlet("Add", "KshTenantCdnOrigin")]
-    [OutputType(typeof(void))]
-    public class AddTenantCdnOriginCommand : ClientObjectCmdlet<ITenantCdnService>
+    public AddTenantCdnOriginCommand()
     {
+    }
 
-        public AddTenantCdnOriginCommand()
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
+    public SwitchParameter Public { get; private set; }
+
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
+    public SwitchParameter Private { get; private set; }
+
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
+    public string Origin { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        if (this.ParameterSetName == "ParamSet1")
         {
+            this.ValidateSwitchParameter(nameof(this.Public));
+            this.Service.AddOrigin(TenantCdnType.Public, this.Origin);
         }
-
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
-        public SwitchParameter Public { get; private set; }
-
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-        public SwitchParameter Private { get; private set; }
-
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-        public string Origin { get; private set; }
-
-        protected override void ProcessRecordCore()
+        if (this.ParameterSetName == "ParamSet2")
         {
-            if (this.ParameterSetName == "ParamSet1")
-            {
-                this.ValidateSwitchParameter(nameof(this.Public));
-                this.Service.AddOrigin(TenantCdnType.Public, this.Origin);
-            }
-            if (this.ParameterSetName == "ParamSet2")
-            {
-                this.ValidateSwitchParameter(nameof(this.Private));
-                this.Service.AddOrigin(TenantCdnType.Private, this.Origin);
-            }
+            this.ValidateSwitchParameter(nameof(this.Private));
+            this.Service.AddOrigin(TenantCdnType.Private, this.Origin);
         }
-
     }
 
 }

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -12,24 +12,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Services.V2.Utilities
+namespace Karamem0.SharePoint.PowerShell.Services.V2.Utilities;
+
+public static class SharingUrl
 {
 
-    public static class SharingUrl
+    public static string Create(string absoluteUrl)
     {
+        var bytes = Encoding.UTF8.GetBytes(absoluteUrl);
+        var base64 = Convert.ToBase64String(bytes);
+        return $"u!{base64.TrimEnd('=').Replace('/', '_').Replace('+', '-')}";
+    }
 
-        public static string Create(string absoluteUrl)
-        {
-            var bytes = Encoding.UTF8.GetBytes(absoluteUrl);
-            var base64 = Convert.ToBase64String(bytes);
-            return $"u!{base64.TrimEnd('=').Replace('/', '_').Replace('+', '-')}";
-        }
-
-        public static string Create(string baseUrl, string relativeUrl)
-        {
-            return Create(new Uri(baseUrl).ConcatPath(relativeUrl).ToString());
-        }
-
+    public static string Create(string baseUrl, string relativeUrl)
+    {
+        return Create(new Uri(baseUrl).ConcatPath(relativeUrl).ToString());
     }
 
 }

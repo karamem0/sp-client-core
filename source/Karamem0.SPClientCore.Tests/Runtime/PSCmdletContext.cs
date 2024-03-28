@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,51 +15,48 @@ using System.Management.Automation.Runspaces;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Tests.Runtime
+namespace Karamem0.SharePoint.PowerShell.Tests.Runtime;
+
+public class PSCmdletContext : IDisposable
 {
 
-    public class PSCmdletContext : IDisposable
+    public IConfigurationRoot AppSettings { get; private set; }
+
+    public Runspace Runspace { get; private set; }
+
+    public PSCmdletContext()
     {
-
-        public IConfigurationRoot AppSettings { get; private set; }
-
-        public Runspace Runspace { get; private set; }
-
-        public PSCmdletContext()
+        this.AppSettings = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("SPClientCore.Tests.config.json")
+            .Build();
+        this.Runspace = RunspaceFactory.CreateRunspace();
+        this.Runspace.Open();
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
-            this.AppSettings = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("SPClientCore.Tests.config.json")
-                .Build();
-            this.Runspace = RunspaceFactory.CreateRunspace();
-            this.Runspace.Open();
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                _ = this.Runspace.InvokeCommand(
-                    "Set-ExecutionPolicy",
-                    new Dictionary<string, object>()
-                    {
-                        { "ExecutionPolicy", "RemoteSigned" }
-                    });
-            }
             _ = this.Runspace.InvokeCommand(
-                "Import-Module",
+                "Set-ExecutionPolicy",
                 new Dictionary<string, object>()
                 {
-                    { "Name", "./SPClientCore.psd1" }
+                    { "ExecutionPolicy", "RemoteSigned" }
                 });
         }
-
-        public void Dispose()
-        {
-            if (this.Runspace != null)
+        _ = this.Runspace.InvokeCommand(
+            "Import-Module",
+            new Dictionary<string, object>()
             {
-                this.Runspace.Dispose();
-                this.Runspace = null;
-            }
-            GC.SuppressFinalize(this);
-        }
+                { "Name", "./SPClientCore.psd1" }
+            });
+    }
 
+    public void Dispose()
+    {
+        if (this.Runspace is not null)
+        {
+            this.Runspace.Dispose();
+            this.Runspace = null;
+        }
+        GC.SuppressFinalize(this);
     }
 
 }

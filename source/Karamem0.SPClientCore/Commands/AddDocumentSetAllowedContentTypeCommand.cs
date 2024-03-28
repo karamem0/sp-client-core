@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,32 +15,29 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Add, "KshDocumentSetAllowedContentType")]
+[OutputType((Type[])null)]
+public class AddDocumentSetAllowedContentTypeCommand : ClientObjectCmdlet<IDocumentSetAllowedContentTypeService>
 {
 
-    [Cmdlet("Add", "KshDocumentSetAllowedContentType")]
-    [OutputType(typeof(void))]
-    public class AddDocumentSetAllowedContentTypeCommand : ClientObjectCmdlet<IDocumentSetAllowedContentTypeService>
+    public AddDocumentSetAllowedContentTypeCommand()
     {
+    }
 
-        public AddDocumentSetAllowedContentTypeCommand()
-        {
-        }
+    [Parameter(Mandatory = true, Position = 0)]
+    public ContentType ContentType { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0)]
-        public ContentType ContentType { get; private set; }
+    [Parameter(Mandatory = true)]
+    public ContentType AllowedContentType { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public ContentType AllowedContentType { get; private set; }
+    [Parameter(Mandatory = false)]
+    public SwitchParameter PushChanges { get; private set; }
 
-        [Parameter(Mandatory = false)]
-        public SwitchParameter PushChanges { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Service.AddObject(this.ContentType, this.AllowedContentType, this.PushChanges);
-        }
-
+    protected override void ProcessRecordCore()
+    {
+        this.Service.AddObject(this.ContentType, this.AllowedContentType, this.PushChanges);
     }
 
 }

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -14,65 +14,62 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Tests
+namespace Karamem0.SharePoint.PowerShell.Tests;
+
+[TestClass()]
+public class GetTenantSiteTemplateCommandTests
 {
 
-    [TestClass()]
-    public class GetTenantSiteTemplateCommandTests
+    [TestMethod()]
+    public void GetTenantSiteTemplates()
     {
+        using var context = new PSCmdletContext();
+        var result1 = context.Runspace.InvokeCommand(
+            "Connect-KshSite",
+            new Dictionary<string, object>()
+            {
+                { "Url", context.AppSettings["AdminUrl"] },
+                { "Credential", PSCredentialFactory.CreateCredential(
+                    context.AppSettings["LoginUserName"],
+                    context.AppSettings["LoginPassword"])
+                }
+            }
+        );
+        var result2 = context.Runspace.InvokeCommand<TenantSiteTemplate>(
+            "Get-KshTenantSiteTemplate",
+            new Dictionary<string, object>()
+            {
+            }
+        );
+        var actual = result2.ToArray();
+        Assert.IsNotNull(actual);
+    }
 
-        [TestMethod()]
-        public void GetTenantSiteTemplates()
-        {
-            using var context = new PSCmdletContext();
-            var result1 = context.Runspace.InvokeCommand(
-                "Connect-KshSite",
-                new Dictionary<string, object>()
-                {
-                    { "Url", context.AppSettings["AdminUrl"] },
-                    { "Credential", PSCredentialFactory.CreateCredential(
-                        context.AppSettings["LoginUserName"],
-                        context.AppSettings["LoginPassword"])
-                    }
+    [TestMethod()]
+    public void GetTenantSiteTemplatesByFilter()
+    {
+        using var context = new PSCmdletContext();
+        var result1 = context.Runspace.InvokeCommand(
+            "Connect-KshSite",
+            new Dictionary<string, object>()
+            {
+                { "Url", context.AppSettings["AdminUrl"] },
+                { "Credential", PSCredentialFactory.CreateCredential(
+                    context.AppSettings["LoginUserName"],
+                    context.AppSettings["LoginPassword"])
                 }
-            );
-            var result2 = context.Runspace.InvokeCommand<TenantSiteTemplate>(
-                "Get-KshTenantSiteTemplate",
-                new Dictionary<string, object>()
-                {
-                }
-            );
-            var actual = result2.ToArray();
-            Assert.IsNotNull(actual);
-        }
-
-        [TestMethod()]
-        public void GetTenantSiteTemplatesByFilter()
-        {
-            using var context = new PSCmdletContext();
-            var result1 = context.Runspace.InvokeCommand(
-                "Connect-KshSite",
-                new Dictionary<string, object>()
-                {
-                    { "Url", context.AppSettings["AdminUrl"] },
-                    { "Credential", PSCredentialFactory.CreateCredential(
-                        context.AppSettings["LoginUserName"],
-                        context.AppSettings["LoginPassword"])
-                    }
-                }
-            );
-            var result2 = context.Runspace.InvokeCommand<TenantSiteTemplate>(
-                "Get-KshTenantSiteTemplate",
-                new Dictionary<string, object>()
-                {
-                    { "CompatibilityLevel", 15 },
-                    { "Lcid", 1033 }
-                }
-            );
-            var actual = result2.ToArray();
-            Assert.IsNotNull(actual);
-        }
-
+            }
+        );
+        var result2 = context.Runspace.InvokeCommand<TenantSiteTemplate>(
+            "Get-KshTenantSiteTemplate",
+            new Dictionary<string, object>()
+            {
+                { "CompatibilityLevel", 15 },
+                { "Lcid", 1033 }
+            }
+        );
+        var actual = result2.ToArray();
+        Assert.IsNotNull(actual);
     }
 
 }

@@ -4,7 +4,7 @@
 
 PowerShell 向けの SharePoint サービス モジュール
 
-[![.github/workflows/main.yml](https://github.com/karamem0/sp-client-core/actions/workflows/main.yml/badge.svg)](https://github.com/karamem0/sp-client-core/actions/workflows/main.yml)
+[![.github/workflows/workflow.yml](https://github.com/karamem0/sp-client-core/actions/workflows/workflow.yml/badge.svg)](https://github.com/karamem0/sp-client-core/actions/workflows/workflow.yml)
 [![License](https://img.shields.io/github/license/karamem0/sp-client-core.svg)](https://github.com/karamem0/sp-client-core/blob/main/LICENSE)
 
 ## インストール
@@ -33,19 +33,22 @@ SPClientCore は Azure AD 2.0 認証をサポートします (Device Code Grant 
 
 ## 依存関係
 
-- [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights/2.13.1) (2.13.1)
-- [Microsoft.ApplicationInsights.WorkerService](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WorkerService/2.13.1) (2.13.1)
-- [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/5.0.0) (5.0.0)
-- [Microsoft.Extensions.DependencyInjection.Abstractions](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection.Abstractions/5.0.0) (5.0.0)
-- [Microsoft.IdentityModel.JsonWebTokens](https://www.nuget.org/packages/Microsoft.IdentityModel.JsonWebTokens/5.5.0) (5.5.0)
-- [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/12.0.3) (12.0.3)
-- [PowerShellStandard.Library](https://www.nuget.org/packages/PowerShellStandard.Library/5.1.0) (5.1.0)
+- [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights/2.21.0) (2.21.0)
+- [Microsoft.Extensions.Configuration.Json](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Json/8.0.0) (8.0.0)
+- [Microsoft.Extensions.Configuration.EnvironmentVariables](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.EnvironmentVariables/8.0.0) (8.0.0)
+- [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/8.0.0) (8.0.0)
+- [Microsoft.Extensions.DependencyInjection.Abstractions](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection.Abstractions/8.0.1) (8.0.1)
+- [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/8.0.0) (8.0.0)
+- [Microsoft.IdentityModel.JsonWebTokens](https://www.nuget.org/packages/Microsoft.IdentityModel.JsonWebTokens/7.5.0) (8.1.0)
+- [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/13.0.3) (13.0.3)
+- [PowerShellStandard.Library](https://www.nuget.org/packages/PowerShellStandard.Library/5.1.1) (5.1.1)
 
 ## コマンド リファレンス (英語)
 
 - ログイン
   - [Connect-KshSite](docs/Connect-KshSite.md)
   - [Disconnect-KshSite](docs/Disconnect-KshSite.md)
+  - [Get-KshCurrentConnection](docs/Disconnect-KshCurrentConnection.md)
   - [Get-KshCurrentSite](docs/Get-KshCurrentSite.md)
   - [Get-KshCurrentSiteCollection](docs/Get-KshCurrentSiteCollection.md)
   - [Get-KshCurrentUser](docs/Get-KshCurrentUser.md)
@@ -346,6 +349,8 @@ SPClientCore は Azure AD 2.0 認証をサポートします (Device Code Grant 
     - [Get-KshTenantOrganizationNewsSite](docs/Get-KshTenantOrganizationNewsSite.md)
     - [Add-KshTenantOrganizationNewsSite](docs/Add-KshTenantOrganizationNewsSite.md)
     - [Remove-KshTenantOrganizationNewsSite](docs/Remove-KshTenantOrganizationNewsSite.md)
+  - 個人用サイト
+    - [Get-KshTenantPersonalSite](docs/Get-KshTenantPersonalSite.md)
   - サイト コレクション
     - [Get-KshSiteCollection](docs/Get-KshSiteCollection.md)
     - [Get-KshTenantSiteCollection](docs/Get-KshTenantSiteCollection.md)

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,26 +15,26 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Remove, "KshGroup", SupportsShouldProcess = true, ConfirmImpact = ConfirmImpact.High)]
+[OutputType((Type[])null)]
+public class RemoveGroupCommand : ClientObjectCmdlet<IGroupService>
 {
 
-    [Cmdlet("Remove", "KshGroup")]
-    [OutputType(typeof(void))]
-    public class RemoveGroupCommand : ClientObjectCmdlet<IGroupService>
+    public RemoveGroupCommand()
     {
+    }
 
-        public RemoveGroupCommand()
-        {
-        }
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    public Group Identity { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public Group Identity { get; private set; }
-
-        protected override void ProcessRecordCore()
+    protected override void ProcessRecordCore()
+    {
+        if (this.ShouldProcess(this.Identity.Title, VerbsCommon.Remove))
         {
             this.Service.RemoveObject(this.Identity);
         }
-
     }
 
 }

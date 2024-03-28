@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,33 +15,29 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Add, "KshContentTypeColumn")]
+[OutputType(typeof(ContentTypeColumn))]
+public class AddContentTypeColumnCommand : ClientObjectCmdlet<IContentTypeColumnService>
 {
 
-    [Cmdlet("Add", "KshContentTypeColumn")]
-    [Alias("New-KshContentTypeColumn")]
-    [OutputType(typeof(ContentTypeColumn))]
-    public class AddContentTypeColumnCommand : ClientObjectCmdlet<IContentTypeColumnService>
+    public AddContentTypeColumnCommand()
     {
+    }
 
-        public AddContentTypeColumnCommand()
-        {
-        }
+    [Parameter(Mandatory = true)]
+    public ContentType ContentType { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public ContentType ContentType { get; private set; }
+    [Parameter(Mandatory = true)]
+    public Column Column { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public Column Column { get; private set; }
+    [Parameter(Mandatory = false)]
+    public SwitchParameter PushChanges { get; private set; }
 
-        [Parameter(Mandatory = false)]
-        public SwitchParameter PushChanges { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Outputs.Add(this.Service.AddObject(this.ContentType, this.MyInvocation.BoundParameters, this.PushChanges));
-        }
-
+    protected override void ProcessRecordCore()
+    {
+        this.Outputs.Add(this.Service.AddObject(this.ContentType, this.MyInvocation.BoundParameters, this.PushChanges));
     }
 
 }

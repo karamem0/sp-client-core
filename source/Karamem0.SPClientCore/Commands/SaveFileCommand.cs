@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,42 +15,39 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsData.Save, "KshFile")]
+[OutputType(typeof(File))]
+public class SaveFileCommand : ClientObjectCmdlet<IFileService>
 {
 
-    [Cmdlet("Save", "KshFile")]
-    [OutputType(typeof(File))]
-    public class SaveFileCommand : ClientObjectCmdlet<IFileService>
+    public SaveFileCommand()
     {
+    }
 
-        public SaveFileCommand()
+    [Parameter(Mandatory = true)]
+    public Folder Folder { get; private set; }
+
+    [Parameter(Mandatory = true)]
+    public System.IO.Stream Content { get; private set; }
+
+    [Parameter(Mandatory = true)]
+    public string FileName { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public bool Overwrite { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public SwitchParameter PassThru { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        this.Service.UploadObject(this.Folder.ServerRelativeUrl, this.FileName, this.Content, this.Overwrite);
+        if (this.PassThru)
         {
+            this.Outputs.Add(this.Service.GetObject(this.Folder, this.FileName));
         }
-
-        [Parameter(Mandatory = true)]
-        public Folder Folder { get; private set; }
-
-        [Parameter(Mandatory = true)]
-        public System.IO.Stream Content { get; private set; }
-
-        [Parameter(Mandatory = true)]
-        public string FileName { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public bool Overwrite { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public SwitchParameter PassThru { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Service.UploadObject(this.Folder.ServerRelativeUrl, this.FileName, this.Content, this.Overwrite);
-            if (this.PassThru)
-            {
-                this.Outputs.Add(this.Service.GetObject(this.Folder, this.FileName));
-            }
-        }
-
     }
 
 }

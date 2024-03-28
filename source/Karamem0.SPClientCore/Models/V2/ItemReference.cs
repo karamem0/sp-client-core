@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,29 +13,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V2
+namespace Karamem0.SharePoint.PowerShell.Models.V2;
+
+[JsonObject()]
+public class ItemReference : ODataV2Object
 {
 
-    [JsonObject()]
-    public class ItemReference : ODataV2Object
+    public ItemReference()
     {
-
-        public ItemReference()
-        {
-        }
-
-        [JsonProperty("driveId")]
-        public virtual string DriveId { get; protected set; }
-
-        [JsonProperty("driveType")]
-        public virtual DriveType DriveType { get; protected set; }
-
-        [JsonProperty("id")]
-        public virtual string Id { get; protected set; }
-
-        [JsonProperty("path")]
-        public virtual string Path { get; protected set; }
-
     }
+
+    [JsonProperty("driveId")]
+    public virtual string DriveId { get; protected set; }
+
+    [JsonProperty("driveType")]
+    public virtual DriveType DriveType { get; protected set; }
+
+    [JsonProperty("id")]
+    public virtual string Id { get; protected set; }
+
+    [JsonProperty("path")]
+    public virtual string Path { get; protected set; }
 
 }

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -12,23 +12,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.Models
+namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
+
+[JsonObject()]
+public class ODataV1ResultPayload<T> : ODataV1ResultPayload where T : ODataV1Object
 {
 
-    [JsonObject()]
-    public class ODataV1ResultPayload<T> : ODataV1ResultPayload where T : ODataV1Object
+    public ODataV1ResultPayload()
     {
-
-        public ODataV1ResultPayload()
-        {
-        }
-
-        [JsonProperty("d")]
-        public virtual T Entry { get; protected set; }
-
-        [JsonProperty("error")]
-        public override ODataV1Error Error { get; protected set; }
-
     }
+
+    [JsonProperty("d")]
+    public virtual T Entry { get; protected set; }
+
+    [JsonProperty("error")]
+    public override ODataV1Error Error { get; protected set; }
 
 }

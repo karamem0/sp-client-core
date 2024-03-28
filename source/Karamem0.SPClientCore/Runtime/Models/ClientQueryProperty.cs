@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -12,30 +12,27 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.Models
+namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
+
+[XmlType("Property", Namespace = "http://schemas.microsoft.com/sharepoint/clientquery/2009")]
+public class ClientQueryProperty : ClientRequestObject
 {
 
-    [XmlType("Property", Namespace = "http://schemas.microsoft.com/sharepoint/clientquery/2009")]
-    public class ClientQueryProperty : ClientRequestObject
+    public ClientQueryProperty(string name)
     {
-
-        public ClientQueryProperty(string name)
-        {
-            this.Name = name ?? throw new ArgumentNullException(nameof(name));
-        }
-
-        [XmlAttribute()]
-        public virtual string Name { get; protected set; }
-
-        [XmlAttribute()]
-        public virtual bool? ScalarProperty { get; set; }
-
-        [XmlAttribute()]
-        public virtual bool? SelectAll { get; set; }
-
-        [XmlElement()]
-        public virtual ClientQuery Query { get; set; }
-
+        this.Name = name ?? throw new ArgumentNullException(nameof(name));
     }
+
+    [XmlAttribute()]
+    public virtual string Name { get; protected set; }
+
+    [XmlAttribute()]
+    public virtual bool? ScalarProperty { get; set; }
+
+    [XmlAttribute()]
+    public virtual bool? SelectAll { get; set; }
+
+    [XmlElement()]
+    public virtual ClientQuery Query { get; set; }
 
 }

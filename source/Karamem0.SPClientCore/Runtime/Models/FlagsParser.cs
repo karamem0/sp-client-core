@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -12,39 +12,36 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.Models
+namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
+
+public static class FlagsParser
 {
 
-    public static class FlagsParser
+    public static T Parse<T>(IReadOnlyDictionary<string, object> parameters) where T : Enum
     {
-
-        public static T Parse<T>(IReadOnlyDictionary<string, object> parameters) where T : Enum
+        var type = typeof(T);
+        if (type.IsDefined(typeof(FlagsAttribute), false))
         {
-            var type = typeof(T);
-            if (type.IsDefined(typeof(FlagsAttribute), false))
+            var names = Enum.GetNames(type);
+            var keys = parameters
+                .Where(parameter => parameter.Value is SwitchParameter)
+                .Where(parameter => (SwitchParameter)parameter.Value)
+                .Where(parameter => names.Contains(parameter.Key))
+                .Select(parameter => parameter.Key)
+                .ToList();
+            if (keys.Any())
             {
-                var names = Enum.GetNames(type);
-                var keys = parameters
-                    .Where(parameter => parameter.Value is SwitchParameter)
-                    .Where(parameter => (SwitchParameter)parameter.Value)
-                    .Where(parameter => names.Contains(parameter.Key))
-                    .Select(parameter => parameter.Key)
-                    .ToList();
-                if (keys.Any())
-                {
-                    return (T)Enum.Parse(type, string.Join(",", keys));
-                }
-                else
-                {
-                    return default;
-                }
+                return (T)Enum.Parse(type, string.Join(",", keys));
             }
             else
             {
-                throw new InvalidOperationException();
+                return default;
             }
         }
-
+        else
+        {
+            throw new InvalidOperationException();
+        }
     }
 
 }

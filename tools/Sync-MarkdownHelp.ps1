@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2023 karamem0
+# Copyright (c) 2018-2024 karamem0
 #
 # This software is released under the MIT License.
 #
@@ -7,8 +7,8 @@
 #
 
 $SOURCE_PATH = "$PSScriptRoot/../source/Karamem0.SPClientCore"
-$SOURCE_HELP_FILE_PATH = "$PSScriptRoot/../source/Karamem0.SPClientCore/bin/Debug/netstandard2.0/publish/SPClientCore.dll-help.xml"
-$SOURCE_MODULE_PATH = "$PSScriptRoot/../source/Karamem0.SPClientCore/bin/Debug/netstandard2.0/publish/SPClientCore.psd1"
+$SOURCE_HELP_FILE_PATH = "$PSScriptRoot/../source/Karamem0.SPClientCore/bin/Debug/netstandard2.1/publish/SPClientCore.dll-help.xml"
+$SOURCE_MODULE_PATH = "$PSScriptRoot/../source/Karamem0.SPClientCore/bin/Debug/netstandard2.1/publish/SPClientCore.psd1"
 $DOCS_PATH = "$PSScriptRoot/../docs"
 
 dotnet publish $SOURCE_PATH

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -14,53 +14,50 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Services.V1
+namespace Karamem0.SharePoint.PowerShell.Services.V1;
+
+public interface ITenantService
 {
 
-    public interface ITenantService
+    Tenant GetObject();
+
+    void SetObject(IReadOnlyDictionary<string, object> modificationInfo);
+
+}
+
+public class TenantService : ClientService, ITenantService
+{
+
+    public TenantService(ClientContext clientContext) : base(clientContext)
     {
-
-        Tenant GetObject();
-
-        void SetObject(IReadOnlyDictionary<string, object> modificationInfo);
-
     }
 
-    public class TenantService : ClientService, ITenantService
+    public Tenant GetObject()
     {
+        var requestPayload = new ClientRequestPayload();
+        var objectPath1 = requestPayload.Add(
+            new ObjectPathConstructor(typeof(Tenant)),
+            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
+            objectPathId => new ClientActionQuery(objectPathId)
+            {
+                Query = new ClientQuery(true, typeof(Tenant))
+            });
+        return this.ClientContext
+            .ProcessQuery(requestPayload)
+            .ToObject<Tenant>(requestPayload.GetActionId<ClientActionQuery>());
+    }
 
-        public TenantService(ClientContext clientContext) : base(clientContext)
-        {
-        }
-
-        public Tenant GetObject()
-        {
-            var requestPayload = new ClientRequestPayload();
-            var objectPath1 = requestPayload.Add(
-                new ObjectPathConstructor(typeof(Tenant)),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-                objectPathId => new ClientActionQuery(objectPathId)
-                {
-                    Query = new ClientQuery(true, typeof(Tenant))
-                });
-            return this.ClientContext
-                .ProcessQuery(requestPayload)
-                .ToObject<Tenant>(requestPayload.GetActionId<ClientActionQuery>());
-        }
-
-        public void SetObject(IReadOnlyDictionary<string, object> modificationInfo)
-        {
-            _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
-            var requestPayload = new ClientRequestPayload();
-            var objectPath1 = requestPayload.Add(
-                new ObjectPathConstructor(typeof(Tenant)),
-                requestPayload.CreateSetPropertyDelegates(typeof(Tenant), modificationInfo).ToArray());
-            var objectPath2 = requestPayload.Add(
-                objectPath1,
-                objectPathId => new ClientActionMethod(objectPathId, "Update"));
-            _ = this.ClientContext.ProcessQuery(requestPayload);
-        }
-
+    public void SetObject(IReadOnlyDictionary<string, object> modificationInfo)
+    {
+        _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
+        var requestPayload = new ClientRequestPayload();
+        var objectPath1 = requestPayload.Add(
+            new ObjectPathConstructor(typeof(Tenant)),
+            requestPayload.CreateSetPropertyDelegates(typeof(Tenant), modificationInfo).ToArray());
+        var objectPath2 = requestPayload.Add(
+            objectPath1,
+            objectPathId => new ClientActionMethod(objectPathId, "Update"));
+        _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
 }

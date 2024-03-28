@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,18 +13,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.UserProfiles.ProfileLoader", Id = "{9c42543a-91b3-4902-b2fe-14ccdefb6e2b}")]
+[JsonObject()]
+public class ProfileLoader : ClientObject
 {
 
-    [ClientObject(Name = "SP.UserProfiles.ProfileLoader", Id = "{9c42543a-91b3-4902-b2fe-14ccdefb6e2b}")]
-    [JsonObject()]
-    public class ProfileLoader : ClientObject
+    public ProfileLoader()
     {
-
-        public ProfileLoader()
-        {
-        }
-
     }
 
 }

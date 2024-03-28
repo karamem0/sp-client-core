@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,18 +13,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.Taxonomy.TermSetCollection", Id = "{659df998-3955-45fa-b64e-3d6ca277a97a}")]
+[JsonObject()]
+public class TermSetEnumerable : ClientObjectEnumerable<TermSet>
 {
 
-    [ClientObject(Name = "SP.Taxonomy.TermSetCollection", Id = "{659df998-3955-45fa-b64e-3d6ca277a97a}")]
-    [JsonObject()]
-    public class TermSetEnumerable : ClientObjectEnumerable<TermSet>
+    public TermSetEnumerable()
     {
-
-        public TermSetEnumerable()
-        {
-        }
-
     }
 
 }

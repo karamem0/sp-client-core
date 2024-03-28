@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,64 +15,60 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Set, "KshContentType")]
+[OutputType(typeof(ContentType))]
+public class SetContentTypeCommand : ClientObjectCmdlet<IContentTypeService>
 {
 
-    [Cmdlet("Set", "KshContentType")]
-    [Alias("Update-KshContentType")]
-    [OutputType(typeof(ContentType))]
-    public class SetContentTypeCommand : ClientObjectCmdlet<IContentTypeService>
+    public SetContentTypeCommand()
     {
+    }
 
-        public SetContentTypeCommand()
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    public ContentType Identity { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public string Description { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public string DisplayFormUrl { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public string EditFormUrl { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public string Group { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public string JSLink { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public bool Hidden { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public string Name { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public string NewFormUrl { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public bool ReadOnly { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public bool Sealed { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public SwitchParameter PassThru { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        this.Service.SetObject(this.Identity, this.MyInvocation.BoundParameters);
+        if (this.PassThru)
         {
+            this.Outputs.Add(this.Service.GetObject(this.Identity));
         }
-
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public ContentType Identity { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public string Description { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public string DisplayFormUrl { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public string EditFormUrl { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public string Group { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public string JSLink { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public bool Hidden { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public string Name { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public string NewFormUrl { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public bool ReadOnly { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public bool Sealed { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public SwitchParameter PassThru { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Service.SetObject(this.Identity, this.MyInvocation.BoundParameters);
-            if (this.PassThru)
-            {
-                this.Outputs.Add(this.Service.GetObject(this.Identity));
-            }
-        }
-
     }
 
 }

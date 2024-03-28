@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,26 +15,23 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Set, "KshNavigation")]
+[OutputType((Type[])null)]
+public class SetNavigationCommand : ClientObjectCmdlet<INavigationService>
 {
 
-    [Cmdlet("Set", "KshNavigation")]
-    [OutputType(typeof(void))]
-    public class SetNavigationCommand : ClientObjectCmdlet<INavigationService>
+    public SetNavigationCommand()
     {
+    }
 
-        public SetNavigationCommand()
-        {
-        }
+    [Parameter(Mandatory = false)]
+    public bool UseShared { get; private set; }
 
-        [Parameter(Mandatory = false)]
-        public bool UseShared { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Service.SetObject(this.MyInvocation.BoundParameters);
-        }
-
+    protected override void ProcessRecordCore()
+    {
+        this.Service.SetObject(this.MyInvocation.BoundParameters);
     }
 
 }

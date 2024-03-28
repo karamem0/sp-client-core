@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,28 +13,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.FileDeleteParameters", Id = "{7faa52e2-2ea9-48c0-b211-f929e55f82bf}")]
+[JsonObject()]
+public class FileDeleteParameters : ClientValueObject
 {
 
-    [ClientObject(Name = "SP.FileDeleteParameters", Id = "{7faa52e2-2ea9-48c0-b211-f929e55f82bf}")]
-    [JsonObject()]
-    public class FileDeleteParameters : ClientValueObject
+    public FileDeleteParameters()
     {
-
-        public FileDeleteParameters()
-        {
-        }
-
-        public FileDeleteParameters(IReadOnlyDictionary<string, object> parameters) : base(parameters)
-        {
-        }
-
-        [JsonProperty()]
-        public virtual bool BypassSharedLock { get; protected set; }
-
-        [JsonProperty()]
-        public virtual string ETagMatch { get; protected set; }
-
     }
+
+    public FileDeleteParameters(IReadOnlyDictionary<string, object> parameters) : base(parameters)
+    {
+    }
+
+    [JsonProperty()]
+    public virtual bool BypassSharedLock { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string ETagMatch { get; protected set; }
 
 }

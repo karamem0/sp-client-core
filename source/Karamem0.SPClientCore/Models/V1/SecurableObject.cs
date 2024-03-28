@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,21 +13,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.SecurableObject", Id = "{1b1bf348-994e-44fd-823f-0748f5ad94c8}")]
+[JsonObject()]
+public class SecurableObject : ClientObject
 {
 
-    [ClientObject(Name = "SP.SecurableObject", Id = "{1b1bf348-994e-44fd-823f-0748f5ad94c8}")]
-    [JsonObject()]
-    public class SecurableObject : ClientObject
+    public SecurableObject()
     {
-
-        public SecurableObject()
-        {
-        }
-
-        [JsonProperty()]
-        public virtual bool HasUniqueRoleAssignments { get; protected set; }
-
     }
+
+    [JsonProperty()]
+    public virtual bool HasUniqueRoleAssignments { get; protected set; }
 
 }

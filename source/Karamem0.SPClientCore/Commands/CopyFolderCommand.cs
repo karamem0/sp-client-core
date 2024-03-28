@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -16,51 +16,46 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Copy, "KshFolder")]
+[OutputType(typeof(Folder))]
+public class CopyFolderCommand : ClientObjectCmdlet<IFolderService>
 {
 
-    [Cmdlet("Copy", "KshFolder")]
-    [OutputType(typeof(Folder))]
-    public class CopyFolderCommand : ClientObjectCmdlet<IFolderService>
+    public CopyFolderCommand()
     {
+    }
 
-        public CopyFolderCommand()
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    public Folder Identity { get; private set; }
+
+    [Parameter(Mandatory = true, Position = 1)]
+    public Uri NewUrl { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public SwitchParameter KeepBoth { get; protected set; }
+
+    [Parameter(Mandatory = false)]
+    public SwitchParameter ResetAuthorAndCreatedOnCopy { get; protected set; }
+
+    [Parameter(Mandatory = false)]
+    public SwitchParameter RetainEditorAndModifiedOnMove { get; protected set; }
+
+    [Parameter(Mandatory = false)]
+    public SwitchParameter ShouldBypassSharedLocks { get; protected set; }
+
+    protected override void ProcessRecordCore()
+    {
+        if (this.NewUrl.IsAbsoluteUri)
         {
+            var moveCopyOptions = new MoveCopyOptions(this.MyInvocation.BoundParameters);
+            this.Service.CopyObject(this.Identity, this.NewUrl, moveCopyOptions);
         }
-
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public Folder Identity { get; private set; }
-
-        [Parameter(Mandatory = true, Position = 1)]
-        public Uri NewUrl { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public SwitchParameter KeepBoth { get; protected set; }
-
-        [Parameter(Mandatory = false)]
-        public SwitchParameter ResetAuthorAndCreatedOnCopy { get; protected set; }
-
-        [Parameter(Mandatory = false)]
-        public SwitchParameter RetainEditorAndModifiedOnMove { get; protected set; }
-
-        [Parameter(Mandatory = false)]
-        public SwitchParameter ShouldBypassSharedLocks { get; protected set; }
-
-        protected override void ProcessRecordCore()
+        else
         {
-            if (this.NewUrl.IsAbsoluteUri)
-            {
-                var moveCopyOptions = new MoveCopyOptions(this.MyInvocation.BoundParameters);
-                this.Service.CopyObject(this.Identity, this.NewUrl, moveCopyOptions);
-            }
-            else
-            {
-                throw new ArgumentException(
-                    string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.NewUrl),
-                    nameof(this.NewUrl));
-            }
+            throw new InvalidOperationException(string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.NewUrl));
         }
-
     }
 
 }

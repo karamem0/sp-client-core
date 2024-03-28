@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,24 +13,21 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.Common
+namespace Karamem0.SharePoint.PowerShell.Runtime.Common;
+
+public static class Base64BinaryConverter
 {
 
-    public static class Base64BinaryConverter
+    public static bool TryParse(string input, out byte[] result)
     {
-
-        public static bool TryParse(string input, out byte[] result)
+        var match = Regex.Match(input, "^/Base64Binary\\(([0-9a-zA-Z+/]*={0,2})\\)/$");
+        if (match.Success)
         {
-            var match = Regex.Match(input, "^/Base64Binary\\(([0-9a-zA-Z+/]*={0,2})\\)/$");
-            if (match.Success)
-            {
-                result = Convert.FromBase64String(match.Groups[1].Value);
-                return true;
-            }
-            result = default;
-            return false;
+            result = Convert.FromBase64String(match.Groups[1].Value);
+            return true;
         }
-
+        result = default;
+        return false;
     }
 
 }

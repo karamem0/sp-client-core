@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -11,58 +11,55 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+public enum ChangeType
 {
 
-    public enum ChangeType
-    {
+    NoChange = 0,
 
-        NoChange = 0,
+    Add = 1,
 
-        Add = 1,
+    Update = 2,
 
-        Update = 2,
+    DeleteObject = 3,
 
-        DeleteObject = 3,
+    Rename = 4,
 
-        Rename = 4,
+    MoveAway = 5,
 
-        MoveAway = 5,
+    MoveInto = 6,
 
-        MoveInto = 6,
+    Restore = 7,
 
-        Restore = 7,
+    RoleAdd = 8,
 
-        RoleAdd = 8,
+    RoleDelete = 9,
 
-        RoleDelete = 9,
+    RoleUpdate = 10,
 
-        RoleUpdate = 10,
+    AssignmentAdd = 11,
 
-        AssignmentAdd = 11,
+    AssignmentDelete = 12,
 
-        AssignmentDelete = 12,
+    MemberAdd = 13,
 
-        MemberAdd = 13,
+    MemberDelete = 14,
 
-        MemberDelete = 14,
+    SystemUpdate = 15,
 
-        SystemUpdate = 15,
+    Navigation = 16,
 
-        Navigation = 16,
+    ScopeAdd = 17,
 
-        ScopeAdd = 17,
+    ScopeDelete = 18,
 
-        ScopeDelete = 18,
+    ListContentTypeAdd = 19,
 
-        ListContentTypeAdd = 19,
+    ListContentTypeDelete = 20,
 
-        ListContentTypeDelete = 20,
+    Dirty = 21,
 
-        Dirty = 21,
-
-        Activity = 22,
-
-    }
+    Activity = 22,
 
 }

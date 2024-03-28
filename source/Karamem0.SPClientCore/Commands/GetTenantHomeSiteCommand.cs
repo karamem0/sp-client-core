@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -14,23 +14,20 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Get, "KshTenantHomeSite")]
+[OutputType(typeof(string))]
+public class GetTenantHomeSiteCommand : ClientObjectCmdlet<ITenantHomeSiteService>
 {
 
-    [Cmdlet("Get", "KshTenantHomeSite")]
-    [OutputType(typeof(string))]
-    public class GetTenantHomeSiteCommand : ClientObjectCmdlet<ITenantHomeSiteService>
+    public GetTenantHomeSiteCommand()
     {
+    }
 
-        public GetTenantHomeSiteCommand()
-        {
-        }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Outputs.Add(this.Service.GetObject());
-        }
-
+    protected override void ProcessRecordCore()
+    {
+        this.Outputs.Add(this.Service.GetObject());
     }
 
 }

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,21 +13,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.ListItemCollectionPosition", Id = "{922354eb-c56a-4d88-ad59-67496854efe1}")]
+[JsonObject()]
+public class ListItemCollectionPosition : ClientValueObject
 {
 
-    [ClientObject(Name = "SP.ListItemCollectionPosition", Id = "{922354eb-c56a-4d88-ad59-67496854efe1}")]
-    [JsonObject()]
-    public class ListItemCollectionPosition : ClientValueObject
+    public ListItemCollectionPosition()
     {
-
-        public ListItemCollectionPosition()
-        {
-        }
-
-        [JsonProperty()]
-        public virtual string PagingInfo { get; protected set; }
-
     }
+
+    [JsonProperty()]
+    public virtual string PagingInfo { get; protected set; }
 
 }

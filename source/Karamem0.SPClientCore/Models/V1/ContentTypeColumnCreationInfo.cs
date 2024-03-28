@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,25 +13,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.FieldLinkCreationInformation", Id = "{63fb2c92-8f65-4bbb-a658-b6cd294403f4}")]
+[JsonObject()]
+public class ContentTypeColumnCreationInfo : ClientValueObject
 {
 
-    [ClientObject(Name = "SP.FieldLinkCreationInformation", Id = "{63fb2c92-8f65-4bbb-a658-b6cd294403f4}")]
-    [JsonObject()]
-    public class ContentTypeColumnCreationInfo : ClientValueObject
+    public ContentTypeColumnCreationInfo()
     {
-
-        public ContentTypeColumnCreationInfo()
-        {
-        }
-
-        public ContentTypeColumnCreationInfo(IReadOnlyDictionary<string, object> parameters) : base(parameters)
-        {
-        }
-
-        [JsonProperty("Field")]
-        public virtual Column Column { get; protected set; }
-
     }
+
+    public ContentTypeColumnCreationInfo(IReadOnlyDictionary<string, object> parameters) : base(parameters)
+    {
+    }
+
+    [JsonProperty("Field")]
+    public virtual Column Column { get; protected set; }
 
 }

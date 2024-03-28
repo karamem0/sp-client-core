@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,55 +15,52 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Get, "KshGroupMember")]
+[OutputType(typeof(User))]
+public class GetGroupMemberCommand : ClientObjectCmdlet<IGroupMemberService>
 {
 
-    [Cmdlet("Get", "KshGroupMember")]
-    [OutputType(typeof(User))]
-    public class GetGroupMemberCommand : ClientObjectCmdlet<IGroupMemberService>
+    public GetGroupMemberCommand()
     {
+    }
 
-        public GetGroupMemberCommand()
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
+    public Group Group { get; private set; }
+
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet1")]
+    public int MemberId { get; private set; }
+
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
+    public string MemberName { get; private set; }
+
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
+    public SwitchParameter NoEnumerate { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        if (this.ParameterSetName == "ParamSet1")
         {
+            this.Outputs.Add(this.Service.GetObject(this.Group, this.MemberId));
         }
-
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
-        public Group Group { get; private set; }
-
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet1")]
-        public int MemberId { get; private set; }
-
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
-        public string MemberName { get; private set; }
-
-        [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
-        public SwitchParameter NoEnumerate { get; private set; }
-
-        protected override void ProcessRecordCore()
+        if (this.ParameterSetName == "ParamSet2")
         {
-            if (this.ParameterSetName == "ParamSet1")
+            this.Outputs.Add(this.Service.GetObject(this.Group, this.MemberName));
+        }
+        if (this.ParameterSetName == "ParamSet3")
+        {
+            if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObject(this.Group, this.MemberId));
+                this.Outputs.Add(this.Service.GetObjectEnumerable(this.Group));
             }
-            if (this.ParameterSetName == "ParamSet2")
+            else
             {
-                this.Outputs.Add(this.Service.GetObject(this.Group, this.MemberName));
-            }
-            if (this.ParameterSetName == "ParamSet3")
-            {
-                if (this.NoEnumerate)
-                {
-                    this.Outputs.Add(this.Service.GetObjectEnumerable(this.Group));
-                }
-                else
-                {
-                    this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.Group));
-                }
+                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.Group));
             }
         }
-
     }
 
 }

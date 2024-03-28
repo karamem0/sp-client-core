@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,60 +15,52 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Add, "KshAnonymousLink")]
+[OutputType(typeof(string))]
+public class AddAnonymousLinkCommand : ClientObjectCmdlet<ISharingLinkService>
 {
 
-    [Cmdlet("Add", "KshAnonymousLink")]
-    [Alias("New-KshAnonymousLink")]
-    [OutputType(typeof(string))]
-    public class AddAnonymousLinkCommand : ClientObjectCmdlet<ISharingLinkService>
+    public AddAnonymousLinkCommand()
     {
+    }
 
-        public AddAnonymousLinkCommand()
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
+    public Uri Url { get; private set; }
+
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
+    public bool IsEditLink { get; private set; }
+
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
+    public DateTime Expiration { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        if (this.ParameterSetName == "ParamSet1")
         {
-        }
-
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-        public Uri Url { get; private set; }
-
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-        public bool IsEditLink { get; private set; }
-
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-        public DateTime Expiration { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            if (this.ParameterSetName == "ParamSet1")
+            if (this.Url.IsAbsoluteUri)
             {
-                if (this.Url.IsAbsoluteUri)
-                {
-                    this.Outputs.Add(this.Service.CreateAnonymousLink(this.Url, this.IsEditLink));
-                }
-                else
-                {
-                    throw new ArgumentException(
-                        string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.Url),
-                        nameof(this.Url));
-                }
+                this.Outputs.Add(this.Service.CreateAnonymousLink(this.Url, this.IsEditLink));
             }
-            if (this.ParameterSetName == "ParamSet2")
+            else
             {
-                if (this.Url.IsAbsoluteUri)
-                {
-                    this.Outputs.Add(this.Service.CreateAnonymousLink(this.Url, this.IsEditLink, this.Expiration));
-                }
-                else
-                {
-                    throw new ArgumentException(
-                        string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.Url),
-                        nameof(this.Url));
-                }
+                throw new InvalidOperationException(string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.Url));
             }
         }
-
+        if (this.ParameterSetName == "ParamSet2")
+        {
+            if (this.Url.IsAbsoluteUri)
+            {
+                this.Outputs.Add(this.Service.CreateAnonymousLink(this.Url, this.IsEditLink, this.Expiration));
+            }
+            else
+            {
+                throw new InvalidOperationException(string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.Url));
+            }
+        }
     }
 
 }

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,85 +15,82 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.Models
+namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
+
+public class ClientObject
 {
 
-    public class ClientObject
-    {
-
-        private static readonly IReadOnlyDictionary<string, Type> ClientObjectDictionary =
-            Assembly.GetExecutingAssembly()
-                .GetTypes()
-                .Where(type => type.IsSubclassOf(typeof(ClientObject)))
-                .Where(type => type.IsDefined(typeof(ClientObjectAttribute)))
-                .Select(type => new
-                {
-                    Type = type,
-                    Attribute = type.GetCustomAttribute<ClientObjectAttribute>()
-                })
-                .Where(value => value.Attribute.Name != null)
-                .ToDictionary(value => value.Attribute.Name, value => value.Type);
-
-        public static Type GetType(string name)
-        {
-            return ClientObjectDictionary
-                .Where(item => item.Key == name)
-                .Select(item => item.Value)
-                .SingleOrDefault();
-        }
-
-        public static Type GetType<T>(string name)
-        {
-            var type = GetType(name);
-            if (type == null)
+    private static readonly IReadOnlyDictionary<string, Type> ClientObjectDictionary =
+        Assembly.GetExecutingAssembly()
+            .GetTypes()
+            .Where(type => type.IsSubclassOf(typeof(ClientObject)))
+            .Where(type => type.IsDefined(typeof(ClientObjectAttribute)))
+            .Select(type => new
             {
-                if (typeof(T).IsGenericSubclassOf(typeof(ClientObjectEnumerable<>)))
-                {
-                    return typeof(T);
-                }
-                else
-                {
-                    return typeof(ClientObject);
-                }
+                Type = type,
+                Attribute = type.GetCustomAttribute<ClientObjectAttribute>()
+            })
+            .Where(value => value.Attribute.Name is not null)
+            .ToDictionary(value => value.Attribute.Name, value => value.Type);
+
+    public static Type GetType(string name)
+    {
+        return ClientObjectDictionary
+            .Where(item => item.Key == name)
+            .Select(item => item.Value)
+            .SingleOrDefault();
+    }
+
+    public static Type GetType<T>(string name)
+    {
+        var type = GetType(name);
+        if (type is null)
+        {
+            if (typeof(T).IsGenericSubclassOf(typeof(ClientObjectEnumerable<>)))
+            {
+                return typeof(T);
             }
             else
             {
-                return type;
+                return typeof(ClientObject);
             }
         }
-
-        public ClientObject()
+        else
         {
-            this.ExtensionProperties = new Dictionary<string, JToken>();
+            return type;
         }
-
-        [JsonIgnore()]
-        public object this[string key] =>
-            this.ExtensionProperties
-                .Where(item => item.Key == key)
-                .Select(item => ClientResultValue.Create(item))
-                .Select(item => item.Value)
-                .SingleOrDefault();
-
-        [JsonIgnore()]
-        public IEnumerable<string> ExtensionKeys => this.ExtensionProperties
-            .Where(item => item.Value != null)
-            .Select(item => ClientResultValue.Create(item))
-            .Select(item => item.Key)
-            .ToArray();
-
-        [JsonProperty("_ObjectIdentity_")]
-        internal string ObjectIdentity { get; private set; }
-
-        [JsonProperty("_ObjectType_")]
-        internal string ObjectType { get; private set; }
-
-        [JsonProperty("_ObjectVersion_")]
-        internal string ObjectVersion { get; private set; }
-
-        [JsonExtensionData()]
-        protected Dictionary<string, JToken> ExtensionProperties { get; private set; }
-
     }
+
+    public ClientObject()
+    {
+        this.ExtensionProperties = [];
+    }
+
+    [JsonIgnore()]
+    public object this[string key] =>
+        this.ExtensionProperties
+            .Where(item => item.Key == key)
+            .Select(ClientResultValue.Create)
+            .Select(item => item.Value)
+            .SingleOrDefault();
+
+    [JsonIgnore()]
+    public IEnumerable<string> ExtensionKeys => this.ExtensionProperties
+        .Where(item => item.Value is not null)
+        .Select(ClientResultValue.Create)
+        .Select(item => item.Key)
+        .ToArray();
+
+    [JsonProperty("_ObjectIdentity_")]
+    internal string ObjectIdentity { get; private set; }
+
+    [JsonProperty("_ObjectType_")]
+    internal string ObjectType { get; private set; }
+
+    [JsonProperty("_ObjectVersion_")]
+    internal string ObjectVersion { get; private set; }
+
+    [JsonExtensionData()]
+    protected Dictionary<string, JToken> ExtensionProperties { get; private set; }
 
 }

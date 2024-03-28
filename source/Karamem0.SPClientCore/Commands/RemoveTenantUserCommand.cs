@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,29 +15,30 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Remove, "KshTenantUser", SupportsShouldProcess = true, ConfirmImpact = ConfirmImpact.High)]
+[OutputType((Type[])null)]
+public class RemoveTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
 {
 
-    [Cmdlet("Remove", "KshTenantUser")]
-    [OutputType(typeof(void))]
-    public class RemoveTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
+    public RemoveTenantUserCommand()
     {
+    }
 
-        public RemoveTenantUserCommand()
-        {
-        }
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
+    public TenantSiteCollection SiteCollection { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
-        public TenantSiteCollection SiteCollection { get; private set; }
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+    public Uri SiteCollectionUrl { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
-        public Uri SiteCollectionUrl { get; private set; }
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
+    public User User { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
-        public User User { get; private set; }
-
-        protected override void ProcessRecordCore()
+    protected override void ProcessRecordCore()
+    {
+        if (this.ShouldProcess(this.SiteCollectionUrl.ToString(), VerbsCommon.Remove))
         {
             if (this.ParameterSetName == "ParamSet1")
             {
@@ -48,7 +49,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands
                 this.Service.RemoveObject(this.SiteCollectionUrl, this.User);
             }
         }
-
     }
 
 }

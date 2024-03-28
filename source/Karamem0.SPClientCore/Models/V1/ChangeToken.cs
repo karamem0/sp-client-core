@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,21 +13,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.ChangeToken", Id = "{41c5be82-b5bf-4b5a-9712-97111fb87686}")]
+[JsonObject()]
+public class ChangeToken : ClientValueObject
 {
 
-    [ClientObject(Name = "SP.ChangeToken", Id = "{41c5be82-b5bf-4b5a-9712-97111fb87686}")]
-    [JsonObject()]
-    public class ChangeToken : ClientValueObject
+    public ChangeToken()
     {
-
-        public ChangeToken()
-        {
-        }
-
-        [JsonProperty()]
-        public virtual string StringValue { get; protected set; }
-
     }
+
+    [JsonProperty()]
+    public virtual string StringValue { get; protected set; }
 
 }

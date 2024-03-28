@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,27 +13,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.TimeZone", Id = "{5519d02c-ce37-4b91-b61d-a1cefe0fc85e}")]
+[JsonObject()]
+public class TimeZone : ClientObject
 {
 
-    [ClientObject(Name = "SP.TimeZone", Id = "{5519d02c-ce37-4b91-b61d-a1cefe0fc85e}")]
-    [JsonObject()]
-    public class TimeZone : ClientObject
+    public TimeZone()
     {
-
-        public TimeZone()
-        {
-        }
-
-        [JsonProperty()]
-        public virtual string Description { get; protected set; }
-
-        [JsonProperty()]
-        public virtual int Id { get; protected set; }
-
-        [JsonProperty("Information")]
-        public virtual TimeZoneInfo TimeZoneInfo { get; protected set; }
-
     }
+
+    [JsonProperty()]
+    public virtual string Description { get; protected set; }
+
+    [JsonProperty()]
+    public virtual int Id { get; protected set; }
+
+    [JsonProperty("Information")]
+    public virtual TimeZoneInfo TimeZoneInfo { get; protected set; }
 
 }

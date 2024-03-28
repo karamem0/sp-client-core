@@ -14,8 +14,10 @@ Updates a site collection.
 
 ### ParamSet1
 ```
-Set-KshTenantSiteCollection [-Identity] <TenantSiteCollection> [-AllowDownloadingNonWebViewableFiles <Boolean>]
- [-AllowEditing <Boolean>] [-AnonymousLinkExpirationInDays <Int32>] [-AuthenticationContextStrength <String>]
+Set-KshTenantSiteCollection [-Identity] <TenantSiteCollection>
+ [-AllowAnonymousMeetingParticipantsToAccessWhiteboards <SharingState>]
+ [-AllowDownloadingNonWebViewableFiles <Boolean>] [-AllowEditing <Boolean>]
+ [-AnonymousLinkExpirationInDays <Int32>] [-AuthenticationContextStrength <String>]
  [-AuthenticationContextName <String>] [-BlockDownloadLinksFileType <BlockDownloadLinksFileType>]
  [-BlockDownloadMicrosoft365GroupIds <Guid[]>] [-BlockDownloadPolicy <Boolean>]
  [-CommentsOnSitePagesDisabled <Boolean>] [-ConditionalAccessPolicy <ConditionalAccessPolicyType>]
@@ -26,8 +28,6 @@ Set-KshTenantSiteCollection [-Identity] <TenantSiteCollection> [-AllowDownloadin
  [-ExternalUserExpirationInDays <Int32>] [-InformationBarriersMode <String>]
  [-InformationBarriersSegments <Guid[]>] [-InformationBarriersSegmentsToAdd <Guid[]>]
  [-InformationBarriersSegmentsToRemove <Guid[]>] [-LimitedAccessFileType <LimitedAccessFileType>]
- [-LoopDefaultSharingLinkRole <RoleType>] [-LoopDefaultSharingLinkScope <SharingScope>]
- [-LoopOverrideSharingCapability <Boolean>] [-LoopSharingCapability <SharingCapabilities>]
  [-MediaTranscription <MediaTranscriptionPolicyType>]
  [-OverrideBlockUserInfoVisibility <SiteUserInfoVisibilityPolicyType>]
  [-OverrideTenantAnonymousLinkExpirationPolicy <Boolean>]
@@ -41,13 +41,15 @@ Set-KshTenantSiteCollection [-Identity] <TenantSiteCollection> [-AllowDownloadin
  [-ShowPeoplePickerSuggestionsForGuestUsers <Boolean>] [-SocialBarOnSitePagesDisabled <Boolean>]
  [-StorageMaximumLevel <Int64>] [-StorageWarningLevel <Int64>] [-TimeZoneId <Int32>] [-Title <String>]
  [-TitleTranslations <ResourceEntry[]>] [-UserCodeMaximumLevel <Double>] [-UserCodeWarningLevel <Double>]
- [-PassThru] [<CommonParameters>]
+ [-PassThru] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet2
 ```
-Set-KshTenantSiteCollection [-Identity] <TenantSiteCollection> [-AllowDownloadingNonWebViewableFiles <Boolean>]
- [-AllowEditing <Boolean>] [-AnonymousLinkExpirationInDays <Int32>] [-AuthenticationContextStrength <String>]
+Set-KshTenantSiteCollection [-Identity] <TenantSiteCollection>
+ [-AllowAnonymousMeetingParticipantsToAccessWhiteboards <SharingState>]
+ [-AllowDownloadingNonWebViewableFiles <Boolean>] [-AllowEditing <Boolean>]
+ [-AnonymousLinkExpirationInDays <Int32>] [-AuthenticationContextStrength <String>]
  [-AuthenticationContextName <String>] [-BlockDownloadLinksFileType <BlockDownloadLinksFileType>]
  [-BlockDownloadMicrosoft365GroupIds <Guid[]>] [-BlockDownloadPolicy <Boolean>]
  [-CommentsOnSitePagesDisabled <Boolean>] [-ConditionalAccessPolicy <ConditionalAccessPolicyType>]
@@ -58,8 +60,6 @@ Set-KshTenantSiteCollection [-Identity] <TenantSiteCollection> [-AllowDownloadin
  [-ExternalUserExpirationInDays <Int32>] [-InformationBarriersMode <String>]
  [-InformationBarriersSegments <Guid[]>] [-InformationBarriersSegmentsToAdd <Guid[]>]
  [-InformationBarriersSegmentsToRemove <Guid[]>] [-LimitedAccessFileType <LimitedAccessFileType>]
- [-LoopDefaultSharingLinkRole <RoleType>] [-LoopDefaultSharingLinkScope <SharingScope>]
- [-LoopOverrideSharingCapability <Boolean>] [-LoopSharingCapability <SharingCapabilities>]
  [-MediaTranscription <MediaTranscriptionPolicyType>]
  [-OverrideBlockUserInfoVisibility <SiteUserInfoVisibilityPolicyType>]
  [-OverrideTenantAnonymousLinkExpirationPolicy <Boolean>]
@@ -73,7 +73,7 @@ Set-KshTenantSiteCollection [-Identity] <TenantSiteCollection> [-AllowDownloadin
  [-ShowPeoplePickerSuggestionsForGuestUsers <Boolean>] [-SocialBarOnSitePagesDisabled <Boolean>]
  [-StorageMaximumLevel <Int64>] [-StorageWarningLevel <Int64>] [-TimeZoneId <Int32>] [-Title <String>]
  [-TitleTranslations <ResourceEntry[]>] [-UserCodeMaximumLevel <Double>] [-UserCodeWarningLevel <Double>]
- [-NoWait] [<CommonParameters>]
+ [-NoWait] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -89,6 +89,22 @@ PS C:\> Set-KshTenantSiteCollection -Identity (Get-KshTenantSiteCollection -Site
 Updates property values of the site collection.
 
 ## PARAMETERS
+
+### -AllowAnonymousMeetingParticipantsToAccessWhiteboards
+{{ Fill AllowAnonymousMeetingParticipantsToAccessWhiteboards Description }}
+
+```yaml
+Type: SharingState
+Parameter Sets: (All)
+Aliases:
+Accepted values: Unspecified, On, Off
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### -AllowDownloadingNonWebViewableFiles
 Specifies whether to allow to download files.
@@ -466,69 +482,6 @@ Type: LimitedAccessFileType
 Parameter Sets: (All)
 Aliases:
 Accepted values: OfficeOnlineFilesOnly, WebPreviewableFiles, OtherFiles
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -LoopDefaultSharingLinkRole
-Specifies the Loop default sharing link role.
-
-```yaml
-Type: RoleType
-Parameter Sets: (All)
-Aliases:
-Accepted values: None, View, Edit, Owner, LimitedView, LimitedEdit, Review, RestrictedView, Submit, ManageList
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -LoopDefaultSharingLinkScope
-Specifies the Loop default sharing link scope.
-
-```yaml
-Type: SharingScope
-Parameter Sets: (All)
-Aliases:
-Accepted values: Anyone, Organization, SpecificPeople, Uninitialized
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -LoopOverrideSharingCapability
-Specifies whether to override Loop sharing capability.
-
-```yaml
-Type: Boolean
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -LoopSharingCapability
-Specifies the Loop sharing capability.
-
-```yaml
-Type: SharingCapabilities
-Parameter Sets: (All)
-Aliases:
-Accepted values: Disabled, ExternalUserSharingOnly, ExternalUserAndGuestSharing, ExistingExternalUserSharingOnly
 
 Required: False
 Position: Named
@@ -986,6 +939,21 @@ Specifies the warning quota of the server resource.
 Type: Double
 Parameter Sets: (All)
 Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ProgressAction
+Determines how PowerShell responds to progress updates generated by a script, cmdlet, or provider.
+
+```yaml
+Type: ActionPreference
+Parameter Sets: (All)
+Aliases: proga
 
 Required: False
 Position: Named

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -14,58 +14,55 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.Models
+namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
+
+public class JsonBase64BinaryConverter : JsonConverter
 {
 
-    public class JsonBase64BinaryConverter : JsonConverter
+    public JsonBase64BinaryConverter()
     {
+    }
 
-        public JsonBase64BinaryConverter()
+    public override bool CanRead => true;
+
+    public override bool CanWrite => true;
+
+    public override bool CanConvert(Type objectType)
+    {
+        if (objectType == typeof(byte[]))
         {
+            return true;
         }
-
-        public override bool CanRead => true;
-
-        public override bool CanWrite => true;
-
-        public override bool CanConvert(Type objectType)
+        else
         {
-            if (objectType == typeof(byte[]))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return false;
         }
+    }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    {
+        var value = default(byte[]);
+        if (reader.Value is null)
         {
-            var value = default(byte[]);
-            if (reader.Value == null)
-            {
-                return value;
-            }
-            if (Base64BinaryConverter.TryParse(reader.Value.ToString(), out value))
-            {
-                return value;
-            }
-            return null;
+            return value;
         }
-
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        if (Base64BinaryConverter.TryParse(reader.Value.ToString(), out value))
         {
-            if (value == null || (Guid)value == Guid.Empty)
-            {
-                writer.WriteNull();
-            }
-            else
-            {
-                JToken.FromObject(value).WriteTo(writer);
-            }
+            return value;
         }
+        return null;
+    }
 
+    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    {
+        if (value is null || (Guid)value == Guid.Empty)
+        {
+            writer.WriteNull();
+        }
+        else
+        {
+            JToken.FromObject(value).WriteTo(writer);
+        }
     }
 
 }

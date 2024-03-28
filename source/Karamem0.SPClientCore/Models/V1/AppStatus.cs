@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -11,42 +11,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+public enum AppStatus
 {
 
-    public enum AppStatus
-    {
+    InvalidStatus = 0,
 
-        InvalidStatus = 0,
+    Installing = 1,
 
-        Installing = 1,
+    Uninstalling = 4,
 
-        Uninstalling = 4,
+    Installed = 5,
 
-        Installed = 5,
+    Canceling = 7,
 
-        Canceling = 7,
+    Upgrading = 8,
 
-        Upgrading = 8,
+    Initialized = 9,
 
-        Initialized = 9,
+    UpgradeCanceling = 10,
 
-        UpgradeCanceling = 10,
+    Disabling = 11,
 
-        Disabling = 11,
+    Disabled = 12,
 
-        Disabled = 12,
+    SecretRolling = 13,
 
-        SecretRolling = 13,
+    Recycling = 14,
 
-        Recycling = 14,
+    Recycled = 15,
 
-        Recycled = 15,
+    Restoring = 16,
 
-        Restoring = 16,
-
-        RestoreCanceling = 17
-
-    }
+    RestoreCanceling = 17
 
 }

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -11,27 +11,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[Flags()]
+public enum PersonalSiteCapabilities
 {
 
-    [Flags()]
-    public enum PersonalSiteCapabilities
-    {
+    None = 0,
 
-        None = 0,
+    Profile = 1,
 
-        Profile = 1,
+    Social = 2,
 
-        Social = 2,
+    Storage = 4,
 
-        Storage = 4,
+    MyTasksDashboard = 8,
 
-        MyTasksDashboard = 8,
+    Education = 16,
 
-        Education = 16,
-
-        Guest = 32,
-
-    }
+    Guest = 32,
 
 }

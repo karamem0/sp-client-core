@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,33 +15,30 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsLifecycle.Uninstall, "KshSiteCollectionApp")]
+[OutputType(typeof(App))]
+public class UninstallSiteCollectionAppCommand : ClientObjectCmdlet<ISiteCollectionAppService>
 {
 
-    [Cmdlet("Uninstall", "KshSiteCollectionApp")]
-    [OutputType(typeof(App))]
-    public class UninstallSiteCollectionAppCommand : ClientObjectCmdlet<ISiteCollectionAppService>
+    public UninstallSiteCollectionAppCommand()
     {
+    }
 
-        public UninstallSiteCollectionAppCommand()
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    public App Identity { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public SwitchParameter PassThru { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        this.Service.UninstallObject(this.Identity);
+        if (this.PassThru)
         {
+            this.Outputs.Add(this.Service.GetObject(this.Identity));
         }
-
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public App Identity { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public SwitchParameter PassThru { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Service.UninstallObject(this.Identity);
-            if (this.PassThru)
-            {
-                this.Outputs.Add(this.Service.GetObject(this.Identity));
-            }
-        }
-
     }
 
 }

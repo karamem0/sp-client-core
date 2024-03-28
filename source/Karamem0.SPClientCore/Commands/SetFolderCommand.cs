@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,40 +15,36 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Set, "KshFolder")]
+[OutputType(typeof(Folder))]
+public class SetFolderCommand : ClientObjectCmdlet<IFolderService>
 {
 
-    [Cmdlet("Set", "KshFolder")]
-    [Alias("Update-KshFolder")]
-    [OutputType(typeof(Folder))]
-    public class SetFolderCommand : ClientObjectCmdlet<IFolderService>
+    public SetFolderCommand()
     {
+    }
 
-        public SetFolderCommand()
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    public Folder Identity { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public ContentTypeId[] UniqueContentTypeOrder { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public string WelcomePage { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public SwitchParameter PassThru { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        this.Service.SetObject(this.Identity, this.MyInvocation.BoundParameters);
+        if (this.PassThru)
         {
+            this.Outputs.Add(this.Service.GetObject(this.Identity));
         }
-
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public Folder Identity { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public ContentTypeId[] UniqueContentTypeOrder { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public string WelcomePage { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public SwitchParameter PassThru { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Service.SetObject(this.Identity, this.MyInvocation.BoundParameters);
-            if (this.PassThru)
-            {
-                this.Outputs.Add(this.Service.GetObject(this.Identity));
-            }
-        }
-
     }
 
 }

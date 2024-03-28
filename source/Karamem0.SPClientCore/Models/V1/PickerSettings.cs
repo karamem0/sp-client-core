@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,39 +13,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.PickerSettings", Id = "{8d31357d-328a-45cc-a5ab-b15c9c83eb71}")]
+[JsonObject()]
+public class PickerSettings : ClientObject
 {
 
-    [ClientObject(Name = "SP.PickerSettings", Id = "{8d31357d-328a-45cc-a5ab-b15c9c83eb71}")]
-    [JsonObject()]
-    public class PickerSettings : ClientObject
+    public PickerSettings()
     {
-
-        public PickerSettings()
-        {
-        }
-
-        [JsonProperty()]
-        public virtual bool AllowEmailAddresses { get; protected set; }
-
-        [JsonProperty()]
-        public virtual bool AllowOnlyEmailAddresses { get; protected set; }
-
-        [JsonProperty()]
-        public virtual string PrincipalAccountType { get; protected set; }
-
-        [JsonProperty()]
-        public virtual PrincipalSource PrincipalSource { get; protected set; }
-
-        [JsonProperty()]
-        public virtual PeoplePickerQuerySettings QuerySettings { get; protected set; }
-
-        [JsonProperty()]
-        public virtual bool UseSubstrateSearch { get; protected set; }
-
-        [JsonProperty()]
-        public virtual int VisibleSuggestions { get; protected set; }
-
     }
+
+    [JsonProperty()]
+    public virtual bool AllowEmailAddresses { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool AllowOnlyEmailAddresses { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string PrincipalAccountType { get; protected set; }
+
+    [JsonProperty()]
+    public virtual PrincipalSource PrincipalSource { get; protected set; }
+
+    [JsonProperty()]
+    public virtual PeoplePickerQuerySettings QuerySettings { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool UseSubstrateSearch { get; protected set; }
+
+    [JsonProperty()]
+    public virtual int VisibleSuggestions { get; protected set; }
 
 }

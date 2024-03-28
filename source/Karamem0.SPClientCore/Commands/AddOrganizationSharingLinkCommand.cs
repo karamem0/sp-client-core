@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,40 +15,33 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Add, "KshOrganizationSharingLink")]
+[OutputType(typeof(string))]
+public class AddOrganizationSharingLinkCommand : ClientObjectCmdlet<ISharingLinkService>
 {
 
-    [Cmdlet("Add", "KshOrganizationSharingLink")]
-    [Alias("New-KshOrganizationSharingLink")]
-    [OutputType(typeof(string))]
-    public class AddOrganizationSharingLinkCommand : ClientObjectCmdlet<ISharingLinkService>
+    public AddOrganizationSharingLinkCommand()
     {
+    }
 
-        public AddOrganizationSharingLinkCommand()
+    [Parameter(Mandatory = true)]
+    public Uri Url { get; private set; }
+
+    [Parameter(Mandatory = true)]
+    public bool IsEditLink { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        if (this.Url.IsAbsoluteUri)
         {
+            this.Outputs.Add(this.Service.CreateOrganizationSharingLink(this.Url, this.IsEditLink));
         }
-
-        [Parameter(Mandatory = true)]
-        public Uri Url { get; private set; }
-
-        [Parameter(Mandatory = true)]
-        public bool IsEditLink { get; private set; }
-
-        protected override void ProcessRecordCore()
+        else
         {
-            if (this.Url.IsAbsoluteUri)
-            {
-                this.Outputs.Add(this.Service.CreateOrganizationSharingLink(this.Url, this.IsEditLink));
-            }
-            else
-            {
-                throw new ArgumentException(
-                    string.Format(
-                        StringResources.ErrorValueIsNotAbsoluteUrl, this.Url),
-                    nameof(this.Url));
-            }
+            throw new InvalidOperationException(string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.Url));
         }
-
     }
 
 }

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,33 +15,29 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Add, "KshUser")]
+[OutputType(typeof(User))]
+public class AddUserCommand : ClientObjectCmdlet<IUserService>
 {
 
-    [Cmdlet("Add", "KshUser")]
-    [Alias("New-KshUser")]
-    [OutputType(typeof(User))]
-    public class AddUserCommand : ClientObjectCmdlet<IUserService>
+    public AddUserCommand()
     {
+    }
 
-        public AddUserCommand()
-        {
-        }
+    [Parameter(Mandatory = false)]
+    public string Email { get; private set; }
 
-        [Parameter(Mandatory = false)]
-        public string Email { get; private set; }
+    [Parameter(Mandatory = true)]
+    public string LoginName { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public string LoginName { get; private set; }
+    [Parameter(Mandatory = false)]
+    public string Title { get; private set; }
 
-        [Parameter(Mandatory = false)]
-        public string Title { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Outputs.Add(this.Service.AddObject(this.MyInvocation.BoundParameters));
-        }
-
+    protected override void ProcessRecordCore()
+    {
+        this.Outputs.Add(this.Service.AddObject(this.MyInvocation.BoundParameters));
     }
 
 }

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,39 +13,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "Microsoft.Online.SharePoint.TenantAdministration.TenantSiteScript", Id = "{717c203d-a629-47df-80bb-cdeda6592aa4}")]
+[JsonObject()]
+public class TenantSiteScript : ClientObject
 {
 
-    [ClientObject(Name = "Microsoft.Online.SharePoint.TenantAdministration.TenantSiteScript", Id = "{717c203d-a629-47df-80bb-cdeda6592aa4}")]
-    [JsonObject()]
-    public class TenantSiteScript : ClientObject
+    public TenantSiteScript()
     {
-
-        public TenantSiteScript()
-        {
-        }
-
-        [JsonProperty()]
-        public virtual string Content { get; protected set; }
-
-        [JsonProperty()]
-        public virtual System.IO.Stream ContentStream { get; protected set; }
-
-        [JsonProperty()]
-        public virtual string Description { get; protected set; }
-
-        [JsonProperty()]
-        public virtual Guid Id { get; protected set; }
-
-        [JsonProperty()]
-        public virtual bool IsSiteScriptPackage { get; protected set; }
-
-        [JsonProperty()]
-        public virtual string Title { get; protected set; }
-
-        [JsonProperty()]
-        public virtual int Version { get; protected set; }
-
     }
+
+    [JsonProperty()]
+    public virtual string Content { get; protected set; }
+
+    [JsonProperty()]
+    public virtual System.IO.Stream ContentStream { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string Description { get; protected set; }
+
+    [JsonProperty()]
+    public virtual Guid Id { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool IsSiteScriptPackage { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string Title { get; protected set; }
+
+    [JsonProperty()]
+    public virtual int Version { get; protected set; }
 
 }

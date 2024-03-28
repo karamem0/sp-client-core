@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -14,26 +14,26 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Remove, "KshTermStoreLanguage", SupportsShouldProcess = true, ConfirmImpact = ConfirmImpact.High)]
+[OutputType((Type[])null)]
+public class RemoveTermStoreLanguageCommand : ClientObjectCmdlet<ITermStoreLanguageService>
 {
 
-    [Cmdlet("Remove", "KshTermStoreLanguage")]
-    [OutputType(typeof(void))]
-    public class RemoveTermStoreLanguageCommand : ClientObjectCmdlet<ITermStoreLanguageService>
+    public RemoveTermStoreLanguageCommand()
     {
+    }
 
-        public RemoveTermStoreLanguageCommand()
-        {
-        }
+    [Parameter(Mandatory = true, Position = 0)]
+    public uint Lcid { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0)]
-        public uint Lcid { get; private set; }
-
-        protected override void ProcessRecordCore()
+    protected override void ProcessRecordCore()
+    {
+        if (this.ShouldProcess(this.Lcid.ToString(), VerbsCommon.Remove))
         {
             this.Service.RemoveObject(this.Lcid);
         }
-
     }
 
 }

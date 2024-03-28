@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -17,73 +17,70 @@ using System.Management.Automation;
 using System.Reflection;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.Models
+namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
+
+public class ClientValueObject
 {
 
-    public class ClientValueObject
+    private static readonly IReadOnlyDictionary<string, Type> ClientValueObjectDictionary =
+        Assembly.GetExecutingAssembly()
+            .GetTypes()
+            .Where(type => type.IsSubclassOf(typeof(ClientValueObject)))
+            .Where(type => type.IsDefined(typeof(ClientObjectAttribute)))
+            .ToDictionary(type => type.GetCustomAttribute<ClientObjectAttribute>().Name, type => type);
+
+    public static Type GetType(string name)
     {
+        return ClientValueObjectDictionary
+            .Where(item => item.Key == name)
+            .Select(item => item.Value)
+            .SingleOrDefault();
+    }
 
-        private static readonly IReadOnlyDictionary<string, Type> ClientValueObjectDictionary =
-            Assembly.GetExecutingAssembly()
-                .GetTypes()
-                .Where(type => type.IsSubclassOf(typeof(ClientValueObject)))
-                .Where(type => type.IsDefined(typeof(ClientObjectAttribute)))
-                .ToDictionary(type => type.GetCustomAttribute<ClientObjectAttribute>().Name, type => type);
+    public ClientValueObject()
+    {
+        this.ExtensionProperties = [];
+    }
 
-        public static Type GetType(string name)
+    public ClientValueObject(IReadOnlyDictionary<string, object> parameters)
+    {
+        _ = parameters ?? throw new ArgumentNullException(nameof(parameters));
+        foreach (var propertyInfo in this.GetType().GetDeclaringProperties())
         {
-            return ClientValueObjectDictionary
-                .Where(item => item.Key == name)
-                .Select(item => item.Value)
-                .SingleOrDefault();
-        }
-
-        public ClientValueObject()
-        {
-            this.ExtensionProperties = new Dictionary<string, JToken>();
-        }
-
-        public ClientValueObject(IReadOnlyDictionary<string, object> parameters)
-        {
-            _ = parameters ?? throw new ArgumentNullException(nameof(parameters));
-            foreach (var propertyInfo in this.GetType().GetDeclaringProperties())
+            if (parameters.TryGetValue(propertyInfo.Name, out var value))
             {
-                if (parameters.TryGetValue(propertyInfo.Name, out var value))
+                if (value is SwitchParameter switchValue)
                 {
-                    if (value is SwitchParameter switchValue)
+                    var switchAttribute = propertyInfo.GetCustomAttribute<SwitchParameterValueAttribute>();
+                    if (switchAttribute is not null)
                     {
-                        var switchAttribute = propertyInfo.GetCustomAttribute<SwitchParameterValueAttribute>();
-                        if (switchAttribute != null)
-                        {
-                            propertyInfo.SetValue(this, switchValue.ToBool() ? switchAttribute.TrueValue : switchAttribute.FalseValue);
-                        }
-                        else
-                        {
-                            propertyInfo.SetValue(this, switchValue.ToBool());
-                        }
+                        propertyInfo.SetValue(this, switchValue.ToBool() ? switchAttribute.TrueValue : switchAttribute.FalseValue);
                     }
                     else
                     {
-                        propertyInfo.SetValue(this, value);
+                        propertyInfo.SetValue(this, switchValue.ToBool());
                     }
                 }
                 else
                 {
-                    var defaultAttribute = propertyInfo.GetCustomAttribute<DefaultValueAttribute>();
-                    if (defaultAttribute != null)
-                    {
-                        propertyInfo.SetValue(this, defaultAttribute.Value);
-                    }
+                    propertyInfo.SetValue(this, value);
+                }
+            }
+            else
+            {
+                var defaultAttribute = propertyInfo.GetCustomAttribute<DefaultValueAttribute>();
+                if (defaultAttribute is not null)
+                {
+                    propertyInfo.SetValue(this, defaultAttribute.Value);
                 }
             }
         }
-
-        [JsonProperty("_ObjectType_")]
-        internal string ObjectType { get; private set; }
-
-        [JsonExtensionData()]
-        protected Dictionary<string, JToken> ExtensionProperties { get; private set; }
-
     }
+
+    [JsonProperty("_ObjectType_")]
+    internal string ObjectType { get; private set; }
+
+    [JsonExtensionData()]
+    protected Dictionary<string, JToken> ExtensionProperties { get; private set; }
 
 }

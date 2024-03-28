@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,40 +13,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.WebCreationInformation", Id = "{8f9e9fbe-189e-492f-884f-98f9ef9cc4d6}")]
+[JsonObject()]
+public class SiteCreationInfo : ClientValueObject
 {
 
-    [ClientObject(Name = "SP.WebCreationInformation", Id = "{8f9e9fbe-189e-492f-884f-98f9ef9cc4d6}")]
-    [JsonObject()]
-    public class SiteCreationInfo : ClientValueObject
+    public SiteCreationInfo()
     {
-
-        public SiteCreationInfo()
-        {
-        }
-
-        public SiteCreationInfo(IReadOnlyDictionary<string, object> parameters) : base(parameters)
-        {
-        }
-
-        [JsonProperty()]
-        public virtual string Description { get; protected set; }
-
-        [JsonProperty("Language")]
-        public virtual uint Lcid { get; protected set; }
-
-        [JsonProperty("Url")]
-        public virtual string ServerRelativeUrl { get; protected set; }
-
-        [JsonProperty("WebTemplate")]
-        public virtual string Template { get; protected set; }
-
-        [JsonProperty()]
-        public virtual string Title { get; protected set; }
-
-        [JsonProperty()]
-        public virtual bool UseSamePermissionsAsParentSite { get; protected set; }
-
     }
+
+    public SiteCreationInfo(IReadOnlyDictionary<string, object> parameters) : base(parameters)
+    {
+    }
+
+    [JsonProperty()]
+    public virtual string Description { get; protected set; }
+
+    [JsonProperty("Language")]
+    public virtual uint Lcid { get; protected set; }
+
+    [JsonProperty("Url")]
+    public virtual string ServerRelativeUrl { get; protected set; }
+
+    [JsonProperty("WebTemplate")]
+    public virtual string Template { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string Title { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool UseSamePermissionsAsParentSite { get; protected set; }
 
 }

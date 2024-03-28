@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,21 +13,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.ListItemCollection", Id = "{1722df25-a4d3-44bb-a1c6-04dbb90e9d91}")]
+[JsonObject()]
+public class ListItemEnumerable : ClientObjectEnumerable<ListItem>
 {
 
-    [ClientObject(Name = "SP.ListItemCollection", Id = "{1722df25-a4d3-44bb-a1c6-04dbb90e9d91}")]
-    [JsonObject()]
-    public class ListItemEnumerable : ClientObjectEnumerable<ListItem>
+    public ListItemEnumerable()
     {
-
-        public ListItemEnumerable()
-        {
-        }
-
-        [JsonProperty()]
-        public virtual ListItemCollectionPosition ListItemCollectionPosition { get; protected set; }
-
     }
+
+    [JsonProperty()]
+    public virtual ListItemCollectionPosition ListItemCollectionPosition { get; protected set; }
 
 }

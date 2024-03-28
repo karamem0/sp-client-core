@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -12,50 +12,47 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.Models
+namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
+
+public class ClientActionCollection : IEnumerable<ClientAction>
 {
 
-    public class ClientActionCollection : IEnumerable<ClientAction>
+    private readonly IDictionary<long, ClientAction> collection;
+
+    public ClientActionCollection()
     {
+        this.collection = new Dictionary<long, ClientAction>();
+    }
 
-        private readonly IDictionary<long, ClientAction> collection;
+    public ClientAction this[long id] => this.collection[id];
 
-        public ClientActionCollection()
+    public void Add(ClientAction item)
+    {
+        _ = item ?? throw new ArgumentNullException(nameof(item));
+        this.collection.Add(item.Id, item);
+    }
+
+    public void AddRange(IEnumerable<ClientAction> items)
+    {
+        foreach (var item in items)
         {
-            this.collection = new Dictionary<long, ClientAction>();
+            this.Add(item);
         }
+    }
 
-        public ClientAction this[long id] => this.collection[id];
+    public void Remove(long id)
+    {
+        _ = this.collection.Remove(id);
+    }
 
-        public void Add(ClientAction item)
-        {
-            _ = item ?? throw new ArgumentNullException(nameof(item));
-            this.collection.Add(item.Id, item);
-        }
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return this.GetEnumerator();
+    }
 
-        public void AddRange(IEnumerable<ClientAction> items)
-        {
-            foreach (var item in items)
-            {
-                this.Add(item);
-            }
-        }
-
-        public void Remove(long id)
-        {
-            _ = this.collection.Remove(id);
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return this.GetEnumerator();
-        }
-
-        public IEnumerator<ClientAction> GetEnumerator()
-        {
-            return this.collection.Values.GetEnumerator();
-        }
-
+    public IEnumerator<ClientAction> GetEnumerator()
+    {
+        return this.collection.Values.GetEnumerator();
     }
 
 }

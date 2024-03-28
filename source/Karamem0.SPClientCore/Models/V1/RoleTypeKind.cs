@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -11,32 +11,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+public enum RoleTypeKind
 {
 
-    public enum RoleTypeKind
-    {
+    None = 0,
 
-        None = 0,
+    Guest = 1,
 
-        Guest = 1,
+    Reader = 2,
 
-        Reader = 2,
+    Contributor = 3,
 
-        Contributor = 3,
+    WebDesigner = 4,
 
-        WebDesigner = 4,
+    Administrator = 5,
 
-        Administrator = 5,
+    Editor = 6,
 
-        Editor = 6,
+    Reviewer = 7,
 
-        Reviewer = 7,
+    RestrictedReader = 8,
 
-        RestrictedReader = 8,
-
-        System = 255,
-
-    }
+    System = 255,
 
 }

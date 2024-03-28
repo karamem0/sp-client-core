@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,26 +13,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V2
+namespace Karamem0.SharePoint.PowerShell.Models.V2;
+
+[JsonObject()]
+public class Identity : ODataV2Object
 {
 
-    [JsonObject()]
-    public class Identity : ODataV2Object
+    public Identity()
     {
-
-        public Identity()
-        {
-        }
-
-        [JsonProperty("displayName")]
-        public virtual string DisplayName { get; protected set; }
-
-        [JsonProperty("email")]
-        public virtual string Email { get; protected set; }
-
-        [JsonProperty("id")]
-        public virtual Guid Id { get; protected set; }
-
     }
+
+    [JsonProperty("displayName")]
+    public virtual string DisplayName { get; protected set; }
+
+    [JsonProperty("email")]
+    public virtual string Email { get; protected set; }
+
+    [JsonProperty("id")]
+    public virtual Guid Id { get; protected set; }
 
 }

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,35 +13,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V2
+namespace Karamem0.SharePoint.PowerShell.Models.V2;
+
+[JsonObject()]
+public class Quota : ODataV2Object
 {
 
-    [JsonObject()]
-    public class Quota : ODataV2Object
+    public Quota()
     {
-
-        public Quota()
-        {
-        }
-
-        [JsonProperty("deleted")]
-        public virtual long Deleted { get; protected set; }
-
-        [JsonProperty("fileCount")]
-        public virtual long FileCount { get; protected set; }
-
-        [JsonProperty("remaining")]
-        public virtual long Remaining { get; protected set; }
-
-        [JsonProperty("state")]
-        public virtual QuotaState State { get; protected set; }
-
-        [JsonProperty("total")]
-        public virtual long Total { get; protected set; }
-
-        [JsonProperty("used")]
-        public virtual long Used { get; protected set; }
-
     }
+
+    [JsonProperty("deleted")]
+    public virtual long Deleted { get; protected set; }
+
+    [JsonProperty("fileCount")]
+    public virtual long FileCount { get; protected set; }
+
+    [JsonProperty("remaining")]
+    public virtual long Remaining { get; protected set; }
+
+    [JsonProperty("state")]
+    public virtual QuotaState State { get; protected set; }
+
+    [JsonProperty("total")]
+    public virtual long Total { get; protected set; }
+
+    [JsonProperty("used")]
+    public virtual long Used { get; protected set; }
 
 }

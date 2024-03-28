@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -7,46 +7,64 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Resources;
+using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Microsoft.IdentityModel.JsonWebTokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
+namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth;
+
+public static class AadOAuthTokenStore
 {
 
-    public static class AadOAuthTokenStore
+    public static void Add(Uri resource, AadOAuthToken oAuthToken)
     {
+        _ = resource ?? throw new ArgumentNullException(nameof(resource));
+        _ = oAuthToken ?? throw new ArgumentNullException(nameof(oAuthToken));
+        var oAuthTokens = AadOAuthTokenDictionary.Load();
+        oAuthTokens[resource.GetAuthority()] = oAuthToken;
+        oAuthTokens.Save();
+    }
 
-        public static AadOAuthToken Get(string audience)
+    public static AadOAuthToken Get(Uri resource)
+    {
+        _ = resource ?? throw new ArgumentNullException(nameof(resource));
+        if (AadOAuthTokenDictionary.Load().TryGetValue(resource.GetAuthority(), out var oAuthToken))
         {
-            _ = audience ?? throw new ArgumentNullException(nameof(audience));
-            if (AadOAuthTokenDictionary.Load().TryGetValue(audience, out var oAuthToken))
+            return oAuthToken;
+        }
+        throw new InvalidOperationException(StringResources.ErrorAccessTokenIsNotCached);
+    }
+
+    public static void Remove(Uri resource)
+    {
+        _ = resource ?? throw new ArgumentNullException(nameof(resource));
+        var oAuthTokens = AadOAuthTokenDictionary.Load();
+        _ = oAuthTokens.Remove(resource.GetAuthority());
+        oAuthTokens.Save();
+    }
+
+    public static void Remove(string tenantId)
+    {
+        _ = tenantId ?? throw new ArgumentNullException(nameof(tenantId));
+        var oAuthTokens = AadOAuthTokenDictionary.Load();
+        var resource = oAuthTokens
+            .Where(oAuthToken =>
             {
-                return oAuthToken;
-            }
-            throw new InvalidOperationException(StringResources.ErrorAccessTokenIsNotCached);
-        }
-
-        public static void Add(AadOAuthToken oAuthToken)
+                var accessToken = oAuthToken.Value.AccessToken;
+                var jwtToken = new JsonWebToken(accessToken);
+                var jwtTenantId = jwtToken.GetPayloadValue<string>("tid");
+                return jwtTenantId == tenantId;
+            })
+            .Select(oAuthToken => oAuthToken.Key)
+            .FirstOrDefault();
+        if (resource is null)
         {
-            _ = oAuthToken ?? throw new ArgumentNullException(nameof(oAuthToken));
-            var oAuthTokens = AadOAuthTokenDictionary.Load();
-            var jwtToken = new JsonWebToken(oAuthToken.AccessToken);
-            var jwtAudience = jwtToken.GetPayloadValue<string>("aud");
-            oAuthTokens[jwtAudience] = oAuthToken;
+            _ = oAuthTokens.Remove(resource);
             oAuthTokens.Save();
         }
-
-        public static void Remove(string audience)
-        {
-            _ = audience ?? throw new ArgumentNullException(nameof(audience));
-            var oAuthTokens = AadOAuthTokenDictionary.Load();
-            _ = oAuthTokens.Remove(audience);
-            oAuthTokens.Save();
-        }
-
     }
 
 }

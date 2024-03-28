@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,26 +15,26 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Remove, "KshRoleAssignment", SupportsShouldProcess = true, ConfirmImpact = ConfirmImpact.High)]
+[OutputType((Type[])null)]
+public class RemoveRoleAssignmentCommand : ClientObjectCmdlet<IRoleAssignmentService>
 {
 
-    [Cmdlet("Remove", "KshRoleAssignment")]
-    [OutputType(typeof(void))]
-    public class RemoveRoleAssignmentCommand : ClientObjectCmdlet<IRoleAssignmentService>
+    public RemoveRoleAssignmentCommand()
     {
+    }
 
-        public RemoveRoleAssignmentCommand()
-        {
-        }
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    public RoleAssignment Identity { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public RoleAssignment Identity { get; private set; }
-
-        protected override void ProcessRecordCore()
+    protected override void ProcessRecordCore()
+    {
+        if (this.ShouldProcess(this.Identity.Member.Title, VerbsCommon.Remove))
         {
             this.Service.RemoveObject(this.Identity);
         }
-
     }
 
 }

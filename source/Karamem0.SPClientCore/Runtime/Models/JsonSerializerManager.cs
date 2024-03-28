@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -12,28 +12,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.Models
+namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
+
+public static class JsonSerializerManager
 {
 
-    public static class JsonSerializerManager
-    {
+    private static readonly Lazy<JsonSerializer> LazyJsonSerializer =
+        new(() =>
+            JsonSerializer.Create(new JsonSerializerSettings()
+            {
+                Converters = [
+                    new JsonBase64BinaryConverter(),
+                    new JsonDateTimeConverter(),
+                    new JsonGuidConverter()
+                ],
+                MaxDepth = 128,
+                NullValueHandling = NullValueHandling.Ignore
+            }));
 
-        private static readonly Lazy<JsonSerializer> LazyJsonSerializer =
-            new Lazy<JsonSerializer>(() =>
-                JsonSerializer.Create(new JsonSerializerSettings()
-                {
-                    Converters = new List<JsonConverter>()
-                    {
-                        new JsonBase64BinaryConverter(),
-                        new JsonDateTimeConverter(),
-                        new JsonGuidConverter()
-                    },
-                    MaxDepth = 128,
-                    NullValueHandling = NullValueHandling.Ignore
-                }));
-
-        public static JsonSerializer JsonSerializer => LazyJsonSerializer.Value;
-
-    }
+    public static JsonSerializer JsonSerializer => LazyJsonSerializer.Value;
 
 }

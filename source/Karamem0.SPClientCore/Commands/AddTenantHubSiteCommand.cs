@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,45 +15,41 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Add, "KshTenantHubSite")]
+[OutputType(typeof(HubSite))]
+public class AddTenantHubSiteCommand : ClientObjectCmdlet<ITenantHubSiteService>
 {
 
-    [Cmdlet("Add", "KshTenantHubSite")]
-    [Alias("New-KshTenantHubSite")]
-    [OutputType(typeof(HubSite))]
-    public class AddTenantHubSiteCommand : ClientObjectCmdlet<ITenantHubSiteService>
+    public AddTenantHubSiteCommand()
     {
+    }
 
-        public AddTenantHubSiteCommand()
-        {
-        }
+    [Parameter(Mandatory = false)]
+    public string Description { get; private set; }
 
-        [Parameter(Mandatory = false)]
-        public string Description { get; private set; }
+    [Parameter(Mandatory = false)]
+    public bool EnablePermissionsSync { get; private set; }
 
-        [Parameter(Mandatory = false)]
-        public bool EnablePermissionsSync { get; private set; }
+    [Parameter(Mandatory = false)]
+    public bool HideNameInNavigation { get; private set; }
 
-        [Parameter(Mandatory = false)]
-        public bool HideNameInNavigation { get; private set; }
+    [Parameter(Mandatory = false)]
+    public string LogoUrl { get; private set; }
 
-        [Parameter(Mandatory = false)]
-        public string LogoUrl { get; private set; }
+    [Parameter(Mandatory = true)]
+    public Guid SiteCollectionId { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public Guid SiteCollectionId { get; private set; }
+    [Parameter(Mandatory = true)]
+    public string SiteCollectionUrl { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public string SiteCollectionUrl { get; private set; }
+    [Parameter(Mandatory = true)]
+    public string Title { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public string Title { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Outputs.Add(this.Service.AddObject(this.SiteCollectionUrl, this.MyInvocation.BoundParameters));
-        }
-
+    protected override void ProcessRecordCore()
+    {
+        this.Outputs.Add(this.Service.AddObject(this.SiteCollectionUrl, this.MyInvocation.BoundParameters));
     }
 
 }

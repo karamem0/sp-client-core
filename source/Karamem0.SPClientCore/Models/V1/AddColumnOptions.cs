@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -11,27 +11,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[Flags()]
+public enum AddColumnOptions
 {
 
-    [Flags()]
-    public enum AddColumnOptions
-    {
+    DefaultValue = 0,
 
-        DefaultValue = 0,
+    AddToDefaultContentType = 1,
 
-        AddToDefaultContentType = 1,
+    AddToNoContentType = 2,
 
-        AddToNoContentType = 2,
+    AddToAllContentTypes = 4,
 
-        AddToAllContentTypes = 4,
+    AddColumnInternalNameHint = 8,
 
-        AddColumnInternalNameHint = 8,
+    AddColumnToDefaultView = 16,
 
-        AddColumnToDefaultView = 16,
-
-        AddColumnCheckDisplayName = 32,
-
-    }
+    AddColumnCheckDisplayName = 32,
 
 }

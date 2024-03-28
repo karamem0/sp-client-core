@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,32 +15,29 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Set, "KshTermDescription")]
+[OutputType((Type[])null)]
+public class SetTermDescriptionCommand : ClientObjectCmdlet<ITermDescriptionService>
 {
 
-    [Cmdlet("Set", "KshTermDescription")]
-    [OutputType(typeof(void))]
-    public class SetTermDescriptionCommand : ClientObjectCmdlet<ITermDescriptionService>
+    public SetTermDescriptionCommand()
     {
+    }
 
-        public SetTermDescriptionCommand()
-        {
-        }
+    [Parameter(Mandatory = true, Position = 0)]
+    public Term Term { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0)]
-        public Term Term { get; private set; }
+    [Parameter(Mandatory = true)]
+    public string Description { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public string Description { get; private set; }
+    [Parameter(Mandatory = true)]
+    public uint Lcid { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public uint Lcid { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Service.SetObject(this.Term, this.Description, this.Lcid);
-        }
-
+    protected override void ProcessRecordCore()
+    {
+        this.Service.SetObject(this.Term, this.Description, this.Lcid);
     }
 
 }

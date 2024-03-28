@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,23 +15,20 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Get, "KshNavigation")]
+[OutputType(typeof(Navigation))]
+public class GetNavigationCommand : ClientObjectCmdlet<INavigationService>
 {
 
-    [Cmdlet("Get", "KshNavigation")]
-    [OutputType(typeof(Navigation))]
-    public class GetNavigationCommand : ClientObjectCmdlet<INavigationService>
+    public GetNavigationCommand()
     {
+    }
 
-        public GetNavigationCommand()
-        {
-        }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Outputs.Add(this.Service.GetObject());
-        }
-
+    protected override void ProcessRecordCore()
+    {
+        this.Outputs.Add(this.Service.GetObject());
     }
 
 }

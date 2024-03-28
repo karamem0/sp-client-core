@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -11,26 +11,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+public enum ViewType
 {
 
-    public enum ViewType
-    {
+    None = 0,
 
-        None = 0,
+    Html = 1,
 
-        Html = 1,
+    Grid = 0x800,
 
-        Grid = 0x800,
+    Calendar = 0x80000,
 
-        Calendar = 0x80000,
+    Recurrence = 8193,
 
-        Recurrence = 8193,
+    Chart = 0x20000,
 
-        Chart = 0x20000,
-
-        Gantt = 0x4000000,
-
-    }
+    Gantt = 0x4000000,
 
 }

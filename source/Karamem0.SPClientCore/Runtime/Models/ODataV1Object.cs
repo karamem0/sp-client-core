@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,24 +13,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.Models
+namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
+
+[JsonObject()]
+public class ODataV1Object : ODataObject
 {
 
-    [JsonObject()]
-    public class ODataV1Object : ODataObject
+    public ODataV1Object()
     {
-
-        public ODataV1Object()
-        {
-            this.Metadata = ODataV1Metadata.Create(this.GetType());
-        }
-
-        [JsonProperty("__deferred")]
-        internal ODataV1Deferred Deferred { get; private set; }
-
-        [JsonProperty("__metadata")]
-        internal ODataV1Metadata Metadata { get; private set; }
-
+        this.Metadata = ODataV1Metadata.Create(this.GetType());
     }
+
+    [JsonProperty("__deferred")]
+    internal ODataV1Deferred Deferred { get; private set; }
+
+    [JsonProperty("__metadata")]
+    internal ODataV1Metadata Metadata { get; private set; }
 
 }

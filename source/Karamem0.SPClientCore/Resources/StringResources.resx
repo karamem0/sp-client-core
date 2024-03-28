@@ -123,6 +123,9 @@
   <data name="ErrorAccessTokenIsNotCached" xml:space="preserve">
     <value>The access token is not cached, please login again</value>
   </data>
+  <data name="ErrorCannotDeleteRootSiteCollection" xml:space="preserve">
+    <value>Cannot delete root site collection</value>
+  </data>
   <data name="ErrorCannotResolveTenantId" xml:space="preserve">
     <value>Cannot resolve Tenant ID from resource URL</value>
   </data>

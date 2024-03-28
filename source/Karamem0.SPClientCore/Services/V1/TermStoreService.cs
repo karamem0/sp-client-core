@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -14,60 +14,57 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Services.V1
+namespace Karamem0.SharePoint.PowerShell.Services.V1;
+
+public interface ITermStoreService
 {
 
-    public interface ITermStoreService
+    TermStore GetObject();
+
+    void SetObject(IReadOnlyDictionary<string, object> modificationInfo);
+
+}
+
+public class TermStoreService : ClientService, ITermStoreService
+{
+
+    public TermStoreService(ClientContext clientContext) : base(clientContext)
     {
-
-        TermStore GetObject();
-
-        void SetObject(IReadOnlyDictionary<string, object> modificationInfo);
-
     }
 
-    public class TermStoreService : ClientService, ITermStoreService
+    public TermStore GetObject()
     {
+        var requestPayload = new ClientRequestPayload();
+        var objectPath1 = requestPayload.Add(
+            new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession"));
+        var objectPath2 = requestPayload.Add(
+            new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore"),
+            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
+            objectPathId => new ClientActionQuery(objectPathId)
+            {
+                Query = new ClientQuery(true, typeof(TermStore))
+            });
+        return this.ClientContext
+            .ProcessQuery(requestPayload)
+            .ToObject<TermStore>(requestPayload.GetActionId<ClientActionQuery>());
+    }
 
-        public TermStoreService(ClientContext clientContext) : base(clientContext)
-        {
-        }
-
-        public TermStore GetObject()
-        {
-            var requestPayload = new ClientRequestPayload();
-            var objectPath1 = requestPayload.Add(
-                new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession"));
-            var objectPath2 = requestPayload.Add(
-                new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-                objectPathId => new ClientActionQuery(objectPathId)
-                {
-                    Query = new ClientQuery(true, typeof(TermStore))
-                });
-            return this.ClientContext
-                .ProcessQuery(requestPayload)
-                .ToObject<TermStore>(requestPayload.GetActionId<ClientActionQuery>());
-        }
-
-        public void SetObject(IReadOnlyDictionary<string, object> modificationInfo)
-        {
-            _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
-            var requestPayload = new ClientRequestPayload();
-            var objectPath1 = requestPayload.Add(
-                new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession"));
-            var objectPath2 = requestPayload.Add(
-                new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
-            var objectPath3 = requestPayload.Add(
-                objectPath2,
-                requestPayload.CreateSetPropertyDelegates(typeof(TermStore), modificationInfo).ToArray());
-            var objectPath4 = requestPayload.Add(
-                objectPath2,
-                objectPathId => new ClientActionMethod(objectPathId, "CommitAll"));
-            _ = this.ClientContext.ProcessQuery(requestPayload);
-        }
-
+    public void SetObject(IReadOnlyDictionary<string, object> modificationInfo)
+    {
+        _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
+        var requestPayload = new ClientRequestPayload();
+        var objectPath1 = requestPayload.Add(
+            new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession"));
+        var objectPath2 = requestPayload.Add(
+            new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore"),
+            objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+        var objectPath3 = requestPayload.Add(
+            objectPath2,
+            requestPayload.CreateSetPropertyDelegates(typeof(TermStore), modificationInfo).ToArray());
+        var objectPath4 = requestPayload.Add(
+            objectPath2,
+            objectPathId => new ClientActionMethod(objectPathId, "CommitAll"));
+        _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
 }

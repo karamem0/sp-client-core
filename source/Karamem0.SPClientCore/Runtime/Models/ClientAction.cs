@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -12,20 +12,17 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.Models
+namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
+
+public abstract class ClientAction : ClientRequestObject
 {
 
-    public abstract class ClientAction : ClientRequestObject
+    protected ClientAction()
     {
-
-        protected ClientAction()
-        {
-            this.Id = NewId();
-        }
-
-        [XmlAttribute()]
-        public virtual long Id { get; protected set; }
-
+        this.Id = NewId();
     }
+
+    [XmlAttribute()]
+    public virtual long Id { get; protected set; }
 
 }

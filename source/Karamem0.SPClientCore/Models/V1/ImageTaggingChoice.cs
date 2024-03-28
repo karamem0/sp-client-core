@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -11,18 +11,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+public enum ImageTaggingChoice
 {
 
-    public enum ImageTaggingChoice
-    {
+    Disabled = 0,
 
-        Disabled = 0,
+    Basic = 1,
 
-        Basic = 1,
-
-        Enhanced = 2,
-
-    }
+    Enhanced = 2,
 
 }

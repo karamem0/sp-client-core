@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,29 +15,30 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Remove, "KshTenantCdnOrigin", SupportsShouldProcess = true, ConfirmImpact = ConfirmImpact.High)]
+[OutputType((Type[])null)]
+public class RemoveTenantCdnOriginCommand : ClientObjectCmdlet<ITenantCdnService>
 {
 
-    [Cmdlet("Remove", "KshTenantCdnOrigin")]
-    [OutputType(typeof(void))]
-    public class RemoveTenantCdnOriginCommand : ClientObjectCmdlet<ITenantCdnService>
+    public RemoveTenantCdnOriginCommand()
     {
+    }
 
-        public RemoveTenantCdnOriginCommand()
-        {
-        }
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
+    public SwitchParameter Public { get; private set; }
 
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
-        public SwitchParameter Public { get; private set; }
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
+    public SwitchParameter Private { get; private set; }
 
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-        public SwitchParameter Private { get; private set; }
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
+    public string Origin { get; private set; }
 
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-        public string Origin { get; private set; }
-
-        protected override void ProcessRecordCore()
+    protected override void ProcessRecordCore()
+    {
+        if (this.ShouldProcess(this.Origin, VerbsCommon.Remove))
         {
             if (this.ParameterSetName == "ParamSet1")
             {
@@ -50,7 +51,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands
                 this.Service.RemoveOrigin(TenantCdnType.Private, this.Origin);
             }
         }
-
     }
 
 }

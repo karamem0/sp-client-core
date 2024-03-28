@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -11,26 +11,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+public enum SharingLinkKind
 {
 
-    public enum SharingLinkKind
-    {
+    Uninitialized = 0,
 
-        Uninitialized = 0,
+    Direct = 1,
 
-        Direct = 1,
+    OrganizationView = 2,
 
-        OrganizationView = 2,
+    OrganizationEdit = 3,
 
-        OrganizationEdit = 3,
+    AnonymousView = 4,
 
-        AnonymousView = 4,
+    AnonymousEdit = 5,
 
-        AnonymousEdit = 5,
-
-        Flexible = 6,
-
-    }
+    Flexible = 6,
 
 }

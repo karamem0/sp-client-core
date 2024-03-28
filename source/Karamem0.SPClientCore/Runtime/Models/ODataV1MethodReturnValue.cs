@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,23 +13,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.Models
+namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
+
+[JsonObject()]
+public class ODataV1MethodReturnValue : ODataV1Object
 {
 
-    [JsonObject()]
-    public class ODataV1MethodReturnValue : ODataV1Object
+    public ODataV1MethodReturnValue()
     {
+    }
 
-        public ODataV1MethodReturnValue()
-        {
-        }
-
-        public virtual T GetValue<T>(string methodName) where T : ODataV1Object
-        {
-            _ = methodName ?? throw new ArgumentNullException(nameof(methodName));
-            return this.ExtensionProperties[methodName].ToObject<T>(JsonSerializerManager.JsonSerializer);
-        }
-
+    public virtual T GetValue<T>(string methodName) where T : ODataV1Object
+    {
+        _ = methodName ?? throw new ArgumentNullException(nameof(methodName));
+        return this.ExtensionProperties[methodName].ToObject<T>(JsonSerializerManager.JsonSerializer);
     }
 
 }

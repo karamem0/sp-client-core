@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,69 +15,66 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.Models
+namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
+
+public class JsonEnumerableConverter : JsonConverter
 {
 
-    public class JsonEnumerableConverter : JsonConverter
+    public JsonEnumerableConverter()
     {
+    }
 
-        public JsonEnumerableConverter()
+    public override bool CanRead => true;
+
+    public override bool CanWrite => false;
+
+    public override bool CanConvert(Type objectType)
+    {
+        if (objectType.IsGenericSubclassOf(typeof(IReadOnlyCollection<>)))
         {
+            return true;
         }
-
-        public override bool CanRead => true;
-
-        public override bool CanWrite => false;
-
-        public override bool CanConvert(Type objectType)
+        else
         {
-            if (objectType.IsGenericSubclassOf(typeof(IReadOnlyCollection<>)))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return false;
         }
+    }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    {
+        if (objectType.GetGenericArguments()[0].IsSubclassOf(typeof(ClientObject)))
         {
-            if (objectType.GetGenericArguments()[0].IsSubclassOf(typeof(ClientObject)))
+            var jsonArray = serializer.Deserialize<JArray>(reader);
+            if (jsonArray is not null)
             {
-                var jsonArray = serializer.Deserialize<JArray>(reader);
-                if (jsonArray != null)
-                {
-                    var result1 = jsonArray.Select(jsonToken =>
-                        {
-                            var valueName = jsonToken["_ObjectType_"].ToString();
-                            var valueType = ClientObject.GetType(valueName);
-                            return jsonToken.ToObject(valueType, serializer);
-                        })
-                        .ToArray();
-                    var result2 = typeof(Enumerable)
-                        .GetMethod("OfType", BindingFlags.Public | BindingFlags.Static)
-                        .MakeGenericMethod(objectType.GetGenericArguments())
-                        .Invoke(null, new object[] { result1 });
-                    var result3 = typeof(Enumerable)
-                        .GetMethod("ToArray", BindingFlags.Public | BindingFlags.Static)
-                        .MakeGenericMethod(objectType.GetGenericArguments())
-                        .Invoke(null, new object[] { result2 });
-                    return result3;
-                }
+                var result1 = jsonArray.Select(jsonToken =>
+                    {
+                        var valueName = jsonToken["_ObjectType_"].ToString();
+                        var valueType = ClientObject.GetType(valueName);
+                        return jsonToken.ToObject(valueType, serializer);
+                    })
+                    .ToArray();
+                var result2 = typeof(Enumerable)
+                    .GetMethod("OfType", BindingFlags.Public | BindingFlags.Static)
+                    .MakeGenericMethod(objectType.GetGenericArguments())
+                    .Invoke(null, [result1]);
+                var result3 = typeof(Enumerable)
+                    .GetMethod("ToArray", BindingFlags.Public | BindingFlags.Static)
+                    .MakeGenericMethod(objectType.GetGenericArguments())
+                    .Invoke(null, [result2]);
+                return result3;
             }
-            else
-            {
-                return serializer.Deserialize(reader, objectType);
-            }
-            return null;
         }
-
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        else
         {
-            throw new NotImplementedException();
+            return serializer.Deserialize(reader, objectType);
         }
+        return null;
+    }
 
+    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    {
+        throw new NotImplementedException();
     }
 
 }

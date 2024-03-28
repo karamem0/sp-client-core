@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,42 +13,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.FileVersion", Id = "{96e4bc1b-e67f-4967-9327-36b79e20aebc}")]
+[JsonObject()]
+public class FileVersion : ClientObject
 {
 
-    [ClientObject(Name = "SP.FileVersion", Id = "{96e4bc1b-e67f-4967-9327-36b79e20aebc}")]
-    [JsonObject()]
-    public class FileVersion : ClientObject
+    public FileVersion()
     {
-
-        public FileVersion()
-        {
-        }
-
-        [JsonProperty()]
-        public virtual string CheckInComment { get; protected set; }
-
-        [JsonProperty()]
-        public virtual DateTime Created { get; protected set; }
-
-        [JsonProperty("ID")]
-        public virtual int Id { get; protected set; }
-
-        [JsonProperty()]
-        public virtual bool IsCurrentVersion { get; protected set; }
-
-        [JsonProperty()]
-        public virtual int Length { get; protected set; }
-
-        [JsonProperty()]
-        public virtual int Size { get; protected set; }
-
-        [JsonProperty()]
-        public virtual string Url { get; protected set; }
-
-        [JsonProperty()]
-        public virtual string VersionLabel { get; protected set; }
-
     }
+
+    [JsonProperty()]
+    public virtual string CheckInComment { get; protected set; }
+
+    [JsonProperty()]
+    public virtual DateTime Created { get; protected set; }
+
+    [JsonProperty("ID")]
+    public virtual int Id { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool IsCurrentVersion { get; protected set; }
+
+    [JsonProperty()]
+    public virtual int Length { get; protected set; }
+
+    [JsonProperty()]
+    public virtual int Size { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string Url { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string VersionLabel { get; protected set; }
 
 }

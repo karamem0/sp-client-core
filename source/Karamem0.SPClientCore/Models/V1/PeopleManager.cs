@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,18 +13,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.UserProfiles.PeopleManager", Id = "{cf560d69-0fdb-4489-a216-b6b47adf8ef8}")]
+[JsonObject()]
+public class PeopleManager : ClientObject
 {
 
-    [ClientObject(Name = "SP.UserProfiles.PeopleManager", Id = "{cf560d69-0fdb-4489-a216-b6b47adf8ef8}")]
-    [JsonObject()]
-    public class PeopleManager : ClientObject
+    public PeopleManager()
     {
-
-        public PeopleManager()
-        {
-        }
-
     }
 
 }

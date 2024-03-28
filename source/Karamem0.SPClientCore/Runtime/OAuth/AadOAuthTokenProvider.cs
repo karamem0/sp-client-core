@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,49 +13,49 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
+namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth;
+
+public class AadOAuthTokenProvider : OAuthTokenProvider
 {
 
-    public class AadOAuthTokenProvider : OAuthTokenProvider
+    private readonly Uri uri;
+
+    private readonly AadOAuthContext oAuthContext;
+
+    private AadOAuthToken oAuthToken;
+
+    public AadOAuthTokenProvider(Uri uri, AadOAuthContext oAuthContext, AadOAuthToken oAuthToken)
     {
+        this.uri = uri ?? throw new ArgumentNullException(nameof(uri));
+        this.oAuthContext = oAuthContext ?? throw new ArgumentNullException(nameof(oAuthContext));
+        this.oAuthToken = oAuthToken ?? throw new ArgumentNullException(nameof(oAuthToken));
+    }
 
-        private readonly AadOAuthContext oAuthContext;
+    public override string CurrentAceessToken => this.oAuthToken.AccessToken;
 
-        private AadOAuthToken oAuthToken;
-
-        public AadOAuthTokenProvider(AadOAuthContext oAuthContext, AadOAuthToken oAuthToken)
+    public override string GetAccessToken()
+    {
+        var jwtToken = new JsonWebToken(this.oAuthToken.AccessToken);
+        var jwtExpireIn = jwtToken.GetPayloadValue<double>("exp");
+        var jwtExpireOn = DateTime.UnixEpoch.AddSeconds(jwtExpireIn);
+        if (jwtExpireOn <= DateTime.UtcNow)
         {
-            this.oAuthContext = oAuthContext ?? throw new ArgumentNullException(nameof(oAuthContext));
-            this.oAuthToken = oAuthToken ?? throw new ArgumentNullException(nameof(oAuthToken));
-        }
-
-        public override string CurrentAceessToken => this.oAuthToken.AccessToken;
-
-        public override string GetAccessToken()
-        {
-            var jwtToken = new JsonWebToken(this.oAuthToken.AccessToken);
-            var jwtExpireIn = jwtToken.GetPayloadValue<double>("exp");
-            var jwtExpireOn = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(jwtExpireIn);
-            if (jwtExpireOn <= DateTime.UtcNow)
+            if (this.oAuthToken.RefreshToken is null)
             {
-                if (this.oAuthToken.RefreshToken == null)
-                {
-                    throw new InvalidOperationException(StringResources.ErrorAccessTokenExpired);
-                }
-                var oAuthMessage = this.oAuthContext.AcquireTokenByRefreshToken(this.oAuthToken.RefreshToken);
-                if (oAuthMessage is AadOAuthToken oAuthToken)
-                {
-                    this.oAuthToken = oAuthToken;
-                    AadOAuthTokenStore.Add(oAuthToken);
-                }
-                if (oAuthMessage is OAuthError oAuthError)
-                {
-                    throw new InvalidOperationException(oAuthError.ErrorDescription);
-                }
+                throw new InvalidOperationException(StringResources.ErrorAccessTokenExpired);
             }
-            return this.oAuthToken.AccessToken;
+            var oAuthMessage = this.oAuthContext.AcquireTokenByRefreshToken(this.oAuthToken.RefreshToken);
+            if (oAuthMessage is AadOAuthToken oAuthToken)
+            {
+                this.oAuthToken = oAuthToken;
+                AadOAuthTokenStore.Add(this.uri, oAuthToken);
+            }
+            if (oAuthMessage is OAuthError oAuthError)
+            {
+                throw new InvalidOperationException(oAuthError.ErrorDescription);
+            }
         }
-
+        return this.oAuthToken.AccessToken;
     }
 
 }

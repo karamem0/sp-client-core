@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -14,62 +14,59 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.Models
+namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
+
+public class JsonDateTimeConverter : JsonConverter
 {
 
-    public class JsonDateTimeConverter : JsonConverter
+    public JsonDateTimeConverter()
     {
+    }
 
-        public JsonDateTimeConverter()
+    public override bool CanRead => true;
+
+    public override bool CanWrite => true;
+
+    public override bool CanConvert(Type objectType)
+    {
+        if (objectType == typeof(DateTime) || objectType == typeof(DateTime?))
         {
+            return true;
         }
-
-        public override bool CanRead => true;
-
-        public override bool CanWrite => true;
-
-        public override bool CanConvert(Type objectType)
+        else
         {
-            if (objectType == typeof(DateTime) || objectType == typeof(DateTime?))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return false;
         }
+    }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    {
+        var value = new DateTime();
+        if (reader.Value is null)
         {
-            var value = new DateTime();
-            if (reader.Value == null)
-            {
-                return value;
-            }
-            if (DateTime.TryParse(reader.Value.ToString(), out value))
-            {
-                return value;
-            }
-            if (DateTimeConverter.TryParse(reader.Value.ToString(), out value))
-            {
-                return value;
-            }
-            return null;
+            return value;
         }
-
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        if (DateTime.TryParse(reader.Value.ToString(), out value))
         {
-            if (value == null || (DateTime)value == new DateTime())
-            {
-                writer.WriteNull();
-            }
-            else
-            {
-                JToken.FromObject(value).WriteTo(writer);
-            }
+            return value;
         }
+        if (DateTimeConverter.TryParse(reader.Value.ToString(), out value))
+        {
+            return value;
+        }
+        return null;
+    }
 
+    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    {
+        if (value is null || (DateTime)value == new DateTime())
+        {
+            writer.WriteNull();
+        }
+        else
+        {
+            JToken.FromObject(value).WriteTo(writer);
+        }
     }
 
 }

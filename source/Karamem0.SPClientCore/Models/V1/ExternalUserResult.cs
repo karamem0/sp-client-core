@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,27 +13,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "Microsoft.Online.SharePoint.TenantManagement.GetExternalUsersResults", Id = "{44d1d638-1204-4f42-98a6-85fdc13bdcf1}")]
+[JsonObject()]
+public class ExternalUserResult : ClientObject
 {
 
-    [ClientObject(Name = "Microsoft.Online.SharePoint.TenantManagement.GetExternalUsersResults", Id = "{44d1d638-1204-4f42-98a6-85fdc13bdcf1}")]
-    [JsonObject()]
-    public class ExternalUserResult : ClientObject
+    public ExternalUserResult()
     {
-
-        public ExternalUserResult()
-        {
-        }
-
-        [JsonProperty("ExternalUserCollection")]
-        public ExternalUserEnumerable ExternalUsers { get; protected set; }
-
-        [JsonProperty("TotalUserCount")]
-        public int TotalCount { get; protected set; }
-
-        [JsonProperty("UserCollectionPosition")]
-        public int Position { get; protected set; }
-
     }
+
+    [JsonProperty("ExternalUserCollection")]
+    public ExternalUserEnumerable ExternalUsers { get; protected set; }
+
+    [JsonProperty("TotalUserCount")]
+    public int TotalCount { get; protected set; }
+
+    [JsonProperty("UserCollectionPosition")]
+    public int Position { get; protected set; }
 
 }

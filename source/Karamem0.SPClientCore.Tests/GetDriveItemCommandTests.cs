@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,287 +15,284 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Tests
+namespace Karamem0.SharePoint.PowerShell.Tests;
+
+[TestClass()]
+public class GetDriveItemCommandTests
 {
 
-    [TestClass()]
-    public class GetDriveItemCommandTests
+    [TestMethod()]
+    public void GetDriveItemsByDrive()
     {
+        using var context = new PSCmdletContext();
+        var result1 = context.Runspace.InvokeCommand(
+            "Connect-KshSite",
+            new Dictionary<string, object>()
+            {
+                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
+                { "Credential", PSCredentialFactory.CreateCredential(
+                    context.AppSettings["LoginUserName"],
+                    context.AppSettings["LoginPassword"])
+                }
+            }
+        );
+        var result2 = context.Runspace.InvokeCommand<Drive>(
+            "Get-KshDrive",
+            new Dictionary<string, object>()
+            {
+                { "DriveId", context.AppSettings["List2DriveId"] }
+            }
+        );
+        var result3 = context.Runspace.InvokeCommand<DriveItem>(
+            "Get-KshDriveItem",
+            new Dictionary<string, object>()
+            {
+                { "Drive", result2.ElementAt(0) }
+            }
+        );
+        var actual = result3.ToArray();
+        Assert.IsNotNull(actual);
+    }
 
-        [TestMethod()]
-        public void GetDriveItemsByDrive()
-        {
-            using var context = new PSCmdletContext();
-            var result1 = context.Runspace.InvokeCommand(
-                "Connect-KshSite",
-                new Dictionary<string, object>()
-                {
-                    { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                    { "Credential", PSCredentialFactory.CreateCredential(
-                        context.AppSettings["LoginUserName"],
-                        context.AppSettings["LoginPassword"])
-                    }
+    [TestMethod()]
+    public void GetDriveItemsByDriveItem()
+    {
+        using var context = new PSCmdletContext();
+        var result1 = context.Runspace.InvokeCommand(
+            "Connect-KshSite",
+            new Dictionary<string, object>()
+            {
+                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
+                { "Credential", PSCredentialFactory.CreateCredential(
+                    context.AppSettings["LoginUserName"],
+                    context.AppSettings["LoginPassword"])
                 }
-            );
-            var result2 = context.Runspace.InvokeCommand<Drive>(
-                "Get-KshDrive",
-                new Dictionary<string, object>()
-                {
-                    { "DriveId", context.AppSettings["List2DriveId"] }
-                }
-            );
-            var result3 = context.Runspace.InvokeCommand<DriveItem>(
-                "Get-KshDriveItem",
-                new Dictionary<string, object>()
-                {
-                    { "Drive", result2.ElementAt(0) }
-                }
-            );
-            var actual = result3.ToArray();
-            Assert.IsNotNull(actual);
-        }
+            }
+        );
+        var result2 = context.Runspace.InvokeCommand<Drive>(
+            "Get-KshDrive",
+            new Dictionary<string, object>()
+            {
+                { "DriveId", context.AppSettings["List2DriveId"] }
+            }
+        );
+        var result3 = context.Runspace.InvokeCommand<DriveItem>(
+            "Get-KshDriveItem",
+            new Dictionary<string, object>()
+            {
+                { "Drive", result2.ElementAt(0) },
+                { "DriveItemId", context.AppSettings["Folder1DriveItemId"] }
+            }
+        );
+        var result4 = context.Runspace.InvokeCommand<DriveItem>(
+            "Get-KshDriveItem",
+            new Dictionary<string, object>()
+            {
+                { "DriveItem", result3.ElementAt(0) }
+            }
+        );
+        var actual = result3.ToArray();
+        Assert.IsNotNull(actual);
+    }
 
-        [TestMethod()]
-        public void GetDriveItemsByDriveItem()
-        {
-            using var context = new PSCmdletContext();
-            var result1 = context.Runspace.InvokeCommand(
-                "Connect-KshSite",
-                new Dictionary<string, object>()
-                {
-                    { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                    { "Credential", PSCredentialFactory.CreateCredential(
-                        context.AppSettings["LoginUserName"],
-                        context.AppSettings["LoginPassword"])
-                    }
+    [TestMethod()]
+    public void GetDriveItemByFolder()
+    {
+        using var context = new PSCmdletContext();
+        var result1 = context.Runspace.InvokeCommand(
+            "Connect-KshSite",
+            new Dictionary<string, object>()
+            {
+                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
+                { "Credential", PSCredentialFactory.CreateCredential(
+                    context.AppSettings["LoginUserName"],
+                    context.AppSettings["LoginPassword"])
                 }
-            );
-            var result2 = context.Runspace.InvokeCommand<Drive>(
-                "Get-KshDrive",
-                new Dictionary<string, object>()
-                {
-                    { "DriveId", context.AppSettings["List2DriveId"] }
-                }
-            );
-            var result3 = context.Runspace.InvokeCommand<DriveItem>(
-                "Get-KshDriveItem",
-                new Dictionary<string, object>()
-                {
-                    { "Drive", result2.ElementAt(0) },
-                    { "DriveItemId", context.AppSettings["Folder1DriveItemId"] }
-                }
-            );
-            var result4 = context.Runspace.InvokeCommand<DriveItem>(
-                "Get-KshDriveItem",
-                new Dictionary<string, object>()
-                {
-                    { "DriveItem", result3.ElementAt(0) }
-                }
-            );
-            var actual = result3.ToArray();
-            Assert.IsNotNull(actual);
-        }
+            }
+        );
+        var result2 = context.Runspace.InvokeCommand<Models.V1.Folder>(
+            "Get-KshFolder",
+            new Dictionary<string, object>()
+            {
+                { "FolderUrl", context.AppSettings["Folder1Url"] }
+            }
+        );
+        var result3 = context.Runspace.InvokeCommand<DriveItem>(
+            "Get-KshDriveItem",
+            new Dictionary<string, object>()
+            {
+                { "Folder", result2.ElementAt(0) }
+            }
+        );
+        var actual = result3.ElementAt(0);
+        Assert.IsNotNull(actual);
+    }
 
-        [TestMethod()]
-        public void GetDriveItemByFolder()
-        {
-            using var context = new PSCmdletContext();
-            var result1 = context.Runspace.InvokeCommand(
-                "Connect-KshSite",
-                new Dictionary<string, object>()
-                {
-                    { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                    { "Credential", PSCredentialFactory.CreateCredential(
-                        context.AppSettings["LoginUserName"],
-                        context.AppSettings["LoginPassword"])
-                    }
+    [TestMethod()]
+    public void GetDriveItemByFile()
+    {
+        using var context = new PSCmdletContext();
+        var result1 = context.Runspace.InvokeCommand(
+            "Connect-KshSite",
+            new Dictionary<string, object>()
+            {
+                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
+                { "Credential", PSCredentialFactory.CreateCredential(
+                    context.AppSettings["LoginUserName"],
+                    context.AppSettings["LoginPassword"])
                 }
-            );
-            var result2 = context.Runspace.InvokeCommand<Models.V1.Folder>(
-                "Get-KshFolder",
-                new Dictionary<string, object>()
-                {
-                    { "FolderUrl", context.AppSettings["Folder1Url"] }
-                }
-            );
-            var result3 = context.Runspace.InvokeCommand<DriveItem>(
-                "Get-KshDriveItem",
-                new Dictionary<string, object>()
-                {
-                    { "Folder", result2.ElementAt(0) }
-                }
-            );
-            var actual = result3.ElementAt(0);
-            Assert.IsNotNull(actual);
-        }
+            }
+        );
+        var result2 = context.Runspace.InvokeCommand<Models.V1.File>(
+            "Get-KshFile",
+            new Dictionary<string, object>()
+            {
+                { "FileUrl", context.AppSettings["File1Url"] }
+            }
+        );
+        var result3 = context.Runspace.InvokeCommand<DriveItem>(
+            "Get-KshDriveItem",
+            new Dictionary<string, object>()
+            {
+                { "File", result2.ElementAt(0) }
+            }
+        );
+        var actual = result3.ElementAt(0);
+        Assert.IsNotNull(actual);
+    }
 
-        [TestMethod()]
-        public void GetDriveItemByFile()
-        {
-            using var context = new PSCmdletContext();
-            var result1 = context.Runspace.InvokeCommand(
-                "Connect-KshSite",
-                new Dictionary<string, object>()
-                {
-                    { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                    { "Credential", PSCredentialFactory.CreateCredential(
-                        context.AppSettings["LoginUserName"],
-                        context.AppSettings["LoginPassword"])
-                    }
+    [TestMethod()]
+    public void GetDriveItemByListItem()
+    {
+        using var context = new PSCmdletContext();
+        var result1 = context.Runspace.InvokeCommand(
+            "Connect-KshSite",
+            new Dictionary<string, object>()
+            {
+                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
+                { "Credential", PSCredentialFactory.CreateCredential(
+                    context.AppSettings["LoginUserName"],
+                    context.AppSettings["LoginPassword"])
                 }
-            );
-            var result2 = context.Runspace.InvokeCommand<Models.V1.File>(
-                "Get-KshFile",
-                new Dictionary<string, object>()
-                {
-                    { "FileUrl", context.AppSettings["File1Url"] }
-                }
-            );
-            var result3 = context.Runspace.InvokeCommand<DriveItem>(
-                "Get-KshDriveItem",
-                new Dictionary<string, object>()
-                {
-                    { "File", result2.ElementAt(0) }
-                }
-            );
-            var actual = result3.ElementAt(0);
-            Assert.IsNotNull(actual);
-        }
+            }
+        );
+        var result2 = context.Runspace.InvokeCommand<Models.V1.File>(
+            "Get-KshFile",
+            new Dictionary<string, object>()
+            {
+                { "FileUrl", context.AppSettings["File1Url"] }
+            }
+        );
+        var result3 = context.Runspace.InvokeCommand<ListItem>(
+            "Get-KshListItem",
+            new Dictionary<string, object>()
+            {
+                { "File", result2.ElementAt(0) }
+            }
+        );
+        var result4 = context.Runspace.InvokeCommand<DriveItem>(
+            "Get-KshDriveItem",
+            new Dictionary<string, object>()
+            {
+                { "ListItem", result3.ElementAt(0) }
+            }
+        );
+        var actual = result4.ElementAt(0);
+        Assert.IsNotNull(actual);
+    }
 
-        [TestMethod()]
-        public void GetDriveItemByListItem()
-        {
-            using var context = new PSCmdletContext();
-            var result1 = context.Runspace.InvokeCommand(
-                "Connect-KshSite",
-                new Dictionary<string, object>()
-                {
-                    { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                    { "Credential", PSCredentialFactory.CreateCredential(
-                        context.AppSettings["LoginUserName"],
-                        context.AppSettings["LoginPassword"])
-                    }
+    [TestMethod()]
+    public void GetDriveItemByDriveItemUrl()
+    {
+        using var context = new PSCmdletContext();
+        var result1 = context.Runspace.InvokeCommand(
+            "Connect-KshSite",
+            new Dictionary<string, object>()
+            {
+                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
+                { "Credential", PSCredentialFactory.CreateCredential(
+                    context.AppSettings["LoginUserName"],
+                    context.AppSettings["LoginPassword"])
                 }
-            );
-            var result2 = context.Runspace.InvokeCommand<Models.V1.File>(
-                "Get-KshFile",
-                new Dictionary<string, object>()
-                {
-                    { "FileUrl", context.AppSettings["File1Url"] }
-                }
-            );
-            var result3 = context.Runspace.InvokeCommand<ListItem>(
-                "Get-KshListItem",
-                new Dictionary<string, object>()
-                {
-                    { "File", result2.ElementAt(0) }
-                }
-            );
-            var result4 = context.Runspace.InvokeCommand<DriveItem>(
-                "Get-KshDriveItem",
-                new Dictionary<string, object>()
-                {
-                    { "ListItem", result3.ElementAt(0) }
-                }
-            );
-            var actual = result4.ElementAt(0);
-            Assert.IsNotNull(actual);
-        }
+            }
+        );
+        var result2 = context.Runspace.InvokeCommand<DriveItem>(
+            "Get-KshDriveItem",
+            new Dictionary<string, object>()
+            {
+                { "DriveItemUrl", context.AppSettings["AuthorityUrl"] + context.AppSettings["File1Url"] }
+            }
+        );
+        var actual = result2.ElementAt(0);
+        Assert.IsNotNull(actual);
+    }
 
-        [TestMethod()]
-        public void GetDriveItemByDriveItemUrl()
-        {
-            using var context = new PSCmdletContext();
-            var result1 = context.Runspace.InvokeCommand(
-                "Connect-KshSite",
-                new Dictionary<string, object>()
-                {
-                    { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                    { "Credential", PSCredentialFactory.CreateCredential(
-                        context.AppSettings["LoginUserName"],
-                        context.AppSettings["LoginPassword"])
-                    }
+    [TestMethod()]
+    public void GetDriveItemByDriveItemId()
+    {
+        using var context = new PSCmdletContext();
+        var result1 = context.Runspace.InvokeCommand(
+            "Connect-KshSite",
+            new Dictionary<string, object>()
+            {
+                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
+                { "Credential", PSCredentialFactory.CreateCredential(
+                    context.AppSettings["LoginUserName"],
+                    context.AppSettings["LoginPassword"])
                 }
-            );
-            var result2 = context.Runspace.InvokeCommand<DriveItem>(
-                "Get-KshDriveItem",
-                new Dictionary<string, object>()
-                {
-                    { "DriveItemUrl", context.AppSettings["AuthorityUrl"] + context.AppSettings["File1Url"] }
-                }
-            );
-            var actual = result2.ElementAt(0);
-            Assert.IsNotNull(actual);
-        }
+            }
+        );
+        var result2 = context.Runspace.InvokeCommand<Drive>(
+            "Get-KshDrive",
+            new Dictionary<string, object>()
+            {
+                { "DriveId", context.AppSettings["List2DriveId"] }
+            }
+        );
+        var result3 = context.Runspace.InvokeCommand<DriveItem>(
+            "Get-KshDriveItem",
+            new Dictionary<string, object>()
+            {
+                { "Drive", result2.ElementAt(0) },
+                { "DriveItemId", context.AppSettings["File1DriveItemId"] }
+            }
+        );
+        var actual = result3.ElementAt(0);
+        Assert.IsNotNull(actual);
+    }
 
-        [TestMethod()]
-        public void GetDriveItemByDriveItemId()
-        {
-            using var context = new PSCmdletContext();
-            var result1 = context.Runspace.InvokeCommand(
-                "Connect-KshSite",
-                new Dictionary<string, object>()
-                {
-                    { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                    { "Credential", PSCredentialFactory.CreateCredential(
-                        context.AppSettings["LoginUserName"],
-                        context.AppSettings["LoginPassword"])
-                    }
+    [TestMethod()]
+    public void GetDriveItemByDriveItemPath()
+    {
+        using var context = new PSCmdletContext();
+        var result1 = context.Runspace.InvokeCommand(
+            "Connect-KshSite",
+            new Dictionary<string, object>()
+            {
+                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
+                { "Credential", PSCredentialFactory.CreateCredential(
+                    context.AppSettings["LoginUserName"],
+                    context.AppSettings["LoginPassword"])
                 }
-            );
-            var result2 = context.Runspace.InvokeCommand<Drive>(
-                "Get-KshDrive",
-                new Dictionary<string, object>()
-                {
-                    { "DriveId", context.AppSettings["List2DriveId"] }
-                }
-            );
-            var result3 = context.Runspace.InvokeCommand<DriveItem>(
-                "Get-KshDriveItem",
-                new Dictionary<string, object>()
-                {
-                    { "Drive", result2.ElementAt(0) },
-                    { "DriveItemId", context.AppSettings["File1DriveItemId"] }
-                }
-            );
-            var actual = result3.ElementAt(0);
-            Assert.IsNotNull(actual);
-        }
-
-        [TestMethod()]
-        public void GetDriveItemByDriveItemPath()
-        {
-            using var context = new PSCmdletContext();
-            var result1 = context.Runspace.InvokeCommand(
-                "Connect-KshSite",
-                new Dictionary<string, object>()
-                {
-                    { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                    { "Credential", PSCredentialFactory.CreateCredential(
-                        context.AppSettings["LoginUserName"],
-                        context.AppSettings["LoginPassword"])
-                    }
-                }
-            );
-            var result2 = context.Runspace.InvokeCommand<Drive>(
-                "Get-KshDrive",
-                new Dictionary<string, object>()
-                {
-                    { "DriveId", context.AppSettings["List2DriveId"] }
-                }
-            );
-            var result3 = context.Runspace.InvokeCommand<DriveItem>(
-                "Get-KshDriveItem",
-                new Dictionary<string, object>()
-                {
-                    { "Drive", result2.ElementAt(0) },
-                    { "DriveItemPath", context.AppSettings["File1Url"][context.AppSettings["List2Url"].Length..] }
-                }
-            );
-            var actual = result3.ElementAt(0);
-            Assert.IsNotNull(actual);
-        }
-
+            }
+        );
+        var result2 = context.Runspace.InvokeCommand<Drive>(
+            "Get-KshDrive",
+            new Dictionary<string, object>()
+            {
+                { "DriveId", context.AppSettings["List2DriveId"] }
+            }
+        );
+        var result3 = context.Runspace.InvokeCommand<DriveItem>(
+            "Get-KshDriveItem",
+            new Dictionary<string, object>()
+            {
+                { "Drive", result2.ElementAt(0) },
+                { "DriveItemPath", context.AppSettings["File1Url"][context.AppSettings["List2Url"].Length..] }
+            }
+        );
+        var actual = result3.ElementAt(0);
+        Assert.IsNotNull(actual);
     }
 
 }

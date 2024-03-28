@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -16,34 +16,30 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Add, "KshTenantTheme")]
+[OutputType(typeof(TenantTheme))]
+public class AddTenantThemeCommand : ClientObjectCmdlet<ITenantThemeService>
 {
 
-    [Cmdlet("Add", "KshTenantTheme")]
-    [Alias("New-KshTenantTheme")]
-    [OutputType(typeof(TenantTheme))]
-    public class AddTenantThemeCommand : ClientObjectCmdlet<ITenantThemeService>
+    public AddTenantThemeCommand()
     {
+    }
 
-        public AddTenantThemeCommand()
-        {
-        }
+    [Parameter(Mandatory = true)]
+    public bool IsInverted { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public bool IsInverted { get; private set; }
+    [Parameter(Mandatory = true)]
+    public string Name { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public string Name { get; private set; }
+    [Parameter(Mandatory = true)]
+    public Hashtable Palette { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public Hashtable Palette { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            _ = this.Service.AddObject(this.Name, this.MyInvocation.BoundParameters);
-            this.Outputs.Add(this.Service.GetObject(this.Name));
-        }
-
+    protected override void ProcessRecordCore()
+    {
+        _ = this.Service.AddObject(this.Name, this.MyInvocation.BoundParameters);
+        this.Outputs.Add(this.Service.GetObject(this.Name));
     }
 
 }

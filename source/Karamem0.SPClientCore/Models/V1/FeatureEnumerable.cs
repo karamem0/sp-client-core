@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,18 +13,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.FeatureCollection", Id = "{8b9c0015-193d-4062-8e98-8d23c303eedd}")]
+[JsonObject()]
+public class FeatureEnumerable : ClientObjectEnumerable<Feature>
 {
 
-    [ClientObject(Name = "SP.FeatureCollection", Id = "{8b9c0015-193d-4062-8e98-8d23c303eedd}")]
-    [JsonObject()]
-    public class FeatureEnumerable : ClientObjectEnumerable<Feature>
+    public FeatureEnumerable()
     {
-
-        public FeatureEnumerable()
-        {
-        }
-
     }
 
 }

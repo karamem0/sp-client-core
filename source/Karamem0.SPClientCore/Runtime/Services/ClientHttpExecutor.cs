@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -19,125 +19,122 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.Services
+namespace Karamem0.SharePoint.PowerShell.Runtime.Services;
+
+public class ClientHttpExecutor
 {
 
-    public class ClientHttpExecutor
+    private readonly HttpClient httpClient;
+
+    public ClientHttpExecutor()
     {
+        this.httpClient = new HttpClient(new ClientHttpMessageHandler());
+        this.httpClient.Timeout = Timeout.InfiniteTimeSpan;
+        this.httpClient.DefaultRequestHeaders.UserAgent.Add(
+            new ProductInfoHeaderValue(
+                ClientConstants.UserAgent,
+                this.GetType().Assembly.GetName().Version.ToString(3)));
+    }
 
-        private readonly HttpClient httpClient;
-
-        public ClientHttpExecutor()
+    public void Execute(
+        Func<HttpRequestMessage> requestCallback,
+        Func<HttpResponseMessage, Task<object>> responseCallback
+    )
+    {
+        var syncContext = new ClientHttpSynchronizationContext();
+        try
         {
-            this.httpClient = new HttpClient(new ClientHttpMessageHandler());
-            this.httpClient.Timeout = Timeout.InfiniteTimeSpan;
-            this.httpClient.DefaultRequestHeaders.UserAgent.Add(
-                new ProductInfoHeaderValue(
-                    ClientConstants.UserAgent,
-                    this.GetType().Assembly.GetName().Version.ToString(3)));
+            SynchronizationContext.SetSynchronizationContext(syncContext);
+            var executeTask = this.ExecuteAsync(requestCallback, responseCallback);
+            syncContext.Wait();
+            _ = executeTask.GetAwaiter().GetResult();
         }
-
-        public void Execute(
-            Func<HttpRequestMessage> requestCallback,
-            Func<HttpResponseMessage, Task<object>> responseCallback
-        )
+        finally
         {
-            var syncContext = new ClientHttpSynchronizationContext();
-            try
-            {
-                SynchronizationContext.SetSynchronizationContext(syncContext);
-                var executeTask = this.ExecuteAsync(requestCallback, responseCallback);
-                syncContext.Wait();
-                _ = executeTask.GetAwaiter().GetResult();
-            }
-            finally
-            {
-                SynchronizationContext.SetSynchronizationContext(null);
-            }
+            SynchronizationContext.SetSynchronizationContext(null);
         }
+    }
 
-        public T Execute<T>(
-            Func<HttpRequestMessage> requestCallback,
-            Func<HttpResponseMessage, Task<T>> responseCallback
-        )
+    public T Execute<T>(
+        Func<HttpRequestMessage> requestCallback,
+        Func<HttpResponseMessage, Task<T>> responseCallback
+    )
+    {
+        var syncContext = new ClientHttpSynchronizationContext();
+        try
         {
-            var syncContext = new ClientHttpSynchronizationContext();
-            try
-            {
-                SynchronizationContext.SetSynchronizationContext(syncContext);
-                var executeTask = this.ExecuteAsync(requestCallback, responseCallback);
-                syncContext.Wait();
-                return executeTask.GetAwaiter().GetResult();
-            }
-            finally
-            {
-                SynchronizationContext.SetSynchronizationContext(null);
-            }
+            SynchronizationContext.SetSynchronizationContext(syncContext);
+            var executeTask = this.ExecuteAsync(requestCallback, responseCallback);
+            syncContext.Wait();
+            return executeTask.GetAwaiter().GetResult();
         }
-
-        public async Task<T> ExecuteAsync<T>(
-            Func<HttpRequestMessage> requestCallback,
-            Func<HttpResponseMessage, Task<T>> responseCallback
-        )
+        finally
         {
-            _ = requestCallback ?? throw new ArgumentNullException(nameof(requestCallback));
-            _ = responseCallback ?? throw new ArgumentNullException(nameof(responseCallback));
-            var syncContext = SynchronizationContext.Current as ClientHttpSynchronizationContext;
-            try
+            SynchronizationContext.SetSynchronizationContext(null);
+        }
+    }
+
+    public async Task<T> ExecuteAsync<T>(
+        Func<HttpRequestMessage> requestCallback,
+        Func<HttpResponseMessage, Task<T>> responseCallback
+    )
+    {
+        _ = requestCallback ?? throw new ArgumentNullException(nameof(requestCallback));
+        _ = responseCallback ?? throw new ArgumentNullException(nameof(responseCallback));
+        var syncContext = SynchronizationContext.Current as ClientHttpSynchronizationContext;
+        try
+        {
+            var errorCount = 0;
+            while (true)
             {
-                var errorCount = 0;
-                while (true)
+                var requestMessage = requestCallback.Invoke();
+                var responseMessage = await this.httpClient.SendAsync(requestMessage);
+                if (responseMessage.IsSuccessStatusCode)
                 {
-                    var requestMessage = requestCallback.Invoke();
-                    var responseMessage = await this.httpClient.SendAsync(requestMessage);
-                    if (responseMessage.IsSuccessStatusCode)
+                    return await responseCallback.Invoke(responseMessage);
+                }
+                else
+                {
+                    var statusCode = (int)responseMessage.StatusCode;
+                    if (statusCode is 429 or 502 or 503)
                     {
-                        return await responseCallback.Invoke(responseMessage);
+                        errorCount += 1;
+                        if (errorCount > ClientConstants.MaxRetryCount)
+                        {
+                            throw new InvalidOperationException(StringResources.ErrorMaxRetryCountExceeded);
+                        }
+                        await Task.Delay(responseMessage.Headers.RetryAfter.Delta.GetValueOrDefault(TimeSpan.FromSeconds(errorCount + 1)));
                     }
                     else
                     {
-                        var statusCode = (int)responseMessage.StatusCode;
-                        if (statusCode == 429 || statusCode == 502 || statusCode == 503)
+                        var responseContent = await responseMessage.Content.ReadAsStringAsync();
+                        if (JsonSerializerManager.JsonSerializer.TryDeserialize(
+                            responseContent,
+                            out OAuthError oAuthError))
                         {
-                            errorCount += 1;
-                            if (errorCount > ClientConstants.MaxRetryCount)
-                            {
-                                throw new InvalidOperationException(StringResources.ErrorMaxRetryCountExceeded);
-                            }
-                            await Task.Delay(responseMessage.Headers.RetryAfter.Delta.GetValueOrDefault(TimeSpan.FromSeconds(errorCount + 1)));
+                            throw new InvalidOperationException(oAuthError.ErrorDescription);
                         }
-                        else
+                        if (JsonSerializerManager.JsonSerializer.TryDeserialize(
+                            responseContent,
+                            out ODataV1ResultPayload v1Payload))
                         {
-                            var responseContent = await responseMessage.Content.ReadAsStringAsync();
-                            if (JsonSerializerManager.JsonSerializer.TryDeserialize(
-                                responseContent,
-                                out OAuthError oAuthError))
-                            {
-                                throw new InvalidOperationException(oAuthError.ErrorDescription);
-                            }
-                            if (JsonSerializerManager.JsonSerializer.TryDeserialize(
-                                responseContent,
-                                out ODataV1ResultPayload v1Payload))
-                            {
-                                throw new InvalidOperationException(v1Payload.Error.Message.Value);
-                            }
-                            if (JsonSerializerManager.JsonSerializer.TryDeserialize(
-                                responseContent,
-                                out ODataV2ResultPayload v2Payload))
-                            {
-                                throw new InvalidOperationException(v2Payload.Error.Message);
-                            }
-                            throw new InvalidOperationException(StringResources.ErrorUnknown);
+                            throw new InvalidOperationException(v1Payload.Error.Message.Value);
                         }
+                        if (JsonSerializerManager.JsonSerializer.TryDeserialize(
+                            responseContent,
+                            out ODataV2ResultPayload v2Payload))
+                        {
+                            throw new InvalidOperationException(v2Payload.Error.Message);
+                        }
+                        throw new InvalidOperationException(StringResources.ErrorUnknown);
                     }
                 }
             }
-            finally
-            {
-                syncContext.Complete();
-            }
         }
-
+        finally
+        {
+            syncContext.Complete();
+        }
     }
 
 }

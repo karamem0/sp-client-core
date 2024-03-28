@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,36 +15,32 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Add, "KshFile")]
+[OutputType(typeof(File))]
+public class AddFileCommand : ClientObjectCmdlet<IFileService>
 {
 
-    [Cmdlet("Add", "KshFile")]
-    [Alias("New-KshFile")]
-    [OutputType(typeof(File))]
-    public class AddFileCommand : ClientObjectCmdlet<IFileService>
+    public AddFileCommand()
     {
+    }
 
-        public AddFileCommand()
-        {
-        }
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    public Folder Folder { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public Folder Folder { get; private set; }
+    [Parameter(Mandatory = true)]
+    public byte[] Content { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public byte[] Content { get; private set; }
+    [Parameter(Mandatory = true)]
+    public string FileName { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public string FileName { get; private set; }
+    [Parameter(Mandatory = false)]
+    public bool Overwrite { get; private set; }
 
-        [Parameter(Mandatory = false)]
-        public bool Overwrite { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Outputs.Add(this.Service.AddObject(this.Folder, this.MyInvocation.BoundParameters));
-        }
-
+    protected override void ProcessRecordCore()
+    {
+        this.Outputs.Add(this.Service.AddObject(this.Folder, this.MyInvocation.BoundParameters));
     }
 
 }

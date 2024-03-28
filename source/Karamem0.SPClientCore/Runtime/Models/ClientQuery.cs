@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,75 +15,72 @@ using System.Reflection;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.Models
+namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
+
+[XmlType("Query", Namespace = "http://schemas.microsoft.com/sharepoint/clientquery/2009")]
+public class ClientQuery : ClientRequestObject
 {
 
-    [XmlType("Query", Namespace = "http://schemas.microsoft.com/sharepoint/clientquery/2009")]
-    public class ClientQuery : ClientRequestObject
+    public static readonly ClientQuery Empty = new(false);
+
+    public ClientQuery(bool selectAllProperties)
     {
-
-        public static readonly ClientQuery Empty = new ClientQuery(false);
-
-        public ClientQuery(bool selectAllProperties)
-        {
-            this.SelectAllProperties = selectAllProperties;
-            this.Properties = new List<ClientQueryProperty>();
-        }
-
-        public ClientQuery(bool selectAllProperties, Type type, params string[] conditions)
-        {
-            this.SelectAllProperties = selectAllProperties;
-            this.Properties = type.GetDeclaringProperties()
-                .Where(propertyInfo => propertyInfo.IsDefined(typeof(JsonPropertyAttribute)))
-                .Where(propertyInfo =>
-                {
-                    var conditionAttribute = propertyInfo.GetCustomAttribute<ClientQueryIgnoreAttribute>();
-                    if (conditionAttribute == null)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        if (conditionAttribute.Name == null)
-                        {
-                            return false;
-                        }
-                        else
-                        {
-                            return conditions.Contains(conditionAttribute.Name);
-                        }
-                    }
-                })
-                .Select(propertyInfo =>
-                {
-                    var propertyAttribute = propertyInfo.GetCustomAttribute<JsonPropertyAttribute>();
-                    var propertyName = string.IsNullOrEmpty(propertyAttribute.PropertyName) ? propertyInfo.Name : propertyAttribute.PropertyName;
-                    var propertyType = propertyInfo.PropertyType;
-                    if (propertyType.IsSubclassOf(typeof(ClientObject)))
-                    {
-                        return new ClientQueryProperty(propertyName)
-                        {
-                            SelectAll = true,
-                            Query = new ClientQuery(selectAllProperties, propertyType)
-                        };
-                    }
-                    else
-                    {
-                        return new ClientQueryProperty(propertyName)
-                        {
-                            ScalarProperty = true
-                        };
-                    }
-                })
-                .ToList();
-        }
-
-        [XmlAttribute()]
-        public virtual bool SelectAllProperties { get; protected set; }
-
-        [XmlArray()]
-        public virtual IEnumerable<ClientQueryProperty> Properties { get; protected set; }
-
+        this.SelectAllProperties = selectAllProperties;
+        this.Properties = [];
     }
+
+    public ClientQuery(bool selectAllProperties, Type type, params string[] conditions)
+    {
+        this.SelectAllProperties = selectAllProperties;
+        this.Properties = type.GetDeclaringProperties()
+            .Where(propertyInfo => propertyInfo.IsDefined(typeof(JsonPropertyAttribute)))
+            .Where(propertyInfo =>
+            {
+                var conditionAttribute = propertyInfo.GetCustomAttribute<ClientQueryIgnoreAttribute>();
+                if (conditionAttribute is null)
+                {
+                    return true;
+                }
+                else
+                {
+                    if (conditionAttribute.Name is null)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return conditions.Contains(conditionAttribute.Name);
+                    }
+                }
+            })
+            .Select(propertyInfo =>
+            {
+                var propertyAttribute = propertyInfo.GetCustomAttribute<JsonPropertyAttribute>();
+                var propertyName = string.IsNullOrEmpty(propertyAttribute.PropertyName) ? propertyInfo.Name : propertyAttribute.PropertyName;
+                var propertyType = propertyInfo.PropertyType;
+                if (propertyType.IsSubclassOf(typeof(ClientObject)))
+                {
+                    return new ClientQueryProperty(propertyName)
+                    {
+                        SelectAll = true,
+                        Query = new ClientQuery(selectAllProperties, propertyType)
+                    };
+                }
+                else
+                {
+                    return new ClientQueryProperty(propertyName)
+                    {
+                        ScalarProperty = true
+                    };
+                }
+            })
+            .ToList();
+    }
+
+    [XmlAttribute()]
+    public virtual bool SelectAllProperties { get; protected set; }
+
+    [XmlArray()]
+    public virtual IEnumerable<ClientQueryProperty> Properties { get; protected set; }
 
 }

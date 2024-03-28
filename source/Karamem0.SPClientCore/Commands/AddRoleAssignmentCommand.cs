@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,55 +15,51 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Add, "KshRoleAssignment")]
+[OutputType(typeof(RoleAssignment))]
+public class AddRoleAssignmentCommand : ClientObjectCmdlet<ISiteService, IRoleAssignmentService>
 {
 
-    [Cmdlet("Add", "KshRoleAssignment")]
-    [Alias("New-KshRoleAssignment")]
-    [OutputType(typeof(RoleAssignment))]
-    public class AddRoleAssignmentCommand : ClientObjectCmdlet<ISiteService, IRoleAssignmentService>
+    public AddRoleAssignmentCommand()
     {
+    }
 
-        public AddRoleAssignmentCommand()
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
+    public SwitchParameter Site { get; private set; }
+
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+    public List List { get; private set; }
+
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet3")]
+    public ListItem ListItem { get; private set; }
+
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet3")]
+    public Principal Principal { get; private set; }
+
+    [Parameter(Mandatory = true, Position = 2, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = true, Position = 2, ParameterSetName = "ParamSet2")]
+    [Parameter(Mandatory = true, Position = 2, ParameterSetName = "ParamSet3")]
+    public RoleDefinition RoleDefinition { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        if (this.ParameterSetName == "ParamSet1")
         {
+            this.ValidateSwitchParameter(nameof(this.Site));
+            this.Outputs.Add(this.Service2.AddObject(this.Service1.GetObject(), this.Principal, this.RoleDefinition));
         }
-
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
-        public SwitchParameter Site { get; private set; }
-
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
-        public List List { get; private set; }
-
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet3")]
-        public ListItem ListItem { get; private set; }
-
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet3")]
-        public Principal Principal { get; private set; }
-
-        [Parameter(Mandatory = true, Position = 2, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = true, Position = 2, ParameterSetName = "ParamSet2")]
-        [Parameter(Mandatory = true, Position = 2, ParameterSetName = "ParamSet3")]
-        public RoleDefinition RoleDefinition { get; private set; }
-
-        protected override void ProcessRecordCore()
+        if (this.ParameterSetName == "ParamSet2")
         {
-            if (this.ParameterSetName == "ParamSet1")
-            {
-                this.ValidateSwitchParameter(nameof(this.Site));
-                this.Outputs.Add(this.Service2.AddObject(this.Service1.GetObject(), this.Principal, this.RoleDefinition));
-            }
-            if (this.ParameterSetName == "ParamSet2")
-            {
-                this.Outputs.Add(this.Service2.AddObject(this.List, this.Principal, this.RoleDefinition));
-            }
-            if (this.ParameterSetName == "ParamSet3")
-            {
-                this.Outputs.Add(this.Service2.AddObject(this.ListItem, this.Principal, this.RoleDefinition));
-            }
+            this.Outputs.Add(this.Service2.AddObject(this.List, this.Principal, this.RoleDefinition));
         }
-
+        if (this.ParameterSetName == "ParamSet3")
+        {
+            this.Outputs.Add(this.Service2.AddObject(this.ListItem, this.Principal, this.RoleDefinition));
+        }
     }
 
 }

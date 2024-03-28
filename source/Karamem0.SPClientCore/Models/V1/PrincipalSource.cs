@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -11,25 +11,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[Flags()]
+public enum PrincipalSource
 {
 
-    [Flags()]
-    public enum PrincipalSource
-    {
+    None = 0,
 
-        None = 0,
+    UserInfoList = 1,
 
-        UserInfoList = 1,
+    Windows = 2,
 
-        Windows = 2,
+    MembershipProvider = 4,
 
-        MembershipProvider = 4,
+    RoleProvider = 8,
 
-        RoleProvider = 8,
-
-        All = 15,
-
-    }
+    All = 15,
 
 }

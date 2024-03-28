@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -11,17 +11,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.Models
+namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
+
+public static class JsonHelper
 {
 
-    public static class JsonHelper
+    public static string ReplaceDoubleToInfinity(string value)
     {
-
-        public static string ReplaceDoubleToInfinity(string value)
-        {
-            return value.Replace("1.79769313486232E+308", "Infinity");
-        }
-
+        return value.Replace("1.79769313486232E+308", "Infinity");
     }
 
 }

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,64 +15,61 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Get, "KshDocumentLibrary")]
+[OutputType(typeof(DocumentLibraryInfo))]
+public class GetDocumentLibraryCommand : ClientObjectCmdlet<IDocumentLibraryService>
 {
 
-    [Cmdlet("Get", "KshDocumentLibrary")]
-    [OutputType(typeof(DocumentLibraryInfo))]
-    public class GetDocumentLibraryCommand : ClientObjectCmdlet<IDocumentLibraryService>
+    public GetDocumentLibraryCommand()
     {
+    }
 
-        public GetDocumentLibraryCommand()
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
+    public SwitchParameter Default { get; private set; }
+
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+    public SwitchParameter IncludeMediaLibraries { get; private set; }
+
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+    public SwitchParameter IncludePageLibraries { get; private set; }
+
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+    public SwitchParameter NoEnumerate { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        if (this.ParameterSetName == "ParamSet1")
         {
+            this.ValidateSwitchParameter(nameof(this.Default));
+            this.Outputs.Add(this.Service.GetObject());
         }
-
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
-        public SwitchParameter Default { get; private set; }
-
-        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-        public SwitchParameter IncludeMediaLibraries { get; private set; }
-
-        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-        public SwitchParameter IncludePageLibraries { get; private set; }
-
-        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-        public SwitchParameter NoEnumerate { get; private set; }
-
-        protected override void ProcessRecordCore()
+        if (this.ParameterSetName == "ParamSet2")
         {
-            if (this.ParameterSetName == "ParamSet1")
+            if (this.IncludeMediaLibraries)
             {
-                this.ValidateSwitchParameter(nameof(this.Default));
-                this.Outputs.Add(this.Service.GetObject());
-            }
-            if (this.ParameterSetName == "ParamSet2")
-            {
-                if (this.IncludeMediaLibraries)
+                if (this.NoEnumerate)
                 {
-                    if (this.NoEnumerate)
-                    {
-                        this.Outputs.Add(this.Service.GetObjectEnumerable(this.IncludeMediaLibraries));
-                    }
-                    else
-                    {
-                        this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.IncludeMediaLibraries));
-                    }
+                    this.Outputs.Add(this.Service.GetObjectEnumerable(this.IncludeMediaLibraries));
                 }
                 else
                 {
-                    if (this.NoEnumerate)
-                    {
-                        this.Outputs.Add(this.Service.GetObjectEnumerable());
-                    }
-                    else
-                    {
-                        this.Outputs.AddRange(this.Service.GetObjectEnumerable());
-                    }
+                    this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.IncludeMediaLibraries));
+                }
+            }
+            else
+            {
+                if (this.NoEnumerate)
+                {
+                    this.Outputs.Add(this.Service.GetObjectEnumerable());
+                }
+                else
+                {
+                    this.Outputs.AddRange(this.Service.GetObjectEnumerable());
                 }
             }
         }
-
     }
 
 }

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,44 +15,41 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.Services
+namespace Karamem0.SharePoint.PowerShell.Runtime.Services;
+
+public abstract class TenantClientService : ClientService
 {
 
-    public abstract class TenantClientService : ClientService
+    protected TenantClientService(ClientContext clientContext) : base(clientContext)
     {
+    }
 
-        protected TenantClientService(ClientContext clientContext) : base(clientContext)
+    public void WaitObject(TenantOperationResult operationResultObject)
+    {
+        while (true)
         {
-        }
-
-        public void WaitObject(TenantOperationResult operationResultObject)
-        {
-            while (true)
+            Thread.Sleep(operationResultObject.PollingInterval);
+            if (operationResultObject.IsComplete)
             {
-                Thread.Sleep(operationResultObject.PollingInterval);
-                if (operationResultObject.IsComplete)
-                {
-                    Thread.Sleep(TimeSpan.FromSeconds(ClientConstants.TenantServiceWaitSeconds));
-                    break;
-                }
-                if (operationResultObject.HasTimedout)
-                {
-                    throw new InvalidOperationException(StringResources.ErrorOperationTimeout);
-                }
-                var requestPayload = new ClientRequestPayload();
-                var objectPath1 = requestPayload.Add(
-                    new ObjectPathIdentity(operationResultObject.ObjectIdentity),
-                    objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-                    objectPathId => new ClientActionQuery(objectPathId)
-                    {
-                        Query = new ClientQuery(true, typeof(TenantOperationResult))
-                    });
-                operationResultObject = this.ClientContext
-                    .ProcessQuery(requestPayload)
-                    .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
+                Thread.Sleep(TimeSpan.FromSeconds(ClientConstants.TenantServiceWaitSeconds));
+                break;
             }
+            if (operationResultObject.HasTimedout)
+            {
+                throw new InvalidOperationException(StringResources.ErrorOperationTimeout);
+            }
+            var requestPayload = new ClientRequestPayload();
+            var objectPath1 = requestPayload.Add(
+                new ObjectPathIdentity(operationResultObject.ObjectIdentity),
+                objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
+                objectPathId => new ClientActionQuery(objectPathId)
+                {
+                    Query = new ClientQuery(true, typeof(TenantOperationResult))
+                });
+            operationResultObject = this.ClientContext
+                .ProcessQuery(requestPayload)
+                .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
         }
-
     }
 
 }

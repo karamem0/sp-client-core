@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -12,18 +12,15 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.Models
+namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
+
+public class ODataV1ObjectAttribute : Attribute
 {
 
-    public class ODataV1ObjectAttribute : Attribute
+    public ODataV1ObjectAttribute()
     {
-
-        public ODataV1ObjectAttribute()
-        {
-        }
-
-        public string Name { get; set; }
-
     }
+
+    public string Name { get; set; }
 
 }

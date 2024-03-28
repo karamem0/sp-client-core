@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -14,50 +14,47 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Tests
+namespace Karamem0.SharePoint.PowerShell.Tests;
+
+[TestClass()]
+public class RemoveTenantListDesignCommandTests
 {
 
-    [TestClass()]
-    public class RemoveTenantListDesignCommandTests
+    [TestMethod()]
+    public void RemoveListDesign()
     {
-
-        [TestMethod()]
-        public void RemoveListDesign()
-        {
-            using var context = new PSCmdletContext();
-            var result1 = context.Runspace.InvokeCommand(
-                "Connect-KshSite",
-                new Dictionary<string, object>()
-                {
-                    { "Url", context.AppSettings["AdminUrl"] },
-                    { "Credential", PSCredentialFactory.CreateCredential(
-                        context.AppSettings["LoginUserName"],
-                        context.AppSettings["LoginPassword"])
-                    }
+        using var context = new PSCmdletContext();
+        var result1 = context.Runspace.InvokeCommand(
+            "Connect-KshSite",
+            new Dictionary<string, object>()
+            {
+                { "Url", context.AppSettings["AdminUrl"] },
+                { "Credential", PSCredentialFactory.CreateCredential(
+                    context.AppSettings["LoginUserName"],
+                    context.AppSettings["LoginPassword"])
                 }
-            );
-            var result2 = context.Runspace.InvokeCommand<TenantListDesign>(
-                "Add-KshTenantListDesign",
-                new Dictionary<string, object>()
-                {
-                    { "Description", "Test List Design 0" },
-                    { "ListColor", "DarkRed" },
-                    { "ListIcon", "CubeShape" },
-                    { "SiteScriptIds", new[] { context.AppSettings["SiteScript1Id"] } },
-                    { "TemplateFeatures", null },
-                    { "ThumbnailUrl", null },
-                    { "Title", "Test List Design 0" },
-                }
-            );
-            var result3 = context.Runspace.InvokeCommand(
-                "Remove-KshTenantListDesign",
-                new Dictionary<string, object>()
-                {
-                    { "Identity", result2.ElementAt(0) }
-                }
-            );
-        }
-
+            }
+        );
+        var result2 = context.Runspace.InvokeCommand<TenantListDesign>(
+            "Add-KshTenantListDesign",
+            new Dictionary<string, object>()
+            {
+                { "Description", "Test List Design 0" },
+                { "ListColor", "DarkRed" },
+                { "ListIcon", "CubeShape" },
+                { "SiteScriptIds", new[] { context.AppSettings["SiteScript1Id"] } },
+                { "TemplateFeatures", null },
+                { "ThumbnailUrl", null },
+                { "Title", "Test List Design 0" },
+            }
+        );
+        var result3 = context.Runspace.InvokeCommand(
+            "Remove-KshTenantListDesign",
+            new Dictionary<string, object>()
+            {
+                { "Identity", result2.ElementAt(0) }
+            }
+        );
     }
 
 }

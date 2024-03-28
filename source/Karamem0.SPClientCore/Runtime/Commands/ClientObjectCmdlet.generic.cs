@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -14,89 +14,86 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.Commands
+namespace Karamem0.SharePoint.PowerShell.Runtime.Commands;
+
+public abstract class ClientObjectCmdlet<T> : ClientObjectCmdlet
 {
 
-    public abstract class ClientObjectCmdlet<T> : ClientObjectCmdlet
+    protected ClientObjectCmdlet()
     {
-
-        protected ClientObjectCmdlet()
+        if (ClientService.ServiceProvider is null)
         {
-            if (ClientService.ServiceProvider == null)
-            {
-                throw new InvalidOperationException(StringResources.ErrorNotConnected);
-            }
-            this.Service = ClientService.ServiceProvider.GetService<T>();
+            throw new InvalidOperationException(StringResources.ErrorNotConnected);
         }
-
-        protected T Service { get; private set; }
-
+        this.Service = ClientService.ServiceProvider.GetService<T>();
     }
 
-    public abstract class ClientObjectCmdlet<T1, T2> : ClientObjectCmdlet
+    protected T Service { get; private set; }
+
+}
+
+public abstract class ClientObjectCmdlet<T1, T2> : ClientObjectCmdlet
+{
+
+    protected ClientObjectCmdlet()
     {
-
-        protected ClientObjectCmdlet()
+        if (ClientService.ServiceProvider is null)
         {
-            if (ClientService.ServiceProvider == null)
-            {
-                throw new InvalidOperationException(StringResources.ErrorNotConnected);
-            }
-            this.Service1 = ClientService.ServiceProvider.GetService<T1>();
-            this.Service2 = ClientService.ServiceProvider.GetService<T2>();
+            throw new InvalidOperationException(StringResources.ErrorNotConnected);
         }
-
-        protected T1 Service1 { get; private set; }
-
-        protected T2 Service2 { get; private set; }
-
+        this.Service1 = ClientService.ServiceProvider.GetService<T1>();
+        this.Service2 = ClientService.ServiceProvider.GetService<T2>();
     }
 
-    public abstract class ClientObjectCmdlet<T1, T2, T3> : ClientObjectCmdlet
+    protected T1 Service1 { get; private set; }
+
+    protected T2 Service2 { get; private set; }
+
+}
+
+public abstract class ClientObjectCmdlet<T1, T2, T3> : ClientObjectCmdlet
+{
+
+    protected ClientObjectCmdlet()
     {
-
-        protected ClientObjectCmdlet()
+        if (ClientService.ServiceProvider is null)
         {
-            if (ClientService.ServiceProvider == null)
-            {
-                throw new InvalidOperationException(StringResources.ErrorNotConnected);
-            }
-            this.Service1 = ClientService.ServiceProvider.GetService<T1>();
-            this.Service2 = ClientService.ServiceProvider.GetService<T2>();
-            this.Service3 = ClientService.ServiceProvider.GetService<T3>();
+            throw new InvalidOperationException(StringResources.ErrorNotConnected);
         }
-
-        protected T1 Service1 { get; private set; }
-
-        protected T2 Service2 { get; private set; }
-
-        protected T3 Service3 { get; private set; }
-
+        this.Service1 = ClientService.ServiceProvider.GetService<T1>();
+        this.Service2 = ClientService.ServiceProvider.GetService<T2>();
+        this.Service3 = ClientService.ServiceProvider.GetService<T3>();
     }
 
-    public abstract class ClientObjectCmdlet<T1, T2, T3, T4> : ClientObjectCmdlet
+    protected T1 Service1 { get; private set; }
+
+    protected T2 Service2 { get; private set; }
+
+    protected T3 Service3 { get; private set; }
+
+}
+
+public abstract class ClientObjectCmdlet<T1, T2, T3, T4> : ClientObjectCmdlet
+{
+
+    protected ClientObjectCmdlet()
     {
-
-        protected ClientObjectCmdlet()
+        if (ClientService.ServiceProvider is null)
         {
-            if (ClientService.ServiceProvider == null)
-            {
-                throw new InvalidOperationException(StringResources.ErrorNotConnected);
-            }
-            this.Service1 = ClientService.ServiceProvider.GetService<T1>();
-            this.Service2 = ClientService.ServiceProvider.GetService<T2>();
-            this.Service3 = ClientService.ServiceProvider.GetService<T3>();
-            this.Service4 = ClientService.ServiceProvider.GetService<T4>();
+            throw new InvalidOperationException(StringResources.ErrorNotConnected);
         }
-
-        protected T1 Service1 { get; private set; }
-
-        protected T2 Service2 { get; private set; }
-
-        protected T3 Service3 { get; private set; }
-
-        protected T4 Service4 { get; private set; }
-
+        this.Service1 = ClientService.ServiceProvider.GetService<T1>();
+        this.Service2 = ClientService.ServiceProvider.GetService<T2>();
+        this.Service3 = ClientService.ServiceProvider.GetService<T3>();
+        this.Service4 = ClientService.ServiceProvider.GetService<T4>();
     }
+
+    protected T1 Service1 { get; private set; }
+
+    protected T2 Service2 { get; private set; }
+
+    protected T3 Service3 { get; private set; }
+
+    protected T4 Service4 { get; private set; }
 
 }

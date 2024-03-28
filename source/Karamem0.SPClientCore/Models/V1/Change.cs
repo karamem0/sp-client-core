@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,33 +13,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.Change", Id = "{c717121b-f82f-4afb-a2b7-25f67522120f}")]
+[JsonObject()]
+public class Change : ClientObject
 {
 
-    [ClientObject(Name = "SP.Change", Id = "{c717121b-f82f-4afb-a2b7-25f67522120f}")]
-    [JsonObject()]
-    public class Change : ClientObject
+    public Change()
     {
-
-        public Change()
-        {
-        }
-
-        [JsonProperty()]
-        public virtual ChangeToken ChangeToken { get; protected set; }
-
-        [JsonProperty()]
-        public virtual ChangeType ChangeType { get; protected set; }
-
-        [JsonProperty()]
-        public virtual string RelativeTime { get; protected set; }
-
-        [JsonProperty("SiteId")]
-        public virtual Guid SiteCollectionId { get; protected set; }
-
-        [JsonProperty()]
-        public virtual DateTime Time { get; protected set; }
-
     }
+
+    [JsonProperty()]
+    public virtual ChangeToken ChangeToken { get; protected set; }
+
+    [JsonProperty()]
+    public virtual ChangeType ChangeType { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string RelativeTime { get; protected set; }
+
+    [JsonProperty("SiteId")]
+    public virtual Guid SiteCollectionId { get; protected set; }
+
+    [JsonProperty()]
+    public virtual DateTime Time { get; protected set; }
 
 }

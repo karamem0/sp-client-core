@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,42 +13,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.Taxonomy.TermSetItem", Id = "{a99e4a8f-010b-4e56-9b29-b7bd6ec51263}")]
+[JsonObject()]
+public class TermSetItem : TaxonomyItem
 {
 
-    [ClientObject(Name = "SP.Taxonomy.TermSetItem", Id = "{a99e4a8f-010b-4e56-9b29-b7bd6ec51263}")]
-    [JsonObject()]
-    public class TermSetItem : TaxonomyItem
+    public TermSetItem()
     {
-
-        public TermSetItem()
-        {
-        }
-
-        [JsonProperty("CreatedDate")]
-        public override DateTime Created { get; protected set; }
-
-        [JsonProperty()]
-        public virtual IReadOnlyDictionary<string, string> CustomProperties { get; protected set; }
-
-        [JsonProperty()]
-        public virtual string CustomSortOrder { get; protected set; }
-
-        [JsonProperty()]
-        public override Guid Id { get; protected set; }
-
-        [JsonProperty()]
-        public virtual bool IsAvailableForTagging { get; protected set; }
-
-        [JsonProperty("LastModifiedDate")]
-        public override DateTime LastModified { get; protected set; }
-
-        [JsonProperty()]
-        public override string Name { get; protected set; }
-
-        [JsonProperty()]
-        public virtual string Owner { get; protected set; }
-
     }
+
+    [JsonProperty("CreatedDate")]
+    public override DateTime Created { get; protected set; }
+
+    [JsonProperty()]
+    public virtual IReadOnlyDictionary<string, string> CustomProperties { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string CustomSortOrder { get; protected set; }
+
+    [JsonProperty()]
+    public override Guid Id { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool IsAvailableForTagging { get; protected set; }
+
+    [JsonProperty("LastModifiedDate")]
+    public override DateTime LastModified { get; protected set; }
+
+    [JsonProperty()]
+    public override string Name { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string Owner { get; protected set; }
 
 }

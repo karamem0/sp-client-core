@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -14,35 +14,32 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.CamlQuery", Id = "{3d248d7b-fc86-40a3-aa97-02a75d69fb8a}")]
+[JsonObject()]
+public class CamlQuery : ClientValueObject
 {
 
-    [ClientObject(Name = "SP.CamlQuery", Id = "{3d248d7b-fc86-40a3-aa97-02a75d69fb8a}")]
-    [JsonObject()]
-    public class CamlQuery : ClientValueObject
+    public CamlQuery()
     {
-
-        public CamlQuery()
-        {
-        }
-
-        public CamlQuery(IReadOnlyDictionary<string, object> parameters) : base(parameters)
-        {
-        }
-
-        [JsonProperty()]
-        [DefaultValue(true)]
-        public virtual bool DatesInUtc { get; protected set; }
-
-        [JsonProperty()]
-        public virtual string FolderServerRelativeUrl { get; protected set; }
-
-        [JsonProperty()]
-        public virtual ListItemCollectionPosition ListItemCollectionPosition { get; protected set; }
-
-        [JsonProperty()]
-        public virtual string ViewXml { get; protected set; }
-
     }
+
+    public CamlQuery(IReadOnlyDictionary<string, object> parameters) : base(parameters)
+    {
+    }
+
+    [JsonProperty()]
+    [DefaultValue(true)]
+    public virtual bool DatesInUtc { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string FolderServerRelativeUrl { get; protected set; }
+
+    [JsonProperty()]
+    public virtual ListItemCollectionPosition ListItemCollectionPosition { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string ViewXml { get; protected set; }
 
 }

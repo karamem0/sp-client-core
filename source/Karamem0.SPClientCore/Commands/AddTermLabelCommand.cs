@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,36 +15,32 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Add, "KshTermLabel")]
+[OutputType(typeof(TermLabel))]
+public class AddTermLabelCommand : ClientObjectCmdlet<ITermLabelService>
 {
 
-    [Cmdlet("Add", "KshTermLabel")]
-    [Alias("New-KshTermLabel")]
-    [OutputType(typeof(TermLabel))]
-    public class AddTermLabelCommand : ClientObjectCmdlet<ITermLabelService>
+    public AddTermLabelCommand()
     {
+    }
 
-        public AddTermLabelCommand()
-        {
-        }
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    public Term Term { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public Term Term { get; private set; }
+    [Parameter(Mandatory = true)]
+    public string Name { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public string Name { get; private set; }
+    [Parameter(Mandatory = true)]
+    public uint Lcid { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public uint Lcid { get; private set; }
+    [Parameter(Mandatory = true)]
+    public bool IsDefault { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public bool IsDefault { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Outputs.Add(this.Service.AddObject(this.Term, this.Name, this.Lcid, this.IsDefault));
-        }
-
+    protected override void ProcessRecordCore()
+    {
+        this.Outputs.Add(this.Service.AddObject(this.Term, this.Name, this.Lcid, this.IsDefault));
     }
 
 }

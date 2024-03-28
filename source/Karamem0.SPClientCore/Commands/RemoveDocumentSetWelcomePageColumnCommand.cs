@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,32 +15,32 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Remove, "KshDocumentSetWelcomePageColumn", SupportsShouldProcess = true, ConfirmImpact = ConfirmImpact.High)]
+[OutputType((Type[])null)]
+public class RemoveDocumentSetWelcomePageColumnCommand : ClientObjectCmdlet<IDocumentSetWelcomePageColumnService>
 {
 
-    [Cmdlet("Remove", "KshDocumentSetWelcomePageColumn")]
-    [OutputType(typeof(void))]
-    public class RemoveDocumentSetWelcomePageColumnCommand : ClientObjectCmdlet<IDocumentSetWelcomePageColumnService>
+    public RemoveDocumentSetWelcomePageColumnCommand()
     {
+    }
 
-        public RemoveDocumentSetWelcomePageColumnCommand()
-        {
-        }
+    [Parameter(Mandatory = true, Position = 0)]
+    public ContentType ContentType { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0)]
-        public ContentType ContentType { get; private set; }
+    [Parameter(Mandatory = true, Position = 1)]
+    public Column Column { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 1)]
-        public Column Column { get; private set; }
+    [Parameter(Mandatory = false)]
+    public SwitchParameter PushChanges { get; private set; }
 
-        [Parameter(Mandatory = false)]
-        public SwitchParameter PushChanges { get; private set; }
-
-        protected override void ProcessRecordCore()
+    protected override void ProcessRecordCore()
+    {
+        if (this.ShouldProcess(this.Column.Name, VerbsCommon.Remove))
         {
             this.Service.RemoveObject(this.ContentType, this.Column, this.PushChanges);
         }
-
     }
 
 }

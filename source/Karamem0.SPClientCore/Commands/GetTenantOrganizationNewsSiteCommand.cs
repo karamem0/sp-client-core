@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -14,33 +14,30 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Get, "KshTenantOrganizationNewsSite")]
+[OutputType(typeof(string))]
+public class GetTenantOrganizationNewsSiteCommand : ClientObjectCmdlet<ITenantOrganizationNewsSiteService>
 {
 
-    [Cmdlet("Get", "KshTenantOrganizationNewsSite")]
-    [OutputType(typeof(string))]
-    public class GetTenantOrganizationNewsSiteCommand : ClientObjectCmdlet<ITenantOrganizationNewsSiteService>
+    public GetTenantOrganizationNewsSiteCommand()
     {
+    }
 
-        public GetTenantOrganizationNewsSiteCommand()
+    [Parameter(Mandatory = false)]
+    public SwitchParameter NoEnumerate { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        if (this.NoEnumerate)
         {
+            this.Outputs.Add(this.Service.GetObjectEnumerable());
         }
-
-        [Parameter(Mandatory = false)]
-        public SwitchParameter NoEnumerate { get; private set; }
-
-        protected override void ProcessRecordCore()
+        else
         {
-            if (this.NoEnumerate)
-            {
-                this.Outputs.Add(this.Service.GetObjectEnumerable());
-            }
-            else
-            {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable());
-            }
+            this.Outputs.AddRange(this.Service.GetObjectEnumerable());
         }
-
     }
 
 }

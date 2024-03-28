@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -12,36 +12,33 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.Common
+namespace Karamem0.SharePoint.PowerShell.Runtime.Common;
+
+public static class PropertyInfoExtensions
 {
 
-    public static class PropertyInfoExtensions
+    public static T GetCustomAttribute<T>(this PropertyInfo property) where T : Attribute
     {
+        return (T)Attribute.GetCustomAttribute(property, typeof(T));
+    }
 
-        public static T GetCustomAttribute<T>(this PropertyInfo property) where T : Attribute
-        {
-            return (T)Attribute.GetCustomAttribute(property, typeof(T));
-        }
+    public static T GetCustomAttribute<T>(this PropertyInfo property, bool inherit) where T : Attribute
+    {
+        return (T)Attribute.GetCustomAttribute(property, typeof(T), inherit);
+    }
 
-        public static T GetCustomAttribute<T>(this PropertyInfo property, bool inherit) where T : Attribute
+    public static bool TryGetValue(this PropertyInfo property, object obj, out object value)
+    {
+        value = property.GetValue(obj);
+        if (value is not null)
         {
-            return (T)Attribute.GetCustomAttribute(property, typeof(T), inherit);
-        }
-
-        public static bool TryGetValue(this PropertyInfo property, object obj, out object value)
-        {
-            value = property.GetValue(obj);
-            if (value != null)
+            if (property.PropertyType.IsGenericSubclassOf(typeof(Nullable<>)))
             {
-                if (property.PropertyType.IsGenericSubclassOf(typeof(Nullable<>)))
-                {
-                    value = property.PropertyType.GetProperty("Value").GetValue(value);
-                }
-                return true;
+                value = property.PropertyType.GetProperty("Value").GetValue(value);
             }
-            return false;
+            return true;
         }
-
+        return false;
     }
 
 }

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,18 +13,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.FileVersionCollection", Id = "{3826e282-67a6-4861-88fb-474e8aac897b}")]
+[JsonObject()]
+public class FileVersionEnumerable : ClientObjectEnumerable<FileVersion>
 {
 
-    [ClientObject(Name = "SP.FileVersionCollection", Id = "{3826e282-67a6-4861-88fb-474e8aac897b}")]
-    [JsonObject()]
-    public class FileVersionEnumerable : ClientObjectEnumerable<FileVersion>
+    public FileVersionEnumerable()
     {
-
-        public FileVersionEnumerable()
-        {
-        }
-
     }
 
 }

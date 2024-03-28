@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,27 +13,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.DocumentSet.DefaultDocument", Id = "{7295eb25-e721-42b6-aac9-cbb6c39afc54}")]
+[JsonObject()]
+public class DefaultDocument : ClientObject
 {
 
-    [ClientObject(Name = "SP.DocumentSet.DefaultDocument", Id = "{7295eb25-e721-42b6-aac9-cbb6c39afc54}")]
-    [JsonObject()]
-    public class DefaultDocument : ClientObject
+    public DefaultDocument()
     {
-
-        public DefaultDocument()
-        {
-        }
-
-        [JsonProperty()]
-        public virtual ContentTypeId ContentTypeId { get; protected set; }
-
-        [JsonProperty()]
-        public virtual ResourcePath DocumentPath { get; protected set; }
-
-        [JsonProperty()]
-        public virtual string Name { get; protected set; }
-
     }
+
+    [JsonProperty()]
+    public virtual ContentTypeId ContentTypeId { get; protected set; }
+
+    [JsonProperty()]
+    public virtual ResourcePath DocumentPath { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string Name { get; protected set; }
 
 }

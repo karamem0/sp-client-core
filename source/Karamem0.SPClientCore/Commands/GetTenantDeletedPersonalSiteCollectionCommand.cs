@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -16,60 +16,55 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Get, "KshTenantDeletedPersonalSiteCollection")]
+[OutputType(typeof(TenantDeletedSiteCollection))]
+public class GetTenantDeletedPersonalSiteCollectionCommand : ClientObjectCmdlet<ITenantDeletedPersonalSiteCollectionService>
 {
 
-    [Cmdlet("Get", "KshTenantDeletedPersonalSiteCollection")]
-    [OutputType(typeof(TenantDeletedSiteCollection))]
-    public class GetTenantDeletedPersonalSiteCollectionCommand : ClientObjectCmdlet<ITenantDeletedPersonalSiteCollectionService>
+    public GetTenantDeletedPersonalSiteCollectionCommand()
     {
+    }
 
-        public GetTenantDeletedPersonalSiteCollectionCommand()
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
+    public Uri SiteCollectionUrl { get; private set; }
+
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+    public SwitchParameter NoEnumerate { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        if (this.ParameterSetName == "ParamSet1")
         {
-        }
-
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
-        public Uri SiteCollectionUrl { get; private set; }
-
-        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-        public SwitchParameter NoEnumerate { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            if (this.ParameterSetName == "ParamSet1")
-            {
-                if (this.SiteCollectionUrl.IsAbsoluteUri)
-                {
-                    if (this.NoEnumerate)
-                    {
-                        this.Outputs.Add(this.Service.GetObjectEnumerable(this.SiteCollectionUrl));
-                    }
-                    else
-                    {
-                        this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.SiteCollectionUrl));
-                    }
-                }
-                else
-                {
-                    throw new ArgumentException(
-                        string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.SiteCollectionUrl),
-                        nameof(this.SiteCollectionUrl));
-                }
-            }
-            if (this.ParameterSetName == "ParamSet2")
+            if (this.SiteCollectionUrl.IsAbsoluteUri)
             {
                 if (this.NoEnumerate)
                 {
-                    this.Outputs.Add(this.Service.GetObjectEnumerable());
+                    this.Outputs.Add(this.Service.GetObjectEnumerable(this.SiteCollectionUrl));
                 }
                 else
                 {
-                    this.Outputs.AddRange(this.Service.GetObjectEnumerable());
+                    this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.SiteCollectionUrl));
                 }
             }
+            else
+            {
+                throw new InvalidOperationException(string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.SiteCollectionUrl));
+            }
         }
-
+        if (this.ParameterSetName == "ParamSet2")
+        {
+            if (this.NoEnumerate)
+            {
+                this.Outputs.Add(this.Service.GetObjectEnumerable());
+            }
+            else
+            {
+                this.Outputs.AddRange(this.Service.GetObjectEnumerable());
+            }
+        }
     }
 
 }

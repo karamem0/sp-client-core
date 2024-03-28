@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,35 +15,32 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Set, "KshColumnTaxonomyValue")]
+[OutputType((Type[])null)]
+public class SetColumnTaxonomyValueCommand : ClientObjectCmdlet<IColumnTaxonomyService>
 {
 
-    [Cmdlet("Set", "KshColumnTaxonomyValue")]
-    [OutputType(typeof(void))]
-    public class SetColumnTaxonomyValueCommand : ClientObjectCmdlet<IColumnTaxonomyService>
+    public SetColumnTaxonomyValueCommand()
     {
+    }
 
-        public SetColumnTaxonomyValueCommand()
-        {
-        }
+    [Parameter(Mandatory = true, Position = 0)]
+    public ColumnTaxonomy Column { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0)]
-        public ColumnTaxonomy Column { get; private set; }
+    [Parameter(Mandatory = true, Position = 1)]
+    public ListItem ListItem { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 1)]
-        public ListItem ListItem { get; private set; }
+    [Parameter(Mandatory = true)]
+    public Term[] Value { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public Term[] Value { get; private set; }
+    [Parameter(Mandatory = true)]
+    public uint Lcid { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public uint Lcid { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Service.SetObjectValue(this.Column, this.ListItem, this.Value, this.Lcid);
-        }
-
+    protected override void ProcessRecordCore()
+    {
+        this.Service.SetObjectValue(this.Column, this.ListItem, this.Value, this.Lcid);
     }
 
 }

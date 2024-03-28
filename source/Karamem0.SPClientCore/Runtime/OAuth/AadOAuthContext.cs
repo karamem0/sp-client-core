@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -18,248 +18,230 @@ using System.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
+namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth;
+
+public class AadOAuthContext : OAuthContext
 {
 
-    public class AadOAuthContext : OAuthContext
+    private readonly string authority;
+
+    private readonly string clientId;
+
+    private readonly bool userMode;
+
+    private readonly TenantIdResolver tenantIdResolver;
+
+    public AadOAuthContext(string authority, string clientId, string resource, bool userMode)
     {
+        this.authority = authority ?? throw new ArgumentNullException(nameof(authority));
+        this.clientId = clientId ?? throw new ArgumentNullException(nameof(clientId));
+        this.userMode = userMode;
+        this.tenantIdResolver = new TenantIdResolver(new Uri(resource, UriKind.Absolute));
+    }
 
-        private readonly string authority;
-
-        private readonly string clientId;
-
-        private readonly string resource;
-
-        private readonly bool userMode;
-
-        private readonly TenantIdResolver tenantIdResolver;
-
-        public AadOAuthContext(string authority, string clientId, string resource, bool userMode)
+    public OAuthMessage AcquireDeviceCode()
+    {
+        var requertParameters = new Dictionary<string, object>()
         {
-            this.authority = authority ?? throw new ArgumentNullException(nameof(authority));
-            this.clientId = clientId ?? throw new ArgumentNullException(nameof(clientId));
-            this.resource = resource ?? throw new ArgumentNullException(nameof(resource));
-            this.userMode = userMode;
-            this.tenantIdResolver = new TenantIdResolver(this.HttpClient, new Uri(this.resource, UriKind.Absolute));
-        }
-
-        public OAuthMessage AcquireDeviceCode()
+            { "client_id", this.clientId },
+            { "scope", string.Join(" ", this.userMode
+                ? [
+                    "offline_access",
+                    $"{OAuthConstants.ResourceId}/AllSites.Manage"
+                ]
+                : [
+                    "offline_access",
+                    $"{OAuthConstants.ResourceId}/AllSites.FullControl",
+                    $"{OAuthConstants.ResourceId}/TermStore.ReadWrite.All",
+                    $"{OAuthConstants.ResourceId}/User.Read.All"
+                ])
+            }
+        };
+        var tenantId = this.tenantIdResolver.Resolve();
+        var requestUrl = new Uri(this.authority, UriKind.Absolute)
+            .ConcatPath(tenantId)
+            .ConcatPath("oauth2/v2.0/devicecode")
+            .ConcatQuery(UriQuery.Create(requertParameters));
+        var requestMessage = new HttpRequestMessage(HttpMethod.Get, requestUrl);
+        requestMessage.Headers.Add("Accept", "application/json");
+        var responseMessage = this.HttpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
+        var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+        if (responseMessage.IsSuccessStatusCode)
         {
-            var requertParameters = new Dictionary<string, object>()
-            {
-                { "client_id", this.clientId },
-                { "scope", string.Join(" ", this.userMode
-                    ? new[]
-                    {
-                        "offline_access",
-                        $"{this.resource}/AllSites.Manage"
-                    }
-                    : new[]
-                    {
-                        "offline_access",
-                        $"{this.resource}/AllSites.FullControl",
-                        $"{this.resource}/TermStore.ReadWrite.All",
-                        $"{this.resource}/User.Read.All"
-                    })
-                }
-            };
-            var tenantId = this.tenantIdResolver.Resolve();
-            var requestUrl = new Uri(this.authority, UriKind.Absolute)
-                .ConcatPath(tenantId)
-                .ConcatPath("oauth2/v2.0/devicecode")
-                .ConcatQuery(UriQuery.Create(requertParameters));
-            var requestMessage = new HttpRequestMessage(HttpMethod.Get, requestUrl);
-            requestMessage.Headers.Add("Accept", "application/json");
-            var responseMessage = this.HttpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
-            var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                return JsonConvert.DeserializeObject<OAuthDeviceCode>(responseContent);
-            }
-            else
-            {
-                return JsonConvert.DeserializeObject<OAuthError>(responseContent);
-            }
+            return JsonConvert.DeserializeObject<OAuthDeviceCode>(responseContent);
         }
-
-        public OAuthMessage AcquireTokenByDeviceCode(string deviceCode)
+        else
         {
-            _ = deviceCode ?? throw new ArgumentNullException(nameof(deviceCode));
-            var tenantId = this.tenantIdResolver.Resolve();
-            var requestUrl = new Uri(this.authority, UriKind.Absolute)
-                .ConcatPath(tenantId)
-                .ConcatPath("oauth2/v2.0/token");
-            var requertParameters = new Dictionary<string, object>()
-            {
-                { "grant_type", "device_code" },
-                { "client_id", this.clientId },
-                { "code", deviceCode },
-                { "scope", string.Join(" ", this.userMode
-                    ? new[]
-                    {
-                        "offline_access",
-                        $"{this.resource}/AllSites.Manage"
-                    }
-                    : new[]
-                    {
-                        "offline_access",
-                        $"{this.resource}/AllSites.FullControl",
-                        $"{this.resource}/TermStore.ReadWrite.All",
-                        $"{this.resource}/User.Read.All"
-                    })
-                }
-            };
-            var requestContent = UriQuery.Create(requertParameters);
-            var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
-            requestMessage.Content = new StringContent(requestContent, Encoding.UTF8, "application/x-www-form-urlencoded");
-            requestMessage.Headers.Add("Accept", "application/json");
-            var responseMessage = this.HttpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
-            var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                return JsonConvert.DeserializeObject<AadOAuthToken>(responseContent);
-            }
-            else
-            {
-                return JsonConvert.DeserializeObject<OAuthError>(responseContent);
-            }
+            return JsonConvert.DeserializeObject<OAuthError>(responseContent);
         }
+    }
 
-        public OAuthMessage AcquireTokenByPassword(string userName, string password)
+    public OAuthMessage AcquireTokenByDeviceCode(string deviceCode)
+    {
+        _ = deviceCode ?? throw new ArgumentNullException(nameof(deviceCode));
+        var tenantId = this.tenantIdResolver.Resolve();
+        var requestUrl = new Uri(this.authority, UriKind.Absolute)
+            .ConcatPath(tenantId)
+            .ConcatPath("oauth2/v2.0/token");
+        var requertParameters = new Dictionary<string, object>()
         {
-            _ = userName ?? throw new ArgumentNullException(nameof(userName));
-            _ = password ?? throw new ArgumentNullException(nameof(password));
-            var tenantId = this.tenantIdResolver.Resolve();
-            var requestUrl = new Uri(this.authority, UriKind.Absolute)
-                .ConcatPath(tenantId)
-                .ConcatPath("oauth2/v2.0/token");
-            var requertParameters = new Dictionary<string, object>()
-            {
-                { "grant_type", "password" },
-                { "client_id", this.clientId },
-                { "username", userName },
-                { "password", password },
-                { "scope", string.Join(" ", this.userMode
-                    ? new[]
-                    {
-                        "offline_access",
-                        $"{this.resource}/AllSites.Manage"
-                    }
-                    : new[]
-                    {
-                        "offline_access",
-                        $"{this.resource}/AllSites.FullControl",
-                        $"{this.resource}/TermStore.ReadWrite.All",
-                        $"{this.resource}/User.Read.All"
-                    })
-                }
-            };
-            var requestContent = UriQuery.Create(requertParameters);
-            var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
-            requestMessage.Content = new StringContent(requestContent, Encoding.UTF8, "application/x-www-form-urlencoded");
-            requestMessage.Headers.Add("Accept", "application/json");
-            var responseMessage = this.HttpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
-            var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                return JsonConvert.DeserializeObject<AadOAuthToken>(responseContent);
+            { "grant_type", "device_code" },
+            { "client_id", this.clientId },
+            { "code", deviceCode },
+            { "scope", string.Join(" ", this.userMode
+                ? [
+                    "offline_access",
+                    $"{OAuthConstants.ResourceId}/AllSites.Manage"
+                ]
+                : [
+                    "offline_access",
+                    $"{OAuthConstants.ResourceId}/AllSites.FullControl",
+                    $"{OAuthConstants.ResourceId}/TermStore.ReadWrite.All",
+                    $"{OAuthConstants.ResourceId}/User.Read.All"
+                ])
             }
-            else
-            {
-                return JsonConvert.DeserializeObject<OAuthError>(responseContent);
-            }
-        }
-
-        public OAuthMessage AcquireTokenByRefreshToken(string refreshToken)
+        };
+        var requestContent = UriQuery.Create(requertParameters);
+        var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
+        requestMessage.Content = new StringContent(requestContent, Encoding.UTF8, "application/x-www-form-urlencoded");
+        requestMessage.Headers.Add("Accept", "application/json");
+        var responseMessage = this.HttpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
+        var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+        if (responseMessage.IsSuccessStatusCode)
         {
-            _ = refreshToken ?? throw new ArgumentNullException(nameof(refreshToken));
-            var tenantId = this.tenantIdResolver.Resolve();
-            var requestUrl = new Uri(this.authority, UriKind.Absolute)
-                .ConcatPath(tenantId)
-                .ConcatPath("oauth2/v2.0/token");
-            var requertParameters = new Dictionary<string, object>()
-            {
-                { "grant_type", "refresh_token" },
-                { "client_id", this.clientId },
-                { "refresh_token", refreshToken },
-                { "scope", string.Join(" ", this.userMode
-                    ? new[]
-                    {
-                        "offline_access",
-                        $"{this.resource}/AllSites.Manage"
-                    }
-                    : new[]
-                    {
-                        "offline_access",
-                        $"{this.resource}/AllSites.FullControl",
-                        $"{this.resource}/TermStore.ReadWrite.All",
-                        $"{this.resource}/User.Read.All"
-                    })
-                }
-            };
-            var requestContent = UriQuery.Create(requertParameters);
-            var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
-            requestMessage.Content = new StringContent(requestContent, Encoding.UTF8, "application/x-www-form-urlencoded");
-            requestMessage.Headers.Add("Accept", "application/json");
-            var responseMessage = this.HttpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
-            var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                return JsonConvert.DeserializeObject<AadOAuthToken>(responseContent);
-            }
-            else
-            {
-                return JsonConvert.DeserializeObject<OAuthError>(responseContent);
-            }
+            return JsonConvert.DeserializeObject<AadOAuthToken>(responseContent);
         }
-
-        public OAuthMessage AcquireTokenByCertificate(byte[] certBytes, SecureString certPassword)
+        else
         {
-            _ = certBytes ?? throw new ArgumentNullException(nameof(certBytes));
-            _ = certPassword ?? throw new ArgumentNullException(nameof(certPassword));
-            var tenantId = this.tenantIdResolver.Resolve();
-            var requestUrl = new Uri(this.authority, UriKind.Absolute)
-                .ConcatPath(tenantId)
-                .ConcatPath("oauth2/v2.0/token");
-            var requertParameters = new Dictionary<string, object>()
-            {
-                { "grant_type", "client_credentials" },
-                { "client_id", this.clientId },
-                { "client_assertion_type", "urn:ietf:params:oauth:client-assertion-type:jwt-bearer" },
-                { "client_assertion", new JsonWebTokenHandler().CreateToken(new SecurityTokenDescriptor()
-                    {
-                        Claims = new Dictionary<string, object>()
-                        {
-                            { "aud", requestUrl.ToString() },
-                            { "iss", this.clientId },
-                            { "jti", Guid.NewGuid().ToString() },
-                            { "sub", this.clientId }
-                        },
-                        SigningCredentials = new X509SigningCredentials(new X509Certificate2(certBytes, certPassword))
-                    })
-                },
-                { "scope", string.Join(" ", new[]
-                    {
-                        $"{this.resource}/.default"
-                    })
-                }
-            };
-            var requestContent = UriQuery.Create(requertParameters);
-            var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
-            requestMessage.Content = new StringContent(requestContent, Encoding.UTF8, "application/x-www-form-urlencoded");
-            requestMessage.Headers.Add("Accept", "application/json");
-            var responseMessage = this.HttpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
-            var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                return JsonConvert.DeserializeObject<AadOAuthToken>(responseContent);
-            }
-            else
-            {
-                return JsonConvert.DeserializeObject<OAuthError>(responseContent);
-            }
+            return JsonConvert.DeserializeObject<OAuthError>(responseContent);
         }
+    }
 
+    public OAuthMessage AcquireTokenByPassword(string userName, string password)
+    {
+        _ = userName ?? throw new ArgumentNullException(nameof(userName));
+        _ = password ?? throw new ArgumentNullException(nameof(password));
+        var tenantId = this.tenantIdResolver.Resolve();
+        var requestUrl = new Uri(this.authority, UriKind.Absolute)
+            .ConcatPath(tenantId)
+            .ConcatPath("oauth2/v2.0/token");
+        var requertParameters = new Dictionary<string, object>()
+        {
+            { "grant_type", "password" },
+            { "client_id", this.clientId },
+            { "username", userName },
+            { "password", password },
+            { "scope", string.Join(" ", this.userMode
+                ? [
+                    "offline_access",
+                    $"{OAuthConstants.ResourceId}/AllSites.Manage"
+                ]
+                : [
+                    "offline_access",
+                    $"{OAuthConstants.ResourceId}/AllSites.FullControl",
+                    $"{OAuthConstants.ResourceId}/TermStore.ReadWrite.All",
+                    $"{OAuthConstants.ResourceId}/User.Read.All"
+                ])
+            }
+        };
+        var requestContent = UriQuery.Create(requertParameters);
+        var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
+        requestMessage.Content = new StringContent(requestContent, Encoding.UTF8, "application/x-www-form-urlencoded");
+        requestMessage.Headers.Add("Accept", "application/json");
+        var responseMessage = this.HttpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
+        var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+        if (responseMessage.IsSuccessStatusCode)
+        {
+            return JsonConvert.DeserializeObject<AadOAuthToken>(responseContent);
+        }
+        else
+        {
+            return JsonConvert.DeserializeObject<OAuthError>(responseContent);
+        }
+    }
+
+    public OAuthMessage AcquireTokenByRefreshToken(string refreshToken)
+    {
+        _ = refreshToken ?? throw new ArgumentNullException(nameof(refreshToken));
+        var tenantId = this.tenantIdResolver.Resolve();
+        var requestUrl = new Uri(this.authority, UriKind.Absolute)
+            .ConcatPath(tenantId)
+            .ConcatPath("oauth2/v2.0/token");
+        var requertParameters = new Dictionary<string, object>()
+        {
+            { "grant_type", "refresh_token" },
+            { "client_id", this.clientId },
+            { "refresh_token", refreshToken },
+            { "scope", string.Join(" ", this.userMode
+                ? [
+                    "offline_access",
+                    $"{OAuthConstants.ResourceId}/AllSites.Manage"
+                ]
+                : [
+                    "offline_access",
+                    $"{OAuthConstants.ResourceId}/AllSites.FullControl",
+                    $"{OAuthConstants.ResourceId}/TermStore.ReadWrite.All",
+                    $"{OAuthConstants.ResourceId}/User.Read.All"
+                ])
+            }
+        };
+        var requestContent = UriQuery.Create(requertParameters);
+        var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
+        requestMessage.Content = new StringContent(requestContent, Encoding.UTF8, "application/x-www-form-urlencoded");
+        requestMessage.Headers.Add("Accept", "application/json");
+        var responseMessage = this.HttpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
+        var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+        if (responseMessage.IsSuccessStatusCode)
+        {
+            return JsonConvert.DeserializeObject<AadOAuthToken>(responseContent);
+        }
+        else
+        {
+            return JsonConvert.DeserializeObject<OAuthError>(responseContent);
+        }
+    }
+
+    public OAuthMessage AcquireTokenByCertificate(byte[] certBytes, SecureString certPassword)
+    {
+        _ = certBytes ?? throw new ArgumentNullException(nameof(certBytes));
+        _ = certPassword ?? throw new ArgumentNullException(nameof(certPassword));
+        var tenantId = this.tenantIdResolver.Resolve();
+        var requestUrl = new Uri(this.authority, UriKind.Absolute)
+            .ConcatPath(tenantId)
+            .ConcatPath("oauth2/v2.0/token");
+        var requertParameters = new Dictionary<string, object>()
+        {
+            { "grant_type", "client_credentials" },
+            { "client_id", this.clientId },
+            { "client_assertion_type", "urn:ietf:params:oauth:client-assertion-type:jwt-bearer" },
+            { "client_assertion", new JsonWebTokenHandler().CreateToken(new SecurityTokenDescriptor()
+                {
+                    Claims = new Dictionary<string, object>()
+                    {
+                        { "aud", requestUrl.ToString() },
+                        { "iss", this.clientId },
+                        { "jti", Guid.NewGuid().ToString() },
+                        { "sub", this.clientId }
+                    },
+                    SigningCredentials = new X509SigningCredentials(new X509Certificate2(certBytes, certPassword))
+                })
+            },
+            { "scope", string.Join(" ", [ $"{OAuthConstants.ResourceId}/.default" ]) }
+        };
+        var requestContent = UriQuery.Create(requertParameters);
+        var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
+        requestMessage.Content = new StringContent(requestContent, Encoding.UTF8, "application/x-www-form-urlencoded");
+        requestMessage.Headers.Add("Accept", "application/json");
+        var responseMessage = this.HttpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
+        var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+        if (responseMessage.IsSuccessStatusCode)
+        {
+            return JsonConvert.DeserializeObject<AadOAuthToken>(responseContent);
+        }
+        else
+        {
+            return JsonConvert.DeserializeObject<OAuthError>(responseContent);
+        }
     }
 
 }

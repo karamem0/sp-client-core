@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,30 +13,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.SPResourceEntry", Id = "{376ca521-1f79-4e53-b4b9-9ea9f24bb844}")]
+[JsonObject()]
+public class ResourceEntry : ClientValueObject
 {
 
-    [ClientObject(Name = "SP.SPResourceEntry", Id = "{376ca521-1f79-4e53-b4b9-9ea9f24bb844}")]
-    [JsonObject()]
-    public class ResourceEntry : ClientValueObject
+    public ResourceEntry()
     {
-
-        public ResourceEntry()
-        {
-        }
-
-        public ResourceEntry(uint lcid, string value)
-        {
-            this.Lcid = lcid;
-            this.Value = value;
-        }
-
-        [JsonProperty("LCID")]
-        public virtual uint Lcid { get; protected set; }
-
-        [JsonProperty()]
-        public virtual string Value { get; protected set; }
-
     }
+
+    public ResourceEntry(uint lcid, string value)
+    {
+        this.Lcid = lcid;
+        this.Value = value;
+    }
+
+    [JsonProperty("LCID")]
+    public virtual uint Lcid { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string Value { get; protected set; }
 
 }

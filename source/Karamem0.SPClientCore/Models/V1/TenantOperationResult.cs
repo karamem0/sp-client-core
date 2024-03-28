@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,27 +13,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "Microsoft.Online.SharePoint.TenantAdministration.SpoOperation", Id = "{7b4f9325-299b-48a7-b390-5c16b4f47cbc}")]
+[JsonObject()]
+public class TenantOperationResult : ClientObject
 {
 
-    [ClientObject(Name = "Microsoft.Online.SharePoint.TenantAdministration.SpoOperation", Id = "{7b4f9325-299b-48a7-b390-5c16b4f47cbc}")]
-    [JsonObject()]
-    public class TenantOperationResult : ClientObject
+    public TenantOperationResult()
     {
-
-        public TenantOperationResult()
-        {
-        }
-
-        [JsonProperty()]
-        public virtual bool HasTimedout { get; protected set; }
-
-        [JsonProperty()]
-        public virtual bool IsComplete { get; protected set; }
-
-        [JsonProperty()]
-        public virtual int PollingInterval { get; protected set; }
-
     }
+
+    [JsonProperty()]
+    public virtual bool HasTimedout { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool IsComplete { get; protected set; }
+
+    [JsonProperty()]
+    public virtual int PollingInterval { get; protected set; }
 
 }

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,43 +13,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.Models
+namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
+
+[JsonObject()]
+public class ODataV1ObjectEnumerable<T> : ODataV1Object, IEnumerable<T> where T : ODataV1Object
 {
 
-    [JsonObject()]
-    public class ODataV1ObjectEnumerable<T> : ODataV1Object, IEnumerable<T> where T : ODataV1Object
+    public ODataV1ObjectEnumerable()
     {
+    }
 
-        public ODataV1ObjectEnumerable()
+    [JsonConstructor()]
+    public ODataV1ObjectEnumerable(T[] results)
+    {
+        this.Entries = results;
+    }
+
+    [JsonProperty("results")]
+    public IReadOnlyList<T> Entries { get; private set; }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return this.GetEnumerator();
+    }
+
+    public IEnumerator<T> GetEnumerator()
+    {
+        if (this.Entries is null)
         {
+            return Enumerable.Empty<T>().GetEnumerator();
         }
-
-        [JsonConstructor()]
-        public ODataV1ObjectEnumerable(T[] results)
+        else
         {
-            this.Entries = results;
+            return this.Entries.GetEnumerator();
         }
-
-        [JsonProperty("results")]
-        public IReadOnlyList<T> Entries { get; private set; }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return this.GetEnumerator();
-        }
-
-        public IEnumerator<T> GetEnumerator()
-        {
-            if (this.Entries == null)
-            {
-                return Enumerable.Empty<T>().GetEnumerator();
-            }
-            else
-            {
-                return this.Entries.GetEnumerator();
-            }
-        }
-
     }
 
 }

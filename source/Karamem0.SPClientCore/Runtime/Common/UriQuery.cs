@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -11,54 +11,48 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.Common
+namespace Karamem0.SharePoint.PowerShell.Runtime.Common;
+
+public static class UriQuery
 {
 
-    public static class UriQuery
+    public static string Create(IReadOnlyDictionary<string, object> parameters, bool quote = false)
     {
-
-        public static string Create(IReadOnlyDictionary<string, object> parameters, bool quote = false)
+        parameters ??= new Dictionary<string, object>();
+        return string.Join("&", parameters.Select(pair =>
         {
-            if (parameters == null)
+            var key = Uri.EscapeDataString(pair.Key);
+            if (pair.Value is null)
             {
-                parameters = new Dictionary<string, object>();
+                return $"{key}=";
             }
-            return string.Join("&", parameters.Select(pair =>
+            switch (pair.Value)
             {
-                var key = Uri.EscapeDataString(pair.Key);
-                if (pair.Value == null)
-                {
-                    return $"{key}=";
-                }
-                switch (pair.Value)
-                {
-                    case string _:
-                    case Guid _:
-                        var value = Uri.EscapeDataString(pair.Value.ToString());
-                        if (quote)
-                        {
-                            return $"{key}=%27{value}%27";
-                        }
-                        else
-                        {
-                            return $"{key}={value}";
-                        }
-                    case bool _:
-                        return $"{key}={pair.Value.ToString().ToLower()}";
-                    case short _:
-                    case ushort _:
-                    case int _:
-                    case uint _:
-                    case long _:
-                    case ulong _:
-                    case decimal _:
-                        return $"{key}={pair.Value}";
-                    default:
-                        return $"{key}={Uri.EscapeDataString(pair.Value.ToString())}";
-                }
-            }));
-        }
-
+                case string:
+                case Guid:
+                    var value = Uri.EscapeDataString(pair.Value.ToString());
+                    if (quote)
+                    {
+                        return $"{key}=%27{value}%27";
+                    }
+                    else
+                    {
+                        return $"{key}={value}";
+                    }
+                case bool:
+                    return $"{key}={pair.Value.ToString().ToLower()}";
+                case short:
+                case ushort:
+                case int:
+                case uint:
+                case long:
+                case ulong:
+                case decimal:
+                    return $"{key}={pair.Value}";
+                default:
+                    return $"{key}={Uri.EscapeDataString(pair.Value.ToString())}";
+            }
+        }));
     }
 
 }

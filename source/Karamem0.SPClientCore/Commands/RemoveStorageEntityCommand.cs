@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -14,26 +14,26 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Remove, "KshStorageEntity", SupportsShouldProcess = true, ConfirmImpact = ConfirmImpact.High)]
+[OutputType((Type[])null)]
+public class RemoveStorageEntityCommand : ClientObjectCmdlet<IStorageEntityService>
 {
 
-    [Cmdlet("Remove", "KshStorageEntity")]
-    [OutputType(typeof(void))]
-    public class RemoveStorageEntityCommand : ClientObjectCmdlet<IStorageEntityService>
+    public RemoveStorageEntityCommand()
     {
+    }
 
-        public RemoveStorageEntityCommand()
-        {
-        }
+    [Parameter(Mandatory = true, Position = 0)]
+    public string Key { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0)]
-        public string Key { get; private set; }
-
-        protected override void ProcessRecordCore()
+    protected override void ProcessRecordCore()
+    {
+        if (this.ShouldProcess(this.Key, VerbsCommon.Remove))
         {
             this.Service.RemoveObject(this.Key);
         }
-
     }
 
 }

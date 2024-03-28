@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -11,22 +11,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V2
+namespace Karamem0.SharePoint.PowerShell.Models.V2;
+
+public enum QuotaState
 {
 
-    public enum QuotaState
-    {
+    None = 0,
 
-        None = 0,
+    Normal = 1,
 
-        Normal = 1,
+    Nearing = 2,
 
-        Nearing = 2,
+    Critical = 3,
 
-        Critical = 3,
-
-        Exceeded = 4,
-
-    }
+    Exceeded = 4,
 
 }

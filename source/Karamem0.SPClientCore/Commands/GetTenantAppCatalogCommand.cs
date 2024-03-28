@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,27 +15,24 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Get, "KshTenantAppCatalog")]
+[OutputType(typeof(string))]
+public class GetTenantAppCatalogCommand : ClientObjectCmdlet<ITenantSettingsService>
 {
 
-    [Cmdlet("Get", "KshTenantAppCatalog")]
-    [OutputType(typeof(string))]
-    public class GetTenantAppCatalogCommand : ClientObjectCmdlet<ITenantSettingsService>
+    public GetTenantAppCatalogCommand()
     {
+    }
 
-        public GetTenantAppCatalogCommand()
+    protected override void ProcessRecordCore()
+    {
+        var tenantSettingsObject = this.Service.GetObject();
+        if (tenantSettingsObject is not null)
         {
+            this.Outputs.Add(tenantSettingsObject.AppCatalogUrl);
         }
-
-        protected override void ProcessRecordCore()
-        {
-            var tenantSettingsObject = this.Service.GetObject();
-            if (tenantSettingsObject != null)
-            {
-                this.Outputs.Add(tenantSettingsObject.AppCatalogUrl);
-            }
-        }
-
     }
 
 }

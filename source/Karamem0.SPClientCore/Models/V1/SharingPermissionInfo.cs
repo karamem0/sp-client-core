@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,18 +13,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.SharingPermissionInformation", Id = "{1a97a9b7-5f9f-4da3-9402-48324bcb9d9f}")]
+[JsonObject()]
+public class SharingPermissionInfo : ClientObject
 {
 
-    [ClientObject(Name = "SP.SharingPermissionInformation", Id = "{1a97a9b7-5f9f-4da3-9402-48324bcb9d9f}")]
-    [JsonObject()]
-    public class SharingPermissionInfo : ClientObject
+    public SharingPermissionInfo()
     {
-
-        public SharingPermissionInfo()
-        {
-        }
-
     }
 
 }

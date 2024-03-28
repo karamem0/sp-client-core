@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,39 +15,35 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Add, "KshDocumentSetDefaultDocument")]
+[OutputType(typeof(DefaultDocument))]
+public class AddDocumentSetDefaultDocumentCommand : ClientObjectCmdlet<IDocumentSetDefaultDocumentService>
 {
 
-    [Cmdlet("Add", "KshDocumentSetDefaultDocument")]
-    [Alias("New-KshDocumentSetDefaultDocument")]
-    [OutputType(typeof(DefaultDocument))]
-    public class AddDocumentSetDefaultDocumentCommand : ClientObjectCmdlet<IDocumentSetDefaultDocumentService>
+    public AddDocumentSetDefaultDocumentCommand()
     {
+    }
 
-        public AddDocumentSetDefaultDocumentCommand()
-        {
-        }
+    [Parameter(Mandatory = true)]
+    public ContentType ContentType { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public ContentType ContentType { get; private set; }
+    [Parameter(Mandatory = true)]
+    public ContentType DocumentContentType { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public ContentType DocumentContentType { get; private set; }
+    [Parameter(Mandatory = true)]
+    public byte[] Content { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public byte[] Content { get; private set; }
+    [Parameter(Mandatory = true)]
+    public string FileName { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public string FileName { get; private set; }
+    [Parameter(Mandatory = false)]
+    public SwitchParameter PushChanges { get; private set; }
 
-        [Parameter(Mandatory = false)]
-        public SwitchParameter PushChanges { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Outputs.Add(this.Service.AddObject(this.ContentType, this.DocumentContentType, this.FileName, this.Content, this.PushChanges));
-        }
-
+    protected override void ProcessRecordCore()
+    {
+        this.Outputs.Add(this.Service.AddObject(this.ContentType, this.DocumentContentType, this.FileName, this.Content, this.PushChanges));
     }
 
 }

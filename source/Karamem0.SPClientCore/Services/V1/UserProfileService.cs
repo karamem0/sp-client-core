@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -14,40 +14,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Services.V1
+namespace Karamem0.SharePoint.PowerShell.Services.V1;
+
+public interface IUserProfileService
 {
 
-    public interface IUserProfileService
+    UserProfile GetObject();
+
+}
+
+public class UserProfileService : ClientService, IUserProfileService
+{
+
+    public UserProfileService(ClientContext clientContext) : base(clientContext)
     {
-
-        UserProfile GetObject();
-
     }
 
-    public class UserProfileService : ClientService, IUserProfileService
+    public UserProfile GetObject()
     {
-
-        public UserProfileService(ClientContext clientContext) : base(clientContext)
-        {
-        }
-
-        public UserProfile GetObject()
-        {
-            var requestPayload = new ClientRequestPayload();
-            var objectPath1 = requestPayload.Add(
-                new ObjectPathStaticMethod(typeof(ProfileLoader), "GetProfileLoader"));
-            var objectPath2 = requestPayload.Add(
-                new ObjectPathMethod(objectPath1.Id, "GetUserProfile"),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-                objectPathId => new ClientActionQuery(objectPathId)
-                {
-                    Query = new ClientQuery(true, typeof(UserProfile))
-                });
-            return this.ClientContext
-                .ProcessQuery(requestPayload)
-                .ToObject<UserProfile>(requestPayload.GetActionId<ClientActionQuery>());
-        }
-
+        var requestPayload = new ClientRequestPayload();
+        var objectPath1 = requestPayload.Add(
+            new ObjectPathStaticMethod(typeof(ProfileLoader), "GetProfileLoader"));
+        var objectPath2 = requestPayload.Add(
+            new ObjectPathMethod(objectPath1.Id, "GetUserProfile"),
+            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
+            objectPathId => new ClientActionQuery(objectPathId)
+            {
+                Query = new ClientQuery(true, typeof(UserProfile))
+            });
+        return this.ClientContext
+            .ProcessQuery(requestPayload)
+            .ToObject<UserProfile>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
 }

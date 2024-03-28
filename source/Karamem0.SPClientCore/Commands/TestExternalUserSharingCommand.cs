@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,37 +15,34 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsDiagnostic.Test, "KshExternalUserSharing")]
+[OutputType(typeof(bool))]
+public class TestExternalUserSharingCommand : ClientObjectCmdlet<IExternalUserService>
 {
 
-    [Cmdlet("Test", "KshExternalUserSharing")]
-    [OutputType(typeof(bool))]
-    public class TestExternalUserSharingCommand : ClientObjectCmdlet<IExternalUserService>
+    public TestExternalUserSharingCommand()
     {
+    }
 
-        public TestExternalUserSharingCommand()
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
+    public SwitchParameter Site { get; private set; }
+
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+    public List List { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        if (this.ParameterSetName == "ParamSet1")
         {
+            this.ValidateSwitchParameter(nameof(this.Site));
+            this.Outputs.Add(this.Service.CheckObject());
         }
-
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
-        public SwitchParameter Site { get; private set; }
-
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
-        public List List { get; private set; }
-
-        protected override void ProcessRecordCore()
+        if (this.ParameterSetName == "ParamSet2")
         {
-            if (this.ParameterSetName == "ParamSet1")
-            {
-                this.ValidateSwitchParameter(nameof(this.Site));
-                this.Outputs.Add(this.Service.CheckObject());
-            }
-            if (this.ParameterSetName == "ParamSet2")
-            {
-                this.Outputs.Add(this.Service.CheckObject(this.List));
-            }
+            this.Outputs.Add(this.Service.CheckObject(this.List));
         }
-
     }
 
 }

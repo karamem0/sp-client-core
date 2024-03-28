@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -14,70 +14,67 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Services.V1
+namespace Karamem0.SharePoint.PowerShell.Services.V1;
+
+public interface IDocumentLibraryService
 {
 
-    public interface IDocumentLibraryService
+    DocumentLibraryInfo GetObject();
+
+    IEnumerable<DocumentLibraryInfo> GetObjectEnumerable();
+
+    IEnumerable<DocumentLibraryInfo> GetObjectEnumerable(bool includePageLibraries);
+
+}
+
+public class DocumentLibraryService : ClientService, IDocumentLibraryService
+{
+
+    public DocumentLibraryService(ClientContext clientContext) : base(clientContext)
     {
-
-        DocumentLibraryInfo GetObject();
-
-        IEnumerable<DocumentLibraryInfo> GetObjectEnumerable();
-
-        IEnumerable<DocumentLibraryInfo> GetObjectEnumerable(bool includePageLibraries);
-
     }
 
-    public class DocumentLibraryService : ClientService, IDocumentLibraryService
+    public DocumentLibraryInfo GetObject()
     {
+        var requestPayload = new ClientRequestPayload();
+        requestPayload.Actions.Add(
+            new ClientActionStaticMethod(
+                typeof(Site),
+                "DefaultDocumentLibraryUrl",
+                requestPayload.CreateParameter(this.ClientContext.BaseAddress.ToString())
+            ));
+        return this.ClientContext
+            .ProcessQuery(requestPayload)
+            .ToObject<DocumentLibraryInfo>(requestPayload.GetActionId<ClientActionStaticMethod>());
+    }
 
-        public DocumentLibraryService(ClientContext clientContext) : base(clientContext)
-        {
-        }
+    public IEnumerable<DocumentLibraryInfo> GetObjectEnumerable()
+    {
+        var requestPayload = new ClientRequestPayload();
+        requestPayload.Actions.Add(
+            new ClientActionStaticMethod(
+                typeof(Site),
+                "GetDocumentLibraries",
+                requestPayload.CreateParameter(this.ClientContext.BaseAddress.ToString())
+            ));
+        return this.ClientContext
+            .ProcessQuery(requestPayload)
+            .ToObject<List<DocumentLibraryInfo>>(requestPayload.GetActionId<ClientActionStaticMethod>());
+    }
 
-        public DocumentLibraryInfo GetObject()
-        {
-            var requestPayload = new ClientRequestPayload();
-            requestPayload.Actions.Add(
-                new ClientActionStaticMethod(
-                    typeof(Site),
-                    "DefaultDocumentLibraryUrl",
-                    requestPayload.CreateParameter(this.ClientContext.BaseAddress.ToString())
-                ));
-            return this.ClientContext
-                .ProcessQuery(requestPayload)
-                .ToObject<DocumentLibraryInfo>(requestPayload.GetActionId<ClientActionStaticMethod>());
-        }
-
-        public IEnumerable<DocumentLibraryInfo> GetObjectEnumerable()
-        {
-            var requestPayload = new ClientRequestPayload();
-            requestPayload.Actions.Add(
-                new ClientActionStaticMethod(
-                    typeof(Site),
-                    "GetDocumentLibraries",
-                    requestPayload.CreateParameter(this.ClientContext.BaseAddress.ToString())
-                ));
-            return this.ClientContext
-                .ProcessQuery(requestPayload)
-                .ToObject<List<DocumentLibraryInfo>>(requestPayload.GetActionId<ClientActionStaticMethod>());
-        }
-
-        public IEnumerable<DocumentLibraryInfo> GetObjectEnumerable(bool includePageLibraries)
-        {
-            var requestPayload = new ClientRequestPayload();
-            requestPayload.Actions.Add(
-                new ClientActionStaticMethod(
-                    typeof(Site),
-                    "GetDocumentAndMediaLibraries",
-                    requestPayload.CreateParameter(this.ClientContext.BaseAddress.ToString()),
-                    requestPayload.CreateParameter(includePageLibraries)
-                ));
-            return this.ClientContext
-                .ProcessQuery(requestPayload)
-                .ToObject<List<DocumentLibraryInfo>>(requestPayload.GetActionId<ClientActionStaticMethod>());
-        }
-
+    public IEnumerable<DocumentLibraryInfo> GetObjectEnumerable(bool includePageLibraries)
+    {
+        var requestPayload = new ClientRequestPayload();
+        requestPayload.Actions.Add(
+            new ClientActionStaticMethod(
+                typeof(Site),
+                "GetDocumentAndMediaLibraries",
+                requestPayload.CreateParameter(this.ClientContext.BaseAddress.ToString()),
+                requestPayload.CreateParameter(includePageLibraries)
+            ));
+        return this.ClientContext
+            .ProcessQuery(requestPayload)
+            .ToObject<List<DocumentLibraryInfo>>(requestPayload.GetActionId<ClientActionStaticMethod>());
     }
 
 }

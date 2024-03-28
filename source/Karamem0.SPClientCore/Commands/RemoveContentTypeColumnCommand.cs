@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,29 +15,29 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Remove, "KshContentTypeColumn", SupportsShouldProcess = true, ConfirmImpact = ConfirmImpact.High)]
+[OutputType((Type[])null)]
+public class RemoveContentTypeColumnCommand : ClientObjectCmdlet<IContentTypeColumnService>
 {
 
-    [Cmdlet("Remove", "KshContentTypeColumn")]
-    [OutputType(typeof(void))]
-    public class RemoveContentTypeColumnCommand : ClientObjectCmdlet<IContentTypeColumnService>
+    public RemoveContentTypeColumnCommand()
     {
+    }
 
-        public RemoveContentTypeColumnCommand()
-        {
-        }
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    public ContentTypeColumn Identity { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public ContentTypeColumn Identity { get; private set; }
+    [Parameter(Mandatory = false)]
+    public SwitchParameter PushChanges { get; private set; }
 
-        [Parameter(Mandatory = false)]
-        public SwitchParameter PushChanges { get; private set; }
-
-        protected override void ProcessRecordCore()
+    protected override void ProcessRecordCore()
+    {
+        if (this.ShouldProcess(this.Identity.Name, VerbsCommon.Remove))
         {
             this.Service.RemoveObject(this.Identity, this.PushChanges);
         }
-
     }
 
 }

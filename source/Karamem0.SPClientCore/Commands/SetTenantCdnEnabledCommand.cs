@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,46 +15,43 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Set, "KshTenantCdnEnabled")]
+[OutputType((Type[])null)]
+public class SetTenantCdnEnabledCommand : ClientObjectCmdlet<ITenantCdnService>
 {
 
-    [Cmdlet("Set", "KshTenantCdnEnabled")]
-    [OutputType(typeof(void))]
-    public class SetTenantCdnEnabledCommand : ClientObjectCmdlet<ITenantCdnService>
+    public SetTenantCdnEnabledCommand()
     {
+    }
 
-        public SetTenantCdnEnabledCommand()
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
+    public SwitchParameter Public { get; private set; }
+
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
+    public SwitchParameter Private { get; private set; }
+
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
+    public bool Enabled { get; private set; }
+
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+    public SwitchParameter NoDefaultOrigins { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        if (this.ParameterSetName == "ParamSet1")
         {
+            this.ValidateSwitchParameter(nameof(this.Public));
+            this.Service.SetEnabled(TenantCdnType.Public, this.Enabled, this.NoDefaultOrigins);
         }
-
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
-        public SwitchParameter Public { get; private set; }
-
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-        public SwitchParameter Private { get; private set; }
-
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-        public bool Enabled { get; private set; }
-
-        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-        public SwitchParameter NoDefaultOrigins { get; private set; }
-
-        protected override void ProcessRecordCore()
+        if (this.ParameterSetName == "ParamSet2")
         {
-            if (this.ParameterSetName == "ParamSet1")
-            {
-                this.ValidateSwitchParameter(nameof(this.Public));
-                this.Service.SetEnabled(TenantCdnType.Public, this.Enabled, this.NoDefaultOrigins);
-            }
-            if (this.ParameterSetName == "ParamSet2")
-            {
-                this.ValidateSwitchParameter(nameof(this.Private));
-                this.Service.SetEnabled(TenantCdnType.Private, this.Enabled, this.NoDefaultOrigins);
-            }
+            this.ValidateSwitchParameter(nameof(this.Private));
+            this.Service.SetEnabled(TenantCdnType.Private, this.Enabled, this.NoDefaultOrigins);
         }
-
     }
 
 }

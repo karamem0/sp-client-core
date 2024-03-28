@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,24 +13,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.PeoplePickerQuerySettings", Id = "{836910b9-5dd8-4cdb-9863-4e7154de92d2}")]
+[JsonObject()]
+public class PeoplePickerQuerySettings : ClientValueObject
 {
 
-    [ClientObject(Name = "SP.PeoplePickerQuerySettings", Id = "{836910b9-5dd8-4cdb-9863-4e7154de92d2}")]
-    [JsonObject()]
-    public class PeoplePickerQuerySettings : ClientValueObject
+    public PeoplePickerQuerySettings()
     {
-
-        public PeoplePickerQuerySettings()
-        {
-        }
-
-        [JsonProperty()]
-        public virtual bool ExcludeAllUsersOnTenantClaim { get; protected set; }
-
-        [JsonProperty()]
-        public virtual bool IsSharing { get; protected set; }
-
     }
+
+    [JsonProperty()]
+    public virtual bool ExcludeAllUsersOnTenantClaim { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool IsSharing { get; protected set; }
 
 }

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -14,35 +14,32 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Add, "KshStorageEntity")]
+[OutputType((Type[])null)]
+public class AddStorageEntityCommand : ClientObjectCmdlet<IStorageEntityService>
 {
 
-    [Cmdlet("Add", "KshStorageEntity")]
-    [OutputType(typeof(void))]
-    public class AddStorageEntityCommand : ClientObjectCmdlet<IStorageEntityService>
+    public AddStorageEntityCommand()
     {
+    }
 
-        public AddStorageEntityCommand()
-        {
-        }
+    [Parameter(Mandatory = true)]
+    public string Key { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public string Key { get; private set; }
+    [Parameter(Mandatory = true)]
+    public string Value { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public string Value { get; private set; }
+    [Parameter(Mandatory = false)]
+    public string Description { get; private set; }
 
-        [Parameter(Mandatory = false)]
-        public string Description { get; private set; }
+    [Parameter(Mandatory = false)]
+    public string Comment { get; private set; }
 
-        [Parameter(Mandatory = false)]
-        public string Comment { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Service.AddObject(this.Key, this.Value, this.Description, this.Comment);
-        }
-
+    protected override void ProcessRecordCore()
+    {
+        this.Service.AddObject(this.Key, this.Value, this.Description, this.Comment);
     }
 
 }

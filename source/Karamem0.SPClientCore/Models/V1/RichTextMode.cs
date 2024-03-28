@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -11,20 +11,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+public enum RichTextMode
 {
 
-    public enum RichTextMode
-    {
+    Compatible = 0,
 
-        Compatible = 0,
+    FullHtml = 1,
 
-        FullHtml = 1,
+    HtmlAsXml = 2,
 
-        HtmlAsXml = 2,
-
-        ThemeHtml = 3,
-
-    }
+    ThemeHtml = 3,
 
 }

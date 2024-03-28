@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -11,36 +11,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+public enum TenantListDesignColor
 {
 
-    public enum TenantListDesignColor
-    {
+    DarkRed = 0,
 
-        DarkRed = 0,
+    Red = 1,
 
-        Red = 1,
+    Orange = 2,
 
-        Orange = 2,
+    Green = 3,
 
-        Green = 3,
+    DarkGreen = 4,
 
-        DarkGreen = 4,
+    Teal = 5,
 
-        Teal = 5,
+    Blue = 6,
 
-        Blue = 6,
+    NavyBlue = 7,
 
-        NavyBlue = 7,
+    BluePurple = 8,
 
-        BluePurple = 8,
+    DarkBlue = 9,
 
-        DarkBlue = 9,
+    Lavendar = 10,
 
-        Lavendar = 10,
-
-        Pink = 11,
-
-    }
+    Pink = 11,
 
 }

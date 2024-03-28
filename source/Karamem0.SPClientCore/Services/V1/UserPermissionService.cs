@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -14,41 +14,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Services.V1
+namespace Karamem0.SharePoint.PowerShell.Services.V1;
+
+public interface IUserPermissionService
 {
 
-    public interface IUserPermissionService
+    BasePermission GetObject(User userObject, SecurableObject securableObject);
+
+}
+
+public class UserPermissionService : ClientService, IUserPermissionService
+{
+
+    public UserPermissionService(ClientContext clientContext) : base(clientContext)
     {
-
-        BasePermission GetObject(User userObject, SecurableObject securableObject);
-
     }
 
-    public class UserPermissionService : ClientService, IUserPermissionService
+    public BasePermission GetObject(User userObject, SecurableObject securableObject)
     {
-
-        public UserPermissionService(ClientContext clientContext) : base(clientContext)
-        {
-        }
-
-        public BasePermission GetObject(User userObject, SecurableObject securableObject)
-        {
-            _ = userObject ?? throw new ArgumentNullException(nameof(userObject));
-            _ = securableObject ?? throw new ArgumentNullException(nameof(securableObject));
-            var requestPayload = new ClientRequestPayload();
-            var objectPath1 = requestPayload.Add(
-                new ObjectPathIdentity(securableObject.ObjectIdentity));
-            var objectPath2 = requestPayload.Add(
-                objectPath1,
-                objectPath => new ClientActionMethod(
-                    objectPath1.Id,
-                    "GetUserEffectivePermissions",
-                    requestPayload.CreateParameter(userObject.LoginName)));
-            return this.ClientContext
-                .ProcessQuery(requestPayload)
-                .ToObject<BasePermission>(requestPayload.GetActionId<ClientActionMethod>());
-        }
-
+        _ = userObject ?? throw new ArgumentNullException(nameof(userObject));
+        _ = securableObject ?? throw new ArgumentNullException(nameof(securableObject));
+        var requestPayload = new ClientRequestPayload();
+        var objectPath1 = requestPayload.Add(
+            new ObjectPathIdentity(securableObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(
+            objectPath1,
+            objectPath => new ClientActionMethod(
+                objectPath1.Id,
+                "GetUserEffectivePermissions",
+                requestPayload.CreateParameter(userObject.LoginName)));
+        return this.ClientContext
+            .ProcessQuery(requestPayload)
+            .ToObject<BasePermission>(requestPayload.GetActionId<ClientActionMethod>());
     }
 
 }

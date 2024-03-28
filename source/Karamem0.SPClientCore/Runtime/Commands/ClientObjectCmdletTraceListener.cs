@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,37 +13,34 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.Commands
+namespace Karamem0.SharePoint.PowerShell.Runtime.Commands;
+
+public class ClientObjectCmdletTraceListener : TraceListener
 {
 
-    public class ClientObjectCmdletTraceListener : TraceListener
+    private readonly List<string> messages;
+
+    private readonly Cmdlet cmdlet;
+
+    public ClientObjectCmdletTraceListener(Cmdlet cmdlet)
     {
+        this.messages = [];
+        this.cmdlet = cmdlet ?? throw new ArgumentNullException(nameof(cmdlet));
+    }
 
-        private readonly List<string> messages;
+    public override void Write(string message)
+    {
+        this.messages.Add(message);
+    }
 
-        private readonly Cmdlet cmdlet;
+    public override void WriteLine(string message)
+    {
+        this.messages.Add(message);
+    }
 
-        public ClientObjectCmdletTraceListener(Cmdlet cmdlet)
-        {
-            this.messages = new List<string>();
-            this.cmdlet = cmdlet ?? throw new ArgumentNullException(nameof(cmdlet));
-        }
-
-        public override void Write(string message)
-        {
-            this.messages.Add(message);
-        }
-
-        public override void WriteLine(string message)
-        {
-            this.messages.Add(message);
-        }
-
-        public override void Flush()
-        {
-            this.messages.ForEach(this.cmdlet.WriteVerbose);
-        }
-
+    public override void Flush()
+    {
+        this.messages.ForEach(this.cmdlet.WriteVerbose);
     }
 
 }

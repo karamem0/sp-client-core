@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,23 +15,24 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Remove, "KshTenantHomeSite", SupportsShouldProcess = true, ConfirmImpact = ConfirmImpact.High)]
+[OutputType((Type[])null)]
+public class RemoveTenantHomeSiteCommand : ClientObjectCmdlet<ITenantHomeSiteService>
 {
 
-    [Cmdlet("Remove", "KshTenantHomeSite")]
-    [OutputType(typeof(void))]
-    public class RemoveTenantHomeSiteCommand : ClientObjectCmdlet<ITenantHomeSiteService>
+    public RemoveTenantHomeSiteCommand()
     {
+    }
 
-        public RemoveTenantHomeSiteCommand()
-        {
-        }
-
-        protected override void ProcessRecordCore()
+    protected override void ProcessRecordCore()
+    {
+        var site = this.Service.GetObject();
+        if (this.ShouldProcess(site, VerbsCommon.Remove))
         {
             this.Service.RemoveObject();
         }
-
     }
 
 }

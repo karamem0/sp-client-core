@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -11,18 +11,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+public enum SharingDomainRestrictionMode
 {
 
-    public enum SharingDomainRestrictionMode
-    {
+    None = 0,
 
-        None = 0,
+    AllowList = 1,
 
-        AllowList = 1,
-
-        BlockList = 2,
-
-    }
+    BlockList = 2,
 
 }

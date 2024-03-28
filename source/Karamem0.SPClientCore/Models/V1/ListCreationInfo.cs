@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -14,38 +14,35 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.ListCreationInformation", Id = "{e247b7fc-095e-4ea4-a4c9-c5d373723d8c}")]
+[JsonObject()]
+public class ListCreationInfo : ClientValueObject
 {
 
-    [ClientObject(Name = "SP.ListCreationInformation", Id = "{e247b7fc-095e-4ea4-a4c9-c5d373723d8c}")]
-    [JsonObject()]
-    public class ListCreationInfo : ClientValueObject
+    public ListCreationInfo()
     {
-
-        public ListCreationInfo()
-        {
-        }
-
-        public ListCreationInfo(IReadOnlyDictionary<string, object> parameters) : base(parameters)
-        {
-        }
-
-        [JsonProperty()]
-        public virtual string Description { get; protected set; }
-
-        [JsonProperty()]
-        [DefaultValue(QuickLaunchOptions.DefaultValue)]
-        public virtual QuickLaunchOptions QuickLaunchOption { get; protected set; }
-
-        [JsonProperty("Url")]
-        public virtual string ServerRelativeUrl { get; protected set; }
-
-        [JsonProperty("TemplateType")]
-        public virtual int Template { get; protected set; }
-
-        [JsonProperty()]
-        public virtual string Title { get; protected set; }
-
     }
+
+    public ListCreationInfo(IReadOnlyDictionary<string, object> parameters) : base(parameters)
+    {
+    }
+
+    [JsonProperty()]
+    public virtual string Description { get; protected set; }
+
+    [JsonProperty()]
+    [DefaultValue(QuickLaunchOptions.DefaultValue)]
+    public virtual QuickLaunchOptions QuickLaunchOption { get; protected set; }
+
+    [JsonProperty("Url")]
+    public virtual string ServerRelativeUrl { get; protected set; }
+
+    [JsonProperty("TemplateType")]
+    public virtual int Template { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string Title { get; protected set; }
 
 }

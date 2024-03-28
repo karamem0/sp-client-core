@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -11,47 +11,44 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+public enum PersonalSiteInstantiationState
 {
 
-    public enum PersonalSiteInstantiationState
-    {
+    Uninitialized = 0,
 
-        Uninitialized = 0,
+    Enqueued = 1,
 
-        Enqueued = 1,
+    Created = 2,
 
-        Created = 2,
+    Deleted = 3,
+    PermissionsGeneralFailure = 4096,
 
-        Deleted = 3,
-        PermissionsGeneralFailure = 4096,
+    PermissionsUPANotGranted = 4097,
 
-        PermissionsUPANotGranted = 4097,
+    PermissionsUserNotLicensed = 4098,
 
-        PermissionsUserNotLicensed = 4098,
+    PermissionsSelfServiceSiteCreationDisabled = 4099,
 
-        PermissionsSelfServiceSiteCreationDisabled = 4099,
+    PermissionsNoMySitesInPeopleLight = 4100,
 
-        PermissionsNoMySitesInPeopleLight = 4100,
+    PermissionsEmptyHostUrl = 4101,
 
-        PermissionsEmptyHostUrl = 4101,
+    PermissionsHostFailedToInitializePersonalSiteContext = 4102,
 
-        PermissionsHostFailedToInitializePersonalSiteContext = 4102,
+    ErrorGeneralFailure = 8192,
 
-        ErrorGeneralFailure = 8192,
+    ErrorManagedPathDoesNotExist = 8193,
 
-        ErrorManagedPathDoesNotExist = 8193,
+    ErrorLanguageNotInstalled = 8194,
 
-        ErrorLanguageNotInstalled = 8194,
+    ErrorPartialCreate = 8195,
 
-        ErrorPartialCreate = 8195,
+    ErrorPersonalSiteAlreadyExists = 8196,
 
-        ErrorPersonalSiteAlreadyExists = 8196,
+    ErrorRootSiteNotPresent = 8197,
 
-        ErrorRootSiteNotPresent = 8197,
-
-        ErrorSelfServiceSiteCreateCallFailed = 8198,
-
-    }
+    ErrorSelfServiceSiteCreateCallFailed = 8198,
 
 }

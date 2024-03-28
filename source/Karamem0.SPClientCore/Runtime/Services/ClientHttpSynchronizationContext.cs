@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,41 +13,38 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.Services
+namespace Karamem0.SharePoint.PowerShell.Runtime.Services;
+
+public class ClientHttpSynchronizationContext : SynchronizationContext
 {
 
-    public class ClientHttpSynchronizationContext : SynchronizationContext
+    private readonly BlockingCollection<ClientHttpSynchronizationObject> collection;
+
+    public ClientHttpSynchronizationContext()
     {
+        this.collection = [];
+    }
 
-        private readonly BlockingCollection<ClientHttpSynchronizationObject> collection;
+    public override void Post(SendOrPostCallback d, object state)
+    {
+        this.collection.Add(new ClientHttpSynchronizationObject(d, state));
+    }
 
-        public ClientHttpSynchronizationContext()
+    public void Wait()
+    {
+        while (this.collection.TryTake(out var value, Timeout.Infinite))
         {
-            this.collection = new BlockingCollection<ClientHttpSynchronizationObject>();
-        }
-
-        public override void Post(SendOrPostCallback d, object state)
-        {
-            this.collection.Add(new ClientHttpSynchronizationObject(d, state));
-        }
-
-        public void Wait()
-        {
-            while (this.collection.TryTake(out var value, Timeout.Infinite))
+            if (value == ClientHttpSynchronizationObject.Completed)
             {
-                if (value == ClientHttpSynchronizationObject.Completed)
-                {
-                    break;
-                }
-                value?.Callback(value.State);
+                break;
             }
+            value?.Callback(value.State);
         }
+    }
 
-        public void Complete()
-        {
-            this.collection.Add(ClientHttpSynchronizationObject.Completed);
-        }
-
+    public void Complete()
+    {
+        this.collection.Add(ClientHttpSynchronizationObject.Completed);
     }
 
 }

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -12,18 +12,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.Common
+namespace Karamem0.SharePoint.PowerShell.Runtime.Common;
+
+public static class HashtableExtensions
 {
 
-    public static class HashtableExtensions
+    public static Dictionary<TKey, TValue> ToDictionary<TKey, TValue>(this Hashtable hashtable)
     {
-
-        public static Dictionary<TKey, TValue> ToDictionary<TKey, TValue>(this Hashtable hashtable)
-        {
-            _ = hashtable ?? throw new ArgumentNullException(nameof(hashtable));
-            return hashtable.Keys.Cast<object>().ToDictionary(key => (TKey)key, key => (TValue)hashtable[key]);
-        }
-
+        _ = hashtable ?? throw new ArgumentNullException(nameof(hashtable));
+        return hashtable.Keys.Cast<object>().ToDictionary(key => (TKey)key, key => (TValue)hashtable[key]);
     }
 
 }

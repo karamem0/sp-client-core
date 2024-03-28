@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,65 +13,62 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Tests
+namespace Karamem0.SharePoint.PowerShell.Tests;
+
+[TestClass()]
+public class SetTenantCdnPolicyCommandTests
 {
 
-    [TestClass()]
-    public class SetTenantCdnPolicyCommandTests
+    [TestMethod()]
+    public void SetTenantPublicCdnPolicy()
     {
+        using var context = new PSCmdletContext();
+        var result1 = context.Runspace.InvokeCommand(
+            "Connect-KshSite",
+            new Dictionary<string, object>()
+            {
+                { "Url", context.AppSettings["AdminUrl"] },
+                { "Credential", PSCredentialFactory.CreateCredential(
+                    context.AppSettings["LoginUserName"],
+                    context.AppSettings["LoginPassword"])
+                }
+            }
+        );
+        var result2 = context.Runspace.InvokeCommand(
+            "Set-KshTenantCdnPolicy",
+            new Dictionary<string, object>()
+            {
+                { "Public", true },
+                { "Type", "IncludeFileExtensions" },
+                { "Value", "CSS,EOT,GIF,ICO,JPEG,JPG,JS,MAP,PNG,SVG,TTF,WOFF" }
+            }
+        );
+    }
 
-        [TestMethod()]
-        public void SetTenantPublicCdnPolicy()
-        {
-            using var context = new PSCmdletContext();
-            var result1 = context.Runspace.InvokeCommand(
-                "Connect-KshSite",
-                new Dictionary<string, object>()
-                {
-                    { "Url", context.AppSettings["AdminUrl"] },
-                    { "Credential", PSCredentialFactory.CreateCredential(
-                        context.AppSettings["LoginUserName"],
-                        context.AppSettings["LoginPassword"])
-                    }
+    [TestMethod()]
+    public void SetTenantPrivateCdnPolicy()
+    {
+        using var context = new PSCmdletContext();
+        var result1 = context.Runspace.InvokeCommand(
+            "Connect-KshSite",
+            new Dictionary<string, object>()
+            {
+                { "Url", context.AppSettings["AdminUrl"] },
+                { "Credential", PSCredentialFactory.CreateCredential(
+                    context.AppSettings["LoginUserName"],
+                    context.AppSettings["LoginPassword"])
                 }
-            );
-            var result2 = context.Runspace.InvokeCommand(
-                "Set-KshTenantCdnPolicy",
-                new Dictionary<string, object>()
-                {
-                    { "Public", true },
-                    { "Type", "IncludeFileExtensions" },
-                    { "Value", "CSS,EOT,GIF,ICO,JPEG,JPG,JS,MAP,PNG,SVG,TTF,WOFF" }
-                }
-            );
-        }
-
-        [TestMethod()]
-        public void SetTenantPrivateCdnPolicy()
-        {
-            using var context = new PSCmdletContext();
-            var result1 = context.Runspace.InvokeCommand(
-                "Connect-KshSite",
-                new Dictionary<string, object>()
-                {
-                    { "Url", context.AppSettings["AdminUrl"] },
-                    { "Credential", PSCredentialFactory.CreateCredential(
-                        context.AppSettings["LoginUserName"],
-                        context.AppSettings["LoginPassword"])
-                    }
-                }
-            );
-            var result2 = context.Runspace.InvokeCommand(
-                "Set-KshTenantCdnPolicy",
-                new Dictionary<string, object>()
-                {
-                    { "Private", true },
-                    { "Type", "IncludeFileExtensions" },
-                    { "Value", "GIF,ICO,JPEG,JPG,JS,PNG" }
-                }
-            );
-        }
-
+            }
+        );
+        var result2 = context.Runspace.InvokeCommand(
+            "Set-KshTenantCdnPolicy",
+            new Dictionary<string, object>()
+            {
+                { "Private", true },
+                { "Type", "IncludeFileExtensions" },
+                { "Value", "GIF,ICO,JPEG,JPG,JS,PNG" }
+            }
+        );
     }
 
 }

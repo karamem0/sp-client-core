@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,44 +15,41 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Move, "KshViewColumn")]
+[OutputType((Type[])null)]
+public class MoveViewColumnCommand : ClientObjectCmdlet<IViewColumnService>
 {
 
-    [Cmdlet("Move", "KshViewColumn")]
-    [OutputType(typeof(void))]
-    public class MoveViewColumnCommand : ClientObjectCmdlet<IViewColumnService>
+    public MoveViewColumnCommand()
     {
+    }
 
-        public MoveViewColumnCommand()
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+    public View View { get; private set; }
+
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet1")]
+    public Column Column { get; private set; }
+
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
+    public string ColumnName { get; private set; }
+
+    [Parameter(Mandatory = true, Position = 2, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = true, Position = 2, ParameterSetName = "ParamSet2")]
+    public int NewIndex { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        if (this.ParameterSetName == "ParamSet1")
         {
+            this.Service.MoveObject(this.View, this.Column, this.NewIndex);
         }
-
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
-        public View View { get; private set; }
-
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet1")]
-        public Column Column { get; private set; }
-
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
-        public string ColumnName { get; private set; }
-
-        [Parameter(Mandatory = true, Position = 2, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = true, Position = 2, ParameterSetName = "ParamSet2")]
-        public int NewIndex { get; private set; }
-
-        protected override void ProcessRecordCore()
+        if (this.ParameterSetName == "ParamSet2")
         {
-            if (this.ParameterSetName == "ParamSet1")
-            {
-                this.Service.MoveObject(this.View, this.Column, this.NewIndex);
-            }
-            if (this.ParameterSetName == "ParamSet2")
-            {
-                this.Service.MoveObject(this.View, this.ColumnName, this.NewIndex);
-            }
+            this.Service.MoveObject(this.View, this.ColumnName, this.NewIndex);
         }
-
     }
 
 }

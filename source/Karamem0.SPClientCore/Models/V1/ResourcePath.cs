@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,21 +13,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.ResourcePath", Id = "{a265a356-274b-4e6c-b0ef-bbc22bd0969a}")]
+[JsonObject()]
+public class ResourcePath : ClientValueObject
 {
 
-    [ClientObject(Name = "SP.ResourcePath", Id = "{a265a356-274b-4e6c-b0ef-bbc22bd0969a}")]
-    [JsonObject()]
-    public class ResourcePath : ClientValueObject
+    public ResourcePath()
     {
-
-        public ResourcePath()
-        {
-        }
-
-        [JsonProperty()]
-        public virtual string DecodedUrl { get; protected set; }
-
     }
+
+    [JsonProperty()]
+    public virtual string DecodedUrl { get; protected set; }
 
 }

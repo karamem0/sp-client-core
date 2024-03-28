@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -11,26 +11,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+public enum BaseType
 {
 
-    public enum BaseType
-    {
+    None = -1,
 
-        None = -1,
+    GenericList = 0,
 
-        GenericList = 0,
+    DocumentLibrary = 1,
 
-        DocumentLibrary = 1,
+    Unused = 2,
 
-        Unused = 2,
+    DiscussionBoard = 3,
 
-        DiscussionBoard = 3,
+    Survey = 4,
 
-        Survey = 4,
-
-        Issue = 5,
-
-    }
+    Issue = 5,
 
 }

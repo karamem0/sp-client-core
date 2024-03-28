@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,33 +15,30 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsLifecycle.Enable, "KshTerm")]
+[OutputType((Type[])null)]
+public class EnableTermCommand : ClientObjectCmdlet<ITermService>
 {
 
-    [Cmdlet("Enable", "KshTerm")]
-    [OutputType(typeof(void))]
-    public class EnableTermCommand : ClientObjectCmdlet<ITermService>
+    public EnableTermCommand()
     {
+    }
 
-        public EnableTermCommand()
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    public Term Identity { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public SwitchParameter PassThru { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        this.Service.DeprecateObject(this.Identity, false);
+        if (this.PassThru)
         {
+            this.Outputs.Add(this.Service.GetObject(this.Identity));
         }
-
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public Term Identity { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public SwitchParameter PassThru { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Service.DeprecateObject(this.Identity, false);
-            if (this.PassThru)
-            {
-                this.Outputs.Add(this.Service.GetObject(this.Identity));
-            }
-        }
-
     }
 
 }

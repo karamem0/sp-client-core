@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,18 +13,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.DocumentSet.AllowedContentTypeCollection", Id = "{60664bb3-3d6d-49c5-9573-1d524ee82e34}")]
+[JsonObject()]
+public class AllowedContentTypeEnumerable : ClientObjectEnumerable<ContentTypeId>
 {
 
-    [ClientObject(Name = "SP.DocumentSet.AllowedContentTypeCollection", Id = "{60664bb3-3d6d-49c5-9573-1d524ee82e34}")]
-    [JsonObject()]
-    public class AllowedContentTypeEnumerable : ClientObjectEnumerable<ContentTypeId>
+    public AllowedContentTypeEnumerable()
     {
-
-        public AllowedContentTypeEnumerable()
-        {
-        }
-
     }
 
 }

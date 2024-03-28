@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,32 +15,29 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Add, "KshDocumentSetWelcomePageColumn")]
+[OutputType((Type[])null)]
+public class AddDocumentSetWelcomePageColumnCommand : ClientObjectCmdlet<IDocumentSetWelcomePageColumnService>
 {
 
-    [Cmdlet("Add", "KshDocumentSetWelcomePageColumn")]
-    [OutputType(typeof(void))]
-    public class AddDocumentSetWelcomePageColumnCommand : ClientObjectCmdlet<IDocumentSetWelcomePageColumnService>
+    public AddDocumentSetWelcomePageColumnCommand()
     {
+    }
 
-        public AddDocumentSetWelcomePageColumnCommand()
-        {
-        }
+    [Parameter(Mandatory = true, Position = 0)]
+    public ContentType ContentType { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0)]
-        public ContentType ContentType { get; private set; }
+    [Parameter(Mandatory = true)]
+    public Column Column { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public Column Column { get; private set; }
+    [Parameter(Mandatory = false)]
+    public SwitchParameter PushChanges { get; private set; }
 
-        [Parameter(Mandatory = false)]
-        public SwitchParameter PushChanges { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Service.AddObject(this.ContentType, this.Column, this.PushChanges);
-        }
-
+    protected override void ProcessRecordCore()
+    {
+        this.Service.AddObject(this.ContentType, this.Column, this.PushChanges);
     }
 
 }

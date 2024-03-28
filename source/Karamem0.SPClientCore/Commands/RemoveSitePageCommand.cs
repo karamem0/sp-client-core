@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,26 +15,27 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Remove, "KshSitePage", SupportsShouldProcess = true, ConfirmImpact = ConfirmImpact.High)]
+[OutputType((Type[])null)]
+public class RemoveSitePageCommand : ClientObjectCmdlet<ISitePageService, IListService, IFolderService>
 {
 
-    [Cmdlet("Remove", "KshSitePage")]
-    [OutputType(typeof(void))]
-    public class RemoveSitePageCommand : ClientObjectCmdlet<ISitePageService, IListService, IFolderService>
+    public RemoveSitePageCommand()
     {
+    }
 
-        public RemoveSitePageCommand()
-        {
-        }
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
+    public List List { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
-        public List List { get; private set; }
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
+    public string PageName { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
-        public string PageName { get; private set; }
-
-        protected override void ProcessRecordCore()
+    protected override void ProcessRecordCore()
+    {
+        if (this.ShouldProcess(this.PageName, VerbsCommon.Remove))
         {
             if (this.ParameterSetName == "ParamSet1")
             {
@@ -48,7 +49,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands
                 this.Service1.RemoveObject(folderObject, this.PageName);
             }
         }
-
     }
 
 }

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,28 +13,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.AttachmentCreationInformation", Id = "{edf6309c-8142-4133-921e-4d6aec35550d}")]
+[JsonObject()]
+public class AttachmentFileCreationInfo : ClientValueObject
 {
 
-    [ClientObject(Name = "SP.AttachmentCreationInformation", Id = "{edf6309c-8142-4133-921e-4d6aec35550d}")]
-    [JsonObject()]
-    public class AttachmentFileCreationInfo : ClientValueObject
+    public AttachmentFileCreationInfo()
     {
-
-        public AttachmentFileCreationInfo()
-        {
-        }
-
-        public AttachmentFileCreationInfo(IReadOnlyDictionary<string, object> parameters) : base(parameters)
-        {
-        }
-
-        [JsonProperty()]
-        public virtual System.IO.Stream ContentStream { get; protected set; }
-
-        [JsonProperty()]
-        public virtual string FileName { get; protected set; }
-
     }
+
+    public AttachmentFileCreationInfo(IReadOnlyDictionary<string, object> parameters) : base(parameters)
+    {
+    }
+
+    [JsonProperty()]
+    public virtual System.IO.Stream ContentStream { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string FileName { get; protected set; }
 
 }

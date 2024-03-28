@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -11,21 +11,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[Flags()]
+public enum MoveOperations
 {
 
-    [Flags()]
-    public enum MoveOperations
-    {
+    None = 0,
 
-        None = 0,
+    Overwrite = 1,
 
-        Overwrite = 1,
+    AllowBrokenThickets = 8,
 
-        AllowBrokenThickets = 8,
-
-        BypassApprovePermission = 64,
-
-    }
+    BypassApprovePermission = 64,
 
 }

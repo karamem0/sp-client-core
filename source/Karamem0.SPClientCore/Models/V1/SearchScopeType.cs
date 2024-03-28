@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -11,20 +11,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+public enum SearchScopeType
 {
 
-    public enum SearchScopeType
-    {
+    DefaultScope = 0,
 
-        DefaultScope = 0,
+    Tenant = 1,
 
-        Tenant = 1,
+    Hub = 2,
 
-        Hub = 2,
-
-        Site = 3,
-
-    }
+    Site = 3,
 
 }

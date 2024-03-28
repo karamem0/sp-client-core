@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -16,35 +16,30 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsDiagnostic.Test, "KshSharingLink")]
+[OutputType(typeof(SharingLinkKind))]
+public class TestSharingLinkCommand : ClientObjectCmdlet<ISharingLinkService>
 {
 
-    [Cmdlet("Test", "KshSharingLink")]
-    [OutputType(typeof(SharingLinkKind))]
-    public class TestSharingLinkCommand : ClientObjectCmdlet<ISharingLinkService>
+    public TestSharingLinkCommand()
     {
+    }
 
-        public TestSharingLinkCommand()
+    [Parameter(Mandatory = true)]
+    public Uri Url { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        if (this.Url.IsAbsoluteUri)
         {
+            this.Outputs.Add(this.Service.GetSharingLinkKind(this.Url));
         }
-
-        [Parameter(Mandatory = true)]
-        public Uri Url { get; private set; }
-
-        protected override void ProcessRecordCore()
+        else
         {
-            if (this.Url.IsAbsoluteUri)
-            {
-                this.Outputs.Add(this.Service.GetSharingLinkKind(this.Url));
-            }
-            else
-            {
-                throw new ArgumentException(
-                    string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.Url),
-                    nameof(this.Url));
-            }
+            throw new InvalidOperationException(string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.Url));
         }
-
     }
 
 }

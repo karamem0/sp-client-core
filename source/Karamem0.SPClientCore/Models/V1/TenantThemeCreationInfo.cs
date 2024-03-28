@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -14,30 +14,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[JsonObject()]
+public class TenantThemeCreationInfo : ClientValueObject
 {
 
-    [JsonObject()]
-    public class TenantThemeCreationInfo : ClientValueObject
+    public TenantThemeCreationInfo()
     {
-
-        public TenantThemeCreationInfo()
-        {
-        }
-
-        public TenantThemeCreationInfo(IReadOnlyDictionary<string, object> parameters) : base(parameters)
-        {
-        }
-
-        [JsonProperty("isInverted")]
-        public virtual bool IsInverted { get; set; }
-
-        [JsonProperty("name")]
-        public virtual string Name { get; protected set; }
-
-        [JsonProperty("palette")]
-        public virtual Hashtable Palette { get; protected set; }
-
     }
+
+    public TenantThemeCreationInfo(IReadOnlyDictionary<string, object> parameters) : base(parameters)
+    {
+    }
+
+    [JsonProperty("isInverted")]
+    public virtual bool IsInverted { get; set; }
+
+    [JsonProperty("name")]
+    public virtual string Name { get; protected set; }
+
+    [JsonProperty("palette")]
+    public virtual Hashtable Palette { get; protected set; }
 
 }

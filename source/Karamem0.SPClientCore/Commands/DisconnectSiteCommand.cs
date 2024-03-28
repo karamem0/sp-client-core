@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -19,45 +19,39 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommunications.Disconnect, "KshSite")]
+[OutputType((Type[])null)]
+public class DisconnectSiteCommand : ClientObjectCmdlet
 {
 
-    [Cmdlet("Disconnect", "KshSite")]
-    [OutputType(typeof(void))]
-    public class DisconnectSiteCommand : ClientObjectCmdlet
+    public DisconnectSiteCommand()
     {
+    }
 
-        public DisconnectSiteCommand()
+    [Parameter(Mandatory = false, Position = 0, ValueFromPipeline = true)]
+    public Uri Url { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        if (this.Url is null)
         {
+            if (ClientService.ServiceProvider is null)
+            {
+                throw new InvalidOperationException(StringResources.ErrorNotConnected);
+            }
+            var clientContext = ClientService.ServiceProvider.GetService<ClientContext>();
+            var accessToken = clientContext.AccessToken;
+            var jwtToken = new JsonWebToken(accessToken);
+            var jwtTenantId = jwtToken.GetPayloadValue<string>("tid");
+            AadOAuthTokenStore.Remove(jwtTenantId);
+            ClientService.Unregister();
         }
-
-        [Parameter(Mandatory = false, Position = 0, ValueFromPipeline = true)]
-        public Uri Url { get; private set; }
-
-        protected override void ProcessRecordCore()
+        else
         {
-            if (this.Url == null)
-            {
-                if (ClientService.ServiceProvider == null)
-                {
-                    throw new InvalidOperationException(StringResources.ErrorNotConnected);
-                }
-                var clientContext = ClientService.ServiceProvider.GetService<ClientContext>();
-                var accessToken = clientContext.AccessToken;
-                var jwtToken = new JsonWebToken(accessToken);
-                var jwtAudience = jwtToken.GetPayloadValue<string>("aud");
-                if (Uri.TryCreate(jwtAudience, UriKind.Absolute, out var url))
-                {
-                    AadOAuthTokenStore.Remove(url.GetAuthority());
-                }
-                ClientService.Unregister();
-            }
-            else
-            {
-                AadOAuthTokenStore.Remove(this.Url.GetAuthority());
-            }
+            AadOAuthTokenStore.Remove(this.Url);
         }
-
     }
 
 }

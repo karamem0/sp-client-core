@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,37 +15,34 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsData.Restore, "KshRecycleBinItem")]
+[OutputType((Type[])null)]
+public class RestoreRecycleBinItemCommand : ClientObjectCmdlet<IRecycleBinItemService>
 {
 
-    [Cmdlet("Restore", "KshRecycleBinItem")]
-    [OutputType(typeof(void))]
-    public class RestoreRecycleBinItemCommand : ClientObjectCmdlet<IRecycleBinItemService>
+    public RestoreRecycleBinItemCommand()
     {
+    }
 
-        public RestoreRecycleBinItemCommand()
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
+    public RecycleBinItem Identity { get; private set; }
+
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
+    public SwitchParameter All { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        if (this.ParameterSetName == "ParamSet1")
         {
+            this.Service.RestoreObject(this.Identity);
         }
-
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
-        public RecycleBinItem Identity { get; private set; }
-
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-        public SwitchParameter All { get; private set; }
-
-        protected override void ProcessRecordCore()
+        if (this.ParameterSetName == "ParamSet2")
         {
-            if (this.ParameterSetName == "ParamSet1")
-            {
-                this.Service.RestoreObject(this.Identity);
-            }
-            if (this.ParameterSetName == "ParamSet2")
-            {
-                this.ValidateSwitchParameter(nameof(this.All));
-                this.Service.RestoreAllObject();
-            }
+            this.ValidateSwitchParameter(nameof(this.All));
+            this.Service.RestoreAllObject();
         }
-
     }
 
 }

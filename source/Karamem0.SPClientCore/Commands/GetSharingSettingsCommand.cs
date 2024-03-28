@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -16,41 +16,36 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Get, "KshSharingSettings")]
+[OutputType(typeof(SharingSettings))]
+public class GetSharingSettingsCommand : ClientObjectCmdlet<ISharingLinkService>
 {
 
-    [Cmdlet("Get", "KshSharingSettings")]
-    [OutputType(typeof(SharingSettings))]
-    public class GetSharingSettingsCommand : ClientObjectCmdlet<ISharingLinkService>
+    public GetSharingSettingsCommand()
     {
+    }
 
-        public GetSharingSettingsCommand()
+    [Parameter(Mandatory = true)]
+    public Uri Url { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public int GroupId { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public bool UseSimplifiedRoles { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        if (this.Url.IsAbsoluteUri)
         {
+            this.Outputs.Add(this.Service.GetSharingSettings(this.Url, this.GroupId, this.UseSimplifiedRoles));
         }
-
-        [Parameter(Mandatory = true)]
-        public Uri Url { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public int GroupId { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public bool UseSimplifiedRoles { get; private set; }
-
-        protected override void ProcessRecordCore()
+        else
         {
-            if (this.Url.IsAbsoluteUri)
-            {
-                this.Outputs.Add(this.Service.GetSharingSettings(this.Url, this.GroupId, this.UseSimplifiedRoles));
-            }
-            else
-            {
-                throw new ArgumentException(
-                    string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.Url),
-                    nameof(this.Url));
-            }
+            throw new InvalidOperationException(string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.Url));
         }
-
     }
 
 }

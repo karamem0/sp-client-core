@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,18 +13,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "Microsoft.Online.SharePoint.TenantManagement.ExternalUserCollection", Id = "{5b960c8e-fb69-4a6c-a6a2-44da2bf75bd2}")]
+[JsonObject()]
+public class ExternalUserEnumerable : ClientObjectEnumerable<ExternalUser>
 {
 
-    [ClientObject(Name = "Microsoft.Online.SharePoint.TenantManagement.ExternalUserCollection", Id = "{5b960c8e-fb69-4a6c-a6a2-44da2bf75bd2}")]
-    [JsonObject()]
-    public class ExternalUserEnumerable : ClientObjectEnumerable<ExternalUser>
+    public ExternalUserEnumerable()
     {
-
-        public ExternalUserEnumerable()
-        {
-        }
-
     }
 
 }

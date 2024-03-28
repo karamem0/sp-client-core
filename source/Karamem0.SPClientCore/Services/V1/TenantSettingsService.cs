@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -14,30 +14,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Services.V1
+namespace Karamem0.SharePoint.PowerShell.Services.V1;
+
+public interface ITenantSettingsService
 {
 
-    public interface ITenantSettingsService
+    TenantSettings GetObject();
+
+}
+
+public class TenantSettingsService : ClientService, ITenantSettingsService
+{
+
+    public TenantSettingsService(ClientContext clientContext) : base(clientContext)
     {
-
-        TenantSettings GetObject();
-
     }
 
-    public class TenantSettingsService : ClientService, ITenantSettingsService
+    public TenantSettings GetObject()
     {
-
-        public TenantSettingsService(ClientContext clientContext) : base(clientContext)
-        {
-        }
-
-        public TenantSettings GetObject()
-        {
-            var requestUrl = this.ClientContext.BaseAddress
-                .ConcatPath("_api/sp_tenantsettings_current");
-            return this.ClientContext.GetObject<TenantSettings>(requestUrl);
-        }
-
+        var requestUrl = this.ClientContext.BaseAddress
+            .ConcatPath("_api/sp_tenantsettings_current");
+        return this.ClientContext.GetObject<TenantSettings>(requestUrl);
     }
 
 }

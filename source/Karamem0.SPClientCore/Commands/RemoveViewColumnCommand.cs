@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,33 +15,34 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Remove, "KshViewColumn", SupportsShouldProcess = true, ConfirmImpact = ConfirmImpact.High)]
+[OutputType((Type[])null)]
+public class RemoveViewColumnCommand : ClientObjectCmdlet<IViewColumnService>
 {
 
-    [Cmdlet("Remove", "KshViewColumn")]
-    [OutputType(typeof(void))]
-    public class RemoveViewColumnCommand : ClientObjectCmdlet<IViewColumnService>
+    public RemoveViewColumnCommand()
     {
+    }
 
-        public RemoveViewColumnCommand()
-        {
-        }
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet3")]
+    public View View { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet3")]
-        public View View { get; private set; }
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet1")]
+    public Column Column { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet1")]
-        public Column Column { get; private set; }
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
+    public string ColumnName { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
-        public string ColumnName { get; private set; }
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
+    public SwitchParameter All { get; private set; }
 
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
-        public SwitchParameter All { get; private set; }
-
-        protected override void ProcessRecordCore()
+    protected override void ProcessRecordCore()
+    {
+        if (this.ShouldProcess(this.View.Title, VerbsCommon.Remove))
         {
             if (this.ParameterSetName == "ParamSet1")
             {
@@ -56,7 +57,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands
                 this.Service.RemoveObjectAll(this.View);
             }
         }
-
     }
 
 }

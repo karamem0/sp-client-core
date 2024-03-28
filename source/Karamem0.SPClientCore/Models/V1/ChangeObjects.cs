@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -11,43 +11,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[Flags()]
+public enum ChangeObjects
 {
 
-    [Flags()]
-    public enum ChangeObjects
-    {
+    None = 0,
 
-        None = 0,
+    Item = 1,
 
-        Item = 1,
+    List = 2,
 
-        List = 2,
+    Site = 4,
 
-        Site = 4,
+    SiteCollection = 8,
 
-        SiteCollection = 8,
+    File = 16,
 
-        File = 16,
+    Folder = 32,
 
-        Folder = 32,
+    Alert = 64,
 
-        Alert = 64,
+    User = 128,
 
-        User = 128,
+    Group = 256,
 
-        Group = 256,
+    ContentType = 512,
 
-        ContentType = 512,
+    Column = 1024,
 
-        Column = 1024,
+    SecurityPolicy = 2048,
 
-        SecurityPolicy = 2048,
+    View = 4096,
 
-        View = 4096,
-
-        All = 8191,
-
-    }
+    All = 8191,
 
 }

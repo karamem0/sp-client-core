@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,26 +15,27 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Remove, "KshAttachmentFile", SupportsShouldProcess = true, ConfirmImpact = ConfirmImpact.High)]
+[OutputType((Type[])null)]
+public class RemoveAttachmentFileCommand : ClientObjectCmdlet<IAttachmentFileService>
 {
 
-    [Cmdlet("Remove", "KshAttachmentFile")]
-    [OutputType(typeof(void))]
-    public class RemoveAttachmentFileCommand : ClientObjectCmdlet<IAttachmentFileService>
+    public RemoveAttachmentFileCommand()
     {
+    }
 
-        public RemoveAttachmentFileCommand()
-        {
-        }
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet2")]
+    public AttachmentFile Identity { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet2")]
-        public AttachmentFile Identity { get; private set; }
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
+    public SwitchParameter RecycleBin { get; private set; }
 
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-        public SwitchParameter RecycleBin { get; private set; }
-
-        protected override void ProcessRecordCore()
+    protected override void ProcessRecordCore()
+    {
+        if (this.ShouldProcess(this.Identity.FileName, VerbsCommon.Remove))
         {
             if (this.ParameterSetName == "ParamSet1")
             {
@@ -46,7 +47,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands
                 this.Service.RecycleObject(this.Identity);
             }
         }
-
     }
 
 }

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -17,49 +17,46 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
+namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth;
+
+public class TenantIdResolver
 {
 
-    public class TenantIdResolver
+    private readonly HttpClient httpClient;
+
+    private readonly Uri baseAddress;
+
+    private string tenantId;
+
+    public TenantIdResolver(Uri baseAddress)
     {
+        this.httpClient = OAuthHttpClientFactory.Create();
+        this.baseAddress = baseAddress ?? throw new ArgumentNullException(nameof(baseAddress));
+    }
 
-        private readonly HttpClient httpClient;
-
-        private readonly Uri baseAddress;
-
-        private string tenantId;
-
-        public TenantIdResolver(HttpClient httpClient, Uri baseAddress)
+    public string Resolve()
+    {
+        if (this.tenantId is null)
         {
-            this.httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
-            this.baseAddress = baseAddress ?? throw new ArgumentNullException(nameof(baseAddress));
-        }
-
-        public string Resolve()
-        {
-            if (this.tenantId == null)
+            var requestUrl = this.baseAddress.ConcatPath("_vti_bin/client.svc");
+            var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
+            requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer");
+            var responseMessage = this.httpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
+            var authHeaderValue = responseMessage.Headers.WwwAuthenticate.FirstOrDefault();
+            if (authHeaderValue is not null)
             {
-                var requestUrl = this.baseAddress.ConcatPath("_vti_bin/client.svc");
-                var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
-                requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer");
-                var responseMessage = this.httpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
-                var authHeaderValue = responseMessage.Headers.WwwAuthenticate.FirstOrDefault();
-                if (authHeaderValue != null)
+                var authRealm = Regex.Match(authHeaderValue.Parameter, "realm=\"(.+?)\"");
+                if (authRealm.Success)
                 {
-                    var authRealm = Regex.Match(authHeaderValue.Parameter, "realm=\"(.+?)\"");
-                    if (authRealm.Success)
-                    {
-                        this.tenantId = authRealm.Groups[1].Value;
-                    }
+                    this.tenantId = authRealm.Groups[1].Value;
                 }
             }
-            if (this.tenantId == null)
-            {
-                throw new InvalidOperationException(StringResources.ErrorCannotResolveTenantId);
-            }
-            return this.tenantId;
         }
-
+        if (this.tenantId is null)
+        {
+            throw new InvalidOperationException(StringResources.ErrorCannotResolveTenantId);
+        }
+        return this.tenantId;
     }
 
 }

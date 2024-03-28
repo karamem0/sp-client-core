@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,45 +15,41 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Add, "KshTenantListDesign")]
+[OutputType(typeof(TenantListDesign))]
+public class AddTenantListDesignCommand : ClientObjectCmdlet<ITenantListDesignService>
 {
 
-    [Cmdlet("Add", "KshTenantListDesign")]
-    [Alias("New-KshTenantListDesign")]
-    [OutputType(typeof(TenantListDesign))]
-    public class AddTenantListDesignCommand : ClientObjectCmdlet<ITenantListDesignService>
+    public AddTenantListDesignCommand()
     {
+    }
 
-        public AddTenantListDesignCommand()
-        {
-        }
+    [Parameter(Mandatory = false)]
+    public string Description { get; private set; }
 
-        [Parameter(Mandatory = false)]
-        public string Description { get; private set; }
+    [Parameter(Mandatory = false)]
+    public TenantListDesignColor ListColor { get; private set; }
 
-        [Parameter(Mandatory = false)]
-        public TenantListDesignColor ListColor { get; private set; }
+    [Parameter(Mandatory = false)]
+    public TenantListDesignIcon ListIcon { get; private set; }
 
-        [Parameter(Mandatory = false)]
-        public TenantListDesignIcon ListIcon { get; private set; }
+    [Parameter(Mandatory = true)]
+    public Guid[] SiteScriptIds { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public Guid[] SiteScriptIds { get; private set; }
+    [Parameter(Mandatory = false)]
+    public string[] TemplateFeatures { get; private set; }
 
-        [Parameter(Mandatory = false)]
-        public string[] TemplateFeatures { get; private set; }
+    [Parameter(Mandatory = false)]
+    public string ThumbnailUrl { get; private set; }
 
-        [Parameter(Mandatory = false)]
-        public string ThumbnailUrl { get; private set; }
+    [Parameter(Mandatory = true)]
+    public string Title { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public string Title { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Outputs.Add(this.Service.AddObject(this.MyInvocation.BoundParameters));
-        }
-
+    protected override void ProcessRecordCore()
+    {
+        this.Outputs.Add(this.Service.AddObject(this.MyInvocation.BoundParameters));
     }
 
 }

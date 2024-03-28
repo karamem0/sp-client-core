@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,45 +13,42 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.DocumentLibraryInformation", Id = "{fb3ddd20-725d-4c42-8c72-34c5efc2a0b4}")]
+[JsonObject()]
+public class DocumentLibraryInfo : ClientValueObject
 {
 
-    [ClientObject(Name = "SP.DocumentLibraryInformation", Id = "{fb3ddd20-725d-4c42-8c72-34c5efc2a0b4}")]
-    [JsonObject()]
-    public class DocumentLibraryInfo : ClientValueObject
+    public DocumentLibraryInfo()
     {
-
-        public DocumentLibraryInfo()
-        {
-        }
-
-        [JsonProperty()]
-        public virtual string AbsoluteUrl { get; protected set; }
-
-        [JsonProperty()]
-        public virtual bool FromCrossFarm { get; protected set; }
-
-        [JsonProperty()]
-        public virtual string DriveId { get; protected set; }
-
-        [JsonProperty()]
-        public virtual Guid Id { get; protected set; }
-
-        [JsonProperty()]
-        public virtual bool IsDefaultDocumentLibrary { get; protected set; }
-
-        [JsonProperty()]
-        public virtual DateTime Modified { get; protected set; }
-
-        [JsonProperty()]
-        public virtual string ModifiedFriendlyDisplay { get; protected set; }
-
-        [JsonProperty()]
-        public virtual string ServerRelativeUrl { get; protected set; }
-
-        [JsonProperty()]
-        public virtual string Title { get; protected set; }
-
     }
+
+    [JsonProperty()]
+    public virtual string AbsoluteUrl { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool FromCrossFarm { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string DriveId { get; protected set; }
+
+    [JsonProperty()]
+    public virtual Guid Id { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool IsDefaultDocumentLibrary { get; protected set; }
+
+    [JsonProperty()]
+    public virtual DateTime Modified { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string ModifiedFriendlyDisplay { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string ServerRelativeUrl { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string Title { get; protected set; }
 
 }

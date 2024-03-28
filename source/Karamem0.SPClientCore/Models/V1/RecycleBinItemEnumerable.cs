@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,21 +13,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.RecycleBinItemCollection", Id = "{9bfb60cf-1aca-484c-a845-5f2d4ef20865}")]
+[JsonObject()]
+public class RecycleBinItemEnumerable : ClientObjectEnumerable<RecycleBinItem>
 {
 
-    [ClientObject(Name = "SP.RecycleBinItemCollection", Id = "{9bfb60cf-1aca-484c-a845-5f2d4ef20865}")]
-    [JsonObject()]
-    public class RecycleBinItemEnumerable : ClientObjectEnumerable<RecycleBinItem>
+    public RecycleBinItemEnumerable()
     {
-
-        public RecycleBinItemEnumerable()
-        {
-        }
-
-        [JsonProperty()]
-        public virtual ListItemCollectionPosition ListItemCollectionPosition { get; protected set; }
-
     }
+
+    [JsonProperty()]
+    public virtual ListItemCollectionPosition ListItemCollectionPosition { get; protected set; }
 
 }

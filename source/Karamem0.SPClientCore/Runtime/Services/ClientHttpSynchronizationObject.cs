@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -12,28 +12,25 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.Services
+namespace Karamem0.SharePoint.PowerShell.Runtime.Services;
+
+public class ClientHttpSynchronizationObject
 {
 
-    public class ClientHttpSynchronizationObject
+    public static readonly ClientHttpSynchronizationObject Completed = new(null, null);
+
+    private ClientHttpSynchronizationObject()
     {
-
-        public static readonly ClientHttpSynchronizationObject Completed = new ClientHttpSynchronizationObject(null, null);
-
-        private ClientHttpSynchronizationObject()
-        {
-        }
-
-        public ClientHttpSynchronizationObject(SendOrPostCallback callback, object state)
-        {
-            this.Callback = callback;
-            this.State = state;
-        }
-
-        public SendOrPostCallback Callback { get; private set; }
-
-        public object State { get; private set; }
-
     }
+
+    public ClientHttpSynchronizationObject(SendOrPostCallback callback, object state)
+    {
+        this.Callback = callback;
+        this.State = state;
+    }
+
+    public SendOrPostCallback Callback { get; private set; }
+
+    public object State { get; private set; }
 
 }

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -12,19 +12,16 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
+namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth;
+
+public abstract class OAuthContext
 {
 
-    public abstract class OAuthContext
+    protected OAuthContext()
     {
-
-        protected OAuthContext()
-        {
-            this.HttpClient = new HttpClient();
-        }
-
-        protected HttpClient HttpClient { get; }
-
+        this.HttpClient = OAuthHttpClientFactory.Create();
     }
+
+    protected HttpClient HttpClient { get; }
 
 }

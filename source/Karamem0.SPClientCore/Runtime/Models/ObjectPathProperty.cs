@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -12,28 +12,25 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.Models
+namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
+
+[XmlType("Property", Namespace = "http://schemas.microsoft.com/sharepoint/clientquery/2009")]
+public class ObjectPathProperty : ObjectPath
 {
 
-    [XmlType("Property", Namespace = "http://schemas.microsoft.com/sharepoint/clientquery/2009")]
-    public class ObjectPathProperty : ObjectPath
+    public ObjectPathProperty(long parentId, string name)
     {
-
-        public ObjectPathProperty(long parentId, string name)
-        {
-            this.ParentId = parentId;
-            this.Name = name ?? throw new ArgumentNullException(nameof(name));
-        }
-
-        [XmlAttribute()]
-        public override long Id { get; protected set; }
-
-        [XmlAttribute()]
-        public virtual long ParentId { get; private set; }
-
-        [XmlAttribute()]
-        public virtual string Name { get; private set; }
-
+        this.ParentId = parentId;
+        this.Name = name ?? throw new ArgumentNullException(nameof(name));
     }
+
+    [XmlAttribute()]
+    public override long Id { get; protected set; }
+
+    [XmlAttribute()]
+    public virtual long ParentId { get; private set; }
+
+    [XmlAttribute()]
+    public virtual string Name { get; private set; }
 
 }

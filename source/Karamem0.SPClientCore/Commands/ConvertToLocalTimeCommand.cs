@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,26 +15,23 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsData.ConvertTo, "KshLocalTime")]
+[OutputType(typeof(DateTime))]
+public class ConvertToLocalTimeCommand : ClientObjectCmdlet<IRegionalSettingsService>
 {
 
-    [Cmdlet("ConvertTo", "KshLocalTime")]
-    [OutputType(typeof(DateTime))]
-    public class ConvertToLocalTimeCommand : ClientObjectCmdlet<IRegionalSettingsService>
+    public ConvertToLocalTimeCommand()
     {
+    }
 
-        public ConvertToLocalTimeCommand()
-        {
-        }
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    public DateTime Value { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public DateTime Value { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Outputs.Add(this.Service.ConvertUniversalToLocal(this.Value));
-        }
-
+    protected override void ProcessRecordCore()
+    {
+        this.Outputs.Add(this.Service.ConvertUniversalToLocal(this.Value));
     }
 
 }

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,21 +13,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.ViewFieldCollection", Id = "{af975f76-8a94-4e6d-8325-bd1e20b7c301}")]
+[JsonObject()]
+public class ViewColumnEnumerable : ClientObjectEnumerable<string>
 {
 
-    [ClientObject(Name = "SP.ViewFieldCollection", Id = "{af975f76-8a94-4e6d-8325-bd1e20b7c301}")]
-    [JsonObject()]
-    public class ViewColumnEnumerable : ClientObjectEnumerable<string>
+    public ViewColumnEnumerable()
     {
-
-        public ViewColumnEnumerable()
-        {
-        }
-
-        [JsonProperty()]
-        public virtual string SchemaXml { get; protected set; }
-
     }
+
+    [JsonProperty()]
+    public virtual string SchemaXml { get; protected set; }
 
 }

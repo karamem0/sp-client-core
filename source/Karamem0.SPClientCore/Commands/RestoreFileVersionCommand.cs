@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,26 +15,23 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsData.Restore, "KshFileVersion")]
+[OutputType((Type[])null)]
+public class RestoreFileVersionCommand : ClientObjectCmdlet<IFileVersionService>
 {
 
-    [Cmdlet("Restore", "KshFileVersion")]
-    [OutputType(typeof(void))]
-    public class RestoreFileVersionCommand : ClientObjectCmdlet<IFileVersionService>
+    public RestoreFileVersionCommand()
     {
+    }
 
-        public RestoreFileVersionCommand()
-        {
-        }
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    public FileVersion Identity { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public FileVersion Identity { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Service.RestoreObject(this.Identity);
-        }
-
+    protected override void ProcessRecordCore()
+    {
+        this.Service.RestoreObject(this.Identity);
     }
 
 }

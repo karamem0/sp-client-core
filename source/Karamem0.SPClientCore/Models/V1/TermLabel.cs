@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,27 +13,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.Taxonomy.Label", Id = "{81503ae1-8747-4684-a172-163c7e009ef9}")]
+[JsonObject()]
+public class TermLabel : ClientObject
 {
 
-    [ClientObject(Name = "SP.Taxonomy.Label", Id = "{81503ae1-8747-4684-a172-163c7e009ef9}")]
-    [JsonObject()]
-    public class TermLabel : ClientObject
+    public TermLabel()
     {
-
-        public TermLabel()
-        {
-        }
-
-        [JsonProperty("IsDefaultForLanguage")]
-        public virtual bool IsDefault { get; protected set; }
-
-        [JsonProperty("Language")]
-        public virtual uint Lcid { get; protected set; }
-
-        [JsonProperty("Value")]
-        public virtual string Name { get; protected set; }
-
     }
+
+    [JsonProperty("IsDefaultForLanguage")]
+    public virtual bool IsDefault { get; protected set; }
+
+    [JsonProperty("Language")]
+    public virtual uint Lcid { get; protected set; }
+
+    [JsonProperty("Value")]
+    public virtual string Name { get; protected set; }
 
 }

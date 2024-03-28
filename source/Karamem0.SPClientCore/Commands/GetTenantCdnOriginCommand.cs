@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,56 +15,53 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Get, "KshTenantCdnOrigin")]
+[OutputType(typeof(string))]
+public class GetTenantCdnOriginCommand : ClientObjectCmdlet<ITenantCdnService>
 {
 
-    [Cmdlet("Get", "KshTenantCdnOrigin")]
-    [OutputType(typeof(string))]
-    public class GetTenantCdnOriginCommand : ClientObjectCmdlet<ITenantCdnService>
+    public GetTenantCdnOriginCommand()
     {
+    }
 
-        public GetTenantCdnOriginCommand()
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
+    public SwitchParameter Public { get; private set; }
+
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
+    public SwitchParameter Private { get; private set; }
+
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+    public SwitchParameter NoEnumerate { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        if (this.ParameterSetName == "ParamSet1")
         {
-        }
-
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
-        public SwitchParameter Public { get; private set; }
-
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-        public SwitchParameter Private { get; private set; }
-
-        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-        public SwitchParameter NoEnumerate { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            if (this.ParameterSetName == "ParamSet1")
+            this.ValidateSwitchParameter(nameof(this.Public));
+            if (this.NoEnumerate)
             {
-                this.ValidateSwitchParameter(nameof(this.Public));
-                if (this.NoEnumerate)
-                {
-                    this.Outputs.Add(this.Service.GetOriginEnumerable(TenantCdnType.Public));
-                }
-                else
-                {
-                    this.Outputs.AddRange(this.Service.GetOriginEnumerable(TenantCdnType.Public));
-                }
+                this.Outputs.Add(this.Service.GetOriginEnumerable(TenantCdnType.Public));
             }
-            if (this.ParameterSetName == "ParamSet2")
+            else
             {
-                this.ValidateSwitchParameter(nameof(this.Private));
-                if (this.NoEnumerate)
-                {
-                    this.Outputs.Add(this.Service.GetOriginEnumerable(TenantCdnType.Private));
-                }
-                else
-                {
-                    this.Outputs.AddRange(this.Service.GetOriginEnumerable(TenantCdnType.Private));
-                }
+                this.Outputs.AddRange(this.Service.GetOriginEnumerable(TenantCdnType.Public));
             }
         }
-
+        if (this.ParameterSetName == "ParamSet2")
+        {
+            this.ValidateSwitchParameter(nameof(this.Private));
+            if (this.NoEnumerate)
+            {
+                this.Outputs.Add(this.Service.GetOriginEnumerable(TenantCdnType.Private));
+            }
+            else
+            {
+                this.Outputs.AddRange(this.Service.GetOriginEnumerable(TenantCdnType.Private));
+            }
+        }
     }
 
 }

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -14,59 +14,56 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Tests
+namespace Karamem0.SharePoint.PowerShell.Tests;
+
+[TestClass()]
+public class SetGroupOwnerCommandTests
 {
 
-    [TestClass()]
-    public class SetGroupOwnerCommandTests
+    [TestMethod()]
+    public void SetGroupOwner()
     {
-
-        [TestMethod()]
-        public void SetGroupOwner()
-        {
-            using var context = new PSCmdletContext();
-            var result1 = context.Runspace.InvokeCommand(
-                "Connect-KshSite",
-                new Dictionary<string, object>()
-                {
-                    { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                    { "Credential", PSCredentialFactory.CreateCredential(
-                        context.AppSettings["LoginUserName"],
-                        context.AppSettings["LoginPassword"])
-                    }
+        using var context = new PSCmdletContext();
+        var result1 = context.Runspace.InvokeCommand(
+            "Connect-KshSite",
+            new Dictionary<string, object>()
+            {
+                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
+                { "Credential", PSCredentialFactory.CreateCredential(
+                    context.AppSettings["LoginUserName"],
+                    context.AppSettings["LoginPassword"])
                 }
-            );
-            var result2 = context.Runspace.InvokeCommand<User>(
-                "Get-KshUser",
-                new Dictionary<string, object>()
-                {
-                    { "UserId", context.AppSettings["User1Id"] }
-                }
-            );
-            var result3 = context.Runspace.InvokeCommand<Group>(
-                "Add-KshGroup",
-                new Dictionary<string, object>()
-                {
-                    { "Title", "Test Group 0" }
-                }
-            );
-            var result4 = context.Runspace.InvokeCommand<Principal>(
-                "Set-KshGroupOwner",
-                new Dictionary<string, object>()
-                {
-                    { "Group", result3.ElementAt(0) },
-                    { "Owner", result2.ElementAt(0) }
-                }
-            );
-            var result5 = context.Runspace.InvokeCommand(
-                "Remove-KshGroup",
-                new Dictionary<string, object>()
-                {
-                    { "Identity", result3.ElementAt(0) }
-                }
-            );
-        }
-
+            }
+        );
+        var result2 = context.Runspace.InvokeCommand<User>(
+            "Get-KshUser",
+            new Dictionary<string, object>()
+            {
+                { "UserId", context.AppSettings["User1Id"] }
+            }
+        );
+        var result3 = context.Runspace.InvokeCommand<Group>(
+            "Add-KshGroup",
+            new Dictionary<string, object>()
+            {
+                { "Title", "Test Group 0" }
+            }
+        );
+        var result4 = context.Runspace.InvokeCommand<Principal>(
+            "Set-KshGroupOwner",
+            new Dictionary<string, object>()
+            {
+                { "Group", result3.ElementAt(0) },
+                { "Owner", result2.ElementAt(0) }
+            }
+        );
+        var result5 = context.Runspace.InvokeCommand(
+            "Remove-KshGroup",
+            new Dictionary<string, object>()
+            {
+                { "Identity", result3.ElementAt(0) }
+            }
+        );
     }
 
 }

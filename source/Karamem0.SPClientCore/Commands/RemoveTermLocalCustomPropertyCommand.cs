@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,29 +15,29 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Remove, "KshTermLocalCustomProperty", SupportsShouldProcess = true, ConfirmImpact = ConfirmImpact.High)]
+[OutputType((Type[])null)]
+public class RemoveTermLocalCustomPropertyCommand : ClientObjectCmdlet<ITermLocalCustomPropertyService>
 {
 
-    [Cmdlet("Remove", "KshTermLocalCustomProperty")]
-    [OutputType(typeof(void))]
-    public class RemoveTermLocalCustomPropertyCommand : ClientObjectCmdlet<ITermLocalCustomPropertyService>
+    public RemoveTermLocalCustomPropertyCommand()
     {
+    }
 
-        public RemoveTermLocalCustomPropertyCommand()
-        {
-        }
+    [Parameter(Mandatory = true, Position = 0)]
+    public Term Term { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0)]
-        public Term Term { get; private set; }
+    [Parameter(Mandatory = true, Position = 1)]
+    public string Name { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 1)]
-        public string Name { get; private set; }
-
-        protected override void ProcessRecordCore()
+    protected override void ProcessRecordCore()
+    {
+        if (this.ShouldProcess(this.Name, VerbsCommon.Remove))
         {
             this.Service.RemoveObject(this.Term, this.Name);
         }
-
     }
 
 }

@@ -1,4 +1,0 @@
-{
-  "dotnetCoreExplorer.searchpatterns": "Karamem0.SPClientCore.Tests/**/SPClientCore.Tests.dll",
-  "testExplorer.useNativeTesting": true,
-}

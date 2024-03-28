@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -14,30 +14,26 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.New, "KshColumnUrlValue")]
+[OutputType(typeof(ColumnUserValue))]
+public class NewColumnUrlValueCommand : ClientObjectCmdlet
 {
 
-    [Cmdlet("New", "KshColumnUrlValue")]
-    [Alias("Initialize-KshColumnUrlValue")]
-    [OutputType(typeof(ColumnUserValue))]
-    public class NewColumnUrlValueCommand : ClientObjectCmdlet
+    public NewColumnUrlValueCommand()
     {
+    }
 
-        public NewColumnUrlValueCommand()
-        {
-        }
+    [Parameter(Mandatory = true, Position = 0)]
+    public string Url { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0)]
-        public string Url { get; private set; }
+    [Parameter(Mandatory = false, Position = 1)]
+    public string Description { get; private set; }
 
-        [Parameter(Mandatory = false, Position = 1)]
-        public string Description { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Outputs.Add(new ColumnUrlValue(this.Url, this.Description));
-        }
-
+    protected override void ProcessRecordCore()
+    {
+        this.Outputs.Add(new ColumnUrlValue(this.Url, this.Description));
     }
 
 }

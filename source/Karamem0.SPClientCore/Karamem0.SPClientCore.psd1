@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2023 karamem0
+# Copyright (c) 2018-2024 karamem0
 #
 # This software is released under the MIT License.
 #
@@ -27,13 +27,13 @@
     CompanyName = 'karamem0'
 
     # Copyright statement for this module
-    Copyright = 'Copyright (c) 2023 karamem0'
+    Copyright = 'Copyright (c) 2018-2024 karamem0'
 
     # Description of the functionality provided by this module
     Description = 'SharePoint Service Module for PowerShell'
 
     # Minimum version of the Windows PowerShell engine required by this module
-    PowerShellVersion = '5.1'
+    PowerShellVersion = '7.4.5'
 
     # Name of the Windows PowerShell host required by this module
     # PowerShellHostName = ''
@@ -92,7 +92,7 @@
         PSData = @{
 
             # Tags applied to this module. These help with module discovery in online galleries.
-            Tags = @('PSEdition_Core', 'PSEdition_Desktop', 'OfficeDev', 'SharePointOnline')
+            Tags = @('PSEdition_Core', 'OfficeDev', 'SharePoint', 'SharePointOnline')
 
             # A URL to the license for this module.
             LicenseUri = 'https://github.com/karamem0/sp-client-core/blob/main/LICENSE'

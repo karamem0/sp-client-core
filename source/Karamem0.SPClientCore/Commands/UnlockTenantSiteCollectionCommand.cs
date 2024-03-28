@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,46 +15,43 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Unlock, "KshTenantSiteCollection")]
+[OutputType(typeof(TenantSiteCollection))]
+public class UnlockTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteCollectionService>
 {
 
-    [Cmdlet("Unlock", "KshTenantSiteCollection")]
-    [OutputType(typeof(TenantSiteCollection))]
-    public class UnlockTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteCollectionService>
+    public UnlockTenantSiteCollectionCommand()
     {
+    }
 
-        public UnlockTenantSiteCollectionCommand()
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet2")]
+    public TenantSiteCollection Identity { get; private set; }
+
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+    public SwitchParameter PassThru { get; private set; }
+
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
+    public SwitchParameter NoWait { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        if (this.ParameterSetName == "ParamSet1")
         {
-        }
-
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet2")]
-        public TenantSiteCollection Identity { get; private set; }
-
-        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
-        public SwitchParameter PassThru { get; private set; }
-
-        [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-        public SwitchParameter NoWait { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            if (this.ParameterSetName == "ParamSet1")
+            this.Service.UnlockObjectAwait(this.Identity);
+            var clientObject = this.Service.GetObjectAwait(this.Identity);
+            if (this.PassThru)
             {
-                this.Service.UnlockObjectAwait(this.Identity);
-                var clientObject = this.Service.GetObjectAwait(this.Identity);
-                if (this.PassThru)
-                {
-                    this.Outputs.Add(clientObject);
-                }
-            }
-            if (this.ParameterSetName == "ParamSet2")
-            {
-                this.ValidateSwitchParameter(nameof(this.NoWait));
-                _ = this.Service.UnlockObject(this.Identity);
+                this.Outputs.Add(clientObject);
             }
         }
-
+        if (this.ParameterSetName == "ParamSet2")
+        {
+            this.ValidateSwitchParameter(nameof(this.NoWait));
+            _ = this.Service.UnlockObject(this.Identity);
+        }
     }
 
 }

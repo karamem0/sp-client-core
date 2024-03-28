@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,54 +15,51 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Get, "KshLike")]
+[OutputType(typeof(LikedUser))]
+public class GetLikeCommand : ClientObjectCmdlet<ILikeService>
 {
 
-    [Cmdlet("Get", "KshLike")]
-    [OutputType(typeof(LikedUser))]
-    public class GetLikeCommand : ClientObjectCmdlet<ILikeService>
+    public GetLikeCommand()
     {
+    }
 
-        public GetLikeCommand()
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
+    public Comment Comment { get; private set; }
+
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet2")]
+    public ListItem ListItem { get; private set; }
+
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+    public SwitchParameter NoEnumerate { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        if (this.ParameterSetName == "ParamSet1")
         {
-        }
-
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
-        public Comment Comment { get; private set; }
-
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet2")]
-        public ListItem ListItem { get; private set; }
-
-        [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
-        [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-        public SwitchParameter NoEnumerate { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            if (this.ParameterSetName == "ParamSet1")
+            if (this.NoEnumerate)
             {
-                if (this.NoEnumerate)
-                {
-                    this.Outputs.Add(this.Service.GetObjectEnumerable(this.Comment));
-                }
-                else
-                {
-                    this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.Comment));
-                }
+                this.Outputs.Add(this.Service.GetObjectEnumerable(this.Comment));
             }
-            if (this.ParameterSetName == "ParamSet2")
+            else
             {
-                if (this.NoEnumerate)
-                {
-                    this.Outputs.Add(this.Service.GetObjectEnumerable(this.ListItem));
-                }
-                else
-                {
-                    this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.ListItem));
-                }
+                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.Comment));
             }
         }
-
+        if (this.ParameterSetName == "ParamSet2")
+        {
+            if (this.NoEnumerate)
+            {
+                this.Outputs.Add(this.Service.GetObjectEnumerable(this.ListItem));
+            }
+            else
+            {
+                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.ListItem));
+            }
+        }
     }
 
 }

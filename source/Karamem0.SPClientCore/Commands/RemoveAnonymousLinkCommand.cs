@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,28 +15,29 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Remove, "KshAnonymousLink", SupportsShouldProcess = true, ConfirmImpact = ConfirmImpact.High)]
+[OutputType((Type[])null)]
+public class RemoveAnonymousLinkCommand : ClientObjectCmdlet<ISharingLinkService>
 {
 
-    [Cmdlet("Remove", "KshAnonymousLink")]
-    [OutputType(typeof(void))]
-    public class RemoveAnonymousLinkCommand : ClientObjectCmdlet<ISharingLinkService>
+    public RemoveAnonymousLinkCommand()
     {
+    }
 
-        public RemoveAnonymousLinkCommand()
-        {
-        }
+    [Parameter(Mandatory = true, Position = 0)]
+    public Uri Url { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0)]
-        public Uri Url { get; private set; }
+    [Parameter(Mandatory = true, Position = 1)]
+    public bool IsEditLink { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 1)]
-        public bool IsEditLink { get; private set; }
+    [Parameter(Mandatory = true, Position = 2)]
+    public bool RemoveAssociatedSharingLinkGroup { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 2)]
-        public bool RemoveAssociatedSharingLinkGroup { get; private set; }
-
-        protected override void ProcessRecordCore()
+    protected override void ProcessRecordCore()
+    {
+        if (this.ShouldProcess(this.Url.ToString(), VerbsCommon.Remove))
         {
             if (this.Url.IsAbsoluteUri)
             {
@@ -44,12 +45,9 @@ namespace Karamem0.SharePoint.PowerShell.Commands
             }
             else
             {
-                throw new ArgumentException(
-                    string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.Url),
-                    nameof(this.Url));
+                throw new InvalidOperationException(string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.Url));
             }
         }
-
     }
 
 }

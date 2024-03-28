@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -12,35 +12,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth
+namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth;
+
+[JsonObject()]
+public class OAuthError : OAuthMessage
 {
 
-    [JsonObject()]
-    public class OAuthError : OAuthMessage
+    public OAuthError()
     {
-
-        public OAuthError()
-        {
-        }
-
-        [JsonProperty("error")]
-        public string Error { get; private set; }
-
-        [JsonProperty("error_description")]
-        public string ErrorDescription { get; private set; }
-
-        [JsonProperty("error_codes")]
-        public int[] ErrorCodes { get; private set; }
-
-        [JsonProperty("timestamp")]
-        public DateTime Timestamp { get; private set; }
-
-        [JsonProperty("trace_id")]
-        public string TraceId { get; private set; }
-
-        [JsonProperty("correlation_id")]
-        public string CorrelationId { get; private set; }
-
     }
+
+    [JsonProperty("error")]
+    public string Error { get; private set; }
+
+    [JsonProperty("error_description")]
+    public string ErrorDescription { get; private set; }
+
+    [JsonProperty("error_codes")]
+    public int[] ErrorCodes { get; private set; }
+
+    [JsonProperty("timestamp")]
+    public DateTime Timestamp { get; private set; }
+
+    [JsonProperty("trace_id")]
+    public string TraceId { get; private set; }
+
+    [JsonProperty("correlation_id")]
+    public string CorrelationId { get; private set; }
 
 }

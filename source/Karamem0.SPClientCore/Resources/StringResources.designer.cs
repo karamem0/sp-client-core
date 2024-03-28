@@ -79,6 +79,15 @@ namespace Karamem0.SharePoint.PowerShell.Resources {
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Cannot delete root site collection.
+        /// </summary>
+        public static string ErrorCannotDeleteRootSiteCollection {
+            get {
+                return ResourceManager.GetString("ErrorCannotDeleteRootSiteCollection", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Cannot resolve Tenant ID from resource URL.
         /// </summary>
         public static string ErrorCannotResolveTenantId {

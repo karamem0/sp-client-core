@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -14,27 +14,23 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.New, "KshBasePermission")]
+[OutputType(typeof(BasePermission))]
+public class NewBasePermissionCommand : ClientObjectCmdlet
 {
 
-    [Cmdlet("New", "KshBasePermission")]
-    [Alias("Initialize-KshBasePermission")]
-    [OutputType(typeof(BasePermission))]
-    public class NewBasePermissionCommand : ClientObjectCmdlet
+    public NewBasePermissionCommand()
     {
+    }
 
-        public NewBasePermissionCommand()
-        {
-        }
+    [Parameter(Mandatory = true, Position = 0)]
+    public PermissionKind[] Permission { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0)]
-        public PermissionKind[] Permission { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Outputs.Add(new BasePermission(this.Permission));
-        }
-
+    protected override void ProcessRecordCore()
+    {
+        this.Outputs.Add(new BasePermission(this.Permission));
     }
 
 }

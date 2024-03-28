@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -12,42 +12,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Runtime.Models
+namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
+
+public class ObjectPathCollection : IEnumerable<ObjectPath>
 {
 
-    public class ObjectPathCollection : IEnumerable<ObjectPath>
+    private readonly IDictionary<long, ObjectPath> collection;
+
+    public ObjectPathCollection()
     {
+        this.collection = new Dictionary<long, ObjectPath>();
+    }
 
-        private readonly IDictionary<long, ObjectPath> collection;
+    public ObjectPath this[long id] => this.collection[id];
 
-        public ObjectPathCollection()
-        {
-            this.collection = new Dictionary<long, ObjectPath>();
-        }
+    public void Add(ObjectPath item)
+    {
+        _ = item ?? throw new ArgumentNullException(nameof(item));
+        this.collection.Add(item.Id, item);
+    }
 
-        public ObjectPath this[long id] => this.collection[id];
+    public void Remove(long id)
+    {
+        _ = this.collection.Remove(id);
+    }
 
-        public void Add(ObjectPath item)
-        {
-            _ = item ?? throw new ArgumentNullException(nameof(item));
-            this.collection.Add(item.Id, item);
-        }
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return this.GetEnumerator();
+    }
 
-        public void Remove(long id)
-        {
-            _ = this.collection.Remove(id);
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return this.GetEnumerator();
-        }
-
-        public IEnumerator<ObjectPath> GetEnumerator()
-        {
-            return this.collection.Values.GetEnumerator();
-        }
-
+    public IEnumerator<ObjectPath> GetEnumerator()
+    {
+        return this.collection.Values.GetEnumerator();
     }
 
 }

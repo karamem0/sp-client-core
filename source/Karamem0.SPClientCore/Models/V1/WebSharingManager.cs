@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,18 +13,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.Sharing.WebSharingManager", Id = "{a187f049-f067-42cd-977b-79e85ea2a9fa}")]
+[JsonObject()]
+public class WebSharingManager : ClientObject
 {
 
-    [ClientObject(Name = "SP.Sharing.WebSharingManager", Id = "{a187f049-f067-42cd-977b-79e85ea2a9fa}")]
-    [JsonObject()]
-    public class WebSharingManager : ClientObject
+    public WebSharingManager()
     {
-
-        public WebSharingManager()
-        {
-        }
-
     }
 
 }

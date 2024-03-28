@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,36 +15,32 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Add, "KshSubscription")]
+[OutputType(typeof(Subscription))]
+public class AddSubscriptionCommand : ClientObjectCmdlet<ISubscriptionService>
 {
 
-    [Cmdlet("Add", "KshSubscription")]
-    [Alias("New-KshSubscription")]
-    [OutputType(typeof(Subscription))]
-    public class AddSubscriptionCommand : ClientObjectCmdlet<ISubscriptionService>
+    public AddSubscriptionCommand()
     {
+    }
 
-        public AddSubscriptionCommand()
-        {
-        }
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    public List List { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public List List { get; private set; }
+    [Parameter(Mandatory = false)]
+    public string ClientState { get; private set; }
 
-        [Parameter(Mandatory = false)]
-        public string ClientState { get; private set; }
+    [Parameter(Mandatory = true)]
+    public DateTime ExpirationDateTime { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public DateTime ExpirationDateTime { get; private set; }
+    [Parameter(Mandatory = true)]
+    public string NotificationUrl { get; private set; }
 
-        [Parameter(Mandatory = true)]
-        public string NotificationUrl { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Outputs.Add(this.Service.AddObject(this.List, this.MyInvocation.BoundParameters));
-        }
-
+    protected override void ProcessRecordCore()
+    {
+        this.Outputs.Add(this.Service.AddObject(this.List, this.MyInvocation.BoundParameters));
     }
 
 }

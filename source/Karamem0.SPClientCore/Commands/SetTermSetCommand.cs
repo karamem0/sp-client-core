@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -15,55 +15,51 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Set, "KshTermSet")]
+[OutputType(typeof(TermSet))]
+public class SetTermSetCommand : ClientObjectCmdlet<ITermSetService>
 {
 
-    [Cmdlet("Set", "KshTermSet")]
-    [Alias("Update-KshTermSet")]
-    [OutputType(typeof(TermSet))]
-    public class SetTermSetCommand : ClientObjectCmdlet<ITermSetService>
+    public SetTermSetCommand()
     {
+    }
 
-        public SetTermSetCommand()
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    public TermSet Identity { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public string Contact { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public string CustomSortOrder { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public string Description { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public bool IsAvailableForTagging { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public bool IsOpenForTermCreation { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public string Name { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public string Owner { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public SwitchParameter PassThru { get; private set; }
+
+    protected override void ProcessRecordCore()
+    {
+        this.Service.SetObject(this.Identity, this.MyInvocation.BoundParameters);
+        if (this.PassThru)
         {
+            this.Outputs.Add(this.Service.GetObject(this.Identity));
         }
-
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
-        public TermSet Identity { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public string Contact { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public string CustomSortOrder { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public string Description { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public bool IsAvailableForTagging { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public bool IsOpenForTermCreation { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public string Name { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public string Owner { get; private set; }
-
-        [Parameter(Mandatory = false)]
-        public SwitchParameter PassThru { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Service.SetObject(this.Identity, this.MyInvocation.BoundParameters);
-            if (this.PassThru)
-            {
-                this.Outputs.Add(this.Service.GetObject(this.Identity));
-            }
-        }
-
     }
 
 }

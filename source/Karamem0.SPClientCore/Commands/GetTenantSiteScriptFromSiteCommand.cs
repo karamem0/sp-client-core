@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -14,44 +14,41 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Commands
+namespace Karamem0.SharePoint.PowerShell.Commands;
+
+[Cmdlet(VerbsCommon.Get, "KshTenantSiteScriptFromSite")]
+[OutputType(typeof(string))]
+public class GetTenantSiteScriptFromSiteCommand : ClientObjectCmdlet<ITenantSiteScriptService>
 {
 
-    [Cmdlet("Get", "KshTenantSiteScriptFromSite")]
-    [OutputType(typeof(string))]
-    public class GetTenantSiteScriptFromSiteCommand : ClientObjectCmdlet<ITenantSiteScriptService>
+    public GetTenantSiteScriptFromSiteCommand()
     {
+    }
 
-        public GetTenantSiteScriptFromSiteCommand()
-        {
-        }
+    [Parameter(Mandatory = true, Position = 0)]
+    public string SiteUrl { get; private set; }
 
-        [Parameter(Mandatory = true, Position = 0)]
-        public string SiteUrl { get; private set; }
+    [Parameter(Mandatory = false)]
+    public SwitchParameter IncludeBranding { get; private set; }
 
-        [Parameter(Mandatory = false)]
-        public SwitchParameter IncludeBranding { get; private set; }
+    [Parameter(Mandatory = false)]
+    public string[] IncludedLists { get; private set; }
 
-        [Parameter(Mandatory = false)]
-        public string[] IncludedLists { get; private set; }
+    [Parameter(Mandatory = false)]
+    public SwitchParameter IncludeLinksToExportedItems { get; private set; }
 
-        [Parameter(Mandatory = false)]
-        public SwitchParameter IncludeLinksToExportedItems { get; private set; }
+    [Parameter(Mandatory = false)]
+    public SwitchParameter IncludeRegionalSettings { get; private set; }
 
-        [Parameter(Mandatory = false)]
-        public SwitchParameter IncludeRegionalSettings { get; private set; }
+    [Parameter(Mandatory = false)]
+    public SwitchParameter IncludeSiteExternalSharingCapability { get; private set; }
 
-        [Parameter(Mandatory = false)]
-        public SwitchParameter IncludeSiteExternalSharingCapability { get; private set; }
+    [Parameter(Mandatory = false)]
+    public SwitchParameter IncludeTheme { get; private set; }
 
-        [Parameter(Mandatory = false)]
-        public SwitchParameter IncludeTheme { get; private set; }
-
-        protected override void ProcessRecordCore()
-        {
-            this.Outputs.Add(this.Service.GetScriptFromSite(this.SiteUrl, this.MyInvocation.BoundParameters));
-        }
-
+    protected override void ProcessRecordCore()
+    {
+        this.Outputs.Add(this.Service.GetScriptFromSite(this.SiteUrl, this.MyInvocation.BoundParameters));
     }
 
 }

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2023 karamem0
+// Copyright (c) 2018-2024 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -13,31 +13,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Models.V1
+namespace Karamem0.SharePoint.PowerShell.Models.V1;
+
+[ClientObject(Name = "SP.UserCreationInformation", Id = "{6ecd8af6-bed3-4a74-be76-1ec981b350e1}")]
+[JsonObject()]
+public class UserCreationInfo : ClientValueObject
 {
 
-    [ClientObject(Name = "SP.UserCreationInformation", Id = "{6ecd8af6-bed3-4a74-be76-1ec981b350e1}")]
-    [JsonObject()]
-    public class UserCreationInfo : ClientValueObject
+    public UserCreationInfo()
     {
-
-        public UserCreationInfo()
-        {
-        }
-
-        public UserCreationInfo(IReadOnlyDictionary<string, object> parameters) : base(parameters)
-        {
-        }
-
-        [JsonProperty()]
-        public virtual string Email { get; protected set; }
-
-        [JsonProperty()]
-        public virtual string LoginName { get; protected set; }
-
-        [JsonProperty()]
-        public virtual string Title { get; protected set; }
-
     }
+
+    public UserCreationInfo(IReadOnlyDictionary<string, object> parameters) : base(parameters)
+    {
+    }
+
+    [JsonProperty()]
+    public virtual string Email { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string LoginName { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string Title { get; protected set; }
 
 }
