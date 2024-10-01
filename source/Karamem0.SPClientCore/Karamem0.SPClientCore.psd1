@@ -101,7 +101,7 @@
             ProjectUri = 'https://github.com/karamem0/sp-client-core'
 
             # A URL to an icon representing this module.
-            IconUri = 'https://github.com/karamem0/sp-client-core/blob/main/assets/logo.png'
+            IconUri = 'https://raw.githubusercontent.com/karamem0/sp-client-core/refs/heads/main/assets/logo.png'
 
             # ReleaseNotes of this module
             # ReleaseNotes = ''
