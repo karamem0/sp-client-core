@@ -48,7 +48,7 @@ SPClientCore は Azure AD 2.0 認証をサポートします (Device Code Grant 
 - ログイン
   - [Connect-KshSite](docs/Connect-KshSite.md)
   - [Disconnect-KshSite](docs/Disconnect-KshSite.md)
-  - [Get-KshCurrentConnection](docs/Disconnect-KshCurrentConnection.md)
+  - [Get-KshCurrentConnection](docs/Get-KshCurrentConnection.md)
   - [Get-KshCurrentSite](docs/Get-KshCurrentSite.md)
   - [Get-KshCurrentSiteCollection](docs/Get-KshCurrentSiteCollection.md)
   - [Get-KshCurrentUser](docs/Get-KshCurrentUser.md)

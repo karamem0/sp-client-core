@@ -49,9 +49,6 @@ public class View : ClientObject
     public string CustomFormatter { get; private set; }
 
     [JsonProperty()]
-    public string CustomOrder { get; private set; }
-
-    [JsonProperty()]
     public bool DefaultView { get; private set; }
 
     [JsonProperty()]

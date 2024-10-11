@@ -45,9 +45,6 @@ public class SetViewCommand : ClientObjectCmdlet<IViewService>
     public ContentTypeId ContentTypeId { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string CustomOrder { get; private set; }
-
-    [Parameter(Mandatory = false)]
     public bool DefaultView { get; private set; }
 
     [Parameter(Mandatory = false)]

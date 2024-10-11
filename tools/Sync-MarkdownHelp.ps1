@@ -17,3 +17,5 @@ Import-Module -Name $SOURCE_MODULE_PATH
 Import-Module -Name 'platyPS'
 New-MarkdownHelp -Module 'SPClientCore' -OutputFolder $DOCS_PATH -ErrorAction SilentlyContinue
 Update-MarkdownHelp -Path $DOCS_PATH
+
+Get-ChildItem -Path $DOCS_PATH -Recurse -File | %{((Get-Content $_.FullName -Raw) -Replace "`r`n", "`n") | Set-Content $_.FullName}

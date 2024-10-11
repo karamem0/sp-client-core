@@ -48,7 +48,7 @@ SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Passwor
 - Login
   - [Connect-KshSite](docs/Connect-KshSite.md)
   - [Disconnect-KshSite](docs/Disconnect-KshSite.md)
-  - [Get-KshCurrentConnection](docs/Disconnect-KshCurrentConnection.md)
+  - [Get-KshCurrentConnection](docs/Get-KshCurrentConnection.md)
   - [Get-KshCurrentSite](docs/Get-KshCurrentSite.md)
   - [Get-KshCurrentSiteCollection](docs/Get-KshCurrentSiteCollection.md)
   - [Get-KshCurrentUser](docs/Get-KshCurrentUser.md)
