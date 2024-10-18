@@ -17,11 +17,11 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth;
 public static class OAuthHttpClientFactory
 {
 
-    private static readonly Lazy<HttpClient> httpClient = new(() => new HttpClient());
+    private static readonly Lazy<HttpClient> instance = new(() => new HttpClient());
 
     public static HttpClient Create()
     {
-        return httpClient.Value;
+        return instance.Value;
     }
 
 }

@@ -92,7 +92,7 @@ public class ClientRequestValue
                 output = new ClientRequestValue("Boolean", switchValue.ToBool().ToString().ToLower());
                 return true;
             case ODataObject oDataValue:
-                output = new ClientRequestValue("String", JsonSerializerManager.JsonSerializer.Serialize(oDataValue));
+                output = new ClientRequestValue("String", JsonSerializerManager.Instance.Serialize(oDataValue));
                 return true;
             default:
                 output = null;

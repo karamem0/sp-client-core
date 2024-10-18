@@ -21,25 +21,24 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth;
 public class AadOAuthTokenDictionary : Dictionary<string, AadOAuthToken>
 {
 
-    private static readonly JsonSerializer JsonSerializer = JsonSerializer.Create();
-
-    private static readonly FileInfo FileInfo = new(
+    private static readonly FileInfo fileInfo = new(
         Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
             ".spclientcore",
             "oauthtoken.json"
-        ));
+        )
+    );
 
     public static AadOAuthTokenDictionary Load()
     {
-        if (FileInfo.Exists)
+        if (fileInfo.Exists)
         {
-            var json = File.ReadAllText(FileInfo.FullName);
-            if (JsonSerializer.TryDeserialize(json, out AadOAuthTokenDictionary oAuthTokens))
+            var json = File.ReadAllText(fileInfo.FullName);
+            if (JsonSerializerManager.Instance.TryDeserialize(json, out AadOAuthTokenDictionary oAuthTokens))
             {
                 return oAuthTokens;
             }
-            if (JsonSerializer.TryDeserialize(json, out AadOAuthToken oAuthToken))
+            if (JsonSerializerManager.Instance.TryDeserialize(json, out AadOAuthToken oAuthToken))
             {
                 var jwtToken = new JsonWebToken(oAuthToken.AccessToken);
                 var jwtAudience = jwtToken.GetPayloadValue<string>("aud");
@@ -58,10 +57,10 @@ public class AadOAuthTokenDictionary : Dictionary<string, AadOAuthToken>
 
     public void Save()
     {
-        FileInfo.Directory.Create();
-        using var stream = FileInfo.Open(FileMode.Create, FileAccess.Write);
+        fileInfo.Directory.Create();
+        using var stream = fileInfo.Open(FileMode.Create, FileAccess.Write);
         using var writer = new JsonTextWriter(new StreamWriter(stream));
-        JsonSerializer.Serialize(writer, this);
+        JsonSerializerManager.Instance.Serialize(writer, this);
     }
 
 }

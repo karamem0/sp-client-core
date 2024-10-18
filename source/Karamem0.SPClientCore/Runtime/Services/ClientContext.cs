@@ -102,7 +102,7 @@ public class ClientContext
             async responseMessage =>
             {
                 var responseContent = await responseMessage.Content.ReadAsStringAsync();
-                var responsePayload = JsonSerializerManager.JsonSerializer.Deserialize<ODataV1ResultPayload<T>>(responseContent);
+                var responsePayload = JsonSerializerManager.Instance.Deserialize<ODataV1ResultPayload<T>>(responseContent);
                 if (responsePayload.Error is null)
                 {
                     return responsePayload.Entry;
@@ -128,7 +128,7 @@ public class ClientContext
             async responseMessage =>
             {
                 var responseContent = await responseMessage.Content.ReadAsStringAsync();
-                var responsePayload = JsonSerializerManager.JsonSerializer.Deserialize<JToken>(responseContent);
+                var responsePayload = JsonSerializerManager.Instance.Deserialize<JToken>(responseContent);
                 if (responsePayload.Value<bool>("@odata.null"))
                 {
                     return null;
@@ -167,7 +167,7 @@ public class ClientContext
                 requestMessage.Headers.Add("If-Match", "*");
                 if (requestPayload is not null)
                 {
-                    var requestContent = JsonSerializerManager.JsonSerializer.Serialize(requestPayload);
+                    var requestContent = JsonSerializerManager.Instance.Serialize(requestPayload);
                     requestMessage.Content = new StringContent(requestContent, Encoding.UTF8);
                     requestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json;odata=verbose");
                 }
@@ -187,7 +187,7 @@ public class ClientContext
                 requestMessage.Headers.Add("Accept", "application/json;odata=verbose");
                 if (requestPayload is not null)
                 {
-                    var jsonContent = JsonSerializerManager.JsonSerializer.Serialize(requestPayload);
+                    var jsonContent = JsonSerializerManager.Instance.Serialize(requestPayload);
                     requestMessage.Content = new StringContent(jsonContent, Encoding.UTF8);
                     requestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json;odata=verbose");
                 }
@@ -207,7 +207,7 @@ public class ClientContext
                 requestMessage.Headers.Add("Accept", "application/json;odata=verbose");
                 if (requestPayload is not null)
                 {
-                    var requestContent = JsonSerializerManager.JsonSerializer.Serialize(requestPayload);
+                    var requestContent = JsonSerializerManager.Instance.Serialize(requestPayload);
                     requestMessage.Content = new StringContent(requestContent, Encoding.UTF8);
                     requestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json;odata=verbose");
                 }
@@ -216,7 +216,7 @@ public class ClientContext
             async responseMessage =>
             {
                 var responseContent = await responseMessage.Content.ReadAsStringAsync();
-                var responsePayload = JsonSerializerManager.JsonSerializer.Deserialize<ODataV1ResultPayload<T>>(responseContent);
+                var responsePayload = JsonSerializerManager.Instance.Deserialize<ODataV1ResultPayload<T>>(responseContent);
                 if (responsePayload.Error is null)
                 {
                     return responsePayload.Entry;
@@ -263,7 +263,7 @@ public class ClientContext
             async responseMessage =>
             {
                 var responseContent = await responseMessage.Content.ReadAsStringAsync();
-                var responsePayload = JsonSerializerManager.JsonSerializer.Deserialize<ODataV1ResultPayload<T>>(responseContent);
+                var responsePayload = JsonSerializerManager.Instance.Deserialize<ODataV1ResultPayload<T>>(responseContent);
                 if (responsePayload.Error is null)
                 {
                     return responsePayload.Entry;

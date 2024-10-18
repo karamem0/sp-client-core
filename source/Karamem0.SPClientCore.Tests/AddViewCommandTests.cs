@@ -19,7 +19,6 @@ namespace Karamem0.SharePoint.PowerShell.Tests;
 [TestClass()]
 public class AddViewCommandTests
 {
-    private static readonly string[] value = ["Test Column 1", "Test Column 2", "Test Column 3"];
 
     [TestMethod()]
     public void AddView()
@@ -53,7 +52,7 @@ public class AddViewCommandTests
                 { "RowLimit", 10 },
                 { "SetAsDefaultView", true },
                 { "Title", "Test View 0" },
-                { "ViewColumns", value },
+                { "ViewColumns", new List<string>() { "Test Value 1", "Test Value 2", "Test Value 3" } },
                 { "ViewQuery", "<OrderBy><FieldRef Name='Title'/></OrderBy>" },
                 { "ViewType", "Html" }
             }

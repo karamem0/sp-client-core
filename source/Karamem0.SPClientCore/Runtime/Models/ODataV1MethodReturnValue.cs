@@ -26,7 +26,7 @@ public class ODataV1MethodReturnValue : ODataV1Object
     public virtual T GetValue<T>(string methodName) where T : ODataV1Object
     {
         _ = methodName ?? throw new ArgumentNullException(nameof(methodName));
-        return this.ExtensionProperties[methodName].ToObject<T>(JsonSerializerManager.JsonSerializer);
+        return this.ExtensionProperties[methodName].ToObject<T>(JsonSerializerManager.Instance);
     }
 
 }

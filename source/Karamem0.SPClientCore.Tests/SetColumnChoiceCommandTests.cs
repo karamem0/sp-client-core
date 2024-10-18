@@ -19,7 +19,6 @@ namespace Karamem0.SharePoint.PowerShell.Tests;
 [TestClass()]
 public class SetColumnChoiceCommandTests
 {
-    private static readonly string[] value = ["Test Value 1", "Test Value 2", "Test Value 3"];
 
     [TestMethod()]
     public void SetListColumnChoice()

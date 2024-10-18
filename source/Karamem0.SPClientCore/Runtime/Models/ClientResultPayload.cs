@@ -22,7 +22,7 @@ public class ClientResultPayload
 
     public ClientResultPayload(string jsonString)
     {
-        var jsonArray = JsonSerializerManager.JsonSerializer.Deserialize<JArray>(JsonHelper.ReplaceDoubleToInfinity(jsonString));
+        var jsonArray = JsonSerializerManager.Instance.Deserialize<JArray>(JsonHelper.ReplaceDoubleToInfinity(jsonString));
         var jsonToken = jsonArray.ElementAt(0);
         this.SchemaVersion = jsonToken.Value<string>(nameof(this.SchemaVersion));
         this.LibraryVersion = jsonToken.Value<string>(nameof(this.LibraryVersion));
@@ -52,11 +52,11 @@ public class ClientResultPayload
         {
             var objectName = jsonToken["_ObjectType_"].ToString();
             var objectType = ClientObject.GetType<T>(objectName);
-            return (T)jsonToken.ToObject(objectType, JsonSerializerManager.JsonSerializer);
+            return (T)jsonToken.ToObject(objectType, JsonSerializerManager.Instance);
         }
         else
         {
-            return jsonToken.ToObject<T>(JsonSerializerManager.JsonSerializer);
+            return jsonToken.ToObject<T>(JsonSerializerManager.Instance);
         }
     }
 
@@ -73,11 +73,11 @@ public class ClientResultPayload
             {
                 var objectName = jsonToken["_ObjectType_"].ToString();
                 var objectType = ClientObject.GetType<T>(objectName);
-                yield return (T)jsonToken.ToObject(objectType, JsonSerializerManager.JsonSerializer);
+                yield return (T)jsonToken.ToObject(objectType, JsonSerializerManager.Instance);
             }
             else
             {
-                yield return jsonToken.ToObject<T>(JsonSerializerManager.JsonSerializer);
+                yield return jsonToken.ToObject<T>(JsonSerializerManager.Instance);
             }
         }
     }

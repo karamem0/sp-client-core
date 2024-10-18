@@ -108,19 +108,19 @@ public class ClientHttpExecutor
                     else
                     {
                         var responseContent = await responseMessage.Content.ReadAsStringAsync();
-                        if (JsonSerializerManager.JsonSerializer.TryDeserialize(
+                        if (JsonSerializerManager.Instance.TryDeserialize(
                             responseContent,
                             out OAuthError oAuthError))
                         {
                             throw new InvalidOperationException(oAuthError.ErrorDescription);
                         }
-                        if (JsonSerializerManager.JsonSerializer.TryDeserialize(
+                        if (JsonSerializerManager.Instance.TryDeserialize(
                             responseContent,
                             out ODataV1ResultPayload v1Payload))
                         {
                             throw new InvalidOperationException(v1Payload.Error.Message.Value);
                         }
-                        if (JsonSerializerManager.JsonSerializer.TryDeserialize(
+                        if (JsonSerializerManager.Instance.TryDeserialize(
                             responseContent,
                             out ODataV2ResultPayload v2Payload))
                         {

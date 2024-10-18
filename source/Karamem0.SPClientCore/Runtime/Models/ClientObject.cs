@@ -20,7 +20,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class ClientObject
 {
 
-    private static readonly IReadOnlyDictionary<string, Type> ClientObjectDictionary =
+    private static readonly IReadOnlyDictionary<string, Type> dictionary =
         Assembly.GetExecutingAssembly()
             .GetTypes()
             .Where(type => type.IsSubclassOf(typeof(ClientObject)))
@@ -35,7 +35,7 @@ public class ClientObject
 
     public static Type GetType(string name)
     {
-        return ClientObjectDictionary
+        return dictionary
             .Where(item => item.Key == name)
             .Select(item => item.Value)
             .SingleOrDefault();
