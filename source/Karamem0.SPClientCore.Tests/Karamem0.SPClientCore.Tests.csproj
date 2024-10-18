@@ -1,10 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Library</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <LangVersion>latest</LangVersion>
-    <PackageId>SPClientCore.Tests</PackageId>
+    <PackageId>Karamem0.SPClientCore.Tests</PackageId>
     <Version>0.0.0.0</Version>
     <Authors>karamem0</Authors>
     <Company>karamem0</Company>
@@ -18,7 +17,6 @@
     <FileVersion>0.0.0.0</FileVersion>
     <RootNamespace>Karamem0.SharePoint.PowerShell.Tests</RootNamespace>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
   </PropertyGroup>
 
   <ItemGroup>
