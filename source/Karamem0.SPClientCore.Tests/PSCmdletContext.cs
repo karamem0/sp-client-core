@@ -15,7 +15,7 @@ using System.Management.Automation.Runspaces;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Tests.Runtime;
+namespace Karamem0.SharePoint.PowerShell.Tests;
 
 public class PSCmdletContext : IDisposable
 {

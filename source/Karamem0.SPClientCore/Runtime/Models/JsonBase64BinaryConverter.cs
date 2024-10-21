@@ -55,7 +55,7 @@ public class JsonBase64BinaryConverter : JsonConverter
 
     public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
     {
-        if (value is null || (Guid)value == Guid.Empty)
+        if (value is null)
         {
             writer.WriteNull();
         }

@@ -7,8 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
-using Karamem0.SharePoint.PowerShell.Tests.Runtime;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +15,10 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Tests.Commands;
 
-[TestClass()]
 public class GetAttachmentFileCommandTests
 {
 
-    [TestMethod()]
+    [Test()]
     public void GetAttachmentFiles()
     {
         using var context = new PSCmdletContext();
@@ -58,10 +56,10 @@ public class GetAttachmentFileCommandTests
             }
         );
         var actual = result3.ToArray();
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetAttachmentFileByIdentity()
     {
         using var context = new PSCmdletContext();
@@ -107,10 +105,10 @@ public class GetAttachmentFileCommandTests
             }
         );
         var actual = result5.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetAttachmentFileByFileName()
     {
         using var context = new PSCmdletContext();
@@ -149,7 +147,7 @@ public class GetAttachmentFileCommandTests
             }
         );
         var actual = result4.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
 }

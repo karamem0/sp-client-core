@@ -15,7 +15,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
 [JsonObject()]
-public class ODataV2ResultPayload
+public class ODataV2ResultPayload : ValueObject
 {
 
     public ODataV2ResultPayload()

@@ -17,7 +17,8 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
-public class ClientObject
+[JsonObject()]
+public class ClientObject : JsonValueObject
 {
 
     private static readonly IReadOnlyDictionary<string, Type> dictionary =
@@ -63,34 +64,23 @@ public class ClientObject
 
     public ClientObject()
     {
-        this.ExtensionProperties = [];
     }
 
     [JsonIgnore()]
-    public object this[string key] =>
+    public override object this[string key] =>
         this.ExtensionProperties
             .Where(item => item.Key == key)
             .Select(ClientResultValue.Create)
             .Select(item => item.Value)
             .SingleOrDefault();
 
-    [JsonIgnore()]
-    public IEnumerable<string> ExtensionKeys => this.ExtensionProperties
-        .Where(item => item.Value is not null)
-        .Select(ClientResultValue.Create)
-        .Select(item => item.Key)
-        .ToArray();
-
     [JsonProperty("_ObjectIdentity_")]
-    internal string ObjectIdentity { get; private set; }
+    public string ObjectIdentity { get; private set; }
 
     [JsonProperty("_ObjectType_")]
-    internal string ObjectType { get; private set; }
+    public string ObjectType { get; private set; }
 
     [JsonProperty("_ObjectVersion_")]
-    internal string ObjectVersion { get; private set; }
-
-    [JsonExtensionData()]
-    protected Dictionary<string, JToken> ExtensionProperties { get; private set; }
+    public string ObjectVersion { get; private set; }
 
 }

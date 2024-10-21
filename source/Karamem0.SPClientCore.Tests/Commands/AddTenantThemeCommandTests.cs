@@ -7,8 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
-using Karamem0.SharePoint.PowerShell.Tests.Runtime;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,11 +16,10 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Tests.Commands;
 
-[TestClass()]
 public class AddTenantThemeCommandTests
 {
 
-    [TestMethod()]
+    [Test()]
     public void AddTenantTheme()
     {
         using var context = new PSCmdletContext();
@@ -78,7 +76,7 @@ public class AddTenantThemeCommandTests
             }
         );
         var actual = result2.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
 }

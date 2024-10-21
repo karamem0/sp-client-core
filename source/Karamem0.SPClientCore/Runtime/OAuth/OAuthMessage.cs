@@ -6,6 +6,7 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
+using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth;
 
 [JsonObject()]
-public abstract class OAuthMessage
+public abstract class OAuthMessage : ValueObject
 {
 
     protected OAuthMessage()

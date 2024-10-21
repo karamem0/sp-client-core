@@ -7,8 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
-using Karamem0.SharePoint.PowerShell.Tests.Runtime;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +15,10 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Tests.Commands;
 
-[TestClass()]
 public class SetColumnCalculatedCommandTests
 {
 
-    [TestMethod()]
+    [Test()]
     public void SetListColumnCalculatedOfBoolean()
     {
         using var context = new PSCmdletContext();
@@ -110,10 +108,10 @@ public class SetColumnCalculatedCommandTests
             }
         );
         var actual = result6.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void SetListColumnCalculatedOfCurrency()
     {
         using var context = new PSCmdletContext();
@@ -205,10 +203,10 @@ public class SetColumnCalculatedCommandTests
             }
         );
         var actual = result6.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void SetListColumnCalculatedOfDateTime()
     {
         using var context = new PSCmdletContext();
@@ -299,10 +297,10 @@ public class SetColumnCalculatedCommandTests
             }
         );
         var actual = result6.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void SetListColumnCalculatedOfNumber()
     {
         using var context = new PSCmdletContext();
@@ -393,10 +391,10 @@ public class SetColumnCalculatedCommandTests
             }
         );
         var actual = result6.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void SetListColumnCalculatedOfText()
     {
         using var context = new PSCmdletContext();
@@ -486,10 +484,10 @@ public class SetColumnCalculatedCommandTests
             }
         );
         var actual = result6.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void SetSiteColumnCalculatedOfBoolean()
     {
         using var context = new PSCmdletContext();
@@ -569,10 +567,10 @@ public class SetColumnCalculatedCommandTests
             }
         );
         var actual = result5.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void SetSiteColumnCalculatedOfCurrency()
     {
         using var context = new PSCmdletContext();
@@ -654,10 +652,10 @@ public class SetColumnCalculatedCommandTests
             }
         );
         var actual = result5.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void SetSiteColumnCalculatedOfDateTime()
     {
         using var context = new PSCmdletContext();
@@ -738,10 +736,10 @@ public class SetColumnCalculatedCommandTests
             }
         );
         var actual = result5.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void SetSiteColumnCalculatedOfNumber()
     {
         using var context = new PSCmdletContext();
@@ -823,10 +821,10 @@ public class SetColumnCalculatedCommandTests
             }
         );
         var actual = result5.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void SetSiteColumnCalculatedOfText()
     {
         using var context = new PSCmdletContext();
@@ -906,7 +904,7 @@ public class SetColumnCalculatedCommandTests
             }
         );
         var actual = result5.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
 }

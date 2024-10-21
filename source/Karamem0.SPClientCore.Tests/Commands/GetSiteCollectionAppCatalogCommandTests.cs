@@ -7,8 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
-using Karamem0.SharePoint.PowerShell.Tests.Runtime;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +15,10 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Tests.Commands;
 
-[TestClass()]
 public class GetSiteCollectionAppCatalogCommandTests
 {
 
-    [TestMethod()]
+    [Test()]
     public void GetSiteCollectionAppCatalogs()
     {
         using var context = new PSCmdletContext();
@@ -42,10 +40,10 @@ public class GetSiteCollectionAppCatalogCommandTests
             }
         );
         var actual = result2.ToArray();
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetSiteCollectionAppCatalogBySiteCollection()
     {
         using var context = new PSCmdletContext();
@@ -74,10 +72,10 @@ public class GetSiteCollectionAppCatalogCommandTests
             }
         );
         var actual = result3.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetSiteCollectionAppCatalogBySiteCollectionUrl()
     {
         using var context = new PSCmdletContext();
@@ -106,7 +104,7 @@ public class GetSiteCollectionAppCatalogCommandTests
             }
         );
         var actual = result3.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
 }

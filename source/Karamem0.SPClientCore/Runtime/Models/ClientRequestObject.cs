@@ -19,7 +19,7 @@ using System.Xml.Serialization;
 
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
-public abstract class ClientRequestObject
+public abstract class ClientRequestObject : ValueObject
 {
 
     private static long id;

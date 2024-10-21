@@ -7,8 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
-using Karamem0.SharePoint.PowerShell.Tests.Runtime;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +15,10 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Tests.Commands;
 
-[TestClass()]
 public class GetSharingSettingsCommandTests
 {
 
-    [TestMethod()]
+    [Test()]
     public void GetSharingSettings()
     {
         using var context = new PSCmdletContext();
@@ -45,7 +43,7 @@ public class GetSharingSettingsCommandTests
             }
         );
         var actual = result2.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
 }

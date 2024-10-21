@@ -7,8 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
-using Karamem0.SharePoint.PowerShell.Tests.Runtime;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +15,10 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Tests.Commands;
 
-[TestClass()]
 public class RemoveTermCommandTests
 {
 
-    [TestMethod()]
+    [Test()]
     public void RemoveTermFromTermSet()
     {
         using var context = new PSCmdletContext();
@@ -68,7 +66,7 @@ public class RemoveTermCommandTests
         );
     }
 
-    [TestMethod()]
+    [Test()]
     public void RemoveTermFromTerm()
     {
         using var context = new PSCmdletContext();

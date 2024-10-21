@@ -7,8 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
-using Karamem0.SharePoint.PowerShell.Tests.Runtime;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +15,10 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Tests.Commands;
 
-[TestClass()]
 public class GetFileCommandTests
 {
 
-    [TestMethod()]
+    [Test()]
     public void GetFiles()
     {
         using var context = new PSCmdletContext();
@@ -50,10 +48,10 @@ public class GetFileCommandTests
             }
         );
         var actual = result2.ToArray();
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetFileByIdentity()
     {
         using var context = new PSCmdletContext();
@@ -83,10 +81,10 @@ public class GetFileCommandTests
             }
         );
         var actual = result3.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetFileByAttachmentFile()
     {
         using var context = new PSCmdletContext();
@@ -132,10 +130,10 @@ public class GetFileCommandTests
             }
         );
         var actual = result5.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetFileByFileVersion()
     {
         using var context = new PSCmdletContext();
@@ -202,10 +200,10 @@ public class GetFileCommandTests
             }
         );
         var actual = result6.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetFileByTetantApp()
     {
         using var context = new PSCmdletContext();
@@ -234,10 +232,10 @@ public class GetFileCommandTests
             }
         );
         var actual = result3.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetFileBySiteCollectionApp()
     {
         using var context = new PSCmdletContext();
@@ -267,10 +265,10 @@ public class GetFileCommandTests
             }
         );
         var actual = result3.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetFileByListItem()
     {
         using var context = new PSCmdletContext();
@@ -308,10 +306,10 @@ public class GetFileCommandTests
             }
         );
         var actual = result4.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetFileByFileId()
     {
         using var context = new PSCmdletContext();
@@ -348,10 +346,10 @@ public class GetFileCommandTests
             }
         );
         var actual = result4.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetFileByFileUrl()
     {
         using var context = new PSCmdletContext();
@@ -374,10 +372,10 @@ public class GetFileCommandTests
             }
         );
         var actual = result2.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetFileByFileName()
     {
         using var context = new PSCmdletContext();
@@ -408,7 +406,7 @@ public class GetFileCommandTests
             }
         );
         var actual = result3.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
 }

@@ -7,8 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
-using Karamem0.SharePoint.PowerShell.Tests.Runtime;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +15,10 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Tests.Commands;
 
-[TestClass()]
 public class GetTenantSiteCollectionCommandTests
 {
 
-    [TestMethod()]
+    [Test()]
     public void GetTenantSiteCollections()
     {
         using var context = new PSCmdletContext();
@@ -42,10 +40,10 @@ public class GetTenantSiteCollectionCommandTests
             }
         );
         var actual = result2.ToArray();
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetTenantSiteCollectionsByFilter()
     {
         using var context = new PSCmdletContext();
@@ -70,10 +68,10 @@ public class GetTenantSiteCollectionCommandTests
             }
         );
         var actual = result2.ToArray();
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetTenantSiteCollectionByIdentity()
     {
         using var context = new PSCmdletContext();
@@ -103,10 +101,10 @@ public class GetTenantSiteCollectionCommandTests
             }
         );
         var actual = result2.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetTenantSiteCollectionByUrl()
     {
         using var context = new PSCmdletContext();
@@ -129,7 +127,7 @@ public class GetTenantSiteCollectionCommandTests
             }
         );
         var actual = result2.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
 }

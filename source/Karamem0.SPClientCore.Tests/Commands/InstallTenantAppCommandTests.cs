@@ -7,8 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
-using Karamem0.SharePoint.PowerShell.Tests.Runtime;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,11 +16,10 @@ using System.Threading;
 
 namespace Karamem0.SharePoint.PowerShell.Tests.Commands;
 
-[TestClass()]
 public class InstallTenantAppCommandTests
 {
 
-    [TestMethod()]
+    [Test()]
     public void InstallTenantApp()
     {
         using var context = new PSCmdletContext();

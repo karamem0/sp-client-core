@@ -15,7 +15,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
 [JsonObject()]
-public class ODataV1Deferred
+public class ODataV1Deferred : ValueObject
 {
 
     public ODataV1Deferred()

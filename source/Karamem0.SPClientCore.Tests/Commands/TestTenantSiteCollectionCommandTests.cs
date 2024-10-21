@@ -6,8 +6,7 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
-using Karamem0.SharePoint.PowerShell.Tests.Runtime;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +14,10 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Tests.Commands;
 
-[TestClass()]
 public class TestTenantSiteCollectionCommandTests
 {
 
-    [TestMethod()]
+    [Test()]
     public void CheckSiteCollectionIsTenantAdmin()
     {
         using var context = new PSCmdletContext();
@@ -41,10 +39,10 @@ public class TestTenantSiteCollectionCommandTests
             }
         );
         var actual = result2.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.True);
     }
 
-    [TestMethod()]
+    [Test()]
     public void CheckSiteCollectionIsNotTenantAdmin()
     {
         using var context = new PSCmdletContext();
@@ -66,7 +64,7 @@ public class TestTenantSiteCollectionCommandTests
             }
         );
         var actual = result2.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.False);
     }
 
 }

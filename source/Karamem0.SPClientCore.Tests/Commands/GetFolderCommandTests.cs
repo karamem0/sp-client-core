@@ -7,8 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
-using Karamem0.SharePoint.PowerShell.Tests.Runtime;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +15,10 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Tests.Commands;
 
-[TestClass()]
 public class GetFolderCommandTests
 {
 
-    [TestMethod()]
+    [Test()]
     public void GetFolders()
     {
         using var context = new PSCmdletContext();
@@ -42,10 +40,10 @@ public class GetFolderCommandTests
             }
         );
         var actual = result2.ToArray();
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetFoldersByFolder()
     {
         using var context = new PSCmdletContext();
@@ -75,10 +73,10 @@ public class GetFolderCommandTests
             }
         );
         var actual = result3.ToArray();
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetFolderByIdentity()
     {
         using var context = new PSCmdletContext();
@@ -108,10 +106,10 @@ public class GetFolderCommandTests
             }
         );
         var actual = result3.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetFolderByList()
     {
         using var context = new PSCmdletContext();
@@ -141,10 +139,10 @@ public class GetFolderCommandTests
             }
         );
         var actual = result3.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetFolderByListItem()
     {
         using var context = new PSCmdletContext();
@@ -182,10 +180,10 @@ public class GetFolderCommandTests
             }
         );
         var actual = result4.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetFolderByFolderId()
     {
         using var context = new PSCmdletContext();
@@ -222,10 +220,10 @@ public class GetFolderCommandTests
             }
         );
         var actual = result4.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetFolderByFolderUrl()
     {
         using var context = new PSCmdletContext();
@@ -248,10 +246,10 @@ public class GetFolderCommandTests
             }
         );
         var actual = result2.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetFolderByFolderName()
     {
         using var context = new PSCmdletContext();
@@ -282,7 +280,7 @@ public class GetFolderCommandTests
             }
         );
         var actual = result3.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
 }

@@ -25,9 +25,9 @@ public class ODataV1Object : ODataObject
     }
 
     [JsonProperty("__deferred")]
-    internal ODataV1Deferred Deferred { get; private set; }
+    public ODataV1Deferred Deferred { get; private set; }
 
     [JsonProperty("__metadata")]
-    internal ODataV1Metadata Metadata { get; private set; }
+    public ODataV1Metadata Metadata { get; private set; }
 
 }

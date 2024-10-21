@@ -8,8 +8,7 @@
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
 using Karamem0.SharePoint.PowerShell.Models.V2;
-using Karamem0.SharePoint.PowerShell.Tests.Runtime;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,11 +16,10 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Tests.Commands;
 
-[TestClass()]
 public class GetListCommandTests
 {
 
-    [TestMethod()]
+    [Test()]
     public void GetLists()
     {
         using var context = new PSCmdletContext();
@@ -43,10 +41,10 @@ public class GetListCommandTests
             }
         );
         var actual = result2.ToArray();
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetListByIdentity()
     {
         using var context = new PSCmdletContext();
@@ -76,10 +74,10 @@ public class GetListCommandTests
             }
         );
         var actual = result3.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetListByListItem()
     {
         using var context = new PSCmdletContext();
@@ -117,10 +115,10 @@ public class GetListCommandTests
             }
         );
         var actual = result4.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetListByView()
     {
         using var context = new PSCmdletContext();
@@ -158,10 +156,10 @@ public class GetListCommandTests
             }
         );
         var actual = result4.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetListByDrive()
     {
         using var context = new PSCmdletContext();
@@ -191,10 +189,10 @@ public class GetListCommandTests
             }
         );
         var actual = result3.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetListByListId()
     {
         using var context = new PSCmdletContext();
@@ -217,10 +215,10 @@ public class GetListCommandTests
             }
         );
         var actual = result2.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetListByListTitle()
     {
         using var context = new PSCmdletContext();
@@ -243,10 +241,10 @@ public class GetListCommandTests
             }
         );
         var actual = result2.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetListByLibraryType()
     {
         using var context = new PSCmdletContext();
@@ -269,7 +267,7 @@ public class GetListCommandTests
             }
         );
         var actual = result2.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
 }

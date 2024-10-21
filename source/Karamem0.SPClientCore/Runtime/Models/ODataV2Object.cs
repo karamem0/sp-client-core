@@ -24,12 +24,12 @@ public class ODataV2Object : ODataObject
     }
 
     [JsonProperty("@odata.context")]
-    internal string ODataContext { get; private set; }
+    public string ODataContext { get; private set; }
 
     [JsonProperty("@odata.type")]
-    internal string ODataType { get; private set; }
+    public string ODataType { get; private set; }
 
     [JsonProperty("@odata.id")]
-    internal string ODataId { get; private set; }
+    public string ODataId { get; private set; }
 
 }

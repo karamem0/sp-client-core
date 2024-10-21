@@ -7,8 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
-using Karamem0.SharePoint.PowerShell.Tests.Runtime;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +15,10 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Tests.Commands;
 
-[TestClass()]
 public class GetTenantUserCommandTests
 {
 
-    [TestMethod()]
+    [Test()]
     public void GetUserBySiteCollectionAndUserId()
     {
         using var context = new PSCmdletContext();
@@ -51,10 +49,10 @@ public class GetTenantUserCommandTests
             }
         );
         var actual = result3.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetUserBySiteCollectionUrlAndUserId()
     {
         using var context = new PSCmdletContext();
@@ -78,10 +76,10 @@ public class GetTenantUserCommandTests
             }
         );
         var actual = result2.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetUserBySiteCollectionAndUserLoginName()
     {
         using var context = new PSCmdletContext();
@@ -112,10 +110,10 @@ public class GetTenantUserCommandTests
             }
         );
         var actual = result3.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetUserBySiteCollectionUrlAndUserLoginName()
     {
         using var context = new PSCmdletContext();
@@ -139,10 +137,10 @@ public class GetTenantUserCommandTests
             }
         );
         var actual = result2.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetUserBySiteCollectionAndUserEmail()
     {
         using var context = new PSCmdletContext();
@@ -173,10 +171,10 @@ public class GetTenantUserCommandTests
             }
         );
         var actual = result3.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetUserBySiteCollectionUrlAndUserEmail()
     {
         using var context = new PSCmdletContext();
@@ -200,10 +198,10 @@ public class GetTenantUserCommandTests
             }
         );
         var actual = result2.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetUsersBySiteCollection()
     {
         using var context = new PSCmdletContext();
@@ -233,10 +231,10 @@ public class GetTenantUserCommandTests
             }
         );
         var actual = result3.ToArray();
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetUsersBySiteCollectionUrl()
     {
         using var context = new PSCmdletContext();
@@ -259,7 +257,7 @@ public class GetTenantUserCommandTests
             }
         );
         var actual = result2.ToArray();
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
 }

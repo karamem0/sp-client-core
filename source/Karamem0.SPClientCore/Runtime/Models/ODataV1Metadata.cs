@@ -16,7 +16,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
 [JsonObject()]
-public class ODataV1Metadata
+public class ODataV1Metadata : ValueObject
 {
 
     public static ODataV1Metadata Create(Type type)

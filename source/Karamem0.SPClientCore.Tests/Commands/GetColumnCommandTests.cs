@@ -7,8 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
-using Karamem0.SharePoint.PowerShell.Tests.Runtime;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +15,10 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Tests.Commands;
 
-[TestClass()]
 public class GetColumnCommandTests
 {
 
-    [TestMethod()]
+    [Test()]
     public void GetListContentTypeColumns()
     {
         using var context = new PSCmdletContext();
@@ -58,10 +56,10 @@ public class GetColumnCommandTests
             }
         );
         var actual = result4.ToArray();
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetListContentTypeColumnByIdentity()
     {
         using var context = new PSCmdletContext();
@@ -107,10 +105,10 @@ public class GetColumnCommandTests
             }
         );
         var actual = result5.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetListContentTypeColumnByColumnId()
     {
         using var context = new PSCmdletContext();
@@ -149,10 +147,10 @@ public class GetColumnCommandTests
             }
         );
         var actual = result4.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetListContentTypeColumnByColumnTitle()
     {
         using var context = new PSCmdletContext();
@@ -191,10 +189,10 @@ public class GetColumnCommandTests
             }
         );
         var actual = result4.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetSiteContentTypeColumns()
     {
         using var context = new PSCmdletContext();
@@ -224,10 +222,10 @@ public class GetColumnCommandTests
             }
         );
         var actual = result2.ToArray();
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetSiteContentTypeColumnByIdentity()
     {
         using var context = new PSCmdletContext();
@@ -265,10 +263,10 @@ public class GetColumnCommandTests
             }
         );
         var actual = result4.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetSiteContentTypeColumnByColumnId()
     {
         using var context = new PSCmdletContext();
@@ -299,10 +297,10 @@ public class GetColumnCommandTests
             }
         );
         var actual = result3.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetSiteContentTypeColumnByColumnTitle()
     {
         using var context = new PSCmdletContext();
@@ -333,10 +331,10 @@ public class GetColumnCommandTests
             }
         );
         var actual = result3.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetListColumns()
     {
         using var context = new PSCmdletContext();
@@ -366,10 +364,10 @@ public class GetColumnCommandTests
             }
         );
         var actual = result3.ToArray();
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetListColumnByIdentity()
     {
         using var context = new PSCmdletContext();
@@ -407,10 +405,10 @@ public class GetColumnCommandTests
             }
         );
         var actual = result4.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetListColumnByColumnId()
     {
         using var context = new PSCmdletContext();
@@ -441,10 +439,10 @@ public class GetColumnCommandTests
             }
         );
         var actual = result3.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetListColumnByColumnTitle()
     {
         using var context = new PSCmdletContext();
@@ -475,10 +473,10 @@ public class GetColumnCommandTests
             }
         );
         var actual = result3.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetSiteColumns()
     {
         using var context = new PSCmdletContext();
@@ -500,10 +498,10 @@ public class GetColumnCommandTests
             }
         );
         var actual = result2.ToArray();
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetSiteColumnByIdentity()
     {
         using var context = new PSCmdletContext();
@@ -533,10 +531,10 @@ public class GetColumnCommandTests
             }
         );
         var actual = result3.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetSiteColumnByColumnId()
     {
         using var context = new PSCmdletContext();
@@ -559,10 +557,10 @@ public class GetColumnCommandTests
             }
         );
         var actual = result2.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetSiteColumnByColumnTitle()
     {
         using var context = new PSCmdletContext();
@@ -585,7 +583,7 @@ public class GetColumnCommandTests
             }
         );
         var actual = result2.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
 }

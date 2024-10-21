@@ -1,0 +1,20 @@
+on:
+  push:
+    tags:
+      - v*.*.*
+
+jobs:
+  build:
+    name: Build
+    uses: ./.github/workflows/build.yml
+    secrets: inherit
+  publish:
+    needs: build
+    name: Publish
+    uses: ./.github/workflows/publish.yml
+    secrets: inherit
+  release:
+    needs: build
+    name: Release
+    uses: ./.github/workflows/release.yml
+    secrets: inherit

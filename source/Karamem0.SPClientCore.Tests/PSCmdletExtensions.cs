@@ -15,7 +15,7 @@ using System.Management.Automation;
 using System.Management.Automation.Runspaces;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Tests.Runtime;
+namespace Karamem0.SharePoint.PowerShell.Tests;
 
 public static class PSCmdletExtensions
 {

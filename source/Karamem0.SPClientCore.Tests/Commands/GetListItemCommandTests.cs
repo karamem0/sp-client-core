@@ -8,8 +8,7 @@
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
 using Karamem0.SharePoint.PowerShell.Models.V2;
-using Karamem0.SharePoint.PowerShell.Tests.Runtime;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,11 +16,10 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Tests.Commands;
 
-[TestClass()]
 public class GetListItemCommandTests
 {
 
-    [TestMethod()]
+    [Test()]
     public void GetListItems()
     {
         using var context = new PSCmdletContext();
@@ -52,10 +50,10 @@ public class GetListItemCommandTests
             }
         );
         var actual = result3.ToArray();
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetListItemsByFilter()
     {
         using var context = new PSCmdletContext();
@@ -86,10 +84,10 @@ public class GetListItemCommandTests
             }
         );
         var actual = result2.ToArray();
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetListItemByIdentity()
     {
         using var context = new PSCmdletContext();
@@ -127,10 +125,10 @@ public class GetListItemCommandTests
             }
         );
         var actual = result4.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetListItemByFolder()
     {
         using var context = new PSCmdletContext();
@@ -160,10 +158,10 @@ public class GetListItemCommandTests
             }
         );
         var actual = result3.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetListItemByFile()
     {
         using var context = new PSCmdletContext();
@@ -193,10 +191,10 @@ public class GetListItemCommandTests
             }
         );
         var actual = result3.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetListItemByDriveItem()
     {
         using var context = new PSCmdletContext();
@@ -240,10 +238,10 @@ public class GetListItemCommandTests
             }
         );
         var actual = result5.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetListItemByItemId()
     {
         using var context = new PSCmdletContext();
@@ -274,10 +272,10 @@ public class GetListItemCommandTests
             }
         );
         var actual = result3.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
-    [TestMethod()]
+    [Test()]
     public void GetListItemByItemUrl()
     {
         using var context = new PSCmdletContext();
@@ -300,7 +298,7 @@ public class GetListItemCommandTests
             }
         );
         var actual = result2.ElementAt(0);
-        Assert.IsNotNull(actual);
+        Assert.That(actual, Is.Not.Null);
     }
 
 }

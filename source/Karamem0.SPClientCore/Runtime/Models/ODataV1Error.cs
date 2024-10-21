@@ -15,7 +15,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
 [JsonObject()]
-public class ODataV1Error
+public class ODataV1Error : ValueObject
 {
 
     public ODataV1Error()

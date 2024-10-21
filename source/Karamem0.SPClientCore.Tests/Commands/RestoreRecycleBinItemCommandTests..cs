@@ -7,8 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
-using Karamem0.SharePoint.PowerShell.Tests.Runtime;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,11 +16,10 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Tests.Commands;
 
-[TestClass()]
 public class RestoreRecycleBinItemCommandTests
 {
 
-    [TestMethod()]
+    [Test()]
     public void RestoreRecycleBinItem()
     {
         using var context = new PSCmdletContext();
@@ -82,7 +80,7 @@ public class RestoreRecycleBinItemCommandTests
         );
     }
 
-    [TestMethod()]
+    [Test()]
     public void RestoreAllRecycleBinItems()
     {
         using var context = new PSCmdletContext();

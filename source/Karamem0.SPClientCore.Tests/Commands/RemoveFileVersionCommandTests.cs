@@ -7,8 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
-using Karamem0.SharePoint.PowerShell.Tests.Runtime;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +15,10 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Tests.Commands;
 
-[TestClass()]
 public class RemoveFileVersionCommandTests
 {
 
-    [TestMethod()]
+    [Test()]
     public void RemoveFileVersion()
     {
         using var context = new PSCmdletContext();
@@ -88,7 +86,7 @@ public class RemoveFileVersionCommandTests
         );
     }
 
-    [TestMethod()]
+    [Test()]
     public void RemoveAllFileVersions()
     {
         using var context = new PSCmdletContext();
@@ -149,7 +147,7 @@ public class RemoveFileVersionCommandTests
         );
     }
 
-    [TestMethod()]
+    [Test()]
     public void MoveFileVersionToRecycleBin()
     {
         using var context = new PSCmdletContext();
