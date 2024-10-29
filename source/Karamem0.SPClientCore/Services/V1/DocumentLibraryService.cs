@@ -27,13 +27,8 @@ public interface IDocumentLibraryService
 
 }
 
-public class DocumentLibraryService : ClientService, IDocumentLibraryService
+public class DocumentLibraryService(ClientContext clientContext) : ClientService(clientContext), IDocumentLibraryService
 {
-
-    public DocumentLibraryService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public DocumentLibraryInfo GetObject()
     {
         var requestPayload = new ClientRequestPayload();

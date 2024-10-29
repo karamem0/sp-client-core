@@ -27,13 +27,8 @@ public interface ITenantOrganizationNewsSiteService
 
 }
 
-public class TenantOrganizationNewsSiteService : ClientService, ITenantOrganizationNewsSiteService
+public class TenantOrganizationNewsSiteService(ClientContext clientContext) : ClientService(clientContext), ITenantOrganizationNewsSiteService
 {
-
-    public TenantOrganizationNewsSiteService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public void AddObject(string organizationNewsSiteUrl)
     {
         _ = organizationNewsSiteUrl ?? throw new ArgumentNullException(nameof(organizationNewsSiteUrl));

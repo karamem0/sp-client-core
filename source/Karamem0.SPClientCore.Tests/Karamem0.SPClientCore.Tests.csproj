@@ -46,6 +46,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Karamem0.SPClientCore\Karamem0.SPClientCore.csproj" />
+    <ProjectReference Include="..\Karamem0.SPClientCore.Tests.Utilities\Karamem0.SPClientCore.Tests.Utilities.csproj" />
   </ItemGroup>
 
 </Project>

@@ -36,13 +36,8 @@ public interface ITenantUserService
 
 }
 
-public class TenantUserService : ClientService<User>, ITenantUserService
+public class TenantUserService(ClientContext clientContext) : ClientService<User>(clientContext), ITenantUserService
 {
-
-    public TenantUserService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public User AddObject(Uri siteCollectionUrl, IReadOnlyDictionary<string, object> creationInfo)
     {
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));

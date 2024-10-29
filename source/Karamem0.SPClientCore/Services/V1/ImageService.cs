@@ -26,13 +26,8 @@ public interface IImageService
 
 }
 
-public class ImageService : ClientService, IImageService
+public class ImageService(ClientContext clientContext) : ClientService(clientContext), IImageService
 {
-
-    public ImageService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public ImageItem UploadObject(List listObject, string fileName, System.IO.Stream fileContent)
     {
         _ = listObject ?? throw new ArgumentNullException(nameof(listObject));

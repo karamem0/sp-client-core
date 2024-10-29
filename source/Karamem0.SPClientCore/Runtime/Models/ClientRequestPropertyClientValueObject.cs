@@ -28,7 +28,7 @@ public class ClientRequestPropertyClientValueObject : ClientRequestProperty
         this.Name = name;
         this.TypeId = ClientObjectAttribute.GetId(value.GetType());
         this.Values = value.GetType()
-            .GetDeclaringProperties()
+            .GetDeclaredProperties()
             .Where(propertyInfo => propertyInfo.IsDefined(typeof(JsonPropertyAttribute)))
             .Select(propertyInfo =>
             {

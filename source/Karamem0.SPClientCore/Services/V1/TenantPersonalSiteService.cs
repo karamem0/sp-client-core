@@ -27,13 +27,8 @@ public interface ITenantPersonalSiteService
 
 }
 
-public class TenantPersonalSiteService : TenantClientService, ITenantPersonalSiteService
+public class TenantPersonalSiteService(ClientContext clientContext) : TenantClientService(clientContext), ITenantPersonalSiteService
 {
-
-    public TenantPersonalSiteService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public TenantOperationResult AddObject(IReadOnlyCollection<string> userId)
     {
         _ = userId ?? throw new ArgumentNullException(nameof(userId));

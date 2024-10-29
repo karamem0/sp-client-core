@@ -47,13 +47,8 @@ public interface IExternalUserService
 
 }
 
-public class ExternalUserService : ClientService, IExternalUserService
+public class ExternalUserService(ClientContext clientContext) : ClientService(clientContext), IExternalUserService
 {
-
-    public ExternalUserService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public IEnumerable<UserSharingResult> AddObject(
         IReadOnlyCollection<string> userId,
         RoleType role,

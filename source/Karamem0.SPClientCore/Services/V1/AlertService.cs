@@ -33,13 +33,8 @@ public interface IAlertService
 
 }
 
-public class AlertService : ClientService<Alert>, IAlertService
+public class AlertService(ClientContext clientContext) : ClientService<Alert>(clientContext), IAlertService
 {
-
-    public AlertService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public Guid AddObject(IReadOnlyDictionary<string, object> creationInfo)
     {
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));

@@ -17,27 +17,19 @@ using System.Xml.Serialization;
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
 [XmlType("Property", Namespace = "http://schemas.microsoft.com/sharepoint/clientquery/2009")]
-public class ClientRequestPropertyDictionary : ClientRequestProperty
+public class ClientRequestPropertyDictionary(string name, IDictionary values) : ClientRequestProperty
 {
+    [XmlAttribute()]
+    public virtual string Name { get; protected set; } = name;
 
-    public ClientRequestPropertyDictionary(string name, IDictionary values)
-    {
-        this.Name = name;
-        this.Type = "Dictionary";
-        this.Values = values.Keys
+    [XmlAttribute()]
+    public virtual string Type { get; protected set; } = "Dictionary";
+
+    [XmlElement("Property")]
+    public virtual IEnumerable<ClientRequestPropertyValue> Values { get; protected set; } = values.Keys
             .OfType<object>()
             .ToDictionary(key => key.ToString(), key => values[key])
             .Select(value => new ClientRequestPropertyValue(value.Key, ClientRequestValue.Create(value.Value)))
             .ToArray();
-    }
-
-    [XmlAttribute()]
-    public virtual string Name { get; protected set; }
-
-    [XmlAttribute()]
-    public virtual string Type { get; protected set; }
-
-    [XmlElement("Property")]
-    public virtual IEnumerable<ClientRequestPropertyValue> Values { get; protected set; }
 
 }

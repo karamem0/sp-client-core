@@ -27,7 +27,7 @@ public class ClientRequestParameterClientObject : ClientRequestParameter
         _ = value ?? throw new ArgumentNullException(nameof(value));
         this.TypeId = ClientObjectAttribute.GetId(value.GetType());
         this.Properties = value.GetType()
-            .GetDeclaringProperties()
+            .GetDeclaredProperties()
             .Where(propertyInfo => propertyInfo.IsDefined(typeof(JsonPropertyAttribute)))
             .Select<PropertyInfo, ClientRequestProperty>(propertyInfo =>
             {

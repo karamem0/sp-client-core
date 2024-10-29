@@ -1,23 +1,25 @@
 on: workflow_call
 
+env:
+  RELEASE_FILE_NAME: SPClientCore_${{vars.BUILD_VERSION}}.zip
+
 jobs:
   run:
     name: Run
     runs-on: ubuntu-latest
     steps:
-      - name: Download artifact
+      - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
           name: build
-          path: SPClientCore
-      - name: Archive artifact
+          path: build
+      - name: Archive artifacts
         shell: pwsh
         run: |
-          Compress-Archive -Path SPClientCore/* -DestinationPath SPClientCore_${{vars.BUILD_VERSION}}.zip
+          Compress-Archive -Path build/* -DestinationPath ${{env.RELEASE_FILE_NAME}}
       - name: Create release
         uses: softprops/action-gh-release@v2
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         with:
-          files: |
-            SPClientCore_${{vars.BUILD_VERSION}}.zip
+          files: ${{env.RELEASE_FILE_NAME}}

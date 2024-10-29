@@ -14,7 +14,7 @@ using System.Net;
 using System.Security;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Tests;
+namespace Karamem0.SharePoint.PowerShell.Tests.Utilities;
 
 public static class PSCredentialFactory
 {

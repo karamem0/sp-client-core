@@ -67,8 +67,8 @@ public class ClientObject : JsonValueObject
     }
 
     [JsonIgnore()]
-    public override object this[string key] =>
-        this.ExtensionProperties
+    public override object this[string key]
+        => this.ExtensionProperties
             .Where(item => item.Key == key)
             .Select(ClientResultValue.Create)
             .Select(item => item.Value)

@@ -42,13 +42,8 @@ public interface IDriveItemService
 
 }
 
-public class DriveItemService : ClientService, IDriveItemService
+public class DriveItemService(ClientContext clientContext) : ClientService(clientContext), IDriveItemService
 {
-
-    public DriveItemService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public DriveItem GetObject(DriveItem driveItemObject)
     {
         _ = driveItemObject ?? throw new ArgumentNullException(nameof(driveItemObject));

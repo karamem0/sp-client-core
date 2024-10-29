@@ -7,7 +7,6 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
-using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.Services;
 using System;
@@ -36,13 +35,8 @@ public interface IContentTypeColumnService
 
 }
 
-public class ContentTypeColumnService : ClientService<ContentTypeColumn>, IContentTypeColumnService
+public class ContentTypeColumnService(ClientContext clientContext) : ClientService<ContentTypeColumn>(clientContext), IContentTypeColumnService
 {
-
-    public ContentTypeColumnService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public ContentTypeColumn AddObject(ContentType contentTypeObject, IReadOnlyDictionary<string, object> creationInfo, bool pushChanges)
     {
         _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));

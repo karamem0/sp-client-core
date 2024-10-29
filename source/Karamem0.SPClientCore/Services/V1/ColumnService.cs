@@ -52,13 +52,8 @@ public interface IColumnService
 
 }
 
-public class ColumnService : ClientService<Column>, IColumnService
+public class ColumnService(ClientContext clientContext) : ClientService<Column>(clientContext), IColumnService
 {
-
-    public ColumnService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public Column AddObject(ColumnType columnType, IReadOnlyDictionary<string, object> creationInfo, bool addToDefaultView, AddColumnOptions addColumnOptions)
     {
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));

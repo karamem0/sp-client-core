@@ -35,13 +35,8 @@ public interface ITenantDeletedSiteCollectionService
 
 }
 
-public class TenantDeletedSiteCollectionService : TenantClientService, ITenantDeletedSiteCollectionService
+public class TenantDeletedSiteCollectionService(ClientContext clientContext) : TenantClientService(clientContext), ITenantDeletedSiteCollectionService
 {
-
-    public TenantDeletedSiteCollectionService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public TenantDeletedSiteCollection GetObject(TenantDeletedSiteCollection siteCollectionObject)
     {
         _ = siteCollectionObject ?? throw new ArgumentNullException(nameof(siteCollectionObject));

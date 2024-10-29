@@ -25,13 +25,8 @@ public interface ITermDescriptionService
 
 }
 
-public class TermDescriptionService : ClientService, ITermDescriptionService
+public class TermDescriptionService(ClientContext clientContext) : ClientService(clientContext), ITermDescriptionService
 {
-
-    public TermDescriptionService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public string GetObject(Term termObject, uint? lcid)
     {
         _ = termObject ?? throw new ArgumentNullException(nameof(termObject));

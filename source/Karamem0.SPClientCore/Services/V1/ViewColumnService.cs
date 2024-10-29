@@ -37,13 +37,8 @@ public interface IViewColumnService
 
 }
 
-public class ViewColumnService : ClientService, IViewColumnService
+public class ViewColumnService(ClientContext clientContext) : ClientService(clientContext), IViewColumnService
 {
-
-    public ViewColumnService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public void AddObject(View viewObject, Column columnObject)
     {
         _ = columnObject ?? throw new ArgumentNullException(nameof(columnObject));

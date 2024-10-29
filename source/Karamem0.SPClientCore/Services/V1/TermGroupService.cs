@@ -35,13 +35,8 @@ public interface ITermGroupService
 
 }
 
-public class TermGroupService : ClientService<TermGroup>, ITermGroupService
+public class TermGroupService(ClientContext clientContext) : ClientService<TermGroup>(clientContext), ITermGroupService
 {
-
-    public TermGroupService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public TermGroup AddObject(string termGroupName, Guid? termGroupId)
     {
         _ = termGroupName ?? throw new ArgumentNullException(nameof(termGroupName));

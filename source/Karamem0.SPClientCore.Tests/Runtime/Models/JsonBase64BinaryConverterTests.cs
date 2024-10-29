@@ -6,23 +6,22 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
-using Karamem0.SharePoint.PowerShell.Runtime.Models;
-using NUnit.Framework;
 using Newtonsoft.Json;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Tests.Runtime.Models;
+namespace Karamem0.SharePoint.PowerShell.Runtime.Models.Tests;
 
+[Category("Karamem0.SharePoint.PowerShell.Runtime")]
 public class JsonBase64BinaryConverterTests
 {
 
     [Test()]
-    public void CanConvertByByteArray()
+    public void CanConvert_ByteArray_ReturnsTrue()
     {
         var converter = new JsonBase64BinaryConverter();
         var expected = true;
@@ -31,7 +30,7 @@ public class JsonBase64BinaryConverterTests
     }
 
     [Test()]
-    public void CanConvertByObject()
+    public void CanConvert_Object_ReturnsFalse()
     {
         var converter = new JsonBase64BinaryConverter();
         var expected = false;
@@ -40,7 +39,7 @@ public class JsonBase64BinaryConverterTests
     }
 
     [Test()]
-    public void ReadJsonByValidByteArray()
+    public void ReadJson_Valid_ReturnsByteArray()
     {
         var converter = new JsonBase64BinaryConverter();
         var textReader = new StringReader(/*lang=json,strict*/ "{\"value\":\"/Base64Binary(VGVzdCBWYWx1ZSAx)/\"}");
@@ -55,7 +54,7 @@ public class JsonBase64BinaryConverterTests
     }
 
     [Test()]
-    public void ReadJsonByInvalidByteArray()
+    public void ReadJson_Invalid_ReturnsNull()
     {
         var converter = new JsonBase64BinaryConverter();
         var textReader = new StringReader(/*lang=json,strict*/ "{\"value\":\"/Base64Binary(Test Value 1)\"}");
@@ -70,7 +69,7 @@ public class JsonBase64BinaryConverterTests
     }
 
     [Test()]
-    public void ReadJsonByNull()
+    public void ReadJson_Null_ReturnsNull()
     {
         var converter = new JsonBase64BinaryConverter();
         var textReader = new StringReader(/*lang=json,strict*/ "{\"value\":null}");
@@ -85,7 +84,7 @@ public class JsonBase64BinaryConverterTests
     }
 
     [Test()]
-    public void WriteJsonByByteArray()
+    public void WriteJson_ByteArray_ReturnsBase64String()
     {
         var converter = new JsonBase64BinaryConverter();
         var textWriter = new StringWriter();
@@ -100,7 +99,7 @@ public class JsonBase64BinaryConverterTests
     }
 
     [Test()]
-    public void WriteJsonByNull()
+    public void WriteJson_Null_ReturnsNull()
     {
         var converter = new JsonBase64BinaryConverter();
         var textWriter = new StringWriter();

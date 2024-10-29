@@ -35,13 +35,8 @@ public interface IRoleDefinitionService
 
 }
 
-public class RoleDefinitionService : ClientService<RoleDefinition>, IRoleDefinitionService
+public class RoleDefinitionService(ClientContext clientContext) : ClientService<RoleDefinition>(clientContext), IRoleDefinitionService
 {
-
-    public RoleDefinitionService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public RoleDefinition AddObject(IReadOnlyDictionary<string, object> creationInfo)
     {
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));

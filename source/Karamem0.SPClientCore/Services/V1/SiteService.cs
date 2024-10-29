@@ -43,13 +43,8 @@ public interface ISiteService
 
 }
 
-public class SiteService : ClientService<Site>, ISiteService
+public class SiteService(ClientContext clientContext) : ClientService<Site>(clientContext), ISiteService
 {
-
-    public SiteService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public Site AddObject(IReadOnlyDictionary<string, object> creationInfo)
     {
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));

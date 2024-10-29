@@ -6,15 +6,10 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
-using Karamem0.SharePoint.PowerShell.Resources;
-using Karamem0.SharePoint.PowerShell.Runtime.ApplicationInsights;
 using Karamem0.SharePoint.PowerShell.Runtime.OAuth;
-using Microsoft.ApplicationInsights;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Management.Automation;
 using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Runtime.Commands;

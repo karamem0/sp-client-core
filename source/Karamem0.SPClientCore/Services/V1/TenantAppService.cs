@@ -41,13 +41,8 @@ public interface ITenantAppService
 
 }
 
-public class TenantAppService : ClientService, ITenantAppService
+public class TenantAppService(ClientContext clientContext) : ClientService(clientContext), ITenantAppService
 {
-
-    public TenantAppService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public App AddObject(System.IO.Stream appContent, string appName, bool overwrite)
     {
         _ = appContent ?? throw new ArgumentNullException(nameof(appContent));

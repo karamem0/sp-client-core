@@ -7,7 +7,7 @@
 #
 
 $DOCS_PATH = "$PSScriptRoot/../docs"
-$SOURCE_PATH = "$PSScriptRoot/../source/Karamem0.SPClientCore/Karamem0.SPClientCore.dll-Help.xml"
+$SOURCE_PATH = "$PSScriptRoot/../source/Karamem0.SPClientCore/Karamem0.SPClientCore.dll-help.xml"
 
 Import-Module -Name 'platyPS'
 New-ExternalHelp -Path $DOCS_PATH -OutputPath $SOURCE_PATH -Force

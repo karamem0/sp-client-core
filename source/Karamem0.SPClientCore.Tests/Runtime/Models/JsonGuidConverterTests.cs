@@ -6,23 +6,22 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
-using Karamem0.SharePoint.PowerShell.Runtime.Models;
-using NUnit.Framework;
 using Newtonsoft.Json;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Tests.Runtime.Models;
+namespace Karamem0.SharePoint.PowerShell.Runtime.Models.Tests;
 
+[Category("Karamem0.SharePoint.PowerShell.Runtime")]
 public class JsonGuidConverterTests
 {
 
     [Test()]
-    public void CanConvertByGuid()
+    public void CanConvert_Guid_ReturnsTrue()
     {
         var converter = new JsonGuidConverter();
         var expected = true;
@@ -31,7 +30,7 @@ public class JsonGuidConverterTests
     }
 
     [Test()]
-    public void CanConvertByNullableGuid()
+    public void CanConvert_NullableGuid_ReturnsTrue()
     {
         var converter = new JsonGuidConverter();
         var expected = true;
@@ -40,7 +39,7 @@ public class JsonGuidConverterTests
     }
 
     [Test()]
-    public void CanConvertByObject()
+    public void CanConvert_Object_ReturnsFalse()
     {
         var converter = new JsonGuidConverter();
         var expected = false;
@@ -49,7 +48,7 @@ public class JsonGuidConverterTests
     }
 
     [Test()]
-    public void ReadJsonByValidGuid()
+    public void ReadJson_Valid_RerurnsGuid()
     {
         var converter = new JsonGuidConverter();
         var textReader = new StringReader(/*lang=json,strict*/ "{\"value\":\"/Guid(8155c423-5475-4cbc-89f9-e0f7b5f2bc68)/\"}");
@@ -64,7 +63,7 @@ public class JsonGuidConverterTests
     }
 
     [Test()]
-    public void ReadJsonByInvalidGuid()
+    public void ReadJson_Invalid_ReturnsNull()
     {
         var converter = new JsonGuidConverter();
         var textReader = new StringReader(/*lang=json,strict*/ "{\"value\":\"/Guid(Test Value 1)\"}");
@@ -79,7 +78,7 @@ public class JsonGuidConverterTests
     }
 
     [Test()]
-    public void ReadJsonByNull()
+    public void ReadJson_Null_ReturnsDefault()
     {
         var converter = new JsonGuidConverter();
         var textReader = new StringReader(/*lang=json,strict*/ "{\"value\":null}");
@@ -94,7 +93,7 @@ public class JsonGuidConverterTests
     }
 
     [Test()]
-    public void WriteJsonByGuid()
+    public void WriteJson_Guid_ReturnsGuidString()
     {
         var converter = new JsonGuidConverter();
         var textWriter = new StringWriter();
@@ -109,7 +108,7 @@ public class JsonGuidConverterTests
     }
 
     [Test()]
-    public void WriteJsonByNull()
+    public void WriteJson_Null_Null()
     {
         var converter = new JsonGuidConverter();
         var textWriter = new StringWriter();

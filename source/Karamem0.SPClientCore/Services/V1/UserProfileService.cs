@@ -23,13 +23,8 @@ public interface IUserProfileService
 
 }
 
-public class UserProfileService : ClientService, IUserProfileService
+public class UserProfileService(ClientContext clientContext) : ClientService(clientContext), IUserProfileService
 {
-
-    public UserProfileService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public UserProfile GetObject()
     {
         var requestPayload = new ClientRequestPayload();

@@ -8,7 +8,6 @@
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
 using Karamem0.SharePoint.PowerShell.Models.V2;
-using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.Services;
 using System;
@@ -49,13 +48,8 @@ public interface IListService
 
 }
 
-public class ListService : ClientService<List>, IListService
+public class ListService(ClientContext clientContext) : ClientService<List>(clientContext), IListService
 {
-
-    public ListService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public List AddObject(IReadOnlyDictionary<string, object> creationInfo)
     {
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));

@@ -8,7 +8,6 @@
 
 using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.ApplicationInsights;
-using Microsoft.ApplicationInsights;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

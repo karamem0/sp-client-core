@@ -31,13 +31,8 @@ public interface ISiteFeatureService
 
 }
 
-public class SiteFeatureService : ClientService<Feature>, ISiteFeatureService
+public class SiteFeatureService(ClientContext clientContext) : ClientService<Feature>(clientContext), ISiteFeatureService
 {
-
-    public SiteFeatureService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public void AddObject(Guid? featureId, bool force, FeatureDefinitionScope scope)
     {
         _ = featureId ?? throw new ArgumentNullException(nameof(featureId));

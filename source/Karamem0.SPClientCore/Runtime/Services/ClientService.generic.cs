@@ -14,12 +14,8 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Runtime.Services;
 
-public abstract class ClientService<T> : ClientService where T : ClientObject
+public abstract class ClientService<T>(ClientContext clientContext) : ClientService(clientContext) where T : ClientObject
 {
-
-    protected ClientService(ClientContext clientContext) : base(clientContext)
-    {
-    }
 
     public virtual T GetObject(T clientObject)
     {

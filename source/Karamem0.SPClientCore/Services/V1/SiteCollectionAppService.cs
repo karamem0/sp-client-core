@@ -41,13 +41,8 @@ public interface ISiteCollectionAppService
 
 }
 
-public class SiteCollectionAppService : ClientService, ISiteCollectionAppService
+public class SiteCollectionAppService(ClientContext clientContext) : ClientService(clientContext), ISiteCollectionAppService
 {
-
-    public SiteCollectionAppService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public App AddObject(System.IO.Stream appContent, string appName, bool overwrite)
     {
         _ = appContent ?? throw new ArgumentNullException(nameof(appContent));

@@ -35,13 +35,8 @@ public interface IGroupService
 
 }
 
-public class GroupService : ClientService<Group>, IGroupService
+public class GroupService(ClientContext clientContext) : ClientService<Group>(clientContext), IGroupService
 {
-
-    public GroupService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public Group AddObject(IReadOnlyDictionary<string, object> creationInfo)
     {
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));

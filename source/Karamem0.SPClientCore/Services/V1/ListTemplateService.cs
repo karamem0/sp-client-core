@@ -27,13 +27,8 @@ public interface IListTemplateService
 
 }
 
-public class ListTemplateService : ClientService<ListTemplate>, IListTemplateService
+public class ListTemplateService(ClientContext clientContext) : ClientService<ListTemplate>(clientContext), IListTemplateService
 {
-
-    public ListTemplateService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public ListTemplate GetObject(string listTemplateTitle)
     {
         _ = listTemplateTitle ?? throw new ArgumentNullException(nameof(listTemplateTitle));

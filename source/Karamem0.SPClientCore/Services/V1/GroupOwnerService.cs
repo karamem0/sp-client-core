@@ -25,13 +25,8 @@ public interface IGroupOwnerService
 
 }
 
-public class GroupOwnerService : ClientService, IGroupOwnerService
+public class GroupOwnerService(ClientContext clientContext) : ClientService(clientContext), IGroupOwnerService
 {
-
-    public GroupOwnerService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public Principal GetObject(Group groupObject)
     {
         _ = groupObject ?? throw new ArgumentNullException(nameof(groupObject));

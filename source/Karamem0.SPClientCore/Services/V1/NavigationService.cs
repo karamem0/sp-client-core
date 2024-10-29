@@ -25,13 +25,8 @@ public interface INavigationService
 
 }
 
-public class NavigationService : ClientService, INavigationService
+public class NavigationService(ClientContext clientContext) : ClientService(clientContext), INavigationService
 {
-
-    public NavigationService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public Navigation GetObject()
     {
         var requestPayload = new ClientRequestPayload();

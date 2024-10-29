@@ -55,13 +55,8 @@ public interface ITenantSiteCollectionService
 
 }
 
-public class TenantSiteCollectionService : TenantClientService, ITenantSiteCollectionService
+public class TenantSiteCollectionService(ClientContext clientContext) : TenantClientService(clientContext), ITenantSiteCollectionService
 {
-
-    public TenantSiteCollectionService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public TenantOperationResult AddObject(IReadOnlyDictionary<string, object> creationInfo)
     {
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));

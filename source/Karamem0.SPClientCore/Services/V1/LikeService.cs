@@ -34,13 +34,8 @@ public interface ILikeService
 
 }
 
-public class LikeService : ClientService, ILikeService
+public class LikeService(ClientContext clientContext) : ClientService(clientContext), ILikeService
 {
-
-    public LikeService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public IEnumerable<LikedUser> GetObjectEnumerable(Comment commentObject)
     {
         _ = commentObject ?? throw new ArgumentNullException(nameof(commentObject));

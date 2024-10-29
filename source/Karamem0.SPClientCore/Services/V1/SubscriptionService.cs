@@ -34,13 +34,8 @@ public interface ISubscriptionService
 
 }
 
-public class SubscriptionService : ClientService, ISubscriptionService
+public class SubscriptionService(ClientContext clientContext) : ClientService(clientContext), ISubscriptionService
 {
-
-    public SubscriptionService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public Subscription AddObject(List listObject, IReadOnlyDictionary<string, object> creationInfo)
     {
         _ = listObject ?? throw new ArgumentNullException(nameof(listObject));

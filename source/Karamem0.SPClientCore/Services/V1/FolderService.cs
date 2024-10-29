@@ -58,13 +58,8 @@ public interface IFolderService
 
 }
 
-public class FolderService : ClientService<Folder>, IFolderService
+public class FolderService(ClientContext clientContext) : ClientService<Folder>(clientContext), IFolderService
 {
-
-    public FolderService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public void ApproveObject(Folder folderObject, string comment)
     {
         _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));

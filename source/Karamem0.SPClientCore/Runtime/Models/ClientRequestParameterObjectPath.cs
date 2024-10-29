@@ -16,15 +16,9 @@ using System.Xml.Serialization;
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
 [XmlType("Parameter", Namespace = "http://schemas.microsoft.com/sharepoint/clientquery/2009")]
-public class ClientRequestParameterObjectPath : ClientRequestParameter
+public class ClientRequestParameterObjectPath(ObjectPath objectPath) : ClientRequestParameter
 {
-
-    public ClientRequestParameterObjectPath(ObjectPath objectPath)
-    {
-        this.ObjectPathId = objectPath.Id;
-    }
-
     [XmlAttribute()]
-    public virtual long ObjectPathId { get; protected set; }
+    public virtual long ObjectPathId { get; protected set; } = objectPath.Id;
 
 }

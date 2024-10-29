@@ -7,7 +7,6 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Resources;
-using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.OAuth;
 using System;
@@ -28,12 +27,15 @@ public class ClientHttpExecutor
 
     public ClientHttpExecutor()
     {
-        this.httpClient = new HttpClient(new ClientHttpMessageHandler());
-        this.httpClient.Timeout = Timeout.InfiniteTimeSpan;
+        this.httpClient = new HttpClient(new ClientHttpMessageHandler())
+        {
+            Timeout = Timeout.InfiniteTimeSpan
+        };
         this.httpClient.DefaultRequestHeaders.UserAgent.Add(
             new ProductInfoHeaderValue(
                 ClientConstants.UserAgent,
-                this.GetType().Assembly.GetName().Version.ToString(3)));
+                this.GetType().Assembly.GetName().Version.ToString(3))
+        );
     }
 
     public void Execute(
@@ -110,19 +112,22 @@ public class ClientHttpExecutor
                         var responseContent = await responseMessage.Content.ReadAsStringAsync();
                         if (JsonSerializerManager.Instance.TryDeserialize(
                             responseContent,
-                            out OAuthError oAuthError))
+                            out OAuthError oAuthError
+                        ))
                         {
                             throw new InvalidOperationException(oAuthError.ErrorDescription);
                         }
                         if (JsonSerializerManager.Instance.TryDeserialize(
                             responseContent,
-                            out ODataV1ResultPayload v1Payload))
+                            out ODataV1ResultPayload v1Payload
+                        ))
                         {
                             throw new InvalidOperationException(v1Payload.Error.Message.Value);
                         }
                         if (JsonSerializerManager.Instance.TryDeserialize(
                             responseContent,
-                            out ODataV2ResultPayload v2Payload))
+                            out ODataV2ResultPayload v2Payload
+                        ))
                         {
                             throw new InvalidOperationException(v2Payload.Error.Message);
                         }

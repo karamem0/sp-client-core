@@ -29,13 +29,8 @@ public interface ITenantSiteDesignService
 
 }
 
-public class TenantSiteDesignService : ClientService, ITenantSiteDesignService
+public class TenantSiteDesignService(ClientContext clientContext) : ClientService(clientContext), ITenantSiteDesignService
 {
-
-    public TenantSiteDesignService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public TenantSiteDesign AddObject(IReadOnlyDictionary<string, object> creationInfo)
     {
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));

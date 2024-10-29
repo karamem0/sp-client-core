@@ -35,13 +35,8 @@ public interface ITermSetService
 
 }
 
-public class TermSetService : ClientService<TermSet>, ITermSetService
+public class TermSetService(ClientContext clientContext) : ClientService<TermSet>(clientContext), ITermSetService
 {
-
-    public TermSetService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public TermSet AddObject(TermGroup termGroupObject, string termSetName, Guid? termSetId, uint? lcid)
     {
         _ = termGroupObject ?? throw new ArgumentNullException(nameof(termGroupObject));

@@ -10,7 +10,6 @@ using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -19,20 +18,14 @@ using System.Text.RegularExpressions;
 
 namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth;
 
-public class TenantIdResolver
+public class TenantIdResolver(Uri baseAddress)
 {
 
-    private readonly HttpClient httpClient;
+    private readonly HttpClient httpClient = OAuthHttpClientFactory.Create();
 
-    private readonly Uri baseAddress;
+    private readonly Uri baseAddress = baseAddress ?? throw new ArgumentNullException(nameof(baseAddress));
 
     private string tenantId;
-
-    public TenantIdResolver(Uri baseAddress)
-    {
-        this.httpClient = OAuthHttpClientFactory.Create();
-        this.baseAddress = baseAddress ?? throw new ArgumentNullException(nameof(baseAddress));
-    }
 
     public string Resolve()
     {

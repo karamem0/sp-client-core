@@ -15,7 +15,7 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Runtime.Services;
 
-public abstract class ClientService
+public abstract class ClientService(ClientContext clientContext)
 {
 
     public static IServiceProvider ServiceProvider { get; private set; }
@@ -37,11 +37,6 @@ public abstract class ClientService
         ServiceProvider = null;
     }
 
-    protected ClientService(ClientContext clientContext)
-    {
-        this.ClientContext = clientContext ?? throw new ArgumentNullException(nameof(clientContext));
-    }
-
-    protected ClientContext ClientContext { get; private set; }
+    protected ClientContext ClientContext { get; private set; } = clientContext ?? throw new ArgumentNullException(nameof(clientContext));
 
 }

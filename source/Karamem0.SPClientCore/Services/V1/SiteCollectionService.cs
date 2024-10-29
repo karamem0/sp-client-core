@@ -27,13 +27,8 @@ public interface ISiteCollectionService
 
 }
 
-public class SiteCollectionService : ClientService<SiteCollection>, ISiteCollectionService
+public class SiteCollectionService(ClientContext clientContext) : ClientService<SiteCollection>(clientContext), ISiteCollectionService
 {
-
-    public SiteCollectionService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public SiteCollection GetObject()
     {
         var requestPayload = new ClientRequestPayload();

@@ -42,13 +42,8 @@ public interface IRecycleBinItemService
 
 }
 
-public class RecycleBinItemService : ClientService<RecycleBinItem>, IRecycleBinItemService
+public class RecycleBinItemService(ClientContext clientContext) : ClientService<RecycleBinItem>(clientContext), IRecycleBinItemService
 {
-
-    public RecycleBinItemService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public RecycleBinItem GetObject(Guid? itemId, RecycleBinItemState recycleBinItemState)
     {
         _ = itemId ?? throw new ArgumentNullException(nameof(itemId));
