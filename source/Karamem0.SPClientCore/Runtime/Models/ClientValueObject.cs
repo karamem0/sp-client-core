@@ -45,7 +45,7 @@ public class ClientValueObject : JsonValueObject
     public ClientValueObject(IReadOnlyDictionary<string, object> parameters)
     {
         _ = parameters ?? throw new ArgumentNullException(nameof(parameters));
-        foreach (var propertyInfo in this.GetType().GetDeclaringProperties())
+        foreach (var propertyInfo in this.GetType().GetDeclaredProperties())
         {
             if (parameters.TryGetValue(propertyInfo.Name, out var value))
             {

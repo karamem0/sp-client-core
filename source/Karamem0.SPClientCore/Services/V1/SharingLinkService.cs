@@ -46,13 +46,8 @@ public interface ISharingLinkService
 
 }
 
-public class SharingLinkService : ClientService, ISharingLinkService
+public class SharingLinkService(ClientContext clientContext) : ClientService(clientContext), ISharingLinkService
 {
-
-    public SharingLinkService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public string CreateAnonymousLink(Uri url, bool isEditLink)
     {
         _ = url ?? throw new ArgumentNullException(nameof(url));

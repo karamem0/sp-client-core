@@ -4,7 +4,7 @@
 
 PowerShell 向けの SharePoint サービス モジュール
 
-[![.github/workflows/workflow.yml](https://github.com/karamem0/sp-client-core/actions/workflows/workflow.yml/badge.svg)](https://github.com/karamem0/sp-client-core/actions/workflows/workflow.yml)
+[![.github/workflows/develop.yml](https://github.com/karamem0/sp-client-core/actions/workflows/develop.yml/badge.svg)](https://github.com/karamem0/sp-client-core/actions/workflows/develop.yml)
 [![License](https://img.shields.io/github/license/karamem0/sp-client-core.svg)](https://github.com/karamem0/sp-client-core/blob/main/LICENSE)
 
 ## インストール

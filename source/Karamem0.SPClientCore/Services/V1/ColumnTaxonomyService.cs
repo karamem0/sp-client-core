@@ -33,13 +33,8 @@ public interface IColumnTaxonomyService
 
 }
 
-public class ColumnTaxonomyService : ClientService<ColumnTaxonomy>, IColumnTaxonomyService
+public class ColumnTaxonomyService(ClientContext clientContext) : ClientService<ColumnTaxonomy>(clientContext), IColumnTaxonomyService
 {
-
-    public ColumnTaxonomyService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public ColumnTaxonomy AddObject(IReadOnlyDictionary<string, object> creationInfo, bool addToDefaultView, AddColumnOptions addColumnOptions)
     {
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));

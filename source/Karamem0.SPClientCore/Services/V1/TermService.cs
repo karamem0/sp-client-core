@@ -45,13 +45,8 @@ public interface ITermService
 
 }
 
-public class TermService : ClientService<Term>, ITermService
+public class TermService(ClientContext clientContext) : ClientService<Term>(clientContext), ITermService
 {
-
-    public TermService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public Term CopyObject(Term termObject, bool copyChildren)
     {
         _ = termObject ?? throw new ArgumentNullException(nameof(termObject));

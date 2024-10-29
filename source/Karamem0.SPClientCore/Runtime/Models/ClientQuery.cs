@@ -32,7 +32,7 @@ public class ClientQuery : ClientRequestObject
     public ClientQuery(bool selectAllProperties, Type type, params string[] conditions)
     {
         this.SelectAllProperties = selectAllProperties;
-        this.Properties = type.GetDeclaringProperties()
+        this.Properties = type.GetDeclaredProperties()
             .Where(propertyInfo => propertyInfo.IsDefined(typeof(JsonPropertyAttribute)))
             .Where(propertyInfo =>
             {

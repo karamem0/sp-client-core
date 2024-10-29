@@ -93,7 +93,7 @@ public class ClientRequestPayload : ClientRequestObject
     {
         foreach (var parameter in parameters)
         {
-            var propertyInfo = objectType.GetDeclaringProperty(parameter.Key);
+            var propertyInfo = objectType.GetDeclaredProperty(parameter.Key);
             if (propertyInfo is not null)
             {
                 var propertyAttribute = propertyInfo.GetCustomAttribute<JsonPropertyAttribute>();

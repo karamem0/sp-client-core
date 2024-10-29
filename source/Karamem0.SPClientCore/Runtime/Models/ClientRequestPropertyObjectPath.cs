@@ -16,19 +16,12 @@ using System.Xml.Serialization;
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
 [XmlType("Property", Namespace = "http://schemas.microsoft.com/sharepoint/clientquery/2009")]
-public class ClientRequestPropertyObjectPath : ClientRequestProperty
+public class ClientRequestPropertyObjectPath(string name, ObjectPath objectPath) : ClientRequestProperty
 {
-
-    public ClientRequestPropertyObjectPath(string name, ObjectPath objectPath)
-    {
-        this.Name = name;
-        this.ObjectPathId = objectPath.Id;
-    }
+    [XmlAttribute()]
+    public virtual string Name { get; protected set; } = name;
 
     [XmlAttribute()]
-    public virtual string Name { get; protected set; }
-
-    [XmlAttribute()]
-    public virtual long ObjectPathId { get; protected set; }
+    public virtual long ObjectPathId { get; protected set; } = objectPath.Id;
 
 }

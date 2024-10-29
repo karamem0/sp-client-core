@@ -6,7 +6,6 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
-using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Newtonsoft.Json;

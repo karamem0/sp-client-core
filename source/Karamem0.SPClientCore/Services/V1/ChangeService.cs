@@ -27,13 +27,8 @@ public interface IChangeService
 
 }
 
-public class ChangeService : ClientService, IChangeService
+public class ChangeService(ClientContext clientContext) : ClientService(clientContext), IChangeService
 {
-
-    public ChangeService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public IEnumerable<Change> GetObjectEnumerable(SiteCollection siteCollectionObject, ChangeQuery changeQueryObject)
     {
         _ = siteCollectionObject ?? throw new ArgumentNullException(nameof(siteCollectionObject));

@@ -20,24 +20,16 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth;
 
-public class AadOAuthContext : OAuthContext
+public class AadOAuthContext(string authority, string clientId, string resource, bool userMode) : OAuthContext
 {
 
-    private readonly string authority;
+    private readonly string authority = authority ?? throw new ArgumentNullException(nameof(authority));
 
-    private readonly string clientId;
+    private readonly string clientId = clientId ?? throw new ArgumentNullException(nameof(clientId));
 
-    private readonly bool userMode;
+    private readonly bool userMode = userMode;
 
-    private readonly TenantIdResolver tenantIdResolver;
-
-    public AadOAuthContext(string authority, string clientId, string resource, bool userMode)
-    {
-        this.authority = authority ?? throw new ArgumentNullException(nameof(authority));
-        this.clientId = clientId ?? throw new ArgumentNullException(nameof(clientId));
-        this.userMode = userMode;
-        this.tenantIdResolver = new TenantIdResolver(new Uri(resource, UriKind.Absolute));
-    }
+    private readonly TenantIdResolver tenantIdResolver = new(new Uri(resource, UriKind.Absolute));
 
     public OAuthMessage AcquireDeviceCode()
     {
@@ -102,8 +94,10 @@ public class AadOAuthContext : OAuthContext
             }
         };
         var requestContent = UriQuery.Create(requertParameters);
-        var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
-        requestMessage.Content = new StringContent(requestContent, Encoding.UTF8, "application/x-www-form-urlencoded");
+        var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl)
+        {
+            Content = new StringContent(requestContent, Encoding.UTF8, "application/x-www-form-urlencoded")
+        };
         requestMessage.Headers.Add("Accept", "application/json");
         var responseMessage = this.HttpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
         var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
@@ -145,8 +139,10 @@ public class AadOAuthContext : OAuthContext
             }
         };
         var requestContent = UriQuery.Create(requertParameters);
-        var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
-        requestMessage.Content = new StringContent(requestContent, Encoding.UTF8, "application/x-www-form-urlencoded");
+        var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl)
+        {
+            Content = new StringContent(requestContent, Encoding.UTF8, "application/x-www-form-urlencoded")
+        };
         requestMessage.Headers.Add("Accept", "application/json");
         var responseMessage = this.HttpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
         var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
@@ -186,8 +182,10 @@ public class AadOAuthContext : OAuthContext
             }
         };
         var requestContent = UriQuery.Create(requertParameters);
-        var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
-        requestMessage.Content = new StringContent(requestContent, Encoding.UTF8, "application/x-www-form-urlencoded");
+        var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl)
+        {
+            Content = new StringContent(requestContent, Encoding.UTF8, "application/x-www-form-urlencoded")
+        };
         requestMessage.Headers.Add("Accept", "application/json");
         var responseMessage = this.HttpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
         var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();
@@ -229,8 +227,10 @@ public class AadOAuthContext : OAuthContext
             { "scope", string.Join(" ", [ $"{OAuthConstants.ResourceId}/.default" ]) }
         };
         var requestContent = UriQuery.Create(requertParameters);
-        var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
-        requestMessage.Content = new StringContent(requestContent, Encoding.UTF8, "application/x-www-form-urlencoded");
+        var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl)
+        {
+            Content = new StringContent(requestContent, Encoding.UTF8, "application/x-www-form-urlencoded")
+        };
         requestMessage.Headers.Add("Accept", "application/json");
         var responseMessage = this.HttpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
         var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();

@@ -25,13 +25,8 @@ public interface ITenantDeletedPersonalSiteCollectionService
 
 }
 
-public class TenantDeletedPersonalSiteCollectionService : ClientService, ITenantDeletedPersonalSiteCollectionService
+public class TenantDeletedPersonalSiteCollectionService(ClientContext clientContext) : ClientService(clientContext), ITenantDeletedPersonalSiteCollectionService
 {
-
-    public TenantDeletedPersonalSiteCollectionService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public IEnumerable<TenantDeletedSiteCollection> GetObjectEnumerable()
     {
         var requestPayload = new ClientRequestPayload();

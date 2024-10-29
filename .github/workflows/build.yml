@@ -22,6 +22,15 @@ jobs:
           dotnet restore ${{env.TARGET_FILE}}
         env:
           TARGET_FILE: source/Karamem0.SPClientCore/Karamem0.SPClientCore.csproj
+      - name: Test source
+        shell: pwsh
+        run: |
+          dotnet test ${{env.TARGET_FILE}} `
+            --filter TestCategory=Karamem0.SharePoint.PowerShell.Runtime `
+            -p:AltCover=true `
+            -- NUnit.TestOutputXml=${{github.workspace}}/source/test
+        env:
+          TARGET_FILE: source/Karamem0.SPClientCore.Tests/Karamem0.SPClientCore.Tests.csproj
       - name: Build source
         shell: pwsh
         run: |
@@ -55,8 +64,22 @@ jobs:
           Update-ModuleManifest -Path "${{env.TARGET_FILE}}" -ModuleVersion "${{vars.BUILD_VERSION}}.${{github.run_number}}" -CmdletsToExport (Get-Command -Module SPClientCore | %{ $_.Name })
         env:
           TARGET_FILE: source/Karamem0.SPClientCore/build/SPClientCore.psd1
-      - name: Upload artifact
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: build
           path: source/Karamem0.SPClientCore/build
+      - name: Upload test results
+        uses: enricomi/publish-unit-test-result-action/linux@v2
+        if: always()
+        with:
+          files: |
+            source/test/**/*.xml
+          check_name: Test results
+      - name: Upload coverage reports
+        uses: codecov/codecov-action@v4
+        if: always()
+        with:
+          fail_ci_if_error: true
+          token: ${{secrets.CODECOV_TOKEN}}
+          slug: karamem0/sp-client-core

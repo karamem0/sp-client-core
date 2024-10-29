@@ -6,23 +6,22 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
-using Karamem0.SharePoint.PowerShell.Runtime.Models;
-using NUnit.Framework;
 using Newtonsoft.Json;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 
-namespace Karamem0.SharePoint.PowerShell.Tests.Runtime.Models;
+namespace Karamem0.SharePoint.PowerShell.Runtime.Models.Tests;
 
+[Category("Karamem0.SharePoint.PowerShell.Runtime")]
 public class JsonDateTimeConverterTests
 {
 
     [Test()]
-    public void CanConvertByDateTime()
+    public void CanConvert_DateTime_ReturnsTrue()
     {
         var converter = new JsonDateTimeConverter();
         var expected = true;
@@ -31,7 +30,7 @@ public class JsonDateTimeConverterTests
     }
 
     [Test()]
-    public void CanConvertByNullableDateTime()
+    public void CanConvert_NullableDateTime_ReturnsTrue()
     {
         var converter = new JsonDateTimeConverter();
         var expected = true;
@@ -40,7 +39,7 @@ public class JsonDateTimeConverterTests
     }
 
     [Test()]
-    public void CanConvertByObject()
+    public void CanConvert_Object_ReturnsFalse()
     {
         var converter = new JsonDateTimeConverter();
         var expected = false;
@@ -49,7 +48,7 @@ public class JsonDateTimeConverterTests
     }
 
     [Test()]
-    public void ReadJsonByValidDateTime()
+    public void ReadJson_Valid_ReturnsDateTime()
     {
         var converter = new JsonDateTimeConverter();
         var textReader = new StringReader(/*lang=json,strict*/ "{\"value\":\"/Date(2000,00,01,15,30,45,500)/\"}");
@@ -64,7 +63,7 @@ public class JsonDateTimeConverterTests
     }
 
     [Test()]
-    public void ReadJsonByInvalidDateTime()
+    public void ReadJson_Invalid_ReturnsNull()
     {
         var converter = new JsonDateTimeConverter();
         var textReader = new StringReader(/*lang=json,strict*/ "{\"value\":\"/Date(Test Value 1)\"}");
@@ -79,7 +78,7 @@ public class JsonDateTimeConverterTests
     }
 
     [Test()]
-    public void ReadJsonByNull()
+    public void ReadJson_Null_ReturnsDefault()
     {
         var converter = new JsonDateTimeConverter();
         var textReader = new StringReader(/*lang=json,strict*/ "{\"value\":null}");
@@ -94,7 +93,7 @@ public class JsonDateTimeConverterTests
     }
 
     [Test()]
-    public void WriteJsonByDateTime()
+    public void WriteJson_DateTime_ReturnsDateTimeString()
     {
         var converter = new JsonDateTimeConverter();
         var textWriter = new StringWriter();
@@ -109,7 +108,7 @@ public class JsonDateTimeConverterTests
     }
 
     [Test()]
-    public void WriteJsonByNull()
+    public void WriteJson_Null_ReturnsNull()
     {
         var converter = new JsonDateTimeConverter();
         var textWriter = new StringWriter();

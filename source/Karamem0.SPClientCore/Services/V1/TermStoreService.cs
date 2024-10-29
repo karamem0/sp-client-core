@@ -25,13 +25,8 @@ public interface ITermStoreService
 
 }
 
-public class TermStoreService : ClientService, ITermStoreService
+public class TermStoreService(ClientContext clientContext) : ClientService(clientContext), ITermStoreService
 {
-
-    public TermStoreService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public TermStore GetObject()
     {
         var requestPayload = new ClientRequestPayload();

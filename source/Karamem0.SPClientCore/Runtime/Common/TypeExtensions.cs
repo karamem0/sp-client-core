@@ -47,12 +47,12 @@ public static class TypeExtensions
         return (T)Attribute.GetCustomAttribute(type, typeof(T), inherit);
     }
 
-    public static PropertyInfo GetDeclaringProperty(this Type type, string name)
+    public static PropertyInfo GetDeclaredProperty(this Type type, string name)
     {
         return type.GetProperty(name, BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public);
     }
 
-    public static PropertyInfo[] GetDeclaringProperties(this Type type)
+    public static PropertyInfo[] GetDeclaredProperties(this Type type)
     {
         return type.GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public);
     }

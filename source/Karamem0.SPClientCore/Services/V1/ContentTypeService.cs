@@ -41,13 +41,8 @@ public interface IContentTypeService
 
 }
 
-public class ContentTypeService : ClientService<ContentType>, IContentTypeService
+public class ContentTypeService(ClientContext clientContext) : ClientService<ContentType>(clientContext), IContentTypeService
 {
-
-    public ContentTypeService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public ContentType AddObject(IReadOnlyDictionary<string, object> creationInfo)
     {
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));

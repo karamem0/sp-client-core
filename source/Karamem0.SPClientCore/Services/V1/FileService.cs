@@ -72,13 +72,8 @@ public interface IFileService
 
 }
 
-public class FileService : ClientService<File>, IFileService
+public class FileService(ClientContext clientContext) : ClientService<File>(clientContext), IFileService
 {
-
-    public FileService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public void ApproveObject(File fileObject, string comment)
     {
         _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));

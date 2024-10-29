@@ -31,13 +31,8 @@ public interface ISiteCollectionAppCatalogService
 
 }
 
-public class SiteCollectionAppCatalogService : ClientService<SiteCollectionAppCatalog>, ISiteCollectionAppCatalogService
+public class SiteCollectionAppCatalogService(ClientContext clientContext) : ClientService<SiteCollectionAppCatalog>(clientContext), ISiteCollectionAppCatalogService
 {
-
-    public SiteCollectionAppCatalogService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public void AddObject(Uri siteCollectionUrl)
     {
         _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));

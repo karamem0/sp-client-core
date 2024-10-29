@@ -42,13 +42,8 @@ public interface ITermLabelService
 
 }
 
-public class TermLabelService : ClientService<TermLabel>, ITermLabelService
+public class TermLabelService(ClientContext clientContext) : ClientService<TermLabel>(clientContext), ITermLabelService
 {
-
-    public TermLabelService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public TermLabel AddObject(Term termObject, string name, uint lcid, bool isDefault)
     {
         _ = termObject ?? throw new ArgumentNullException(nameof(termObject));
@@ -213,6 +208,5 @@ public class TermLabelService : ClientService<TermLabel>, ITermLabelService
             objectPathId => new ClientActionMethod(objectPathId, "CommitAll"));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
-
 
 }

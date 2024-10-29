@@ -15,18 +15,12 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Runtime.Commands;
 
-public class ClientObjectCmdletTraceListener : TraceListener
+public class ClientObjectCmdletTraceListener(Cmdlet cmdlet) : TraceListener
 {
 
-    private readonly List<string> messages;
+    private readonly List<string> messages = [];
 
-    private readonly Cmdlet cmdlet;
-
-    public ClientObjectCmdletTraceListener(Cmdlet cmdlet)
-    {
-        this.messages = [];
-        this.cmdlet = cmdlet ?? throw new ArgumentNullException(nameof(cmdlet));
-    }
+    private readonly Cmdlet cmdlet = cmdlet ?? throw new ArgumentNullException(nameof(cmdlet));
 
     public override void Write(string message)
     {

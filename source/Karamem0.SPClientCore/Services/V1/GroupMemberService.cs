@@ -31,13 +31,8 @@ public interface IGroupMemberService
 
 }
 
-public class GroupMemberService : ClientService, IGroupMemberService
+public class GroupMemberService(ClientContext clientContext) : ClientService(clientContext), IGroupMemberService
 {
-
-    public GroupMemberService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public User AddObject(Group groupObject, User memberObject)
     {
         _ = groupObject ?? throw new ArgumentNullException(nameof(groupObject));

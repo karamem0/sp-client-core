@@ -22,7 +22,7 @@ public class ODataV1RequestPayload<T> where T : ODataV1Object
     public ODataV1RequestPayload(IReadOnlyDictionary<string, object> parameters)
     {
         this.Entity = Activator.CreateInstance<T>();
-        foreach (var property in this.Entity.GetType().GetDeclaringProperties())
+        foreach (var property in this.Entity.GetType().GetDeclaredProperties())
         {
             if (parameters.TryGetValue(property.Name, out var value))
             {

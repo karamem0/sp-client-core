@@ -54,20 +54,17 @@ public interface IListItemService
 
 }
 
-public class ListItemService : ClientService<ListItem>, IListItemService
+public class ListItemService(ClientContext clientContext) : ClientService<ListItem>(clientContext), IListItemService
 {
-
-    public ListItemService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public ListItem AddObject(List listObject, IReadOnlyDictionary<string, object> creationInfo)
     {
         _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
-        var delegates = new List<ClientActionDelegate>();
-        delegates.Add(objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+        var delegates = new List<ClientActionDelegate>
+        {
+            objectPathId => new ClientActionInstantiateObjectPath(objectPathId)
+        };
         delegates.AddRange(creationInfo.Select(parameter =>
             new ClientActionDelegate(objectPathId =>
                 new ClientActionMethod(objectPathId, "SetFieldValue",
@@ -100,8 +97,10 @@ public class ListItemService : ClientService<ListItem>, IListItemService
             new ObjectPathIdentity(listObject.ObjectIdentity));
         foreach (var creationInfo in creationInfos)
         {
-            var delegates = new List<ClientActionDelegate>();
-            delegates.Add(objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+            var delegates = new List<ClientActionDelegate>
+            {
+                objectPathId => new ClientActionInstantiateObjectPath(objectPathId)
+            };
             delegates.AddRange(creationInfo.Select(parameter =>
                 new ClientActionDelegate(objectPathId =>
                     new ClientActionMethod(objectPathId, "SetFieldValue",

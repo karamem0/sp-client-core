@@ -15,18 +15,12 @@ using System.Xml.Serialization;
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
 [XmlType("ObjectPath", Namespace = "http://schemas.microsoft.com/sharepoint/clientquery/2009")]
-public class ClientActionInstantiateObjectPath : ClientAction
+public class ClientActionInstantiateObjectPath(long objectPathId) : ClientAction
 {
-
-    public ClientActionInstantiateObjectPath(long objectPathId)
-    {
-        this.ObjectPathId = objectPathId;
-    }
-
     [XmlAttribute()]
     public override long Id { get; protected set; }
 
     [XmlAttribute()]
-    public virtual long ObjectPathId { get; protected set; }
+    public virtual long ObjectPathId { get; protected set; } = objectPathId;
 
 }

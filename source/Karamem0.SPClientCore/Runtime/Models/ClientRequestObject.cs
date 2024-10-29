@@ -76,7 +76,7 @@ public abstract class ClientRequestObject : ValueObject
         {
             writer.WriteStartElement(typeName);
         }
-        foreach (var propertyInfo in this.GetType().GetDeclaringProperties())
+        foreach (var propertyInfo in this.GetType().GetDeclaredProperties())
         {
             if (propertyInfo.TryGetValue(this, out var value))
             {

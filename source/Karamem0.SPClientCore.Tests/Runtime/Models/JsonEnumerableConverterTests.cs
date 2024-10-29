@@ -6,24 +6,23 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
-using Karamem0.SharePoint.PowerShell.Runtime.Models;
-using NUnit.Framework;
+using Karamem0.SharePoint.PowerShell.Models.V1;
 using Newtonsoft.Json;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
-using Karamem0.SharePoint.PowerShell.Models.V1;
 
-namespace Karamem0.SharePoint.PowerShell.Tests.Runtime.Models;
+namespace Karamem0.SharePoint.PowerShell.Runtime.Models.Tests;
 
+[Category("Karamem0.SharePoint.PowerShell.Runtime")]
 public class JsonEnumerableConverterTests
 {
 
     [Test()]
-    public void CanConvertByCollection()
+    public void CanConvert_Collection_ReturnsTrue()
     {
         var converter = new JsonEnumerableConverter();
         var expected = true;
@@ -32,7 +31,7 @@ public class JsonEnumerableConverterTests
     }
 
     [Test()]
-    public void CanConvertByArray()
+    public void CanConvert_Array_ReturnsFalse()
     {
         var converter = new JsonEnumerableConverter();
         var expected = false;
@@ -41,7 +40,7 @@ public class JsonEnumerableConverterTests
     }
 
     [Test()]
-    public void CanConvertByObject()
+    public void CanConvert_Object_ReturnsFalse()
     {
         var converter = new JsonEnumerableConverter();
         var expected = false;
@@ -50,7 +49,7 @@ public class JsonEnumerableConverterTests
     }
 
     [Test()]
-    public void ReadJsonByValidCollection()
+    public void ReadJson_Valid_ReturnsClientObjectCollection()
     {
         var converter = new JsonEnumerableConverter();
         var textReader = new StringReader(/*lang=json,strict*/ "{\"value\":[{\"_ObjectType_\":\"SP.Web\"}]}");
@@ -65,7 +64,7 @@ public class JsonEnumerableConverterTests
     }
 
     [Test()]
-    public void ReadJsonByInvalidCollection()
+    public void ReadJson_Invalid_ReturnsStringCollection()
     {
         var converter = new JsonEnumerableConverter();
         var textReader = new StringReader(/*lang=json,strict*/ "{\"value\":[\"SP.Web\"]}");
@@ -77,6 +76,30 @@ public class JsonEnumerableConverterTests
         var expected = new string[] { "SP.Web" };
         var actual = converter.ReadJson(jsonReader, typeof(IReadOnlyCollection<string>), null, new JsonSerializer());
         Assert.That(actual, Is.EqualTo(expected));
+    }
+
+    [Test()]
+    public void ReadJson_Null_ReturnsNull()
+    {
+        var converter = new JsonEnumerableConverter();
+        var textReader = new StringReader(/*lang=json,strict*/ "{\"value\":null}");
+        var jsonReader = new JsonTextReader(textReader);
+        while (jsonReader.TokenType != JsonToken.Null)
+        {
+            _ = jsonReader.Read();
+        }
+        var expected = default(IReadOnlyCollection<string>);
+        var actual = converter.ReadJson(jsonReader, typeof(IReadOnlyCollection<string>), null, new JsonSerializer());
+        Assert.That(actual, Is.EqualTo(expected));
+    }
+
+    [Test()]
+    public void WriteJson_ThrowsException()
+    {
+        var converter = new JsonEnumerableConverter();
+        var textWriter = new StringWriter();
+        var jsonWriter = new JsonTextWriter(textWriter);
+        _ = Assert.Throws<NotImplementedException>(() => converter.WriteJson(jsonWriter, null, null));
     }
 
 }

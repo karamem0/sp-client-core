@@ -16,18 +16,12 @@ using System.Xml.Serialization;
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
 [XmlType("Identity", Namespace = "http://schemas.microsoft.com/sharepoint/clientquery/2009")]
-public class ObjectPathIdentity : ObjectPath
+public class ObjectPathIdentity(string name) : ObjectPath
 {
-
-    public ObjectPathIdentity(string name)
-    {
-        this.Name = name ?? throw new ArgumentNullException(nameof(name));
-    }
-
     [XmlAttribute()]
     public override long Id { get; protected set; }
 
     [XmlAttribute()]
-    public virtual string Name { get; protected set; }
+    public virtual string Name { get; protected set; } = name ?? throw new ArgumentNullException(nameof(name));
 
 }

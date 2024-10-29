@@ -31,13 +31,8 @@ public interface IPropertyService
 
 }
 
-public class PropertyService : ClientService, IPropertyService
+public class PropertyService(ClientContext clientContext) : ClientService(clientContext), IPropertyService
 {
-
-    public PropertyService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public PropertyValues GetObject(Alert alertObject)
     {
         _ = alertObject ?? throw new ArgumentNullException(nameof(alertObject));

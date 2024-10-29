@@ -50,8 +50,10 @@ public class AcsOAuthContext : OAuthContext
             { "resource", $"{OAuthConstants.ResourceId}/{resourceId}@{tenantId}" }
         };
         var requestContent = UriQuery.Create(requertParameters);
-        var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
-        requestMessage.Content = new StringContent(requestContent, Encoding.UTF8, "application/x-www-form-urlencoded");
+        var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl)
+        {
+            Content = new StringContent(requestContent, Encoding.UTF8, "application/x-www-form-urlencoded")
+        };
         requestMessage.Headers.Add("Accept", "application/json");
         var responseMessage = this.HttpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
         var responseContent = responseMessage.Content.ReadAsStringAsync().GetAwaiter().GetResult();

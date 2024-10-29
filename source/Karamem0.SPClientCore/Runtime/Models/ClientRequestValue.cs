@@ -37,7 +37,7 @@ public class ClientRequestValue
             case null:
                 output = new ClientRequestValue("Null", null);
                 return true;
-            case Enum enumValue:
+            case Enum:
                 output = new ClientRequestValue("Enum", Convert.ToInt32(input).ToString(CultureInfo.InvariantCulture));
                 return true;
             case bool boolValue:

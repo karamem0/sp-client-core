@@ -29,13 +29,8 @@ public interface ITenantListDesignService
 
 }
 
-public class TenantListDesignService : ClientService, ITenantListDesignService
+public class TenantListDesignService(ClientContext clientContext) : ClientService(clientContext), ITenantListDesignService
 {
-
-    public TenantListDesignService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public TenantListDesign AddObject(IReadOnlyDictionary<string, object> creationInfo)
     {
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));

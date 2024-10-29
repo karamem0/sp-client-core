@@ -15,21 +15,14 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth;
 
-public class AadOAuthTokenProvider : OAuthTokenProvider
+public class AadOAuthTokenProvider(Uri uri, AadOAuthContext oAuthContext, AadOAuthToken oAuthToken) : OAuthTokenProvider
 {
 
-    private readonly Uri uri;
+    private readonly Uri uri = uri ?? throw new ArgumentNullException(nameof(uri));
 
-    private readonly AadOAuthContext oAuthContext;
+    private readonly AadOAuthContext oAuthContext = oAuthContext ?? throw new ArgumentNullException(nameof(oAuthContext));
 
-    private AadOAuthToken oAuthToken;
-
-    public AadOAuthTokenProvider(Uri uri, AadOAuthContext oAuthContext, AadOAuthToken oAuthToken)
-    {
-        this.uri = uri ?? throw new ArgumentNullException(nameof(uri));
-        this.oAuthContext = oAuthContext ?? throw new ArgumentNullException(nameof(oAuthContext));
-        this.oAuthToken = oAuthToken ?? throw new ArgumentNullException(nameof(oAuthToken));
-    }
+    private AadOAuthToken oAuthToken = oAuthToken ?? throw new ArgumentNullException(nameof(oAuthToken));
 
     public override string CurrentAceessToken => this.oAuthToken.AccessToken;
 

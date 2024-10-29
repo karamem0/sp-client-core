@@ -40,13 +40,8 @@ public interface IUserService
 
 }
 
-public class UserService : ClientService<User>, IUserService
+public class UserService(ClientContext clientContext) : ClientService<User>(clientContext), IUserService
 {
-
-    public UserService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public User AddObject(IReadOnlyDictionary<string, object> creationInfo)
     {
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));

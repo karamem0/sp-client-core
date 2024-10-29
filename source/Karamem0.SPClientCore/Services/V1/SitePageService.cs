@@ -27,13 +27,8 @@ public interface ISitePageService
 
 }
 
-public class SitePageService : ClientService, ISitePageService
+public class SitePageService(ClientContext clientContext) : ClientService(clientContext), ISitePageService
 {
-
-    public SitePageService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public void AddObject(Folder folderObject, string pageName, SitePageLayoutType pageLayoutType)
     {
         _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));

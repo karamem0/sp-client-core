@@ -33,13 +33,8 @@ public interface ITenantHubSiteService
 
 }
 
-public class TenantHubSiteService : ClientService<HubSite>, ITenantHubSiteService
+public class TenantHubSiteService(ClientContext clientContext) : ClientService<HubSite>(clientContext), ITenantHubSiteService
 {
-
-    public TenantHubSiteService(ClientContext clientContext) : base(clientContext)
-    {
-    }
-
     public HubSite AddObject(string siteCollectionUrl, IReadOnlyDictionary<string, object> creationInfo)
     {
         _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));

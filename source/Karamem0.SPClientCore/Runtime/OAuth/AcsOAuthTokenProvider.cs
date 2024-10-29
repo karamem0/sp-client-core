@@ -6,7 +6,6 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
-using Karamem0.SharePoint.PowerShell.Resources;
 using Microsoft.IdentityModel.JsonWebTokens;
 using System;
 using System.Collections.Generic;
@@ -15,18 +14,12 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth;
 
-public class AcsOAuthTokenProvider : OAuthTokenProvider
+public class AcsOAuthTokenProvider(AcsOAuthContext oAuthContext, AcsOAuthToken oAuthToken) : OAuthTokenProvider
 {
 
-    private readonly AcsOAuthContext oAuthContext;
+    private readonly AcsOAuthContext oAuthContext = oAuthContext ?? throw new ArgumentNullException(nameof(oAuthContext));
 
-    private AcsOAuthToken oAuthToken;
-
-    public AcsOAuthTokenProvider(AcsOAuthContext oAuthContext, AcsOAuthToken oAuthToken)
-    {
-        this.oAuthContext = oAuthContext ?? throw new ArgumentNullException(nameof(oAuthContext));
-        this.oAuthToken = oAuthToken ?? throw new ArgumentNullException(nameof(oAuthToken));
-    }
+    private AcsOAuthToken oAuthToken = oAuthToken ?? throw new ArgumentNullException(nameof(oAuthToken));
 
     public override string CurrentAceessToken => this.oAuthToken.AccessToken;
 
