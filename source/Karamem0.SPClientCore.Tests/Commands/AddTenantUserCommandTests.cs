@@ -21,7 +21,7 @@ public class AddTenantUserCommandTests
 {
 
     [Test()]
-    public void AddUserBySiteCollection()
+    public void InvokeCommand_SiteCollection_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -65,7 +65,7 @@ public class AddTenantUserCommandTests
     }
 
     [Test()]
-    public void AddUserBySiteCollectionUrl()
+    public void InvokeCommand_SiteCollectionUrl_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

@@ -21,7 +21,7 @@ public class RemoveListCommandTests
 {
 
     [Test()]
-    public void RemoveList()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -53,7 +53,7 @@ public class RemoveListCommandTests
     }
 
     [Test()]
-    public void MoveListToRecycleBin()
+    public void InvokeCommand_RecycleBin_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

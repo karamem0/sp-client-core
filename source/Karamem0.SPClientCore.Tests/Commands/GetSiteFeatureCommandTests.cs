@@ -21,7 +21,7 @@ public class GetSiteFeatureCommandTests
 {
 
     [Test()]
-    public void GetSiteFeatures()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -46,7 +46,7 @@ public class GetSiteFeatureCommandTests
     }
 
     [Test()]
-    public void GetSiteFeatureByIdentity()
+    public void InvokeCommand_Identity_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -79,7 +79,7 @@ public class GetSiteFeatureCommandTests
     }
 
     [Test()]
-    public void GetSiteFeatureByFeatureId()
+    public void InvokeCommand_FeatureId_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

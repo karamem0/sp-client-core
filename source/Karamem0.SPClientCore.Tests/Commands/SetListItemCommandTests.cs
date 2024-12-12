@@ -22,7 +22,7 @@ public class SetListItemCommandTests
 {
 
     [Test()]
-    public void SetListItemByHashtable()
+    public void InvokeCommand_Hashtable_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -185,7 +185,7 @@ public class SetListItemCommandTests
     }
 
     [Test()]
-    public void SetListItemByObject()
+    public void InvokeCommand_Object_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -348,7 +348,7 @@ public class SetListItemCommandTests
     }
 
     [Test()]
-    public void SetListItemUsingSystemUpdate()
+    public void InvokeCommand_SystemUpdate_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

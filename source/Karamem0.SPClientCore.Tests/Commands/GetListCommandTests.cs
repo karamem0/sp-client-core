@@ -22,7 +22,7 @@ public class GetListCommandTests
 {
 
     [Test()]
-    public void GetLists()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -47,7 +47,7 @@ public class GetListCommandTests
     }
 
     [Test()]
-    public void GetListByIdentity()
+    public void InvokeCommand_Identity_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -80,7 +80,7 @@ public class GetListCommandTests
     }
 
     [Test()]
-    public void GetListByListItem()
+    public void InvokeCommand_ListItem_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -121,7 +121,7 @@ public class GetListCommandTests
     }
 
     [Test()]
-    public void GetListByView()
+    public void InvokeCommand_View_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -162,7 +162,7 @@ public class GetListCommandTests
     }
 
     [Test()]
-    public void GetListByDrive()
+    public void InvokeCommand_Drive_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -195,7 +195,7 @@ public class GetListCommandTests
     }
 
     [Test()]
-    public void GetListByListId()
+    public void InvokeCommand_ListId_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -221,7 +221,7 @@ public class GetListCommandTests
     }
 
     [Test()]
-    public void GetListByListTitle()
+    public void InvokeCommand_ListTitle_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -247,7 +247,7 @@ public class GetListCommandTests
     }
 
     [Test()]
-    public void GetListByLibraryType()
+    public void InvokeCommand_LibraryType_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

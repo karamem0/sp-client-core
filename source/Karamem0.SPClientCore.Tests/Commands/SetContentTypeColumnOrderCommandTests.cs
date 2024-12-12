@@ -21,7 +21,7 @@ public class SetContentTypeColumnOrder
 {
 
     [Test()]
-    public void SetListContentTypeColumnOrder()
+    public void InvokeCommand_List_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -100,7 +100,7 @@ public class SetContentTypeColumnOrder
     }
 
     [Test()]
-    public void SetSiteContentTypeColumnOrder()
+    public void InvokeCommand_Site_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

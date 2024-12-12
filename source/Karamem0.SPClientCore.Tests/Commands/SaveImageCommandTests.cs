@@ -21,7 +21,7 @@ public class SaveImageCommandTests
 {
 
     [Test()]
-    public void UploadImageByList()
+    public void InvokeCommand_List_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -73,7 +73,7 @@ public class SaveImageCommandTests
     }
 
     [Test()]
-    public void UploadImageByListItem()
+    public void InvokeCommand_ListItem_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

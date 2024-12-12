@@ -21,7 +21,7 @@ public class AddExternalUserCommandTests
 {
 
     [Test()]
-    public void AddSiteExternalUser()
+    public void InvokeCommand_Site_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -63,7 +63,7 @@ public class AddExternalUserCommandTests
     }
 
     [Test()]
-    public void AddFileExternalUser()
+    public void InvokeCommand_File_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -104,7 +104,7 @@ public class AddExternalUserCommandTests
     }
 
     [Test()]
-    public void AddFolderExternalUser()
+    public void InvokeCommand_Folder_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

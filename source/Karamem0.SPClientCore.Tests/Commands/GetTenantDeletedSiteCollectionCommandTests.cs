@@ -21,7 +21,7 @@ public class GetTenantDeletedSiteCollectionCommandTests
 {
 
     [Test()]
-    public void GetTenantDeletedSiteCollections()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -83,7 +83,7 @@ public class GetTenantDeletedSiteCollectionCommandTests
     }
 
     [Test()]
-    public void GetTenantDeletedSiteCollectionByIdentity()
+    public void InvokeCommand_Identity_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -146,7 +146,7 @@ public class GetTenantDeletedSiteCollectionCommandTests
     }
 
     [Test()]
-    public void GetTenantDeletedSiteCollectionByUrl()
+    public void InvokeCommand_Url_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

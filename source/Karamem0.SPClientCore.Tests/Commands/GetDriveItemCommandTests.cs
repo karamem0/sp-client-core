@@ -22,7 +22,7 @@ public class GetDriveItemCommandTests
 {
 
     [Test()]
-    public void GetDriveItemsByDrive()
+    public void InvokeCommand_Drive_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -55,7 +55,7 @@ public class GetDriveItemCommandTests
     }
 
     [Test()]
-    public void GetDriveItemsByDriveItem()
+    public void InvokeCommand_DriveItem_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -96,7 +96,7 @@ public class GetDriveItemCommandTests
     }
 
     [Test()]
-    public void GetDriveItemByFolder()
+    public void InvokeCommand_Folder_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -129,7 +129,7 @@ public class GetDriveItemCommandTests
     }
 
     [Test()]
-    public void GetDriveItemByFile()
+    public void InvokeCommand_File_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -162,7 +162,7 @@ public class GetDriveItemCommandTests
     }
 
     [Test()]
-    public void GetDriveItemByListItem()
+    public void InvokeCommand_ListItem_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -202,7 +202,7 @@ public class GetDriveItemCommandTests
     }
 
     [Test()]
-    public void GetDriveItemByDriveItemUrl()
+    public void InvokeCommand_DriveItemUrl_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -228,7 +228,7 @@ public class GetDriveItemCommandTests
     }
 
     [Test()]
-    public void GetDriveItemByDriveItemId()
+    public void InvokeCommand_DriveItemId_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -262,7 +262,7 @@ public class GetDriveItemCommandTests
     }
 
     [Test()]
-    public void GetDriveItemByDriveItemPath()
+    public void InvokeCommand_DriveItemPath_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

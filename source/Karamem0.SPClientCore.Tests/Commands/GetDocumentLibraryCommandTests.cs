@@ -21,7 +21,7 @@ public class GetDocumentLibraryCommandTests
 {
 
     [Test()]
-    public void GetDocumentLibraries()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -46,7 +46,7 @@ public class GetDocumentLibraryCommandTests
     }
 
     [Test()]
-    public void GetDocumentAndMediaLibraries()
+    public void InvokeCommand_Include_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -73,7 +73,7 @@ public class GetDocumentLibraryCommandTests
     }
 
     [Test()]
-    public void GetDefaultDocumentLibrary()
+    public void InvokeCommand_Default_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

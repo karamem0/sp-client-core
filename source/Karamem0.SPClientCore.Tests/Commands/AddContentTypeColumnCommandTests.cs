@@ -21,7 +21,7 @@ public class AddContentTypeColumnCommandTests
 {
 
     [Test()]
-    public void AddListContentTypeColumn()
+    public void InvokeCommand_List_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -100,7 +100,7 @@ public class AddContentTypeColumnCommandTests
     }
 
     [Test()]
-    public void AddSiteContentTypeColumn()
+    public void InvokeCommand_Site_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

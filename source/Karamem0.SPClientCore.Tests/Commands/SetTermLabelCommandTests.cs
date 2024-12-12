@@ -21,7 +21,7 @@ public class SetTermLabelCommandTests
 {
 
     [Test()]
-    public void SetTermLabelLcid()
+    public void InvokeCommand_Lcid_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -89,7 +89,7 @@ public class SetTermLabelCommandTests
     }
 
     [Test()]
-    public void SetTermLabelName()
+    public void InvokeCommand_Name_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -157,7 +157,7 @@ public class SetTermLabelCommandTests
     }
 
     [Test()]
-    public void SetTermLabelIsDefault()
+    public void InvokeCommand_IsDefault_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

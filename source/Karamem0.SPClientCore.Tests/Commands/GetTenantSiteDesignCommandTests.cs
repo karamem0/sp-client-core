@@ -22,7 +22,7 @@ public class GetTenantSiteDesignCommandTests
 {
 
     [Test()]
-    public void GetTenantSiteDesigns()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -47,7 +47,7 @@ public class GetTenantSiteDesignCommandTests
     }
 
     [Test()]
-    public void GetTenantSiteDesignByIdentity()
+    public void InvokeCommand_Identity_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -80,7 +80,7 @@ public class GetTenantSiteDesignCommandTests
     }
 
     [Test()]
-    public void GetTenantSiteDesignBySiteDesignId()
+    public void InvokeCommand_SiteDesignId_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

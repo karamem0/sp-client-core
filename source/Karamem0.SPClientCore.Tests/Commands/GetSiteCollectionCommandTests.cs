@@ -21,7 +21,7 @@ public class GetSiteCollectionCommandTests
 {
 
     [Test()]
-    public void GetSiteCollectionByIdentity()
+    public void InvokeCommand_Identity_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -54,7 +54,7 @@ public class GetSiteCollectionCommandTests
     }
 
     [Test()]
-    public void GetSiteCollectionBySiteCollectionUrl()
+    public void InvokeCommand_SiteCollectionUrl_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

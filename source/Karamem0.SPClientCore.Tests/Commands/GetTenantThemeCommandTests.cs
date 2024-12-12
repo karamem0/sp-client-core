@@ -22,7 +22,7 @@ public class GetTenantThemeCommandTests
 {
 
     [Test()]
-    public void GetTenantThemes()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -88,7 +88,7 @@ public class GetTenantThemeCommandTests
     }
 
     [Test()]
-    public void GetTenantThemeByIdentity()
+    public void InvokeCommand_Identity_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -155,7 +155,7 @@ public class GetTenantThemeCommandTests
     }
 
     [Test()]
-    public void GetTenantThemeByThemeName()
+    public void InvokeCommand_ThemeName_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

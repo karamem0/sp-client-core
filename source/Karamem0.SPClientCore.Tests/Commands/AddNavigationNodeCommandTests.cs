@@ -21,7 +21,7 @@ public class AddNavigationNodeCommandTests
 {
 
     [Test()]
-    public void AddNavigationNode()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -65,7 +65,7 @@ public class AddNavigationNodeCommandTests
     }
 
     [Test()]
-    public void AddNavigationNodeToQuickLaunch()
+    public void InvokeCommand_QuickLaunch_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -102,7 +102,7 @@ public class AddNavigationNodeCommandTests
     }
 
     [Test()]
-    public void AddNavigationNodeToTopNavigationBar()
+    public void InvokeCommand_TopNavigationBar_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

@@ -21,7 +21,7 @@ public class AddRoleAssignmentCommandTests
 {
 
     [Test()]
-    public void AddSiteRoleAssignment()
+    public void InvokeCommand_Site_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -79,7 +79,7 @@ public class AddRoleAssignmentCommandTests
     }
 
     [Test()]
-    public void AddListRoleAssignment()
+    public void InvokeCommand_List_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -144,7 +144,7 @@ public class AddRoleAssignmentCommandTests
     }
 
     [Test()]
-    public void AddListItemRoleAssignment()
+    public void InvokeCommand_ListItem_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

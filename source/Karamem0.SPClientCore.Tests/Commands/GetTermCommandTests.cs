@@ -21,7 +21,7 @@ public class GetTermCommandTests
 {
 
     [Test()]
-    public void GetTermSetTerms()
+    public void InvokeCommand_TermSet_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -62,7 +62,7 @@ public class GetTermCommandTests
     }
 
     [Test()]
-    public void GetTermSetTermByIdentity()
+    public void InvokeCommand_TermSet_Identity_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -111,7 +111,7 @@ public class GetTermCommandTests
     }
 
     [Test()]
-    public void GetTermSetTermByTermLabel()
+    public void InvokeCommand_TermSet_TermLabel_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -168,7 +168,7 @@ public class GetTermCommandTests
     }
 
     [Test()]
-    public void GetTermSetTermByTermId()
+    public void InvokeCommand_TermSet_TermId_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -210,7 +210,7 @@ public class GetTermCommandTests
     }
 
     [Test()]
-    public void GetTermSetTermByTermName()
+    public void InvokeCommand_TermSet_TermName_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -252,7 +252,7 @@ public class GetTermCommandTests
     }
 
     [Test()]
-    public void GetTermTerms()
+    public void InvokeCommand_Term_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -293,7 +293,7 @@ public class GetTermCommandTests
     }
 
     [Test()]
-    public void GetTermTermByIdentity()
+    public void InvokeCommand_Term_Identity_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -350,7 +350,7 @@ public class GetTermCommandTests
     }
 
     [Test()]
-    public void GetTermTermByTermLabel()
+    public void InvokeCommand_Term_TermLabel_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -415,7 +415,7 @@ public class GetTermCommandTests
     }
 
     [Test()]
-    public void GetTermTermByTermId()
+    public void InvokeCommand_Term_TermId_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -465,7 +465,7 @@ public class GetTermCommandTests
     }
 
     [Test()]
-    public void GetTermTermByTermName()
+    public void InvokeCommand_Term_TermName_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

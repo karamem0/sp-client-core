@@ -21,7 +21,7 @@ public class GetGroupCommandTests
 {
 
     [Test()]
-    public void GetGroups()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -46,7 +46,7 @@ public class GetGroupCommandTests
     }
 
     [Test()]
-    public void GetGroupByIdentity()
+    public void InvokeCommand_Identity_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -79,7 +79,7 @@ public class GetGroupCommandTests
     }
 
     [Test()]
-    public void GetGroupByGroupId()
+    public void InvokeCommand_GroupId_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -105,7 +105,7 @@ public class GetGroupCommandTests
     }
 
     [Test()]
-    public void GetGroupByGroupTitle()
+    public void InvokeCommand_GroupTitle_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

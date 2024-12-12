@@ -21,7 +21,7 @@ public class GetUserPropertyCommandTests
 {
 
     [Test()]
-    public void GetUserPropertyByIdentity()
+    public void InvokeCommand_Identity_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -54,7 +54,7 @@ public class GetUserPropertyCommandTests
     }
 
     [Test()]
-    public void GetUserPropertyByUserLoginName()
+    public void InvokeCommand_UserLoginName_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

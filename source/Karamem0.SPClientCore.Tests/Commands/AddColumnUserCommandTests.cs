@@ -21,7 +21,7 @@ public class AddColumnUserCommandTests
 {
 
     [Test()]
-    public void AddListColumnUser()
+    public void InvokeCommand_List_Choice_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -94,7 +94,7 @@ public class AddColumnUserCommandTests
     }
 
     [Test()]
-    public void AddListColumnUserMulti()
+    public void InvokeCommand_List_MultiChoice_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -167,7 +167,7 @@ public class AddColumnUserCommandTests
     }
 
     [Test()]
-    public void AddSiteColumnUser()
+    public void InvokeCommand_Site_Choice_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -232,7 +232,7 @@ public class AddColumnUserCommandTests
     }
 
     [Test()]
-    public void AddSiteColumnUserMulti()
+    public void InvokeCommand_Site_MultiChoice_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

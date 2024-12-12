@@ -21,7 +21,7 @@ public class UnlockFileCommandTests
 {
 
     [Test()]
-    public void CheckInFile()
+    public void InvokeCommand_CheckIn_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -80,7 +80,7 @@ public class UnlockFileCommandTests
     }
 
     [Test()]
-    public void UndoCheckOutFile()
+    public void InvokeCommand_Undo_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

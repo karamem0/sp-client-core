@@ -21,7 +21,7 @@ public class GetColumnCommandTests
 {
 
     [Test()]
-    public void GetListContentTypeColumns()
+    public void InvokeCommand_ListContentType_ContentType_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -62,7 +62,7 @@ public class GetColumnCommandTests
     }
 
     [Test()]
-    public void GetListContentTypeColumnByIdentity()
+    public void InvokeCommand_ListContentType_Identity_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -111,7 +111,7 @@ public class GetColumnCommandTests
     }
 
     [Test()]
-    public void GetListContentTypeColumnByColumnId()
+    public void InvokeCommand_ListContentType_ColumnId_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -153,7 +153,7 @@ public class GetColumnCommandTests
     }
 
     [Test()]
-    public void GetListContentTypeColumnByColumnTitle()
+    public void InvokeCommand_ListContentType_ColumnTitle_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -195,7 +195,7 @@ public class GetColumnCommandTests
     }
 
     [Test()]
-    public void GetSiteContentTypeColumns()
+    public void InvokeCommand_SiteContentType_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -228,7 +228,7 @@ public class GetColumnCommandTests
     }
 
     [Test()]
-    public void GetSiteContentTypeColumnByIdentity()
+    public void InvokeCommand_SiteContentType_Identity_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -269,7 +269,7 @@ public class GetColumnCommandTests
     }
 
     [Test()]
-    public void GetSiteContentTypeColumnByColumnId()
+    public void InvokeCommand_SiteContentType_ColumnId_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -303,7 +303,7 @@ public class GetColumnCommandTests
     }
 
     [Test()]
-    public void GetSiteContentTypeColumnByColumnTitle()
+    public void InvokeCommand_SiteContentType_ColumnTitle_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -337,7 +337,7 @@ public class GetColumnCommandTests
     }
 
     [Test()]
-    public void GetListColumns()
+    public void InvokeCommand_List_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -370,7 +370,7 @@ public class GetColumnCommandTests
     }
 
     [Test()]
-    public void GetListColumnByIdentity()
+    public void InvokeCommand_List_Identity_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -411,7 +411,7 @@ public class GetColumnCommandTests
     }
 
     [Test()]
-    public void GetListColumnByColumnId()
+    public void InvokeCommand_List_ColumnId_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -445,7 +445,7 @@ public class GetColumnCommandTests
     }
 
     [Test()]
-    public void GetListColumnByColumnTitle()
+    public void InvokeCommand_List_ColumnTitle_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -479,7 +479,7 @@ public class GetColumnCommandTests
     }
 
     [Test()]
-    public void GetSiteColumns()
+    public void InvokeCommand_Site_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -504,7 +504,7 @@ public class GetColumnCommandTests
     }
 
     [Test()]
-    public void GetSiteColumnByIdentity()
+    public void InvokeCommand_Site_Identity_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -537,7 +537,7 @@ public class GetColumnCommandTests
     }
 
     [Test()]
-    public void GetSiteColumnByColumnId()
+    public void InvokeCommand_Site_ColumnId_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -563,7 +563,7 @@ public class GetColumnCommandTests
     }
 
     [Test()]
-    public void GetSiteColumnByColumnTitle()
+    public void InvokeCommand_Site_ColumnTitle_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

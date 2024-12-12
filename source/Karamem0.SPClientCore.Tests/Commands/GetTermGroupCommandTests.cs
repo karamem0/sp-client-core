@@ -21,7 +21,7 @@ public class GetTermGroupCommandTests
 {
 
     [Test()]
-    public void GetTermGroups()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -46,7 +46,7 @@ public class GetTermGroupCommandTests
     }
 
     [Test()]
-    public void GetTermGroupByIdentity()
+    public void InvokeCommand_Identity_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -79,7 +79,7 @@ public class GetTermGroupCommandTests
     }
 
     [Test()]
-    public void GetTermGroupByTermGroupId()
+    public void InvokeCommand_TermGroupId_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -105,7 +105,7 @@ public class GetTermGroupCommandTests
     }
 
     [Test()]
-    public void GetTermGroupByTermGroupName()
+    public void InvokeCommand_TermGroupName_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

@@ -21,7 +21,7 @@ public class RemoveTermCommandTests
 {
 
     [Test()]
-    public void RemoveTermFromTermSet()
+    public void InvokeCommand_TermSet_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -69,7 +69,7 @@ public class RemoveTermCommandTests
     }
 
     [Test()]
-    public void RemoveTermFromTerm()
+    public void InvokeCommand_Term_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

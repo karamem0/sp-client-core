@@ -21,7 +21,7 @@ public class GetListTemplateCommandTests
 {
 
     [Test()]
-    public void GetListTemplates()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -46,7 +46,7 @@ public class GetListTemplateCommandTests
     }
 
     [Test()]
-    public void GetListTemplateByIdentity()
+    public void InvokeCommand_Identity_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -79,7 +79,7 @@ public class GetListTemplateCommandTests
     }
 
     [Test()]
-    public void GetListTemplateByListTemplateTitle()
+    public void InvokeCommand_ListTemplateTitle_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

@@ -21,7 +21,7 @@ public class SetFolderCommandTests
 {
 
     [Test()]
-    public void SetFolder()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

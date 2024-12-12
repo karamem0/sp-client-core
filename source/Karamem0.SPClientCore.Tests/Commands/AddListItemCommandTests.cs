@@ -22,7 +22,7 @@ public class AddListItemCommandTests
 {
 
     [Test()]
-    public void AddListItemByHashtable()
+    public void InvokeCommand_Hastbale_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -179,7 +179,7 @@ public class AddListItemCommandTests
     }
 
     [Test()]
-    public void AddListItemByObject()
+    public void InvokeCommand_Object_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

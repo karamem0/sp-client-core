@@ -21,7 +21,7 @@ public class GetTenantSiteCollectionCommandTests
 {
 
     [Test()]
-    public void GetTenantSiteCollections()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -46,7 +46,7 @@ public class GetTenantSiteCollectionCommandTests
     }
 
     [Test()]
-    public void GetTenantSiteCollectionsByFilter()
+    public void InvokeCommand_Filter_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -74,7 +74,7 @@ public class GetTenantSiteCollectionCommandTests
     }
 
     [Test()]
-    public void GetTenantSiteCollectionByIdentity()
+    public void InvokeCommand_Identity_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -107,7 +107,7 @@ public class GetTenantSiteCollectionCommandTests
     }
 
     [Test()]
-    public void GetTenantSiteCollectionByUrl()
+    public void InvokeCommand_Url_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

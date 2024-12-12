@@ -21,7 +21,7 @@ public class GetRoleAssignmentCommandTests
 {
 
     [Test()]
-    public void GetSiteRoleAssignments()
+    public void InvokeCommand_Site_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -47,7 +47,7 @@ public class GetRoleAssignmentCommandTests
     }
 
     [Test()]
-    public void GetListRoleAssignments()
+    public void InvokeCommand_List_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -80,7 +80,7 @@ public class GetRoleAssignmentCommandTests
     }
 
     [Test()]
-    public void GetListItemRoleAssignments()
+    public void InvokeCommand_ListItem_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -121,7 +121,7 @@ public class GetRoleAssignmentCommandTests
     }
 
     [Test()]
-    public void GetSiteRoleAssignmentByPrincipalId()
+    public void InvokeCommand_Site_PrincipalId_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -155,7 +155,7 @@ public class GetRoleAssignmentCommandTests
     }
 
     [Test()]
-    public void GetListRoleAssignmentByPrincipalId()
+    public void InvokeCommand_List_PrincipalId_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -189,7 +189,7 @@ public class GetRoleAssignmentCommandTests
     }
 
     [Test()]
-    public void GetListItemRoleAssignmentByPrincipalId()
+    public void InvokeCommand_ListItem_PrincipalId_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

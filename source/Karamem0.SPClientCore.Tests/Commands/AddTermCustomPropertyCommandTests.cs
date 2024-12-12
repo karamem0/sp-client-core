@@ -21,7 +21,7 @@ public class AddTermCustomPropertyCommandTests
 {
 
     [Test()]
-    public void AddTermSetCustomProperty()
+    public void InvokeCommand_TermSet_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -79,7 +79,7 @@ public class AddTermCustomPropertyCommandTests
     }
 
     [Test()]
-    public void AddTermCustomProperty()
+    public void InvokeCommand_Term_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

@@ -21,7 +21,7 @@ public class RemoveTenantHubSiteCommandTests
 {
 
     [Test()]
-    public void RemoveHubSite()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

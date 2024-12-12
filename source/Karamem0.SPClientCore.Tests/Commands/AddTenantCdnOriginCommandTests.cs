@@ -20,7 +20,7 @@ public class AddTenantCdnOriginCommandTests
 {
 
     [Test()]
-    public void AddTenantPublicCdnOrigin()
+    public void InvokeCommand_Public_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -62,7 +62,7 @@ public class AddTenantCdnOriginCommandTests
     }
 
     [Test()]
-    public void AddTenantPrivateCdnOrigin()
+    public void InvokeCommand_Private_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

@@ -21,7 +21,7 @@ public class AddSubscriptionCommandTests
 {
 
     [Test()]
-    public void AddSubscription()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

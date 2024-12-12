@@ -21,7 +21,7 @@ public class MoveFolderCommandTests
 {
 
     [Test()]
-    public void MoveFolder()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -81,7 +81,7 @@ public class MoveFolderCommandTests
     }
 
     [Test()]
-    public void MoveFolderLegacyByRelativeUrl()
+    public void InvokeCommand_Legacy_RelativeUrl_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -132,7 +132,7 @@ public class MoveFolderCommandTests
     }
 
     [Test()]
-    public void MoveFolderLegacyByAbsoluteUrl()
+    public void InvokeCommand_Legacy_AbsoluteUrl_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

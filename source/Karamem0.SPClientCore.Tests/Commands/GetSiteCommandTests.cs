@@ -21,7 +21,7 @@ public class GetSiteCommandTests
 {
 
     [Test()]
-    public void GetSites()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -46,7 +46,7 @@ public class GetSiteCommandTests
     }
 
     [Test()]
-    public void GetSiteByIdentity()
+    public void InvokeCommand_Identity_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -79,7 +79,7 @@ public class GetSiteCommandTests
     }
 
     [Test()]
-    public void GetSiteBySiteCollection()
+    public void InvokeCommand_SiteCollection_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -111,7 +111,7 @@ public class GetSiteCommandTests
     }
 
     [Test()]
-    public void GetSiteByList()
+    public void InvokeCommand_List_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -144,7 +144,7 @@ public class GetSiteCommandTests
     }
 
     [Test()]
-    public void GetSiteBySiteId()
+    public void InvokeCommand_SiteId_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -170,7 +170,7 @@ public class GetSiteCommandTests
     }
 
     [Test()]
-    public void GetSiteBySiteUrl()
+    public void InvokeCommand_SiteUrl_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

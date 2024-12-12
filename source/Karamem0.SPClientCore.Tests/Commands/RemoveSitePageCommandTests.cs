@@ -21,7 +21,7 @@ public class RemoveSitePageCommandTests
 {
 
     [Test()]
-    public void RemoveSitePage()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -52,7 +52,7 @@ public class RemoveSitePageCommandTests
     }
 
     [Test()]
-    public void RemoveSitePageByList()
+    public void InvokeCommand_List_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

@@ -21,7 +21,7 @@ public class GetSubscriptionCommandTests
 {
 
     [Test()]
-    public void GetSubscriptions()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -54,7 +54,7 @@ public class GetSubscriptionCommandTests
     }
 
     [Test()]
-    public void GetSubscriptionByIdentity()
+    public void InvokeCommand_Identity_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -111,7 +111,7 @@ public class GetSubscriptionCommandTests
     }
 
     [Test()]
-    public void GetSubscriptionBySubscriptionId()
+    public void InvokeCommand_SubscriptionId_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

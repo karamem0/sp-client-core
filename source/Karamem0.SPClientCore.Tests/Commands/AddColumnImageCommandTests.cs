@@ -21,7 +21,7 @@ public class AddColumnImageCommandTests
 {
 
     [Test()]
-    public void AddListColumnImage()
+    public void InvokeCommand_List_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -87,7 +87,7 @@ public class AddColumnImageCommandTests
     }
 
     [Test()]
-    public void AddSiteColumnImage()
+    public void InvokeCommand_Site_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

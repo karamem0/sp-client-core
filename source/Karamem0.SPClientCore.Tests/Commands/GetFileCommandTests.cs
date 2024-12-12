@@ -21,7 +21,7 @@ public class GetFileCommandTests
 {
 
     [Test()]
-    public void GetFiles()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -54,7 +54,7 @@ public class GetFileCommandTests
     }
 
     [Test()]
-    public void GetFileByIdentity()
+    public void InvokeCommand_Identity_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -87,7 +87,7 @@ public class GetFileCommandTests
     }
 
     [Test()]
-    public void GetFileByAttachmentFile()
+    public void InvokeCommand_AttachmentFile_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -136,7 +136,7 @@ public class GetFileCommandTests
     }
 
     [Test()]
-    public void GetFileByFileVersion()
+    public void InvokeCommand_FileVersion_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -206,7 +206,7 @@ public class GetFileCommandTests
     }
 
     [Test()]
-    public void GetFileByTetantApp()
+    public void InvokeCommand_TetantApp_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -238,7 +238,7 @@ public class GetFileCommandTests
     }
 
     [Test()]
-    public void GetFileBySiteCollectionApp()
+    public void InvokeCommand_SiteCollectionApp_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -271,7 +271,7 @@ public class GetFileCommandTests
     }
 
     [Test()]
-    public void GetFileByListItem()
+    public void InvokeCommand_ListItem_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -312,7 +312,7 @@ public class GetFileCommandTests
     }
 
     [Test()]
-    public void GetFileByFileId()
+    public void InvokeCommand_FileId_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -352,7 +352,7 @@ public class GetFileCommandTests
     }
 
     [Test()]
-    public void GetFileByFileUrl()
+    public void InvokeCommand_FileUrl_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -378,7 +378,7 @@ public class GetFileCommandTests
     }
 
     [Test()]
-    public void GetFileByFileName()
+    public void InvokeCommand_FileName_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

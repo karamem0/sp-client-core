@@ -21,7 +21,7 @@ public class EnableTermCommandTests
 {
 
     [Test()]
-    public void EnableTerm()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

@@ -21,7 +21,7 @@ public class SetTenantUserCommandTests
 {
 
     [Test()]
-    public void SetUserBySiteCollectionAndUser()
+    public void InvokeCommand_SiteCollection_User_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -75,7 +75,7 @@ public class SetTenantUserCommandTests
     }
 
     [Test()]
-    public void SetUserBySiteCollectionAndUserLoginName()
+    public void InvokeCommand_SiteCollection_UserLoginName_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -129,7 +129,7 @@ public class SetTenantUserCommandTests
     }
 
     [Test()]
-    public void SetUserBySiteCollectionAndUserEmail()
+    public void InvokeCommand_SiteCollection_UserEmail_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -183,7 +183,7 @@ public class SetTenantUserCommandTests
     }
 
     [Test()]
-    public void SetUserBySiteCollectionUrlAndUser()
+    public void InvokeCommand_SiteCollectionUrl_User_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -230,7 +230,7 @@ public class SetTenantUserCommandTests
     }
 
     [Test()]
-    public void SetUserBySiteCollectionUrlAndUserLoginName()
+    public void InvokeCommand_SiteCollectionUrl_UserLoginName_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -277,7 +277,7 @@ public class SetTenantUserCommandTests
     }
 
     [Test()]
-    public void SetUserBySiteCollectionUrlAndUserEmail()
+    public void InvokeCommand_SiteCollectionUrl_UserEmail_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

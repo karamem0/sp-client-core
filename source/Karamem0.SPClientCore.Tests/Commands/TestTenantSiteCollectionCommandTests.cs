@@ -20,7 +20,7 @@ public class TestTenantSiteCollectionCommandTests
 {
 
     [Test()]
-    public void CheckSiteCollectionIsTenantAdmin()
+    public void InvokeCommand_TenantAdmin_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -45,7 +45,7 @@ public class TestTenantSiteCollectionCommandTests
     }
 
     [Test()]
-    public void CheckSiteCollectionIsNotTenantAdmin()
+    public void InvokeCommand_NotTenantAdmin_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

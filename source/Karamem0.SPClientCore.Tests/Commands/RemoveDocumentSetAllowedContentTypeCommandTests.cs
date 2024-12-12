@@ -21,7 +21,7 @@ public class RemoveDocumentSetAllowedContentTypeCommandTests
 {
 
     [Test()]
-    public void RemoveDocumentSetAllowedContentType()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

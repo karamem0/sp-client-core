@@ -22,7 +22,7 @@ public class GetNavigationNodeCommandTests
 {
 
     [Test()]
-    public void GetNavigationNodes()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -55,7 +55,7 @@ public class GetNavigationNodeCommandTests
     }
 
     [Test()]
-    public void GetNavigationNodeByIdentity()
+    public void InvokeCommand_Identity_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -88,7 +88,7 @@ public class GetNavigationNodeCommandTests
     }
 
     [Test()]
-    public void GetNavigationByNavigationNodeId()
+    public void InvokeCommand_NavigationNodeId_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

@@ -21,7 +21,7 @@ public class GetAttachmentFileCommandTests
 {
 
     [Test()]
-    public void GetAttachmentFiles()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -62,7 +62,7 @@ public class GetAttachmentFileCommandTests
     }
 
     [Test()]
-    public void GetAttachmentFileByIdentity()
+    public void InvokeCommand_Identity_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -111,7 +111,7 @@ public class GetAttachmentFileCommandTests
     }
 
     [Test()]
-    public void GetAttachmentFileByFileName()
+    public void InvokeCommand_FileName_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

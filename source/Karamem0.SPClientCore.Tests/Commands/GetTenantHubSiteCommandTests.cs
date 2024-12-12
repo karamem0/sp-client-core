@@ -21,7 +21,7 @@ public class GetTenantHubSiteCommandTests
 {
 
     [Test()]
-    public void GetHubSites()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -99,7 +99,7 @@ public class GetTenantHubSiteCommandTests
     }
 
     [Test()]
-    public void GetHubSiteByHubSiteId()
+    public void InvokeCommand_HubSiteId_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -178,7 +178,7 @@ public class GetTenantHubSiteCommandTests
     }
 
     [Test()]
-    public void GetHubSiteByHubSiteUrl()
+    public void InvokeCommand_HubSiteUrl_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

@@ -21,7 +21,7 @@ public class GetTenantHomeSiteCommandTests
 {
 
     [Test()]
-    public void GetHomeSite()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

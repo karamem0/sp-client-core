@@ -21,7 +21,7 @@ public class RemoveFileVersionCommandTests
 {
 
     [Test()]
-    public void RemoveFileVersion()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -89,7 +89,7 @@ public class RemoveFileVersionCommandTests
     }
 
     [Test()]
-    public void RemoveAllFileVersions()
+    public void InvokeCommand_All_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -150,7 +150,7 @@ public class RemoveFileVersionCommandTests
     }
 
     [Test()]
-    public void MoveFileVersionToRecycleBin()
+    public void InvokeCommand_RecycleBin_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

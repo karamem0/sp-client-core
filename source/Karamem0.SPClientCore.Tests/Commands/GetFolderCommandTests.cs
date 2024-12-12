@@ -21,7 +21,7 @@ public class GetFolderCommandTests
 {
 
     [Test()]
-    public void GetFolders()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -46,7 +46,7 @@ public class GetFolderCommandTests
     }
 
     [Test()]
-    public void GetFoldersByFolder()
+    public void InvokeCommand_Folder_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -79,7 +79,7 @@ public class GetFolderCommandTests
     }
 
     [Test()]
-    public void GetFolderByIdentity()
+    public void InvokeCommand_Identity_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -112,7 +112,7 @@ public class GetFolderCommandTests
     }
 
     [Test()]
-    public void GetFolderByList()
+    public void InvokeCommand_List_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -145,7 +145,7 @@ public class GetFolderCommandTests
     }
 
     [Test()]
-    public void GetFolderByListItem()
+    public void InvokeCommand_ListItem_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -186,7 +186,7 @@ public class GetFolderCommandTests
     }
 
     [Test()]
-    public void GetFolderByFolderId()
+    public void InvokeCommand_FolderId_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -226,7 +226,7 @@ public class GetFolderCommandTests
     }
 
     [Test()]
-    public void GetFolderByFolderUrl()
+    public void InvokeCommand_FolderUrl_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -252,7 +252,7 @@ public class GetFolderCommandTests
     }
 
     [Test()]
-    public void GetFolderByFolderName()
+    public void InvokeCommand_FolderName_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

@@ -21,7 +21,7 @@ public class AddColumnUrlCommandTests
 {
 
     [Test()]
-    public void AddListColumnUrl()
+    public void InvokeCommand_List_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -88,7 +88,7 @@ public class AddColumnUrlCommandTests
     }
 
     [Test()]
-    public void AddSiteColumnUrl()
+    public void InvokeCommand_Site_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

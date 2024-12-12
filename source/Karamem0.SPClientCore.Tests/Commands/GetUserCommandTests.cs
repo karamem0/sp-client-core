@@ -21,7 +21,7 @@ public class GetUserCommandTests
 {
 
     [Test()]
-    public void GetUsers()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -46,7 +46,7 @@ public class GetUserCommandTests
     }
 
     [Test()]
-    public void GetUserByIdentity()
+    public void InvokeCommand_Identity_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -79,7 +79,7 @@ public class GetUserCommandTests
     }
 
     [Test()]
-    public void GetUserByUserId()
+    public void InvokeCommand_UserId_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -105,7 +105,7 @@ public class GetUserCommandTests
     }
 
     [Test()]
-    public void GetUserByUserLoginName()
+    public void InvokeCommand_UserLoginName_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -131,7 +131,7 @@ public class GetUserCommandTests
     }
 
     [Test()]
-    public void GetUserByUserEmail()
+    public void InvokeCommand_UserEmail_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

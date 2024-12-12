@@ -6,7 +6,6 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
-using Karamem0.SharePoint.PowerShell.Models.V1;
 using Karamem0.SharePoint.PowerShell.Tests.Utilities;
 using NUnit.Framework;
 using System;
@@ -21,7 +20,7 @@ public class RemoveStorageEntityTests
 {
 
     [Test()]
-    public void RemoveStorageEntity()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

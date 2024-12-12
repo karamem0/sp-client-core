@@ -22,7 +22,7 @@ public class MoveRecycleBinItemCommandTests
 {
 
     [Test()]
-    public void MoveRecycleBinItem()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -91,7 +91,7 @@ public class MoveRecycleBinItemCommandTests
     }
 
     [Test()]
-    public void MoveAllRecycleBinItems()
+    public void InvokeCommand_All_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

@@ -20,7 +20,7 @@ public class SetTenantCommandTests
 {
 
     [Test()]
-    public void SetTenant()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

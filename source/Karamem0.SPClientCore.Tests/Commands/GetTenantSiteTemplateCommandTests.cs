@@ -21,7 +21,7 @@ public class GetTenantSiteTemplateCommandTests
 {
 
     [Test()]
-    public void GetTenantSiteTemplates()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -46,7 +46,7 @@ public class GetTenantSiteTemplateCommandTests
     }
 
     [Test()]
-    public void GetTenantSiteTemplatesByFilter()
+    public void InvokeCommand_Filter_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

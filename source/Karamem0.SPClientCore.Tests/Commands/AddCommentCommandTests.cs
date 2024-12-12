@@ -21,7 +21,7 @@ public class AddCommentCommandTests
 {
 
     [Test()]
-    public void AddComment()
+    public void InvokeCommand_ListItem_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -81,14 +81,22 @@ public class AddCommentCommandTests
                 { "Text", "Test Comment 0" }
             }
         );
-        var result8 = context.Runspace.InvokeCommand(
+        var result8 = context.Runspace.InvokeCommand<Comment>(
+            "Add-KshComment",
+            new Dictionary<string, object>()
+            {
+                { "Comment", result7.ElementAt(0) },
+                { "Text", "Test Comment 0" }
+            }
+        );
+        var result9 = context.Runspace.InvokeCommand(
             "Remove-KshComment",
             new Dictionary<string, object>()
             {
                 { "Identity", result7.ElementAt(0) }
             }
         );
-        var result9 = context.Runspace.InvokeCommand(
+        var result10 = context.Runspace.InvokeCommand(
             "Remove-KshFile",
             new Dictionary<string, object>()
             {
@@ -100,7 +108,7 @@ public class AddCommentCommandTests
     }
 
     [Test()]
-    public void AddSitePageReplyComment()
+    public void InvokeCommand_SitePage_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

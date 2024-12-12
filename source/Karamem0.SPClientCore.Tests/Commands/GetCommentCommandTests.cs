@@ -21,7 +21,7 @@ public class GetCommentCommandTests
 {
 
     [Test()]
-    public void GetComments()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -61,7 +61,7 @@ public class GetCommentCommandTests
     }
 
     [Test()]
-    public void GetCommentByIdentity()
+    public void InvokeCommand_Identity_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -109,7 +109,7 @@ public class GetCommentCommandTests
     }
 
     [Test()]
-    public void GetCommentByCommentId()
+    public void InvokeCommand_CommentId_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

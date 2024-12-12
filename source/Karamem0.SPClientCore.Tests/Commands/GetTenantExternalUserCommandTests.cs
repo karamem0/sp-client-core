@@ -21,7 +21,7 @@ public class GetTenantExternalUserCommandTests
 {
 
     [Test()]
-    public void GetExternalUsers()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -46,7 +46,7 @@ public class GetTenantExternalUserCommandTests
     }
 
     [Test()]
-    public void GetExternalUsersBySite()
+    public void InvokeCommand_Site_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

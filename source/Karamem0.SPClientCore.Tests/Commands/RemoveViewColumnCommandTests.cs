@@ -21,7 +21,7 @@ public class RemoveViewColumnCommandTests
 {
 
     [Test()]
-    public void RemoveAllViewColumns()
+    public void InvokeCommand_All_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -97,7 +97,7 @@ public class RemoveViewColumnCommandTests
     }
 
     [Test()]
-    public void RemoveViewColumnByColumn()
+    public void InvokeCommand_Column_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -163,7 +163,7 @@ public class RemoveViewColumnCommandTests
     }
 
     [Test()]
-    public void RemoveViewColumnByColumnName()
+    public void InvokeCommand_ColumnName_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

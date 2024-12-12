@@ -21,7 +21,7 @@ public class GetTenantUserCommandTests
 {
 
     [Test()]
-    public void GetUserBySiteCollectionAndUserId()
+    public void InvokeCommand_SiteCollection_UserId_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -55,7 +55,7 @@ public class GetTenantUserCommandTests
     }
 
     [Test()]
-    public void GetUserBySiteCollectionUrlAndUserId()
+    public void InvokeCommand_SiteCollectionUrl_UserId_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -82,7 +82,7 @@ public class GetTenantUserCommandTests
     }
 
     [Test()]
-    public void GetUserBySiteCollectionAndUserLoginName()
+    public void InvokeCommand_SiteCollection_UserLoginName_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -116,7 +116,7 @@ public class GetTenantUserCommandTests
     }
 
     [Test()]
-    public void GetUserBySiteCollectionUrlAndUserLoginName()
+    public void InvokeCommand_SiteCollectionUrl_UserLoginName_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -143,7 +143,7 @@ public class GetTenantUserCommandTests
     }
 
     [Test()]
-    public void GetUserBySiteCollectionAndUserEmail()
+    public void InvokeCommand_SiteCollection_UserEmail_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -177,7 +177,7 @@ public class GetTenantUserCommandTests
     }
 
     [Test()]
-    public void GetUserBySiteCollectionUrlAndUserEmail()
+    public void InvokeCommand_SiteCollectionUrl_UserEmail_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -204,7 +204,7 @@ public class GetTenantUserCommandTests
     }
 
     [Test()]
-    public void GetUsersBySiteCollection()
+    public void InvokeCommand_SiteCollection_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -237,7 +237,7 @@ public class GetTenantUserCommandTests
     }
 
     [Test()]
-    public void GetUsersBySiteCollectionUrl()
+    public void InvokeCommand_SiteCollectionUrl_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

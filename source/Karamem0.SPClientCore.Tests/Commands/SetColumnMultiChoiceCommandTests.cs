@@ -21,7 +21,7 @@ public class SetColumnMultiChoiceCommandTests
 {
 
     [Test()]
-    public void SetListColumnMultiChoice()
+    public void InvokeCommand_List_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -98,7 +98,7 @@ public class SetColumnMultiChoiceCommandTests
     }
 
     [Test()]
-    public void SetSiteColumnMultiChoice()
+    public void InvokeCommand_Site_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

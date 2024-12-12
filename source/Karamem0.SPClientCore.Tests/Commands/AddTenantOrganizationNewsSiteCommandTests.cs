@@ -21,7 +21,7 @@ public class AddTenantOrganizationNewsSiteCommandTests
 {
 
     [Test()]
-    public void AddOrganizationNewsSite()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

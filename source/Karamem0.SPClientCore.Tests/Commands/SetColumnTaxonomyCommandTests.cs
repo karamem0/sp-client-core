@@ -21,7 +21,7 @@ public class SetColumnTaxonomyCommandTests
 {
 
     [Test()]
-    public void SetListColumnTaxonomy()
+    public void InvokeCommand_List_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -113,7 +113,7 @@ public class SetColumnTaxonomyCommandTests
     }
 
     [Test()]
-    public void SetSiteColumnTaxonomy()
+    public void InvokeCommand_Site_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

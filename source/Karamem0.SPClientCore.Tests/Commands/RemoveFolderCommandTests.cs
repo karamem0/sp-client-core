@@ -21,7 +21,7 @@ public class RemoveFolderCommandTests
 {
 
     [Test()]
-    public void RemoveFolder()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -60,7 +60,7 @@ public class RemoveFolderCommandTests
     }
 
     [Test()]
-    public void MoveFolderToRecycleBin()
+    public void InvokeCommand_RecycleBin_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

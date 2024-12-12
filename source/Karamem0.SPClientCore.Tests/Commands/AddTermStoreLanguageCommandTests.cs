@@ -17,11 +17,11 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands.Tests;
 
 [Category("Karamem0.SharePoint.PowerShell.Commands")]
-public class AddTermStoreCommandLanguageTests
+public class AddTermStoreLanguageCommandTests
 {
 
     [Test()]
-    public void AddTermStoreLanguage()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

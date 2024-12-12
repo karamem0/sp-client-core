@@ -21,7 +21,7 @@ public class GetAppInstanceCommandTests
 {
 
     [Test()]
-    public void GetAppInstances()
+    public void InvokeCommand_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -46,7 +46,7 @@ public class GetAppInstanceCommandTests
     }
 
     [Test()]
-    public void GetAppInstanceByIdentity()
+    public void InvokeCommand_Identity_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -79,7 +79,7 @@ public class GetAppInstanceCommandTests
     }
 
     [Test()]
-    public void GetAppInstanceByAppInstanceId()
+    public void InvokeCommand_AppInstanceId_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -105,7 +105,7 @@ public class GetAppInstanceCommandTests
     }
 
     [Test()]
-    public void GetAppInstanceByAppProductId()
+    public void InvokeCommand_AppProductId_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

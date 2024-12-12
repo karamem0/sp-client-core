@@ -21,7 +21,7 @@ public class AddAlertCommandTests
 {
 
     [Test()]
-    public void AddListAlert()
+    public void InvokeCommand_List_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -84,7 +84,7 @@ public class AddAlertCommandTests
     }
 
     [Test()]
-    public void AddListItemAlert()
+    public void InvokeCommand_ListItem_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(

@@ -21,7 +21,7 @@ public class SetColumnLookupCommandTests
 {
 
     [Test()]
-    public void SetListColumnLookup()
+    public void InvokeCommand_List_Choice_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -105,7 +105,7 @@ public class SetColumnLookupCommandTests
     }
 
     [Test()]
-    public void SetListColumnLookupMulti()
+    public void InvokeCommand_List_MultiChoice_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -189,7 +189,7 @@ public class SetColumnLookupCommandTests
     }
 
     [Test()]
-    public void SetSiteColumnLookup()
+    public void InvokeCommand_Site_Choice_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
@@ -265,7 +265,7 @@ public class SetColumnLookupCommandTests
     }
 
     [Test()]
-    public void SetSiteColumnLookupMulti()
+    public void InvokeCommand_Site_MultiChoice_Succeed()
     {
         using var context = new PSCmdletContext();
         var result1 = context.Runspace.InvokeCommand(
