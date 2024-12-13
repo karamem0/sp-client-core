@@ -24,29 +24,28 @@ public class AddColumnUserCommandTests
     public void AddListColumnUser()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<List>(
+        var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
                 { "ListId", context.AppSettings["List1Id"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<ColumnUser>(
+        var result2 = context.Runspace.InvokeCommand<ColumnUser>(
             "Add-KshColumnUser",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) },
+                { "List", result1.ElementAt(0) },
                 { "AllowMultipleValues", false },
                 // { "ClientSideComponentId", null },
                 // { "ClientSideComponentProperties", null },
@@ -73,23 +72,23 @@ public class AddColumnUserCommandTests
                 { "AddToDefaultView", true },
             }
         );
-        var result4 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Set-KshColumnUser",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) },
+                { "Identity", result2.ElementAt(0) },
                 { "Hidden", false },
                 { "ReadOnly", false }
             }
         );
-        var result5 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshColumn",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                { "Identity", result2.ElementAt(0) }
             }
         );
-        var actual = result3.ElementAt(0);
+        var actual = result2.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -97,29 +96,28 @@ public class AddColumnUserCommandTests
     public void AddListColumnUserMulti()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<List>(
+        var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
                 { "ListId", context.AppSettings["List1Id"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<ColumnUser>(
+        var result2 = context.Runspace.InvokeCommand<ColumnUser>(
             "Add-KshColumnUser",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) },
+                { "List", result1.ElementAt(0) },
                 { "AllowMultipleValues", true },
                 // { "ClientSideComponentId", null },
                 // { "ClientSideComponentProperties", null },
@@ -146,23 +144,23 @@ public class AddColumnUserCommandTests
                 { "AddToDefaultView", true },
             }
         );
-        var result4 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Set-KshColumnUser",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) },
+                { "Identity", result2.ElementAt(0) },
                 { "Hidden", false },
                 { "ReadOnly", false }
             }
         );
-        var result5 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshColumn",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                { "Identity", result2.ElementAt(0) }
             }
         );
-        var actual = result3.ElementAt(0);
+        var actual = result2.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -170,18 +168,17 @@ public class AddColumnUserCommandTests
     public void AddSiteColumnUser()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<ColumnUser>(
+        var result1 = context.Runspace.InvokeCommand<ColumnUser>(
             "Add-KshColumnUser",
             new Dictionary<string, object>()
             {
@@ -211,23 +208,23 @@ public class AddColumnUserCommandTests
                 { "AddToDefaultView", true },
             }
         );
-        var result3 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Set-KshColumnUser",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) },
+                { "Identity", result1.ElementAt(0) },
                 { "Hidden", false },
                 { "ReadOnly", false }
             }
         );
-        var result4 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshColumn",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                { "Identity", result1.ElementAt(0) }
             }
         );
-        var actual = result2.ElementAt(0);
+        var actual = result1.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -235,18 +232,17 @@ public class AddColumnUserCommandTests
     public void AddSiteColumnUserMulti()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<ColumnUser>(
+        var result1 = context.Runspace.InvokeCommand<ColumnUser>(
             "Add-KshColumnUser",
             new Dictionary<string, object>()
             {
@@ -276,23 +272,23 @@ public class AddColumnUserCommandTests
                 { "AddToDefaultView", true },
             }
         );
-        var result3 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Set-KshColumnUser",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) },
+                { "Identity", result1.ElementAt(0) },
                 { "Hidden", false },
                 { "ReadOnly", false }
             }
         );
-        var result4 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshColumn",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                { "Identity", result1.ElementAt(0) }
             }
         );
-        var actual = result2.ElementAt(0);
+        var actual = result1.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 

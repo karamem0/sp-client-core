@@ -24,32 +24,31 @@ public class GetTermSetCommandTests
     public void GetTermSets()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["BaseUrl"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<TermGroup>(
+        var result1 = context.Runspace.InvokeCommand<TermGroup>(
             "Get-KshTermGroup",
             new Dictionary<string, object>()
             {
                 { "TermGroupId", context.AppSettings["TermGroup1Id"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<TermSet>(
+        var result2 = context.Runspace.InvokeCommand<TermSet>(
             "Get-KshTermSet",
             new Dictionary<string, object>()
             {
-                { "TermGroup", result2.ElementAt(0) }
+                { "TermGroup", result1.ElementAt(0) }
             }
         );
-        var actual = result3.ToArray();
+        var actual = result2.ToArray();
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -57,33 +56,32 @@ public class GetTermSetCommandTests
     public void GetTermSetByTermSetId()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["BaseUrl"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<TermGroup>(
+        var result1 = context.Runspace.InvokeCommand<TermGroup>(
             "Get-KshTermGroup",
             new Dictionary<string, object>()
             {
                 { "TermGroupId", context.AppSettings["TermGroup1Id"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<TermSet>(
+        var result2 = context.Runspace.InvokeCommand<TermSet>(
             "Get-KshTermSet",
             new Dictionary<string, object>()
             {
-                { "TermGroup", result2.ElementAt(0) },
+                { "TermGroup", result1.ElementAt(0) },
                 { "TermSetId", context.AppSettings["TermSet1Id"] }
             }
         );
-        var actual = result3.ElementAt(0);
+        var actual = result2.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 

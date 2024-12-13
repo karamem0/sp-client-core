@@ -24,32 +24,31 @@ public class GetViewCommandTests
     public void GetViews()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<List>(
+        var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
                 { "ListId", context.AppSettings["List1Id"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<View>(
+        var result2 = context.Runspace.InvokeCommand<View>(
             "Get-KshView",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) }
+                { "List", result1.ElementAt(0) }
             }
         );
-        var actual = result3.ToArray();
+        var actual = result2.ToArray();
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -57,40 +56,39 @@ public class GetViewCommandTests
     public void GetViewByIdentity()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<List>(
+        var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
                 { "ListId", context.AppSettings["List1Id"] }
             }
         );
+        var result2 = context.Runspace.InvokeCommand<View>(
+            "Get-KshView",
+            new Dictionary<string, object>()
+            {
+                { "List", result1.ElementAt(0) },
+                { "ViewId", context.AppSettings["View1Id"] }
+            }
+        );
         var result3 = context.Runspace.InvokeCommand<View>(
             "Get-KshView",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) },
-                { "ViewId", context.AppSettings["View1Id"] }
+                { "Identity", result2.ElementAt(0) }
             }
         );
-        var result4 = context.Runspace.InvokeCommand<View>(
-            "Get-KshView",
-            new Dictionary<string, object>()
-            {
-                { "Identity", result3.ElementAt(0) }
-            }
-        );
-        var actual = result4.ElementAt(0);
+        var actual = result3.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -98,33 +96,32 @@ public class GetViewCommandTests
     public void GetViewById()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<List>(
+        var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
                 { "ListId", context.AppSettings["List1Id"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<View>(
+        var result2 = context.Runspace.InvokeCommand<View>(
             "Get-KshView",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) },
+                { "List", result1.ElementAt(0) },
                 { "ViewId", context.AppSettings["View1Id"] }
             }
         );
-        var actual = result3.ElementAt(0);
+        var actual = result2.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -132,33 +129,32 @@ public class GetViewCommandTests
     public void GetViewByTitle()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<List>(
+        var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
                 { "ListId", context.AppSettings["List1Id"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<View>(
+        var result2 = context.Runspace.InvokeCommand<View>(
             "Get-KshView",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) },
+                { "List", result1.ElementAt(0) },
                 { "ViewTitle", context.AppSettings["View1Title"] }
             }
         );
-        var actual = result3.ElementAt(0);
+        var actual = result2.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 

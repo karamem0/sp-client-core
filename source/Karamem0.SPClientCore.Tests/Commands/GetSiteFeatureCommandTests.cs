@@ -24,24 +24,23 @@ public class GetSiteFeatureCommandTests
     public void GetSiteFeatures()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<Feature>(
+        var result1 = context.Runspace.InvokeCommand<Feature>(
             "Get-KshSiteFeature",
             new Dictionary<string, object>()
             {
             }
         );
-        var actual = result2.ToArray();
+        var actual = result1.ToArray();
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -49,32 +48,31 @@ public class GetSiteFeatureCommandTests
     public void GetSiteFeatureByIdentity()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<Feature>(
+        var result1 = context.Runspace.InvokeCommand<Feature>(
             "Get-KshSiteFeature",
             new Dictionary<string, object>()
             {
                 { "FeatureId", "00bfea71-e717-4e80-aa17-d0c71b360101" }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<Feature>(
+        var result2 = context.Runspace.InvokeCommand<Feature>(
             "Get-KshSiteFeature",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                { "Identity", result1.ElementAt(0) }
             }
         );
-        var actual = result3.ElementAt(0);
+        var actual = result2.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -82,25 +80,24 @@ public class GetSiteFeatureCommandTests
     public void GetSiteFeatureByFeatureId()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<Feature>(
+        var result1 = context.Runspace.InvokeCommand<Feature>(
             "Get-KshSiteFeature",
             new Dictionary<string, object>()
             {
                 { "FeatureId", "00bfea71-e717-4e80-aa17-d0c71b360101" }
             }
         );
-        var actual = result2.ElementAt(0);
+        var actual = result1.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 

@@ -24,59 +24,58 @@ public class SetRoleDefinitionCommandTests
     public void SetRoleDefinition()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["BaseUrl"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<BasePermission>(
+        var result1 = context.Runspace.InvokeCommand<BasePermission>(
             "New-KshBasePermission",
             new Dictionary<string, object>()
             {
                 { "Permission", "EmptyMask" }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<RoleDefinition>(
+        var result2 = context.Runspace.InvokeCommand<RoleDefinition>(
             "Add-KshRoleDefinition",
             new Dictionary<string, object>()
             {
-                { "BasePermission", result2.ElementAt(0) },
+                { "BasePermission", result1.ElementAt(0) },
                 { "Name", "Test Role Definition 0" }
             }
         );
-        var result4 = context.Runspace.InvokeCommand<BasePermission>(
+        var result3 = context.Runspace.InvokeCommand<BasePermission>(
             "New-KshBasePermission",
             new Dictionary<string, object>()
             {
                 { "Permission", "ViewListItems" }
             }
         );
-        var result5 = context.Runspace.InvokeCommand<RoleDefinition>(
+        var result4 = context.Runspace.InvokeCommand<RoleDefinition>(
             "Set-KshRoleDefinition",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) },
-                { "BasePermission", result4.ElementAt(0) },
+                { "Identity", result2.ElementAt(0) },
+                { "BasePermission", result3.ElementAt(0) },
                 { "Name", "Test Role Definition 0" },
                 { "Description", "Test Role Definition 9 Description" },
                 { "Order", 1 },
                 { "PassThru", true }
             }
         );
-        var result6 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshRoleDefinition",
             new Dictionary<string, object>()
             {
-                { "Identity", result5.ElementAt(0) }
+                { "Identity", result4.ElementAt(0) }
             }
         );
-        var actual = result5.ElementAt(0);
+        var actual = result4.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 

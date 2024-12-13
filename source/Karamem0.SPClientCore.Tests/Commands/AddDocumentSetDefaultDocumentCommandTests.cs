@@ -24,68 +24,67 @@ public class AddDocumentSetDefaultDocumentCommandTests
     public void AddDocumentSetDefaultDocument()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["BaseUrl"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<ContentType>(
+        var result1 = context.Runspace.InvokeCommand<ContentType>(
             "Get-KshContentType",
             new Dictionary<string, object>()
             {
                 { "ContentTypeId", "0x0120D520" }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<ContentType>(
+        var result2 = context.Runspace.InvokeCommand<ContentType>(
             "Add-KshContentType",
             new Dictionary<string, object>()
             {
-                { "ContentType", result2.ElementAt(0) },
+                { "ContentType", result1.ElementAt(0) },
                 { "Description", "Test Content Type 0 Description" },
                 { "Group", "Test Content Type 0 Group" },
                 { "Name", "Test Content Type 0" }
             }
         );
-        var result4 = context.Runspace.InvokeCommand<ContentType>(
+        var result3 = context.Runspace.InvokeCommand<ContentType>(
             "Get-KshContentType",
             new Dictionary<string, object>()
             {
                 { "ContentTypeId", "0x0101" }
             }
         );
-        var result5 = context.Runspace.InvokeCommand<DefaultDocument>(
+        _ = context.Runspace.InvokeCommand<DefaultDocument>(
             "Add-KshDocumentSetDefaultDocument",
             new Dictionary<string, object>()
             {
-                { "ContentType", result3.ElementAt(0) },
-                { "DocumentContentType", result4.ElementAt(0) },
+                { "ContentType", result2.ElementAt(0) },
+                { "DocumentContentType", result3.ElementAt(0) },
                 { "Content", Encoding.UTF8.GetBytes("TestFile0") },
                 { "FileName", "/TestFile0.txt" },
                 { "PushChanges", true }
             }
         );
-        var result6 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshDocumentSetDefaultDocument",
             new Dictionary<string, object>()
             {
-                { "ContentType", result4.ElementAt(0) },
-                { "FileName", result4.ElementAt(0).Name }
+                { "ContentType", result3.ElementAt(0) },
+                { "FileName", result3.ElementAt(0).Name }
             }
         );
-        var result7 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshContentType",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                { "Identity", result2.ElementAt(0) }
             }
         );
-        var actual = result4.ElementAt(0);
+        var actual = result3.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 

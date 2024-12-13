@@ -24,29 +24,28 @@ public class RemoveSiteCommandTests
     public void RemoveSite()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["BaseUrl"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<Site>(
+        var result1 = context.Runspace.InvokeCommand<Site>(
             "Add-KshSite",
             new Dictionary<string, object>()
             {
                 { "ServerRelativeUrl", "TestSite0" }
             }
         );
-        var result3 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshSite",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                { "Identity", result1.ElementAt(0) }
             }
         );
     }

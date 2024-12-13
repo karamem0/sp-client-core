@@ -24,51 +24,50 @@ public class EnableLikeCommandTests
     public void EnableCommentLike()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<File>(
+        var result1 = context.Runspace.InvokeCommand<File>(
             "Get-KshFile",
             new Dictionary<string, object>()
             {
                 { "FileUrl", context.AppSettings["SitePage1Url"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<ListItem>(
+        var result2 = context.Runspace.InvokeCommand<ListItem>(
             "Get-KshListItem",
             new Dictionary<string, object>()
             {
-                { "File", result2.ElementAt(0) }
+                { "File", result1.ElementAt(0) }
             }
         );
-        var result4 = context.Runspace.InvokeCommand<Comment>(
+        var result3 = context.Runspace.InvokeCommand<Comment>(
             "Get-KshComment",
             new Dictionary<string, object>()
             {
-                { "ListItem", result3.ElementAt(0) },
+                { "ListItem", result2.ElementAt(0) },
                 { "CommentId", context.AppSettings["Comment1Id"] }
             }
         );
-        var result5 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Enable-KshLike",
             new Dictionary<string, object>()
             {
-                { "Comment", result4.ElementAt(0) }
+                { "Comment", result3.ElementAt(0) }
             }
         );
-        var result6 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Disable-KshLike",
             new Dictionary<string, object>()
             {
-                { "Comment", result4.ElementAt(0) }
+                { "Comment", result3.ElementAt(0) }
             }
         );
     }
@@ -77,43 +76,42 @@ public class EnableLikeCommandTests
     public void EnableListItemLike()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<File>(
+        var result1 = context.Runspace.InvokeCommand<File>(
             "Get-KshFile",
             new Dictionary<string, object>()
             {
                 { "FileUrl", context.AppSettings["SitePage1Url"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<ListItem>(
+        var result2 = context.Runspace.InvokeCommand<ListItem>(
             "Get-KshListItem",
             new Dictionary<string, object>()
             {
-                { "File", result2.ElementAt(0) }
+                { "File", result1.ElementAt(0) }
             }
         );
-        var result4 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Enable-KshLike",
             new Dictionary<string, object>()
             {
-                { "ListItem", result3.ElementAt(0) }
+                { "ListItem", result2.ElementAt(0) }
             }
         );
-        var result5 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Disable-KshLike",
             new Dictionary<string, object>()
             {
-                { "ListItem", result3.ElementAt(0) }
+                { "ListItem", result2.ElementAt(0) }
             }
         );
     }

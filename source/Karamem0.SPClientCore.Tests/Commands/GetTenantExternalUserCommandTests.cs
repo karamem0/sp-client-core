@@ -24,24 +24,23 @@ public class GetTenantExternalUserCommandTests
     public void GetExternalUsers()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AdminUrl"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<ExternalUser>(
+        var result1 = context.Runspace.InvokeCommand<ExternalUser>(
             "Get-KshTenantExternalUser",
             new Dictionary<string, object>()
             {
             }
         );
-        var actual = result2.ToList();
+        var actual = result1.ToList();
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -49,25 +48,24 @@ public class GetTenantExternalUserCommandTests
     public void GetExternalUsersBySite()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AdminUrl"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<ExternalUser>(
+        var result1 = context.Runspace.InvokeCommand<ExternalUser>(
             "Get-KshTenantExternalUser",
             new Dictionary<string, object>()
             {
                 { "SiteCollectionUrl", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
             }
         );
-        var actual = result2.ToList();
+        var actual = result1.ToList();
         Assert.That(actual, Is.Not.Null);
     }
 

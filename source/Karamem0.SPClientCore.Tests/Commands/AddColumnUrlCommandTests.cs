@@ -24,29 +24,28 @@ public class AddColumnUrlCommandTests
     public void AddListColumnUrl()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<List>(
+        var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
                 { "ListId", context.AppSettings["List1Id"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<ColumnUrl>(
+        var result2 = context.Runspace.InvokeCommand<ColumnUrl>(
             "Add-KshColumnUrl",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) },
+                { "List", result1.ElementAt(0) },
                 // { "ClientSideComponentId", null },
                 // { "ClientSideComponentProperties", null },
                 { "CustomFormatter", /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }" },
@@ -67,23 +66,23 @@ public class AddColumnUrlCommandTests
                 { "AddToDefaultView", true }
             }
         );
-        var result4 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Set-KshColumnUrl",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) },
+                { "Identity", result2.ElementAt(0) },
                 { "Hidden", false },
                 { "ReadOnly", false }
             }
         );
-        var result5 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshColumn",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                { "Identity", result2.ElementAt(0) }
             }
         );
-        var actual = result3.ElementAt(0);
+        var actual = result2.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -91,18 +90,17 @@ public class AddColumnUrlCommandTests
     public void AddSiteColumnUrl()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<ColumnUrl>(
+        var result1 = context.Runspace.InvokeCommand<ColumnUrl>(
             "Add-KshColumnUrl",
             new Dictionary<string, object>()
             {
@@ -126,23 +124,23 @@ public class AddColumnUrlCommandTests
                 { "AddToDefaultView", true }
             }
         );
-        var result3 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Set-KshColumnUrl",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) },
+                { "Identity", result1.ElementAt(0) },
                 { "Hidden", false },
                 { "ReadOnly", false }
             }
         );
-        var result4 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshColumn",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                { "Identity", result1.ElementAt(0) }
             }
         );
-        var actual = result2.ElementAt(0);
+        var actual = result1.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 

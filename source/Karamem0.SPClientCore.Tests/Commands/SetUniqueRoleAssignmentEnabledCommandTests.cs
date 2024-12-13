@@ -25,33 +25,32 @@ public class SetUniqueRoleAssignmentEnabledCommandTests
     public void DisableSiteUniqueRoleAssignment()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<Site>(
+        var result1 = context.Runspace.InvokeCommand<Site>(
             "Add-KshSite",
             new Dictionary<string, object>()
             {
                 { "ServerRelativeUrl", "TestSite0" }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<Site>(
+        var result2 = context.Runspace.InvokeCommand<Site>(
             "Select-KshSite",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) },
+                { "Identity", result1.ElementAt(0) },
                 { "PassThru", true }
             }
         );
-        var result4 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Set-KshUniqueRoleAssignmentEnabled",
             new Dictionary<string, object>()
             {
@@ -59,7 +58,7 @@ public class SetUniqueRoleAssignmentEnabledCommandTests
                 { "Enabled", true }
             }
         );
-        var result5 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Set-KshUniqueRoleAssignmentEnabled",
             new Dictionary<string, object>()
             {
@@ -67,21 +66,21 @@ public class SetUniqueRoleAssignmentEnabledCommandTests
                 { "Disabled", true }
             }
         );
-        var result6 = context.Runspace.InvokeCommand<Site>(
+        var result3 = context.Runspace.InvokeCommand<Site>(
             "Get-KshSite",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                { "Identity", result2.ElementAt(0) }
             }
         );
-        var result7 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshSite",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                { "Identity", result2.ElementAt(0) }
             }
         );
-        var actual = result6.ElementAt(0);
+        var actual = result3.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -89,18 +88,17 @@ public class SetUniqueRoleAssignmentEnabledCommandTests
     public void DisableListUniqueRoleAssignment()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<List>(
+        var result1 = context.Runspace.InvokeCommand<List>(
             "Add-KshList",
             new Dictionary<string, object>()
             {
@@ -108,37 +106,37 @@ public class SetUniqueRoleAssignmentEnabledCommandTests
                 { "Title", "Test List 0" }
             }
         );
-        var result3 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Set-KshUniqueRoleAssignmentEnabled",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) },
+                { "List", result1.ElementAt(0) },
                 { "Enabled", true }
             }
         );
-        var result4 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Set-KshUniqueRoleAssignmentEnabled",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) },
+                { "List", result1.ElementAt(0) },
                 { "Disabled", true }
             }
         );
-        var result5 = context.Runspace.InvokeCommand<List>(
+        var result2 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                { "Identity", result1.ElementAt(0) }
             }
         );
-        var result6 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshList",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                { "Identity", result1.ElementAt(0) }
             }
         );
-        var actual = result5.ElementAt(0);
+        var actual = result2.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -146,63 +144,62 @@ public class SetUniqueRoleAssignmentEnabledCommandTests
     public void DisableListItemUniqueRoleAssignment()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<List>(
+        var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
                 { "ListId", context.AppSettings["List1Id"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<ListItem>(
+        var result2 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) },
+                { "List", result1.ElementAt(0) },
                 { "Value", new Hashtable() }
             }
         );
-        var result4 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Set-KshUniqueRoleAssignmentEnabled",
             new Dictionary<string, object>()
             {
-                { "ListItem", result3.ElementAt(0) },
+                { "ListItem", result2.ElementAt(0) },
                 { "Enabled", true }
             }
         );
-        var result5 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Set-KshUniqueRoleAssignmentEnabled",
             new Dictionary<string, object>()
             {
-                { "ListItem", result3.ElementAt(0) },
+                { "ListItem", result2.ElementAt(0) },
                 { "Disabled", true }
             }
         );
-        var result6 = context.Runspace.InvokeCommand<ListItem>(
+        var result3 = context.Runspace.InvokeCommand<ListItem>(
             "Get-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                { "Identity", result2.ElementAt(0) }
             }
         );
-        var result7 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                { "Identity", result2.ElementAt(0) }
             }
         );
-        var actual = result6.ElementAt(0);
+        var actual = result3.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -210,33 +207,32 @@ public class SetUniqueRoleAssignmentEnabledCommandTests
     public void EnableSiteUniqueRoleAssignment()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<Site>(
+        var result1 = context.Runspace.InvokeCommand<Site>(
             "Add-KshSite",
             new Dictionary<string, object>()
             {
                 { "ServerRelativeUrl", "TestSite0" }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<Site>(
+        var result2 = context.Runspace.InvokeCommand<Site>(
             "Select-KshSite",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) },
+                { "Identity", result1.ElementAt(0) },
                 { "PassThru", true }
             }
         );
-        var result4 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Set-KshUniqueRoleAssignmentEnabled",
             new Dictionary<string, object>()
             {
@@ -246,82 +242,23 @@ public class SetUniqueRoleAssignmentEnabledCommandTests
                 { "ClearSubscopes", true }
             }
         );
-        var result5 = context.Runspace.InvokeCommand<Site>(
+        var result4 = context.Runspace.InvokeCommand<Site>(
             "Get-KshSite",
-            new Dictionary<string, object>()
-            {
-                { "Identity", result3.ElementAt(0) }
-            }
-        );
-        var result6 = context.Runspace.InvokeCommand(
-            "Set-KshUniqueRoleAssignmentEnabled",
-            new Dictionary<string, object>()
-            {
-                { "Site", true },
-                { "Disabled", true }
-            }
-        );
-        var result7 = context.Runspace.InvokeCommand(
-            "Remove-KshSite",
-            new Dictionary<string, object>()
-            {
-                { "Identity", result3.ElementAt(0) }
-            }
-        );
-        var actual = result5.ElementAt(0);
-        Assert.That(actual, Is.Not.Null);
-    }
-
-    [Test()]
-    public void EnableListUniqueRoleAssignment()
-    {
-        using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
-            "Connect-KshSite",
-            new Dictionary<string, object>()
-            {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
-            }
-        );
-        var result2 = context.Runspace.InvokeCommand<List>(
-            "Add-KshList",
-            new Dictionary<string, object>()
-            {
-                { "Template", "GenericList" },
-                { "Title", "Test List 0" }
-            }
-        );
-        var result3 = context.Runspace.InvokeCommand(
-            "Set-KshUniqueRoleAssignmentEnabled",
-            new Dictionary<string, object>()
-            {
-                { "List", result2.ElementAt(0) },
-                { "Enabled", true },
-                { "CopyRoleAssignments", true },
-                { "ClearSubscopes", true }
-            }
-        );
-        var result4 = context.Runspace.InvokeCommand<List>(
-            "Get-KshList",
             new Dictionary<string, object>()
             {
                 { "Identity", result2.ElementAt(0) }
             }
         );
-        var result5 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Set-KshUniqueRoleAssignmentEnabled",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) },
+                { "Site", true },
                 { "Disabled", true }
             }
         );
-        var result6 = context.Runspace.InvokeCommand(
-            "Remove-KshList",
+        _ = context.Runspace.InvokeCommand(
+            "Remove-KshSite",
             new Dictionary<string, object>()
             {
                 { "Identity", result2.ElementAt(0) }
@@ -332,68 +269,125 @@ public class SetUniqueRoleAssignmentEnabledCommandTests
     }
 
     [Test()]
-    public void EnableListItemUniqueRoleAssignment()
+    public void EnableListUniqueRoleAssignment()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+            }
+        );
+        var result1 = context.Runspace.InvokeCommand<List>(
+            "Add-KshList",
+            new Dictionary<string, object>()
+            {
+                { "Template", "GenericList" },
+                { "Title", "Test List 0" }
+            }
+        );
+        _ = context.Runspace.InvokeCommand(
+            "Set-KshUniqueRoleAssignmentEnabled",
+            new Dictionary<string, object>()
+            {
+                { "List", result1.ElementAt(0) },
+                { "Enabled", true },
+                { "CopyRoleAssignments", true },
+                { "ClearSubscopes", true }
             }
         );
         var result2 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                { "Identity", result1.ElementAt(0) }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<ListItem>(
-            "Add-KshListItem",
-            new Dictionary<string, object>()
-            {
-                { "List", result2.ElementAt(0) },
-                { "Value", new Hashtable() }
-            }
-        );
-        var result4 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Set-KshUniqueRoleAssignmentEnabled",
             new Dictionary<string, object>()
             {
-                { "ListItem", result3.ElementAt(0) },
+                { "List", result1.ElementAt(0) },
+                { "Disabled", true }
+            }
+        );
+        _ = context.Runspace.InvokeCommand(
+            "Remove-KshList",
+            new Dictionary<string, object>()
+            {
+                { "Identity", result1.ElementAt(0) }
+            }
+        );
+        var actual = result2.ElementAt(0);
+        Assert.That(actual, Is.Not.Null);
+    }
+
+    [Test()]
+    public void EnableListItemUniqueRoleAssignment()
+    {
+        using var context = new PSCmdletContext();
+        _ = context.Runspace.InvokeCommand(
+            "Connect-KshSite",
+            new Dictionary<string, object>()
+            {
+                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+            }
+        );
+        var result1 = context.Runspace.InvokeCommand<List>(
+            "Get-KshList",
+            new Dictionary<string, object>()
+            {
+                { "ListId", context.AppSettings["List1Id"] }
+            }
+        );
+        var result2 = context.Runspace.InvokeCommand<ListItem>(
+            "Add-KshListItem",
+            new Dictionary<string, object>()
+            {
+                { "List", result1.ElementAt(0) },
+                { "Value", new Hashtable() }
+            }
+        );
+        _ = context.Runspace.InvokeCommand(
+            "Set-KshUniqueRoleAssignmentEnabled",
+            new Dictionary<string, object>()
+            {
+                { "ListItem", result2.ElementAt(0) },
                 { "Enabled", true },
                 { "CopyRoleAssignments", true },
                 { "ClearSubscopes", true }
             }
         );
-        var result5 = context.Runspace.InvokeCommand<ListItem>(
+        var result3 = context.Runspace.InvokeCommand<ListItem>(
             "Get-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                { "Identity", result2.ElementAt(0) }
             }
         );
-        var result6 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Set-KshUniqueRoleAssignmentEnabled",
             new Dictionary<string, object>()
             {
-                { "ListItem", result3.ElementAt(0) },
+                { "ListItem", result2.ElementAt(0) },
                 { "Disabled", true }
             }
         );
-        var result7 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                { "Identity", result2.ElementAt(0) }
             }
         );
-        var actual = result5.ElementAt(0);
+        var actual = result3.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 

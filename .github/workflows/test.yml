@@ -1,0 +1,36 @@
+on: workflow_call
+
+jobs:
+  run:
+    name: Run
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repos
+        uses: actions/checkout@v4
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Test source
+        shell: pwsh
+        run: |
+          dotnet test ${{env.TARGET_FILE}} `
+            --filter TestCategory=Karamem0.SharePoint.PowerShell.Runtime `
+            -p:AltCover=true `
+            -- NUnit.TestOutputXml=${{github.workspace}}/source/test
+        env:
+          TARGET_FILE: source/Karamem0.SPClientCore.Tests/Karamem0.SPClientCore.Tests.csproj
+      - name: Upload test results
+        uses: enricomi/publish-unit-test-result-action/linux@v2
+        if: always()
+        with:
+          files: |
+            source/test/**/*.xml
+          check_name: Test results
+      - name: Upload coverage reports
+        uses: codecov/codecov-action@v4
+        if: always()
+        with:
+          fail_ci_if_error: true
+          token: ${{secrets.CODECOV_TOKEN}}
+          slug: karamem0/sp-client-core  

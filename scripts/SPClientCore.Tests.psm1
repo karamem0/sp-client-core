@@ -15,10 +15,13 @@ function Install-TestSite {
         $Url,
         [Parameter(Mandatory = $true)]
         [string]
-        $UserName,
+        $ClientId,
         [Parameter(Mandatory = $true)]
         [string]
-        $Password,
+        $CertificatePath,
+        [Parameter(Mandatory = $true)]
+        [SecureString]
+        $CertificatePassword,
         [Parameter(Mandatory = $true)]
         [string]
         $DomainName,
@@ -33,12 +36,12 @@ function Install-TestSite {
         $authorityUrl = $Url.GetLeftPart([System.UriPartial]::Authority)
         $adminUrl = $authorityUrl.Replace('.sharepoint.com', '-admin.sharepoint.com')
 
-        $credential = New-Object System.Net.NetworkCredential("$UserName@$DomainName", $Password)
-        $credential = New-Object System.Management.Automation.PSCredential($credential.UserName, $credential.SecurePassword)
+        $credential = New-Object System.Net.NetworkCredential("", $ClientSertificatePassword)
 
         $appSettings.LoginDomainName = $DomainName
-        $appSettings.LoginUserName = "$UserName@$DomainName"
-        $appSettings.LoginPassword = $Password
+        $appSettings.ClientId = $ClientId
+        $appSettings.CertificatePath = $CertificatePath
+        $appSettings.CertificatePassword = $CertificatePassword
         $appSettings.ExternalUserName = $ExternalUserName
         $appSettings.BaseUrl = $Url
         $appSettings.AuthorityUrl = $authorityUrl
@@ -48,7 +51,11 @@ function Install-TestSite {
         $appSettings.TenantAppCatalogUrl = $tenantAppCatalogUrl
 
         Write-Progress -Activity 'Sign in...' -Status 'Processing'
-        Connect-KshSite -Url $adminUrl -Credential $credential
+        Connect-KshSite `
+            -Url $adminUrl `
+            -ClientId $ClientId `
+            -CertificatePath $CertificatePath `
+            -CertificatePassword $credential.SecurePassword
 
         Write-Progress -Activity 'Creating term groups...' -Status 'Test Term Group 1'
         $termGroup1 = Add-KshTermGroup -Name 'Test Term Group 1'
@@ -1617,10 +1624,13 @@ function Uninstall-TestSite {
         $Url,
         [Parameter(Mandatory = $true)]
         [string]
-        $UserName,
+        $ClientId,
         [Parameter(Mandatory = $true)]
         [string]
-        $Password,
+        $CertificatePath,
+        [Parameter(Mandatory = $true)]
+        [SecureString]
+        $CertificatePassword,
         [Parameter(Mandatory = $true)]
         [string]
         $DomainName,
@@ -1634,18 +1644,19 @@ function Uninstall-TestSite {
         $authorityUrl = $Url.GetLeftPart([System.UriPartial]::Authority)
         $adminUrl = $authorityUrl.Replace('.sharepoint.com', '-admin.sharepoint.com')
 
-        $credential = New-Object System.Net.NetworkCredential("$UserName@$DomainName", $Password)
-        $credential = New-Object System.Management.Automation.PSCredential($credential.UserName, $credential.SecurePassword)
-
         Write-Progress -Activity 'Sign in...' -Status 'Processing'
-        Connect-KshSite -Url $adminUrl -Credential $credential
+        Connect-KshSite `
+            -Url $adminUrl `
+            -ClientId $ClientId `
+            -CertificatePath $CertificatePath `
+            -CertificatePassword $CertificatePassword
 
         Write-Progress -Activity 'Removing site collection app catalogs...' -Status 'Processing'
-        Get-KshSiteCollectionAppCatalog -SiteCollectionUrl $Url | Remove-KshSiteCollectionAppCatalog
+        Get-KshSiteCollectionAppCatalog -SiteCollectionUrl $Url | Remove-KshSiteCollectionAppCatalog -Confirm:$false
 
         Write-Progress -Activity 'Removing a site collection...' -Status 'Processing'
-        Get-KshTenantSiteCollection -SiteCollectionUrl $Url | Remove-KshTenantSiteCollection
-        Get-KshTenantDeletedSiteCollection -SiteCollectionUrl $Url | Remove-KshTenantDeletedSiteCollection
+        Get-KshTenantSiteCollection -SiteCollectionUrl $Url | Remove-KshTenantSiteCollection -Confirm:$false
+        Get-KshTenantDeletedSiteCollection -SiteCollectionUrl $Url | Remove-KshTenantDeletedSiteCollection -Confirm:$false
 
         Write-Progress -Activity 'Retrieving term groups...' -Status 'Waiting'
         Start-Sleep -Seconds 15
@@ -1672,23 +1683,23 @@ function Uninstall-TestSite {
             -TermName 'Test Term 1'
 
         Write-Progress -Activity 'Removing terms...' -Status 'Processing'
-        Remove-KshTerm -Identity $term1
+        Remove-KshTerm -Identity $term1 -Confirm:$false
 
         Write-Progress -Activity 'Removing term sets...' -Status 'Waiting'
         Start-Sleep -Seconds 15
 
         Write-Progress -Activity 'Removing term sets...' -Status 'Processing'
-        Remove-KshTermSet -Identity $termSet1
-        Remove-KshTermSet -Identity $termSet2
-        Remove-KshTermSet -Identity $termSet3
+        Remove-KshTermSet -Identity $termSet1 -Confirm:$false
+        Remove-KshTermSet -Identity $termSet2 -Confirm:$false
+        Remove-KshTermSet -Identity $termSet3 -Confirm:$false
 
         Write-Progress -Activity 'Removing term groups...' -Status 'Waiting'
         Start-Sleep -Seconds 15
 
         Write-Progress -Activity 'Removing term groups...' -Status 'Processing'
-        Remove-KshTermGroup -Identity $termGroup1
-        Remove-KshTermGroup -Identity $termGroup2
-        Remove-KshTermGroup -Identity $termGroup3
+        Remove-KshTermGroup -Identity $termGroup1 -Confirm:$false
+        Remove-KshTermGroup -Identity $termGroup2 -Confirm:$false
+        Remove-KshTermGroup -Identity $termGroup3 -Confirm:$false
 
         Write-Progress -Activity 'Removing site scripts...' -Status 'Processing'
         Get-KshTenantSiteScript | Remove-KshTenantSiteScript
@@ -1704,9 +1715,9 @@ function Uninstall-TestSite {
         Connect-KshSite -Url $tenantAppCatalogUrl -Credential $credential
 
         Write-Progress -Activity 'Removing tenant apps...' -Status 'Processing'
-        Get-KshTenantApp | Where-Object { $_.Title -eq 'TestApp1' } | Remove-KshTenantApp
-        Get-KshTenantApp | Where-Object { $_.Title -eq 'TestApp2' } | Remove-KshTenantApp
-        Get-KshTenantApp | Where-Object { $_.Title -eq 'TestApp3' } | Remove-KshTenantApp
+        Get-KshTenantApp | Where-Object { $_.Title -eq 'TestApp1' } | Remove-KshTenantApp -Confirm:$false
+        Get-KshTenantApp | Where-Object { $_.Title -eq 'TestApp2' } | Remove-KshTenantApp -Confirm:$false
+        Get-KshTenantApp | Where-Object { $_.Title -eq 'TestApp3' } | Remove-KshTenantApp -Confirm:$false
 
     }
 

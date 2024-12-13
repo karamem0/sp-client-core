@@ -24,29 +24,28 @@ public class SetGroupCommandTests
     public void SetGroup()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<Group>(
+        var result1 = context.Runspace.InvokeCommand<Group>(
             "Add-KshGroup",
             new Dictionary<string, object>()
             {
                 { "Title", "Test Group 0" }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<Group>(
+        var result2 = context.Runspace.InvokeCommand<Group>(
             "Set-KshGroup",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) },
+                { "Identity", result1.ElementAt(0) },
                 { "AllowMembersEditMembership", true },
                 { "AllowRequestToJoinLeave", true },
                 { "AutoAcceptRequestToJoinLeave", true },
@@ -57,14 +56,14 @@ public class SetGroupCommandTests
                 { "PassThru", true }
             }
         );
-        var result4 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshGroup",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                { "Identity", result2.ElementAt(0) }
             }
         );
-        var actual = result3.ElementAt(0);
+        var actual = result2.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 

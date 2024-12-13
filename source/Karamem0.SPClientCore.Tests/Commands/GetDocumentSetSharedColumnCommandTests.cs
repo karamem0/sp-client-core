@@ -24,32 +24,31 @@ public class GetDocumentSetSharedColumnCommandTests
     public void GetDocumentSetSharedColumns()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<ContentType>(
+        var result1 = context.Runspace.InvokeCommand<ContentType>(
             "Get-KshContentType",
             new Dictionary<string, object>()
             {
                 { "ContentTypeId", context.AppSettings["SiteContentType7Id"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<Column>(
+        var result2 = context.Runspace.InvokeCommand<Column>(
             "Get-KshDocumentSetSharedColumn",
             new Dictionary<string, object>()
             {
-                { "ContentType", result2.ElementAt(0) }
+                { "ContentType", result1.ElementAt(0) }
             }
         );
-        var actual = result3.ToArray();
+        var actual = result2.ToArray();
         Assert.That(actual, Is.Not.Null);
     }
 

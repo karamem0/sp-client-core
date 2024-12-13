@@ -24,18 +24,17 @@ public class RemoveTenantSiteScriptCommandTests
     public void RemoveSiteScript()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AdminUrl"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<TenantSiteScript>(
+        var result1 = context.Runspace.InvokeCommand<TenantSiteScript>(
             "Add-KshTenantSiteScript",
             new Dictionary<string, object>()
             {
@@ -43,11 +42,11 @@ public class RemoveTenantSiteScriptCommandTests
                 { "Title", "Test Site Script 0" }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<HubSite>(
+        _ = context.Runspace.InvokeCommand<HubSite>(
             "Remove-KshTenantSiteScript",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                { "Identity", result1.ElementAt(0) }
             }
         );
     }

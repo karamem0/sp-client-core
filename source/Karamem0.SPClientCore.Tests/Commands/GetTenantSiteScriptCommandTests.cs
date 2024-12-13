@@ -10,7 +10,6 @@ using Karamem0.SharePoint.PowerShell.Models.V1;
 using Karamem0.SharePoint.PowerShell.Tests.Utilities;
 using NUnit.Framework;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,24 +24,23 @@ public class GetTenantSiteScriptCommandTests
     public void GetTenantSiteScripts()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AdminUrl"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<TenantSiteScript>(
+        var result1 = context.Runspace.InvokeCommand<TenantSiteScript>(
             "Get-KshTenantSiteScript",
             new Dictionary<string, object>()
             {
             }
         );
-        var actual = result2.ToArray();
+        var actual = result1.ToArray();
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -50,32 +48,31 @@ public class GetTenantSiteScriptCommandTests
     public void GetTenantSiteScriptByIdentity()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AdminUrl"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<TenantSiteScript>(
+        var result1 = context.Runspace.InvokeCommand<TenantSiteScript>(
             "Get-KshTenantSiteScript",
             new Dictionary<string, object>()
             {
                 { "SiteScriptId", context.AppSettings["SiteScript1Id"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<TenantSiteScript>(
+        var result2 = context.Runspace.InvokeCommand<TenantSiteScript>(
             "Get-KshTenantSiteScript",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                { "Identity", result1.ElementAt(0) }
             }
         );
-        var actual = result3.ElementAt(0);
+        var actual = result2.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -83,25 +80,24 @@ public class GetTenantSiteScriptCommandTests
     public void GetTenantSiteScriptBySiteScriptId()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AdminUrl"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<TenantSiteScript>(
+        var result1 = context.Runspace.InvokeCommand<TenantSiteScript>(
             "Get-KshTenantSiteScript",
             new Dictionary<string, object>()
             {
                 { "SiteScriptId", context.AppSettings["SiteScript1Id"] }
             }
         );
-        var actual = result2.ElementAt(0);
+        var actual = result1.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 

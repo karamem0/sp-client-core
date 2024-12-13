@@ -24,18 +24,17 @@ public class SetListCommandTests
     public void SetList()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<List>(
+        var result1 = context.Runspace.InvokeCommand<List>(
             "Add-KshList",
             new Dictionary<string, object>()
             {
@@ -44,11 +43,11 @@ public class SetListCommandTests
                 { "Title", "Test List 0" }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<List>(
+        var result2 = context.Runspace.InvokeCommand<List>(
             "Set-KshList",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) },
+                { "Identity", result1.ElementAt(0) },
                 { "ContentTypesEnabled", true },
                 { "DefaultContentApprovalWorkflowId", null },
                 { "DefaultDisplayFormUrl", context.AppSettings["Site1Url"] + "/TestList0/Forms/DispForm.aspx" },
@@ -81,14 +80,14 @@ public class SetListCommandTests
                 { "PassThru", true }
             }
         );
-        var result4 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshList",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                { "Identity", result2.ElementAt(0) }
             }
         );
-        var actual = result3.ElementAt(0);
+        var actual = result2.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 

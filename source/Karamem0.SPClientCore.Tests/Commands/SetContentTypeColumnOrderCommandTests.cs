@@ -24,100 +24,28 @@ public class SetContentTypeColumnOrder
     public void SetListContentTypeColumnOrder()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<List>(
+        var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
                 { "ListId", context.AppSettings["List1Id"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<ContentType>(
-            "Add-KshContentType",
-            new Dictionary<string, object>()
-            {
-                { "List", result2.ElementAt(0) },
-                { "Description", "Test Content Type 0 Description" },
-                { "Group", "Test Content Type 0 Group" },
-                { "Name", "Test Content Type 0" }
-            }
-        );
-        var result4 = context.Runspace.InvokeCommand<Column>(
-            "Get-KshColumn",
-            new Dictionary<string, object>()
-            {
-                { "ColumnId", context.AppSettings["Column1Id"] }
-            }
-        );
-        var result5 = context.Runspace.InvokeCommand<ContentTypeColumn>(
-            "Add-KshContentTypeColumn",
-            new Dictionary<string, object>()
-            {
-                { "ContentType", result3.ElementAt(0) },
-                { "Column", result4.ElementAt(0) }
-            }
-        );
-        var result6 = context.Runspace.InvokeCommand<Column>(
-            "Get-KshColumn",
-            new Dictionary<string, object>()
-            {
-                { "ColumnId", context.AppSettings["Column2Id"] }
-            }
-        );
-        var result7 = context.Runspace.InvokeCommand<ContentTypeColumn>(
-            "Add-KshContentTypeColumn",
-            new Dictionary<string, object>()
-            {
-                { "ContentType", result3.ElementAt(0) },
-                { "Column", result6.ElementAt(0) }
-            }
-        );
-        var result8 = context.Runspace.InvokeCommand(
-            "Set-KshContentTypeColumnOrder",
-            new Dictionary<string, object>()
-            {
-                { "ContentType", result3.ElementAt(0) },
-                { "ContentTypeColumns", new List<string>() { "TestColumn2", "TestColumn1" } }
-            }
-        );
-        var result9 = context.Runspace.InvokeCommand(
-            "Remove-KshContentType",
-            new Dictionary<string, object>()
-            {
-                { "Identity", result3.ElementAt(0) }
-            }
-        );
-    }
-
-    [Test()]
-    public void SetSiteContentTypeColumnOrder()
-    {
-        using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
-            "Connect-KshSite",
-            new Dictionary<string, object>()
-            {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
-            }
-        );
         var result2 = context.Runspace.InvokeCommand<ContentType>(
             "Add-KshContentType",
             new Dictionary<string, object>()
             {
+                { "List", result1.ElementAt(0) },
                 { "Description", "Test Content Type 0 Description" },
                 { "Group", "Test Content Type 0 Group" },
                 { "Name", "Test Content Type 0" }
@@ -130,7 +58,7 @@ public class SetContentTypeColumnOrder
                 { "ColumnId", context.AppSettings["Column1Id"] }
             }
         );
-        var result4 = context.Runspace.InvokeCommand<ContentTypeColumn>(
+        _ = context.Runspace.InvokeCommand<ContentTypeColumn>(
             "Add-KshContentTypeColumn",
             new Dictionary<string, object>()
             {
@@ -138,22 +66,22 @@ public class SetContentTypeColumnOrder
                 { "Column", result3.ElementAt(0) }
             }
         );
-        var result5 = context.Runspace.InvokeCommand<Column>(
+        var result4 = context.Runspace.InvokeCommand<Column>(
             "Get-KshColumn",
             new Dictionary<string, object>()
             {
                 { "ColumnId", context.AppSettings["Column2Id"] }
             }
         );
-        var result6 = context.Runspace.InvokeCommand<ContentTypeColumn>(
+        _ = context.Runspace.InvokeCommand<ContentTypeColumn>(
             "Add-KshContentTypeColumn",
             new Dictionary<string, object>()
             {
                 { "ContentType", result2.ElementAt(0) },
-                { "Column", result5.ElementAt(0) }
+                { "Column", result4.ElementAt(0) }
             }
         );
-        var result7 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Set-KshContentTypeColumnOrder",
             new Dictionary<string, object>()
             {
@@ -161,11 +89,81 @@ public class SetContentTypeColumnOrder
                 { "ContentTypeColumns", new List<string>() { "TestColumn2", "TestColumn1" } }
             }
         );
-        var result8 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshContentType",
             new Dictionary<string, object>()
             {
                 { "Identity", result2.ElementAt(0) }
+            }
+        );
+    }
+
+    [Test()]
+    public void SetSiteContentTypeColumnOrder()
+    {
+        using var context = new PSCmdletContext();
+        _ = context.Runspace.InvokeCommand(
+            "Connect-KshSite",
+            new Dictionary<string, object>()
+            {
+                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+            }
+        );
+        var result1 = context.Runspace.InvokeCommand<ContentType>(
+            "Add-KshContentType",
+            new Dictionary<string, object>()
+            {
+                { "Description", "Test Content Type 0 Description" },
+                { "Group", "Test Content Type 0 Group" },
+                { "Name", "Test Content Type 0" }
+            }
+        );
+        var result2 = context.Runspace.InvokeCommand<Column>(
+            "Get-KshColumn",
+            new Dictionary<string, object>()
+            {
+                { "ColumnId", context.AppSettings["Column1Id"] }
+            }
+        );
+        _ = context.Runspace.InvokeCommand<ContentTypeColumn>(
+            "Add-KshContentTypeColumn",
+            new Dictionary<string, object>()
+            {
+                { "ContentType", result1.ElementAt(0) },
+                { "Column", result2.ElementAt(0) }
+            }
+        );
+        var result3 = context.Runspace.InvokeCommand<Column>(
+            "Get-KshColumn",
+            new Dictionary<string, object>()
+            {
+                { "ColumnId", context.AppSettings["Column2Id"] }
+            }
+        );
+        _ = context.Runspace.InvokeCommand<ContentTypeColumn>(
+            "Add-KshContentTypeColumn",
+            new Dictionary<string, object>()
+            {
+                { "ContentType", result1.ElementAt(0) },
+                { "Column", result3.ElementAt(0) }
+            }
+        );
+        _ = context.Runspace.InvokeCommand(
+            "Set-KshContentTypeColumnOrder",
+            new Dictionary<string, object>()
+            {
+                { "ContentType", result1.ElementAt(0) },
+                { "ContentTypeColumns", new List<string>() { "TestColumn2", "TestColumn1" } }
+            }
+        );
+        _ = context.Runspace.InvokeCommand(
+            "Remove-KshContentType",
+            new Dictionary<string, object>()
+            {
+                { "Identity", result1.ElementAt(0) }
             }
         );
     }

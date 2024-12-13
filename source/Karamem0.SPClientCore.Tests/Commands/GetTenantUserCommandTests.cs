@@ -24,33 +24,32 @@ public class GetTenantUserCommandTests
     public void GetUserBySiteCollectionAndUserId()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AdminUrl"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<TenantSiteCollection>(
+        var result1 = context.Runspace.InvokeCommand<TenantSiteCollection>(
             "Get-KshTenantSiteCollection",
             new Dictionary<string, object>()
             {
                 { "SiteCollectionUrl", context.AppSettings["BaseUrl"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<User>(
+        var result2 = context.Runspace.InvokeCommand<User>(
             "Get-KshTenantUser",
             new Dictionary<string, object>()
             {
-                { "SiteCollection", result2.ElementAt(0) },
+                { "SiteCollection", result1.ElementAt(0) },
                 { "UserId", context.AppSettings["User1Id"] }
             }
         );
-        var actual = result3.ElementAt(0);
+        var actual = result2.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -58,18 +57,17 @@ public class GetTenantUserCommandTests
     public void GetUserBySiteCollectionUrlAndUserId()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AdminUrl"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<User>(
+        var result1 = context.Runspace.InvokeCommand<User>(
             "Get-KshTenantUser",
             new Dictionary<string, object>()
             {
@@ -77,7 +75,7 @@ public class GetTenantUserCommandTests
                 { "UserId", context.AppSettings["User1Id"] }
             }
         );
-        var actual = result2.ElementAt(0);
+        var actual = result1.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -85,33 +83,32 @@ public class GetTenantUserCommandTests
     public void GetUserBySiteCollectionAndUserLoginName()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AdminUrl"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<TenantSiteCollection>(
+        var result1 = context.Runspace.InvokeCommand<TenantSiteCollection>(
             "Get-KshTenantSiteCollection",
             new Dictionary<string, object>()
             {
                 { "SiteCollectionUrl", context.AppSettings["BaseUrl"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<User>(
+        var result2 = context.Runspace.InvokeCommand<User>(
             "Get-KshTenantUser",
             new Dictionary<string, object>()
             {
-                { "SiteCollection", result2.ElementAt(0) },
+                { "SiteCollection", result1.ElementAt(0) },
                 { "UserName", context.AppSettings["User1LoginName"] }
             }
         );
-        var actual = result3.ElementAt(0);
+        var actual = result2.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -119,18 +116,17 @@ public class GetTenantUserCommandTests
     public void GetUserBySiteCollectionUrlAndUserLoginName()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AdminUrl"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<User>(
+        var result1 = context.Runspace.InvokeCommand<User>(
             "Get-KshTenantUser",
             new Dictionary<string, object>()
             {
@@ -138,7 +134,7 @@ public class GetTenantUserCommandTests
                 { "UserName", context.AppSettings["User1LoginName"] }
             }
         );
-        var actual = result2.ElementAt(0);
+        var actual = result1.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -146,56 +142,28 @@ public class GetTenantUserCommandTests
     public void GetUserBySiteCollectionAndUserEmail()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AdminUrl"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<TenantSiteCollection>(
+        var result1 = context.Runspace.InvokeCommand<TenantSiteCollection>(
             "Get-KshTenantSiteCollection",
             new Dictionary<string, object>()
             {
                 { "SiteCollectionUrl", context.AppSettings["BaseUrl"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<User>(
-            "Get-KshTenantUser",
-            new Dictionary<string, object>()
-            {
-                { "SiteCollection", result2.ElementAt(0) },
-                { "UserName", context.AppSettings["User1Email"] }
-            }
-        );
-        var actual = result3.ElementAt(0);
-        Assert.That(actual, Is.Not.Null);
-    }
-
-    [Test()]
-    public void GetUserBySiteCollectionUrlAndUserEmail()
-    {
-        using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
-            "Connect-KshSite",
-            new Dictionary<string, object>()
-            {
-                { "Url", context.AppSettings["AdminUrl"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
-            }
-        );
         var result2 = context.Runspace.InvokeCommand<User>(
             "Get-KshTenantUser",
             new Dictionary<string, object>()
             {
-                { "SiteCollectionUrl", context.AppSettings["BaseUrl"] },
+                { "SiteCollection", result1.ElementAt(0) },
                 { "UserName", context.AppSettings["User1Email"] }
             }
         );
@@ -204,35 +172,60 @@ public class GetTenantUserCommandTests
     }
 
     [Test()]
-    public void GetUsersBySiteCollection()
+    public void GetUserBySiteCollectionUrlAndUserEmail()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AdminUrl"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<TenantSiteCollection>(
+        var result1 = context.Runspace.InvokeCommand<User>(
+            "Get-KshTenantUser",
+            new Dictionary<string, object>()
+            {
+                { "SiteCollectionUrl", context.AppSettings["BaseUrl"] },
+                { "UserName", context.AppSettings["User1Email"] }
+            }
+        );
+        var actual = result1.ElementAt(0);
+        Assert.That(actual, Is.Not.Null);
+    }
+
+    [Test()]
+    public void GetUsersBySiteCollection()
+    {
+        using var context = new PSCmdletContext();
+        _ = context.Runspace.InvokeCommand(
+            "Connect-KshSite",
+            new Dictionary<string, object>()
+            {
+                { "Url", context.AppSettings["AdminUrl"] },
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+            }
+        );
+        var result1 = context.Runspace.InvokeCommand<TenantSiteCollection>(
             "Get-KshTenantSiteCollection",
             new Dictionary<string, object>()
             {
                 { "SiteCollectionUrl", context.AppSettings["BaseUrl"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<User>(
+        var result2 = context.Runspace.InvokeCommand<User>(
             "Get-KshTenantUser",
             new Dictionary<string, object>()
             {
-                { "SiteCollection", result2.ElementAt(0) }
+                { "SiteCollection", result1.ElementAt(0) }
             }
         );
-        var actual = result3.ToArray();
+        var actual = result2.ToArray();
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -240,25 +233,24 @@ public class GetTenantUserCommandTests
     public void GetUsersBySiteCollectionUrl()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AdminUrl"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<User>(
+        var result1 = context.Runspace.InvokeCommand<User>(
             "Get-KshTenantUser",
             new Dictionary<string, object>()
             {
                 { "SiteCollectionUrl", context.AppSettings["BaseUrl"] }
             }
         );
-        var actual = result2.ToArray();
+        var actual = result1.ToArray();
         Assert.That(actual, Is.Not.Null);
     }
 

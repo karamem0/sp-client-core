@@ -24,24 +24,23 @@ public class GetSiteTemplateCommandTests
     public void GetSiteTemplates()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<SiteTemplate>(
+        var result1 = context.Runspace.InvokeCommand<SiteTemplate>(
             "Get-KshSiteTemplate",
             new Dictionary<string, object>()
             {
             }
         );
-        var actual = result2.ToArray();
+        var actual = result1.ToArray();
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -49,18 +48,17 @@ public class GetSiteTemplateCommandTests
     public void GetSiteTemplatesByFilter()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<SiteTemplate>(
+        var result1 = context.Runspace.InvokeCommand<SiteTemplate>(
             "Get-KshSiteTemplate",
             new Dictionary<string, object>()
             {
@@ -68,7 +66,7 @@ public class GetSiteTemplateCommandTests
                 { "Lcid", 1033 }
             }
         );
-        var actual = result2.ToArray();
+        var actual = result1.ToArray();
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -76,25 +74,24 @@ public class GetSiteTemplateCommandTests
     public void GetSiteTemplateBySiteTemplateName()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<SiteTemplate>(
+        var result1 = context.Runspace.InvokeCommand<SiteTemplate>(
             "Get-KshSiteTemplate",
             new Dictionary<string, object>()
             {
                 { "SiteTemplateName", "SITEPAGEPUBLISHING#0" }
             }
         );
-        var actual = result2.ElementAt(0);
+        var actual = result1.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 

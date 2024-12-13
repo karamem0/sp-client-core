@@ -24,37 +24,36 @@ public class MoveFolderCommandTests
     public void MoveFolder()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<Folder>(
+        var result1 = context.Runspace.InvokeCommand<Folder>(
             "Get-KshFolder",
             new Dictionary<string, object>()
             {
                 { "FolderUrl", context.AppSettings["Folder1Url"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<Folder>(
+        var result2 = context.Runspace.InvokeCommand<Folder>(
             "Add-KshFolder",
             new Dictionary<string, object>()
             {
-                { "Folder", result2.ElementAt(0) },
+                { "Folder", result1.ElementAt(0) },
                 { "FolderName", "Test Folder 0" }
             }
         );
-        var result4 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Move-KshFolder",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) },
+                { "Identity", result2.ElementAt(0) },
                 { "NewUrl", context.AppSettings["AuthorityUrl"] + context.AppSettings["List2Url"] + "/Test Folder 9" },
                 { "KeepBoth", true },
                 { "ResetAuthorAndCreatedOnCopy", true },
@@ -62,21 +61,21 @@ public class MoveFolderCommandTests
                 { "ShouldBypassSharedLocks", true }
             }
         );
-        var result5 = context.Runspace.InvokeCommand<Folder>(
+        var result3 = context.Runspace.InvokeCommand<Folder>(
             "Get-KshFolder",
             new Dictionary<string, object>()
             {
                 { "FolderUrl", context.AppSettings["List2Url"] + "/Test Folder 9" }
             }
         );
-        var result6 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshFolder",
             new Dictionary<string, object>()
             {
-                { "Identity", result5.ElementAt(0) }
+                { "Identity", result3.ElementAt(0) }
             }
         );
-        var actual = result5.ElementAt(0);
+        var actual = result3.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -84,50 +83,49 @@ public class MoveFolderCommandTests
     public void MoveFolderLegacyByRelativeUrl()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<Folder>(
+        var result1 = context.Runspace.InvokeCommand<Folder>(
             "Get-KshFolder",
             new Dictionary<string, object>()
             {
                 { "FolderUrl", context.AppSettings["Folder1Url"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<Folder>(
+        var result2 = context.Runspace.InvokeCommand<Folder>(
             "Add-KshFolder",
             new Dictionary<string, object>()
             {
-                { "Folder", result2.ElementAt(0) },
+                { "Folder", result1.ElementAt(0) },
                 { "FolderName", "Test Folder 0" }
             }
         );
-        var result4 = context.Runspace.InvokeCommand<Folder>(
+        var result3 = context.Runspace.InvokeCommand<Folder>(
             "Move-KshFolder",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) },
+                { "Identity", result2.ElementAt(0) },
                 { "NewUrl", context.AppSettings["Folder1Url"] + "/TestFolder9" },
                 { "Legacy", true },
                 { "PassThru", true }
             }
         );
-        var result5 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshFolder",
             new Dictionary<string, object>()
             {
-                { "Identity", result4.ElementAt(0) }
+                { "Identity", result3.ElementAt(0) }
             }
         );
-        var actual = result4.ElementAt(0);
+        var actual = result3.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -135,50 +133,49 @@ public class MoveFolderCommandTests
     public void MoveFolderLegacyByAbsoluteUrl()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<Folder>(
+        var result1 = context.Runspace.InvokeCommand<Folder>(
             "Get-KshFolder",
             new Dictionary<string, object>()
             {
                 { "FolderUrl", context.AppSettings["Folder1Url"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<Folder>(
+        var result2 = context.Runspace.InvokeCommand<Folder>(
             "Add-KshFolder",
             new Dictionary<string, object>()
             {
-                { "Folder", result2.ElementAt(0) },
+                { "Folder", result1.ElementAt(0) },
                 { "FolderName", "Test Folder 0" }
             }
         );
-        var result4 = context.Runspace.InvokeCommand<Folder>(
+        var result3 = context.Runspace.InvokeCommand<Folder>(
             "Move-KshFolder",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) },
+                { "Identity", result2.ElementAt(0) },
                 { "NewUrl", context.AppSettings["AuthorityUrl"] + context.AppSettings["Folder1Url"] + "/TestFolder9" },
                 { "Legacy", true },
                 { "PassThru", true }
             }
         );
-        var result5 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshFolder",
             new Dictionary<string, object>()
             {
-                { "Identity", result4.ElementAt(0) }
+                { "Identity", result3.ElementAt(0) }
             }
         );
-        var actual = result4.ElementAt(0);
+        var actual = result3.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 

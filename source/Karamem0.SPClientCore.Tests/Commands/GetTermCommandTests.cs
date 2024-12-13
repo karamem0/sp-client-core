@@ -24,40 +24,39 @@ public class GetTermCommandTests
     public void GetTermSetTerms()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<TermGroup>(
+        var result1 = context.Runspace.InvokeCommand<TermGroup>(
             "Get-KshTermGroup",
             new Dictionary<string, object>()
             {
                 { "TermGroupId", context.AppSettings["TermGroup1Id"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<TermSet>(
+        var result2 = context.Runspace.InvokeCommand<TermSet>(
             "Get-KshTermSet",
             new Dictionary<string, object>()
             {
-                { "TermGroup", result2.ElementAt(0) },
+                { "TermGroup", result1.ElementAt(0) },
                 { "TermSetId", context.AppSettings["TermSet1Id"] }
             }
         );
-        var result4 = context.Runspace.InvokeCommand<Term>(
+        var result3 = context.Runspace.InvokeCommand<Term>(
             "Get-KshTerm",
             new Dictionary<string, object>()
             {
-                { "TermSet", result3.ElementAt(0) }
+                { "TermSet", result2.ElementAt(0) }
             }
         );
-        var actual = result4.ToArray();
+        var actual = result3.ToArray();
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -65,38 +64,271 @@ public class GetTermCommandTests
     public void GetTermSetTermByIdentity()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<TermGroup>(
+        var result1 = context.Runspace.InvokeCommand<TermGroup>(
             "Get-KshTermGroup",
             new Dictionary<string, object>()
             {
                 { "TermGroupId", context.AppSettings["TermGroup1Id"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<TermSet>(
+        var result2 = context.Runspace.InvokeCommand<TermSet>(
             "Get-KshTermSet",
             new Dictionary<string, object>()
             {
-                { "TermGroup", result2.ElementAt(0) },
+                { "TermGroup", result1.ElementAt(0) },
                 { "TermSetId", context.AppSettings["TermSet1Id"] }
+            }
+        );
+        var result3 = context.Runspace.InvokeCommand<Term>(
+            "Get-KshTerm",
+            new Dictionary<string, object>()
+            {
+                { "TermSet", result2.ElementAt(0) },
+                { "TermId", context.AppSettings["Term1Id"] }
             }
         );
         var result4 = context.Runspace.InvokeCommand<Term>(
             "Get-KshTerm",
             new Dictionary<string, object>()
             {
-                { "TermSet", result3.ElementAt(0) },
+                { "Identity", result3.ElementAt(0) }
+            }
+        );
+        var actual = result4.ElementAt(0);
+        Assert.That(actual, Is.Not.Null);
+    }
+
+    [Test()]
+    public void GetTermSetTermByTermLabel()
+    {
+        using var context = new PSCmdletContext();
+        _ = context.Runspace.InvokeCommand(
+            "Connect-KshSite",
+            new Dictionary<string, object>()
+            {
+                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+            }
+        );
+        var result1 = context.Runspace.InvokeCommand<TermGroup>(
+            "Get-KshTermGroup",
+            new Dictionary<string, object>()
+            {
+                { "TermGroupId", context.AppSettings["TermGroup1Id"] }
+            }
+        );
+        var result2 = context.Runspace.InvokeCommand<TermSet>(
+            "Get-KshTermSet",
+            new Dictionary<string, object>()
+            {
+                { "TermGroup", result1.ElementAt(0) },
+                { "TermSetId", context.AppSettings["TermSet1Id"] }
+            }
+        );
+        var result3 = context.Runspace.InvokeCommand<Term>(
+            "Get-KshTerm",
+            new Dictionary<string, object>()
+            {
+                { "TermSet", result2.ElementAt(0) },
                 { "TermId", context.AppSettings["Term1Id"] }
+            }
+        );
+        var result4 = context.Runspace.InvokeCommand<TermLabel>(
+            "Get-KshTermLabel",
+            new Dictionary<string, object>()
+            {
+                { "Term", result3.ElementAt(0) },
+                { "LabelName", context.AppSettings["Term1Name"] }
+            }
+        );
+        var result5 = context.Runspace.InvokeCommand<Term>(
+            "Get-KshTerm",
+            new Dictionary<string, object>()
+            {
+                { "TermLabel", result4.ElementAt(0) }
+            }
+        );
+        var actual = result5.ElementAt(0);
+        Assert.That(actual, Is.Not.Null);
+    }
+
+    [Test()]
+    public void GetTermSetTermByTermId()
+    {
+        using var context = new PSCmdletContext();
+        _ = context.Runspace.InvokeCommand(
+            "Connect-KshSite",
+            new Dictionary<string, object>()
+            {
+                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+            }
+        );
+        var result1 = context.Runspace.InvokeCommand<TermGroup>(
+            "Get-KshTermGroup",
+            new Dictionary<string, object>()
+            {
+                { "TermGroupId", context.AppSettings["TermGroup1Id"] }
+            }
+        );
+        var result2 = context.Runspace.InvokeCommand<TermSet>(
+            "Get-KshTermSet",
+            new Dictionary<string, object>()
+            {
+                { "TermGroup", result1.ElementAt(0) },
+                { "TermSetId", context.AppSettings["TermSet1Id"] }
+            }
+        );
+        var result3 = context.Runspace.InvokeCommand<Term>(
+            "Get-KshTerm",
+            new Dictionary<string, object>()
+            {
+                { "TermSet", result2.ElementAt(0) },
+                { "TermId", context.AppSettings["Term1Id"] },
+            }
+        );
+        var actual = result3.ElementAt(0);
+        Assert.That(actual, Is.Not.Null);
+    }
+
+    [Test()]
+    public void GetTermSetTermByTermName()
+    {
+        using var context = new PSCmdletContext();
+        _ = context.Runspace.InvokeCommand(
+            "Connect-KshSite",
+            new Dictionary<string, object>()
+            {
+                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+            }
+        );
+        var result1 = context.Runspace.InvokeCommand<TermGroup>(
+            "Get-KshTermGroup",
+            new Dictionary<string, object>()
+            {
+                { "TermGroupId", context.AppSettings["TermGroup1Id"] }
+            }
+        );
+        var result2 = context.Runspace.InvokeCommand<TermSet>(
+            "Get-KshTermSet",
+            new Dictionary<string, object>()
+            {
+                { "TermGroup", result1.ElementAt(0) },
+                { "TermSetId", context.AppSettings["TermSet1Id"] }
+            }
+        );
+        var result3 = context.Runspace.InvokeCommand<Term>(
+            "Get-KshTerm",
+            new Dictionary<string, object>()
+            {
+                { "TermSet", result2.ElementAt(0) },
+                { "TermName", context.AppSettings["Term1Name"] },
+            }
+        );
+        var actual = result3.ElementAt(0);
+        Assert.That(actual, Is.Not.Null);
+    }
+
+    [Test()]
+    public void GetTermTerms()
+    {
+        using var context = new PSCmdletContext();
+        _ = context.Runspace.InvokeCommand(
+            "Connect-KshSite",
+            new Dictionary<string, object>()
+            {
+                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+            }
+        );
+        var result1 = context.Runspace.InvokeCommand<TermGroup>(
+            "Get-KshTermGroup",
+            new Dictionary<string, object>()
+            {
+                { "TermGroupId", context.AppSettings["TermGroup1Id"] }
+            }
+        );
+        var result2 = context.Runspace.InvokeCommand<TermSet>(
+            "Get-KshTermSet",
+            new Dictionary<string, object>()
+            {
+                { "TermGroup", result1.ElementAt(0) },
+                { "TermSetId", context.AppSettings["TermSet1Id"] }
+            }
+        );
+        var result3 = context.Runspace.InvokeCommand<Term>(
+            "Get-KshTerm",
+            new Dictionary<string, object>()
+            {
+                { "TermSet", result2.ElementAt(0) }
+            }
+        );
+        var actual = result3.ToArray();
+        Assert.That(actual, Is.Not.Null);
+    }
+
+    [Test()]
+    public void GetTermTermByIdentity()
+    {
+        using var context = new PSCmdletContext();
+        _ = context.Runspace.InvokeCommand(
+            "Connect-KshSite",
+            new Dictionary<string, object>()
+            {
+                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+            }
+        );
+        var result1 = context.Runspace.InvokeCommand<TermGroup>(
+            "Get-KshTermGroup",
+            new Dictionary<string, object>()
+            {
+                { "TermGroupId", context.AppSettings["TermGroup1Id"] }
+            }
+        );
+        var result2 = context.Runspace.InvokeCommand<TermSet>(
+            "Get-KshTermSet",
+            new Dictionary<string, object>()
+            {
+                { "TermGroup", result1.ElementAt(0) },
+                { "TermSetId", context.AppSettings["TermSet1Id"] }
+            }
+        );
+        var result3 = context.Runspace.InvokeCommand<Term>(
+            "Get-KshTerm",
+            new Dictionary<string, object>()
+            {
+                { "TermSet", result2.ElementAt(0) },
+                { "TermId", context.AppSettings["Term1Id"] }
+            }
+        );
+        var result4 = context.Runspace.InvokeCommand<Term>(
+            "Get-KshTerm",
+            new Dictionary<string, object>()
+            {
+                { "Term", result3.ElementAt(0) },
+                { "TermId", context.AppSettings["Term2Id"] }
             }
         );
         var result5 = context.Runspace.InvokeCommand<Term>(
@@ -111,41 +343,48 @@ public class GetTermCommandTests
     }
 
     [Test()]
-    public void GetTermSetTermByTermLabel()
+    public void GetTermTermByTermLabel()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<TermGroup>(
+        var result1 = context.Runspace.InvokeCommand<TermGroup>(
             "Get-KshTermGroup",
             new Dictionary<string, object>()
             {
                 { "TermGroupId", context.AppSettings["TermGroup1Id"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<TermSet>(
+        var result2 = context.Runspace.InvokeCommand<TermSet>(
             "Get-KshTermSet",
             new Dictionary<string, object>()
             {
-                { "TermGroup", result2.ElementAt(0) },
+                { "TermGroup", result1.ElementAt(0) },
                 { "TermSetId", context.AppSettings["TermSet1Id"] }
+            }
+        );
+        var result3 = context.Runspace.InvokeCommand<Term>(
+            "Get-KshTerm",
+            new Dictionary<string, object>()
+            {
+                { "TermSet", result2.ElementAt(0) },
+                { "TermId", context.AppSettings["Term1Id"] }
             }
         );
         var result4 = context.Runspace.InvokeCommand<Term>(
             "Get-KshTerm",
             new Dictionary<string, object>()
             {
-                { "TermSet", result3.ElementAt(0) },
-                { "TermId", context.AppSettings["Term1Id"] }
+                { "Term", result3.ElementAt(0) },
+                { "TermId", context.AppSettings["Term2Id"] }
             }
         );
         var result5 = context.Runspace.InvokeCommand<TermLabel>(
@@ -153,7 +392,7 @@ public class GetTermCommandTests
             new Dictionary<string, object>()
             {
                 { "Term", result4.ElementAt(0) },
-                { "LabelName", context.AppSettings["Term1Name"] }
+                { "LabelName", context.AppSettings["Term2Name"] }
             }
         );
         var result6 = context.Runspace.InvokeCommand<Term>(
@@ -168,299 +407,51 @@ public class GetTermCommandTests
     }
 
     [Test()]
-    public void GetTermSetTermByTermId()
-    {
-        using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
-            "Connect-KshSite",
-            new Dictionary<string, object>()
-            {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
-            }
-        );
-        var result2 = context.Runspace.InvokeCommand<TermGroup>(
-            "Get-KshTermGroup",
-            new Dictionary<string, object>()
-            {
-                { "TermGroupId", context.AppSettings["TermGroup1Id"] }
-            }
-        );
-        var result3 = context.Runspace.InvokeCommand<TermSet>(
-            "Get-KshTermSet",
-            new Dictionary<string, object>()
-            {
-                { "TermGroup", result2.ElementAt(0) },
-                { "TermSetId", context.AppSettings["TermSet1Id"] }
-            }
-        );
-        var result4 = context.Runspace.InvokeCommand<Term>(
-            "Get-KshTerm",
-            new Dictionary<string, object>()
-            {
-                { "TermSet", result3.ElementAt(0) },
-                { "TermId", context.AppSettings["Term1Id"] },
-            }
-        );
-        var actual = result4.ElementAt(0);
-        Assert.That(actual, Is.Not.Null);
-    }
-
-    [Test()]
-    public void GetTermSetTermByTermName()
-    {
-        using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
-            "Connect-KshSite",
-            new Dictionary<string, object>()
-            {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
-            }
-        );
-        var result2 = context.Runspace.InvokeCommand<TermGroup>(
-            "Get-KshTermGroup",
-            new Dictionary<string, object>()
-            {
-                { "TermGroupId", context.AppSettings["TermGroup1Id"] }
-            }
-        );
-        var result3 = context.Runspace.InvokeCommand<TermSet>(
-            "Get-KshTermSet",
-            new Dictionary<string, object>()
-            {
-                { "TermGroup", result2.ElementAt(0) },
-                { "TermSetId", context.AppSettings["TermSet1Id"] }
-            }
-        );
-        var result4 = context.Runspace.InvokeCommand<Term>(
-            "Get-KshTerm",
-            new Dictionary<string, object>()
-            {
-                { "TermSet", result3.ElementAt(0) },
-                { "TermName", context.AppSettings["Term1Name"] },
-            }
-        );
-        var actual = result4.ElementAt(0);
-        Assert.That(actual, Is.Not.Null);
-    }
-
-    [Test()]
-    public void GetTermTerms()
-    {
-        using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
-            "Connect-KshSite",
-            new Dictionary<string, object>()
-            {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
-            }
-        );
-        var result2 = context.Runspace.InvokeCommand<TermGroup>(
-            "Get-KshTermGroup",
-            new Dictionary<string, object>()
-            {
-                { "TermGroupId", context.AppSettings["TermGroup1Id"] }
-            }
-        );
-        var result3 = context.Runspace.InvokeCommand<TermSet>(
-            "Get-KshTermSet",
-            new Dictionary<string, object>()
-            {
-                { "TermGroup", result2.ElementAt(0) },
-                { "TermSetId", context.AppSettings["TermSet1Id"] }
-            }
-        );
-        var result4 = context.Runspace.InvokeCommand<Term>(
-            "Get-KshTerm",
-            new Dictionary<string, object>()
-            {
-                { "TermSet", result3.ElementAt(0) }
-            }
-        );
-        var actual = result4.ToArray();
-        Assert.That(actual, Is.Not.Null);
-    }
-
-    [Test()]
-    public void GetTermTermByIdentity()
-    {
-        using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
-            "Connect-KshSite",
-            new Dictionary<string, object>()
-            {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
-            }
-        );
-        var result2 = context.Runspace.InvokeCommand<TermGroup>(
-            "Get-KshTermGroup",
-            new Dictionary<string, object>()
-            {
-                { "TermGroupId", context.AppSettings["TermGroup1Id"] }
-            }
-        );
-        var result3 = context.Runspace.InvokeCommand<TermSet>(
-            "Get-KshTermSet",
-            new Dictionary<string, object>()
-            {
-                { "TermGroup", result2.ElementAt(0) },
-                { "TermSetId", context.AppSettings["TermSet1Id"] }
-            }
-        );
-        var result4 = context.Runspace.InvokeCommand<Term>(
-            "Get-KshTerm",
-            new Dictionary<string, object>()
-            {
-                { "TermSet", result3.ElementAt(0) },
-                { "TermId", context.AppSettings["Term1Id"] }
-            }
-        );
-        var result5 = context.Runspace.InvokeCommand<Term>(
-            "Get-KshTerm",
-            new Dictionary<string, object>()
-            {
-                { "Term", result4.ElementAt(0) },
-                { "TermId", context.AppSettings["Term2Id"] }
-            }
-        );
-        var result6 = context.Runspace.InvokeCommand<Term>(
-            "Get-KshTerm",
-            new Dictionary<string, object>()
-            {
-                { "Identity", result5.ElementAt(0) }
-            }
-        );
-        var actual = result6.ElementAt(0);
-        Assert.That(actual, Is.Not.Null);
-    }
-
-    [Test()]
-    public void GetTermTermByTermLabel()
-    {
-        using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
-            "Connect-KshSite",
-            new Dictionary<string, object>()
-            {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
-            }
-        );
-        var result2 = context.Runspace.InvokeCommand<TermGroup>(
-            "Get-KshTermGroup",
-            new Dictionary<string, object>()
-            {
-                { "TermGroupId", context.AppSettings["TermGroup1Id"] }
-            }
-        );
-        var result3 = context.Runspace.InvokeCommand<TermSet>(
-            "Get-KshTermSet",
-            new Dictionary<string, object>()
-            {
-                { "TermGroup", result2.ElementAt(0) },
-                { "TermSetId", context.AppSettings["TermSet1Id"] }
-            }
-        );
-        var result4 = context.Runspace.InvokeCommand<Term>(
-            "Get-KshTerm",
-            new Dictionary<string, object>()
-            {
-                { "TermSet", result3.ElementAt(0) },
-                { "TermId", context.AppSettings["Term1Id"] }
-            }
-        );
-        var result5 = context.Runspace.InvokeCommand<Term>(
-            "Get-KshTerm",
-            new Dictionary<string, object>()
-            {
-                { "Term", result4.ElementAt(0) },
-                { "TermId", context.AppSettings["Term2Id"] }
-            }
-        );
-        var result6 = context.Runspace.InvokeCommand<TermLabel>(
-            "Get-KshTermLabel",
-            new Dictionary<string, object>()
-            {
-                { "Term", result5.ElementAt(0) },
-                { "LabelName", context.AppSettings["Term2Name"] }
-            }
-        );
-        var result7 = context.Runspace.InvokeCommand<Term>(
-            "Get-KshTerm",
-            new Dictionary<string, object>()
-            {
-                { "TermLabel", result6.ElementAt(0) }
-            }
-        );
-        var actual = result7.ElementAt(0);
-        Assert.That(actual, Is.Not.Null);
-    }
-
-    [Test()]
     public void GetTermTermByTermId()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<TermGroup>(
+        var result1 = context.Runspace.InvokeCommand<TermGroup>(
             "Get-KshTermGroup",
             new Dictionary<string, object>()
             {
                 { "TermGroupId", context.AppSettings["TermGroup1Id"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<TermSet>(
+        var result2 = context.Runspace.InvokeCommand<TermSet>(
             "Get-KshTermSet",
             new Dictionary<string, object>()
             {
-                { "TermGroup", result2.ElementAt(0) },
+                { "TermGroup", result1.ElementAt(0) },
                 { "TermSetId", context.AppSettings["TermSet1Id"] }
+            }
+        );
+        var result3 = context.Runspace.InvokeCommand<Term>(
+            "Get-KshTerm",
+            new Dictionary<string, object>()
+            {
+                { "TermSet", result2.ElementAt(0) },
+                { "TermId", context.AppSettings["Term1Id"] }
             }
         );
         var result4 = context.Runspace.InvokeCommand<Term>(
             "Get-KshTerm",
             new Dictionary<string, object>()
             {
-                { "TermSet", result3.ElementAt(0) },
-                { "TermId", context.AppSettings["Term1Id"] }
-            }
-        );
-        var result5 = context.Runspace.InvokeCommand<Term>(
-            "Get-KshTerm",
-            new Dictionary<string, object>()
-            {
-                { "Term", result4.ElementAt(0) },
+                { "Term", result3.ElementAt(0) },
                 { "TermId", context.AppSettings["Term2Id"] },
             }
         );
-        var actual = result5.ElementAt(0);
+        var actual = result4.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -468,49 +459,48 @@ public class GetTermCommandTests
     public void GetTermTermByTermName()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<TermGroup>(
+        var result1 = context.Runspace.InvokeCommand<TermGroup>(
             "Get-KshTermGroup",
             new Dictionary<string, object>()
             {
                 { "TermGroupId", context.AppSettings["TermGroup1Id"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<TermSet>(
+        var result2 = context.Runspace.InvokeCommand<TermSet>(
             "Get-KshTermSet",
             new Dictionary<string, object>()
             {
-                { "TermGroup", result2.ElementAt(0) },
+                { "TermGroup", result1.ElementAt(0) },
                 { "TermSetId", context.AppSettings["TermSet1Id"] }
+            }
+        );
+        var result3 = context.Runspace.InvokeCommand<Term>(
+            "Get-KshTerm",
+            new Dictionary<string, object>()
+            {
+                { "TermSet", result2.ElementAt(0) },
+                { "TermId", context.AppSettings["Term1Id"] }
             }
         );
         var result4 = context.Runspace.InvokeCommand<Term>(
             "Get-KshTerm",
             new Dictionary<string, object>()
             {
-                { "TermSet", result3.ElementAt(0) },
-                { "TermId", context.AppSettings["Term1Id"] }
-            }
-        );
-        var result5 = context.Runspace.InvokeCommand<Term>(
-            "Get-KshTerm",
-            new Dictionary<string, object>()
-            {
-                { "Term", result4.ElementAt(0) },
+                { "Term", result3.ElementAt(0) },
                 { "TermName", context.AppSettings["Term2Name"] },
             }
         );
-        var actual = result5.ElementAt(0);
+        var actual = result4.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 

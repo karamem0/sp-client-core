@@ -22,15 +22,6 @@ jobs:
           dotnet restore ${{env.TARGET_FILE}}
         env:
           TARGET_FILE: source/Karamem0.SPClientCore/Karamem0.SPClientCore.csproj
-      - name: Test source
-        shell: pwsh
-        run: |
-          dotnet test ${{env.TARGET_FILE}} `
-            --filter TestCategory=Karamem0.SharePoint.PowerShell.Runtime `
-            -p:AltCover=true `
-            -- NUnit.TestOutputXml=${{github.workspace}}/source/test
-        env:
-          TARGET_FILE: source/Karamem0.SPClientCore.Tests/Karamem0.SPClientCore.Tests.csproj
       - name: Build source
         shell: pwsh
         run: |
@@ -69,17 +60,3 @@ jobs:
         with:
           name: build
           path: source/Karamem0.SPClientCore/build
-      - name: Upload test results
-        uses: enricomi/publish-unit-test-result-action/linux@v2
-        if: always()
-        with:
-          files: |
-            source/test/**/*.xml
-          check_name: Test results
-      - name: Upload coverage reports
-        uses: codecov/codecov-action@v4
-        if: always()
-        with:
-          fail_ci_if_error: true
-          token: ${{secrets.CODECOV_TOKEN}}
-          slug: karamem0/sp-client-core

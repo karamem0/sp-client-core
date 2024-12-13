@@ -24,18 +24,17 @@ public class SetRegionalSettingsCommandTests
     public void SetRegionalSettings()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<Site>(
+        var result1 = context.Runspace.InvokeCommand<Site>(
             "Add-KshSite",
             new Dictionary<string, object>()
             {
@@ -44,21 +43,21 @@ public class SetRegionalSettingsCommandTests
                 { "Title", "Test Site 0" }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<Site>(
+        var result2 = context.Runspace.InvokeCommand<Site>(
             "Select-KshSite",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) },
+                { "Identity", result1.ElementAt(0) },
                 { "PassThru", true }
             }
         );
-        var result4 = context.Runspace.InvokeCommand<RegionalSettings>(
+        var result3 = context.Runspace.InvokeCommand<RegionalSettings>(
             "Get-KshRegionalSettings",
             new Dictionary<string, object>()
             {
             }
         );
-        var result5 = context.Runspace.InvokeCommand<RegionalSettings>(
+        var result4 = context.Runspace.InvokeCommand<RegionalSettings>(
             "Set-KshRegionalSettings",
             new Dictionary<string, object>()
             {
@@ -71,21 +70,21 @@ public class SetRegionalSettingsCommandTests
                 { "Lcid", 1041 },
                 { "ShowWeeks", true },
                 { "Time24", true },
-                { "TimeZone", result4.ElementAt(0).TimeZones.ElementAt(0) },
+                { "TimeZone", result3.ElementAt(0).TimeZones.ElementAt(0) },
                 { "WorkDayEndHour", 60 },
                 { "WorkDays", 1 },
                 { "WorkDayStartHour", 60 },
                 { "PassThru", true }
             }
         );
-        var result6 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshSite",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                { "Identity", result2.ElementAt(0) }
             }
         );
-        var actual = result5.ElementAt(0);
+        var actual = result4.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 

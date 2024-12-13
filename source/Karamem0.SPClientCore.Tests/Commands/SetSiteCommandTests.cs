@@ -24,18 +24,17 @@ public class SetSiteCommandTests
     public void SetSite()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["BaseUrl"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<Site>(
+        var result1 = context.Runspace.InvokeCommand<Site>(
             "Add-KshSite",
             new Dictionary<string, object>()
             {
@@ -44,11 +43,11 @@ public class SetSiteCommandTests
                 { "Title", "Test Site 0" }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<Site>(
+        var result2 = context.Runspace.InvokeCommand<Site>(
             "Set-KshSite",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) },
+                { "Identity", result1.ElementAt(0) },
                 { "AllowAutomaticASPXPageIndexing", true },
                 { "AlternateCssUrl", "style.css" },
                 // { "AssociatedMemberGroup", null },
@@ -56,7 +55,7 @@ public class SetSiteCommandTests
                 // { "AssociatedVisitorGroup", null },
                 { "CommentsOnSitePagesDisabled", true },
                 { "ContainsConfidentialInfo", true },
-                { "CustomMasterUrl", result2.ElementAt(0).ServerRelativeUrl + "/_catalogs/masterpage/oslo.master" },
+                { "CustomMasterUrl", result1.ElementAt(0).ServerRelativeUrl + "/_catalogs/masterpage/oslo.master" },
                 { "DisableAppViews", true },
                 { "DisableFlows", true },
                 { "Description", "Test Site 9 Description" },
@@ -68,7 +67,7 @@ public class SetSiteCommandTests
                 { "HeaderLayout", "Standard" },
                 { "HorizontalQuickLaunch", true },
                 { "LogoAlignment", "Left" },
-                // { "MasterUrl", result2.ElementAt(0).ServerRelativeUrl + "/_catalogs/masterpage/oslo.master" },
+                // { "MasterUrl", result1.ElementAt(0).ServerRelativeUrl + "/_catalogs/masterpage/oslo.master" },
                 { "MembersCanShare", true },
                 { "MegaMenuEnabled", true },
                 { "NavAudienceTargetingEnabled", true },
@@ -81,9 +80,9 @@ public class SetSiteCommandTests
                 { "SearchScope", "DefaultScope" },
                 // { "ServerRelativeUrl", "TestSite9" },
                 { "SiteLogoDescription", "Test Site 9 Description" },
-                { "SiteLogoUrl", result2.ElementAt(0).ServerRelativeUrl + "/_layouts/15/images/siteicon.png" },
+                { "SiteLogoUrl", result1.ElementAt(0).ServerRelativeUrl + "/_layouts/15/images/siteicon.png" },
                 { "SyndicationEnabled", true },
-                { "ThemedCssFolderUrl", result2.ElementAt(0).ServerRelativeUrl + "/SiteAssets/theme.css" },
+                { "ThemedCssFolderUrl", result1.ElementAt(0).ServerRelativeUrl + "/SiteAssets/theme.css" },
                 { "Title", "Test Site 9" },
                 { "TreeViewEnabled", true },
                 { "UIVersion", 15 },
@@ -91,14 +90,14 @@ public class SetSiteCommandTests
                 { "PassThru", true }
             }
         );
-        var result4 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshSite",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                { "Identity", result2.ElementAt(0) }
             }
         );
-        var actual = result3.ElementAt(0);
+        var actual = result2.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 

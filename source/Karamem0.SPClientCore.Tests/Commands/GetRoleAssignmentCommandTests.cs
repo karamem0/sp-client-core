@@ -24,25 +24,24 @@ public class GetRoleAssignmentCommandTests
     public void GetSiteRoleAssignments()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<RoleAssignment>(
+        var result1 = context.Runspace.InvokeCommand<RoleAssignment>(
             "Get-KshRoleAssignment",
             new Dictionary<string, object>()
             {
                 { "Site", true }
             }
         );
-        var actual = result2.ToArray();
+        var actual = result1.ToArray();
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -50,32 +49,31 @@ public class GetRoleAssignmentCommandTests
     public void GetListRoleAssignments()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<List>(
+        var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
                 { "ListId", context.AppSettings["List1Id"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<RoleAssignment>(
+        var result2 = context.Runspace.InvokeCommand<RoleAssignment>(
             "Get-KshRoleAssignment",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) }
+                { "List", result1.ElementAt(0) }
             }
         );
-        var actual = result3.ToArray();
+        var actual = result2.ToArray();
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -83,40 +81,39 @@ public class GetRoleAssignmentCommandTests
     public void GetListItemRoleAssignments()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<List>(
+        var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
                 { "ListId", context.AppSettings["List1Id"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<ListItem>(
+        var result2 = context.Runspace.InvokeCommand<ListItem>(
             "Get-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) },
+                { "List", result1.ElementAt(0) },
                 { "ItemId", context.AppSettings["ListItem1Id"] }
             }
         );
-        var result4 = context.Runspace.InvokeCommand<RoleAssignment>(
+        var result3 = context.Runspace.InvokeCommand<RoleAssignment>(
             "Get-KshRoleAssignment",
             new Dictionary<string, object>()
             {
-                { "ListItem", result3.ElementAt(0) }
+                { "ListItem", result2.ElementAt(0) }
             }
         );
-        var actual = result4.ToArray();
+        var actual = result3.ToArray();
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -124,25 +121,24 @@ public class GetRoleAssignmentCommandTests
     public void GetSiteRoleAssignmentByPrincipalId()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<Site>(
+        _ = context.Runspace.InvokeCommand<Site>(
             "Get-KshSite",
             new Dictionary<string, object>()
             {
                 { "SiteUrl", context.AppSettings["Site1Url"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<RoleAssignment>(
+        var result1 = context.Runspace.InvokeCommand<RoleAssignment>(
             "Get-KshRoleAssignment",
             new Dictionary<string, object>()
             {
@@ -150,7 +146,7 @@ public class GetRoleAssignmentCommandTests
                 { "PrincipalId", context.AppSettings["SiteRoleAssignment1Id"] }
             }
         );
-        var actual = result3.ToArray();
+        var actual = result1.ToArray();
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -158,33 +154,32 @@ public class GetRoleAssignmentCommandTests
     public void GetListRoleAssignmentByPrincipalId()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<List>(
+        var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
                 { "ListId", context.AppSettings["List1Id"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<RoleAssignment>(
+        var result2 = context.Runspace.InvokeCommand<RoleAssignment>(
             "Get-KshRoleAssignment",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) },
+                { "List", result1.ElementAt(0) },
                 { "PrincipalId", context.AppSettings["ListRoleAssignment1Id"] }
             }
         );
-        var actual = result3.ToArray();
+        var actual = result2.ToArray();
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -192,41 +187,40 @@ public class GetRoleAssignmentCommandTests
     public void GetListItemRoleAssignmentByPrincipalId()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<List>(
+        var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
                 { "ListId", context.AppSettings["List1Id"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<ListItem>(
+        var result2 = context.Runspace.InvokeCommand<ListItem>(
             "Get-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) },
+                { "List", result1.ElementAt(0) },
                 { "ItemId", context.AppSettings["ListItem1Id"] }
             }
         );
-        var result4 = context.Runspace.InvokeCommand<RoleAssignment>(
+        var result3 = context.Runspace.InvokeCommand<RoleAssignment>(
             "Get-KshRoleAssignment",
             new Dictionary<string, object>()
             {
-                { "ListItem", result3.ElementAt(0) },
+                { "ListItem", result2.ElementAt(0) },
                 { "PrincipalId", context.AppSettings["ListItemRoleAssignment1Id"] }
             }
         );
-        var actual = result4.ToArray();
+        var actual = result3.ToArray();
         Assert.That(actual, Is.Not.Null);
     }
 

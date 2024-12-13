@@ -24,46 +24,45 @@ public class RemoveAlertCommandTests
     public void RemoveAlert()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<List>(
+        var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
                 { "ListId", context.AppSettings["List1Id"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<User>(
+        var result2 = context.Runspace.InvokeCommand<User>(
             "Get-KshUser",
             new Dictionary<string, object>()
             {
                 { "UserId", context.AppSettings["User1Id"] }
             }
         );
-        var result4 = context.Runspace.InvokeCommand<Alert>(
+        var result3 = context.Runspace.InvokeCommand<Alert>(
             "Add-KshAlert",
             new Dictionary<string, object>()
             {
                 { "AlertFrequency", "Immediate" },
                 { "AlertType", "List" },
-                { "List", result2.ElementAt(0) },
-                { "User", result3.ElementAt(0) }
+                { "List", result1.ElementAt(0) },
+                { "User", result2.ElementAt(0) }
             }
         );
-        var result5 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshAlert",
             new Dictionary<string, object>()
             {
-                { "Identity", result4.ElementAt(0) }
+                { "Identity", result3.ElementAt(0) }
             }
         );
     }

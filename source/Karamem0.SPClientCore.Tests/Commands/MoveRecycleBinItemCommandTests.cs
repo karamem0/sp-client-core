@@ -25,67 +25,66 @@ public class MoveRecycleBinItemCommandTests
     public void MoveRecycleBinItem()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<List>(
+        var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
                 { "ListId", context.AppSettings["List1Id"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<ListItem>(
+        var result2 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) },
+                { "List", result1.ElementAt(0) },
                 { "Value", new Hashtable() }
             }
         );
-        var result4 = context.Runspace.InvokeCommand<Guid>(
+        var result3 = context.Runspace.InvokeCommand<Guid>(
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) },
+                { "Identity", result2.ElementAt(0) },
                 { "RecycleBin", true }
+            }
+        );
+        var result4 = context.Runspace.InvokeCommand<RecycleBinItem>(
+            "Get-KshRecycleBinItem",
+            new Dictionary<string, object>()
+            {
+                { "ItemId", result3.ElementAt(0) }
+            }
+        );
+        _ = context.Runspace.InvokeCommand(
+            "Move-KshRecycleBinItem",
+            new Dictionary<string, object>()
+            {
+                { "Identity", result4.ElementAt(0) }
             }
         );
         var result5 = context.Runspace.InvokeCommand<RecycleBinItem>(
             "Get-KshRecycleBinItem",
             new Dictionary<string, object>()
             {
-                { "ItemId", result4.ElementAt(0) }
-            }
-        );
-        var result6 = context.Runspace.InvokeCommand(
-            "Move-KshRecycleBinItem",
-            new Dictionary<string, object>()
-            {
-                { "Identity", result5.ElementAt(0) }
-            }
-        );
-        var result7 = context.Runspace.InvokeCommand<RecycleBinItem>(
-            "Get-KshRecycleBinItem",
-            new Dictionary<string, object>()
-            {
-                { "ItemId", result4.ElementAt(0) },
+                { "ItemId", result3.ElementAt(0) },
                 { "SecondStage", true }
             }
         );
-        var result8 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshRecycleBinItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result7.ElementAt(0) }
+                { "Identity", result5.ElementAt(0) }
             }
         );
     }
@@ -94,60 +93,59 @@ public class MoveRecycleBinItemCommandTests
     public void MoveAllRecycleBinItems()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<List>(
+        var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
                 { "ListId", context.AppSettings["List1Id"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<ListItem>(
+        var result2 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) },
+                { "List", result1.ElementAt(0) },
                 { "Value", new Hashtable() }
             }
         );
-        var result4 = context.Runspace.InvokeCommand<Guid>(
+        var result3 = context.Runspace.InvokeCommand<Guid>(
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) },
+                { "Identity", result2.ElementAt(0) },
                 { "RecycleBin", true }
             }
         );
-        var result6 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Move-KshRecycleBinItem",
             new Dictionary<string, object>()
             {
                 { "All", true }
             }
         );
-        var result7 = context.Runspace.InvokeCommand<RecycleBinItem>(
+        var result4 = context.Runspace.InvokeCommand<RecycleBinItem>(
             "Get-KshRecycleBinItem",
             new Dictionary<string, object>()
             {
-                { "ItemId", result4.ElementAt(0) },
+                { "ItemId", result3.ElementAt(0) },
                 { "SecondStage", true }
             }
         );
-        var result8 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshRecycleBinItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result7.ElementAt(0) }
+                { "Identity", result4.ElementAt(0) }
             }
         );
     }

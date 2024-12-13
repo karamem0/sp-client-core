@@ -24,18 +24,17 @@ public class AddExternalUserCommandTests
     public void AddSiteExternalUser()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<UserSharingResult>(
+        var result1 = context.Runspace.InvokeCommand<UserSharingResult>(
             "Add-KshExternalUser",
             new Dictionary<string, object>()
             {
@@ -44,21 +43,21 @@ public class AddExternalUserCommandTests
                 { "Role", "View" },
             }
         );
-        var result3 = context.Runspace.InvokeCommand<User>(
+        var result2 = context.Runspace.InvokeCommand<User>(
             "Get-KshUser",
             new Dictionary<string, object>()
             {
-                { "UserName", result2.ElementAt(0).UserId },
+                { "UserName", result1.ElementAt(0).UserId },
             }
         );
-        var result4 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshUser",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) },
+                { "Identity", result2.ElementAt(0) },
             }
         );
-        var actual = result2.ElementAt(0);
+        var actual = result1.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -66,29 +65,28 @@ public class AddExternalUserCommandTests
     public void AddFileExternalUser()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<File>(
+        var result1 = context.Runspace.InvokeCommand<File>(
             "Get-KshFile",
             new Dictionary<string, object>()
             {
                 { "FileUrl", context.AppSettings["File1Url"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<UserSharingResult>(
+        var result2 = context.Runspace.InvokeCommand<UserSharingResult>(
             "Add-KshExternalUser",
             new Dictionary<string, object>()
             {
-                { "File", result2.ElementAt(0) },
+                { "File", result1.ElementAt(0) },
                 { "UserId", new[] { context.AppSettings["ExternalUserName"] }},
                 { "Role", "View" },
                 { "AdditivePermission", true },
@@ -99,7 +97,7 @@ public class AddExternalUserCommandTests
                 { "ValidateExistingPermissions", true }
             }
         );
-        var actual = result3.ElementAt(0);
+        var actual = result2.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -107,29 +105,28 @@ public class AddExternalUserCommandTests
     public void AddFolderExternalUser()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<Folder>(
+        var result1 = context.Runspace.InvokeCommand<Folder>(
             "Get-KshFolder",
             new Dictionary<string, object>()
             {
                 { "FolderUrl", context.AppSettings["Folder1Url"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<UserSharingResult>(
+        var result2 = context.Runspace.InvokeCommand<UserSharingResult>(
             "Add-KshExternalUser",
             new Dictionary<string, object>()
             {
-                { "Folder", result2.ElementAt(0) },
+                { "Folder", result1.ElementAt(0) },
                 { "UserId", new[] { context.AppSettings["ExternalUserName"] }},
                 { "Role", "View" },
                 { "AdditivePermission", true },
@@ -140,7 +137,7 @@ public class AddExternalUserCommandTests
                 { "ValidateExistingPermissions", true }
             }
         );
-        var actual = result3.ElementAt(0);
+        var actual = result2.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 

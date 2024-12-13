@@ -24,18 +24,17 @@ public class RemoveListCommandTests
     public void RemoveList()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<List>(
+        var result1 = context.Runspace.InvokeCommand<List>(
             "Add-KshList",
             new Dictionary<string, object>()
             {
@@ -43,11 +42,11 @@ public class RemoveListCommandTests
                 { "Title", "Test List 0" }
             }
         );
-        var result3 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshList",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                { "Identity", result1.ElementAt(0) }
             }
         );
     }
@@ -56,18 +55,17 @@ public class RemoveListCommandTests
     public void MoveListToRecycleBin()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<List>(
+        var result1 = context.Runspace.InvokeCommand<List>(
             "Add-KshList",
             new Dictionary<string, object>()
             {
@@ -75,29 +73,29 @@ public class RemoveListCommandTests
                 { "Title", "Test List 0" }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<Guid>(
+        var result2 = context.Runspace.InvokeCommand<Guid>(
             "Remove-KshList",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) },
+                { "Identity", result1.ElementAt(0) },
                 { "RecycleBin", true }
             }
         );
-        var result4 = context.Runspace.InvokeCommand<RecycleBinItem>(
+        var result3 = context.Runspace.InvokeCommand<RecycleBinItem>(
             "Get-KshRecycleBinItem",
             new Dictionary<string, object>()
             {
-                { "ItemId", result3.ElementAt(0) }
+                { "ItemId", result2.ElementAt(0) }
             }
         );
-        var result5 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshRecycleBinItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result4.ElementAt(0) }
+                { "Identity", result3.ElementAt(0) }
             }
         );
-        var actual = result3.ElementAt(0);
+        var actual = result2.ElementAt(0);
         Assert.That(actual, Is.Not.Default);
     }
 

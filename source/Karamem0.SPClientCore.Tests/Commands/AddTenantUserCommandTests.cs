@@ -24,43 +24,42 @@ public class AddTenantUserCommandTests
     public void AddUserBySiteCollection()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AdminUrl"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<TenantSiteCollection>(
+        var result1 = context.Runspace.InvokeCommand<TenantSiteCollection>(
             "Get-KshTenantSiteCollection",
             new Dictionary<string, object>()
             {
                 { "SiteCollectionUrl", context.AppSettings["BaseUrl"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<User>(
+        var result2 = context.Runspace.InvokeCommand<User>(
             "Add-KshTenantUser",
             new Dictionary<string, object>()
             {
-                { "SiteCollection", result2.ElementAt(0) },
+                { "SiteCollection", result1.ElementAt(0) },
                 { "Email", "testuser000@" + context.AppSettings["LoginDomainName"] },
                 { "LoginName", "i:0#.f|membership|testuser000@" + context.AppSettings["LoginDomainName"] },
                 { "Title", "Test User 0" }
             }
         );
-        var result4 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshTenantUser",
             new Dictionary<string, object>()
             {
-                { "SiteCollection", result2.ElementAt(0) },
-                { "User", result3.ElementAt(0) }
+                { "SiteCollection", result1.ElementAt(0) },
+                { "User", result2.ElementAt(0) }
             }
         );
-        var actual = result3.ElementAt(0);
+        var actual = result2.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -68,18 +67,17 @@ public class AddTenantUserCommandTests
     public void AddUserBySiteCollectionUrl()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AdminUrl"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<User>(
+        var result1 = context.Runspace.InvokeCommand<User>(
             "Add-KshTenantUser",
             new Dictionary<string, object>()
             {
@@ -89,15 +87,15 @@ public class AddTenantUserCommandTests
                 { "Title", "Test User 0" }
             }
         );
-        var result3 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshTenantUser",
             new Dictionary<string, object>()
             {
                 { "SiteCollectionUrl", context.AppSettings["BaseUrl"] },
-                { "User", result2.ElementAt(0) }
+                { "User", result1.ElementAt(0) }
             }
         );
-        var actual = result2.ElementAt(0);
+        var actual = result1.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 

@@ -24,46 +24,45 @@ public class SetColumnCalculatedCommandTests
     public void SetListColumnCalculatedOfBoolean()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<List>(
+        var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
                 { "ListId", context.AppSettings["List1Id"] }
             }
         );
+        var result2 = context.Runspace.InvokeCommand<Column>(
+            "Get-KshColumn",
+            new Dictionary<string, object>()
+            {
+                { "List", result1.ElementAt(0) },
+                { "ColumnId", context.AppSettings["Column1Id"] }
+            }
+        );
         var result3 = context.Runspace.InvokeCommand<Column>(
             "Get-KshColumn",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) },
-                { "ColumnId", context.AppSettings["Column1Id"] }
-            }
-        );
-        var result4 = context.Runspace.InvokeCommand<Column>(
-            "Get-KshColumn",
-            new Dictionary<string, object>()
-            {
-                { "List", result2.ElementAt(0) },
+                { "List", result1.ElementAt(0) },
                 { "ColumnId", context.AppSettings["Column10Id"] }
             }
         );
-        var result5 = context.Runspace.InvokeCommand<ColumnCalculated>(
+        var result4 = context.Runspace.InvokeCommand<ColumnCalculated>(
             "Add-KshColumnCalculated",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) },
-                { "Columns", new[] { result3.ElementAt(0) } },
+                { "List", result1.ElementAt(0) },
+                { "Columns", new[] { result2.ElementAt(0) } },
                 { "Formula", "=[Test Column 1]" },
                 { "Name", "TestColumn0" },
                 { "OutputType", "Boolean" },
@@ -72,14 +71,14 @@ public class SetColumnCalculatedCommandTests
                 { "AddToDefaultView", true }
             }
         );
-        var result6 = context.Runspace.InvokeCommand<ColumnCalculated>(
+        var result5 = context.Runspace.InvokeCommand<ColumnCalculated>(
             "Set-KshColumnCalculated",
             new Dictionary<string, object>()
             {
-                { "Identity", result5.ElementAt(0) },
+                { "Identity", result4.ElementAt(0) },
                 // { "ClientSideComponentId", null },
                 // { "ClientSideComponentProperties", null },
-                { "Columns", new[] { result4.ElementAt(0) } },
+                { "Columns", new[] { result3.ElementAt(0) } },
                 { "CustomFormatter", /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }" },
                 { "Direction", "none" },
                 { "Description", "Test Column 0 Description" },
@@ -94,22 +93,22 @@ public class SetColumnCalculatedCommandTests
                 { "PassThru", true }
             }
         );
-        var result7 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Set-KshColumnCalculated",
             new Dictionary<string, object>()
             {
-                { "Identity", result6.ElementAt(0) },
+                { "Identity", result5.ElementAt(0) },
                 { "Hidden", false }
             }
         );
-        var result8 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshColumn",
             new Dictionary<string, object>()
             {
-                { "Identity", result6.ElementAt(0) }
+                { "Identity", result5.ElementAt(0) }
             }
         );
-        var actual = result6.ElementAt(0);
+        var actual = result5.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -117,46 +116,45 @@ public class SetColumnCalculatedCommandTests
     public void SetListColumnCalculatedOfCurrency()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<List>(
+        var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
                 { "ListId", context.AppSettings["List1Id"] }
             }
         );
+        var result2 = context.Runspace.InvokeCommand<Column>(
+            "Get-KshColumn",
+            new Dictionary<string, object>()
+            {
+                { "List", result1.ElementAt(0) },
+                { "ColumnId", context.AppSettings["Column1Id"] }
+            }
+        );
         var result3 = context.Runspace.InvokeCommand<Column>(
             "Get-KshColumn",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) },
-                { "ColumnId", context.AppSettings["Column1Id"] }
-            }
-        );
-        var result4 = context.Runspace.InvokeCommand<Column>(
-            "Get-KshColumn",
-            new Dictionary<string, object>()
-            {
-                { "List", result2.ElementAt(0) },
+                { "List", result1.ElementAt(0) },
                 { "ColumnId", context.AppSettings["Column6Id"] }
             }
         );
-        var result5 = context.Runspace.InvokeCommand<ColumnCalculated>(
+        var result4 = context.Runspace.InvokeCommand<ColumnCalculated>(
             "Add-KshColumnCalculated",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) },
-                { "Columns", new[] { result3.ElementAt(0) } },
+                { "List", result1.ElementAt(0) },
+                { "Columns", new[] { result2.ElementAt(0) } },
                 { "Formula", "=[Test Column 6]" },
                 { "Name", "TestColumn0" },
                 { "OutputType", "Currency" },
@@ -165,14 +163,14 @@ public class SetColumnCalculatedCommandTests
                 { "AddToDefaultView", true }
             }
         );
-        var result6 = context.Runspace.InvokeCommand<ColumnCalculated>(
+        var result5 = context.Runspace.InvokeCommand<ColumnCalculated>(
             "Set-KshColumnCalculated",
             new Dictionary<string, object>()
             {
-                { "Identity", result5.ElementAt(0) },
+                { "Identity", result4.ElementAt(0) },
                 // { "ClientSideComponentId", null },
                 // { "ClientSideComponentProperties", null },
-                { "Columns", new[] { result4.ElementAt(0) } },
+                { "Columns", new[] { result3.ElementAt(0) } },
                 { "CurrencyLcid", 1041 },
                 { "CustomFormatter", /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }" },
                 { "Direction", "none" },
@@ -189,22 +187,22 @@ public class SetColumnCalculatedCommandTests
                 { "PassThru", true }
             }
         );
-        var result7 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Set-KshColumnCalculated",
             new Dictionary<string, object>()
             {
-                { "Identity", result6.ElementAt(0) },
+                { "Identity", result5.ElementAt(0) },
                 { "Hidden", false }
             }
         );
-        var result8 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshColumn",
             new Dictionary<string, object>()
             {
-                { "Identity", result6.ElementAt(0) }
+                { "Identity", result5.ElementAt(0) }
             }
         );
-        var actual = result6.ElementAt(0);
+        var actual = result5.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -212,46 +210,45 @@ public class SetColumnCalculatedCommandTests
     public void SetListColumnCalculatedOfDateTime()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<List>(
+        var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
                 { "ListId", context.AppSettings["List1Id"] }
             }
         );
+        var result2 = context.Runspace.InvokeCommand<Column>(
+            "Get-KshColumn",
+            new Dictionary<string, object>()
+            {
+                { "List", result1.ElementAt(0) },
+                { "ColumnId", context.AppSettings["Column1Id"] }
+            }
+        );
         var result3 = context.Runspace.InvokeCommand<Column>(
             "Get-KshColumn",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) },
-                { "ColumnId", context.AppSettings["Column1Id"] }
-            }
-        );
-        var result4 = context.Runspace.InvokeCommand<Column>(
-            "Get-KshColumn",
-            new Dictionary<string, object>()
-            {
-                { "List", result2.ElementAt(0) },
+                { "List", result1.ElementAt(0) },
                 { "ColumnId", context.AppSettings["Column7Id"] }
             }
         );
-        var result5 = context.Runspace.InvokeCommand<ColumnCalculated>(
+        var result4 = context.Runspace.InvokeCommand<ColumnCalculated>(
             "Add-KshColumnCalculated",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) },
-                { "Columns", new[] { result3.ElementAt(0) } },
+                { "List", result1.ElementAt(0) },
+                { "Columns", new[] { result2.ElementAt(0) } },
                 { "Formula", "=[Test Column 7]" },
                 { "Name", "TestColumn0" },
                 { "OutputType", "DateTime" },
@@ -260,14 +257,14 @@ public class SetColumnCalculatedCommandTests
                 { "AddToDefaultView", true }
             }
         );
-        var result6 = context.Runspace.InvokeCommand<ColumnCalculated>(
+        var result5 = context.Runspace.InvokeCommand<ColumnCalculated>(
             "Set-KshColumnCalculated",
             new Dictionary<string, object>()
             {
-                { "Identity", result5.ElementAt(0) },
+                { "Identity", result4.ElementAt(0) },
                 // { "ClientSideComponentId", null },
                 // { "ClientSideComponentProperties", null },
-                { "Columns", new[] { result4.ElementAt(0) } },
+                { "Columns", new[] { result3.ElementAt(0) } },
                 { "CustomFormatter", /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }" },
                 { "DateFormat", "DateTime" },
                 { "Direction", "none" },
@@ -283,22 +280,22 @@ public class SetColumnCalculatedCommandTests
                 { "PassThru", true }
             }
         );
-        var result7 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Set-KshColumnCalculated",
             new Dictionary<string, object>()
             {
-                { "Identity", result6.ElementAt(0) },
+                { "Identity", result5.ElementAt(0) },
                 { "Hidden", false }
             }
         );
-        var result8 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshColumn",
             new Dictionary<string, object>()
             {
-                { "Identity", result6.ElementAt(0) },
+                { "Identity", result5.ElementAt(0) },
             }
         );
-        var actual = result6.ElementAt(0);
+        var actual = result5.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -306,46 +303,45 @@ public class SetColumnCalculatedCommandTests
     public void SetListColumnCalculatedOfNumber()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<List>(
+        var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
                 { "ListId", context.AppSettings["List1Id"] }
             }
         );
+        var result2 = context.Runspace.InvokeCommand<Column>(
+            "Get-KshColumn",
+            new Dictionary<string, object>()
+            {
+                { "List", result1.ElementAt(0) },
+                { "ColumnId", context.AppSettings["Column1Id"] }
+            }
+        );
         var result3 = context.Runspace.InvokeCommand<Column>(
             "Get-KshColumn",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) },
-                { "ColumnId", context.AppSettings["Column1Id"] }
-            }
-        );
-        var result4 = context.Runspace.InvokeCommand<Column>(
-            "Get-KshColumn",
-            new Dictionary<string, object>()
-            {
-                { "List", result2.ElementAt(0) },
+                { "List", result1.ElementAt(0) },
                 { "ColumnId", context.AppSettings["Column5Id"] }
             }
         );
-        var result5 = context.Runspace.InvokeCommand<ColumnCalculated>(
+        var result4 = context.Runspace.InvokeCommand<ColumnCalculated>(
             "Add-KshColumnCalculated",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) },
-                { "Columns", new[] { result3.ElementAt(0) } },
+                { "List", result1.ElementAt(0) },
+                { "Columns", new[] { result2.ElementAt(0) } },
                 { "Formula", "=[Test Column 5]" },
                 { "Name", "TestColumn0" },
                 { "OutputType", "Number" },
@@ -354,14 +350,14 @@ public class SetColumnCalculatedCommandTests
                 { "AddToDefaultView", true }
             }
         );
-        var result6 = context.Runspace.InvokeCommand<ColumnCalculated>(
+        var result5 = context.Runspace.InvokeCommand<ColumnCalculated>(
             "Set-KshColumnCalculated",
             new Dictionary<string, object>()
             {
-                { "Identity", result5.ElementAt(0) },
+                { "Identity", result4.ElementAt(0) },
                 // { "ClientSideComponentId", null },
                 // { "ClientSideComponentProperties", null },
-                { "Columns", new[] { result4.ElementAt(0) } },
+                { "Columns", new[] { result3.ElementAt(0) } },
                 { "CustomFormatter", /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }" },
                 { "Direction", "none" },
                 { "Description", "Test Column 0 Description" },
@@ -377,22 +373,22 @@ public class SetColumnCalculatedCommandTests
                 { "PassThru", true }
             }
         );
-        var result7 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Set-KshColumnCalculated",
             new Dictionary<string, object>()
             {
-                { "Identity", result6.ElementAt(0) },
+                { "Identity", result5.ElementAt(0) },
                 { "Hidden", false }
             }
         );
-        var result8 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshColumn",
             new Dictionary<string, object>()
             {
-                { "Identity", result6.ElementAt(0) }
+                { "Identity", result5.ElementAt(0) }
             }
         );
-        var actual = result6.ElementAt(0);
+        var actual = result5.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -400,46 +396,45 @@ public class SetColumnCalculatedCommandTests
     public void SetListColumnCalculatedOfText()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<List>(
+        var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
                 { "ListId", context.AppSettings["List1Id"] }
             }
         );
+        var result2 = context.Runspace.InvokeCommand<Column>(
+            "Get-KshColumn",
+            new Dictionary<string, object>()
+            {
+                { "List", result1.ElementAt(0) },
+                { "ColumnId", context.AppSettings["Column1Id"] }
+            }
+        );
         var result3 = context.Runspace.InvokeCommand<Column>(
             "Get-KshColumn",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) },
-                { "ColumnId", context.AppSettings["Column1Id"] }
-            }
-        );
-        var result4 = context.Runspace.InvokeCommand<Column>(
-            "Get-KshColumn",
-            new Dictionary<string, object>()
-            {
-                { "List", result2.ElementAt(0) },
+                { "List", result1.ElementAt(0) },
                 { "ColumnId", context.AppSettings["Column2Id"] }
             }
         );
-        var result5 = context.Runspace.InvokeCommand<ColumnCalculated>(
+        var result4 = context.Runspace.InvokeCommand<ColumnCalculated>(
             "Add-KshColumnCalculated",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) },
-                { "Columns", new[] { result3.ElementAt(0) } },
+                { "List", result1.ElementAt(0) },
+                { "Columns", new[] { result2.ElementAt(0) } },
                 { "Formula", "=[Test Column 1]" },
                 { "Name", "TestColumn0" },
                 { "OutputType", "Text" },
@@ -448,14 +443,14 @@ public class SetColumnCalculatedCommandTests
                 { "AddToDefaultView", true }
             }
         );
-        var result6 = context.Runspace.InvokeCommand<ColumnCalculated>(
+        var result5 = context.Runspace.InvokeCommand<ColumnCalculated>(
             "Set-KshColumnCalculated",
             new Dictionary<string, object>()
             {
-                { "Identity", result5.ElementAt(0) },
+                { "Identity", result4.ElementAt(0) },
                 // { "ClientSideComponentId", null },
                 // { "ClientSideComponentProperties", null },
-                { "Columns", new[] { result4.ElementAt(0) } },
+                { "Columns", new[] { result3.ElementAt(0) } },
                 { "CustomFormatter", /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }" },
                 { "Direction", "none" },
                 { "Description", "Test Column 0 Description" },
@@ -470,22 +465,22 @@ public class SetColumnCalculatedCommandTests
                 { "PassThru", true }
             }
         );
-        var result7 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Set-KshColumnCalculated",
             new Dictionary<string, object>()
             {
-                { "Identity", result6.ElementAt(0) },
+                { "Identity", result5.ElementAt(0) },
                 { "Hidden", false }
             }
         );
-        var result8 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshColumn",
             new Dictionary<string, object>()
             {
-                { "Identity", result6.ElementAt(0) }
+                { "Identity", result5.ElementAt(0) }
             }
         );
-        var actual = result6.ElementAt(0);
+        var actual = result5.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -493,36 +488,35 @@ public class SetColumnCalculatedCommandTests
     public void SetSiteColumnCalculatedOfBoolean()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<Column>(
+        var result1 = context.Runspace.InvokeCommand<Column>(
             "Get-KshColumn",
             new Dictionary<string, object>()
             {
                 { "ColumnId", context.AppSettings["Column1Id"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<Column>(
+        var result2 = context.Runspace.InvokeCommand<Column>(
             "Get-KshColumn",
             new Dictionary<string, object>()
             {
                 { "ColumnId", context.AppSettings["Column10Id"] }
             }
         );
-        var result4 = context.Runspace.InvokeCommand<ColumnCalculated>(
+        var result3 = context.Runspace.InvokeCommand<ColumnCalculated>(
             "Add-KshColumnCalculated",
             new Dictionary<string, object>()
             {
-                { "Columns", new[] { result2.ElementAt(0) } },
+                { "Columns", new[] { result1.ElementAt(0) } },
                 { "Formula", "=TestColumn1" },
                 { "Name", "TestColumn0" },
                 { "OutputType", "Boolean" },
@@ -531,14 +525,14 @@ public class SetColumnCalculatedCommandTests
                 { "AddToDefaultView", true }
             }
         );
-        var result5 = context.Runspace.InvokeCommand<ColumnCalculated>(
+        var result4 = context.Runspace.InvokeCommand<ColumnCalculated>(
             "Set-KshColumnCalculated",
             new Dictionary<string, object>()
             {
-                { "Identity", result4.ElementAt(0) },
+                { "Identity", result3.ElementAt(0) },
                 // { "ClientSideComponentId", null },
                 // { "ClientSideComponentProperties", null },
-                { "Columns", new[] { result3.ElementAt(0) } },
+                { "Columns", new[] { result2.ElementAt(0) } },
                 { "CustomFormatter", /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }" },
                 { "Direction", "none" },
                 { "Description", "Test Column 0 Description" },
@@ -553,22 +547,22 @@ public class SetColumnCalculatedCommandTests
                 { "PassThru", true }
             }
         );
-        var result6 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Set-KshColumnCalculated",
             new Dictionary<string, object>()
             {
-                { "Identity", result5.ElementAt(0) },
+                { "Identity", result4.ElementAt(0) },
                 { "Hidden", false }
             }
         );
-        var result7 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshColumn",
             new Dictionary<string, object>()
             {
-                { "Identity", result5.ElementAt(0) }
+                { "Identity", result4.ElementAt(0) }
             }
         );
-        var actual = result5.ElementAt(0);
+        var actual = result4.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -576,36 +570,35 @@ public class SetColumnCalculatedCommandTests
     public void SetSiteColumnCalculatedOfCurrency()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<Column>(
+        var result1 = context.Runspace.InvokeCommand<Column>(
             "Get-KshColumn",
             new Dictionary<string, object>()
             {
                 { "ColumnId", context.AppSettings["Column1Id"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<Column>(
+        var result2 = context.Runspace.InvokeCommand<Column>(
             "Get-KshColumn",
             new Dictionary<string, object>()
             {
                 { "ColumnId", context.AppSettings["Column6Id"] }
             }
         );
-        var result4 = context.Runspace.InvokeCommand<ColumnCalculated>(
+        var result3 = context.Runspace.InvokeCommand<ColumnCalculated>(
             "Add-KshColumnCalculated",
             new Dictionary<string, object>()
             {
-                { "Columns", new[] { result2.ElementAt(0) } },
+                { "Columns", new[] { result1.ElementAt(0) } },
                 { "Formula", "=TestColumn1" },
                 { "Name", "TestColumn0" },
                 { "OutputType", "Currency" },
@@ -614,14 +607,14 @@ public class SetColumnCalculatedCommandTests
                 { "AddToDefaultView", true }
             }
         );
-        var result5 = context.Runspace.InvokeCommand<ColumnCalculated>(
+        var result4 = context.Runspace.InvokeCommand<ColumnCalculated>(
             "Set-KshColumnCalculated",
             new Dictionary<string, object>()
             {
-                { "Identity", result4.ElementAt(0) },
+                { "Identity", result3.ElementAt(0) },
                 // { "ClientSideComponentId", null },
                 // { "ClientSideComponentProperties", null },
-                { "Columns", new[] { result3.ElementAt(0) } },
+                { "Columns", new[] { result2.ElementAt(0) } },
                 { "CurrencyLcid", 1041 },
                 { "CustomFormatter", /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }" },
                 { "Direction", "none" },
@@ -638,22 +631,22 @@ public class SetColumnCalculatedCommandTests
                 { "PassThru", true }
             }
         );
-        var result6 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Set-KshColumnCalculated",
             new Dictionary<string, object>()
             {
-                { "Identity", result5.ElementAt(0) },
+                { "Identity", result4.ElementAt(0) },
                 { "Hidden", false }
             }
         );
-        var result7 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshColumn",
             new Dictionary<string, object>()
             {
-                { "Identity", result5.ElementAt(0) }
+                { "Identity", result4.ElementAt(0) }
             }
         );
-        var actual = result5.ElementAt(0);
+        var actual = result4.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -661,36 +654,35 @@ public class SetColumnCalculatedCommandTests
     public void SetSiteColumnCalculatedOfDateTime()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<Column>(
+        var result1 = context.Runspace.InvokeCommand<Column>(
             "Get-KshColumn",
             new Dictionary<string, object>()
             {
                 { "ColumnId", context.AppSettings["Column1Id"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<Column>(
+        var result2 = context.Runspace.InvokeCommand<Column>(
             "Get-KshColumn",
             new Dictionary<string, object>()
             {
                 { "ColumnId", context.AppSettings["Column7Id"] }
             }
         );
-        var result4 = context.Runspace.InvokeCommand<ColumnCalculated>(
+        var result3 = context.Runspace.InvokeCommand<ColumnCalculated>(
             "Add-KshColumnCalculated",
             new Dictionary<string, object>()
             {
-                { "Columns", new[] { result2.ElementAt(0) } },
+                { "Columns", new[] { result1.ElementAt(0) } },
                 { "Formula", "=TestColumn1" },
                 { "Name", "TestColumn0" },
                 { "OutputType", "DateTime" },
@@ -699,14 +691,14 @@ public class SetColumnCalculatedCommandTests
                 { "AddToDefaultView", true }
             }
         );
-        var result5 = context.Runspace.InvokeCommand<ColumnCalculated>(
+        var result4 = context.Runspace.InvokeCommand<ColumnCalculated>(
             "Set-KshColumnCalculated",
             new Dictionary<string, object>()
             {
-                { "Identity", result4.ElementAt(0) },
+                { "Identity", result3.ElementAt(0) },
                 // { "ClientSideComponentId", null },
                 // { "ClientSideComponentProperties", null },
-                { "Columns", new[] { result3.ElementAt(0) } },
+                { "Columns", new[] { result2.ElementAt(0) } },
                 { "CustomFormatter", /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }" },
                 { "DateFormat", "DateTime" },
                 { "Direction", "none" },
@@ -722,22 +714,22 @@ public class SetColumnCalculatedCommandTests
                 { "PassThru", true }
             }
         );
-        var result6 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Set-KshColumnCalculated",
             new Dictionary<string, object>()
             {
-                { "Identity", result5.ElementAt(0) },
+                { "Identity", result4.ElementAt(0) },
                 { "Hidden", false }
             }
         );
-        var result7 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshColumn",
             new Dictionary<string, object>()
             {
-                { "Identity", result5.ElementAt(0) }
+                { "Identity", result4.ElementAt(0) }
             }
         );
-        var actual = result5.ElementAt(0);
+        var actual = result4.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -745,36 +737,35 @@ public class SetColumnCalculatedCommandTests
     public void SetSiteColumnCalculatedOfNumber()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<Column>(
+        var result1 = context.Runspace.InvokeCommand<Column>(
             "Get-KshColumn",
             new Dictionary<string, object>()
             {
                 { "ColumnId", context.AppSettings["Column1Id"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<Column>(
+        var result2 = context.Runspace.InvokeCommand<Column>(
             "Get-KshColumn",
             new Dictionary<string, object>()
             {
                 { "ColumnId", context.AppSettings["Column5Id"] }
             }
         );
-        var result4 = context.Runspace.InvokeCommand<ColumnCalculated>(
+        var result3 = context.Runspace.InvokeCommand<ColumnCalculated>(
             "Add-KshColumnCalculated",
             new Dictionary<string, object>()
             {
-                { "Columns", new[] { result2.ElementAt(0) } },
+                { "Columns", new[] { result1.ElementAt(0) } },
                 { "Formula", "=TestColumn1" },
                 { "Name", "TestColumn0" },
                 { "OutputType", "Number" },
@@ -783,14 +774,14 @@ public class SetColumnCalculatedCommandTests
                 { "AddToDefaultView", true }
             }
         );
-        var result5 = context.Runspace.InvokeCommand<ColumnCalculated>(
+        var result4 = context.Runspace.InvokeCommand<ColumnCalculated>(
             "Set-KshColumnCalculated",
             new Dictionary<string, object>()
             {
-                { "Identity", result4.ElementAt(0) },
+                { "Identity", result3.ElementAt(0) },
                 // { "ClientSideComponentId", null },
                 // { "ClientSideComponentProperties", null },
-                { "Columns", new[] { result3.ElementAt(0) } },
+                { "Columns", new[] { result2.ElementAt(0) } },
                 { "CustomFormatter", /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }" },
                 { "Direction", "none" },
                 { "Description", "Test Column 0 Description" },
@@ -807,22 +798,22 @@ public class SetColumnCalculatedCommandTests
                 { "PassThru", true }
             }
         );
-        var result6 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Set-KshColumnCalculated",
             new Dictionary<string, object>()
             {
-                { "Identity", result5.ElementAt(0) },
+                { "Identity", result4.ElementAt(0) },
                 { "Hidden", false }
             }
         );
-        var result7 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshColumn",
             new Dictionary<string, object>()
             {
-                { "Identity", result5.ElementAt(0) }
+                { "Identity", result4.ElementAt(0) }
             }
         );
-        var actual = result5.ElementAt(0);
+        var actual = result4.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -830,36 +821,35 @@ public class SetColumnCalculatedCommandTests
     public void SetSiteColumnCalculatedOfText()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<Column>(
+        var result1 = context.Runspace.InvokeCommand<Column>(
             "Get-KshColumn",
             new Dictionary<string, object>()
             {
                 { "ColumnId", context.AppSettings["Column1Id"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<Column>(
+        var result2 = context.Runspace.InvokeCommand<Column>(
             "Get-KshColumn",
             new Dictionary<string, object>()
             {
                 { "ColumnId", context.AppSettings["Column2Id"] }
             }
         );
-        var result4 = context.Runspace.InvokeCommand<ColumnCalculated>(
+        var result3 = context.Runspace.InvokeCommand<ColumnCalculated>(
             "Add-KshColumnCalculated",
             new Dictionary<string, object>()
             {
-                { "Columns", new[] { result2.ElementAt(0) } },
+                { "Columns", new[] { result1.ElementAt(0) } },
                 { "Formula", "=TestColumn1" },
                 { "Name", "TestColumn0" },
                 { "OutputType", "Boolean" },
@@ -868,14 +858,14 @@ public class SetColumnCalculatedCommandTests
                 { "AddToDefaultView", true }
             }
         );
-        var result5 = context.Runspace.InvokeCommand<ColumnCalculated>(
+        var result4 = context.Runspace.InvokeCommand<ColumnCalculated>(
             "Set-KshColumnCalculated",
             new Dictionary<string, object>()
             {
-                { "Identity", result4.ElementAt(0) },
+                { "Identity", result3.ElementAt(0) },
                 // { "ClientSideComponentId", null },
                 // { "ClientSideComponentProperties", null },
-                { "Columns", new[] { result3.ElementAt(0) } },
+                { "Columns", new[] { result2.ElementAt(0) } },
                 { "CustomFormatter", /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }" },
                 { "Direction", "none" },
                 { "Description", "Test Column 0 Description" },
@@ -890,22 +880,22 @@ public class SetColumnCalculatedCommandTests
                 { "PassThru", true }
             }
         );
-        var result6 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Set-KshColumnCalculated",
             new Dictionary<string, object>()
             {
-                { "Identity", result5.ElementAt(0) },
+                { "Identity", result4.ElementAt(0) },
                 { "Hidden", false }
             }
         );
-        var result7 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshColumn",
             new Dictionary<string, object>()
             {
-                { "Identity", result5.ElementAt(0) }
+                { "Identity", result4.ElementAt(0) }
             }
         );
-        var actual = result5.ElementAt(0);
+        var actual = result4.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 

@@ -24,18 +24,17 @@ public class RemoveViewColumnCommandTests
     public void RemoveAllViewColumns()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<List>(
+        var result1 = context.Runspace.InvokeCommand<List>(
             "Add-KshList",
             new Dictionary<string, object>()
             {
@@ -43,56 +42,56 @@ public class RemoveViewColumnCommandTests
                 { "Title", "Test List 0" }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<View>(
+        var result2 = context.Runspace.InvokeCommand<View>(
             "Add-KshView",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) },
+                { "List", result1.ElementAt(0) },
                 { "Title", "Test View 0" }
             }
         );
-        var result4 = context.Runspace.InvokeCommand<ColumnText>(
+        var result3 = context.Runspace.InvokeCommand<ColumnText>(
             "Add-KshColumnText",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) },
+                { "List", result1.ElementAt(0) },
                 { "Name", "TestColumn0" },
                 { "Title", "Test Column 0" },
                 { "AddColumnInternalNameHint", true },
                 { "AddToDefaultView", true }
             }
         );
-        var result5 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Add-KshViewColumn",
             new Dictionary<string, object>()
             {
-                { "View", result3.ElementAt(0) },
-                { "Column", result4.ElementAt(0) }
+                { "View", result2.ElementAt(0) },
+                { "Column", result3.ElementAt(0) }
             }
         );
-        var result6 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshViewColumn",
             new Dictionary<string, object>()
             {
-                { "View", result3.ElementAt(0) },
+                { "View", result2.ElementAt(0) },
                 { "All", true }
             }
         );
-        var result7 = context.Runspace.InvokeCommand<string>(
+        var result4 = context.Runspace.InvokeCommand<string>(
             "Get-KshViewColumn",
             new Dictionary<string, object>()
             {
-                { "View", result3.ElementAt(0) }
+                { "View", result2.ElementAt(0) }
             }
         );
-        var result8 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshList",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                { "Identity", result1.ElementAt(0) }
             }
         );
-        var actual = result7.ToArray();
+        var actual = result4.ToArray();
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -100,64 +99,63 @@ public class RemoveViewColumnCommandTests
     public void RemoveViewColumnByColumn()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<List>(
+        var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
                 { "ListId", context.AppSettings["List1Id"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<View>(
+        var result2 = context.Runspace.InvokeCommand<View>(
             "Get-KshView",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) },
+                { "List", result1.ElementAt(0) },
                 { "ViewId", context.AppSettings["View1Id"] }
             }
         );
-        var result4 = context.Runspace.InvokeCommand<ColumnText>(
+        var result3 = context.Runspace.InvokeCommand<ColumnText>(
             "Add-KshColumnText",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) },
+                { "List", result1.ElementAt(0) },
                 { "Name", "TestColumn0" },
                 { "Title", "Test Column 0" },
                 { "AddColumnInternalNameHint", true },
                 { "AddToDefaultView", true }
             }
         );
-        var result5 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Add-KshViewColumn",
             new Dictionary<string, object>()
             {
-                { "View", result3.ElementAt(0) },
-                { "Column", result4.ElementAt(0) }
+                { "View", result2.ElementAt(0) },
+                { "Column", result3.ElementAt(0) }
             }
         );
-        var result6 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshViewColumn",
             new Dictionary<string, object>()
             {
-                { "View", result3.ElementAt(0) },
-                { "Column", result4.ElementAt(0) }
+                { "View", result2.ElementAt(0) },
+                { "Column", result3.ElementAt(0) }
             }
         );
-        var result7 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshColumn",
             new Dictionary<string, object>()
             {
-                { "Identity", result4.ElementAt(0) }
+                { "Identity", result3.ElementAt(0) }
             }
         );
     }
@@ -166,64 +164,63 @@ public class RemoveViewColumnCommandTests
     public void RemoveViewColumnByColumnName()
     {
         using var context = new PSCmdletContext();
-        var result1 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
                 { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "Credential", PSCredentialFactory.CreateCredential(
-                    context.AppSettings["LoginUserName"],
-                    context.AppSettings["LoginPassword"])
-                }
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<List>(
+        var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
                 { "ListId", context.AppSettings["List1Id"] }
             }
         );
-        var result3 = context.Runspace.InvokeCommand<View>(
+        var result2 = context.Runspace.InvokeCommand<View>(
             "Get-KshView",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) },
+                { "List", result1.ElementAt(0) },
                 { "ViewId", context.AppSettings["View1Id"] }
             }
         );
-        var result4 = context.Runspace.InvokeCommand<ColumnText>(
+        var result3 = context.Runspace.InvokeCommand<ColumnText>(
             "Add-KshColumnText",
             new Dictionary<string, object>()
             {
-                { "List", result2.ElementAt(0) },
+                { "List", result1.ElementAt(0) },
                 { "Name", "TestColumn0" },
                 { "Title", "Test Column 0" },
                 { "AddColumnInternalNameHint", true },
                 { "AddToDefaultView", true }
             }
         );
-        var result5 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Add-KshViewColumn",
             new Dictionary<string, object>()
             {
-                { "View", result3.ElementAt(0) },
-                { "Column", result4.ElementAt(0) }
+                { "View", result2.ElementAt(0) },
+                { "Column", result3.ElementAt(0) }
             }
         );
-        var result6 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshViewColumn",
             new Dictionary<string, object>()
             {
-                { "View", result3.ElementAt(0) },
-                { "ColumnName", result4.ElementAt(0).Name }
+                { "View", result2.ElementAt(0) },
+                { "ColumnName", result3.ElementAt(0).Name }
             }
         );
-        var result7 = context.Runspace.InvokeCommand(
+        _ = context.Runspace.InvokeCommand(
             "Remove-KshColumn",
             new Dictionary<string, object>()
             {
-                { "Identity", result4.ElementAt(0) }
+                { "Identity", result3.ElementAt(0) }
             }
         );
     }

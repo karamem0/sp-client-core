@@ -9,12 +9,12 @@ jobs:
     uses: ./.github/workflows/build.yml
     secrets: inherit
   publish:
-    needs: build
     name: Publish
+    needs: build
     uses: ./.github/workflows/publish.yml
     secrets: inherit
   release:
-    needs: build
     name: Release
+    needs: build
     uses: ./.github/workflows/release.yml
     secrets: inherit
