@@ -22,7 +22,7 @@ public class RestoreRecycleBinItemCommandTests
 {
 
     [Test()]
-    public void RestoreRecycleBinItem()
+    public void InvokeCommand_RestoreOne_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -82,7 +82,7 @@ public class RestoreRecycleBinItemCommandTests
     }
 
     [Test()]
-    public void RestoreAllRecycleBinItems()
+    public void InvokeCommand_RestoreAll_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

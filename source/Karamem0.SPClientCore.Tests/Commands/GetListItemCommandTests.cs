@@ -22,7 +22,7 @@ public class GetListItemCommandTests
 {
 
     [Test()]
-    public void GetListItems()
+    public void InvokeCommand_GetAll_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -55,7 +55,7 @@ public class GetListItemCommandTests
     }
 
     [Test()]
-    public void GetListItemsByFilter()
+    public void InvokeCommand_GetByViewXml_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -88,7 +88,7 @@ public class GetListItemCommandTests
     }
 
     [Test()]
-    public void GetListItemByIdentity()
+    public void InvokeCommand_GetByIdentity_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -128,7 +128,7 @@ public class GetListItemCommandTests
     }
 
     [Test()]
-    public void GetListItemByFolder()
+    public void InvokeCommand_GetByFolder_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -160,7 +160,7 @@ public class GetListItemCommandTests
     }
 
     [Test()]
-    public void GetListItemByFile()
+    public void InvokeCommand_GetByFile_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -192,7 +192,7 @@ public class GetListItemCommandTests
     }
 
     [Test()]
-    public void GetListItemByDriveItem()
+    public void InvokeCommand_GetByDriveItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -238,7 +238,7 @@ public class GetListItemCommandTests
     }
 
     [Test()]
-    public void GetListItemByItemId()
+    public void InvokeCommand_GetByItemId_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -271,7 +271,7 @@ public class GetListItemCommandTests
     }
 
     [Test()]
-    public void GetListItemByItemUrl()
+    public void InvokeCommand_GetByItemUrl_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

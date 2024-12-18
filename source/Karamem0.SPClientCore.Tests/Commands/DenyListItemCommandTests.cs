@@ -22,7 +22,7 @@ public class DenyListItemCommandTests
 {
 
     [Test()]
-    public void DenyListItem()
+    public void InvokeCommand_DenyItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

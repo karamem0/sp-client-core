@@ -21,7 +21,7 @@ public class ResolveUserCommandTests
 {
 
     [Test()]
-    public void ResolveUser()
+    public void InvokeCommand_ResolveItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

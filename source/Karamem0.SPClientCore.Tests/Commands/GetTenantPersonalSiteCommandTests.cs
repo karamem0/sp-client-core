@@ -21,7 +21,7 @@ public class GetTenantPersonalSiteCommandTests
 {
 
     [Test()]
-    public void GetPersonalSiteByUser()
+    public void InvokeCommand_GetByUser_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -61,7 +61,7 @@ public class GetTenantPersonalSiteCommandTests
     }
 
     [Test()]
-    public void GetPersonalSiteByUserId()
+    public void InvokeCommand_GetByUserId_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

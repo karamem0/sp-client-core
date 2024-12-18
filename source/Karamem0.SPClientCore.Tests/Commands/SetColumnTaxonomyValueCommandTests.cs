@@ -22,7 +22,7 @@ public class SetColumnTaxonomyValueCommandTests
 {
 
     [Test()]
-    public void SetColumnTaxonomyValue()
+    public void InvokeCommand_SetItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

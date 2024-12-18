@@ -21,7 +21,7 @@ public class AddColumnGeolocationCommandTests
 {
 
     [Test()]
-    public void AddListColumnGeolocation()
+    public void InvokeCommand_AddItemToList_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -86,7 +86,7 @@ public class AddColumnGeolocationCommandTests
     }
 
     [Test()]
-    public void AddSiteColumnGeolocation()
+    public void InvokeCommand_AddItemToSite_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

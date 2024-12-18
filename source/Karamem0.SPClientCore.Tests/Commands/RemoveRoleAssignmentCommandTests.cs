@@ -21,7 +21,7 @@ public class RemoveRoleAssignmentCommandTests
 {
 
     [Test()]
-    public void RemoveSiteRoleAssignment()
+    public void InvokeCommand_RemoveItemFromSite_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -76,7 +76,7 @@ public class RemoveRoleAssignmentCommandTests
     }
 
     [Test()]
-    public void RemoveListRoleAssignment()
+    public void InvokeCommand_RemoveItemFromList_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -138,7 +138,7 @@ public class RemoveRoleAssignmentCommandTests
     }
 
     [Test()]
-    public void RemoveListItemRoleAssignment()
+    public void InvokeCommand_RemoveItemFromListItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

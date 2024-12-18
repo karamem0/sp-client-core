@@ -21,7 +21,7 @@ public class SetTermGroupCommandTests
 {
 
     [Test()]
-    public void SetTermGroup()
+    public void InvokeCommand_SetItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

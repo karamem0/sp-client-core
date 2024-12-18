@@ -21,7 +21,7 @@ public class AddUserCommandTests
 {
 
     [Test()]
-    public void AddUser()
+    public void InvokeCommand_AddItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

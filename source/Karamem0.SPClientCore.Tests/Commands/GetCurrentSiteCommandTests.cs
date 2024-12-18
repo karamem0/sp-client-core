@@ -21,7 +21,7 @@ public class GetCurrentSiteCommandTests
 {
 
     [Test()]
-    public void GetCurrentSite()
+    public void InvokeCommand_GetCurrent_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

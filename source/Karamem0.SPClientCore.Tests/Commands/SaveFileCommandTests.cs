@@ -21,7 +21,7 @@ public class SaveFileCommandTests
 {
 
     [Test()]
-    public void SaveFile()
+    public void InvokeCommand_SaveItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

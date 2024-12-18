@@ -21,7 +21,7 @@ public class AddTermGroupCommandTests
 {
 
     [Test()]
-    public void AddTermGroup()
+    public void InvokeCommand_AddItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

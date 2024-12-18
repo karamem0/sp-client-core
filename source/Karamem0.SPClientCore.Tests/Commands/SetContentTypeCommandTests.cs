@@ -21,7 +21,7 @@ public class SetContentTypeCommandTests
 {
 
     [Test()]
-    public void SetListContentType()
+    public void InvokeCommand_SetItemToList_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -89,7 +89,7 @@ public class SetContentTypeCommandTests
     }
 
     [Test()]
-    public void SetSiteContentType()
+    public void InvokeCommand_SetItemToSite_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

@@ -21,7 +21,7 @@ public class SuspendFolderCommandTests
 {
 
     [Test()]
-    public void SuspendFolder()
+    public void InvokeCommand_SuspendItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

@@ -21,7 +21,7 @@ public class SetColumnDateTimeCommandTests
 {
 
     [Test()]
-    public void SetListColumnDateTime()
+    public void InvokeCommand_SetItemToList_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -101,7 +101,7 @@ public class SetColumnDateTimeCommandTests
     }
 
     [Test()]
-    public void SetSiteColumnDateTime()
+    public void InvokeCommand_SetItemToSite_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

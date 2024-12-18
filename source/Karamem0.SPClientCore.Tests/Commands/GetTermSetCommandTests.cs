@@ -21,7 +21,7 @@ public class GetTermSetCommandTests
 {
 
     [Test()]
-    public void GetTermSets()
+    public void InvokeCommand_GetAll_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -53,7 +53,7 @@ public class GetTermSetCommandTests
     }
 
     [Test()]
-    public void GetTermSetByTermSetId()
+    public void InvokeCommand_GetByTermSetId_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

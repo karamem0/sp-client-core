@@ -21,7 +21,7 @@ public class AddTenantSiteCollectionCommandTests
 {
 
     [Test()]
-    public void AddTenantSiteCollection()
+    public void InvokeCommand_AddItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -40,7 +40,7 @@ public class AddTenantSiteCollectionCommandTests
             {
                 { "CompatibilityLevel", 15 },
                 { "Lcid", 1041 },
-                { "Owner", context.AppSettings["LoginUserName"] },
+                { "Owner", context.AppSettings["OwnerUserName"] },
                 { "StorageMaxLevel", 26214400 },
                 { "StorageWarningLevel", 25574400 },
                 { "Template", "SITEPAGEPUBLISHING#0" },

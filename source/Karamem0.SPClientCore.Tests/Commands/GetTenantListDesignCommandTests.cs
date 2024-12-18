@@ -22,7 +22,7 @@ public class GetTenantListDesignCommandTests
 {
 
     [Test()]
-    public void GetTenantListDesigns()
+    public void InvokeCommand_GetAll_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -46,7 +46,7 @@ public class GetTenantListDesignCommandTests
     }
 
     [Test()]
-    public void GetTenantListDesignByIdentity()
+    public void InvokeCommand_GetByIdentity_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -78,7 +78,7 @@ public class GetTenantListDesignCommandTests
     }
 
     [Test()]
-    public void GetTenantListDesignByListDesignId()
+    public void InvokeCommand_GetByListDesignId_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

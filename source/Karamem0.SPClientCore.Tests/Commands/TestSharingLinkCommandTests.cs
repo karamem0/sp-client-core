@@ -21,7 +21,7 @@ public class TestSharingLinkKindCommandTests
 {
 
     [Test()]
-    public void CheckAnonymousLink()
+    public void InvokeCommand_TestAnonymousLink_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -63,7 +63,7 @@ public class TestSharingLinkKindCommandTests
     }
 
     [Test()]
-    public void CheckOrganizationSharingLink()
+    public void InvokeCommand_TestOrganizationSharingLink_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

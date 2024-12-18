@@ -21,7 +21,7 @@ public class AddCommentCommandTests
 {
 
     [Test()]
-    public void AddComment()
+    public void InvokeCommand_AddItemToListItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -99,7 +99,7 @@ public class AddCommentCommandTests
     }
 
     [Test()]
-    public void AddSitePageReplyComment()
+    public void InvokeCommand_AddToComment_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -158,7 +158,7 @@ public class AddCommentCommandTests
                 { "Text", "Test Comment 0" }
             }
         );
-        _ = context.Runspace.InvokeCommand<Comment>(
+        var result6 = context.Runspace.InvokeCommand<Comment>(
             "Add-KshComment",
             new Dictionary<string, object>()
             {
@@ -180,7 +180,7 @@ public class AddCommentCommandTests
                 { "Identity", result3.ElementAt(0) }
             }
         );
-        var actual = result5.ElementAt(0);
+        var actual = result6.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 

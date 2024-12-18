@@ -21,7 +21,7 @@ public class AddColumnBooleanCommandTests
 {
 
     [Test()]
-    public void AddListColumnBoolean()
+    public void InvokeCommand_AddItemToList_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -87,7 +87,7 @@ public class AddColumnBooleanCommandTests
     }
 
     [Test()]
-    public void AddSiteColumnBoolean()
+    public void InvokeCommand_AddItemToSite_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

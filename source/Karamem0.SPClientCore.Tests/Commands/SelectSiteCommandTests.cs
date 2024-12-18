@@ -21,7 +21,7 @@ public class SelectSiteCommandTests
 {
 
     [Test()]
-    public void SelectSite()
+    public void InvokeCommand_SelectItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

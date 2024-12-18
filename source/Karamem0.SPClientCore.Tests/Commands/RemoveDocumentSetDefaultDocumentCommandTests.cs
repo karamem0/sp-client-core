@@ -21,7 +21,7 @@ public class RemoveDocumentSetDefaultDocumentCommandTests
 {
 
     [Test()]
-    public void RemoveDocumentSetDefaultDocument()
+    public void InvokeCommand_RemoveItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

@@ -21,7 +21,7 @@ public class RestoreFileVersionCommandTests
 {
 
     [Test()]
-    public void RestoreFileVersion()
+    public void InvokeCommand_RestoreItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

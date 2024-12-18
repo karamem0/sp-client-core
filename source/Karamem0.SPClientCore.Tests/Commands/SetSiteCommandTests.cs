@@ -21,7 +21,7 @@ public class SetSiteCommandTests
 {
 
     [Test()]
-    public void SetSite()
+    public void InvokeCommand_SetItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

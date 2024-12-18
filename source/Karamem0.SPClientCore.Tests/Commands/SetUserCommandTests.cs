@@ -21,7 +21,7 @@ public class SetUserCommandTests
 {
 
     [Test()]
-    public void SetUser()
+    public void InvokeCommand_SetItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

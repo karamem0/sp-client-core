@@ -21,7 +21,7 @@ public class DisableLikeCommandTests
 {
 
     [Test()]
-    public void DisableCommentLike()
+    public void InvokeCommand_DisableItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -73,7 +73,7 @@ public class DisableLikeCommandTests
     }
 
     [Test()]
-    public void DisableListItemLike()
+    public void InvokeCommand_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

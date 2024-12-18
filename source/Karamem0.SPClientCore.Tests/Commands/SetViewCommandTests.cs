@@ -21,7 +21,7 @@ public class SetViewCommandTests
 {
 
     [Test()]
-    public void SetView()
+    public void InvokeCommand_SetItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

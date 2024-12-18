@@ -22,7 +22,7 @@ public class ApproveListItemCommandTests
 {
 
     [Test()]
-    public void ApproveListItem()
+    public void InvokeCommand_ApproveItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

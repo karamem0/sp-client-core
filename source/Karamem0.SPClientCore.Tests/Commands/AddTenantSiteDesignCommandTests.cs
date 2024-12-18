@@ -21,7 +21,7 @@ public class AddTenantSiteDesignCommandTests
 {
 
     [Test()]
-    public void AddSiteDesign()
+    public void InvokeCommand_AddItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

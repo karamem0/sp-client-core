@@ -21,7 +21,7 @@ public class GetUserPermissionCommandTests
 {
 
     [Test()]
-    public void GetSiteUserPermission()
+    public void InvokeCommand_GetByUserFromSite_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -54,7 +54,7 @@ public class GetUserPermissionCommandTests
     }
 
     [Test()]
-    public void GetListUserPermission()
+    public void InvokeCommand_GetByUserFromList_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -94,7 +94,7 @@ public class GetUserPermissionCommandTests
     }
 
     [Test()]
-    public void GetListItemUserPermission()
+    public void InvokeCommand_GetByUserFromListItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

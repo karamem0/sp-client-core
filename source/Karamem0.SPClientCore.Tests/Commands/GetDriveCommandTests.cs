@@ -22,7 +22,7 @@ public class GetDriveCommandTests
 {
 
     [Test()]
-    public void GetDrives()
+    public void InvokeCommand_GetAll_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -46,7 +46,7 @@ public class GetDriveCommandTests
     }
 
     [Test()]
-    public void GetDriveByIdentity()
+    public void InvokeCommand_GetByIdentity_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -77,7 +77,7 @@ public class GetDriveCommandTests
     }
 
     [Test()]
-    public void GetDriveByDriveId()
+    public void InvokeCommand_GetByDriveId_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -102,7 +102,7 @@ public class GetDriveCommandTests
     }
 
     [Test()]
-    public void GetDriveByList()
+    public void InvokeCommand_GetByList_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

@@ -21,7 +21,7 @@ public class GetDocumentSetWelcomePageColumnCommandTests
 {
 
     [Test()]
-    public void GetDocumentSetWelcomePageColumns()
+    public void InvokeCommand_GetAll_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

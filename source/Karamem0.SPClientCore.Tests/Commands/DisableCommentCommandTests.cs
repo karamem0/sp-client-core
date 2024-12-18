@@ -22,7 +22,7 @@ public class DisableCommentCommandTests
 {
 
     [Test()]
-    public void DisableComment()
+    public void InvokeCommand_DisableItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

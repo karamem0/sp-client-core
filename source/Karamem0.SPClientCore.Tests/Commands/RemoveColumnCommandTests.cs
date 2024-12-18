@@ -21,7 +21,7 @@ public class RemoveColumnCommandTests
 {
 
     [Test()]
-    public void RemoveListColumn()
+    public void InvokeCommand_RemoveItemFromList_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -62,7 +62,7 @@ public class RemoveColumnCommandTests
     }
 
     [Test()]
-    public void RemoveSiteColumn()
+    public void InvokeCommand_RemoveItemFromSite_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

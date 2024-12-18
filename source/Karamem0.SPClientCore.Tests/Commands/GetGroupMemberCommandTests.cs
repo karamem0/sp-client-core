@@ -21,7 +21,7 @@ public class GetGroupMemberCommandTests
 {
 
     [Test()]
-    public void GetGroupMembers()
+    public void InvokeCommand_GetAll_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -53,7 +53,7 @@ public class GetGroupMemberCommandTests
     }
 
     [Test()]
-    public void GetGroupMemberByMemberId()
+    public void InvokeCommand_GetByMemberId_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -86,7 +86,7 @@ public class GetGroupMemberCommandTests
     }
 
     [Test()]
-    public void GetGroupMemberByMemberLoginName()
+    public void InvokeCommand_GetByMemberLoginName_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -119,7 +119,7 @@ public class GetGroupMemberCommandTests
     }
 
     [Test()]
-    public void GetGroupMemberByMemberEmail()
+    public void InvokeCommand_GetByMemberEmail_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

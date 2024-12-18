@@ -22,7 +22,7 @@ public class GetRecycleBinItemCommandTests
 {
 
     [Test()]
-    public void GetRecycleBinItems()
+    public void InvokeCommand_GetAll_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -76,7 +76,7 @@ public class GetRecycleBinItemCommandTests
     }
 
     [Test()]
-    public void GetRecycleBinItemByIdentity()
+    public void InvokeCommand_GetByIdentity_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -138,7 +138,7 @@ public class GetRecycleBinItemCommandTests
     }
 
     [Test()]
-    public void GetRecycleBinItemByItemId()
+    public void InvokeCommand_GetByItemId_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -193,7 +193,7 @@ public class GetRecycleBinItemCommandTests
     }
 
     [Test()]
-    public void GetRecycleBinItemInSecondStageByItemId()
+    public void InvokeCommand_GetFromSecondStage_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

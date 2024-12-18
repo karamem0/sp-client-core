@@ -21,7 +21,7 @@ public class RemoveAlertCommandTests
 {
 
     [Test()]
-    public void RemoveAlert()
+    public void InvokeCommand_RemoveItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

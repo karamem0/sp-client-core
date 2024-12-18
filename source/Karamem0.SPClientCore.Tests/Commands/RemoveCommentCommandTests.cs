@@ -21,7 +21,7 @@ public class RemoveCommentCommandTests
 {
 
     [Test()]
-    public void RemoveComment()
+    public void InvokeCommand_RemoveItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

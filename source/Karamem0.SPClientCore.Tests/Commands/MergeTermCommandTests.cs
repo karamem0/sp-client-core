@@ -21,7 +21,7 @@ public class MergeTermCommandTests
 {
 
     [Test()]
-    public void MergeTerm()
+    public void InvokeCommand_MergeItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

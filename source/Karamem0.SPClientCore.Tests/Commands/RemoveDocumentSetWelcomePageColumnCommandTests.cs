@@ -21,7 +21,7 @@ public class RemoveDocumentSetWelcomePageColumnCommandTests
 {
 
     [Test()]
-    public void RemoveDocumentSetWelcomePageColumn()
+    public void InvokeCommand_RemoveItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

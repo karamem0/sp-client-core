@@ -21,7 +21,7 @@ public class RemoveUserCommandTests
 {
 
     [Test()]
-    public void RemoveUser()
+    public void InvokeCommand_RemoveItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

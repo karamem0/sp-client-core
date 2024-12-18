@@ -21,7 +21,7 @@ public class SetRoleDefinitionCommandTests
 {
 
     [Test()]
-    public void SetRoleDefinition()
+    public void InvokeCommand_SetItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

@@ -21,7 +21,7 @@ public class RemoveTenantUserCommandTests
 {
 
     [Test()]
-    public void RemoveUserBySiteCollection()
+    public void InvokeCommand_RemoveItemBySiteCollection_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -62,7 +62,7 @@ public class RemoveTenantUserCommandTests
     }
 
     [Test()]
-    public void RemoveUserBySiteCollectionUrl()
+    public void InvokeCommand_RemoveItemBySiteCollectionUrl_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

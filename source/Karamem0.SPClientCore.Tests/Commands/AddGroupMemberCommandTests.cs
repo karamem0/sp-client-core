@@ -21,7 +21,7 @@ public class AddGroupMemberCommandTests
 {
 
     [Test()]
-    public void AddGroupMember()
+    public void InvokeCommand_AddItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

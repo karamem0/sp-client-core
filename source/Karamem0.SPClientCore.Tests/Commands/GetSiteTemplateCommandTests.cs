@@ -21,7 +21,7 @@ public class GetSiteTemplateCommandTests
 {
 
     [Test()]
-    public void GetSiteTemplates()
+    public void InvokeCommand_GetAll_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -45,7 +45,7 @@ public class GetSiteTemplateCommandTests
     }
 
     [Test()]
-    public void GetSiteTemplatesByFilter()
+    public void InvokeCommand_GetByLcid_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -71,7 +71,7 @@ public class GetSiteTemplateCommandTests
     }
 
     [Test()]
-    public void GetSiteTemplateBySiteTemplateName()
+    public void InvokeCommand_GetBySiteTemplateName_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

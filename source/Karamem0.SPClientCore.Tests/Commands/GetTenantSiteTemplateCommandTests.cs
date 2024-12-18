@@ -21,7 +21,7 @@ public class GetTenantSiteTemplateCommandTests
 {
 
     [Test()]
-    public void GetTenantSiteTemplates()
+    public void InvokeCommand_GetAll_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -45,7 +45,7 @@ public class GetTenantSiteTemplateCommandTests
     }
 
     [Test()]
-    public void GetTenantSiteTemplatesByFilter()
+    public void InvokeCommand_GetByCompatibilityLevel_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -62,7 +62,31 @@ public class GetTenantSiteTemplateCommandTests
             "Get-KshTenantSiteTemplate",
             new Dictionary<string, object>()
             {
-                { "CompatibilityLevel", 15 },
+                { "CompatibilityLevel", 15 }
+            }
+        );
+        var actual = result1.ToArray();
+        Assert.That(actual, Is.Not.Null);
+    }
+
+    [Test()]
+    public void InvokeCommand_GetByLcid_ShouldSucceed()
+    {
+        using var context = new PSCmdletContext();
+        _ = context.Runspace.InvokeCommand(
+            "Connect-KshSite",
+            new Dictionary<string, object>()
+            {
+                { "Url", context.AppSettings["AdminUrl"] },
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+            }
+        );
+        var result1 = context.Runspace.InvokeCommand<TenantSiteTemplate>(
+            "Get-KshTenantSiteTemplate",
+            new Dictionary<string, object>()
+            {
                 { "Lcid", 1033 }
             }
         );

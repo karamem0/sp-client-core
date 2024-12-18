@@ -33,6 +33,7 @@ public static class PSCmdletExtensions
         _ = name ?? throw new ArgumentNullException(nameof(name));
         _ = parameters ?? throw new ArgumentNullException(nameof(parameters));
         var command = new Command(name);
+        runspace.SessionStateProxy.PSVariable.Set("ConfirmPreference", "None");
         foreach (var parameter in parameters)
         {
             command.Parameters.Add(parameter.Key, parameter.Value);

@@ -21,7 +21,7 @@ public class RemoveTermLabelCommandTests
 {
 
     [Test()]
-    public void RemoveTermLabel()
+    public void InvokeCommand_RemoveItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

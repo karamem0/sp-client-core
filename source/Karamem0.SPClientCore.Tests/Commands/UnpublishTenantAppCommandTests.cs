@@ -21,7 +21,7 @@ public class UnpublishTenantAppCommandTests
 {
 
     [Test()]
-    public void UnpublishApp()
+    public void InvokeCommand_UnpublishItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

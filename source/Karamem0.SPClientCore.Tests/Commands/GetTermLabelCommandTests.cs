@@ -21,7 +21,7 @@ public class GetTermLabelCommandTests
 {
 
     [Test()]
-    public void GetTermLabels()
+    public void InvokeCommand_GetAll_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -69,7 +69,7 @@ public class GetTermLabelCommandTests
     }
 
     [Test()]
-    public void GetTermLabelByIdentity()
+    public void InvokeCommand_GetByIdentity_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -125,7 +125,7 @@ public class GetTermLabelCommandTests
     }
 
     [Test()]
-    public void GetTermLabelByLabelValue()
+    public void InvokeCommand_GetByLabelName_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

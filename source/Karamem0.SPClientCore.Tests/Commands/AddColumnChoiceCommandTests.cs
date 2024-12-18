@@ -21,7 +21,7 @@ public class AddColumnChoiceCommandTests
 {
 
     [Test()]
-    public void AddListColumnChoice()
+    public void InvokeCommand_AddItemToList_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -92,7 +92,7 @@ public class AddColumnChoiceCommandTests
     }
 
     [Test()]
-    public void AddSiteColumnChoice()
+    public void InvokeCommand_AddItemToSite_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

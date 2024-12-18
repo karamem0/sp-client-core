@@ -21,7 +21,7 @@ public class GetTenantSiteScriptCommandTests
 {
 
     [Test()]
-    public void GetTenantSiteScripts()
+    public void InvokeCommand_GetAll_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -45,7 +45,7 @@ public class GetTenantSiteScriptCommandTests
     }
 
     [Test()]
-    public void GetTenantSiteScriptByIdentity()
+    public void InvokeCommand_GetByIdentity_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -77,7 +77,7 @@ public class GetTenantSiteScriptCommandTests
     }
 
     [Test()]
-    public void GetTenantSiteScriptBySiteScriptId()
+    public void InvokeCommand_GetBySiteScriptId_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

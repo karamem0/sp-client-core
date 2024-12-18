@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
@@ -26,6 +27,7 @@ public class ChangeQuery : ClientValueObject
 
     public ChangeQuery(IReadOnlyDictionary<string, object> parameters)
     {
+        var flags = BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public;
         foreach (var parameter in parameters)
         {
             switch (parameter.Key)
@@ -46,7 +48,7 @@ public class ChangeQuery : ClientValueObject
                     var objects = (ChangeObjects)parameter.Value;
                     foreach (var e in Enum.GetValues(typeof(ChangeObjects)).Cast<Enum>().Where(objects.HasFlag))
                     {
-                        var property = this.GetType().GetProperty(Enum.GetName(typeof(ChangeObjects), e));
+                        var property = this.GetType().GetProperty(Enum.GetName(typeof(ChangeObjects), e), flags);
                         property?.SetValue(this, true);
                     }
                     break;
@@ -54,7 +56,7 @@ public class ChangeQuery : ClientValueObject
                     var operations = (ChangeOperations)parameter.Value;
                     foreach (var e in Enum.GetValues(typeof(ChangeOperations)).Cast<Enum>().Where(operations.HasFlag))
                     {
-                        var property = this.GetType().GetProperty(Enum.GetName(typeof(ChangeOperations), e));
+                        var property = this.GetType().GetProperty(Enum.GetName(typeof(ChangeOperations), e), flags);
                         property?.SetValue(this, true);
                     }
                     break;

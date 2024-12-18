@@ -21,7 +21,7 @@ public class SetGroupCommandTests
 {
 
     [Test()]
-    public void SetGroup()
+    public void InvokeCommand_SetItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

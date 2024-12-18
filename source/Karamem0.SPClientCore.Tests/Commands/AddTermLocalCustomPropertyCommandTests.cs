@@ -21,7 +21,7 @@ public class AddTermLocalCustomPropertyCommandTests
 {
 
     [Test()]
-    public void AddTermLocalCustomProperty()
+    public void InvokeCommand_AddItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

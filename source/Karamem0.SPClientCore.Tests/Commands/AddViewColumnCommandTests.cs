@@ -21,7 +21,7 @@ public class AddViewColumnCommandTests
 {
 
     [Test()]
-    public void AddViewColumnByColumn()
+    public void InvokeCommand_AddNewByColumn_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -86,7 +86,7 @@ public class AddViewColumnCommandTests
     }
 
     [Test()]
-    public void AddViewColumnByColumnName()
+    public void InvokeCommand_AddNewByColumnName_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

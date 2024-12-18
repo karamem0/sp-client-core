@@ -21,7 +21,7 @@ public class AddColumnCurrencyCommandTests
 {
 
     [Test()]
-    public void AddListColumnCurrency()
+    public void InvokeCommand_AddItemToList_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -93,7 +93,7 @@ public class AddColumnCurrencyCommandTests
     }
 
     [Test()]
-    public void AddSiteColumnCurrency()
+    public void InvokeCommand_AddItemToSite_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

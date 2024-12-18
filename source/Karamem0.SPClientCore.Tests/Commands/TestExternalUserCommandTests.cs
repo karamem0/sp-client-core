@@ -21,7 +21,7 @@ public class TestExternalUserCommandTests
 {
 
     [Test()]
-    public void CheckSiteExternalUserSharing()
+    public void InvokeCommand_TestItemOfSite_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -46,7 +46,7 @@ public class TestExternalUserCommandTests
     }
 
     [Test()]
-    public void CheckListExternalUserSharing()
+    public void InvokeCommand_TestItemOfList_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

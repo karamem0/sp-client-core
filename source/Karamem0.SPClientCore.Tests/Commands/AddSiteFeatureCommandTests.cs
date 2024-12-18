@@ -21,7 +21,7 @@ public class AddSiteFeatureCommandTests
 {
 
     [Test()]
-    public void AddSiteFeature()
+    public void InvokeCommand_AddItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

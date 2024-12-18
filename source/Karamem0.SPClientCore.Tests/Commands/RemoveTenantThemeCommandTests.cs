@@ -22,7 +22,7 @@ public class RemoveTenantThemeCommandTests
 {
 
     [Test()]
-    public void RemoveTenantTheme()
+    public void InvokeCommand_RemoveItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

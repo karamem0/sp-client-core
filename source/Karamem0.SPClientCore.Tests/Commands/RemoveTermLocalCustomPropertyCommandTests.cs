@@ -21,7 +21,7 @@ public class RemoveTermLocalCustomPropertyCommandTests
 {
 
     [Test()]
-    public void RemoveTermLocalCustomProperty()
+    public void InvokeCommand_RemoveItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

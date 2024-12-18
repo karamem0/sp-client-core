@@ -21,7 +21,7 @@ public class GetChangeCommandTests
 {
 
     [Test()]
-    public void GetSiteCollectionChanges()
+    public void InvokeCommand_GetFromSiteCollection_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -50,7 +50,7 @@ public class GetChangeCommandTests
     }
 
     [Test()]
-    public void GetSiteChanges()
+    public void InvokeCommand_GetFromSite_GetByShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -79,7 +79,7 @@ public class GetChangeCommandTests
     }
 
     [Test()]
-    public void GetListChanges()
+    public void InvokeCommand_GetFromList_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

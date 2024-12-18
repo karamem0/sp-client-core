@@ -21,7 +21,7 @@ public class SetContentTypeColumnCommandTests
 {
 
     [Test()]
-    public void SetListContentTypeColumn()
+    public void InvokeCommand_SetItemToList_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -109,7 +109,7 @@ public class SetContentTypeColumnCommandTests
     }
 
     [Test()]
-    public void SetSiteContentTypeColumn()
+    public void InvokeCommand_SetItemToSite_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

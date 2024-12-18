@@ -21,7 +21,7 @@ public class RemoveGroupMemberCommandTests
 {
 
     [Test()]
-    public void RemoveGroupMember()
+    public void InvokeCommand_RemoveItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
