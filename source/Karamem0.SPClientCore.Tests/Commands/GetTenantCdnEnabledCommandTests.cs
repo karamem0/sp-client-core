@@ -20,7 +20,7 @@ public class GetTenantCdnEnabledCommandTests
 {
 
     [Test()]
-    public void GetTenantPublicCdnEnabled()
+    public void InvokeCommand_GetPublic_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -45,7 +45,7 @@ public class GetTenantCdnEnabledCommandTests
     }
 
     [Test()]
-    public void GetTenantPrivateCdnEnabled()
+    public void InvokeCommand_GetPrivate_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

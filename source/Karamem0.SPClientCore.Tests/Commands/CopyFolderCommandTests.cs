@@ -21,7 +21,7 @@ public class CopyFolderCommandTests
 {
 
     [Test()]
-    public void CopyFolder()
+    public void InvokeCommand_CopyItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

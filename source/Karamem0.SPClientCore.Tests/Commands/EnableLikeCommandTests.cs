@@ -21,7 +21,7 @@ public class EnableLikeCommandTests
 {
 
     [Test()]
-    public void EnableCommentLike()
+    public void InvokeCommand_EnableItemOfComment_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -73,7 +73,7 @@ public class EnableLikeCommandTests
     }
 
     [Test()]
-    public void EnableListItemLike()
+    public void InvokeCommand_EnableItemOfListItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

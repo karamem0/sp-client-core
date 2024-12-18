@@ -21,7 +21,7 @@ public class RemoveFileCommandTests
 {
 
     [Test()]
-    public void RemoveFile()
+    public void InvokeCommand_RemoveItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -60,7 +60,7 @@ public class RemoveFileCommandTests
     }
 
     [Test()]
-    public void MoveFileToRecycleBin()
+    public void InvokeCommand_MoveItemToRecycleBin_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

@@ -20,7 +20,7 @@ public class GetTenantSiteScriptFromSiteCommandTests
 {
 
     [Test()]
-    public void GetTenantSiteScriptFromSite()
+    public void InvokeCommand_GetBySiteUrl_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

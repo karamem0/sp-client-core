@@ -21,7 +21,7 @@ public class MoveViewColumnCommandTests
 {
 
     [Test()]
-    public void MoveViewColumnByColumn()
+    public void InvokeCommand_MoveItemByColumn_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -95,7 +95,7 @@ public class MoveViewColumnCommandTests
     }
 
     [Test()]
-    public void MoveViewColumnByColumnName()
+    public void InvokeCommand_MoveItemByColumnName_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

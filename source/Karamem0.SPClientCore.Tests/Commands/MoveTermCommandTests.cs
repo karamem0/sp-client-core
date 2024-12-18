@@ -21,7 +21,7 @@ public class MoveTermCommandTests
 {
 
     [Test()]
-    public void MoveTerm()
+    public void InvokeCommand_MoveItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

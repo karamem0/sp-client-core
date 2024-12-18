@@ -21,7 +21,7 @@ public class SaveAttachmentFileCommandTests
 {
 
     [Test()]
-    public void SaveAttachmentFile()
+    public void InvokeCommand_SaveItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

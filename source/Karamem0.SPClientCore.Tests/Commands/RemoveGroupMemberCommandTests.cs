@@ -21,7 +21,7 @@ public class RemoveGroupMemberCommandTests
 {
 
     [Test()]
-    public void RemoveGroupMember()
+    public void InvokeCommand_RemoveItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -45,7 +45,7 @@ public class RemoveGroupMemberCommandTests
             "Add-KshUser",
             new Dictionary<string, object>()
             {
-                { "LoginName", "i:0#.f|membership|testuser000@" + context.AppSettings["LoginDomainName"] },
+                { "LoginName", "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"] },
             }
         );
         _ = context.Runspace.InvokeCommand(

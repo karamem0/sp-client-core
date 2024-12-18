@@ -20,7 +20,7 @@ public class ConvertToUniversalTimeCommandTests
 {
 
     [Test()]
-    public void ConvertToUniversalTime()
+    public void InvokeCommand_ConvertToUniversalTime_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

@@ -22,7 +22,7 @@ public class InstallSiteCollectionAppCommandTests
 {
 
     [Test()]
-    public void InstallSiteCollectionApp()
+    public void InvokeCommand_InstallItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

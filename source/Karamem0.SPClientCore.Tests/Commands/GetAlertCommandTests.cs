@@ -21,7 +21,7 @@ public class GetAlertCommandTests
 {
 
     [Test()]
-    public void GetAlerts()
+    public void InvokeCommand_GetAll_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -45,7 +45,7 @@ public class GetAlertCommandTests
     }
 
     [Test()]
-    public void GetAlertByIdentity()
+    public void InvokeCommand_GetByIdentity_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -77,7 +77,7 @@ public class GetAlertCommandTests
     }
 
     [Test()]
-    public void GetAlertByAlertId()
+    public void InvokeCommand_GetByAlertId_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

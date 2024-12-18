@@ -21,7 +21,7 @@ public class AddTermStoreCommandLanguageTests
 {
 
     [Test()]
-    public void AddTermStoreLanguage()
+    public void InvokeCommand_AddItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

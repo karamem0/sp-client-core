@@ -21,7 +21,7 @@ public class GetPropertyCommandTests
 {
 
     [Test()]
-    public void GetAlertProperties()
+    public void InvokeCommand_GetFromAlert_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -53,7 +53,7 @@ public class GetPropertyCommandTests
     }
 
     [Test()]
-    public void GetFileProperties()
+    public void InvokeCommand_GetFromFile_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -85,7 +85,7 @@ public class GetPropertyCommandTests
     }
 
     [Test()]
-    public void GetFolderProperties()
+    public void InvokeCommand_GetFromFolder_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -117,7 +117,7 @@ public class GetPropertyCommandTests
     }
 
     [Test()]
-    public void GetListItemProperties()
+    public void InvokeCommand_GetFromListItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -157,7 +157,7 @@ public class GetPropertyCommandTests
     }
 
     [Test()]
-    public void GetSiteProperties()
+    public void InvokeCommand_GetFromSite_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

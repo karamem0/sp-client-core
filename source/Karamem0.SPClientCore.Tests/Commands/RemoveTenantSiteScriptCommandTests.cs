@@ -21,7 +21,7 @@ public class RemoveTenantSiteScriptCommandTests
 {
 
     [Test()]
-    public void RemoveSiteScript()
+    public void InvokeCommand_RemoveItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

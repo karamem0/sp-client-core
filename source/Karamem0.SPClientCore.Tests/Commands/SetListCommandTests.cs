@@ -21,7 +21,7 @@ public class SetListCommandTests
 {
 
     [Test()]
-    public void SetList()
+    public void InvokeCommand_SetItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

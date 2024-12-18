@@ -145,7 +145,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClientId
-Specifies the app ID of Azure AD app or SharePoint add-in.
+Specifies the app ID of Microsoft Entra ID app or SharePoint add-in.
 
 ```yaml
 Type: String

@@ -22,7 +22,7 @@ public class EnableCommentCommandTests
 {
 
     [Test()]
-    public void EnableComment()
+    public void InvokeCommand_EnableItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

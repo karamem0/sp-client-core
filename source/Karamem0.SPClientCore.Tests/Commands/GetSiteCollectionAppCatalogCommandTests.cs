@@ -21,7 +21,7 @@ public class GetSiteCollectionAppCatalogCommandTests
 {
 
     [Test()]
-    public void GetSiteCollectionAppCatalogs()
+    public void InvokeCommand_GetAll_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -45,7 +45,7 @@ public class GetSiteCollectionAppCatalogCommandTests
     }
 
     [Test()]
-    public void GetSiteCollectionAppCatalogBySiteCollection()
+    public void InvokeCommand_GetBySiteCollection_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -76,7 +76,7 @@ public class GetSiteCollectionAppCatalogCommandTests
     }
 
     [Test()]
-    public void GetSiteCollectionAppCatalogBySiteCollectionUrl()
+    public void InvokeCommand_GetBySiteCollectionUrl_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

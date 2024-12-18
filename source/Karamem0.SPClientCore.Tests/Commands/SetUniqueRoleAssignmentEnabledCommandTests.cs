@@ -22,7 +22,7 @@ public class SetUniqueRoleAssignmentEnabledCommandTests
 {
 
     [Test()]
-    public void DisableSiteUniqueRoleAssignment()
+    public void InvokeCommand_SetDisabledToSite_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -85,7 +85,7 @@ public class SetUniqueRoleAssignmentEnabledCommandTests
     }
 
     [Test()]
-    public void DisableListUniqueRoleAssignment()
+    public void InvokeCommand_SetDisabledToList_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -141,7 +141,7 @@ public class SetUniqueRoleAssignmentEnabledCommandTests
     }
 
     [Test()]
-    public void DisableListItemUniqueRoleAssignment()
+    public void InvokeCommand_SetDisabledToListItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -204,7 +204,7 @@ public class SetUniqueRoleAssignmentEnabledCommandTests
     }
 
     [Test()]
-    public void EnableSiteUniqueRoleAssignment()
+    public void InvokeCommand_SetEnabledToSite_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -269,7 +269,7 @@ public class SetUniqueRoleAssignmentEnabledCommandTests
     }
 
     [Test()]
-    public void EnableListUniqueRoleAssignment()
+    public void InvokeCommand_SetEnabledToList_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -327,7 +327,7 @@ public class SetUniqueRoleAssignmentEnabledCommandTests
     }
 
     [Test()]
-    public void EnableListItemUniqueRoleAssignment()
+    public void InvokeCommand_SetEnabledToListItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

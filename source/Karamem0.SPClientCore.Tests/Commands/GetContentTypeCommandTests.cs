@@ -21,7 +21,7 @@ public class GetContentTypeCommandTests
 {
 
     [Test()]
-    public void GetListContentTypes()
+    public void InvokeCommand_GetAllFromListContentType_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -53,7 +53,7 @@ public class GetContentTypeCommandTests
     }
 
     [Test()]
-    public void GetListContentTypeByIdentity()
+    public void InvokeCommand_GetByIdentityFromListContentType_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -93,7 +93,7 @@ public class GetContentTypeCommandTests
     }
 
     [Test()]
-    public void GetListContentTypeByContentTypeId()
+    public void InvokeCommand_GetByContentTypeIdFromListContentType_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -126,7 +126,7 @@ public class GetContentTypeCommandTests
     }
 
     [Test()]
-    public void GetSiteContentTypes()
+    public void InvokeCommand_GetAllFromSiteContentType_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -150,7 +150,7 @@ public class GetContentTypeCommandTests
     }
 
     [Test()]
-    public void GetSiteContentTypeByIdentity()
+    public void InvokeCommand_GetByIdentityFromSiteContentType_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -182,7 +182,7 @@ public class GetContentTypeCommandTests
     }
 
     [Test()]
-    public void GetSiteContentTypeByContentTypeId()
+    public void InvokeCommand_GetByContentTypeIdFromSiteContentType_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

@@ -21,7 +21,7 @@ public class RemoveRoleAssignmentCommandTests
 {
 
     [Test()]
-    public void RemoveSiteRoleAssignment()
+    public void InvokeCommand_RemoveItemFromSite_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -38,8 +38,8 @@ public class RemoveRoleAssignmentCommandTests
             "Add-KshUser",
             new Dictionary<string, object>()
             {
-                { "Email", "testuser000@" + context.AppSettings["LoginDomainName"] },
-                { "LoginName", "i:0#.f|membership|testuser000@" + context.AppSettings["LoginDomainName"] },
+                { "Email", "testuser0@" + context.AppSettings["LoginDomainName"] },
+                { "LoginName", "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"] },
                 { "Title", "Test User 0" }
             }
         );
@@ -76,7 +76,7 @@ public class RemoveRoleAssignmentCommandTests
     }
 
     [Test()]
-    public void RemoveListRoleAssignment()
+    public void InvokeCommand_RemoveItemFromList_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -100,8 +100,8 @@ public class RemoveRoleAssignmentCommandTests
             "Add-KshUser",
             new Dictionary<string, object>()
             {
-                { "Email", "testuser000@" + context.AppSettings["LoginDomainName"] },
-                { "LoginName", "i:0#.f|membership|testuser000@" + context.AppSettings["LoginDomainName"] },
+                { "Email", "testuser0@" + context.AppSettings["LoginDomainName"] },
+                { "LoginName", "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"] },
                 { "Title", "Test User 0" }
             }
         );
@@ -138,7 +138,7 @@ public class RemoveRoleAssignmentCommandTests
     }
 
     [Test()]
-    public void RemoveListItemRoleAssignment()
+    public void InvokeCommand_RemoveItemFromListItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -170,8 +170,8 @@ public class RemoveRoleAssignmentCommandTests
             "Add-KshUser",
             new Dictionary<string, object>()
             {
-                { "Email", "testuser000@" + context.AppSettings["LoginDomainName"] },
-                { "LoginName", "i:0#.f|membership|testuser000@" + context.AppSettings["LoginDomainName"] },
+                { "Email", "testuser0@" + context.AppSettings["LoginDomainName"] },
+                { "LoginName", "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"] },
                 { "Title", "Test User 0" }
             }
         );

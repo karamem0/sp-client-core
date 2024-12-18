@@ -21,7 +21,7 @@ public class GetTenantHubSiteCommandTests
 {
 
     [Test()]
-    public void GetHubSites()
+    public void InvokeCommand_GetAll_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -38,7 +38,7 @@ public class GetTenantHubSiteCommandTests
             "Add-KshTenantSiteCollection",
             new Dictionary<string, object>()
             {
-                { "Owner", context.AppSettings["LoginUserName"] },
+                { "Owner", context.AppSettings["OwnerUserName"] },
                 { "Template", "SITEPAGEPUBLISHING#0" },
                 { "Url", context.AppSettings["AuthorityUrl"] + "/sites/TestSite0" }
             }
@@ -98,7 +98,7 @@ public class GetTenantHubSiteCommandTests
     }
 
     [Test()]
-    public void GetHubSiteByHubSiteId()
+    public void InvokeCommand_GetByHubSiteId_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -115,7 +115,7 @@ public class GetTenantHubSiteCommandTests
             "Add-KshTenantSiteCollection",
             new Dictionary<string, object>()
             {
-                { "Owner", context.AppSettings["LoginUserName"] },
+                { "Owner", context.AppSettings["OwnerUserName"] },
                 { "Template", "SITEPAGEPUBLISHING#0" },
                 { "Url", context.AppSettings["AuthorityUrl"] + "/sites/TestSite0" }
             }
@@ -176,7 +176,7 @@ public class GetTenantHubSiteCommandTests
     }
 
     [Test()]
-    public void GetHubSiteByHubSiteUrl()
+    public void InvokeCommand_GetByHubSiteUrl_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -193,7 +193,7 @@ public class GetTenantHubSiteCommandTests
             "Add-KshTenantSiteCollection",
             new Dictionary<string, object>()
             {
-                { "Owner", context.AppSettings["LoginUserName"] },
+                { "Owner", context.AppSettings["OwnerUserName"] },
                 { "Template", "SITEPAGEPUBLISHING#0" },
                 { "Url", context.AppSettings["AuthorityUrl"] + "/sites/TestSite0" }
             }

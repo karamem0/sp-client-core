@@ -21,7 +21,7 @@ public class AddDocumentSetDefaultDocumentCommandTests
 {
 
     [Test()]
-    public void AddDocumentSetDefaultDocument()
+    public void InvokeCommand_AddItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

@@ -22,7 +22,7 @@ public class UninstallTenantAppCommandTests
 {
 
     [Test()]
-    public void UninstallTenantApp()
+    public void InvokeCommand_UninstallItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

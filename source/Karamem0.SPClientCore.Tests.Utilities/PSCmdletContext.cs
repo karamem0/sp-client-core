@@ -39,14 +39,16 @@ public class PSCmdletContext : IDisposable
                 new Dictionary<string, object>()
                 {
                     { "ExecutionPolicy", "RemoteSigned" }
-                });
+                }
+            );
         }
         _ = this.Runspace.InvokeCommand(
             "Import-Module",
             new Dictionary<string, object>()
             {
                 { "Name", "./SPClientCore.psd1" }
-            });
+            }
+        );
     }
 
     public void Dispose()

@@ -20,7 +20,7 @@ public class ConvertToLocalTimeCommandTests
 {
 
     [Test()]
-    public void ConvertToLocalTime()
+    public void InvokeCommand_ConvertToLocalTime_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

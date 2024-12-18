@@ -21,7 +21,7 @@ public class SetUserCommandTests
 {
 
     [Test()]
-    public void SetUser()
+    public void InvokeCommand_SetItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -38,7 +38,7 @@ public class SetUserCommandTests
             "Add-KshUser",
             new Dictionary<string, object>()
             {
-                { "LoginName", "i:0#.f|membership|testuser000@" + context.AppSettings["LoginDomainName"] }
+                { "LoginName", "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"] }
             }
         );
         var result2 = context.Runspace.InvokeCommand<User>(
@@ -46,7 +46,7 @@ public class SetUserCommandTests
             new Dictionary<string, object>()
             {
                 { "Identity", result1.ElementAt(0) },
-                { "Email", "testuser000@example.com" },
+                { "Email", "testuser0@example.com" },
                 { "IsSiteCollectionAdmin", true },
                 { "Title", "Test User 9" },
                 { "PassThru", true }

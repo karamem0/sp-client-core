@@ -21,7 +21,7 @@ public class AddDocumentSetWelcomePageColumnCommandTests
 {
 
     [Test()]
-    public void AddDocumentSetWelcomePageColumn()
+    public void InvokeCommand_AddItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

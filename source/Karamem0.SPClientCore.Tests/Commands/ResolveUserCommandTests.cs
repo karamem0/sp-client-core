@@ -21,7 +21,7 @@ public class ResolveUserCommandTests
 {
 
     [Test()]
-    public void ResolveUser()
+    public void InvokeCommand_ResolveItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -38,7 +38,7 @@ public class ResolveUserCommandTests
             "Resolve-KshUser",
             new Dictionary<string, object>()
             {
-                { "LoginName", "testuser000@" + context.AppSettings["LoginDomainName"] }
+                { "LoginName", "testuser0@" + context.AppSettings["LoginDomainName"] }
             }
         );
         _ = context.Runspace.InvokeCommand(

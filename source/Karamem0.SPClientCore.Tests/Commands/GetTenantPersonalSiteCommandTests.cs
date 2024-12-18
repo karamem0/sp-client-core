@@ -21,7 +21,7 @@ public class GetTenantPersonalSiteCommandTests
 {
 
     [Test()]
-    public void GetPersonalSiteByUser()
+    public void InvokeCommand_GetByUser_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -49,19 +49,19 @@ public class GetTenantPersonalSiteCommandTests
                 { "UserId", context.AppSettings["User1Id"] }
             }
         );
-        _ = context.Runspace.InvokeCommand<string>(
+        var result3 = context.Runspace.InvokeCommand<string>(
             "Get-KshTenantPersonalSite",
             new Dictionary<string, object>()
             {
                 { "User", result2.ElementAt(0) }
             }
         );
-        var actual = result1.ElementAt(0);
+        var actual = result3.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
     [Test()]
-    public void GetPersonalSiteByUserId()
+    public void InvokeCommand_GetByUserId_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

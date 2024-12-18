@@ -21,7 +21,7 @@ public class AddTenantUserCommandTests
 {
 
     [Test()]
-    public void AddUserBySiteCollection()
+    public void InvokeCommand_AddItemBySiteCollection_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -46,8 +46,8 @@ public class AddTenantUserCommandTests
             new Dictionary<string, object>()
             {
                 { "SiteCollection", result1.ElementAt(0) },
-                { "Email", "testuser000@" + context.AppSettings["LoginDomainName"] },
-                { "LoginName", "i:0#.f|membership|testuser000@" + context.AppSettings["LoginDomainName"] },
+                { "Email", "testuser0@" + context.AppSettings["LoginDomainName"] },
+                { "LoginName", "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"] },
                 { "Title", "Test User 0" }
             }
         );
@@ -64,7 +64,7 @@ public class AddTenantUserCommandTests
     }
 
     [Test()]
-    public void AddUserBySiteCollectionUrl()
+    public void InvokeCommand_AddItemBySiteCollectionUrl_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -82,8 +82,8 @@ public class AddTenantUserCommandTests
             new Dictionary<string, object>()
             {
                 { "SiteCollectionUrl", context.AppSettings["BaseUrl"] },
-                { "Email", "testuser000@" + context.AppSettings["LoginDomainName"] },
-                { "LoginName", "i:0#.f|membership|testuser000@" + context.AppSettings["LoginDomainName"] },
+                { "Email", "testuser0@" + context.AppSettings["LoginDomainName"] },
+                { "LoginName", "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"] },
                 { "Title", "Test User 0" }
             }
         );

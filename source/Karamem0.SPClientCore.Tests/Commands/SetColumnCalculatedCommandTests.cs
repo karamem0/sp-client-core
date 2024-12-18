@@ -21,7 +21,7 @@ public class SetColumnCalculatedCommandTests
 {
 
     [Test()]
-    public void SetListColumnCalculatedOfBoolean()
+    public void InvokeCommand_UpdateBooleanFromList_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -113,7 +113,7 @@ public class SetColumnCalculatedCommandTests
     }
 
     [Test()]
-    public void SetListColumnCalculatedOfCurrency()
+    public void InvokeCommand_UpdateCurrencyFromList_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -207,7 +207,7 @@ public class SetColumnCalculatedCommandTests
     }
 
     [Test()]
-    public void SetListColumnCalculatedOfDateTime()
+    public void InvokeCommand_UpdateDateTimeFromList_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -300,7 +300,7 @@ public class SetColumnCalculatedCommandTests
     }
 
     [Test()]
-    public void SetListColumnCalculatedOfNumber()
+    public void InvokeCommand_UpdateNumberFromList_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -393,7 +393,7 @@ public class SetColumnCalculatedCommandTests
     }
 
     [Test()]
-    public void SetListColumnCalculatedOfText()
+    public void InvokeCommand_UpdateTextFromList_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -485,7 +485,7 @@ public class SetColumnCalculatedCommandTests
     }
 
     [Test()]
-    public void SetSiteColumnCalculatedOfBoolean()
+    public void InvokeCommand_UpdateBooleanFromSite_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -567,7 +567,7 @@ public class SetColumnCalculatedCommandTests
     }
 
     [Test()]
-    public void SetSiteColumnCalculatedOfCurrency()
+    public void InvokeCommand_UpdateCurrencyFromSite_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -651,7 +651,7 @@ public class SetColumnCalculatedCommandTests
     }
 
     [Test()]
-    public void SetSiteColumnCalculatedOfDateTime()
+    public void InvokeCommand_UpdateDateTimeFromSite_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -734,7 +734,7 @@ public class SetColumnCalculatedCommandTests
     }
 
     [Test()]
-    public void SetSiteColumnCalculatedOfNumber()
+    public void InvokeCommand_UpdateNumberFromSite_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -818,7 +818,7 @@ public class SetColumnCalculatedCommandTests
     }
 
     [Test()]
-    public void SetSiteColumnCalculatedOfText()
+    public void InvokeCommand_UpdateTextFromSite_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

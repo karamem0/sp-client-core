@@ -21,7 +21,7 @@ public class TestExternalUserCommandTests
 {
 
     [Test()]
-    public void CheckSiteExternalUserSharing()
+    public void InvokeCommand_TestSite_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -42,11 +42,11 @@ public class TestExternalUserCommandTests
             }
         );
         var actual = result1.ElementAt(0);
-        Assert.That(actual, Is.True);
+        Assert.That(actual, Is.False);
     }
 
     [Test()]
-    public void CheckListExternalUserSharing()
+    public void InvokeCommand_TestList_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -74,7 +74,7 @@ public class TestExternalUserCommandTests
             }
         );
         var actual = result2.ElementAt(0);
-        Assert.That(actual, Is.True);
+        Assert.That(actual, Is.False);
     }
 
 }

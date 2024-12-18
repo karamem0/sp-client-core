@@ -21,7 +21,7 @@ public class AddGroupMemberCommandTests
 {
 
     [Test()]
-    public void AddGroupMember()
+    public void InvokeCommand_AddItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -45,8 +45,8 @@ public class AddGroupMemberCommandTests
             "Add-KshUser",
             new Dictionary<string, object>()
             {
-                { "Email", "testuser000@" + context.AppSettings["LoginDomainName"] },
-                { "LoginName", "i:0#.f|membership|testuser000@" + context.AppSettings["LoginDomainName"] },
+                { "Email", "testuser0@" + context.AppSettings["LoginDomainName"] },
+                { "LoginName", "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"] },
                 { "Title", "Test User 0" }
             }
         );

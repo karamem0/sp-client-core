@@ -21,7 +21,7 @@ public class UnlockTenantSiteCollectionCommandTests
 {
 
     [Test()]
-    public void UnlockTenantSiteCollection()
+    public void InvokeCommand_UnlockItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -38,7 +38,7 @@ public class UnlockTenantSiteCollectionCommandTests
             "Add-KshTenantSiteCollection",
             new Dictionary<string, object>()
             {
-                { "Owner", context.AppSettings["LoginUserName"] },
+                { "Owner", context.AppSettings["OwnerUserName"] },
                 { "Template", "SITEPAGEPUBLISHING#0" },
                 { "Url", context.AppSettings["AuthorityUrl"] + "/sites/TestSite0" }
             }

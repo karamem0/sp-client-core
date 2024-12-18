@@ -21,7 +21,7 @@ public class GetTenantAppCommandTests
 {
 
     [Test()]
-    public void GetTenantApps()
+    public void InvokeCommand_GetAll_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -45,7 +45,7 @@ public class GetTenantAppCommandTests
     }
 
     [Test()]
-    public void GetTenantAppByIdentity()
+    public void InvokeCommand_GetByIdentity_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -77,7 +77,7 @@ public class GetTenantAppCommandTests
     }
 
     [Test()]
-    public void GetTenantAppByAppId()
+    public void InvokeCommand_GetByAppId_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

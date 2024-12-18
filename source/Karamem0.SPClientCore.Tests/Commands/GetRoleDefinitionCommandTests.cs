@@ -21,7 +21,7 @@ public class GetRoleDefinitionCommandTests
 {
 
     [Test()]
-    public void GetRoleDefinitions()
+    public void InvokeCommand_GetAll_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -45,7 +45,7 @@ public class GetRoleDefinitionCommandTests
     }
 
     [Test()]
-    public void GetRoleDefinitionByIdentity()
+    public void InvokeCommand_GetByIdentity_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -77,7 +77,7 @@ public class GetRoleDefinitionCommandTests
     }
 
     [Test()]
-    public void GetRoleDefinitionByRoleDefinitionId()
+    public void InvokeCommand_GetByRoleDefinitionId_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -102,7 +102,7 @@ public class GetRoleDefinitionCommandTests
     }
 
     [Test()]
-    public void GetRoleDefinitionByRoleDefinitionName()
+    public void InvokeCommand_GetByRoleDefinitionName_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

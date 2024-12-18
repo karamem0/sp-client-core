@@ -21,7 +21,7 @@ public class AddViewCommandTests
 {
 
     [Test()]
-    public void AddView()
+    public void InvokeCommand_AddItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -51,7 +51,13 @@ public class AddViewCommandTests
                 { "RowLimit", 10 },
                 { "SetAsDefaultView", true },
                 { "Title", "Test View 0" },
-                { "ViewColumns", new List<string>() { "Test Value 1", "Test Value 2", "Test Value 3" } },
+                { "ViewColumns", new List<string>()
+                    {
+                        "Test Column 1",
+                        "Test Column 2",
+                        "Test Column 3"
+                    }
+                },
                 { "ViewQuery", "<OrderBy><FieldRef Name='Title'/></OrderBy>" },
                 { "ViewType", "Html" }
             }

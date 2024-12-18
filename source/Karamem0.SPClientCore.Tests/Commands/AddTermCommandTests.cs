@@ -21,7 +21,7 @@ public class AddTermCommandTests
 {
 
     [Test()]
-    public void AddTermToTermSet()
+    public void InvokeCommand_AddItemToTermSet_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -71,7 +71,7 @@ public class AddTermCommandTests
     }
 
     [Test()]
-    public void AddTermToTerm()
+    public void InvokeCommand_AddItemToTerm_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

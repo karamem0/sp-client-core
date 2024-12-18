@@ -21,7 +21,7 @@ public class RemoveTermCustomPropertyCommandTests
 {
 
     [Test()]
-    public void RemoveTermSetCustomProperty()
+    public void InvokeCommand_RemoveItemFormTermSet_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -78,7 +78,7 @@ public class RemoveTermCustomPropertyCommandTests
     }
 
     [Test()]
-    public void RemoveTermCustomProperty()
+    public void InvokeCommand_RemoveItemFromTerm_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

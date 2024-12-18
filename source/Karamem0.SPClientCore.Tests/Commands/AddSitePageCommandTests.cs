@@ -21,7 +21,7 @@ public class AddSitePageCommandTests
 {
 
     [Test()]
-    public void AddSitePage()
+    public void InvokeCommand_AddItemToSite_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -52,7 +52,7 @@ public class AddSitePageCommandTests
     }
 
     [Test()]
-    public void AddSitePageByFolder()
+    public void InvokeCommand_AddItemToList_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

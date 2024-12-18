@@ -21,7 +21,7 @@ public class AddDocumentSetAllowedContentTypeCommandTests
 {
 
     [Test()]
-    public void AddDocumentSetAllowedContentType()
+    public void InvokeCommand_AddItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

@@ -21,7 +21,7 @@ public class GetFileVersionCommandTests
 {
 
     [Test()]
-    public void GetFileVersions()
+    public void InvokeCommand_GetAll_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -93,7 +93,7 @@ public class GetFileVersionCommandTests
     }
 
     [Test()]
-    public void GetFileVersionByIdentity()
+    public void InvokeCommand_GetByIdentity_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -162,7 +162,7 @@ public class GetFileVersionCommandTests
     }
 
     [Test()]
-    public void GetFileVersionByFileVersionId()
+    public void InvokeCommand_GetByFileVersionId_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

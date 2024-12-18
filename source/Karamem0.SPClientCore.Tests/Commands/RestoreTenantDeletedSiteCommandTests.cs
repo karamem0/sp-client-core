@@ -21,7 +21,7 @@ public class RestoreTenantDeletedSiteCollectionCommandTests
 {
 
     [Test()]
-    public void RestoreTenantDeletedSiteCollection()
+    public void InvokeCommand_RestoreItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -38,7 +38,7 @@ public class RestoreTenantDeletedSiteCollectionCommandTests
             "Add-KshTenantSiteCollection",
             new Dictionary<string, object>()
             {
-                { "Owner", context.AppSettings["LoginUserName"] },
+                { "Owner", context.AppSettings["OwnerUserName"] },
                 { "Template", "SITEPAGEPUBLISHING#0" },
                 { "Url", context.AppSettings["AuthorityUrl"] + "/sites/TestSite0" }
             }

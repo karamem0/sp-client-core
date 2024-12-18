@@ -21,7 +21,7 @@ public class GetViewCommandTests
 {
 
     [Test()]
-    public void GetViews()
+    public void InvokeCommand_GetAll_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -53,7 +53,7 @@ public class GetViewCommandTests
     }
 
     [Test()]
-    public void GetViewByIdentity()
+    public void InvokeCommand_GetByIdentity_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -93,7 +93,7 @@ public class GetViewCommandTests
     }
 
     [Test()]
-    public void GetViewById()
+    public void InvokeCommand_GetByViewId_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -126,7 +126,7 @@ public class GetViewCommandTests
     }
 
     [Test()]
-    public void GetViewByTitle()
+    public void InvokeCommand_GetByViewTitle_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

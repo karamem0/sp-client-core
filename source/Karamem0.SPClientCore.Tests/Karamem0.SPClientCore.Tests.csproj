@@ -49,4 +49,10 @@
     <ProjectReference Include="..\Karamem0.SPClientCore.Tests.Utilities\Karamem0.SPClientCore.Tests.Utilities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="Certificate/**" />
+    <None Include="Scripts/**" />
+    <None Include="TestApps/**" />
+  </ItemGroup>
+
 </Project>

@@ -20,7 +20,7 @@ public class AddAnonymousLinkCommandTests
 {
 
     [Test()]
-    public void AddAnonymousLink()
+    public void InvokeCommand_AddNoExpiration_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -55,7 +55,7 @@ public class AddAnonymousLinkCommandTests
     }
 
     [Test()]
-    public void AddAnonymousLinkWithExpiration()
+    public void InvokeCommand_AddExpiration_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

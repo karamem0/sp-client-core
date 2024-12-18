@@ -21,7 +21,7 @@ public class GetTenantSiteCollectionCommandTests
 {
 
     [Test()]
-    public void GetTenantSiteCollections()
+    public void InvokeCommand_GetAll_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -45,7 +45,7 @@ public class GetTenantSiteCollectionCommandTests
     }
 
     [Test()]
-    public void GetTenantSiteCollectionsByFilter()
+    public void InvokeCommand_GetMicrosoft365Group_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -62,8 +62,56 @@ public class GetTenantSiteCollectionCommandTests
             "Get-KshTenantSiteCollection",
             new Dictionary<string, object>()
             {
-                { "GroupIdDefined", false },
-                { "IncludePersonalSite", true },
+                { "GroupIdDefined", true }
+            }
+        );
+        var actual = result1.ToArray();
+        Assert.That(actual, Is.Not.Null);
+    }
+
+    [Test()]
+    public void InvokeCommand_GetPersonalSite_ShouldSucceed()
+    {
+        using var context = new PSCmdletContext();
+        _ = context.Runspace.InvokeCommand(
+            "Connect-KshSite",
+            new Dictionary<string, object>()
+            {
+                { "Url", context.AppSettings["AdminUrl"] },
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+            }
+        );
+        var result1 = context.Runspace.InvokeCommand<TenantSiteCollection>(
+            "Get-KshTenantSiteCollection",
+            new Dictionary<string, object>()
+            {
+                { "IncludePersonalSite", true }
+            }
+        );
+        var actual = result1.ToArray();
+        Assert.That(actual, Is.Not.Null);
+    }
+
+    [Test()]
+    public void InvokeCommand_GetByTemplate_ShouldSucceed()
+    {
+        using var context = new PSCmdletContext();
+        _ = context.Runspace.InvokeCommand(
+            "Connect-KshSite",
+            new Dictionary<string, object>()
+            {
+                { "Url", context.AppSettings["AdminUrl"] },
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+            }
+        );
+        var result1 = context.Runspace.InvokeCommand<TenantSiteCollection>(
+            "Get-KshTenantSiteCollection",
+            new Dictionary<string, object>()
+            {
                 { "Template", "SPSPERS#10" }
             }
         );
@@ -72,7 +120,7 @@ public class GetTenantSiteCollectionCommandTests
     }
 
     [Test()]
-    public void GetTenantSiteCollectionByIdentity()
+    public void InvokeCommand_GetByIdentity_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -104,7 +152,7 @@ public class GetTenantSiteCollectionCommandTests
     }
 
     [Test()]
-    public void GetTenantSiteCollectionByUrl()
+    public void InvokeCommand_GetBySiteCollectionUrl_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

@@ -21,7 +21,7 @@ public class SetSubscriptionCommandTests
 {
 
     [Test()]
-    public void SetSubscription()
+    public void InvokeCommand_SetItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

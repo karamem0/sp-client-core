@@ -21,7 +21,7 @@ public class RemoveTenantSiteCollectionCommandTests
 {
 
     [Test()]
-    public void RemoveTenantSiteCollection()
+    public void InvokeCommand_RemoveItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -38,7 +38,7 @@ public class RemoveTenantSiteCollectionCommandTests
             "Add-KshTenantSiteCollection",
             new Dictionary<string, object>()
             {
-                { "Owner", context.AppSettings["LoginUserName"] },
+                { "Owner", context.AppSettings["OwnerUserName"] },
                 { "Template", "SITEPAGEPUBLISHING#0" },
                 { "Url", context.AppSettings["AuthorityUrl"] + "/sites/TestSite0" }
             }

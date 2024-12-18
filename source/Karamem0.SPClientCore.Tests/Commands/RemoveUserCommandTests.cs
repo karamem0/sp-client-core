@@ -21,7 +21,7 @@ public class RemoveUserCommandTests
 {
 
     [Test()]
-    public void RemoveUser()
+    public void InvokeCommand_RemoveItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -38,7 +38,7 @@ public class RemoveUserCommandTests
             "Add-KshUser",
             new Dictionary<string, object>()
             {
-                { "LoginName", "i:0#.f|membership|testuser000@" + context.AppSettings["LoginDomainName"] }
+                { "LoginName", "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"] }
             }
         );
         _ = context.Runspace.InvokeCommand(

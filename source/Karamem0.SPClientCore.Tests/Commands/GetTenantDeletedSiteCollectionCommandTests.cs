@@ -21,7 +21,7 @@ public class GetTenantDeletedSiteCollectionCommandTests
 {
 
     [Test()]
-    public void GetTenantDeletedSiteCollections()
+    public void InvokeCommand_GetAll_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -38,7 +38,7 @@ public class GetTenantDeletedSiteCollectionCommandTests
             "Add-KshTenantSiteCollection",
             new Dictionary<string, object>()
             {
-                { "Owner", context.AppSettings["LoginUserName"] },
+                { "Owner", context.AppSettings["OwnerUserName"] },
                 { "Template", "SITEPAGEPUBLISHING#0" },
                 { "Url", context.AppSettings["AuthorityUrl"] + "/sites/TestSite0" }
             }
@@ -82,7 +82,7 @@ public class GetTenantDeletedSiteCollectionCommandTests
     }
 
     [Test()]
-    public void GetTenantDeletedSiteCollectionByIdentity()
+    public void InvokeCommand_GetByIdentity_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -99,7 +99,7 @@ public class GetTenantDeletedSiteCollectionCommandTests
             "Add-KshTenantSiteCollection",
             new Dictionary<string, object>()
             {
-                { "Owner", context.AppSettings["LoginUserName"] },
+                { "Owner", context.AppSettings["OwnerUserName"] },
                 { "Template", "SITEPAGEPUBLISHING#0" },
                 { "Url", context.AppSettings["AuthorityUrl"] + "/sites/TestSite0" }
             }
@@ -144,7 +144,7 @@ public class GetTenantDeletedSiteCollectionCommandTests
     }
 
     [Test()]
-    public void GetTenantDeletedSiteCollectionByUrl()
+    public void InvokeCommand_GetBySiteCollectionUrl_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -161,7 +161,7 @@ public class GetTenantDeletedSiteCollectionCommandTests
             "Add-KshTenantSiteCollection",
             new Dictionary<string, object>()
             {
-                { "Owner", context.AppSettings["LoginUserName"] },
+                { "Owner", context.AppSettings["OwnerUserName"] },
                 { "Template", "SITEPAGEPUBLISHING#0" },
                 { "Url", context.AppSettings["AuthorityUrl"] + "/sites/TestSite0" }
             }

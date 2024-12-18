@@ -21,7 +21,7 @@ public class LockFileCommandTests
 {
 
     [Test()]
-    public void CheckOutFile()
+    public void InvokeCommand_LockItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

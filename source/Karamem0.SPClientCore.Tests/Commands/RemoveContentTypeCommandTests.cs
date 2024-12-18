@@ -21,7 +21,7 @@ public class RemoveContentTypeCommandTests
 {
 
     [Test()]
-    public void RemoveListContentType()
+    public void InvokeCommand_RemoveItemFromList_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -59,7 +59,7 @@ public class RemoveContentTypeCommandTests
     }
 
     [Test()]
-    public void RemoveSiteContentType()
+    public void InvokeCommand_RemoveItemFromSite_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

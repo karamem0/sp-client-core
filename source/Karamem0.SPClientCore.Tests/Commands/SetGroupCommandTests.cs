@@ -21,7 +21,7 @@ public class SetGroupCommandTests
 {
 
     [Test()]
-    public void SetGroup()
+    public void InvokeCommand_SetItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -51,7 +51,7 @@ public class SetGroupCommandTests
                 { "AutoAcceptRequestToJoinLeave", true },
                 { "Description", "Test Group 0 Description" },
                 { "OnlyAllowMembersViewMembership", true },
-                { "RequestToJoinLeaveEmailSetting", "testuser000@example.com" },
+                { "RequestToJoinLeaveEmailSetting", "testuser0@example.com" },
                 { "Title", "Test Group 0" },
                 { "PassThru", true }
             }

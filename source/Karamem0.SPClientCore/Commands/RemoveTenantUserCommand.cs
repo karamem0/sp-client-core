@@ -38,7 +38,7 @@ public class RemoveTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
 
     protected override void ProcessRecordCore()
     {
-        if (this.ShouldProcess(this.SiteCollectionUrl.ToString(), VerbsCommon.Remove))
+        if (this.ShouldProcess(this.User.Title, VerbsCommon.Remove))
         {
             if (this.ParameterSetName == "ParamSet1")
             {

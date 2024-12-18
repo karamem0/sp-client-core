@@ -990,7 +990,7 @@ Accept wildcard characters: False
 ```
 
 ### -EnableAzureAdB2BIntegration
-Specifies whether to enable Azure AD B2B intergration.
+Specifies whether to enable Microsoft Entra ID B2B intergration.
 
 ```yaml
 Type: Boolean

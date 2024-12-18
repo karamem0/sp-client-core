@@ -21,7 +21,7 @@ public class GetDocumentSetAllowedContentTypeCommandTests
 {
 
     [Test()]
-    public void GetDocumentSetAllowedContentTypes()
+    public void InvokeCommand_GetAll_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

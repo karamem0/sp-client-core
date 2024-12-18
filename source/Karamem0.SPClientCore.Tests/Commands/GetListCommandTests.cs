@@ -22,7 +22,7 @@ public class GetListCommandTests
 {
 
     [Test()]
-    public void GetLists()
+    public void InvokeCommand_GetAll_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -46,7 +46,7 @@ public class GetListCommandTests
     }
 
     [Test()]
-    public void GetListByIdentity()
+    public void InvokeCommand_GetByIdentity_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -78,7 +78,7 @@ public class GetListCommandTests
     }
 
     [Test()]
-    public void GetListByListItem()
+    public void InvokeCommand_GetByListItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -118,7 +118,7 @@ public class GetListCommandTests
     }
 
     [Test()]
-    public void GetListByView()
+    public void InvokeCommand_GetByView_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -158,7 +158,7 @@ public class GetListCommandTests
     }
 
     [Test()]
-    public void GetListByDrive()
+    public void InvokeCommand_GetByDrive_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -190,7 +190,7 @@ public class GetListCommandTests
     }
 
     [Test()]
-    public void GetListByListId()
+    public void InvokeCommand_GetByListId_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -215,7 +215,7 @@ public class GetListCommandTests
     }
 
     [Test()]
-    public void GetListByListTitle()
+    public void InvokeCommand_GetByListTitle_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -240,7 +240,7 @@ public class GetListCommandTests
     }
 
     [Test()]
-    public void GetListByLibraryType()
+    public void InvokeCommand_GetByLibraryType_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

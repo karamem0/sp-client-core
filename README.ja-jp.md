@@ -21,7 +21,7 @@ SPClientCore は [PowerShell Gallery](https://www.powershellgallery.com/packages
 
 ### 1 つのモジュールですべての管理を
 
-SPClientCore はサイト管理者機能とテナント管理機能の両方の要素を含んでいます。一般のサイト (https://tenant.sharepoint.com およびその配下の URL) に接続すればサイト管理のためのコマンドレットを実行することができ、SharePoint 管理センター (https://tenant-admin.sharepoint.com) に接続すればテナント管理のためのコマンドレットを実行することができます。現在 SharePoint 管理センターに接続しているかどうかを確認することもできます。
+SPClientCore はサイト管理者機能とテナント管理機能の両方の要素を含んでいます。一般のサイト (`https://tenant.sharepoint.com` およびその配下の URL) に接続すればサイト管理のためのコマンドレットを実行することができ、SharePoint 管理センター (`https://tenant-admin.sharepoint.com`) に接続すればテナント管理のためのコマンドレットを実行することができます。現在 SharePoint 管理センターに接続しているかどうかを確認することもできます。
 
 ### フレンドリーな名前付け
 
@@ -29,7 +29,7 @@ CSOM の名前付けは非プログラマーにとって難解です。例えば
 
 ### 先端認証の使用
 
-SPClientCore は Azure AD 2.0 認証をサポートします (Device Code Grant および Password Grant)。もしあなたが MFA を有効にしていても異なるデバイスの Web ブラウザーでログインすることができます。MFA を有効にしていないアカウントであれば、ユーザー名とパスワードを使ってログインできます (組織の承認が必要です)。
+SPClientCore は Microsoft Entra ID 2.0 認証をサポートします (Device Code Grant および Password Grant)。もしあなたが MFA を有効にしていても異なるデバイスの Web ブラウザーでログインすることができます。MFA を有効にしていないアカウントであれば、ユーザー名とパスワードを使ってログインできます (組織の承認が必要です)。資格情報はキャッシュされるので何度もログインする必要はありません。
 
 ## 依存関係
 

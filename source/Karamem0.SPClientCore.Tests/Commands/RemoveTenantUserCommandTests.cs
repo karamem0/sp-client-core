@@ -21,7 +21,7 @@ public class RemoveTenantUserCommandTests
 {
 
     [Test()]
-    public void RemoveUserBySiteCollection()
+    public void InvokeCommand_RemoveItemBySiteCollection_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -46,8 +46,8 @@ public class RemoveTenantUserCommandTests
             new Dictionary<string, object>()
             {
                 { "SiteCollection", result1.ElementAt(0) },
-                { "Email", "testuser000@" + context.AppSettings["LoginDomainName"] },
-                { "LoginName", "i:0#.f|membership|testuser000@" + context.AppSettings["LoginDomainName"] },
+                { "Email", "testuser0@" + context.AppSettings["LoginDomainName"] },
+                { "LoginName", "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"] },
                 { "Title", "Test User 0" }
             }
         );
@@ -62,7 +62,7 @@ public class RemoveTenantUserCommandTests
     }
 
     [Test()]
-    public void RemoveUserBySiteCollectionUrl()
+    public void InvokeCommand_RemoveItemBySiteCollectionUrl_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -80,8 +80,8 @@ public class RemoveTenantUserCommandTests
             new Dictionary<string, object>()
             {
                 { "SiteCollectionUrl", context.AppSettings["BaseUrl"] },
-                { "Email", "testuser000@" + context.AppSettings["LoginDomainName"] },
-                { "LoginName", "i:0#.f|membership|testuser000@" + context.AppSettings["LoginDomainName"] },
+                { "Email", "testuser0@" + context.AppSettings["LoginDomainName"] },
+                { "LoginName", "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"] },
                 { "Title", "Test User 0" }
             }
         );

@@ -21,7 +21,7 @@ public class AddContentTypeCommandTests
 {
 
     [Test()]
-    public void AddListContentTypeByContentType()
+    public void InvokeCommand_AddExistingToList_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -77,7 +77,7 @@ public class AddContentTypeCommandTests
     }
 
     [Test()]
-    public void AddListContentTypeByParam()
+    public void InvokeCommand_AddNewToList_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -119,7 +119,7 @@ public class AddContentTypeCommandTests
     }
 
     [Test()]
-    public void AddSiteContentTypeByParam()
+    public void InvokeCommand_AddNewToSite_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

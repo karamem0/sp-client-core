@@ -21,7 +21,7 @@ public class GetCurrentUserPropertyCommandTests
 {
 
     [Test()]
-    public void GetCurrentUserProperty()
+    public void InvokeCommand_GetCurrent_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

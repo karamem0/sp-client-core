@@ -21,7 +21,7 @@ public class GetTermDescriptionCommandTests
 {
 
     [Test()]
-    public void GetTermDescription()
+    public void InvokeCommand_GetOne_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

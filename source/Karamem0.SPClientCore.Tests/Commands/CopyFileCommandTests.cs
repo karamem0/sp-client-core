@@ -21,7 +21,7 @@ public class CopyFileCommandTests
 {
 
     [Test()]
-    public void CopyFile()
+    public void InvokeCommand_CopyItemModern_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -73,7 +73,7 @@ public class CopyFileCommandTests
     }
 
     [Test()]
-    public void CopyFileLegacyByRelativeUrl()
+    public void InvokeCommand_CopyItemLegacyByRelativeUrl_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -116,7 +116,7 @@ public class CopyFileCommandTests
     }
 
     [Test()]
-    public void CopyFileLegacyByAbsoluteUrl()
+    public void InvokeCommand_CopyItemLegacyByAbsoluteUrl_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

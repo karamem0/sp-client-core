@@ -21,7 +21,7 @@ public class OpenFileCommandTests
 {
 
     [Test()]
-    public void OpenFile()
+    public void InvokeCommand_OpenItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

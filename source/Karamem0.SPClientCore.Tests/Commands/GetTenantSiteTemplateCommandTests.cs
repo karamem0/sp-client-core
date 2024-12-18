@@ -21,7 +21,7 @@ public class GetTenantSiteTemplateCommandTests
 {
 
     [Test()]
-    public void GetTenantSiteTemplates()
+    public void InvokeCommand_GetAll_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -45,7 +45,7 @@ public class GetTenantSiteTemplateCommandTests
     }
 
     [Test()]
-    public void GetTenantSiteTemplatesByFilter()
+    public void InvokeCommand_GetByLcidAndCompatibilityLevel_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -62,8 +62,8 @@ public class GetTenantSiteTemplateCommandTests
             "Get-KshTenantSiteTemplate",
             new Dictionary<string, object>()
             {
-                { "CompatibilityLevel", 15 },
-                { "Lcid", 1033 }
+                { "Lcid", 1033 },
+                { "CompatibilityLevel", 15 }
             }
         );
         var actual = result1.ToArray();

@@ -21,7 +21,7 @@ public class GetSiteCollectionFeatureCommandTests
 {
 
     [Test()]
-    public void GetSiteCollectionFeatures()
+    public void InvokeCommand_GetAll_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -45,7 +45,7 @@ public class GetSiteCollectionFeatureCommandTests
     }
 
     [Test()]
-    public void GetSiteCollectionFeatureByIdentity()
+    public void InvokeCommand_GetByIdentity_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -77,7 +77,7 @@ public class GetSiteCollectionFeatureCommandTests
     }
 
     [Test()]
-    public void GetSiteCollectionFeatureByFeatureId()
+    public void InvokeCommand_GetByFeatureId_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace Karamem0.SharePoint.PowerShell.Commands.Tests;
 
@@ -21,7 +22,7 @@ public class GetTenantOrganizationNewsSiteCommandTests
 {
 
     [Test()]
-    public void GetOrganizationNewsSites()
+    public void InvokeCommand_GetAll_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -38,7 +39,7 @@ public class GetTenantOrganizationNewsSiteCommandTests
             "Add-KshTenantSiteCollection",
             new Dictionary<string, object>()
             {
-                { "Owner", context.AppSettings["LoginUserName"] },
+                { "Owner", context.AppSettings["OwnerUserName"] },
                 { "Template", "SITEPAGEPUBLISHING#0" },
                 { "Url", context.AppSettings["AuthorityUrl"] + "/sites/TestSite0" }
             }
@@ -50,6 +51,7 @@ public class GetTenantOrganizationNewsSiteCommandTests
                 { "Url", result1.ElementAt(0).Url }
             }
         );
+        Thread.Sleep(TimeSpan.FromSeconds(15));
         var result3 = context.Runspace.InvokeCommand<string>(
             "Get-KshTenantOrganizationNewsSite",
             new Dictionary<string, object>()

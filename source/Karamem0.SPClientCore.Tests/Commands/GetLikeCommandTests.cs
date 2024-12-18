@@ -21,7 +21,7 @@ public class GetLikeCommandTests
 {
 
     [Test()]
-    public void GetLikesByComment()
+    public void InvokeCommand_GetByComment_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -68,7 +68,7 @@ public class GetLikeCommandTests
     }
 
     [Test()]
-    public void GetLikesByListItem()
+    public void InvokeCommand_GetByListItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

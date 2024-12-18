@@ -20,7 +20,7 @@ public class SetNavigationCommandTests
 {
 
     [Test()]
-    public void SetNavigation()
+    public void InvokeCommand_SetItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

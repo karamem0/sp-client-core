@@ -21,7 +21,7 @@ public class RemoveSubscriptionCommandTests
 {
 
     [Test()]
-    public void RemoveSubscription()
+    public void InvokeCommand_RemoveItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

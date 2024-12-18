@@ -21,7 +21,7 @@ public class OpenAttachmentFileCommandTests
 {
 
     [Test()]
-    public void OpenAttachmentFile()
+    public void InvokeCommand_OpenItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

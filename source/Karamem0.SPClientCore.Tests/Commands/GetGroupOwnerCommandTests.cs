@@ -21,7 +21,7 @@ public class GetGroupOwnerCommandTests
 {
 
     [Test()]
-    public void GetGroupOwner()
+    public void InvokeCommand_GetAll_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

@@ -21,7 +21,7 @@ public class PublishFileCommandTests
 {
 
     [Test()]
-    public void PublishFile()
+    public void InvokeCommand_PublishItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

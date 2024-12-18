@@ -21,7 +21,7 @@ public class GetDocumentLibraryCommandTests
 {
 
     [Test()]
-    public void GetDocumentLibraries()
+    public void InvokeCommand_GetAll_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -45,7 +45,7 @@ public class GetDocumentLibraryCommandTests
     }
 
     [Test()]
-    public void GetDocumentAndMediaLibraries()
+    public void InvokeCommand_GetMediaLibraries_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -62,7 +62,31 @@ public class GetDocumentLibraryCommandTests
             "Get-KshDocumentLibrary",
             new Dictionary<string, object>()
             {
-                { "IncludeMediaLibraries", true },
+                { "IncludeMediaLibraries", true }
+            }
+        );
+        var actual = result1.ToArray();
+        Assert.That(actual, Is.Not.Null);
+    }
+
+    [Test()]
+    public void InvokeCommand_GetPageLibraries_ShouldSucceed()
+    {
+        using var context = new PSCmdletContext();
+        _ = context.Runspace.InvokeCommand(
+            "Connect-KshSite",
+            new Dictionary<string, object>()
+            {
+                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+            }
+        );
+        var result1 = context.Runspace.InvokeCommand<DocumentLibraryInfo>(
+            "Get-KshDocumentLibrary",
+            new Dictionary<string, object>()
+            {
                 { "IncludePageLibraries", true }
             }
         );
@@ -71,7 +95,7 @@ public class GetDocumentLibraryCommandTests
     }
 
     [Test()]
-    public void GetDefaultDocumentLibrary()
+    public void InvokeCommand_GetDefault_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

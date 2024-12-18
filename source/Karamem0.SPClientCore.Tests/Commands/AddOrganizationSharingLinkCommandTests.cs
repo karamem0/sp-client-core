@@ -20,7 +20,7 @@ public class AddOrganizationSharingLinkCommandTests
 {
 
     [Test()]
-    public void AddOrganizationSharingLink()
+    public void InvokeCommand_AddItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

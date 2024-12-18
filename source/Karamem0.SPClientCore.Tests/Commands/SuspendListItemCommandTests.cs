@@ -22,7 +22,7 @@ public class SuspendListItemCommandTests
 {
 
     [Test()]
-    public void SuspendListItem()
+    public void InvokeCommand_SuspendItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

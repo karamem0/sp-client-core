@@ -21,7 +21,7 @@ Yes, SPClientCore works with PowerShell 7, also it works with Windows PowerShell
 
 ### One module, manage all
 
-SPClientCore includes both elements that site admin features and tenant admin features. You can run cmdlets for site admin by connecting to a site (https://tenant.sharepoint.com and its sub URLs), and you can run tenant admin cmdlets for connecting to the SharePoint admin center (https://tenant-admin.sharepoint.com). You can also determine whether you are currently connected to the SharePoint admin center.
+SPClientCore includes both elements that site admin features and tenant admin features. You can run cmdlets for site admin by connecting to a site (https://tenant.sharepoint.com` and its sub URLs), and you can run tenant admin cmdlets for connecting to the SharePoint admin center (`https://`tenant-admin.sharepoint.com`). You can also determine whether you are currently connected to the SharePoint admin center.
 
 ### Friendly Naming
 
@@ -29,7 +29,7 @@ CSOM naming is difficult for non-programmers. For example, A site is not "Site" 
 
 ### Uses Modern Authentication
 
-SPClientCore supports Azure AD 2.0 authentication (Device Code Grant and Password Grant). If you enable MFA, you can log in with a web browser of another device. If you do not enable MFA, you can log in using your user name and password (admin consent is required).
+SPClientCore supports Microsoft Entra ID 2.0 authentication (Device Code Grant and Password Grant). If you enable MFA, you can log in with a web browser of another device. If you do not enable MFA, you can log in using your user name and password (admin consent is required). You don't need to log in each time because the credentials are cached.
 
 ## Dependencies
 

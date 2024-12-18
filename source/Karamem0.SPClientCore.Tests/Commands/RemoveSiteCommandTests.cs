@@ -21,7 +21,7 @@ public class RemoveSiteCommandTests
 {
 
     [Test()]
-    public void RemoveSite()
+    public void InvokeCommand_RemoveItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

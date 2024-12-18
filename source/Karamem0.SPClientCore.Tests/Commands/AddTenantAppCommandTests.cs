@@ -21,7 +21,7 @@ public class AddTenantAppCommandTests
 {
 
     [Test()]
-    public void AddApp()
+    public void InvokeCommand_AddItem_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
