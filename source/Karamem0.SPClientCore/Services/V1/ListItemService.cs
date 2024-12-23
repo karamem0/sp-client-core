@@ -56,6 +56,7 @@ public interface IListItemService
 
 public class ListItemService(ClientContext clientContext) : ClientService<ListItem>(clientContext), IListItemService
 {
+
     public ListItem AddObject(List listObject, IReadOnlyDictionary<string, object> creationInfo)
     {
         _ = listObject ?? throw new ArgumentNullException(nameof(listObject));

@@ -100,6 +100,12 @@ public class Tenant : ClientObject
     public virtual ResilienceMode AuthenticationContextResilienceMode { get; protected set; }
 
     [JsonProperty()]
+    public virtual bool AutofillColumnsEnabled { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string AutofillColumnsSiteListFileName { get; protected set; }
+
+    [JsonProperty()]
     public virtual bool BccExternalSharingInvitations { get; protected set; }
 
     [JsonProperty()]
@@ -143,6 +149,9 @@ public class Tenant : ClientObject
 
     [JsonProperty()]
     public virtual TenantBrowseUserInfoPolicyType BlockUserInfoVisibilityInSharePoint { get; protected set; }
+
+    [JsonProperty()]
+    public virtual long BonusStorageQuotaMB { get; protected set; }
 
     [JsonProperty()]
     public virtual bool CommentsOnFilesDisabled { get; protected set; }
@@ -296,6 +305,15 @@ public class Tenant : ClientObject
 
     [JsonProperty()]
     public virtual bool EnableRestrictedAccessControl { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool EnableSiteArchive { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool EnableTenantRestrictionsInsights { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool EnableVersionExpirationSetting { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid[] ExcludedBlockDownloadGroupIds { get; protected set; }

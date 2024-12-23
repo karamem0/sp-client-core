@@ -39,6 +39,7 @@ public interface INavigationNodeService
 
 public class NavigationNodeService(ClientContext clientContext) : ClientService<NavigationNode>(clientContext), INavigationNodeService
 {
+
     public NavigationNode AddObject(NavigationNode navigationNodeObject, IReadOnlyDictionary<string, object> creationInfo)
     {
         _ = navigationNodeObject ?? throw new ArgumentNullException(nameof(navigationNodeObject));

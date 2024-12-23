@@ -50,6 +50,7 @@ public interface IListService
 
 public class ListService(ClientContext clientContext) : ClientService<List>(clientContext), IListService
 {
+
     public List AddObject(IReadOnlyDictionary<string, object> creationInfo)
     {
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
@@ -171,7 +172,7 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
             new ObjectPathMethod(
                 objectPath2.Id,
                 "GetList",
-                requestPayload.CreateParameter(listUrl.ToString())),
+                requestPayload.CreateParameter(listUrl)),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {

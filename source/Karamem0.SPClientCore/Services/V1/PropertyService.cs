@@ -33,6 +33,7 @@ public interface IPropertyService
 
 public class PropertyService(ClientContext clientContext) : ClientService(clientContext), IPropertyService
 {
+
     public PropertyValues GetObject(Alert alertObject)
     {
         _ = alertObject ?? throw new ArgumentNullException(nameof(alertObject));

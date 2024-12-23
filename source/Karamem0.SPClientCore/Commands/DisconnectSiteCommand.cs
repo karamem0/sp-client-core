@@ -22,7 +22,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
 [Cmdlet(VerbsCommunications.Disconnect, "KshSite")]
-[OutputType((Type[])null)]
+[OutputType(typeof(void))]
 public class DisconnectSiteCommand : ClientObjectCmdlet
 {
 

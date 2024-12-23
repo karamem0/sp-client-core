@@ -6,7 +6,6 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
-using Karamem0.SharePoint.PowerShell.Models.V1;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -18,7 +17,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
 [Cmdlet(VerbsCommon.Set, "KshTenantHomeSite")]
-[OutputType((Type[])null)]
+[OutputType(typeof(void))]
 public class SetTenantHomeSiteCommand : ClientObjectCmdlet<ITenantHomeSiteService>
 {
 
@@ -29,9 +28,16 @@ public class SetTenantHomeSiteCommand : ClientObjectCmdlet<ITenantHomeSiteServic
     [Parameter(Mandatory = true)]
     public string Url { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter PassThru { get; private set; }
+
     protected override void ProcessRecordCore()
     {
         this.Service.SetObject(this.Url);
+        if (this.PassThru)
+        {
+            this.Outputs.Add(this.Service.GetObject());
+        }
     }
 
 }

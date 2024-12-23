@@ -38,6 +38,7 @@ public interface ITenantUserService
 
 public class TenantUserService(ClientContext clientContext) : ClientService<User>(clientContext), ITenantUserService
 {
+
     public User AddObject(Uri siteCollectionUrl, IReadOnlyDictionary<string, object> creationInfo)
     {
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
@@ -48,7 +49,7 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
             new ObjectPathMethod(
                 objectPath1.Id,
                 "GetSiteByUrl",
-                requestPayload.CreateParameter(siteCollectionUrl.ToString())));
+                requestPayload.CreateParameter(siteCollectionUrl)));
         var objectPath3 = requestPayload.Add(
             new ObjectPathProperty(objectPath2.Id, "RootWeb"));
         var objectPath4 = requestPayload.Add(
@@ -79,7 +80,7 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
             new ObjectPathMethod(
                 objectPath1.Id,
                 "GetSiteByUrl",
-                requestPayload.CreateParameter(siteCollectionUrl.ToString())));
+                requestPayload.CreateParameter(siteCollectionUrl)));
         var objectPath3 = requestPayload.Add(
             new ObjectPathProperty(objectPath2.Id, "RootWeb"));
         var objectPath4 = requestPayload.Add(
@@ -112,7 +113,7 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
                 new ObjectPathMethod(
                     objectPath1.Id,
                     "GetSiteByUrl",
-                    requestPayload.CreateParameter(siteCollectionUrl.ToString())));
+                    requestPayload.CreateParameter(siteCollectionUrl)));
             var objectPath3 = requestPayload.Add(
                 new ObjectPathProperty(objectPath2.Id, "RootWeb"));
             var objectPath4 = requestPayload.Add(
@@ -140,7 +141,7 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
                 new ObjectPathMethod(
                     objectPath1.Id,
                     "GetSiteByUrl",
-                    requestPayload.CreateParameter(siteCollectionUrl.ToString())));
+                    requestPayload.CreateParameter(siteCollectionUrl)));
             var objectPath3 = requestPayload.Add(
                 new ObjectPathProperty(objectPath2.Id, "RootWeb"));
             var objectPath4 = requestPayload.Add(
@@ -171,7 +172,7 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
             new ObjectPathMethod(
                 objectPath1.Id,
                 "GetSiteByUrl",
-                requestPayload.CreateParameter(siteCollectionUrl.ToString())));
+                requestPayload.CreateParameter(siteCollectionUrl)));
         var objectPath3 = requestPayload.Add(
             new ObjectPathProperty(objectPath2.Id, "RootWeb"));
         var objectPath4 = requestPayload.Add(
@@ -198,7 +199,7 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
             new ObjectPathMethod(
                 objectPath1.Id,
                 "GetSiteByUrl",
-                requestPayload.CreateParameter(siteCollectionUrl.ToString())));
+                requestPayload.CreateParameter(siteCollectionUrl)));
         var objectPath3 = requestPayload.Add(
             new ObjectPathProperty(objectPath2.Id, "RootWeb"));
         var objectPath4 = requestPayload.Add(
@@ -233,7 +234,7 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
             objectPathId => new ClientActionMethod(
                 objectPathId,
                 "SetSiteAdmin",
-                requestPayload.CreateParameter(siteCollectionUrl.ToString()),
+                requestPayload.CreateParameter(siteCollectionUrl),
                 requestPayload.CreateParameter(userName),
                 requestPayload.CreateParameter(isSiteCollectionAdmin)));
         _ = this.ClientContext.ProcessQuery(requestPayload);

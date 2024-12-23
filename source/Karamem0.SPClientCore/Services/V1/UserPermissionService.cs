@@ -25,6 +25,7 @@ public interface IUserPermissionService
 
 public class UserPermissionService(ClientContext clientContext) : ClientService(clientContext), IUserPermissionService
 {
+
     public BasePermission GetObject(User userObject, SecurableObject securableObject)
     {
         _ = userObject ?? throw new ArgumentNullException(nameof(userObject));

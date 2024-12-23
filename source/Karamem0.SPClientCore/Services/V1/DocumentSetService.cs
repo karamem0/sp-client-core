@@ -25,6 +25,7 @@ public interface IDocumentSetService
 
 public class DocumentSetService(ClientContext clientContext) : ClientService(clientContext), IDocumentSetService
 {
+
     public string AddObject(Folder folderObject, string documentSetName, ContentType contentTypeObject)
     {
         _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));

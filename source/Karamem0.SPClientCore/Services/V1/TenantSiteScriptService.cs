@@ -35,6 +35,7 @@ public interface ITenantSiteScriptService
 
 public class TenantSiteScriptService(ClientContext clientContext) : ClientService(clientContext), ITenantSiteScriptService
 {
+
     public TenantSiteScript AddObject(IReadOnlyDictionary<string, object> creationInfo)
     {
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));

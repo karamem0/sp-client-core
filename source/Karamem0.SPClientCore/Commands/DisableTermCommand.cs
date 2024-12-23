@@ -18,7 +18,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
 [Cmdlet(VerbsLifecycle.Disable, "KshTerm")]
-[OutputType((Type[])null)]
+[OutputType(typeof(void))]
 public class DisableTermCommand : ClientObjectCmdlet<ITermService>
 {
 

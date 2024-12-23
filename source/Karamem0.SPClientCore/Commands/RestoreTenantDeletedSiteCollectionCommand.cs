@@ -18,7 +18,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
 [Cmdlet(VerbsData.Restore, "KshTenantDeletedSiteCollection")]
-[OutputType((Type[])null)]
+[OutputType(typeof(void))]
 public class RestoreTenantDeletedSiteCollectionCommand : ClientObjectCmdlet<ITenantDeletedSiteCollectionService>
 {
 

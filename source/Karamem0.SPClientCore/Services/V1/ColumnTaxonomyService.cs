@@ -35,6 +35,7 @@ public interface IColumnTaxonomyService
 
 public class ColumnTaxonomyService(ClientContext clientContext) : ClientService<ColumnTaxonomy>(clientContext), IColumnTaxonomyService
 {
+
     public ColumnTaxonomy AddObject(IReadOnlyDictionary<string, object> creationInfo, bool addToDefaultView, AddColumnOptions addColumnOptions)
     {
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));

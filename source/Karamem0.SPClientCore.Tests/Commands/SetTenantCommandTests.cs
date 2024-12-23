@@ -6,6 +6,7 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
+using Karamem0.SharePoint.PowerShell.Models.V1;
 using Karamem0.SharePoint.PowerShell.Tests.Utilities;
 using NUnit.Framework;
 using System;
@@ -33,7 +34,7 @@ public class SetTenantCommandTests
                 { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
             }
         );
-        _ = context.Runspace.InvokeCommand(
+        var result1 = context.Runspace.InvokeCommand<Tenant>(
             "Set-KshTenant",
             new Dictionary<string, object>()
             {
@@ -126,6 +127,7 @@ public class SetTenantCommandTests
                 // { "EnableMipSiteLabel", false },
                 // { "EnablePromotedFileHandlers", true },
                 // { "EnableRestrictedAccessControl", false },
+                // { "EnableVersionExpirationSetting", false },
                 // { "ExcludedBlockDownloadGroupIds", null },
                 // { "ExcludedFileExtensionsForSyncClient", null },
                 // { "ExpireVersionsAfterDays", 0 },
@@ -251,8 +253,11 @@ public class SetTenantCommandTests
                 // { "WhoCanShareAllowListInTenantByPrincipalIdentity", null },
                 // { "Workflow2010Disabled", true },
                 // { "Workflows2013State", 2 },
+                { "PassThru", true }
             }
         );
+        var actual = result1.ElementAt(0);
+        Assert.That(actual, Is.Not.Null);
     }
 
 }

@@ -37,6 +37,7 @@ public interface IRoleAssignmentService
 
 public class RoleAssignmentService(ClientContext clientContext) : ClientService<RoleAssignment>(clientContext), IRoleAssignmentService
 {
+
     public void BreakObjectInheritance(SecurableObject securableObject, bool copyRoleAssignments, bool clearSubscopes)
     {
         _ = securableObject ?? throw new ArgumentNullException(nameof(securableObject));

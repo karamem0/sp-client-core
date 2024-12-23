@@ -47,6 +47,7 @@ public interface ITermService
 
 public class TermService(ClientContext clientContext) : ClientService<Term>(clientContext), ITermService
 {
+
     public Term CopyObject(Term termObject, bool copyChildren)
     {
         _ = termObject ?? throw new ArgumentNullException(nameof(termObject));

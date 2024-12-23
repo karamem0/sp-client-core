@@ -29,6 +29,7 @@ public interface IDocumentSetDefaultDocumentService
 
 public class DocumentSetDefaultDocumentService(ClientContext clientContext) : ClientService(clientContext), IDocumentSetDefaultDocumentService
 {
+
     public DefaultDocument AddObject(ContentType contentTypeObject, ContentType documentContentTypeObject, string fileName, byte[] fileContent, bool pushChanges)
     {
         _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));

@@ -18,7 +18,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
 [Cmdlet(VerbsCommon.Add, "KshDocumentSetWelcomePageColumn")]
-[OutputType((Type[])null)]
+[OutputType(typeof(void))]
 public class AddDocumentSetWelcomePageColumnCommand : ClientObjectCmdlet<IDocumentSetWelcomePageColumnService>
 {
 

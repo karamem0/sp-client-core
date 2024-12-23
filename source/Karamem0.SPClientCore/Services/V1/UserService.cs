@@ -42,6 +42,7 @@ public interface IUserService
 
 public class UserService(ClientContext clientContext) : ClientService<User>(clientContext), IUserService
 {
+
     public User AddObject(IReadOnlyDictionary<string, object> creationInfo)
     {
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));

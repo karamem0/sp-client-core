@@ -37,6 +37,7 @@ public interface ITenantCdnService
 
 public class TenantCdnService(ClientContext clientContext) : ClientService(clientContext), ITenantCdnService
 {
+
     public void AddOrigin(TenantCdnType cdnType, string cdnOrigin)
     {
         var requestPayload = new ClientRequestPayload();

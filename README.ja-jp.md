@@ -83,6 +83,7 @@ SPClientCore は Microsoft Entra ID 2.0 認証をサポートします (Device C
     - [Add-KshColumnCurrency](docs/Add-KshColumnCurrency.md)
     - [Add-KshColumnDateTime](docs/Add-KshColumnDateTime.md)
     - [Add-KshColumnGeolocation](docs/Add-KshColumnGeolocation.md)
+    - [Add-KshColumnGuid](docs/Add-KshColumnGuid.md)
     - [Add-KshColumnImage](docs/Add-KshColumnImage.md)
     - [Add-KshColumnLookup](docs/Add-KshColumnLookup.md)
     - [Add-KshColumnMultiChoice](docs/Add-KshColumnMultiChoice.md)
@@ -99,6 +100,7 @@ SPClientCore は Microsoft Entra ID 2.0 認証をサポートします (Device C
     - [Set-KshColumnCurrency](docs/Set-KshColumnCurrency.md)
     - [Set-KshColumnDateTime](docs/Set-KshColumnDateTime.md)
     - [Set-KshColumnGeolocation](docs/Set-KshColumnGeolocation.md)
+    - [Set-KshColumnGuid](docs/Set-KshColumnGuid.md)
     - [Set-KshColumnImage](docs/Set-KshColumnImage.md)
     - [Set-KshColumnLookup](docs/Set-KshColumnLookup.md)
     - [Set-KshColumnMultiChoice](docs/Set-KshColumnMultiChoice.md)
@@ -324,6 +326,10 @@ SPClientCore は Microsoft Entra ID 2.0 認証をサポートします (Device C
     - [Get-KshTenantDeletedSiteCollection](docs/Get-KshTenantDeletedSiteCollection.md)
     - [Remove-KshTenantDeletedSiteCollection](docs/Remove-KshTenantDeletedSiteCollection.md)
     - [Restore-KshTenantDeletedSiteCollection](docs/Restore-KshTenantDeletedSiteCollection.md)
+  - ファイル バージョン ポリシー
+    - [Set-KshTenantFileVersionPolicy](docs/Set-KshTenantFileVersionPolicy.md)
+    - [Get-KshTenantFileVersionPolicyForDocumentLibrary](docs/Get-KshTenantFileVersionPolicyForDocumentLibrary.md)
+    - [Set-KshTenantFileVersionPolicyForDocumentLibrary](docs/Set-KshTenantFileVersionPolicyForDocumentLibrary.md)
   - ホーム サイト
     - [Get-KshTenantHomeSite](docs/Get-KshTenantHomeSite.md)
     - [Remove-KshTenantHomeSite](docs/Remove-KshTenantHomeSite.md)

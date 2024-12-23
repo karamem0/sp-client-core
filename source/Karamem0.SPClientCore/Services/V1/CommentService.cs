@@ -38,6 +38,7 @@ public interface ICommentService
 
 public class CommentService(ClientContext clientContext) : ClientService(clientContext), ICommentService
 {
+
     public Comment AddObject(ListItem listItemObject, IReadOnlyDictionary<string, object> creationInfo)
     {
         _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));

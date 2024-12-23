@@ -85,6 +85,9 @@ public class ClientRequestValue
             case Guid guidValue:
                 output = new ClientRequestValue("Guid", guidValue.ToString("B"));
                 return true;
+            case Uri uriValue:
+                output = new ClientRequestValue("String", uriValue.ToString());
+                return true;
             case string stringValue:
                 output = new ClientRequestValue("String", stringValue);
                 return true;

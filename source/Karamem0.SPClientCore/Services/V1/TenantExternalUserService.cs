@@ -29,6 +29,7 @@ public interface ITenantExternalUserService
 
 public class TenantExternalUserService(ClientContext clientContext) : ClientService(clientContext), ITenantExternalUserService
 {
+
     public IEnumerable<ExternalUser> GetObjectEnumerable(string filter, SortOrder sortOrder)
     {
         var position = 0;

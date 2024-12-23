@@ -18,7 +18,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
 [Cmdlet(VerbsCommon.Remove, "KshFolder", SupportsShouldProcess = true, ConfirmImpact = ConfirmImpact.High)]
-[OutputType((Type[])null)]
+[OutputType(typeof(void))]
 public class RemoveFolderCommand : ClientObjectCmdlet<IFolderService>
 {
 

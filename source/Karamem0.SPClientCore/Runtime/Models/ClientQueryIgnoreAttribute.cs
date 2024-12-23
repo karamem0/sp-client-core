@@ -13,6 +13,7 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
+[AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
 public class ClientQueryIgnoreAttribute : Attribute
 {
 

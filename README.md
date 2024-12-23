@@ -83,6 +83,7 @@ SPClientCore supports Microsoft Entra ID 2.0 authentication (Device Code Grant a
     - [Add-KshColumnCurrency](docs/Add-KshColumnCurrency.md)
     - [Add-KshColumnDateTime](docs/Add-KshColumnDateTime.md)
     - [Add-KshColumnGeolocation](docs/Add-KshColumnGeolocation.md)
+    - [Add-KshColumnGuid](docs/Add-KshColumnGuid.md)
     - [Add-KshColumnImage](docs/Add-KshColumnImage.md)
     - [Add-KshColumnLookup](docs/Add-KshColumnLookup.md)
     - [Add-KshColumnMultiChoice](docs/Add-KshColumnMultiChoice.md)
@@ -324,6 +325,10 @@ SPClientCore supports Microsoft Entra ID 2.0 authentication (Device Code Grant a
     - [Get-KshTenantDeletedSiteCollection](docs/Get-KshTenantDeletedSiteCollection.md)
     - [Remove-KshTenantDeletedSiteCollection](docs/Remove-KshTenantDeletedSiteCollection.md)
     - [Restore-KshTenantDeletedSiteCollection](docs/Restore-KshTenantDeletedSiteCollection.md)
+  - File Version Policy
+    - [Set-KshTenantFileVersionPolicy](docs/Set-KshTenantFileVersionPolicy.md)
+    - [Get-KshTenantFileVersionPolicyForDocumentLibrary](docs/Get-KshTenantFileVersionPolicyForDocumentLibrary.md)
+    - [Set-KshTenantFileVersionPolicyForDocumentLibrary](docs/Set-KshTenantFileVersionPolicyForDocumentLibrary.md)
   - Home Site
     - [Get-KshTenantHomeSite](docs/Get-KshTenantHomeSite.md)
     - [Remove-KshTenantHomeSite](docs/Remove-KshTenantHomeSite.md)

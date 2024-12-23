@@ -35,6 +35,7 @@ public interface IAlertService
 
 public class AlertService(ClientContext clientContext) : ClientService<Alert>(clientContext), IAlertService
 {
+
     public Guid AddObject(IReadOnlyDictionary<string, object> creationInfo)
     {
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));

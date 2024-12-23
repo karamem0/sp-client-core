@@ -18,7 +18,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
 [Cmdlet(VerbsCommon.Remove, "KshSite", SupportsShouldProcess = true, ConfirmImpact = ConfirmImpact.High)]
-[OutputType((Type[])null)]
+[OutputType(typeof(void))]
 public class RemoveSiteCommand : ClientObjectCmdlet<ISiteService>
 {
 

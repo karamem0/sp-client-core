@@ -18,7 +18,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
 [Cmdlet(VerbsCommon.Remove, "KshFile", SupportsShouldProcess = true, ConfirmImpact = ConfirmImpact.High)]
-[OutputType((Type[])null)]
+[OutputType(typeof(void))]
 public class RemoveFileCommand : ClientObjectCmdlet<IFileService>
 {
 

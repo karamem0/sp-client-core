@@ -8,7 +8,7 @@ schema: 2.0.0
 # Set-KshTenantSiteCollection
 
 ## SYNOPSIS
-Updates a site collection.
+{{ Fill in the Synopsis }}
 
 ## SYNTAX
 
@@ -77,16 +77,16 @@ Set-KshTenantSiteCollection [-Identity] <TenantSiteCollection>
 ```
 
 ## DESCRIPTION
-The Set-KshTenantSiteCollection cmdlet updates properties of the site collection. This cmdlet can be used only when connected to the SharePoint admin center.
+{{ Fill in the Description }}
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> Set-KshTenantSiteCollection -Identity (Get-KshTenantSiteCollection -SiteCollectionUrl 'https://example.sharepoint.com/sites/hub') -Owner 'admin@example.onmicrosoft.com'
+PS C:\> {{ Add example code here }}
 ```
 
-Updates property values of the site collection.
+{{ Add example description here }}
 
 ## PARAMETERS
 
@@ -107,7 +107,7 @@ Accept wildcard characters: False
 ```
 
 ### -AllowDownloadingNonWebViewableFiles
-Specifies whether to allow to download files.
+{{ Fill AllowDownloadingNonWebViewableFiles Description }}
 
 ```yaml
 Type: Boolean
@@ -122,7 +122,7 @@ Accept wildcard characters: False
 ```
 
 ### -AllowEditing
-Specifies whether to allow editing Office files in the browser.
+{{ Fill AllowEditing Description }}
 
 ```yaml
 Type: Boolean
@@ -137,7 +137,7 @@ Accept wildcard characters: False
 ```
 
 ### -AnonymousLinkExpirationInDays
-Specifies the days that anonymous link to be expired.
+{{ Fill AnonymousLinkExpirationInDays Description }}
 
 ```yaml
 Type: Int32
@@ -152,7 +152,7 @@ Accept wildcard characters: False
 ```
 
 ### -AuthenticationContextName
-Specifies the authentication context name.
+{{ Fill AuthenticationContextName Description }}
 
 ```yaml
 Type: String
@@ -167,7 +167,7 @@ Accept wildcard characters: False
 ```
 
 ### -AuthenticationContextStrength
-Specifies the authentication context strength.
+{{ Fill AuthenticationContextStrength Description }}
 
 ```yaml
 Type: String
@@ -182,7 +182,7 @@ Accept wildcard characters: False
 ```
 
 ### -BlockDownloadLinksFileType
-Specifies the block download links file type.
+{{ Fill BlockDownloadLinksFileType Description }}
 
 ```yaml
 Type: BlockDownloadLinksFileType
@@ -198,7 +198,7 @@ Accept wildcard characters: False
 ```
 
 ### -BlockDownloadMicrosoft365GroupIds
-Specifies the Microsoft 365 group IDs to block download.
+{{ Fill BlockDownloadMicrosoft365GroupIds Description }}
 
 ```yaml
 Type: Guid[]
@@ -213,7 +213,7 @@ Accept wildcard characters: False
 ```
 
 ### -BlockDownloadPolicy
-Specifies whether to block download.
+{{ Fill BlockDownloadPolicy Description }}
 
 ```yaml
 Type: Boolean
@@ -228,7 +228,7 @@ Accept wildcard characters: False
 ```
 
 ### -CommentsOnSitePagesDisabled
-Specifies whether to disable comments on the site.
+{{ Fill CommentsOnSitePagesDisabled Description }}
 
 ```yaml
 Type: Boolean
@@ -243,7 +243,7 @@ Accept wildcard characters: False
 ```
 
 ### -ConditionalAccessPolicy
-Specifies the conditional access policy.
+{{ Fill ConditionalAccessPolicy Description }}
 
 ```yaml
 Type: ConditionalAccessPolicyType
@@ -259,7 +259,7 @@ Accept wildcard characters: False
 ```
 
 ### -DefaultLinkPermission
-Specifies the default link permission.
+{{ Fill DefaultLinkPermission Description }}
 
 ```yaml
 Type: SharingPermissionType
@@ -275,7 +275,7 @@ Accept wildcard characters: False
 ```
 
 ### -DefaultLinkToExistingAccess
-Specifies whether to override default sharing link as existing access link.
+{{ Fill DefaultLinkToExistingAccess Description }}
 
 ```yaml
 Type: Boolean
@@ -290,7 +290,7 @@ Accept wildcard characters: False
 ```
 
 ### -DefaultSharingLinkType
-Specifies the default sharing link type.
+{{ Fill DefaultSharingLinkType Description }}
 
 ```yaml
 Type: SharingLinkType
@@ -306,7 +306,7 @@ Accept wildcard characters: False
 ```
 
 ### -DenyAddAndCustomizePages
-Specifies whether to deny to add and customize pages.
+{{ Fill DenyAddAndCustomizePages Description }}
 
 ```yaml
 Type: DenyAddAndCustomizePagesStatus
@@ -322,7 +322,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisableAppViews
-Specifies the app views policy.
+{{ Fill DisableAppViews Description }}
 
 ```yaml
 Type: AppViewsPolicy
@@ -338,7 +338,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisableCompanyWideSharingLinks
-Specifies the company-wide sharing links policy.
+{{ Fill DisableCompanyWideSharingLinks Description }}
 
 ```yaml
 Type: CompanyWideSharingLinksPolicyType
@@ -354,7 +354,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisableFlows
-Specifies the Microsoft Flow policy.
+{{ Fill DisableFlows Description }}
 
 ```yaml
 Type: FlowsPolicyType
@@ -370,7 +370,7 @@ Accept wildcard characters: False
 ```
 
 ### -ExcludedBlockDownloadGroupIds
-Specifies the excluded group IDs that blocked download.
+{{ Fill ExcludedBlockDownloadGroupIds Description }}
 
 ```yaml
 Type: Guid[]
@@ -385,7 +385,7 @@ Accept wildcard characters: False
 ```
 
 ### -ExternalUserExpirationInDays
-Specifies the days that external user to be expired.
+{{ Fill ExternalUserExpirationInDays Description }}
 
 ```yaml
 Type: Int32
@@ -400,7 +400,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-Specifies the site collection.
+{{ Fill Identity Description }}
 
 ```yaml
 Type: TenantSiteCollection
@@ -415,7 +415,7 @@ Accept wildcard characters: False
 ```
 
 ### -InformationBarriersMode
-Specifies the information barriers mode.
+{{ Fill InformationBarriersMode Description }}
 
 ```yaml
 Type: String
@@ -430,7 +430,7 @@ Accept wildcard characters: False
 ```
 
 ### -InformationBarriersSegments
-Specifies the information barriers segments.
+{{ Fill InformationBarriersSegments Description }}
 
 ```yaml
 Type: Guid[]
@@ -445,7 +445,7 @@ Accept wildcard characters: False
 ```
 
 ### -InformationBarriersSegmentsToAdd
-Specifies the information barriers segments to add.
+{{ Fill InformationBarriersSegmentsToAdd Description }}
 
 ```yaml
 Type: Guid[]
@@ -460,7 +460,7 @@ Accept wildcard characters: False
 ```
 
 ### -InformationBarriersSegmentsToRemove
-Specifies the information barriers segments to remove.
+{{ Fill InformationBarriersSegmentsToRemove Description }}
 
 ```yaml
 Type: Guid[]
@@ -475,7 +475,7 @@ Accept wildcard characters: False
 ```
 
 ### -LimitedAccessFileType
-Specifies the limited access file type.
+{{ Fill LimitedAccessFileType Description }}
 
 ```yaml
 Type: LimitedAccessFileType
@@ -491,7 +491,7 @@ Accept wildcard characters: False
 ```
 
 ### -MediaTranscription
-Specifies the media transcription.
+{{ Fill MediaTranscription Description }}
 
 ```yaml
 Type: MediaTranscriptionPolicyType
@@ -507,7 +507,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoWait
-If specified, continue executing script immediately.
+{{ Fill NoWait Description }}
 
 ```yaml
 Type: SwitchParameter
@@ -522,7 +522,7 @@ Accept wildcard characters: False
 ```
 
 ### -OverrideBlockUserInfoVisibility
-Specifies the block user info visibility to override.
+{{ Fill OverrideBlockUserInfoVisibility Description }}
 
 ```yaml
 Type: SiteUserInfoVisibilityPolicyType
@@ -538,7 +538,7 @@ Accept wildcard characters: False
 ```
 
 ### -OverrideTenantAnonymousLinkExpirationPolicy
-Specifies the tenant anonymous link expiration policy to override.
+{{ Fill OverrideTenantAnonymousLinkExpirationPolicy Description }}
 
 ```yaml
 Type: Boolean
@@ -553,7 +553,7 @@ Accept wildcard characters: False
 ```
 
 ### -OverrideTenantExternalUserExpirationPolicy
-Specifies the tenant external user expiration policy to override.
+{{ Fill OverrideTenantExternalUserExpirationPolicy Description }}
 
 ```yaml
 Type: Boolean
@@ -568,7 +568,7 @@ Accept wildcard characters: False
 ```
 
 ### -Owner
-Specifies the owner.
+{{ Fill Owner Description }}
 
 ```yaml
 Type: String
@@ -583,7 +583,7 @@ Accept wildcard characters: False
 ```
 
 ### -PWAEnabled
-Specifies the Project Web App status.
+{{ Fill PWAEnabled Description }}
 
 ```yaml
 Type: PWAEnabledStatus
@@ -599,7 +599,7 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
-If specified, returns the updated object.
+{{ Fill PassThru Description }}
 
 ```yaml
 Type: SwitchParameter
@@ -614,7 +614,7 @@ Accept wildcard characters: False
 ```
 
 ### -ReadOnlyAccessPolicy
-Specifies whether to enable read-only access policy.
+{{ Fill ReadOnlyAccessPolicy Description }}
 
 ```yaml
 Type: Boolean
@@ -629,7 +629,7 @@ Accept wildcard characters: False
 ```
 
 ### -ReadOnlyForUnmanagedDevices
-Specifies whether to make unmanaged devices to be read-only.
+{{ Fill ReadOnlyForUnmanagedDevices Description }}
 
 ```yaml
 Type: Boolean
@@ -644,7 +644,7 @@ Accept wildcard characters: False
 ```
 
 ### -RequestFilesLinkEnabled
-Specifies whether to enable to request files link.
+{{ Fill RequestFilesLinkEnabled Description }}
 
 ```yaml
 Type: Boolean
@@ -659,7 +659,7 @@ Accept wildcard characters: False
 ```
 
 ### -RequestFilesLinkExpirationInDays
-Specifies the days that request files link to be expired.
+{{ Fill RequestFilesLinkExpirationInDays Description }}
 
 ```yaml
 Type: Int32
@@ -674,7 +674,7 @@ Accept wildcard characters: False
 ```
 
 ### -RestrictedAccessControl
-Specifies the restricted access control.
+{{ Fill RestrictedAccessControl Description }}
 
 ```yaml
 Type: Boolean
@@ -689,7 +689,7 @@ Accept wildcard characters: False
 ```
 
 ### -RestrictedToRegion
-Specifies the region restriction.
+{{ Fill RestrictedToRegion Description }}
 
 ```yaml
 Type: RestrictedToRegion
@@ -705,7 +705,7 @@ Accept wildcard characters: False
 ```
 
 ### -SandboxedCodeActivationCapability
-Specifies the sandboxed code capability.
+{{ Fill SandboxedCodeActivationCapability Description }}
 
 ```yaml
 Type: SandboxedCodeActivationCapabilities
@@ -721,7 +721,7 @@ Accept wildcard characters: False
 ```
 
 ### -SensitivityLabel
-Specifies the sensitivity label.
+{{ Fill SensitivityLabel Description }}
 
 ```yaml
 Type: Guid
@@ -736,7 +736,7 @@ Accept wildcard characters: False
 ```
 
 ### -SensitivityLabel2
-Specifies the sensitivity label.
+{{ Fill SensitivityLabel2 Description }}
 
 ```yaml
 Type: String
@@ -751,7 +751,7 @@ Accept wildcard characters: False
 ```
 
 ### -SharingAllowedDomainList
-Specifies the list of domains to allow sharing.
+{{ Fill SharingAllowedDomainList Description }}
 
 ```yaml
 Type: String
@@ -766,7 +766,7 @@ Accept wildcard characters: False
 ```
 
 ### -SharingBlockedDomainList
-Specifies the list of domains to block sharing.
+{{ Fill SharingBlockedDomainList Description }}
 
 ```yaml
 Type: String
@@ -781,7 +781,7 @@ Accept wildcard characters: False
 ```
 
 ### -SharingCapability
-Specifies the sharing capability.
+{{ Fill SharingCapability Description }}
 
 ```yaml
 Type: SharingCapabilities
@@ -797,7 +797,7 @@ Accept wildcard characters: False
 ```
 
 ### -SharingDomainRestrictionMode
-Specifies the sharing domain restriction mode.
+{{ Fill SharingDomainRestrictionMode Description }}
 
 ```yaml
 Type: SharingDomainRestrictionMode
@@ -813,7 +813,7 @@ Accept wildcard characters: False
 ```
 
 ### -ShowPeoplePickerSuggestionsForGuestUsers
-Specifies whether to show people picker suggestions for guest users.
+{{ Fill ShowPeoplePickerSuggestionsForGuestUsers Description }}
 
 ```yaml
 Type: Boolean
@@ -828,7 +828,7 @@ Accept wildcard characters: False
 ```
 
 ### -SocialBarOnSitePagesDisabled
-Specifies whether to disable social bar on site.
+{{ Fill SocialBarOnSitePagesDisabled Description }}
 
 ```yaml
 Type: Boolean
@@ -843,7 +843,7 @@ Accept wildcard characters: False
 ```
 
 ### -StorageMaximumLevel
-Specifies the maximum quota of the storage.
+{{ Fill StorageMaximumLevel Description }}
 
 ```yaml
 Type: Int64
@@ -858,7 +858,7 @@ Accept wildcard characters: False
 ```
 
 ### -StorageWarningLevel
-Specifies the warning quota of the storage.
+{{ Fill StorageWarningLevel Description }}
 
 ```yaml
 Type: Int64
@@ -873,7 +873,7 @@ Accept wildcard characters: False
 ```
 
 ### -TimeZoneId
-Specifies the time zone ID.
+{{ Fill TimeZoneId Description }}
 
 ```yaml
 Type: Int32
@@ -888,7 +888,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
-Specifies the title.
+{{ Fill Title Description }}
 
 ```yaml
 Type: String
@@ -903,7 +903,7 @@ Accept wildcard characters: False
 ```
 
 ### -TitleTranslations
-Specifies the title translations.
+{{ Fill TitleTranslations Description }}
 
 ```yaml
 Type: ResourceEntry[]
@@ -918,7 +918,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserCodeMaximumLevel
-Specifies the maximum quota of the server resource.
+{{ Fill UserCodeMaximumLevel Description }}
 
 ```yaml
 Type: Double
@@ -933,7 +933,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserCodeWarningLevel
-Specifies the warning quota of the server resource.
+{{ Fill UserCodeWarningLevel Description }}
 
 ```yaml
 Type: Double
@@ -948,7 +948,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-Determines how PowerShell responds to progress updates generated by a script, cmdlet, or provider.
+{{ Fill ProgressAction Description }}
 
 ```yaml
 Type: ActionPreference
@@ -968,11 +968,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.TenantSiteCollection
-
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.TenantSiteCollection
-
 ## NOTES
 
 ## RELATED LINKS

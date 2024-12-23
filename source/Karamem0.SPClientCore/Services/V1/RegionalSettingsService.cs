@@ -31,6 +31,7 @@ public interface IRegionalSettingsService
 
 public class RegionalSettingsService(ClientContext clientContext) : ClientService<RegionalSettings>(clientContext), IRegionalSettingsService
 {
+
     public DateTime ConvertUniversalToLocal(DateTime date)
     {
         var requestPayload = new ClientRequestPayload();

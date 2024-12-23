@@ -29,6 +29,7 @@ public interface IDocumentLibraryService
 
 public class DocumentLibraryService(ClientContext clientContext) : ClientService(clientContext), IDocumentLibraryService
 {
+
     public DocumentLibraryInfo GetObject()
     {
         var requestPayload = new ClientRequestPayload();
@@ -36,7 +37,7 @@ public class DocumentLibraryService(ClientContext clientContext) : ClientService
             new ClientActionStaticMethod(
                 typeof(Site),
                 "DefaultDocumentLibraryUrl",
-                requestPayload.CreateParameter(this.ClientContext.BaseAddress.ToString())
+                requestPayload.CreateParameter(this.ClientContext.BaseAddress)
             ));
         return this.ClientContext
             .ProcessQuery(requestPayload)
@@ -50,7 +51,7 @@ public class DocumentLibraryService(ClientContext clientContext) : ClientService
             new ClientActionStaticMethod(
                 typeof(Site),
                 "GetDocumentLibraries",
-                requestPayload.CreateParameter(this.ClientContext.BaseAddress.ToString())
+                requestPayload.CreateParameter(this.ClientContext.BaseAddress)
             ));
         return this.ClientContext
             .ProcessQuery(requestPayload)
@@ -64,7 +65,7 @@ public class DocumentLibraryService(ClientContext clientContext) : ClientService
             new ClientActionStaticMethod(
                 typeof(Site),
                 "GetDocumentAndMediaLibraries",
-                requestPayload.CreateParameter(this.ClientContext.BaseAddress.ToString()),
+                requestPayload.CreateParameter(this.ClientContext.BaseAddress),
                 requestPayload.CreateParameter(includePageLibraries)
             ));
         return this.ClientContext

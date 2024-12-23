@@ -29,6 +29,7 @@ public interface IDocumentSetAllowedContentTypeService
 
 public class DocumentSetAllowedContentTypeService(ClientContext clientContext) : ClientService(clientContext), IDocumentSetAllowedContentTypeService
 {
+
     public void AddObject(ContentType contentTypeObject, ContentType allowedContentTypeObject, bool pushChanges)
     {
         _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));

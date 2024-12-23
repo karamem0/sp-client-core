@@ -40,6 +40,7 @@ public interface ITenantThemeService
 
 public class TenantThemeService(ClientContext clientContext) : ClientService(clientContext), ITenantThemeService
 {
+
     public bool AddObject(string themeName, IReadOnlyDictionary<string, object> creationInfo)
     {
         _ = themeName ?? throw new ArgumentNullException(nameof(themeName));

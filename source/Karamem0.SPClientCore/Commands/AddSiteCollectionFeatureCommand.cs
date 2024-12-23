@@ -18,7 +18,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
 [Cmdlet(VerbsCommon.Add, "KshSiteCollectionFeature")]
-[OutputType((Type[])null)]
+[OutputType(typeof(void))]
 public class AddSiteCollectionFeatureCommand : ClientObjectCmdlet<ISiteCollectionFeatureService>
 {
 

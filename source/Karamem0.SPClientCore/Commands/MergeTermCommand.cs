@@ -18,7 +18,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
 [Cmdlet(VerbsData.Merge, "KshTerm")]
-[OutputType((Type[])null)]
+[OutputType(typeof(void))]
 public class MergeTermCommand : ClientObjectCmdlet<ITermService>
 {
 

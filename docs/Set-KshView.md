@@ -8,7 +8,7 @@ schema: 2.0.0
 # Set-KshView
 
 ## SYNOPSIS
-Updates a view.
+{{ Fill in the Synopsis }}
 
 ## SYNTAX
 
@@ -26,21 +26,21 @@ Set-KshView [-Identity] <View> [-Aggregations <String>] [-AggregationsStatus <St
 ```
 
 ## DESCRIPTION
-The Set-KshView cmdlet updates properties of the view.
+{{ Fill in the Description }}
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> Set-KshView -Identity (Get-KshView -List (Get-KshList -ListTitle 'Announcements') -ViewId 'bae9f925-48d3-47f5-bb07-92927a82df7d') -DefaultView $true
+PS C:\> {{ Add example code here }}
 ```
 
-Updates property values of the view.
+{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -Aggregations
-Specifies columns and functions that define totals shown in a view.
+{{ Fill Aggregations Description }}
 
 ```yaml
 Type: String
@@ -55,7 +55,7 @@ Accept wildcard characters: False
 ```
 
 ### -AggregationsStatus
-Specifies whether totals are shown in the view.
+{{ Fill AggregationsStatus Description }}
 
 ```yaml
 Type: String
@@ -70,7 +70,7 @@ Accept wildcard characters: False
 ```
 
 ### -AssociatedContentTypeId
-Specifies the associated content type ID.
+{{ Fill AssociatedContentTypeId Description }}
 
 ```yaml
 Type: String
@@ -85,7 +85,7 @@ Accept wildcard characters: False
 ```
 
 ### -CalendarViewStyles
-Specifies the calendar view styles.
+{{ Fill CalendarViewStyles Description }}
 
 ```yaml
 Type: String
@@ -100,7 +100,7 @@ Accept wildcard characters: False
 ```
 
 ### -ContentTypeId
-Specifies the content type ID.
+{{ Fill ContentTypeId Description }}
 
 ```yaml
 Type: ContentTypeId
@@ -115,7 +115,7 @@ Accept wildcard characters: False
 ```
 
 ### -DefaultView
-Specifies whether the view is a default view.
+{{ Fill DefaultView Description }}
 
 ```yaml
 Type: Boolean
@@ -130,7 +130,7 @@ Accept wildcard characters: False
 ```
 
 ### -DefaultViewForContentType
-Specifies whether the view is a paged view for the content type.
+{{ Fill DefaultViewForContentType Description }}
 
 ```yaml
 Type: Boolean
@@ -145,7 +145,7 @@ Accept wildcard characters: False
 ```
 
 ### -EditorModified
-Specifies whether editors can modified the view.
+{{ Fill EditorModified Description }}
 
 ```yaml
 Type: Boolean
@@ -160,7 +160,7 @@ Accept wildcard characters: False
 ```
 
 ### -Formats
-Specifies the formats.
+{{ Fill Formats Description }}
 
 ```yaml
 Type: String
@@ -175,7 +175,7 @@ Accept wildcard characters: False
 ```
 
 ### -GridLayout
-Specifies the grid layout.
+{{ Fill GridLayout Description }}
 
 ```yaml
 Type: String
@@ -190,7 +190,7 @@ Accept wildcard characters: False
 ```
 
 ### -Hidden
-Specifies whether to hide the view from users.
+{{ Fill Hidden Description }}
 
 ```yaml
 Type: Boolean
@@ -205,7 +205,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-Specifies the view.
+{{ Fill Identity Description }}
 
 ```yaml
 Type: View
@@ -220,7 +220,7 @@ Accept wildcard characters: False
 ```
 
 ### -ImageUrl
-Specifies the image URL.
+{{ Fill ImageUrl Description }}
 
 ```yaml
 Type: String
@@ -235,7 +235,7 @@ Accept wildcard characters: False
 ```
 
 ### -IncludeRootFolder
-Specifies whether to include root folder.
+{{ Fill IncludeRootFolder Description }}
 
 ```yaml
 Type: Boolean
@@ -250,7 +250,7 @@ Accept wildcard characters: False
 ```
 
 ### -JSLink
-Specifies the JSLink URL.
+{{ Fill JSLink Description }}
 
 ```yaml
 Type: String
@@ -265,7 +265,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListViewXml
-Specifies the view XML.
+{{ Fill ListViewXml Description }}
 
 ```yaml
 Type: String
@@ -280,7 +280,7 @@ Accept wildcard characters: False
 ```
 
 ### -Method
-Specifies the method.
+{{ Fill Method Description }}
 
 ```yaml
 Type: String
@@ -295,7 +295,7 @@ Accept wildcard characters: False
 ```
 
 ### -MobileDefaultView
-Specifies whether the view is a default view for mobile.
+{{ Fill MobileDefaultView Description }}
 
 ```yaml
 Type: Boolean
@@ -310,7 +310,7 @@ Accept wildcard characters: False
 ```
 
 ### -MobileView
-Specifies whether the view is a mobile view.
+{{ Fill MobileView Description }}
 
 ```yaml
 Type: Boolean
@@ -325,7 +325,7 @@ Accept wildcard characters: False
 ```
 
 ### -NewDocumentTemplates
-Specifies the document template URL.
+{{ Fill NewDocumentTemplates Description }}
 
 ```yaml
 Type: String
@@ -340,7 +340,7 @@ Accept wildcard characters: False
 ```
 
 ### -Paged
-Specifies whether the view is a paged view.
+{{ Fill Paged Description }}
 
 ```yaml
 Type: Boolean
@@ -355,7 +355,7 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
-If specified, returns the updated object.
+{{ Fill PassThru Description }}
 
 ```yaml
 Type: SwitchParameter
@@ -370,7 +370,7 @@ Accept wildcard characters: False
 ```
 
 ### -RowLimit
-Specifies the number of items.
+{{ Fill RowLimit Description }}
 
 ```yaml
 Type: Int32
@@ -385,7 +385,7 @@ Accept wildcard characters: False
 ```
 
 ### -Scope
-Specifies the scope.
+{{ Fill Scope Description }}
 
 ```yaml
 Type: ViewScope
@@ -401,7 +401,7 @@ Accept wildcard characters: False
 ```
 
 ### -TabularView
-Specifies whether the view is a tabular view.
+{{ Fill TabularView Description }}
 
 ```yaml
 Type: Boolean
@@ -416,7 +416,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
-Specifies the title.
+{{ Fill Title Description }}
 
 ```yaml
 Type: String
@@ -431,7 +431,7 @@ Accept wildcard characters: False
 ```
 
 ### -Toolbar
-Specifies the toolbar.
+{{ Fill Toolbar Description }}
 
 ```yaml
 Type: String
@@ -446,7 +446,7 @@ Accept wildcard characters: False
 ```
 
 ### -ViewData
-Specifies the view data.
+{{ Fill ViewData Description }}
 
 ```yaml
 Type: String
@@ -461,7 +461,7 @@ Accept wildcard characters: False
 ```
 
 ### -ViewJoins
-Specifies the view joins XML.
+{{ Fill ViewJoins Description }}
 
 ```yaml
 Type: String
@@ -476,7 +476,7 @@ Accept wildcard characters: False
 ```
 
 ### -ViewProjectedColumns
-Specifies the view projected columns XML.
+{{ Fill ViewProjectedColumns Description }}
 
 ```yaml
 Type: String
@@ -491,7 +491,7 @@ Accept wildcard characters: False
 ```
 
 ### -ViewQuery
-Specifies the view query XML.
+{{ Fill ViewQuery Description }}
 
 ```yaml
 Type: String
@@ -506,7 +506,7 @@ Accept wildcard characters: False
 ```
 
 ### -ViewType2
-Specifies the view type.
+{{ Fill ViewType2 Description }}
 
 ```yaml
 Type: String
@@ -521,7 +521,7 @@ Accept wildcard characters: False
 ```
 
 ### -VisualizationInfo
-Specifies the view visualization info.
+{{ Fill VisualizationInfo Description }}
 
 ```yaml
 Type: String
@@ -536,7 +536,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-Determines how PowerShell responds to progress updates generated by a script, cmdlet, or provider.
+{{ Fill ProgressAction Description }}
 
 ```yaml
 Type: ActionPreference
@@ -556,11 +556,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.View
-
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.View
-
 ## NOTES
 
 ## RELATED LINKS

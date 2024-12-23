@@ -43,11 +43,12 @@ public class SetTenantHomeSiteCommandTests
                 { "Url", context.AppSettings["AuthorityUrl"] + "/sites/TestSite0" }
             }
         );
-        _ = context.Runspace.InvokeCommand(
+        var result2 = context.Runspace.InvokeCommand<string>(
             "Set-KshTenantHomeSite",
             new Dictionary<string, object>()
             {
-                { "Url", result1.ElementAt(0).Url }
+                { "Url", result1.ElementAt(0).Url },
+                { "PassThru", true }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -63,7 +64,7 @@ public class SetTenantHomeSiteCommandTests
                 { "Identity", result1.ElementAt(0) }
             }
         );
-        var result2 = context.Runspace.InvokeCommand<TenantDeletedSiteCollection>(
+        var result3 = context.Runspace.InvokeCommand<TenantDeletedSiteCollection>(
             "Get-KshTenantDeletedSiteCollection",
             new Dictionary<string, object>()
             {
@@ -74,9 +75,11 @@ public class SetTenantHomeSiteCommandTests
             "Remove-KshTenantDeletedSiteCollection",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                { "Identity", result3.ElementAt(0) }
             }
         );
+        var actual = result2.ElementAt(0);
+        Assert.That(actual, Is.Not.Null);
     }
 
 }

@@ -29,6 +29,7 @@ public interface IAppInstanceService
 
 public class AppInstanceService(ClientContext clientContext) : ClientService(clientContext), IAppInstanceService
 {
+
     public AppInstance GetObject(Guid? appInstanceId)
     {
         _ = appInstanceId ?? throw new ArgumentNullException(nameof(appInstanceId));

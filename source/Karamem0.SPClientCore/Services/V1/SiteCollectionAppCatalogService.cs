@@ -33,6 +33,7 @@ public interface ISiteCollectionAppCatalogService
 
 public class SiteCollectionAppCatalogService(ClientContext clientContext) : ClientService<SiteCollectionAppCatalog>(clientContext), ISiteCollectionAppCatalogService
 {
+
     public void AddObject(Uri siteCollectionUrl)
     {
         _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));
@@ -50,7 +51,7 @@ public class SiteCollectionAppCatalogService(ClientContext clientContext) : Clie
             objectPathId => new ClientActionMethod(
                 objectPathId,
                 "Add",
-                requestPayload.CreateParameter(siteCollectionUrl.ToString())));
+                requestPayload.CreateParameter(siteCollectionUrl)));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
@@ -93,7 +94,7 @@ public class SiteCollectionAppCatalogService(ClientContext clientContext) : Clie
             objectPathId => new ClientActionMethod(
                 objectPathId,
                 "Remove",
-                requestPayload.CreateParameter(siteCollectionUrl.ToString())));
+                requestPayload.CreateParameter(siteCollectionUrl)));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

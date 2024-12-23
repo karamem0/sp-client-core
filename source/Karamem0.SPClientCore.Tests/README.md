@@ -72,9 +72,10 @@
       - `Column12` (UserMulti)
       - `Column13` (Url)
       - `Column14` (Calculated)
-      - `Column15` (Geolocation)
-      - `Column16` (Taxonomy)
-      - `Column17` (Image)
+      - `Column15` (Guid)
+      - `Column16` (Geolocation)
+      - `Column17` (Taxonomy)
+      - `Column18` (Image)
     - `/TestList2` (DocLib)
     - `/TestList3` (DocLib)
 

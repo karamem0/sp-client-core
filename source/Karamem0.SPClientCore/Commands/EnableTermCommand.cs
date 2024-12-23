@@ -18,7 +18,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
 [Cmdlet(VerbsLifecycle.Enable, "KshTerm")]
-[OutputType((Type[])null)]
+[OutputType(typeof(void))]
 public class EnableTermCommand : ClientObjectCmdlet<ITermService>
 {
 

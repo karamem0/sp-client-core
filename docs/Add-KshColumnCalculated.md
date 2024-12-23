@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshColumnCalculated
 
 ## SYNOPSIS
-Creates a new column of calculated type.
+{{ Fill in the Synopsis }}
 
 ## SYNTAX
 
@@ -47,21 +47,21 @@ Add-KshColumnCalculated [-ClientSideComponentId <String>] [-ClientSideComponentP
 ```
 
 ## DESCRIPTION
-The Add-KshColumnCalculated adds creates new calculated column to the current site or the specified list.
+{{ Fill in the Description }}
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> Add-KshColumnCalculated -Name 'CalculatedColumn' -Columns (Get-KshColumn -Identity 'TextColumn') -Formula '=TextColumn' -OutputType 'Text'
+PS C:\> {{ Add example code here }}
 ```
 
-Creates a new column.
+{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -AddColumnCheckDisplayName
-Specifies whether to confirm that no other column has the same display name.
+{{ Fill AddColumnCheckDisplayName Description }}
 
 ```yaml
 Type: SwitchParameter
@@ -76,7 +76,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddColumnInternalNameHint
-Specifies whether to add an internal column name hint for the purpose of avoiding possible database locking or column renaming operations.
+{{ Fill AddColumnInternalNameHint Description }}
 
 ```yaml
 Type: SwitchParameter
@@ -91,7 +91,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddColumnToDefaultView
-Specifies whether a new column that is added to the specified list is also be added to the default list view.
+{{ Fill AddColumnToDefaultView Description }}
 
 ```yaml
 Type: SwitchParameter
@@ -106,7 +106,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToAllContentTypes
-Specifies whether a new column that is added to the specified list is also be added to all content types in the site collection.
+{{ Fill AddToAllContentTypes Description }}
 
 ```yaml
 Type: SwitchParameter
@@ -121,7 +121,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToDefaultContentType
-Specifies whether a new column that is added to the list is also be added to the default content type in the site collection.
+{{ Fill AddToDefaultContentType Description }}
 
 ```yaml
 Type: SwitchParameter
@@ -136,7 +136,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToDefaultView
-Specifies whether to add a column to the default view.
+{{ Fill AddToDefaultView Description }}
 
 ```yaml
 Type: SwitchParameter
@@ -151,7 +151,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToNoContentType
-Specifies whether a new column is not be added to any content type.
+{{ Fill AddToNoContentType Description }}
 
 ```yaml
 Type: SwitchParameter
@@ -166,7 +166,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClientSideComponentId
-Specifies the ID of the client-side component.
+{{ Fill ClientSideComponentId Description }}
 
 ```yaml
 Type: String
@@ -181,7 +181,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClientSideComponentProperties
-Specifies the JSON string that the propeties of the client-side component.
+{{ Fill ClientSideComponentProperties Description }}
 
 ```yaml
 Type: String
@@ -196,7 +196,7 @@ Accept wildcard characters: False
 ```
 
 ### -Columns
-Specifies the columns
+{{ Fill Columns Description }}
 
 ```yaml
 Type: Column[]
@@ -211,9 +211,7 @@ Accept wildcard characters: False
 ```
 
 ### -CurrencyLcid
-Specifies the locale ID.
-This parameter is used when OutputType is 'Currency'.
-For more information, see reference (https://docs.microsoft.com/ja-jp/openspecs/windows_protocols/ms-lcid/70feba9f-294e-491e-b6eb-56532684c37f).
+{{ Fill CurrencyLcid Description }}
 
 ```yaml
 Type: UInt32
@@ -228,7 +226,7 @@ Accept wildcard characters: False
 ```
 
 ### -CustomFormatter
-Specifies the JSON string of custom format.
+{{ Fill CustomFormatter Description }}
 
 ```yaml
 Type: String
@@ -243,8 +241,7 @@ Accept wildcard characters: False
 ```
 
 ### -DateFormat
-Specifies the datetime display format.
-This parameter is used when OutputType is 'DateTime'.
+{{ Fill DateFormat Description }}
 
 ```yaml
 Type: ColumnDateTimeFormatType
@@ -260,7 +257,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
-Specifies the description.
+{{ Fill Description Description }}
 
 ```yaml
 Type: String
@@ -275,7 +272,7 @@ Accept wildcard characters: False
 ```
 
 ### -Direction
-Specifies the direction.
+{{ Fill Direction Description }}
 
 ```yaml
 Type: String
@@ -290,7 +287,7 @@ Accept wildcard characters: False
 ```
 
 ### -Formula
-Specifies the formula.
+{{ Fill Formula Description }}
 
 ```yaml
 Type: String
@@ -305,7 +302,7 @@ Accept wildcard characters: False
 ```
 
 ### -Group
-Specifies the name for grouping.
+{{ Fill Group Description }}
 
 ```yaml
 Type: String
@@ -320,7 +317,7 @@ Accept wildcard characters: False
 ```
 
 ### -Hidden
-Specifies whether to hide the column from users.
+{{ Fill Hidden Description }}
 
 ```yaml
 Type: Boolean
@@ -335,7 +332,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-Specifies the ID.
+{{ Fill Id Description }}
 
 ```yaml
 Type: Guid
@@ -350,7 +347,7 @@ Accept wildcard characters: False
 ```
 
 ### -JSLink
-Specifies the JSLink URL.
+{{ Fill JSLink Description }}
 
 ```yaml
 Type: String
@@ -365,7 +362,7 @@ Accept wildcard characters: False
 ```
 
 ### -List
-Specifies the list.
+{{ Fill List Description }}
 
 ```yaml
 Type: List
@@ -380,7 +377,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-Specifies the name.
+{{ Fill Name Description }}
 
 ```yaml
 Type: String
@@ -395,7 +392,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoCrawl
-Specifies whether to suppress to search crawling.
+{{ Fill NoCrawl Description }}
 
 ```yaml
 Type: Boolean
@@ -410,8 +407,7 @@ Accept wildcard characters: False
 ```
 
 ### -NumberFormat
-Specifies the number of decimals.
-This parameter is used when OutputType is 'Currency' or 'Number'.
+{{ Fill NumberFormat Description }}
 
 ```yaml
 Type: Int32
@@ -426,7 +422,7 @@ Accept wildcard characters: False
 ```
 
 ### -OutputType
-Specifies the data type of the return value.
+{{ Fill OutputType Description }}
 
 ```yaml
 Type: ColumnType
@@ -442,8 +438,7 @@ Accept wildcard characters: False
 ```
 
 ### -ShowAsPercentage
-Specifies a value whether the column shows as percentage.
-This parameter is used when OutputType is 'Number'.
+{{ Fill ShowAsPercentage Description }}
 
 ```yaml
 Type: Boolean
@@ -458,7 +453,7 @@ Accept wildcard characters: False
 ```
 
 ### -StaticName
-Specifies the static name.
+{{ Fill StaticName Description }}
 
 ```yaml
 Type: String
@@ -473,7 +468,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
-Specifies the title.
+{{ Fill Title Description }}
 
 ```yaml
 Type: String
@@ -488,7 +483,8 @@ Accept wildcard characters: False
 ```
 
 ### -WhatIf
-Shows what would happen if the cmdlet runs. The cmdlet is not run.
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
 
 ```yaml
 Type: SwitchParameter
@@ -503,7 +499,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-Determines how PowerShell responds to progress updates generated by a script, cmdlet, or provider.
+{{ Fill ProgressAction Description }}
 
 ```yaml
 Type: ActionPreference
@@ -526,7 +522,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.ColumnCalculated
-
 ## NOTES
 
 ## RELATED LINKS

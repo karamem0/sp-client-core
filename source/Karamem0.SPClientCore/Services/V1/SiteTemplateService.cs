@@ -27,6 +27,7 @@ public interface ISiteTemplateService
 
 public class SiteTemplateService(ClientContext clientContext) : ClientService(clientContext), ISiteTemplateService
 {
+
     public SiteTemplate GetObject(string name, uint? lcid, bool includeCrossLanguage)
     {
         _ = name ?? throw new ArgumentNullException(nameof(name));

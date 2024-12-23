@@ -25,6 +25,7 @@ public interface IUserProfileService
 
 public class UserProfileService(ClientContext clientContext) : ClientService(clientContext), IUserProfileService
 {
+
     public UserProfile GetObject()
     {
         var requestPayload = new ClientRequestPayload();

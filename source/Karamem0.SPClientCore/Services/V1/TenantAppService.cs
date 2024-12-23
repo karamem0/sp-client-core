@@ -43,6 +43,7 @@ public interface ITenantAppService
 
 public class TenantAppService(ClientContext clientContext) : ClientService(clientContext), ITenantAppService
 {
+
     public App AddObject(System.IO.Stream appContent, string appName, bool overwrite)
     {
         _ = appContent ?? throw new ArgumentNullException(nameof(appContent));

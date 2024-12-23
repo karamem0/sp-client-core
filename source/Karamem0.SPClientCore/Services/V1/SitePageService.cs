@@ -29,6 +29,7 @@ public interface ISitePageService
 
 public class SitePageService(ClientContext clientContext) : ClientService(clientContext), ISitePageService
 {
+
     public void AddObject(Folder folderObject, string pageName, SitePageLayoutType pageLayoutType)
     {
         _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));

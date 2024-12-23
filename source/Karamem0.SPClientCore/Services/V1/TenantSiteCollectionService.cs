@@ -57,6 +57,7 @@ public interface ITenantSiteCollectionService
 
 public class TenantSiteCollectionService(ClientContext clientContext) : TenantClientService(clientContext), ITenantSiteCollectionService
 {
+
     public TenantOperationResult AddObject(IReadOnlyDictionary<string, object> creationInfo)
     {
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
@@ -109,7 +110,7 @@ public class TenantSiteCollectionService(ClientContext clientContext) : TenantCl
             new ObjectPathMethod(
                 objectPath1.Id,
                 "GetSitePropertiesByUrl",
-                requestPayload.CreateParameter(siteCollectionUrl.ToString()),
+                requestPayload.CreateParameter(siteCollectionUrl),
                 requestPayload.CreateParameter(false)),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)

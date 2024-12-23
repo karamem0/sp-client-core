@@ -14,6 +14,7 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
+[AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
 public class ClientObjectAttribute : Attribute
 {
 

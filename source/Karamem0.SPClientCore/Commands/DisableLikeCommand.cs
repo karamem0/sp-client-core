@@ -18,7 +18,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
 [Cmdlet(VerbsLifecycle.Disable, "KshLike")]
-[OutputType((Type[])null)]
+[OutputType(typeof(void))]
 public class DisableLikeCommand : ClientObjectCmdlet<ILikeService>
 {
 

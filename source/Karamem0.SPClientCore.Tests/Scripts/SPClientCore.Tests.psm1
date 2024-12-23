@@ -877,7 +877,7 @@ function Install-TestSite {
         $appSettings.Column14Title = $column14.Title
 
         Write-Progress -Activity 'Creating columns...' -Status 'Test Column 15'
-        $column15 = Add-KshColumnGeolocation `
+        $column15 = Add-KshColumnGuid `
             -AddColumnInternalNameHint `
             -Name 'TestColumn15' `
             -Title 'Test Column 15'
@@ -892,10 +892,9 @@ function Install-TestSite {
         $appSettings.Column15Title = $column15.Title
 
         Write-Progress -Activity 'Creating columns...' -Status 'Test Column 16'
-        $column16 = Add-KshColumnTaxonomy `
+        $column16 = Add-KshColumnGeolocation `
             -AddColumnInternalNameHint `
             -Name 'TestColumn16' `
-            -TermSet $termSet1 `
             -Title 'Test Column 16'
         $null = Add-KshContentTypeColumn `
             -ContentType $siteContentType1 `
@@ -908,9 +907,10 @@ function Install-TestSite {
         $appSettings.Column16Title = $column16.Title
 
         Write-Progress -Activity 'Creating columns...' -Status 'Test Column 17'
-        $column17 = Add-KshColumnImage `
+        $column17 = Add-KshColumnTaxonomy `
             -AddColumnInternalNameHint `
             -Name 'TestColumn17' `
+            -TermSet $termSet1 `
             -Title 'Test Column 17'
         $null = Add-KshContentTypeColumn `
             -ContentType $siteContentType1 `
@@ -921,6 +921,21 @@ function Install-TestSite {
         $appSettings.Column17Id = $column17.Id
         $appSettings.Column17Name = $column17.Name
         $appSettings.Column17Title = $column17.Title
+
+        Write-Progress -Activity 'Creating columns...' -Status 'Test Column 18'
+        $column18 = Add-KshColumnImage `
+            -AddColumnInternalNameHint `
+            -Name 'TestColumn18' `
+            -Title 'Test Column 18'
+        $null = Add-KshContentTypeColumn `
+            -ContentType $siteContentType1 `
+            -Column $column18
+        $null = Add-KshContentTypeColumn `
+            -ContentType $siteContentType7 `
+            -Column $column18
+        $appSettings.Column18Id = $column18.Id
+        $appSettings.Column18Name = $column18.Name
+        $appSettings.Column18Title = $column18.Title
 
         Write-Progress -Activity 'Creating list content types...' -Status 'Test Content Type 1'
         $listContentType1 = Add-KshContentType `
@@ -986,6 +1001,7 @@ function Install-TestSite {
                 'Test Column 15'
                 'Test Column 16'
                 'Test Column 17'
+                'Test Column 18'
             )
         $view1 = Set-KshView `
             -Identity $view1 `
@@ -1016,6 +1032,7 @@ function Install-TestSite {
                 'Test Column 15'
                 'Test Column 16'
                 'Test Column 17'
+                'Test Column 18'
             )
         $view2 = Set-KshView `
             -Identity $view2 `
@@ -1046,6 +1063,7 @@ function Install-TestSite {
                 'Test Column 15'
                 'Test Column 16'
                 'Test Column 17'
+                'Test Column 18'
             )
         $view3 = Set-KshView `
             -Identity $view3 `
@@ -1103,8 +1121,9 @@ function Install-TestSite {
                 TestColumn11 = $userValue1
                 TestColumn12 = @($userValue1)
                 TestColumn13 = $urlValue1
-                TestColumn15 = $geolocationValue1
-                TestColumn16 = $taxonomyValue1
+                TestColumn15 = 'e4ff6b12-0639-4107-a99a-eaa61c8670bb'
+                TestColumn16 = $geolocationValue1
+                TestColumn17 = $taxonomyValue1
             }
         $appSettings.ListItem1Id = $item1.Id
 
@@ -1149,8 +1168,9 @@ function Install-TestSite {
                 TestColumn11 = $userValue2
                 TestColumn12 = @($userValue2)
                 TestColumn13 = $urlValue2
-                TestColumn15 = $geolocationValue2
-                TestColumn16 = $taxonomyValue2
+                TestColumn15 = '55477a54-c686-42ae-9c43-c70bf388915f'
+                TestColumn16 = $geolocationValue2
+                TestColumn17 = $taxonomyValue2
             }
         $appSettings.ListItem2Id = $item2.Id
 
@@ -1171,8 +1191,9 @@ function Install-TestSite {
                 TestColumn11 = $userValue3
                 TestColumn12 = @($userValue1, $userValue2, $userValue3)
                 TestColumn13 = $urlValue3
-                TestColumn15 = $geolocationValue3
-                TestColumn16 = $taxonomyValue3
+                TestColumn15 = '629dc9f8-097f-4cd1-8c0e-a9d458ed2d66'
+                TestColumn16 = $geolocationValue3
+                TestColumn17 = $taxonomyValue3
             }
         $appSettings.ListItem3Id = $item3.Id
 

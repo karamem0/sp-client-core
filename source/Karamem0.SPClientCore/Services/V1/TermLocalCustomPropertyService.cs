@@ -27,6 +27,7 @@ public interface ITermLocalCustomPropertyService
 
 public class TermLocalCustomPropertyService(ClientContext clientContext) : ClientService(clientContext), ITermLocalCustomPropertyService
 {
+
     public void AddObject(Term termObject, string propertyName, string propertyValue)
     {
         _ = termObject ?? throw new ArgumentNullException(nameof(termObject));

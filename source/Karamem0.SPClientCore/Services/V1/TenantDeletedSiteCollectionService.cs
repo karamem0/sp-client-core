@@ -37,6 +37,7 @@ public interface ITenantDeletedSiteCollectionService
 
 public class TenantDeletedSiteCollectionService(ClientContext clientContext) : TenantClientService(clientContext), ITenantDeletedSiteCollectionService
 {
+
     public TenantDeletedSiteCollection GetObject(TenantDeletedSiteCollection siteCollectionObject)
     {
         _ = siteCollectionObject ?? throw new ArgumentNullException(nameof(siteCollectionObject));
@@ -64,7 +65,7 @@ public class TenantDeletedSiteCollectionService(ClientContext clientContext) : T
             new ObjectPathMethod(
                 objectPath1.Id,
                 "GetDeletedSitePropertiesByUrl",
-                requestPayload.CreateParameter(siteCollectionUrl.ToString()),
+                requestPayload.CreateParameter(siteCollectionUrl),
                 requestPayload.CreateParameter(false)),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)

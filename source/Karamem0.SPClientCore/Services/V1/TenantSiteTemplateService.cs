@@ -27,6 +27,7 @@ public interface ITenantSiteTemplateService
 
 public class TenantSiteTemplateService(ClientContext clientContext) : ClientService(clientContext), ITenantSiteTemplateService
 {
+
     public IEnumerable<TenantSiteTemplate> GetObjectEnumerable(uint? lcid, int? compatibilityLevel)
     {
         _ = lcid ?? throw new ArgumentNullException(nameof(lcid));

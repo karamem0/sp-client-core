@@ -47,9 +47,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable() {
-                    { "TestColumn1", "Test Value 0" }
-                } } }
+                { "Value", new[] { new Hashtable()
+                    {
+                        { "TestColumn1", "Test Value 0" }
+                    }
+                } }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -89,9 +91,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable() {
-                    { "TestColumn2", "Test Value 0" }
-                } } }
+                { "Value", new[] { new Hashtable()
+                    {
+                        { "TestColumn2", "Test Value 0" }
+                    }
+                } }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -131,9 +135,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable() {
-                    { "TestColumn3", "Test Value 0" }
-                } } }
+                { "Value", new[] { new Hashtable()
+                    {
+                        { "TestColumn3", "Test Value 0" }
+                    }
+                } }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -173,9 +179,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable() {
-                    { "TestColumn4", new List<string>() { "Test Value 0" }
-                } } } }
+                { "Value", new[] { new Hashtable()
+                    {
+                        { "TestColumn4", new List<string>() { "Test Value 0" } }
+                    }
+                } }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -215,9 +223,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable() {
-                    { "TestColumn5", 1 }
-                } } }
+                { "Value", new[] { new Hashtable()
+                    {
+                        { "TestColumn5", 1 }
+                    }
+                } }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -257,9 +267,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable() {
-                    { "TestColumn6", 100 }
-                } } }
+                { "Value", new[] { new Hashtable()
+                    {
+                        { "TestColumn6", 100 }
+                    }
+                } }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -299,9 +311,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable() {
-                    { "TestColumn7", new DateTime(2010, 12, 15) }
-                } } }
+                { "Value", new[] { new Hashtable()
+                    {
+                        { "TestColumn7", new DateTime(2010, 12, 15) }
+                    }
+                } }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -348,9 +362,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable() {
-                    { "TestColumn8", result2.ElementAt(0) }
-                } } }
+                { "Value", new[] { new Hashtable()
+                    {
+                        { "TestColumn8", result2.ElementAt(0) }
+                    }
+                } }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -397,9 +413,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable() {
-                    { "TestColumn9", new [] { result2.ElementAt(0) } }
-                } } }
+                { "Value", new[] { new Hashtable()
+                    {
+                        { "TestColumn9", new[] { result2.ElementAt(0) } }
+                    }
+                } }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -439,9 +457,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable() {
-                    { "TestColumn10", true }
-                } } }
+                { "Value", new[] { new Hashtable()
+                    {
+                        { "TestColumn10", true }
+                    }
+                } }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -488,9 +508,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable() {
-                    { "TestColumn11", result2.ElementAt(0) }
-                } } }
+                { "Value", new[] { new Hashtable()
+                    {
+                        { "TestColumn11", result2.ElementAt(0) }
+                    }
+                } }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -537,9 +559,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable() {
-                    { "TestColumn12", new[] { result2.ElementAt(0) } }
-                } } }
+                { "Value", new[] { new Hashtable()
+                    {
+                        { "TestColumn12", new[] { result2.ElementAt(0) } }
+                    }
+                } }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -587,9 +611,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable() {
-                    { "TestColumn13", result2.ElementAt(0) }
-                } } }
+                { "Value", new[] { new Hashtable()
+                    {
+                        { "TestColumn13", result2.ElementAt(0) }
+                    }
+                } }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -600,6 +626,50 @@ public class AddListItemCommandTests
             }
         );
         var actual = result3.ElementAt(0);
+        Assert.That(actual, Is.Not.Null);
+    }
+
+    [Test()]
+    public void InvokeCommand_AddGuidByHashtable_ShouldSucceed()
+    {
+        using var context = new PSCmdletContext();
+        _ = context.Runspace.InvokeCommand(
+            "Connect-KshSite",
+            new Dictionary<string, object>()
+            {
+                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+            }
+        );
+        var result1 = context.Runspace.InvokeCommand<List>(
+            "Get-KshList",
+            new Dictionary<string, object>()
+            {
+                { "ListId", context.AppSettings["List1Id"] }
+            }
+        );
+        var result2 = context.Runspace.InvokeCommand<ListItem>(
+            "Add-KshListItem",
+            new Dictionary<string, object>()
+            {
+                { "List", result1.ElementAt(0) },
+                { "Value", new[] { new Hashtable()
+                    {
+                        { "TestColumn15", new Guid("395a6086-b6e9-45a3-b418-503ed107537f") }
+                    }
+                } }
+            }
+        );
+        _ = context.Runspace.InvokeCommand(
+            "Remove-KshListItem",
+            new Dictionary<string, object>()
+            {
+                { "Identity", result2.ElementAt(0) }
+            }
+        );
+        var actual = result2.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -637,9 +707,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable() {
-                    { "TestColumn15", result2.ElementAt(0) }
-                } } }
+                { "Value", new[] { new Hashtable()
+                    {
+                        { "TestColumn16", result2.ElementAt(0) }
+                    }
+                } }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -709,9 +781,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable() {
-                    { "TestColumn16", result5.ElementAt(0) }
-                } } }
+                { "Value", new[] { new Hashtable()
+                    {
+                        { "TestColumn17", result5.ElementAt(0) }
+                    }
+                } }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -763,7 +837,7 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "ImageItem", result2.ElementAt(0) },
-                { "ColumnName", "TestColumn17" }
+                { "ColumnName", "TestColumn18" }
             }
         );
         var result4 = context.Runspace.InvokeCommand<ListItem>(
@@ -771,9 +845,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable() {
-                    { "TestColumn17", result3.ElementAt(0) }
-                } } }
+                { "Value", new[] { new Hashtable()
+                    {
+                        { "TestColumn18", result3.ElementAt(0) }
+                    }
+                } }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -813,9 +889,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] {
-                    new { TestColumn1 = "Test Value 0" }
-                } }
+                { "Value", new[]
+                    {
+                        new { TestColumn1 = "Test Value 0" }
+                    }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -855,9 +933,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] {
-                    new { TestColumn2 = "Test Value 0" }
-                } }
+                { "Value", new[]
+                    {
+                        new { TestColumn2 = "Test Value 0" }
+                    }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -897,9 +977,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] {
-                    new { TestColumn3 = "Test Value 0" }
-                } }
+                { "Value", new[]
+                    {
+                        new { TestColumn3 = "Test Value 0" }
+                    }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -939,9 +1021,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] {
-                    new { TestColumn4 = new List<string>() { "Test Value 0" } }
-                } }
+                { "Value", new[]
+                    {
+                        new { TestColumn4 = new List<string>() { "Test Value 0" } }
+                    }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -981,9 +1065,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] {
-                    new { TestColumn5 = 1 }
-                } }
+                { "Value", new[]
+                    {
+                        new { TestColumn5 = 1 }
+                    }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -1023,9 +1109,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] {
-                    new { TestColumn6 = 100 }
-                } }
+                { "Value", new[]
+                    {
+                        new { TestColumn6 = 100 }
+                    }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -1065,9 +1153,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] {
-                    new { TestColumn7 = new DateTime(2010, 12, 15) }
-                } }
+                { "Value", new[]
+                    {
+                        new { TestColumn7 = new DateTime(2010, 12, 15) }
+                    }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -1114,9 +1204,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] {
-                    new { TestColumn8 = result2.ElementAt(0) }
-                } }
+                { "Value", new[]
+                    {
+                        new { TestColumn8 = result2.ElementAt(0) }
+                    }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -1163,9 +1255,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] {
-                    new { TestColumn9 = new[] { result2.ElementAt(0) } }
-                } }
+                { "Value", new[]
+                    {
+                        new { TestColumn9 = new[] { result2.ElementAt(0) } }
+                    }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -1205,9 +1299,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] {
-                    new { TestColumn10 = true }
-                } }
+                { "Value", new[]
+                    {
+                        new { TestColumn10 = true }
+                    }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -1254,9 +1350,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] {
-                    new { TestColumn11 = result2.ElementAt(0) }
-                } }
+                { "Value", new[]
+                    {
+                        new { TestColumn11 = result2.ElementAt(0) }
+                    }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -1303,9 +1401,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] {
-                    new { TestColumn12 = new[] { result2.ElementAt(0) } }
-                } }
+                { "Value", new[]
+                    {
+                        new { TestColumn12 = new[] { result2.ElementAt(0) } }
+                    }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -1353,9 +1453,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] {
-                    new { TestColumn13 = result2.ElementAt(0) }
-                } }
+                { "Value", new[]
+                    {
+                        new { TestColumn13 = result2.ElementAt(0) }
+                    }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -1366,6 +1468,50 @@ public class AddListItemCommandTests
             }
         );
         var actual = result3.ElementAt(0);
+        Assert.That(actual, Is.Not.Null);
+    }
+
+    [Test()]
+    public void InvokeCommand_AddGuidByObject_ShouldSucceed()
+    {
+        using var context = new PSCmdletContext();
+        _ = context.Runspace.InvokeCommand(
+            "Connect-KshSite",
+            new Dictionary<string, object>()
+            {
+                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
+                { "ClientId", context.AppSettings["ClientId"] },
+                { "CertificatePath", context.AppSettings["CertificatePath"] },
+                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+            }
+        );
+        var result1 = context.Runspace.InvokeCommand<List>(
+            "Get-KshList",
+            new Dictionary<string, object>()
+            {
+                { "ListId", context.AppSettings["List1Id"] }
+            }
+        );
+        var result2 = context.Runspace.InvokeCommand<ListItem>(
+            "Add-KshListItem",
+            new Dictionary<string, object>()
+            {
+                { "List", result1.ElementAt(0) },
+                { "Value", new[]
+                    {
+                        new { TestColumn15 = new Guid("395a6086-b6e9-45a3-b418-503ed107537f") }
+                    }
+                }
+            }
+        );
+        _ = context.Runspace.InvokeCommand(
+            "Remove-KshListItem",
+            new Dictionary<string, object>()
+            {
+                { "Identity", result2.ElementAt(0) }
+            }
+        );
+        var actual = result2.ElementAt(0);
         Assert.That(actual, Is.Not.Null);
     }
 
@@ -1403,9 +1549,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] {
-                    new { TestColumn15 = result2.ElementAt(0) }
-                } }
+                { "Value", new[]
+                    {
+                        new { TestColumn16 = result2.ElementAt(0) }
+                    }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -1475,9 +1623,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] {
-                    new { TestColumn16 = result5.ElementAt(0) }
-                } }
+                { "Value", new[]
+                    {
+                        new { TestColumn17 = result5.ElementAt(0) }
+                    }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -1529,7 +1679,7 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "ImageItem", result2.ElementAt(0) },
-                { "ColumnName", "TestColumn17" }
+                { "ColumnName", "TestColumn18" }
             }
         );
         var result4 = context.Runspace.InvokeCommand<ListItem>(
@@ -1537,9 +1687,11 @@ public class AddListItemCommandTests
             new Dictionary<string, object>()
             {
                 { "List", result1.ElementAt(0) },
-                { "Value", new[] {
-                    new { TestColumn17 = result3.ElementAt(0) }
-                } }
+                { "Value", new[]
+                    {
+                        new { TestColumn18 = result3.ElementAt(0) }
+                    }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(

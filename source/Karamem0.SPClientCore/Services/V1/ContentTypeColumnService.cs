@@ -37,6 +37,7 @@ public interface IContentTypeColumnService
 
 public class ContentTypeColumnService(ClientContext clientContext) : ClientService<ContentTypeColumn>(clientContext), IContentTypeColumnService
 {
+
     public ContentTypeColumn AddObject(ContentType contentTypeObject, IReadOnlyDictionary<string, object> creationInfo, bool pushChanges)
     {
         _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));

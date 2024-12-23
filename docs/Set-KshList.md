@@ -8,7 +8,7 @@ schema: 2.0.0
 # Set-KshList
 
 ## SYNOPSIS
-Updates a list.
+{{ Fill in the Synopsis }}
 
 ## SYNTAX
 
@@ -26,21 +26,21 @@ Set-KshList [-Identity] <List> [-ContentTypesEnabled <Boolean>] [-DefaultContent
 ```
 
 ## DESCRIPTION
-The Set-KshList cmdlet updates properties of the list.
+{{ Fill in the Description }}
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> Set-KshList -Identity (Get-KshList -ListTitle 'Announcements') -EnableAttachments $true
+PS C:\> {{ Add example code here }}
 ```
 
-Updates property values of the list.
+{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -ContentTypesEnabled
-Specifies whether to enable content types.
+{{ Fill ContentTypesEnabled Description }}
 
 ```yaml
 Type: Boolean
@@ -55,7 +55,7 @@ Accept wildcard characters: False
 ```
 
 ### -DefaultContentApprovalWorkflowId
-Specifies the default workflow ID for content approval.
+{{ Fill DefaultContentApprovalWorkflowId Description }}
 
 ```yaml
 Type: String
@@ -70,7 +70,7 @@ Accept wildcard characters: False
 ```
 
 ### -DefaultDisplayFormUrl
-Specifies the default display form URL.
+{{ Fill DefaultDisplayFormUrl Description }}
 
 ```yaml
 Type: String
@@ -85,7 +85,7 @@ Accept wildcard characters: False
 ```
 
 ### -DefaultEditFormUrl
-Specifies the default edit form URL.
+{{ Fill DefaultEditFormUrl Description }}
 
 ```yaml
 Type: String
@@ -100,7 +100,7 @@ Accept wildcard characters: False
 ```
 
 ### -DefaultNewFormUrl
-Specifies the default new form URL.
+{{ Fill DefaultNewFormUrl Description }}
 
 ```yaml
 Type: String
@@ -115,7 +115,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
-Specifies the description.
+{{ Fill Description Description }}
 
 ```yaml
 Type: String
@@ -130,7 +130,7 @@ Accept wildcard characters: False
 ```
 
 ### -Direction
-Specifies the direction.
+{{ Fill Direction Description }}
 
 ```yaml
 Type: String
@@ -145,7 +145,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisableCommenting
-Specifies whether to disable commenting.
+{{ Fill DisableCommenting Description }}
 
 ```yaml
 Type: Boolean
@@ -160,7 +160,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisableGridEditing
-Specifies whether to disable grid editing.
+{{ Fill DisableGridEditing Description }}
 
 ```yaml
 Type: Boolean
@@ -175,7 +175,7 @@ Accept wildcard characters: False
 ```
 
 ### -DocumentTemplateUrl
-Specifies the document template URL.
+{{ Fill DocumentTemplateUrl Description }}
 
 ```yaml
 Type: String
@@ -190,7 +190,7 @@ Accept wildcard characters: False
 ```
 
 ### -DraftVersionVisibility
-Specifies the draft version visibility type.
+{{ Fill DraftVersionVisibility Description }}
 
 ```yaml
 Type: DraftVisibilityType
@@ -206,7 +206,7 @@ Accept wildcard characters: False
 ```
 
 ### -EnableAttachments
-Specifies whether to enable attachments.
+{{ Fill EnableAttachments Description }}
 
 ```yaml
 Type: Boolean
@@ -221,7 +221,7 @@ Accept wildcard characters: False
 ```
 
 ### -EnableFolderCreation
-Specifies whether to enable to create folders.
+{{ Fill EnableFolderCreation Description }}
 
 ```yaml
 Type: Boolean
@@ -236,7 +236,7 @@ Accept wildcard characters: False
 ```
 
 ### -EnableMinorVersions
-Specifies whether to enable minor versions.
+{{ Fill EnableMinorVersions Description }}
 
 ```yaml
 Type: Boolean
@@ -251,7 +251,7 @@ Accept wildcard characters: False
 ```
 
 ### -EnableModeration
-Specifies whether to enable moderation.
+{{ Fill EnableModeration Description }}
 
 ```yaml
 Type: Boolean
@@ -266,7 +266,7 @@ Accept wildcard characters: False
 ```
 
 ### -EnableVersioning
-Specifies whether to enable versioning.
+{{ Fill EnableVersioning Description }}
 
 ```yaml
 Type: Boolean
@@ -281,7 +281,7 @@ Accept wildcard characters: False
 ```
 
 ### -ForceCheckOut
-Specifies whether to force checkout.
+{{ Fill ForceCheckOut Description }}
 
 ```yaml
 Type: Boolean
@@ -296,7 +296,7 @@ Accept wildcard characters: False
 ```
 
 ### -Hidden
-Specifies whether to hide the list from users.
+{{ Fill Hidden Description }}
 
 ```yaml
 Type: Boolean
@@ -311,7 +311,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-Specifies the list.
+{{ Fill Identity Description }}
 
 ```yaml
 Type: List
@@ -326,7 +326,7 @@ Accept wildcard characters: False
 ```
 
 ### -IrmEnabled
-Specifies whether to enable Information Rights Management (IRM).
+{{ Fill IrmEnabled Description }}
 
 ```yaml
 Type: Boolean
@@ -341,7 +341,7 @@ Accept wildcard characters: False
 ```
 
 ### -IrmExpire
-Specifies whether to enable Information Rights Management (IRM) expiration.
+{{ Fill IrmExpire Description }}
 
 ```yaml
 Type: Boolean
@@ -356,7 +356,7 @@ Accept wildcard characters: False
 ```
 
 ### -IrmReject
-Specifies whether to enable Information Rights Management (IRM) rejection.
+{{ Fill IrmReject Description }}
 
 ```yaml
 Type: Boolean
@@ -371,7 +371,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsApplicationList
-Specifies whether the list is an application list.
+{{ Fill IsApplicationList Description }}
 
 ```yaml
 Type: Boolean
@@ -386,7 +386,7 @@ Accept wildcard characters: False
 ```
 
 ### -LastItemModifiedDate
-Specifies the last item modified date.
+{{ Fill LastItemModifiedDate Description }}
 
 ```yaml
 Type: DateTime
@@ -401,7 +401,7 @@ Accept wildcard characters: False
 ```
 
 ### -MultipleDataList
-Specifies whether the list is a multiple data list.
+{{ Fill MultipleDataList Description }}
 
 ```yaml
 Type: Boolean
@@ -416,7 +416,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoCrawl
-Specifies whether to suppress to search crawling.
+{{ Fill NoCrawl Description }}
 
 ```yaml
 Type: Boolean
@@ -431,7 +431,7 @@ Accept wildcard characters: False
 ```
 
 ### -OnQuickLaunch
-Specifies whether to display to quick launch.
+{{ Fill OnQuickLaunch Description }}
 
 ```yaml
 Type: Boolean
@@ -446,7 +446,7 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
-If specified, returns the updated object.
+{{ Fill PassThru Description }}
 
 ```yaml
 Type: SwitchParameter
@@ -461,7 +461,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
-Specifies the title.
+{{ Fill Title Description }}
 
 ```yaml
 Type: String
@@ -476,7 +476,7 @@ Accept wildcard characters: False
 ```
 
 ### -ValidationFormula
-Specifies the validation formula.
+{{ Fill ValidationFormula Description }}
 
 ```yaml
 Type: String
@@ -491,7 +491,7 @@ Accept wildcard characters: False
 ```
 
 ### -ValidationMessage
-Specifies the validation message.
+{{ Fill ValidationMessage Description }}
 
 ```yaml
 Type: String
@@ -506,7 +506,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-Determines how PowerShell responds to progress updates generated by a script, cmdlet, or provider.
+{{ Fill ProgressAction Description }}
 
 ```yaml
 Type: ActionPreference
@@ -526,11 +526,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.List
-
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.List
-
 ## NOTES
 
 ## RELATED LINKS

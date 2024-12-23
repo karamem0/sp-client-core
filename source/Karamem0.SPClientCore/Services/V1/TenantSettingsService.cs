@@ -25,6 +25,7 @@ public interface ITenantSettingsService
 
 public class TenantSettingsService(ClientContext clientContext) : ClientService(clientContext), ITenantSettingsService
 {
+
     public TenantSettings GetObject()
     {
         var requestUrl = this.ClientContext.BaseAddress

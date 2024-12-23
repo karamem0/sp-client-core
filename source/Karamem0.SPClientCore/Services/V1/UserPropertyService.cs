@@ -29,6 +29,7 @@ public interface IUserPropertyService
 
 public class UserPropertyService(ClientContext clientContext) : ClientService<UserProperty>(clientContext), IUserPropertyService
 {
+
     public UserProperty GetObject()
     {
         var requestPayload = new ClientRequestPayload();

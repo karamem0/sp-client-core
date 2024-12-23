@@ -31,6 +31,7 @@ public interface ITenantListDesignService
 
 public class TenantListDesignService(ClientContext clientContext) : ClientService(clientContext), ITenantListDesignService
 {
+
     public TenantListDesign AddObject(IReadOnlyDictionary<string, object> creationInfo)
     {
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));

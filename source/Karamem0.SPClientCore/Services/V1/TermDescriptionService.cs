@@ -27,6 +27,7 @@ public interface ITermDescriptionService
 
 public class TermDescriptionService(ClientContext clientContext) : ClientService(clientContext), ITermDescriptionService
 {
+
     public string GetObject(Term termObject, uint? lcid)
     {
         _ = termObject ?? throw new ArgumentNullException(nameof(termObject));

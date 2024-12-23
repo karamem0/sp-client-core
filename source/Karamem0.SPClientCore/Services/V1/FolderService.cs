@@ -60,6 +60,7 @@ public interface IFolderService
 
 public class FolderService(ClientContext clientContext) : ClientService<Folder>(clientContext), IFolderService
 {
+
     public void ApproveObject(Folder folderObject, string comment)
     {
         _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
@@ -96,7 +97,7 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
                     new Uri(this.ClientContext.BaseAddress.GetLeftPart(UriPartial.Authority))
                         .ConcatPath(folderObject.ServerRelativeUrl)
                         .ToString()),
-                requestPayload.CreateParameter(folderUrl.ToString()),
+                requestPayload.CreateParameter(folderUrl),
                 requestPayload.CreateParameter(moveCopyOptions)
             ));
         _ = this.ClientContext.ProcessQuery(requestPayload);
@@ -219,7 +220,7 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
             new ObjectPathMethod(
                 objectPath2.Id,
                 "GetFolderByServerRelativeUrl",
-                requestPayload.CreateParameter(folderUrl.ToString())),
+                requestPayload.CreateParameter(folderUrl)),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
@@ -303,7 +304,7 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
             objectPathId => new ClientActionMethod(
                 objectPathId,
                 "MoveTo",
-                requestPayload.CreateParameter(folderUrl.ToString())));
+                requestPayload.CreateParameter(folderUrl)));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
@@ -321,7 +322,7 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
                     new Uri(this.ClientContext.BaseAddress.GetLeftPart(UriPartial.Authority))
                         .ConcatPath(folderObject.ServerRelativeUrl)
                         .ToString()),
-                requestPayload.CreateParameter(folderUrl.ToString()),
+                requestPayload.CreateParameter(folderUrl),
                 requestPayload.CreateParameter(moveCopyOptions)
             ));
         _ = this.ClientContext.ProcessQuery(requestPayload);

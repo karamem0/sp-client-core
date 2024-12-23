@@ -8,7 +8,7 @@ schema: 2.0.0
 # Set-KshColumnText
 
 ## SYNOPSIS
-Updates a column of text type.
+{{ Fill in the Synopsis }}
 
 ## SYNTAX
 
@@ -24,21 +24,21 @@ Set-KshColumnText [-Identity] <Column> [-ClientSideComponentId <String>]
 ```
 
 ## DESCRIPTION
-The Set-KshColumnText cmdlet updates properties of the column of text type.
+{{ Fill in the Description }}
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> Set-KshColumnText -Identity (Get-KshColumn -ColumnId '35aa78a6-66d7-472c-ab6b-d534193842af') -ReadOnly $true
+PS C:\> {{ Add example code here }}
 ```
 
-Updates property values of the column.
+{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -ClientSideComponentId
-Specifies the ID of the client-side component.
+{{ Fill ClientSideComponentId Description }}
 
 ```yaml
 Type: String
@@ -53,7 +53,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClientSideComponentProperties
-Specifies the JSON string that the propeties of the client-side component.
+{{ Fill ClientSideComponentProperties Description }}
 
 ```yaml
 Type: String
@@ -68,7 +68,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClientValidationFormula
-Specifies the client validation formula.
+{{ Fill ClientValidationFormula Description }}
 
 ```yaml
 Type: String
@@ -83,7 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClientValidationMessage
-Specifies the client validation message.
+{{ Fill ClientValidationMessage Description }}
 
 ```yaml
 Type: String
@@ -98,7 +98,7 @@ Accept wildcard characters: False
 ```
 
 ### -CustomFormatter
-Specifies the JSON string of custom format.
+{{ Fill CustomFormatter Description }}
 
 ```yaml
 Type: String
@@ -113,7 +113,7 @@ Accept wildcard characters: False
 ```
 
 ### -DefaultFormula
-Specifies the default formula.
+{{ Fill DefaultFormula Description }}
 
 ```yaml
 Type: String
@@ -128,7 +128,7 @@ Accept wildcard characters: False
 ```
 
 ### -DefaultValue
-Specifies the default value.
+{{ Fill DefaultValue Description }}
 
 ```yaml
 Type: String
@@ -143,7 +143,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
-Specifies the description.
+{{ Fill Description Description }}
 
 ```yaml
 Type: String
@@ -158,7 +158,7 @@ Accept wildcard characters: False
 ```
 
 ### -Direction
-Specifies the direction.
+{{ Fill Direction Description }}
 
 ```yaml
 Type: String
@@ -173,7 +173,7 @@ Accept wildcard characters: False
 ```
 
 ### -EnforceUniqueValues
-Specifies whether the column must to have unique value.
+{{ Fill EnforceUniqueValues Description }}
 
 ```yaml
 Type: Boolean
@@ -188,7 +188,7 @@ Accept wildcard characters: False
 ```
 
 ### -Group
-Specifies the name for grouping.
+{{ Fill Group Description }}
 
 ```yaml
 Type: String
@@ -203,7 +203,7 @@ Accept wildcard characters: False
 ```
 
 ### -Hidden
-Specifies whether to hide the column from users.
+{{ Fill Hidden Description }}
 
 ```yaml
 Type: Boolean
@@ -218,7 +218,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-Specifies the column.
+{{ Fill Identity Description }}
 
 ```yaml
 Type: Column
@@ -233,7 +233,7 @@ Accept wildcard characters: False
 ```
 
 ### -Indexed
-Specifies whether to the column is indexed.
+{{ Fill Indexed Description }}
 
 ```yaml
 Type: Boolean
@@ -248,7 +248,7 @@ Accept wildcard characters: False
 ```
 
 ### -JSLink
-Specifies the JSLink URL.
+{{ Fill JSLink Description }}
 
 ```yaml
 Type: String
@@ -263,7 +263,7 @@ Accept wildcard characters: False
 ```
 
 ### -MaxLength
-Specifies the maximum length.
+{{ Fill MaxLength Description }}
 
 ```yaml
 Type: Int32
@@ -278,7 +278,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoCrawl
-Specifies whether to suppress to search crawling.
+{{ Fill NoCrawl Description }}
 
 ```yaml
 Type: Boolean
@@ -293,7 +293,7 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
-If specified, returns the updated object.
+{{ Fill PassThru Description }}
 
 ```yaml
 Type: SwitchParameter
@@ -308,7 +308,7 @@ Accept wildcard characters: False
 ```
 
 ### -PushChanges
-If Specified, propagates changes to all lists that use the column.
+{{ Fill PushChanges Description }}
 
 ```yaml
 Type: SwitchParameter
@@ -323,7 +323,7 @@ Accept wildcard characters: False
 ```
 
 ### -ReadOnly
-Specifies whether changes to the column properties are denied.
+{{ Fill ReadOnly Description }}
 
 ```yaml
 Type: Boolean
@@ -338,7 +338,7 @@ Accept wildcard characters: False
 ```
 
 ### -Required
-Specifies whether a value is required.
+{{ Fill Required Description }}
 
 ```yaml
 Type: Boolean
@@ -353,7 +353,7 @@ Accept wildcard characters: False
 ```
 
 ### -StaticName
-Specifies the static name.
+{{ Fill StaticName Description }}
 
 ```yaml
 Type: String
@@ -368,7 +368,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
-Specifies the title.
+{{ Fill Title Description }}
 
 ```yaml
 Type: String
@@ -383,7 +383,7 @@ Accept wildcard characters: False
 ```
 
 ### -ValidationFormula
-Specifies the validation formula.
+{{ Fill ValidationFormula Description }}
 
 ```yaml
 Type: String
@@ -398,7 +398,7 @@ Accept wildcard characters: False
 ```
 
 ### -ValidationMessage
-Specifies the validation message.
+{{ Fill ValidationMessage Description }}
 
 ```yaml
 Type: String
@@ -413,7 +413,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-Determines how PowerShell responds to progress updates generated by a script, cmdlet, or provider.
+{{ Fill ProgressAction Description }}
 
 ```yaml
 Type: ActionPreference
@@ -433,11 +433,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.Column
-
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.ColumnText
-
 ## NOTES
 
 ## RELATED LINKS

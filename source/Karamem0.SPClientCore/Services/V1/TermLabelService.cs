@@ -44,6 +44,7 @@ public interface ITermLabelService
 
 public class TermLabelService(ClientContext clientContext) : ClientService<TermLabel>(clientContext), ITermLabelService
 {
+
     public TermLabel AddObject(Term termObject, string name, uint lcid, bool isDefault)
     {
         _ = termObject ?? throw new ArgumentNullException(nameof(termObject));

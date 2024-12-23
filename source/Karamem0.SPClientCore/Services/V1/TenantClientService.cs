@@ -18,12 +18,8 @@ using System.Threading;
 
 namespace Karamem0.SharePoint.PowerShell.Services.V1;
 
-public abstract class TenantClientService : ClientService
+public abstract class TenantClientService(ClientContext clientContext) : ClientService(clientContext)
 {
-
-    protected TenantClientService(ClientContext clientContext) : base(clientContext)
-    {
-    }
 
     public void WaitObject(TenantOperationResult operationResultObject)
     {

@@ -29,6 +29,7 @@ public interface IDocumentSetSharedColumnService
 
 public class DocumentSetSharedColumnService(ClientContext clientContext) : ClientService(clientContext), IDocumentSetSharedColumnService
 {
+
     public void AddObject(ContentType contentTypeObject, Column columnObject, bool pushChanges)
     {
         _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));

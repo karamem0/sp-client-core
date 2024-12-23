@@ -43,6 +43,7 @@ public interface ISiteCollectionAppService
 
 public class SiteCollectionAppService(ClientContext clientContext) : ClientService(clientContext), ISiteCollectionAppService
 {
+
     public App AddObject(System.IO.Stream appContent, string appName, bool overwrite)
     {
         _ = appContent ?? throw new ArgumentNullException(nameof(appContent));

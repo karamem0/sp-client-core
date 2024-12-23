@@ -27,6 +27,7 @@ public interface ITenantDeletedPersonalSiteCollectionService
 
 public class TenantDeletedPersonalSiteCollectionService(ClientContext clientContext) : ClientService(clientContext), ITenantDeletedPersonalSiteCollectionService
 {
+
     public IEnumerable<TenantDeletedSiteCollection> GetObjectEnumerable()
     {
         var requestPayload = new ClientRequestPayload();
@@ -58,7 +59,7 @@ public class TenantDeletedPersonalSiteCollectionService(ClientContext clientCont
             new ObjectPathMethod(
                 objectPath1.Id,
                 "GetDeletedPersonalSitePropertiesAllVersions",
-                requestPayload.CreateParameter(siteCollectionUrl.ToString())),
+                requestPayload.CreateParameter(siteCollectionUrl)),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {

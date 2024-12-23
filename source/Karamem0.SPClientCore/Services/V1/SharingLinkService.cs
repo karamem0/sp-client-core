@@ -48,6 +48,7 @@ public interface ISharingLinkService
 
 public class SharingLinkService(ClientContext clientContext) : ClientService(clientContext), ISharingLinkService
 {
+
     public string CreateAnonymousLink(Uri url, bool isEditLink)
     {
         _ = url ?? throw new ArgumentNullException(nameof(url));
@@ -56,7 +57,7 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
             new ClientActionStaticMethod(
                 typeof(Site),
                 "CreateAnonymousLink",
-                requestPayload.CreateParameter(url.ToString()),
+                requestPayload.CreateParameter(url),
                 requestPayload.CreateParameter(isEditLink)
             ));
         return this.ClientContext
@@ -72,7 +73,7 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
             new ClientActionStaticMethod(
                 typeof(Site),
                 "CreateAnonymousLinkWithExpiration",
-                requestPayload.CreateParameter(url.ToString()),
+                requestPayload.CreateParameter(url),
                 requestPayload.CreateParameter(isEditLink),
                 requestPayload.CreateParameter(expiration.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'sszzz"))
             ));
@@ -89,7 +90,7 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
             new ClientActionStaticMethod(
                 typeof(Site),
                 "CreateOrganizationSharingLink",
-                requestPayload.CreateParameter(url.ToString()),
+                requestPayload.CreateParameter(url),
                 requestPayload.CreateParameter(isEditLink)
             ));
         return this.ClientContext
@@ -114,7 +115,7 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
             new ObjectPathStaticMethod(
                 typeof(SharingInfo),
                 "GetObjectSharingInformationByUrl",
-                requestPayload.CreateParameter(url.ToString()),
+                requestPayload.CreateParameter(url),
                 requestPayload.CreateParameter(excludeCurrentUser),
                 requestPayload.CreateParameter(excludeSiteAdmin),
                 requestPayload.CreateParameter(excludeSecurityGroups),
@@ -140,7 +141,7 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
             new ObjectPathStaticMethod(
                 typeof(Site),
                 "GetObjectSharingSettings",
-                requestPayload.CreateParameter(url.ToString()),
+                requestPayload.CreateParameter(url),
                 requestPayload.CreateParameter(groupId),
                 requestPayload.CreateParameter(useSimplifiedRoles)
             ),
@@ -161,7 +162,7 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
             new ClientActionStaticMethod(
                 typeof(Site),
                 "GetSharingLinkKind",
-                requestPayload.CreateParameter(url.ToString())
+                requestPayload.CreateParameter(url)
             ));
         return this.ClientContext
             .ProcessQuery(requestPayload)
@@ -176,7 +177,7 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
             new ClientActionStaticMethod(
                 typeof(Site),
                 "DeleteAnonymousLinkForObject",
-                requestPayload.CreateParameter(url.ToString()),
+                requestPayload.CreateParameter(url),
                 requestPayload.CreateParameter(isEditLink),
                 requestPayload.CreateParameter(removeAssociatedSharingLinkGroup)
         ));
@@ -191,7 +192,7 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
             new ClientActionStaticMethod(
                 typeof(Site),
                 "DestroyOrganizationSharingLink",
-                requestPayload.CreateParameter(url.ToString()),
+                requestPayload.CreateParameter(url),
                 requestPayload.CreateParameter(isEditLink),
                 requestPayload.CreateParameter(removeAssociatedSharingLinkGroup)
         ));

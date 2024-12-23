@@ -38,6 +38,7 @@ public interface IAttachmentFileService
 
 public class AttachmentFileService(ClientContext clientContext) : ClientService<AttachmentFile>(clientContext), IAttachmentFileService
 {
+
     public System.IO.Stream DownloadObject(AttachmentFile attachmentFileObject)
     {
         _ = attachmentFileObject ?? throw new ArgumentNullException(nameof(attachmentFileObject));

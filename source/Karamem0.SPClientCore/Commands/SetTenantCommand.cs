@@ -18,7 +18,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
 [Cmdlet(VerbsCommon.Set, "KshTenant")]
-[OutputType((Type[])null)]
+[OutputType(typeof(void))]
 public class SetTenantCommand : ClientObjectCmdlet<ITenantService>
 {
 
@@ -217,6 +217,9 @@ public class SetTenantCommand : ClientObjectCmdlet<ITenantService>
 
     [Parameter(Mandatory = false)]
     public bool EnableRestrictedAccessControl { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public bool EnableVersionExpirationSetting { get; private set; }
 
     [Parameter(Mandatory = false)]
     public string[] ExcludedFileExtensionsForSyncClient { get; private set; }
@@ -476,9 +479,16 @@ public class SetTenantCommand : ClientObjectCmdlet<ITenantService>
     [Parameter(Mandatory = false)]
     public bool Workflow2010Disabled { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter PassThru { get; private set; }
+
     protected override void ProcessRecordCore()
     {
         this.Service.SetObject(this.MyInvocation.BoundParameters);
+        if (this.PassThru)
+        {
+            this.Outputs.Add(this.Service.GetObject());
+        }
     }
 
 }

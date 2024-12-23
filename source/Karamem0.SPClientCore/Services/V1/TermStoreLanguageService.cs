@@ -27,6 +27,7 @@ public interface ITermStoreLanguageService
 
 public class TermStoreLanguageService(ClientContext clientContext) : ClientService(clientContext), ITermStoreLanguageService
 {
+
     public void AddObject(uint? lcid)
     {
         _ = lcid ?? throw new ArgumentNullException(nameof(lcid));

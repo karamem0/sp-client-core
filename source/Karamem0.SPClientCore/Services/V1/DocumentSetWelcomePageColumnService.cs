@@ -29,6 +29,7 @@ public interface IDocumentSetWelcomePageColumnService
 
 public class DocumentSetWelcomePageColumnService(ClientContext clientContext) : ClientService(clientContext), IDocumentSetWelcomePageColumnService
 {
+
     public void AddObject(ContentType contentTypeObject, Column columnObject, bool pushChanges)
     {
         _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));

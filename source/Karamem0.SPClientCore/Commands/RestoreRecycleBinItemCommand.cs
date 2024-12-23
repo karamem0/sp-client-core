@@ -18,7 +18,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
 [Cmdlet(VerbsData.Restore, "KshRecycleBinItem")]
-[OutputType((Type[])null)]
+[OutputType(typeof(void))]
 public class RestoreRecycleBinItemCommand : ClientObjectCmdlet<IRecycleBinItemService>
 {
 

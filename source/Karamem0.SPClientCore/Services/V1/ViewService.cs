@@ -37,6 +37,7 @@ public interface IViewService
 
 public class ViewService(ClientContext clientContext) : ClientService<View>(clientContext), IViewService
 {
+
     public View AddObject(List listObject, IReadOnlyDictionary<string, object> creationInfo)
     {
         _ = listObject ?? throw new ArgumentNullException(nameof(listObject));

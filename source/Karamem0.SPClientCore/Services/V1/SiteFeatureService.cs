@@ -33,6 +33,7 @@ public interface ISiteFeatureService
 
 public class SiteFeatureService(ClientContext clientContext) : ClientService<Feature>(clientContext), ISiteFeatureService
 {
+
     public void AddObject(Guid? featureId, bool force, FeatureDefinitionScope scope)
     {
         _ = featureId ?? throw new ArgumentNullException(nameof(featureId));

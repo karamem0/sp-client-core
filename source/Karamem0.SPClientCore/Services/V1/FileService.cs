@@ -74,6 +74,7 @@ public interface IFileService
 
 public class FileService(ClientContext clientContext) : ClientService<File>(clientContext), IFileService
 {
+
     public void ApproveObject(File fileObject, string comment)
     {
         _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
@@ -121,7 +122,7 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
             objectPathId => new ClientActionMethod(
                 objectPathId,
                 "CopyTo",
-                requestPayload.CreateParameter(fileUrl.ToString()),
+                requestPayload.CreateParameter(fileUrl),
                 requestPayload.CreateParameter(overwrite)));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
@@ -140,7 +141,7 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                     new Uri(this.ClientContext.BaseAddress.GetLeftPart(UriPartial.Authority))
                         .ConcatPath(fileObject.ServerRelativeUrl)
                         .ToString()),
-                requestPayload.CreateParameter(fileUrl.ToString()),
+                requestPayload.CreateParameter(fileUrl),
                 requestPayload.CreateParameter(overwrite),
                 requestPayload.CreateParameter(moveCopyOptions)
             ));
@@ -286,7 +287,7 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
             new ObjectPathMethod(
                 objectPath2.Id,
                 "GetFileByServerRelativeUrl",
-                requestPayload.CreateParameter(fileUrl.ToString())),
+                requestPayload.CreateParameter(fileUrl)),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
@@ -350,7 +351,7 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
             objectPathId => new ClientActionMethod(
                 objectPathId,
                 "MoveTo",
-                requestPayload.CreateParameter(fileUrl.ToString()),
+                requestPayload.CreateParameter(fileUrl),
                 requestPayload.CreateParameter(fileMoveOperations)));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
@@ -369,7 +370,7 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                     new Uri(this.ClientContext.BaseAddress.GetLeftPart(UriPartial.Authority))
                         .ConcatPath(fileObject.ServerRelativeUrl)
                         .ToString()),
-                requestPayload.CreateParameter(fileUrl.ToString()),
+                requestPayload.CreateParameter(fileUrl),
                 requestPayload.CreateParameter(overwrite),
                 requestPayload.CreateParameter(moveCopyOptions)
             ));

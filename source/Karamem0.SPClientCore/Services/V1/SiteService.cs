@@ -45,6 +45,7 @@ public interface ISiteService
 
 public class SiteService(ClientContext clientContext) : ClientService<Site>(clientContext), ISiteService
 {
+
     public Site AddObject(IReadOnlyDictionary<string, object> creationInfo)
     {
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
@@ -165,7 +166,7 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
             new ObjectPathMethod(
                 objectPath2.Id,
                 "OpenWeb",
-                requestPayload.CreateParameter(siteUrl.ToString())),
+                requestPayload.CreateParameter(siteUrl)),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {

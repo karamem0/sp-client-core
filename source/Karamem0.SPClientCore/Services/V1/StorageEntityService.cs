@@ -29,6 +29,7 @@ public interface IStorageEntityService
 
 public class StorageEntityService(ClientContext clientContext) : ClientService(clientContext), IStorageEntityService
 {
+
     public void AddObject(string key, string value, string description, string comment)
     {
         _ = key ?? throw new ArgumentNullException(nameof(key));

@@ -29,6 +29,7 @@ public interface ITenantHomeSiteService
 
 public class TenantHomeSiteService(ClientContext clientContext) : ClientService(clientContext), ITenantHomeSiteService
 {
+
     public string GetObject()
     {
         var requestPayload = new ClientRequestPayload();

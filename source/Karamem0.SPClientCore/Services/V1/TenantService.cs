@@ -27,6 +27,7 @@ public interface ITenantService
 
 public class TenantService(ClientContext clientContext) : ClientService(clientContext), ITenantService
 {
+
     public Tenant GetObject()
     {
         var requestPayload = new ClientRequestPayload();

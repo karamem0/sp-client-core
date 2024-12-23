@@ -43,6 +43,7 @@ public interface IContentTypeService
 
 public class ContentTypeService(ClientContext clientContext) : ClientService<ContentType>(clientContext), IContentTypeService
 {
+
     public ContentType AddObject(IReadOnlyDictionary<string, object> creationInfo)
     {
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));

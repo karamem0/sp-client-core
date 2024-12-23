@@ -29,6 +29,7 @@ public interface ISiteCollectionService
 
 public class SiteCollectionService(ClientContext clientContext) : ClientService<SiteCollection>(clientContext), ISiteCollectionService
 {
+
     public SiteCollection GetObject()
     {
         var requestPayload = new ClientRequestPayload();
@@ -56,7 +57,7 @@ public class SiteCollectionService(ClientContext clientContext) : ClientService<
             new ObjectPathMethod(
                 objectPath1.Id,
                 "GetSiteByUrl",
-                requestPayload.CreateParameter(siteCollectionUrl.ToString()),
+                requestPayload.CreateParameter(siteCollectionUrl),
                 requestPayload.CreateParameter(false)),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)

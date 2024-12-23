@@ -33,6 +33,7 @@ public interface IGroupMemberService
 
 public class GroupMemberService(ClientContext clientContext) : ClientService(clientContext), IGroupMemberService
 {
+
     public User AddObject(Group groupObject, User memberObject)
     {
         _ = groupObject ?? throw new ArgumentNullException(nameof(groupObject));

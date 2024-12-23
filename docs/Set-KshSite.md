@@ -8,7 +8,7 @@ schema: 2.0.0
 # Set-KshSite
 
 ## SYNOPSIS
-Updates a site.
+{{ Fill in the Synopsis }}
 
 ## SYNTAX
 
@@ -29,21 +29,21 @@ Set-KshSite [[-Identity] <Site>] [-AllowAutomaticASPXPageIndexing <Boolean>] [-A
 ```
 
 ## DESCRIPTION
-The Set-KshSite cmdlet updates properties of the site.
+{{ Fill in the Description }}
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> Set-KshSite -Identity (Get-KshSite -SiteId 'd298e576-6985-4119-9796-050b9f371872') -NoCrawl $true
+PS C:\> {{ Add example code here }}
 ```
 
-Updates property values of the site.
+{{ Add example description here }}
 
 ## PARAMETERS
 
 ### -AllowAutomaticASPXPageIndexing
-Specifies whether to allow automatic indexing of ASPX pages.
+{{ Fill AllowAutomaticASPXPageIndexing Description }}
 
 ```yaml
 Type: Boolean
@@ -58,7 +58,7 @@ Accept wildcard characters: False
 ```
 
 ### -AlternateCssUrl
-Specifies the alternate CSS URL.
+{{ Fill AlternateCssUrl Description }}
 
 ```yaml
 Type: String
@@ -73,7 +73,7 @@ Accept wildcard characters: False
 ```
 
 ### -CommentsOnSitePagesDisabled
-Specifies whether to disable comment on site pages.
+{{ Fill CommentsOnSitePagesDisabled Description }}
 
 ```yaml
 Type: Boolean
@@ -88,7 +88,7 @@ Accept wildcard characters: False
 ```
 
 ### -ContainsConfidentialInfo
-Specifies whether to allow to contain confidential information.
+{{ Fill ContainsConfidentialInfo Description }}
 
 ```yaml
 Type: Boolean
@@ -103,7 +103,7 @@ Accept wildcard characters: False
 ```
 
 ### -CustomMasterUrl
-Specifies the custom master URL.
+{{ Fill CustomMasterUrl Description }}
 
 ```yaml
 Type: String
@@ -118,7 +118,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
-Specifies the description.
+{{ Fill Description Description }}
 
 ```yaml
 Type: String
@@ -133,7 +133,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisableAppViews
-Specifies whether to disable the app views.
+{{ Fill DisableAppViews Description }}
 
 ```yaml
 Type: Boolean
@@ -148,7 +148,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisableFlows
-Specifies whether to disable the Microsoft Flow.
+{{ Fill DisableFlows Description }}
 
 ```yaml
 Type: Boolean
@@ -163,7 +163,7 @@ Accept wildcard characters: False
 ```
 
 ### -EnableMinimalDownload
-Specifies whether to enable minimal download.
+{{ Fill EnableMinimalDownload Description }}
 
 ```yaml
 Type: Boolean
@@ -178,7 +178,7 @@ Accept wildcard characters: False
 ```
 
 ### -ExcludeFromOfflineClient
-Specifies whether to exclude from offline client.
+{{ Fill ExcludeFromOfflineClient Description }}
 
 ```yaml
 Type: Boolean
@@ -193,7 +193,7 @@ Accept wildcard characters: False
 ```
 
 ### -FooterEnabled
-Specifies whether to enable footer.
+{{ Fill FooterEnabled Description }}
 
 ```yaml
 Type: Boolean
@@ -208,7 +208,7 @@ Accept wildcard characters: False
 ```
 
 ### -FooterLayout
-Specifies the footer layout type.
+{{ Fill FooterLayout Description }}
 
 ```yaml
 Type: FooterLayoutType
@@ -224,7 +224,7 @@ Accept wildcard characters: False
 ```
 
 ### -HeaderEmphasis
-Specifies the header emphasis type.
+{{ Fill HeaderEmphasis Description }}
 
 ```yaml
 Type: VariantThemeType
@@ -240,7 +240,7 @@ Accept wildcard characters: False
 ```
 
 ### -HeaderLayout
-Specifies the header layout type.
+{{ Fill HeaderLayout Description }}
 
 ```yaml
 Type: HeaderLayoutType
@@ -256,7 +256,7 @@ Accept wildcard characters: False
 ```
 
 ### -HorizontalQuickLaunch
-Specifies whether to show horizontal quick launch.
+{{ Fill HorizontalQuickLaunch Description }}
 
 ```yaml
 Type: Boolean
@@ -271,7 +271,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-Specifies the site.
+{{ Fill Identity Description }}
 
 ```yaml
 Type: Site
@@ -286,7 +286,7 @@ Accept wildcard characters: False
 ```
 
 ### -LogoAlignment
-Specifies the logo alignment.
+{{ Fill LogoAlignment Description }}
 
 ```yaml
 Type: LogoAlignment
@@ -302,7 +302,7 @@ Accept wildcard characters: False
 ```
 
 ### -MasterUrl
-Specifies the master URL.
+{{ Fill MasterUrl Description }}
 
 ```yaml
 Type: String
@@ -317,7 +317,7 @@ Accept wildcard characters: False
 ```
 
 ### -MegaMenuEnabled
-Specifies whether to enable mega menu.
+{{ Fill MegaMenuEnabled Description }}
 
 ```yaml
 Type: Boolean
@@ -332,7 +332,7 @@ Accept wildcard characters: False
 ```
 
 ### -MembersCanShare
-Specify whether members are allowed to share.
+{{ Fill MembersCanShare Description }}
 
 ```yaml
 Type: Boolean
@@ -347,7 +347,7 @@ Accept wildcard characters: False
 ```
 
 ### -NavAudienceTargetingEnabled
-Specify whether to enable navigation audience targeting.
+{{ Fill NavAudienceTargetingEnabled Description }}
 
 ```yaml
 Type: Boolean
@@ -362,7 +362,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoCrawl
-Specifies whether to suppress to search crawling.
+{{ Fill NoCrawl Description }}
 
 ```yaml
 Type: Boolean
@@ -377,7 +377,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectCacheEnabled
-Specifies whether to enable object cache.
+{{ Fill ObjectCacheEnabled Description }}
 
 ```yaml
 Type: Boolean
@@ -392,7 +392,7 @@ Accept wildcard characters: False
 ```
 
 ### -OverwriteTranslationsOnChange
-Specifies whether to overwrite translations.
+{{ Fill OverwriteTranslationsOnChange Description }}
 
 ```yaml
 Type: Boolean
@@ -407,7 +407,7 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
-If specified, returns the updated object.
+{{ Fill PassThru Description }}
 
 ```yaml
 Type: SwitchParameter
@@ -422,7 +422,7 @@ Accept wildcard characters: False
 ```
 
 ### -QuickLaunchEnabled
-Specifies whether to enable quick launch.
+{{ Fill QuickLaunchEnabled Description }}
 
 ```yaml
 Type: Boolean
@@ -437,7 +437,7 @@ Accept wildcard characters: False
 ```
 
 ### -RequestAccessEmail
-Specifies the e-mail address for access request.
+{{ Fill RequestAccessEmail Description }}
 
 ```yaml
 Type: String
@@ -452,7 +452,7 @@ Accept wildcard characters: False
 ```
 
 ### -SaveSiteAsTemplateEnabled
-Specifies whether to enable saving the site as a template.
+{{ Fill SaveSiteAsTemplateEnabled Description }}
 
 ```yaml
 Type: Boolean
@@ -467,7 +467,7 @@ Accept wildcard characters: False
 ```
 
 ### -SearchScope
-Specifies the search scope.
+{{ Fill SearchScope Description }}
 
 ```yaml
 Type: SearchScopeType
@@ -483,7 +483,7 @@ Accept wildcard characters: False
 ```
 
 ### -ServerRelativeUrl
-Specifies the site relative URL.
+{{ Fill ServerRelativeUrl Description }}
 
 ```yaml
 Type: String
@@ -498,7 +498,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteLogoDescription
-Specifies the site logo description.
+{{ Fill SiteLogoDescription Description }}
 
 ```yaml
 Type: String
@@ -513,7 +513,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteLogoUrl
-Specifies the site logo URL.
+{{ Fill SiteLogoUrl Description }}
 
 ```yaml
 Type: String
@@ -528,7 +528,7 @@ Accept wildcard characters: False
 ```
 
 ### -SyndicationEnabled
-Specifies whether to enable syndication.
+{{ Fill SyndicationEnabled Description }}
 
 ```yaml
 Type: Boolean
@@ -543,7 +543,7 @@ Accept wildcard characters: False
 ```
 
 ### -ThemedCssFolderUrl
-Specifies the themed CSS folder URL.
+{{ Fill ThemedCssFolderUrl Description }}
 
 ```yaml
 Type: String
@@ -558,7 +558,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
-Specifies the title.
+{{ Fill Title Description }}
 
 ```yaml
 Type: String
@@ -573,7 +573,7 @@ Accept wildcard characters: False
 ```
 
 ### -TreeViewEnabled
-Specifies whether to enable tree view.
+{{ Fill TreeViewEnabled Description }}
 
 ```yaml
 Type: Boolean
@@ -588,7 +588,7 @@ Accept wildcard characters: False
 ```
 
 ### -UIVersion
-Specifies the UI Version.
+{{ Fill UIVersion Description }}
 
 ```yaml
 Type: Int32
@@ -603,7 +603,7 @@ Accept wildcard characters: False
 ```
 
 ### -UIVersionConfigurationEnabled
-Specifies whether to enable UI version configuration.
+{{ Fill UIVersionConfigurationEnabled Description }}
 
 ```yaml
 Type: Boolean
@@ -618,7 +618,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-Determines how PowerShell responds to progress updates generated by a script, cmdlet, or provider.
+{{ Fill ProgressAction Description }}
 
 ```yaml
 Type: ActionPreference
@@ -638,11 +638,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.Site
-
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.Site
-
 ## NOTES
 
 ## RELATED LINKS

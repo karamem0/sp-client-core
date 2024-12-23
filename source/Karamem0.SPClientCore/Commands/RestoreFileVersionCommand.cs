@@ -18,7 +18,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
 [Cmdlet(VerbsData.Restore, "KshFileVersion")]
-[OutputType((Type[])null)]
+[OutputType(typeof(void))]
 public class RestoreFileVersionCommand : ClientObjectCmdlet<IFileVersionService>
 {
 

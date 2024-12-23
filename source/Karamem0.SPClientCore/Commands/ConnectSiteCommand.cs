@@ -22,7 +22,7 @@ using System.Threading;
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
 [Cmdlet(VerbsCommunications.Connect, "KshSite")]
-[OutputType((Type[])null)]
+[OutputType(typeof(void))]
 public class ConnectSiteCommand : OAuthCmdlet
 {
 
