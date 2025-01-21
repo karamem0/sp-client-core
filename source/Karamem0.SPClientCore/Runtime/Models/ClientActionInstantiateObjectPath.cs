@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2018-2024 karamem0
+// Copyright (c) 2018-2025 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -17,6 +17,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 [XmlType("ObjectPath", Namespace = "http://schemas.microsoft.com/sharepoint/clientquery/2009")]
 public class ClientActionInstantiateObjectPath(long objectPathId) : ClientAction
 {
+
     [XmlAttribute()]
     public override long Id { get; protected set; }
 

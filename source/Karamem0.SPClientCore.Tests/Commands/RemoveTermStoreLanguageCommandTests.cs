@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2018-2024 karamem0
+// Copyright (c) 2018-2025 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -17,7 +17,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands.Tests;
 
 [Category("Karamem0.SharePoint.PowerShell.Commands")]
-public class RemoveTermStoreCommandLanguageTests
+public class RemoveTermStoreLanguageCommandTests
 {
 
     [Test()]

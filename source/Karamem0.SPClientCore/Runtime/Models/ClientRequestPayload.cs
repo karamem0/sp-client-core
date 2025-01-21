@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2018-2024 karamem0
+// Copyright (c) 2018-2025 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -48,11 +48,6 @@ public class ClientRequestPayload : ClientRequestObject
 
     public ObjectPath Add(ObjectPath objectPath, params ClientActionDelegate[] delegates)
     {
-        return this.Add(objectPath, delegates.AsEnumerable());
-    }
-
-    public ObjectPath Add(ObjectPath objectPath, IEnumerable<ClientActionDelegate> delegates)
-    {
         _ = objectPath ?? throw new ArgumentNullException(nameof(objectPath));
         if (this.ObjectPaths.Count(item => item.Id == objectPath.Id) == 0)
         {
@@ -70,7 +65,7 @@ public class ClientRequestPayload : ClientRequestObject
         }
         else if (value is IEnumerable arrayObject)
         {
-            return new ClientRequestParameterArray(this, arrayObject.OfType<object>());
+            return new ClientRequestParameterArray(this, arrayObject.OfType<object>().ToArray());
         }
         else if (value is ObjectPath objectPath)
         {

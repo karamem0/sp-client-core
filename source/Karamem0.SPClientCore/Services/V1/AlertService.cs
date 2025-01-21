@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2018-2024 karamem0
+// Copyright (c) 2018-2025 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -75,7 +75,7 @@ public class AlertService(ClientContext clientContext) : ClientService<Alert>(cl
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
-                Query = new ClientQuery(true, typeof(Alert), conditions)
+                Query = new ClientQuery(true, typeof(Alert), [.. conditions])
             });
         return this.ClientContext
             .ProcessQuery(requestPayload)

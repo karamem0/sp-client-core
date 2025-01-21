@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2018-2024 karamem0
+// Copyright (c) 2018-2025 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -28,6 +28,7 @@ public class ClientRequestPropertyArray(string name, params object[] values) : C
     [XmlElement("Object")]
     public virtual IEnumerable<ClientRequestPropertyArrayValue> Values { get; protected set; } = values
             .Select(ClientRequestValue.Create)
-            .Select(value => new ClientRequestPropertyArrayValue(value.Type, value.Value));
+            .Select(value => new ClientRequestPropertyArrayValue(value.Type, value.Value))
+            .ToArray();
 
 }

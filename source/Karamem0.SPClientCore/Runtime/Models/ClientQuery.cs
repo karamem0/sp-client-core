@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2018-2024 karamem0
+// Copyright (c) 2018-2025 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -30,11 +30,6 @@ public class ClientQuery : ClientRequestObject
     }
 
     public ClientQuery(bool selectAllProperties, Type type, params string[] conditions)
-        : this(selectAllProperties, type, conditions.AsEnumerable())
-    {
-    }
-
-    public ClientQuery(bool selectAllProperties, Type type, IEnumerable<string> conditions)
     {
         this.SelectAllProperties = selectAllProperties;
         this.Properties = type.GetDeclaredProperties()

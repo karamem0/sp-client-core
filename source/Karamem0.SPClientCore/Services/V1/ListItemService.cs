@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2018-2024 karamem0
+// Copyright (c) 2018-2025 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -369,20 +369,18 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(listItemObject.ObjectIdentity),
-            [
-                ..modificationInfo.Select(parameter =>
-                    new ClientActionDelegate(objectPathId =>
-                        new ClientActionMethod(
-                            objectPathId,
-                            "SetFieldValue",
-                            requestPayload.CreateParameter(parameter.Key),
-                            requestPayload.CreateParameter(parameter.Value))))
-                    .Append(objectPathId => new ClientActionMethod(
+            modificationInfo.Select(parameter =>
+                new ClientActionDelegate(objectPathId =>
+                    new ClientActionMethod(
                         objectPathId,
-                        useSyetemUpdate ? "SystemUpdate" : "Update"))
-                    .Where(item => item is not null)
-            ]
-        );
+                        "SetFieldValue",
+                        requestPayload.CreateParameter(parameter.Key),
+                        requestPayload.CreateParameter(parameter.Value))))
+                .Append(objectPathId => new ClientActionMethod(
+                    objectPathId,
+                    useSyetemUpdate ? "SystemUpdate" : "Update"))
+                .Where(item => item is not null)
+                .ToArray());
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

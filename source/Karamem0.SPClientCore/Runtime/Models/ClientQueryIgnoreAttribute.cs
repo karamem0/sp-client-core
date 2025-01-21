@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2018-2024 karamem0
+// Copyright (c) 2018-2025 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -14,14 +14,18 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
-public class ClientQueryIgnoreAttribute(string name) : Attribute
+public class ClientQueryIgnoreAttribute : Attribute
 {
 
     public ClientQueryIgnoreAttribute()
-        : this(null)
     {
     }
 
-    public string Name { get; private set; } = name;
+    public ClientQueryIgnoreAttribute(string name)
+    {
+        this.Name = name;
+    }
+
+    public string Name { get; private set; }
 
 }

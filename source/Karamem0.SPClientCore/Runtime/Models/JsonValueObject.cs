@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2018-2024 karamem0
+// Copyright (c) 2018-2025 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -29,7 +29,7 @@ public abstract class JsonValueObject : ValueObject
     public virtual object this[string key] => this.ExtensionProperties[key];
 
     [JsonIgnore()]
-    public IReadOnlyCollection<string> ExtensionKeys => this.ExtensionProperties
+    public virtual IEnumerable<string> ExtensionKeys => this.ExtensionProperties
         .Where(item => item.Value is not null)
         .Select(ClientResultValue.Create)
         .Select(item => item.Key)
@@ -39,10 +39,11 @@ public abstract class JsonValueObject : ValueObject
     protected virtual Dictionary<string, JToken> ExtensionProperties { get; private set; }
 
     [JsonIgnore()]
-    protected override Lazy<IEnumerable<PropertyInfo>> EqualityProperties => new(() =>
+    protected override Lazy<PropertyInfo[]> EqualityProperties => new(() =>
         this.GetType()
             .GetProperties(BindingFlags.Instance | BindingFlags.Public)
             .Where(property => property.IsDefined(typeof(JsonPropertyAttribute), true))
+            .ToArray()
     );
 
 }

@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2018-2024 karamem0
+// Copyright (c) 2018-2025 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -23,9 +23,11 @@ public abstract class ValueObject
     {
     }
 
-    protected virtual Lazy<IEnumerable<PropertyInfo>> EqualityProperties => new(() =>
+    protected virtual Lazy<PropertyInfo[]> EqualityProperties => new(() =>
+    [
+        ..
         this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public)
-    );
+    ]);
 
     public override bool Equals(object value)
     {

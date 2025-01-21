@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2018-2024 karamem0
+// Copyright (c) 2018-2025 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -57,9 +57,7 @@ public class AddListItemCommand : ClientObjectCmdlet<IListItemService>
                                 property => property.Value);
                         }
                     })
-                    .ToArray()
-                )
-            );
+                    .ToArray()));
         }
         else
         {
@@ -79,9 +77,7 @@ public class AddListItemCommand : ClientObjectCmdlet<IListItemService>
                                 property => property.Value);
                         }
                     })
-                    .ToArray()
-                )
-            );
+                    .ToArray()));
         }
     }
 
