@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshStorageEntity
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a new storage entity.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Add-KshStorageEntity -Key <String> -Value <String> [-Description <String>] [-Com
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshStorageEntity` cmdlet adds a new storage entity with the key and value. Optionally, you can provide a description and a comment for the storage entity.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshStorageEntity -Key "Copyright" -Value "Copyright (C) Contoso Corporation" -Description "Updated description" -Comment "Updated comment"
 ```
 
-{{ Add example description here }}
+This example adds a new storage entity with the key "Copyright" and value "Copyright (C) Contoso Corporation", along with a description and a comment.
 
 ## PARAMETERS
 
 ### -Comment
-{{ Fill Comment Description }}
+Specifies a comment for the storage entity.
 
 ```yaml
 Type: String
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
-{{ Fill Description Description }}
+Specifies a description for the storage entity.
 
 ```yaml
 Type: String
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -Key
-{{ Fill Key Description }}
+Specifies the key for the storage entity.
 
 ```yaml
 Type: String
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -Value
-{{ Fill Value Description }}
+Specifies the value for the storage entity.
 
 ```yaml
 Type: String
@@ -92,7 +92,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

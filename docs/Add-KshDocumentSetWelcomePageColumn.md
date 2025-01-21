@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshDocumentSetWelcomePageColumn
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a column to the welcome page of a document set.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Add-KshDocumentSetWelcomePageColumn [-ContentType] <ContentType> -Column <Column
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshDocumentSetWelcomePageColumn` cmdlet adds a specified column to the welcome page of a document set.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshDocumentSetWelcomePageColumn -ContentType $contentType -Column $column -PushChanges
 ```
 
-{{ Add example description here }}
+This example adds the specified column to the welcome page of the document set and pushes the changes.
 
 ## PARAMETERS
 
 ### -Column
-{{ Fill Column Description }}
+Specifies the column to add to the welcome page.
 
 ```yaml
 Type: Column
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -ContentType
-{{ Fill ContentType Description }}
+Specifies the content type of the document set.
 
 ```yaml
 Type: ContentType
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -PushChanges
-{{ Fill PushChanges Description }}
+Indicates that the changes should be pushed immediately.
 
 ```yaml
 Type: SwitchParameter
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

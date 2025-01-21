@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshAnonymousLink
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Creates an anonymous access link for a specified URL.
 
 ## SYNTAX
 
@@ -24,21 +24,28 @@ Add-KshAnonymousLink -Url <Uri> -IsEditLink <Boolean> -Expiration <DateTime>
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshAnonymousLink` cmdlet creates an anonymous access link for the specified URL. The link can be configured to allow either view or edit permissions. Optionally, an expiration date can be set for the link.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshAnonymousLink -Url "http://example.com/document" -IsEditLink $true
 ```
 
-{{ Add example description here }}
+This example creates an anonymous edit link for the specified document URL.
+
+### Example 2
+```powershell
+PS C:\> Add-KshAnonymousLink -Url "http://example.com/document" -IsEditLink $false -Expiration (Get-Date).AddDays(7)
+```
+
+This example creates an anonymous view link for the specified document URL that expires in 7 days.
 
 ## PARAMETERS
 
 ### -Expiration
-{{ Fill Expiration Description }}
+Specifies the expiration date and time for the anonymous link.
 
 ```yaml
 Type: DateTime
@@ -53,7 +60,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsEditLink
-{{ Fill IsEditLink Description }}
+Indicates whether the link allows edit permissions. If set to $true, the link allows editing; otherwise, it allows only viewing.
 
 ```yaml
 Type: Boolean
@@ -68,7 +75,7 @@ Accept wildcard characters: False
 ```
 
 ### -Url
-{{ Fill Url Description }}
+Specifies the URL for which the anonymous link is created.
 
 ```yaml
 Type: Uri
@@ -83,7 +90,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

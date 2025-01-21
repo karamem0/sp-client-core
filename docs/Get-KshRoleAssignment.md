@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshRoleAssignment
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more role assignments for a site, list, or list item.
 
 ## SYNTAX
 
@@ -51,21 +51,63 @@ Get-KshRoleAssignment [-ListItem] <ListItem> [-NoEnumerate] [-ProgressAction <Ac
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshRoleAssignment` cmdlet retrieves role assignments for a site, list, or list item based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshRoleAssignment -Identity $roleAssignment
 ```
 
-{{ Add example description here }}
+This example retrieves a role assignment by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshRoleAssignment -Site -PrincipalId 5
+```
+
+This example retrieves a site role assignment by principal ID.
+
+### Example 3
+```powershell
+PS C:\> Get-KshRoleAssignment -Site
+```
+
+This example retrieves all site role assignments.
+
+### Example 4
+```powershell
+PS C:\> Get-KshRoleAssignment -List $list -PrincipalId 5
+```
+
+This example retrieves a list role assignment by principal ID.
+
+### Example 5
+```powershell
+PS C:\> Get-KshRoleAssignment -List $list
+```
+
+This example retrieves all list role assignments.
+
+### Example 6
+```powershell
+PS C:\> Get-KshRoleAssignment -ListItem $listItem -PrincipalId 5
+```
+
+This example retrieves a list item role assignment by principal ID.
+
+### Example 7
+```powershell
+PS C:\> Get-KshRoleAssignment -ListItem $listItem
+```
+
+This example retrieves all list item role assignments.
 
 ## PARAMETERS
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the role assignment to retrieve.
 
 ```yaml
 Type: RoleAssignment
@@ -80,7 +122,7 @@ Accept wildcard characters: False
 ```
 
 ### -List
-{{ Fill List Description }}
+Specifies the list object.
 
 ```yaml
 Type: List
@@ -95,7 +137,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListItem
-{{ Fill ListItem Description }}
+Specifies the list item object.
 
 ```yaml
 Type: ListItem
@@ -110,7 +152,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the role assignments.
 
 ```yaml
 Type: SwitchParameter
@@ -125,7 +167,7 @@ Accept wildcard characters: False
 ```
 
 ### -PrincipalId
-{{ Fill PrincipalId Description }}
+Specifies the principal ID.
 
 ```yaml
 Type: Int32
@@ -140,7 +182,7 @@ Accept wildcard characters: False
 ```
 
 ### -Site
-{{ Fill Site Description }}
+Indicates that the cmdlet retrieves role assignments for a site.
 
 ```yaml
 Type: SwitchParameter
@@ -155,7 +197,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress.
 
 ```yaml
 Type: ActionPreference

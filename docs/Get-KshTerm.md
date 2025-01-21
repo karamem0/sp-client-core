@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshTerm
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves a term from a term store.
 
 ## SYNTAX
 
@@ -53,21 +53,70 @@ Get-KshTerm [-Term] <Term> [-NoEnumerate] [-ProgressAction <ActionPreference>] [
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshTerm` cmdlet retrieves a term from a term store based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshTerm -Identity $term
 ```
 
-{{ Add example description here }}
+This example retrieves a term by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshTerm -TermLabel $termLabel
+```
+
+This example retrieves a term by term label.
+
+### Example 3
+```powershell
+PS C:\> Get-KshTerm -TermSet $termSet -TermId $termId
+```
+
+This example retrieves a term by term set and term ID.
+
+### Example 4
+```powershell
+PS C:\> Get-KshTerm -TermSet $termSet -TermName "Sales"
+```
+
+This example retrieves a term by term set and term name.
+
+### Example 5
+```powershell
+PS C:\> Get-KshTerm -TermSet $termSet
+```
+
+This example retrieves terms in the specified term set.
+
+### Example 6
+```powershell
+PS C:\> Get-KshTerm -Term $term -TermId $termId
+```
+
+This example retrieves a term by term and term ID.
+
+### Example 7
+```powershell
+PS C:\> Get-KshTerm -Term $term -TermName "Sales"
+```
+
+This example retrieves a term by term and term name.
+
+### Example 8
+```powershell
+PS C:\> Get-KshTerm -Term $term
+```
+
+This example retrieves terms in the specified term.
 
 ## PARAMETERS
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the term to retrieve.
 
 ```yaml
 Type: Term
@@ -82,7 +131,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the term set.
 
 ```yaml
 Type: SwitchParameter
@@ -97,7 +146,7 @@ Accept wildcard characters: False
 ```
 
 ### -Term
-{{ Fill Term Description }}
+Specifies the term to retrieve.
 
 ```yaml
 Type: Term
@@ -112,7 +161,7 @@ Accept wildcard characters: False
 ```
 
 ### -TermId
-{{ Fill TermId Description }}
+Specifies the ID of the term to retrieve.
 
 ```yaml
 Type: Guid
@@ -127,7 +176,7 @@ Accept wildcard characters: False
 ```
 
 ### -TermLabel
-{{ Fill TermLabel Description }}
+Specifies the label of the term to retrieve.
 
 ```yaml
 Type: TermLabel
@@ -142,7 +191,7 @@ Accept wildcard characters: False
 ```
 
 ### -TermName
-{{ Fill TermName Description }}
+Specifies the name of the term to retrieve.
 
 ```yaml
 Type: String
@@ -157,7 +206,7 @@ Accept wildcard characters: False
 ```
 
 ### -TermSet
-{{ Fill TermSet Description }}
+Specifies the term set that contains the term to retrieve.
 
 ```yaml
 Type: TermSet
@@ -172,7 +221,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

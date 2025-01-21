@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshSiteCollectionAppCatalog
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a new app catalog to a site collection.
 
 ## SYNTAX
 
@@ -31,21 +31,35 @@ Add-KshSiteCollectionAppCatalog -SiteCollectionUrl <Uri> [-ProgressAction <Actio
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshSiteCollectionAppCatalog` cmdlet adds an app catalog to a site collection.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshSiteCollectionAppCatalog -SiteCollectionUrl "https://contoso.sharepoint.com/sites/site1"
 ```
 
-{{ Add example description here }}
+This example adds a new app catalog to the site collection at the specified URL.
+
+### Example 2
+```powershell
+PS C:\> Add-KshSiteCollectionAppCatalog -SiteCollection $siteCollection
+```
+
+This example adds an app catalog to the specified site collection.
+
+### Example 3
+```powershell
+PS C:\> Add-KshSiteCollectionAppCatalog -TenantSiteCollection $tenantSiteCollection
+```
+
+This example adds an app catalog to the specified tenant site collection.
 
 ## PARAMETERS
 
 ### -SiteCollection
-{{ Fill SiteCollection Description }}
+Specifies the site collection to which the app catalog is added.
 
 ```yaml
 Type: SiteCollection
@@ -60,7 +74,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteCollectionUrl
-{{ Fill SiteCollectionUrl Description }}
+Specifies the URL of the site collection to which the app catalog is added.
 
 ```yaml
 Type: Uri
@@ -75,7 +89,7 @@ Accept wildcard characters: False
 ```
 
 ### -TenantSiteCollection
-{{ Fill TenantSiteCollection Description }}
+Specifies the tenant site collection to which the app catalog is added.
 
 ```yaml
 Type: TenantSiteCollection
@@ -90,7 +104,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

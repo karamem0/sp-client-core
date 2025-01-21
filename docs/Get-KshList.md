@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshList
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more lists from the current site.
 
 ## SYNTAX
 
@@ -58,21 +58,77 @@ Get-KshList [-NoEnumerate] [-ProgressAction <ActionPreference>] [<CommonParamete
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshList` cmdlet retrieves a list from the specified site based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshList -Identity $list
 ```
 
-{{ Add example description here }}
+This example retrieves a list by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshList -ListItem $listItem
+```
+
+This example retrieves a list by list item.
+
+### Example 3
+```powershell
+PS C:\> Get-KshList -View $view
+```
+
+This example retrieves a list by view.
+
+### Example 4
+```powershell
+PS C:\> Get-KshList -Drive $drive
+```
+
+This example retrieves a list by drive.
+
+### Example 5
+```powershell
+PS C:\> Get-KshList -ListId $listId
+```
+
+This example retrieves a list by list ID.
+
+### Example 6
+```powershell
+PS C:\> Get-KshList -ListUrl $listUrl
+```
+
+This example retrieves a list by list URL.
+
+### Example 7
+```powershell
+PS C:\> Get-KshList -ListTitle "Documents"
+```
+
+This example retrieves a list by list title.
+
+### Example 8
+```powershell
+PS C:\> Get-KshList -LibraryType "SiteAssets"
+```
+
+This example retrieves a list by library type.
+
+### Example 9
+```powershell
+PS C:\> Get-KshList
+```
+
+This example retrieves all lists.
 
 ## PARAMETERS
 
 ### -Drive
-{{ Fill Drive Description }}
+Specifies the drive from which to retrieve the list.
 
 ```yaml
 Type: Drive
@@ -87,7 +143,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the list to retrieve.
 
 ```yaml
 Type: List
@@ -102,7 +158,7 @@ Accept wildcard characters: False
 ```
 
 ### -LibraryType
-{{ Fill LibraryType Description }}
+Specifies the type of library to retrieve.
 
 ```yaml
 Type: LibraryType
@@ -118,7 +174,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListId
-{{ Fill ListId Description }}
+Specifies the ID of the list to retrieve.
 
 ```yaml
 Type: Guid
@@ -133,7 +189,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListItem
-{{ Fill ListItem Description }}
+Specifies the list item from which to retrieve the list.
 
 ```yaml
 Type: ListItem
@@ -148,7 +204,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListTitle
-{{ Fill ListTitle Description }}
+Specifies the title of the list to retrieve.
 
 ```yaml
 Type: String
@@ -163,7 +219,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListUrl
-{{ Fill ListUrl Description }}
+Specifies the URL of the list to retrieve.
 
 ```yaml
 Type: Uri
@@ -178,7 +234,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the list.
 
 ```yaml
 Type: SwitchParameter
@@ -193,7 +249,7 @@ Accept wildcard characters: False
 ```
 
 ### -View
-{{ Fill View Description }}
+Specifies the view from which to retrieve the list.
 
 ```yaml
 Type: View
@@ -208,7 +264,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress.
 
 ```yaml
 Type: ActionPreference

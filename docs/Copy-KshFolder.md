@@ -8,7 +8,7 @@ schema: 2.0.0
 # Copy-KshFolder
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Copies a folder to a new location.
 
 ## SYNTAX
 
@@ -19,21 +19,21 @@ Copy-KshFolder [-Identity] <Folder> [-NewUrl] <Uri> [-KeepBoth] [-ResetAuthorAnd
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Copy-KshFolder` cmdlet copies a folder to a new location.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Copy-KshFolder -Identity $folder -NewUrl "http://contoso.sharepoint.com/Shared Documents/newfolder" -KeepBoth
 ```
 
-{{ Add example description here }}
+This example copies the folder to a new URL and keeps both versions if a folder with the same name already exists.
 
 ## PARAMETERS
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the folder to copy.
 
 ```yaml
 Type: Folder
@@ -48,7 +48,7 @@ Accept wildcard characters: False
 ```
 
 ### -KeepBoth
-{{ Fill KeepBoth Description }}
+Keeps both the original and the copied folder if a folder with the same name already exists at the destination.
 
 ```yaml
 Type: SwitchParameter
@@ -63,7 +63,7 @@ Accept wildcard characters: False
 ```
 
 ### -NewUrl
-{{ Fill NewUrl Description }}
+Specifies the URL of the new location for the folder.
 
 ```yaml
 Type: Uri
@@ -78,7 +78,7 @@ Accept wildcard characters: False
 ```
 
 ### -ResetAuthorAndCreatedOnCopy
-{{ Fill ResetAuthorAndCreatedOnCopy Description }}
+Resets the author and created date on the copied folder.
 
 ```yaml
 Type: SwitchParameter
@@ -93,7 +93,7 @@ Accept wildcard characters: False
 ```
 
 ### -RetainEditorAndModifiedOnMove
-{{ Fill RetainEditorAndModifiedOnMove Description }}
+Retains the editor and modified date on the moved folder.
 
 ```yaml
 Type: SwitchParameter
@@ -108,7 +108,7 @@ Accept wildcard characters: False
 ```
 
 ### -ShouldBypassSharedLocks
-{{ Fill ShouldBypassSharedLocks Description }}
+Bypasses any shared locks on the folder during the copy operation.
 
 ```yaml
 Type: SwitchParameter
@@ -123,7 +123,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

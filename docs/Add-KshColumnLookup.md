@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshColumnLookup
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a new Lookup column to a list or library.
 
 ## SYNTAX
 
@@ -51,21 +51,35 @@ Add-KshColumnLookup [-AllowMultipleValues <Boolean>] [-ClientSideComponentId <St
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshColumnLookup` adds a new Lookup column to a list or library. The column allows you to reference data from another list.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshColumnLookup -List $list -LookupColumnName "Title" -LookupListId $lookupListId -Name "Project"
 ```
 
-{{ Add example description here }}
+This example adds a new Lookup column named "Project" to the specified list. The lookup column references the "Title" column from another list.
+
+### Example 2
+```powershell
+PS C:\> Add-KshColumnLookup -LookupColumnName "Title" -LookupListId $lookupListId -Name "Project" -AllowMultipleValues $true
+```
+
+This example adds a new Lookup column named "Project" as a site column that allows multiple values. The lookup column references the "Title" column from another list.
+
+### Example 3
+```powershell
+PS C:\> Add-KshColumnLookup -LookupColumnName "Title" -LookupListId $lookupListId -Name "Project" -WhatIf
+```
+
+This example shows what would happen if the cmdlet runs without actually creating the column. The column would reference the "Title" column from another list.
 
 ## PARAMETERS
 
 ### -AddColumnCheckDisplayName
-{{ Fill AddColumnCheckDisplayName Description }}
+Specifies whether to check the display name of the column.
 
 ```yaml
 Type: SwitchParameter
@@ -80,7 +94,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddColumnInternalNameHint
-{{ Fill AddColumnInternalNameHint Description }}
+Specifies whether to add an internal name hint for the column.
 
 ```yaml
 Type: SwitchParameter
@@ -95,7 +109,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddColumnToDefaultView
-{{ Fill AddColumnToDefaultView Description }}
+Specifies whether to add the column to the default view.
 
 ```yaml
 Type: SwitchParameter
@@ -110,7 +124,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToAllContentTypes
-{{ Fill AddToAllContentTypes Description }}
+Specifies whether to add the column to all content types.
 
 ```yaml
 Type: SwitchParameter
@@ -125,7 +139,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToDefaultContentType
-{{ Fill AddToDefaultContentType Description }}
+Specifies whether to add the column to the default content type.
 
 ```yaml
 Type: SwitchParameter
@@ -140,7 +154,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToDefaultView
-{{ Fill AddToDefaultView Description }}
+Specifies whether to add the column to the default view.
 
 ```yaml
 Type: SwitchParameter
@@ -155,7 +169,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToNoContentType
-{{ Fill AddToNoContentType Description }}
+Specifies whether to add the column to no content type.
 
 ```yaml
 Type: SwitchParameter
@@ -170,7 +184,7 @@ Accept wildcard characters: False
 ```
 
 ### -AllowMultipleValues
-{{ Fill AllowMultipleValues Description }}
+Specifies whether the column allows multiple values.
 
 ```yaml
 Type: Boolean
@@ -185,7 +199,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClientSideComponentId
-{{ Fill ClientSideComponentId Description }}
+Specifies the client-side component ID for the column.
 
 ```yaml
 Type: String
@@ -200,7 +214,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClientSideComponentProperties
-{{ Fill ClientSideComponentProperties Description }}
+Specifies the client-side component properties for the column.
 
 ```yaml
 Type: String
@@ -215,7 +229,7 @@ Accept wildcard characters: False
 ```
 
 ### -CustomFormatter
-{{ Fill CustomFormatter Description }}
+Specifies the custom formatter for the column.
 
 ```yaml
 Type: String
@@ -230,7 +244,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
-{{ Fill Description Description }}
+Specifies the description of the column.
 
 ```yaml
 Type: String
@@ -245,7 +259,7 @@ Accept wildcard characters: False
 ```
 
 ### -Direction
-{{ Fill Direction Description }}
+Specifies the direction of the column.
 
 ```yaml
 Type: String
@@ -260,7 +274,7 @@ Accept wildcard characters: False
 ```
 
 ### -EnforceUniqueValues
-{{ Fill EnforceUniqueValues Description }}
+Specifies whether to enforce unique values for the column.
 
 ```yaml
 Type: Boolean
@@ -275,7 +289,7 @@ Accept wildcard characters: False
 ```
 
 ### -Group
-{{ Fill Group Description }}
+Specifies the group of the column.
 
 ```yaml
 Type: String
@@ -290,7 +304,7 @@ Accept wildcard characters: False
 ```
 
 ### -Hidden
-{{ Fill Hidden Description }}
+Specifies whether the column is hidden.
 
 ```yaml
 Type: Boolean
@@ -305,7 +319,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{ Fill Id Description }}
+Specifies the ID of the column.
 
 ```yaml
 Type: Guid
@@ -320,7 +334,7 @@ Accept wildcard characters: False
 ```
 
 ### -Indexed
-{{ Fill Indexed Description }}
+Specifies whether the column is indexed.
 
 ```yaml
 Type: Boolean
@@ -335,7 +349,7 @@ Accept wildcard characters: False
 ```
 
 ### -JSLink
-{{ Fill JSLink Description }}
+Specifies the JSLink for the column.
 
 ```yaml
 Type: String
@@ -350,7 +364,7 @@ Accept wildcard characters: False
 ```
 
 ### -List
-{{ Fill List Description }}
+Specifies the list to which the column is added.
 
 ```yaml
 Type: List
@@ -365,7 +379,7 @@ Accept wildcard characters: False
 ```
 
 ### -LookupColumnName
-{{ Fill LookupColumnName Description }}
+Specifies the name of the lookup column.
 
 ```yaml
 Type: String
@@ -380,7 +394,7 @@ Accept wildcard characters: False
 ```
 
 ### -LookupListId
-{{ Fill LookupListId Description }}
+Specifies the ID of the lookup list.
 
 ```yaml
 Type: Guid
@@ -395,7 +409,7 @@ Accept wildcard characters: False
 ```
 
 ### -LookupSiteId
-{{ Fill LookupSiteId Description }}
+Specifies the ID of the lookup site.
 
 ```yaml
 Type: Guid
@@ -410,7 +424,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{ Fill Name Description }}
+Specifies the name of the column.
 
 ```yaml
 Type: String
@@ -425,7 +439,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoCrawl
-{{ Fill NoCrawl Description }}
+Specifies whether the column is excluded from search crawling.
 
 ```yaml
 Type: Boolean
@@ -440,7 +454,7 @@ Accept wildcard characters: False
 ```
 
 ### -ReadOnly
-{{ Fill ReadOnly Description }}
+Specifies whether the column is read-only.
 
 ```yaml
 Type: Boolean
@@ -455,7 +469,7 @@ Accept wildcard characters: False
 ```
 
 ### -RelationshipDeleteBehavior
-{{ Fill RelationshipDeleteBehavior Description }}
+Specifies the relationship delete behavior for the column.
 
 ```yaml
 Type: RelationshipDeleteBehaviorType
@@ -471,7 +485,7 @@ Accept wildcard characters: False
 ```
 
 ### -Required
-{{ Fill Required Description }}
+Specifies whether the column is required.
 
 ```yaml
 Type: Boolean
@@ -486,7 +500,7 @@ Accept wildcard characters: False
 ```
 
 ### -StaticName
-{{ Fill StaticName Description }}
+Specifies the static name of the column.
 
 ```yaml
 Type: String
@@ -501,7 +515,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
-{{ Fill Title Description }}
+Specifies the title of the column.
 
 ```yaml
 Type: String
@@ -516,7 +530,7 @@ Accept wildcard characters: False
 ```
 
 ### -UnlimitedLengthInDocumentLibrary
-{{ Fill UnlimitedLengthInDocumentLibrary Description }}
+Specifies whether the column has unlimited length in a document library.
 
 ```yaml
 Type: Boolean
@@ -547,7 +561,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

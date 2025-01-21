@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshTenantDeletedPersonalSiteCollection
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more deleted personal site collections from the tenant.
 
 ## SYNTAX
 
@@ -25,21 +25,28 @@ Get-KshTenantDeletedPersonalSiteCollection [-NoEnumerate] [-ProgressAction <Acti
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshTenantDeletedPersonalSiteCollection` cmdlet retrieves one or more deleted personal site collections from the tenant based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshTenantDeletedPersonalSiteCollection -SiteCollectionUrl "https://contoso-my.sharepoint.com/personal/meganb_contoso_onmicrosoft_com"
 ```
 
-{{ Add example description here }}
+This example retrieves a deleted personal site collection by URL.
+
+### Example 2
+```powershell
+PS C:\> Get-KshTenantDeletedPersonalSiteCollection
+```
+
+This example retrieves all deleted personal site collections.
 
 ## PARAMETERS
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the collection.
 
 ```yaml
 Type: SwitchParameter
@@ -54,7 +61,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteCollectionUrl
-{{ Fill SiteCollectionUrl Description }}
+Specifies the URL of the personal site collection to retrieve.
 
 ```yaml
 Type: Uri
@@ -69,7 +76,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

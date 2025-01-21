@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshRoleDefinition
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more role definitions from the current site.
 
 ## SYNTAX
 
@@ -33,21 +33,42 @@ Get-KshRoleDefinition [-NoEnumerate] [-ProgressAction <ActionPreference>] [<Comm
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshRoleDefinition` cmdlet retrieves one or more role definitions from the current site based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshRoleDefinition -Identity $roleDefinition
 ```
 
-{{ Add example description here }}
+This example retrieves a role definition by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshRoleDefinition -RoleDefinitionId 1073741829
+```
+
+This example retrieves a role definition by role definition ID.
+
+### Example 3
+```powershell
+PS C:\> Get-KshRoleDefinition -RoleDefinitionName "Full Control"
+```
+
+This example retrieves a role definition by role definition name.
+
+### Example 4
+```powershell
+PS C:\> Get-KshRoleDefinition
+```
+
+This example retrieves all role definitions.
 
 ## PARAMETERS
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the role definition to retrieve.
 
 ```yaml
 Type: RoleDefinition
@@ -62,7 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the collection.
 
 ```yaml
 Type: SwitchParameter
@@ -77,7 +98,7 @@ Accept wildcard characters: False
 ```
 
 ### -RoleDefinitionId
-{{ Fill RoleDefinitionId Description }}
+Specifies the ID of the role definition.
 
 ```yaml
 Type: Int32
@@ -92,7 +113,7 @@ Accept wildcard characters: False
 ```
 
 ### -RoleDefinitionName
-{{ Fill RoleDefinitionName Description }}
+Specifies the name of the role definition.
 
 ```yaml
 Type: String
@@ -107,7 +128,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshViewColumn
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a column to a view.
 
 ## SYNTAX
 
@@ -23,21 +23,21 @@ Add-KshViewColumn [-View] <View> -ColumnName <String> [-ProgressAction <ActionPr
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshViewColumn` cmdlet adds a column to a view.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshViewColumn -View $view -Column $column
 ```
 
-{{ Add example description here }}
+This example adds the specified column to the specified view.
 
 ## PARAMETERS
 
 ### -Column
-{{ Fill Column Description }}
+Specifies the column to add to the view.
 
 ```yaml
 Type: Column
@@ -52,7 +52,7 @@ Accept wildcard characters: False
 ```
 
 ### -ColumnName
-{{ Fill ColumnName Description }}
+Specifies the name of the column to add to the view.
 
 ```yaml
 Type: String
@@ -67,7 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -View
-{{ Fill View Description }}
+Specifies the view to which the column will be added.
 
 ```yaml
 Type: View
@@ -82,7 +82,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

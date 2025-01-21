@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshSiteTemplate
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more site templates from the current site.
 
 ## SYNTAX
 
@@ -25,21 +25,35 @@ Get-KshSiteTemplate [-IncludeCrossLanguage] [[-Lcid] <UInt32>] [-NoEnumerate]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshSiteTemplate` cmdlet retrieves one or more site templates from the current site based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshSiteTemplate -SiteTemplateName "STS#0"
 ```
 
-{{ Add example description here }}
+This example retrieves a site template by site template name.
+
+### Example 2
+```powershell
+PS C:\> Get-KshSiteTemplate -IncludeCrossLanguage
+```
+
+This example retrieves site templates including cross-language templates.
+
+### Example 3
+```powershell
+PS C:\> Get-KshSiteTemplate -Lcid 1033
+```
+
+This example retrieves site templates with the locale ID 1033.
 
 ## PARAMETERS
 
 ### -IncludeCrossLanguage
-{{ Fill IncludeCrossLanguage Description }}
+Indicates whether to include cross-language site templates.
 
 ```yaml
 Type: SwitchParameter
@@ -54,7 +68,7 @@ Accept wildcard characters: False
 ```
 
 ### -Lcid
-{{ Fill Lcid Description }}
+Specifies the locale ID (LCID) of the site templates to retrieve.
 
 ```yaml
 Type: UInt32
@@ -69,7 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the collection.
 
 ```yaml
 Type: SwitchParameter
@@ -84,7 +98,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteTemplateName
-{{ Fill SiteTemplateName Description }}
+Specifies the name of the site template to retrieve.
 
 ```yaml
 Type: String
@@ -99,7 +113,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

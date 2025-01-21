@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshTenantDeletedSiteCollection
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more deleted site collections from the tenant.
 
 ## SYNTAX
 
@@ -30,21 +30,35 @@ Get-KshTenantDeletedSiteCollection [-NoEnumerate] [-ProgressAction <ActionPrefer
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshTenantDeletedSiteCollection` cmdlet retrieves one or more deleted site collections from the tenant based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshTenantDeletedSiteCollection -Identity $deletedSiteCollection
 ```
 
-{{ Add example description here }}
+This example retrieves a deleted site collection by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshTenantDeletedSiteCollection -SiteCollectionUrl "https://contoso.sharepoint.com/sites/deletedSite"
+```
+
+This example retrieves a deleted site collection by URL.
+
+### Example 3
+```powershell
+PS C:\> Get-KshTenantDeletedSiteCollection
+```
+
+This example retrieves all deleted site collections.
 
 ## PARAMETERS
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the deleted site collection to retrieve.
 
 ```yaml
 Type: TenantDeletedSiteCollection
@@ -59,7 +73,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet should not enumerate the collection.
 
 ```yaml
 Type: SwitchParameter
@@ -74,7 +88,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteCollectionUrl
-{{ Fill SiteCollectionUrl Description }}
+Specifies the URL of the deleted site collection to retrieve.
 
 ```yaml
 Type: Uri
@@ -89,7 +103,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

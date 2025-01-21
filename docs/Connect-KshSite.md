@@ -8,7 +8,7 @@ schema: 2.0.0
 # Connect-KshSite
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Connects to a site.
 
 ## SYNTAX
 
@@ -43,21 +43,49 @@ Connect-KshSite [-Url] <Uri> -ClientId <String> -ClientSecret <String> [-Progres
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Connect-KshSite` cmdlet connects to a site with device code, client ID and certificate, or from cache.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Connect-KshSite -Url "https://consoto.sharepoint.com"
 ```
 
-{{ Add example description here }}
+This example connects to the site at "https://consoto.sharepoint.com" using device code.
+
+### Example 2
+```powershell
+PS C:\> Connect-KshSite -Url "https://consoto.sharepoint.com" -Credential $credential
+```
+
+This example connects to the site at "https://consoto.sharepoint.com" using user ID and password. This method is not recommended.
+
+### Example 3
+```powershell
+PS C:\> Connect-KshSite -Url "https://consoto.sharepoint.com" -ClientId "12345678-1234-1234-1234-1234567890ab" -CertificatePath "path/to/certificate.pfx" -CertificatePassword $password
+```
+
+This example connects to the site at "https://consoto.sharepoint.com" using a client ID and a certificate.
+
+### Example 4
+```powershell
+PS C:\> Connect-KshSite -Url "https://consoto.sharepoint.com" -ClientId "12345678-1234-1234-1234-1234567890ab" -ClientSecret "MTIz..."
+```
+
+This example connects to the site at "https://consoto.sharepoint.com" using a client ID and client secret. This method is not recommended.
+
+### Example 5
+```powershell
+PS C:\> Connect-KshSite -Url "https://consoto.sharepoint.com" -Cached
+```
+
+This example connects to the site at "https://consoto.sharepoint.com" using cached credentials.
 
 ## PARAMETERS
 
 ### -Authority
-{{ Fill Authority Description }}
+Specifies the authority URI to use for authentication.
 
 ```yaml
 Type: Uri
@@ -72,7 +100,7 @@ Accept wildcard characters: False
 ```
 
 ### -Cached
-{{ Fill Cached Description }}
+Indicates that cached credentials should be used.
 
 ```yaml
 Type: SwitchParameter
@@ -87,7 +115,7 @@ Accept wildcard characters: False
 ```
 
 ### -CertificatePassword
-{{ Fill CertificatePassword Description }}
+Specifies the password for the certificate file.
 
 ```yaml
 Type: SecureString
@@ -102,7 +130,7 @@ Accept wildcard characters: False
 ```
 
 ### -CertificatePath
-{{ Fill CertificatePath Description }}
+Specifies the path to the certificate file.
 
 ```yaml
 Type: String
@@ -117,7 +145,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClientId
-{{ Fill ClientId Description }}
+Specifies the client ID to use for authentication.
 
 ```yaml
 Type: String
@@ -144,7 +172,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClientSecret
-{{ Fill ClientSecret Description }}
+Specifies the client secret to use for authentication.
 
 ```yaml
 Type: String
@@ -159,7 +187,7 @@ Accept wildcard characters: False
 ```
 
 ### -Credential
-{{ Fill Credential Description }}
+Specifies the user credentials to use for authentication.
 
 ```yaml
 Type: PSCredential
@@ -174,7 +202,7 @@ Accept wildcard characters: False
 ```
 
 ### -Url
-{{ Fill Url Description }}
+Specifies the URL of the site to connect to.
 
 ```yaml
 Type: Uri
@@ -189,7 +217,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserMode
-{{ Fill UserMode Description }}
+Indicates that user mode should be used for authentication.
 
 ```yaml
 Type: SwitchParameter
@@ -204,7 +232,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

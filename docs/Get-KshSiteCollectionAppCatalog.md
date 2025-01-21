@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshSiteCollectionAppCatalog
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more site collection app catalogs from the tenant.
 
 ## SYNTAX
 
@@ -42,21 +42,49 @@ Get-KshSiteCollectionAppCatalog [-NoEnumerate] [-ProgressAction <ActionPreferenc
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshSiteCollectionAppCatalog` cmdlet retrieves one or more site collection apps catalogs from the tenant based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshSiteCollectionAppCatalog -Identity $appCatalog
 ```
 
-{{ Add example description here }}
+This example retrieves a site collection app catalog by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshSiteCollectionAppCatalog -SiteCollection $siteCollection
+```
+
+This example retrieves a site collection app catalog by site collection.
+
+### Example 3
+```powershell
+PS C:\> Get-KshSiteCollectionAppCatalog -SiteCollectionUrl "https://contoso.sharepoint.com/sites/sitecollection"
+```
+
+This example retrieves a site collection app catalog by site collection URL.
+
+### Example 4
+```powershell
+PS C:\> Get-KshSiteCollectionAppCatalog -SiteCollectionId "00000000-0000-0000-0000-000000000000"
+```
+
+This example retrieves a site collection app catalog by site collection ID.
+
+### Example 5
+```powershell
+PS C:\> Get-KshSiteCollectionAppCatalog
+```
+
+This example retrieves all site collection app catalogs.
 
 ## PARAMETERS
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the app catalog to retrieve.
 
 ```yaml
 Type: SiteCollectionAppCatalog
@@ -71,7 +99,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the collection.
 
 ```yaml
 Type: SwitchParameter
@@ -86,7 +114,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteCollection
-{{ Fill SiteCollection Description }}
+Specifies the site collection object to retrieve the app catalog from.
 
 ```yaml
 Type: SiteCollection
@@ -101,7 +129,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteCollectionId
-{{ Fill SiteCollectionId Description }}
+Specifies the ID of the site collection to retrieve the app catalog from.
 
 ```yaml
 Type: Guid
@@ -116,7 +144,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteCollectionUrl
-{{ Fill SiteCollectionUrl Description }}
+Specifies the URL of the site collection to retrieve the app catalog from.
 
 ```yaml
 Type: Uri
@@ -131,7 +159,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

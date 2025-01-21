@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshTenantFileVersionPolicyForDocumentLibrary
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves the file version policy for a document library.
 
 ## SYNTAX
 
@@ -25,21 +25,28 @@ Get-KshTenantFileVersionPolicyForDocumentLibrary -SiteUrl <Uri> -ListTitle <Stri
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshTenantFileVersionPolicyForDocumentLibrary` cmdlet retrieves the file version policy for a document library based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshTenantFileVersionPolicyForDocumentLibrary -SiteUrl "https://contoso.sharepoint.com" -ListId "12345678-1234-1234-1234-1234567890ab"
 ```
 
-{{ Add example description here }}
+This example retrieves the file version policy for the document library with the specified ListId at the specified site URL.
+
+### Example 2
+```powershell
+PS C:\> Get-KshTenantFileVersionPolicyForDocumentLibrary -SiteUrl "https://contoso.sharepoint.com" -ListTitle "Documents"
+```
+
+This example retrieves the file version policy for the document library named "Documents" at the specified site URL.
 
 ## PARAMETERS
 
 ### -ListId
-{{ Fill ListId Description }}
+Specifies the ID of the document library.
 
 ```yaml
 Type: Guid
@@ -54,7 +61,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListTitle
-{{ Fill ListTitle Description }}
+Specifies the title of the document library.
 
 ```yaml
 Type: String
@@ -69,7 +76,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteUrl
-{{ Fill SiteUrl Description }}
+Specifies the URL of the site that contains the document library.
 
 ```yaml
 Type: Uri
@@ -84,7 +91,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference
@@ -104,9 +111,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.FileVersionPolicyForDocumentLibrary
+
 ## NOTES
 
 ## RELATED LINKS

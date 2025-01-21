@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshTermSet
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more term sets from the term store.
 
 ## SYNTAX
 
@@ -36,21 +36,42 @@ Get-KshTermSet [-TermGroup] <TermGroup> [-NoEnumerate] [-ProgressAction <ActionP
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshTermSet` cmdlet retrieves a term set from a term store based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshTermSet -Identity $termSet
 ```
 
-{{ Add example description here }}
+This example retrieves a term set by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshTermSet -TermGroup $termGroup -TermSetId $termSetId
+```
+
+This example retrieves a term set by term group and term set ID.
+
+### Example 3
+```powershell
+PS C:\> Get-KshTermSet -TermGroup $termGroup -TermSetName "TermSetName"
+```
+
+This example retrieves a term set by term group and term set name.
+
+### Example 4
+```powershell
+PS C:\> Get-KshTermSet -TermGroup $termGroup
+```
+
+This example retrieves all term sets in a term group.
 
 ## PARAMETERS
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the term set to retrieve.
 
 ```yaml
 Type: TermSet
@@ -65,7 +86,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the term set.
 
 ```yaml
 Type: SwitchParameter
@@ -80,7 +101,7 @@ Accept wildcard characters: False
 ```
 
 ### -TermGroup
-{{ Fill TermGroup Description }}
+Specifies the term group that contains the term set.
 
 ```yaml
 Type: TermGroup
@@ -95,7 +116,7 @@ Accept wildcard characters: False
 ```
 
 ### -TermSetId
-{{ Fill TermSetId Description }}
+Specifies the ID of the term set to retrieve.
 
 ```yaml
 Type: Guid
@@ -110,7 +131,7 @@ Accept wildcard characters: False
 ```
 
 ### -TermSetName
-{{ Fill TermSetName Description }}
+Specifies the name of the term set to retrieve.
 
 ```yaml
 Type: String
@@ -125,7 +146,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

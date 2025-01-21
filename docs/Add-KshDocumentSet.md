@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshDocumentSet
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a new document set to a folder.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Add-KshDocumentSet -Folder <Folder> -Name <String> -ContentType <ContentType>
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshDocumentSet` cmdlet adds a new document set to a folder with the given name and content type.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshDocumentSet -Folder $folder -Name "Project Documents" -ContentType $contentType
 ```
 
-{{ Add example description here }}
+This example adds a new document set named "ProjectDocs" to the specified folder with the specified content type.
 
 ## PARAMETERS
 
 ### -ContentType
-{{ Fill ContentType Description }}
+Specifies the content type of the document set.
 
 ```yaml
 Type: ContentType
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -Folder
-{{ Fill Folder Description }}
+Specifies the folder where the document set will be created.
 
 ```yaml
 Type: Folder
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{ Fill Name Description }}
+Specifies the name of the document set.
 
 ```yaml
 Type: String
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

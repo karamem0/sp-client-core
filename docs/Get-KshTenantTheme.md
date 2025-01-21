@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshTenantTheme
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more themes from the tenant.
 
 ## SYNTAX
 
@@ -28,21 +28,35 @@ Get-KshTenantTheme [-NoEnumerate] [-ProgressAction <ActionPreference>] [<CommonP
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshTenantTheme` cmdlet retrieves one or more themes from the tenant based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshTenantTheme -Identity $theme
 ```
 
-{{ Add example description here }}
+This example retrieves the theme by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshTenantTheme -ThemeName "Contoso Theme"
+```
+
+This example retrieves the theme by name.
+
+### Example 3
+```powershell
+PS C:\> Get-KshTenantTheme
+```
+
+This example retrieves all themes.
 
 ## PARAMETERS
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the theme to retrieve.
 
 ```yaml
 Type: TenantTheme
@@ -57,7 +71,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the collection.
 
 ```yaml
 Type: SwitchParameter
@@ -72,7 +86,7 @@ Accept wildcard characters: False
 ```
 
 ### -ThemeName
-{{ Fill ThemeName Description }}
+Specifies the name of the theme to retrieve.
 
 ```yaml
 Type: String
@@ -87,7 +101,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

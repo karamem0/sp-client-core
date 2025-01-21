@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshAppInstance
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more app instance from the current site.
 
 ## SYNTAX
 
@@ -34,21 +34,42 @@ Get-KshAppInstance [-NoEnumerate] [-ProgressAction <ActionPreference>] [<CommonP
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshAppInstance` cmdlet retrieves one or more app instances from the current site based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshAppInstance -Identity $appInstance
 ```
 
-{{ Add example description here }}
+This example retrieves an app instance by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshAppInstance -AppInstanceId "12345678-1234-1234-1234-1234567890ab"
+```
+
+This example retrieves an app instance by app instance ID.
+
+### Example 3
+```powershell
+PS C:\> Get-KshAppInstance -AppProductId "12345678-1234-1234-1234-1234567890ab"
+```
+
+This example retrieves an app instance by app product ID.
+
+### Example 4
+```powershell
+PS C:\> Get-KshAppInstance
+```
+
+This example retrieves all app instances.
 
 ## PARAMETERS
 
 ### -AppInstanceId
-{{ Fill AppInstanceId Description }}
+Specifies the ID of the app instance.
 
 ```yaml
 Type: Guid
@@ -63,7 +84,7 @@ Accept wildcard characters: False
 ```
 
 ### -AppProductId
-{{ Fill AppProductId Description }}
+Specifies the product ID of the app instance.
 
 ```yaml
 Type: Guid
@@ -78,7 +99,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the app instance to retrieve.
 
 ```yaml
 Type: AppInstance
@@ -93,7 +114,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the collection.
 
 ```yaml
 Type: SwitchParameter
@@ -108,7 +129,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

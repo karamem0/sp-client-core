@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshContentTypeColumn
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more columns from a content type.
 
 ## SYNTAX
 
@@ -31,21 +31,35 @@ Get-KshContentTypeColumn [-ContentType] <ContentType> [-NoEnumerate] [-ProgressA
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshContentTypeColumn` cmdlet retrieves one or more columns from a content type based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshContentTypeColumn -Identity $contentTypeColumn
 ```
 
-{{ Add example description here }}
+This example retrieves a content type column by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshContentTypeColumn -ContentType $contentType -Column $column
+```
+
+This example retrieves a content type column by column.
+
+### Example 3
+```powershell
+PS C:\> Get-KshContentTypeColumn -ContentType $contentType
+```
+
+This example retrieves all content type columns.
 
 ## PARAMETERS
 
 ### -Column
-{{ Fill Column Description }}
+Specifies the column to retrieve from the content type.
 
 ```yaml
 Type: Column
@@ -60,7 +74,7 @@ Accept wildcard characters: False
 ```
 
 ### -ContentType
-{{ Fill ContentType Description }}
+Specifies the content type from which to retrieve columns.
 
 ```yaml
 Type: ContentType
@@ -75,7 +89,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the content type column to retrieve.
 
 ```yaml
 Type: ContentTypeColumn
@@ -90,7 +104,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the content type columns.
 
 ```yaml
 Type: SwitchParameter
@@ -105,7 +119,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

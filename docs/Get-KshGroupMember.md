@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshGroupMember
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more group members from a group.
 
 ## SYNTAX
 
@@ -30,21 +30,35 @@ Get-KshGroupMember [-Group] <Group> [-NoEnumerate] [-ProgressAction <ActionPrefe
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshGroupMember` cmdlet retrieves group members from a group based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshGroupMember -Group $group -MemberId 123
 ```
 
-{{ Add example description here }}
+This example retrieves a group member by member ID.
+
+### Example 2
+```powershell
+PS C:\> Get-KshGroupMember -Group $group -MemberName "JohnDoe"
+```
+
+This example retrieves a group member by member name.
+
+### Example 3
+```powershell
+PS C:\> Get-KshGroupMember -Group $group
+```
+
+This example retrieves all group members.
 
 ## PARAMETERS
 
 ### -Group
-{{ Fill Group Description }}
+Specifies the group from which to retrieve members.
 
 ```yaml
 Type: Group
@@ -59,7 +73,7 @@ Accept wildcard characters: False
 ```
 
 ### -MemberId
-{{ Fill MemberId Description }}
+Specifies the ID of the member to retrieve.
 
 ```yaml
 Type: Int32
@@ -74,7 +88,7 @@ Accept wildcard characters: False
 ```
 
 ### -MemberName
-{{ Fill MemberName Description }}
+Specifies the name of the member to retrieve.
 
 ```yaml
 Type: String
@@ -89,7 +103,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet should not enumerate the members.
 
 ```yaml
 Type: SwitchParameter
@@ -104,7 +118,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

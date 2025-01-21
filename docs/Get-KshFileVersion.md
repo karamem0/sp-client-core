@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshFileVersion
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves a file version from a file.
 
 ## SYNTAX
 
@@ -29,21 +29,35 @@ Get-KshFileVersion [-File] <File> [-NoEnumerate] [-ProgressAction <ActionPrefere
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshFileVersion` cmdlet retrieves a file version from a file based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshFileVersion -Identity $fileVersion
 ```
 
-{{ Add example description here }}
+This example retrieves a file version by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshFileVersion -File $file -FileVersionId 1
+```
+
+This example retrieves a file version by file version ID.
+
+### Example 3
+```powershell
+PS C:\> Get-KshFileVersion -File $file
+```
+
+This example retrieves all file versions.
 
 ## PARAMETERS
 
 ### -File
-{{ Fill File Description }}
+Specifies the file for which to retrieve the version.
 
 ```yaml
 Type: File
@@ -58,7 +72,7 @@ Accept wildcard characters: False
 ```
 
 ### -FileVersionId
-{{ Fill FileVersionId Description }}
+Specifies the ID of the file version to retrieve.
 
 ```yaml
 Type: Int32
@@ -73,7 +87,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the file version to retrieve.
 
 ```yaml
 Type: FileVersion
@@ -88,7 +102,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the collection.
 
 ```yaml
 Type: SwitchParameter
@@ -103,7 +117,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

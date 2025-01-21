@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshListItem
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more list items from a list.
 
 ## SYNTAX
 
@@ -55,21 +55,21 @@ Get-KshListItem [-List] <List> [-FolderServerRelativeUrl <String>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshListItem` cmdlet retrieves one or more list items from a list based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshListItem -Identity $ListItem
 ```
 
-{{ Add example description here }}
+This example retrieves a list item by identity.
 
 ## PARAMETERS
 
 ### -All
-{{ Fill All Description }}
+Retrieves all list items.
 
 ```yaml
 Type: SwitchParameter
@@ -84,7 +84,7 @@ Accept wildcard characters: False
 ```
 
 ### -DriveItem
-{{ Fill DriveItem Description }}
+Specifies the drive item to retrieve.
 
 ```yaml
 Type: DriveItem
@@ -99,7 +99,7 @@ Accept wildcard characters: False
 ```
 
 ### -File
-{{ Fill File Description }}
+Specifies the file to retrieve.
 
 ```yaml
 Type: File
@@ -114,7 +114,7 @@ Accept wildcard characters: False
 ```
 
 ### -Folder
-{{ Fill Folder Description }}
+Specifies the folder to retrieve.
 
 ```yaml
 Type: Folder
@@ -129,7 +129,7 @@ Accept wildcard characters: False
 ```
 
 ### -FolderServerRelativeUrl
-{{ Fill FolderServerRelativeUrl Description }}
+Specifies the server-relative URL of the folder.
 
 ```yaml
 Type: String
@@ -144,7 +144,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the list item to retrieve.
 
 ```yaml
 Type: ListItem
@@ -159,7 +159,7 @@ Accept wildcard characters: False
 ```
 
 ### -ItemId
-{{ Fill ItemId Description }}
+Specifies the ID of the list item to retrieve.
 
 ```yaml
 Type: Int32
@@ -174,7 +174,7 @@ Accept wildcard characters: False
 ```
 
 ### -ItemUrl
-{{ Fill ItemUrl Description }}
+Specifies the URL of the list item to retrieve.
 
 ```yaml
 Type: String
@@ -189,7 +189,7 @@ Accept wildcard characters: False
 ```
 
 ### -List
-{{ Fill List Description }}
+Specifies the list that contains the item to retrieve.
 
 ```yaml
 Type: List
@@ -204,7 +204,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListItemCollectionPosition
-{{ Fill ListItemCollectionPosition Description }}
+Specifies the position of the list item collection.
 
 ```yaml
 Type: ListItemCollectionPosition
@@ -219,7 +219,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the collection.
 
 ```yaml
 Type: SwitchParameter
@@ -234,7 +234,7 @@ Accept wildcard characters: False
 ```
 
 ### -ViewXml
-{{ Fill ViewXml Description }}
+Specifies the XML view of the list items.
 
 ```yaml
 Type: String
@@ -249,7 +249,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress.
 
 ```yaml
 Type: ActionPreference

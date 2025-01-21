@@ -8,7 +8,7 @@ schema: 2.0.0
 # Disable-KshTerm
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Disables a term.
 
 ## SYNTAX
 
@@ -17,21 +17,21 @@ Disable-KshTerm [-Identity] <Term> [-PassThru] [-ProgressAction <ActionPreferenc
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Disable-KshTerm` cmdlet disables a term.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Disable-KshTerm -Identity $term
 ```
 
-{{ Add example description here }}
+This example disables the specified term.
 
 ## PARAMETERS
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the term to disable.
 
 ```yaml
 Type: Term
@@ -46,7 +46,7 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
-{{ Fill PassThru Description }}
+Returns the term object that was processed.
 
 ```yaml
 Type: SwitchParameter
@@ -61,7 +61,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

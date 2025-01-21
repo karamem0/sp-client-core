@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshTenantCdnOrigin
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves origins of the Office 365 CDN.
 
 ## SYNTAX
 
@@ -23,21 +23,28 @@ Get-KshTenantCdnOrigin [-Private] [-NoEnumerate] [-ProgressAction <ActionPrefere
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshTenantCdnOrigin` cmdlet retrieves origins of the Office 365 CDN.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshTenantCdnOrigin -Public
 ```
 
-{{ Add example description here }}
+This example retrieves the public origins of the Office 365 CDN.
+
+### Example 1
+```powershell
+PS C:\> Get-KshTenantCdnOrigin -Private
+```
+
+This example retrieves the private origins of the Office 365 CDN.
 
 ## PARAMETERS
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the collection.
 
 ```yaml
 Type: SwitchParameter
@@ -52,7 +59,7 @@ Accept wildcard characters: False
 ```
 
 ### -Private
-{{ Fill Private Description }}
+Indicates that the Office 365 CDN is private.
 
 ```yaml
 Type: SwitchParameter
@@ -67,7 +74,7 @@ Accept wildcard characters: False
 ```
 
 ### -Public
-{{ Fill Public Description }}
+Indicates that the Office 365 CDN is public.
 
 ```yaml
 Type: SwitchParameter
@@ -82,7 +89,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

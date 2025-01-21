@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshDrive
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or mode drives from the current site.
 
 ## SYNTAX
 
@@ -33,21 +33,42 @@ Get-KshDrive [-NoEnumerate] [-ProgressAction <ActionPreference>] [<CommonParamet
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshDrive` cmdlet retrieves one or mode drives from the current site based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshDrive -Identity $drive
 ```
 
-{{ Add example description here }}
+This example retrieves a drive by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshDrive -List $list
+```
+
+This example retrieves a drive by list.
+
+### Example 3
+```powershell
+PS C:\> Get-KshDrive -DriveId "b!vpvKq3kXeEaww1z6NPnGbKhvcv2QlkNIoGE112ESrYtKvAhAPsWLSLhCqJy8wVDu"
+```
+
+This example retrieves a drive by drive ID.
+
+### Example 4
+```powershell
+PS C:\> Get-KshDrive
+```
+
+This example retrieves all drives.
 
 ## PARAMETERS
 
 ### -DriveId
-{{ Fill DriveId Description }}
+Specifies the ID of the drive to retrieve.
 
 ```yaml
 Type: String
@@ -62,7 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the drive to retrieve.
 
 ```yaml
 Type: Drive
@@ -77,7 +98,7 @@ Accept wildcard characters: False
 ```
 
 ### -List
-{{ Fill List Description }}
+Specifies the list object to retrieve the drive from.
 
 ```yaml
 Type: List
@@ -92,7 +113,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the drive objects.
 
 ```yaml
 Type: SwitchParameter
@@ -107,7 +128,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

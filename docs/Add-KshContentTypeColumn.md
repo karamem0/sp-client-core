@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshContentTypeColumn
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a new column to a content type.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Add-KshContentTypeColumn -ContentType <ContentType> -Column <Column> [-PushChang
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshContentTypeColumn` cmdlet adds a column to a content type. This operation can optionally push changes to child content types.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshContentTypeColumn -ContentType $contentType -Column $column -PushChanges
 ```
 
-{{ Add example description here }}
+This example adds a column to the specified content type and pushes the changes to child content types.
 
 ## PARAMETERS
 
 ### -Column
-{{ Fill Column Description }}
+Specifies the column to add to the content type.
 
 ```yaml
 Type: Column
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -ContentType
-{{ Fill ContentType Description }}
+Specifies the content type to which the column will be added.
 
 ```yaml
 Type: ContentType
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -PushChanges
-{{ Fill PushChanges Description }}
+Indicates whether to push changes to child content types.
 
 ```yaml
 Type: SwitchParameter
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

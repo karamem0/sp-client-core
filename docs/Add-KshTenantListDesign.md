@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshTenantListDesign
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a new list design to the tenant.
 
 ## SYNTAX
 
@@ -19,21 +19,21 @@ Add-KshTenantListDesign [-Description <String>] [-ListColor <TenantListDesignCol
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshTenantListDesign` cmdlet adds a new list design to the tenant with the specified properties.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshTenantListDesign -Title "Project Tracker" -SiteScriptIds $siteScriptIds -Description "Tracks project tasks and milestones" -ListColor Blue -ListIcon ClipboardList
 ```
 
-{{ Add example description here }}
+This example adds a new list design to the list with the specified site script IDs, description, color, icon and title "Project Tracker".
 
 ## PARAMETERS
 
 ### -Description
-{{ Fill Description Description }}
+Specifies the description of the list design.
 
 ```yaml
 Type: String
@@ -48,7 +48,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListColor
-{{ Fill ListColor Description }}
+Specifies the color of the list design.
 
 ```yaml
 Type: TenantListDesignColor
@@ -64,7 +64,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListIcon
-{{ Fill ListIcon Description }}
+Specifies the icon of the list design.
 
 ```yaml
 Type: TenantListDesignIcon
@@ -80,7 +80,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteScriptIds
-{{ Fill SiteScriptIds Description }}
+Specifies the site script IDs associated with the list design.
 
 ```yaml
 Type: Guid[]
@@ -95,7 +95,7 @@ Accept wildcard characters: False
 ```
 
 ### -TemplateFeatures
-{{ Fill TemplateFeatures Description }}
+Specifies the template features of the list design.
 
 ```yaml
 Type: String[]
@@ -110,7 +110,7 @@ Accept wildcard characters: False
 ```
 
 ### -ThumbnailUrl
-{{ Fill ThumbnailUrl Description }}
+Specifies the URL of the thumbnail image for the list design.
 
 ```yaml
 Type: String
@@ -125,7 +125,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
-{{ Fill Title Description }}
+Specifies the title of the list design.
 
 ```yaml
 Type: String
@@ -140,7 +140,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

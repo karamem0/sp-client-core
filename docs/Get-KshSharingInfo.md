@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshSharingInfo
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves sharing information for a URL.
 
 ## SYNTAX
 
@@ -20,21 +20,21 @@ Get-KshSharingInfo -Url <Uri> [-CheckForAccessRequests <Boolean>] [-ExcludeCurre
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshSharingInfo` cmdlet retrieves sharing information for a URL.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshSharingInfo -Url "https://contoso.sharepoint.com/Shared Documents/file.txt"
 ```
 
-{{ Add example description here }}
+This example retrieves sharing information.
 
 ## PARAMETERS
 
 ### -CheckForAccessRequests
-{{ Fill CheckForAccessRequests Description }}
+Indicates whether to check for access requests.
 
 ```yaml
 Type: Boolean
@@ -49,7 +49,7 @@ Accept wildcard characters: False
 ```
 
 ### -ExcludeCurrentUser
-{{ Fill ExcludeCurrentUser Description }}
+Indicates whether to exclude the current user from the results.
 
 ```yaml
 Type: Boolean
@@ -64,7 +64,7 @@ Accept wildcard characters: False
 ```
 
 ### -ExcludeSecurityGroups
-{{ Fill ExcludeSecurityGroups Description }}
+Indicates whether to exclude security groups from the results.
 
 ```yaml
 Type: Boolean
@@ -79,7 +79,7 @@ Accept wildcard characters: False
 ```
 
 ### -ExcludeSiteAdmin
-{{ Fill ExcludeSiteAdmin Description }}
+Indicates whether to exclude site administrators from the results.
 
 ```yaml
 Type: Boolean
@@ -94,7 +94,7 @@ Accept wildcard characters: False
 ```
 
 ### -RetrieveAnonymousLinks
-{{ Fill RetrieveAnonymousLinks Description }}
+Indicates whether to retrieve anonymous links.
 
 ```yaml
 Type: Boolean
@@ -109,7 +109,7 @@ Accept wildcard characters: False
 ```
 
 ### -RetrievePermissionLevels
-{{ Fill RetrievePermissionLevels Description }}
+Indicates whether to retrieve permission levels.
 
 ```yaml
 Type: Boolean
@@ -124,7 +124,7 @@ Accept wildcard characters: False
 ```
 
 ### -RetrieveUserInfoDetails
-{{ Fill RetrieveUserInfoDetails Description }}
+Indicates whether to retrieve detailed user information.
 
 ```yaml
 Type: Boolean
@@ -139,7 +139,7 @@ Accept wildcard characters: False
 ```
 
 ### -Url
-{{ Fill Url Description }}
+Specifies the URL for which to retrieve sharing information.
 
 ```yaml
 Type: Uri
@@ -154,7 +154,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

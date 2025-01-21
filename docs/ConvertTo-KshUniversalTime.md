@@ -8,7 +8,7 @@ schema: 2.0.0
 # ConvertTo-KshUniversalTime
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Converts a local DateTime value to Universal Time (UTC).
 
 ## SYNTAX
 
@@ -17,21 +17,21 @@ ConvertTo-KshUniversalTime [-Value] <DateTime> [-ProgressAction <ActionPreferenc
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `ConvertTo-KshUniversalTime` cmdlet converts a given DateTime value to Universal Time (UTC) using the current site settings.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> ConvertTo-KshUniversalTime -Value (Get-Date)
 ```
 
-{{ Add example description here }}
+This example converts the current date and time to Universal Time (UTC).
 
 ## PARAMETERS
 
 ### -Value
-{{ Fill Value Description }}
+Specifies the DateTime value to convert to Universal Time (UTC).
 
 ```yaml
 Type: DateTime
@@ -46,7 +46,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

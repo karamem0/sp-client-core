@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshTenantSiteCollection
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a new site collection to the tenant.
 
 ## SYNTAX
 
@@ -29,21 +29,21 @@ Add-KshTenantSiteCollection [-CompatibilityLevel <Int32>] [-Lcid <UInt32>] -Owne
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshTenantSiteCollection` cmdlet adds a new site collection to the tenant with the given parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshTenantSiteCollection -Owner "owner@contoso.com" -Url "https://contoso.sharepoint.com/sites/newsite" -Title "New Site" -Template "STS#0"
 ```
 
-{{ Add example description here }}
+This example adds a new site collection to the tenant with the specified owner, URL, title, and template.
 
 ## PARAMETERS
 
 ### -CompatibilityLevel
-{{ Fill CompatibilityLevel Description }}
+Specifies the compatibility level of the site collection.
 
 ```yaml
 Type: Int32
@@ -58,7 +58,7 @@ Accept wildcard characters: False
 ```
 
 ### -Lcid
-{{ Fill Lcid Description }}
+Specifies the locale ID of the site collection.
 
 ```yaml
 Type: UInt32
@@ -73,7 +73,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoWait
-{{ Fill NoWait Description }}
+Indicates that the cmdlet does not wait for the operation to complete.
 
 ```yaml
 Type: SwitchParameter
@@ -88,7 +88,7 @@ Accept wildcard characters: False
 ```
 
 ### -Owner
-{{ Fill Owner Description }}
+Specifies the owner of the site collection.
 
 ```yaml
 Type: String
@@ -103,7 +103,7 @@ Accept wildcard characters: False
 ```
 
 ### -StorageMaxLevel
-{{ Fill StorageMaxLevel Description }}
+Specifies the maximum storage level for the site collection.
 
 ```yaml
 Type: Int64
@@ -118,7 +118,7 @@ Accept wildcard characters: False
 ```
 
 ### -StorageWarningLevel
-{{ Fill StorageWarningLevel Description }}
+Specifies the storage warning level for the site collection.
 
 ```yaml
 Type: Int64
@@ -133,7 +133,7 @@ Accept wildcard characters: False
 ```
 
 ### -Template
-{{ Fill Template Description }}
+Specifies the template to use for the site collection.
 
 ```yaml
 Type: String
@@ -148,7 +148,7 @@ Accept wildcard characters: False
 ```
 
 ### -TimeZoneId
-{{ Fill TimeZoneId Description }}
+Specifies the time zone ID for the site collection.
 
 ```yaml
 Type: Int32
@@ -163,7 +163,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
-{{ Fill Title Description }}
+Specifies the title of the site collection.
 
 ```yaml
 Type: String
@@ -178,7 +178,7 @@ Accept wildcard characters: False
 ```
 
 ### -Url
-{{ Fill Url Description }}
+Specifies the URL of the site collection.
 
 ```yaml
 Type: String
@@ -193,7 +193,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserCodeMaxLevel
-{{ Fill UserCodeMaxLevel Description }}
+Specifies the maximum user code level for the site collection.
 
 ```yaml
 Type: Double
@@ -208,7 +208,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserCodeWarningLevel
-{{ Fill UserCodeWarningLevel Description }}
+Specifies the user code warning level for the site collection.
 
 ```yaml
 Type: Double
@@ -223,7 +223,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

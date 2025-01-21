@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshTenantCdnEnabled
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves the value whether the Office 365 CDN is enabled.
 
 ## SYNTAX
 
@@ -23,21 +23,28 @@ Get-KshTenantCdnEnabled [-Private] [-ProgressAction <ActionPreference>] [<Common
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshTenantCdnEnabled` cmdlet retrieves the value whether the Office 365 CDN is enabled.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshTenantCdnEnabled -Public
 ```
 
-{{ Add example description here }}
+This example retrieves the value of the Office 365 public CDN.
+
+### Example 2
+```powershell
+PS C:\> Get-KshTenantCdnEnabled -Private
+```
+
+This example retrieves the value of the Office 365 private CDN.
 
 ## PARAMETERS
 
 ### -Private
-{{ Fill Private Description }}
+Indicates that the Office 365 CDN is private.
 
 ```yaml
 Type: SwitchParameter
@@ -52,7 +59,7 @@ Accept wildcard characters: False
 ```
 
 ### -Public
-{{ Fill Public Description }}
+Indicates that the Office 365 CDN is public.
 
 ```yaml
 Type: SwitchParameter
@@ -67,7 +74,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference
@@ -87,9 +94,12 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### System.Boolean
+Returns a Boolean value indicating whether the Tenant CDN is enabled.
+
 ## NOTES
 
 ## RELATED LINKS

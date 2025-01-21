@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshSiteCollection
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves a site collection from the tenant.
 
 ## SYNTAX
 
@@ -23,21 +23,28 @@ Get-KshSiteCollection [-SiteCollectionUrl] <Uri> [-ProgressAction <ActionPrefere
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshSiteCollection` cmdlet retrieves a site collection from the tenant based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshSiteCollection -Identity $siteCollection
 ```
 
-{{ Add example description here }}
+This example retrieves a site collection by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshSiteCollection -SiteCollectionUrl "https://contoso.sharepoint.com/sites/site1"
+```
+
+This example retrieves a site collection by site collection URL.
 
 ## PARAMETERS
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the site collection to retrieve.
 
 ```yaml
 Type: SiteCollection
@@ -52,7 +59,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteCollectionUrl
-{{ Fill SiteCollectionUrl Description }}
+Specifies the URL of the site collection to retrieve.
 
 ```yaml
 Type: Uri
@@ -67,7 +74,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshTenantSiteScriptFromSite
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves a site script from a site.
 
 ## SYNTAX
 
@@ -19,21 +19,21 @@ Get-KshTenantSiteScriptFromSite [-SiteUrl] <String> [-IncludeBranding] [-Include
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshTenantSiteScriptFromSite` cmdlet retrieves a site script a specified site.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshTenantSiteScriptFromSite -SiteUrl "https://contoso.sharepoint.com/sites/site1"
 ```
 
-{{ Add example description here }}
+This example retrieves the site script by site URL.
 
 ## PARAMETERS
 
 ### -IncludeBranding
-{{ Fill IncludeBranding Description }}
+Includes branding settings in the site script.
 
 ```yaml
 Type: SwitchParameter
@@ -48,7 +48,7 @@ Accept wildcard characters: False
 ```
 
 ### -IncludeLinksToExportedItems
-{{ Fill IncludeLinksToExportedItems Description }}
+Includes links to exported items in the site script.
 
 ```yaml
 Type: SwitchParameter
@@ -63,7 +63,7 @@ Accept wildcard characters: False
 ```
 
 ### -IncludeRegionalSettings
-{{ Fill IncludeRegionalSettings Description }}
+Includes regional settings in the site script.
 
 ```yaml
 Type: SwitchParameter
@@ -78,7 +78,7 @@ Accept wildcard characters: False
 ```
 
 ### -IncludeSiteExternalSharingCapability
-{{ Fill IncludeSiteExternalSharingCapability Description }}
+Includes site external sharing capability settings in the site script.
 
 ```yaml
 Type: SwitchParameter
@@ -93,7 +93,7 @@ Accept wildcard characters: False
 ```
 
 ### -IncludeTheme
-{{ Fill IncludeTheme Description }}
+Includes theme settings in the site script.
 
 ```yaml
 Type: SwitchParameter
@@ -108,7 +108,7 @@ Accept wildcard characters: False
 ```
 
 ### -IncludedLists
-{{ Fill IncludedLists Description }}
+Specifies the lists to include in the site script.
 
 ```yaml
 Type: String[]
@@ -123,7 +123,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteUrl
-{{ Fill SiteUrl Description }}
+Specifies the URL of the site from which to retrieve the site script.
 
 ```yaml
 Type: String
@@ -138,7 +138,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

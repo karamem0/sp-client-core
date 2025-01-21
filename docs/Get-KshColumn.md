@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshColumn
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more columns from a list or content type.
 
 ## SYNTAX
 
@@ -66,21 +66,84 @@ Get-KshColumn [-NoEnumerate] [-ProgressAction <ActionPreference>] [<CommonParame
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshColumn` cmdlet retrieves one or more columns from a list or content type based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshColumn -Identity $column
 ```
 
-{{ Add example description here }}
+This example retrieves a column by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshColumn -ContentType $contentType -ColumnId $columnId
+```
+
+This example retrieves a content type column by column ID.
+
+### Example 3
+```powershell
+PS C:\> Get-KshColumn -ContentType $contentType -ColumnTitle "Title"
+```
+
+This example retrieves a content type column by column title.
+
+### Example 4
+```powershell
+PS C:\> Get-KshColumn -ContentType $contentType
+```
+
+This example retrieves all content type columns.
+
+### Example 5
+```powershell
+PS C:\> Get-KshColumn -List $list -ColumnId $columnId
+```
+
+This example retrieves a list column by column ID.
+
+### Example 6
+```powershell
+PS C:\> Get-KshColumn -List $list -ColumnTitle "Title"
+```
+
+This example retrieves a list column by column title.
+
+### Example 7
+```powershell
+PS C:\> Get-KshColumn -List $list -NoEnumerate
+```
+
+This example retrieves all list column.
+
+### Example 8
+```powershell
+PS C:\> Get-KshColumn -ColumnId $columnId
+```
+
+This example retrieves a site column by column ID.
+
+### Example 9
+```powershell
+PS C:\> Get-KshColumn -ColumnTitle "Title"
+```
+
+This example retrieves a site column by column title.
+
+### Example 10
+```powershell
+PS C:\> Get-KshColumn
+```
+
+This example retrieves all site columns.
 
 ## PARAMETERS
 
 ### -ColumnId
-{{ Fill ColumnId Description }}
+Specifies the ID of the column to retrieve.
 
 ```yaml
 Type: Guid
@@ -95,7 +158,7 @@ Accept wildcard characters: False
 ```
 
 ### -ColumnTitle
-{{ Fill ColumnTitle Description }}
+Specifies the title of the column to retrieve.
 
 ```yaml
 Type: String
@@ -110,7 +173,7 @@ Accept wildcard characters: False
 ```
 
 ### -ContentType
-{{ Fill ContentType Description }}
+Specifies the content type that contains the column.
 
 ```yaml
 Type: ContentType
@@ -125,7 +188,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the column to retrieve.
 
 ```yaml
 Type: Column
@@ -140,7 +203,7 @@ Accept wildcard characters: False
 ```
 
 ### -List
-{{ Fill List Description }}
+Specifies the list that contains the column.
 
 ```yaml
 Type: List
@@ -155,7 +218,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the collection.
 
 ```yaml
 Type: SwitchParameter
@@ -170,7 +233,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

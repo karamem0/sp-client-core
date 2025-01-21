@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshDocumentSetDefaultDocument
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a default document to a document set.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Add-KshDocumentSetDefaultDocument -ContentType <ContentType> -DocumentContentTyp
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshDocumentSetDefaultDocument` cmdlet adds a default document to a document set with a content type and document content type.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshDocumentSetDefaultDocument -ContentType $contentType -DocumentContentType $documentContentType -Content $content -FileName "example.docx"
 ```
 
-{{ Add example description here }}
+This example adds a default document named "example.docx" to the specified document set.
 
 ## PARAMETERS
 
 ### -Content
-{{ Fill Content Description }}
+Specifies the content of the document as a byte array.
 
 ```yaml
 Type: Byte[]
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -ContentType
-{{ Fill ContentType Description }}
+Specifies the content type of the document set.
 
 ```yaml
 Type: ContentType
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -DocumentContentType
-{{ Fill DocumentContentType Description }}
+Specifies the content type of the document being added.
 
 ```yaml
 Type: ContentType
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -FileName
-{{ Fill FileName Description }}
+Specifies the name of the file to be added as the default document.
 
 ```yaml
 Type: String
@@ -92,7 +92,7 @@ Accept wildcard characters: False
 ```
 
 ### -PushChanges
-{{ Fill PushChanges Description }}
+Indicates whether to push changes immediately.
 
 ```yaml
 Type: SwitchParameter
@@ -107,7 +107,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

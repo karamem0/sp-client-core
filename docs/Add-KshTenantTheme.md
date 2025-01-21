@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshTenantTheme
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a new theme to the tenant.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Add-KshTenantTheme -IsInverted <Boolean> -Name <String> -Palette <Hashtable>
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshTenantTheme` cmdlet adds a new theme to the tenant.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshTenantTheme -IsInverted $false -Name "CustomTheme" -Palette $palette
 ```
 
-{{ Add example description here }}
+This example adds a new custom theme named "CustomTheme" to the tenant with the specified color palette.
 
 ## PARAMETERS
 
 ### -IsInverted
-{{ Fill IsInverted Description }}
+Specifies whether the theme is inverted.
 
 ```yaml
 Type: Boolean
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{ Fill Name Description }}
+Specifies the name of the theme.
 
 ```yaml
 Type: String
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -Palette
-{{ Fill Palette Description }}
+Specifies the color palette for the theme.
 
 ```yaml
 Type: Hashtable
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress.
 
 ```yaml
 Type: ActionPreference

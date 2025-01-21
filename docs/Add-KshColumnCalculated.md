@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshColumnCalculated
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Creates a new Calculated column to a list or library.
 
 ## SYNTAX
 
@@ -47,21 +47,35 @@ Add-KshColumnCalculated [-ClientSideComponentId <String>] [-ClientSideComponentP
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshColumnCalculated` cmdlet adds a new Calculated column to a list or library. The column can be configured with various parameters such as formula, output type, and formatting options.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshColumnCalculated -List $list -Name "Total" -Formula "=[Quantity]*[Price]" -OutputType Number
 ```
 
-{{ Add example description here }}
+This example adds a new Calculated column named "Total" in the specified list. The column calculates the total by multiplying the values of the "Quantity" and "Price" columns.
+
+### Example 2
+```powershell
+PS C:\> Add-KshColumnCalculated -Columns $columns -Name "Total" -Formula "=[Quantity]*[Price]" -OutputType Number
+```
+
+This example adds a new Calculated column named "Total" as a site column. The column calculates the total by multiplying the values of the "Quantity" and "Price" columns.
+
+### Example 3
+```powershell
+PS C:\> Add-KshColumnCalculated -Columns $columns -Name "Total" -Formula "=[Quantity]*[Price]" -OutputType Number -WhatIf
+```
+
+This example shows what would happen if the cmdlet runs without actually creating the column. The column would calculate the total by multiplying the values of the "Quantity" and "Price" columns.
 
 ## PARAMETERS
 
 ### -AddColumnCheckDisplayName
-{{ Fill AddColumnCheckDisplayName Description }}
+Specifies whether to check the display name of the column.
 
 ```yaml
 Type: SwitchParameter
@@ -76,7 +90,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddColumnInternalNameHint
-{{ Fill AddColumnInternalNameHint Description }}
+Specifies whether to add an internal name hint for the column.
 
 ```yaml
 Type: SwitchParameter
@@ -91,7 +105,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddColumnToDefaultView
-{{ Fill AddColumnToDefaultView Description }}
+Specifies whether to add the column to the default view.
 
 ```yaml
 Type: SwitchParameter
@@ -106,7 +120,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToAllContentTypes
-{{ Fill AddToAllContentTypes Description }}
+Specifies whether to add the column to all content types.
 
 ```yaml
 Type: SwitchParameter
@@ -121,7 +135,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToDefaultContentType
-{{ Fill AddToDefaultContentType Description }}
+Specifies whether to add the column to the default content type.
 
 ```yaml
 Type: SwitchParameter
@@ -136,7 +150,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToDefaultView
-{{ Fill AddToDefaultView Description }}
+Specifies whether to add the column to the default view.
 
 ```yaml
 Type: SwitchParameter
@@ -151,7 +165,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToNoContentType
-{{ Fill AddToNoContentType Description }}
+Specifies whether to add the column to no content type.
 
 ```yaml
 Type: SwitchParameter
@@ -166,7 +180,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClientSideComponentId
-{{ Fill ClientSideComponentId Description }}
+Specifies the client-side component ID.
 
 ```yaml
 Type: String
@@ -181,7 +195,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClientSideComponentProperties
-{{ Fill ClientSideComponentProperties Description }}
+Specifies the client-side component properties.
 
 ```yaml
 Type: String
@@ -196,7 +210,7 @@ Accept wildcard characters: False
 ```
 
 ### -Columns
-{{ Fill Columns Description }}
+Specifies the columns to be included in the calculation.
 
 ```yaml
 Type: Column[]
@@ -211,7 +225,7 @@ Accept wildcard characters: False
 ```
 
 ### -CurrencyLcid
-{{ Fill CurrencyLcid Description }}
+Specifies the locale ID for currency formatting.
 
 ```yaml
 Type: UInt32
@@ -226,7 +240,7 @@ Accept wildcard characters: False
 ```
 
 ### -CustomFormatter
-{{ Fill CustomFormatter Description }}
+Specifies a custom formatter for the column.
 
 ```yaml
 Type: String
@@ -241,7 +255,7 @@ Accept wildcard characters: False
 ```
 
 ### -DateFormat
-{{ Fill DateFormat Description }}
+Specifies the date format for the column.
 
 ```yaml
 Type: ColumnDateTimeFormatType
@@ -257,7 +271,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
-{{ Fill Description Description }}
+Specifies the description of the column.
 
 ```yaml
 Type: String
@@ -272,7 +286,7 @@ Accept wildcard characters: False
 ```
 
 ### -Direction
-{{ Fill Direction Description }}
+Specifies the direction of the column.
 
 ```yaml
 Type: String
@@ -287,7 +301,7 @@ Accept wildcard characters: False
 ```
 
 ### -Formula
-{{ Fill Formula Description }}
+Specifies the formula for the calculated column.
 
 ```yaml
 Type: String
@@ -302,7 +316,7 @@ Accept wildcard characters: False
 ```
 
 ### -Group
-{{ Fill Group Description }}
+Specifies the group of the column.
 
 ```yaml
 Type: String
@@ -317,7 +331,7 @@ Accept wildcard characters: False
 ```
 
 ### -Hidden
-{{ Fill Hidden Description }}
+Specifies whether the column is hidden.
 
 ```yaml
 Type: Boolean
@@ -332,7 +346,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{ Fill Id Description }}
+Specifies the ID of the column.
 
 ```yaml
 Type: Guid
@@ -347,7 +361,7 @@ Accept wildcard characters: False
 ```
 
 ### -JSLink
-{{ Fill JSLink Description }}
+Specifies the JSLink for the column.
 
 ```yaml
 Type: String
@@ -362,7 +376,7 @@ Accept wildcard characters: False
 ```
 
 ### -List
-{{ Fill List Description }}
+Specifies the list where the column will be added.
 
 ```yaml
 Type: List
@@ -377,7 +391,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{ Fill Name Description }}
+Specifies the name of the column.
 
 ```yaml
 Type: String
@@ -392,7 +406,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoCrawl
-{{ Fill NoCrawl Description }}
+Specifies whether the column should be excluded from search indexing.
 
 ```yaml
 Type: Boolean
@@ -407,7 +421,7 @@ Accept wildcard characters: False
 ```
 
 ### -NumberFormat
-{{ Fill NumberFormat Description }}
+Specifies the number format for the column.
 
 ```yaml
 Type: Int32
@@ -422,7 +436,7 @@ Accept wildcard characters: False
 ```
 
 ### -OutputType
-{{ Fill OutputType Description }}
+Specifies the output type of the calculated column.
 
 ```yaml
 Type: ColumnType
@@ -438,7 +452,7 @@ Accept wildcard characters: False
 ```
 
 ### -ShowAsPercentage
-{{ Fill ShowAsPercentage Description }}
+Specifies whether to show the calculated value as a percentage.
 
 ```yaml
 Type: Boolean
@@ -453,7 +467,7 @@ Accept wildcard characters: False
 ```
 
 ### -StaticName
-{{ Fill StaticName Description }}
+Specifies the static name of the column.
 
 ```yaml
 Type: String
@@ -468,7 +482,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
-{{ Fill Title Description }}
+Specifies the title of the column.
 
 ```yaml
 Type: String
@@ -499,7 +513,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action to take on progress.
 
 ```yaml
 Type: ActionPreference

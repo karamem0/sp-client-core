@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshTenantOrganizationNewsSite
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more organization news sites from the tenant.
 
 ## SYNTAX
 
@@ -17,21 +17,21 @@ Get-KshTenantOrganizationNewsSite [-NoEnumerate] [-ProgressAction <ActionPrefere
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshTenantOrganizationNewsSite` cmdlet retrieves one or more organization news sites from the tenant.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshTenantOrganizationNewsSite
 ```
 
-{{ Add example description here }}
+This example retrieves the organization news sites.
 
 ## PARAMETERS
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the collection.
 
 ```yaml
 Type: SwitchParameter
@@ -46,7 +46,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

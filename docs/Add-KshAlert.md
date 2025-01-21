@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshAlert
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Creates a new alert for a user on a list or list item.
 
 ## SYNTAX
 
@@ -23,21 +23,21 @@ Add-KshAlert [-AlertFrequency <AlertFrequency>] [-AlertTemplateName <String>] [-
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshAlert` cmdlet creates a new alert for a user on a specified list or list item. Alerts notify users of changes to list items or documents.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshAlert -List $list -User $user -Title "New Alert" -AlertFrequency "Daily" -DeliveryChannels "Email"
 ```
 
-{{ Add example description here }}
+This example creates a daily email alert for the specified user on the specified list with the title "New Alert".
 
 ## PARAMETERS
 
 ### -AlertFrequency
-{{ Fill AlertFrequency Description }}
+Specifies how frequently the alert is sent.
 
 ```yaml
 Type: AlertFrequency
@@ -53,7 +53,7 @@ Accept wildcard characters: False
 ```
 
 ### -AlertTemplateName
-{{ Fill AlertTemplateName Description }}
+Specifies the name of the alert template to use.
 
 ```yaml
 Type: String
@@ -68,7 +68,7 @@ Accept wildcard characters: False
 ```
 
 ### -AlertTime
-{{ Fill AlertTime Description }}
+Specifies the time of day the alert is sent.
 
 ```yaml
 Type: DateTime
@@ -83,7 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -AlertType
-{{ Fill AlertType Description }}
+Specifies the type of alert.
 
 ```yaml
 Type: AlertType
@@ -99,7 +99,7 @@ Accept wildcard characters: False
 ```
 
 ### -AlwaysNotify
-{{ Fill AlwaysNotify Description }}
+Indicates whether the user should always be notified.
 
 ```yaml
 Type: Boolean
@@ -114,7 +114,7 @@ Accept wildcard characters: False
 ```
 
 ### -DeliveryChannels
-{{ Fill DeliveryChannels Description }}
+Specifies the delivery channels for the alert.
 
 ```yaml
 Type: AlertDeliveryChannel
@@ -130,7 +130,7 @@ Accept wildcard characters: False
 ```
 
 ### -EventType
-{{ Fill EventType Description }}
+Specifies the type of event that triggers the alert.
 
 ```yaml
 Type: AlertEventType
@@ -146,7 +146,7 @@ Accept wildcard characters: False
 ```
 
 ### -EventTypeBitmask
-{{ Fill EventTypeBitmask Description }}
+Specifies a bitmask value for the event type.
 
 ```yaml
 Type: Int32
@@ -161,7 +161,7 @@ Accept wildcard characters: False
 ```
 
 ### -Filter
-{{ Fill Filter Description }}
+Specifies a filter for the alert.
 
 ```yaml
 Type: String
@@ -176,7 +176,7 @@ Accept wildcard characters: False
 ```
 
 ### -List
-{{ Fill List Description }}
+Specifies the list for the alert.
 
 ```yaml
 Type: List
@@ -191,7 +191,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListItem
-{{ Fill ListItem Description }}
+Specifies the list item for the alert.
 
 ```yaml
 Type: ListItem
@@ -206,7 +206,7 @@ Accept wildcard characters: False
 ```
 
 ### -Properties
-{{ Fill Properties Description }}
+Specifies additional properties for the alert.
 
 ```yaml
 Type: System.Collections.Generic.IReadOnlyDictionary`2[System.String,System.String]
@@ -221,7 +221,7 @@ Accept wildcard characters: False
 ```
 
 ### -Status
-{{ Fill Status Description }}
+Specifies the status of the alert.
 
 ```yaml
 Type: AlertStatus
@@ -237,7 +237,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
-{{ Fill Title Description }}
+Specifies the title of the alert.
 
 ```yaml
 Type: String
@@ -252,7 +252,7 @@ Accept wildcard characters: False
 ```
 
 ### -User
-{{ Fill User Description }}
+Specifies the user for the alert.
 
 ```yaml
 Type: User
@@ -267,7 +267,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

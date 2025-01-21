@@ -8,7 +8,7 @@ schema: 2.0.0
 # Disable-KshComment
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Disables a comment on a list item.
 
 ## SYNTAX
 
@@ -17,21 +17,21 @@ Disable-KshComment [-Identity] <ListItem> [-ProgressAction <ActionPreference>] [
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Disable-KshComment` cmdlet disables a comment on a list item.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Disable-KshComment -Identity $listItem
 ```
 
-{{ Add example description here }}
+This example disables a comment on the specified list item.
 
 ## PARAMETERS
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the list item that contains the comment to disable.
 
 ```yaml
 Type: ListItem
@@ -46,7 +46,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

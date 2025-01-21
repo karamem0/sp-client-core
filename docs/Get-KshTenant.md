@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshTenant
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves the tenant.
 
 ## SYNTAX
 
@@ -17,21 +17,21 @@ Get-KshTenant [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshTenant` cmdlet retrieves the tenant.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshTenant
 ```
 
-{{ Add example description here }}
+This example retrieves the tenant.
 
 ## PARAMETERS
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

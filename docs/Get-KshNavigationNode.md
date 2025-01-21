@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshNavigationNode
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more navigation nodes.
 
 ## SYNTAX
 
@@ -29,21 +29,35 @@ Get-KshNavigationNode [-NavigationNode] <NavigationNode> [-NoEnumerate] [-Progre
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshNavigationNode` cmdlet retrieves one or more navigation nodes based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshNavigationNode -Identity $node
 ```
 
-{{ Add example description here }}
+This example retrieves a navigation node by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshNavigationNode -NavigationNodeId 2001
+```
+
+This example retrieves a navigation node by navigation node ID.
+
+### Example 3
+```powershell
+PS C:\> Get-KshNavigationNode -NavigationNode $node
+```
+
+This example retrieves all navigation nodes.
 
 ## PARAMETERS
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the navigation node to retrieve.
 
 ```yaml
 Type: NavigationNode
@@ -58,7 +72,7 @@ Accept wildcard characters: False
 ```
 
 ### -NavigationNode
-{{ Fill NavigationNode Description }}
+Specifies the navigation node to retrieve.
 
 ```yaml
 Type: NavigationNode
@@ -73,7 +87,7 @@ Accept wildcard characters: False
 ```
 
 ### -NavigationNodeId
-{{ Fill NavigationNodeId Description }}
+Specifies the ID of the navigation node to retrieve.
 
 ```yaml
 Type: Int32
@@ -88,7 +102,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the collection.
 
 ```yaml
 Type: SwitchParameter
@@ -103,7 +117,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

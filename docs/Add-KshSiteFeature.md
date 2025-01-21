@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshSiteFeature
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Activates a feature in a site.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Add-KshSiteFeature -FeatureId <Guid> [-Force <Boolean>] [-Scope <FeatureDefiniti
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshSiteFeature` cmdlet activates a feature in the current site using the feature ID.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshSiteFeature -FeatureId "12345678-1234-1234-1234-1234567890ab" -Force $true
 ```
 
-{{ Add example description here }}
+This example activates the feature with the specified feature ID in the site, forcing activation if necessary.
 
 ## PARAMETERS
 
 ### -FeatureId
-{{ Fill FeatureId Description }}
+Specifies the ID of the feature to add.
 
 ```yaml
 Type: Guid
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -Force
-{{ Fill Force Description }}
+Forces the addition of the feature, even if it is already activated.
 
 ```yaml
 Type: Boolean
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -Scope
-{{ Fill Scope Description }}
+Specifies the scope of the feature to add.
 
 ```yaml
 Type: FeatureDefinitionScope
@@ -78,7 +78,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

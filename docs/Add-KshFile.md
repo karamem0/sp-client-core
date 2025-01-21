@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshFile
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a new file to a folder.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Add-KshFile [-Folder] <Folder> -Content <Byte[]> -FileName <String> [-Overwrite 
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshFile` cmdlet adds a file to a folder with the given content and file name. Optionally, it can overwrite an existing file and show progress.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshFile -Folder $folder -Content $content -FileName "example.txt" -Overwrite $true
 ```
 
-{{ Add example description here }}
+This example adds a file named "example.txt" to the specified folder with the given content and overwrites any existing file with the same name.
 
 ## PARAMETERS
 
 ### -Content
-{{ Fill Content Description }}
+Specifies the content of the file as a byte array.
 
 ```yaml
 Type: Byte[]
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -FileName
-{{ Fill FileName Description }}
+Specifies the name of the file to be added.
 
 ```yaml
 Type: String
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -Folder
-{{ Fill Folder Description }}
+Specifies the folder where the file will be added.
 
 ```yaml
 Type: Folder
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -Overwrite
-{{ Fill Overwrite Description }}
+Indicates whether to overwrite an existing file with the same name.
 
 ```yaml
 Type: Boolean
@@ -92,7 +92,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action to take when displaying progress.
 
 ```yaml
 Type: ActionPreference

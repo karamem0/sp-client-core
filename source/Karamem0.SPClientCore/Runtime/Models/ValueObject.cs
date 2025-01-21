@@ -23,11 +23,9 @@ public abstract class ValueObject
     {
     }
 
-    protected virtual Lazy<PropertyInfo[]> EqualityProperties => new(() =>
-    [
-        ..
+    protected virtual Lazy<IEnumerable<PropertyInfo>> EqualityProperties => new(() =>
         this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public)
-    ]);
+    );
 
     public override bool Equals(object value)
     {

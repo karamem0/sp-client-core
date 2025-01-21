@@ -18,6 +18,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 [XmlType("Object", Namespace = "http://schemas.microsoft.com/sharepoint/clientquery/2009")]
 public class ClientRequestPropertyArrayValue(string type, string value) : ClientRequestObject
 {
+
     [XmlAttribute()]
     public virtual string Type { get; protected set; } = type;
 

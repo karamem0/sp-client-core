@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshTenantExternalUser
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves external users from the tenant.
 
 ## SYNTAX
 
@@ -25,21 +25,35 @@ Get-KshTenantExternalUser [-Filter <String>] [-SortOrder <SortOrder>] [-NoEnumer
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshTenantExternalUser` cmdlet retrieves external users from the tenant based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshTenantExternalUser -SiteCollectionUrl "https://contoso.sharepoint.com/sites/site1"
 ```
 
-{{ Add example description here }}
+This example retrieves external users by site collection URL.
+
+### Example 2
+```powershell
+PS C:\> Get-KshTenantExternalUser -Filter "meganb@contoso.com"
+```
+
+This example retrieves external users filtered by email address.
+
+### Example 3
+```powershell
+PS C:\> Get-KshTenantExternalUser -SortOrder "Ascending"
+```
+
+This example retrieves all external users sorted in ascending order.
 
 ## PARAMETERS
 
 ### -Filter
-{{ Fill Filter Description }}
+Specifies a filter to limit the results.
 
 ```yaml
 Type: String
@@ -54,7 +68,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the results.
 
 ```yaml
 Type: SwitchParameter
@@ -69,7 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteCollectionUrl
-{{ Fill SiteCollectionUrl Description }}
+Specifies the URL of the site collection from which to retrieve external users.
 
 ```yaml
 Type: String
@@ -84,7 +98,7 @@ Accept wildcard characters: False
 ```
 
 ### -SortOrder
-{{ Fill SortOrder Description }}
+Specifies the sort order of the results.
 
 ```yaml
 Type: SortOrder
@@ -100,7 +114,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

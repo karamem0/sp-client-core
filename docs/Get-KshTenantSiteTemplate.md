@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshTenantSiteTemplate
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more site template from the tenant.
 
 ## SYNTAX
 
@@ -24,21 +24,28 @@ Get-KshTenantSiteTemplate [-NoEnumerate] [-ProgressAction <ActionPreference>] [<
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshTenantSiteTemplate` cmdlet retrieves one or more site template from the tenant based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshTenantSiteTemplate -CompatibilityLevel 15 -Lcid 1033
 ```
 
-{{ Add example description here }}
+This example retrieves site templates by compatibility level and LCID.
+
+### Example 2
+```powershell
+PS C:\> Get-KshTenantSiteTemplate
+```
+
+This example retrieves all site templates.
 
 ## PARAMETERS
 
 ### -CompatibilityLevel
-{{ Fill CompatibilityLevel Description }}
+Specifies the compatibility level of the site template.
 
 ```yaml
 Type: Int32
@@ -53,7 +60,7 @@ Accept wildcard characters: False
 ```
 
 ### -Lcid
-{{ Fill Lcid Description }}
+Specifies the locale ID (LCID) of the site template.
 
 ```yaml
 Type: UInt32
@@ -68,7 +75,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the collection.
 
 ```yaml
 Type: SwitchParameter
@@ -83,7 +90,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

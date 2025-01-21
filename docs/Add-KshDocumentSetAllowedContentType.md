@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshDocumentSetAllowedContentType
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds an allowed content type to a document set.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Add-KshDocumentSetAllowedContentType [-ContentType] <ContentType> -AllowedConten
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshDocumentSetAllowedContentType` cmdlet adds an allowed content type to a document set.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshDocumentSetAllowedContentType -ContentType $contentType -AllowedContentType $allowedContentType
 ```
 
-{{ Add example description here }}
+This example adds the specified content type as an allowed content type to the specified content type.
 
 ## PARAMETERS
 
 ### -AllowedContentType
-{{ Fill AllowedContentType Description }}
+Specifies the content type to be allowed in the document set.
 
 ```yaml
 Type: ContentType
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -ContentType
-{{ Fill ContentType Description }}
+Specifies the document set content type to which the allowed content type will be added.
 
 ```yaml
 Type: ContentType
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -PushChanges
-{{ Fill PushChanges Description }}
+Indicates whether to push changes to the content type.
 
 ```yaml
 Type: SwitchParameter
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

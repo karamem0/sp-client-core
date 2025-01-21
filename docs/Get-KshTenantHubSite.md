@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshTenantHubSite
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more hub sites from the tenant.
 
 ## SYNTAX
 
@@ -28,21 +28,35 @@ Get-KshTenantHubSite [-NoEnumerate] [-ProgressAction <ActionPreference>] [<Commo
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshTenantHubSite` cmdletone or more hub sites from the tenant based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshTenantHubSite -HubSiteId "12345678-1234-1234-1234-1234567890ab"
 ```
 
-{{ Add example description here }}
+This example retrieves a hub site by hub site ID.
+
+### Example 2
+```powershell
+PS C:\> Get-KshTenantHubSite -HubSiteUrl "https://contoso.sharepoint.com/sites/HubSite"
+```
+
+This example retrieves a hub site by hub site URL.
+
+### Example 3
+```powershell
+PS C:\> Get-KshTenantHubSite
+```
+
+This example retrieves all hub sites.
 
 ## PARAMETERS
 
 ### -HubSiteId
-{{ Fill HubSiteId Description }}
+Specifies the ID of the hub site to retrieve.
 
 ```yaml
 Type: Guid
@@ -57,7 +71,7 @@ Accept wildcard characters: False
 ```
 
 ### -HubSiteUrl
-{{ Fill HubSiteUrl Description }}
+Specifies the URL of the hub site to retrieve.
 
 ```yaml
 Type: String
@@ -72,7 +86,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the hub sites.
 
 ```yaml
 Type: SwitchParameter
@@ -87,7 +101,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

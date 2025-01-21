@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshUser
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Creates a new user.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Add-KshUser [-Email <String>] -LoginName <String> [-Title <String>] [-ProgressAc
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshUser` cmdlet creates a new user to the current site with the specified login name, email, and title.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshUser -LoginName "Megan Bowen" -Email "meganb@contoso.com" -Title "Developer"
 ```
 
-{{ Add example description here }}
+This example adds a new user with the login name "Megan Bowen", email "meganb@contoso.com", and title "Developer".
 
 ## PARAMETERS
 
 ### -Email
-{{ Fill Email Description }}
+Specifies the email address of the user.
 
 ```yaml
 Type: String
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -LoginName
-{{ Fill LoginName Description }}
+Specifies the login name of the user.
 
 ```yaml
 Type: String
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
-{{ Fill Title Description }}
+Specifies the title of the user.
 
 ```yaml
 Type: String
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

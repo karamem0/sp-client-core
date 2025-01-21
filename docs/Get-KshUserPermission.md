@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshUserPermission
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves user permissions from a site, list, or list item.
 
 ## SYNTAX
 
@@ -29,21 +29,35 @@ Get-KshUserPermission [-User] <User> [-ListItem] <ListItem> [-ProgressAction <Ac
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshUserPermission` cmdlet retrieves user permissions from a site, list, or list item based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshUserPermission -User $user -Site
 ```
 
-{{ Add example description here }}
+This example retrieves the site permissions for the specified user.
+
+### Example 2
+```powershell
+PS C:\> Get-KshUserPermission -User $user -List $list
+```
+
+This example retrieves the list permissions for the specified user.
+
+### Example 3
+```powershell
+PS C:\> Get-KshUserPermission -User $user -ListItem $listItem
+```
+
+This example retrieves the list item permissions for the specified user.
 
 ## PARAMETERS
 
 ### -List
-{{ Fill List Description }}
+Specifies the list for which to retrieve the user permissions.
 
 ```yaml
 Type: List
@@ -58,7 +72,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListItem
-{{ Fill ListItem Description }}
+Specifies the list item for which to retrieve the user permissions.
 
 ```yaml
 Type: ListItem
@@ -73,7 +87,7 @@ Accept wildcard characters: False
 ```
 
 ### -Site
-{{ Fill Site Description }}
+Specifies that the cmdlet retrieves the user permissions for the site.
 
 ```yaml
 Type: SwitchParameter
@@ -88,7 +102,7 @@ Accept wildcard characters: False
 ```
 
 ### -User
-{{ Fill User Description }}
+Specifies the user for whom to retrieve permissions.
 
 ```yaml
 Type: User
@@ -103,7 +117,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

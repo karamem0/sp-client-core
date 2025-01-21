@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshSitePage
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Creates a new site page.
 
 ## SYNTAX
 
@@ -25,21 +25,28 @@ Add-KshSitePage -PageName <String> [-PageLayoutType <SitePageLayoutType>] [-Prog
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshSitePage` cmdlet creates a new site page with the name and layout type.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshSitePage -List $list -PageName "HomePage" -PageLayoutType "Home"
 ```
 
-{{ Add example description here }}
+This example creates a new site page named "HomePage" in the specified list with the layout type set to "Home".
+
+### Example 2
+```powershell
+PS C:\> Add-KshSitePage -PageName "AboutUs" -PageLayoutType "Article"
+```
+
+This example creates a new site page in the default list named "AboutUs" with the layout type set to "Article".
 
 ## PARAMETERS
 
 ### -List
-{{ Fill List Description }}
+Specifies the list where the site page will be created.
 
 ```yaml
 Type: List
@@ -54,7 +61,7 @@ Accept wildcard characters: False
 ```
 
 ### -PageLayoutType
-{{ Fill PageLayoutType Description }}
+Specifies the layout type of the site page.
 
 ```yaml
 Type: SitePageLayoutType
@@ -70,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -PageName
-{{ Fill PageName Description }}
+Specifies the name of the site page.
 
 ```yaml
 Type: String
@@ -85,7 +92,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

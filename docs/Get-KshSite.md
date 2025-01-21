@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshSite
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more sites from the current site.
 
 ## SYNTAX
 
@@ -43,21 +43,56 @@ Get-KshSite [-NoEnumerate] [-ProgressAction <ActionPreference>] [<CommonParamete
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshSite` cmdlet retrieves one or more sites from the current site based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshSite -Identity $site
 ```
 
-{{ Add example description here }}
+This example retrieves a site by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshSite -SiteCollection $siteCollection
+```
+
+This example retrieves a site by site collection.
+
+### Example 3
+```powershell
+PS C:\> Get-KshSite -List $list
+```
+
+This example retrieves a site by list.
+
+### Example 4
+```powershell
+PS C:\> Get-KshSite -SiteId $siteId
+```
+
+This example retrieves a site by site ID.
+
+### Example 5
+```powershell
+PS C:\> Get-KshSite -SiteUrl $siteUrl
+```
+
+This example retrieves a site by site URL.
+
+### Example 6
+```powershell
+PS C:\> Get-KshSite
+```
+
+This example retrieves all sites.
 
 ## PARAMETERS
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the site to retrieve.
 
 ```yaml
 Type: Site
@@ -72,7 +107,7 @@ Accept wildcard characters: False
 ```
 
 ### -List
-{{ Fill List Description }}
+Specifies the list to retrieve.
 
 ```yaml
 Type: List
@@ -87,7 +122,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the collection.
 
 ```yaml
 Type: SwitchParameter
@@ -102,7 +137,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteCollection
-{{ Fill SiteCollection Description }}
+Specifies the site collection to retrieve.
 
 ```yaml
 Type: SiteCollection
@@ -117,7 +152,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteId
-{{ Fill SiteId Description }}
+Specifies the GUID of the site to retrieve.
 
 ```yaml
 Type: Guid
@@ -132,7 +167,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteUrl
-{{ Fill SiteUrl Description }}
+Specifies the URL of the site to retrieve.
 
 ```yaml
 Type: Uri
@@ -147,7 +182,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress.
 
 ```yaml
 Type: ActionPreference

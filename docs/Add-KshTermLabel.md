@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshTermLabel
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a new label to a term.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Add-KshTermLabel [-Term] <Term> -Name <String> -Lcid <UInt32> -IsDefault <Boolea
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshTermLabel` cmdlet adds a new label to a term with the name, language code identifier (LCID), and default status.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshTermLabel -Term $term -Name "NewLabel" -Lcid 1033 -IsDefault $true
 ```
 
-{{ Add example description here }}
+This example adds a new default label "NewLabel" with LCID 1033 to the specified term.
 
 ## PARAMETERS
 
 ### -IsDefault
-{{ Fill IsDefault Description }}
+Specifies whether the label is the default label for the term.
 
 ```yaml
 Type: Boolean
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -Lcid
-{{ Fill Lcid Description }}
+Specifies the language code identifier (LCID) for the label.
 
 ```yaml
 Type: UInt32
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{ Fill Name Description }}
+Specifies the name of the label.
 
 ```yaml
 Type: String
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -Term
-{{ Fill Term Description }}
+Specifies the term to which the label is added.
 
 ```yaml
 Type: Term
@@ -92,7 +92,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

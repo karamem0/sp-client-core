@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshDocumentSetWelcomePageColumn
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves the columns of the welcome page for a document set.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Get-KshDocumentSetWelcomePageColumn [-ContentType] <ContentType> [-NoEnumerate]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshDocumentSetWelcomePageColumn` cmdlet retrieves the columns of the welcome page for a document set.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshDocumentSetWelcomePageColumn -ContentType $contentType
 ```
 
-{{ Add example description here }}
+This example retrieves the columns of the welcome page for the document set.
 
 ## PARAMETERS
 
 ### -ContentType
-{{ Fill ContentType Description }}
+Specifies the content type of the document set.
 
 ```yaml
 Type: ContentType
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the collection.
 
 ```yaml
 Type: SwitchParameter
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

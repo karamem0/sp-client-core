@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshStorageEntity
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves a storage entity.
 
 ## SYNTAX
 
@@ -17,21 +17,21 @@ Get-KshStorageEntity [-Key] <String> [-ProgressAction <ActionPreference>] [<Comm
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshStorageEntity` cmdlet retrieves astorage entity.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshStorageEntity -Key "Copyright"
 ```
 
-{{ Add example description here }}
+This example retrieves a storage entity by key.
 
 ## PARAMETERS
 
 ### -Key
-{{ Fill Key Description }}
+Specifies the key of the storage entity to retrieve.
 
 ```yaml
 Type: String
@@ -46,7 +46,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

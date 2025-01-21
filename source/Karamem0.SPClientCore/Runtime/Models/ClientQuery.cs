@@ -30,6 +30,11 @@ public class ClientQuery : ClientRequestObject
     }
 
     public ClientQuery(bool selectAllProperties, Type type, params string[] conditions)
+        : this(selectAllProperties, type, conditions.AsEnumerable())
+    {
+    }
+
+    public ClientQuery(bool selectAllProperties, Type type, IEnumerable<string> conditions)
     {
         this.SelectAllProperties = selectAllProperties;
         this.Properties = type.GetDeclaredProperties()

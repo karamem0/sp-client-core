@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshTermStoreLanguage
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a language to the term store.
 
 ## SYNTAX
 
@@ -17,21 +17,21 @@ Add-KshTermStoreLanguage -Lcid <UInt32> [-ProgressAction <ActionPreference>] [<C
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshTermStoreLanguage` cmdlet adds a language to the term store using the specified LCID (Locale Identifier).
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshTermStoreLanguage -Lcid 1033
 ```
 
-{{ Add example description here }}
+This example adds the English language (LCID 1033) to the term store.
 
 ## PARAMETERS
 
 ### -Lcid
-{{ Fill Lcid Description }}
+Specifies the LCID (Locale Identifier) of the language to add.
 
 ```yaml
 Type: UInt32
@@ -46,7 +46,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

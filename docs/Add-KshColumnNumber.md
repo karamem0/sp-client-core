@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshColumnNumber
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a new Number column to a list or library.
 
 ## SYNTAX
 
@@ -48,21 +48,35 @@ Add-KshColumnNumber [-ClientSideComponentId <String>] [-ClientSideComponentPrope
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshColumnNumber` cmdlet adds a new Number column to a list or library. This cmdlet allows you to specify various properties for the column, such as the name, description, default value, and whether the column should be indexed or hidden.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshColumnNumber -List $list -Name "Budget" -Title "Annual Budget" -Required $true
 ```
 
-{{ Add example description here }}
+This example adds a new Number column to the specified list named "Budget" with the title "Annual Budget", and sets the column as required.
+
+### Example 2
+```powershell
+PS C:\> Add-KshColumnNumber -Name "Revenue" -Title "Quarterly Revenue" -DefaultValue "0" -MaxValue 1000000 -MinValue 0
+```
+
+This example adds a new Number column as a site column named "Revenue" with the title "Quarterly Revenue", a default value of 0, a maximum value of 1,000,000, and a minimum value of 0.
+
+### Example 3
+```powershell
+PS C:\> Add-KshColumnNumber -Name "Expenses" -Title "Monthly Expenses" -WhatIf
+```
+
+This example shows what would happen if the cmdlet runs without actually creating the column. The column would be named "Expenses" with the title "Monthly Expenses".
 
 ## PARAMETERS
 
 ### -AddColumnCheckDisplayName
-{{ Fill AddColumnCheckDisplayName Description }}
+Specifies whether to check the display name of the column.
 
 ```yaml
 Type: SwitchParameter
@@ -77,7 +91,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddColumnInternalNameHint
-{{ Fill AddColumnInternalNameHint Description }}
+Specifies whether to add an internal name hint for the column.
 
 ```yaml
 Type: SwitchParameter
@@ -92,7 +106,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddColumnToDefaultView
-{{ Fill AddColumnToDefaultView Description }}
+Specifies whether to add the column to the default view.
 
 ```yaml
 Type: SwitchParameter
@@ -107,7 +121,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToAllContentTypes
-{{ Fill AddToAllContentTypes Description }}
+Specifies whether to add the column to all content types.
 
 ```yaml
 Type: SwitchParameter
@@ -122,7 +136,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToDefaultContentType
-{{ Fill AddToDefaultContentType Description }}
+Specifies whether to add the column to the default content type.
 
 ```yaml
 Type: SwitchParameter
@@ -137,7 +151,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToDefaultView
-{{ Fill AddToDefaultView Description }}
+Specifies whether to add the column to the default view.
 
 ```yaml
 Type: SwitchParameter
@@ -152,7 +166,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToNoContentType
-{{ Fill AddToNoContentType Description }}
+Specifies whether to add the column to no content type.
 
 ```yaml
 Type: SwitchParameter
@@ -167,7 +181,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClientSideComponentId
-{{ Fill ClientSideComponentId Description }}
+Specifies the client-side component ID.
 
 ```yaml
 Type: String
@@ -182,7 +196,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClientSideComponentProperties
-{{ Fill ClientSideComponentProperties Description }}
+Specifies the client-side component properties.
 
 ```yaml
 Type: String
@@ -197,7 +211,7 @@ Accept wildcard characters: False
 ```
 
 ### -CustomFormatter
-{{ Fill CustomFormatter Description }}
+Specifies the custom formatter for the column.
 
 ```yaml
 Type: String
@@ -212,7 +226,7 @@ Accept wildcard characters: False
 ```
 
 ### -DefaultFormula
-{{ Fill DefaultFormula Description }}
+Specifies the default formula for the column.
 
 ```yaml
 Type: String
@@ -227,7 +241,7 @@ Accept wildcard characters: False
 ```
 
 ### -DefaultValue
-{{ Fill DefaultValue Description }}
+Specifies the default value for the column.
 
 ```yaml
 Type: String
@@ -242,7 +256,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
-{{ Fill Description Description }}
+Specifies the description of the column.
 
 ```yaml
 Type: String
@@ -257,7 +271,7 @@ Accept wildcard characters: False
 ```
 
 ### -Direction
-{{ Fill Direction Description }}
+Specifies the direction of the column.
 
 ```yaml
 Type: String
@@ -272,7 +286,7 @@ Accept wildcard characters: False
 ```
 
 ### -EnforceUniqueValues
-{{ Fill EnforceUniqueValues Description }}
+Specifies whether to enforce unique values for the column.
 
 ```yaml
 Type: Boolean
@@ -287,7 +301,7 @@ Accept wildcard characters: False
 ```
 
 ### -Group
-{{ Fill Group Description }}
+Specifies the group of the column.
 
 ```yaml
 Type: String
@@ -302,7 +316,7 @@ Accept wildcard characters: False
 ```
 
 ### -Hidden
-{{ Fill Hidden Description }}
+Specifies whether the column is hidden.
 
 ```yaml
 Type: Boolean
@@ -317,7 +331,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{ Fill Id Description }}
+Specifies the ID of the column.
 
 ```yaml
 Type: Guid
@@ -332,7 +346,7 @@ Accept wildcard characters: False
 ```
 
 ### -Indexed
-{{ Fill Indexed Description }}
+Specifies whether the column is indexed.
 
 ```yaml
 Type: Boolean
@@ -347,7 +361,7 @@ Accept wildcard characters: False
 ```
 
 ### -JSLink
-{{ Fill JSLink Description }}
+Specifies the JSLink for the column.
 
 ```yaml
 Type: String
@@ -362,7 +376,7 @@ Accept wildcard characters: False
 ```
 
 ### -List
-{{ Fill List Description }}
+Specifies the list to which the column is added.
 
 ```yaml
 Type: List
@@ -377,7 +391,7 @@ Accept wildcard characters: False
 ```
 
 ### -MaxValue
-{{ Fill MaxValue Description }}
+Specifies the maximum value for the column.
 
 ```yaml
 Type: Double
@@ -392,7 +406,7 @@ Accept wildcard characters: False
 ```
 
 ### -MinValue
-{{ Fill MinValue Description }}
+Specifies the minimum value for the column.
 
 ```yaml
 Type: Double
@@ -407,7 +421,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{ Fill Name Description }}
+Specifies the name of the column.
 
 ```yaml
 Type: String
@@ -422,7 +436,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoCrawl
-{{ Fill NoCrawl Description }}
+Specifies whether the column is excluded from search crawling.
 
 ```yaml
 Type: Boolean
@@ -437,7 +451,7 @@ Accept wildcard characters: False
 ```
 
 ### -NumberFormat
-{{ Fill NumberFormat Description }}
+Specifies the number format for the column.
 
 ```yaml
 Type: Int32
@@ -452,7 +466,7 @@ Accept wildcard characters: False
 ```
 
 ### -ReadOnly
-{{ Fill ReadOnly Description }}
+Specifies whether the column is read-only.
 
 ```yaml
 Type: Boolean
@@ -467,7 +481,7 @@ Accept wildcard characters: False
 ```
 
 ### -Required
-{{ Fill Required Description }}
+Specifies whether the column is required.
 
 ```yaml
 Type: Boolean
@@ -482,7 +496,7 @@ Accept wildcard characters: False
 ```
 
 ### -ShowAsPercentage
-{{ Fill ShowAsPercentage Description }}
+Specifies whether to show the column value as a percentage.
 
 ```yaml
 Type: Boolean
@@ -497,7 +511,7 @@ Accept wildcard characters: False
 ```
 
 ### -StaticName
-{{ Fill StaticName Description }}
+Specifies the static name of the column.
 
 ```yaml
 Type: String
@@ -512,7 +526,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
-{{ Fill Title Description }}
+Specifies the title of the column.
 
 ```yaml
 Type: String
@@ -543,7 +557,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress.
 
 ```yaml
 Type: ActionPreference

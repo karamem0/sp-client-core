@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshRoleDefinition
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a new role definition.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Add-KshRoleDefinition [-BasePermission <BasePermission>] [-Description <String>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshRoleDefinition` cmdlet adds a new role definition in the current site with the given parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshRoleDefinition -Name "CustomRole" -Description "This is a custom role" -BasePermission "FullControl"
 ```
 
-{{ Add example description here }}
+This example adds a new role definition named "CustomRole" with full control permissions and a description.
 
 ## PARAMETERS
 
 ### -BasePermission
-{{ Fill BasePermission Description }}
+Specifies the base permissions for the role definition.
 
 ```yaml
 Type: BasePermission
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
-{{ Fill Description Description }}
+Specifies the description of the role definition.
 
 ```yaml
 Type: String
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{ Fill Name Description }}
+Specifies the name of the role definition.
 
 ```yaml
 Type: String
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -Order
-{{ Fill Order Description }}
+Specifies the order of the role definition.
 
 ```yaml
 Type: Int32
@@ -92,7 +92,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress.
 
 ```yaml
 Type: ActionPreference

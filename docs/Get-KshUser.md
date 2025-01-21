@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshUser
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more users from the current site.
 
 ## SYNTAX
 
@@ -33,21 +33,42 @@ Get-KshUser [-NoEnumerate] [-ProgressAction <ActionPreference>] [<CommonParamete
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshUser` cmdlet retrieves one or more users from the current site based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshUser -Identity $user
 ```
 
-{{ Add example description here }}
+This example retrieves a user by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshUser -UserId 13
+```
+
+This example retrieves a user by user ID.
+
+### Example 3
+```powershell
+PS C:\> Get-KshUser -UserName "meganb@contoso.com"
+```
+
+This example retrieves a user by user name.
+
+### Example 4
+```powershell
+PS C:\> Get-KshUser
+```
+
+This example retrieves all users.
 
 ## PARAMETERS
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the user identity to retrieve.
 
 ```yaml
 Type: User
@@ -62,7 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the collection.
 
 ```yaml
 Type: SwitchParameter
@@ -77,7 +98,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserId
-{{ Fill UserId Description }}
+Specifies the user ID to retrieve.
 
 ```yaml
 Type: Int32
@@ -92,7 +113,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserName
-{{ Fill UserName Description }}
+Specifies the user name to retrieve.
 
 ```yaml
 Type: String
@@ -107,7 +128,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

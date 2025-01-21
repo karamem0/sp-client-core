@@ -8,7 +8,7 @@ schema: 2.0.0
 # Disconnect-KshSite
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Disconnects from a site.
 
 ## SYNTAX
 
@@ -17,21 +17,21 @@ Disconnect-KshSite [[-Url] <Uri>] [-ProgressAction <ActionPreference>] [<CommonP
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Disconnect-KshSite` cmdlet disconnects from a site and clear a credential cache.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Disconnect-KshSite -Url "https://consoto.sharepoint.com"
 ```
 
-{{ Add example description here }}
+This example disconnects from the site at "https://consoto.sharepoint.com".
 
 ## PARAMETERS
 
 ### -Url
-{{ Fill Url Description }}
+Specifies the URL of the site to disconnect from.
 
 ```yaml
 Type: Uri
@@ -46,7 +46,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

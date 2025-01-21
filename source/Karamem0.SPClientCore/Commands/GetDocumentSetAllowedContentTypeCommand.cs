@@ -18,7 +18,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
 [Cmdlet(VerbsCommon.Get, "KshDocumentSetAllowedContentType")]
-[OutputType(typeof(Column))]
+[OutputType(typeof(ContentTypeId))]
 public class GetDocumentSetAllowedContentTypeCommand : ClientObjectCmdlet<IDocumentSetAllowedContentTypeService>
 {
 

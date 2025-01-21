@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshView
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves a view from a list.
 
 ## SYNTAX
 
@@ -33,21 +33,42 @@ Get-KshView [-List] <List> [-NoEnumerate] [-ProgressAction <ActionPreference>] [
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshView` cmdlet retrieves a view from a list based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshView -Identity $view
 ```
 
-{{ Add example description here }}
+This example retrieves a view by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshView -List $list -ViewId $viewId
+```
+
+This example retrieves a view by view ID.
+
+### Example 3
+```powershell
+PS C:\> Get-KshView -List $list -ViewTitle "All Items"
+```
+
+This example retrieves a view by view title.
+
+### Example 4
+```powershell
+PS C:\> Get-KshView -List $list
+```
+
+This example retrieves all views.
 
 ## PARAMETERS
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the view to retrieve.
 
 ```yaml
 Type: View
@@ -62,7 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -List
-{{ Fill List Description }}
+Specifies the list that contains the view.
 
 ```yaml
 Type: List
@@ -77,7 +98,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the view.
 
 ```yaml
 Type: SwitchParameter
@@ -92,7 +113,7 @@ Accept wildcard characters: False
 ```
 
 ### -ViewId
-{{ Fill ViewId Description }}
+Specifies the ID of the view to retrieve.
 
 ```yaml
 Type: Guid
@@ -107,7 +128,7 @@ Accept wildcard characters: False
 ```
 
 ### -ViewTitle
-{{ Fill ViewTitle Description }}
+Specifies the title of the view to retrieve.
 
 ```yaml
 Type: String
@@ -122,7 +143,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress.
 
 ```yaml
 Type: ActionPreference

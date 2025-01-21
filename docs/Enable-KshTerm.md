@@ -8,7 +8,7 @@ schema: 2.0.0
 # Enable-KshTerm
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Enables a term.
 
 ## SYNTAX
 
@@ -17,21 +17,21 @@ Enable-KshTerm [-Identity] <Term> [-PassThru] [-ProgressAction <ActionPreference
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Enable-KshTerm` cmdlet enables a term.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Enable-KshTerm -Identity $term
 ```
 
-{{ Add example description here }}
+This example enables the specified term.
 
 ## PARAMETERS
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the term to enable.
 
 ```yaml
 Type: Term
@@ -46,7 +46,7 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
-{{ Fill PassThru Description }}
+Returns the term object that was processed.
 
 ```yaml
 Type: SwitchParameter
@@ -61,7 +61,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

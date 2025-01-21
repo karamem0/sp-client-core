@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshTenantCdnOrigin
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a new Office 365 CDN origin to the tenant.
 
 ## SYNTAX
 
@@ -23,21 +23,28 @@ Add-KshTenantCdnOrigin [-Private] -Origin <String> [-ProgressAction <ActionPrefe
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshTenantCdnOrigin` cmdlet adds a new Office 365 CDN origin to the tenant. You can specify whether the origin is public or private.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshTenantCdnOrigin -Public -Origin "/sites/site1/folder1"
 ```
 
-{{ Add example description here }}
+This example adds a Office 365 public CDN origin to the tenant with the specified URL.
+
+### Example 2
+```powershell
+PS C:\> Add-KshTenantCdnOrigin -Private -Origin "/sites/site1/folder1"
+```
+
+This example adds a Office 365 private CDN origin to the tenant with the specified URL.
 
 ## PARAMETERS
 
 ### -Origin
-{{ Fill Origin Description }}
+Specifies the URL of the Office 365 CDN origin to add to the tenant.
 
 ```yaml
 Type: String
@@ -52,7 +59,7 @@ Accept wildcard characters: False
 ```
 
 ### -Private
-{{ Fill Private Description }}
+Indicates that the Office 365 CDN is private.
 
 ```yaml
 Type: SwitchParameter
@@ -67,7 +74,7 @@ Accept wildcard characters: False
 ```
 
 ### -Public
-{{ Fill Public Description }}
+Indicates that the Office 365 CDN is public.
 
 ```yaml
 Type: SwitchParameter
@@ -82,7 +89,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

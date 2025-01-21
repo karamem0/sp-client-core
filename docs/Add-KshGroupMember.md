@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshGroupMember
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a member to a group.
 
 ## SYNTAX
 
@@ -17,21 +17,21 @@ Add-KshGroupMember [-Group] <Group> -Member <User> [-ProgressAction <ActionPrefe
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshGroupMember` cmdlet adds a member to a group.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshGroupMember -Group $group -Member $user
 ```
 
-{{ Add example description here }}
+This example adds the specified user to the specified group.
 
 ## PARAMETERS
 
 ### -Group
-{{ Fill Group Description }}
+Specifies the group to which the member will be added.
 
 ```yaml
 Type: Group
@@ -46,7 +46,7 @@ Accept wildcard characters: False
 ```
 
 ### -Member
-{{ Fill Member Description }}
+Specifies the user to be added to the group.
 
 ```yaml
 Type: User
@@ -61,7 +61,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

@@ -8,7 +8,7 @@ schema: 2.0.0
 # Deny-KshListItem
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Rejects a list item.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Deny-KshListItem [-Identity] <ListItem> [-Comment <String>] [-PassThru] [-Progre
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Deny-KshListItem` cmdlet rejects a draft of a list item with an optional comment.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Deny-KshListItem -Identity $listItem -Comment "Rejected"
 ```
 
-{{ Add example description here }}
+This example rejects the specified list item with the comment "Rejected".
 
 ## PARAMETERS
 
 ### -Comment
-{{ Fill Comment Description }}
+Specifies a comment to associate with the approval.
 
 ```yaml
 Type: String
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the list item to reject.
 
 ```yaml
 Type: ListItem
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
-{{ Fill PassThru Description }}
+Returns the folder object that was processed.
 
 ```yaml
 Type: SwitchParameter
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

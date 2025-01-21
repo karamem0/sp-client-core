@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshTermLabel
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more term labels from the term store.
 
 ## SYNTAX
 
@@ -28,21 +28,35 @@ Get-KshTermLabel [-Term] <Term> [-NoEnumerate] [-ProgressAction <ActionPreferenc
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshTermLabel` cmdlet retrieves one or more term labels from the term store based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshTermLabel -Identity $termLabel
 ```
 
-{{ Add example description here }}
+This example retrieves the term label by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshTermLabel -Term $term -LabelName "LabelName"
+```
+
+This example retrieves the term label by term and label name.
+
+### Example 3
+```powershell
+PS C:\> Get-KshTermLabel -Term $term
+```
+
+This example retrieves the term labels for the specified term.
 
 ## PARAMETERS
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the term label to retrieve.
 
 ```yaml
 Type: TermLabel
@@ -57,7 +71,7 @@ Accept wildcard characters: False
 ```
 
 ### -LabelName
-{{ Fill LabelName Description }}
+Specifies the name of the label to retrieve.
 
 ```yaml
 Type: String
@@ -72,7 +86,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the term labels.
 
 ```yaml
 Type: SwitchParameter
@@ -87,7 +101,7 @@ Accept wildcard characters: False
 ```
 
 ### -Term
-{{ Fill Term Description }}
+Specifies the term from which to retrieve the label.
 
 ```yaml
 Type: Term
@@ -102,7 +116,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

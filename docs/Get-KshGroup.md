@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshGroup
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more groups from the current site.
 
 ## SYNTAX
 
@@ -33,21 +33,42 @@ Get-KshGroup [-NoEnumerate] [-ProgressAction <ActionPreference>] [<CommonParamet
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshGroup` cmdlet retrieves one or more groups from the current site based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshGroup -Identity $group
 ```
 
-{{ Add example description here }}
+This example retrieves a group by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshGroup -GroupId 1
+```
+
+This example retrieves a group by group ID.
+
+### Example 3
+```powershell
+PS C:\> Get-KshGroup -GroupTitle "Administrators"
+```
+
+This example retrieves a group by group title.
+
+### Example 4
+```powershell
+PS C:\> Get-KshGroup
+```
+
+This example retrieves all groups.
 
 ## PARAMETERS
 
 ### -GroupId
-{{ Fill GroupId Description }}
+Specifies the ID of the group to retrieve.
 
 ```yaml
 Type: Int32
@@ -62,7 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -GroupTitle
-{{ Fill GroupTitle Description }}
+Specifies the title of the group to retrieve.
 
 ```yaml
 Type: String
@@ -77,7 +98,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the group to retrieve.
 
 ```yaml
 Type: Group
@@ -92,7 +113,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the collection.
 
 ```yaml
 Type: SwitchParameter
@@ -107,7 +128,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

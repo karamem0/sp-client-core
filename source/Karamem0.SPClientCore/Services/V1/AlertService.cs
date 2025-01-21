@@ -75,7 +75,7 @@ public class AlertService(ClientContext clientContext) : ClientService<Alert>(cl
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
-                Query = new ClientQuery(true, typeof(Alert), [.. conditions])
+                Query = new ClientQuery(true, typeof(Alert), conditions)
             });
         return this.ClientContext
             .ProcessQuery(requestPayload)

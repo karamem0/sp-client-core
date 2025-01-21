@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshTermSet
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a new term set to a term group.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Add-KshTermSet [-TermGroup] <TermGroup> [-Id <Guid>] -Lcid <UInt32> -Name <Strin
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshTermSet` cmdlet adds a new term set to a term group.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshTermSet -TermGroup $termGroup -Lcid 1033 -Name "New Term Set"
 ```
 
-{{ Add example description here }}
+This example adds a new term set named "New Term Set" to the specified term group with the locale ID 1033.
 
 ## PARAMETERS
 
 ### -Id
-{{ Fill Id Description }}
+Specifies the unique identifier of the term set.
 
 ```yaml
 Type: Guid
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -Lcid
-{{ Fill Lcid Description }}
+Specifies the locale ID for the term set.
 
 ```yaml
 Type: UInt32
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{ Fill Name Description }}
+Specifies the name of the term set.
 
 ```yaml
 Type: String
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -TermGroup
-{{ Fill TermGroup Description }}
+Specifies the term group to which the term set is added.
 
 ```yaml
 Type: TermGroup
@@ -92,7 +92,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

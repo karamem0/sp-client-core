@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshTermLocalCustomProperty
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a custom property to a term.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Add-KshTermLocalCustomProperty [-Term] <Term> -Name <String> -Value <String>
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshTermLocalCustomProperty` cmdlet adds a custom property to a term.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshTermLocalCustomProperty -Term $term -Name "SortOrder" -Value "1"
 ```
 
-{{ Add example description here }}
+This example adds a custom property named "SortOrder" with the value "1" to the specified term.
 
 ## PARAMETERS
 
 ### -Name
-{{ Fill Name Description }}
+Specifies the name of the custom property to add.
 
 ```yaml
 Type: String
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -Term
-{{ Fill Term Description }}
+Specifies the term to which the custom property is added.
 
 ```yaml
 Type: Term
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -Value
-{{ Fill Value Description }}
+Specifies the value of the custom property.
 
 ```yaml
 Type: String
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

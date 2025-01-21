@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshTenantSiteCollection
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more site collections from the tenant.
 
 ## SYNTAX
 
@@ -31,21 +31,49 @@ Get-KshTenantSiteCollection [-GroupIdDefined] [-IncludePersonalSite] [-Template 
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshTenantSiteCollection` cmdlet retrieves one or more site collections from the tenant based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshTenantSiteCollection -Identity $siteCollection
 ```
 
-{{ Add example description here }}
+This example retrieves a site collection by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshTenantSiteCollection -SiteCollectionUrl "https://contoso.sharepoint.com/sites/site1"
+```
+
+This example retrieves a site collection by site collection URL.
+
+### Example 3
+```powershell
+PS C:\> Get-KshTenantSiteCollection -GroupIdDefined
+```
+
+This example retrieves site collections that have a group ID defined.
+
+### Example 4
+```powershell
+PS C:\> Get-KshTenantSiteCollection -IncludePersonalSite
+```
+
+This example retrieves site collections that include personal sites.
+
+### Example 5
+```powershell
+PS C:\> Get-KshTenantSiteCollection -Template "STS#0"
+```
+
+This example retrieves site collections by template.
 
 ## PARAMETERS
 
 ### -GroupIdDefined
-{{ Fill GroupIdDefined Description }}
+Indicates whether the site collection has a group ID defined.
 
 ```yaml
 Type: SwitchParameter
@@ -60,7 +88,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the site collection to retrieve.
 
 ```yaml
 Type: TenantSiteCollection
@@ -75,7 +103,7 @@ Accept wildcard characters: False
 ```
 
 ### -IncludePersonalSite
-{{ Fill IncludePersonalSite Description }}
+Indicates whether to include personal sites in the results.
 
 ```yaml
 Type: SwitchParameter
@@ -90,7 +118,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates whether to enumerate the results.
 
 ```yaml
 Type: SwitchParameter
@@ -105,7 +133,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteCollectionUrl
-{{ Fill SiteCollectionUrl Description }}
+Specifies the URL of the site collection to retrieve.
 
 ```yaml
 Type: Uri
@@ -120,7 +148,7 @@ Accept wildcard characters: False
 ```
 
 ### -Template
-{{ Fill Template Description }}
+Specifies the template of the site collection to retrieve.
 
 ```yaml
 Type: String
@@ -135,7 +163,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

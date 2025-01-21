@@ -8,7 +8,7 @@ schema: 2.0.0
 # Disable-KshLike
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Disables a like on a comment or list item.
 
 ## SYNTAX
 
@@ -23,21 +23,28 @@ Disable-KshLike [-ListItem] <ListItem> [-ProgressAction <ActionPreference>] [<Co
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Disable-KshLike` cmdlet disables a like on a comment or list item.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Disable-KshLike -Comment $comment
 ```
 
-{{ Add example description here }}
+This example disables a like on the specified comment.
+
+### Example 2
+```powershell
+PS C:\> Disable-KshLike -ListItem $listItem
+```
+
+This example disables a like on the specified list item.
 
 ## PARAMETERS
 
 ### -Comment
-{{ Fill Comment Description }}
+Specifies the comment on which to disable the like.
 
 ```yaml
 Type: Comment
@@ -52,7 +59,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListItem
-{{ Fill ListItem Description }}
+Specifies the list item on which to disable the like.
 
 ```yaml
 Type: ListItem
@@ -67,7 +74,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

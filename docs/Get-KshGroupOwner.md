@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshGroupOwner
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves the a group owner from a group.
 
 ## SYNTAX
 
@@ -17,21 +17,21 @@ Get-KshGroupOwner [-Group] <Group> [-ProgressAction <ActionPreference>] [<Common
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshGroupOwner` cmdlet retrieves the group owner from a group.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshGroupOwner -Group $group
 ```
 
-{{ Add example description here }}
+This example retrieves the group owner.
 
 ## PARAMETERS
 
 ### -Group
-{{ Fill Group Description }}
+Specifies the group for which to retrieve the owner.
 
 ```yaml
 Type: Group
@@ -46,7 +46,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference
@@ -69,6 +69,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.Principal
+Returns the Principal object that represents the owner of the group.
+
 ## NOTES
 
 ## RELATED LINKS

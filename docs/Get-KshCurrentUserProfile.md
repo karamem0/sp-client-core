@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshCurrentUserProfile
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves the profile of the current user.
 
 ## SYNTAX
 
@@ -17,21 +17,21 @@ Get-KshCurrentUserProfile [-ProgressAction <ActionPreference>] [<CommonParameter
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshCurrentUserProfile` cmdlet retrieves the profile of the current user.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshCurrentUserProfile
 ```
 
-{{ Add example description here }}
+This example retrieves the profile of the current user.
 
 ## PARAMETERS
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

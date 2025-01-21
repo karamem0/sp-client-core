@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshTenantAppCatalog
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves the tenant app catalog.
 
 ## SYNTAX
 
@@ -17,21 +17,21 @@ Get-KshTenantAppCatalog [-ProgressAction <ActionPreference>] [<CommonParameters>
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshTenantAppCatalog` cmdlet retrieves the tenant app catalog.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshTenantAppCatalog
 ```
 
-{{ Add example description here }}
+This example retrieves the tenant app catalog.
 
 ## PARAMETERS
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

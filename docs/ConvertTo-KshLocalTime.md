@@ -8,7 +8,7 @@ schema: 2.0.0
 # ConvertTo-KshLocalTime
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Converts a given DateTime value to local time.
 
 ## SYNTAX
 
@@ -17,21 +17,21 @@ ConvertTo-KshLocalTime [-Value] <DateTime> [-ProgressAction <ActionPreference>] 
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `ConvertTo-KshLocalTime` cmdlet converts a given DateTime value to the local time using the current site settings.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> ConvertTo-KshLocalTime -Value (Get-Date)
 ```
 
-{{ Add example description here }}
+This example converts the current date and time to local time.
 
 ## PARAMETERS
 
 ### -Value
-{{ Fill Value Description }}
+Specifies the DateTime value to convert to local time.
 
 ```yaml
 Type: DateTime
@@ -46,7 +46,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

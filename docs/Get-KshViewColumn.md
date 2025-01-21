@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshViewColumn
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves the columns of a view.
 
 ## SYNTAX
 
@@ -17,21 +17,21 @@ Get-KshViewColumn [-View] <View> [-NoEnumerate] [-ProgressAction <ActionPreferen
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshViewColumn` cmdlet retrieves the columns of a view.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshViewColumn -View $view
 ```
 
-{{ Add example description here }}
+This example retrieves the view columns.
 
 ## PARAMETERS
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the columns.
 
 ```yaml
 Type: SwitchParameter
@@ -46,7 +46,7 @@ Accept wildcard characters: False
 ```
 
 ### -View
-{{ Fill View Description }}
+Specifies the view object from which to retrieve the columns.
 
 ```yaml
 Type: View
@@ -61,7 +61,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

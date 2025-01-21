@@ -5,33 +5,33 @@ online version:
 schema: 2.0.0
 ---
 
-# Get-KshCurrentConenction
+# Get-KshCurrentConnection
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves the current connection context.
 
 ## SYNTAX
 
 ```
-Get-KshCurrentConenction [-ProgressAction <ActionPreference>] [<CommonParameters>]
+Get-KshCurrentConnection [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshCurrentConnection` cmdlet retrieves the current connection context.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshCurrentConnection
 ```
 
-{{ Add example description here }}
+This example retrieves the current connection context.
 
 ## PARAMETERS
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference
@@ -54,6 +54,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Runtime.Services.ClientContext
+Returns the `ClientContext` object that was processed.
+
 ## NOTES
 
 ## RELATED LINKS

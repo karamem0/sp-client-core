@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshNavigationNode
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a new navigation node to the specified location.
 
 ## SYNTAX
 
@@ -34,21 +34,35 @@ Add-KshNavigationNode [-TopNavigationBar] [-AsLastNode <Boolean>] [-IsExternal <
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshNavigationNode` cmdlet adds a navigation node to the specified location in the navigation structure.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshNavigationNode -NavigationNode $node -Title "New Sub Node" -Url "http://example.com/sub"
 ```
 
-{{ Add example description here }}
+This example adds a new sub-navigation node under an existing node with the title "New Sub Node" and URL "http://example.com/sub".
+
+### Example 2
+```powershell
+PS C:\> Add-KshNavigationNode -QuickLaunch -Title "New Node" -Url "http://example.com"
+```
+
+This example adds a new navigation node to the Quick Launch with the title "New Node" and URL "http://example.com".
+
+### Example 3
+```powershell
+PS C:\> Add-KshNavigationNode -TopNavigationBar -Title "Top Node" -Url "http://example.com/top"
+```
+
+This example adds a new navigation node to the top navigation bar with the title "Top Node" and URL "http://example.com/top".
 
 ## PARAMETERS
 
 ### -AsLastNode
-{{ Fill AsLastNode Description }}
+Specifies whether to add the node as the last node.
 
 ```yaml
 Type: Boolean
@@ -63,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsExternal
-{{ Fill IsExternal Description }}
+Specifies whether the URL is external.
 
 ```yaml
 Type: Boolean
@@ -78,7 +92,7 @@ Accept wildcard characters: False
 ```
 
 ### -NavigationNode
-{{ Fill NavigationNode Description }}
+Specifies the navigation node to add.
 
 ```yaml
 Type: NavigationNode
@@ -93,7 +107,7 @@ Accept wildcard characters: False
 ```
 
 ### -PreviousNode
-{{ Fill PreviousNode Description }}
+Specifies the previous node in the navigation structure.
 
 ```yaml
 Type: NavigationNode
@@ -108,7 +122,7 @@ Accept wildcard characters: False
 ```
 
 ### -QuickLaunch
-{{ Fill QuickLaunch Description }}
+Specifies that the node should be added to the Quick Launch.
 
 ```yaml
 Type: SwitchParameter
@@ -123,7 +137,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
-{{ Fill Title Description }}
+Specifies the title of the navigation node.
 
 ```yaml
 Type: String
@@ -138,7 +152,7 @@ Accept wildcard characters: False
 ```
 
 ### -TopNavigationBar
-{{ Fill TopNavigationBar Description }}
+Specifies that the node should be added to the top navigation bar.
 
 ```yaml
 Type: SwitchParameter
@@ -153,7 +167,7 @@ Accept wildcard characters: False
 ```
 
 ### -Url
-{{ Fill Url Description }}
+Specifies the URL of the navigation node.
 
 ```yaml
 Type: String
@@ -168,7 +182,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

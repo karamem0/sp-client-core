@@ -5,48 +5,33 @@ online version:
 schema: 2.0.0
 ---
 
-# Enable-KshComment
+# Get-KshCurrentConnection
 
 ## SYNOPSIS
-Enables comments on a list item.
+{{ Fill in the Synopsis }}
 
 ## SYNTAX
 
 ```
-Enable-KshComment [-Identity] <ListItem> [-ProgressAction <ActionPreference>] [<CommonParameters>]
+Get-KshCurrentConnection [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The `Enable-KshComment` cmdlet enables comments on a list item.
+{{ Fill in the Description }}
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> Enable-KshComment -Identity $listItem
+PS C:\> {{ Add example code here }}
 ```
 
-This example enables comments on the specified list item.
+{{ Add example description here }}
 
 ## PARAMETERS
 
-### -Identity
-Specifies the list item on which to enable comments.
-
-```yaml
-Type: ListItem
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: 0
-Default value: None
-Accept pipeline input: True (ByValue)
-Accept wildcard characters: False
-```
-
 ### -ProgressAction
-Specifies the action preference for progress updates.
+{{ Fill ProgressAction Description }}
 
 ```yaml
 Type: ActionPreference
@@ -65,10 +50,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.V1.ListItem
+### None
 ## OUTPUTS
 
-### System.Void
+### Karamem0.SharePoint.PowerShell.Runtime.Services.ClientContext
 ## NOTES
 
 ## RELATED LINKS

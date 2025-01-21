@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshTenantUser
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more users from a site collection.
 
 ## SYNTAX
 
@@ -49,21 +49,56 @@ Get-KshTenantUser [-SiteCollectionUrl] <Uri> [-NoEnumerate] [-ProgressAction <Ac
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshTenantUser` cmdlet retrieves a user from a site collection based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshTenantUser -SiteCollection $siteCollection -UserId 11
 ```
 
-{{ Add example description here }}
+This example retrieves a user by site collection and user ID.
+
+### Example 2
+```powershell
+PS C:\> Get-KshTenantUser -SiteCollection $siteCollection -UserName "meganb@consoto.com"
+```
+
+This example retrieves a user by site collection and user name.
+
+### Example 3
+```powershell
+PS C:\> Get-KshTenantUser -SiteCollection $siteCollection
+```
+
+This example retrieves all users by site collection.
+
+### Example 4
+```powershell
+PS C:\> Get-KshTenantUser -SiteCollectionUrl "https://tenant.sharepoint.com/sites/site1" -UserId 11
+```
+
+This example retrieves a user by site collection URL and user ID.
+
+### Example 5
+```powershell
+PS C:\> Get-KshTenantUser -SiteCollectionUrl "https://tenant.sharepoint.com/sites/site1" -UserName "user@example.com"
+```
+
+This example retrieves a user by site collection URL and user name.
+
+### Example 6
+```powershell
+PS C:\> Get-KshTenantUser -SiteCollectionUrl "https://tenant.sharepoint.com/sites/site1"
+```
+
+This example retrieves all users by site collection URL.
 
 ## PARAMETERS
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet should not enumerate the users.
 
 ```yaml
 Type: SwitchParameter
@@ -78,7 +113,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteCollection
-{{ Fill SiteCollection Description }}
+Specifies the tenant site collection from which to retrieve the user.
 
 ```yaml
 Type: TenantSiteCollection
@@ -93,7 +128,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteCollectionUrl
-{{ Fill SiteCollectionUrl Description }}
+Specifies the URL of the tenant site collection from which to retrieve the user.
 
 ```yaml
 Type: Uri
@@ -108,7 +143,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserId
-{{ Fill UserId Description }}
+Specifies the ID of the user to retrieve.
 
 ```yaml
 Type: Int32
@@ -123,7 +158,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserName
-{{ Fill UserName Description }}
+Specifies the username of the user to retrieve.
 
 ```yaml
 Type: String
@@ -138,7 +173,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

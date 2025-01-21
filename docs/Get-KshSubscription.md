@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshSubscription
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more subscriptions from a list.
 
 ## SYNTAX
 
@@ -29,21 +29,35 @@ Get-KshSubscription [-List] <List> [-NoEnumerate] [-ProgressAction <ActionPrefer
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshSubscription` cmdlet retrieves one or more subscriptions from a list based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshSubscription -Identity $subscription
 ```
 
-{{ Add example description here }}
+This example retrieves a subscription by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshSubscription -List $list -SubscriptionId $subscriptionId
+```
+
+This example retrieves a subscription by subscription ID.
+
+### Example 3
+```powershell
+PS C:\> Get-KshSubscription -List $list
+```
+
+This example retrieves all subscriptions.
 
 ## PARAMETERS
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the subscription to retrieve.
 
 ```yaml
 Type: Subscription
@@ -58,7 +72,7 @@ Accept wildcard characters: False
 ```
 
 ### -List
-{{ Fill List Description }}
+Specifies the list that contains the subscription.
 
 ```yaml
 Type: List
@@ -73,7 +87,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the subscription.
 
 ```yaml
 Type: SwitchParameter
@@ -88,7 +102,7 @@ Accept wildcard characters: False
 ```
 
 ### -SubscriptionId
-{{ Fill SubscriptionId Description }}
+Specifies the ID of the subscription.
 
 ```yaml
 Type: Guid
@@ -103,7 +117,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress.
 
 ```yaml
 Type: ActionPreference

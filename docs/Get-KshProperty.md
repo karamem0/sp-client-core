@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshProperty
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves properties of a alert, file, folder, list item or site.
 
 ## SYNTAX
 
@@ -38,21 +38,49 @@ Get-KshProperty [-Site] <Site> [-ProgressAction <ActionPreference>] [<CommonPara
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshProperty` cmdlet retrieves properties of a alert, file, folder, list item or site.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshProperty -Alert $alert
 ```
 
-{{ Add example description here }}
+This example retrieves alert properties.
+
+### Example 2
+```powershell
+PS C:\> Get-KshProperty -File $file
+```
+
+This example retrieves file properties.
+
+### Example 3
+```powershell
+PS C:\> Get-KshProperty -Folder $folder
+```
+
+This example retrieves folder properties.
+
+### Example 4
+```powershell
+PS C:\> Get-KshProperty -ListItem $listItem
+```
+
+This example retrieves list item properties.
+
+### Example 5
+```powershell
+PS C:\> Get-KshProperty -Site $site
+```
+
+This example retrieves site properties.
 
 ## PARAMETERS
 
 ### -Alert
-{{ Fill Alert Description }}
+Specifies the alert whose properties are retrieved.
 
 ```yaml
 Type: Alert
@@ -67,7 +95,7 @@ Accept wildcard characters: False
 ```
 
 ### -File
-{{ Fill File Description }}
+Specifies the file whose properties are retrieved.
 
 ```yaml
 Type: File
@@ -82,7 +110,7 @@ Accept wildcard characters: False
 ```
 
 ### -Folder
-{{ Fill Folder Description }}
+Specifies the folder whose properties are retrieved.
 
 ```yaml
 Type: Folder
@@ -97,7 +125,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListItem
-{{ Fill ListItem Description }}
+Specifies the list item whose properties are retrieved.
 
 ```yaml
 Type: ListItem
@@ -112,7 +140,7 @@ Accept wildcard characters: False
 ```
 
 ### -Site
-{{ Fill Site Description }}
+Specifies the site whose properties are retrieved.
 
 ```yaml
 Type: Site
@@ -127,7 +155,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

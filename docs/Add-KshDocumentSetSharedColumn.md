@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshDocumentSetSharedColumn
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a shared column to a document set content type.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Add-KshDocumentSetSharedColumn [-ContentType] <ContentType> -Column <Column> [-P
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshDocumentSetSharedColumn` cmdlet adds a shared column to a document set content type.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshDocumentSetSharedColumn -ContentType $contentType -Column $column -PushChanges
 ```
 
-{{ Add example description here }}
+This example adds a shared column to the specified document set content type and pushes the changes.
 
 ## PARAMETERS
 
 ### -Column
-{{ Fill Column Description }}
+Specifies the column to add to the document set content type.
 
 ```yaml
 Type: Column
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -ContentType
-{{ Fill ContentType Description }}
+Specifies the document set content type to which the column will be added.
 
 ```yaml
 Type: ContentType
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -PushChanges
-{{ Fill PushChanges Description }}
+Indicates that the changes should be pushed to all items that use the content type.
 
 ```yaml
 Type: SwitchParameter
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

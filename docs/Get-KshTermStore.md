@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshTermStore
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves the term store from the tenant.
 
 ## SYNTAX
 
@@ -17,21 +17,21 @@ Get-KshTermStore [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshTermStore` cmdlet retrieves the term store.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshTermStore
 ```
 
-{{ Add example description here }}
+This example retrieves the term store from the tenant.
 
 ## PARAMETERS
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

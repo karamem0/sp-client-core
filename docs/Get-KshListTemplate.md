@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshListTemplate
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more list templates from the current site.
 
 ## SYNTAX
 
@@ -28,21 +28,35 @@ Get-KshListTemplate [-NoEnumerate] [-ProgressAction <ActionPreference>] [<Common
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshListTemplate` cmdlet retrieves one or more list templates from the current site based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshListTemplate -Identity $listTemplate
 ```
 
-{{ Add example description here }}
+This example retrieves a list template by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshListTemplate -ListTemplateTitle "Custom List"
+```
+
+This example retrieves a list template by list template title.
+
+### Example 3
+```powershell
+PS C:\> Get-KshListTemplate
+```
+
+This example retrieves all list templates.
 
 ## PARAMETERS
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the list template to retrieve.
 
 ```yaml
 Type: ListTemplate
@@ -57,7 +71,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListTemplateTitle
-{{ Fill ListTemplateTitle Description }}
+Specifies the title of the list template to retrieve.
 
 ```yaml
 Type: String
@@ -72,7 +86,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the list templates.
 
 ```yaml
 Type: SwitchParameter
@@ -87,7 +101,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

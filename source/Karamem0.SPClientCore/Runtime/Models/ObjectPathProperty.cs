@@ -17,6 +17,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 [XmlType("Property", Namespace = "http://schemas.microsoft.com/sharepoint/clientquery/2009")]
 public class ObjectPathProperty(long parentId, string name) : ObjectPath
 {
+
     [XmlAttribute()]
     public override long Id { get; protected set; }
 

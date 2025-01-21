@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshTenantSiteScript
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a new site script to the tenant.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Add-KshTenantSiteScript -Content <String> [-Description <String>] -Title <String
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshTenantSiteScript` cmdlet adds a new site script to the tenant with the content and title. Optionally, a description can be provided.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshTenantSiteScript -Content "<JSON content>" -Title "My Site Script" -Description "This is a sample site script."
 ```
 
-{{ Add example description here }}
+This example adds a new tenant site script to the tenant with the specified content, title, and description.
 
 ## PARAMETERS
 
 ### -Content
-{{ Fill Content Description }}
+Specifies the JSON content of the site script.
 
 ```yaml
 Type: String
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
-{{ Fill Description Description }}
+Specifies the description of the site script.
 
 ```yaml
 Type: String
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
-{{ Fill Title Description }}
+Specifies the title of the site script.
 
 ```yaml
 Type: String
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

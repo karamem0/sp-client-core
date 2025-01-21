@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshUserProperty
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves properties of a user.
 
 ## SYNTAX
 
@@ -23,21 +23,28 @@ Get-KshUserProperty [-UserLoginName] <String> [-ProgressAction <ActionPreference
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshUserProperty` cmdlet retrieves properties of a user.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshUserProperty -Identity $userProperty
 ```
 
-{{ Add example description here }}
+This example retrieves the properties of the user by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshUserProperty -UserLoginName "meganb@contoso.com"
+```
+
+This example retrieves the properties of the user by login name.
 
 ## PARAMETERS
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the properties of the user to retrieve.
 
 ```yaml
 Type: UserProperty
@@ -52,7 +59,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserLoginName
-{{ Fill UserLoginName Description }}
+Specifies the login name of the user whose properties are to be retrieved.
 
 ```yaml
 Type: String
@@ -67,7 +74,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

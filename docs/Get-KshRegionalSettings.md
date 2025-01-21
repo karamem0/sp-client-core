@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshRegionalSettings
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves the regional settings for the current site.
 
 ## SYNTAX
 
@@ -17,21 +17,21 @@ Get-KshRegionalSettings [-ProgressAction <ActionPreference>] [<CommonParameters>
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshRegionalSettings` cmdlet retrieves the regional settings for the current site.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshRegionalSettings
 ```
 
-{{ Add example description here }}
+This example retrieves the regional settings.
 
 ## PARAMETERS
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

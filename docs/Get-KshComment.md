@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshComment
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more comments from a list item.
 
 ## SYNTAX
 
@@ -29,21 +29,35 @@ Get-KshComment [-ListItem] <ListItem> [-NoEnumerate] [-ProgressAction <ActionPre
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshComment` cmdlet retrieves one or more comments from a list item based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshComment -Identity $comment
 ```
 
-{{ Add example description here }}
+This example retrieves a comment by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshComment -ListItem $listItem -CommentId 1
+```
+
+This example retrieves a comment by comment ID.
+
+### Example 3
+```powershell
+PS C:\> Get-KshComment -ListItem $listItem
+```
+
+This example retrieves all comments.
 
 ## PARAMETERS
 
 ### -CommentId
-{{ Fill CommentId Description }}
+Specifies the ID of the comment to retrieve.
 
 ```yaml
 Type: Int32
@@ -58,7 +72,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the comment to retrieve.
 
 ```yaml
 Type: Comment
@@ -73,7 +87,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListItem
-{{ Fill ListItem Description }}
+Specifies the list item that contains the comments to retrieve.
 
 ```yaml
 Type: ListItem
@@ -88,7 +102,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the comments.
 
 ```yaml
 Type: SwitchParameter
@@ -103,7 +117,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

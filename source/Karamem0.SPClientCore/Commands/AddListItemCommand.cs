@@ -57,7 +57,9 @@ public class AddListItemCommand : ClientObjectCmdlet<IListItemService>
                                 property => property.Value);
                         }
                     })
-                    .ToArray()));
+                    .ToArray()
+                )
+            );
         }
         else
         {
@@ -77,7 +79,9 @@ public class AddListItemCommand : ClientObjectCmdlet<IListItemService>
                                 property => property.Value);
                         }
                     })
-                    .ToArray()));
+                    .ToArray()
+                )
+            );
         }
     }
 

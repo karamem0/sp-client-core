@@ -14,18 +14,14 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
-public class ClientQueryIgnoreAttribute : Attribute
+public class ClientQueryIgnoreAttribute(string name) : Attribute
 {
 
     public ClientQueryIgnoreAttribute()
+        : this(null)
     {
     }
 
-    public ClientQueryIgnoreAttribute(string name)
-    {
-        this.Name = name;
-    }
-
-    public string Name { get; private set; }
+    public string Name { get; private set; } = name;
 
 }

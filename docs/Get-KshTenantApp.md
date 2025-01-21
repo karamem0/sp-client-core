@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshTenantApp
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more apps from a tenant app catalog.
 
 ## SYNTAX
 
@@ -28,21 +28,35 @@ Get-KshTenantApp [-NoEnumerate] [-ProgressAction <ActionPreference>] [<CommonPar
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshTenantApp` cmdlet retrieves one or more apps from a tenant app catalog based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshTenantApp -Identity $app
 ```
 
-{{ Add example description here }}
+This example retrieves a app by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshTenantApp -AppId $appId
+```
+
+This example retrieves a app by app ID.
+
+### Example 3
+```powershell
+PS C:\> Get-KshTenantApp
+```
+
+This example retrieves all apps.
 
 ## PARAMETERS
 
 ### -AppId
-{{ Fill AppId Description }}
+Specifies the ID of the application to retrieve.
 
 ```yaml
 Type: Guid
@@ -57,7 +71,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the app to retrieve.
 
 ```yaml
 Type: App
@@ -72,7 +86,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the collection.
 
 ```yaml
 Type: SwitchParameter
@@ -87,7 +101,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

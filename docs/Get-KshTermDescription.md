@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshTermDescription
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves the description of a term.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Get-KshTermDescription [-Identity] <Term> -Lcid <UInt32> [-ProgressAction <Actio
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshTermDescription` cmdlet retrieves the description of a term for a given language code identifier (LCID).
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshTermDescription -Identity $term -Lcid 1033
 ```
 
-{{ Add example description here }}
+This example retrieves the description of the specified term in English (LCID 1033).
 
 ## PARAMETERS
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the term for which to retrieve the description.
 
 ```yaml
 Type: Term
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -Lcid
-{{ Fill Lcid Description }}
+Specifies the language code identifier (LCID) for the term description.
 
 ```yaml
 Type: UInt32
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

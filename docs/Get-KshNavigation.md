@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshNavigation
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves the navigation settings for the current site.
 
 ## SYNTAX
 
@@ -17,21 +17,21 @@ Get-KshNavigation [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshNavigation` cmdlet retrieves the navigation settings for the current site.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshNavigation
 ```
 
-{{ Add example description here }}
+This example retrieves the navigation settings.
 
 ## PARAMETERS
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference
@@ -54,6 +54,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.Navigation
+Returns the navigation object that was processed.
+
 ## NOTES
 
 ## RELATED LINKS

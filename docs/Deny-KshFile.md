@@ -8,7 +8,7 @@ schema: 2.0.0
 # Deny-KshFile
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Rejects a file.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Deny-KshFile [-Identity] <File> [-Comment <String>] [-PassThru] [-ProgressAction
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Deny-KshFile` cmdlet rejects a draft of a file with an optional comment.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Deny-KshFile -Identity $file -Comment "Rejected"
 ```
 
-{{ Add example description here }}
+This example rejects the specified file with the comment "Rejected".
 
 ## PARAMETERS
 
 ### -Comment
-{{ Fill Comment Description }}
+Specifies a comment to associate with the approval.
 
 ```yaml
 Type: String
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the file to reject.
 
 ```yaml
 Type: File
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
-{{ Fill PassThru Description }}
+Returns the file object that was processed.
 
 ```yaml
 Type: SwitchParameter
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

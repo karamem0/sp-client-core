@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Management.Automation;
 using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
@@ -23,6 +24,11 @@ public class ListItem : SecurableObject
     public ListItem()
     {
     }
+
+    [JsonIgnore()]
+    public PSObject FieldValues => new(this.ExtensionProperties
+        .Select(ClientResultValue.Create)
+        .ToDictionary(item => item.Key, item => item.Value));
 
     [JsonProperty()]
     public virtual string AccessPolicy { get; protected set; }

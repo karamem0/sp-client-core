@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshFolder
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a new folder to a folder.
 
 ## SYNTAX
 
@@ -17,21 +17,21 @@ Add-KshFolder [-Folder] <Folder> -FolderName <String> [-ProgressAction <ActionPr
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshFolder` cmdlet adds a new folder to a folder.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshFolder -Folder $parentFolder -FolderName "NewFolder"
 ```
 
-{{ Add example description here }}
+This example creates a new folder named "NewFolder" inside the specified parent folder.
 
 ## PARAMETERS
 
 ### -Folder
-{{ Fill Folder Description }}
+Specifies the parent folder where the new folder will be created.
 
 ```yaml
 Type: Folder
@@ -46,7 +46,7 @@ Accept wildcard characters: False
 ```
 
 ### -FolderName
-{{ Fill FolderName Description }}
+Specifies the name of the new folder to be created.
 
 ```yaml
 Type: String
@@ -61,7 +61,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

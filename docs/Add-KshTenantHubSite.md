@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshTenantHubSite
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a site collection as a hub site.
 
 ## SYNTAX
 
@@ -19,21 +19,21 @@ Add-KshTenantHubSite [-Description <String>] [-EnablePermissionsSync <Boolean>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshTenantHubSite` cmdlet adds a site collection as a hub site. This allows you to create a hub site that can be used to organize and connect sites based on projects, departments, divisions, regions, etc.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshTenantHubSite -SiteCollectionId "00000000-0000-0000-0000-000000000000" -SiteCollectionUrl "https://contoso.sharepoint.com/sites/HubSite" -Title "Contoso Hub"
 ```
 
-{{ Add example description here }}
+This example adds the site collection as a hub site with the specified ID, URL and title "Contoso Hub".
 
 ## PARAMETERS
 
 ### -Description
-{{ Fill Description Description }}
+Specifies the description of the hub site.
 
 ```yaml
 Type: String
@@ -48,7 +48,7 @@ Accept wildcard characters: False
 ```
 
 ### -EnablePermissionsSync
-{{ Fill EnablePermissionsSync Description }}
+Indicates whether to enable permissions synchronization for associated sites.
 
 ```yaml
 Type: Boolean
@@ -63,7 +63,7 @@ Accept wildcard characters: False
 ```
 
 ### -HideNameInNavigation
-{{ Fill HideNameInNavigation Description }}
+Indicates whether to hide the hub site name in the navigation.
 
 ```yaml
 Type: Boolean
@@ -78,7 +78,7 @@ Accept wildcard characters: False
 ```
 
 ### -LogoUrl
-{{ Fill LogoUrl Description }}
+Specifies the URL of the logo for the hub site.
 
 ```yaml
 Type: String
@@ -93,7 +93,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteCollectionId
-{{ Fill SiteCollectionId Description }}
+Specifies the ID of the site collection to register as a hub site.
 
 ```yaml
 Type: Guid
@@ -108,7 +108,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteCollectionUrl
-{{ Fill SiteCollectionUrl Description }}
+Specifies the URL of the site collection to register as a hub site.
 
 ```yaml
 Type: String
@@ -123,7 +123,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
-{{ Fill Title Description }}
+Specifies the title of the hub site.
 
 ```yaml
 Type: String
@@ -138,7 +138,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

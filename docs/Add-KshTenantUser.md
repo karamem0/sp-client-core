@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshTenantUser
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a user to a site collection.
 
 ## SYNTAX
 
@@ -25,21 +25,28 @@ Add-KshTenantUser [-SiteCollectionUrl] <Uri> [-Email <String>] -LoginName <Strin
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshTenantUser` cmdlet adds a user to a site collection.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshTenantUser -SiteCollectionUrl "https://tenant.sharepoint.com/sites/site1" -LoginName "user@consoto.com" -Email "user@consoto.com" -Title "User Title"
 ```
 
-{{ Add example description here }}
+This example adds a user to the site collection at the given URL with a login name, email, and title.
+
+### Example 2
+```powershell
+PS C:\> Add-KshTenantUser -SiteCollection $siteCollection -LoginName "user@consoto.com" -Email "user@consoto.com" -Title "User Title"
+```
+
+This example adds a user to the specified site collection with a login name, email, and title.
 
 ## PARAMETERS
 
 ### -Email
-{{ Fill Email Description }}
+Specifies the email address of the user.
 
 ```yaml
 Type: String
@@ -54,7 +61,7 @@ Accept wildcard characters: False
 ```
 
 ### -LoginName
-{{ Fill LoginName Description }}
+Specifies the login name of the user. This parameter is required.
 
 ```yaml
 Type: String
@@ -69,7 +76,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteCollection
-{{ Fill SiteCollection Description }}
+Specifies the tenant site collection object.
 
 ```yaml
 Type: TenantSiteCollection
@@ -84,7 +91,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteCollectionUrl
-{{ Fill SiteCollectionUrl Description }}
+Specifies the URL of the tenant site collection.
 
 ```yaml
 Type: Uri
@@ -99,7 +106,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
-{{ Fill Title Description }}
+Specifies the title of the user.
 
 ```yaml
 Type: String
@@ -114,7 +121,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

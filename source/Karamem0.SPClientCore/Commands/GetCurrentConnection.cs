@@ -6,10 +6,8 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
-using Karamem0.SharePoint.PowerShell.Models.V1;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Runtime.Services;
-using Karamem0.SharePoint.PowerShell.Services.V1;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -19,7 +17,7 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
-[Cmdlet(VerbsCommon.Get, "KshCurrentConenction")]
+[Cmdlet(VerbsCommon.Get, "KshCurrentConnection")]
 [OutputType(typeof(ClientContext))]
 public class GetCurrentConnectionCommand : ClientObjectCmdlet
 {

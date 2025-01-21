@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshSubscription
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Creates a new subscription for a list.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Add-KshSubscription [-List] <List> [-ClientState <String>] -ExpirationDateTime <
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshSubscription` cmdlet creates a new subscription for a list with the given parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshSubscription -List $list -ExpirationDateTime (Get-Date).AddMonths(3) -NotificationUrl "https://example.com/notifications"
 ```
 
-{{ Add example description here }}
+This example creates a new subscription for the specified list that expires in 3 months and sends notifications to the specified URL.
 
 ## PARAMETERS
 
 ### -ClientState
-{{ Fill ClientState Description }}
+Specifies the client state that will be sent with the notification.
 
 ```yaml
 Type: String
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -ExpirationDateTime
-{{ Fill ExpirationDateTime Description }}
+Specifies the expiration date and time for the subscription.
 
 ```yaml
 Type: DateTime
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -List
-{{ Fill List Description }}
+Specifies the list to which the subscription is added.
 
 ```yaml
 Type: List
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -NotificationUrl
-{{ Fill NotificationUrl Description }}
+Specifies the URL to which notifications will be sent.
 
 ```yaml
 Type: String
@@ -92,7 +92,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

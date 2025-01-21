@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshCurrentSiteCollection
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves the current site collection.
 
 ## SYNTAX
 
@@ -17,21 +17,21 @@ Get-KshCurrentSiteCollection [-ProgressAction <ActionPreference>] [<CommonParame
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshCurrentSiteCollection` cmdlet retrieves the current site collection.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshCurrentSiteCollection
 ```
 
-{{ Add example description here }}
+This example retrieves the current site collection.
 
 ## PARAMETERS
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

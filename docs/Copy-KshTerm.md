@@ -8,7 +8,7 @@ schema: 2.0.0
 # Copy-KshTerm
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Copies a term to a new location.
 
 ## SYNTAX
 
@@ -17,21 +17,21 @@ Copy-KshTerm [-Identity] <Term> [-CopyChildren] [-ProgressAction <ActionPreferen
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Copy-KshTerm` cmdlet copies a term to a new location. You can specify whether to include child terms in the copy operation.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Copy-KshTerm -Identity $term -CopyChildren
 ```
 
-{{ Add example description here }}
+This example copies the specified term and its child terms to a new location.
 
 ## PARAMETERS
 
 ### -CopyChildren
-{{ Fill CopyChildren Description }}
+Indicates whether to copy child terms.
 
 ```yaml
 Type: SwitchParameter
@@ -46,7 +46,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the term to copy.
 
 ```yaml
 Type: Term
@@ -61,7 +61,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

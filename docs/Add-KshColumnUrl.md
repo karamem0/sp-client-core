@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshColumnUrl
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a new URL column to a list or library.
 
 ## SYNTAX
 
@@ -44,21 +44,35 @@ Add-KshColumnUrl [-ClientSideComponentId <String>] [-ClientSideComponentProperti
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+This cmdlet adds a new URL column to a list or library. The column can be configured with various properties such as description, group, and format type.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshColumnUrl -List $list -Name "Website" -Title "Website URL" -UrlFormat "Hyperlink"
 ```
 
-{{ Add example description here }}
+This example adds a new URL column named "Website" to the specified list with the title "Website URL". The URL format is set to "Hyperlink".
+
+### Example 2
+```powershell
+PS C:\> Add-KshColumnUrl -Name "Website" -Title "Website URL" -UrlFormat "Hyperlink"
+```
+
+This example adds a new URL column named "Website" as a site column with the title "Website URL". The URL format is set to "Hyperlink".
+
+### Example 3
+```powershell
+PS C:\> Add-KshColumnUrl -Name "Website" -Title "Website URL" -UrlFormat "Hyperlink" -WhatIf
+```
+
+This example shows what would happen if the cmdlet runs without actually creating the column. The column would be named "Website" with the title "Website URL". The URL format is set to "Hyperlink".
 
 ## PARAMETERS
 
 ### -AddColumnCheckDisplayName
-{{ Fill AddColumnCheckDisplayName Description }}
+Specifies whether to check for display name conflicts when adding the column.
 
 ```yaml
 Type: SwitchParameter
@@ -73,7 +87,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddColumnInternalNameHint
-{{ Fill AddColumnInternalNameHint Description }}
+Specifies whether to add a hint for the internal name of the column.
 
 ```yaml
 Type: SwitchParameter
@@ -88,7 +102,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddColumnToDefaultView
-{{ Fill AddColumnToDefaultView Description }}
+Specifies whether to add the column to the default view.
 
 ```yaml
 Type: SwitchParameter
@@ -103,7 +117,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToAllContentTypes
-{{ Fill AddToAllContentTypes Description }}
+Specifies whether to add the column to all content types.
 
 ```yaml
 Type: SwitchParameter
@@ -118,7 +132,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToDefaultContentType
-{{ Fill AddToDefaultContentType Description }}
+Specifies whether to add the column to the default content type.
 
 ```yaml
 Type: SwitchParameter
@@ -133,7 +147,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToDefaultView
-{{ Fill AddToDefaultView Description }}
+Specifies whether to add the column to the default view.
 
 ```yaml
 Type: SwitchParameter
@@ -148,7 +162,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToNoContentType
-{{ Fill AddToNoContentType Description }}
+Specifies whether to add the column to no content type.
 
 ```yaml
 Type: SwitchParameter
@@ -163,7 +177,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClientSideComponentId
-{{ Fill ClientSideComponentId Description }}
+Specifies the client-side component ID.
 
 ```yaml
 Type: String
@@ -178,7 +192,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClientSideComponentProperties
-{{ Fill ClientSideComponentProperties Description }}
+Specifies the client-side component properties.
 
 ```yaml
 Type: String
@@ -193,7 +207,7 @@ Accept wildcard characters: False
 ```
 
 ### -CustomFormatter
-{{ Fill CustomFormatter Description }}
+Specifies the custom formatter for the column.
 
 ```yaml
 Type: String
@@ -208,7 +222,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
-{{ Fill Description Description }}
+Specifies the description of the column.
 
 ```yaml
 Type: String
@@ -223,7 +237,7 @@ Accept wildcard characters: False
 ```
 
 ### -Direction
-{{ Fill Direction Description }}
+Specifies the direction of the column.
 
 ```yaml
 Type: String
@@ -238,7 +252,7 @@ Accept wildcard characters: False
 ```
 
 ### -Group
-{{ Fill Group Description }}
+Specifies the group of the column.
 
 ```yaml
 Type: String
@@ -253,7 +267,7 @@ Accept wildcard characters: False
 ```
 
 ### -Hidden
-{{ Fill Hidden Description }}
+Specifies whether the column is hidden.
 
 ```yaml
 Type: Boolean
@@ -268,7 +282,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{ Fill Id Description }}
+Specifies the ID of the column.
 
 ```yaml
 Type: Guid
@@ -283,7 +297,7 @@ Accept wildcard characters: False
 ```
 
 ### -JSLink
-{{ Fill JSLink Description }}
+Specifies the JSLink for the column.
 
 ```yaml
 Type: String
@@ -298,7 +312,7 @@ Accept wildcard characters: False
 ```
 
 ### -List
-{{ Fill List Description }}
+Specifies the list to which the column is added.
 
 ```yaml
 Type: List
@@ -313,7 +327,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{ Fill Name Description }}
+Specifies the name of the column.
 
 ```yaml
 Type: String
@@ -328,7 +342,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoCrawl
-{{ Fill NoCrawl Description }}
+Specifies whether the column is excluded from search crawling.
 
 ```yaml
 Type: Boolean
@@ -343,7 +357,7 @@ Accept wildcard characters: False
 ```
 
 ### -ReadOnly
-{{ Fill ReadOnly Description }}
+Specifies whether the column is read-only.
 
 ```yaml
 Type: Boolean
@@ -358,7 +372,7 @@ Accept wildcard characters: False
 ```
 
 ### -Required
-{{ Fill Required Description }}
+Specifies whether the column is required.
 
 ```yaml
 Type: Boolean
@@ -373,7 +387,7 @@ Accept wildcard characters: False
 ```
 
 ### -StaticName
-{{ Fill StaticName Description }}
+Specifies the static name of the column.
 
 ```yaml
 Type: String
@@ -388,7 +402,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
-{{ Fill Title Description }}
+Specifies the title of the column.
 
 ```yaml
 Type: String
@@ -403,7 +417,7 @@ Accept wildcard characters: False
 ```
 
 ### -UrlFormat
-{{ Fill UrlFormat Description }}
+Specifies the URL format of the column.
 
 ```yaml
 Type: ColumnUrlFormatType
@@ -435,7 +449,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

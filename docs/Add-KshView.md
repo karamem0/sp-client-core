@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshView
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a new view to a list.
 
 ## SYNTAX
 
@@ -19,21 +19,21 @@ Add-KshView [-List] <List> [-BaseViewId <Int32>] [-Paged <Boolean>] [-PersonalVi
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshView` cmdlet adds a new view to a list with the given parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshView -List $list -Title "New View" -ViewColumns @("Title", "Created") -RowLimit 100
 ```
 
-{{ Add example description here }}
+This example adds a new view titled "New View" to the specified list with the columns "Title" and "Created", and sets the row limit to 100.
 
 ## PARAMETERS
 
 ### -BaseViewId
-{{ Fill BaseViewId Description }}
+Specifies the base view ID.
 
 ```yaml
 Type: Int32
@@ -48,7 +48,7 @@ Accept wildcard characters: False
 ```
 
 ### -List
-{{ Fill List Description }}
+Specifies the list to which the view is added.
 
 ```yaml
 Type: List
@@ -63,7 +63,7 @@ Accept wildcard characters: False
 ```
 
 ### -Paged
-{{ Fill Paged Description }}
+Indicates whether the view is paged.
 
 ```yaml
 Type: Boolean
@@ -78,7 +78,7 @@ Accept wildcard characters: False
 ```
 
 ### -PersonalView
-{{ Fill PersonalView Description }}
+Indicates whether the view is personal.
 
 ```yaml
 Type: Boolean
@@ -93,7 +93,7 @@ Accept wildcard characters: False
 ```
 
 ### -RowLimit
-{{ Fill RowLimit Description }}
+Specifies the row limit for the view.
 
 ```yaml
 Type: Int32
@@ -108,7 +108,7 @@ Accept wildcard characters: False
 ```
 
 ### -SetAsDefaultView
-{{ Fill SetAsDefaultView Description }}
+Indicates whether the view is set as the default view.
 
 ```yaml
 Type: Boolean
@@ -123,7 +123,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
-{{ Fill Title Description }}
+Specifies the title of the view.
 
 ```yaml
 Type: String
@@ -138,7 +138,7 @@ Accept wildcard characters: False
 ```
 
 ### -ViewColumns
-{{ Fill ViewColumns Description }}
+Specifies the columns to include in the view.
 
 ```yaml
 Type: String[]
@@ -153,7 +153,7 @@ Accept wildcard characters: False
 ```
 
 ### -ViewQuery
-{{ Fill ViewQuery Description }}
+Specifies the query for the view.
 
 ```yaml
 Type: String
@@ -168,7 +168,7 @@ Accept wildcard characters: False
 ```
 
 ### -ViewType
-{{ Fill ViewType Description }}
+Specifies the type of the view.
 
 ```yaml
 Type: ViewType
@@ -184,7 +184,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress.
 
 ```yaml
 Type: ActionPreference

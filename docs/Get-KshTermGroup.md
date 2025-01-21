@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshTermGroup
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more term groups from a term store.
 
 ## SYNTAX
 
@@ -33,21 +33,42 @@ Get-KshTermGroup [-NoEnumerate] [-ProgressAction <ActionPreference>] [<CommonPar
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshTermGroup` cmdlet retrieves a term group from a term store based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshTermGroup -Identity $termGroup
 ```
 
-{{ Add example description here }}
+This example retrieves a term group by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshTermGroup -TermGroupId "12345678-1234-1234-1234-1234567890ab"
+```
+
+This example retrieves a term group by GUID.
+
+### Example 3
+```powershell
+PS C:\> Get-KshTermGroup -TermGroupName "Organization"
+```
+
+This example retrieves a term group by name.
+
+### Example 4
+```powershell
+PS C:\> Get-KshTermGroup
+```
+
+This example retrieves all term groups.
 
 ## PARAMETERS
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the term group to retrieve.
 
 ```yaml
 Type: TermGroup
@@ -62,7 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the term groups.
 
 ```yaml
 Type: SwitchParameter
@@ -77,7 +98,7 @@ Accept wildcard characters: False
 ```
 
 ### -TermGroupId
-{{ Fill TermGroupId Description }}
+Specifies the term group by its GUID.
 
 ```yaml
 Type: Guid
@@ -92,7 +113,7 @@ Accept wildcard characters: False
 ```
 
 ### -TermGroupName
-{{ Fill TermGroupName Description }}
+Specifies the term group by its name.
 
 ```yaml
 Type: String
@@ -107,7 +128,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress.
 
 ```yaml
 Type: ActionPreference

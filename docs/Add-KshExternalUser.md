@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshExternalUser
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a new external user to a site, file, or folder with permissions.
 
 ## SYNTAX
 
@@ -36,21 +36,35 @@ Add-KshExternalUser [-Folder] <Folder> [-UserId] <String[]> [-Role] <RoleType> [
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshExternalUser` cmdlet adds an external user to a site, file, or folder with the given role and permissions.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshExternalUser -Site -UserId "user@example.com" -Role "View" -AllowExternalSharing $true
 ```
 
-{{ Add example description here }}
+This example adds an external user with the email "user@example.com" to the site with "View" permissions and allows external sharing.
+
+### Example 2
+```powershell
+PS C:\> Add-KshExternalUser -File $file -UserId "user@example.com" -Role "Edit" -IncludeAnonymousLinksInNotification $true
+```
+
+This example adds an external user with the email "user@example.com" to the specified file with "Edit" permissions and includes anonymous links in the notification.
+
+### Example 3
+```powershell
+PS C:\> Add-KshExternalUser -Folder $folder -UserId "user@example.com" -Role Owner -PropagateAcl $true
+```
+
+This example adds an external user with the email "user@example.com" to the specified folder with owner permissions and propagates the access control list (ACL).
 
 ## PARAMETERS
 
 ### -AdditivePermission
-{{ Fill AdditivePermission Description }}
+Specifies whether to add the permissions to the existing permissions.
 
 ```yaml
 Type: Boolean
@@ -65,7 +79,7 @@ Accept wildcard characters: False
 ```
 
 ### -AllowExternalSharing
-{{ Fill AllowExternalSharing Description }}
+Specifies whether to allow external sharing.
 
 ```yaml
 Type: Boolean
@@ -80,7 +94,7 @@ Accept wildcard characters: False
 ```
 
 ### -CustomMessage
-{{ Fill CustomMessage Description }}
+Specifies a custom message to include in the notification.
 
 ```yaml
 Type: String
@@ -95,7 +109,7 @@ Accept wildcard characters: False
 ```
 
 ### -File
-{{ Fill File Description }}
+Specifies the file to which the external user is added.
 
 ```yaml
 Type: File
@@ -110,7 +124,7 @@ Accept wildcard characters: False
 ```
 
 ### -Folder
-{{ Fill Folder Description }}
+Specifies the folder to which the external user is added.
 
 ```yaml
 Type: Folder
@@ -125,7 +139,7 @@ Accept wildcard characters: False
 ```
 
 ### -IncludeAnonymousLinksInNotification
-{{ Fill IncludeAnonymousLinksInNotification Description }}
+Specifies whether to include anonymous links in the notification.
 
 ```yaml
 Type: Boolean
@@ -140,7 +154,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Specifies whether to prevent enumeration of the user.
 
 ```yaml
 Type: SwitchParameter
@@ -155,7 +169,7 @@ Accept wildcard characters: False
 ```
 
 ### -PropagateAcl
-{{ Fill PropagateAcl Description }}
+Specifies whether to propagate the access control list (ACL).
 
 ```yaml
 Type: Boolean
@@ -170,7 +184,7 @@ Accept wildcard characters: False
 ```
 
 ### -Role
-{{ Fill Role Description }}
+Specifies the role to assign to the external user.
 
 ```yaml
 Type: RoleType
@@ -186,7 +200,7 @@ Accept wildcard characters: False
 ```
 
 ### -SendServerManagedNotification
-{{ Fill SendServerManagedNotification Description }}
+Specifies whether to send a server-managed notification.
 
 ```yaml
 Type: Boolean
@@ -201,7 +215,7 @@ Accept wildcard characters: False
 ```
 
 ### -Site
-{{ Fill Site Description }}
+Specifies the site to which the external user is added.
 
 ```yaml
 Type: SwitchParameter
@@ -216,7 +230,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserId
-{{ Fill UserId Description }}
+Specifies the user ID of the external user.
 
 ```yaml
 Type: String[]
@@ -231,7 +245,7 @@ Accept wildcard characters: False
 ```
 
 ### -ValidateExistingPermissions
-{{ Fill ValidateExistingPermissions Description }}
+Specifies whether to validate existing permissions.
 
 ```yaml
 Type: Boolean
@@ -246,7 +260,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress.
 
 ```yaml
 Type: ActionPreference

@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshTenantListDesign
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more list designs from the tenant.
 
 ## SYNTAX
 
@@ -29,21 +29,35 @@ Get-KshTenantListDesign [-NoEnumerate] [-ProgressAction <ActionPreference>] [<Co
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshTenantListDesign` cmdlet retrieves one or more list designs from the tenant based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshTenantListDesign -Identity $listDesign
 ```
 
-{{ Add example description here }}
+This example retrieves a tenant list design by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshTenantListDesign -ListDesignId "00000000-0000-0000-0000-000000000000"
+```
+
+This example retrieves a list design by its GUID.
+
+### Example 3
+```powershell
+PS C:\> Get-KshTenantListDesign
+```
+
+This example retrieves all list designs.
 
 ## PARAMETERS
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the list design to retrieve.
 
 ```yaml
 Type: TenantListDesign
@@ -58,7 +72,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListDesignId
-{{ Fill ListDesignId Description }}
+Specifies the GUID of the list design.
 
 ```yaml
 Type: Guid
@@ -73,7 +87,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the list design.
 
 ```yaml
 Type: SwitchParameter
@@ -88,7 +102,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress.
 
 ```yaml
 Type: ActionPreference

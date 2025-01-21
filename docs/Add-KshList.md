@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshList
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Creates a new list.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Add-KshList [-Description <String>] [-QuickLaunchOption <QuickLaunchOptions>] [-
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshList` cmdlet creates a new list in the current site with the given parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshList -Title "Project Tasks" -Template "GenericList" -Description "This is a list for project tasks."
 ```
 
-{{ Add example description here }}
+This example creates a new generic list with the title "Project Tasks" and the description "This is a list for project tasks."
 
 ## PARAMETERS
 
 ### -Description
-{{ Fill Description Description }}
+Specifies the description of the list.
 
 ```yaml
 Type: String
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -QuickLaunchOption
-{{ Fill QuickLaunchOption Description }}
+Specifies whether the list appears on the Quick Launch.
 
 ```yaml
 Type: QuickLaunchOptions
@@ -63,7 +63,7 @@ Accept wildcard characters: False
 ```
 
 ### -ServerRelativeUrl
-{{ Fill ServerRelativeUrl Description }}
+Specifies the server-relative URL where the list is created.
 
 ```yaml
 Type: String
@@ -78,7 +78,7 @@ Accept wildcard characters: False
 ```
 
 ### -Template
-{{ Fill Template Description }}
+Specifies the list template to use for the new list.
 
 ```yaml
 Type: ListTemplateType
@@ -94,7 +94,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
-{{ Fill Title Description }}
+Specifies the title of the list.
 
 ```yaml
 Type: String
@@ -109,7 +109,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

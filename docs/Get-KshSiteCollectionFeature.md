@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshSiteCollectionFeature
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more features of a site collection.
 
 ## SYNTAX
 
@@ -28,21 +28,35 @@ Get-KshSiteCollectionFeature [-NoEnumerate] [-ProgressAction <ActionPreference>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshSiteCollectionFeature` cmdlet retrieves one or more features of a site collection based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshSiteCollectionFeature -Identity $feature
 ```
 
-{{ Add example description here }}
+This example retrieves a site collection feature by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshSiteCollectionFeature -FeatureId $featureId
+```
+
+This example retrieves a site collection feature by feature ID.
+
+### Example 3
+```powershell
+PS C:\> Get-KshSiteCollectionFeature
+```
+
+This example retrieves all site collection features.
 
 ## PARAMETERS
 
 ### -FeatureId
-{{ Fill FeatureId Description }}
+Specifies the ID of the feature to retrieve.
 
 ```yaml
 Type: Guid
@@ -57,7 +71,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the feature to retrieve.
 
 ```yaml
 Type: Feature
@@ -72,7 +86,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the features.
 
 ```yaml
 Type: SwitchParameter
@@ -87,7 +101,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

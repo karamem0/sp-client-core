@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshSharingSettings
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves the sharing settings for a URL.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Get-KshSharingSettings -Url <Uri> [-GroupId <Int32>] [-UseSimplifiedRoles <Boole
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshSharingSettings` cmdlet retrieves the sharing settings for a URL.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshSharingSettings -Url "https://contoso.sharepoint.com/Shared Documents/file.txt"
 ```
 
-{{ Add example description here }}
+This example retrieves the sharing settings.
 
 ## PARAMETERS
 
 ### -GroupId
-{{ Fill GroupId Description }}
+Specifies the ID of the group to filter the sharing settings.
 
 ```yaml
 Type: Int32
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -Url
-{{ Fill Url Description }}
+Specifies the URL for which to retrieve the sharing settings.
 
 ```yaml
 Type: Uri
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -UseSimplifiedRoles
-{{ Fill UseSimplifiedRoles Description }}
+Indicates whether to use simplified roles in the sharing settings.
 
 ```yaml
 Type: Boolean
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

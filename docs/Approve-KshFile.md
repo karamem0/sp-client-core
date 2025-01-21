@@ -8,7 +8,7 @@ schema: 2.0.0
 # Approve-KshFile
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Approves a file.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Approve-KshFile [-Identity] <File> [-Comment <String>] [-PassThru] [-ProgressAct
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Approve-KshFile` cmdlet approves a draft of a file with an optional comment.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Approve-KshFile -Identity $file -Comment "Approved"
 ```
 
-{{ Add example description here }}
+This example approves the specified file with the comment "Approved".
 
 ## PARAMETERS
 
 ### -Comment
-{{ Fill Comment Description }}
+Specifies a comment to associate with the approval.
 
 ```yaml
 Type: String
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the file to approve.
 
 ```yaml
 Type: File
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
-{{ Fill PassThru Description }}
+Returns the file object that was processed.
 
 ```yaml
 Type: SwitchParameter
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

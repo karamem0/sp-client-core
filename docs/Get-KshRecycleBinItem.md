@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshRecycleBinItem
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more items from the recycle bin.
 
 ## SYNTAX
 
@@ -28,21 +28,35 @@ Get-KshRecycleBinItem [-SecondStage] [-NoEnumerate] [-ProgressAction <ActionPref
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshRecycleBinItem` cmdlet retrieves one or more items from the recycle bin based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshRecycleBinItem -Identity $recycleBinItem
 ```
 
-{{ Add example description here }}
+This example retrieves a recycle bin item by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshRecycleBinItem -ItemId "12345678-1234-1234-1234-1234567890ab"
+```
+
+This example retrieves a recycle bin item by item ID.
+
+### Example 3
+```powershell
+PS C:\> Get-KshRecycleBinItem -SecondStage
+```
+
+This example retrieves all items from the second-stage recycle bin.
 
 ## PARAMETERS
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the recycle bin item to retrieve.
 
 ```yaml
 Type: RecycleBinItem
@@ -57,7 +71,7 @@ Accept wildcard characters: False
 ```
 
 ### -ItemId
-{{ Fill ItemId Description }}
+Specifies the ID of the recycle bin item to retrieve.
 
 ```yaml
 Type: Guid
@@ -72,7 +86,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the collection.
 
 ```yaml
 Type: SwitchParameter
@@ -87,7 +101,7 @@ Accept wildcard characters: False
 ```
 
 ### -SecondStage
-{{ Fill SecondStage Description }}
+Indicates that the cmdlet retrieves items from the second-stage recycle bin.
 
 ```yaml
 Type: SwitchParameter
@@ -102,7 +116,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

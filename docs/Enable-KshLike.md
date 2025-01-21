@@ -8,7 +8,7 @@ schema: 2.0.0
 # Enable-KshLike
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Enables a like on a comment or list item.
 
 ## SYNTAX
 
@@ -23,21 +23,28 @@ Enable-KshLike [-ListItem] <ListItem> [-ProgressAction <ActionPreference>] [<Com
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Enable-KshLike` cmdlet enables a like on a comment or list item.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Enable-KshLike -Comment $comment
 ```
 
-{{ Add example description here }}
+This example enables a like on the specified comment.
+
+### Example 2
+```powershell
+PS C:\> Enable-KshLike -ListItem $listItem
+```
+
+This example enables a like on the specified list item.
 
 ## PARAMETERS
 
 ### -Comment
-{{ Fill Comment Description }}
+Specifies the comment to like.
 
 ```yaml
 Type: Comment
@@ -52,7 +59,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListItem
-{{ Fill ListItem Description }}
+Specifies the list item to like.
 
 ```yaml
 Type: ListItem
@@ -67,7 +74,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

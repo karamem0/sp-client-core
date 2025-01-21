@@ -29,17 +29,20 @@ public abstract class JsonValueObject : ValueObject
     public virtual object this[string key] => this.ExtensionProperties[key];
 
     [JsonIgnore()]
-    public virtual IEnumerable<string> ExtensionKeys => this.ExtensionProperties.Select(item => item.Key);
+    public IReadOnlyCollection<string> ExtensionKeys => this.ExtensionProperties
+        .Where(item => item.Value is not null)
+        .Select(ClientResultValue.Create)
+        .Select(item => item.Key)
+        .ToArray();
 
     [JsonExtensionData()]
     protected virtual Dictionary<string, JToken> ExtensionProperties { get; private set; }
 
     [JsonIgnore()]
-    protected override Lazy<PropertyInfo[]> EqualityProperties => new(() =>
+    protected override Lazy<IEnumerable<PropertyInfo>> EqualityProperties => new(() =>
         this.GetType()
             .GetProperties(BindingFlags.Instance | BindingFlags.Public)
             .Where(property => property.IsDefined(typeof(JsonPropertyAttribute), true))
-            .ToArray()
     );
 
 }

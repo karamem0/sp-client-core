@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshTenantSiteDesign
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more site designs from the site.
 
 ## SYNTAX
 
@@ -29,21 +29,35 @@ Get-KshTenantSiteDesign [-NoEnumerate] [-ProgressAction <ActionPreference>] [<Co
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshTenantSiteDesign` cmdlet retrieves one or more site designs from the site based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshTenantSiteDesign -Identity $siteDesign
 ```
 
-{{ Add example description here }}
+This example retrieves a site design by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshTenantSiteDesign -SiteDesignId "12345678-1234-1234-1234-1234567890ab"
+```
+
+This example retrieves a site design by site design ID.
+
+### Example 3
+```powershell
+PS C:\> Get-KshTenantSiteDesign
+```
+
+This example retrieves all site designs.
 
 ## PARAMETERS
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the site design to retrieve.
 
 ```yaml
 Type: TenantSiteDesign
@@ -58,7 +72,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the collection.
 
 ```yaml
 Type: SwitchParameter
@@ -73,7 +87,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteDesignId
-{{ Fill SiteDesignId Description }}
+Specifies the site design to retrieve by its GUID.
 
 ```yaml
 Type: Guid
@@ -88,7 +102,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

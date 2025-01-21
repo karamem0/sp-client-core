@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshTenantOrganizationNewsSite
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a organization news site to the tenant.
 
 ## SYNTAX
 
@@ -17,21 +17,21 @@ Add-KshTenantOrganizationNewsSite -Url <String> [-ProgressAction <ActionPreferen
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshTenantOrganizationNewsSite` cmdlet adds a site as a organization news sites for the tenant.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshTenantOrganizationNewsSite -Url "https://contoso.sharepoint.com/sites/news"
 ```
 
-{{ Add example description here }}
+This example adds the site as a organization news sites for the tenant.
 
 ## PARAMETERS
 
 ### -Url
-{{ Fill Url Description }}
+Specifies the URL of the site to add to the organization news sites.
 
 ```yaml
 Type: String
@@ -46,7 +46,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

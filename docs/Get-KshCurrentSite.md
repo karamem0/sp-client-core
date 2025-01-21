@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshCurrentSite
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves the current site.
 
 ## SYNTAX
 
@@ -17,21 +17,21 @@ Get-KshCurrentSite [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshCurrentSite` cmdlet retrieves the current site.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshCurrentSite
 ```
 
-{{ Add example description here }}
+This example retrieves the current site.
 
 ## PARAMETERS
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

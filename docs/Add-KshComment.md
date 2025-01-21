@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshComment
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a new comment to a list item or another comment.
 
 ## SYNTAX
 
@@ -23,21 +23,28 @@ Add-KshComment [-Comment] <Comment> -Text <String> [-ProgressAction <ActionPrefe
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+This cmdlet adds a new comment to a list item or another comment. It can be used to provide additional information or feedback.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshComment -ListItem $listItem -Text "This is a comment."
 ```
 
-{{ Add example description here }}
+This example adds a comment to the specified list item.
+
+### Example 2
+```powershell
+PS C:\> Add-KshComment -Comment $comment -Text "This is a reply."
+```
+
+This example adds a reply to the specified comment.
 
 ## PARAMETERS
 
 ### -Comment
-{{ Fill Comment Description }}
+Specifies the comment to which the new comment will be added.
 
 ```yaml
 Type: Comment
@@ -52,7 +59,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListItem
-{{ Fill ListItem Description }}
+Specifies the list item to which the comment will be added.
 
 ```yaml
 Type: ListItem
@@ -67,7 +74,7 @@ Accept wildcard characters: False
 ```
 
 ### -Text
-{{ Fill Text Description }}
+Specifies the text of the comment to be added.
 
 ```yaml
 Type: String
@@ -82,7 +89,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference
@@ -101,11 +108,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.V1.ListItem
-### Karamem0.SharePoint.PowerShell.Models.V1.Comment
+### Karamem0.SPClientCore.Models.V1.ListItem
+### Karamem0.SPClientCore.Models.V1.Comment
 ## OUTPUTS
 
-### Karamem0.SharePoint.PowerShell.Models.V1.Comment
+### Karamem0.SPClientCore.Models.V1.Comment
 ## NOTES
 
 ## RELATED LINKS

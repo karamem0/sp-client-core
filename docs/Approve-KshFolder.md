@@ -8,7 +8,7 @@ schema: 2.0.0
 # Approve-KshFolder
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Approves a folder.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Approve-KshFolder [-Identity] <Folder> [-Comment <String>] [-PassThru] [-Progres
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Approve-KshFolder` cmdlet approves a draft of a folder with an optional comment.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Approve-KshFolder -Identity $folder -Comment "Approved"
 ```
 
-{{ Add example description here }}
+This example approves the specified folder with the comment "Approved".
 
 ## PARAMETERS
 
 ### -Comment
-{{ Fill Comment Description }}
+Specifies a comment for the approval.
 
 ```yaml
 Type: String
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the folder to approve.
 
 ```yaml
 Type: Folder
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
-{{ Fill PassThru Description }}
+Returns the folder object that was processed.
 
 ```yaml
 Type: SwitchParameter
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshTenantSiteDesign
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a new site design to the tenant.
 
 ## SYNTAX
 
@@ -19,21 +19,21 @@ Add-KshTenantSiteDesign [-Description <String>] [-DesignPackageId <Guid>] [-IsDe
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshTenantSiteDesign` cmdlet adds a new site design to the tenant with the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshTenantSiteDesign -Title "Contoso Site Design" -SiteScriptIds "12345678-1234-1234-1234-1234567890ab" -Description "A site design for Contoso"
 ```
 
-{{ Add example description here }}
+This example adds a new tenant site design with the title "Contoso Site Design" and the specified site script IDs.
 
 ## PARAMETERS
 
 ### -Description
-{{ Fill Description Description }}
+Specifies the description of the site design.
 
 ```yaml
 Type: String
@@ -48,7 +48,7 @@ Accept wildcard characters: False
 ```
 
 ### -DesignPackageId
-{{ Fill DesignPackageId Description }}
+Specifies the design package ID of the site design.
 
 ```yaml
 Type: Guid
@@ -63,7 +63,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsDefault
-{{ Fill IsDefault Description }}
+Indicates whether the site design is the default design.
 
 ```yaml
 Type: Boolean
@@ -78,7 +78,7 @@ Accept wildcard characters: False
 ```
 
 ### -PreviewImageAltText
-{{ Fill PreviewImageAltText Description }}
+Specifies the alternative text for the preview image.
 
 ```yaml
 Type: String
@@ -93,7 +93,7 @@ Accept wildcard characters: False
 ```
 
 ### -PreviewImageUrl
-{{ Fill PreviewImageUrl Description }}
+Specifies the URL of the preview image.
 
 ```yaml
 Type: String
@@ -108,7 +108,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteScriptIds
-{{ Fill SiteScriptIds Description }}
+Specifies the IDs of the site scripts to be included in the site design.
 
 ```yaml
 Type: String[]
@@ -123,7 +123,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteTemplate
-{{ Fill SiteTemplate Description }}
+Specifies the site template to be used for the site design.
 
 ```yaml
 Type: String
@@ -138,7 +138,7 @@ Accept wildcard characters: False
 ```
 
 ### -ThumbnailUrl
-{{ Fill ThumbnailUrl Description }}
+Specifies the URL of the thumbnail image.
 
 ```yaml
 Type: String
@@ -153,7 +153,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
-{{ Fill Title Description }}
+Specifies the title of the site design.
 
 ```yaml
 Type: String
@@ -168,7 +168,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

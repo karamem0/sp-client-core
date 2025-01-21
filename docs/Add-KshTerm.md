@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshTerm
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a new term to a term set or term.
 
 ## SYNTAX
 
@@ -25,21 +25,28 @@ Add-KshTerm [-Term] <Term> [-Id <Guid>] -Lcid <UInt32> -Name <String> [-Progress
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshTerm` cmdlet adds a new term to a term set or term.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshTerm -TermSet $termSet -Lcid 1033 -Name "Human Resources"
 ```
 
-{{ Add example description here }}
+This example adds a new term named "Human Resources" to the specified term set.
+
+### Example 2
+```powershell
+PS C:\> Add-KshTerm -Term $term -Lcid 1033 -Name "Accounts Payable"
+```
+
+This example adds a new term named "Accounts Payable" to the specified term.
 
 ## PARAMETERS
 
 ### -Id
-{{ Fill Id Description }}
+Specifies the unique identifier of the term.
 
 ```yaml
 Type: Guid
@@ -54,7 +61,7 @@ Accept wildcard characters: False
 ```
 
 ### -Lcid
-{{ Fill Lcid Description }}
+Specifies the language code identifier (LCID) for the term.
 
 ```yaml
 Type: UInt32
@@ -69,7 +76,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{ Fill Name Description }}
+Specifies the name of the term.
 
 ```yaml
 Type: String
@@ -84,7 +91,7 @@ Accept wildcard characters: False
 ```
 
 ### -Term
-{{ Fill Term Description }}
+Specifies the parent term to which the new term will be added.
 
 ```yaml
 Type: Term
@@ -99,7 +106,7 @@ Accept wildcard characters: False
 ```
 
 ### -TermSet
-{{ Fill TermSet Description }}
+Specifies the term set to which the new term will be added.
 
 ```yaml
 Type: TermSet
@@ -114,7 +121,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

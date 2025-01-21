@@ -8,7 +8,7 @@ schema: 2.0.0
 # Copy-KshFile
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Copies a file to a new location.
 
 ## SYNTAX
 
@@ -26,21 +26,35 @@ Copy-KshFile [-Identity] <File> [-NewUrl] <Uri> [-Overwrite] [-Legacy] [-PassThr
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Copy-KshFile` cmdlet copies a file to a new location. It provides options to overwrite existing files, keep both versions, and reset author and creation information on copy.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Copy-KshFile -Identity $file -NewUrl "https://contoso.sharepoint.com/Shared Documents/file.txt" -Overwrite
 ```
 
-{{ Add example description here }}
+This example copies the file `file.txt` from the source directory to the destination directory, overwriting the existing file if it exists.
+
+### Example 2
+```powershell
+PS C:\> Copy-KshFile -Identity $file -NewUrl "https://contoso.sharepoint.com/Shared Documents/file.txt" -KeepBoth
+```
+
+This example copies the file `file.txt` from the source directory to the destination directory, keeping both the original and the copied file if a file with the same name already exists at the destination.
+
+### Example 3
+```powershell
+PS C:\> Copy-KshFile -Identity $file -NewUrl "/sites/site1/Shared Documents/old/file.txt" -Legacy
+```
+
+This example copies the file `file.txt` from the source directory to the destination directory using legacy copy methods and returns the copied file object.
 
 ## PARAMETERS
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the file to be copied.
 
 ```yaml
 Type: File
@@ -55,7 +69,7 @@ Accept wildcard characters: False
 ```
 
 ### -KeepBoth
-{{ Fill KeepBoth Description }}
+Keeps both the original and the copied file if a file with the same name already exists at the destination.
 
 ```yaml
 Type: SwitchParameter
@@ -70,7 +84,7 @@ Accept wildcard characters: False
 ```
 
 ### -Legacy
-{{ Fill Legacy Description }}
+Uses legacy copy methods.
 
 ```yaml
 Type: SwitchParameter
@@ -85,7 +99,7 @@ Accept wildcard characters: False
 ```
 
 ### -NewUrl
-{{ Fill NewUrl Description }}
+Specifies the new location for the copied file.
 
 ```yaml
 Type: Uri
@@ -100,7 +114,7 @@ Accept wildcard characters: False
 ```
 
 ### -Overwrite
-{{ Fill Overwrite Description }}
+Overwrites the file at the destination if it already exists.
 
 ```yaml
 Type: SwitchParameter
@@ -115,7 +129,7 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
-{{ Fill PassThru Description }}
+Returns the file object that was processed.
 
 ```yaml
 Type: SwitchParameter
@@ -130,7 +144,7 @@ Accept wildcard characters: False
 ```
 
 ### -ResetAuthorAndCreatedOnCopy
-{{ Fill ResetAuthorAndCreatedOnCopy Description }}
+Resets the author and creation date information on the copied file.
 
 ```yaml
 Type: SwitchParameter
@@ -145,7 +159,7 @@ Accept wildcard characters: False
 ```
 
 ### -RetainEditorAndModifiedOnMove
-{{ Fill RetainEditorAndModifiedOnMove Description }}
+Retains the editor and modified date information when moving the file.
 
 ```yaml
 Type: SwitchParameter
@@ -160,7 +174,7 @@ Accept wildcard characters: False
 ```
 
 ### -ShouldBypassSharedLocks
-{{ Fill ShouldBypassSharedLocks Description }}
+Bypasses any shared locks on the file during the copy operation.
 
 ```yaml
 Type: SwitchParameter
@@ -175,7 +189,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action to take when progress is reported.
 
 ```yaml
 Type: ActionPreference

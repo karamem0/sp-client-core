@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshOrganizationSharingLink
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Creates a new sharing link for an organization.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Add-KshOrganizationSharingLink -Url <Uri> -IsEditLink <Boolean> [-ProgressAction
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshOrganizationSharingLink` cmdlet creates a sharing link for an organization, allowing users to share resources with specified permissions.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshOrganizationSharingLink -Url "https://example.com/resource" -IsEditLink $true
 ```
 
-{{ Add example description here }}
+This example creates an edit sharing link for the specified URL.
 
 ## PARAMETERS
 
 ### -IsEditLink
-{{ Fill IsEditLink Description }}
+Specifies whether the sharing link allows editing.
 
 ```yaml
 Type: Boolean
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -Url
-{{ Fill Url Description }}
+Specifies the URL of the resource to share.
 
 ```yaml
 Type: Uri
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

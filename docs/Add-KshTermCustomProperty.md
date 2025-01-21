@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshTermCustomProperty
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a custom property to a term or term set.
 
 ## SYNTAX
 
@@ -25,21 +25,28 @@ Add-KshTermCustomProperty [-Term] <Term> -Name <String> -Value <String> [-Progre
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshTermCustomProperty` cmdlet adds a custom property to a term or term set.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshTermCustomProperty -TermSet $termSet -Name "SortOrder" -Value "1"
 ```
 
-{{ Add example description here }}
+This example adds a custom property named "SortOrder" to the specified term set with the value "1".
+
+### Example 2
+```powershell
+PS C:\> Add-KshTermCustomProperty -Term $term -Name "SortOrder" -Value "1"
+```
+
+This example adds a custom property named "SortOrder" to the specified term with the value "1".
 
 ## PARAMETERS
 
 ### -Name
-{{ Fill Name Description }}
+Specifies the name of the custom property to add.
 
 ```yaml
 Type: String
@@ -54,7 +61,7 @@ Accept wildcard characters: False
 ```
 
 ### -Term
-{{ Fill Term Description }}
+Specifies the term to which the custom property is added.
 
 ```yaml
 Type: Term
@@ -69,7 +76,7 @@ Accept wildcard characters: False
 ```
 
 ### -TermSet
-{{ Fill TermSet Description }}
+Specifies the term set to which the custom property is added.
 
 ```yaml
 Type: TermSet
@@ -84,7 +91,7 @@ Accept wildcard characters: False
 ```
 
 ### -Value
-{{ Fill Value Description }}
+Specifies the value of the custom property.
 
 ```yaml
 Type: String
@@ -99,7 +106,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

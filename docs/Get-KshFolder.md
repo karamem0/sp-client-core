@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshFolder
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more folders from a folder.
 
 ## SYNTAX
 
@@ -54,21 +54,70 @@ Get-KshFolder [-NoEnumerate] [-ProgressAction <ActionPreference>] [<CommonParame
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshFolder` cmdlet retrieves one or more folders based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshFolder -Identity $folder
 ```
 
-{{ Add example description here }}
+This example retrieves a folder by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshFolder -List $list
+```
+
+This example retrieves a folder by list.
+
+### Example 3
+```powershell
+PS C:\> Get-KshFolder -ListItem $listItem
+```
+
+This example retrieves a folder by list item.
+
+### Example 4
+```powershell
+PS C:\> Get-KshFolder -FolderId $folderId
+```
+
+This example retrieves a folder by folder ID.
+
+### Example 5
+```powershell
+PS C:\> Get-KshFolder -FolderUrl $folderUrl
+```
+
+This example retrieves a folder by folder URL.
+
+### Example 6
+```powershell
+PS C:\> Get-KshFolder -Folder $folder -FolderName "Documents"
+```
+
+This example retrieves a folder by folder name.
+
+### Example 7
+```powershell
+PS C:\> Get-KshFolder -Folder $folder
+```
+
+This example retrieves all folders.
+
+### Example 8
+```powershell
+PS C:\> Get-KshFolder
+```
+
+This example retrieves all folders.
 
 ## PARAMETERS
 
 ### -Folder
-{{ Fill Folder Description }}
+Specifies the folder object.
 
 ```yaml
 Type: Folder
@@ -83,7 +132,7 @@ Accept wildcard characters: False
 ```
 
 ### -FolderId
-{{ Fill FolderId Description }}
+Specifies the ID of the folder.
 
 ```yaml
 Type: Guid
@@ -98,7 +147,7 @@ Accept wildcard characters: False
 ```
 
 ### -FolderName
-{{ Fill FolderName Description }}
+Specifies the name of the folder.
 
 ```yaml
 Type: String
@@ -113,7 +162,7 @@ Accept wildcard characters: False
 ```
 
 ### -FolderUrl
-{{ Fill FolderUrl Description }}
+Specifies the URL of the folder.
 
 ```yaml
 Type: Uri
@@ -128,7 +177,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the folder to retrieve.
 
 ```yaml
 Type: Folder
@@ -143,7 +192,7 @@ Accept wildcard characters: False
 ```
 
 ### -List
-{{ Fill List Description }}
+Specifies the list object.
 
 ```yaml
 Type: List
@@ -158,7 +207,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListItem
-{{ Fill ListItem Description }}
+Specifies the list item object.
 
 ```yaml
 Type: ListItem
@@ -173,7 +222,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the folder contents.
 
 ```yaml
 Type: SwitchParameter
@@ -188,7 +237,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress.
 
 ```yaml
 Type: ActionPreference

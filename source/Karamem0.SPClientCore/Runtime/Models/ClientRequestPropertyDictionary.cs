@@ -19,6 +19,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 [XmlType("Property", Namespace = "http://schemas.microsoft.com/sharepoint/clientquery/2009")]
 public class ClientRequestPropertyDictionary(string name, IDictionary values) : ClientRequestProperty
 {
+
     [XmlAttribute()]
     public virtual string Name { get; protected set; } = name;
 

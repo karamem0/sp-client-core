@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshRoleAssignment
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a new role assignment to a site, list, or list item.
 
 ## SYNTAX
 
@@ -31,21 +31,35 @@ Add-KshRoleAssignment [-ListItem] <ListItem> [-Principal] <Principal> [-RoleDefi
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshRoleAssignment` cmdlet adds a new role assignment to a site, list, or list item for a specified principal and role definition.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshRoleAssignment -Site -Principal $user -RoleDefinition "Contribute"
 ```
 
-{{ Add example description here }}
+This example adds the "Contribute" role assignment to the current site for the specified user.
+
+### Example 2
+```powershell
+PS C:\> Add-KshRoleAssignment -List $list -Principal $user -RoleDefinition "Read"
+```
+
+This example adds the "Read" role assignment to the specified list for the specified user.
+
+### Example 3
+```powershell
+PS C:\> Add-KshRoleAssignment -ListItem $listItem -Principal $user -RoleDefinition "Edit"
+```
+
+This example adds the "Edit" role assignment to the specified list item for the specified user.
 
 ## PARAMETERS
 
 ### -List
-{{ Fill List Description }}
+Specifies the list to which the role assignment is added.
 
 ```yaml
 Type: List
@@ -60,7 +74,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListItem
-{{ Fill ListItem Description }}
+Specifies the list item to which the role assignment is added.
 
 ```yaml
 Type: ListItem
@@ -75,7 +89,7 @@ Accept wildcard characters: False
 ```
 
 ### -Principal
-{{ Fill Principal Description }}
+Specifies the principal (user or group) to which the role assignment is added.
 
 ```yaml
 Type: Principal
@@ -90,7 +104,7 @@ Accept wildcard characters: False
 ```
 
 ### -RoleDefinition
-{{ Fill RoleDefinition Description }}
+Specifies the role definition (permission level) to assign to the principal.
 
 ```yaml
 Type: RoleDefinition
@@ -105,7 +119,7 @@ Accept wildcard characters: False
 ```
 
 ### -Site
-{{ Fill Site Description }}
+Specifies that the role assignment is added to the site.
 
 ```yaml
 Type: SwitchParameter
@@ -120,7 +134,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

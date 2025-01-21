@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshAttachmentFile
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more attachment files from a list item.
 
 ## SYNTAX
 
@@ -30,21 +30,35 @@ Get-KshAttachmentFile [-ListItem] <ListItem> [-NoEnumerate] [-ProgressAction <Ac
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshAttachmentFile` cmdlet retrieves one or more attachment files from a list item based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshAttachmentFile -Identity $attachmentFile
 ```
 
-{{ Add example description here }}
+This example retrieves an attachment file by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshAttachmentFile -ListItem $listItem -FileName "example.txt"
+```
+
+This example retrieves an attachment file by file name.
+
+### Example 3
+```powershell
+PS C:\> Get-KshAttachmentFile -ListItem $listItem
+```
+
+This example retrieves all attachment files.
 
 ## PARAMETERS
 
 ### -FileName
-{{ Fill FileName Description }}
+Specifies the name of the attachment file to retrieve.
 
 ```yaml
 Type: String
@@ -59,7 +73,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the attachment file to retrieve.
 
 ```yaml
 Type: AttachmentFile
@@ -74,7 +88,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListItem
-{{ Fill ListItem Description }}
+Specifies the list item that contains the attachment file.
 
 ```yaml
 Type: ListItem
@@ -89,7 +103,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the collection.
 
 ```yaml
 Type: SwitchParameter
@@ -104,7 +118,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

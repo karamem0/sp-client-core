@@ -52,7 +52,7 @@ public class ClientResultValue
                 return true;
             case JTokenType.Integer:
             case JTokenType.Float:
-                switch (input.Key.Split('$')[input.Key.Length - 1].Trim())
+                switch (input.Key.Split('$')[1].Trim())
                 {
                     case "Byte":
                         output.Value = input.Value.ToObject<byte>();

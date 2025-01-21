@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshTenantApp
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a new app to the tenant app catalog.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Add-KshTenantApp -Content <Stream> -FileName <String> [-Overwrite <Boolean>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshTenantApp` cmdlet adds a new app to the tenant app catalog.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshTenantApp -Content $content -FileName "App.app" -Overwrite $true
 ```
 
-{{ Add example description here }}
+This example adds a new app to the tenant app catalog, overwriting any existing app with the same name.
 
 ## PARAMETERS
 
 ### -Content
-{{ Fill Content Description }}
+Specifies the content of the app as a stream.
 
 ```yaml
 Type: Stream
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -FileName
-{{ Fill FileName Description }}
+Specifies the name of the app package file.
 
 ```yaml
 Type: String
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -Overwrite
-{{ Fill Overwrite Description }}
+Indicates whether to overwrite an existing app with the same name.
 
 ```yaml
 Type: Boolean
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

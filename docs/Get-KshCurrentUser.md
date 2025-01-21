@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshCurrentUser
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves the current user.
 
 ## SYNTAX
 
@@ -17,21 +17,21 @@ Get-KshCurrentUser [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshCurrentUser` cmdlet retrieves the current user.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshCurrentUser
 ```
 
-{{ Add example description here }}
+This example retrieves the current user.
 
 ## PARAMETERS
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference
@@ -54,6 +54,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.User
+Returns the user object that was processed.
+
 ## NOTES
 
 ## RELATED LINKS

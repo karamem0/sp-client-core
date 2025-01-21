@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshChange
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves changes from a site collection, site, or list.
 
 ## SYNTAX
 
@@ -34,21 +34,35 @@ Get-KshChange [-List] <List> [-BeginToken <ChangeToken>] [-EndToken <ChangeToken
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshChange` cmdlet retrieves changes from a site collection, site, or list based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshChange -SiteCollection -BeginToken $beginToken -EndToken $endToken -FetchLimit 100
 ```
 
-{{ Add example description here }}
+This example retrieves site collection changes between the given change tokens with a fetch limit of 100.
+
+### Example 2
+```powershell
+PS C:\> Get-KshChange -Site -BeginToken $beginToken -EndToken $endToken -FetchLimit 50
+```
+
+This example retrieves site changes between the given change tokens with a fetch limit of 50.
+
+### Example 3
+```powershell
+PS C:\> Get-KshChange -List $list -BeginToken $beginToken -EndToken $endToken -FetchLimit 200
+```
+
+This example retrieves list changes  between the given change tokens with a fetch limit of 200.
 
 ## PARAMETERS
 
 ### -BeginToken
-{{ Fill BeginToken Description }}
+Specifies the beginning change token.
 
 ```yaml
 Type: ChangeToken
@@ -63,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -EndToken
-{{ Fill EndToken Description }}
+Specifies the ending change token.
 
 ```yaml
 Type: ChangeToken
@@ -78,7 +92,7 @@ Accept wildcard characters: False
 ```
 
 ### -FetchLimit
-{{ Fill FetchLimit Description }}
+Specifies the maximum number of changes to retrieve.
 
 ```yaml
 Type: Int64
@@ -93,7 +107,7 @@ Accept wildcard characters: False
 ```
 
 ### -List
-{{ Fill List Description }}
+Specifies the list from which to retrieve changes.
 
 ```yaml
 Type: List
@@ -108,7 +122,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the changes.
 
 ```yaml
 Type: SwitchParameter
@@ -123,7 +137,7 @@ Accept wildcard characters: False
 ```
 
 ### -Objects
-{{ Fill Objects Description }}
+Specifies the types of objects to retrieve changes for.
 
 ```yaml
 Type: ChangeObjects
@@ -139,7 +153,7 @@ Accept wildcard characters: False
 ```
 
 ### -Operations
-{{ Fill Operations Description }}
+Specifies the types of operations to retrieve changes for.
 
 ```yaml
 Type: ChangeOperations
@@ -155,7 +169,7 @@ Accept wildcard characters: False
 ```
 
 ### -RecursiveAll
-{{ Fill RecursiveAll Description }}
+Indicates that the cmdlet retrieves changes recursively.
 
 ```yaml
 Type: Boolean
@@ -170,7 +184,7 @@ Accept wildcard characters: False
 ```
 
 ### -Site
-{{ Fill Site Description }}
+Specifies that the cmdlet retrieves changes from a site.
 
 ```yaml
 Type: SwitchParameter
@@ -185,7 +199,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteCollection
-{{ Fill SiteCollection Description }}
+Specifies that the cmdlet retrieves changes from a site collection.
 
 ```yaml
 Type: SwitchParameter
@@ -200,7 +214,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress.
 
 ```yaml
 Type: ActionPreference

@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshContentType
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a new content type to a list or library.
 
 ## SYNTAX
 
@@ -31,21 +31,35 @@ Add-KshContentType [-ContentType <ContentType>] [-Description <String>] [-Group 
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+This cmdlet adds a new content type to a list or library. You can specify the content type by name or by using an existing content type object.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshContentType -List $list -ContentType $contentType
 ```
 
-{{ Add example description here }}
+This example adds the existing site content type to the specified list.
+
+### Example 2
+```powershell
+PS C:\> Add-KshContentType -List $list -Name "CustomContentType" -Description "A custom content type" -Group "CustomGroup"
+```
+
+This example creates a new content type named "CustomContentType" with a description and group, and adds it to the specified list.
+
+### Example 3
+```powershell
+PS C:\> Add-KshContentType -Name "CustomContentType" -Description "A custom content type" -Group "CustomGroup"
+```
+
+This example creates a new content type named "CustomContentType" with a description and group, and adds it as a site content type.
 
 ## PARAMETERS
 
 ### -ContentType
-{{ Fill ContentType Description }}
+Specifies the content type to add.
 
 ```yaml
 Type: ContentType
@@ -72,7 +86,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
-{{ Fill Description Description }}
+Specifies the description of the content type.
 
 ```yaml
 Type: String
@@ -87,7 +101,7 @@ Accept wildcard characters: False
 ```
 
 ### -Group
-{{ Fill Group Description }}
+Specifies the group of the content type.
 
 ```yaml
 Type: String
@@ -102,7 +116,7 @@ Accept wildcard characters: False
 ```
 
 ### -List
-{{ Fill List Description }}
+Specifies the list or library to which the content type is added.
 
 ```yaml
 Type: List
@@ -117,7 +131,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{ Fill Name Description }}
+Specifies the name of the content type.
 
 ```yaml
 Type: String
@@ -132,7 +146,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

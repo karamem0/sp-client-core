@@ -15,9 +15,8 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
-[ClientObject()]
 [JsonObject()]
-public class FileVersionPolicy : ClientValueObject
+public class FileVersionPolicy : ODataObject
 {
 
     public FileVersionPolicy()

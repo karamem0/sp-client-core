@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshListItem
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a new list item to a list.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Add-KshListItem [-List] <List> [-Value] <PSObject[]> [-NoEnumerate] [-ProgressAc
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshListItem` cmdlet adds a new item to a list.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshListItem -List $list -Value @{ Title = "New Document"; FileName = "document.docx" }
 ```
 
-{{ Add example description here }}
+This example adds a new item to the specified list with the title "New Document" and file name "document.docx".
 
 ## PARAMETERS
 
 ### -List
-{{ Fill List Description }}
+Specifies the list to which the item will be added.
 
 ```yaml
 Type: List
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the collection.
 
 ```yaml
 Type: SwitchParameter
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -Value
-{{ Fill Value Description }}
+Specifies the values of the item to be added.
 
 ```yaml
 Type: PSObject[]
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

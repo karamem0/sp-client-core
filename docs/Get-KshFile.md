@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshFile
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves one or more files from a folder.
 
 ## SYNTAX
 
@@ -58,21 +58,77 @@ Get-KshFile [-Folder] <Folder> [-NoEnumerate] [-ProgressAction <ActionPreference
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshFile` cmdlet retrieves a file from a folder on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshFile -Identity $file
 ```
 
-{{ Add example description here }}
+This example retrieves a file by identity.
+
+### Example 2
+```powershell
+PS C:\> Get-KshFile -AttachmentFile $attachmentFile
+```
+
+This example retrieves a file by attachment file.
+
+### Example 3
+```powershell
+PS C:\> Get-KshFile -FileVersion $fileVersion
+```
+
+This example retrieves a file by file version.
+
+### Example 4
+```powershell
+PS C:\> Get-KshFile -App $app
+```
+
+This example retrieves a file by app.
+
+### Example 5
+```powershell
+PS C:\> Get-KshFile -ListItem $listItem
+```
+
+This example retrieves a file by list item.
+
+### Example 6
+```powershell
+PS C:\> Get-KshFile -FileId $guid
+```
+
+This example retrieves a file by file ID.
+
+### Example 7
+```powershell
+PS C:\> Get-KshFile -FileUrl $uri
+```
+
+This example retrieves a file by file URL.
+
+### Example 8
+```powershell
+PS C:\> Get-KshFile -Folder $folder -FileName "example.txt"
+```
+
+This example retrieves a file by file name.
+
+### Example 9
+```powershell
+PS C:\> Get-KshFile -Folder $folder
+```
+
+This example retrieves all files.
 
 ## PARAMETERS
 
 ### -App
-{{ Fill App Description }}
+Specifies the app from which to retrieve the file.
 
 ```yaml
 Type: App
@@ -87,7 +143,7 @@ Accept wildcard characters: False
 ```
 
 ### -AttachmentFile
-{{ Fill AttachmentFile Description }}
+Specifies the attachment file to retrieve.
 
 ```yaml
 Type: AttachmentFile
@@ -102,7 +158,7 @@ Accept wildcard characters: False
 ```
 
 ### -FileId
-{{ Fill FileId Description }}
+Specifies the GUID of the file to retrieve.
 
 ```yaml
 Type: Guid
@@ -117,7 +173,7 @@ Accept wildcard characters: False
 ```
 
 ### -FileName
-{{ Fill FileName Description }}
+Specifies the name of the file to retrieve from the folder.
 
 ```yaml
 Type: String
@@ -132,7 +188,7 @@ Accept wildcard characters: False
 ```
 
 ### -FileUrl
-{{ Fill FileUrl Description }}
+Specifies the URL of the file to retrieve.
 
 ```yaml
 Type: Uri
@@ -147,7 +203,7 @@ Accept wildcard characters: False
 ```
 
 ### -FileVersion
-{{ Fill FileVersion Description }}
+Specifies the version of the file to retrieve.
 
 ```yaml
 Type: FileVersion
@@ -162,7 +218,7 @@ Accept wildcard characters: False
 ```
 
 ### -Folder
-{{ Fill Folder Description }}
+Specifies the folder from which to retrieve the file.
 
 ```yaml
 Type: Folder
@@ -177,7 +233,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the file to retrieve.
 
 ```yaml
 Type: File
@@ -192,7 +248,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListItem
-{{ Fill ListItem Description }}
+Specifies the list item from which to retrieve the file.
 
 ```yaml
 Type: ListItem
@@ -207,7 +263,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the folder contents.
 
 ```yaml
 Type: SwitchParameter
@@ -222,7 +278,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshGroup
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Creates a new group.
 
 ## SYNTAX
 
@@ -17,21 +17,21 @@ Add-KshGroup [-Description <String>] -Title <String> [-ProgressAction <ActionPre
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshGroup` cmdlet creates a new group in the current site with the title and description.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshGroup -Title "Project Team" -Description "Group for project team members"
 ```
 
-{{ Add example description here }}
+This example creates a new group named "Project Team" with the description "Group for project team members".
 
 ## PARAMETERS
 
 ### -Description
-{{ Fill Description Description }}
+Specifies the description of the group.
 
 ```yaml
 Type: String
@@ -46,7 +46,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
-{{ Fill Title Description }}
+Specifies the title of the group.
 
 ```yaml
 Type: String
@@ -61,7 +61,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress.
 
 ```yaml
 Type: ActionPreference

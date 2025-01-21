@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshTenantSiteScriptFromList
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves a site script from a list.
 
 ## SYNTAX
 
@@ -17,21 +17,21 @@ Get-KshTenantSiteScriptFromList [-ListUrl] <String> [-ProgressAction <ActionPref
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshTenantSiteScriptFromList` cmdlet retrieves a site script from a list.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshTenantSiteScriptFromList -ListUrl "https://contoso.sharepoint.com/sites/sitecollection/Shared Documents"
 ```
 
-{{ Add example description here }}
+This example retrieves the site script by list URL.
 
 ## PARAMETERS
 
 ### -ListUrl
-{{ Fill ListUrl Description }}
+Specifies the URL of the list from which to retrieve the tenant site script.
 
 ```yaml
 Type: String
@@ -46,7 +46,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

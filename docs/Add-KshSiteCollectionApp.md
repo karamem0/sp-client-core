@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshSiteCollectionApp
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Adds a new app to a site collection app catalog.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Add-KshSiteCollectionApp -Content <Stream> -FileName <String> [-Overwrite <Boole
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshSiteCollectionApp` cmdlet adds a new app to the current site collection app catalog.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshSiteCollectionApp -Content $content -FileName "app.zip" -Overwrite $true
 ```
 
-{{ Add example description here }}
+This example adds a new app to the current site collection app catalog from the specified stream and file name, and overwrites the existing app if it exists.
 
 ## PARAMETERS
 
 ### -Content
-{{ Fill Content Description }}
+Specifies the content of the app as a stream.
 
 ```yaml
 Type: Stream
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -FileName
-{{ Fill FileName Description }}
+Specifies the name of the app file.
 
 ```yaml
 Type: String
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -Overwrite
-{{ Fill Overwrite Description }}
+Indicates whether to overwrite the existing app if it exists.
 
 ```yaml
 Type: Boolean
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

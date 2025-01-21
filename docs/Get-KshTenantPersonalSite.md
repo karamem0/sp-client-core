@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshTenantPersonalSite
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves a personal site from the tenant.
 
 ## SYNTAX
 
@@ -23,21 +23,28 @@ Get-KshTenantPersonalSite [-UserId] <String> [-ProgressAction <ActionPreference>
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshTenantPersonalSite` cmdlet retrieves a personal site from the tenant based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshTenantPersonalSite -User $user
 ```
 
-{{ Add example description here }}
+This example retrieves a personal site by user.
+
+### Example 2
+```powershell
+PS C:\> Get-KshTenantPersonalSite -UserId "user@example.com"
+```
+
+This example retrieves a personal site by user ID.
 
 ## PARAMETERS
 
 ### -User
-{{ Fill User Description }}
+Specifies the user object whose personal site is to be retrieved.
 
 ```yaml
 Type: User
@@ -52,7 +59,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserId
-{{ Fill UserId Description }}
+Specifies the user ID whose personal site is to be retrieved.
 
 ```yaml
 Type: String
@@ -67,7 +74,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

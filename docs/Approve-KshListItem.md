@@ -8,7 +8,7 @@ schema: 2.0.0
 # Approve-KshListItem
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Approves a list item.
 
 ## SYNTAX
 
@@ -18,21 +18,21 @@ Approve-KshListItem [-Identity] <ListItem> [-Comment <String>] [-PassThru] [-Pro
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Approve-KshListItem` cmdlet approves a draft of a list item with an optional comment.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Approve-KshListItem -Identity $item -Comment "Approved"
 ```
 
-{{ Add example description here }}
+This example approves the specified list item with a comment with the comment "Approved".
 
 ## PARAMETERS
 
 ### -Comment
-{{ Fill Comment Description }}
+Specifies a comment to add to the approval.
 
 ```yaml
 Type: String
@@ -47,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-{{ Fill Identity Description }}
+Specifies the list item to approve.
 
 ```yaml
 Type: ListItem
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
-{{ Fill PassThru Description }}
+Returns the list item object that was processed.
 
 ```yaml
 Type: SwitchParameter
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress.
 
 ```yaml
 Type: ActionPreference

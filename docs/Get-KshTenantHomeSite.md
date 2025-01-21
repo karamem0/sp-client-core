@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshTenantHomeSite
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves the home site of the tenant.
 
 ## SYNTAX
 
@@ -17,21 +17,21 @@ Get-KshTenantHomeSite [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshTenantHomeSite` cmdlet retrieves the home site of the tenant.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshTenantHomeSite
 ```
 
-{{ Add example description here }}
+This example retrieves the home site of the tenant.
 
 ## PARAMETERS
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference
@@ -54,6 +54,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ### System.String
+The home site URL of the tenant.
+
 ## NOTES
 
 ## RELATED LINKS

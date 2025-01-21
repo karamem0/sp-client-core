@@ -369,18 +369,20 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(listItemObject.ObjectIdentity),
-            modificationInfo.Select(parameter =>
-                new ClientActionDelegate(objectPathId =>
-                    new ClientActionMethod(
+            [
+                ..modificationInfo.Select(parameter =>
+                    new ClientActionDelegate(objectPathId =>
+                        new ClientActionMethod(
+                            objectPathId,
+                            "SetFieldValue",
+                            requestPayload.CreateParameter(parameter.Key),
+                            requestPayload.CreateParameter(parameter.Value))))
+                    .Append(objectPathId => new ClientActionMethod(
                         objectPathId,
-                        "SetFieldValue",
-                        requestPayload.CreateParameter(parameter.Key),
-                        requestPayload.CreateParameter(parameter.Value))))
-                .Append(objectPathId => new ClientActionMethod(
-                    objectPathId,
-                    useSyetemUpdate ? "SystemUpdate" : "Update"))
-                .Where(item => item is not null)
-                .ToArray());
+                        useSyetemUpdate ? "SystemUpdate" : "Update"))
+                    .Where(item => item is not null)
+            ]
+        );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

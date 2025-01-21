@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-KshLike
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Retrieves the likes for a comment or list item.
 
 ## SYNTAX
 
@@ -23,21 +23,28 @@ Get-KshLike [-ListItem] <ListItem> [-NoEnumerate] [-ProgressAction <ActionPrefer
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Get-KshLike` cmdlet retrieves the likes for a comment or list item.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-KshLike -Comment $comment
 ```
 
-{{ Add example description here }}
+This example retrieves the likes by comment.
+
+### Example 2
+```powershell
+PS C:\> Get-KshLike -ListItem $listItem
+```
+
+This example retrieves the likes by list item.
 
 ## PARAMETERS
 
 ### -Comment
-{{ Fill Comment Description }}
+Specifies the comment for which to retrieve likes.
 
 ```yaml
 Type: Comment
@@ -52,7 +59,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListItem
-{{ Fill ListItem Description }}
+Specifies the list item for which to retrieve likes.
 
 ```yaml
 Type: ListItem
@@ -67,7 +74,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
-{{ Fill NoEnumerate Description }}
+Indicates that the cmdlet does not enumerate the collection.
 
 ```yaml
 Type: SwitchParameter
@@ -82,7 +89,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference

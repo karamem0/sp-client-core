@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-KshTermGroup
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Creates a new term group.
 
 ## SYNTAX
 
@@ -17,21 +17,21 @@ Add-KshTermGroup [-Id <Guid>] -Name <String> [-ProgressAction <ActionPreference>
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Add-KshTermGroup` cmdlet creates a new term group in the taxonomy.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-KshTermGroup -Name "New Term Group"
 ```
 
-{{ Add example description here }}
+This example creates a new term group named "New Term Group".
 
 ## PARAMETERS
 
 ### -Id
-{{ Fill Id Description }}
+Specifies the unique identifier of the term group.
 
 ```yaml
 Type: Guid
@@ -46,7 +46,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
-{{ Fill Name Description }}
+Specifies the name of the term group.
 
 ```yaml
 Type: String
@@ -61,7 +61,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference
