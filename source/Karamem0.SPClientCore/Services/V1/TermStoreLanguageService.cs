@@ -25,7 +25,8 @@ public interface ITermStoreLanguageService
 
 }
 
-public class TermStoreLanguageService(ClientContext clientContext) : ClientService(clientContext), ITermStoreLanguageService
+public class TermStoreLanguageService(ClientContext clientContext)
+    : ClientService(clientContext), ITermStoreLanguageService
 {
 
     public void AddObject(uint? lcid)
@@ -33,18 +34,23 @@ public class TermStoreLanguageService(ClientContext clientContext) : ClientServi
         _ = lcid ?? throw new ArgumentNullException(nameof(lcid));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession"));
+            new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore"));
+            new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore")
+        );
         var objectPath3 = requestPayload.Add(
             objectPath2,
             objectPathId => new ClientActionMethod(
                 objectPathId,
                 "AddLanguage",
-                requestPayload.CreateParameter(lcid)));
+                requestPayload.CreateParameter(lcid)
+            )
+        );
         var objectPath4 = requestPayload.Add(
             objectPath2,
-            objectPathId => new ClientActionMethod(objectPathId, "CommitAll"));
+            objectPathId => new ClientActionMethod(objectPathId, "CommitAll")
+        );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
@@ -53,18 +59,23 @@ public class TermStoreLanguageService(ClientContext clientContext) : ClientServi
         _ = lcid ?? throw new ArgumentNullException(nameof(lcid));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession"));
+            new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore"));
+            new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore")
+        );
         var objectPath3 = requestPayload.Add(
             objectPath2,
             objectPathId => new ClientActionMethod(
                 objectPathId,
                 "DeleteLanguage",
-                requestPayload.CreateParameter(lcid)));
+                requestPayload.CreateParameter(lcid)
+            )
+        );
         var objectPath4 = requestPayload.Add(
             objectPath2,
-            objectPathId => new ClientActionMethod(objectPathId, "CommitAll"));
+            objectPathId => new ClientActionMethod(objectPathId, "CommitAll")
+        );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

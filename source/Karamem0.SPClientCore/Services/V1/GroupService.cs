@@ -43,21 +43,26 @@ public class GroupService(ClientContext clientContext) : ClientService<Group>(cl
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "SiteGroups"));
+            new ObjectPathProperty(objectPath2.Id, "SiteGroups")
+        );
         var objectPath4 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath3.Id,
                 "Add",
-                requestPayload.CreateParameter(new GroupCreationInfo(creationInfo))),
+                requestPayload.CreateParameter(ClientValueObject.Create<GroupCreationInfo>(creationInfo))
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(Group))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<Group>(requestPayload.GetActionId<ClientActionQuery>());
@@ -68,21 +73,26 @@ public class GroupService(ClientContext clientContext) : ClientService<Group>(cl
         _ = groupId ?? throw new ArgumentNullException(nameof(groupId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "SiteGroups"));
+            new ObjectPathProperty(objectPath2.Id, "SiteGroups")
+        );
         var objectPath4 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath3.Id,
                 "GetById",
-                requestPayload.CreateParameter(groupId)),
+                requestPayload.CreateParameter(groupId)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(Group))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<Group>(requestPayload.GetActionId<ClientActionQuery>());
@@ -93,21 +103,26 @@ public class GroupService(ClientContext clientContext) : ClientService<Group>(cl
         _ = groupName ?? throw new ArgumentNullException(nameof(groupName));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "SiteGroups"));
+            new ObjectPathProperty(objectPath2.Id, "SiteGroups")
+        );
         var objectPath4 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath3.Id,
                 "GetByName",
-                requestPayload.CreateParameter(groupName)),
+                requestPayload.CreateParameter(groupName)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(Group))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<Group>(requestPayload.GetActionId<ClientActionQuery>());
@@ -117,9 +132,11 @@ public class GroupService(ClientContext clientContext) : ClientService<Group>(cl
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
             new ObjectPathProperty(objectPath2.Id, "SiteGroups"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -127,7 +144,8 @@ public class GroupService(ClientContext clientContext) : ClientService<Group>(cl
             {
                 Query = ClientQuery.Empty,
                 ChildItemQuery = new ClientQuery(true, typeof(Group))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<GroupEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
@@ -138,16 +156,20 @@ public class GroupService(ClientContext clientContext) : ClientService<Group>(cl
         _ = groupObject ?? throw new ArgumentNullException(nameof(groupObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
             new ObjectPathProperty(objectPath2.Id, "SiteGroups"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionMethod(
                 objectPathId,
                 "Remove",
-                requestPayload.CreateParameter(groupObject)));
+                requestPayload.CreateParameter(groupObject)
+            )
+        );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

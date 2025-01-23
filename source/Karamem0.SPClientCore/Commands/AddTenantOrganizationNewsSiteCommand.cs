@@ -21,10 +21,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddTenantOrganizationNewsSiteCommand : ClientObjectCmdlet<ITenantOrganizationNewsSiteService>
 {
 
-    public AddTenantOrganizationNewsSiteCommand()
-    {
-    }
-
     [Parameter(Mandatory = true)]
     public string Url { get; private set; }
 

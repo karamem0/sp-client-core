@@ -28,10 +28,10 @@ public class GetDocumentLibraryCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<DocumentLibraryInfo>(
@@ -52,17 +52,17 @@ public class GetDocumentLibraryCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<DocumentLibraryInfo>(
             "Get-KshDocumentLibrary",
             new Dictionary<string, object>()
             {
-                { "IncludeMediaLibraries", true }
+                ["IncludeMediaLibraries"] = true
             }
         );
         var actual = result1.ToArray();
@@ -77,17 +77,17 @@ public class GetDocumentLibraryCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<DocumentLibraryInfo>(
             "Get-KshDocumentLibrary",
             new Dictionary<string, object>()
             {
-                { "IncludePageLibraries", true }
+                ["IncludePageLibraries"] = true
             }
         );
         var actual = result1.ToArray();
@@ -102,17 +102,17 @@ public class GetDocumentLibraryCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<DocumentLibraryInfo>(
             "Get-KshDocumentLibrary",
             new Dictionary<string, object>()
             {
-                { "Default", true }
+                ["Default"] = true
             }
         );
         var actual = result1.ElementAt(0);

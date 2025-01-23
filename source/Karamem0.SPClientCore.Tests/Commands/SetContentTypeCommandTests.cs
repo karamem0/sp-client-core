@@ -28,60 +28,60 @@ public class SetContentTypeCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ContentType>(
             "Add-KshContentType",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Name", "Test Content Type 0" }
+                ["List"] = result1.ElementAt(0),
+                ["Name"] = "Test Content Type 0"
             }
         );
         var result3 = context.Runspace.InvokeCommand<ContentType>(
             "Set-KshContentType",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) },
-                { "Description", "Test Content Type 9 Description" },
-                { "DisplayFormUrl", context.AppSettings["Site1Url"] + "/TestList9/Forms/DispForm.aspx" },
-                { "EditFormUrl", context.AppSettings["Site1Url"] + "/TestList9/Forms/EditForm.aspx" },
-                { "Group", "Test Content Type 9 Group" },
-                { "Hidden", true },
-                { "JSLink", context.AppSettings["Site1Url"] + "/TestList9/Forms/JSLink.js" },
-                { "Name", "Test Content Type 9" },
-                { "NewFormUrl", context.AppSettings["Site1Url"] + "/TestList9/Forms/Upload.aspx" },
-                { "ReadOnly", true },
-                { "Sealed", true },
-                { "PassThru", true }
+                ["Identity"] = result2.ElementAt(0),
+                ["Description"] = "Test Content Type 9 Description",
+                ["DisplayFormUrl"] = context.AppSettings["Site1Url"] + "/TestList9/Forms/DispForm.aspx",
+                ["EditFormUrl"] = context.AppSettings["Site1Url"] + "/TestList9/Forms/EditForm.aspx",
+                ["Group"] = "Test Content Type 9 Group",
+                ["Hidden"] = true,
+                ["JSLink"] = context.AppSettings["Site1Url"] + "/TestList9/Forms/JSLink.js",
+                ["Name"] = "Test Content Type 9",
+                ["NewFormUrl"] = context.AppSettings["Site1Url"] + "/TestList9/Forms/Upload.aspx",
+                ["ReadOnly"] = true,
+                ["Sealed"] = true,
+                ["PassThru"] = true
             }
         );
         _ = context.Runspace.InvokeCommand<ContentType>(
             "Set-KshContentType",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) },
-                { "ReadOnly", false },
-                { "Sealed", false },
-                { "PassThru", true }
+                ["Identity"] = result3.ElementAt(0),
+                ["ReadOnly"] = false,
+                ["Sealed"] = false,
+                ["PassThru"] = true
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshContentType",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                ["Identity"] = result3.ElementAt(0)
             }
         );
         var actual = result3.ElementAt(0);
@@ -96,52 +96,52 @@ public class SetContentTypeCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<ContentType>(
             "Add-KshContentType",
             new Dictionary<string, object>()
             {
-                { "Name", "Test Content Type 0" }
+                ["Name"] = "Test Content Type 0"
             }
         );
         var result2 = context.Runspace.InvokeCommand<ContentType>(
             "Set-KshContentType",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) },
-                { "Description", "Test Content Type 9 Description" },
-                { "DisplayFormUrl", context.AppSettings["Site1Url"] + "/TestList9/Forms/DispForm.aspx" },
-                { "EditFormUrl", context.AppSettings["Site1Url"] + "/TestList9/Forms/EditForm.aspx" },
-                { "Group", "Test Content Type 9 Group" },
-                { "Hidden", true },
-                { "JSLink", context.AppSettings["Site1Url"] + "/TestList9/Forms/JSLink.js" },
-                { "Name", "Test Content Type 9" },
-                { "NewFormUrl", context.AppSettings["Site1Url"] + "/TestList9/Forms/Upload.aspx" },
-                { "ReadOnly", true },
-                { "Sealed", true },
-                { "PassThru", true }
+                ["Identity"] = result1.ElementAt(0),
+                ["Description"] = "Test Content Type 9 Description",
+                ["DisplayFormUrl"] = context.AppSettings["Site1Url"] + "/TestList9/Forms/DispForm.aspx",
+                ["EditFormUrl"] = context.AppSettings["Site1Url"] + "/TestList9/Forms/EditForm.aspx",
+                ["Group"] = "Test Content Type 9 Group",
+                ["Hidden"] = true,
+                ["JSLink"] = context.AppSettings["Site1Url"] + "/TestList9/Forms/JSLink.js",
+                ["Name"] = "Test Content Type 9",
+                ["NewFormUrl"] = context.AppSettings["Site1Url"] + "/TestList9/Forms/Upload.aspx",
+                ["ReadOnly"] = true,
+                ["Sealed"] = true,
+                ["PassThru"] = true
             }
         );
         _ = context.Runspace.InvokeCommand<ContentType>(
             "Set-KshContentType",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) },
-                { "ReadOnly", false },
-                { "Sealed", false },
-                { "PassThru", true }
+                ["Identity"] = result1.ElementAt(0),
+                ["ReadOnly"] = false,
+                ["Sealed"] = false,
+                ["PassThru"] = true
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshContentType",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) }
+                ["Identity"] = result1.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);

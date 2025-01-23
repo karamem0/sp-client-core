@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class SetNavigationCommand : ClientObjectCmdlet<INavigationService>
 {
 
-    public SetNavigationCommand()
-    {
-    }
-
     [Parameter(Mandatory = false)]
     public bool UseShared { get; private set; }
 

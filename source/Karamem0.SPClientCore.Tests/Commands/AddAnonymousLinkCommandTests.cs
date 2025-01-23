@@ -27,27 +27,27 @@ public class AddAnonymousLinkCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<string>(
             "Add-KshAnonymousLink",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["File1Url"] },
-                { "IsEditLink", true }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["File1Url"],
+                ["IsEditLink"] = true
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshAnonymousLink",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["File1Url"] },
-                { "IsEditLink", true },
-                { "RemoveAssociatedSharingLinkGroup", true }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["File1Url"],
+                ["IsEditLink"] = true,
+                ["RemoveAssociatedSharingLinkGroup"] = true
             }
         );
         var actual = result1.ElementAt(0);
@@ -62,28 +62,28 @@ public class AddAnonymousLinkCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<string>(
             "Add-KshAnonymousLink",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["File1Url"] },
-                { "IsEditLink", true },
-                { "Expiration", DateTime.Today.AddDays(7) }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["File1Url"],
+                ["IsEditLink"] = true,
+                ["Expiration"] = DateTime.Today.AddDays(7)
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshAnonymousLink",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["File1Url"] },
-                { "IsEditLink", true },
-                { "RemoveAssociatedSharingLinkGroup", true }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["File1Url"],
+                ["IsEditLink"] = true,
+                ["RemoveAssociatedSharingLinkGroup"] = true
             }
         );
         var actual = result1.ElementAt(0);

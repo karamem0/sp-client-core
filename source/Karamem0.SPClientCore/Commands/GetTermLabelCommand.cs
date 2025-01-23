@@ -22,18 +22,31 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetTermLabelCommand : ClientObjectCmdlet<ITermLabelService>
 {
 
-    public GetTermLabelCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet1"
+    )]
     public TermLabel Identity { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet3")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet2"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet3"
+    )]
     public Term Term { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 1,
+        ParameterSetName = "ParamSet2"
+    )]
     public string LabelName { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]

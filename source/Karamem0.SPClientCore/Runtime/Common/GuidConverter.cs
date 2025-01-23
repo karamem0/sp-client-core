@@ -19,7 +19,10 @@ public static class GuidConverter
 
     public static bool TryParse(string input, out Guid result)
     {
-        var match = Regex.Match(input, "^/Guid\\(([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})\\)/$");
+        var match = Regex.Match(
+            input,
+            "^/Guid\\(([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})\\)/$"
+        );
         if (match.Success)
         {
             if (Guid.TryParse(match.Groups[1].Value, out var guid))

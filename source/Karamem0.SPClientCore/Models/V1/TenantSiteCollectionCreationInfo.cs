@@ -15,18 +15,13 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
-[ClientObject(Name = "Microsoft.Online.SharePoint.TenantAdministration.SiteCreationProperties", Id = "{11f84fff-b8cf-47b6-8b50-34e692656606}")]
+[ClientObject(
+    Name = "Microsoft.Online.SharePoint.TenantAdministration.SiteCreationProperties",
+    Id = "{11f84fff-b8cf-47b6-8b50-34e692656606}"
+)]
 [JsonObject()]
 public class TenantSiteCollectionCreationInfo : ClientValueObject
 {
-
-    public TenantSiteCollectionCreationInfo()
-    {
-    }
-
-    public TenantSiteCollectionCreationInfo(IReadOnlyDictionary<string, object> parameters) : base(parameters)
-    {
-    }
 
     [JsonProperty()]
     public virtual int CompatibilityLevel { get; protected set; }

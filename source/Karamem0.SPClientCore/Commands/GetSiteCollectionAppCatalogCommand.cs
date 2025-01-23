@@ -23,20 +23,33 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetSiteCollectionAppCatalogCommand : ClientObjectCmdlet<ISiteCollectionAppCatalogService>
 {
 
-    public GetSiteCollectionAppCatalogCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet1"
+    )]
     public SiteCollectionAppCatalog Identity { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet2"
+    )]
     public SiteCollection SiteCollection { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet3")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet3"
+    )]
     public Uri SiteCollectionUrl { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet4")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet4"
+    )]
     public Guid SiteCollectionId { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -55,17 +68,21 @@ public class GetSiteCollectionAppCatalogCommand : ClientObjectCmdlet<ISiteCollec
         {
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service
-                    .GetObjectEnumerable()
-                    .Where(obj => obj.SiteCollectionId == this.SiteCollection.Id)
-                    .ToArray());
+                this.Outputs.Add(
+                    this.Service
+                        .GetObjectEnumerable()
+                        .Where(obj => obj.SiteCollectionId == this.SiteCollection.Id)
+                        .ToArray()
+                );
             }
             else
             {
-                this.Outputs.AddRange(this.Service
-                    .GetObjectEnumerable()
-                    .Where(obj => obj.SiteCollectionId == this.SiteCollection.Id)
-                    .ToArray());
+                this.Outputs.AddRange(
+                    this.Service
+                        .GetObjectEnumerable()
+                        .Where(obj => obj.SiteCollectionId == this.SiteCollection.Id)
+                        .ToArray()
+                );
             }
         }
         if (this.ParameterSetName == "ParamSet3")
@@ -74,39 +91,49 @@ public class GetSiteCollectionAppCatalogCommand : ClientObjectCmdlet<ISiteCollec
             {
                 if (this.NoEnumerate)
                 {
-                    this.Outputs.Add(this.Service
-                        .GetObjectEnumerable()
-                        .Where(obj => obj.AbsoluteUrl == this.SiteCollectionUrl.ToString())
-                        .ToArray());
+                    this.Outputs.Add(
+                        this.Service
+                            .GetObjectEnumerable()
+                            .Where(obj => obj.AbsoluteUrl == this.SiteCollectionUrl.ToString())
+                            .ToArray()
+                    );
                 }
                 else
                 {
-                    this.Outputs.AddRange(this.Service
-                        .GetObjectEnumerable()
-                        .Where(obj => obj.AbsoluteUrl == this.SiteCollectionUrl.ToString())
-                        .ToArray());
+                    this.Outputs.AddRange(
+                        this.Service
+                            .GetObjectEnumerable()
+                            .Where(obj => obj.AbsoluteUrl == this.SiteCollectionUrl.ToString())
+                            .ToArray()
+                    );
                 }
             }
             else
             {
-                throw new InvalidOperationException(string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.SiteCollectionUrl));
+                throw new InvalidOperationException(
+                    string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.SiteCollectionUrl)
+                );
             }
         }
         if (this.ParameterSetName == "ParamSet4")
         {
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service
-                    .GetObjectEnumerable()
-                    .Where(obj => obj.SiteCollectionId == this.SiteCollectionId)
-                    .ToArray());
+                this.Outputs.Add(
+                    this.Service
+                        .GetObjectEnumerable()
+                        .Where(obj => obj.SiteCollectionId == this.SiteCollectionId)
+                        .ToArray()
+                );
             }
             else
             {
-                this.Outputs.AddRange(this.Service
-                    .GetObjectEnumerable()
-                    .Where(obj => obj.SiteCollectionId == this.SiteCollectionId)
-                    .ToArray());
+                this.Outputs.AddRange(
+                    this.Service
+                        .GetObjectEnumerable()
+                        .Where(obj => obj.SiteCollectionId == this.SiteCollectionId)
+                        .ToArray()
+                );
             }
         }
         if (this.ParameterSetName == "ParamSet5")

@@ -28,32 +28,35 @@ public class RemoveTenantSiteDesignCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AdminUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AdminUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<TenantSiteDesign>(
             "Add-KshTenantSiteDesign",
             new Dictionary<string, object>()
             {
-                { "Description", "Test Site Design 0" },
-                { "DesignPackageId", Guid.Empty },
-                { "IsDefault", false },
-                { "PreviewImageAltText", null },
-                { "PreviewImageUrl", null },
-                { "SiteScriptIds", new[] { context.AppSettings["SiteScript1Id"] } },
-                { "SiteTemplate", null },
-                { "ThumbnailUrl", null },
-                { "Title", "Test Site Design 0" },
+                ["Description"] = "Test Site Design 0",
+                ["DesignPackageId"] = Guid.Empty,
+                ["IsDefault"] = false,
+                ["PreviewImageAltText"] = null,
+                ["PreviewImageUrl"] = null,
+                ["SiteScriptIds"] = new[]
+                {
+                    context.AppSettings["SiteScript1Id"]
+                },
+                ["SiteTemplate"] = null,
+                ["ThumbnailUrl"] = null,
+                ["Title"] = "Test Site Design 0",
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshTenantSiteDesign",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) }
+                ["Identity"] = result1.ElementAt(0)
             }
         );
     }

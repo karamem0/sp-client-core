@@ -23,10 +23,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetSharingInfoCommand : ClientObjectCmdlet<ISharingLinkService>
 {
 
-    public GetSharingInfoCommand()
-    {
-    }
-
     [Parameter(Mandatory = true)]
     public Uri Url { get; private set; }
 
@@ -55,16 +51,18 @@ public class GetSharingInfoCommand : ClientObjectCmdlet<ISharingLinkService>
     {
         if (this.Url.IsAbsoluteUri)
         {
-            this.Outputs.Add(this.Service.GetSharingInfo(
-                this.Url,
-                this.ExcludeCurrentUser,
-                this.ExcludeSiteAdmin,
-                this.ExcludeSecurityGroups,
-                this.RetrieveAnonymousLinks,
-                this.RetrieveUserInfoDetails,
-                this.CheckForAccessRequests,
-                this.RetrievePermissionLevels
-            ));
+            this.Outputs.Add(
+                this.Service.GetSharingInfo(
+                    this.Url,
+                    this.ExcludeCurrentUser,
+                    this.ExcludeSiteAdmin,
+                    this.ExcludeSecurityGroups,
+                    this.RetrieveAnonymousLinks,
+                    this.RetrieveUserInfoDetails,
+                    this.CheckForAccessRequests,
+                    this.RetrievePermissionLevels
+                )
+            );
         }
         else
         {

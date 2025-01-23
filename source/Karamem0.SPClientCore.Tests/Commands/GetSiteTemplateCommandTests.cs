@@ -28,10 +28,10 @@ public class GetSiteTemplateCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<SiteTemplate>(
@@ -52,18 +52,18 @@ public class GetSiteTemplateCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<SiteTemplate>(
             "Get-KshSiteTemplate",
             new Dictionary<string, object>()
             {
-                { "IncludeCrossLanguage", true },
-                { "Lcid", 1033 }
+                ["IncludeCrossLanguage"] = true,
+                ["Lcid"] = 1033
             }
         );
         var actual = result1.ToArray();
@@ -78,17 +78,17 @@ public class GetSiteTemplateCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<SiteTemplate>(
             "Get-KshSiteTemplate",
             new Dictionary<string, object>()
             {
-                { "SiteTemplateName", "SITEPAGEPUBLISHING#0" }
+                ["SiteTemplateName"] = "SITEPAGEPUBLISHING#0"
             }
         );
         var actual = result1.ElementAt(0);

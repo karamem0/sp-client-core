@@ -28,17 +28,17 @@ public class AddTermStoreLanguageCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Add-KshTermStoreLanguage",
             new Dictionary<string, object>()
             {
-                { "Lcid", 1036 }
+                ["Lcid"] = 1036
             }
         );
         var result1 = context.Runspace.InvokeCommand<TermStore>(
@@ -51,7 +51,7 @@ public class AddTermStoreLanguageCommandTests
             "Remove-KshTermStoreLanguage",
             new Dictionary<string, object>()
             {
-                { "Lcid", 1036 }
+                ["Lcid"] = 1036
             }
         );
         var actual = result1.ElementAt(0);

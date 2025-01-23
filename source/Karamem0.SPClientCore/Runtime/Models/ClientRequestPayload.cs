@@ -22,12 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class ClientRequestPayload : ClientRequestObject
 {
 
-    public ClientRequestPayload()
-    {
-        this.Actions = [];
-        this.ObjectPaths = [];
-    }
-
     [XmlAttribute("AddExpandoFieldTypeSuffix")]
     public bool AddExpandoColumnTypeSuffix => true;
 
@@ -41,10 +35,10 @@ public class ClientRequestPayload : ClientRequestObject
     public string ApplicationName => "SPClientCore";
 
     [XmlArray()]
-    public ClientActionCollection Actions { get; private set; }
+    public ClientActionCollection Actions { get; private set; } = [];
 
     [XmlArray()]
-    public ObjectPathCollection ObjectPaths { get; private set; }
+    public ObjectPathCollection ObjectPaths { get; private set; } = [];
 
     public ObjectPath Add(ObjectPath objectPath, params ClientActionDelegate[] delegates)
     {
@@ -65,7 +59,7 @@ public class ClientRequestPayload : ClientRequestObject
         }
         else if (value is IEnumerable arrayObject)
         {
-            return new ClientRequestParameterArray(this, arrayObject.OfType<object>().ToArray());
+            return new ClientRequestParameterArray(this, arrayObject.OfType<object>());
         }
         else if (value is ObjectPath objectPath)
         {
@@ -89,7 +83,10 @@ public class ClientRequestPayload : ClientRequestObject
         }
     }
 
-    public IEnumerable<ClientActionDelegate> CreateSetPropertyDelegates(Type objectType, IReadOnlyDictionary<string, object> parameters)
+    public IEnumerable<ClientActionDelegate> CreateSetPropertyDelegates(
+        Type objectType,
+        IReadOnlyDictionary<string, object> parameters
+    )
     {
         foreach (var parameter in parameters)
         {
@@ -101,29 +98,39 @@ public class ClientRequestPayload : ClientRequestObject
                 {
                     if (parameter.Value is ClientObject value)
                     {
-                        yield return new ClientActionDelegate(objectPathId => new ClientActionSetProperty(
-                            objectPathId,
-                            string.IsNullOrEmpty(propertyAttribute.PropertyName)
-                                ? parameter.Key
-                                : propertyAttribute.PropertyName,
-                            new ClientRequestParameterObjectPath(
-                                this.Add(new ObjectPathIdentity(value.ObjectIdentity)))));
-                    }
-                    else
-                    {
-                        yield return new ClientActionDelegate(objectPathId => new ClientActionSetProperty(
+                        yield return new ClientActionDelegate(
+                            objectPathId => new ClientActionSetProperty(
                                 objectPathId,
                                 string.IsNullOrEmpty(propertyAttribute.PropertyName)
                                     ? parameter.Key
                                     : propertyAttribute.PropertyName,
-                                this.CreateParameter(parameter.Value)));
+                                new ClientRequestParameterObjectPath(
+                                    this.Add(new ObjectPathIdentity(value.ObjectIdentity))
+                                )
+                            )
+                        );
+                    }
+                    else
+                    {
+                        yield return new ClientActionDelegate(
+                            objectPathId => new ClientActionSetProperty(
+                                objectPathId,
+                                string.IsNullOrEmpty(propertyAttribute.PropertyName)
+                                    ? parameter.Key
+                                    : propertyAttribute.PropertyName,
+                                this.CreateParameter(parameter.Value)
+                            )
+                        );
                     }
                 }
             }
         }
     }
 
-    public IEnumerable<ClientActionDelegate> CreateSetPropertyDelegates<T>(T clientObject, IReadOnlyDictionary<string, object> parameters) where T : ClientObject
+    public IEnumerable<ClientActionDelegate> CreateSetPropertyDelegates<T>(
+        T clientObject,
+        IReadOnlyDictionary<string, object> parameters
+    ) where T : ClientObject
     {
         var objectName = clientObject.ObjectType;
         var objectType = ClientObject.GetType(objectName);

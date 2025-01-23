@@ -20,14 +20,15 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 
 [Cmdlet(VerbsCommon.Get, "KshTenantDeletedPersonalSiteCollection")]
 [OutputType(typeof(TenantDeletedSiteCollection))]
-public class GetTenantDeletedPersonalSiteCollectionCommand : ClientObjectCmdlet<ITenantDeletedPersonalSiteCollectionService>
+public class
+    GetTenantDeletedPersonalSiteCollectionCommand : ClientObjectCmdlet<ITenantDeletedPersonalSiteCollectionService>
 {
 
-    public GetTenantDeletedPersonalSiteCollectionCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet1"
+    )]
     public Uri SiteCollectionUrl { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
@@ -51,7 +52,9 @@ public class GetTenantDeletedPersonalSiteCollectionCommand : ClientObjectCmdlet<
             }
             else
             {
-                throw new InvalidOperationException(string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.SiteCollectionUrl));
+                throw new InvalidOperationException(
+                    string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.SiteCollectionUrl)
+                );
             }
         }
         if (this.ParameterSetName == "ParamSet2")

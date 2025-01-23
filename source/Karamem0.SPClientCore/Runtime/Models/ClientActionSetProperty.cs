@@ -15,11 +15,15 @@ using System.Xml.Serialization;
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
 [XmlType("SetProperty", Namespace = "http://schemas.microsoft.com/sharepoint/clientquery/2009")]
-public class ClientActionSetProperty(long objectPathId, string name, ClientRequestParameter parameter) : ClientAction
+public class ClientActionSetProperty(
+    long objectPathId,
+    string name,
+    ClientRequestParameter parameter
+) : ClientAction
 {
 
     [XmlAttribute()]
-    public override long Id { get; protected set; }
+    public override long Id { get; protected set; } = NewId();
 
     [XmlAttribute()]
     public virtual long ObjectPathId { get; protected set; } = objectPathId;

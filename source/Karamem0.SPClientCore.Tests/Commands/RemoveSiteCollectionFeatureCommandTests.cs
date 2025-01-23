@@ -28,34 +28,34 @@ public class RemoveSiteCollectionFeatureCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Add-KshSiteCollectionFeature",
             new Dictionary<string, object>()
             {
-                { "FeatureId", "b21b090c-c796-4b0f-ac0f-7ef1659c20ae" },
-                { "Force", false },
-                { "Scope", "None" }
+                ["FeatureId"] = "b21b090c-c796-4b0f-ac0f-7ef1659c20ae",
+                ["Force"] = false,
+                ["Scope"] = "None"
             }
         );
         var result1 = context.Runspace.InvokeCommand<Feature>(
             "Get-KshSiteCollectionFeature",
             new Dictionary<string, object>()
             {
-                { "FeatureId", "b21b090c-c796-4b0f-ac0f-7ef1659c20ae" }
+                ["FeatureId"] = "b21b090c-c796-4b0f-ac0f-7ef1659c20ae"
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshSiteCollectionFeature",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) },
-                { "Force", false }
+                ["Identity"] = result1.ElementAt(0),
+                ["Force"] = false
             }
         );
     }

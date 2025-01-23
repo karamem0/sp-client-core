@@ -22,14 +22,20 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddCommentCommand : ClientObjectCmdlet<ICommentService>
 {
 
-    public AddCommentCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet1"
+    )]
     public ListItem ListItem { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet2"
+    )]
     public Comment Comment { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]

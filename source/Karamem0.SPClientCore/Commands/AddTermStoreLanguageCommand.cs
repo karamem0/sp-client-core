@@ -21,10 +21,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddTermStoreLanguageCommand : ClientObjectCmdlet<ITermStoreLanguageService>
 {
 
-    public AddTermStoreLanguageCommand()
-    {
-    }
-
     [Parameter(Mandatory = true)]
     public uint Lcid { get; private set; }
 

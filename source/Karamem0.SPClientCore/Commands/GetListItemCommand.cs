@@ -23,31 +23,67 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetListItemCommand : ClientObjectCmdlet<IListItemService>
 {
 
-    public GetListItemCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet1"
+    )]
     public ListItem Identity { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet2"
+    )]
     public Models.V1.Folder Folder { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet3")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet3"
+    )]
     public Models.V1.File File { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet4")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet4"
+    )]
     public DriveItem DriveItem { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet5")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet5"
+    )]
     public string ItemUrl { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet6")]
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet7")]
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet8")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet6"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet7"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet8"
+    )]
     public List List { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet6")]
+    [Parameter(
+        Mandatory = true,
+        Position = 1,
+        ParameterSetName = "ParamSet6"
+    )]
     public int ItemId { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet7")]

@@ -23,10 +23,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class SetTenantThemeCommand : ClientObjectCmdlet<ITenantThemeService>
 {
 
-    public SetTenantThemeCommand()
-    {
-    }
-
     [Parameter(Mandatory = true)]
     public TenantTheme Identity { get; private set; }
 

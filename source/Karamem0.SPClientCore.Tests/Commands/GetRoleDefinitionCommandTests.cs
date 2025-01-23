@@ -28,10 +28,10 @@ public class GetRoleDefinitionCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<RoleDefinition>(
@@ -52,24 +52,24 @@ public class GetRoleDefinitionCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<RoleDefinition>(
             "Get-KshRoleDefinition",
             new Dictionary<string, object>()
             {
-                { "RoleDefinitionId", context.AppSettings["RoleDefinition1Id"] }
+                ["RoleDefinitionId"] = context.AppSettings["RoleDefinition1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<RoleDefinition>(
             "Get-KshRoleDefinition",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) }
+                ["Identity"] = result1.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);
@@ -84,17 +84,17 @@ public class GetRoleDefinitionCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<RoleDefinition>(
             "Get-KshRoleDefinition",
             new Dictionary<string, object>()
             {
-                { "RoleDefinitionId", context.AppSettings["RoleDefinition1Id"] }
+                ["RoleDefinitionId"] = context.AppSettings["RoleDefinition1Id"]
             }
         );
         var actual = result1.ElementAt(0);
@@ -109,17 +109,17 @@ public class GetRoleDefinitionCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<RoleDefinition>(
             "Get-KshRoleDefinition",
             new Dictionary<string, object>()
             {
-                { "RoleDefinitionName", context.AppSettings["RoleDefinition1Name"] }
+                ["RoleDefinitionName"] = context.AppSettings["RoleDefinition1Name"]
             }
         );
         var actual = result1.ElementAt(0);

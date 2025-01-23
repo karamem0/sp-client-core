@@ -28,47 +28,47 @@ public class RemoveDocumentSetWelcomePageColumnCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<ContentType>(
             "Get-KshContentType",
             new Dictionary<string, object>()
             {
-                { "ContentTypeId", context.AppSettings["SiteContentType7Id"] }
+                ["ContentTypeId"] = context.AppSettings["SiteContentType7Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<Column>(
             "Get-KshColumn",
             new Dictionary<string, object>()
             {
-                { "ColumnId", context.AppSettings["Column9Id"] }
+                ["ColumnId"] = context.AppSettings["Column9Id"]
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Add-KshDocumentSetWelcomePageColumn",
             new Dictionary<string, object>()
             {
-                { "ContentType", result1.ElementAt(0) },
-                { "Column", result2.ElementAt(0) }
+                ["ContentType"] = result1.ElementAt(0),
+                ["Column"] = result2.ElementAt(0)
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshDocumentSetWelcomePageColumn",
             new Dictionary<string, object>()
             {
-                { "ContentType", result1.ElementAt(0) },
-                { "Column", result2.ElementAt(0) }
+                ["ContentType"] = result1.ElementAt(0),
+                ["Column"] = result2.ElementAt(0)
             }
         );
         var result3 = context.Runspace.InvokeCommand<Column>(
             "Get-KshDocumentSetWelcomePageColumn",
             new Dictionary<string, object>()
             {
-                { "ContentType", result1.ElementAt(0) }
+                ["ContentType"] = result1.ElementAt(0)
             }
         );
         var actual = result3.ToArray();

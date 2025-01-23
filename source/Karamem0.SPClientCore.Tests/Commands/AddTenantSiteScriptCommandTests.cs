@@ -28,25 +28,26 @@ public class AddTenantSiteScriptCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AdminUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AdminUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<TenantSiteScript>(
             "Add-KshTenantSiteScript",
             new Dictionary<string, object>()
             {
-                { "Content", /*lang=json,strict*/ "{\"actions\":[{\"verb\":\"createSPList\",\"listName\":\"Test List 0\",\"templateType\":101,\"subactions\":[]}]}" },
-                { "Title", "Test Site Script 0" }
+                ["Content"] = /*lang=json,strict*/
+                    "{\"actions\":[{\"verb\":\"createSPList\",\"listName\":\"Test List 0\",\"templateType\":101,\"subactions\":[]}]}",
+                ["Title"] = "Test Site Script 0"
             }
         );
         _ = context.Runspace.InvokeCommand<HubSite>(
             "Remove-KshTenantSiteScript",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) }
+                ["Identity"] = result1.ElementAt(0)
             }
         );
         var actual = result1.ElementAt(0);

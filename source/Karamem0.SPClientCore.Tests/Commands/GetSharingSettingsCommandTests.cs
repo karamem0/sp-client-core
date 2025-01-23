@@ -28,19 +28,19 @@ public class GetSharingSettingsCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<SharingSettings>(
             "Get-KshSharingSettings",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["File1Url"] },
-                { "GroupId", 0 },
-                { "UseSimplifiedRoles", false },
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["File1Url"],
+                ["GroupId"] = 0,
+                ["UseSimplifiedRoles"] = false,
             }
         );
         var actual = result1.ElementAt(0);

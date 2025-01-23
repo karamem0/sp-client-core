@@ -32,16 +32,19 @@ public class NavigationService(ClientContext clientContext) : ClientService(clie
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
             new ObjectPathProperty(objectPath2.Id, "Navigation"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(Navigation))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<Navigation>(requestPayload.GetActionId<ClientActionQuery>());
@@ -52,15 +55,19 @@ public class NavigationService(ClientContext clientContext) : ClientService(clie
         _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
             new ObjectPathProperty(objectPath2.Id, "Navigation"),
-            requestPayload.CreateSetPropertyDelegates(typeof(Navigation), modificationInfo).ToArray());
+            requestPayload.CreateSetPropertyDelegates(typeof(Navigation), modificationInfo).ToArray()
+        );
         var objectPath4 = requestPayload.Add(
             objectPath2,
-            objectPathId => new ClientActionMethod(objectPathId, "Update"));
+            objectPathId => new ClientActionMethod(objectPathId, "Update")
+        );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

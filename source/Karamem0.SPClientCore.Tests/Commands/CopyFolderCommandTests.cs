@@ -28,43 +28,43 @@ public class CopyFolderCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<Folder>(
             "Get-KshFolder",
             new Dictionary<string, object>()
             {
-                { "FolderUrl", context.AppSettings["Folder1Url"] }
+                ["FolderUrl"] = context.AppSettings["Folder1Url"]
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Copy-KshFolder",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) },
-                { "NewUrl", context.AppSettings["AuthorityUrl"] + context.AppSettings["List2Url"] + "/Test Folder 9" },
-                { "KeepBoth", true },
-                { "ResetAuthorAndCreatedOnCopy", true },
-                { "RetainEditorAndModifiedOnMove", true },
-                { "ShouldBypassSharedLocks", true }
+                ["Identity"] = result1.ElementAt(0),
+                ["NewUrl"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["List2Url"] + "/Test Folder 9",
+                ["KeepBoth"] = true,
+                ["ResetAuthorAndCreatedOnCopy"] = true,
+                ["RetainEditorAndModifiedOnMove"] = true,
+                ["ShouldBypassSharedLocks"] = true
             }
         );
         var result2 = context.Runspace.InvokeCommand<Folder>(
             "Get-KshFolder",
             new Dictionary<string, object>()
             {
-                { "FolderUrl", context.AppSettings["List2Url"] + "/Test Folder 9" }
+                ["FolderUrl"] = context.AppSettings["List2Url"] + "/Test Folder 9"
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshFolder",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);

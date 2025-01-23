@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetCurrentConnectionCommand : ClientObjectCmdlet
 {
 
-    public GetCurrentConnectionCommand()
-    {
-    }
-
     protected override void ProcessRecordCore()
     {
         this.Outputs.Add(ClientService.ServiceProvider.GetService<ClientContext>());

@@ -17,12 +17,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public abstract class ClientAction : ClientRequestObject
 {
 
-    protected ClientAction()
-    {
-        this.Id = NewId();
-    }
-
     [XmlAttribute()]
-    public virtual long Id { get; protected set; }
+    public abstract long Id { get; protected set; }
 
 }

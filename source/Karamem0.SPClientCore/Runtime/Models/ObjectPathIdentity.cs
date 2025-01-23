@@ -20,7 +20,7 @@ public class ObjectPathIdentity(string name) : ObjectPath
 {
 
     [XmlAttribute()]
-    public override long Id { get; protected set; }
+    public override long Id { get; protected set; } = NewId();
 
     [XmlAttribute()]
     public virtual string Name { get; protected set; } = name ?? throw new ArgumentNullException(nameof(name));

@@ -33,14 +33,16 @@ public class GroupOwnerService(ClientContext clientContext) : ClientService(clie
         _ = groupObject ?? throw new ArgumentNullException(nameof(groupObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(groupObject.ObjectIdentity));
+            new ObjectPathIdentity(groupObject.ObjectIdentity)
+        );
         var objectPath2 = requestPayload.Add(
             new ObjectPathProperty(objectPath1.Id, "Owner"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(false, typeof(Principal))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<Principal>(requestPayload.GetActionId<ClientActionQuery>());
@@ -52,15 +54,19 @@ public class GroupOwnerService(ClientContext clientContext) : ClientService(clie
         _ = principalObject ?? throw new ArgumentNullException(nameof(principalObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(groupObject.ObjectIdentity));
+            new ObjectPathIdentity(groupObject.ObjectIdentity)
+        );
         var objectPath2 = requestPayload.Add(
             objectPath1,
             objectPathId => new ClientActionSetProperty(
                 objectPathId,
                 "Owner",
                 new ClientRequestParameterObjectPath(
-                    requestPayload.Add(new ObjectPathIdentity(principalObject.ObjectIdentity)))),
-            objectPathId => new ClientActionMethod(objectPathId, "Update"));
+                    requestPayload.Add(new ObjectPathIdentity(principalObject.ObjectIdentity))
+                )
+            ),
+            objectPathId => new ClientActionMethod(objectPathId, "Update")
+        );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

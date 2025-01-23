@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class SetColumnTaxonomyValueCommand : ClientObjectCmdlet<IColumnTaxonomyService>
 {
 
-    public SetColumnTaxonomyValueCommand()
-    {
-    }
-
     [Parameter(Mandatory = true, Position = 0)]
     public ColumnTaxonomy Column { get; private set; }
 
@@ -40,7 +36,12 @@ public class SetColumnTaxonomyValueCommand : ClientObjectCmdlet<IColumnTaxonomyS
 
     protected override void ProcessRecordCore()
     {
-        this.Service.SetObjectValue(this.Column, this.ListItem, this.Value, this.Lcid);
+        this.Service.SetObjectValue(
+            this.Column,
+            this.ListItem,
+            this.Value,
+            this.Lcid
+        );
     }
 
 }

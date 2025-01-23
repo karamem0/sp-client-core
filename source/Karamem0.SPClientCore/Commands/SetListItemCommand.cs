@@ -24,11 +24,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class SetListItemCommand : ClientObjectCmdlet<IListItemService>
 {
 
-    public SetListItemCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true
+    )]
     public ListItem Identity { get; private set; }
 
     [Parameter(Mandatory = true)]
@@ -47,7 +47,8 @@ public class SetListItemCommand : ClientObjectCmdlet<IListItemService>
             this.Service.SetObject(
                 this.Identity,
                 hashtable.ToDictionary<string, object>(),
-                this.SystemUpdate);
+                this.SystemUpdate
+            );
         }
         else
         {
@@ -55,8 +56,10 @@ public class SetListItemCommand : ClientObjectCmdlet<IListItemService>
                 this.Identity,
                 this.Value.Properties.ToDictionary(
                     property => property.Name,
-                    property => property.Value),
-                this.SystemUpdate);
+                    property => property.Value
+                ),
+                this.SystemUpdate
+            );
         }
         if (this.PassThru)
         {

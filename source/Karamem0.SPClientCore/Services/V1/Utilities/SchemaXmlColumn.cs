@@ -50,8 +50,12 @@ public static class SchemaXmlColumn
                 case "Choices":
                     if (parameter.Value is IEnumerable<string> choices)
                     {
-                        element.Add(new XElement("CHOICES",
-                            choices.Select(choice => new XElement("CHOICE", new SchemaXmlValue(choice)))));
+                        element.Add(
+                            new XElement(
+                                "CHOICES",
+                                choices.Select(choice => new XElement("CHOICE", new SchemaXmlValue(choice)))
+                            )
+                        );
                     }
                     break;
                 case "ClientSideComponentId":
@@ -65,18 +69,30 @@ public static class SchemaXmlColumn
                     {
                         var formula = parameter.Value as string;
                         var message = parameters["ClientValidationMessage"] as string;
-                        element.Add(new XElement("ClientValidationFormula",
-                            new XAttribute("ClientValidationMessage", message),
-                            new XText(formula)));
+                        element.Add(
+                            new XElement(
+                                "ClientValidationFormula",
+                                new XAttribute("ClientValidationMessage", message),
+                                new XText(formula)
+                            )
+                        );
                     }
                     break;
                 case "Columns":
                     if (parameter.Value is IEnumerable<Column> columns)
                     {
-                        element.Add(new XElement("FieldRefs",
-                            columns.Select(column => new XElement("FieldRef",
-                                new XAttribute("ID", new SchemaXmlValue(column.Id)),
-                                new XAttribute("Name", new SchemaXmlValue(column.Name))))));
+                        element.Add(
+                            new XElement(
+                                "FieldRefs",
+                                columns.Select(
+                                    column => new XElement(
+                                        "FieldRef",
+                                        new XAttribute("ID", new SchemaXmlValue(column.Id)),
+                                        new XAttribute("Name", new SchemaXmlValue(column.Name))
+                                    )
+                                )
+                            )
+                        );
                     }
                     break;
                 case "CurrencyLcid":
@@ -205,9 +221,13 @@ public static class SchemaXmlColumn
                     {
                         var formula = parameter.Value as string;
                         var message = parameters["ValidationMessage"] as string;
-                        element.Add(new XElement("Validation",
-                            new XAttribute("Message", message),
-                            new XText(formula)));
+                        element.Add(
+                            new XElement(
+                                "Validation",
+                                new XAttribute("Message", message),
+                                new XText(formula)
+                            )
+                        );
                     }
                     break;
                 default:

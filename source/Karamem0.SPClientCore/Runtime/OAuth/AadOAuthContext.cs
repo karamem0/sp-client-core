@@ -20,7 +20,12 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth;
 
-public class AadOAuthContext(string authority, string clientId, string resource, bool userMode) : OAuthContext
+public class AadOAuthContext(
+    string authority,
+    string clientId,
+    string resource,
+    bool userMode
+) : OAuthContext
 {
 
     private readonly string authority = authority ?? throw new ArgumentNullException(nameof(authority));
@@ -35,19 +40,23 @@ public class AadOAuthContext(string authority, string clientId, string resource,
     {
         var requertParameters = new Dictionary<string, object>()
         {
-            { "client_id", this.clientId },
-            { "scope", string.Join(" ", this.userMode
-                ? [
-                    "offline_access",
-                    $"{OAuthConstants.ResourceId}/AllSites.Manage"
-                ]
-                : [
-                    "offline_access",
-                    $"{OAuthConstants.ResourceId}/AllSites.FullControl",
-                    $"{OAuthConstants.ResourceId}/TermStore.ReadWrite.All",
-                    $"{OAuthConstants.ResourceId}/User.Read.All"
-                ])
-            }
+            ["client_id"] = this.clientId,
+            ["scope"] = string.Join(
+                " ",
+                this.userMode
+                    ?
+                    [
+                        "offline_access",
+                        $"{OAuthConstants.ResourceId}/AllSites.Manage"
+                    ]
+                    :
+                    [
+                        "offline_access",
+                        $"{OAuthConstants.ResourceId}/AllSites.FullControl",
+                        $"{OAuthConstants.ResourceId}/TermStore.ReadWrite.All",
+                        $"{OAuthConstants.ResourceId}/User.Read.All"
+                    ]
+            )
         };
         var tenantId = this.tenantIdResolver.Resolve();
         var requestUrl = new Uri(this.authority, UriKind.Absolute)
@@ -77,26 +86,34 @@ public class AadOAuthContext(string authority, string clientId, string resource,
             .ConcatPath("oauth2/v2.0/token");
         var requertParameters = new Dictionary<string, object>()
         {
-            { "grant_type", "device_code" },
-            { "client_id", this.clientId },
-            { "code", deviceCode },
-            { "scope", string.Join(" ", this.userMode
-                ? [
-                    "offline_access",
-                    $"{OAuthConstants.ResourceId}/AllSites.Manage"
-                ]
-                : [
-                    "offline_access",
-                    $"{OAuthConstants.ResourceId}/AllSites.FullControl",
-                    $"{OAuthConstants.ResourceId}/TermStore.ReadWrite.All",
-                    $"{OAuthConstants.ResourceId}/User.Read.All"
-                ])
-            }
+            ["grant_type"] = "device_code",
+            ["client_id"] = this.clientId,
+            ["code"] = deviceCode,
+            ["scope"] = string.Join(
+                " ",
+                this.userMode
+                    ?
+                    [
+                        "offline_access",
+                        $"{OAuthConstants.ResourceId}/AllSites.Manage"
+                    ]
+                    :
+                    [
+                        "offline_access",
+                        $"{OAuthConstants.ResourceId}/AllSites.FullControl",
+                        $"{OAuthConstants.ResourceId}/TermStore.ReadWrite.All",
+                        $"{OAuthConstants.ResourceId}/User.Read.All"
+                    ]
+            )
         };
         var requestContent = UriQuery.Create(requertParameters);
         var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl)
         {
-            Content = new StringContent(requestContent, Encoding.UTF8, "application/x-www-form-urlencoded")
+            Content = new StringContent(
+                requestContent,
+                Encoding.UTF8,
+                "application/x-www-form-urlencoded"
+            )
         };
         requestMessage.Headers.Add("Accept", "application/json");
         var responseMessage = this.HttpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
@@ -121,27 +138,35 @@ public class AadOAuthContext(string authority, string clientId, string resource,
             .ConcatPath("oauth2/v2.0/token");
         var requertParameters = new Dictionary<string, object>()
         {
-            { "grant_type", "password" },
-            { "client_id", this.clientId },
-            { "username", userName },
-            { "password", password },
-            { "scope", string.Join(" ", this.userMode
-                ? [
-                    "offline_access",
-                    $"{OAuthConstants.ResourceId}/AllSites.Manage"
-                ]
-                : [
-                    "offline_access",
-                    $"{OAuthConstants.ResourceId}/AllSites.FullControl",
-                    $"{OAuthConstants.ResourceId}/TermStore.ReadWrite.All",
-                    $"{OAuthConstants.ResourceId}/User.Read.All"
-                ])
-            }
+            ["grant_type"] = "password",
+            ["client_id"] = this.clientId,
+            ["username"] = userName,
+            ["password"] = password,
+            ["scope"] = string.Join(
+                " ",
+                this.userMode
+                    ?
+                    [
+                        "offline_access",
+                        $"{OAuthConstants.ResourceId}/AllSites.Manage"
+                    ]
+                    :
+                    [
+                        "offline_access",
+                        $"{OAuthConstants.ResourceId}/AllSites.FullControl",
+                        $"{OAuthConstants.ResourceId}/TermStore.ReadWrite.All",
+                        $"{OAuthConstants.ResourceId}/User.Read.All"
+                    ]
+            )
         };
         var requestContent = UriQuery.Create(requertParameters);
         var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl)
         {
-            Content = new StringContent(requestContent, Encoding.UTF8, "application/x-www-form-urlencoded")
+            Content = new StringContent(
+                requestContent,
+                Encoding.UTF8,
+                "application/x-www-form-urlencoded"
+            )
         };
         requestMessage.Headers.Add("Accept", "application/json");
         var responseMessage = this.HttpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
@@ -165,26 +190,34 @@ public class AadOAuthContext(string authority, string clientId, string resource,
             .ConcatPath("oauth2/v2.0/token");
         var requertParameters = new Dictionary<string, object>()
         {
-            { "grant_type", "refresh_token" },
-            { "client_id", this.clientId },
-            { "refresh_token", refreshToken },
-            { "scope", string.Join(" ", this.userMode
-                ? [
-                    "offline_access",
-                    $"{OAuthConstants.ResourceId}/AllSites.Manage"
-                ]
-                : [
-                    "offline_access",
-                    $"{OAuthConstants.ResourceId}/AllSites.FullControl",
-                    $"{OAuthConstants.ResourceId}/TermStore.ReadWrite.All",
-                    $"{OAuthConstants.ResourceId}/User.Read.All"
-                ])
-            }
+            ["grant_type"] = "refresh_token",
+            ["client_id"] = this.clientId,
+            ["refresh_token"] = refreshToken,
+            ["scope"] = string.Join(
+                " ",
+                this.userMode
+                    ?
+                    [
+                        "offline_access",
+                        $"{OAuthConstants.ResourceId}/AllSites.Manage"
+                    ]
+                    :
+                    [
+                        "offline_access",
+                        $"{OAuthConstants.ResourceId}/AllSites.FullControl",
+                        $"{OAuthConstants.ResourceId}/TermStore.ReadWrite.All",
+                        $"{OAuthConstants.ResourceId}/User.Read.All"
+                    ]
+            )
         };
         var requestContent = UriQuery.Create(requertParameters);
         var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl)
         {
-            Content = new StringContent(requestContent, Encoding.UTF8, "application/x-www-form-urlencoded")
+            Content = new StringContent(
+                requestContent,
+                Encoding.UTF8,
+                "application/x-www-form-urlencoded"
+            )
         };
         requestMessage.Headers.Add("Accept", "application/json");
         var responseMessage = this.HttpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
@@ -209,27 +242,32 @@ public class AadOAuthContext(string authority, string clientId, string resource,
             .ConcatPath("oauth2/v2.0/token");
         var requertParameters = new Dictionary<string, object>()
         {
-            { "grant_type", "client_credentials" },
-            { "client_id", this.clientId },
-            { "client_assertion_type", "urn:ietf:params:oauth:client-assertion-type:jwt-bearer" },
-            { "client_assertion", new JsonWebTokenHandler().CreateToken(new SecurityTokenDescriptor()
+            ["grant_type"] = "client_credentials",
+            ["client_id"] = this.clientId,
+            ["client_assertion_type"] = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+            ["client_assertion"] = new JsonWebTokenHandler().CreateToken(
+                new SecurityTokenDescriptor()
                 {
                     Claims = new Dictionary<string, object>()
                     {
-                        { "aud", requestUrl.ToString() },
-                        { "iss", this.clientId },
-                        { "jti", Guid.NewGuid().ToString() },
-                        { "sub", this.clientId }
+                        ["aud"] = requestUrl.ToString(),
+                        ["iss"] = this.clientId,
+                        ["jti"] = Guid.NewGuid().ToString(),
+                        ["sub"] = this.clientId
                     },
                     SigningCredentials = new X509SigningCredentials(new X509Certificate2(certBytes, certPassword))
-                })
-            },
-            { "scope", string.Join(" ", [ $"{OAuthConstants.ResourceId}/.default" ]) }
+                }
+            ),
+            ["scope"] = string.Join(" ", [$"{OAuthConstants.ResourceId}/.default"])
         };
         var requestContent = UriQuery.Create(requertParameters);
         var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl)
         {
-            Content = new StringContent(requestContent, Encoding.UTF8, "application/x-www-form-urlencoded")
+            Content = new StringContent(
+                requestContent,
+                Encoding.UTF8,
+                "application/x-www-form-urlencoded"
+            )
         };
         requestMessage.Headers.Add("Accept", "application/json");
         var responseMessage = this.HttpClient.SendAsync(requestMessage).GetAwaiter().GetResult();

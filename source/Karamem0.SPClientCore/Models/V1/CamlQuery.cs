@@ -21,14 +21,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class CamlQuery : ClientValueObject
 {
 
-    public CamlQuery()
-    {
-    }
-
-    public CamlQuery(IReadOnlyDictionary<string, object> parameters) : base(parameters)
-    {
-    }
-
     [JsonProperty()]
     [DefaultValue(true)]
     public virtual bool DatesInUtc { get; protected set; }

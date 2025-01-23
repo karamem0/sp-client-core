@@ -22,23 +22,59 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddExternalUserCommand : ClientObjectCmdlet<IExternalUserService>
 {
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet1"
+    )]
     public SwitchParameter Site { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet2"
+    )]
     public File File { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet3")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet3"
+    )]
     public Folder Folder { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
-    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
-    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet3")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet1"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 1,
+        ParameterSetName = "ParamSet2"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 1,
+        ParameterSetName = "ParamSet3"
+    )]
     public string[] UserId { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet1")]
-    [Parameter(Mandatory = true, Position = 2, ParameterSetName = "ParamSet2")]
-    [Parameter(Mandatory = true, Position = 2, ParameterSetName = "ParamSet3")]
+    [Parameter(
+        Mandatory = true,
+        Position = 1,
+        ParameterSetName = "ParamSet1"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 2,
+        ParameterSetName = "ParamSet2"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 2,
+        ParameterSetName = "ParamSet3"
+    )]
     public RoleType Role { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
@@ -81,87 +117,99 @@ public class AddExternalUserCommand : ClientObjectCmdlet<IExternalUserService>
             this.ValidateSwitchParameter(nameof(this.Site));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.AddObject(
-                    this.UserId,
-                    this.Role,
-                    this.SendServerManagedNotification,
-                    this.CustomMessage,
-                    this.AdditivePermission,
-                    this.AllowExternalSharing
-                ));
+                this.Outputs.Add(
+                    this.Service.AddObject(
+                        this.UserId,
+                        this.Role,
+                        this.SendServerManagedNotification,
+                        this.CustomMessage,
+                        this.AdditivePermission,
+                        this.AllowExternalSharing
+                    )
+                );
             }
             else
             {
-                this.Outputs.AddRange(this.Service.AddObject(
-                    this.UserId,
-                    this.Role,
-                    this.SendServerManagedNotification,
-                    this.CustomMessage,
-                    this.AdditivePermission,
-                    this.AllowExternalSharing
-                ));
+                this.Outputs.AddRange(
+                    this.Service.AddObject(
+                        this.UserId,
+                        this.Role,
+                        this.SendServerManagedNotification,
+                        this.CustomMessage,
+                        this.AdditivePermission,
+                        this.AllowExternalSharing
+                    )
+                );
             }
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.AddObject(
-                    this.File.ServerRelativeUrl,
-                    this.UserId,
-                    this.Role,
-                    this.ValidateExistingPermissions,
-                    this.AdditivePermission,
-                    this.SendServerManagedNotification,
-                    this.CustomMessage,
-                    this.IncludeAnonymousLinksInNotification,
-                    this.PropagateAcl
-                ));
+                this.Outputs.Add(
+                    this.Service.AddObject(
+                        this.File.ServerRelativeUrl,
+                        this.UserId,
+                        this.Role,
+                        this.ValidateExistingPermissions,
+                        this.AdditivePermission,
+                        this.SendServerManagedNotification,
+                        this.CustomMessage,
+                        this.IncludeAnonymousLinksInNotification,
+                        this.PropagateAcl
+                    )
+                );
             }
             else
             {
-                this.Outputs.AddRange(this.Service.AddObject(
-                    this.File.ServerRelativeUrl,
-                    this.UserId,
-                    this.Role,
-                    this.ValidateExistingPermissions,
-                    this.AdditivePermission,
-                    this.SendServerManagedNotification,
-                    this.CustomMessage,
-                    this.IncludeAnonymousLinksInNotification,
-                    this.PropagateAcl
-                ));
+                this.Outputs.AddRange(
+                    this.Service.AddObject(
+                        this.File.ServerRelativeUrl,
+                        this.UserId,
+                        this.Role,
+                        this.ValidateExistingPermissions,
+                        this.AdditivePermission,
+                        this.SendServerManagedNotification,
+                        this.CustomMessage,
+                        this.IncludeAnonymousLinksInNotification,
+                        this.PropagateAcl
+                    )
+                );
             }
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.AddObject(
-                    this.Folder.ServerRelativeUrl,
-                    this.UserId,
-                    this.Role,
-                    this.ValidateExistingPermissions,
-                    this.AdditivePermission,
-                    this.SendServerManagedNotification,
-                    this.CustomMessage,
-                    this.IncludeAnonymousLinksInNotification,
-                    this.PropagateAcl
-                ));
+                this.Outputs.Add(
+                    this.Service.AddObject(
+                        this.Folder.ServerRelativeUrl,
+                        this.UserId,
+                        this.Role,
+                        this.ValidateExistingPermissions,
+                        this.AdditivePermission,
+                        this.SendServerManagedNotification,
+                        this.CustomMessage,
+                        this.IncludeAnonymousLinksInNotification,
+                        this.PropagateAcl
+                    )
+                );
             }
             else
             {
-                this.Outputs.AddRange(this.Service.AddObject(
-                    this.Folder.ServerRelativeUrl,
-                    this.UserId,
-                    this.Role,
-                    this.ValidateExistingPermissions,
-                    this.AdditivePermission,
-                    this.SendServerManagedNotification,
-                    this.CustomMessage,
-                    this.IncludeAnonymousLinksInNotification,
-                    this.PropagateAcl
-                ));
+                this.Outputs.AddRange(
+                    this.Service.AddObject(
+                        this.Folder.ServerRelativeUrl,
+                        this.UserId,
+                        this.Role,
+                        this.ValidateExistingPermissions,
+                        this.AdditivePermission,
+                        this.SendServerManagedNotification,
+                        this.CustomMessage,
+                        this.IncludeAnonymousLinksInNotification,
+                        this.PropagateAcl
+                    )
+                );
             }
         }
     }

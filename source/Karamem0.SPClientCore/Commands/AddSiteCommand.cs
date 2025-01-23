@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddSiteCommand : ClientObjectCmdlet<ISiteService>
 {
 
-    public AddSiteCommand()
-    {
-    }
-
     [Parameter(Mandatory = false)]
     public string Description { get; private set; }
 

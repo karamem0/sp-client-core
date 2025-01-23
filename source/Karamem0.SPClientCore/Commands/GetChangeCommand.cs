@@ -22,17 +22,17 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetChangeCommand : ClientObjectCmdlet<ISiteCollectionService, ISiteService, IChangeService>
 {
 
-    public GetChangeCommand()
-    {
-    }
-
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     public SwitchParameter SiteCollection { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public SwitchParameter Site { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet3")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet3"
+    )]
     public List List { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]

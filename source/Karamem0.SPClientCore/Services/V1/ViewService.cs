@@ -44,19 +44,23 @@ public class ViewService(ClientContext clientContext) : ClientService<View>(clie
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(listObject.ObjectIdentity));
+            new ObjectPathIdentity(listObject.ObjectIdentity)
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Views"));
+            new ObjectPathProperty(objectPath1.Id, "Views")
+        );
         var objectPath3 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath2.Id,
                 "Add",
-                requestPayload.CreateParameter(new ViewCreationInfo(creationInfo))),
+                requestPayload.CreateParameter(ClientValueObject.Create<ViewCreationInfo>(creationInfo))
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(View))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<View>(requestPayload.GetActionId<ClientActionQuery>());
@@ -68,21 +72,26 @@ public class ViewService(ClientContext clientContext) : ClientService<View>(clie
         _ = viewId ?? throw new ArgumentNullException(nameof(viewId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(listObject.ObjectIdentity));
+            new ObjectPathIdentity(listObject.ObjectIdentity)
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Views"));
+            new ObjectPathProperty(objectPath1.Id, "Views")
+        );
         var objectPath3 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath2.Id,
                 "GetById",
-                requestPayload.CreateParameter(viewId)),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                requestPayload.CreateParameter(viewId)
+            ),
+            objectPathId => new ClientActionInstantiateObjectPath(objectPathId)
+        );
         var objectPath4 = requestPayload.Add(
             objectPath3,
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(View))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<View>(requestPayload.GetActionId<ClientActionQuery>());
@@ -94,21 +103,26 @@ public class ViewService(ClientContext clientContext) : ClientService<View>(clie
         _ = viewTitle ?? throw new ArgumentNullException(nameof(viewTitle));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(listObject.ObjectIdentity));
+            new ObjectPathIdentity(listObject.ObjectIdentity)
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Views"));
+            new ObjectPathProperty(objectPath1.Id, "Views")
+        );
         var objectPath3 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath2.Id,
                 "GetByTitle",
-                requestPayload.CreateParameter(viewTitle)),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+                requestPayload.CreateParameter(viewTitle)
+            ),
+            objectPathId => new ClientActionInstantiateObjectPath(objectPathId)
+        );
         var objectPath4 = requestPayload.Add(
             objectPath3,
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(View))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<View>(requestPayload.GetActionId<ClientActionQuery>());
@@ -119,7 +133,8 @@ public class ViewService(ClientContext clientContext) : ClientService<View>(clie
         _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(listObject.ObjectIdentity));
+            new ObjectPathIdentity(listObject.ObjectIdentity)
+        );
         var objectPath2 = requestPayload.Add(
             new ObjectPathProperty(objectPath1.Id, "Views"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -127,7 +142,8 @@ public class ViewService(ClientContext clientContext) : ClientService<View>(clie
             {
                 Query = ClientQuery.Empty,
                 ChildItemQuery = new ClientQuery(true, typeof(View))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<ViewEnumerable>(requestPayload.GetActionId<ClientActionQuery>());

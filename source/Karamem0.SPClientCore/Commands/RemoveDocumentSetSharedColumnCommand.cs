@@ -17,14 +17,15 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
-[Cmdlet(VerbsCommon.Remove, "KshDocumentSetSharedColumn", SupportsShouldProcess = true, ConfirmImpact = ConfirmImpact.High)]
+[Cmdlet(
+    VerbsCommon.Remove,
+    "KshDocumentSetSharedColumn",
+    SupportsShouldProcess = true,
+    ConfirmImpact = ConfirmImpact.High
+)]
 [OutputType(typeof(void))]
 public class RemoveDocumentSetSharedColumnCommand : ClientObjectCmdlet<IDocumentSetSharedColumnService>
 {
-
-    public RemoveDocumentSetSharedColumnCommand()
-    {
-    }
 
     [Parameter(Mandatory = true, Position = 0)]
     public ContentType ContentType { get; private set; }
@@ -39,7 +40,11 @@ public class RemoveDocumentSetSharedColumnCommand : ClientObjectCmdlet<IDocument
     {
         if (this.ShouldProcess(this.Column.Name, VerbsCommon.Remove))
         {
-            this.Service.RemoveObject(this.ContentType, this.Column, this.PushChanges);
+            this.Service.RemoveObject(
+                this.ContentType,
+                this.Column,
+                this.PushChanges
+            );
         }
     }
 

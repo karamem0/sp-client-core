@@ -17,17 +17,28 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
-[Cmdlet(VerbsCommon.Remove, "KshFile", SupportsShouldProcess = true, ConfirmImpact = ConfirmImpact.High)]
+[Cmdlet(
+    VerbsCommon.Remove,
+    "KshFile",
+    SupportsShouldProcess = true,
+    ConfirmImpact = ConfirmImpact.High
+)]
 [OutputType(typeof(void))]
 public class RemoveFileCommand : ClientObjectCmdlet<IFileService>
 {
 
-    public RemoveFileCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet1"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet2"
+    )]
     public File Identity { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]

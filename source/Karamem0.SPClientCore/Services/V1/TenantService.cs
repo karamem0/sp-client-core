@@ -37,7 +37,8 @@ public class TenantService(ClientContext clientContext) : ClientService(clientCo
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(Tenant))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<Tenant>(requestPayload.GetActionId<ClientActionQuery>());
@@ -49,10 +50,12 @@ public class TenantService(ClientContext clientContext) : ClientService(clientCo
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathConstructor(typeof(Tenant)),
-            requestPayload.CreateSetPropertyDelegates(typeof(Tenant), modificationInfo).ToArray());
+            requestPayload.CreateSetPropertyDelegates(typeof(Tenant), modificationInfo).ToArray()
+        );
         var objectPath2 = requestPayload.Add(
             objectPath1,
-            objectPathId => new ClientActionMethod(objectPathId, "Update"));
+            objectPathId => new ClientActionMethod(objectPathId, "Update")
+        );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

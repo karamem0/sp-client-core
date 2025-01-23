@@ -46,9 +46,10 @@ public class CommentService(ClientContext clientContext) : ClientService(clientC
             .ConcatPath(
                 "_api/web/lists('{0}')/items({1})/comments",
                 listItemObject.ObjectIdentity.Split(':').SkipLast(2).Last(),
-                listItemObject.Id)
+                listItemObject.Id
+            )
             .ConcatQuery(ODataQuery.CreateSelect<Comment>());
-        var requestPayload = new ODataV1RequestPayload<CommentCreationInfo>(creationInfo);
+        var requestPayload = ODataV1RequestPayload.Create<CommentCreationInfo>(creationInfo);
         return this.ClientContext.PostObject<Comment>(requestUrl, requestPayload.Entity);
     }
 
@@ -60,9 +61,10 @@ public class CommentService(ClientContext clientContext) : ClientService(clientC
                 "_api/web/lists('{0}')/items({1})/comments({2})/replies",
                 commentObject.ListId,
                 commentObject.ItemId,
-                commentObject.Id)
+                commentObject.Id
+            )
             .ConcatQuery(ODataQuery.CreateSelect<Comment>());
-        var requestPayload = new ODataV1RequestPayload<CommentCreationInfo>(creationInfo);
+        var requestPayload = ODataV1RequestPayload.Create<CommentCreationInfo>(creationInfo);
         return this.ClientContext.PostObject<Comment>(requestUrl, requestPayload.Entity);
     }
 
@@ -71,10 +73,11 @@ public class CommentService(ClientContext clientContext) : ClientService(clientC
         _ = commentObject ?? throw new ArgumentNullException(nameof(commentObject));
         var requestUrl = this.ClientContext.BaseAddress
             .ConcatPath(
-                "_api/web/lists('{0}')/items({1})/comments({2})",
+                "_api/web/lists('{0}')/items({1})/comments({2})?$expand=LikedBy",
                 commentObject.ListId,
                 commentObject.ItemId,
-                commentObject.Id)
+                commentObject.Id
+            )
             .ConcatQuery(ODataQuery.CreateSelect<Comment>());
         return this.ClientContext.GetObject<Comment>(requestUrl);
     }
@@ -85,10 +88,11 @@ public class CommentService(ClientContext clientContext) : ClientService(clientC
         _ = commentId ?? throw new ArgumentNullException(nameof(commentId));
         var requestUrl = this.ClientContext.BaseAddress
             .ConcatPath(
-                "_api/web/lists('{0}')/items({1})/comments({2})",
+                "_api/web/lists('{0}')/items({1})/comments({2})?$expand=LikedBy",
                 listItemObject.ObjectIdentity.Split(':').SkipLast(2).Last(),
                 listItemObject.Id,
-                commentId)
+                commentId
+            )
             .ConcatQuery(ODataQuery.CreateSelect<Comment>());
         return this.ClientContext.GetObject<Comment>(requestUrl);
     }
@@ -98,9 +102,10 @@ public class CommentService(ClientContext clientContext) : ClientService(clientC
         _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
         var requestUrl = this.ClientContext.BaseAddress
             .ConcatPath(
-                "_api/web/lists('{0}')/items({1})/comments",
+                "_api/web/lists('{0}')/items({1})/comments?$expand=LikedBy",
                 listItemObject.ObjectIdentity.Split(':').SkipLast(2).Last(),
-                listItemObject.Id)
+                listItemObject.Id
+            )
             .ConcatQuery(ODataQuery.CreateSelect<Comment>());
         return this.ClientContext.GetObject<ODataV1ObjectEnumerable<Comment>>(requestUrl);
     }
@@ -113,7 +118,8 @@ public class CommentService(ClientContext clientContext) : ClientService(clientC
                 "_api/web/lists('{0}')/items({1})/comments({2})",
                 commentObject.ListId,
                 commentObject.ItemId,
-                commentObject.Id);
+                commentObject.Id
+            );
         this.ClientContext.DeleteObject(requestUrl);
     }
 
@@ -126,7 +132,9 @@ public class CommentService(ClientContext clientContext) : ClientService(clientC
             objectPathId => new ClientActionMethod(
                 objectPathId,
                 "SetCommentsDisabled",
-                requestPayload.CreateParameter(disabled)));
+                requestPayload.CreateParameter(disabled)
+            )
+        );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

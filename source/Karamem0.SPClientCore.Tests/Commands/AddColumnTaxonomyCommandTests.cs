@@ -28,75 +28,75 @@ public class AddColumnTaxonomyCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<TermGroup>(
             "Get-KshTermGroup",
             new Dictionary<string, object>()
             {
-                { "TermGroupId", context.AppSettings["TermGroup1Id"] }
+                ["TermGroupId"] = context.AppSettings["TermGroup1Id"]
             }
         );
         var result3 = context.Runspace.InvokeCommand<TermSet>(
             "Get-KshTermSet",
             new Dictionary<string, object>()
             {
-                { "TermGroup", result2.ElementAt(0) },
-                { "TermSetId", context.AppSettings["TermSet1Id"] }
+                ["TermGroup"] = result2.ElementAt(0),
+                ["TermSetId"] = context.AppSettings["TermSet1Id"]
             }
         );
         var result4 = context.Runspace.InvokeCommand<Column>(
             "Add-KshColumnTaxonomy",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "AllowMultipleValues", true },
+                ["List"] = result1.ElementAt(0),
+                ["AllowMultipleValues"] = true,
                 // { "ClientSideComponentId", null },
                 // { "ClientSideComponentProperties", null },
-                { "CustomFormatter", /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }" },
-                { "DefaultValue", "" },
-                { "Description", "Test Column 0 Description" },
-                { "Direction", "none" },
-                { "Group", "Test Column 0 Group" },
-                { "Hidden", true },
-                { "Id", "35aa78a6-66d7-472c-ab6b-d534193842af" },
-                { "JSLink", "clienttemplates.js" },
-                { "Name", "TestColumn0" },
-                { "NoCrawl", true },
-                { "ReadOnly", true },
-                { "Required", true },
-                { "StaticName", "TestColumn0" },
-                { "TermSet", result3.ElementAt(0) },
-                { "Title", "Test Column 0" },
-                { "AddColumnInternalNameHint", true },
-                { "AddToDefaultView", true }
+                ["CustomFormatter"] = /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }",
+                ["DefaultValue"] = "",
+                ["Description"] = "Test Column 0 Description",
+                ["Direction"] = "none",
+                ["Group"] = "Test Column 0 Group",
+                ["Hidden"] = true,
+                ["Id"] = "35aa78a6-66d7-472c-ab6b-d534193842af",
+                ["JSLink"] = "clienttemplates.js",
+                ["Name"] = "TestColumn0",
+                ["NoCrawl"] = true,
+                ["ReadOnly"] = true,
+                ["Required"] = true,
+                ["StaticName"] = "TestColumn0",
+                ["TermSet"] = result3.ElementAt(0),
+                ["Title"] = "Test Column 0",
+                ["AddColumnInternalNameHint"] = true,
+                ["AddToDefaultView"] = true
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Set-KshColumnTaxonomy",
             new Dictionary<string, object>()
             {
-                { "Identity", result4.ElementAt(0) },
-                { "Hidden", false },
-                { "ReadOnly", false }
+                ["Identity"] = result4.ElementAt(0),
+                ["Hidden"] = false,
+                ["ReadOnly"] = false
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshColumn",
             new Dictionary<string, object>()
             {
-                { "Identity", result4.ElementAt(0) }
+                ["Identity"] = result4.ElementAt(0)
             }
         );
         var actual = result4.ElementAt(0);
@@ -111,67 +111,81 @@ public class AddColumnTaxonomyCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<TermGroup>(
             "Get-KshTermGroup",
             new Dictionary<string, object>()
             {
-                { "TermGroupId", context.AppSettings["TermGroup1Id"] }
+                ["TermGroupId"] = context.AppSettings["TermGroup1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<TermSet>(
             "Get-KshTermSet",
             new Dictionary<string, object>()
             {
-                { "TermGroup", result1.ElementAt(0) },
-                { "TermSetId", context.AppSettings["TermSet1Id"] }
+                ["TermGroup"] = result1.ElementAt(0),
+                ["TermSetId"] = context.AppSettings["TermSet1Id"]
             }
         );
         var result3 = context.Runspace.InvokeCommand<Column>(
             "Add-KshColumnTaxonomy",
             new Dictionary<string, object>()
             {
-                { "AllowMultipleValues", true },
+                ["AllowMultipleValues"] = true,
                 // { "ClientSideComponentId", null },
                 // { "ClientSideComponentProperties", null },
-                { "CustomFormatter", /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }" },
-                { "DefaultValue", "" },
-                { "Description", "Test Column 0 Description" },
-                { "Direction", "none" },
-                { "Group", "Test Column 0 Group" },
-                { "Hidden", true },
-                { "Id", "35aa78a6-66d7-472c-ab6b-d534193842af" },
+                ["CustomFormatter"] = /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }",
+                ["DefaultValue"] = "",
+                ["Description"] = "Test Column 0 Description",
+                ["Direction"] = "none",
+                ["Group"] = "Test Column 0 Group",
+                ["Hidden"] = true,
+                ["Id"] = "35aa78a6-66d7-472c-ab6b-d534193842af",
                 // { "JSLink", "clienttemplates.js" },
-                { "Name", "TestColumn0" },
-                { "NoCrawl", true },
-                { "ReadOnly", true },
-                { "Required", true },
-                { "StaticName", "TestColumn0" },
-                { "TermSet", result2.ElementAt(0) },
-                { "Title", "Test Column 0" },
-                { "AddColumnInternalNameHint", true },
-                { "AddToDefaultView", true }
+                ["Name"] = "TestColumn0",
+                ["NoCrawl"] = true,
+                ["ReadOnly"] = true,
+                ["Required"] = true,
+                ["StaticName"] = "TestColumn0",
+                ["TermSet"] = result2.ElementAt(0),
+                ["Title"] = "Test Column 0",
+                ["AddColumnInternalNameHint"] = true,
+                ["AddToDefaultView"] = true
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Set-KshColumnTaxonomy",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) },
-                { "Hidden", false },
-                { "ReadOnly", false }
+                ["Identity"] = result3.ElementAt(0),
+                ["Hidden"] = false,
+                ["ReadOnly"] = false
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshColumn",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                ["Identity"] = result3.ElementAt(0)
+            }
+        );
+        var result4 = context.Runspace.InvokeCommand<Column>(
+            "Get-KshColumn",
+            new Dictionary<string, object>()
+            {
+                ["ColumnTitle"] = "Test Column 0_0"
+            }
+        );
+        _ = context.Runspace.InvokeCommand(
+            "Remove-KshColumn",
+            new Dictionary<string, object>()
+            {
+                ["Identity"] = result4.ElementAt(0)
             }
         );
         var actual = result3.ElementAt(0);

@@ -19,7 +19,11 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ISiteFeatureService
 {
 
-    void AddObject(Guid? featureId, bool force, FeatureDefinitionScope scope);
+    void AddObject(
+        Guid? featureId,
+        bool force,
+        FeatureDefinitionScope scope
+    );
 
     Feature GetObject(Feature featureObject);
 
@@ -31,19 +35,27 @@ public interface ISiteFeatureService
 
 }
 
-public class SiteFeatureService(ClientContext clientContext) : ClientService<Feature>(clientContext), ISiteFeatureService
+public class SiteFeatureService(ClientContext clientContext)
+    : ClientService<Feature>(clientContext), ISiteFeatureService
 {
 
-    public void AddObject(Guid? featureId, bool force, FeatureDefinitionScope scope)
+    public void AddObject(
+        Guid? featureId,
+        bool force,
+        FeatureDefinitionScope scope
+    )
     {
         _ = featureId ?? throw new ArgumentNullException(nameof(featureId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "Features"));
+            new ObjectPathProperty(objectPath2.Id, "Features")
+        );
         var objectPath4 = requestPayload.Add(
             objectPath3,
             objectPathId => new ClientActionMethod(
@@ -51,7 +63,9 @@ public class SiteFeatureService(ClientContext clientContext) : ClientService<Fea
                 "Add",
                 requestPayload.CreateParameter(featureId),
                 requestPayload.CreateParameter(force),
-                requestPayload.CreateParameter(scope)));
+                requestPayload.CreateParameter(scope)
+            )
+        );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
@@ -60,21 +74,26 @@ public class SiteFeatureService(ClientContext clientContext) : ClientService<Fea
         _ = featureId ?? throw new ArgumentNullException(nameof(featureId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "Features"));
+            new ObjectPathProperty(objectPath2.Id, "Features")
+        );
         var objectPath4 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath3.Id,
                 "GetById",
-                requestPayload.CreateParameter(featureId)),
+                requestPayload.CreateParameter(featureId)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(Feature))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<Feature>(requestPayload.GetActionId<ClientActionQuery>());
@@ -84,9 +103,11 @@ public class SiteFeatureService(ClientContext clientContext) : ClientService<Fea
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
             new ObjectPathProperty(objectPath2.Id, "Features"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -94,7 +115,8 @@ public class SiteFeatureService(ClientContext clientContext) : ClientService<Fea
             {
                 Query = ClientQuery.Empty,
                 ChildItemQuery = new ClientQuery(true, typeof(Feature))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<FeatureEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
@@ -105,18 +127,23 @@ public class SiteFeatureService(ClientContext clientContext) : ClientService<Fea
         _ = featureId ?? throw new ArgumentNullException(nameof(featureId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "Features"));
+            new ObjectPathProperty(objectPath2.Id, "Features")
+        );
         var objectPath4 = requestPayload.Add(
             objectPath3,
             objectPathId => new ClientActionMethod(
                 objectPathId,
                 "Remove",
                 requestPayload.CreateParameter(featureId),
-                requestPayload.CreateParameter(force)));
+                requestPayload.CreateParameter(force)
+            )
+        );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

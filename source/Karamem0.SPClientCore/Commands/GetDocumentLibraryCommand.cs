@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetDocumentLibraryCommand : ClientObjectCmdlet<IDocumentLibraryService>
 {
 
-    public GetDocumentLibraryCommand()
-    {
-    }
-
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     public SwitchParameter Default { get; private set; }
 

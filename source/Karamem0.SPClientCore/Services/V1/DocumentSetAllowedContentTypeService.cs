@@ -19,43 +19,64 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IDocumentSetAllowedContentTypeService
 {
 
-    void AddObject(ContentType contentTypeObject, ContentType allowedContentTypeObject, bool pushChanges);
+    void AddObject(
+        ContentType contentTypeObject,
+        ContentType allowedContentTypeObject,
+        bool pushChanges
+    );
 
     IEnumerable<ContentTypeId> GetObjectEnumerable(ContentType contentTypeObject);
 
-    void RemoveObject(ContentType contentTypeObject, ContentType allowedContentTypeObject, bool pushChanges);
+    void RemoveObject(
+        ContentType contentTypeObject,
+        ContentType allowedContentTypeObject,
+        bool pushChanges
+    );
 
 }
 
-public class DocumentSetAllowedContentTypeService(ClientContext clientContext) : ClientService(clientContext), IDocumentSetAllowedContentTypeService
+public class DocumentSetAllowedContentTypeService(ClientContext clientContext)
+    : ClientService(clientContext), IDocumentSetAllowedContentTypeService
 {
 
-    public void AddObject(ContentType contentTypeObject, ContentType allowedContentTypeObject, bool pushChanges)
+    public void AddObject(
+        ContentType contentTypeObject,
+        ContentType allowedContentTypeObject,
+        bool pushChanges
+    )
     {
         _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
         _ = allowedContentTypeObject ?? throw new ArgumentNullException(nameof(allowedContentTypeObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
+            new ObjectPathIdentity(contentTypeObject.ObjectIdentity)
+        );
         var objectPath2 = requestPayload.Add(
             new ObjectPathStaticMethod(
                 typeof(DocumentSetTemplate),
                 "GetDocumentSetTemplate",
-                new ClientRequestParameterObjectPath(objectPath1)));
+                new ClientRequestParameterObjectPath(objectPath1)
+            )
+        );
         var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "AllowedContentTypes"));
+            new ObjectPathProperty(objectPath2.Id, "AllowedContentTypes")
+        );
         var objectPath4 = requestPayload.Add(
             objectPath3,
             objectPathId => new ClientActionMethod(
                 objectPathId,
                 "Add",
-                requestPayload.CreateParameter(allowedContentTypeObject.Id)));
+                requestPayload.CreateParameter(allowedContentTypeObject.Id)
+            )
+        );
         var objectPath5 = requestPayload.Add(
             objectPath2,
             objectPathId => new ClientActionMethod(
                 objectPathId,
                 "Update",
-                requestPayload.CreateParameter(pushChanges)));
+                requestPayload.CreateParameter(pushChanges)
+            )
+        );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
@@ -64,12 +85,15 @@ public class DocumentSetAllowedContentTypeService(ClientContext clientContext) :
         _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
+            new ObjectPathIdentity(contentTypeObject.ObjectIdentity)
+        );
         var objectPath2 = requestPayload.Add(
             new ObjectPathStaticMethod(
                 typeof(DocumentSetTemplate),
                 "GetDocumentSetTemplate",
-                new ClientRequestParameterObjectPath(objectPath1)));
+                new ClientRequestParameterObjectPath(objectPath1)
+            )
+        );
         var objectPath3 = requestPayload.Add(
             new ObjectPathProperty(objectPath2.Id, "AllowedContentTypes"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -77,38 +101,51 @@ public class DocumentSetAllowedContentTypeService(ClientContext clientContext) :
             {
                 Query = ClientQuery.Empty,
                 ChildItemQuery = new ClientQuery(true, typeof(ContentTypeId))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<AllowedContentTypeEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public void RemoveObject(ContentType contentTypeObject, ContentType allowedContentTypeObject, bool pushChanges)
+    public void RemoveObject(
+        ContentType contentTypeObject,
+        ContentType allowedContentTypeObject,
+        bool pushChanges
+    )
     {
         _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
         _ = allowedContentTypeObject ?? throw new ArgumentNullException(nameof(allowedContentTypeObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
+            new ObjectPathIdentity(contentTypeObject.ObjectIdentity)
+        );
         var objectPath2 = requestPayload.Add(
             new ObjectPathStaticMethod(
                 typeof(DocumentSetTemplate),
                 "GetDocumentSetTemplate",
-                new ClientRequestParameterObjectPath(objectPath1)));
+                new ClientRequestParameterObjectPath(objectPath1)
+            )
+        );
         var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "AllowedContentTypes"));
+            new ObjectPathProperty(objectPath2.Id, "AllowedContentTypes")
+        );
         var objectPath4 = requestPayload.Add(
             objectPath3,
             objectPathId => new ClientActionMethod(
                 objectPathId,
                 "Remove",
-                requestPayload.CreateParameter(allowedContentTypeObject.Id)));
+                requestPayload.CreateParameter(allowedContentTypeObject.Id)
+            )
+        );
         var objectPath5 = requestPayload.Add(
             objectPath2,
             objectPathId => new ClientActionMethod(
                 objectPathId,
                 "Update",
-                requestPayload.CreateParameter(pushChanges)));
+                requestPayload.CreateParameter(pushChanges)
+            )
+        );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

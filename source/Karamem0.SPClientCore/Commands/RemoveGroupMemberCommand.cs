@@ -17,14 +17,15 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
-[Cmdlet(VerbsCommon.Remove, "KshGroupMember", SupportsShouldProcess = true, ConfirmImpact = ConfirmImpact.High)]
+[Cmdlet(
+    VerbsCommon.Remove,
+    "KshGroupMember",
+    SupportsShouldProcess = true,
+    ConfirmImpact = ConfirmImpact.High
+)]
 [OutputType(typeof(void))]
 public class RemoveGroupMemberCommand : ClientObjectCmdlet<IGroupMemberService>
 {
-
-    public RemoveGroupMemberCommand()
-    {
-    }
 
     [Parameter(Mandatory = true, Position = 0)]
     public Group Group { get; private set; }

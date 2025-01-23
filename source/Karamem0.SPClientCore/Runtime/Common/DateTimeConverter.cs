@@ -20,12 +20,20 @@ public static class DateTimeConverter
 
     public static bool TryParse(string input, out DateTime result)
     {
-        if (DateTime.TryParse(input, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal | DateTimeStyles.AssumeUniversal, out var dateTime))
+        if (DateTime.TryParse(
+                input,
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.AdjustToUniversal | DateTimeStyles.AssumeUniversal,
+                out var dateTime
+            ))
         {
             result = dateTime;
             return true;
         }
-        var match = Regex.Match(input, "^/Date\\((\\d{1,4}),(\\d{1,2}),(\\d{1,2}),(\\d{1,2}),(\\d{1,2}),(\\d{1,2}),(\\d{1,3})\\)/$");
+        var match = Regex.Match(
+            input,
+            "^/Date\\((\\d{1,4}),(\\d{1,2}),(\\d{1,2}),(\\d{1,2}),(\\d{1,2}),(\\d{1,2}),(\\d{1,3})\\)/$"
+        );
         if (match.Success)
         {
             result = new DateTime(

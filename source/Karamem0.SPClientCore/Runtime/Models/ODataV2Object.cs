@@ -7,7 +7,6 @@
 //
 
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +17,6 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 [JsonObject()]
 public class ODataV2Object : ODataObject
 {
-
-    public ODataV2Object()
-    {
-    }
 
     [JsonProperty("@odata.context")]
     public string ODataContext { get; private set; }

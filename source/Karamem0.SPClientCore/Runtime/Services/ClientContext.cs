@@ -23,7 +23,11 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services;
 public class ClientContext
 {
 
-    public static ClientContext Create(Uri baseAddress, AadOAuthContext oAuthContext, AadOAuthToken oAuthToken)
+    public static ClientContext Create(
+        Uri baseAddress,
+        AadOAuthContext oAuthContext,
+        AadOAuthToken oAuthToken
+    )
     {
         return new ClientContext(
             baseAddress,
@@ -35,7 +39,11 @@ public class ClientContext
         );
     }
 
-    public static ClientContext Create(Uri baseAddress, AcsOAuthContext oAuthContext, AcsOAuthToken oAuthToken)
+    public static ClientContext Create(
+        Uri baseAddress,
+        AcsOAuthContext oAuthContext,
+        AcsOAuthToken oAuthToken
+    )
     {
         return new ClientContext(
             baseAddress,
@@ -85,7 +93,8 @@ public class ClientContext
                 requestMessage.Headers.Add("If-Match", "*");
                 return requestMessage;
             },
-            responseMessage => Task.FromResult(default(object)));
+            responseMessage => Task.FromResult(default(object))
+        );
     }
 
     public T GetObject<T>(Uri requestUrl) where T : ODataV1Object
@@ -102,7 +111,8 @@ public class ClientContext
             async responseMessage =>
             {
                 var responseContent = await responseMessage.Content.ReadAsStringAsync();
-                var responsePayload = JsonSerializerManager.Instance.Deserialize<ODataV1ResultPayload<T>>(responseContent);
+                var responsePayload =
+                    JsonSerializerManager.Instance.Deserialize<ODataV1ResultPayload<T>>(responseContent);
                 if (responsePayload.Error is null)
                 {
                     return responsePayload.Entry;
@@ -111,7 +121,8 @@ public class ClientContext
                 {
                     throw new InvalidOperationException(responsePayload.Error.Message.Value);
                 }
-            });
+            }
+        );
     }
 
     public T GetObjectV2<T>(Uri requestUrl) where T : ODataV2Object
@@ -137,7 +148,8 @@ public class ClientContext
                 {
                     return responsePayload.ToObject<T>();
                 }
-            });
+            }
+        );
     }
 
     public System.IO.Stream GetStream(Uri requestUrl)
@@ -151,7 +163,8 @@ public class ClientContext
                 requestMessage.Headers.Add("Accept", "application/json;odata=verbose");
                 return requestMessage;
             },
-            async responseMessage => await responseMessage.Content.ReadAsStreamAsync());
+            async responseMessage => await responseMessage.Content.ReadAsStreamAsync()
+        );
     }
 
     public void PatchObject(Uri requestUrl, object requestPayload)
@@ -169,11 +182,13 @@ public class ClientContext
                 {
                     var requestContent = JsonSerializerManager.Instance.Serialize(requestPayload);
                     requestMessage.Content = new StringContent(requestContent, Encoding.UTF8);
-                    requestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json;odata=verbose");
+                    requestMessage.Content.Headers.ContentType =
+                        MediaTypeHeaderValue.Parse("application/json;odata=verbose");
                 }
                 return requestMessage;
             },
-            responseMessage => Task.FromResult(default(object)));
+            responseMessage => Task.FromResult(default(object))
+        );
     }
 
     public void PostObject(Uri requestUrl, object requestPayload)
@@ -189,11 +204,13 @@ public class ClientContext
                 {
                     var jsonContent = JsonSerializerManager.Instance.Serialize(requestPayload);
                     requestMessage.Content = new StringContent(jsonContent, Encoding.UTF8);
-                    requestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json;odata=verbose");
+                    requestMessage.Content.Headers.ContentType =
+                        MediaTypeHeaderValue.Parse("application/json;odata=verbose");
                 }
                 return requestMessage;
             },
-            responseMessage => Task.FromResult(default(object)));
+            responseMessage => Task.FromResult(default(object))
+        );
     }
 
     public T PostObject<T>(Uri requestUrl, object requestPayload) where T : ODataV1Object
@@ -209,14 +226,16 @@ public class ClientContext
                 {
                     var requestContent = JsonSerializerManager.Instance.Serialize(requestPayload);
                     requestMessage.Content = new StringContent(requestContent, Encoding.UTF8);
-                    requestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json;odata=verbose");
+                    requestMessage.Content.Headers.ContentType =
+                        MediaTypeHeaderValue.Parse("application/json;odata=verbose");
                 }
                 return requestMessage;
             },
             async responseMessage =>
             {
                 var responseContent = await responseMessage.Content.ReadAsStringAsync();
-                var responsePayload = JsonSerializerManager.Instance.Deserialize<ODataV1ResultPayload<T>>(responseContent);
+                var responsePayload =
+                    JsonSerializerManager.Instance.Deserialize<ODataV1ResultPayload<T>>(responseContent);
                 if (responsePayload.Error is null)
                 {
                     return responsePayload.Entry;
@@ -225,7 +244,8 @@ public class ClientContext
                 {
                     throw new InvalidOperationException(responsePayload.Error.Message.Value);
                 }
-            });
+            }
+        );
     }
 
     public void PostStream(Uri requestUrl, System.IO.Stream requestStream)
@@ -239,10 +259,12 @@ public class ClientContext
                 requestMessage.Headers.Add("Authorization", $"Bearer {this.oAuthTokenProvider.GetAccessToken()}");
                 requestMessage.Headers.Add("Accept", "application/json;odata=verbose");
                 requestMessage.Content = new StreamContent(requestStream);
-                requestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json;odata=verbose");
+                requestMessage.Content.Headers.ContentType =
+                    MediaTypeHeaderValue.Parse("application/json;odata=verbose");
                 return requestMessage;
             },
-            responseMessage => Task.FromResult(default(object)));
+            responseMessage => Task.FromResult(default(object))
+        );
     }
 
     public T PostStream<T>(Uri requestUrl, System.IO.Stream requestStream) where T : ODataV1Object
@@ -256,13 +278,15 @@ public class ClientContext
                 requestMessage.Headers.Add("Authorization", $"Bearer {this.oAuthTokenProvider.GetAccessToken()}");
                 requestMessage.Headers.Add("Accept", "application/json;odata=verbose");
                 requestMessage.Content = new StreamContent(requestStream);
-                requestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json;odata=verbose");
+                requestMessage.Content.Headers.ContentType =
+                    MediaTypeHeaderValue.Parse("application/json;odata=verbose");
                 return requestMessage;
             },
             async responseMessage =>
             {
                 var responseContent = await responseMessage.Content.ReadAsStringAsync();
-                var responsePayload = JsonSerializerManager.Instance.Deserialize<ODataV1ResultPayload<T>>(responseContent);
+                var responsePayload =
+                    JsonSerializerManager.Instance.Deserialize<ODataV1ResultPayload<T>>(responseContent);
                 if (responsePayload.Error is null)
                 {
                     return responsePayload.Entry;
@@ -271,7 +295,8 @@ public class ClientContext
                 {
                     throw new InvalidOperationException(responsePayload.Error.Message.Value);
                 }
-            });
+            }
+        );
     }
 
     public ClientResultPayload ProcessQuery(ClientRequestPayload requestPayload)
@@ -300,7 +325,8 @@ public class ClientContext
                 {
                     throw new InvalidOperationException(responsePayload.ErrorInfo.ErrorMessage);
                 }
-            });
+            }
+        );
     }
 
 }

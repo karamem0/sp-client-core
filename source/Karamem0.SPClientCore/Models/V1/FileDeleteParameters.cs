@@ -20,14 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class FileDeleteParameters : ClientValueObject
 {
 
-    public FileDeleteParameters()
-    {
-    }
-
-    public FileDeleteParameters(IReadOnlyDictionary<string, object> parameters) : base(parameters)
-    {
-    }
-
     [JsonProperty()]
     public virtual bool BypassSharedLock { get; protected set; }
 

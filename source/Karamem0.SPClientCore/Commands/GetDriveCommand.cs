@@ -24,17 +24,26 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetDriveCommand : ClientObjectCmdlet<IDriveService, ISiteCollectionService, ISiteService>
 {
 
-    public GetDriveCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet1"
+    )]
     public Drive Identity { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet2"
+    )]
     public List List { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet3")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet3"
+    )]
     public string DriveId { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet4")]
@@ -51,7 +60,13 @@ public class GetDriveCommand : ClientObjectCmdlet<IDriveService, ISiteCollection
             var siteCollectionId = this.Service2.GetObject().Id;
             var siteId = this.Service3.GetObject().Id;
             var listId = this.List.Id;
-            this.Outputs.Add(this.Service1.GetObject(siteCollectionId, siteId, listId));
+            this.Outputs.Add(
+                this.Service1.GetObject(
+                    siteCollectionId,
+                    siteId,
+                    listId
+                )
+            );
         }
         if (this.ParameterSetName == "ParamSet3")
         {

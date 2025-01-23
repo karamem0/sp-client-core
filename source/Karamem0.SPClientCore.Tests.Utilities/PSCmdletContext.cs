@@ -38,7 +38,9 @@ public class PSCmdletContext : IDisposable
                 "Set-ExecutionPolicy",
                 new Dictionary<string, object>()
                 {
-                    { "ExecutionPolicy", "RemoteSigned" }
+                    {
+                        "ExecutionPolicy", "RemoteSigned"
+                    }
                 }
             );
         }
@@ -46,7 +48,9 @@ public class PSCmdletContext : IDisposable
             "Import-Module",
             new Dictionary<string, object>()
             {
-                { "Name", "./SPClientCore.psd1" }
+                {
+                    "Name", "./SPClientCore.psd1"
+                }
             }
         );
     }

@@ -28,52 +28,52 @@ public class SetTermCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<TermGroup>(
             "Get-KshTermGroup",
             new Dictionary<string, object>()
             {
-                { "TermGroupId", context.AppSettings["TermGroup1Id"] }
+                ["TermGroupId"] = context.AppSettings["TermGroup1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<TermSet>(
             "Get-KshTermSet",
             new Dictionary<string, object>()
             {
-                { "TermGroup", result1.ElementAt(0) },
-                { "TermSetId", context.AppSettings["TermSet1Id"] }
+                ["TermGroup"] = result1.ElementAt(0),
+                ["TermSetId"] = context.AppSettings["TermSet1Id"]
             }
         );
         var result3 = context.Runspace.InvokeCommand<Term>(
             "Add-KshTerm",
             new Dictionary<string, object>()
             {
-                { "TermSet", result2.ElementAt(0) },
-                { "Lcid", 1033 },
-                { "Name", "Test Term 0" }
+                ["TermSet"] = result2.ElementAt(0),
+                ["Lcid"] = 1033,
+                ["Name"] = "Test Term 0"
             }
         );
         var result4 = context.Runspace.InvokeCommand<Term>(
             "Set-KshTerm",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) },
-                { "IsAvailableForTagging", true },
-                { "Name", "Test Term 9" },
-                { "Owner", context.AppSettings["User1LoginName"] },
-                { "PassThru", true }
+                ["Identity"] = result3.ElementAt(0),
+                ["IsAvailableForTagging"] = true,
+                ["Name"] = "Test Term 9",
+                ["Owner"] = context.AppSettings["User1LoginName"],
+                ["PassThru"] = true
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshTerm",
             new Dictionary<string, object>()
             {
-                { "Identity", result4.ElementAt(0) }
+                ["Identity"] = result4.ElementAt(0)
             }
         );
         var actual = result4.ElementAt(0);

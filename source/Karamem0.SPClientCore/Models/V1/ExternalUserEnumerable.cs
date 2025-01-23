@@ -15,7 +15,10 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
-[ClientObject(Name = "Microsoft.Online.SharePoint.TenantManagement.ExternalUserCollection", Id = "{5b960c8e-fb69-4a6c-a6a2-44da2bf75bd2}")]
+[ClientObject(
+    Name = "Microsoft.Online.SharePoint.TenantManagement.ExternalUserCollection",
+    Id = "{5b960c8e-fb69-4a6c-a6a2-44da2bf75bd2}"
+)]
 [JsonObject()]
 public class ExternalUserEnumerable : ClientObjectEnumerable<ExternalUser>
 {

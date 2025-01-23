@@ -17,14 +17,15 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
-[Cmdlet(VerbsCommon.Remove, "KshDocumentSetDefaultDocument", SupportsShouldProcess = true, ConfirmImpact = ConfirmImpact.High)]
+[Cmdlet(
+    VerbsCommon.Remove,
+    "KshDocumentSetDefaultDocument",
+    SupportsShouldProcess = true,
+    ConfirmImpact = ConfirmImpact.High
+)]
 [OutputType(typeof(void))]
 public class RemoveDocumentSetDefaultDocumentCommand : ClientObjectCmdlet<IDocumentSetDefaultDocumentService>
 {
-
-    public RemoveDocumentSetDefaultDocumentCommand()
-    {
-    }
 
     [Parameter(Mandatory = true, Position = 0)]
     public ContentType ContentType { get; private set; }
@@ -39,7 +40,11 @@ public class RemoveDocumentSetDefaultDocumentCommand : ClientObjectCmdlet<IDocum
     {
         if (this.ShouldProcess(this.FileName, VerbsCommon.Remove))
         {
-            this.Service.RemoveObject(this.ContentType, this.FileName, this.PushChanges);
+            this.Service.RemoveObject(
+                this.ContentType,
+                this.FileName,
+                this.PushChanges
+            );
         }
     }
 

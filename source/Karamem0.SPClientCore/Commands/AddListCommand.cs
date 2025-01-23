@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddListCommand : ClientObjectCmdlet<IListService>
 {
 
-    public AddListCommand()
-    {
-    }
-
     [Parameter(Mandatory = false)]
     public string Description { get; private set; }
 

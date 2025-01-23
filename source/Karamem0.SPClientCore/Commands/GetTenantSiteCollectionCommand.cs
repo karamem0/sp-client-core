@@ -23,14 +23,19 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteCollectionService>
 {
 
-    public GetTenantSiteCollectionCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet1"
+    )]
     public TenantSiteCollection Identity { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet2"
+    )]
     public Uri SiteCollectionUrl { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
@@ -59,7 +64,9 @@ public class GetTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteColl
             }
             else
             {
-                throw new InvalidOperationException(string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.SiteCollectionUrl));
+                throw new InvalidOperationException(
+                    string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.SiteCollectionUrl)
+                );
             }
         }
         if (this.ParameterSetName == "ParamSet3")

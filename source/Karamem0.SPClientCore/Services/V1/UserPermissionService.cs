@@ -32,13 +32,16 @@ public class UserPermissionService(ClientContext clientContext) : ClientService(
         _ = securableObject ?? throw new ArgumentNullException(nameof(securableObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(securableObject.ObjectIdentity));
+            new ObjectPathIdentity(securableObject.ObjectIdentity)
+        );
         var objectPath2 = requestPayload.Add(
             objectPath1,
             objectPath => new ClientActionMethod(
                 objectPath1.Id,
                 "GetUserEffectivePermissions",
-                requestPayload.CreateParameter(userObject.LoginName)));
+                requestPayload.CreateParameter(userObject.LoginName)
+            )
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<BasePermission>(requestPayload.GetActionId<ClientActionMethod>());

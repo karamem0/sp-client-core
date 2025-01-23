@@ -21,13 +21,21 @@ public static class PSCmdletExtensions
 {
 
     [DebuggerHidden()]
-    public static IEnumerable InvokeCommand(this Runspace runspace, string name, IReadOnlyDictionary<string, object> parameters)
+    public static IEnumerable InvokeCommand(
+        this Runspace runspace,
+        string name,
+        IReadOnlyDictionary<string, object> parameters
+    )
     {
         return runspace.InvokeCommand<object>(name, parameters);
     }
 
     [DebuggerHidden()]
-    public static IEnumerable<T> InvokeCommand<T>(this Runspace runspace, string name, IReadOnlyDictionary<string, object> parameters)
+    public static IEnumerable<T> InvokeCommand<T>(
+        this Runspace runspace,
+        string name,
+        IReadOnlyDictionary<string, object> parameters
+    )
     {
         _ = runspace ?? throw new ArgumentNullException(nameof(runspace));
         _ = name ?? throw new ArgumentNullException(nameof(name));

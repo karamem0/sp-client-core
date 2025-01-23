@@ -22,24 +22,52 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class SetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
 {
 
-    public SetTenantUserCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet1"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet2"
+    )]
     public TenantSiteCollection SiteCollection { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet3")]
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet4")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet3"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet4"
+    )]
     public Uri SiteCollectionUrl { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet1")]
-    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet3")]
+    [Parameter(
+        Mandatory = true,
+        Position = 1,
+        ParameterSetName = "ParamSet1"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 1,
+        ParameterSetName = "ParamSet3"
+    )]
     public User User { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
-    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet4")]
+    [Parameter(
+        Mandatory = true,
+        Position = 1,
+        ParameterSetName = "ParamSet2"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 1,
+        ParameterSetName = "ParamSet4"
+    )]
     public string UserName { get; private set; }
 
     [Parameter(Mandatory = true)]
@@ -52,23 +80,39 @@ public class SetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
     {
         if (this.ParameterSetName == "ParamSet1")
         {
-            this.Service.SetObject(new Uri(this.SiteCollection.Url, UriKind.Absolute), this.User, this.IsSiteCollectionAdmin);
+            this.Service.SetObject(
+                new Uri(this.SiteCollection.Url, UriKind.Absolute),
+                this.User,
+                this.IsSiteCollectionAdmin
+            );
             if (this.PassThru)
             {
-                this.Outputs.Add(this.Service.GetObject(new Uri(this.SiteCollection.Url, UriKind.Absolute), this.User.LoginName));
+                this.Outputs.Add(
+                    this.Service.GetObject(new Uri(this.SiteCollection.Url, UriKind.Absolute), this.User.LoginName)
+                );
             }
         }
         if (this.ParameterSetName == "ParamSet2")
         {
-            this.Service.SetObject(new Uri(this.SiteCollection.Url, UriKind.Absolute), this.UserName, this.IsSiteCollectionAdmin);
+            this.Service.SetObject(
+                new Uri(this.SiteCollection.Url, UriKind.Absolute),
+                this.UserName,
+                this.IsSiteCollectionAdmin
+            );
             if (this.PassThru)
             {
-                this.Outputs.Add(this.Service.GetObject(new Uri(this.SiteCollection.Url, UriKind.Absolute), this.UserName));
+                this.Outputs.Add(
+                    this.Service.GetObject(new Uri(this.SiteCollection.Url, UriKind.Absolute), this.UserName)
+                );
             }
         }
         if (this.ParameterSetName == "ParamSet3")
         {
-            this.Service.SetObject(this.SiteCollectionUrl, this.User, this.IsSiteCollectionAdmin);
+            this.Service.SetObject(
+                this.SiteCollectionUrl,
+                this.User,
+                this.IsSiteCollectionAdmin
+            );
             if (this.PassThru)
             {
                 this.Outputs.Add(this.Service.GetObject(this.SiteCollectionUrl, this.User.LoginName));
@@ -76,7 +120,11 @@ public class SetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
         }
         if (this.ParameterSetName == "ParamSet4")
         {
-            this.Service.SetObject(this.SiteCollectionUrl, this.UserName, this.IsSiteCollectionAdmin);
+            this.Service.SetObject(
+                this.SiteCollectionUrl,
+                this.UserName,
+                this.IsSiteCollectionAdmin
+            );
             if (this.PassThru)
             {
                 this.Outputs.Add(this.Service.GetObject(this.SiteCollectionUrl, this.UserName));

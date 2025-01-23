@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetDocumentSetSharedColumnCommand : ClientObjectCmdlet<IDocumentSetSharedColumnService>
 {
 
-    public GetDocumentSetSharedColumnCommand()
-    {
-    }
-
     [Parameter(Mandatory = true, Position = 0)]
     public ContentType ContentType { get; private set; }
 

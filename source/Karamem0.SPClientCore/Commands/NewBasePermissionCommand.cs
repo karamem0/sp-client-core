@@ -21,10 +21,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class NewBasePermissionCommand : ClientObjectCmdlet
 {
 
-    public NewBasePermissionCommand()
-    {
-    }
-
     [Parameter(Mandatory = true, Position = 0)]
     public PermissionKind[] Permission { get; private set; }
 

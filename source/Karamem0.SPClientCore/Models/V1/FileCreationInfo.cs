@@ -20,14 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class FileCreationInfo : ClientValueObject
 {
 
-    public FileCreationInfo()
-    {
-    }
-
-    public FileCreationInfo(IReadOnlyDictionary<string, object> parameters) : base(parameters)
-    {
-    }
-
     [JsonProperty()]
     public virtual byte[] Content { get; protected set; }
 

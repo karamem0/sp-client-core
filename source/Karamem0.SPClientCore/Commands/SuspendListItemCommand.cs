@@ -22,11 +22,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class SuspendListItemCommand : ClientObjectCmdlet<IListItemService>
 {
 
-    public SuspendListItemCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true
+    )]
     public ListItem Identity { get; private set; }
 
     [Parameter(Mandatory = false)]

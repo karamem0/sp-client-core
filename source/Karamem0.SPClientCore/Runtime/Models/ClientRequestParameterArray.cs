@@ -19,10 +19,17 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class ClientRequestParameterArray(ClientRequestPayload payload, params object[] values) : ClientRequestParameter
 {
 
+    public ClientRequestParameterArray(ClientRequestPayload payload, IEnumerable<object> values)
+        : this(payload, [.. values])
+    {
+    }
+
     [XmlAttribute()]
     public virtual string Type { get; protected set; } = "Array";
 
     [XmlElement("Object")]
-    public virtual IEnumerable<ClientRequestParameter> Values { get; protected set; } = values.Select(payload.CreateParameter).ToArray();
+    public virtual IReadOnlyCollection<ClientRequestParameter> Values { get; protected set; } = values
+        .Select(payload.CreateParameter)
+        .ToArray();
 
 }

@@ -28,35 +28,35 @@ public class AddNavigationNodeCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<NavigationNode>(
             "Get-KshNavigationNode",
             new Dictionary<string, object>()
             {
-                { "NavigationNodeId", context.AppSettings["NavigationNode1Id"] }
+                ["NavigationNodeId"] = context.AppSettings["NavigationNode1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<NavigationNode>(
             "Add-KshNavigationNode",
             new Dictionary<string, object>()
             {
-                { "NavigationNode", result1.ElementAt(0) },
-                { "AsLastNode", true },
-                { "IsExternal", true },
-                { "Title", "Test Navigation Node 0" },
-                { "Url", "http://www.example.com" }
+                ["NavigationNode"] = result1.ElementAt(0),
+                ["AsLastNode"] = true,
+                ["IsExternal"] = true,
+                ["Title"] = "Test Navigation Node 0",
+                ["Url"] = "http://www.example.com"
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshNavigationNode",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);
@@ -71,28 +71,28 @@ public class AddNavigationNodeCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<NavigationNode>(
             "Add-KshNavigationNode",
             new Dictionary<string, object>()
             {
-                { "QuickLaunch", true },
-                { "AsLastNode", true },
-                { "IsExternal", true },
-                { "Title", "Test Navigation Node 0" },
-                { "Url", "http://www.example.com" }
+                ["QuickLaunch"] = true,
+                ["AsLastNode"] = true,
+                ["IsExternal"] = true,
+                ["Title"] = "Test Navigation Node 0",
+                ["Url"] = "http://www.example.com"
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshNavigationNode",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) }
+                ["Identity"] = result1.ElementAt(0)
             }
         );
         var actual = result1.ElementAt(0);
@@ -107,28 +107,28 @@ public class AddNavigationNodeCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<NavigationNode>(
             "Add-KshNavigationNode",
             new Dictionary<string, object>()
             {
-                { "TopNavigationBar", true },
-                { "AsLastNode", true },
-                { "IsExternal", true },
-                { "Title", "Test Navigation Node 0" },
-                { "Url", "http://www.example.com" }
+                ["TopNavigationBar"] = true,
+                ["AsLastNode"] = true,
+                ["IsExternal"] = true,
+                ["Title"] = "Test Navigation Node 0",
+                ["Url"] = "http://www.example.com"
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshNavigationNode",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) }
+                ["Identity"] = result1.ElementAt(0)
             }
         );
         var actual = result1.ElementAt(0);

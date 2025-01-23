@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class SaveImageCommand : ClientObjectCmdlet<IImageService>
 {
 
-    public SaveImageCommand()
-    {
-    }
-
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     public List List { get; private set; }
 
@@ -44,11 +40,23 @@ public class SaveImageCommand : ClientObjectCmdlet<IImageService>
     {
         if (this.ParameterSetName == "ParamSet1")
         {
-            this.Outputs.Add(this.Service.UploadObject(this.List, this.FileName, this.Content));
+            this.Outputs.Add(
+                this.Service.UploadObject(
+                    this.List,
+                    this.FileName,
+                    this.Content
+                )
+            );
         }
         if (this.ParameterSetName == "ParamSet2")
         {
-            this.Outputs.Add(this.Service.UploadObject(this.ListItem, this.FileName, this.Content));
+            this.Outputs.Add(
+                this.Service.UploadObject(
+                    this.ListItem,
+                    this.FileName,
+                    this.Content
+                )
+            );
         }
     }
 

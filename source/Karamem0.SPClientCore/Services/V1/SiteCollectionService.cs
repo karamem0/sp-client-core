@@ -27,21 +27,24 @@ public interface ISiteCollectionService
 
 }
 
-public class SiteCollectionService(ClientContext clientContext) : ClientService<SiteCollection>(clientContext), ISiteCollectionService
+public class SiteCollectionService(ClientContext clientContext)
+    : ClientService<SiteCollection>(clientContext), ISiteCollectionService
 {
 
     public SiteCollection GetObject()
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
             new ObjectPathProperty(objectPath1.Id, "Site"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(SiteCollection))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<SiteCollection>(requestPayload.GetActionId<ClientActionQuery>());
@@ -52,18 +55,21 @@ public class SiteCollectionService(ClientContext clientContext) : ClientService<
         _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant)));
+            new ObjectPathConstructor(typeof(Tenant))
+        );
         var objectPath2 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath1.Id,
                 "GetSiteByUrl",
                 requestPayload.CreateParameter(siteCollectionUrl),
-                requestPayload.CreateParameter(false)),
+                requestPayload.CreateParameter(false)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(SiteCollection))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<SiteCollection>(requestPayload.GetActionId<ClientActionQuery>());

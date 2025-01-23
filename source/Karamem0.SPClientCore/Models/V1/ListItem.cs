@@ -26,9 +26,11 @@ public class ListItem : SecurableObject
     }
 
     [JsonIgnore()]
-    public PSObject FieldValues => new(this.ExtensionProperties
-        .Select(ClientResultValue.Create)
-        .ToDictionary(item => item.Key, item => item.Value));
+    public PSObject FieldValues => new(
+        this.ExtensionProperties
+            .Select(ClientResultValue.Create)
+            .ToDictionary(item => item.Key, item => item.Value)
+    );
 
     [JsonProperty()]
     public virtual string AccessPolicy { get; protected set; }

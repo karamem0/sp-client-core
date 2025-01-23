@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetTenantSiteTemplateCommand : ClientObjectCmdlet<ITenantSiteTemplateService>
 {
 
-    public GetTenantSiteTemplateCommand()
-    {
-    }
-
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     public int CompatibilityLevel { get; private set; }
 

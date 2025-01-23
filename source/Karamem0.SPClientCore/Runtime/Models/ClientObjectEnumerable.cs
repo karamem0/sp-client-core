@@ -18,13 +18,9 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public abstract class ClientObjectEnumerable<T> : ClientObject, IEnumerable<T>
 {
 
-    protected ClientObjectEnumerable()
-    {
-    }
-
     [JsonProperty("_Child_Items_")]
     [JsonConverter(typeof(JsonEnumerableConverter))]
-    public IReadOnlyList<T> Entries { get; private set; }
+    public IEnumerable<T> Entries { get; private set; }
 
     IEnumerator IEnumerable.GetEnumerator()
     {

@@ -21,10 +21,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class TestTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantService>
 {
 
-    public TestTenantSiteCollectionCommand()
-    {
-    }
-
     protected override void ProcessRecordCore()
     {
         try

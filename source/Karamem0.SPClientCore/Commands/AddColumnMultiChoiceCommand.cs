@@ -24,11 +24,12 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddColumnMultiChoiceCommand : ClientObjectCmdlet<IColumnService>
 {
 
-    public AddColumnMultiChoiceCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet1"
+    )]
     public List List { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
@@ -163,11 +164,26 @@ public class AddColumnMultiChoiceCommand : ClientObjectCmdlet<IColumnService>
         var addColumnOptions = FlagsParser.Parse<AddColumnOptions>(this.MyInvocation.BoundParameters);
         if (this.ParameterSetName == "ParamSet1")
         {
-            this.Outputs.Add(this.Service.AddObject(this.List, columnType, this.MyInvocation.BoundParameters, this.AddToDefaultView, addColumnOptions));
+            this.Outputs.Add(
+                this.Service.AddObject(
+                    this.List,
+                    columnType,
+                    this.MyInvocation.BoundParameters,
+                    this.AddToDefaultView,
+                    addColumnOptions
+                )
+            );
         }
         if (this.ParameterSetName == "ParamSet2")
         {
-            this.Outputs.Add(this.Service.AddObject(columnType, this.MyInvocation.BoundParameters, this.AddToDefaultView, addColumnOptions));
+            this.Outputs.Add(
+                this.Service.AddObject(
+                    columnType,
+                    this.MyInvocation.BoundParameters,
+                    this.AddToDefaultView,
+                    addColumnOptions
+                )
+            );
         }
         if (this.ParameterSetName == "ParamSet3")
         {

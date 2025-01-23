@@ -24,7 +24,12 @@ public class ColumnGeolocationValue : ClientValueObject
     {
     }
 
-    public ColumnGeolocationValue(double altitude, double latitude, double longitude, double measure)
+    public ColumnGeolocationValue(
+        double altitude,
+        double latitude,
+        double longitude,
+        double measure
+    )
     {
         this.Altitude = altitude;
         this.Latitude = latitude;

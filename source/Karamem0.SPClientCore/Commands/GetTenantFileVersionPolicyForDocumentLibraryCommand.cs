@@ -19,7 +19,9 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 
 [Cmdlet(VerbsCommon.Get, "KshTenantFileVersionPolicyForDocumentLibrary")]
 [OutputType(typeof(FileVersionPolicyForDocumentLibrary))]
-public class GetTenantFileVersionPolicyForDocumentLibraryCommand : ClientObjectCmdlet<ITenantFileVersionPolicyForDocumentLibraryService>
+public class
+    GetTenantFileVersionPolicyForDocumentLibraryCommand : ClientObjectCmdlet<
+    ITenantFileVersionPolicyForDocumentLibraryService>
 {
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]

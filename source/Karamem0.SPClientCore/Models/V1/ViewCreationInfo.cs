@@ -20,14 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class ViewCreationInfo : ClientValueObject
 {
 
-    public ViewCreationInfo()
-    {
-    }
-
-    public ViewCreationInfo(IReadOnlyDictionary<string, object> parameters) : base(parameters)
-    {
-    }
-
     [JsonProperty()]
     public int BaseViewId { get; private set; }
 

@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetViewColumnCommand : ClientObjectCmdlet<IViewColumnService>
 {
 
-    public GetViewColumnCommand()
-    {
-    }
-
     [Parameter(Mandatory = true, Position = 0)]
     public View View { get; private set; }
 

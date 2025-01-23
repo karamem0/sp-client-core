@@ -44,6 +44,9 @@ public class Comment : ODataV1Object
     [JsonProperty("likeCount")]
     public virtual int LikeCount { get; protected set; }
 
+    [JsonProperty("likedBy")]
+    public virtual ODataV1ObjectEnumerable<LikedUser> LikedBy { get; protected set; }
+
     [JsonProperty("listId")]
     public virtual Guid ListId { get; protected set; }
 

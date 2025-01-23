@@ -35,19 +35,23 @@ public class AppInstanceService(ClientContext clientContext) : ClientService(cli
         _ = appInstanceId ?? throw new ArgumentNullException(nameof(appInstanceId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath2.Id,
                 "GetAppInstanceById",
-                requestPayload.CreateParameter(appInstanceId)),
+                requestPayload.CreateParameter(appInstanceId)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(AppInstance))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<AppInstance>(requestPayload.GetActionId<ClientActionQuery>());
@@ -57,9 +61,11 @@ public class AppInstanceService(ClientContext clientContext) : ClientService(cli
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
             new ObjectPathStaticMethod(
                 typeof(AppCatalog),
@@ -71,7 +77,8 @@ public class AppInstanceService(ClientContext clientContext) : ClientService(cli
             {
                 Query = ClientQuery.Empty,
                 ChildItemQuery = new ClientQuery(true, typeof(AppInstance))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<AppInstanceEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
@@ -82,20 +89,24 @@ public class AppInstanceService(ClientContext clientContext) : ClientService(cli
         _ = appProductId ?? throw new ArgumentNullException(nameof(appProductId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath2.Id,
                 "GetAppInstancesByProductId",
-                requestPayload.CreateParameter(appProductId)),
+                requestPayload.CreateParameter(appProductId)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = ClientQuery.Empty,
                 ChildItemQuery = new ClientQuery(true, typeof(AppInstance))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<AppInstanceEnumerable>(requestPayload.GetActionId<ClientActionQuery>());

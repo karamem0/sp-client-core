@@ -26,15 +26,36 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class ConnectSiteCommand : OAuthCmdlet
 {
 
-    public ConnectSiteCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, ParameterSetName = "ParamSet1", Position = 0, ValueFromPipeline = true)]
-    [Parameter(Mandatory = true, ParameterSetName = "ParamSet2", Position = 0, ValueFromPipeline = true)]
-    [Parameter(Mandatory = true, ParameterSetName = "ParamSet3", Position = 0, ValueFromPipeline = true)]
-    [Parameter(Mandatory = true, ParameterSetName = "ParamSet4", Position = 0, ValueFromPipeline = true)]
-    [Parameter(Mandatory = true, ParameterSetName = "ParamSet5", Position = 0, ValueFromPipeline = true)]
+    [Parameter(
+        Mandatory = true,
+        ParameterSetName = "ParamSet1",
+        Position = 0,
+        ValueFromPipeline = true
+    )]
+    [Parameter(
+        Mandatory = true,
+        ParameterSetName = "ParamSet2",
+        Position = 0,
+        ValueFromPipeline = true
+    )]
+    [Parameter(
+        Mandatory = true,
+        ParameterSetName = "ParamSet3",
+        Position = 0,
+        ValueFromPipeline = true
+    )]
+    [Parameter(
+        Mandatory = true,
+        ParameterSetName = "ParamSet4",
+        Position = 0,
+        ValueFromPipeline = true
+    )]
+    [Parameter(
+        Mandatory = true,
+        ParameterSetName = "ParamSet5",
+        Position = 0,
+        ValueFromPipeline = true
+    )]
     public Uri Url { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
@@ -78,7 +99,8 @@ public class ConnectSiteCommand : OAuthCmdlet
                 this.ClientId,
                 this.Url,
                 this.UserMode,
-                this.WriteWarning);
+                this.WriteWarning
+            );
         }
         if (this.ParameterSetName == "ParamSet2")
         {
@@ -87,7 +109,8 @@ public class ConnectSiteCommand : OAuthCmdlet
                 this.ClientId,
                 this.Url,
                 this.Credential.GetNetworkCredential(),
-                this.UserMode);
+                this.UserMode
+            );
         }
         if (this.ParameterSetName == "ParamSet3")
         {
@@ -99,7 +122,8 @@ public class ConnectSiteCommand : OAuthCmdlet
                 this.Url,
                 certificateBytes,
                 this.CertificatePassword,
-                this.UserMode);
+                this.UserMode
+            );
         }
         if (this.ParameterSetName == "ParamSet4")
         {
@@ -108,14 +132,16 @@ public class ConnectSiteCommand : OAuthCmdlet
                 this.Authority,
                 this.ClientId,
                 this.Url,
-                this.UserMode);
+                this.UserMode
+            );
         }
         if (this.ParameterSetName == "ParamSet5")
         {
             this.Service.ConnectWithClientSecret(
                 this.ClientId,
                 this.ClientSecret,
-                this.Url);
+                this.Url
+            );
         }
     }
 

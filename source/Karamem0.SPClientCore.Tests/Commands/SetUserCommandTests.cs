@@ -28,35 +28,35 @@ public class SetUserCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<User>(
             "Add-KshUser",
             new Dictionary<string, object>()
             {
-                { "LoginName", "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"] }
+                ["LoginName"] = "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<User>(
             "Set-KshUser",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) },
-                { "Email", "testuser0@example.com" },
-                { "IsSiteCollectionAdmin", true },
-                { "Title", "Test User 9" },
-                { "PassThru", true }
+                ["Identity"] = result1.ElementAt(0),
+                ["Email"] = "testuser0@example.com",
+                ["IsSiteCollectionAdmin"] = true,
+                ["Title"] = "Test User 9",
+                ["PassThru"] = true
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshUser",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);

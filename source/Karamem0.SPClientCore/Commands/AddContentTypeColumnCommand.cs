@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddContentTypeColumnCommand : ClientObjectCmdlet<IContentTypeColumnService>
 {
 
-    public AddContentTypeColumnCommand()
-    {
-    }
-
     [Parameter(Mandatory = true)]
     public ContentType ContentType { get; private set; }
 
@@ -37,7 +33,13 @@ public class AddContentTypeColumnCommand : ClientObjectCmdlet<IContentTypeColumn
 
     protected override void ProcessRecordCore()
     {
-        this.Outputs.Add(this.Service.AddObject(this.ContentType, this.MyInvocation.BoundParameters, this.PushChanges));
+        this.Outputs.Add(
+            this.Service.AddObject(
+                this.ContentType,
+                this.MyInvocation.BoundParameters,
+                this.PushChanges
+            )
+        );
     }
 
 }

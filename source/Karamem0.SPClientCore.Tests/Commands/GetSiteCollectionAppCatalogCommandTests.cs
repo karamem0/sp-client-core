@@ -28,10 +28,10 @@ public class GetSiteCollectionAppCatalogCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<SiteCollectionAppCatalog>(
@@ -52,10 +52,10 @@ public class GetSiteCollectionAppCatalogCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<SiteCollection>(
@@ -68,7 +68,7 @@ public class GetSiteCollectionAppCatalogCommandTests
             "Get-KshSiteCollectionAppCatalog",
             new Dictionary<string, object>()
             {
-                { "SiteCollection", result1.ElementAt(0) }
+                ["SiteCollection"] = result1.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);
@@ -83,10 +83,10 @@ public class GetSiteCollectionAppCatalogCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<SiteCollection>(
@@ -99,7 +99,7 @@ public class GetSiteCollectionAppCatalogCommandTests
             "Get-KshSiteCollectionAppCatalog",
             new Dictionary<string, object>()
             {
-                { "SiteCollectionUrl", result1.ElementAt(0).Url }
+                ["SiteCollectionUrl"] = result1.ElementAt(0).Url
             }
         );
         var actual = result2.ElementAt(0);

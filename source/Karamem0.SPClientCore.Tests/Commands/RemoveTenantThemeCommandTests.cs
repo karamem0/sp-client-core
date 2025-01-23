@@ -29,26 +29,26 @@ public class RemoveTenantThemeCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AdminUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AdminUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<TenantTheme>(
             "Add-KshTenantTheme",
             new Dictionary<string, object>()
             {
-                { "IsInverted", false },
-                { "Name", "Test Theme 0" },
-                { "Palette", new Hashtable() }
+                ["IsInverted"] = false,
+                ["Name"] = "Test Theme 0",
+                ["Palette"] = new Hashtable()
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshTenantTheme",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) }
+                ["Identity"] = result1.ElementAt(0)
             }
         );
     }

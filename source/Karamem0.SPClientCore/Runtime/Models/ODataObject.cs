@@ -7,21 +7,12 @@
 //
 
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
 [JsonObject()]
-public abstract class ODataObject : JsonValueObject
-{
-
-    protected ODataObject()
-    {
-    }
-
-}
+public abstract class ODataObject : JsonValueObject;

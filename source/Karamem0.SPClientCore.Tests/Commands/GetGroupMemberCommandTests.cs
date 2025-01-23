@@ -28,24 +28,24 @@ public class GetGroupMemberCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<Group>(
             "Get-KshGroup",
             new Dictionary<string, object>()
             {
-                { "GroupId", context.AppSettings["Group1Id"] }
+                ["GroupId"] = context.AppSettings["Group1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<User>(
             "Get-KshGroupMember",
             new Dictionary<string, object>()
             {
-                { "Group", result1.ElementAt(0) }
+                ["Group"] = result1.ElementAt(0)
             }
         );
         var actual = result2.ToArray();
@@ -60,25 +60,25 @@ public class GetGroupMemberCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<Group>(
             "Get-KshGroup",
             new Dictionary<string, object>()
             {
-                { "GroupId", context.AppSettings["Group1Id"] }
+                ["GroupId"] = context.AppSettings["Group1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<User>(
             "Get-KshGroupMember",
             new Dictionary<string, object>()
             {
-                { "Group", result1.ElementAt(0) },
-                { "MemberId", context.AppSettings["User1Id"] }
+                ["Group"] = result1.ElementAt(0),
+                ["MemberId"] = context.AppSettings["User1Id"]
             }
         );
         var actual = result2.ElementAt(0);
@@ -93,25 +93,25 @@ public class GetGroupMemberCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<Group>(
             "Get-KshGroup",
             new Dictionary<string, object>()
             {
-                { "GroupId", context.AppSettings["Group1Id"] }
+                ["GroupId"] = context.AppSettings["Group1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<User>(
             "Get-KshGroupMember",
             new Dictionary<string, object>()
             {
-                { "Group", result1.ElementAt(0) },
-                { "MemberName", context.AppSettings["User1LoginName"] }
+                ["Group"] = result1.ElementAt(0),
+                ["MemberName"] = context.AppSettings["User1LoginName"]
             }
         );
         var actual = result2.ElementAt(0);
@@ -126,25 +126,25 @@ public class GetGroupMemberCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<Group>(
             "Get-KshGroup",
             new Dictionary<string, object>()
             {
-                { "GroupId", context.AppSettings["Group1Id"] }
+                ["GroupId"] = context.AppSettings["Group1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<User>(
             "Get-KshGroupMember",
             new Dictionary<string, object>()
             {
-                { "Group", result1.ElementAt(0) },
-                { "MemberName", context.AppSettings["User1Email"] },
+                ["Group"] = result1.ElementAt(0),
+                ["MemberName"] = context.AppSettings["User1Email"],
             }
         );
         var actual = result2.ElementAt(0);

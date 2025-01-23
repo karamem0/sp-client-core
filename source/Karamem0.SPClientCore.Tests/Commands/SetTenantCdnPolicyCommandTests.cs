@@ -27,19 +27,19 @@ public class SetTenantCdnPolicyCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AdminUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AdminUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Set-KshTenantCdnPolicy",
             new Dictionary<string, object>()
             {
-                { "Public", true },
-                { "Type", "IncludeFileExtensions" },
-                { "Value", "CSS,EOT,GIF,ICO,JPEG,JPG,JS,MAP,PNG,SVG,TTF,WOFF" }
+                ["Public"] = true,
+                ["Type"] = "IncludeFileExtensions",
+                ["Value"] = "CSS,EOT,GIF,ICO,JPEG,JPG,JS,MAP,PNG,SVG,TTF,WOFF"
             }
         );
     }
@@ -52,19 +52,19 @@ public class SetTenantCdnPolicyCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AdminUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AdminUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Set-KshTenantCdnPolicy",
             new Dictionary<string, object>()
             {
-                { "Private", true },
-                { "Type", "IncludeFileExtensions" },
-                { "Value", "GIF,ICO,JPEG,JPG,JS,PNG" }
+                ["Private"] = true,
+                ["Type"] = "IncludeFileExtensions",
+                ["Value"] = "GIF,ICO,JPEG,JPG,JS,PNG"
             }
         );
     }

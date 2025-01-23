@@ -17,14 +17,15 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
-[Cmdlet(VerbsCommon.Remove, "KshDocumentSetAllowedContentType", SupportsShouldProcess = true, ConfirmImpact = ConfirmImpact.High)]
+[Cmdlet(
+    VerbsCommon.Remove,
+    "KshDocumentSetAllowedContentType",
+    SupportsShouldProcess = true,
+    ConfirmImpact = ConfirmImpact.High
+)]
 [OutputType(typeof(void))]
 public class RemoveDocumentSetAllowedContentTypeCommand : ClientObjectCmdlet<IDocumentSetAllowedContentTypeService>
 {
-
-    public RemoveDocumentSetAllowedContentTypeCommand()
-    {
-    }
 
     [Parameter(Mandatory = true, Position = 0)]
     public ContentType ContentType { get; private set; }
@@ -39,7 +40,11 @@ public class RemoveDocumentSetAllowedContentTypeCommand : ClientObjectCmdlet<IDo
     {
         if (this.ShouldProcess(this.AllowedContentType.Name, VerbsCommon.Remove))
         {
-            this.Service.RemoveObject(this.ContentType, this.AllowedContentType, this.PushChanges);
+            this.Service.RemoveObject(
+                this.ContentType,
+                this.AllowedContentType,
+                this.PushChanges
+            );
         }
     }
 

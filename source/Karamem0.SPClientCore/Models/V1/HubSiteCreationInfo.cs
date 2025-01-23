@@ -20,14 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class HubSiteCreationInfo : ClientValueObject
 {
 
-    public HubSiteCreationInfo()
-    {
-    }
-
-    public HubSiteCreationInfo(IReadOnlyDictionary<string, object> parameters) : base(parameters)
-    {
-    }
-
     [JsonProperty()]
     public virtual string Description { get; protected set; }
 

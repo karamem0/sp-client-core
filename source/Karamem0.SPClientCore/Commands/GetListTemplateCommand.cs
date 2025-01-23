@@ -22,14 +22,19 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetListTemplateCommand : ClientObjectCmdlet<IListTemplateService>
 {
 
-    public GetListTemplateCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet1"
+    )]
     public ListTemplate Identity { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet2"
+    )]
     public string ListTemplateTitle { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]

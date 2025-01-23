@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetGroupOwnerCommand : ClientObjectCmdlet<IGroupOwnerService>
 {
 
-    public GetGroupOwnerCommand()
-    {
-    }
-
     [Parameter(Mandatory = true, Position = 0)]
     public Group Group { get; private set; }
 

@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetTermStoreCommand : ClientObjectCmdlet<ITermStoreService>
 {
 
-    public GetTermStoreCommand()
-    {
-    }
-
     protected override void ProcessRecordCore()
     {
         this.Outputs.Add(this.Service.GetObject());

@@ -24,37 +24,78 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetDriveItemCommand : ClientObjectCmdlet<IDriveItemService>
 {
 
-    public GetDriveItemCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet1"
+    )]
     public DriveItem Identity { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet2"
+    )]
     public Models.V1.Folder Folder { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet3")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet3"
+    )]
     public Models.V1.File File { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet4")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet4"
+    )]
     public ListItem ListItem { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet5")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet5"
+    )]
     public Uri DriveItemUrl { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet6")]
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet7")]
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet8")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet6"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet7"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet8"
+    )]
     public Drive Drive { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet6")]
+    [Parameter(
+        Mandatory = true,
+        Position = 1,
+        ParameterSetName = "ParamSet6"
+    )]
     public string DriveItemId { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet7")]
+    [Parameter(
+        Mandatory = true,
+        Position = 1,
+        ParameterSetName = "ParamSet7"
+    )]
     public Uri DriveItemPath { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet9")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet9"
+    )]
     public DriveItem DriveItem { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet8")]
@@ -87,7 +128,9 @@ public class GetDriveItemCommand : ClientObjectCmdlet<IDriveItemService>
             }
             else
             {
-                throw new InvalidOperationException(string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.DriveItemUrl));
+                throw new InvalidOperationException(
+                    string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.DriveItemUrl)
+                );
             }
         }
         if (this.ParameterSetName == "ParamSet6")

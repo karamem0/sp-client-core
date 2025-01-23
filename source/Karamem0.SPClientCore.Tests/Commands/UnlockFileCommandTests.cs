@@ -28,50 +28,50 @@ public class UnlockFileCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<Folder>(
             "Get-KshFolder",
             new Dictionary<string, object>()
             {
-                { "FolderUrl", context.AppSettings["Folder1Url"] }
+                ["FolderUrl"] = context.AppSettings["Folder1Url"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<File>(
             "Add-KshFile",
             new Dictionary<string, object>()
             {
-                { "Folder", result1.ElementAt(0) },
-                { "Content", Encoding.UTF8.GetBytes("TestFile0") },
-                { "FileName", "TestFile0.txt" }
+                ["Folder"] = result1.ElementAt(0),
+                ["Content"] = Encoding.UTF8.GetBytes("TestFile0"),
+                ["FileName"] = "TestFile0.txt"
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Lock-KshFile",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var result3 = context.Runspace.InvokeCommand<File>(
             "Unlock-KshFile",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) },
-                { "Comment", "Test Comment 0" },
-                { "CheckInType", "MajorCheckIn" },
-                { "PassThru", true }
+                ["Identity"] = result2.ElementAt(0),
+                ["Comment"] = "Test Comment 0",
+                ["CheckInType"] = "MajorCheckIn",
+                ["PassThru"] = true
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshFile",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var actual = result3.ElementAt(0);
@@ -86,49 +86,49 @@ public class UnlockFileCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<Folder>(
             "Get-KshFolder",
             new Dictionary<string, object>()
             {
-                { "FolderUrl", context.AppSettings["Folder1Url"] }
+                ["FolderUrl"] = context.AppSettings["Folder1Url"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<File>(
             "Add-KshFile",
             new Dictionary<string, object>()
             {
-                { "Folder", result1.ElementAt(0) },
-                { "Content", Encoding.UTF8.GetBytes("TestFile0") },
-                { "FileName", "TestFile0.txt" }
+                ["Folder"] = result1.ElementAt(0),
+                ["Content"] = Encoding.UTF8.GetBytes("TestFile0"),
+                ["FileName"] = "TestFile0.txt"
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Lock-KshFile",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var result3 = context.Runspace.InvokeCommand<File>(
             "Unlock-KshFile",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) },
-                { "Undo", true },
-                { "PassThru", true }
+                ["Identity"] = result2.ElementAt(0),
+                ["Undo"] = true,
+                ["PassThru"] = true
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshFile",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var actual = result3.ElementAt(0);

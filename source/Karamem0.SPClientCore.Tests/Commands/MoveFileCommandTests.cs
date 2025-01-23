@@ -28,53 +28,53 @@ public class MoveFileCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<Folder>(
             "Get-KshFolder",
             new Dictionary<string, object>()
             {
-                { "FolderUrl", context.AppSettings["Folder1Url"] }
+                ["FolderUrl"] = context.AppSettings["Folder1Url"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<File>(
             "Add-KshFile",
             new Dictionary<string, object>()
             {
-                { "Folder", result1.ElementAt(0) },
-                { "Content", Encoding.UTF8.GetBytes("TestFile0") },
-                { "FileName", "TestFile0.txt" }
+                ["Folder"] = result1.ElementAt(0),
+                ["Content"] = Encoding.UTF8.GetBytes("TestFile0"),
+                ["FileName"] = "TestFile0.txt"
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Move-KshFile",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) },
-                { "NewUrl", context.AppSettings["AuthorityUrl"] + context.AppSettings["Folder1Url"] + "/TestFile9.txt" },
-                { "Overwrite", true },
-                { "KeepBoth", true },
-                { "ResetAuthorAndCreatedOnCopy", true },
-                { "RetainEditorAndModifiedOnMove", true },
-                { "ShouldBypassSharedLocks", true }
+                ["Identity"] = result2.ElementAt(0),
+                ["NewUrl"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Folder1Url"] + "/TestFile9.txt",
+                ["Overwrite"] = true,
+                ["KeepBoth"] = true,
+                ["ResetAuthorAndCreatedOnCopy"] = true,
+                ["RetainEditorAndModifiedOnMove"] = true,
+                ["ShouldBypassSharedLocks"] = true
             }
         );
         var result3 = context.Runspace.InvokeCommand<File>(
             "Get-KshFile",
             new Dictionary<string, object>()
             {
-                { "FileUrl", context.AppSettings["Folder1Url"] + "/TestFile9.txt" }
+                ["FileUrl"] = context.AppSettings["Folder1Url"] + "/TestFile9.txt"
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshFile",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                ["Identity"] = result3.ElementAt(0)
             }
         );
         var actual = result3.ElementAt(0);
@@ -89,45 +89,45 @@ public class MoveFileCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<Folder>(
             "Get-KshFolder",
             new Dictionary<string, object>()
             {
-                { "FolderUrl", context.AppSettings["Folder1Url"] }
+                ["FolderUrl"] = context.AppSettings["Folder1Url"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<File>(
             "Add-KshFile",
             new Dictionary<string, object>()
             {
-                { "Folder", result1.ElementAt(0) },
-                { "Content", Encoding.UTF8.GetBytes("TestFile0") },
-                { "FileName", "TestFile0.txt" }
+                ["Folder"] = result1.ElementAt(0),
+                ["Content"] = Encoding.UTF8.GetBytes("TestFile0"),
+                ["FileName"] = "TestFile0.txt"
             }
         );
         var result3 = context.Runspace.InvokeCommand<File>(
             "Move-KshFile",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) },
-                { "NewUrl", context.AppSettings["Folder1Url"] + "/TestFile9.txt" },
-                { "Overwrite", true },
-                { "AllowBrokenThickets", true },
-                { "Legacy", true },
-                { "PassThru", true }
+                ["Identity"] = result2.ElementAt(0),
+                ["NewUrl"] = context.AppSettings["Folder1Url"] + "/TestFile9.txt",
+                ["Overwrite"] = true,
+                ["AllowBrokenThickets"] = true,
+                ["Legacy"] = true,
+                ["PassThru"] = true
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshFile",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                ["Identity"] = result3.ElementAt(0)
             }
         );
         var actual = result3.ElementAt(0);
@@ -142,45 +142,45 @@ public class MoveFileCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<Folder>(
             "Get-KshFolder",
             new Dictionary<string, object>()
             {
-                { "FolderUrl", context.AppSettings["Folder1Url"] }
+                ["FolderUrl"] = context.AppSettings["Folder1Url"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<File>(
             "Add-KshFile",
             new Dictionary<string, object>()
             {
-                { "Folder", result1.ElementAt(0) },
-                { "Content", Encoding.UTF8.GetBytes("TestFile0") },
-                { "FileName", "TestFile0.txt" }
+                ["Folder"] = result1.ElementAt(0),
+                ["Content"] = Encoding.UTF8.GetBytes("TestFile0"),
+                ["FileName"] = "TestFile0.txt"
             }
         );
         var result3 = context.Runspace.InvokeCommand<File>(
             "Move-KshFile",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) },
-                { "NewUrl", context.AppSettings["AuthorityUrl"] + context.AppSettings["Folder1Url"] + "/TestFile9.txt" },
-                { "Overwrite", true },
-                { "AllowBrokenThickets", true },
-                { "Legacy", true },
-                { "PassThru", true }
+                ["Identity"] = result2.ElementAt(0),
+                ["NewUrl"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Folder1Url"] + "/TestFile9.txt",
+                ["Overwrite"] = true,
+                ["AllowBrokenThickets"] = true,
+                ["Legacy"] = true,
+                ["PassThru"] = true
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshFile",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                ["Identity"] = result3.ElementAt(0)
             }
         );
         var actual = result3.ElementAt(0);

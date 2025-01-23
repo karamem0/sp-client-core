@@ -19,10 +19,6 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class JsonBase64BinaryConverter : JsonConverter
 {
 
-    public JsonBase64BinaryConverter()
-    {
-    }
-
     public override bool CanRead => true;
 
     public override bool CanWrite => true;
@@ -39,7 +35,12 @@ public class JsonBase64BinaryConverter : JsonConverter
         }
     }
 
-    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    public override object ReadJson(
+        JsonReader reader,
+        Type objectType,
+        object existingValue,
+        JsonSerializer serializer
+    )
     {
         var value = default(byte[]);
         if (reader.Value is null)
@@ -53,7 +54,11 @@ public class JsonBase64BinaryConverter : JsonConverter
         return null;
     }
 
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    public override void WriteJson(
+        JsonWriter writer,
+        object value,
+        JsonSerializer serializer
+    )
     {
         if (value is null)
         {

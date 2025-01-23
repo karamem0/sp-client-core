@@ -28,39 +28,39 @@ public class SetGroupOwnerCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<User>(
             "Get-KshUser",
             new Dictionary<string, object>()
             {
-                { "UserId", context.AppSettings["User1Id"] }
+                ["UserId"] = context.AppSettings["User1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<Group>(
             "Add-KshGroup",
             new Dictionary<string, object>()
             {
-                { "Title", "Test Group 0" }
+                ["Title"] = "Test Group 0"
             }
         );
         _ = context.Runspace.InvokeCommand<Principal>(
             "Set-KshGroupOwner",
             new Dictionary<string, object>()
             {
-                { "Group", result2.ElementAt(0) },
-                { "Owner", result1.ElementAt(0) }
+                ["Group"] = result2.ElementAt(0),
+                ["Owner"] = result1.ElementAt(0)
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshGroup",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
     }

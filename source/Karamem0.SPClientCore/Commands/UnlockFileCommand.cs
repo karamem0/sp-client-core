@@ -22,12 +22,18 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class UnlockFileCommand : ClientObjectCmdlet<IFileService>
 {
 
-    public UnlockFileCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet1"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet2"
+    )]
     public File Identity { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
@@ -47,7 +53,11 @@ public class UnlockFileCommand : ClientObjectCmdlet<IFileService>
     {
         if (this.ParameterSetName == "ParamSet1")
         {
-            this.Service.CheckInObject(this.Identity, this.Comment, this.CheckInType);
+            this.Service.CheckInObject(
+                this.Identity,
+                this.Comment,
+                this.CheckInType
+            );
             if (this.PassThru)
             {
                 this.Outputs.Add(this.Service.GetObject(this.Identity));

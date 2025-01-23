@@ -28,34 +28,34 @@ public class AddStorageEntityTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["TenantAppCatalogUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["TenantAppCatalogUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Add-KshStorageEntity",
             new Dictionary<string, object>()
             {
-                { "Key", "Test Entity 0" },
-                { "Value", "Test Value 0" },
-                { "Description", "Test Value 0 Description" },
-                { "Comment", "Test Value 0 Comment" }
+                ["Key"] = "Test Entity 0",
+                ["Value"] = "Test Value 0",
+                ["Description"] = "Test Value 0 Description",
+                ["Comment"] = "Test Value 0 Comment"
             }
         );
         var result1 = context.Runspace.InvokeCommand<StorageEntity>(
             "Get-KshStorageEntity",
             new Dictionary<string, object>()
             {
-                { "Key", "Test Entity 0" }
+                ["Key"] = "Test Entity 0"
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshStorageEntity",
             new Dictionary<string, object>()
             {
-                { "Key", "Test Entity 0" }
+                ["Key"] = "Test Entity 0"
             }
         );
         var actual = result1.ElementAt(0);

@@ -15,7 +15,10 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
-[ClientObject(Name = "Microsoft.SharePoint.ClientSideComponent.StorageEntity", Id = "{499cb725-3086-42f9-86d1-71594212a6ca}")]
+[ClientObject(
+    Name = "Microsoft.SharePoint.ClientSideComponent.StorageEntity",
+    Id = "{499cb725-3086-42f9-86d1-71594212a6ca}"
+)]
 [JsonObject()]
 public class StorageEntity : ClientObject
 {

@@ -32,10 +32,6 @@ public class ClientObjectAttribute : Attribute
         return objectName;
     }
 
-    public ClientObjectAttribute()
-    {
-    }
-
     public string Id { get; set; }
 
     public string Name { get; set; }

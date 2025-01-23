@@ -28,26 +28,26 @@ public class AddUserCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<User>(
             "Add-KshUser",
             new Dictionary<string, object>()
             {
-                { "Email", "testuser0@" + context.AppSettings["LoginDomainName"] },
-                { "LoginName", "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"] },
-                { "Title", "Test User 0" }
+                ["Email"] = "testuser0@" + context.AppSettings["LoginDomainName"],
+                ["LoginName"] = "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"],
+                ["Title"] = "Test User 0"
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshUser",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) }
+                ["Identity"] = result1.ElementAt(0)
             }
         );
         var actual = result1.ElementAt(0);

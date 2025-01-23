@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetCurrentUserPropertyCommand : ClientObjectCmdlet<IUserPropertyService>
 {
 
-    public GetCurrentUserPropertyCommand()
-    {
-    }
-
     protected override void ProcessRecordCore()
     {
         this.Outputs.Add(this.Service.GetObject());

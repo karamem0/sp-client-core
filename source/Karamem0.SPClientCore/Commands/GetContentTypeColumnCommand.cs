@@ -22,18 +22,27 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetContentTypeColumnCommand : ClientObjectCmdlet<IContentTypeColumnService>
 {
 
-    public GetContentTypeColumnCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet1"
+    )]
     public ContentTypeColumn Identity { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet2"
+    )]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
     public ContentType ContentType { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 1,
+        ParameterSetName = "ParamSet2"
+    )]
     public Column Column { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]

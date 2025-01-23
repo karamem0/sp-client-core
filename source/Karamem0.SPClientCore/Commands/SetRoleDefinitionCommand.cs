@@ -22,11 +22,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class SetRoleDefinitionCommand : ClientObjectCmdlet<IRoleDefinitionService>
 {
 
-    public SetRoleDefinitionCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true
+    )]
     public RoleDefinition Identity { get; private set; }
 
     [Parameter(Mandatory = false)]

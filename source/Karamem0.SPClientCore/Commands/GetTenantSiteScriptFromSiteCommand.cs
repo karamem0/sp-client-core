@@ -21,10 +21,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetTenantSiteScriptFromSiteCommand : ClientObjectCmdlet<ITenantSiteScriptService>
 {
 
-    public GetTenantSiteScriptFromSiteCommand()
-    {
-    }
-
     [Parameter(Mandatory = true, Position = 0)]
     public string SiteUrl { get; private set; }
 

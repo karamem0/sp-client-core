@@ -28,25 +28,25 @@ public class RemoveListCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Add-KshList",
             new Dictionary<string, object>()
             {
-                { "Template", "GenericList" },
-                { "Title", "Test List 0" }
+                ["Template"] = "GenericList",
+                ["Title"] = "Test List 0"
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshList",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) }
+                ["Identity"] = result1.ElementAt(0)
             }
         );
     }
@@ -59,40 +59,40 @@ public class RemoveListCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Add-KshList",
             new Dictionary<string, object>()
             {
-                { "Template", "GenericList" },
-                { "Title", "Test List 0" }
+                ["Template"] = "GenericList",
+                ["Title"] = "Test List 0"
             }
         );
         var result2 = context.Runspace.InvokeCommand<Guid>(
             "Remove-KshList",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) },
-                { "RecycleBin", true }
+                ["Identity"] = result1.ElementAt(0),
+                ["RecycleBin"] = true
             }
         );
         var result3 = context.Runspace.InvokeCommand<RecycleBinItem>(
             "Get-KshRecycleBinItem",
             new Dictionary<string, object>()
             {
-                { "ItemId", result2.ElementAt(0) }
+                ["ItemId"] = result2.ElementAt(0)
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshRecycleBinItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                ["Identity"] = result3.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);

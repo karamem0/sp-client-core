@@ -1,0 +1,5 @@
+# Certificate files
+*.crt
+*.key
+*.pem
+*.pfx

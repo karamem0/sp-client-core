@@ -51,14 +51,28 @@ public class JsonDateTimeConverterTests
     public void ReadJson_Valid_ReturnsDateTime()
     {
         var converter = new JsonDateTimeConverter();
-        var textReader = new StringReader(/*lang=json,strict*/ "{\"value\":\"/Date(2000,00,01,15,30,45,500)/\"}");
+        var textReader = new StringReader( /*lang=json,strict*/ "{\"value\":\"/Date(2000,00,01,15,30,45,500)/\"}");
         var jsonReader = new JsonTextReader(textReader);
         while (jsonReader.TokenType != JsonToken.String)
         {
             _ = jsonReader.Read();
         }
-        var expected = new DateTime(2000, 1, 1, 15, 30, 45, 500, DateTimeKind.Utc);
-        var actual = converter.ReadJson(jsonReader, typeof(DateTime), null, null);
+        var expected = new DateTime(
+            2000,
+            1,
+            1,
+            15,
+            30,
+            45,
+            500,
+            DateTimeKind.Utc
+        );
+        var actual = converter.ReadJson(
+            jsonReader,
+            typeof(DateTime),
+            null,
+            null
+        );
         Assert.That(actual, Is.EqualTo(expected));
     }
 
@@ -66,14 +80,19 @@ public class JsonDateTimeConverterTests
     public void ReadJson_Invalid_ReturnsNull()
     {
         var converter = new JsonDateTimeConverter();
-        var textReader = new StringReader(/*lang=json,strict*/ "{\"value\":\"/Date(Test Value 1)\"}");
+        var textReader = new StringReader( /*lang=json,strict*/ "{\"value\":\"/Date(Test Value 1)\"}");
         var jsonReader = new JsonTextReader(textReader);
         while (jsonReader.TokenType != JsonToken.String)
         {
             _ = jsonReader.Read();
         }
         var expected = (DateTime?)null;
-        var actual = converter.ReadJson(jsonReader, typeof(DateTime), null, null);
+        var actual = converter.ReadJson(
+            jsonReader,
+            typeof(DateTime),
+            null,
+            null
+        );
         Assert.That(actual, Is.EqualTo(expected));
     }
 
@@ -81,14 +100,19 @@ public class JsonDateTimeConverterTests
     public void ReadJson_Null_ReturnsDefault()
     {
         var converter = new JsonDateTimeConverter();
-        var textReader = new StringReader(/*lang=json,strict*/ "{\"value\":null}");
+        var textReader = new StringReader( /*lang=json,strict*/ "{\"value\":null}");
         var jsonReader = new JsonTextReader(textReader);
         while (jsonReader.TokenType != JsonToken.Null)
         {
             _ = jsonReader.Read();
         }
         var expected = new DateTime();
-        var actual = converter.ReadJson(jsonReader, typeof(DateTime), null, null);
+        var actual = converter.ReadJson(
+            jsonReader,
+            typeof(DateTime),
+            null,
+            null
+        );
         Assert.That(actual, Is.EqualTo(expected));
     }
 
@@ -100,7 +124,20 @@ public class JsonDateTimeConverterTests
         var jsonWriter = new JsonTextWriter(textWriter);
         jsonWriter.WriteStartObject();
         jsonWriter.WritePropertyName("value");
-        converter.WriteJson(jsonWriter, new DateTime(2000, 1, 1, 15, 30, 45, 500, DateTimeKind.Utc), null);
+        converter.WriteJson(
+            jsonWriter,
+            new DateTime(
+                2000,
+                1,
+                1,
+                15,
+                30,
+                45,
+                500,
+                DateTimeKind.Utc
+            ),
+            null
+        );
         jsonWriter.WriteEndObject();
         var expected = /*lang=json,strict*/ "{\"value\":\"2000-01-01T15:30:45.5Z\"}";
         var actual = textWriter.ToString();
@@ -115,7 +152,11 @@ public class JsonDateTimeConverterTests
         var jsonWriter = new JsonTextWriter(textWriter);
         jsonWriter.WriteStartObject();
         jsonWriter.WritePropertyName("value");
-        converter.WriteJson(jsonWriter, null, null);
+        converter.WriteJson(
+            jsonWriter,
+            null,
+            null
+        );
         jsonWriter.WriteEndObject();
         var expected = /*lang=json,strict*/ "{\"value\":null}";
         var actual = textWriter.ToString();

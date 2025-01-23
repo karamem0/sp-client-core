@@ -34,12 +34,15 @@ public class TenantHomeSiteService(ClientContext clientContext) : ClientService(
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant)));
+            new ObjectPathConstructor(typeof(Tenant))
+        );
         var objectPath2 = requestPayload.Add(
             objectPath1,
             objectPathId => new ClientActionMethod(
                 objectPathId,
-                "GetSPHSiteUrl"));
+                "GetSPHSiteUrl"
+            )
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<string>(requestPayload.GetActionId<ClientActionMethod>());
@@ -49,12 +52,15 @@ public class TenantHomeSiteService(ClientContext clientContext) : ClientService(
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant)));
+            new ObjectPathConstructor(typeof(Tenant))
+        );
         var objectPath2 = requestPayload.Add(
             objectPath1,
             objectPathId => new ClientActionMethod(
                 objectPathId,
-                "RemoveSPHSite"));
+                "RemoveSPHSite"
+            )
+        );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
@@ -63,13 +69,16 @@ public class TenantHomeSiteService(ClientContext clientContext) : ClientService(
         _ = homeSiteUrl ?? throw new ArgumentNullException(nameof(homeSiteUrl));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant)));
+            new ObjectPathConstructor(typeof(Tenant))
+        );
         var objectPath2 = requestPayload.Add(
             objectPath1,
             objectPathId => new ClientActionMethod(
                 objectPathId,
                 "SetSPHSite",
-                requestPayload.CreateParameter(homeSiteUrl)));
+                requestPayload.CreateParameter(homeSiteUrl)
+            )
+        );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

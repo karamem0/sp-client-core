@@ -28,47 +28,47 @@ public class SetTermSetCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<TermGroup>(
             "Get-KshTermGroup",
             new Dictionary<string, object>()
             {
-                { "TermGroupId", context.AppSettings["TermGroup1Id"] }
+                ["TermGroupId"] = context.AppSettings["TermGroup1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<TermSet>(
             "Add-KshTermSet",
             new Dictionary<string, object>()
             {
-                { "TermGroup", result1.ElementAt(0) },
-                { "Lcid", 1033 },
-                { "Name", "Test Term Set 0" }
+                ["TermGroup"] = result1.ElementAt(0),
+                ["Lcid"] = 1033,
+                ["Name"] = "Test Term Set 0"
             }
         );
         var result3 = context.Runspace.InvokeCommand<TermSet>(
             "Set-KshTermSet",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) },
-                { "Contact", "admin@example.com" },
-                { "Description", "Test Term Set 9" },
-                { "IsAvailableForTagging", true },
-                { "IsOpenForTermCreation", true },
-                { "Name", "Test Term Set 9" },
-                { "Owner", context.AppSettings["User1LoginName"] },
-                { "PassThru", true }
+                ["Identity"] = result2.ElementAt(0),
+                ["Contact"] = "admin@example.com",
+                ["Description"] = "Test Term Set 9",
+                ["IsAvailableForTagging"] = true,
+                ["IsOpenForTermCreation"] = true,
+                ["Name"] = "Test Term Set 9",
+                ["Owner"] = context.AppSettings["User1LoginName"],
+                ["PassThru"] = true
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshTermSet",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                ["Identity"] = result3.ElementAt(0)
             }
         );
         var actual = result3.ElementAt(0);

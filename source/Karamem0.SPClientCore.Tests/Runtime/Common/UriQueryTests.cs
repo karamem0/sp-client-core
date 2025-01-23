@@ -25,10 +25,10 @@ public class UriQueryTests
         {
             Parameters = new Dictionary<string, object>()
             {
-                { "Key1", "Test Value Value1" },
-                { "Key2", true },
-                { "Key3", 123 },
-                { "Key4", null },
+                ["Key1"] = "Test Value Value1",
+                ["Key2"] = true,
+                ["Key3"] = 123,
+                ["Key4"] = null,
             },
             Quote = false
         };
@@ -44,10 +44,10 @@ public class UriQueryTests
         {
             Parameters = new Dictionary<string, object>()
             {
-                { "Key1", "Test Value Value1" },
-                { "Key2", true },
-                { "Key3", 123 },
-                { "Key4", null },
+                ["Key1"] = "Test Value Value1",
+                ["Key2"] = true,
+                ["Key3"] = 123,
+                ["Key4"] = null,
             },
             Quote = true
         };

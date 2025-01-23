@@ -27,17 +27,25 @@ public class ConvertToUniversalTimeCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<DateTime>(
             "ConvertTo-KshUniversalTime",
             new Dictionary<string, object>()
             {
-                { "Value", new DateTime(2000, 4, 1, 0, 0, 0, DateTimeKind.Utc) }
+                ["Value"] = new DateTime(
+                    2000,
+                    4,
+                    1,
+                    0,
+                    0,
+                    0,
+                    DateTimeKind.Utc
+                )
             }
         );
         var actual = result1.ElementAt(0);

@@ -28,60 +28,65 @@ public class AddColumnMultiChoiceCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ColumnMultiChoice>(
             "Add-KshColumnMultiChoice",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Choices", new List<string>() { "Test Value 1", "Test Value 2", "Test Value 3" } },
+                ["List"] = result1.ElementAt(0),
+                ["Choices"] = new List<string>()
+                {
+                    "Test Value 1",
+                    "Test Value 2",
+                    "Test Value 3"
+                },
                 // { "ClientSideComponentId", null },
                 // { "ClientSideComponentProperties", null },
-                { "CustomFormatter", /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }" },
-                { "DefaultValue", "Test Value 1" },
-                { "Description", "Test Column 0 Description" },
-                { "Direction", "none" },
-                { "FillInChoice", true },
-                { "Group", "Test Column 0 Group" },
-                { "Hidden", true },
-                { "Id", "35aa78a6-66d7-472c-ab6b-d534193842af" },
-                { "JSLink", "clienttemplates.js" },
-                { "Name", "TestColumn0" },
-                { "NoCrawl", true },
-                { "ReadOnly", true },
-                { "Required", true },
-                { "StaticName", "TestColumn0" },
-                { "Title", "Test Column 0" },
-                { "AddColumnInternalNameHint", true },
-                { "AddToDefaultView", true },
+                ["CustomFormatter"] = /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }",
+                ["DefaultValue"] = "Test Value 1",
+                ["Description"] = "Test Column 0 Description",
+                ["Direction"] = "none",
+                ["FillInChoice"] = true,
+                ["Group"] = "Test Column 0 Group",
+                ["Hidden"] = true,
+                ["Id"] = "35aa78a6-66d7-472c-ab6b-d534193842af",
+                ["JSLink"] = "clienttemplates.js",
+                ["Name"] = "TestColumn0",
+                ["NoCrawl"] = true,
+                ["ReadOnly"] = true,
+                ["Required"] = true,
+                ["StaticName"] = "TestColumn0",
+                ["Title"] = "Test Column 0",
+                ["AddColumnInternalNameHint"] = true,
+                ["AddToDefaultView"] = true,
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Set-KshColumnMultiChoice",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) },
-                { "Hidden", false },
-                { "ReadOnly", false }
+                ["Identity"] = result2.ElementAt(0),
+                ["Hidden"] = false,
+                ["ReadOnly"] = false
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshColumn",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);
@@ -96,52 +101,57 @@ public class AddColumnMultiChoiceCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<ColumnMultiChoice>(
             "Add-KshColumnMultiChoice",
             new Dictionary<string, object>()
             {
-                { "Choices", new List<string>() { "Test Value 1", "Test Value 2", "Test Value 3" } },
+                ["Choices"] = new List<string>()
+                {
+                    "Test Value 1",
+                    "Test Value 2",
+                    "Test Value 3"
+                },
                 // { "ClientSideComponentId", null },
                 // { "ClientSideComponentProperties", null },
-                { "CustomFormatter", /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }" },
-                { "DefaultValue", "Test Value 1" },
-                { "Description", "Test Column 0 Description" },
-                { "Direction", "none" },
-                { "FillInChoice", true },
-                { "Group", "Test Column 0 Group" },
-                { "Hidden", true },
-                { "Id", "35aa78a6-66d7-472c-ab6b-d534193842af" },
+                ["CustomFormatter"] = /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }",
+                ["DefaultValue"] = "Test Value 1",
+                ["Description"] = "Test Column 0 Description",
+                ["Direction"] = "none",
+                ["FillInChoice"] = true,
+                ["Group"] = "Test Column 0 Group",
+                ["Hidden"] = true,
+                ["Id"] = "35aa78a6-66d7-472c-ab6b-d534193842af",
                 // { "JSLink", "clienttemplates.js" },
-                { "Name", "TestColumn0" },
-                { "NoCrawl", true },
-                { "ReadOnly", true },
-                { "Required", true },
-                { "StaticName", "TestColumn0" },
-                { "Title", "Test Column 0" },
-                { "AddColumnInternalNameHint", true },
-                { "AddToDefaultView", true },
+                ["Name"] = "TestColumn0",
+                ["NoCrawl"] = true,
+                ["ReadOnly"] = true,
+                ["Required"] = true,
+                ["StaticName"] = "TestColumn0",
+                ["Title"] = "Test Column 0",
+                ["AddColumnInternalNameHint"] = true,
+                ["AddToDefaultView"] = true,
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Set-KshColumnMultiChoice",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) },
-                { "Hidden", false },
-                { "ReadOnly", false }
+                ["Identity"] = result1.ElementAt(0),
+                ["Hidden"] = false,
+                ["ReadOnly"] = false
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshColumn",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) }
+                ["Identity"] = result1.ElementAt(0)
             }
         );
         var actual = result1.ElementAt(0);

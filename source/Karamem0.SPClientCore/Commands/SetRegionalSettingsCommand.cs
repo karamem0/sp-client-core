@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class SetRegionalSettingsCommand : ClientObjectCmdlet<IRegionalSettingsService>
 {
 
-    public SetRegionalSettingsCommand()
-    {
-    }
-
     [Parameter(Mandatory = false)]
     public short AdjustHijriDays { get; private set; }
 

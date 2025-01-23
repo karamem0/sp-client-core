@@ -21,10 +21,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class NewColumnLookupValueCommand : ClientObjectCmdlet
 {
 
-    public NewColumnLookupValueCommand()
-    {
-    }
-
     [Parameter(Mandatory = true, Position = 0)]
     public int LookupId { get; private set; }
 

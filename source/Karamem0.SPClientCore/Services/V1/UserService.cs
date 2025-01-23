@@ -48,21 +48,26 @@ public class UserService(ClientContext clientContext) : ClientService<User>(clie
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "SiteUsers"));
+            new ObjectPathProperty(objectPath2.Id, "SiteUsers")
+        );
         var objectPath4 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath3.Id,
                 "Add",
-                requestPayload.CreateParameter(new UserCreationInfo(creationInfo))),
+                requestPayload.CreateParameter(ClientValueObject.Create<UserCreationInfo>(creationInfo))
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(User))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
@@ -73,19 +78,23 @@ public class UserService(ClientContext clientContext) : ClientService<User>(clie
         _ = userLoginName ?? throw new ArgumentNullException(nameof(userLoginName));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath2.Id,
                 "EnsureUser",
-                requestPayload.CreateParameter(userLoginName)),
+                requestPayload.CreateParameter(userLoginName)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(User))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
@@ -95,16 +104,19 @@ public class UserService(ClientContext clientContext) : ClientService<User>(clie
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
             new ObjectPathProperty(objectPath2.Id, "CurrentUser"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(User))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
@@ -115,21 +127,26 @@ public class UserService(ClientContext clientContext) : ClientService<User>(clie
         _ = userId ?? throw new ArgumentNullException(nameof(userId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "SiteUsers"));
+            new ObjectPathProperty(objectPath2.Id, "SiteUsers")
+        );
         var objectPath4 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath3.Id,
                 "GetById",
-                requestPayload.CreateParameter(userId)),
+                requestPayload.CreateParameter(userId)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(User))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
@@ -142,21 +159,26 @@ public class UserService(ClientContext clientContext) : ClientService<User>(clie
         {
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathStaticProperty(typeof(Context), "Current"));
+                new ObjectPathStaticProperty(typeof(Context), "Current")
+            );
             var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "Web"));
+                new ObjectPathProperty(objectPath1.Id, "Web")
+            );
             var objectPath3 = requestPayload.Add(
-                new ObjectPathProperty(objectPath2.Id, "SiteUsers"));
+                new ObjectPathProperty(objectPath2.Id, "SiteUsers")
+            );
             var objectPath4 = requestPayload.Add(
                 new ObjectPathMethod(
                     objectPath3.Id,
                     "GetByLoginName",
-                    requestPayload.CreateParameter(userName)),
+                    requestPayload.CreateParameter(userName)
+                ),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {
                     Query = new ClientQuery(true, typeof(User))
-                });
+                }
+            );
             return this.ClientContext
                 .ProcessQuery(requestPayload)
                 .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
@@ -165,21 +187,26 @@ public class UserService(ClientContext clientContext) : ClientService<User>(clie
         {
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(
-                new ObjectPathStaticProperty(typeof(Context), "Current"));
+                new ObjectPathStaticProperty(typeof(Context), "Current")
+            );
             var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "Web"));
+                new ObjectPathProperty(objectPath1.Id, "Web")
+            );
             var objectPath3 = requestPayload.Add(
-                new ObjectPathProperty(objectPath2.Id, "SiteUsers"));
+                new ObjectPathProperty(objectPath2.Id, "SiteUsers")
+            );
             var objectPath4 = requestPayload.Add(
                 new ObjectPathMethod(
                     objectPath3.Id,
                     "GetByEmail",
-                    requestPayload.CreateParameter(userName)),
+                    requestPayload.CreateParameter(userName)
+                ),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {
                     Query = new ClientQuery(true, typeof(User))
-                });
+                }
+            );
             return this.ClientContext
                 .ProcessQuery(requestPayload)
                 .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
@@ -190,9 +217,11 @@ public class UserService(ClientContext clientContext) : ClientService<User>(clie
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
             new ObjectPathProperty(objectPath2.Id, "SiteUsers"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -200,7 +229,8 @@ public class UserService(ClientContext clientContext) : ClientService<User>(clie
             {
                 Query = ClientQuery.Empty,
                 ChildItemQuery = new ClientQuery(true, typeof(User))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<UserEnumerable>(requestPayload.GetActionId<ClientActionQuery>());

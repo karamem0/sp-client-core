@@ -18,69 +18,38 @@ using System.Xml.Serialization;
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
 [XmlType("Query", Namespace = "http://schemas.microsoft.com/sharepoint/clientquery/2009")]
-public class ClientQuery : ClientRequestObject
+public class ClientQuery(
+    bool selectAllProperties,
+    Type type = null,
+    params string[] conditions
+) : ClientRequestObject
 {
 
     public static readonly ClientQuery Empty = new(false);
 
-    public ClientQuery(bool selectAllProperties)
+    public ClientQuery(
+        bool selectAllProperties,
+        Type type,
+        IEnumerable<string> conditions
+    )
+        : this(
+            selectAllProperties,
+            type,
+            [.. conditions]
+        )
     {
-        this.SelectAllProperties = selectAllProperties;
-        this.Properties = [];
-    }
-
-    public ClientQuery(bool selectAllProperties, Type type, params string[] conditions)
-    {
-        this.SelectAllProperties = selectAllProperties;
-        this.Properties = type.GetDeclaredProperties()
-            .Where(propertyInfo => propertyInfo.IsDefined(typeof(JsonPropertyAttribute)))
-            .Where(propertyInfo =>
-            {
-                var conditionAttribute = propertyInfo.GetCustomAttribute<ClientQueryIgnoreAttribute>();
-                if (conditionAttribute is null)
-                {
-                    return true;
-                }
-                else
-                {
-                    if (conditionAttribute.Name is null)
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        return conditions.Contains(conditionAttribute.Name);
-                    }
-                }
-            })
-            .Select(propertyInfo =>
-            {
-                var propertyAttribute = propertyInfo.GetCustomAttribute<JsonPropertyAttribute>();
-                var propertyName = string.IsNullOrEmpty(propertyAttribute.PropertyName) ? propertyInfo.Name : propertyAttribute.PropertyName;
-                var propertyType = propertyInfo.PropertyType;
-                if (propertyType.IsSubclassOf(typeof(ClientObject)))
-                {
-                    return new ClientQueryProperty(propertyName)
-                    {
-                        SelectAll = true,
-                        Query = new ClientQuery(selectAllProperties, propertyType)
-                    };
-                }
-                else
-                {
-                    return new ClientQueryProperty(propertyName)
-                    {
-                        ScalarProperty = true
-                    };
-                }
-            })
-            .ToList();
     }
 
     [XmlAttribute()]
-    public virtual bool SelectAllProperties { get; protected set; }
+    public virtual bool SelectAllProperties { get; protected set; } = selectAllProperties;
 
     [XmlArray()]
-    public virtual IEnumerable<ClientQueryProperty> Properties { get; protected set; }
+    public virtual IReadOnlyCollection<ClientQueryProperty> Properties { get; protected set; } = type is null
+        ? []
+        : type.GetDeclaredProperties()
+            .Where(propertyInfo => propertyInfo.IsDefined(typeof(JsonPropertyAttribute)))
+            .Where(propertyInfo => ClientQueryIgnoreAttribute.IsMatch(propertyInfo, conditions))
+            .Select(propertyInfo => ClientQueryProperty.Create(propertyInfo, selectAllProperties))
+            .ToArray();
 
 }

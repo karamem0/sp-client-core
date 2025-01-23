@@ -21,7 +21,11 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantAppService
 {
 
-    App AddObject(System.IO.Stream appContent, string appName, bool overwrite);
+    App AddObject(
+        System.IO.Stream appContent,
+        string appName,
+        bool overwrite
+    );
 
     App GetObject(App appObject);
 
@@ -44,7 +48,11 @@ public interface ITenantAppService
 public class TenantAppService(ClientContext clientContext) : ClientService(clientContext), ITenantAppService
 {
 
-    public App AddObject(System.IO.Stream appContent, string appName, bool overwrite)
+    public App AddObject(
+        System.IO.Stream appContent,
+        string appName,
+        bool overwrite
+    )
     {
         _ = appContent ?? throw new ArgumentNullException(nameof(appContent));
         _ = appName ?? throw new ArgumentNullException(nameof(appName));
@@ -52,7 +60,8 @@ public class TenantAppService(ClientContext clientContext) : ClientService(clien
             .ConcatPath(
                 "_api/web/tenantappcatalog/add(url='{0}',overwrite={1})",
                 appName,
-                overwrite)
+                overwrite
+            )
             .ConcatQuery("$expand=ListItemAllFields&$select=ListItemAllFields/UniqueId");
         var file = this.ClientContext.PostStream<ODataV1Object>(requestUrl, appContent);
         var item = file["ListItemAllFields"] as JToken;
@@ -71,7 +80,8 @@ public class TenantAppService(ClientContext clientContext) : ClientService(clien
         var requestUrl = this.ClientContext.BaseAddress
             .ConcatPath(
                 "_api/web/tenantappcatalog/availableapps/getbyid('{0}')",
-                appId)
+                appId
+            )
             .ConcatQuery(ODataQuery.CreateSelect<App>());
         return this.ClientContext.GetObject<App>(requestUrl);
     }
@@ -90,7 +100,8 @@ public class TenantAppService(ClientContext clientContext) : ClientService(clien
         var requestUrl = this.ClientContext.BaseAddress
             .ConcatPath(
                 "_api/web/tenantappcatalog/availableapps/getbyid('{0}')/install",
-                appObject.Id);
+                appObject.Id
+            );
         this.ClientContext.PostObject(requestUrl, null);
     }
 
@@ -100,7 +111,8 @@ public class TenantAppService(ClientContext clientContext) : ClientService(clien
         var requestUrl = this.ClientContext.BaseAddress
             .ConcatPath(
                 "_api/web/tenantappcatalog/availableapps/getbyid('{0}')/deploy",
-                appObject.Id);
+                appObject.Id
+            );
         this.ClientContext.PostObject(requestUrl, null);
     }
 
@@ -110,7 +122,8 @@ public class TenantAppService(ClientContext clientContext) : ClientService(clien
         var requestUrl = this.ClientContext.BaseAddress
             .ConcatPath(
                 "_api/web/tenantappcatalog/availableapps/getbyid('{0}')/remove",
-                appObject.Id);
+                appObject.Id
+            );
         this.ClientContext.PostObject(requestUrl, null);
     }
 
@@ -120,7 +133,8 @@ public class TenantAppService(ClientContext clientContext) : ClientService(clien
         var requestUrl = this.ClientContext.BaseAddress
             .ConcatPath(
                 "_api/web/tenantappcatalog/availableapps/getbyid('{0}')/uninstall",
-                appObject.Id);
+                appObject.Id
+            );
         this.ClientContext.PostObject(requestUrl, null);
     }
 
@@ -130,7 +144,8 @@ public class TenantAppService(ClientContext clientContext) : ClientService(clien
         var requestUrl = this.ClientContext.BaseAddress
             .ConcatPath(
                 "_api/web/tenantappcatalog/availableapps/getbyid('{0}')/deploy",
-                appObject.Id);
+                appObject.Id
+            );
         this.ClientContext.PostObject(requestUrl, null);
     }
 

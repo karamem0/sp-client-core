@@ -24,16 +24,30 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class MoveFileCommand : ClientObjectCmdlet<IFileService>
 {
 
-    public MoveFileCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet1"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet2"
+    )]
     public File Identity { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet1")]
-    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 1,
+        ParameterSetName = "ParamSet1"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 1,
+        ParameterSetName = "ParamSet2"
+    )]
     public Uri NewUrl { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
@@ -70,12 +84,18 @@ public class MoveFileCommand : ClientObjectCmdlet<IFileService>
         {
             if (this.NewUrl.IsAbsoluteUri)
             {
-                var moveCopyOptions = new MoveCopyOptions(this.MyInvocation.BoundParameters);
-                this.Service.MoveObject(this.Identity, this.NewUrl, this.Overwrite, moveCopyOptions);
+                this.Service.MoveObject(
+                    this.Identity,
+                    this.NewUrl,
+                    this.Overwrite,
+                    this.MyInvocation.BoundParameters
+                );
             }
             else
             {
-                throw new InvalidOperationException(string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.NewUrl));
+                throw new InvalidOperationException(
+                    string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.NewUrl)
+                );
             }
         }
         if (this.ParameterSetName == "ParamSet2")
@@ -84,7 +104,11 @@ public class MoveFileCommand : ClientObjectCmdlet<IFileService>
             if (this.NewUrl.IsAbsoluteUri)
             {
                 var newUrl = new Uri(this.NewUrl.AbsolutePath, UriKind.Relative);
-                this.Service.MoveObject(this.Identity, newUrl, moveOperations);
+                this.Service.MoveObject(
+                    this.Identity,
+                    newUrl,
+                    moveOperations
+                );
                 if (this.PassThru)
                 {
                     this.Outputs.Add(this.Service.GetObject(newUrl));
@@ -92,7 +116,11 @@ public class MoveFileCommand : ClientObjectCmdlet<IFileService>
             }
             else
             {
-                this.Service.MoveObject(this.Identity, this.NewUrl, moveOperations);
+                this.Service.MoveObject(
+                    this.Identity,
+                    this.NewUrl,
+                    moveOperations
+                );
                 if (this.PassThru)
                 {
                     this.Outputs.Add(this.Service.GetObject(this.NewUrl));

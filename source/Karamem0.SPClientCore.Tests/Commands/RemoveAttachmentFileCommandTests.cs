@@ -28,42 +28,42 @@ public class RemoveAttachmentFileCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ListItem>(
             "Get-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "ItemId", context.AppSettings["ListItem1Id"] }
+                ["List"] = result1.ElementAt(0),
+                ["ItemId"] = context.AppSettings["ListItem1Id"]
             }
         );
         var result3 = context.Runspace.InvokeCommand<AttachmentFile>(
             "Save-KshAttachmentFile",
             new Dictionary<string, object>()
             {
-                { "ListItem", result2.ElementAt(0) },
-                { "Content", new System.IO.MemoryStream(Encoding.UTF8.GetBytes("TestFile0")) },
-                { "FileName", "TestFile0.txt" },
-                { "PassThru", true }
+                ["ListItem"] = result2.ElementAt(0),
+                ["Content"] = new System.IO.MemoryStream(Encoding.UTF8.GetBytes("TestFile0")),
+                ["FileName"] = "TestFile0.txt",
+                ["PassThru"] = true
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshAttachmentFile",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                ["Identity"] = result3.ElementAt(0)
             }
         );
     }
@@ -76,50 +76,50 @@ public class RemoveAttachmentFileCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ListItem>(
             "Get-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "ItemId", context.AppSettings["ListItem1Id"] }
+                ["List"] = result1.ElementAt(0),
+                ["ItemId"] = context.AppSettings["ListItem1Id"]
             }
         );
         var result3 = context.Runspace.InvokeCommand<AttachmentFile>(
             "Save-KshAttachmentFile",
             new Dictionary<string, object>()
             {
-                { "ListItem", result2.ElementAt(0) },
-                { "Content", new System.IO.MemoryStream(Encoding.UTF8.GetBytes("TestFile0")) },
-                { "FileName", "TestFile0.txt" },
-                { "PassThru", true }
+                ["ListItem"] = result2.ElementAt(0),
+                ["Content"] = new System.IO.MemoryStream(Encoding.UTF8.GetBytes("TestFile0")),
+                ["FileName"] = "TestFile0.txt",
+                ["PassThru"] = true
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshAttachmentFile",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) },
-                { "RecycleBin", true }
+                ["Identity"] = result3.ElementAt(0),
+                ["RecycleBin"] = true
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshRecycleBinItem",
             new Dictionary<string, object>()
             {
-                { "All", true }
+                ["All"] = true
             }
         );
     }

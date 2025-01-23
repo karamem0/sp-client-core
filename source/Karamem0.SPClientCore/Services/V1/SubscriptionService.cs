@@ -46,13 +46,16 @@ public class SubscriptionService(ClientContext clientContext) : ClientService(cl
         var requestUrl = listUrl
             .ConcatPath("subscriptions")
             .ConcatQuery(ODataQuery.CreateSelect<Subscription>());
-        var requestPayload = new ODataV1RequestPayload<SubscriptionCreationInfo>(
+        var requestPayload = ODataV1RequestPayload.Create<SubscriptionCreationInfo>(
             creationInfo
-                .Concat(new Dictionary<string, object>()
-                {
-                    { "Resource", listUrl.ToString() }
-                })
-                .ToDictionary(item => item.Key, item => item.Value));
+                .Concat(
+                    new Dictionary<string, object>()
+                    {
+                        ["Resource"] = listUrl.ToString()
+                    }
+                )
+                .ToDictionary(item => item.Key, item => item.Value)
+        );
         return this.ClientContext.PostObject<Subscription>(requestUrl, requestPayload.Entity);
     }
 
@@ -63,7 +66,8 @@ public class SubscriptionService(ClientContext clientContext) : ClientService(cl
             .ConcatPath(
                 "_api/web/lists('{0}')/subscriptions('{1}')",
                 subscriptionObject.Resource,
-                subscriptionObject.Id)
+                subscriptionObject.Id
+            )
             .ConcatQuery(ODataQuery.CreateSelect<Subscription>());
         return this.ClientContext.GetObject<Subscription>(requestUrl);
     }
@@ -76,7 +80,8 @@ public class SubscriptionService(ClientContext clientContext) : ClientService(cl
             .ConcatPath(
                 "_api/web/lists('{0}')/subscriptions('{1}')",
                 listObject.Id,
-                subscriptionId)
+                subscriptionId
+            )
             .ConcatQuery(ODataQuery.CreateSelect<Subscription>());
         return this.ClientContext.GetObject<Subscription>(requestUrl);
     }
@@ -97,7 +102,8 @@ public class SubscriptionService(ClientContext clientContext) : ClientService(cl
             .ConcatPath(
                 "_api/web/lists('{0}')/subscriptions('{1}')",
                 subscriptionObject.Resource,
-                subscriptionObject.Id);
+                subscriptionObject.Id
+            );
         this.ClientContext.DeleteObject(requestUrl);
     }
 
@@ -109,8 +115,9 @@ public class SubscriptionService(ClientContext clientContext) : ClientService(cl
             .ConcatPath(
                 "_api/web/lists('{0}')/subscriptions('{1}')",
                 subscriptionObject.Resource,
-                subscriptionObject.Id);
-        var requestPayload = new ODataV1RequestPayload<SubscriptionModificationInfo>(modificationInfo);
+                subscriptionObject.Id
+            );
+        var requestPayload = ODataV1RequestPayload.Create<SubscriptionModificationInfo>(modificationInfo);
         this.ClientContext.PatchObject(requestUrl, requestPayload.Entity);
     }
 

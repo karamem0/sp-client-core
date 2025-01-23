@@ -35,7 +35,8 @@ public interface IRoleDefinitionService
 
 }
 
-public class RoleDefinitionService(ClientContext clientContext) : ClientService<RoleDefinition>(clientContext), IRoleDefinitionService
+public class RoleDefinitionService(ClientContext clientContext)
+    : ClientService<RoleDefinition>(clientContext), IRoleDefinitionService
 {
 
     public RoleDefinition AddObject(IReadOnlyDictionary<string, object> creationInfo)
@@ -43,21 +44,26 @@ public class RoleDefinitionService(ClientContext clientContext) : ClientService<
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "RoleDefinitions"));
+            new ObjectPathProperty(objectPath2.Id, "RoleDefinitions")
+        );
         var objectPath4 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath3.Id,
                 "Add",
-                requestPayload.CreateParameter(new RoleDefinitionCreationInfo(creationInfo))),
+                requestPayload.CreateParameter(ClientValueObject.Create<RoleDefinitionCreationInfo>(creationInfo))
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(RoleDefinition))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<RoleDefinition>(requestPayload.GetActionId<ClientActionQuery>());
@@ -68,21 +74,26 @@ public class RoleDefinitionService(ClientContext clientContext) : ClientService<
         _ = roleDefinitionId ?? throw new ArgumentNullException(nameof(roleDefinitionId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "RoleDefinitions"));
+            new ObjectPathProperty(objectPath2.Id, "RoleDefinitions")
+        );
         var objectPath4 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath3.Id,
                 "GetById",
-                requestPayload.CreateParameter(roleDefinitionId)),
+                requestPayload.CreateParameter(roleDefinitionId)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(RoleDefinition))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<RoleDefinition>(requestPayload.GetActionId<ClientActionQuery>());
@@ -93,21 +104,26 @@ public class RoleDefinitionService(ClientContext clientContext) : ClientService<
         _ = roleDefinitionName ?? throw new ArgumentNullException(nameof(roleDefinitionName));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "RoleDefinitions"));
+            new ObjectPathProperty(objectPath2.Id, "RoleDefinitions")
+        );
         var objectPath4 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath3.Id,
                 "GetByName",
-                requestPayload.CreateParameter(roleDefinitionName)),
+                requestPayload.CreateParameter(roleDefinitionName)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(RoleDefinition))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<RoleDefinition>(requestPayload.GetActionId<ClientActionQuery>());
@@ -117,9 +133,11 @@ public class RoleDefinitionService(ClientContext clientContext) : ClientService<
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
             new ObjectPathProperty(objectPath2.Id, "RoleDefinitions"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -127,7 +145,8 @@ public class RoleDefinitionService(ClientContext clientContext) : ClientService<
             {
                 Query = ClientQuery.Empty,
                 ChildItemQuery = new ClientQuery(true, typeof(RoleDefinition))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<RoleDefinitionEnumerable>(requestPayload.GetActionId<ClientActionQuery>());

@@ -27,7 +27,8 @@ public class ClientRequestValue
         }
         throw new ArgumentException(
             string.Format(StringResources.ErrorValueIsInvalid, input.ToString()),
-            nameof(input));
+            nameof(input)
+        );
     }
 
     public static bool TryCreate(object input, out ClientRequestValue output)
@@ -35,67 +36,151 @@ public class ClientRequestValue
         switch (input)
         {
             case null:
-                output = new ClientRequestValue("Null", null);
+                output = new ClientRequestValue()
+                {
+                    Type = "Null",
+                    Value = null
+                };
                 return true;
             case Enum:
-                output = new ClientRequestValue("Enum", Convert.ToInt32(input).ToString(CultureInfo.InvariantCulture));
+                output = new ClientRequestValue()
+                {
+                    Type = "Enum",
+                    Value = Convert.ToInt32(input).ToString(CultureInfo.InvariantCulture)
+                };
                 return true;
             case bool boolValue:
-                output = new ClientRequestValue("Boolean", boolValue.ToString().ToLower());
+                output = new ClientRequestValue()
+                {
+                    Type = "Boolean",
+                    Value = boolValue.ToString().ToLower()
+                };
                 return true;
             case byte byteValue:
-                output = new ClientRequestValue("Byte", byteValue.ToString());
+                output = new ClientRequestValue()
+                {
+                    Type = "Byte",
+                    Value = byteValue.ToString()
+                };
                 return true;
             case byte[] byteArrayValue:
-                output = new ClientRequestValue("Binary", Convert.ToBase64String(byteArrayValue));
+                output = new ClientRequestValue()
+                {
+                    Type = "Binary",
+                    Value = Convert.ToBase64String(byteArrayValue)
+                };
                 return true;
             case char charValue:
-                output = new ClientRequestValue("Char", charValue.ToString());
+                output = new ClientRequestValue()
+                {
+                    Type = "Char",
+                    Value = charValue.ToString()
+                };
                 return true;
             case short shortValue:
-                output = new ClientRequestValue("Int16", shortValue.ToString());
+                output = new ClientRequestValue()
+                {
+                    Type = "Int16",
+                    Value = shortValue.ToString()
+                };
                 return true;
             case ushort ushortValue:
-                output = new ClientRequestValue("UInt16", ushortValue.ToString());
+                output = new ClientRequestValue()
+                {
+                    Type = "UInt16",
+                    Value = ushortValue.ToString()
+                };
                 return true;
             case int intValue:
-                output = new ClientRequestValue("Int32", intValue.ToString());
+                output = new ClientRequestValue()
+                {
+                    Type = "Int32",
+                    Value = intValue.ToString()
+                };
                 return true;
             case uint uintValue:
-                output = new ClientRequestValue("UInt32", uintValue.ToString());
+                output = new ClientRequestValue()
+                {
+                    Type = "UInt32",
+                    Value = uintValue.ToString()
+                };
                 return true;
             case long longValue:
-                output = new ClientRequestValue("Int64", longValue.ToString());
+                output = new ClientRequestValue()
+                {
+                    Type = "Int64",
+                    Value = longValue.ToString()
+                };
                 return true;
             case ulong ulongValue:
-                output = new ClientRequestValue("UInt64", ulongValue.ToString());
+                output = new ClientRequestValue()
+                {
+                    Type = "UInt64",
+                    Value = ulongValue.ToString()
+                };
                 return true;
             case float singleValue:
-                output = new ClientRequestValue("Single", singleValue.ToString());
+                output = new ClientRequestValue()
+                {
+                    Type = "Single",
+                    Value = singleValue.ToString()
+                };
                 return true;
             case double doubleValue:
-                output = new ClientRequestValue("Double", doubleValue.ToString());
+                output = new ClientRequestValue()
+                {
+                    Type = "Double",
+                    Value = doubleValue.ToString()
+                };
                 return true;
             case decimal decimalValue:
-                output = new ClientRequestValue("Decimal", decimalValue.ToString());
+                output = new ClientRequestValue()
+                {
+                    Type = "Decimal",
+                    Value = decimalValue.ToString()
+                };
                 return true;
             case DateTime dateValue:
-                output = new ClientRequestValue("DateTime", dateValue.ToString("o", CultureInfo.InvariantCulture));
+                output = new ClientRequestValue()
+                {
+                    Type = "DateTime",
+                    Value = dateValue.ToString("o", CultureInfo.InvariantCulture)
+                };
                 return true;
             case Guid guidValue:
-                output = new ClientRequestValue("Guid", guidValue.ToString("B"));
+                output = new ClientRequestValue()
+                {
+                    Type = "Guid",
+                    Value = guidValue.ToString("B")
+                };
                 return true;
             case Uri uriValue:
-                output = new ClientRequestValue("String", uriValue.ToString());
+                output = new ClientRequestValue()
+                {
+                    Type = "String",
+                    Value = uriValue.ToString()
+                };
                 return true;
             case string stringValue:
-                output = new ClientRequestValue("String", stringValue);
+                output = new ClientRequestValue()
+                {
+                    Type = "String",
+                    Value = stringValue
+                };
                 return true;
             case SwitchParameter switchValue:
-                output = new ClientRequestValue("Boolean", switchValue.ToBool().ToString().ToLower());
+                output = new ClientRequestValue()
+                {
+                    Type = "Boolean",
+                    Value = switchValue.ToBool().ToString().ToLower()
+                };
                 return true;
             case ODataObject oDataValue:
-                output = new ClientRequestValue("String", JsonSerializerManager.Instance.Serialize(oDataValue));
+                output = new ClientRequestValue()
+                {
+                    Type = "String",
+                    Value = JsonSerializerManager.Instance.Serialize(oDataValue)
+                };
                 return true;
             default:
                 output = null;
@@ -105,12 +190,6 @@ public class ClientRequestValue
 
     private ClientRequestValue()
     {
-    }
-
-    private ClientRequestValue(string type, string value)
-    {
-        this.Type = type;
-        this.Value = value;
     }
 
     public string Type { get; private set; }

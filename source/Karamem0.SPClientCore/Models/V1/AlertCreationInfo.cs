@@ -20,14 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class AlertCreationInfo : ClientValueObject
 {
 
-    public AlertCreationInfo()
-    {
-    }
-
-    public AlertCreationInfo(IReadOnlyDictionary<string, object> parameters) : base(parameters)
-    {
-    }
-
     [JsonProperty()]
     public virtual AlertFrequency AlertFrequency { get; protected set; }
 

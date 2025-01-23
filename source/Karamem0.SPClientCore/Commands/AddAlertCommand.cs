@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddAlertCommand : ClientObjectCmdlet<IAlertService>
 {
 
-    public AddAlertCommand()
-    {
-    }
-
     [Parameter(Mandatory = false)]
     public AlertFrequency AlertFrequency { get; private set; }
 

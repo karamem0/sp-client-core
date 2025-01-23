@@ -1,5 +1,7 @@
 on: workflow_call
 
+permissions: {}
+
 jobs:
   run:
     name: Run

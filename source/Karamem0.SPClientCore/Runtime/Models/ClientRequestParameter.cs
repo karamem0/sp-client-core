@@ -13,11 +13,4 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
-public abstract class ClientRequestParameter : ClientRequestObject
-{
-
-    protected ClientRequestParameter()
-    {
-    }
-
-}
+public abstract class ClientRequestParameter : ClientRequestObject;

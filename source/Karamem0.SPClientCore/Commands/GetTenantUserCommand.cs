@@ -22,26 +22,62 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
 {
 
-    public GetTenantUserCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet3")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet1"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet2"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet3"
+    )]
     public TenantSiteCollection SiteCollection { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet4")]
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet5")]
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet6")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet4"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet5"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet6"
+    )]
     public Uri SiteCollectionUrl { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet1")]
-    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet4")]
+    [Parameter(
+        Mandatory = true,
+        Position = 1,
+        ParameterSetName = "ParamSet1"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 1,
+        ParameterSetName = "ParamSet4"
+    )]
     public int UserId { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet5")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet2"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet5"
+    )]
     public string UserName { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
@@ -66,7 +102,9 @@ public class GetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(new Uri(this.SiteCollection.Url, UriKind.Absolute)));
+                this.Outputs.AddRange(
+                    this.Service.GetObjectEnumerable(new Uri(this.SiteCollection.Url, UriKind.Absolute))
+                );
             }
         }
         if (this.ParameterSetName == "ParamSet4")

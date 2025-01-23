@@ -21,10 +21,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class SetTenantHomeSiteCommand : ClientObjectCmdlet<ITenantHomeSiteService>
 {
 
-    public SetTenantHomeSiteCommand()
-    {
-    }
-
     [Parameter(Mandatory = true)]
     public string Url { get; private set; }
 

@@ -45,7 +45,8 @@ public class LikeService(ClientContext clientContext) : ClientService(clientCont
                 "_api/web/lists('{0}')/items({1})/comments({2})/likedby",
                 commentObject.ListId,
                 commentObject.ItemId,
-                commentObject.Id);
+                commentObject.Id
+            );
         return this.ClientContext.GetObject<ODataV1ObjectEnumerable<LikedUser>>(requestUrl);
     }
 
@@ -56,7 +57,8 @@ public class LikeService(ClientContext clientContext) : ClientService(clientCont
             .ConcatPath(
                 "_api/web/lists('{0}')/items({1})/likedby",
                 listItemObject.ObjectIdentity.Split(':').SkipLast(2).Last(),
-                listItemObject.Id);
+                listItemObject.Id
+            );
         return this.ClientContext.GetObject<ODataV1ObjectEnumerable<LikedUser>>(requestUrl);
     }
 
@@ -68,7 +70,8 @@ public class LikeService(ClientContext clientContext) : ClientService(clientCont
                 "_api/web/lists('{0}')/items({1})/comments({2})/like",
                 commentObject.ListId,
                 commentObject.ItemId,
-                commentObject.Id);
+                commentObject.Id
+            );
         this.ClientContext.PostObject(requestUrl, null);
     }
 
@@ -79,7 +82,8 @@ public class LikeService(ClientContext clientContext) : ClientService(clientCont
             .ConcatPath(
                 "_api/web/lists('{0}')/items({1})/like",
                 listItemObject.ObjectIdentity.Split(':').SkipLast(2).Last(),
-                listItemObject.Id);
+                listItemObject.Id
+            );
         this.ClientContext.PostObject(requestUrl, null);
     }
 
@@ -91,7 +95,8 @@ public class LikeService(ClientContext clientContext) : ClientService(clientCont
                 "_api/web/lists('{0}')/items({1})/comments({2})/unlike",
                 commentObject.ListId,
                 commentObject.ItemId,
-                commentObject.Id);
+                commentObject.Id
+            );
         this.ClientContext.PostObject(requestUrl, null);
     }
 
@@ -102,7 +107,8 @@ public class LikeService(ClientContext clientContext) : ClientService(clientCont
             .ConcatPath(
                 "_api/web/lists('{0}')/items({1})/unlike",
                 listItemObject.ObjectIdentity.Split(':').SkipLast(2).Last(),
-                listItemObject.Id);
+                listItemObject.Id
+            );
         this.ClientContext.PostObject(requestUrl, null);
     }
 

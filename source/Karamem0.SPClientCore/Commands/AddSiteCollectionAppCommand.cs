@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddSiteCollectionAppCommand : ClientObjectCmdlet<ISiteCollectionAppService>
 {
 
-    public AddSiteCollectionAppCommand()
-    {
-    }
-
     [Parameter(Mandatory = true)]
     public System.IO.Stream Content { get; private set; }
 
@@ -37,7 +33,13 @@ public class AddSiteCollectionAppCommand : ClientObjectCmdlet<ISiteCollectionApp
 
     protected override void ProcessRecordCore()
     {
-        this.Outputs.Add(this.Service.AddObject(this.Content, this.FileName, this.Overwrite));
+        this.Outputs.Add(
+            this.Service.AddObject(
+                this.Content,
+                this.FileName,
+                this.Overwrite
+            )
+        );
     }
 
 }

@@ -28,25 +28,25 @@ public class SelectSiteCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["BaseUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["BaseUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<Site>(
             "Get-KshSite",
             new Dictionary<string, object>()
             {
-                { "SiteId", context.AppSettings["Site1Id"] }
+                ["SiteId"] = context.AppSettings["Site1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<Site>(
             "Select-KshSite",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) },
-                { "PassThru", true }
+                ["Identity"] = result1.ElementAt(0),
+                ["PassThru"] = true
             }
         );
         var actual = result2.ElementAt(0);

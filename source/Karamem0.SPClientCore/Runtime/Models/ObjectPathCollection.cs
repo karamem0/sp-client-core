@@ -17,19 +17,13 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class ObjectPathCollection : IEnumerable<ObjectPath>
 {
 
-    private readonly IDictionary<long, ObjectPath> collection;
-
-    public ObjectPathCollection()
-    {
-        this.collection = new Dictionary<long, ObjectPath>();
-    }
+    private readonly Dictionary<long, ObjectPath> collection = new();
 
     public ObjectPath this[long id] => this.collection[id];
 
     public void Add(ObjectPath item)
     {
-        _ = item ?? throw new ArgumentNullException(nameof(item));
-        this.collection.Add(item.Id, item);
+        this.collection.Add(item.Id, item ?? throw new ArgumentNullException(nameof(item)));
     }
 
     public void Remove(long id)

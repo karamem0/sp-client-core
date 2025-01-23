@@ -29,7 +29,8 @@ public interface ITenantSiteDesignService
 
 }
 
-public class TenantSiteDesignService(ClientContext clientContext) : ClientService(clientContext), ITenantSiteDesignService
+public class TenantSiteDesignService(ClientContext clientContext)
+    : ClientService(clientContext), ITenantSiteDesignService
 {
 
     public TenantSiteDesign AddObject(IReadOnlyDictionary<string, object> creationInfo)
@@ -37,17 +38,20 @@ public class TenantSiteDesignService(ClientContext clientContext) : ClientServic
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant)));
+            new ObjectPathConstructor(typeof(Tenant))
+        );
         var objectPath2 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath1.Id,
                 "CreateSiteDesign",
-                requestPayload.CreateParameter(new TenantSiteDesignCreationInfo(creationInfo))),
+                requestPayload.CreateParameter(ClientValueObject.Create<TenantSiteDesignCreationInfo>(creationInfo))
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(TenantSiteDesign))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<TenantSiteDesign>(requestPayload.GetActionId<ClientActionQuery>());
@@ -62,7 +66,8 @@ public class TenantSiteDesignService(ClientContext clientContext) : ClientServic
                 typeof(Tenant),
                 "GetSiteDesign",
                 requestPayload.CreateParameter(siteDesignId)
-            ));
+            )
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<TenantSiteDesign>(requestPayload.GetActionId<ClientActionStaticMethod>());
@@ -72,17 +77,20 @@ public class TenantSiteDesignService(ClientContext clientContext) : ClientServic
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant)));
+            new ObjectPathConstructor(typeof(Tenant))
+        );
         var objectPath2 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath1.Id,
-                "GetSiteDesigns"),
+                "GetSiteDesigns"
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = ClientQuery.Empty,
                 ChildItemQuery = new ClientQuery(true, typeof(TenantSiteDesign))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<TenantSiteDesignEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
@@ -93,13 +101,16 @@ public class TenantSiteDesignService(ClientContext clientContext) : ClientServic
         _ = siteDesignObject ?? throw new ArgumentNullException(nameof(siteDesignObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant)));
+            new ObjectPathConstructor(typeof(Tenant))
+        );
         var objectPath2 = requestPayload.Add(
             objectPath1,
             objectPathId => new ClientActionMethod(
                 objectPathId,
                 "DeleteSiteDesign",
-                requestPayload.CreateParameter(siteDesignObject.Id)));
+                requestPayload.CreateParameter(siteDesignObject.Id)
+            )
+        );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

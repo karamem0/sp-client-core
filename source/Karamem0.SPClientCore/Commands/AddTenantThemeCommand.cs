@@ -23,10 +23,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddTenantThemeCommand : ClientObjectCmdlet<ITenantThemeService>
 {
 
-    public AddTenantThemeCommand()
-    {
-    }
-
     [Parameter(Mandatory = true)]
     public bool IsInverted { get; private set; }
 

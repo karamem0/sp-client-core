@@ -35,7 +35,8 @@ public interface IFileVersionService
 
 }
 
-public class FileVersionService(ClientContext clientContext) : ClientService<FileVersion>(clientContext), IFileVersionService
+public class FileVersionService(ClientContext clientContext)
+    : ClientService<FileVersion>(clientContext), IFileVersionService
 {
 
     public FileVersion GetObject(File fileObject, int? fileVersionId)
@@ -44,19 +45,23 @@ public class FileVersionService(ClientContext clientContext) : ClientService<Fil
         _ = fileVersionId ?? throw new ArgumentNullException(nameof(fileVersionId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(fileObject.ObjectIdentity));
+            new ObjectPathIdentity(fileObject.ObjectIdentity)
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Versions"));
+            new ObjectPathProperty(objectPath1.Id, "Versions")
+        );
         var objectPath3 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath2.Id,
                 "GetById",
-                requestPayload.CreateParameter(fileVersionId)),
+                requestPayload.CreateParameter(fileVersionId)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(FileVersion))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<FileVersion>(requestPayload.GetActionId<ClientActionQuery>());
@@ -67,7 +72,8 @@ public class FileVersionService(ClientContext clientContext) : ClientService<Fil
         _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(fileObject.ObjectIdentity));
+            new ObjectPathIdentity(fileObject.ObjectIdentity)
+        );
         var objectPath2 = requestPayload.Add(
             new ObjectPathProperty(objectPath1.Id, "Versions"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -75,7 +81,8 @@ public class FileVersionService(ClientContext clientContext) : ClientService<Fil
             {
                 Query = ClientQuery.Empty,
                 ChildItemQuery = new ClientQuery(true, typeof(FileVersion))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<FileVersionEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
@@ -87,15 +94,19 @@ public class FileVersionService(ClientContext clientContext) : ClientService<Fil
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(string.Join(":", fileVersionObject.ObjectIdentity.Split(':').SkipLast(2))),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+            objectPathId => new ClientActionInstantiateObjectPath(objectPathId)
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Versions"));
+            new ObjectPathProperty(objectPath1.Id, "Versions")
+        );
         var objectPath3 = requestPayload.Add(
             objectPath2,
             objectPathId => new ClientActionMethod(
                 objectPathId,
                 "RecycleByLabel",
-                requestPayload.CreateParameter(fileVersionObject.VersionLabel)));
+                requestPayload.CreateParameter(fileVersionObject.VersionLabel)
+            )
+        );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
@@ -104,15 +115,19 @@ public class FileVersionService(ClientContext clientContext) : ClientService<Fil
         _ = fileVersionObject ?? throw new ArgumentNullException(nameof(fileVersionObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(string.Join(":", fileVersionObject.ObjectIdentity.Split(':').SkipLast(2))));
+            new ObjectPathIdentity(string.Join(":", fileVersionObject.ObjectIdentity.Split(':').SkipLast(2)))
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Versions"));
+            new ObjectPathProperty(objectPath1.Id, "Versions")
+        );
         var objectPath3 = requestPayload.Add(
             objectPath2,
             objectPathId => new ClientActionMethod(
                 objectPathId,
                 "DeleteByLabel",
-                requestPayload.CreateParameter(fileVersionObject.VersionLabel)));
+                requestPayload.CreateParameter(fileVersionObject.VersionLabel)
+            )
+        );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
@@ -121,12 +136,15 @@ public class FileVersionService(ClientContext clientContext) : ClientService<Fil
         _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(fileObject.ObjectIdentity));
+            new ObjectPathIdentity(fileObject.ObjectIdentity)
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Versions"));
+            new ObjectPathProperty(objectPath1.Id, "Versions")
+        );
         var objectPath3 = requestPayload.Add(
             objectPath2,
-            objectPathId => new ClientActionMethod(objectPathId, "DeleteAll"));
+            objectPathId => new ClientActionMethod(objectPathId, "DeleteAll")
+        );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
@@ -135,15 +153,19 @@ public class FileVersionService(ClientContext clientContext) : ClientService<Fil
         _ = fileVersionObject ?? throw new ArgumentNullException(nameof(fileVersionObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(string.Join(":", fileVersionObject.ObjectIdentity.Split(':').SkipLast(2))));
+            new ObjectPathIdentity(string.Join(":", fileVersionObject.ObjectIdentity.Split(':').SkipLast(2)))
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Versions"));
+            new ObjectPathProperty(objectPath1.Id, "Versions")
+        );
         var objectPath3 = requestPayload.Add(
             objectPath2,
             objectPathId => new ClientActionMethod(
                 objectPathId,
                 "RestoreByLabel",
-                requestPayload.CreateParameter(fileVersionObject.VersionLabel)));
+                requestPayload.CreateParameter(fileVersionObject.VersionLabel)
+            )
+        );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

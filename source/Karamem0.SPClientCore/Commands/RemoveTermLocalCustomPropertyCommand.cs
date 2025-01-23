@@ -17,14 +17,15 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
-[Cmdlet(VerbsCommon.Remove, "KshTermLocalCustomProperty", SupportsShouldProcess = true, ConfirmImpact = ConfirmImpact.High)]
+[Cmdlet(
+    VerbsCommon.Remove,
+    "KshTermLocalCustomProperty",
+    SupportsShouldProcess = true,
+    ConfirmImpact = ConfirmImpact.High
+)]
 [OutputType(typeof(void))]
 public class RemoveTermLocalCustomPropertyCommand : ClientObjectCmdlet<ITermLocalCustomPropertyService>
 {
-
-    public RemoveTermLocalCustomPropertyCommand()
-    {
-    }
 
     [Parameter(Mandatory = true, Position = 0)]
     public Term Term { get; private set; }

@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class SaveFileCommand : ClientObjectCmdlet<IFileService>
 {
 
-    public SaveFileCommand()
-    {
-    }
-
     [Parameter(Mandatory = true)]
     public Folder Folder { get; private set; }
 
@@ -43,7 +39,12 @@ public class SaveFileCommand : ClientObjectCmdlet<IFileService>
 
     protected override void ProcessRecordCore()
     {
-        this.Service.UploadObject(this.Folder.ServerRelativeUrl, this.FileName, this.Content, this.Overwrite);
+        this.Service.UploadObject(
+            this.Folder.ServerRelativeUrl,
+            this.FileName,
+            this.Content,
+            this.Overwrite
+        );
         if (this.PassThru)
         {
             this.Outputs.Add(this.Service.GetObject(this.Folder, this.FileName));

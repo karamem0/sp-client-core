@@ -16,14 +16,15 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
-[Cmdlet(VerbsCommon.Remove, "KshTenantOrganizationNewsSite", SupportsShouldProcess = true, ConfirmImpact = ConfirmImpact.High)]
+[Cmdlet(
+    VerbsCommon.Remove,
+    "KshTenantOrganizationNewsSite",
+    SupportsShouldProcess = true,
+    ConfirmImpact = ConfirmImpact.High
+)]
 [OutputType(typeof(void))]
 public class RemoveTenantOrganizationNewsSiteCommand : ClientObjectCmdlet<ITenantOrganizationNewsSiteService>
 {
-
-    public RemoveTenantOrganizationNewsSiteCommand()
-    {
-    }
 
     [Parameter(Mandatory = true)]
     public string Url { get; private set; }

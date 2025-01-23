@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddOrganizationSharingLinkCommand : ClientObjectCmdlet<ISharingLinkService>
 {
 
-    public AddOrganizationSharingLinkCommand()
-    {
-    }
-
     [Parameter(Mandatory = true)]
     public Uri Url { get; private set; }
 

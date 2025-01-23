@@ -29,36 +29,38 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable()
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new Hashtable()
                     {
-                        { "TestColumn1", "Test Value 0" }
+                        ["TestColumn1"] = "Test Value 0"
                     }
-                } }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);
@@ -73,36 +75,38 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable()
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new Hashtable()
                     {
-                        { "TestColumn2", "Test Value 0" }
+                        ["TestColumn2"] = "Test Value 0"
                     }
-                } }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);
@@ -117,36 +121,38 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable()
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new Hashtable()
                     {
-                        { "TestColumn3", "Test Value 0" }
+                        ["TestColumn3"] = "Test Value 0"
                     }
-                } }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);
@@ -161,36 +167,41 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable()
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new Hashtable()
                     {
-                        { "TestColumn4", new List<string>() { "Test Value 0" } }
+                        ["TestColumn4"] = new List<string>()
+                        {
+                            "Test Value 0"
+                        }
                     }
-                } }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);
@@ -205,36 +216,38 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable()
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new Hashtable()
                     {
-                        { "TestColumn5", 1 }
+                        ["TestColumn5"] = 1
                     }
-                } }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);
@@ -249,36 +262,38 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable()
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new Hashtable()
                     {
-                        { "TestColumn6", 100 }
+                        ["TestColumn6"] = 100
                     }
-                } }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);
@@ -293,36 +308,42 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable()
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new Hashtable()
                     {
-                        { "TestColumn7", new DateTime(2010, 12, 15) }
+                        ["TestColumn7"] = new DateTime(
+                            2010,
+                            12,
+                            15
+                        )
                     }
-                } }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);
@@ -337,43 +358,45 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ColumnLookupValue>(
             "New-KshColumnLookupValue",
             new Dictionary<string, object>()
             {
-                { "LookupId", context.AppSettings["ListItem1Id"] },
+                ["LookupId"] = context.AppSettings["ListItem1Id"],
             }
         );
         var result3 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable()
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new Hashtable()
                     {
-                        { "TestColumn8", result2.ElementAt(0) }
+                        ["TestColumn8"] = result2.ElementAt(0)
                     }
-                } }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                ["Identity"] = result3.ElementAt(0)
             }
         );
         var actual = result3.ElementAt(0);
@@ -388,43 +411,48 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ColumnLookupValue>(
             "New-KshColumnLookupValue",
             new Dictionary<string, object>()
             {
-                { "LookupId", context.AppSettings["ListItem1Id"] },
+                ["LookupId"] = context.AppSettings["ListItem1Id"],
             }
         );
         var result3 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable()
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new Hashtable()
                     {
-                        { "TestColumn9", new[] { result2.ElementAt(0) } }
+                        ["TestColumn9"] = new[]
+                        {
+                            result2.ElementAt(0)
+                        }
                     }
-                } }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                ["Identity"] = result3.ElementAt(0)
             }
         );
         var actual = result3.ElementAt(0);
@@ -439,36 +467,38 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable()
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new Hashtable()
                     {
-                        { "TestColumn10", true }
+                        ["TestColumn10"] = true
                     }
-                } }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);
@@ -483,43 +513,45 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ColumnUserValue>(
             "New-KshColumnUserValue",
             new Dictionary<string, object>()
             {
-                { "LookupId", context.AppSettings["User1Id"] },
+                ["LookupId"] = context.AppSettings["User1Id"],
             }
         );
         var result3 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable()
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new Hashtable()
                     {
-                        { "TestColumn11", result2.ElementAt(0) }
+                        ["TestColumn11"] = result2.ElementAt(0)
                     }
-                } }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                ["Identity"] = result3.ElementAt(0)
             }
         );
         var actual = result3.ElementAt(0);
@@ -534,43 +566,48 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ColumnUserValue>(
             "New-KshColumnUserValue",
             new Dictionary<string, object>()
             {
-                { "LookupId", context.AppSettings["User1Id"] },
+                ["LookupId"] = context.AppSettings["User1Id"],
             }
         );
         var result3 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable()
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new Hashtable()
                     {
-                        { "TestColumn12", new[] { result2.ElementAt(0) } }
+                        ["TestColumn12"] = new[]
+                        {
+                            result2.ElementAt(0)
+                        }
                     }
-                } }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                ["Identity"] = result3.ElementAt(0)
             }
         );
         var actual = result3.ElementAt(0);
@@ -585,44 +622,46 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ColumnUrlValue>(
             "New-KshColumnUrlValue",
             new Dictionary<string, object>()
             {
-                { "Url", "https://www.example.com" },
-                { "Description", "Test Value 0" }
+                ["Url"] = "https://www.example.com",
+                ["Description"] = "Test Value 0"
             }
         );
         var result3 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable()
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new Hashtable()
                     {
-                        { "TestColumn13", result2.ElementAt(0) }
+                        ["TestColumn13"] = result2.ElementAt(0)
                     }
-                } }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                ["Identity"] = result3.ElementAt(0)
             }
         );
         var actual = result3.ElementAt(0);
@@ -637,36 +676,38 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable()
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new Hashtable()
                     {
-                        { "TestColumn15", new Guid("395a6086-b6e9-45a3-b418-503ed107537f") }
+                        ["TestColumn15"] = new Guid("395a6086-b6e9-45a3-b418-503ed107537f")
                     }
-                } }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);
@@ -681,44 +722,46 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ColumnGeolocationValue>(
             "New-KshColumnGeolocationValue",
             new Dictionary<string, object>()
             {
-                { "Latitude", 10 },
-                { "Longitude", 10 }
+                ["Latitude"] = 10,
+                ["Longitude"] = 10
             }
         );
         var result3 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable()
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new Hashtable()
                     {
-                        { "TestColumn16", result2.ElementAt(0) }
+                        ["TestColumn16"] = result2.ElementAt(0)
                     }
-                } }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                ["Identity"] = result3.ElementAt(0)
             }
         );
         var actual = result3.ElementAt(0);
@@ -733,66 +776,68 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<TermGroup>(
             "Get-KshTermGroup",
             new Dictionary<string, object>()
             {
-                { "TermGroupId", context.AppSettings["TermGroup1Id"] }
+                ["TermGroupId"] = context.AppSettings["TermGroup1Id"]
             }
         );
         var result3 = context.Runspace.InvokeCommand<TermSet>(
             "Get-KshTermSet",
             new Dictionary<string, object>()
             {
-                { "TermGroup", result2.ElementAt(0) },
-                { "TermSetId", context.AppSettings["TermSet1Id"] }
+                ["TermGroup"] = result2.ElementAt(0),
+                ["TermSetId"] = context.AppSettings["TermSet1Id"]
             }
         );
         var result4 = context.Runspace.InvokeCommand<Term>(
             "Get-KshTerm",
             new Dictionary<string, object>()
             {
-                { "TermSet", result3.ElementAt(0) },
-                { "TermId", context.AppSettings["Term1Id"] }
+                ["TermSet"] = result3.ElementAt(0),
+                ["TermId"] = context.AppSettings["Term1Id"]
             }
         );
         var result5 = context.Runspace.InvokeCommand<ColumnTaxonomyValue>(
             "New-KshColumnTaxonomyValue",
             new Dictionary<string, object>()
             {
-                { "Term", result4.ElementAt(0) }
+                ["Term"] = result4.ElementAt(0)
             }
         );
         var result6 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable()
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new Hashtable()
                     {
-                        { "TestColumn17", result5.ElementAt(0) }
+                        ["TestColumn17"] = result5.ElementAt(0)
                     }
-                } }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result6.ElementAt(0) }
+                ["Identity"] = result6.ElementAt(0)
             }
         );
         var actual = result6.ElementAt(0);
@@ -807,56 +852,60 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ImageItem>(
             "Save-KshImage",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "FileName", "TestFile0.png" },
-                { "Content", new System.IO.MemoryStream(Convert.FromBase64String(
-                    "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMA" +
-                    "QObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII="
-                )) }
+                ["List"] = result1.ElementAt(0),
+                ["FileName"] = "TestFile0.png",
+                ["Content"] = new System.IO.MemoryStream(
+                    Convert.FromBase64String(
+                        "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMA" +
+                        "QObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII="
+                    )
+                )
             }
         );
         var result3 = context.Runspace.InvokeCommand<ColumnImageValue>(
             "New-KshColumnImageValue",
             new Dictionary<string, object>()
             {
-                { "ImageItem", result2.ElementAt(0) },
-                { "ColumnName", "TestColumn18" }
+                ["ImageItem"] = result2.ElementAt(0),
+                ["ColumnName"] = "TestColumn18"
             }
         );
         var result4 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[] { new Hashtable()
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new Hashtable()
                     {
-                        { "TestColumn18", result3.ElementAt(0) }
+                        ["TestColumn18"] = result3.ElementAt(0)
                     }
-                } }
+                }
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result4.ElementAt(0) }
+                ["Identity"] = result4.ElementAt(0)
             }
         );
         var actual = result4.ElementAt(0);
@@ -871,27 +920,29 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[]
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new
                     {
-                        new { TestColumn1 = "Test Value 0" }
+                        TestColumn1 = "Test Value 0"
                     }
                 }
             }
@@ -900,7 +951,7 @@ public class AddListItemCommandTests
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);
@@ -915,27 +966,29 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[]
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new
                     {
-                        new { TestColumn2 = "Test Value 0" }
+                        TestColumn2 = "Test Value 0"
                     }
                 }
             }
@@ -944,7 +997,7 @@ public class AddListItemCommandTests
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);
@@ -959,27 +1012,29 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[]
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new
                     {
-                        new { TestColumn3 = "Test Value 0" }
+                        TestColumn3 = "Test Value 0"
                     }
                 }
             }
@@ -988,7 +1043,7 @@ public class AddListItemCommandTests
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);
@@ -1003,27 +1058,32 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[]
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new
                     {
-                        new { TestColumn4 = new List<string>() { "Test Value 0" } }
+                        TestColumn4 = new List<string>()
+                        {
+                            "Test Value 0"
+                        }
                     }
                 }
             }
@@ -1032,7 +1092,7 @@ public class AddListItemCommandTests
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);
@@ -1047,27 +1107,29 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[]
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new
                     {
-                        new { TestColumn5 = 1 }
+                        TestColumn5 = 1
                     }
                 }
             }
@@ -1076,7 +1138,7 @@ public class AddListItemCommandTests
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);
@@ -1091,27 +1153,29 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[]
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new
                     {
-                        new { TestColumn6 = 100 }
+                        TestColumn6 = 100
                     }
                 }
             }
@@ -1120,7 +1184,7 @@ public class AddListItemCommandTests
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);
@@ -1135,27 +1199,33 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[]
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new
                     {
-                        new { TestColumn7 = new DateTime(2010, 12, 15) }
+                        TestColumn7 = new DateTime(
+                            2010,
+                            12,
+                            15
+                        )
                     }
                 }
             }
@@ -1164,7 +1234,7 @@ public class AddListItemCommandTests
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);
@@ -1179,34 +1249,36 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ColumnLookupValue>(
             "New-KshColumnLookupValue",
             new Dictionary<string, object>()
             {
-                { "LookupId", context.AppSettings["ListItem1Id"] },
+                ["LookupId"] = context.AppSettings["ListItem1Id"],
             }
         );
         var result3 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[]
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new
                     {
-                        new { TestColumn8 = result2.ElementAt(0) }
+                        TestColumn8 = result2.ElementAt(0)
                     }
                 }
             }
@@ -1215,7 +1287,7 @@ public class AddListItemCommandTests
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                ["Identity"] = result3.ElementAt(0)
             }
         );
         var actual = result3.ElementAt(0);
@@ -1230,34 +1302,39 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ColumnLookupValue>(
             "New-KshColumnLookupValue",
             new Dictionary<string, object>()
             {
-                { "LookupId", context.AppSettings["ListItem1Id"] },
+                ["LookupId"] = context.AppSettings["ListItem1Id"],
             }
         );
         var result3 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[]
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new
                     {
-                        new { TestColumn9 = new[] { result2.ElementAt(0) } }
+                        TestColumn9 = new[]
+                        {
+                            result2.ElementAt(0)
+                        }
                     }
                 }
             }
@@ -1266,7 +1343,7 @@ public class AddListItemCommandTests
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                ["Identity"] = result3.ElementAt(0)
             }
         );
         var actual = result3.ElementAt(0);
@@ -1281,27 +1358,29 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[]
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new
                     {
-                        new { TestColumn10 = true }
+                        TestColumn10 = true
                     }
                 }
             }
@@ -1310,7 +1389,7 @@ public class AddListItemCommandTests
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);
@@ -1325,34 +1404,36 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ColumnUserValue>(
             "New-KshColumnUserValue",
             new Dictionary<string, object>()
             {
-                { "LookupId", context.AppSettings["User1Id"] },
+                ["LookupId"] = context.AppSettings["User1Id"],
             }
         );
         var result3 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[]
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new
                     {
-                        new { TestColumn11 = result2.ElementAt(0) }
+                        TestColumn11 = result2.ElementAt(0)
                     }
                 }
             }
@@ -1361,7 +1442,7 @@ public class AddListItemCommandTests
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                ["Identity"] = result3.ElementAt(0)
             }
         );
         var actual = result3.ElementAt(0);
@@ -1376,34 +1457,39 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ColumnUserValue>(
             "New-KshColumnUserValue",
             new Dictionary<string, object>()
             {
-                { "LookupId", context.AppSettings["User1Id"] },
+                ["LookupId"] = context.AppSettings["User1Id"],
             }
         );
         var result3 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[]
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new
                     {
-                        new { TestColumn12 = new[] { result2.ElementAt(0) } }
+                        TestColumn12 = new[]
+                        {
+                            result2.ElementAt(0)
+                        }
                     }
                 }
             }
@@ -1412,7 +1498,7 @@ public class AddListItemCommandTests
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                ["Identity"] = result3.ElementAt(0)
             }
         );
         var actual = result3.ElementAt(0);
@@ -1427,35 +1513,37 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ColumnUrlValue>(
             "New-KshColumnUrlValue",
             new Dictionary<string, object>()
             {
-                { "Url", "https://www.example.com" },
-                { "Description", "Test Value 0" }
+                ["Url"] = "https://www.example.com",
+                ["Description"] = "Test Value 0"
             }
         );
         var result3 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[]
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new
                     {
-                        new { TestColumn13 = result2.ElementAt(0) }
+                        TestColumn13 = result2.ElementAt(0)
                     }
                 }
             }
@@ -1464,7 +1552,7 @@ public class AddListItemCommandTests
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                ["Identity"] = result3.ElementAt(0)
             }
         );
         var actual = result3.ElementAt(0);
@@ -1479,27 +1567,29 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[]
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new
                     {
-                        new { TestColumn15 = new Guid("395a6086-b6e9-45a3-b418-503ed107537f") }
+                        TestColumn15 = new Guid("395a6086-b6e9-45a3-b418-503ed107537f")
                     }
                 }
             }
@@ -1508,7 +1598,7 @@ public class AddListItemCommandTests
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);
@@ -1523,35 +1613,37 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ColumnGeolocationValue>(
             "New-KshColumnGeolocationValue",
             new Dictionary<string, object>()
             {
-                { "Latitude", 10 },
-                { "Longitude", 10 }
+                ["Latitude"] = 10,
+                ["Longitude"] = 10
             }
         );
         var result3 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[]
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new
                     {
-                        new { TestColumn16 = result2.ElementAt(0) }
+                        TestColumn16 = result2.ElementAt(0)
                     }
                 }
             }
@@ -1560,7 +1652,7 @@ public class AddListItemCommandTests
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                ["Identity"] = result3.ElementAt(0)
             }
         );
         var actual = result3.ElementAt(0);
@@ -1575,57 +1667,59 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<TermGroup>(
             "Get-KshTermGroup",
             new Dictionary<string, object>()
             {
-                { "TermGroupId", context.AppSettings["TermGroup1Id"] }
+                ["TermGroupId"] = context.AppSettings["TermGroup1Id"]
             }
         );
         var result3 = context.Runspace.InvokeCommand<TermSet>(
             "Get-KshTermSet",
             new Dictionary<string, object>()
             {
-                { "TermGroup", result2.ElementAt(0) },
-                { "TermSetId", context.AppSettings["TermSet1Id"] }
+                ["TermGroup"] = result2.ElementAt(0),
+                ["TermSetId"] = context.AppSettings["TermSet1Id"]
             }
         );
         var result4 = context.Runspace.InvokeCommand<Term>(
             "Get-KshTerm",
             new Dictionary<string, object>()
             {
-                { "TermSet", result3.ElementAt(0) },
-                { "TermId", context.AppSettings["Term1Id"] }
+                ["TermSet"] = result3.ElementAt(0),
+                ["TermId"] = context.AppSettings["Term1Id"]
             }
         );
         var result5 = context.Runspace.InvokeCommand<ColumnTaxonomyValue>(
             "New-KshColumnTaxonomyValue",
             new Dictionary<string, object>()
             {
-                { "Term", result4.ElementAt(0) }
+                ["Term"] = result4.ElementAt(0)
             }
         );
         var result6 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[]
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new
                     {
-                        new { TestColumn17 = result5.ElementAt(0) }
+                        TestColumn17 = result5.ElementAt(0)
                     }
                 }
             }
@@ -1634,7 +1728,7 @@ public class AddListItemCommandTests
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result6.ElementAt(0) }
+                ["Identity"] = result6.ElementAt(0)
             }
         );
         var actual = result6.ElementAt(0);
@@ -1649,47 +1743,51 @@ public class AddListItemCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ImageItem>(
             "Save-KshImage",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "FileName", "TestFile0.png" },
-                { "Content", new System.IO.MemoryStream(Convert.FromBase64String(
-                    "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMA" +
-                    "QObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII="
-                )) }
+                ["List"] = result1.ElementAt(0),
+                ["FileName"] = "TestFile0.png",
+                ["Content"] = new System.IO.MemoryStream(
+                    Convert.FromBase64String(
+                        "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMA" +
+                        "QObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII="
+                    )
+                )
             }
         );
         var result3 = context.Runspace.InvokeCommand<ColumnImageValue>(
             "New-KshColumnImageValue",
             new Dictionary<string, object>()
             {
-                { "ImageItem", result2.ElementAt(0) },
-                { "ColumnName", "TestColumn18" }
+                ["ImageItem"] = result2.ElementAt(0),
+                ["ColumnName"] = "TestColumn18"
             }
         );
         var result4 = context.Runspace.InvokeCommand<ListItem>(
             "Add-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "Value", new[]
+                ["List"] = result1.ElementAt(0),
+                ["Value"] = new[]
+                {
+                    new
                     {
-                        new { TestColumn18 = result3.ElementAt(0) }
+                        TestColumn18 = result3.ElementAt(0)
                     }
                 }
             }
@@ -1698,7 +1796,7 @@ public class AddListItemCommandTests
             "Remove-KshListItem",
             new Dictionary<string, object>()
             {
-                { "Identity", result4.ElementAt(0) }
+                ["Identity"] = result4.ElementAt(0)
             }
         );
         var actual = result4.ElementAt(0);

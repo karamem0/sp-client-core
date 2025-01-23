@@ -18,10 +18,6 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class ODataV2ResultPayload : ValueObject
 {
 
-    public ODataV2ResultPayload()
-    {
-    }
-
     [JsonProperty("error")]
     public ODataV2Error Error { get; private set; }
 

@@ -51,13 +51,15 @@ public static class AadOAuthTokenStore
         _ = tenantId ?? throw new ArgumentNullException(nameof(tenantId));
         var oAuthTokens = AadOAuthTokenDictionary.Load();
         var resource = oAuthTokens
-            .Where(oAuthToken =>
-            {
-                var accessToken = oAuthToken.Value.AccessToken;
-                var jwtToken = new JsonWebToken(accessToken);
-                var jwtTenantId = jwtToken.GetPayloadValue<string>("tid");
-                return jwtTenantId == tenantId;
-            })
+            .Where(
+                oAuthToken =>
+                {
+                    var accessToken = oAuthToken.Value.AccessToken;
+                    var jwtToken = new JsonWebToken(accessToken);
+                    var jwtTenantId = jwtToken.GetPayloadValue<string>("tid");
+                    return jwtTenantId == tenantId;
+                }
+            )
             .Select(oAuthToken => oAuthToken.Key)
             .FirstOrDefault();
         if (resource is null)

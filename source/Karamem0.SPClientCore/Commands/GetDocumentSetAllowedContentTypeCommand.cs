@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetDocumentSetAllowedContentTypeCommand : ClientObjectCmdlet<IDocumentSetAllowedContentTypeService>
 {
 
-    public GetDocumentSetAllowedContentTypeCommand()
-    {
-    }
-
     [Parameter(Mandatory = true, Position = 0)]
     public ContentType ContentType { get; private set; }
 

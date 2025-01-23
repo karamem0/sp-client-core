@@ -26,21 +26,15 @@ public class ODataV1Metadata : ValueObject
         {
             if (attribute.Name is not null)
             {
-                return new ODataV1Metadata(null, null, attribute.Name);
+                return new ODataV1Metadata()
+                {
+                    Id = null,
+                    Uri = null,
+                    Type = attribute.Name
+                };
             }
         }
         return null;
-    }
-
-    public ODataV1Metadata()
-    {
-    }
-
-    public ODataV1Metadata(string id, Uri uri, string type)
-    {
-        this.Id = id;
-        this.Uri = uri;
-        this.Type = type;
     }
 
     [JsonProperty("id")]

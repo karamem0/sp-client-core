@@ -25,11 +25,12 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddColumnTaxonomyCommand : ClientObjectCmdlet<IColumnService, IColumnTaxonomyService>
 {
 
-    public AddColumnTaxonomyCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet1"
+    )]
     public List List { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
@@ -163,33 +164,55 @@ public class AddColumnTaxonomyCommand : ClientObjectCmdlet<IColumnService, IColu
         var addColumnOptions = FlagsParser.Parse<AddColumnOptions>(this.MyInvocation.BoundParameters);
         if (this.ParameterSetName == "ParamSet1")
         {
-            var clientObject = this.Service2.AddObject(this.List, this.MyInvocation.BoundParameters, this.AddToDefaultView, addColumnOptions);
+            var clientObject = this.Service2.AddObject(
+                this.List,
+                this.MyInvocation.BoundParameters,
+                this.AddToDefaultView,
+                addColumnOptions
+            );
             this.Service2.SetObject(
                 clientObject,
                 new Dictionary<string, object>()
                 {
-                    { "TermSetId", this.TermSet.Id },
-                    { "TermStoreId", this.TermSet.TermStore.Id }
-                });
+                    {
+                        "TermSetId", this.TermSet.Id
+                    },
+                    {
+                        "TermStoreId", this.TermSet.TermStore.Id
+                    }
+                }
+            );
             this.Outputs.Add(this.Service1.GetObject(clientObject));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
-            var clientObject = this.Service2.AddObject(this.MyInvocation.BoundParameters, this.AddToDefaultView, addColumnOptions);
+            var clientObject = this.Service2.AddObject(
+                this.MyInvocation.BoundParameters,
+                this.AddToDefaultView,
+                addColumnOptions
+            );
             this.Service2.SetObject(
                 clientObject,
                 new Dictionary<string, object>()
                 {
-                    { "TermSetId", this.TermSet.Id },
-                    { "TermStoreId", this.TermSet.TermStore.Id }
-                });
+                    {
+                        "TermSetId", this.TermSet.Id
+                    },
+                    {
+                        "TermStoreId", this.TermSet.TermStore.Id
+                    }
+                }
+            );
             this.Outputs.Add(this.Service1.GetObject(clientObject));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
-            this.Outputs.Add(SchemaXmlColumn.Create(
-                new XElement("Field", new XAttribute("Type", "TaxonomyFieldType")),
-                this.MyInvocation.BoundParameters));
+            this.Outputs.Add(
+                SchemaXmlColumn.Create(
+                    new XElement("Field", new XAttribute("Type", "TaxonomyFieldType")),
+                    this.MyInvocation.BoundParameters
+                )
+            );
         }
     }
 

@@ -23,7 +23,11 @@ public interface IDriveService
 
     Drive GetObject(Drive driveObject);
 
-    Drive GetObject(Guid? siteCollectionId, Guid? siteId, Guid? listId);
+    Drive GetObject(
+        Guid? siteCollectionId,
+        Guid? siteId,
+        Guid? listId
+    );
 
     Drive GetObject(string driveId);
 
@@ -39,13 +43,18 @@ public class DriveService(ClientContext clientContext) : ClientService(clientCon
         var requestUrl = this.ClientContext.BaseAddress
             .ConcatPath(
                 "_api/v2.0/drives/{0}",
-                driveObject.Id)
+                driveObject.Id
+            )
             .ConcatQuery(ODataQuery.CreateSelect<Drive>())
             .ConcatQuery(ODataQuery.CreateExpand<Drive>());
         return this.ClientContext.GetObjectV2<Drive>(requestUrl);
     }
 
-    public Drive GetObject(Guid? siteCollectionId, Guid? siteId, Guid? listId)
+    public Drive GetObject(
+        Guid? siteCollectionId,
+        Guid? siteId,
+        Guid? listId
+    )
     {
         _ = siteCollectionId ?? throw new ArgumentNullException(nameof(siteCollectionId));
         _ = siteId ?? throw new ArgumentNullException(nameof(siteId));
@@ -56,7 +65,8 @@ public class DriveService(ClientContext clientContext) : ClientService(clientCon
                 this.ClientContext.BaseAddress.Host,
                 siteCollectionId,
                 siteId,
-                listId)
+                listId
+            )
             .ConcatQuery(ODataQuery.CreateSelect<Drive>())
             .ConcatQuery(ODataQuery.CreateExpand<Drive>());
         return this.ClientContext.GetObjectV2<Drive>(requestUrl);
@@ -68,7 +78,8 @@ public class DriveService(ClientContext clientContext) : ClientService(clientCon
         var requestUrl = this.ClientContext.BaseAddress
             .ConcatPath(
                 "_api/v2.0/drives/{0}",
-                driveId)
+                driveId
+            )
             .ConcatQuery(ODataQuery.CreateSelect<Drive>())
             .ConcatQuery(ODataQuery.CreateExpand<Drive>());
         return this.ClientContext.GetObjectV2<Drive>(requestUrl);

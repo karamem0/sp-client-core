@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddTenantSiteScriptCommand : ClientObjectCmdlet<ITenantSiteScriptService>
 {
 
-    public AddTenantSiteScriptCommand()
-    {
-    }
-
     [Parameter(Mandatory = true)]
     public string Content { get; private set; }
 

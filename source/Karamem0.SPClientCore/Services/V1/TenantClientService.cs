@@ -42,7 +42,8 @@ public abstract class TenantClientService(ClientContext clientContext) : ClientS
                 objectPathId => new ClientActionQuery(objectPathId)
                 {
                     Query = new ClientQuery(true, typeof(TenantOperationResult))
-                });
+                }
+            );
             operationResultObject = this.ClientContext
                 .ProcessQuery(requestPayload)
                 .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());

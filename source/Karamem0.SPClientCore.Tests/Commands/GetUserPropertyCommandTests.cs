@@ -28,24 +28,24 @@ public class GetUserPropertyCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["BaseUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["BaseUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<UserProperty>(
             "Get-KshUserProperty",
             new Dictionary<string, object>()
             {
-                { "UserLoginName", context.AppSettings["User1LoginName"] }
+                ["UserLoginName"] = context.AppSettings["User1LoginName"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<UserProperty>(
             "Get-KshUserProperty",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) }
+                ["Identity"] = result1.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);
@@ -60,17 +60,17 @@ public class GetUserPropertyCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["BaseUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["BaseUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<UserProperty>(
             "Get-KshUserProperty",
             new Dictionary<string, object>()
             {
-                { "UserLoginName", context.AppSettings["User1LoginName"] }
+                ["UserLoginName"] = context.AppSettings["User1LoginName"]
             }
         );
         var actual = result1.ElementAt(0);

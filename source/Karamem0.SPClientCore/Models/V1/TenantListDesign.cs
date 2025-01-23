@@ -15,7 +15,10 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
-[ClientObject(Name = "Microsoft.Online.SharePoint.TenantAdministration.TenantListDesign", Id = "{7ad6be34-0e98-49f3-84eb-0d0366f2c0b0}")]
+[ClientObject(
+    Name = "Microsoft.Online.SharePoint.TenantAdministration.TenantListDesign",
+    Id = "{7ad6be34-0e98-49f3-84eb-0d0366f2c0b0}"
+)]
 [JsonObject()]
 public class TenantListDesign : ClientObject
 {

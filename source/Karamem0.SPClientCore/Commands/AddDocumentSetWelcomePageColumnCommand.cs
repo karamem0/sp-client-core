@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddDocumentSetWelcomePageColumnCommand : ClientObjectCmdlet<IDocumentSetWelcomePageColumnService>
 {
 
-    public AddDocumentSetWelcomePageColumnCommand()
-    {
-    }
-
     [Parameter(Mandatory = true, Position = 0)]
     public ContentType ContentType { get; private set; }
 
@@ -37,7 +33,11 @@ public class AddDocumentSetWelcomePageColumnCommand : ClientObjectCmdlet<IDocume
 
     protected override void ProcessRecordCore()
     {
-        this.Service.AddObject(this.ContentType, this.Column, this.PushChanges);
+        this.Service.AddObject(
+            this.ContentType,
+            this.Column,
+            this.PushChanges
+        );
     }
 
 }

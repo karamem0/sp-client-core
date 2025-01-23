@@ -17,14 +17,15 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
-[Cmdlet(VerbsCommon.Remove, "KshTenantCdnOrigin", SupportsShouldProcess = true, ConfirmImpact = ConfirmImpact.High)]
+[Cmdlet(
+    VerbsCommon.Remove,
+    "KshTenantCdnOrigin",
+    SupportsShouldProcess = true,
+    ConfirmImpact = ConfirmImpact.High
+)]
 [OutputType(typeof(void))]
 public class RemoveTenantCdnOriginCommand : ClientObjectCmdlet<ITenantCdnService>
 {
-
-    public RemoveTenantCdnOriginCommand()
-    {
-    }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     public SwitchParameter Public { get; private set; }

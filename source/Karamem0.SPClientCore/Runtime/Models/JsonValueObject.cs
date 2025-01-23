@@ -20,11 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public abstract class JsonValueObject : ValueObject
 {
 
-    protected JsonValueObject()
-    {
-        this.ExtensionProperties = [];
-    }
-
     [JsonIgnore()]
     public virtual object this[string key] => this.ExtensionProperties[key];
 
@@ -36,14 +31,15 @@ public abstract class JsonValueObject : ValueObject
         .ToArray();
 
     [JsonExtensionData()]
-    protected virtual Dictionary<string, JToken> ExtensionProperties { get; private set; }
+    protected virtual Dictionary<string, JToken> ExtensionProperties { get; private set; } = [];
 
     [JsonIgnore()]
-    protected override Lazy<PropertyInfo[]> EqualityProperties => new(() =>
-        this.GetType()
-            .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-            .Where(property => property.IsDefined(typeof(JsonPropertyAttribute), true))
-            .ToArray()
+    protected override Lazy<IReadOnlyCollection<PropertyInfo>> EqualityProperties => new(
+        () =>
+            this.GetType()
+                .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+                .Where(property => property.IsDefined(typeof(JsonPropertyAttribute), true))
+                .ToArray()
     );
 
 }

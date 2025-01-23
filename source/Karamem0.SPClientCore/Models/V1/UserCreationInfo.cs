@@ -20,14 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class UserCreationInfo : ClientValueObject
 {
 
-    public UserCreationInfo()
-    {
-    }
-
-    public UserCreationInfo(IReadOnlyDictionary<string, object> parameters) : base(parameters)
-    {
-    }
-
     [JsonProperty()]
     public virtual string Email { get; protected set; }
 

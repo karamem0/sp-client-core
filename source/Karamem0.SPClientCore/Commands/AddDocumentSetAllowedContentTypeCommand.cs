@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddDocumentSetAllowedContentTypeCommand : ClientObjectCmdlet<IDocumentSetAllowedContentTypeService>
 {
 
-    public AddDocumentSetAllowedContentTypeCommand()
-    {
-    }
-
     [Parameter(Mandatory = true, Position = 0)]
     public ContentType ContentType { get; private set; }
 
@@ -37,7 +33,11 @@ public class AddDocumentSetAllowedContentTypeCommand : ClientObjectCmdlet<IDocum
 
     protected override void ProcessRecordCore()
     {
-        this.Service.AddObject(this.ContentType, this.AllowedContentType, this.PushChanges);
+        this.Service.AddObject(
+            this.ContentType,
+            this.AllowedContentType,
+            this.PushChanges
+        );
     }
 
 }

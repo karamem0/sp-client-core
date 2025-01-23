@@ -23,15 +23,15 @@ public class EnumerableExtensionsTests
     {
         var args = new
         {
-            Array = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 },
+            Array = new int[]
+            {
+                1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+            },
             Size = 3
         };
         var expected = new int[][]
         {
-            [ 1, 2, 3 ],
-            [ 4, 5, 6 ],
-            [ 7, 8, 9 ],
-            [ 10 ]
+            [1, 2, 3], [4, 5, 6], [7, 8, 9], [10]
         };
         var actual = EnumerableExtensions.Chunks(args.Array, args.Size).ToArray();
         Assert.That(actual, Is.EqualTo(expected));
@@ -53,7 +53,10 @@ public class EnumerableExtensionsTests
     {
         var args = new
         {
-            Array = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 },
+            Array = new int[]
+            {
+                1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+            },
             Size = 0
         };
         _ = Assert.Throws<ArgumentException>(() => EnumerableExtensions.Chunks(args.Array, args.Size).ToArray());

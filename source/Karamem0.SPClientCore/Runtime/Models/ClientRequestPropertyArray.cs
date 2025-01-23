@@ -19,6 +19,11 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class ClientRequestPropertyArray(string name, params object[] values) : ClientRequestProperty
 {
 
+    public ClientRequestPropertyArray(string name, IEnumerable<object> values)
+        : this(name, [.. values])
+    {
+    }
+
     [XmlAttribute()]
     public virtual string Name { get; protected set; } = name;
 
@@ -26,9 +31,9 @@ public class ClientRequestPropertyArray(string name, params object[] values) : C
     public virtual string Type { get; protected set; } = "Array";
 
     [XmlElement("Object")]
-    public virtual IEnumerable<ClientRequestPropertyArrayValue> Values { get; protected set; } = values
-            .Select(ClientRequestValue.Create)
-            .Select(value => new ClientRequestPropertyArrayValue(value.Type, value.Value))
-            .ToArray();
+    public virtual IReadOnlyCollection<ClientRequestPropertyArrayValue> Values { get; protected set; } = values
+        .Select(ClientRequestValue.Create)
+        .Select(value => new ClientRequestPropertyArrayValue(value.Type, value.Value))
+        .ToArray();
 
 }

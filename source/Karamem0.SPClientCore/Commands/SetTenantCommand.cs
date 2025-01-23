@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class SetTenantCommand : ClientObjectCmdlet<ITenantService>
 {
 
-    public SetTenantCommand()
-    {
-    }
-
     [Parameter(Mandatory = false)]
     public RoleType AddressbarLinkPermission { get; private set; }
 
@@ -219,9 +215,6 @@ public class SetTenantCommand : ClientObjectCmdlet<ITenantService>
     public bool EnableRestrictedAccessControl { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public bool EnableVersionExpirationSetting { get; private set; }
-
-    [Parameter(Mandatory = false)]
     public string[] ExcludedFileExtensionsForSyncClient { get; private set; }
 
     [Parameter(Mandatory = false)]
@@ -304,6 +297,9 @@ public class SetTenantCommand : ClientObjectCmdlet<ITenantService>
 
     [Parameter(Mandatory = false)]
     public string LabelMismatchEmailHelpLink { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public bool LegacyBrowserAuthProtocolsEnabled { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool LegacyAuthProtocolsEnabled { get; private set; }
@@ -411,6 +407,12 @@ public class SetTenantCommand : ClientObjectCmdlet<ITenantService>
     public bool SearchResolveExactEmailOrUpn { get; private set; }
 
     [Parameter(Mandatory = false)]
+    public bool SelfServiceSiteCreationDisabled { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public bool SharePointAddInsDisabled { get; private set; }
+
+    [Parameter(Mandatory = false)]
     public string SharingAllowedDomainList { get; private set; }
 
     [Parameter(Mandatory = false)]
@@ -441,6 +443,9 @@ public class SetTenantCommand : ClientObjectCmdlet<ITenantService>
     public string SignInAccelerationDomain { get; private set; }
 
     [Parameter(Mandatory = false)]
+    public bool SiteOwnerManageLegacyServicePrincipalEnabled { get; private set; }
+
+    [Parameter(Mandatory = false)]
     public bool SocialBarOnSitePagesDisabled { get; private set; }
 
     [Parameter(Mandatory = false)]
@@ -457,6 +462,21 @@ public class SetTenantCommand : ClientObjectCmdlet<ITenantService>
 
     [Parameter(Mandatory = false)]
     public bool SyncPrivacyProfileProperties { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public bool TaxonomyTaggingEnabled { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public string TaxonomyTaggingSiteListFileName { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public bool TranslationEnabled { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public string TranslationSiteListFileName { get; private set; }
+
+    [Parameter(Mandatory = false)]
+    public bool UniversalAnnotationDisabled { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool UseFindPeopleInPeoplePicker { get; private set; }

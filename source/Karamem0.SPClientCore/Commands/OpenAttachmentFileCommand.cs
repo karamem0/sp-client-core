@@ -22,11 +22,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class OpenAttachmentFileCommand : ClientObjectCmdlet<IAttachmentFileService>
 {
 
-    public OpenAttachmentFileCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true
+    )]
     public AttachmentFile Identity { get; private set; }
 
     protected override void ProcessRecordCore()

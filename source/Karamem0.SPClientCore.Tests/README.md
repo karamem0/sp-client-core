@@ -2,16 +2,18 @@
 
 ## How to set up the test environment
 
+1. Create a self-signed certificate and save it to `Certificate/localhost.pfx`.
+
 1. Register an Entra ID Application and upload the certificate (see Wiki page).
 
 1. Create test users.
 
     |User Principal Name|Display Name|
     |-|-|
-    |`testuser0@yourtenantname.onicrosoft.com`|Test User 0|
-    |`testuser1@yourtenantname.onicrosoft.com`|Test User 1|
-    |`testuser2@yourtenantname.onicrosoft.com`|Test User 2|
-    |`testuser3@yourtenantname.onicrosoft.com`|Test User 3|
+    |`testuser0@yourtenantname.onmicrosoft.com`|Test User 0|
+    |`testuser1@yourtenantname.onmicrosoft.com`|Test User 1|
+    |`testuser2@yourtenantname.onmicrosoft.com`|Test User 2|
+    |`testuser3@yourtenantname.onmicrosoft.com`|Test User 3|
 
 1. Invite a guest user (`outlook.com`, `gmail.com`, etc.).
 
@@ -37,7 +39,7 @@
 
     ```pwsh
     $certificatePath = Resolve-Path "./Certificate/localhost.pfx"
-    $certificatePassword = New-Object System.Security.SecureString
+    $certificatePassword = ConvertTo-SecureString "p@$$w0rd" -AsPlainText -Force
     $params = @{
         TenantName = "yourtenantname"
         ClientId = "53bf1d7f-f4dd-..."
@@ -59,7 +61,7 @@
       - `/TestSite4` (Site)
     - `/Lists/TestList1` (List)
       - `Column1` (Text)
-      - `Column2` (MutiLineText)
+      - `Column2` (MultiLineText)
       - `Column3` (Choice)
       - `Column4` (MultiChoice)
       - `Column5` (Number)
@@ -103,7 +105,7 @@
 
     ```pwsh
     $certificatePath = Resolve-Path "./Certificate/localhost.pfx"
-    $certificatePassword = New-Object System.Security.SecureString
+    $certificatePassword = ConvertTo-SecureString "p@$$w0rd" -AsPlainText -Force
     $params = @{
         TenantName = "yourtenantname"
         ClientId = "53bf1d7f-f4dd-..."

@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteCollectionService>
 {
 
-    public AddTenantSiteCollectionCommand()
-    {
-    }
-
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     public int CompatibilityLevel { get; private set; }

@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddTermLocalCustomPropertyCommand : ClientObjectCmdlet<ITermLocalCustomPropertyService>
 {
 
-    public AddTermLocalCustomPropertyCommand()
-    {
-    }
-
     [Parameter(Mandatory = true, Position = 0)]
     public Term Term { get; private set; }
 
@@ -37,7 +33,11 @@ public class AddTermLocalCustomPropertyCommand : ClientObjectCmdlet<ITermLocalCu
 
     protected override void ProcessRecordCore()
     {
-        this.Service.AddObject(this.Term, this.Name, this.Value);
+        this.Service.AddObject(
+            this.Term,
+            this.Name,
+            this.Value
+        );
     }
 
 }

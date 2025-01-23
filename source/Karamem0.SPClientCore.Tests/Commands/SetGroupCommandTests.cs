@@ -28,39 +28,39 @@ public class SetGroupCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<Group>(
             "Add-KshGroup",
             new Dictionary<string, object>()
             {
-                { "Title", "Test Group 0" }
+                ["Title"] = "Test Group 0"
             }
         );
         var result2 = context.Runspace.InvokeCommand<Group>(
             "Set-KshGroup",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) },
-                { "AllowMembersEditMembership", true },
-                { "AllowRequestToJoinLeave", true },
-                { "AutoAcceptRequestToJoinLeave", true },
-                { "Description", "Test Group 0 Description" },
-                { "OnlyAllowMembersViewMembership", true },
-                { "RequestToJoinLeaveEmailSetting", "testuser0@example.com" },
-                { "Title", "Test Group 0" },
-                { "PassThru", true }
+                ["Identity"] = result1.ElementAt(0),
+                ["AllowMembersEditMembership"] = true,
+                ["AllowRequestToJoinLeave"] = true,
+                ["AutoAcceptRequestToJoinLeave"] = true,
+                ["Description"] = "Test Group 0 Description",
+                ["OnlyAllowMembersViewMembership"] = true,
+                ["RequestToJoinLeaveEmailSetting"] = "testuser0@example.com",
+                ["Title"] = "Test Group 0",
+                ["PassThru"] = true
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshGroup",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);

@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class SetTermDescriptionCommand : ClientObjectCmdlet<ITermDescriptionService>
 {
 
-    public SetTermDescriptionCommand()
-    {
-    }
-
     [Parameter(Mandatory = true, Position = 0)]
     public Term Term { get; private set; }
 
@@ -37,7 +33,11 @@ public class SetTermDescriptionCommand : ClientObjectCmdlet<ITermDescriptionServ
 
     protected override void ProcessRecordCore()
     {
-        this.Service.SetObject(this.Term, this.Description, this.Lcid);
+        this.Service.SetObject(
+            this.Term,
+            this.Description,
+            this.Lcid
+        );
     }
 
 }

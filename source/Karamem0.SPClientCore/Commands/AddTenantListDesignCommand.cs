@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddTenantListDesignCommand : ClientObjectCmdlet<ITenantListDesignService>
 {
 
-    public AddTenantListDesignCommand()
-    {
-    }
-
     [Parameter(Mandatory = false)]
     public string Description { get; private set; }
 

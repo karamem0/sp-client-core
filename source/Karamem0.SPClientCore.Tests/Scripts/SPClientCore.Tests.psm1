@@ -1512,28 +1512,37 @@ function Install-TestSite {
         Enable-KshLike -Comment $comment1
 
         Write-Progress -Activity 'Creating alerts...' -Status 'Test Alert 1'
+        $item1 = Get-KshListItem -List $list1 -ItemId $appSettings.ListItem1Id
         $alert1 = Add-KshAlert `
-            -AlertFrequency 'Immediate' `
+            -AlertFrequency 'Daily' `
             -AlertTemplateName 'SPAlertTemplateType.GenericList' `
+            -AlertType 'ListItem' `
             -List $list1 `
+            -ListItem $item1 `
             -Title 'Test Alert 1' `
             -User $user1
         $appSettings.Alert1Id = $alert1.Id
 
         Write-Progress -Activity 'Creating alerts...' -Status 'Test Alert 2'
+        $item2 = Get-KshListItem -List $list1 -ItemId $appSettings.ListItem2Id
         $alert2 = Add-KshAlert `
-            -AlertFrequency 'Immediate' `
+            -AlertFrequency 'Daily' `
             -AlertTemplateName 'SPAlertTemplateType.GenericList' `
+            -AlertType 'ListItem' `
             -List $list1 `
+            -ListItem $item2 `
             -Title 'Test Alert 2' `
             -User $user2
         $appSettings.Alert2Id = $alert2.Id
 
         Write-Progress -Activity 'Creating alerts...' -Status 'Test Alert 3'
+        $item3 = Get-KshListItem -List $list1 -ItemId $appSettings.ListItem3Id
         $alert3 = Add-KshAlert `
-            -AlertFrequency 'Immediate' `
+            -AlertFrequency 'Daily' `
             -AlertTemplateName 'SPAlertTemplateType.GenericList' `
+            -AlertType 'ListItem' `
             -List $list1 `
+            -ListItem $item3 `
             -Title 'Test Alert 3' `
             -User $user3
         $appSettings.Alert3Id = $alert3.Id

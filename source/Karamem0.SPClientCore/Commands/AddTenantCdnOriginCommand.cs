@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddTenantCdnOriginCommand : ClientObjectCmdlet<ITenantCdnService>
 {
 
-    public AddTenantCdnOriginCommand()
-    {
-    }
-
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     public SwitchParameter Public { get; private set; }
 

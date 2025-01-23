@@ -20,14 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class TenantThemeCreationInfo : ClientValueObject
 {
 
-    public TenantThemeCreationInfo()
-    {
-    }
-
-    public TenantThemeCreationInfo(IReadOnlyDictionary<string, object> parameters) : base(parameters)
-    {
-    }
-
     [JsonProperty("isInverted")]
     public virtual bool IsInverted { get; set; }
 

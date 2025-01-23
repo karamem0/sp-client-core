@@ -30,14 +30,16 @@ public class UserProfileService(ClientContext clientContext) : ClientService(cli
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticMethod(typeof(ProfileLoader), "GetProfileLoader"));
+            new ObjectPathStaticMethod(typeof(ProfileLoader), "GetProfileLoader")
+        );
         var objectPath2 = requestPayload.Add(
             new ObjectPathMethod(objectPath1.Id, "GetUserProfile"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(UserProfile))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<UserProfile>(requestPayload.GetActionId<ClientActionQuery>());

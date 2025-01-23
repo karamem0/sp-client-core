@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetTenantCommand : ClientObjectCmdlet<ITenantService>
 {
 
-    public GetTenantCommand()
-    {
-    }
-
     protected override void ProcessRecordCore()
     {
         this.Outputs.Add(this.Service.GetObject());

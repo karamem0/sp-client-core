@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddDocumentSetDefaultDocumentCommand : ClientObjectCmdlet<IDocumentSetDefaultDocumentService>
 {
 
-    public AddDocumentSetDefaultDocumentCommand()
-    {
-    }
-
     [Parameter(Mandatory = true)]
     public ContentType ContentType { get; private set; }
 
@@ -43,7 +39,15 @@ public class AddDocumentSetDefaultDocumentCommand : ClientObjectCmdlet<IDocument
 
     protected override void ProcessRecordCore()
     {
-        this.Outputs.Add(this.Service.AddObject(this.ContentType, this.DocumentContentType, this.FileName, this.Content, this.PushChanges));
+        this.Outputs.Add(
+            this.Service.AddObject(
+                this.ContentType,
+                this.DocumentContentType,
+                this.FileName,
+                this.Content,
+                this.PushChanges
+            )
+        );
     }
 
 }

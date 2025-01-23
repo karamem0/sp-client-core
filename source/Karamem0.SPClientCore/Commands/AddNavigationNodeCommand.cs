@@ -22,11 +22,12 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddNavigationNodeCommand : ClientObjectCmdlet<INavigationNodeService>
 {
 
-    public AddNavigationNodeCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet1"
+    )]
     public NavigationNode NavigationNode { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]

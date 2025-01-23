@@ -28,34 +28,34 @@ public class AddSiteFeatureCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<Feature>(
             "Get-KshSiteFeature",
             new Dictionary<string, object>()
             {
-                { "FeatureId", "99fe402e-89a0-45aa-9163-85342e865dc8" }
+                ["FeatureId"] = "99fe402e-89a0-45aa-9163-85342e865dc8"
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshSiteFeature",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) },
-                { "Force", false }
+                ["Identity"] = result1.ElementAt(0),
+                ["Force"] = false
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Add-KshSiteFeature",
             new Dictionary<string, object>()
             {
-                { "FeatureId", "99fe402e-89a0-45aa-9163-85342e865dc8" },
-                { "Force", false },
-                { "Scope", "None" }
+                ["FeatureId"] = "99fe402e-89a0-45aa-9163-85342e865dc8",
+                ["Force"] = false,
+                ["Scope"] = "None"
             }
         );
     }

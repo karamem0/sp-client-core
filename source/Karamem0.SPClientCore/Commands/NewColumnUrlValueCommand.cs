@@ -21,10 +21,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class NewColumnUrlValueCommand : ClientObjectCmdlet
 {
 
-    public NewColumnUrlValueCommand()
-    {
-    }
-
     [Parameter(Mandatory = true, Position = 0)]
     public string Url { get; private set; }
 

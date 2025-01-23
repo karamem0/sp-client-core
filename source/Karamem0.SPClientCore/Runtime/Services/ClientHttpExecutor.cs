@@ -34,7 +34,8 @@ public class ClientHttpExecutor
         this.httpClient.DefaultRequestHeaders.UserAgent.Add(
             new ProductInfoHeaderValue(
                 ClientConstants.UserAgent,
-                this.GetType().Assembly.GetName().Version.ToString(3))
+                this.GetType().Assembly.GetName().Version.ToString(3)
+            )
         );
     }
 
@@ -105,29 +106,33 @@ public class ClientHttpExecutor
                         {
                             throw new InvalidOperationException(StringResources.ErrorMaxRetryCountExceeded);
                         }
-                        await Task.Delay(responseMessage.Headers.RetryAfter.Delta.GetValueOrDefault(TimeSpan.FromSeconds(errorCount + 1)));
+                        await Task.Delay(
+                            responseMessage.Headers.RetryAfter.Delta.GetValueOrDefault(
+                                TimeSpan.FromSeconds(errorCount + 1)
+                            )
+                        );
                     }
                     else
                     {
                         var responseContent = await responseMessage.Content.ReadAsStringAsync();
                         if (JsonSerializerManager.Instance.TryDeserialize(
-                            responseContent,
-                            out OAuthError oAuthError
-                        ))
+                                responseContent,
+                                out OAuthError oAuthError
+                            ))
                         {
                             throw new InvalidOperationException(oAuthError.ErrorDescription);
                         }
                         if (JsonSerializerManager.Instance.TryDeserialize(
-                            responseContent,
-                            out ODataV1ResultPayload v1Payload
-                        ))
+                                responseContent,
+                                out ODataV1ResultPayload v1Payload
+                            ))
                         {
                             throw new InvalidOperationException(v1Payload.Error.Message.Value);
                         }
                         if (JsonSerializerManager.Instance.TryDeserialize(
-                            responseContent,
-                            out ODataV2ResultPayload v2Payload
-                        ))
+                                responseContent,
+                                out ODataV2ResultPayload v2Payload
+                            ))
                         {
                             throw new InvalidOperationException(v2Payload.Error.Message);
                         }

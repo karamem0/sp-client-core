@@ -29,50 +29,50 @@ public class InstallSiteCollectionAppCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["BaseUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["BaseUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<App>(
             "Add-KshSiteCollectionApp",
             new Dictionary<string, object>()
             {
-                { "Content", System.IO.File.OpenRead(context.AppSettings["App0Path"]) },
-                { "FileName", "TestApp0.sppkg" },
-                { "Overwrite", true }
+                ["Content"] = System.IO.File.OpenRead(context.AppSettings["App0Path"]),
+                ["FileName"] = "TestApp0.sppkg",
+                ["Overwrite"] = true
             }
         );
         var result2 = context.Runspace.InvokeCommand<File>(
             "Get-KshFile",
             new Dictionary<string, object>()
             {
-                { "App", result1.ElementAt(0) }
+                ["App"] = result1.ElementAt(0)
             }
         );
         var result3 = context.Runspace.InvokeCommand<ListItem>(
             "Get-KshListItem",
             new Dictionary<string, object>()
             {
-                { "File", result2.ElementAt(0) }
+                ["File"] = result2.ElementAt(0)
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Install-KshSiteCollectionApp",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) }
+                ["Identity"] = result1.ElementAt(0)
             }
         );
         while (true)
@@ -82,7 +82,7 @@ public class InstallSiteCollectionAppCommandTests
                 "Get-KshAppInstance",
                 new Dictionary<string, object>()
                 {
-                    { "AppProductId", result3.ElementAt(0)["AppProductID"] }
+                    ["AppProductId"] = result3.ElementAt(0)["AppProductID"]
                 }
             );
             if (result4.ElementAt(0).Status == AppStatus.Installed)
@@ -95,7 +95,7 @@ public class InstallSiteCollectionAppCommandTests
             "Uninstall-KshSiteCollectionApp",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) }
+                ["Identity"] = result1.ElementAt(0)
             }
         );
         while (true)
@@ -105,7 +105,7 @@ public class InstallSiteCollectionAppCommandTests
                 "Get-KshAppInstance",
                 new Dictionary<string, object>()
                 {
-                    { "AppProductId", result3.ElementAt(0)["AppProductID"] }
+                    ["AppProductId"] = result3.ElementAt(0)["AppProductID"]
                 }
             );
             if (result5.Any())
@@ -121,17 +121,17 @@ public class InstallSiteCollectionAppCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["BaseUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["BaseUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshSiteCollectionApp",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) }
+                ["Identity"] = result1.ElementAt(0)
             }
         );
     }

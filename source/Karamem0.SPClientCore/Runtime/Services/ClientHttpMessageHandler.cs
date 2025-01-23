@@ -24,7 +24,10 @@ public class ClientHttpMessageHandler : DelegatingHandler
     {
     }
 
-    protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage requestMessage, CancellationToken cancellationToken)
+    protected override async Task<HttpResponseMessage> SendAsync(
+        HttpRequestMessage requestMessage,
+        CancellationToken cancellationToken
+    )
     {
         Trace.WriteLine(requestMessage);
         if (requestMessage.Content is not null)

@@ -27,7 +27,11 @@ public class AcsOAuthContext : OAuthContext
 
     private readonly TenantIdResolver tenantIdResolver;
 
-    public AcsOAuthContext(string clientId, string clientSecret, string resource)
+    public AcsOAuthContext(
+        string clientId,
+        string clientSecret,
+        string resource
+    )
     {
         this.clientId = clientId;
         this.clientSecret = clientSecret;
@@ -44,15 +48,27 @@ public class AcsOAuthContext : OAuthContext
             .ConcatPath("tokens/oauth/2");
         var requertParameters = new Dictionary<string, object>()
         {
-            { "grant_type", "client_credentials" },
-            { "client_id", $"{this.clientId}@{tenantId}" },
-            { "client_secret", this.clientSecret },
-            { "resource", $"{OAuthConstants.ResourceId}/{resourceId}@{tenantId}" }
+            {
+                "grant_type", "client_credentials"
+            },
+            {
+                "client_id", $"{this.clientId}@{tenantId}"
+            },
+            {
+                "client_secret", this.clientSecret
+            },
+            {
+                "resource", $"{OAuthConstants.ResourceId}/{resourceId}@{tenantId}"
+            }
         };
         var requestContent = UriQuery.Create(requertParameters);
         var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl)
         {
-            Content = new StringContent(requestContent, Encoding.UTF8, "application/x-www-form-urlencoded")
+            Content = new StringContent(
+                requestContent,
+                Encoding.UTF8,
+                "application/x-www-form-urlencoded"
+            )
         };
         requestMessage.Headers.Add("Accept", "application/json");
         var responseMessage = this.HttpClient.SendAsync(requestMessage).GetAwaiter().GetResult();

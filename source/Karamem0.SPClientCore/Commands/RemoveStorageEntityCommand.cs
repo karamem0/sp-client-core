@@ -16,14 +16,15 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
-[Cmdlet(VerbsCommon.Remove, "KshStorageEntity", SupportsShouldProcess = true, ConfirmImpact = ConfirmImpact.High)]
+[Cmdlet(
+    VerbsCommon.Remove,
+    "KshStorageEntity",
+    SupportsShouldProcess = true,
+    ConfirmImpact = ConfirmImpact.High
+)]
 [OutputType(typeof(void))]
 public class RemoveStorageEntityCommand : ClientObjectCmdlet<IStorageEntityService>
 {
-
-    public RemoveStorageEntityCommand()
-    {
-    }
 
     [Parameter(Mandatory = true, Position = 0)]
     public string Key { get; private set; }

@@ -22,11 +22,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddTermSetCommand : ClientObjectCmdlet<ITermSetService>
 {
 
-    public AddTermSetCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true
+    )]
     public TermGroup TermGroup { get; private set; }
 
     [Parameter(Mandatory = false)]
@@ -44,7 +44,14 @@ public class AddTermSetCommand : ClientObjectCmdlet<ITermSetService>
         {
             this.Id = Guid.NewGuid();
         }
-        this.Outputs.Add(this.Service.AddObject(this.TermGroup, this.Name, this.Id, this.Lcid));
+        this.Outputs.Add(
+            this.Service.AddObject(
+                this.TermGroup,
+                this.Name,
+                this.Id,
+                this.Lcid
+            )
+        );
     }
 
 }

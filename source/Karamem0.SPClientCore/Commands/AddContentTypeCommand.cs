@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddContentTypeCommand : ClientObjectCmdlet<IContentTypeService>
 {
 
-    public AddContentTypeCommand()
-    {
-    }
-
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public List List { get; private set; }

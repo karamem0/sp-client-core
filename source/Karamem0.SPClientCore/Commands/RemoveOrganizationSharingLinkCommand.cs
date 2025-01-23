@@ -17,14 +17,15 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
-[Cmdlet(VerbsCommon.Remove, "KshOrganizationSharingLink", SupportsShouldProcess = true, ConfirmImpact = ConfirmImpact.High)]
+[Cmdlet(
+    VerbsCommon.Remove,
+    "KshOrganizationSharingLink",
+    SupportsShouldProcess = true,
+    ConfirmImpact = ConfirmImpact.High
+)]
 [OutputType(typeof(void))]
 public class RemoveOrganizationSharingLinkCommand : ClientObjectCmdlet<ISharingLinkService>
 {
-
-    public RemoveOrganizationSharingLinkCommand()
-    {
-    }
 
     [Parameter(Mandatory = true, Position = 0)]
     public Uri Url { get; private set; }
@@ -41,11 +42,17 @@ public class RemoveOrganizationSharingLinkCommand : ClientObjectCmdlet<ISharingL
         {
             if (this.Url.IsAbsoluteUri)
             {
-                this.Service.RemoveOrganizationSharingLink(this.Url, this.IsEditLink, this.RemoveAssociatedSharingLinkGroup);
+                this.Service.RemoveOrganizationSharingLink(
+                    this.Url,
+                    this.IsEditLink,
+                    this.RemoveAssociatedSharingLinkGroup
+                );
             }
             else
             {
-                throw new InvalidOperationException(string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.Url));
+                throw new InvalidOperationException(
+                    string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.Url)
+                );
             }
         }
     }

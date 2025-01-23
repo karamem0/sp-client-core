@@ -22,17 +22,26 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetAppInstanceCommand : ClientObjectCmdlet<IAppInstanceService>
 {
 
-    public GetAppInstanceCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet1"
+    )]
     public AppInstance Identity { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet2"
+    )]
     public Guid AppInstanceId { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet3")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet3"
+    )]
     public Guid AppProductId { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]

@@ -28,25 +28,25 @@ public class RemoveStorageEntityTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["TenantAppCatalogUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["TenantAppCatalogUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Add-KshStorageEntity",
             new Dictionary<string, object>()
             {
-                { "Key", "Test Entity 0" },
-                { "Value", "Test Value 0" }
+                ["Key"] = "Test Entity 0",
+                ["Value"] = "Test Value 0"
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshStorageEntity",
             new Dictionary<string, object>()
             {
-                { "Key", "Test Entity 0" }
+                ["Key"] = "Test Entity 0"
             }
         );
     }

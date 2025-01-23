@@ -51,7 +51,8 @@ public class DriveItemService(ClientContext clientContext) : ClientService(clien
             .ConcatPath(
                 "_api/v2.0/drives/{0}/items/{1}",
                 driveItemObject.ParentReference.DriveId,
-                driveItemObject.Id)
+                driveItemObject.Id
+            )
             .ConcatQuery(ODataQuery.CreateSelect<DriveItem>())
             .ConcatQuery(ODataQuery.CreateExpand<DriveItem>());
         return this.ClientContext.GetObjectV2<DriveItem>(requestUrl);
@@ -65,7 +66,9 @@ public class DriveItemService(ClientContext clientContext) : ClientService(clien
                 "_api/v2.0/shares/{0}/driveitem",
                 SharingUrl.Create(
                     this.ClientContext.BaseAddress.GetAuthority(),
-                    folderObject.ServerRelativeUrl))
+                    folderObject.ServerRelativeUrl
+                )
+            )
             .ConcatQuery(ODataQuery.CreateSelect<DriveItem>())
             .ConcatQuery(ODataQuery.CreateExpand<DriveItem>());
         return this.ClientContext.GetObjectV2<DriveItem>(requestUrl);
@@ -79,7 +82,9 @@ public class DriveItemService(ClientContext clientContext) : ClientService(clien
                 "_api/v2.0/shares/{0}/driveitem",
                 SharingUrl.Create(
                     this.ClientContext.BaseAddress.GetAuthority(),
-                    fileObject.ServerRelativeUrl))
+                    fileObject.ServerRelativeUrl
+                )
+            )
             .ConcatQuery(ODataQuery.CreateSelect<DriveItem>())
             .ConcatQuery(ODataQuery.CreateExpand<DriveItem>());
         return this.ClientContext.GetObjectV2<DriveItem>(requestUrl);
@@ -96,7 +101,8 @@ public class DriveItemService(ClientContext clientContext) : ClientService(clien
                 Guid.Parse(items[6]),
                 Guid.Parse(items[4]),
                 Guid.Parse(items[2]),
-                listItemObject.Id)
+                listItemObject.Id
+            )
             .ConcatQuery(ODataQuery.CreateSelect<DriveItem>())
             .ConcatQuery(ODataQuery.CreateExpand<DriveItem>());
         return this.ClientContext.GetObjectV2<DriveItem>(requestUrl);
@@ -108,7 +114,8 @@ public class DriveItemService(ClientContext clientContext) : ClientService(clien
         var requestUrl = this.ClientContext.BaseAddress
             .ConcatPath(
                 "_api/v2.0/shares/{0}/driveitem",
-                SharingUrl.Create(driveItemUrl.ToString()))
+                SharingUrl.Create(driveItemUrl.ToString())
+            )
             .ConcatQuery(ODataQuery.CreateSelect<DriveItem>())
             .ConcatQuery(ODataQuery.CreateExpand<DriveItem>());
         return this.ClientContext.GetObjectV2<DriveItem>(requestUrl);
@@ -122,7 +129,8 @@ public class DriveItemService(ClientContext clientContext) : ClientService(clien
             .ConcatPath(
                 "_api/v2.0/drives/{0}/items/{1}",
                 driveObject.Id,
-                driveItemId)
+                driveItemId
+            )
             .ConcatQuery(ODataQuery.CreateSelect<DriveItem>())
             .ConcatQuery(ODataQuery.CreateExpand<DriveItem>());
         return this.ClientContext.GetObjectV2<DriveItem>(requestUrl);
@@ -136,7 +144,8 @@ public class DriveItemService(ClientContext clientContext) : ClientService(clien
             .ConcatPath(
                 "_api/v2.0/drives/{0}/items/root:/{1}",
                 driveObject.Id,
-                driveItemPath)
+                driveItemPath
+            )
             .ConcatQuery(ODataQuery.CreateSelect<DriveItem>())
             .ConcatQuery(ODataQuery.CreateExpand<DriveItem>());
         return this.ClientContext.GetObjectV2<DriveItem>(requestUrl);
@@ -148,7 +157,8 @@ public class DriveItemService(ClientContext clientContext) : ClientService(clien
         var requestUrl = this.ClientContext.BaseAddress
             .ConcatPath(
                 "_api/v2.0/drives/{0}/root/children",
-                driveObject.Id)
+                driveObject.Id
+            )
             .ConcatQuery(ODataQuery.CreateSelect<DriveItem>());
         return this.ClientContext.GetObjectV2<ODataV2ObjectEnumerable<DriveItem>>(requestUrl);
     }
@@ -160,7 +170,8 @@ public class DriveItemService(ClientContext clientContext) : ClientService(clien
             .ConcatPath(
                 "_api/v2.0/drives/{0}/items/{1}/children",
                 driveItemObject.ParentReference.DriveId,
-                driveItemObject.Id)
+                driveItemObject.Id
+            )
             .ConcatQuery(ODataQuery.CreateSelect<DriveItem>());
         return this.ClientContext.GetObjectV2<ODataV2ObjectEnumerable<DriveItem>>(requestUrl);
     }

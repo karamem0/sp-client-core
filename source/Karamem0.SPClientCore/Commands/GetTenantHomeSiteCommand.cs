@@ -21,10 +21,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetTenantHomeSiteCommand : ClientObjectCmdlet<ITenantHomeSiteService>
 {
 
-    public GetTenantHomeSiteCommand()
-    {
-    }
-
     protected override void ProcessRecordCore()
     {
         this.Outputs.Add(this.Service.GetObject());

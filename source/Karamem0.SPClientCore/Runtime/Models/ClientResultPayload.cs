@@ -28,7 +28,10 @@ public class ClientResultPayload
         this.LibraryVersion = jsonToken.Value<string>(nameof(this.LibraryVersion));
         this.ErrorInfo = jsonToken[nameof(this.ErrorInfo)].ToObject<ClientResultError>();
         this.TraceCorrelationId = jsonToken.Value<string>(nameof(this.TraceCorrelationId));
-        this.ClientObjects = jsonArray.Skip(1).Chunks(2).ToDictionary(chunk => chunk.ElementAt(0).Value<long>(), chunk => chunk.ElementAt(1));
+        this.ClientObjects = jsonArray.Skip(1).Chunks(2).ToDictionary(
+            chunk => chunk.ElementAt(0).Value<long>(),
+            chunk => chunk.ElementAt(1)
+        );
     }
 
     public string SchemaVersion { get; private set; }

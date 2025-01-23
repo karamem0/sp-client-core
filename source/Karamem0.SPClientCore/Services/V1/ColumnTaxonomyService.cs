@@ -21,88 +21,134 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IColumnTaxonomyService
 {
 
-    ColumnTaxonomy AddObject(IReadOnlyDictionary<string, object> creationInfo, bool addToDefaultView, AddColumnOptions addColumnOptions);
+    ColumnTaxonomy AddObject(
+        IReadOnlyDictionary<string, object> creationInfo,
+        bool addToDefaultView,
+        AddColumnOptions addColumnOptions
+    );
 
-    ColumnTaxonomy AddObject(List listObject, IReadOnlyDictionary<string, object> creationInfo, bool addToDefaultView, AddColumnOptions addColumnOptions);
+    ColumnTaxonomy AddObject(
+        List listObject,
+        IReadOnlyDictionary<string, object> creationInfo,
+        bool addToDefaultView,
+        AddColumnOptions addColumnOptions
+    );
 
     void RemoveObject(ColumnTaxonomy columnTaxonomyObject);
 
     void SetObject(ColumnTaxonomy columnTaxonomyObject, IReadOnlyDictionary<string, object> modificationInfo);
 
-    void SetObjectValue(ColumnTaxonomy columnTaxonomyObject, ListItem listItemObject, IEnumerable<Term> termCollection, uint lcid);
+    void SetObjectValue(
+        ColumnTaxonomy columnTaxonomyObject,
+        ListItem listItemObject,
+        IEnumerable<Term> termCollection,
+        uint lcid
+    );
 
 }
 
-public class ColumnTaxonomyService(ClientContext clientContext) : ClientService<ColumnTaxonomy>(clientContext), IColumnTaxonomyService
+public class ColumnTaxonomyService(ClientContext clientContext)
+    : ClientService<ColumnTaxonomy>(clientContext), IColumnTaxonomyService
 {
 
-    public ColumnTaxonomy AddObject(IReadOnlyDictionary<string, object> creationInfo, bool addToDefaultView, AddColumnOptions addColumnOptions)
+    public ColumnTaxonomy AddObject(
+        IReadOnlyDictionary<string, object> creationInfo,
+        bool addToDefaultView,
+        AddColumnOptions addColumnOptions
+    )
     {
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "Fields"));
+            new ObjectPathProperty(objectPath2.Id, "Fields")
+        );
         var objectPath4 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath3.Id,
                 "AddFieldAsXml",
-                requestPayload.CreateParameter(SchemaXmlColumn.Create(
-                    new XElement("Field", new XAttribute("Type", "TaxonomyFieldType")),
-                    creationInfo)),
+                requestPayload.CreateParameter(
+                    SchemaXmlColumn.Create(
+                        new XElement("Field", new XAttribute("Type", "TaxonomyFieldType")),
+                        creationInfo
+                    )
+                ),
                 requestPayload.CreateParameter(addToDefaultView),
-                requestPayload.CreateParameter(addColumnOptions)),
+                requestPayload.CreateParameter(addColumnOptions)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(Column))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<ColumnTaxonomy>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public ColumnTaxonomy AddObject(List listObject, IReadOnlyDictionary<string, object> creationInfo, bool addToDefaultView, AddColumnOptions addColumnOptions)
+    public ColumnTaxonomy AddObject(
+        List listObject,
+        IReadOnlyDictionary<string, object> creationInfo,
+        bool addToDefaultView,
+        AddColumnOptions addColumnOptions
+    )
     {
         _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(listObject.ObjectIdentity));
+            new ObjectPathIdentity(listObject.ObjectIdentity)
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Fields"));
+            new ObjectPathProperty(objectPath1.Id, "Fields")
+        );
         var objectPath3 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath2.Id,
                 "AddFieldAsXml",
-                requestPayload.CreateParameter(SchemaXmlColumn.Create(
-                    new XElement("Field", new XAttribute("Type", "TaxonomyFieldType")),
-                    creationInfo)),
+                requestPayload.CreateParameter(
+                    SchemaXmlColumn.Create(
+                        new XElement("Field", new XAttribute("Type", "TaxonomyFieldType")),
+                        creationInfo
+                    )
+                ),
                 requestPayload.CreateParameter(addToDefaultView),
-                requestPayload.CreateParameter(addColumnOptions)),
+                requestPayload.CreateParameter(addColumnOptions)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(Column))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<ColumnTaxonomy>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public void SetObjectValue(ColumnTaxonomy columnTaxonomyObject, ListItem listItemObject, IEnumerable<Term> termCollection, uint lcid)
+    public void SetObjectValue(
+        ColumnTaxonomy columnTaxonomyObject,
+        ListItem listItemObject,
+        IEnumerable<Term> termCollection,
+        uint lcid
+    )
     {
         _ = columnTaxonomyObject ?? throw new ArgumentNullException(nameof(columnTaxonomyObject));
         _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
         _ = termCollection ?? throw new ArgumentNullException(nameof(termCollection));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(columnTaxonomyObject.ObjectIdentity));
+            new ObjectPathIdentity(columnTaxonomyObject.ObjectIdentity)
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathIdentity(listItemObject.ObjectIdentity));
+            new ObjectPathIdentity(listItemObject.ObjectIdentity)
+        );
         var objectPath3 = requestPayload.Add(
             objectPath1,
             objectPathId => new ClientActionMethod(
@@ -110,10 +156,13 @@ public class ColumnTaxonomyService(ClientContext clientContext) : ClientService<
                 "SetFieldValueByCollection",
                 requestPayload.CreateParameter(objectPath2),
                 requestPayload.CreateParameter(termCollection),
-                requestPayload.CreateParameter(lcid)));
+                requestPayload.CreateParameter(lcid)
+            )
+        );
         var objectPath4 = requestPayload.Add(
             objectPath2,
-            objectPathId => new ClientActionMethod(objectPathId, "Update"));
+            objectPathId => new ClientActionMethod(objectPathId, "Update")
+        );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

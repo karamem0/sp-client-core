@@ -23,10 +23,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class TestSharingLinkCommand : ClientObjectCmdlet<ISharingLinkService>
 {
 
-    public TestSharingLinkCommand()
-    {
-    }
-
     [Parameter(Mandatory = true)]
     public Uri Url { get; private set; }
 

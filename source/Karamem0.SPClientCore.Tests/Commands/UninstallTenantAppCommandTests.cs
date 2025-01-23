@@ -29,50 +29,50 @@ public class UninstallTenantAppCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["TenantAppCatalogUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["TenantAppCatalogUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<App>(
             "Add-KshTenantApp",
             new Dictionary<string, object>()
             {
-                { "Content", System.IO.File.OpenRead(context.AppSettings["App0Path"]) },
-                { "FileName", "TestApp0.sppkg" },
-                { "Overwrite", true }
+                ["Content"] = System.IO.File.OpenRead(context.AppSettings["App0Path"]),
+                ["FileName"] = "TestApp0.sppkg",
+                ["Overwrite"] = true
             }
         );
         var result2 = context.Runspace.InvokeCommand<File>(
             "Get-KshFile",
             new Dictionary<string, object>()
             {
-                { "App", result1.ElementAt(0) }
+                ["App"] = result1.ElementAt(0)
             }
         );
         var result3 = context.Runspace.InvokeCommand<ListItem>(
             "Get-KshListItem",
             new Dictionary<string, object>()
             {
-                { "File", result2.ElementAt(0) }
+                ["File"] = result2.ElementAt(0)
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Install-KshTenantApp",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) }
+                ["Identity"] = result1.ElementAt(0)
             }
         );
         while (true)
@@ -82,7 +82,7 @@ public class UninstallTenantAppCommandTests
                 "Get-KshAppInstance",
                 new Dictionary<string, object>()
                 {
-                    { "AppProductId", result3.ElementAt(0)["AppProductID"] }
+                    ["AppProductId"] = result3.ElementAt(0)["AppProductID"]
                 }
             );
             if (result6.ElementAt(0).Status == AppStatus.Installed)
@@ -94,7 +94,7 @@ public class UninstallTenantAppCommandTests
             "Uninstall-KshTenantApp",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) }
+                ["Identity"] = result1.ElementAt(0)
             }
         );
         while (true)
@@ -104,7 +104,7 @@ public class UninstallTenantAppCommandTests
                 "Get-KshAppInstance",
                 new Dictionary<string, object>()
                 {
-                    { "AppProductId", result3.ElementAt(0)["AppProductID"] }
+                    ["AppProductId"] = result3.ElementAt(0)["AppProductID"]
                 }
             );
             if (result8.Any())
@@ -119,17 +119,17 @@ public class UninstallTenantAppCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["TenantAppCatalogUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["TenantAppCatalogUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshTenantApp",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) }
+                ["Identity"] = result1.ElementAt(0)
             }
         );
     }

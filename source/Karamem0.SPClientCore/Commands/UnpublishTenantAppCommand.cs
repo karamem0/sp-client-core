@@ -22,11 +22,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class UnpublishTenantAppCommand : ClientObjectCmdlet<ITenantAppService>
 {
 
-    public UnpublishTenantAppCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true
+    )]
     public App Identity { get; private set; }
 
     [Parameter(Mandatory = false)]

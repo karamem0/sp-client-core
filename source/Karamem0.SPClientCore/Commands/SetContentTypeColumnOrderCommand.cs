@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class SetContentTypeColumnOrderCommand : ClientObjectCmdlet<IContentTypeColumnService>
 {
 
-    public SetContentTypeColumnOrderCommand()
-    {
-    }
-
     [Parameter(Mandatory = true, Position = 0)]
     public ContentType ContentType { get; private set; }
 
@@ -37,7 +33,11 @@ public class SetContentTypeColumnOrderCommand : ClientObjectCmdlet<IContentTypeC
 
     protected override void ProcessRecordCore()
     {
-        this.Service.ReorderObject(this.ContentType, this.ContentTypeColumns, this.PushChanges);
+        this.Service.ReorderObject(
+            this.ContentType,
+            this.ContentTypeColumns,
+            this.PushChanges
+        );
     }
 
 }

@@ -17,19 +17,13 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class ClientActionCollection : IEnumerable<ClientAction>
 {
 
-    private readonly IDictionary<long, ClientAction> collection;
-
-    public ClientActionCollection()
-    {
-        this.collection = new Dictionary<long, ClientAction>();
-    }
+    private readonly IDictionary<long, ClientAction> collection = new Dictionary<long, ClientAction>();
 
     public ClientAction this[long id] => this.collection[id];
 
     public void Add(ClientAction item)
     {
-        _ = item ?? throw new ArgumentNullException(nameof(item));
-        this.collection.Add(item.Id, item);
+        this.collection.Add(item.Id, item ?? throw new ArgumentNullException(nameof(item)));
     }
 
     public void AddRange(IEnumerable<ClientAction> items)

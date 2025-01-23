@@ -15,7 +15,10 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
-[ClientObject(Name = "Microsoft.SharePoint.Marketplace.CorporateCuratedGallery.SiteCollectionAppCatalogAllowedCollection", Id = "{e6a14f02-4a7b-4bd2-b869-23a0a63283db}")]
+[ClientObject(
+    Name = "Microsoft.SharePoint.Marketplace.CorporateCuratedGallery.SiteCollectionAppCatalogAllowedCollection",
+    Id = "{e6a14f02-4a7b-4bd2-b869-23a0a63283db}"
+)]
 [JsonObject()]
 public class SiteCollectionAppCatalogEnumerable : ClientObjectEnumerable<SiteCollectionAppCatalog>
 {

@@ -22,14 +22,20 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddTermCommand : ClientObjectCmdlet<ITermService>
 {
 
-    public AddTermCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet1"
+    )]
     public TermSet TermSet { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet2"
+    )]
     public Term Term { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
@@ -52,11 +58,25 @@ public class AddTermCommand : ClientObjectCmdlet<ITermService>
         }
         if (this.ParameterSetName == "ParamSet1")
         {
-            this.Outputs.Add(this.Service.AddObject(this.TermSet, this.Name, this.Id, this.Lcid));
+            this.Outputs.Add(
+                this.Service.AddObject(
+                    this.TermSet,
+                    this.Name,
+                    this.Id,
+                    this.Lcid
+                )
+            );
         }
         if (this.ParameterSetName == "ParamSet2")
         {
-            this.Outputs.Add(this.Service.AddObject(this.Term, this.Name, this.Id, this.Lcid));
+            this.Outputs.Add(
+                this.Service.AddObject(
+                    this.Term,
+                    this.Name,
+                    this.Id,
+                    this.Lcid
+                )
+            );
         }
     }
 

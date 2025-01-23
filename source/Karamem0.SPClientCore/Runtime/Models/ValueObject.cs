@@ -6,8 +6,6 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,15 +17,9 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public abstract class ValueObject
 {
 
-    protected ValueObject()
-    {
-    }
-
-    protected virtual Lazy<PropertyInfo[]> EqualityProperties => new(() =>
-    [
-        ..
-        this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public)
-    ]);
+    protected virtual Lazy<IReadOnlyCollection<PropertyInfo>> EqualityProperties => new(
+        () => this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public)
+    );
 
     public override bool Equals(object value)
     {

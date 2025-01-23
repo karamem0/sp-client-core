@@ -21,7 +21,11 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ISiteCollectionAppService
 {
 
-    App AddObject(System.IO.Stream appContent, string appName, bool overwrite);
+    App AddObject(
+        System.IO.Stream appContent,
+        string appName,
+        bool overwrite
+    );
 
     App GetObject(App appObject);
 
@@ -41,10 +45,15 @@ public interface ISiteCollectionAppService
 
 }
 
-public class SiteCollectionAppService(ClientContext clientContext) : ClientService(clientContext), ISiteCollectionAppService
+public class SiteCollectionAppService(ClientContext clientContext)
+    : ClientService(clientContext), ISiteCollectionAppService
 {
 
-    public App AddObject(System.IO.Stream appContent, string appName, bool overwrite)
+    public App AddObject(
+        System.IO.Stream appContent,
+        string appName,
+        bool overwrite
+    )
     {
         _ = appContent ?? throw new ArgumentNullException(nameof(appContent));
         _ = appName ?? throw new ArgumentNullException(nameof(appName));
@@ -52,7 +61,8 @@ public class SiteCollectionAppService(ClientContext clientContext) : ClientServi
             .ConcatPath(
                 "_api/web/sitecollectionappcatalog/add(url='{0}',overwrite={1})",
                 appName,
-                overwrite)
+                overwrite
+            )
             .ConcatQuery("$expand=ListItemAllFields&$select=ListItemAllFields/UniqueId");
         var file = this.ClientContext.PostStream<ODataV1Object>(requestUrl, appContent);
         var item = file["ListItemAllFields"] as JToken;
@@ -71,7 +81,8 @@ public class SiteCollectionAppService(ClientContext clientContext) : ClientServi
         var requestUrl = this.ClientContext.BaseAddress
             .ConcatPath(
                 "_api/web/sitecollectionappcatalog/availableapps/getbyid('{0}')",
-                appId)
+                appId
+            )
             .ConcatQuery(ODataQuery.CreateSelect<App>());
         return this.ClientContext.GetObject<App>(requestUrl);
     }
@@ -90,7 +101,8 @@ public class SiteCollectionAppService(ClientContext clientContext) : ClientServi
         var requestUrl = this.ClientContext.BaseAddress
             .ConcatPath(
                 "_api/web/sitecollectionappcatalog/availableapps/getbyid('{0}')/install",
-                appObject.Id);
+                appObject.Id
+            );
         this.ClientContext.PostObject(requestUrl, null);
     }
 
@@ -100,7 +112,8 @@ public class SiteCollectionAppService(ClientContext clientContext) : ClientServi
         var requestUrl = this.ClientContext.BaseAddress
             .ConcatPath(
                 "_api/web/sitecollectionappcatalog/availableapps/getbyid('{0}')/deploy",
-                appObject.Id);
+                appObject.Id
+            );
         this.ClientContext.PostObject(requestUrl, null);
     }
 
@@ -110,7 +123,8 @@ public class SiteCollectionAppService(ClientContext clientContext) : ClientServi
         var requestUrl = this.ClientContext.BaseAddress
             .ConcatPath(
                 "_api/web/sitecollectionappcatalog/availableapps/getbyid('{0}')/remove",
-                appObject.Id);
+                appObject.Id
+            );
         this.ClientContext.PostObject(requestUrl, null);
     }
 
@@ -120,7 +134,8 @@ public class SiteCollectionAppService(ClientContext clientContext) : ClientServi
         var requestUrl = this.ClientContext.BaseAddress
             .ConcatPath(
                 "_api/web/sitecollectionappcatalog/availableapps/getbyid('{0}')/uninstall",
-                appObject.Id);
+                appObject.Id
+            );
         this.ClientContext.PostObject(requestUrl, null);
     }
 
@@ -130,7 +145,8 @@ public class SiteCollectionAppService(ClientContext clientContext) : ClientServi
         var requestUrl = this.ClientContext.BaseAddress
             .ConcatPath(
                 "_api/web/sitecollectionappcatalog/availableapps/getbyid('{0}')/deploy",
-                appObject.Id);
+                appObject.Id
+            );
         this.ClientContext.PostObject(requestUrl, null);
     }
 

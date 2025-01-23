@@ -18,10 +18,6 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class ODataV1ResultPayload<T> : ODataV1ResultPayload where T : ODataV1Object
 {
 
-    public ODataV1ResultPayload()
-    {
-    }
-
     [JsonProperty("d")]
     public virtual T Entry { get; protected set; }
 

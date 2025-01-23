@@ -22,11 +22,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class DenyListItemCommand : ClientObjectCmdlet<IListItemService>
 {
 
-    public DenyListItemCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true
+    )]
     public ListItem Identity { get; private set; }
 
     [Parameter(Mandatory = false)]

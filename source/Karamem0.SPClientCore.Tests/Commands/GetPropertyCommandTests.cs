@@ -28,24 +28,24 @@ public class GetPropertyCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<Alert>(
             "Get-KshAlert",
             new Dictionary<string, object>()
             {
-                { "AlertId", context.AppSettings["Alert1Id"] }
+                ["AlertId"] = context.AppSettings["Alert1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<PropertyValues>(
             "Get-KshProperty",
             new Dictionary<string, object>()
             {
-                { "Alert", result1.ElementAt(0) }
+                ["Alert"] = result1.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);
@@ -60,24 +60,24 @@ public class GetPropertyCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<File>(
             "Get-KshFile",
             new Dictionary<string, object>()
             {
-                { "FileUrl", context.AppSettings["File1Url"] }
+                ["FileUrl"] = context.AppSettings["File1Url"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<PropertyValues>(
             "Get-KshProperty",
             new Dictionary<string, object>()
             {
-                { "File", result1.ElementAt(0) }
+                ["File"] = result1.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);
@@ -92,24 +92,24 @@ public class GetPropertyCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<Folder>(
             "Get-KshFolder",
             new Dictionary<string, object>()
             {
-                { "FolderUrl", context.AppSettings["Folder1Url"] }
+                ["FolderUrl"] = context.AppSettings["Folder1Url"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<PropertyValues>(
             "Get-KshProperty",
             new Dictionary<string, object>()
             {
-                { "Folder", result1.ElementAt(0) }
+                ["Folder"] = result1.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);
@@ -124,32 +124,32 @@ public class GetPropertyCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ListItem>(
             "Get-KshListItem",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "ItemId", context.AppSettings["ListItem1Id"] }
+                ["List"] = result1.ElementAt(0),
+                ["ItemId"] = context.AppSettings["ListItem1Id"]
             }
         );
         var result3 = context.Runspace.InvokeCommand<PropertyValues>(
             "Get-KshProperty",
             new Dictionary<string, object>()
             {
-                { "ListItem", result2.ElementAt(0) }
+                ["ListItem"] = result2.ElementAt(0)
             }
         );
         var actual = result3.ElementAt(0);
@@ -164,24 +164,24 @@ public class GetPropertyCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<Site>(
             "Get-KshSite",
             new Dictionary<string, object>()
             {
-                { "SiteId", context.AppSettings["Site1Id"] }
+                ["SiteId"] = context.AppSettings["Site1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<PropertyValues>(
             "Get-KshProperty",
             new Dictionary<string, object>()
             {
-                { "Site", result1.ElementAt(0) }
+                ["Site"] = result1.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);

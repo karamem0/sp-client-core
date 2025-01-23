@@ -29,26 +29,33 @@ public interface IRegionalSettingsService
 
 }
 
-public class RegionalSettingsService(ClientContext clientContext) : ClientService<RegionalSettings>(clientContext), IRegionalSettingsService
+public class RegionalSettingsService(ClientContext clientContext)
+    : ClientService<RegionalSettings>(clientContext), IRegionalSettingsService
 {
 
     public DateTime ConvertUniversalToLocal(DateTime date)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "RegionalSettings"));
+            new ObjectPathProperty(objectPath2.Id, "RegionalSettings")
+        );
         var objectPath4 = requestPayload.Add(
-            new ObjectPathProperty(objectPath3.Id, "TimeZone"));
+            new ObjectPathProperty(objectPath3.Id, "TimeZone")
+        );
         var objectPath5 = requestPayload.Add(
             objectPath4,
             objectPathId => new ClientActionMethod(
                 objectPathId,
                 "UTCToLocalTime",
-                requestPayload.CreateParameter(date)));
+                requestPayload.CreateParameter(date)
+            )
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<DateTime>(requestPayload.GetActionId<ClientActionMethod>());
@@ -58,19 +65,25 @@ public class RegionalSettingsService(ClientContext clientContext) : ClientServic
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "RegionalSettings"));
+            new ObjectPathProperty(objectPath2.Id, "RegionalSettings")
+        );
         var objectPath4 = requestPayload.Add(
-            new ObjectPathProperty(objectPath3.Id, "TimeZone"));
+            new ObjectPathProperty(objectPath3.Id, "TimeZone")
+        );
         var objectPath5 = requestPayload.Add(
             objectPath4,
             objectPathId => new ClientActionMethod(
                 objectPathId,
                 "LocalTimeToUTC",
-                requestPayload.CreateParameter(date)));
+                requestPayload.CreateParameter(date)
+            )
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<DateTime>(requestPayload.GetActionId<ClientActionMethod>());
@@ -80,16 +93,19 @@ public class RegionalSettingsService(ClientContext clientContext) : ClientServic
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
             new ObjectPathProperty(objectPath2.Id, "RegionalSettings"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(RegionalSettings))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<RegionalSettings>(requestPayload.GetActionId<ClientActionQuery>());
@@ -99,17 +115,22 @@ public class RegionalSettingsService(ClientContext clientContext) : ClientServic
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "RegionalSettings"));
+            new ObjectPathProperty(objectPath2.Id, "RegionalSettings")
+        );
         var objectPath4 = requestPayload.Add(
             objectPath3,
-            requestPayload.CreateSetPropertyDelegates(typeof(RegionalSettings), modificationInfo).ToArray());
+            requestPayload.CreateSetPropertyDelegates(typeof(RegionalSettings), modificationInfo).ToArray()
+        );
         var objectPath5 = requestPayload.Add(
             objectPath4,
-            objectPathId => new ClientActionMethod(objectPathId, "Update"));
+            objectPathId => new ClientActionMethod(objectPathId, "Update")
+        );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

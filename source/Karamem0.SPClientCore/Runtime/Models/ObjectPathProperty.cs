@@ -19,7 +19,7 @@ public class ObjectPathProperty(long parentId, string name) : ObjectPath
 {
 
     [XmlAttribute()]
-    public override long Id { get; protected set; }
+    public override long Id { get; protected set; } = NewId();
 
     [XmlAttribute()]
     public virtual long ParentId { get; private set; } = parentId;

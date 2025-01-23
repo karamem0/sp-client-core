@@ -15,7 +15,10 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
-[ClientObject(Name = "Microsoft.Online.SharePoint.TenantAdministration.SPOSitePropertiesEnumerable", Id = "{2738ec84-50c0-4f51-80f2-2a123f63d0b3}")]
+[ClientObject(
+    Name = "Microsoft.Online.SharePoint.TenantAdministration.SPOSitePropertiesEnumerable",
+    Id = "{2738ec84-50c0-4f51-80f2-2a123f63d0b3}"
+)]
 [JsonObject()]
 public class TenantSiteCollectionEnumerable : ClientObjectEnumerable<TenantSiteCollection>
 {

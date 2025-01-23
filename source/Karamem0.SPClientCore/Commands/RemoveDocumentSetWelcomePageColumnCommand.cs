@@ -17,14 +17,15 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
-[Cmdlet(VerbsCommon.Remove, "KshDocumentSetWelcomePageColumn", SupportsShouldProcess = true, ConfirmImpact = ConfirmImpact.High)]
+[Cmdlet(
+    VerbsCommon.Remove,
+    "KshDocumentSetWelcomePageColumn",
+    SupportsShouldProcess = true,
+    ConfirmImpact = ConfirmImpact.High
+)]
 [OutputType(typeof(void))]
 public class RemoveDocumentSetWelcomePageColumnCommand : ClientObjectCmdlet<IDocumentSetWelcomePageColumnService>
 {
-
-    public RemoveDocumentSetWelcomePageColumnCommand()
-    {
-    }
 
     [Parameter(Mandatory = true, Position = 0)]
     public ContentType ContentType { get; private set; }
@@ -39,7 +40,11 @@ public class RemoveDocumentSetWelcomePageColumnCommand : ClientObjectCmdlet<IDoc
     {
         if (this.ShouldProcess(this.Column.Name, VerbsCommon.Remove))
         {
-            this.Service.RemoveObject(this.ContentType, this.Column, this.PushChanges);
+            this.Service.RemoveObject(
+                this.ContentType,
+                this.Column,
+                this.PushChanges
+            );
         }
     }
 

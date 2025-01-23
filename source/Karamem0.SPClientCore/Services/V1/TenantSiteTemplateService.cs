@@ -25,7 +25,8 @@ public interface ITenantSiteTemplateService
 
 }
 
-public class TenantSiteTemplateService(ClientContext clientContext) : ClientService(clientContext), ITenantSiteTemplateService
+public class TenantSiteTemplateService(ClientContext clientContext)
+    : ClientService(clientContext), ITenantSiteTemplateService
 {
 
     public IEnumerable<TenantSiteTemplate> GetObjectEnumerable(uint? lcid, int? compatibilityLevel)
@@ -34,19 +35,22 @@ public class TenantSiteTemplateService(ClientContext clientContext) : ClientServ
         _ = compatibilityLevel ?? throw new ArgumentNullException(nameof(compatibilityLevel));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant)));
+            new ObjectPathConstructor(typeof(Tenant))
+        );
         var objectPath2 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath1.Id,
                 "GetSPOTenantWebTemplates",
                 requestPayload.CreateParameter(lcid),
-                requestPayload.CreateParameter(compatibilityLevel)),
+                requestPayload.CreateParameter(compatibilityLevel)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = ClientQuery.Empty,
                 ChildItemQuery = ClientQuery.Empty
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<TenantSiteTemplateEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
@@ -56,7 +60,8 @@ public class TenantSiteTemplateService(ClientContext clientContext) : ClientServ
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant)));
+            new ObjectPathConstructor(typeof(Tenant))
+        );
         var objectPath2 = requestPayload.Add(
             new ObjectPathMethod(objectPath1.Id, "GetSPOTenantAllWebTemplates"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -64,7 +69,8 @@ public class TenantSiteTemplateService(ClientContext clientContext) : ClientServ
             {
                 Query = ClientQuery.Empty,
                 ChildItemQuery = ClientQuery.Empty
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<TenantSiteTemplateEnumerable>(requestPayload.GetActionId<ClientActionQuery>());

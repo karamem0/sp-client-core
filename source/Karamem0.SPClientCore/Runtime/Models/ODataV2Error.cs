@@ -18,10 +18,6 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class ODataV2Error : ValueObject
 {
 
-    public ODataV2Error()
-    {
-    }
-
     [JsonProperty("code")]
     public string Code { get; private set; }
 

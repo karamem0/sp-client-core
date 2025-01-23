@@ -28,55 +28,55 @@ public class AddDocumentSetCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListUrl", context.AppSettings["List3Url"] }
+                ["ListUrl"] = context.AppSettings["List3Url"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<Folder>(
             "Get-KshFolder",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) }
+                ["List"] = result1.ElementAt(0)
             }
         );
         var result3 = context.Runspace.InvokeCommand<ContentType>(
             "Get-KshContentType",
             new Dictionary<string, object>()
             {
-                { "ContentTypeId", context.AppSettings["ListContentType7Id"] },
-                { "List", result1.ElementAt(0) }
+                ["ContentTypeId"] = context.AppSettings["ListContentType7Id"],
+                ["List"] = result1.ElementAt(0)
             }
         );
         var result4 = context.Runspace.InvokeCommand<string>(
             "Add-KshDocumentSet",
             new Dictionary<string, object>()
             {
-                { "Folder", result2.ElementAt(0) },
-                { "Name", "Test Document Set 0" },
-                { "ContentType", result3.ElementAt(0) }
+                ["Folder"] = result2.ElementAt(0),
+                ["Name"] = "Test Document Set 0",
+                ["ContentType"] = result3.ElementAt(0)
             }
         );
         var result5 = context.Runspace.InvokeCommand<Folder>(
             "Get-KshFolder",
             new Dictionary<string, object>()
             {
-                { "FolderUrl", result4.ElementAt(0) }
+                ["FolderUrl"] = result4.ElementAt(0)
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshFolder",
             new Dictionary<string, object>()
             {
-                { "Identity", result5.ElementAt(0) }
+                ["Identity"] = result5.ElementAt(0)
             }
         );
         var actual = result4.ElementAt(0);

@@ -34,10 +34,6 @@ public abstract class ClientRequestObject : ValueObject
         return Interlocked.Read(ref id);
     }
 
-    protected ClientRequestObject()
-    {
-    }
-
     public override string ToString()
     {
         var encoding = new UTF8Encoding(false);
@@ -49,10 +45,9 @@ public abstract class ClientRequestObject : ValueObject
             OmitXmlDeclaration = true,
         };
         using var stream = new MemoryStream();
-        using (var writer = XmlWriter.Create(stream, settings))
-        {
-            this.WriteXml(writer);
-        }
+        using var writer = XmlWriter.Create(stream, settings);
+        this.WriteXml(writer);
+        writer.Flush();
         stream.Position = 0;
         using var reader = new StreamReader(stream);
         return reader.ReadToEnd();
@@ -89,7 +84,8 @@ public abstract class ClientRequestObject : ValueObject
                             string.IsNullOrEmpty(attributeAttribute.AttributeName)
                                 ? propertyInfo.Name
                                 : attributeAttribute.AttributeName,
-                            requestValue.Value);
+                            requestValue.Value
+                        );
                     }
                     else
                     {
@@ -105,14 +101,17 @@ public abstract class ClientRequestObject : ValueObject
                             string.IsNullOrEmpty(elementAttribute.ElementName)
                                 ? propertyInfo.Name
                                 : elementAttribute.ElementName,
-                            requestValue.Value);
+                            requestValue.Value
+                        );
                     }
                     else if (value is ClientRequestObject requestObject)
                     {
-                        requestObject.WriteXml(writer,
+                        requestObject.WriteXml(
+                            writer,
                             string.IsNullOrEmpty(elementAttribute.ElementName)
                                 ? propertyInfo.Name
-                                : elementAttribute.ElementName);
+                                : elementAttribute.ElementName
+                        );
                     }
                     else if (value is IEnumerable elementValues)
                     {
@@ -124,14 +123,17 @@ public abstract class ClientRequestObject : ValueObject
                                     string.IsNullOrEmpty(elementAttribute.ElementName)
                                         ? propertyInfo.Name
                                         : elementAttribute.ElementName,
-                                    elementRequestValue.Value);
+                                    elementRequestValue.Value
+                                );
                             }
                             else if (elementValue is ClientRequestObject elementRequestObject)
                             {
-                                elementRequestObject.WriteXml(writer,
+                                elementRequestObject.WriteXml(
+                                    writer,
                                     string.IsNullOrEmpty(elementAttribute.ElementName)
                                         ? propertyInfo.Name
-                                        : elementAttribute.ElementName);
+                                        : elementAttribute.ElementName
+                                );
                             }
                             else
                             {
@@ -164,7 +166,8 @@ public abstract class ClientRequestObject : ValueObject
                         writer.WriteStartElement(
                             string.IsNullOrEmpty(arrayAttribute.ElementName)
                                 ? propertyInfo.Name
-                                : arrayAttribute.ElementName);
+                                : arrayAttribute.ElementName
+                        );
                         foreach (var element in elements)
                         {
                             if (element is ClientRequestObject requestObject)

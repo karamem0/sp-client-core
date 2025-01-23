@@ -23,10 +23,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class NewColumnImageValueCommand : ClientObjectCmdlet<ISiteService>
 {
 
-    public NewColumnImageValueCommand()
-    {
-    }
-
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     public ImageItem ImageItem { get; private set; }
 
@@ -51,21 +47,27 @@ public class NewColumnImageValueCommand : ClientObjectCmdlet<ISiteService>
         if (this.ParameterSetName == "ParamSet1")
         {
             var siteObject = this.Service.GetObject();
-            this.Outputs.Add(new ColumnImageValue(
-                this.ColumnName,
-                this.ImageItem.Name,
-                new Uri(siteObject.Url).GetAuthority(),
-                this.ImageItem.ServerRelativeUrl,
-                this.ImageItem.UniqueId.ToString()));
+            this.Outputs.Add(
+                new ColumnImageValue(
+                    this.ColumnName,
+                    this.ImageItem.Name,
+                    new Uri(siteObject.Url).GetAuthority(),
+                    this.ImageItem.ServerRelativeUrl,
+                    this.ImageItem.UniqueId.ToString()
+                )
+            );
         }
         if (this.ParameterSetName == "ParamSet2")
         {
-            this.Outputs.Add(new ColumnImageValue(
-                this.ColumnName,
-                this.FileName,
-                this.ServerUrl,
-                this.ServerRelativeUrl,
-                this.Id.ToString()));
+            this.Outputs.Add(
+                new ColumnImageValue(
+                    this.ColumnName,
+                    this.FileName,
+                    this.ServerUrl,
+                    this.ServerRelativeUrl,
+                    this.Id.ToString()
+                )
+            );
         }
     }
 

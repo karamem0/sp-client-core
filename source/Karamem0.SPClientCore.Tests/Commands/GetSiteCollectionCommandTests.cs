@@ -28,24 +28,24 @@ public class GetSiteCollectionCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AdminUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AdminUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<SiteCollection>(
             "Get-KshSiteCollection",
             new Dictionary<string, object>()
             {
-                { "SiteCollectionUrl", context.AppSettings["BaseUrl"] }
+                ["SiteCollectionUrl"] = context.AppSettings["BaseUrl"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<SiteCollection>(
             "Get-KshSiteCollection",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) }
+                ["Identity"] = result1.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);
@@ -60,17 +60,17 @@ public class GetSiteCollectionCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AdminUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AdminUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<SiteCollection>(
             "Get-KshSiteCollection",
             new Dictionary<string, object>()
             {
-                { "SiteCollectionUrl", context.AppSettings["BaseUrl"] }
+                ["SiteCollectionUrl"] = context.AppSettings["BaseUrl"]
             }
         );
         var actual = result1.ElementAt(0);

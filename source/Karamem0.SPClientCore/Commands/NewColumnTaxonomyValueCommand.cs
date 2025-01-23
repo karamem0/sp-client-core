@@ -21,16 +21,18 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class NewColumnTaxonomyValueCommand : ClientObjectCmdlet
 {
 
-    public NewColumnTaxonomyValueCommand()
-    {
-    }
-
     [Parameter(Mandatory = true)]
     public Term Term { get; private set; }
 
     protected override void ProcessRecordCore()
     {
-        this.Outputs.Add(new ColumnTaxonomyValue(this.Term.Name, this.Term.Id.ToString(), -1));
+        this.Outputs.Add(
+            new ColumnTaxonomyValue(
+                this.Term.Name,
+                this.Term.Id.ToString(),
+                -1
+            )
+        );
     }
 
 }

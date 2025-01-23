@@ -26,13 +26,22 @@ public static class UriExtensions
         return new Uri($"{str1}/{str2}{slash}", UriKind.RelativeOrAbsolute);
     }
 
-    public static Uri ConcatPath(this Uri uri, string path, params object[] args)
+    public static Uri ConcatPath(
+        this Uri uri,
+        string path,
+        params object[] args
+    )
     {
-        return uri.ConcatPath(string.Format(path, args
-            .Select(obj => obj ?? "")
-            .Select(obj => obj is bool ? obj.ToString().ToLower() : obj.ToString())
-            .Select(Uri.EscapeDataString)
-            .ToArray()));
+        return uri.ConcatPath(
+            string.Format(
+                path,
+                args
+                    .Select(obj => obj ?? "")
+                    .Select(obj => obj is bool ? obj.ToString().ToLower() : obj.ToString())
+                    .Select(Uri.EscapeDataString)
+                    .ToArray()
+            )
+        );
     }
 
     public static Uri ConcatQuery(this Uri uri, string query)

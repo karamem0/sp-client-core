@@ -20,14 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class ListItemCreationInfo : ClientValueObject
 {
 
-    public ListItemCreationInfo()
-    {
-    }
-
-    public ListItemCreationInfo(IReadOnlyDictionary<string, object> parameters) : base(parameters)
-    {
-    }
-
     [JsonProperty()]
     public virtual string FolderUrl { get; protected set; }
 

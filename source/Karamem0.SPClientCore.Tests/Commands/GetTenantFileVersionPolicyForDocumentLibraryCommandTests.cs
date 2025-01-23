@@ -28,18 +28,18 @@ public class GetTenantFileVersionPolicyForDocumentLibraryCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AdminUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AdminUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<FileVersionPolicyForDocumentLibrary>(
             "Get-KshTenantFileVersionPolicyForDocumentLibrary",
             new Dictionary<string, object>()
             {
-                { "SiteUrl", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ListId", context.AppSettings["List2Id"] }
+                ["SiteUrl"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ListId"] = context.AppSettings["List2Id"]
             }
         );
         var actual = result1.ElementAt(0);
@@ -54,18 +54,18 @@ public class GetTenantFileVersionPolicyForDocumentLibraryCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AdminUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AdminUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<FileVersionPolicyForDocumentLibrary>(
             "Get-KshTenantFileVersionPolicyForDocumentLibrary",
             new Dictionary<string, object>()
             {
-                { "SiteUrl", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ListTitle", context.AppSettings["List2Title"] }
+                ["SiteUrl"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ListTitle"] = context.AppSettings["List2Title"]
             }
         );
         var actual = result1.ElementAt(0);

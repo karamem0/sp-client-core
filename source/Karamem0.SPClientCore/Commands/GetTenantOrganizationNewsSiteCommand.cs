@@ -21,10 +21,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetTenantOrganizationNewsSiteCommand : ClientObjectCmdlet<ITenantOrganizationNewsSiteService>
 {
 
-    public GetTenantOrganizationNewsSiteCommand()
-    {
-    }
-
     [Parameter(Mandatory = false)]
     public SwitchParameter NoEnumerate { get; private set; }
 

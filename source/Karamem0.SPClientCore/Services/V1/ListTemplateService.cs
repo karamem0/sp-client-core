@@ -27,7 +27,8 @@ public interface IListTemplateService
 
 }
 
-public class ListTemplateService(ClientContext clientContext) : ClientService<ListTemplate>(clientContext), IListTemplateService
+public class ListTemplateService(ClientContext clientContext)
+    : ClientService<ListTemplate>(clientContext), IListTemplateService
 {
 
     public ListTemplate GetObject(string listTemplateTitle)
@@ -35,21 +36,26 @@ public class ListTemplateService(ClientContext clientContext) : ClientService<Li
         _ = listTemplateTitle ?? throw new ArgumentNullException(nameof(listTemplateTitle));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "ListTemplates"));
+            new ObjectPathProperty(objectPath2.Id, "ListTemplates")
+        );
         var objectPath4 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath3.Id,
                 "GetByName",
-                requestPayload.CreateParameter(listTemplateTitle)),
+                requestPayload.CreateParameter(listTemplateTitle)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(ListTemplate))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<ListTemplate>(requestPayload.GetActionId<ClientActionQuery>());
@@ -59,9 +65,11 @@ public class ListTemplateService(ClientContext clientContext) : ClientService<Li
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
             new ObjectPathProperty(objectPath2.Id, "ListTemplates"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -69,7 +77,8 @@ public class ListTemplateService(ClientContext clientContext) : ClientService<Li
             {
                 Query = ClientQuery.Empty,
                 ChildItemQuery = new ClientQuery(true, typeof(ListTemplate))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<ListTemplateEnumerable>(requestPayload.GetActionId<ClientActionQuery>());

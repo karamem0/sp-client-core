@@ -21,29 +21,68 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth;
 public interface IOAuthService
 {
 
-    void ConnectWithDeviceCode(Uri authority, string clientId, Uri resource, bool userMode, Action<string> callback);
+    void ConnectWithDeviceCode(
+        Uri authority,
+        string clientId,
+        Uri resource,
+        bool userMode,
+        Action<string> callback
+    );
 
-    void ConnectWithPassword(Uri authority, string clientId, Uri resource, NetworkCredential credential, bool userMode);
+    void ConnectWithPassword(
+        Uri authority,
+        string clientId,
+        Uri resource,
+        NetworkCredential credential,
+        bool userMode
+    );
 
-    void ConnectWithCertificate(Uri authority, string clientId, Uri resource, byte[] certificate, SecureString password, bool userMode);
+    void ConnectWithCertificate(
+        Uri authority,
+        string clientId,
+        Uri resource,
+        byte[] certificate,
+        SecureString password,
+        bool userMode
+    );
 
-    void ConnectWithCache(Uri authority, string clientId, Uri resource, bool userMode);
+    void ConnectWithCache(
+        Uri authority,
+        string clientId,
+        Uri resource,
+        bool userMode
+    );
 
-    void ConnectWithClientSecret(string clientId, string clientSecret, Uri resource);
+    void ConnectWithClientSecret(
+        string clientId,
+        string clientSecret,
+        Uri resource
+    );
 
 }
 
 public class OAuthService : IOAuthService
 {
 
-    public void ConnectWithDeviceCode(Uri authority, string clientId, Uri resource, bool userMode, Action<string> callback)
+    public void ConnectWithDeviceCode(
+        Uri authority,
+        string clientId,
+        Uri resource,
+        bool userMode,
+        Action<string> callback
+    )
     {
         try
         {
             Console.TreatControlCAsInput = true;
             authority ??= new Uri(OAuthConstants.AadAuthority);
             clientId ??= OAuthConstants.ClientId;
-            var oAuthContext = new AadOAuthContext(authority.GetAuthority(), clientId, resource.GetAuthority(), userMode);
+            var oAuthContext = new AadOAuthContext(
+                authority.GetAuthority(),
+                clientId,
+                resource.GetAuthority(),
+                userMode
+            );
             var oAuthDeviceCodeMessage = oAuthContext.AcquireDeviceCode();
             if (oAuthDeviceCodeMessage is OAuthDeviceCode oAuthDeviceCode)
             {
@@ -71,7 +110,13 @@ public class OAuthService : IOAuthService
                     if (oAuthTokenMessage is AadOAuthToken oAuthToken)
                     {
                         AadOAuthTokenStore.Add(resource, oAuthToken);
-                        ClientService.Register(ClientContext.Create(resource, oAuthContext, oAuthToken));
+                        ClientService.Register(
+                            ClientContext.Create(
+                                resource,
+                                oAuthContext,
+                                oAuthToken
+                            )
+                        );
                     }
                     if (oAuthTokenMessage is OAuthError oAuthTokenError)
                     {
@@ -88,9 +133,7 @@ public class OAuthService : IOAuthService
                     {
                         break;
                     }
-                }
-                while (expiresOn > DateTime.UtcNow);
-
+                } while (expiresOn > DateTime.UtcNow);
             }
             if (oAuthDeviceCodeMessage is OAuthError oAuthDeviceCodeError)
             {
@@ -103,16 +146,33 @@ public class OAuthService : IOAuthService
         }
     }
 
-    public void ConnectWithPassword(Uri authority, string clientId, Uri resource, NetworkCredential credential, bool userMode)
+    public void ConnectWithPassword(
+        Uri authority,
+        string clientId,
+        Uri resource,
+        NetworkCredential credential,
+        bool userMode
+    )
     {
         authority ??= new Uri(OAuthConstants.AadAuthority);
         clientId ??= OAuthConstants.ClientId;
-        var oAuthContext = new AadOAuthContext(authority.GetAuthority(), clientId, resource.GetAuthority(), userMode);
+        var oAuthContext = new AadOAuthContext(
+            authority.GetAuthority(),
+            clientId,
+            resource.GetAuthority(),
+            userMode
+        );
         var oAuthMessage = oAuthContext.AcquireTokenByPassword(credential.UserName, credential.Password);
         if (oAuthMessage is AadOAuthToken oAuthToken)
         {
             AadOAuthTokenStore.Add(resource, oAuthToken);
-            ClientService.Register(ClientContext.Create(resource, oAuthContext, oAuthToken));
+            ClientService.Register(
+                ClientContext.Create(
+                    resource,
+                    oAuthContext,
+                    oAuthToken
+                )
+            );
         }
         if (oAuthMessage is OAuthError oAuthError)
         {
@@ -120,16 +180,34 @@ public class OAuthService : IOAuthService
         }
     }
 
-    public void ConnectWithCertificate(Uri authority, string clientId, Uri resource, byte[] certificate, SecureString password, bool userMode)
+    public void ConnectWithCertificate(
+        Uri authority,
+        string clientId,
+        Uri resource,
+        byte[] certificate,
+        SecureString password,
+        bool userMode
+    )
     {
         authority ??= new Uri(OAuthConstants.AadAuthority);
         clientId ??= OAuthConstants.ClientId;
-        var oAuthContext = new AadOAuthContext(authority.GetAuthority(), clientId, resource.GetAuthority(), userMode);
+        var oAuthContext = new AadOAuthContext(
+            authority.GetAuthority(),
+            clientId,
+            resource.GetAuthority(),
+            userMode
+        );
         var oAuthMessage = oAuthContext.AcquireTokenByCertificate(certificate, password);
         if (oAuthMessage is AadOAuthToken oAuthToken)
         {
             AadOAuthTokenStore.Add(resource, oAuthToken);
-            ClientService.Register(ClientContext.Create(resource, oAuthContext, oAuthToken));
+            ClientService.Register(
+                ClientContext.Create(
+                    resource,
+                    oAuthContext,
+                    oAuthToken
+                )
+            );
         }
         if (oAuthMessage is OAuthError oAuthError)
         {
@@ -137,25 +215,52 @@ public class OAuthService : IOAuthService
         }
     }
 
-    public void ConnectWithCache(Uri authority, string clientId, Uri resource, bool userMode)
+    public void ConnectWithCache(
+        Uri authority,
+        string clientId,
+        Uri resource,
+        bool userMode
+    )
     {
         authority ??= new Uri(OAuthConstants.AadAuthority);
         clientId ??= OAuthConstants.ClientId;
-        var oAuthContext = new AadOAuthContext(authority.GetAuthority(), clientId, resource.GetAuthority(), userMode);
+        var oAuthContext = new AadOAuthContext(
+            authority.GetAuthority(),
+            clientId,
+            resource.GetAuthority(),
+            userMode
+        );
         var oAuthToken = AadOAuthTokenStore.Get(resource);
-        ClientService.Register(ClientContext.Create(resource, oAuthContext, oAuthToken));
+        ClientService.Register(
+            ClientContext.Create(
+                resource,
+                oAuthContext,
+                oAuthToken
+            )
+        );
     }
 
-    public void ConnectWithClientSecret(string clientId, string clientSecret, Uri resource)
+    public void ConnectWithClientSecret(
+        string clientId,
+        string clientSecret,
+        Uri resource
+    )
     {
         var oAuthContext = new AcsOAuthContext(
             clientId,
             clientSecret,
-            resource.GetAuthority());
+            resource.GetAuthority()
+        );
         var oAuthMessage = oAuthContext.AcquireToken();
         if (oAuthMessage is AcsOAuthToken oAuthToken)
         {
-            ClientService.Register(ClientContext.Create(resource, oAuthContext, oAuthToken));
+            ClientService.Register(
+                ClientContext.Create(
+                    resource,
+                    oAuthContext,
+                    oAuthToken
+                )
+            );
         }
         if (oAuthMessage is OAuthError oAuthError)
         {

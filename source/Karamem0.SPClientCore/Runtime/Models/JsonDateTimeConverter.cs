@@ -19,10 +19,6 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class JsonDateTimeConverter : JsonConverter
 {
 
-    public JsonDateTimeConverter()
-    {
-    }
-
     public override bool CanRead => true;
 
     public override bool CanWrite => true;
@@ -39,7 +35,12 @@ public class JsonDateTimeConverter : JsonConverter
         }
     }
 
-    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    public override object ReadJson(
+        JsonReader reader,
+        Type objectType,
+        object existingValue,
+        JsonSerializer serializer
+    )
     {
         var value = new DateTime();
         if (reader.Value is null)
@@ -57,7 +58,11 @@ public class JsonDateTimeConverter : JsonConverter
         return null;
     }
 
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    public override void WriteJson(
+        JsonWriter writer,
+        object value,
+        JsonSerializer serializer
+    )
     {
         if (value is null || (DateTime)value == new DateTime())
         {

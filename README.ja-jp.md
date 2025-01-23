@@ -15,7 +15,7 @@ SPClientCore は [PowerShell Gallery](https://www.powershellgallery.com/packages
 
 ### PowerShell 7 での動作
 
-はい、SPClientCore は PowerShell 7 で動作し、また Windows PowerShell でも動作します。つまり、このモジュールを Windows はもちろん Mac や Linux でも使用できるということです (もちろんそのマシンに PowerShell 7 がインストールされていればですが)。<del>Windows 以外の環境で SharePoint Online を管理するには REST API を実行する方法しかありませんでした。</del>しかし REST API は SharePoint クライアント ライブラリ (CSOM) に比べていくつかの問題を持っています。SPClientCore は SharePoint クライアント ライブラリと互換性のある API 呼び出しを行うことで完全な機能を提供します。
+はい、SPClientCore は最新バージョンの PowerShell 7 で動作しします。つまり、このモジュールを Windows はもちろん Mac や Linux でも使用できるということです (もちろんそのマシンに PowerShell 7 がインストールされていればですが)。<del>Windows 以外の環境で SharePoint Online を管理するには REST API を実行する方法しかありませんでした。</del>しかし REST API は SharePoint クライアント ライブラリ (CSOM) に比べていくつかの問題を持っています。SPClientCore は SharePoint クライアント ライブラリと互換性のある API 呼び出しを行うことで完全な機能を提供します。
 
 *(更新) CSOM および PnP PowerShell は PowerShell 7 をサポートしました。*
 

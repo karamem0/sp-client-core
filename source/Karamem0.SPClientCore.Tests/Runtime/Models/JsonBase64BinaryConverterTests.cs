@@ -42,14 +42,19 @@ public class JsonBase64BinaryConverterTests
     public void ReadJson_Valid_ReturnsByteArray()
     {
         var converter = new JsonBase64BinaryConverter();
-        var textReader = new StringReader(/*lang=json,strict*/ "{\"value\":\"/Base64Binary(VGVzdCBWYWx1ZSAx)/\"}");
+        var textReader = new StringReader( /*lang=json,strict*/ "{\"value\":\"/Base64Binary(VGVzdCBWYWx1ZSAx)/\"}");
         var jsonReader = new JsonTextReader(textReader);
         while (jsonReader.TokenType != JsonToken.String)
         {
             _ = jsonReader.Read();
         }
         var expected = Encoding.UTF8.GetBytes("Test Value 1");
-        var actual = converter.ReadJson(jsonReader, typeof(byte[]), null, null);
+        var actual = converter.ReadJson(
+            jsonReader,
+            typeof(byte[]),
+            null,
+            null
+        );
         Assert.That(actual, Is.EqualTo(expected));
     }
 
@@ -57,14 +62,19 @@ public class JsonBase64BinaryConverterTests
     public void ReadJson_Invalid_ReturnsNull()
     {
         var converter = new JsonBase64BinaryConverter();
-        var textReader = new StringReader(/*lang=json,strict*/ "{\"value\":\"/Base64Binary(Test Value 1)\"}");
+        var textReader = new StringReader( /*lang=json,strict*/ "{\"value\":\"/Base64Binary(Test Value 1)\"}");
         var jsonReader = new JsonTextReader(textReader);
         while (jsonReader.TokenType != JsonToken.String)
         {
             _ = jsonReader.Read();
         }
         var expected = (byte[])null;
-        var actual = converter.ReadJson(jsonReader, typeof(byte[]), null, null);
+        var actual = converter.ReadJson(
+            jsonReader,
+            typeof(byte[]),
+            null,
+            null
+        );
         Assert.That(actual, Is.EqualTo(expected));
     }
 
@@ -72,14 +82,19 @@ public class JsonBase64BinaryConverterTests
     public void ReadJson_Null_ReturnsNull()
     {
         var converter = new JsonBase64BinaryConverter();
-        var textReader = new StringReader(/*lang=json,strict*/ "{\"value\":null}");
+        var textReader = new StringReader( /*lang=json,strict*/ "{\"value\":null}");
         var jsonReader = new JsonTextReader(textReader);
         while (jsonReader.TokenType != JsonToken.Null)
         {
             _ = jsonReader.Read();
         }
         var expected = (byte[])null;
-        var actual = converter.ReadJson(jsonReader, typeof(byte[]), null, null);
+        var actual = converter.ReadJson(
+            jsonReader,
+            typeof(byte[]),
+            null,
+            null
+        );
         Assert.That(actual, Is.EqualTo(expected));
     }
 
@@ -91,7 +106,11 @@ public class JsonBase64BinaryConverterTests
         var jsonWriter = new JsonTextWriter(textWriter);
         jsonWriter.WriteStartObject();
         jsonWriter.WritePropertyName("value");
-        converter.WriteJson(jsonWriter, Encoding.UTF8.GetBytes("Test Value 1"), null);
+        converter.WriteJson(
+            jsonWriter,
+            Encoding.UTF8.GetBytes("Test Value 1"),
+            null
+        );
         jsonWriter.WriteEndObject();
         var expected = /*lang=json,strict*/ "{\"value\":\"VGVzdCBWYWx1ZSAx\"}";
         var actual = textWriter.ToString();
@@ -106,7 +125,11 @@ public class JsonBase64BinaryConverterTests
         var jsonWriter = new JsonTextWriter(textWriter);
         jsonWriter.WriteStartObject();
         jsonWriter.WritePropertyName("value");
-        converter.WriteJson(jsonWriter, null, null);
+        converter.WriteJson(
+            jsonWriter,
+            null,
+            null
+        );
         jsonWriter.WriteEndObject();
         var expected = /*lang=json,strict*/ "{\"value\":null}";
         var actual = textWriter.ToString();

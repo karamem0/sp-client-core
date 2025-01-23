@@ -22,11 +22,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddTermLabelCommand : ClientObjectCmdlet<ITermLabelService>
 {
 
-    public AddTermLabelCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true
+    )]
     public Term Term { get; private set; }
 
     [Parameter(Mandatory = true)]
@@ -40,7 +40,14 @@ public class AddTermLabelCommand : ClientObjectCmdlet<ITermLabelService>
 
     protected override void ProcessRecordCore()
     {
-        this.Outputs.Add(this.Service.AddObject(this.Term, this.Name, this.Lcid, this.IsDefault));
+        this.Outputs.Add(
+            this.Service.AddObject(
+                this.Term,
+                this.Name,
+                this.Lcid,
+                this.IsDefault
+            )
+        );
     }
 
 }

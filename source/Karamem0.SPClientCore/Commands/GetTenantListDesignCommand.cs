@@ -22,14 +22,19 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetTenantListDesignCommand : ClientObjectCmdlet<ITenantListDesignService>
 {
 
-    public GetTenantListDesignCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet1"
+    )]
     public TenantListDesign Identity { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet2"
+    )]
     public Guid ListDesignId { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]

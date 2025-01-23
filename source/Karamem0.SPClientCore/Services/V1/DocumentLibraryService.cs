@@ -38,7 +38,8 @@ public class DocumentLibraryService(ClientContext clientContext) : ClientService
                 typeof(Site),
                 "DefaultDocumentLibraryUrl",
                 requestPayload.CreateParameter(this.ClientContext.BaseAddress)
-            ));
+            )
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<DocumentLibraryInfo>(requestPayload.GetActionId<ClientActionStaticMethod>());
@@ -52,7 +53,8 @@ public class DocumentLibraryService(ClientContext clientContext) : ClientService
                 typeof(Site),
                 "GetDocumentLibraries",
                 requestPayload.CreateParameter(this.ClientContext.BaseAddress)
-            ));
+            )
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<List<DocumentLibraryInfo>>(requestPayload.GetActionId<ClientActionStaticMethod>());
@@ -67,7 +69,8 @@ public class DocumentLibraryService(ClientContext clientContext) : ClientService
                 "GetDocumentAndMediaLibraries",
                 requestPayload.CreateParameter(this.ClientContext.BaseAddress),
                 requestPayload.CreateParameter(includePageLibraries)
-            ));
+            )
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<List<DocumentLibraryInfo>>(requestPayload.GetActionId<ClientActionStaticMethod>());

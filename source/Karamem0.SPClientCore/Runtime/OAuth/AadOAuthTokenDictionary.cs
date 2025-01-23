@@ -43,7 +43,9 @@ public class AadOAuthTokenDictionary : Dictionary<string, AadOAuthToken>
                 var jwtAudience = jwtToken.GetPayloadValue<string>("aud");
                 return new AadOAuthTokenDictionary()
                 {
-                    { jwtAudience, oAuthToken }
+                    {
+                        jwtAudience, oAuthToken
+                    }
                 };
             }
         }

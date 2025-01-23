@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class ResolveUserCommand : ClientObjectCmdlet<IUserService>
 {
 
-    public ResolveUserCommand()
-    {
-    }
-
     [Parameter(Mandatory = true, Position = 0)]
     public string LoginName { get; private set; }
 

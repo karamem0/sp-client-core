@@ -20,14 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class MoveCopyOptions : ClientValueObject
 {
 
-    public MoveCopyOptions()
-    {
-    }
-
-    public MoveCopyOptions(IReadOnlyDictionary<string, object> parameters) : base(parameters)
-    {
-    }
-
     [JsonProperty()]
     public virtual bool KeepBoth { get; protected set; }
 

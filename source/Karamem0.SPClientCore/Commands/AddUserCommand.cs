@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddUserCommand : ClientObjectCmdlet<IUserService>
 {
 
-    public AddUserCommand()
-    {
-    }
-
     [Parameter(Mandatory = false)]
     public string Email { get; private set; }
 

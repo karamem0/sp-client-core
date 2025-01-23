@@ -21,10 +21,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class NewColumnGeolocationValueCommand : ClientObjectCmdlet
 {
 
-    public NewColumnGeolocationValueCommand()
-    {
-    }
-
     [Parameter(Mandatory = false)]
     public double Altitude { get; private set; }
 
@@ -39,7 +35,14 @@ public class NewColumnGeolocationValueCommand : ClientObjectCmdlet
 
     protected override void ProcessRecordCore()
     {
-        this.Outputs.Add(new ColumnGeolocationValue(this.Altitude, this.Latitude, this.Longitude, this.Measure));
+        this.Outputs.Add(
+            new ColumnGeolocationValue(
+                this.Altitude,
+                this.Latitude,
+                this.Longitude,
+                this.Measure
+            )
+        );
     }
 
 }

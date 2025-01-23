@@ -21,16 +21,18 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class NewColumnUserValueCommand : ClientObjectCmdlet
 {
 
-    public NewColumnUserValueCommand()
-    {
-    }
-
     [Parameter(Mandatory = true, Position = 0)]
     public int LookupId { get; private set; }
 
     protected override void ProcessRecordCore()
     {
-        this.Outputs.Add(new ColumnUserValue(this.LookupId, null, null));
+        this.Outputs.Add(
+            new ColumnUserValue(
+                this.LookupId,
+                null,
+                null
+            )
+        );
     }
 
 }

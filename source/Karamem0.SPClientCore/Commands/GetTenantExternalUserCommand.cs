@@ -22,11 +22,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetTenantExternalUserCommand : ClientObjectCmdlet<ITenantExternalUserService>
 {
 
-    public GetTenantExternalUserCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet1"
+    )]
     public string SiteCollectionUrl { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
@@ -47,11 +47,23 @@ public class GetTenantExternalUserCommand : ClientObjectCmdlet<ITenantExternalUs
         {
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.SiteCollectionUrl, this.Filter, this.SortOrder));
+                this.Outputs.Add(
+                    this.Service.GetObjectEnumerable(
+                        this.SiteCollectionUrl,
+                        this.Filter,
+                        this.SortOrder
+                    )
+                );
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.SiteCollectionUrl, this.Filter, this.SortOrder));
+                this.Outputs.AddRange(
+                    this.Service.GetObjectEnumerable(
+                        this.SiteCollectionUrl,
+                        this.Filter,
+                        this.SortOrder
+                    )
+                );
             }
         }
         if (this.ParameterSetName == "ParamSet2")

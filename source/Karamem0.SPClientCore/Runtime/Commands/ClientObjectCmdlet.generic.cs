@@ -19,7 +19,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Commands;
 public abstract class ClientObjectCmdlet<T> : ClientObjectCmdlet
 {
 
-    protected ClientObjectCmdlet()
+    protected override void BeginProcessing()
     {
         if (ClientService.ServiceProvider is null)
         {
@@ -35,7 +35,7 @@ public abstract class ClientObjectCmdlet<T> : ClientObjectCmdlet
 public abstract class ClientObjectCmdlet<T1, T2> : ClientObjectCmdlet
 {
 
-    protected ClientObjectCmdlet()
+    protected override void BeginProcessing()
     {
         if (ClientService.ServiceProvider is null)
         {
@@ -54,7 +54,7 @@ public abstract class ClientObjectCmdlet<T1, T2> : ClientObjectCmdlet
 public abstract class ClientObjectCmdlet<T1, T2, T3> : ClientObjectCmdlet
 {
 
-    protected ClientObjectCmdlet()
+    protected override void BeginProcessing()
     {
         if (ClientService.ServiceProvider is null)
         {
@@ -76,7 +76,7 @@ public abstract class ClientObjectCmdlet<T1, T2, T3> : ClientObjectCmdlet
 public abstract class ClientObjectCmdlet<T1, T2, T3, T4> : ClientObjectCmdlet
 {
 
-    protected ClientObjectCmdlet()
+    protected override void BeginProcessing()
     {
         if (ClientService.ServiceProvider is null)
         {

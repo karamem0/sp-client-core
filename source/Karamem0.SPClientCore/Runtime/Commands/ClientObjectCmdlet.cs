@@ -20,23 +20,25 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Commands;
 public abstract class ClientObjectCmdlet : PSCmdlet
 {
 
-    protected ClientObjectCmdlet()
-    {
-        this.Outputs = [];
-    }
-
-    protected List<object> Outputs { get; private set; }
+    protected List<object> Outputs { get; private set; } = [];
 
     protected override void ProcessRecord()
     {
         var telemetry = TelemetryClientFactory.Create();
         var stopwatch = new Stopwatch();
-        if (string.Compare(this.MyInvocation.InvocationName, this.MyInvocation.MyCommand.Name, true) != 0)
-        {
-            this.WriteWarning(string.Format(
-                StringResources.WarningCmdletIsObsolete,
+        if (string.Compare(
                 this.MyInvocation.InvocationName,
-                this.MyInvocation.MyCommand.Name));
+                this.MyInvocation.MyCommand.Name,
+                true
+            ) != 0)
+        {
+            this.WriteWarning(
+                string.Format(
+                    StringResources.WarningCmdletIsObsolete,
+                    this.MyInvocation.InvocationName,
+                    this.MyInvocation.MyCommand.Name
+                )
+            );
         }
         var listener = Trace.Listeners[Trace.Listeners.Add(new ClientObjectCmdletTraceListener(this))];
         try
@@ -55,7 +57,14 @@ public abstract class ClientObjectCmdlet : PSCmdlet
         catch (Exception ex)
         {
             listener.Flush();
-            this.WriteError(new ErrorRecord(ex, "Exception", ErrorCategory.NotSpecified, null));
+            this.WriteError(
+                new ErrorRecord(
+                    ex,
+                    "Exception",
+                    ErrorCategory.NotSpecified,
+                    null
+                )
+            );
             telemetry.TrackException(ex);
         }
         finally
@@ -78,7 +87,8 @@ public abstract class ClientObjectCmdlet : PSCmdlet
                 {
                     throw new ArgumentException(
                         string.Format(StringResources.ErrorValueCannotBeValue, false),
-                        nameof(parameterName));
+                        nameof(parameterName)
+                    );
                 }
             }
         }

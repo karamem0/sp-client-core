@@ -27,33 +27,33 @@ public class AddTenantCdnOriginCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AdminUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AdminUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Add-KshTenantCdnOrigin",
             new Dictionary<string, object>()
             {
-                { "Public", true },
-                { "Origin", "*/TESTLIST1" }
+                ["Public"] = true,
+                ["Origin"] = "*/TESTLIST1"
             }
         );
         var result1 = context.Runspace.InvokeCommand<string>(
             "Get-KshTenantCdnOrigin",
             new Dictionary<string, object>()
             {
-                { "Public", true }
+                ["Public"] = true
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshTenantCdnOrigin",
             new Dictionary<string, object>()
             {
-                { "Public", true },
-                { "Origin", "*/TESTLIST1" }
+                ["Public"] = true,
+                ["Origin"] = "*/TESTLIST1"
             }
         );
         var actual = result1.ToArray();
@@ -68,33 +68,33 @@ public class AddTenantCdnOriginCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AdminUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AdminUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Add-KshTenantCdnOrigin",
             new Dictionary<string, object>()
             {
-                { "Private", true },
-                { "Origin", "*/TESTLIST1" }
+                ["Private"] = true,
+                ["Origin"] = "*/TESTLIST1"
             }
         );
         var result1 = context.Runspace.InvokeCommand<string>(
             "Get-KshTenantCdnOrigin",
             new Dictionary<string, object>()
             {
-                { "Private", true }
+                ["Private"] = true
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshTenantCdnOrigin",
             new Dictionary<string, object>()
             {
-                { "Private", true },
-                { "Origin", "*/TESTLIST1" }
+                ["Private"] = true,
+                ["Origin"] = "*/TESTLIST1"
             }
         );
         var actual = result1.ToArray();

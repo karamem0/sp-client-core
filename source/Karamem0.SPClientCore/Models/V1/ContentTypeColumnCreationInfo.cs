@@ -20,14 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class ContentTypeColumnCreationInfo : ClientValueObject
 {
 
-    public ContentTypeColumnCreationInfo()
-    {
-    }
-
-    public ContentTypeColumnCreationInfo(IReadOnlyDictionary<string, object> parameters) : base(parameters)
-    {
-    }
-
     [JsonProperty("Field")]
     public virtual Column Column { get; protected set; }
 

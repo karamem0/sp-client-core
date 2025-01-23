@@ -15,19 +15,36 @@ using System.Xml.Serialization;
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
 [XmlType("Method", Namespace = "http://schemas.microsoft.com/sharepoint/clientquery/2009")]
-public class ClientActionMethod(long objectPathId, string name, params ClientRequestParameter[] parameters) : ClientAction
+public class ClientActionMethod(
+    long objectPathId,
+    string name,
+    params ClientRequestParameter[] parameters
+) : ClientAction
 {
 
+    public ClientActionMethod(
+        long objectPathId,
+        string name,
+        IEnumerable<ClientRequestParameter> parameters
+    )
+        : this(
+            objectPathId,
+            name,
+            [.. parameters]
+        )
+    {
+    }
+
     [XmlAttribute()]
-    public override long Id { get; protected set; }
+    public override long Id { get; protected set; } = NewId();
 
     [XmlAttribute()]
     public virtual long ObjectPathId { get; protected set; } = objectPathId;
 
     [XmlAttribute()]
-    public virtual string Name { get; set; } = name ?? throw new ArgumentNullException(nameof(name));
+    public virtual string Name { get; protected set; } = name ?? throw new ArgumentNullException(nameof(name));
 
     [XmlArray()]
-    public virtual IEnumerable<ClientRequestParameter> Parameters { get; protected set; } = parameters;
+    public virtual IReadOnlyCollection<ClientRequestParameter> Parameters { get; protected set; } = parameters;
 
 }

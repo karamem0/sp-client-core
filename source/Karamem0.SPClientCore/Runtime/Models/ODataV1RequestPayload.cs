@@ -16,22 +16,30 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
 [JsonObject()]
-public class ODataV1RequestPayload<T> where T : ODataV1Object
+public class ODataV1RequestPayload
 {
 
-    public ODataV1RequestPayload(IReadOnlyDictionary<string, object> parameters)
+    public static ODataV1RequestPayload Create<T>(IReadOnlyDictionary<string, object> parameters) where T : ODataV1Object, new()
     {
-        this.Entity = Activator.CreateInstance<T>();
-        foreach (var property in this.Entity.GetType().GetDeclaredProperties())
+        var value = new ODataV1RequestPayload()
         {
-            if (parameters.TryGetValue(property.Name, out var value))
+            Entity = new T()
+        };
+        foreach (var property in value.Entity.GetType().GetDeclaredProperties())
+        {
+            if (parameters.TryGetValue(property.Name, out var propertyValue))
             {
-                property.SetValue(this.Entity, value);
+                property.SetValue(value.Entity, propertyValue);
             }
         }
+        return value;
+    }
+
+    private ODataV1RequestPayload()
+    {
     }
 
     [JsonProperty("parameters")]
-    public T Entity { get; private set; }
+    public ODataV1Object Entity { get; private set; }
 
 }

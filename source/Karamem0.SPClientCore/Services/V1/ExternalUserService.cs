@@ -62,9 +62,11 @@ public class ExternalUserService(ClientContext clientContext) : ClientService(cl
         _ = userId ?? throw new ArgumentNullException(nameof(userId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         requestPayload.Actions.Add(
             new ClientActionStaticMethod(
                 typeof(WebSharingManager),
@@ -75,7 +77,8 @@ public class ExternalUserService(ClientContext clientContext) : ClientService(cl
                 requestPayload.CreateParameter(customMessage),
                 requestPayload.CreateParameter(additivePermission),
                 requestPayload.CreateParameter(allowExternalSharing)
-            ));
+            )
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<IEnumerable<UserSharingResult>>(requestPayload.GetActionId<ClientActionStaticMethod>());
@@ -103,7 +106,8 @@ public class ExternalUserService(ClientContext clientContext) : ClientService(cl
                 requestPayload.CreateParameter(
                     new Uri(this.ClientContext.BaseAddress.GetLeftPart(UriPartial.Authority))
                         .ConcatPath(documentUrl)
-                        .ToString()),
+                        .ToString()
+                ),
                 requestPayload.CreateParameter(userId.Select(value => new UserRoleAssignment(value, role))),
                 requestPayload.CreateParameter(validateExistingPermissions),
                 requestPayload.CreateParameter(additivePermission),
@@ -111,7 +115,8 @@ public class ExternalUserService(ClientContext clientContext) : ClientService(cl
                 requestPayload.CreateParameter(customMessage),
                 requestPayload.CreateParameter(includeAnonymousLinksInNotification),
                 requestPayload.CreateParameter(propagateAcl)
-            ));
+            )
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<IEnumerable<UserSharingResult>>(requestPayload.GetActionId<ClientActionStaticMethod>());
@@ -121,15 +126,18 @@ public class ExternalUserService(ClientContext clientContext) : ClientService(cl
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         requestPayload.Actions.Add(
             new ClientActionStaticMethod(
                 typeof(WebSharingManager),
                 "CanMemberShare",
                 new ClientRequestParameterObjectPath(objectPath2)
-            ));
+            )
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<bool>(requestPayload.GetActionId<ClientActionStaticMethod>());
@@ -144,7 +152,8 @@ public class ExternalUserService(ClientContext clientContext) : ClientService(cl
                 typeof(DocumentSharingManager),
                 "CanMemberShare",
                 requestPayload.CreateParameter(listObject)
-            ));
+            )
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<bool>(requestPayload.GetActionId<ClientActionStaticMethod>());

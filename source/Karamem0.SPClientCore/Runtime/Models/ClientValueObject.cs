@@ -8,7 +8,6 @@
 
 using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +22,46 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class ClientValueObject : JsonValueObject
 {
 
+    public static ClientValueObject Create<T>(IReadOnlyDictionary<string, object> parameters) where T : ClientValueObject, new()
+    {
+        _ = parameters ?? throw new ArgumentNullException(nameof(parameters));
+        var value = new T();
+        foreach (var propertyInfo in value.GetType().GetDeclaredProperties())
+        {
+            if (parameters.TryGetValue(propertyInfo.Name, out var propertyValue))
+            {
+                if (propertyValue is SwitchParameter switchValue)
+                {
+                    var switchAttribute = propertyInfo.GetCustomAttribute<SwitchParameterValueAttribute>();
+                    if (switchAttribute is not null)
+                    {
+                        propertyInfo.SetValue(
+                            value,
+                            switchValue.ToBool() ? switchAttribute.TrueValue : switchAttribute.FalseValue
+                        );
+                    }
+                    else
+                    {
+                        propertyInfo.SetValue(value, switchValue.ToBool());
+                    }
+                }
+                else
+                {
+                    propertyInfo.SetValue(value, propertyValue);
+                }
+            }
+            else
+            {
+                var defaultAttribute = propertyInfo.GetCustomAttribute<DefaultValueAttribute>();
+                if (defaultAttribute is not null)
+                {
+                    propertyInfo.SetValue(value, defaultAttribute.Value);
+                }
+            }
+        }
+        return value;
+    }
+
     private static readonly IReadOnlyDictionary<string, Type> ClientValueObjectDictionary =
         Assembly.GetExecutingAssembly()
             .GetTypes()
@@ -36,45 +75,6 @@ public class ClientValueObject : JsonValueObject
             .Where(item => item.Key == name)
             .Select(item => item.Value)
             .SingleOrDefault();
-    }
-
-    public ClientValueObject()
-    {
-    }
-
-    public ClientValueObject(IReadOnlyDictionary<string, object> parameters)
-    {
-        _ = parameters ?? throw new ArgumentNullException(nameof(parameters));
-        foreach (var propertyInfo in this.GetType().GetDeclaredProperties())
-        {
-            if (parameters.TryGetValue(propertyInfo.Name, out var value))
-            {
-                if (value is SwitchParameter switchValue)
-                {
-                    var switchAttribute = propertyInfo.GetCustomAttribute<SwitchParameterValueAttribute>();
-                    if (switchAttribute is not null)
-                    {
-                        propertyInfo.SetValue(this, switchValue.ToBool() ? switchAttribute.TrueValue : switchAttribute.FalseValue);
-                    }
-                    else
-                    {
-                        propertyInfo.SetValue(this, switchValue.ToBool());
-                    }
-                }
-                else
-                {
-                    propertyInfo.SetValue(this, value);
-                }
-            }
-            else
-            {
-                var defaultAttribute = propertyInfo.GetCustomAttribute<DefaultValueAttribute>();
-                if (defaultAttribute is not null)
-                {
-                    propertyInfo.SetValue(this, defaultAttribute.Value);
-                }
-            }
-        }
     }
 
     [JsonProperty("_ObjectType_")]

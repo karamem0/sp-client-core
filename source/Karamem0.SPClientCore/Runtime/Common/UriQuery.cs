@@ -19,40 +19,45 @@ public static class UriQuery
     public static string Create(IReadOnlyDictionary<string, object> parameters, bool quote = false)
     {
         parameters ??= new Dictionary<string, object>();
-        return string.Join("&", parameters.Select(pair =>
-        {
-            var key = Uri.EscapeDataString(pair.Key);
-            if (pair.Value is null)
-            {
-                return $"{key}=";
-            }
-            switch (pair.Value)
-            {
-                case string:
-                case Guid:
-                    var value = Uri.EscapeDataString(pair.Value.ToString());
-                    if (quote)
+        return string.Join(
+            "&",
+            parameters.Select(
+                pair =>
+                {
+                    var key = Uri.EscapeDataString(pair.Key);
+                    if (pair.Value is null)
                     {
-                        return $"{key}=%27{value}%27";
+                        return $"{key}=";
                     }
-                    else
+                    switch (pair.Value)
                     {
-                        return $"{key}={value}";
+                        case string:
+                        case Guid:
+                            var value = Uri.EscapeDataString(pair.Value.ToString());
+                            if (quote)
+                            {
+                                return $"{key}=%27{value}%27";
+                            }
+                            else
+                            {
+                                return $"{key}={value}";
+                            }
+                        case bool:
+                            return $"{key}={pair.Value.ToString().ToLower()}";
+                        case short:
+                        case ushort:
+                        case int:
+                        case uint:
+                        case long:
+                        case ulong:
+                        case decimal:
+                            return $"{key}={pair.Value}";
+                        default:
+                            return $"{key}={Uri.EscapeDataString(pair.Value.ToString())}";
                     }
-                case bool:
-                    return $"{key}={pair.Value.ToString().ToLower()}";
-                case short:
-                case ushort:
-                case int:
-                case uint:
-                case long:
-                case ulong:
-                case decimal:
-                    return $"{key}={pair.Value}";
-                default:
-                    return $"{key}={Uri.EscapeDataString(pair.Value.ToString())}";
-            }
-        }));
+                }
+            )
+        );
     }
 
 }

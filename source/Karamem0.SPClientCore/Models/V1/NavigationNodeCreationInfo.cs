@@ -20,14 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class NavigationNodeCreationInfo : ClientValueObject
 {
 
-    public NavigationNodeCreationInfo()
-    {
-    }
-
-    public NavigationNodeCreationInfo(IReadOnlyDictionary<string, object> parameters) : base(parameters)
-    {
-    }
-
     [JsonProperty()]
     public virtual bool AsLastNode { get; protected set; }
 

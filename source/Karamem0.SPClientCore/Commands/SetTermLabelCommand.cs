@@ -23,13 +23,24 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class SetTermLabelCommand : ClientObjectCmdlet<ITermService, ITermLabelService>
 {
 
-    public SetTermLabelCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet2")]
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet3")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet1"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet2"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet3"
+    )]
     public TermLabel Identity { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
@@ -54,7 +65,13 @@ public class SetTermLabelCommand : ClientObjectCmdlet<ITermService, ITermLabelSe
             {
                 var termObject = this.Service1.GetObject(this.Identity);
                 this.Service2.SetObject(this.Identity, this.MyInvocation.BoundParameters);
-                this.Outputs.Add(this.Service2.GetObject(termObject, this.Identity.Name, this.Lcid));
+                this.Outputs.Add(
+                    this.Service2.GetObject(
+                        termObject,
+                        this.Identity.Name,
+                        this.Lcid
+                    )
+                );
             }
             else
             {
@@ -67,7 +84,13 @@ public class SetTermLabelCommand : ClientObjectCmdlet<ITermService, ITermLabelSe
             {
                 var termObject = this.Service1.GetObject(this.Identity);
                 this.Service2.SetObject(this.Identity, this.MyInvocation.BoundParameters);
-                this.Outputs.Add(this.Service2.GetObject(termObject, this.Name, this.Identity.Lcid));
+                this.Outputs.Add(
+                    this.Service2.GetObject(
+                        termObject,
+                        this.Name,
+                        this.Identity.Lcid
+                    )
+                );
             }
             else
             {

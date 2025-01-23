@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class SetTenantCdnEnabledCommand : ClientObjectCmdlet<ITenantCdnService>
 {
 
-    public SetTenantCdnEnabledCommand()
-    {
-    }
-
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     public SwitchParameter Public { get; private set; }
 
@@ -45,12 +41,20 @@ public class SetTenantCdnEnabledCommand : ClientObjectCmdlet<ITenantCdnService>
         if (this.ParameterSetName == "ParamSet1")
         {
             this.ValidateSwitchParameter(nameof(this.Public));
-            this.Service.SetEnabled(TenantCdnType.Public, this.Enabled, this.NoDefaultOrigins);
+            this.Service.SetEnabled(
+                TenantCdnType.Public,
+                this.Enabled,
+                this.NoDefaultOrigins
+            );
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             this.ValidateSwitchParameter(nameof(this.Private));
-            this.Service.SetEnabled(TenantCdnType.Private, this.Enabled, this.NoDefaultOrigins);
+            this.Service.SetEnabled(
+                TenantCdnType.Private,
+                this.Enabled,
+                this.NoDefaultOrigins
+            );
         }
     }
 

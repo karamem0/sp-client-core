@@ -37,28 +37,36 @@ public interface INavigationNodeService
 
 }
 
-public class NavigationNodeService(ClientContext clientContext) : ClientService<NavigationNode>(clientContext), INavigationNodeService
+public class NavigationNodeService(ClientContext clientContext)
+    : ClientService<NavigationNode>(clientContext), INavigationNodeService
 {
 
-    public NavigationNode AddObject(NavigationNode navigationNodeObject, IReadOnlyDictionary<string, object> creationInfo)
+    public NavigationNode AddObject(
+        NavigationNode navigationNodeObject,
+        IReadOnlyDictionary<string, object> creationInfo
+    )
     {
         _ = navigationNodeObject ?? throw new ArgumentNullException(nameof(navigationNodeObject));
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(navigationNodeObject.ObjectIdentity));
+            new ObjectPathIdentity(navigationNodeObject.ObjectIdentity)
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Children"));
+            new ObjectPathProperty(objectPath1.Id, "Children")
+        );
         var objectPath3 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath2.Id,
                 "Add",
-                requestPayload.CreateParameter(new NavigationNodeCreationInfo(creationInfo))),
+                requestPayload.CreateParameter(ClientValueObject.Create<NavigationNodeCreationInfo>(creationInfo))
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(NavigationNode))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<NavigationNode>(requestPayload.GetActionId<ClientActionQuery>());
@@ -69,23 +77,29 @@ public class NavigationNodeService(ClientContext clientContext) : ClientService<
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "Navigation"));
+            new ObjectPathProperty(objectPath2.Id, "Navigation")
+        );
         var objectPath4 = requestPayload.Add(
-            new ObjectPathProperty(objectPath3.Id, "QuickLaunch"));
+            new ObjectPathProperty(objectPath3.Id, "QuickLaunch")
+        );
         var objectPath5 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath4.Id,
                 "Add",
-                requestPayload.CreateParameter(new NavigationNodeCreationInfo(creationInfo))),
+                requestPayload.CreateParameter(ClientValueObject.Create<NavigationNodeCreationInfo>(creationInfo))
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(NavigationNode))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<NavigationNode>(requestPayload.GetActionId<ClientActionQuery>());
@@ -96,23 +110,29 @@ public class NavigationNodeService(ClientContext clientContext) : ClientService<
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "Navigation"));
+            new ObjectPathProperty(objectPath2.Id, "Navigation")
+        );
         var objectPath4 = requestPayload.Add(
-            new ObjectPathProperty(objectPath3.Id, "TopNavigationBar"));
+            new ObjectPathProperty(objectPath3.Id, "TopNavigationBar")
+        );
         var objectPath5 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath4.Id,
                 "Add",
-                requestPayload.CreateParameter(new NavigationNodeCreationInfo(creationInfo))),
+                requestPayload.CreateParameter(ClientValueObject.Create<NavigationNodeCreationInfo>(creationInfo))
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(NavigationNode))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<NavigationNode>(requestPayload.GetActionId<ClientActionQuery>());
@@ -123,21 +143,26 @@ public class NavigationNodeService(ClientContext clientContext) : ClientService<
         _ = navigationNodeId ?? throw new ArgumentNullException(nameof(navigationNodeId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current"));
+            new ObjectPathStaticProperty(typeof(Context), "Current")
+        );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web"));
+            new ObjectPathProperty(objectPath1.Id, "Web")
+        );
         var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "Navigation"));
+            new ObjectPathProperty(objectPath2.Id, "Navigation")
+        );
         var objectPath4 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath3.Id,
                 "GetNodeById",
-                requestPayload.CreateParameter(navigationNodeId)),
+                requestPayload.CreateParameter(navigationNodeId)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(NavigationNode))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<NavigationNode>(requestPayload.GetActionId<ClientActionQuery>());
@@ -148,7 +173,8 @@ public class NavigationNodeService(ClientContext clientContext) : ClientService<
         _ = navigationNodeObject ?? throw new ArgumentNullException(nameof(navigationNodeObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(navigationNodeObject.ObjectIdentity));
+            new ObjectPathIdentity(navigationNodeObject.ObjectIdentity)
+        );
         var objectPath2 = requestPayload.Add(
             new ObjectPathProperty(objectPath1.Id, "Children"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -156,7 +182,8 @@ public class NavigationNodeService(ClientContext clientContext) : ClientService<
             {
                 Query = ClientQuery.Empty,
                 ChildItemQuery = new ClientQuery(true, typeof(NavigationNode))
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<NavigationNodeEnumerable>(requestPayload.GetActionId<ClientActionQuery>());

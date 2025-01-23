@@ -1,5 +1,7 @@
 on: workflow_call
 
+permissions: {}
+
 jobs:
   run:
     name: Run
@@ -10,7 +12,7 @@ jobs:
       - name: Checkout repos
         uses: actions/checkout@v4
       - name: Setup NuGet
-        uses: nuget/setup-nuget@v2
+        uses: nuget/setup-nuget@323ab0502cd38fdc493335025a96c8fdb0edc71f
         with:
           nuget-api-key: ${{secrets.NUGET_API_KEY}}
           nuget-version: 5.x

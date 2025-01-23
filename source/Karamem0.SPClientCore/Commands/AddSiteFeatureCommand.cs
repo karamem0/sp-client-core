@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddSiteFeatureCommand : ClientObjectCmdlet<ISiteFeatureService>
 {
 
-    public AddSiteFeatureCommand()
-    {
-    }
-
     [Parameter(Mandatory = true)]
     public Guid FeatureId { get; private set; }
 
@@ -37,7 +33,11 @@ public class AddSiteFeatureCommand : ClientObjectCmdlet<ISiteFeatureService>
 
     protected override void ProcessRecordCore()
     {
-        this.Service.AddObject(this.FeatureId, this.Force, this.Scope);
+        this.Service.AddObject(
+            this.FeatureId,
+            this.Force,
+            this.Scope
+        );
     }
 
 }

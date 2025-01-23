@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddRoleDefinitionCommand : ClientObjectCmdlet<IRoleDefinitionService>
 {
 
-    public AddRoleDefinitionCommand()
-    {
-    }
-
     [Parameter(Mandatory = false)]
     public BasePermission BasePermission { get; private set; }
 

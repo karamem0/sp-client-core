@@ -28,24 +28,24 @@ public class RemoveSitePageCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Add-KshSitePage",
             new Dictionary<string, object>()
             {
-                { "PageName", "Test Site Page 0" }
+                ["PageName"] = "Test Site Page 0"
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshSitePage",
             new Dictionary<string, object>()
             {
-                { "PageName", "Test Site Page 0" }
+                ["PageName"] = "Test Site Page 0"
             }
         );
     }
@@ -58,33 +58,33 @@ public class RemoveSitePageCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "LibraryType", "ClientRenderedSitePages" }
+                ["LibraryType"] = "ClientRenderedSitePages"
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Add-KshSitePage",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "PageName", "Test Site Page 0" }
+                ["List"] = result1.ElementAt(0),
+                ["PageName"] = "Test Site Page 0"
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshSitePage",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "PageName", "Test Site Page 0" },
+                ["List"] = result1.ElementAt(0),
+                ["PageName"] = "Test Site Page 0",
             }
         );
     }

@@ -16,10 +16,6 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class SwitchParameterValueAttribute : Attribute
 {
 
-    public SwitchParameterValueAttribute()
-    {
-    }
-
     public object TrueValue { get; set; }
 
     public object FalseValue { get; set; }

@@ -28,29 +28,29 @@ public class AddSiteCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["BaseUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["BaseUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<Site>(
             "Add-KshSite",
             new Dictionary<string, object>()
             {
-                { "Description", "Test Site 0 Description" },
-                { "Lcid", 1033 },
-                { "ServerRelativeUrl", "TestSite0" },
-                { "Template", "SITEPAGEPUBLISHING#0" },
-                { "Title", "Test Site 0" },
-                { "UseSamePermissionsAsParentSite", true }
+                ["Description"] = "Test Site 0 Description",
+                ["Lcid"] = 1033,
+                ["ServerRelativeUrl"] = "TestSite0",
+                ["Template"] = "SITEPAGEPUBLISHING#0",
+                ["Title"] = "Test Site 0",
+                ["UseSamePermissionsAsParentSite"] = true
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshSite",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) }
+                ["Identity"] = result1.ElementAt(0)
             }
         );
         var actual = result1.ElementAt(0);

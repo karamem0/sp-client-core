@@ -20,14 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class AttachmentFileCreationInfo : ClientValueObject
 {
 
-    public AttachmentFileCreationInfo()
-    {
-    }
-
-    public AttachmentFileCreationInfo(IReadOnlyDictionary<string, object> parameters) : base(parameters)
-    {
-    }
-
     [JsonProperty()]
     public virtual System.IO.Stream ContentStream { get; protected set; }
 

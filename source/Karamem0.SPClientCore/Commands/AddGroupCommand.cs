@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddGroupCommand : ClientObjectCmdlet<IGroupService>
 {
 
-    public AddGroupCommand()
-    {
-    }
-
     [Parameter(Mandatory = false)]
     public string Description { get; private set; }
 

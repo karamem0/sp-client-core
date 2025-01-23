@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetNavigationCommand : ClientObjectCmdlet<INavigationService>
 {
 
-    public GetNavigationCommand()
-    {
-    }
-
     protected override void ProcessRecordCore()
     {
         this.Outputs.Add(this.Service.GetObject());

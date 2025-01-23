@@ -28,34 +28,34 @@ public class TestSharingLinkKindCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<string>(
             "Add-KshAnonymousLink",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["File1Url"] },
-                { "IsEditLink", true }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["File1Url"],
+                ["IsEditLink"] = true
             }
         );
         var result2 = context.Runspace.InvokeCommand<SharingLinkKind>(
             "Test-KshSharingLink",
             new Dictionary<string, object>()
             {
-                { "Url", result1.ElementAt(0) }
+                ["Url"] = result1.ElementAt(0)
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshAnonymousLink",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["File1Url"] },
-                { "IsEditLink", true },
-                { "RemoveAssociatedSharingLinkGroup", true }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["File1Url"],
+                ["IsEditLink"] = true,
+                ["RemoveAssociatedSharingLinkGroup"] = true
             }
         );
         var actual = result2.ElementAt(0);
@@ -70,34 +70,34 @@ public class TestSharingLinkKindCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<string>(
             "Add-KshOrganizationSharingLink",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["File1Url"] },
-                { "IsEditLink", true }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["File1Url"],
+                ["IsEditLink"] = true
             }
         );
         var result2 = context.Runspace.InvokeCommand<SharingLinkKind>(
             "Test-KshSharingLink",
             new Dictionary<string, object>()
             {
-                { "Url", result1.ElementAt(0) }
+                ["Url"] = result1.ElementAt(0)
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshOrganizationSharingLink",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["File1Url"] },
-                { "IsEditLink", true },
-                { "RemoveAssociatedSharingLinkGroup", true }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["File1Url"],
+                ["IsEditLink"] = true,
+                ["RemoveAssociatedSharingLinkGroup"] = true
             }
         );
         var actual = result2.ElementAt(0);

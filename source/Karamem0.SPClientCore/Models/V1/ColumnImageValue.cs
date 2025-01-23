@@ -23,7 +23,13 @@ public class ColumnImageValue : ODataObject
     {
     }
 
-    public ColumnImageValue(string columnName, string fileName, string serverUrl, string serverRelativeUrl, string id)
+    public ColumnImageValue(
+        string columnName,
+        string fileName,
+        string serverUrl,
+        string serverRelativeUrl,
+        string id
+    )
     {
         this.Type = "thumbnail";
         this.ColumnName = columnName;

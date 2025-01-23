@@ -28,21 +28,21 @@ public class GetChangeCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<Change>(
             "Get-KshChange",
             new Dictionary<string, object>()
             {
-                { "SiteCollection", true },
-                { "FetchLimit", 10 },
-                { "Objects", "All" },
-                { "Operations", "All" },
-                { "RecursiveAll", true }
+                ["SiteCollection"] = true,
+                ["FetchLimit"] = 10,
+                ["Objects"] = "All",
+                ["Operations"] = "All",
+                ["RecursiveAll"] = true
             }
         );
         var actual = result1.ToArray();
@@ -57,21 +57,21 @@ public class GetChangeCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<Change>(
             "Get-KshChange",
             new Dictionary<string, object>()
             {
-                { "Site", true },
-                { "FetchLimit", 10 },
-                { "Objects", "All" },
-                { "Operations", "All" },
-                { "RecursiveAll", true }
+                ["Site"] = true,
+                ["FetchLimit"] = 10,
+                ["Objects"] = "All",
+                ["Operations"] = "All",
+                ["RecursiveAll"] = true
             }
         );
         var actual = result1.ToArray();
@@ -86,28 +86,28 @@ public class GetChangeCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<Change>(
             "Get-KshChange",
             new Dictionary<string, object>()
             {
-                { "List", result1.ElementAt(0) },
-                { "FetchLimit", 10 },
-                { "Objects", "All" },
-                { "Operations", "All" },
-                { "RecursiveAll", true }
+                ["List"] = result1.ElementAt(0),
+                ["FetchLimit"] = 10,
+                ["Objects"] = "All",
+                ["Operations"] = "All",
+                ["RecursiveAll"] = true
             }
         );
         var actual = result2.ToArray();

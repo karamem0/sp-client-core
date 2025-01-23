@@ -28,31 +28,31 @@ public class GetCommentCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<File>(
             "Get-KshFile",
             new Dictionary<string, object>()
             {
-                { "FileUrl", context.AppSettings["SitePage1Url"] }
+                ["FileUrl"] = context.AppSettings["SitePage1Url"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ListItem>(
             "Get-KshListItem",
             new Dictionary<string, object>()
             {
-                { "File", result1.ElementAt(0) }
+                ["File"] = result1.ElementAt(0)
             }
         );
         var result3 = context.Runspace.InvokeCommand<Comment>(
             "Get-KshComment",
             new Dictionary<string, object>()
             {
-                { "ListItem", result2.ElementAt(0) }
+                ["ListItem"] = result2.ElementAt(0)
             }
         );
         var actual = result3.ToArray();
@@ -67,39 +67,39 @@ public class GetCommentCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<File>(
             "Get-KshFile",
             new Dictionary<string, object>()
             {
-                { "FileUrl", context.AppSettings["SitePage1Url"] }
+                ["FileUrl"] = context.AppSettings["SitePage1Url"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ListItem>(
             "Get-KshListItem",
             new Dictionary<string, object>()
             {
-                { "File", result1.ElementAt(0) }
+                ["File"] = result1.ElementAt(0)
             }
         );
         var result3 = context.Runspace.InvokeCommand<Comment>(
             "Get-KshComment",
             new Dictionary<string, object>()
             {
-                { "ListItem", result2.ElementAt(0) },
-                { "CommentId", context.AppSettings["Comment1Id"] }
+                ["ListItem"] = result2.ElementAt(0),
+                ["CommentId"] = context.AppSettings["Comment1Id"]
             }
         );
         var result4 = context.Runspace.InvokeCommand<Comment>(
             "Get-KshComment",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                ["Identity"] = result3.ElementAt(0)
             }
         );
         var actual = result4.ElementAt(0);
@@ -114,32 +114,32 @@ public class GetCommentCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<File>(
             "Get-KshFile",
             new Dictionary<string, object>()
             {
-                { "FileUrl", context.AppSettings["SitePage1Url"] }
+                ["FileUrl"] = context.AppSettings["SitePage1Url"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ListItem>(
             "Get-KshListItem",
             new Dictionary<string, object>()
             {
-                { "File", result1.ElementAt(0) }
+                ["File"] = result1.ElementAt(0)
             }
         );
         var result3 = context.Runspace.InvokeCommand<Comment>(
             "Get-KshComment",
             new Dictionary<string, object>()
             {
-                { "ListItem", result2.ElementAt(0) },
-                { "CommentId", context.AppSettings["Comment1Id"] }
+                ["ListItem"] = result2.ElementAt(0),
+                ["CommentId"] = context.AppSettings["Comment1Id"]
             }
         );
         var actual = result3.ElementAt(0);

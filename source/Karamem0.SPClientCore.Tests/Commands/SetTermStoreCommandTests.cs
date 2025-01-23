@@ -28,19 +28,19 @@ public class SetTermStoreCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<TermStore>(
             "Set-KshTermStore",
             new Dictionary<string, object>()
             {
-                { "DefaultLcid", 1033 },
-                { "WorkingLcid", 1033 },
-                { "PassThru", true }
+                ["DefaultLcid"] = 1033,
+                ["WorkingLcid"] = 1033,
+                ["PassThru"] = true
             }
         );
         var actual = result1.ElementAt(0);

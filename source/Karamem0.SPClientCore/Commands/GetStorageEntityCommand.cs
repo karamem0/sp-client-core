@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetStorageEntityCommand : ClientObjectCmdlet<IStorageEntityService>
 {
 
-    public GetStorageEntityCommand()
-    {
-    }
-
     [Parameter(Mandatory = true, Position = 0)]
     public string Key { get; private set; }
 

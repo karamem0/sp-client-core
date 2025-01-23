@@ -22,14 +22,19 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetSiteCollectionFeatureCommand : ClientObjectCmdlet<ISiteCollectionFeatureService>
 {
 
-    public GetSiteCollectionFeatureCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet1"
+    )]
     public Feature Identity { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet2"
+    )]
     public Guid FeatureId { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]

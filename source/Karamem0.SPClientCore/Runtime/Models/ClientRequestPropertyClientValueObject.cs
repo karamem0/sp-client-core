@@ -30,20 +30,24 @@ public class ClientRequestPropertyClientValueObject : ClientRequestProperty
         this.Values = value.GetType()
             .GetDeclaredProperties()
             .Where(propertyInfo => propertyInfo.IsDefined(typeof(JsonPropertyAttribute)))
-            .Select(propertyInfo =>
-            {
-                var propertyAttribute = propertyInfo.GetCustomAttribute<JsonPropertyAttribute>();
-                var propertyName = string.IsNullOrEmpty(propertyAttribute.PropertyName) ? propertyInfo.Name : propertyAttribute.PropertyName;
-                var propertyValue = propertyInfo.GetValue(value);
-                if (ClientRequestValue.TryCreate(propertyValue, out var valueObject))
+            .Select(
+                propertyInfo =>
                 {
-                    return new ClientRequestPropertyValue(propertyName, valueObject);
+                    var propertyAttribute = propertyInfo.GetCustomAttribute<JsonPropertyAttribute>();
+                    var propertyName = string.IsNullOrEmpty(propertyAttribute.PropertyName)
+                        ? propertyInfo.Name
+                        : propertyAttribute.PropertyName;
+                    var propertyValue = propertyInfo.GetValue(value);
+                    if (ClientRequestValue.TryCreate(propertyValue, out var valueObject))
+                    {
+                        return new ClientRequestPropertyValue(propertyName, valueObject);
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException();
+                    }
                 }
-                else
-                {
-                    throw new InvalidOperationException();
-                }
-            })
+            )
             .ToList();
     }
 
@@ -54,6 +58,6 @@ public class ClientRequestPropertyClientValueObject : ClientRequestProperty
     public virtual Guid TypeId { get; protected set; }
 
     [XmlElement("Property")]
-    public virtual IEnumerable<ClientRequestPropertyValue> Values { get; protected set; }
+    public virtual IReadOnlyCollection<ClientRequestPropertyValue> Values { get; protected set; }
 
 }

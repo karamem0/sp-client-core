@@ -27,7 +27,8 @@ public abstract class ClientService(ClientContext clientContext)
             .Where(type => type.GetInterfaces().Any())
             .Aggregate<Type, IServiceCollection>(
                 new ServiceCollection(),
-                (accumulate, source) => accumulate.AddTransient(source.GetInterfaces()[0], source))
+                (accumulate, source) => accumulate.AddTransient(source.GetInterfaces()[0], source)
+            )
             .AddSingleton(typeof(ClientContext), clientContext)
             .BuildServiceProvider();
     }
@@ -37,6 +38,7 @@ public abstract class ClientService(ClientContext clientContext)
         ServiceProvider = null;
     }
 
-    protected ClientContext ClientContext { get; private set; } = clientContext ?? throw new ArgumentNullException(nameof(clientContext));
+    protected ClientContext ClientContext { get; private set; } =
+        clientContext ?? throw new ArgumentNullException(nameof(clientContext));
 
 }

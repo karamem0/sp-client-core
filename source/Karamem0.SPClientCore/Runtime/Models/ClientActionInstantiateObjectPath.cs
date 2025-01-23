@@ -19,7 +19,7 @@ public class ClientActionInstantiateObjectPath(long objectPathId) : ClientAction
 {
 
     [XmlAttribute()]
-    public override long Id { get; protected set; }
+    public override long Id { get; protected set; } = NewId();
 
     [XmlAttribute()]
     public virtual long ObjectPathId { get; protected set; } = objectPathId;

@@ -22,14 +22,19 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetUserPropertyCommand : ClientObjectCmdlet<IUserPropertyService>
 {
 
-    public GetUserPropertyCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet1"
+    )]
     public UserProperty Identity { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet2"
+    )]
     public string UserLoginName { get; private set; }
 
     protected override void ProcessRecordCore()

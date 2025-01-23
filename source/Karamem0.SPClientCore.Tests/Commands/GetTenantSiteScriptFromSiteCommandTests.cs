@@ -27,23 +27,23 @@ public class GetTenantSiteScriptFromSiteCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AdminUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AdminUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<string>(
             "Get-KshTenantSiteScriptFromSite",
             new Dictionary<string, object>()
             {
-                { "SiteUrl", context.AppSettings["BaseUrl"] },
-                { "IncludeBranding", true },
-                { "IncludedLists", null },
-                { "IncludeLinksToExportedItems", false },
-                { "IncludeRegionalSettings", false },
-                { "IncludeSiteExternalSharingCapability", false },
-                { "IncludeTheme", false },
+                ["SiteUrl"] = context.AppSettings["BaseUrl"],
+                ["IncludeBranding"] = true,
+                ["IncludedLists"] = null,
+                ["IncludeLinksToExportedItems"] = false,
+                ["IncludeRegionalSettings"] = false,
+                ["IncludeSiteExternalSharingCapability"] = false,
+                ["IncludeTheme"] = false,
             }
         );
         var actual = result1.ElementAt(0);

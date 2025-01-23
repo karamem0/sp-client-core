@@ -16,17 +16,12 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [JsonObject()]
-[ClientObject(Name = "Microsoft.Online.SharePoint.TenantAdministration.TenantListDesignCreationInfo", Id = "{4039ef3a-3ca7-4ce2-8164-e52b1215bc79}")]
+[ClientObject(
+    Name = "Microsoft.Online.SharePoint.TenantAdministration.TenantListDesignCreationInfo",
+    Id = "{4039ef3a-3ca7-4ce2-8164-e52b1215bc79}"
+)]
 public class TenantListDesignCreationInfo : ClientValueObject
 {
-
-    public TenantListDesignCreationInfo()
-    {
-    }
-
-    public TenantListDesignCreationInfo(IReadOnlyDictionary<string, object> parameters) : base(parameters)
-    {
-    }
 
     [JsonProperty()]
     public virtual string Description { get; protected set; }

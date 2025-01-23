@@ -17,14 +17,15 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
-[Cmdlet(VerbsCommon.Remove, "KshTenantHomeSite", SupportsShouldProcess = true, ConfirmImpact = ConfirmImpact.High)]
+[Cmdlet(
+    VerbsCommon.Remove,
+    "KshTenantHomeSite",
+    SupportsShouldProcess = true,
+    ConfirmImpact = ConfirmImpact.High
+)]
 [OutputType(typeof(void))]
 public class RemoveTenantHomeSiteCommand : ClientObjectCmdlet<ITenantHomeSiteService>
 {
-
-    public RemoveTenantHomeSiteCommand()
-    {
-    }
 
     protected override void ProcessRecordCore()
     {

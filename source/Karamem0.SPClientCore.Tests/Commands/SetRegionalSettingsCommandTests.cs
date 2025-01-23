@@ -28,27 +28,27 @@ public class SetRegionalSettingsCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<Site>(
             "Add-KshSite",
             new Dictionary<string, object>()
             {
-                { "Description", "Test Site 0 Description" },
-                { "ServerRelativeUrl", "TestSite0" },
-                { "Title", "Test Site 0" }
+                ["Description"] = "Test Site 0 Description",
+                ["ServerRelativeUrl"] = "TestSite0",
+                ["Title"] = "Test Site 0"
             }
         );
         var result2 = context.Runspace.InvokeCommand<Site>(
             "Select-KshSite",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) },
-                { "PassThru", true }
+                ["Identity"] = result1.ElementAt(0),
+                ["PassThru"] = true
             }
         );
         var result3 = context.Runspace.InvokeCommand<RegionalSettings>(
@@ -61,27 +61,27 @@ public class SetRegionalSettingsCommandTests
             "Set-KshRegionalSettings",
             new Dictionary<string, object>()
             {
-                { "AdjustHijriDays", 1 },
-                { "AlternateCalendarType", 1 },
-                { "CalendarType", 1 },
-                { "Collation", 1 },
-                { "FirstDayOfWeek", 1 },
-                { "FirstWeekOfYear", 1 },
-                { "Lcid", 1041 },
-                { "ShowWeeks", true },
-                { "Time24", true },
-                { "TimeZone", result3.ElementAt(0).TimeZones.ElementAt(0) },
-                { "WorkDayEndHour", 60 },
-                { "WorkDays", 1 },
-                { "WorkDayStartHour", 60 },
-                { "PassThru", true }
+                ["AdjustHijriDays"] = 1,
+                ["AlternateCalendarType"] = 1,
+                ["CalendarType"] = 1,
+                ["Collation"] = 1,
+                ["FirstDayOfWeek"] = 1,
+                ["FirstWeekOfYear"] = 1,
+                ["Lcid"] = 1041,
+                ["ShowWeeks"] = true,
+                ["Time24"] = true,
+                ["TimeZone"] = result3.ElementAt(0).TimeZones.ElementAt(0),
+                ["WorkDayEndHour"] = 60,
+                ["WorkDays"] = 1,
+                ["WorkDayStartHour"] = 60,
+                ["PassThru"] = true
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshSite",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var actual = result4.ElementAt(0);

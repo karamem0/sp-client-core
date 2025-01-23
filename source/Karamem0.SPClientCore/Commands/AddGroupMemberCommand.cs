@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddGroupMemberCommand : ClientObjectCmdlet<IGroupMemberService>
 {
 
-    public AddGroupMemberCommand()
-    {
-    }
-
     [Parameter(Mandatory = true, Position = 0)]
     public Group Group { get; private set; }
 

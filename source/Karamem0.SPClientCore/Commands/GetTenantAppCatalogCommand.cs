@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetTenantAppCatalogCommand : ClientObjectCmdlet<ITenantSettingsService>
 {
 
-    public GetTenantAppCatalogCommand()
-    {
-    }
-
     protected override void ProcessRecordCore()
     {
         var tenantSettingsObject = this.Service.GetObject();

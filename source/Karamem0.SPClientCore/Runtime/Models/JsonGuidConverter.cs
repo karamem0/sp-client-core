@@ -19,10 +19,6 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class JsonGuidConverter : JsonConverter
 {
 
-    public JsonGuidConverter()
-    {
-    }
-
     public override bool CanRead => true;
 
     public override bool CanWrite => true;
@@ -39,7 +35,12 @@ public class JsonGuidConverter : JsonConverter
         }
     }
 
-    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    public override object ReadJson(
+        JsonReader reader,
+        Type objectType,
+        object existingValue,
+        JsonSerializer serializer
+    )
     {
         var value = Guid.Empty;
         if (reader.Value is null)
@@ -57,7 +58,11 @@ public class JsonGuidConverter : JsonConverter
         return null;
     }
 
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    public override void WriteJson(
+        JsonWriter writer,
+        object value,
+        JsonSerializer serializer
+    )
     {
         if (value is null || (Guid)value == Guid.Empty)
         {

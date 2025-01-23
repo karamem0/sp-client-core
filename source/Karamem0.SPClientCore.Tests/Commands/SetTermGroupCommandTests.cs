@@ -28,34 +28,34 @@ public class SetTermGroupCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<TermGroup>(
             "Add-KshTermGroup",
             new Dictionary<string, object>()
             {
-                { "Name", "Test Term Group 0" }
+                ["Name"] = "Test Term Group 0"
             }
         );
         var result2 = context.Runspace.InvokeCommand<TermGroup>(
             "Set-KshTermGroup",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) },
-                { "Description", "Test Term Group 9" },
-                { "Name", "Test Term Group 9" },
-                { "PassThru", true }
+                ["Identity"] = result1.ElementAt(0),
+                ["Description"] = "Test Term Group 9",
+                ["Name"] = "Test Term Group 9",
+                ["PassThru"] = true
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshTermGroup",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);

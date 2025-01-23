@@ -18,10 +18,6 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class ODataV1ErrorMessage : ValueObject
 {
 
-    public ODataV1ErrorMessage()
-    {
-    }
-
     [JsonProperty("lang")]
     public string Language { get; private set; }
 

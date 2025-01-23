@@ -21,10 +21,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class NewContentTypeIdCommand : ClientObjectCmdlet
 {
 
-    public NewContentTypeIdCommand()
-    {
-    }
-
     [Parameter(Mandatory = true, Position = 0)]
     public string StringValue { get; private set; }
 

@@ -28,22 +28,22 @@ public class SetTenantFileVersionPolicyForDocumentLibraryCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AdminUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AdminUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<FileVersionPolicyForDocumentLibrary>(
             "Set-KshTenantFileVersionPolicyForDocumentLibrary",
             new Dictionary<string, object>()
             {
-                { "SiteUrl", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ListId", context.AppSettings["List2Id"] },
-                { "IsAutoTrimEnabled", false },
-                { "MajorVersionLimit", 500 },
-                { "ExpireVersionsAfterDays", 0 },
-                { "PassThru", true }
+                ["SiteUrl"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ListId"] = context.AppSettings["List2Id"],
+                ["IsAutoTrimEnabled"] = false,
+                ["MajorVersionLimit"] = 500,
+                ["ExpireVersionsAfterDays"] = 0,
+                ["PassThru"] = true
             }
         );
         var actual = result1.ElementAt(0);
@@ -58,22 +58,22 @@ public class SetTenantFileVersionPolicyForDocumentLibraryCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AdminUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AdminUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<FileVersionPolicyForDocumentLibrary>(
             "Set-KshTenantFileVersionPolicyForDocumentLibrary",
             new Dictionary<string, object>()
             {
-                { "SiteUrl", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ListTitle", context.AppSettings["List2Title"] },
-                { "IsAutoTrimEnabled", false },
-                { "MajorVersionLimit", 500 },
-                { "ExpireVersionsAfterDays", 0 },
-                { "PassThru", true }
+                ["SiteUrl"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ListTitle"] = context.AppSettings["List2Title"],
+                ["IsAutoTrimEnabled"] = false,
+                ["MajorVersionLimit"] = 500,
+                ["ExpireVersionsAfterDays"] = 0,
+                ["PassThru"] = true
             }
         );
         var actual = result1.ElementAt(0);

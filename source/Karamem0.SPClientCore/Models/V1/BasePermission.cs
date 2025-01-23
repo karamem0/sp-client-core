@@ -72,9 +72,9 @@ public class BasePermission : ClientValueObject
                 yield break;
             }
             foreach (var permission in Enum.GetValues(typeof(PermissionKind))
-                .OfType<PermissionKind>()
-                .Where(value => value != PermissionKind.EmptyMask)
-                .Where(value => value != PermissionKind.FullMask))
+                         .OfType<PermissionKind>()
+                         .Where(value => value != PermissionKind.EmptyMask)
+                         .Where(value => value != PermissionKind.FullMask))
             {
                 var num1 = (int)(permission - 1);
                 var num2 = 1u;

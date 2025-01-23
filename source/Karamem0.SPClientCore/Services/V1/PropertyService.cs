@@ -39,13 +39,15 @@ public class PropertyService(ClientContext clientContext) : ClientService(client
         _ = alertObject ?? throw new ArgumentNullException(nameof(alertObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(alertObject.ObjectIdentity));
+            new ObjectPathIdentity(alertObject.ObjectIdentity)
+        );
         var objectPath2 = requestPayload.Add(
             new ObjectPathProperty(objectPath1.Id, "AllProperties"),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true)
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<PropertyValues>(requestPayload.GetActionId<ClientActionQuery>());
@@ -56,13 +58,15 @@ public class PropertyService(ClientContext clientContext) : ClientService(client
         _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(fileObject.ObjectIdentity));
+            new ObjectPathIdentity(fileObject.ObjectIdentity)
+        );
         var objectPath2 = requestPayload.Add(
             new ObjectPathProperty(objectPath1.Id, "Properties"),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true)
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<PropertyValues>(requestPayload.GetActionId<ClientActionQuery>());
@@ -73,13 +77,15 @@ public class PropertyService(ClientContext clientContext) : ClientService(client
         _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(folderObject.ObjectIdentity));
+            new ObjectPathIdentity(folderObject.ObjectIdentity)
+        );
         var objectPath2 = requestPayload.Add(
             new ObjectPathProperty(objectPath1.Id, "Properties"),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true)
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<PropertyValues>(requestPayload.GetActionId<ClientActionQuery>());
@@ -90,13 +96,15 @@ public class PropertyService(ClientContext clientContext) : ClientService(client
         _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(listItemObject.ObjectIdentity));
+            new ObjectPathIdentity(listItemObject.ObjectIdentity)
+        );
         var objectPath2 = requestPayload.Add(
             new ObjectPathProperty(objectPath1.Id, "Properties"),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true)
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<PropertyValues>(requestPayload.GetActionId<ClientActionQuery>());
@@ -107,13 +115,15 @@ public class PropertyService(ClientContext clientContext) : ClientService(client
         _ = siteObject ?? throw new ArgumentNullException(nameof(siteObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(siteObject.ObjectIdentity));
+            new ObjectPathIdentity(siteObject.ObjectIdentity)
+        );
         var objectPath2 = requestPayload.Add(
             new ObjectPathProperty(objectPath1.Id, "AllProperties"),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true)
-            });
+            }
+        );
         return this.ClientContext
             .ProcessQuery(requestPayload)
             .ToObject<PropertyValues>(requestPayload.GetActionId<ClientActionQuery>());

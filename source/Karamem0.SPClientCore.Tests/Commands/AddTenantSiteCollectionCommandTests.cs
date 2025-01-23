@@ -28,48 +28,48 @@ public class AddTenantSiteCollectionCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AdminUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AdminUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<TenantSiteCollection>(
             "Add-KshTenantSiteCollection",
             new Dictionary<string, object>()
             {
-                { "CompatibilityLevel", 15 },
-                { "Lcid", 1041 },
-                { "Owner", context.AppSettings["OwnerUserName"] },
-                { "StorageMaxLevel", 26214400 },
-                { "StorageWarningLevel", 25574400 },
-                { "Template", "SITEPAGEPUBLISHING#0" },
-                { "TimeZoneId", 20 },
-                { "Title", "Test Site 0" },
-                { "Url", context.AppSettings["AuthorityUrl"] + "/sites/TestSite0" },
-                { "UserCodeMaxLevel", 300 },
-                { "UserCodeWarningLevel", 100 }
+                ["CompatibilityLevel"] = 15,
+                ["Lcid"] = 1041,
+                ["Owner"] = context.AppSettings["OwnerUserName"],
+                ["StorageMaxLevel"] = 26214400,
+                ["StorageWarningLevel"] = 25574400,
+                ["Template"] = "SITEPAGEPUBLISHING#0",
+                ["TimeZoneId"] = 20,
+                ["Title"] = "Test Site 0",
+                ["Url"] = context.AppSettings["AuthorityUrl"] + "/sites/TestSite0",
+                ["UserCodeMaxLevel"] = 300,
+                ["UserCodeWarningLevel"] = 100
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshTenantSiteCollection",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) }
+                ["Identity"] = result1.ElementAt(0)
             }
         );
         var result2 = context.Runspace.InvokeCommand<TenantDeletedSiteCollection>(
             "Get-KshTenantDeletedSiteCollection",
             new Dictionary<string, object>()
             {
-                { "SiteCollectionUrl", result1.ElementAt(0).Url }
+                ["SiteCollectionUrl"] = result1.ElementAt(0).Url
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshTenantDeletedSiteCollection",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var actual = result1.ElementAt(0);

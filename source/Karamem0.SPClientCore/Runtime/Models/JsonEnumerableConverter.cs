@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class JsonEnumerableConverter : JsonConverter
 {
 
-    public JsonEnumerableConverter()
-    {
-    }
-
     public override bool CanRead => true;
 
     public override bool CanWrite => false;
@@ -40,19 +36,26 @@ public class JsonEnumerableConverter : JsonConverter
         }
     }
 
-    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    public override object ReadJson(
+        JsonReader reader,
+        Type objectType,
+        object existingValue,
+        JsonSerializer serializer
+    )
     {
         if (objectType.GetGenericArguments()[0].IsSubclassOf(typeof(ClientObject)))
         {
             var jsonArray = serializer.Deserialize<JArray>(reader);
             if (jsonArray is not null)
             {
-                var result1 = jsonArray.Select(jsonToken =>
-                    {
-                        var valueName = jsonToken["_ObjectType_"].ToString();
-                        var valueType = ClientObject.GetType(valueName);
-                        return jsonToken.ToObject(valueType, serializer);
-                    })
+                var result1 = jsonArray.Select(
+                        jsonToken =>
+                        {
+                            var valueName = jsonToken["_ObjectType_"].ToString();
+                            var valueType = ClientObject.GetType(valueName);
+                            return jsonToken.ToObject(valueType, serializer);
+                        }
+                    )
                     .ToArray();
                 var result2 = typeof(Enumerable)
                     .GetMethod("OfType", BindingFlags.Public | BindingFlags.Static)
@@ -72,7 +75,11 @@ public class JsonEnumerableConverter : JsonConverter
         return null;
     }
 
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    public override void WriteJson(
+        JsonWriter writer,
+        object value,
+        JsonSerializer serializer
+    )
     {
         throw new NotImplementedException();
     }

@@ -28,45 +28,45 @@ public class SetTenantUserCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AdminUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AdminUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<TenantSiteCollection>(
             "Get-KshTenantSiteCollection",
             new Dictionary<string, object>()
             {
-                { "SiteCollectionUrl", context.AppSettings["BaseUrl"] }
+                ["SiteCollectionUrl"] = context.AppSettings["BaseUrl"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<User>(
             "Add-KshTenantUser",
             new Dictionary<string, object>()
             {
-                { "SiteCollection", result1.ElementAt(0) },
-                { "Email", "testuser0@" + context.AppSettings["LoginDomainName"] },
-                { "LoginName", "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"] },
-                { "Title", "Test User 0" }
+                ["SiteCollection"] = result1.ElementAt(0),
+                ["Email"] = "testuser0@" + context.AppSettings["LoginDomainName"],
+                ["LoginName"] = "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"],
+                ["Title"] = "Test User 0"
             }
         );
         var result3 = context.Runspace.InvokeCommand<User>(
             "Set-KshTenantUser",
             new Dictionary<string, object>()
             {
-                { "SiteCollection", result1.ElementAt(0) },
-                { "User", result2.ElementAt(0) },
-                { "IsSiteCollectionAdmin", true },
-                { "PassThru", true }
+                ["SiteCollection"] = result1.ElementAt(0),
+                ["User"] = result2.ElementAt(0),
+                ["IsSiteCollectionAdmin"] = true,
+                ["PassThru"] = true
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshTenantUser",
             new Dictionary<string, object>()
             {
-                { "SiteCollection", result1.ElementAt(0) },
-                { "User", result3.ElementAt(0) }
+                ["SiteCollection"] = result1.ElementAt(0),
+                ["User"] = result3.ElementAt(0)
             }
         );
         var actual = result3.ElementAt(0);
@@ -81,45 +81,45 @@ public class SetTenantUserCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AdminUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AdminUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<TenantSiteCollection>(
             "Get-KshTenantSiteCollection",
             new Dictionary<string, object>()
             {
-                { "SiteCollectionUrl", context.AppSettings["BaseUrl"] }
+                ["SiteCollectionUrl"] = context.AppSettings["BaseUrl"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<User>(
             "Add-KshTenantUser",
             new Dictionary<string, object>()
             {
-                { "SiteCollection", result1.ElementAt(0) },
-                { "Email", "testuser0@" + context.AppSettings["LoginDomainName"] },
-                { "LoginName", "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"] },
-                { "Title", "Test User 0" }
+                ["SiteCollection"] = result1.ElementAt(0),
+                ["Email"] = "testuser0@" + context.AppSettings["LoginDomainName"],
+                ["LoginName"] = "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"],
+                ["Title"] = "Test User 0"
             }
         );
         var result3 = context.Runspace.InvokeCommand<User>(
             "Set-KshTenantUser",
             new Dictionary<string, object>()
             {
-                { "SiteCollection", result1.ElementAt(0) },
-                { "UserName", result2.ElementAt(0).LoginName },
-                { "IsSiteCollectionAdmin", true },
-                { "PassThru", true }
+                ["SiteCollection"] = result1.ElementAt(0),
+                ["UserName"] = result2.ElementAt(0).LoginName,
+                ["IsSiteCollectionAdmin"] = true,
+                ["PassThru"] = true
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshTenantUser",
             new Dictionary<string, object>()
             {
-                { "SiteCollection", result1.ElementAt(0) },
-                { "User", result3.ElementAt(0) }
+                ["SiteCollection"] = result1.ElementAt(0),
+                ["User"] = result3.ElementAt(0)
             }
         );
         var actual = result3.ElementAt(0);
@@ -134,45 +134,45 @@ public class SetTenantUserCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AdminUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AdminUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<TenantSiteCollection>(
             "Get-KshTenantSiteCollection",
             new Dictionary<string, object>()
             {
-                { "SiteCollectionUrl", context.AppSettings["BaseUrl"] }
+                ["SiteCollectionUrl"] = context.AppSettings["BaseUrl"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<User>(
             "Add-KshTenantUser",
             new Dictionary<string, object>()
             {
-                { "SiteCollection", result1.ElementAt(0) },
-                { "Email", "testuser0@" + context.AppSettings["LoginDomainName"] },
-                { "LoginName", "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"] },
-                { "Title", "Test User 0" }
+                ["SiteCollection"] = result1.ElementAt(0),
+                ["Email"] = "testuser0@" + context.AppSettings["LoginDomainName"],
+                ["LoginName"] = "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"],
+                ["Title"] = "Test User 0"
             }
         );
         var result3 = context.Runspace.InvokeCommand<User>(
             "Set-KshTenantUser",
             new Dictionary<string, object>()
             {
-                { "SiteCollection", result1.ElementAt(0) },
-                { "UserName", result2.ElementAt(0).Email },
-                { "IsSiteCollectionAdmin", true },
-                { "PassThru", true }
+                ["SiteCollection"] = result1.ElementAt(0),
+                ["UserName"] = result2.ElementAt(0).Email,
+                ["IsSiteCollectionAdmin"] = true,
+                ["PassThru"] = true
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshTenantUser",
             new Dictionary<string, object>()
             {
-                { "SiteCollection", result1.ElementAt(0) },
-                { "User", result3.ElementAt(0) }
+                ["SiteCollection"] = result1.ElementAt(0),
+                ["User"] = result3.ElementAt(0)
             }
         );
         var actual = result3.ElementAt(0);
@@ -187,38 +187,38 @@ public class SetTenantUserCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AdminUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AdminUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<User>(
             "Add-KshTenantUser",
             new Dictionary<string, object>()
             {
-                { "SiteCollectionUrl", context.AppSettings["BaseUrl"] },
-                { "Email", "testuser0@" + context.AppSettings["LoginDomainName"] },
-                { "LoginName", "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"] },
-                { "Title", "Test User 0" }
+                ["SiteCollectionUrl"] = context.AppSettings["BaseUrl"],
+                ["Email"] = "testuser0@" + context.AppSettings["LoginDomainName"],
+                ["LoginName"] = "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"],
+                ["Title"] = "Test User 0"
             }
         );
         var result2 = context.Runspace.InvokeCommand<User>(
             "Set-KshTenantUser",
             new Dictionary<string, object>()
             {
-                { "SiteCollectionUrl", context.AppSettings["BaseUrl"] },
-                { "User", result1.ElementAt(0) },
-                { "IsSiteCollectionAdmin", true },
-                { "PassThru", true }
+                ["SiteCollectionUrl"] = context.AppSettings["BaseUrl"],
+                ["User"] = result1.ElementAt(0),
+                ["IsSiteCollectionAdmin"] = true,
+                ["PassThru"] = true
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshTenantUser",
             new Dictionary<string, object>()
             {
-                { "SiteCollectionUrl", context.AppSettings["BaseUrl"] },
-                { "User", result2.ElementAt(0) }
+                ["SiteCollectionUrl"] = context.AppSettings["BaseUrl"],
+                ["User"] = result2.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);
@@ -233,38 +233,38 @@ public class SetTenantUserCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AdminUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AdminUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<User>(
             "Add-KshTenantUser",
             new Dictionary<string, object>()
             {
-                { "SiteCollectionUrl", context.AppSettings["BaseUrl"] },
-                { "Email", "testuser0@" + context.AppSettings["LoginDomainName"] },
-                { "LoginName", "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"] },
-                { "Title", "Test User 0" }
+                ["SiteCollectionUrl"] = context.AppSettings["BaseUrl"],
+                ["Email"] = "testuser0@" + context.AppSettings["LoginDomainName"],
+                ["LoginName"] = "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"],
+                ["Title"] = "Test User 0"
             }
         );
         var result2 = context.Runspace.InvokeCommand<User>(
             "Set-KshTenantUser",
             new Dictionary<string, object>()
             {
-                { "SiteCollectionUrl", context.AppSettings["BaseUrl"] },
-                { "UserName", result1.ElementAt(0).LoginName },
-                { "IsSiteCollectionAdmin", true },
-                { "PassThru", true }
+                ["SiteCollectionUrl"] = context.AppSettings["BaseUrl"],
+                ["UserName"] = result1.ElementAt(0).LoginName,
+                ["IsSiteCollectionAdmin"] = true,
+                ["PassThru"] = true
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshTenantUser",
             new Dictionary<string, object>()
             {
-                { "SiteCollectionUrl", context.AppSettings["BaseUrl"] },
-                { "User", result2.ElementAt(0) }
+                ["SiteCollectionUrl"] = context.AppSettings["BaseUrl"],
+                ["User"] = result2.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);
@@ -279,38 +279,38 @@ public class SetTenantUserCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AdminUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AdminUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<User>(
             "Add-KshTenantUser",
             new Dictionary<string, object>()
             {
-                { "SiteCollectionUrl", context.AppSettings["BaseUrl"] },
-                { "Email", "testuser0@" + context.AppSettings["LoginDomainName"] },
-                { "LoginName", "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"] },
-                { "Title", "Test User 0" }
+                ["SiteCollectionUrl"] = context.AppSettings["BaseUrl"],
+                ["Email"] = "testuser0@" + context.AppSettings["LoginDomainName"],
+                ["LoginName"] = "i:0#.f|membership|testuser0@" + context.AppSettings["LoginDomainName"],
+                ["Title"] = "Test User 0"
             }
         );
         var result2 = context.Runspace.InvokeCommand<User>(
             "Set-KshTenantUser",
             new Dictionary<string, object>()
             {
-                { "SiteCollectionUrl", context.AppSettings["BaseUrl"] },
-                { "UserName", result1.ElementAt(0).Email },
-                { "IsSiteCollectionAdmin", true },
-                { "PassThru", true }
+                ["SiteCollectionUrl"] = context.AppSettings["BaseUrl"],
+                ["UserName"] = result1.ElementAt(0).Email,
+                ["IsSiteCollectionAdmin"] = true,
+                ["PassThru"] = true
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshTenantUser",
             new Dictionary<string, object>()
             {
-                { "SiteCollectionUrl", context.AppSettings["BaseUrl"] },
-                { "User", result2.ElementAt(0) }
+                ["SiteCollectionUrl"] = context.AppSettings["BaseUrl"],
+                ["User"] = result2.ElementAt(0)
             }
         );
         var actual = result2.ElementAt(0);

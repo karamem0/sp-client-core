@@ -28,32 +28,32 @@ public class RemoveRoleDefinitionCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["BaseUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["BaseUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<BasePermission>(
             "New-KshBasePermission",
             new Dictionary<string, object>()
             {
-                { "Permission", "EmptyMask" },
+                ["Permission"] = "EmptyMask",
             }
         );
         var result2 = context.Runspace.InvokeCommand<RoleDefinition>(
             "Add-KshRoleDefinition",
             new Dictionary<string, object>()
             {
-                { "BasePermission", result1.ElementAt(0) },
-                { "Name", "Test Role Definition 0" }
+                ["BasePermission"] = result1.ElementAt(0),
+                ["Name"] = "Test Role Definition 0"
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshRoleDefinition",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
     }

@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class SetTenantCdnPolicyCommand : ClientObjectCmdlet<ITenantCdnService>
 {
 
-    public SetTenantCdnPolicyCommand()
-    {
-    }
-
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     public SwitchParameter Public { get; private set; }
 
@@ -45,12 +41,20 @@ public class SetTenantCdnPolicyCommand : ClientObjectCmdlet<ITenantCdnService>
         if (this.ParameterSetName == "ParamSet1")
         {
             this.ValidateSwitchParameter(nameof(this.Public));
-            this.Service.SetPolicy(TenantCdnType.Public, this.Type, this.Value);
+            this.Service.SetPolicy(
+                TenantCdnType.Public,
+                this.Type,
+                this.Value
+            );
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             this.ValidateSwitchParameter(nameof(this.Private));
-            this.Service.SetPolicy(TenantCdnType.Private, this.Type, this.Value);
+            this.Service.SetPolicy(
+                TenantCdnType.Private,
+                this.Type,
+                this.Value
+            );
         }
     }
 

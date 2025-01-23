@@ -52,14 +52,19 @@ public class JsonEnumerableConverterTests
     public void ReadJson_Valid_ReturnsClientObjectCollection()
     {
         var converter = new JsonEnumerableConverter();
-        var textReader = new StringReader(/*lang=json,strict*/ "{\"value\":[{\"_ObjectType_\":\"SP.Web\"}]}");
+        var textReader = new StringReader( /*lang=json,strict*/ "{\"value\":[{\"_ObjectType_\":\"SP.Web\"}]}");
         var jsonReader = new JsonTextReader(textReader);
         while (jsonReader.TokenType != JsonToken.StartArray)
         {
             _ = jsonReader.Read();
         }
-        var expected = JsonConvert.DeserializeObject<Site[]>(/*lang=json,strict*/ "[{\"_ObjectType_\":\"SP.Web\"}]");
-        var actual = converter.ReadJson(jsonReader, typeof(IReadOnlyCollection<Site>), null, new JsonSerializer());
+        var expected = JsonConvert.DeserializeObject<Site[]>( /*lang=json,strict*/ "[{\"_ObjectType_\":\"SP.Web\"}]");
+        var actual = converter.ReadJson(
+            jsonReader,
+            typeof(IReadOnlyCollection<Site>),
+            null,
+            new JsonSerializer()
+        );
         Assert.That(actual, Is.EqualTo(expected));
     }
 
@@ -67,14 +72,22 @@ public class JsonEnumerableConverterTests
     public void ReadJson_Invalid_ReturnsStringCollection()
     {
         var converter = new JsonEnumerableConverter();
-        var textReader = new StringReader(/*lang=json,strict*/ "{\"value\":[\"SP.Web\"]}");
+        var textReader = new StringReader( /*lang=json,strict*/ "{\"value\":[\"SP.Web\"]}");
         var jsonReader = new JsonTextReader(textReader);
         while (jsonReader.TokenType != JsonToken.StartArray)
         {
             _ = jsonReader.Read();
         }
-        var expected = new string[] { "SP.Web" };
-        var actual = converter.ReadJson(jsonReader, typeof(IReadOnlyCollection<string>), null, new JsonSerializer());
+        var expected = new string[]
+        {
+            "SP.Web"
+        };
+        var actual = converter.ReadJson(
+            jsonReader,
+            typeof(IReadOnlyCollection<string>),
+            null,
+            new JsonSerializer()
+        );
         Assert.That(actual, Is.EqualTo(expected));
     }
 
@@ -82,14 +95,19 @@ public class JsonEnumerableConverterTests
     public void ReadJson_Null_ReturnsNull()
     {
         var converter = new JsonEnumerableConverter();
-        var textReader = new StringReader(/*lang=json,strict*/ "{\"value\":null}");
+        var textReader = new StringReader( /*lang=json,strict*/ "{\"value\":null}");
         var jsonReader = new JsonTextReader(textReader);
         while (jsonReader.TokenType != JsonToken.Null)
         {
             _ = jsonReader.Read();
         }
         var expected = default(IReadOnlyCollection<string>);
-        var actual = converter.ReadJson(jsonReader, typeof(IReadOnlyCollection<string>), null, new JsonSerializer());
+        var actual = converter.ReadJson(
+            jsonReader,
+            typeof(IReadOnlyCollection<string>),
+            null,
+            new JsonSerializer()
+        );
         Assert.That(actual, Is.EqualTo(expected));
     }
 
@@ -99,7 +117,13 @@ public class JsonEnumerableConverterTests
         var converter = new JsonEnumerableConverter();
         var textWriter = new StringWriter();
         var jsonWriter = new JsonTextWriter(textWriter);
-        _ = Assert.Throws<NotImplementedException>(() => converter.WriteJson(jsonWriter, null, null));
+        _ = Assert.Throws<NotImplementedException>(
+            () => converter.WriteJson(
+                jsonWriter,
+                null,
+                null
+            )
+        );
     }
 
 }

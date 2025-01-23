@@ -15,13 +15,13 @@ SPClientCore is published to [PowerShell Gallery](https://www.powershellgallery.
 
 ### Works with PowerShell 7
 
-Yes, SPClientCore works with PowerShell 7, also it works with Windows PowerShell. It means that you can use this module on Mac and Linux as well as Windows (of course if PowerShell 7 is installed on the machine). <del>There was only a way to run the SharePoint REST API to manage SharePoint Online in non-Windows environments. </del>But SharePoint REST API has a few problems compared to the SharePoint Client Library (CSOM). SPClientCore provides full functionality by making compatible API calls with CSOM.
+Yes, SPClientCore works with the latest version of PowerShell 7. It means that you can use this module on Mac and Linux as well as Windows (of course if PowerShell 7 is installed on the machine). <del>There was only a way to run the SharePoint REST API to manage SharePoint Online in non-Windows environments. </del>But SharePoint REST API has a few problems compared to the SharePoint Client Library (CSOM). SPClientCore provides full functionality by making compatible API calls with CSOM.
 
 *(UPDATE) CSOM and PnP PowerShell now supports PowerShell 7.*
 
 ### One module, manage all
 
-SPClientCore includes both elements that site admin features and tenant admin features. You can run cmdlets for site admin by connecting to a site (https://tenant.sharepoint.com` and its sub URLs), and you can run tenant admin cmdlets for connecting to the SharePoint admin center (`https://`tenant-admin.sharepoint.com`). You can also determine whether you are currently connected to the SharePoint admin center.
+SPClientCore includes both elements that site admin features and tenant admin features. You can run cmdlets for site admin by connecting to a site `(`https://tenant.sharepoint.com` and its sub URLs), and you can run tenant admin cmdlets for connecting to the SharePoint admin center (`https://tenant-admin.sharepoint.com`). You can also determine whether you are currently connected to the SharePoint admin center.
 
 ### Friendly Naming
 

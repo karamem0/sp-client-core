@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddTermGroupCommand : ClientObjectCmdlet<ITermGroupService>
 {
 
-    public AddTermGroupCommand()
-    {
-    }
-
     [Parameter(Mandatory = false)]
     public Guid Id { get; private set; }
 

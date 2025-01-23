@@ -28,33 +28,33 @@ public class GetTenantDeletedSiteCollectionCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AdminUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AdminUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<TenantSiteCollection>(
             "Add-KshTenantSiteCollection",
             new Dictionary<string, object>()
             {
-                { "Owner", context.AppSettings["OwnerUserName"] },
-                { "Template", "SITEPAGEPUBLISHING#0" },
-                { "Url", context.AppSettings["AuthorityUrl"] + "/sites/TestSite0" }
+                ["Owner"] = context.AppSettings["OwnerUserName"],
+                ["Template"] = "SITEPAGEPUBLISHING#0",
+                ["Url"] = context.AppSettings["AuthorityUrl"] + "/sites/TestSite0"
             }
         );
         var result2 = context.Runspace.InvokeCommand<TenantSiteCollection>(
             "Get-KshTenantSiteCollection",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) }
+                ["Identity"] = result1.ElementAt(0)
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshTenantSiteCollection",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var result3 = context.Runspace.InvokeCommand<TenantDeletedSiteCollection>(
@@ -67,14 +67,14 @@ public class GetTenantDeletedSiteCollectionCommandTests
             "Get-KshTenantDeletedSiteCollection",
             new Dictionary<string, object>()
             {
-                { "SiteCollectionUrl", result1.ElementAt(0).Url }
+                ["SiteCollectionUrl"] = result1.ElementAt(0).Url
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshTenantDeletedSiteCollection",
             new Dictionary<string, object>()
             {
-                { "Identity", result4.ElementAt(0) }
+                ["Identity"] = result4.ElementAt(0)
             }
         );
         var actual = result3.ToArray();
@@ -89,54 +89,54 @@ public class GetTenantDeletedSiteCollectionCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AdminUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AdminUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<TenantSiteCollection>(
             "Add-KshTenantSiteCollection",
             new Dictionary<string, object>()
             {
-                { "Owner", context.AppSettings["OwnerUserName"] },
-                { "Template", "SITEPAGEPUBLISHING#0" },
-                { "Url", context.AppSettings["AuthorityUrl"] + "/sites/TestSite0" }
+                ["Owner"] = context.AppSettings["OwnerUserName"],
+                ["Template"] = "SITEPAGEPUBLISHING#0",
+                ["Url"] = context.AppSettings["AuthorityUrl"] + "/sites/TestSite0"
             }
         );
         var result2 = context.Runspace.InvokeCommand<TenantSiteCollection>(
             "Get-KshTenantSiteCollection",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) }
+                ["Identity"] = result1.ElementAt(0)
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshTenantSiteCollection",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var result3 = context.Runspace.InvokeCommand<TenantDeletedSiteCollection>(
             "Get-KshTenantDeletedSiteCollection",
             new Dictionary<string, object>()
             {
-                { "SiteCollectionUrl", result1.ElementAt(0).Url }
+                ["SiteCollectionUrl"] = result1.ElementAt(0).Url
             }
         );
         var result4 = context.Runspace.InvokeCommand<TenantDeletedSiteCollection>(
             "Get-KshTenantDeletedSiteCollection",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                ["Identity"] = result3.ElementAt(0)
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshTenantDeletedSiteCollection",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                ["Identity"] = result3.ElementAt(0)
             }
         );
         var actual = result4.ElementAt(0);
@@ -151,54 +151,54 @@ public class GetTenantDeletedSiteCollectionCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AdminUrl"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AdminUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<TenantSiteCollection>(
             "Add-KshTenantSiteCollection",
             new Dictionary<string, object>()
             {
-                { "Owner", context.AppSettings["OwnerUserName"] },
-                { "Template", "SITEPAGEPUBLISHING#0" },
-                { "Url", context.AppSettings["AuthorityUrl"] + "/sites/TestSite0" }
+                ["Owner"] = context.AppSettings["OwnerUserName"],
+                ["Template"] = "SITEPAGEPUBLISHING#0",
+                ["Url"] = context.AppSettings["AuthorityUrl"] + "/sites/TestSite0"
             }
         );
         var result2 = context.Runspace.InvokeCommand<TenantSiteCollection>(
             "Get-KshTenantSiteCollection",
             new Dictionary<string, object>()
             {
-                { "Identity", result1.ElementAt(0) }
+                ["Identity"] = result1.ElementAt(0)
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshTenantSiteCollection",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
         var result3 = context.Runspace.InvokeCommand<TenantDeletedSiteCollection>(
             "Get-KshTenantDeletedSiteCollection",
             new Dictionary<string, object>()
             {
-                { "SiteCollectionUrl", result1.ElementAt(0).Url }
+                ["SiteCollectionUrl"] = result1.ElementAt(0).Url
             }
         );
         _ = context.Runspace.InvokeCommand<TenantDeletedSiteCollection>(
             "Get-KshTenantDeletedSiteCollection",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                ["Identity"] = result3.ElementAt(0)
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshTenantDeletedSiteCollection",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) }
+                ["Identity"] = result3.ElementAt(0)
             }
         );
         var actual = result3.ElementAt(0);

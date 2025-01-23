@@ -28,24 +28,24 @@ public class GetDocumentSetAllowedContentTypeCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<ContentType>(
             "Get-KshContentType",
             new Dictionary<string, object>()
             {
-                { "ContentTypeId", context.AppSettings["SiteContentType7Id"] }
+                ["ContentTypeId"] = context.AppSettings["SiteContentType7Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<ContentTypeId>(
             "Get-KshDocumentSetAllowedContentType",
             new Dictionary<string, object>()
             {
-                { "ContentType", result1.ElementAt(0) }
+                ["ContentType"] = result1.ElementAt(0)
             }
         );
         var actual = result2.ToArray();

@@ -28,56 +28,56 @@ public class SetAlertCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
             "Get-KshList",
             new Dictionary<string, object>()
             {
-                { "ListId", context.AppSettings["List1Id"] }
+                ["ListId"] = context.AppSettings["List1Id"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<User>(
             "Get-KshUser",
             new Dictionary<string, object>()
             {
-                { "UserId", context.AppSettings["User1Id"] }
+                ["UserId"] = context.AppSettings["User1Id"]
             }
         );
         var result3 = context.Runspace.InvokeCommand<Alert>(
             "Add-KshAlert",
             new Dictionary<string, object>()
             {
-                { "AlertFrequency", "Immediate" },
-                { "AlertType", "List" },
-                { "List", result1.ElementAt(0) },
-                { "User", result2.ElementAt(0) }
+                ["AlertFrequency"] = "Immediate",
+                ["AlertType"] = "List",
+                ["List"] = result1.ElementAt(0),
+                ["User"] = result2.ElementAt(0)
             }
         );
         var result4 = context.Runspace.InvokeCommand<Alert>(
             "Set-KshAlert",
             new Dictionary<string, object>()
             {
-                { "Identity", result3.ElementAt(0) },
-                { "AlertFrequency", "Daily" },
-                { "AlertTime", DateTime.UtcNow.Date },
-                { "AlwaysNotify", true },
-                { "DeliveryChannels", "Email" },
-                { "Filter", "<Query><Eq><FieldRef Name='ID'/><Value Type='Number'>1</Value></Eq></Query>" },
-                { "Status", "Off" },
-                { "Title", "Test Alert 9" },
-                { "PassThru", true }
+                ["Identity"] = result3.ElementAt(0),
+                ["AlertFrequency"] = "Daily",
+                ["AlertTime"] = DateTime.UtcNow.Date,
+                ["AlwaysNotify"] = true,
+                ["DeliveryChannels"] = "Email",
+                ["Filter"] = "<Query><Eq><FieldRef Name='ID'/><Value Type='Number'>1</Value></Eq></Query>",
+                ["Status"] = "Off",
+                ["Title"] = "Test Alert 9",
+                ["PassThru"] = true
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshAlert",
             new Dictionary<string, object>()
             {
-                { "Identity", result4.ElementAt(0) }
+                ["Identity"] = result4.ElementAt(0)
             }
         );
         var actual = result4.ElementAt(0);

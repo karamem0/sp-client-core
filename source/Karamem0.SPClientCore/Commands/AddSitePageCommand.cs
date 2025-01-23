@@ -22,11 +22,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddSitePageCommand : ClientObjectCmdlet<IListService, IFolderService, ISitePageService>
 {
 
-    public AddSitePageCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet1"
+    )]
     public List List { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
@@ -42,13 +42,21 @@ public class AddSitePageCommand : ClientObjectCmdlet<IListService, IFolderServic
         if (this.ParameterSetName == "ParamSet1")
         {
             var folderObject = this.Service2.GetObject(this.List);
-            this.Service3.AddObject(folderObject, this.PageName, this.PageLayoutType);
+            this.Service3.AddObject(
+                folderObject,
+                this.PageName,
+                this.PageLayoutType
+            );
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             var listObject = this.Service1.GetObject(LibraryType.ClientRenderedSitePages);
             var folderObject = this.Service2.GetObject(listObject);
-            this.Service3.AddObject(folderObject, this.PageName, this.PageLayoutType);
+            this.Service3.AddObject(
+                folderObject,
+                this.PageName,
+                this.PageLayoutType
+            );
         }
     }
 

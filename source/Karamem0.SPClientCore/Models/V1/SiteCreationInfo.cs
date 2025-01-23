@@ -20,14 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class SiteCreationInfo : ClientValueObject
 {
 
-    public SiteCreationInfo()
-    {
-    }
-
-    public SiteCreationInfo(IReadOnlyDictionary<string, object> parameters) : base(parameters)
-    {
-    }
-
     [JsonProperty()]
     public virtual string Description { get; protected set; }
 

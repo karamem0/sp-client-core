@@ -22,12 +22,18 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class SetTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteCollectionService>
 {
 
-    public SetTenantSiteCollectionCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet1")]
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet1"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet2"
+    )]
     public TenantSiteCollection Identity { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]

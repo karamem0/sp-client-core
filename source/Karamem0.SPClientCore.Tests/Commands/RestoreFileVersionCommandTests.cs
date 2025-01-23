@@ -28,61 +28,61 @@ public class RestoreFileVersionCommandTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
-                { "Url", context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"] },
-                { "ClientId", context.AppSettings["ClientId"] },
-                { "CertificatePath", context.AppSettings["CertificatePath"] },
-                { "CertificatePassword", context.AppSettings["CertificatePassword"].ToSecureString() }
+                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["CertificatePath"] = context.AppSettings["CertificatePath"],
+                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
             }
         );
         var result1 = context.Runspace.InvokeCommand<Folder>(
             "Get-KshFolder",
             new Dictionary<string, object>()
             {
-                { "FolderUrl", context.AppSettings["Folder1Url"] }
+                ["FolderUrl"] = context.AppSettings["Folder1Url"]
             }
         );
         _ = context.Runspace.InvokeCommand<File>(
             "Save-KshFile",
             new Dictionary<string, object>()
             {
-                { "Folder", result1.ElementAt(0) },
-                { "Content", new System.IO.MemoryStream(Encoding.UTF8.GetBytes("TestFile0")) },
-                { "FileName", "TestFile0.txt" },
-                { "Overwrite", false },
-                { "PassThru", true }
+                ["Folder"] = result1.ElementAt(0),
+                ["Content"] = new System.IO.MemoryStream(Encoding.UTF8.GetBytes("TestFile0")),
+                ["FileName"] = "TestFile0.txt",
+                ["Overwrite"] = false,
+                ["PassThru"] = true
             }
         );
         var result2 = context.Runspace.InvokeCommand<File>(
             "Save-KshFile",
             new Dictionary<string, object>()
             {
-                { "Folder", result1.ElementAt(0) },
-                { "Content", new System.IO.MemoryStream(Encoding.UTF8.GetBytes("TestFile9")) },
-                { "FileName", "TestFile0.txt" },
-                { "Overwrite", true },
-                { "PassThru", true }
+                ["Folder"] = result1.ElementAt(0),
+                ["Content"] = new System.IO.MemoryStream(Encoding.UTF8.GetBytes("TestFile9")),
+                ["FileName"] = "TestFile0.txt",
+                ["Overwrite"] = true,
+                ["PassThru"] = true
             }
         );
         var result4 = context.Runspace.InvokeCommand<FileVersion>(
             "Get-KshFileVersion",
             new Dictionary<string, object>()
             {
-                { "File", result2.ElementAt(0) },
-                { "FileVersionId", 1 }
+                ["File"] = result2.ElementAt(0),
+                ["FileVersionId"] = 1
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Restore-KshFileVersion",
             new Dictionary<string, object>()
             {
-                { "Identity", result4.ElementAt(0) }
+                ["Identity"] = result4.ElementAt(0)
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Remove-KshFile",
             new Dictionary<string, object>()
             {
-                { "Identity", result2.ElementAt(0) }
+                ["Identity"] = result2.ElementAt(0)
             }
         );
     }

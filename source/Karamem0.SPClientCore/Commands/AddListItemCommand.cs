@@ -24,11 +24,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddListItemCommand : ClientObjectCmdlet<IListItemService>
 {
 
-    public AddListItemCommand()
-    {
-    }
-
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true
+    )]
     public List List { get; private set; }
 
     [Parameter(Mandatory = true, Position = 1)]
@@ -41,43 +41,55 @@ public class AddListItemCommand : ClientObjectCmdlet<IListItemService>
     {
         if (this.NoEnumerate)
         {
-            this.Outputs.Add(this.Service.AddObjectEnumerable(
-                this.List,
-                this.Value
-                    .Select(value =>
-                    {
-                        if (value.BaseObject is Hashtable hashtable)
-                        {
-                            return hashtable.ToDictionary<string, object>();
-                        }
-                        else
-                        {
-                            return value.Properties.ToDictionary(
-                                property => property.Name,
-                                property => property.Value);
-                        }
-                    })
-                    .ToArray()));
+            this.Outputs.Add(
+                this.Service.AddObjectEnumerable(
+                    this.List,
+                    this.Value
+                        .Select(
+                            value =>
+                            {
+                                if (value.BaseObject is Hashtable hashtable)
+                                {
+                                    return hashtable.ToDictionary<string, object>();
+                                }
+                                else
+                                {
+                                    return value.Properties.ToDictionary(
+                                        property => property.Name,
+                                        property => property.Value
+                                    );
+                                }
+                            }
+                        )
+                        .ToArray()
+                )
+            );
         }
         else
         {
-            this.Outputs.AddRange(this.Service.AddObjectEnumerable(
-                this.List,
-                this.Value
-                    .Select(value =>
-                    {
-                        if (value.BaseObject is Hashtable hashtable)
-                        {
-                            return hashtable.ToDictionary<string, object>();
-                        }
-                        else
-                        {
-                            return value.Properties.ToDictionary(
-                                property => property.Name,
-                                property => property.Value);
-                        }
-                    })
-                    .ToArray()));
+            this.Outputs.AddRange(
+                this.Service.AddObjectEnumerable(
+                    this.List,
+                    this.Value
+                        .Select(
+                            value =>
+                            {
+                                if (value.BaseObject is Hashtable hashtable)
+                                {
+                                    return hashtable.ToDictionary<string, object>();
+                                }
+                                else
+                                {
+                                    return value.Properties.ToDictionary(
+                                        property => property.Name,
+                                        property => property.Value
+                                    );
+                                }
+                            }
+                        )
+                        .ToArray()
+                )
+            );
         }
     }
 

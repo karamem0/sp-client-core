@@ -22,10 +22,6 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class SetTermStoreCommand : ClientObjectCmdlet<ITermStoreService>
 {
 
-    public SetTermStoreCommand()
-    {
-    }
-
     [Parameter(Mandatory = false)]
     public uint DefaultLcid { get; private set; }
 
