@@ -32,18 +32,24 @@ Connect-KshSite [-Url] <Uri> -ClientId <String> [-Authority <Uri>] -CertificateP
 
 ### ParamSet4
 ```
+Connect-KshSite [-Url] <Uri> -ClientId <String> [-Authority <Uri>] -CertificatePath <String>
+ -PrivateKeyPath <String> [-ProgressAction <ActionPreference>] [<CommonParameters>]
+```
+
+### ParamSet5
+```
 Connect-KshSite [-Url] <Uri> [-ClientId <String>] [-Authority <Uri>] [-Cached]
  [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
-### ParamSet5
+### ParamSet6
 ```
 Connect-KshSite [-Url] <Uri> -ClientId <String> -ClientSecret <String> [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The `Connect-KshSite` cmdlet connects to a site with device code, client ID and certificate, or from cache.
+The `Connect-KshSite` cmdlet connects to a site using a device code, client ID and certificate, or from cache.
 
 ## EXAMPLES
 
@@ -52,30 +58,37 @@ The `Connect-KshSite` cmdlet connects to a site with device code, client ID and 
 PS C:\> Connect-KshSite -Url "https://consoto.sharepoint.com"
 ```
 
-This example connects to the site at "https://consoto.sharepoint.com" using device code.
+This example connects to the site at "https://consoto.sharepoint.com" using a device code.
 
 ### Example 2
 ```powershell
 PS C:\> Connect-KshSite -Url "https://consoto.sharepoint.com" -Credential $credential
 ```
 
-This example connects to the site at "https://consoto.sharepoint.com" using user ID and password. This method is not recommended.
+This example connects to the site at "https://consoto.sharepoint.com" using a user ID and password. This method is not recommended.
 
 ### Example 3
 ```powershell
 PS C:\> Connect-KshSite -Url "https://consoto.sharepoint.com" -ClientId "12345678-1234-1234-1234-1234567890ab" -CertificatePath "path/to/certificate.pfx" -CertificatePassword $password
 ```
 
-This example connects to the site at "https://consoto.sharepoint.com" using a client ID and a certificate.
+This example connects to the site at "https://consoto.sharepoint.com" using a client ID, a certificate file, and a password.
 
 ### Example 4
+```powershell
+PS C:\> Connect-KshSite -Url "https://consoto.sharepoint.com" -ClientId "12345678-1234-1234-1234-1234567890ab" -CertificatePath "path/to/certificate.cer" -PrivateKeyPath "path/to/privatekey.key"
+```
+
+This example connects to the site at "https://consoto.sharepoint.com" using a client ID, a certificate file, and a private key file.
+
+### Example 5
 ```powershell
 PS C:\> Connect-KshSite -Url "https://consoto.sharepoint.com" -ClientId "12345678-1234-1234-1234-1234567890ab" -ClientSecret "MTIz..."
 ```
 
 This example connects to the site at "https://consoto.sharepoint.com" using a client ID and client secret. This method is not recommended.
 
-### Example 5
+### Example 6
 ```powershell
 PS C:\> Connect-KshSite -Url "https://consoto.sharepoint.com" -Cached
 ```
@@ -89,7 +102,7 @@ Specifies the authority URI to use for authentication.
 
 ```yaml
 Type: Uri
-Parameter Sets: ParamSet1, ParamSet2, ParamSet3, ParamSet4
+Parameter Sets: ParamSet1, ParamSet2, ParamSet3, ParamSet4, ParamSet5
 Aliases:
 
 Required: False
@@ -104,7 +117,7 @@ Indicates that cached credentials should be used.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: ParamSet4
+Parameter Sets: ParamSet5
 Aliases:
 
 Required: True
@@ -134,7 +147,7 @@ Specifies the path to the certificate file.
 
 ```yaml
 Type: String
-Parameter Sets: ParamSet3
+Parameter Sets: ParamSet3, ParamSet4
 Aliases:
 
 Required: True
@@ -149,7 +162,7 @@ Specifies the client ID to use for authentication.
 
 ```yaml
 Type: String
-Parameter Sets: ParamSet1, ParamSet2, ParamSet4
+Parameter Sets: ParamSet1, ParamSet2, ParamSet5
 Aliases:
 
 Required: False
@@ -161,7 +174,7 @@ Accept wildcard characters: False
 
 ```yaml
 Type: String
-Parameter Sets: ParamSet3, ParamSet5
+Parameter Sets: ParamSet3, ParamSet4, ParamSet6
 Aliases:
 
 Required: True
@@ -176,7 +189,7 @@ Specifies the client secret to use for authentication.
 
 ```yaml
 Type: String
-Parameter Sets: ParamSet5
+Parameter Sets: ParamSet6
 Aliases:
 
 Required: True
@@ -192,6 +205,21 @@ Specifies the user credentials to use for authentication.
 ```yaml
 Type: PSCredential
 Parameter Sets: ParamSet2
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PrivateKeyPath
+Specifies the path to the private key file.
+
+```yaml
+Type: String
+Parameter Sets: ParamSet4
 Aliases:
 
 Required: True

@@ -37,16 +37,8 @@ public class CopyFileCommand : ClientObjectCmdlet<IFileService>
     )]
     public File Identity { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet1"
-    )]
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
     public Uri NewUrl { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
@@ -97,11 +89,7 @@ public class CopyFileCommand : ClientObjectCmdlet<IFileService>
             if (this.NewUrl.IsAbsoluteUri)
             {
                 var newUrl = new Uri(this.NewUrl.AbsolutePath, UriKind.Relative);
-                this.Service.CopyObject(
-                    this.Identity,
-                    newUrl,
-                    this.Overwrite
-                );
+                this.Service.CopyObject(this.Identity, newUrl, this.Overwrite);
                 if (this.PassThru)
                 {
                     this.Outputs.Add(this.Service.GetObject(newUrl));
@@ -109,11 +97,7 @@ public class CopyFileCommand : ClientObjectCmdlet<IFileService>
             }
             else
             {
-                this.Service.CopyObject(
-                    this.Identity,
-                    this.NewUrl,
-                    this.Overwrite
-                );
+                this.Service.CopyObject(this.Identity, this.NewUrl, this.Overwrite);
                 if (this.PassThru)
                 {
                     this.Outputs.Add(this.Service.GetObject(this.NewUrl));

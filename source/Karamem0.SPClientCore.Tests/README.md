@@ -38,13 +38,13 @@
 1. Run `Install-TestSite`.
 
     ```pwsh
-    $certificatePath = Resolve-Path "./Certificate/localhost.pfx"
-    $certificatePassword = ConvertTo-SecureString "p@$$w0rd" -AsPlainText -Force
+    $certificatePath = Resolve-Path "./Certificate/localhost.crt"
+    $privateKeyPath = Resolve-Path "./Certificate/localhost.key"
     $params = @{
         TenantName = "yourtenantname"
         ClientId = "53bf1d7f-f4dd-..."
         CertificatePath = $certificatePath
-        CertificatePassword = $certificatePassword
+        PrivateKeyPath = $privateKeyPath
         OwnerUserName = "someone@yourtenantname.onmicrosoft.com"
         ExternalUserName = "someone@example.com"
     }
@@ -104,13 +104,13 @@
 1. Run `Uninstall-TestSite`.
 
     ```pwsh
-    $certificatePath = Resolve-Path "./Certificate/localhost.pfx"
-    $certificatePassword = ConvertTo-SecureString "p@$$w0rd" -AsPlainText -Force
+    $certificatePath = Resolve-Path "./Certificate/localhost.crt"
+    $privateKeyPath = Resolve-Path "./Certificate/localhost.key"
     $params = @{
         TenantName = "yourtenantname"
         ClientId = "53bf1d7f-f4dd-..."
         CertificatePath = $certificatePath
-        CertificatePassword = $certificatePassword
+        PrivateKeyPath = $privateKeyPath
     }
     Uninstall-TestSite @params
     ```

@@ -33,13 +33,7 @@ public class AddSiteCollectionAppCommand : ClientObjectCmdlet<ISiteCollectionApp
 
     protected override void ProcessRecordCore()
     {
-        this.Outputs.Add(
-            this.Service.AddObject(
-                this.Content,
-                this.FileName,
-                this.Overwrite
-            )
-        );
+        this.Outputs.Add(this.Service.AddObject(this.Content, this.FileName, this.Overwrite));
     }
 
 }

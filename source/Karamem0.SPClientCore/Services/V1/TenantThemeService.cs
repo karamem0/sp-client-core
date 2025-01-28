@@ -46,20 +46,19 @@ public class TenantThemeService(ClientContext clientContext) : ClientService(cli
         _ = themeName ?? throw new ArgumentNullException(nameof(themeName));
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             objectPath1,
             objectPathId => new ClientActionMethod(
                 objectPathId,
                 "AddTenantTheme",
                 requestPayload.CreateParameter(themeName),
-                requestPayload.CreateParameter(JsonConvert.SerializeObject(ClientValueObject.Create<TenantThemeCreationInfo>(creationInfo)))
+                requestPayload.CreateParameter(
+                    JsonConvert.SerializeObject(ClientValueObject.Create<TenantThemeCreationInfo>(creationInfo))
+                )
             )
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<bool>(requestPayload.GetActionId<ClientActionMethod>());
     }
 
@@ -73,32 +72,23 @@ public class TenantThemeService(ClientContext clientContext) : ClientService(cli
     {
         _ = themeName ?? throw new ArgumentNullException(nameof(themeName));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
-                objectPath1.Id,
-                "GetTenantTheme",
-                requestPayload.CreateParameter(themeName)
-            ),
+            new ObjectPathMethod(objectPath1.Id, "GetTenantTheme", requestPayload.CreateParameter(themeName)),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(TenantTheme))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantTheme>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
     public IEnumerable<TenantTheme> GetObjectEnumerable()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             new ObjectPathMethod(objectPath1.Id, "GetAllTenantThemes"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -108,8 +98,7 @@ public class TenantThemeService(ClientContext clientContext) : ClientService(cli
                 ChildItemQuery = new ClientQuery(true, typeof(TenantTheme))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantThemeEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -123,9 +112,7 @@ public class TenantThemeService(ClientContext clientContext) : ClientService(cli
     {
         _ = themeName ?? throw new ArgumentNullException(nameof(themeName));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             objectPath1,
             objectPathId => new ClientActionMethod(
@@ -148,9 +135,7 @@ public class TenantThemeService(ClientContext clientContext) : ClientService(cli
         _ = themeName ?? throw new ArgumentNullException(nameof(themeName));
         _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             objectPath1,
             objectPathId => new ClientActionMethod(
@@ -162,8 +147,7 @@ public class TenantThemeService(ClientContext clientContext) : ClientService(cli
                 )
             )
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<bool>(requestPayload.GetActionId<ClientActionMethod>());
     }
 

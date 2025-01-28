@@ -40,75 +40,69 @@ public class LikeService(ClientContext clientContext) : ClientService(clientCont
     public IEnumerable<LikedUser> GetObjectEnumerable(Comment commentObject)
     {
         _ = commentObject ?? throw new ArgumentNullException(nameof(commentObject));
-        var requestUrl = this.ClientContext.BaseAddress
-            .ConcatPath(
-                "_api/web/lists('{0}')/items({1})/comments({2})/likedby",
-                commentObject.ListId,
-                commentObject.ItemId,
-                commentObject.Id
-            );
+        var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
+            "_api/web/lists('{0}')/items({1})/comments({2})/likedby",
+            commentObject.ListId,
+            commentObject.ItemId,
+            commentObject.Id
+        );
         return this.ClientContext.GetObject<ODataV1ObjectEnumerable<LikedUser>>(requestUrl);
     }
 
     public IEnumerable<LikedUser> GetObjectEnumerable(ListItem listItemObject)
     {
         _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
-        var requestUrl = this.ClientContext.BaseAddress
-            .ConcatPath(
-                "_api/web/lists('{0}')/items({1})/likedby",
-                listItemObject.ObjectIdentity.Split(':').SkipLast(2).Last(),
-                listItemObject.Id
-            );
+        var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
+            "_api/web/lists('{0}')/items({1})/likedby",
+            listItemObject.ObjectIdentity.Split(':').SkipLast(2).Last(),
+            listItemObject.Id
+        );
         return this.ClientContext.GetObject<ODataV1ObjectEnumerable<LikedUser>>(requestUrl);
     }
 
     public void LikeObject(Comment commentObject)
     {
         _ = commentObject ?? throw new ArgumentNullException(nameof(commentObject));
-        var requestUrl = this.ClientContext.BaseAddress
-            .ConcatPath(
-                "_api/web/lists('{0}')/items({1})/comments({2})/like",
-                commentObject.ListId,
-                commentObject.ItemId,
-                commentObject.Id
-            );
+        var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
+            "_api/web/lists('{0}')/items({1})/comments({2})/like",
+            commentObject.ListId,
+            commentObject.ItemId,
+            commentObject.Id
+        );
         this.ClientContext.PostObject(requestUrl, null);
     }
 
     public void LikeObject(ListItem listItemObject)
     {
         _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
-        var requestUrl = this.ClientContext.BaseAddress
-            .ConcatPath(
-                "_api/web/lists('{0}')/items({1})/like",
-                listItemObject.ObjectIdentity.Split(':').SkipLast(2).Last(),
-                listItemObject.Id
-            );
+        var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
+            "_api/web/lists('{0}')/items({1})/like",
+            listItemObject.ObjectIdentity.Split(':').SkipLast(2).Last(),
+            listItemObject.Id
+        );
         this.ClientContext.PostObject(requestUrl, null);
     }
 
     public void UnlikeObject(Comment commentObject)
     {
         _ = commentObject ?? throw new ArgumentNullException(nameof(commentObject));
-        var requestUrl = this.ClientContext.BaseAddress
-            .ConcatPath(
-                "_api/web/lists('{0}')/items({1})/comments({2})/unlike",
-                commentObject.ListId,
-                commentObject.ItemId,
-                commentObject.Id
-            );
+        var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
+            "_api/web/lists('{0}')/items({1})/comments({2})/unlike",
+            commentObject.ListId,
+            commentObject.ItemId,
+            commentObject.Id
+        );
         this.ClientContext.PostObject(requestUrl, null);
     }
 
     public void UnlikeObject(ListItem listItemObject)
     {
         _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
-        var requestUrl = this.ClientContext.BaseAddress
-            .ConcatPath(
-                "_api/web/lists('{0}')/items({1})/unlike",
-                listItemObject.ObjectIdentity.Split(':').SkipLast(2).Last(),
-                listItemObject.Id
-            );
+        var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
+            "_api/web/lists('{0}')/items({1})/unlike",
+            listItemObject.ObjectIdentity.Split(':').SkipLast(2).Last(),
+            listItemObject.Id
+        );
         this.ClientContext.PostObject(requestUrl, null);
     }
 

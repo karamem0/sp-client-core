@@ -59,15 +59,9 @@ public class ColumnTaxonomyService(ClientContext clientContext)
     {
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web")
-        );
-        var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "Fields")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
+        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "Fields"));
         var objectPath4 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath3.Id,
@@ -87,8 +81,7 @@ public class ColumnTaxonomyService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(Column))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<ColumnTaxonomy>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -102,12 +95,8 @@ public class ColumnTaxonomyService(ClientContext clientContext)
         _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(listObject.ObjectIdentity)
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Fields")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Fields"));
         var objectPath3 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath2.Id,
@@ -127,8 +116,7 @@ public class ColumnTaxonomyService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(Column))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<ColumnTaxonomy>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -143,12 +131,8 @@ public class ColumnTaxonomyService(ClientContext clientContext)
         _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
         _ = termCollection ?? throw new ArgumentNullException(nameof(termCollection));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(columnTaxonomyObject.ObjectIdentity)
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathIdentity(listItemObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(columnTaxonomyObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(new ObjectPathIdentity(listItemObject.ObjectIdentity));
         var objectPath3 = requestPayload.Add(
             objectPath1,
             objectPathId => new ClientActionMethod(

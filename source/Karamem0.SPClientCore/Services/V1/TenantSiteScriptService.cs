@@ -41,9 +41,7 @@ public class TenantSiteScriptService(ClientContext clientContext)
     {
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             objectPath1,
             objectPathId => new ClientActionMethod(
@@ -52,8 +50,7 @@ public class TenantSiteScriptService(ClientContext clientContext)
                 requestPayload.CreateParameter(ClientValueObject.Create<TenantSiteScriptCreationInfo>(creationInfo))
             )
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantSiteScript>(requestPayload.GetActionId<ClientActionMethod>());
     }
 
@@ -62,28 +59,18 @@ public class TenantSiteScriptService(ClientContext clientContext)
         _ = siteScriptId ?? throw new ArgumentNullException(nameof(siteScriptId));
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
-            new ClientActionStaticMethod(
-                typeof(Tenant),
-                "GetSiteScript",
-                requestPayload.CreateParameter(siteScriptId)
-            )
+            new ClientActionStaticMethod(typeof(Tenant), "GetSiteScript", requestPayload.CreateParameter(siteScriptId))
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantSiteScript>(requestPayload.GetActionId<ClientActionStaticMethod>());
     }
 
     public IEnumerable<TenantSiteScript> GetObjectEnumerable()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
-                objectPath1.Id,
-                "GetSiteScripts"
-            ),
+            new ObjectPathMethod(objectPath1.Id, "GetSiteScripts"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
@@ -91,8 +78,7 @@ public class TenantSiteScriptService(ClientContext clientContext)
                 ChildItemQuery = new ClientQuery(true, typeof(TenantSiteScript))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantSiteScriptEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -100,9 +86,7 @@ public class TenantSiteScriptService(ClientContext clientContext)
     {
         _ = siteScriptObject ?? throw new ArgumentNullException(nameof(siteScriptObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             objectPath1,
             objectPathId => new ClientActionMethod(
@@ -125,8 +109,7 @@ public class TenantSiteScriptService(ClientContext clientContext)
                 requestPayload.CreateParameter(listUrl)
             )
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<string>(requestPayload.GetActionId<ClientActionStaticMethod>());
     }
 
@@ -135,20 +118,19 @@ public class TenantSiteScriptService(ClientContext clientContext)
         _ = siteUrl ?? throw new ArgumentNullException(nameof(siteUrl));
         _ = serializationInfo ?? throw new ArgumentNullException(nameof(serializationInfo));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             objectPath1,
             objectPathId => new ClientActionMethod(
                 objectPathId,
                 "GetSiteScriptFromSite",
                 requestPayload.CreateParameter(siteUrl),
-                requestPayload.CreateParameter(ClientValueObject.Create<TenantSiteScriptSerializationInfo>(serializationInfo))
+                requestPayload.CreateParameter(
+                    ClientValueObject.Create<TenantSiteScriptSerializationInfo>(serializationInfo)
+                )
             )
         );
-        var clientObject = this.ClientContext
-            .ProcessQuery(requestPayload)
+        var clientObject = this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantSiteScriptSerializationResult>(requestPayload.GetActionId<ClientActionMethod>());
         if (clientObject.Warnings.Any())
         {

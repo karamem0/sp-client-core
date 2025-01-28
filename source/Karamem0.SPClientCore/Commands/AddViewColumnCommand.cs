@@ -22,16 +22,8 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddViewColumnCommand : ClientObjectCmdlet<IViewColumnService>
 {
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet1"
-    )]
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
     public View View { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]

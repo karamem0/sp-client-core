@@ -221,13 +221,7 @@ public static class SchemaXmlColumn
                     {
                         var formula = parameter.Value as string;
                         var message = parameters["ValidationMessage"] as string;
-                        element.Add(
-                            new XElement(
-                                "Validation",
-                                new XAttribute("Message", message),
-                                new XText(formula)
-                            )
-                        );
+                        element.Add(new XElement("Validation", new XAttribute("Message", message), new XText(formula)));
                     }
                     break;
                 default:

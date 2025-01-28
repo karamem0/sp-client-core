@@ -61,12 +61,8 @@ public class ExternalUserService(ClientContext clientContext) : ClientService(cl
     {
         _ = userId ?? throw new ArgumentNullException(nameof(userId));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
         requestPayload.Actions.Add(
             new ClientActionStaticMethod(
                 typeof(WebSharingManager),
@@ -79,8 +75,7 @@ public class ExternalUserService(ClientContext clientContext) : ClientService(cl
                 requestPayload.CreateParameter(allowExternalSharing)
             )
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<IEnumerable<UserSharingResult>>(requestPayload.GetActionId<ClientActionStaticMethod>());
     }
 
@@ -104,8 +99,7 @@ public class ExternalUserService(ClientContext clientContext) : ClientService(cl
                 typeof(DocumentSharingManager),
                 "UpdateDocumentSharingInfo",
                 requestPayload.CreateParameter(
-                    new Uri(this.ClientContext.BaseAddress.GetLeftPart(UriPartial.Authority))
-                        .ConcatPath(documentUrl)
+                    new Uri(this.ClientContext.BaseAddress.GetLeftPart(UriPartial.Authority)).ConcatPath(documentUrl)
                         .ToString()
                 ),
                 requestPayload.CreateParameter(userId.Select(value => new UserRoleAssignment(value, role))),
@@ -117,20 +111,15 @@ public class ExternalUserService(ClientContext clientContext) : ClientService(cl
                 requestPayload.CreateParameter(propagateAcl)
             )
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<IEnumerable<UserSharingResult>>(requestPayload.GetActionId<ClientActionStaticMethod>());
     }
 
     public bool CheckObject()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
         requestPayload.Actions.Add(
             new ClientActionStaticMethod(
                 typeof(WebSharingManager),
@@ -138,8 +127,7 @@ public class ExternalUserService(ClientContext clientContext) : ClientService(cl
                 new ClientRequestParameterObjectPath(objectPath2)
             )
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<bool>(requestPayload.GetActionId<ClientActionStaticMethod>());
     }
 
@@ -154,8 +142,7 @@ public class ExternalUserService(ClientContext clientContext) : ClientService(cl
                 requestPayload.CreateParameter(listObject)
             )
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<bool>(requestPayload.GetActionId<ClientActionStaticMethod>());
     }
 

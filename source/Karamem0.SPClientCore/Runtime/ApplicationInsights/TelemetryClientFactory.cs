@@ -29,13 +29,11 @@ public static class TelemetryClientFactory
         () =>
         {
             var location = Assembly.GetExecutingAssembly().Location;
-            var config = new ConfigurationBuilder()
-                .SetBasePath(Path.GetDirectoryName(location))
+            var config = new ConfigurationBuilder().SetBasePath(Path.GetDirectoryName(location))
                 .AddJsonFile("SPClientCore.config.json")
                 .AddEnvironmentVariables()
                 .Build();
-            var services = new ServiceCollection()
-                .AddSingleton(
+            var services = new ServiceCollection().AddSingleton(
                     provider =>
                     {
                         var options = new TelemetryConfiguration();
@@ -48,24 +46,12 @@ public static class TelemetryClientFactory
                             options.ConnectionString = connectionString;
                         }
                         var optout1 = config["POWERSHELL_TELEMETRY_OPTOUT"];
-                        if (trueStrings.Any(
-                                item => string.Compare(
-                                    item,
-                                    optout1,
-                                    true
-                                ) == 0
-                            ))
+                        if (trueStrings.Any(item => string.Compare(item, optout1, true) == 0))
                         {
                             options.DisableTelemetry = true;
                         }
                         var optout2 = config["SPCLIENTCORE_TELEMETRY_OPTOUT"];
-                        if (trueStrings.Any(
-                                item => string.Compare(
-                                    item,
-                                    optout2,
-                                    true
-                                ) == 0
-                            ))
+                        if (trueStrings.Any(item => string.Compare(item, optout2, true) == 0))
                         {
                             options.DisableTelemetry = true;
                         }

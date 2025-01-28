@@ -52,57 +52,35 @@ public class RecycleBinItemService(ClientContext clientContext)
         if (recycleBinItemState == RecycleBinItemState.FirstStageRecycleBin)
         {
             var requestPayload = new ClientRequestPayload();
-            var objectPath1 = requestPayload.Add(
-                new ObjectPathStaticProperty(typeof(Context), "Current")
-            );
-            var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "Web")
-            );
-            var objectPath3 = requestPayload.Add(
-                new ObjectPathProperty(objectPath2.Id, "RecycleBin")
-            );
+            var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
+            var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
+            var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "RecycleBin"));
             var objectPath4 = requestPayload.Add(
-                new ObjectPathMethod(
-                    objectPath3.Id,
-                    "GetById",
-                    requestPayload.CreateParameter(itemId)
-                ),
+                new ObjectPathMethod(objectPath3.Id, "GetById", requestPayload.CreateParameter(itemId)),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {
                     Query = new ClientQuery(true, typeof(RecycleBinItem))
                 }
             );
-            return this.ClientContext
-                .ProcessQuery(requestPayload)
+            return this.ClientContext.ProcessQuery(requestPayload)
                 .ToObject<RecycleBinItem>(requestPayload.GetActionId<ClientActionQuery>());
         }
         if (recycleBinItemState == RecycleBinItemState.SecondStageRecycleBin)
         {
             var requestPayload = new ClientRequestPayload();
-            var objectPath1 = requestPayload.Add(
-                new ObjectPathStaticProperty(typeof(Context), "Current")
-            );
-            var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "Site")
-            );
-            var objectPath3 = requestPayload.Add(
-                new ObjectPathProperty(objectPath2.Id, "RecycleBin")
-            );
+            var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
+            var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Site"));
+            var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "RecycleBin"));
             var objectPath4 = requestPayload.Add(
-                new ObjectPathMethod(
-                    objectPath3.Id,
-                    "GetById",
-                    requestPayload.CreateParameter(itemId)
-                ),
+                new ObjectPathMethod(objectPath3.Id, "GetById", requestPayload.CreateParameter(itemId)),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {
                     Query = new ClientQuery(true, typeof(RecycleBinItem))
                 }
             );
-            return this.ClientContext
-                .ProcessQuery(requestPayload)
+            return this.ClientContext.ProcessQuery(requestPayload)
                 .ToObject<RecycleBinItem>(requestPayload.GetActionId<ClientActionQuery>());
         }
         throw new InvalidOperationException(StringResources.ErrorValueIsInvalid);
@@ -113,12 +91,8 @@ public class RecycleBinItemService(ClientContext clientContext)
         if (recycleBinItemState == RecycleBinItemState.FirstStageRecycleBin)
         {
             var requestPayload = new ClientRequestPayload();
-            var objectPath1 = requestPayload.Add(
-                new ObjectPathStaticProperty(typeof(Context), "Current")
-            );
-            var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "Web")
-            );
+            var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
+            var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
             var objectPath3 = requestPayload.Add(
                 new ObjectPathProperty(objectPath2.Id, "RecycleBin"),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -128,19 +102,14 @@ public class RecycleBinItemService(ClientContext clientContext)
                     ChildItemQuery = new ClientQuery(true, typeof(RecycleBinItem))
                 }
             );
-            return this.ClientContext
-                .ProcessQuery(requestPayload)
+            return this.ClientContext.ProcessQuery(requestPayload)
                 .ToObject<RecycleBinItemEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
         if (recycleBinItemState == RecycleBinItemState.SecondStageRecycleBin)
         {
             var requestPayload = new ClientRequestPayload();
-            var objectPath1 = requestPayload.Add(
-                new ObjectPathStaticProperty(typeof(Context), "Current")
-            );
-            var objectPath2 = requestPayload.Add(
-                new ObjectPathProperty(objectPath1.Id, "Site")
-            );
+            var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
+            var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Site"));
             var objectPath3 = requestPayload.Add(
                 new ObjectPathProperty(objectPath2.Id, "RecycleBin"),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -150,8 +119,7 @@ public class RecycleBinItemService(ClientContext clientContext)
                     ChildItemQuery = new ClientQuery(true, typeof(RecycleBinItem))
                 }
             );
-            return this.ClientContext
-                .ProcessQuery(requestPayload)
+            return this.ClientContext.ProcessQuery(requestPayload)
                 .ToObject<RecycleBinItemEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
         }
         throw new InvalidOperationException(StringResources.ErrorValueIsInvalid);
@@ -160,15 +128,9 @@ public class RecycleBinItemService(ClientContext clientContext)
     public void MoveAllObjectToSecondStage()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web")
-        );
-        var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "RecycleBin")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
+        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "RecycleBin"));
         var objectPath4 = requestPayload.Add(
             objectPath3,
             objectPathId => new ClientActionMethod(objectPathId, "MoveAllToSecondStage")
@@ -190,15 +152,9 @@ public class RecycleBinItemService(ClientContext clientContext)
     public void RemoveAllObject()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web")
-        );
-        var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "RecycleBin")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
+        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "RecycleBin"));
         var objectPath4 = requestPayload.Add(
             objectPath3,
             objectPathId => new ClientActionMethod(objectPathId, "DeleteAll")
@@ -209,15 +165,9 @@ public class RecycleBinItemService(ClientContext clientContext)
     public void RemoveAllSecondStageObject()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Site")
-        );
-        var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "RecycleBin")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Site"));
+        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "RecycleBin"));
         var objectPath4 = requestPayload.Add(
             objectPath3,
             objectPathId => new ClientActionMethod(objectPathId, "DeleteAllSecondStageItems")
@@ -228,15 +178,9 @@ public class RecycleBinItemService(ClientContext clientContext)
     public void RestoreAllObject()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web")
-        );
-        var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "RecycleBin")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
+        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "RecycleBin"));
         var objectPath4 = requestPayload.Add(
             objectPath3,
             objectPathId => new ClientActionMethod(objectPathId, "RestoreAll")

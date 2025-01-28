@@ -30,11 +30,7 @@ public class GetListTemplateCommand : ClientObjectCmdlet<IListTemplateService>
     )]
     public ListTemplate Identity { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
     public string ListTemplateTitle { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]

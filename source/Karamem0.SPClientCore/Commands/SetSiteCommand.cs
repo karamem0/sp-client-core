@@ -22,11 +22,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class SetSiteCommand : ClientObjectCmdlet<ISiteService>
 {
 
-    [Parameter(
-        Mandatory = false,
-        Position = 0,
-        ValueFromPipeline = true
-    )]
+    [Parameter(Mandatory = false, Position = 0, ValueFromPipeline = true)]
     public Site Identity { get; private set; }
 
     [Parameter(Mandatory = false)]

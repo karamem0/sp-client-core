@@ -50,8 +50,7 @@ public static class AadOAuthTokenStore
     {
         _ = tenantId ?? throw new ArgumentNullException(nameof(tenantId));
         var oAuthTokens = AadOAuthTokenDictionary.Load();
-        var resource = oAuthTokens
-            .Where(
+        var resource = oAuthTokens.Where(
                 oAuthToken =>
                 {
                     var accessToken = oAuthToken.Value.AccessToken;

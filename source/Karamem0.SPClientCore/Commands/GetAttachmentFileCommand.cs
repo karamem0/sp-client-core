@@ -30,19 +30,11 @@ public class GetAttachmentFileCommand : ClientObjectCmdlet<IAttachmentFileServic
     )]
     public AttachmentFile Identity { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
     public ListItem ListItem { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
     public string FileName { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]

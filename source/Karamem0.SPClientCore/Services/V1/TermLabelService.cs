@@ -33,11 +33,7 @@ public interface ITermLabelService
 
     TermLabel GetObject(Term termObject, string name);
 
-    TermLabel GetObject(
-        Term termObject,
-        string name,
-        uint lcid
-    );
+    TermLabel GetObject(Term termObject, string name, uint lcid);
 
     IEnumerable<TermLabel> GetObjectEnumerable(Term termObject);
 
@@ -65,9 +61,7 @@ public class TermLabelService(ClientContext clientContext) : ClientService<TermL
         _ = name ?? throw new ArgumentNullException(nameof(name));
         _ = (lcid != default) ? lcid : throw new ArgumentNullException(nameof(lcid));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(termObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath1.Id,
@@ -82,8 +76,7 @@ public class TermLabelService(ClientContext clientContext) : ClientService<TermL
                 Query = new ClientQuery(true, typeof(TermLabel))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<TermLabel>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -92,34 +85,21 @@ public class TermLabelService(ClientContext clientContext) : ClientService<TermL
         _ = termObject ?? throw new ArgumentNullException(nameof(termObject));
         _ = name ?? throw new ArgumentNullException(nameof(name));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(termObject.ObjectIdentity)
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Labels")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Labels"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(
-                objectPath2.Id,
-                "GetByValue",
-                requestPayload.CreateParameter(name)
-            ),
+            new ObjectPathMethod(objectPath2.Id, "GetByValue", requestPayload.CreateParameter(name)),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(TermLabel))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<TermLabel>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public TermLabel GetObject(
-        Term termObject,
-        string name,
-        uint lcid
-    )
+    public TermLabel GetObject(Term termObject, string name, uint lcid)
     {
         _ = termObject ?? throw new ArgumentNullException(nameof(termObject));
         _ = name ?? throw new ArgumentNullException(nameof(name));
@@ -134,9 +114,7 @@ public class TermLabelService(ClientContext clientContext) : ClientService<TermL
     {
         _ = termObject ?? throw new ArgumentNullException(nameof(termObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(termObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             new ObjectPathProperty(objectPath1.Id, "Labels"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -146,8 +124,7 @@ public class TermLabelService(ClientContext clientContext) : ClientService<TermL
                 ChildItemQuery = new ClientQuery(true, typeof(TermLabel))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<TermLabelEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -155,19 +132,13 @@ public class TermLabelService(ClientContext clientContext) : ClientService<TermL
     {
         _ = termLabelObject ?? throw new ArgumentNullException(nameof(termLabelObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(termLabelObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termLabelObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             objectPath1,
             objectPathId => new ClientActionMethod(objectPathId, "DeleteObject")
         );
-        var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "Term")
-        );
-        var objectPath4 = requestPayload.Add(
-            new ObjectPathProperty(objectPath3.Id, "TermStore")
-        );
+        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "Term"));
+        var objectPath4 = requestPayload.Add(new ObjectPathProperty(objectPath3.Id, "TermStore"));
         var objectPath5 = requestPayload.Add(
             objectPath4,
             objectPathId => new ClientActionMethod(objectPathId, "CommitAll")
@@ -179,19 +150,13 @@ public class TermLabelService(ClientContext clientContext) : ClientService<TermL
     {
         _ = termLabelObject ?? throw new ArgumentNullException(nameof(termLabelObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(termLabelObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termLabelObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             objectPath1,
             objectPathId => new ClientActionMethod(objectPathId, "SetAsDefaultForLanguage")
         );
-        var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "Term")
-        );
-        var objectPath4 = requestPayload.Add(
-            new ObjectPathProperty(objectPath3.Id, "TermStore")
-        );
+        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "Term"));
+        var objectPath4 = requestPayload.Add(new ObjectPathProperty(objectPath3.Id, "TermStore"));
         var objectPath5 = requestPayload.Add(
             objectPath4,
             objectPathId => new ClientActionMethod(objectPathId, "CommitAll")
@@ -237,19 +202,13 @@ public class TermLabelService(ClientContext clientContext) : ClientService<TermL
         _ = termLabelObject ?? throw new ArgumentNullException(nameof(termLabelObject));
         _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(termLabelObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termLabelObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             objectPath1,
-            requestPayload.CreateSetPropertyDelegates(termLabelObject, modificationInfo).ToArray()
+            requestPayload.CreateSetPropertyDelegates(termLabelObject, modificationInfo)
         );
-        var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "Term")
-        );
-        var objectPath4 = requestPayload.Add(
-            new ObjectPathProperty(objectPath3.Id, "TermStore")
-        );
+        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "Term"));
+        var objectPath4 = requestPayload.Add(new ObjectPathProperty(objectPath3.Id, "TermStore"));
         var objectPath5 = requestPayload.Add(
             objectPath4,
             objectPathId => new ClientActionMethod(objectPathId, "CommitAll")

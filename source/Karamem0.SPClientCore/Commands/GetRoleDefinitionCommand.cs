@@ -30,18 +30,10 @@ public class GetRoleDefinitionCommand : ClientObjectCmdlet<IRoleDefinitionServic
     )]
     public RoleDefinition Identity { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
     public int RoleDefinitionId { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet3"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet3")]
     public string RoleDefinitionName { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet4")]

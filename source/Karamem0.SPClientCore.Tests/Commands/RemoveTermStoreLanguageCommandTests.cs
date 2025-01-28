@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace Karamem0.SharePoint.PowerShell.Commands.Tests;
 
@@ -31,7 +32,7 @@ public class RemoveTermStoreLanguageCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -41,6 +42,7 @@ public class RemoveTermStoreLanguageCommandTests
                 ["Lcid"] = 1036
             }
         );
+        Thread.Sleep(TimeSpan.FromSeconds(15));
         _ = context.Runspace.InvokeCommand(
             "Remove-KshTermStoreLanguage",
             new Dictionary<string, object>()

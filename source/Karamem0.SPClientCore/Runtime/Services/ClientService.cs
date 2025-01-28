@@ -22,7 +22,8 @@ public abstract class ClientService(ClientContext clientContext)
 
     public static void Register(ClientContext clientContext)
     {
-        ServiceProvider = Assembly.GetExecutingAssembly().GetTypes()
+        ServiceProvider = Assembly.GetExecutingAssembly()
+            .GetTypes()
             .Where(type => type.IsSubclassOf(typeof(ClientService)))
             .Where(type => type.GetInterfaces().Any())
             .Aggregate<Type, IServiceCollection>(

@@ -1,6 +1,7 @@
 on: workflow_call
 
-permissions: {}
+permissions:
+  contents: write
 
 env:
   RELEASE_FILE_NAME: SPClientCore_${{vars.BUILD_VERSION}}.zip

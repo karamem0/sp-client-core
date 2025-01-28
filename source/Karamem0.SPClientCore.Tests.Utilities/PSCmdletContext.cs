@@ -26,8 +26,7 @@ public class PSCmdletContext : IDisposable
 
     public PSCmdletContext()
     {
-        this.AppSettings = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
+        this.AppSettings = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("SPClientCore.Tests.config.json")
             .Build();
         this.Runspace = RunspaceFactory.CreateRunspace();

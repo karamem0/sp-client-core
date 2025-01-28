@@ -31,7 +31,7 @@ public class SetColumnGeolocationCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
@@ -60,8 +60,8 @@ public class SetColumnGeolocationCommandTests
                 // { "ClientSideComponentId", null },
                 // { "ClientSideComponentProperties", null },
                 ["CustomFormatter"] = /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }",
-                ["Direction"] = "none",
                 ["Description"] = "Test Column 0 Description",
+                ["Direction"] = "none",
                 ["Group"] = "Test Group 0",
                 ["Hidden"] = true,
                 ["JSLink"] = "clienttemplates.js",
@@ -104,7 +104,7 @@ public class SetColumnGeolocationCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         var result1 = context.Runspace.InvokeCommand<ColumnGeolocation>(
@@ -125,8 +125,8 @@ public class SetColumnGeolocationCommandTests
                 // { "ClientSideComponentId", null },
                 // { "ClientSideComponentProperties", null },
                 ["CustomFormatter"] = /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }",
-                ["Direction"] = "none",
                 ["Description"] = "Test Column 0 Description",
+                ["Direction"] = "none",
                 ["Group"] = "Test Group 0",
                 ["Hidden"] = true,
                 ["JSLink"] = "clienttemplates.js",

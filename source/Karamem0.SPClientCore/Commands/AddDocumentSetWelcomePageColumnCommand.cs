@@ -33,11 +33,7 @@ public class AddDocumentSetWelcomePageColumnCommand : ClientObjectCmdlet<IDocume
 
     protected override void ProcessRecordCore()
     {
-        this.Service.AddObject(
-            this.ContentType,
-            this.Column,
-            this.PushChanges
-        );
+        this.Service.AddObject(this.ContentType, this.Column, this.PushChanges);
     }
 
 }

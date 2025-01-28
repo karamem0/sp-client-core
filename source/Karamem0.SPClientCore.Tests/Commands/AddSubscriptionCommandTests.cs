@@ -31,7 +31,7 @@ public class AddSubscriptionCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
@@ -46,8 +46,7 @@ public class AddSubscriptionCommandTests
             new Dictionary<string, object>()
             {
                 ["List"] = result1.ElementAt(0),
-                ["NotificationUrl"] =
-                    "https://prod-27.southeastasia.logic.azure.com:443/workflows/e0484ceabd3047589d7e2918850edc19/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=czHX2Z5ZeAwjttKjZLqcZgs095WwJqirWY84jIsFLvI",
+                ["NotificationUrl"] = PSCmdletOptions.Instance.SubscriptionNotificationUrl,
                 ["ExpirationDateTime"] = DateTime.UtcNow.AddDays(1)
             }
         );

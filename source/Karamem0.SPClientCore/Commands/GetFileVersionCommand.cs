@@ -30,19 +30,11 @@ public class GetFileVersionCommand : ClientObjectCmdlet<IFileVersionService>
     )]
     public FileVersion Identity { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
     public File File { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
     public int FileVersionId { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]

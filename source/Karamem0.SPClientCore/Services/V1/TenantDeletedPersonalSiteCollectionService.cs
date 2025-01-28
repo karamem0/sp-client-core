@@ -32,9 +32,7 @@ public class TenantDeletedPersonalSiteCollectionService(ClientContext clientCont
     public IEnumerable<TenantDeletedSiteCollection> GetObjectEnumerable()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath1.Id,
@@ -48,8 +46,7 @@ public class TenantDeletedPersonalSiteCollectionService(ClientContext clientCont
                 ChildItemQuery = new ClientQuery(true, typeof(TenantDeletedSiteCollection))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantDeletedSiteCollectionsEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -57,9 +54,7 @@ public class TenantDeletedPersonalSiteCollectionService(ClientContext clientCont
     {
         _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath1.Id,
@@ -72,8 +67,7 @@ public class TenantDeletedPersonalSiteCollectionService(ClientContext clientCont
                 Query = new ClientQuery(true, typeof(TenantDeletedSiteCollection))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantDeletedSiteCollectionsEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 

@@ -22,11 +22,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class SetAlertCommand : ClientObjectCmdlet<IAlertService>
 {
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ValueFromPipeline = true
-    )]
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
     public Alert Identity { get; private set; }
 
     [Parameter(Mandatory = false)]

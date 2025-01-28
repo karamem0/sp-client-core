@@ -16,17 +16,11 @@ using System.Xml.Serialization;
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
 [XmlType("Method", Namespace = "http://schemas.microsoft.com/sharepoint/clientquery/2009")]
-public class ObjectPathMethod(
-    long parentId,
-    string name,
-    params ClientRequestParameter[] parameters
-) : ObjectPath
+public class ObjectPathMethod(long parentId, string name, params ClientRequestParameter[] parameters) : ObjectPath
 {
 
-    public ObjectPathMethod(long parentId,
-    string name,
-    IEnumerable<ClientRequestParameter> parameters)
-    : this(parentId, name, [.. parameters])
+    public ObjectPathMethod(long parentId, string name, IEnumerable<ClientRequestParameter> parameters)
+        : this(parentId, name, [.. parameters])
     {
     }
 

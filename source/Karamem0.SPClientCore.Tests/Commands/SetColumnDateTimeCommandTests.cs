@@ -31,7 +31,7 @@ public class SetColumnDateTimeCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
@@ -63,8 +63,8 @@ public class SetColumnDateTimeCommandTests
                 ["ClientValidationMessage"] = "ERROR",
                 ["CustomFormatter"] = /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }",
                 ["DefaultValue"] = "2010/12/15 15:00:00",
-                ["Direction"] = "none",
                 ["Description"] = "Test Column 0 Description",
+                ["Direction"] = "none",
                 ["EnforceUniqueValues"] = false,
                 ["Group"] = "Test Group 0",
                 ["Hidden"] = true,
@@ -111,7 +111,7 @@ public class SetColumnDateTimeCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         var result1 = context.Runspace.InvokeCommand<ColumnDateTime>(
@@ -137,8 +137,8 @@ public class SetColumnDateTimeCommandTests
                 ["CustomFormatter"] = /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }",
                 ["DefaultValue"] = "2010/12/15 15:00:00",
                 ["DateFormat"] = "DateTime",
-                ["Direction"] = "none",
                 ["Description"] = "Test Column 0 Description",
+                ["Direction"] = "none",
                 ["EnforceUniqueValues"] = false,
                 ["FriendlyFormat"] = "Disabled",
                 ["Group"] = "Test Group 0",

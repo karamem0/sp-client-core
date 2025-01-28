@@ -33,13 +33,7 @@ public class AddDocumentSetCommand : ClientObjectCmdlet<IDocumentSetService>
 
     protected override void ProcessRecordCore()
     {
-        this.Outputs.Add(
-            this.Service.AddObject(
-                this.Folder,
-                this.Name,
-                this.ContentType
-            )
-        );
+        this.Outputs.Add(this.Service.AddObject(this.Folder, this.Name, this.ContentType));
     }
 
 }

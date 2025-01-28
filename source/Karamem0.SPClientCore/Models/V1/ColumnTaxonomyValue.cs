@@ -24,11 +24,7 @@ public class ColumnTaxonomyValue : ClientValueObject
     {
     }
 
-    public ColumnTaxonomyValue(
-        string label,
-        string termGuid,
-        int wssId
-    )
+    public ColumnTaxonomyValue(string label, string termGuid, int wssId)
     {
         this.Label = label;
         this.TermGuid = termGuid;

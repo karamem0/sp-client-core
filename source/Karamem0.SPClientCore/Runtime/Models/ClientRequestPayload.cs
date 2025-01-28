@@ -40,6 +40,11 @@ public class ClientRequestPayload : ClientRequestObject
     [XmlArray()]
     public ObjectPathCollection ObjectPaths { get; private set; } = [];
 
+    public ObjectPath Add(ObjectPath objectPath, IEnumerable<ClientActionDelegate> delegates)
+    {
+        return this.Add(objectPath, [.. delegates]);
+    }
+
     public ObjectPath Add(ObjectPath objectPath, params ClientActionDelegate[] delegates)
     {
         _ = objectPath ?? throw new ArgumentNullException(nameof(objectPath));
@@ -139,18 +144,12 @@ public class ClientRequestPayload : ClientRequestObject
 
     public long GetActionId<T>() where T : ClientAction
     {
-        return this.Actions
-            .OfType<T>()
-            .Select(action => action.Id)
-            .LastOrDefault();
+        return this.Actions.OfType<T>().Select(action => action.Id).LastOrDefault();
     }
 
     public IEnumerable<long> GetActionIds<T>() where T : ClientAction
     {
-        return this.Actions
-            .OfType<T>()
-            .Select(action => action.Id)
-            .ToArray();
+        return this.Actions.OfType<T>().Select(action => action.Id).ToArray();
     }
 
 }

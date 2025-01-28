@@ -22,11 +22,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class SetTermSetCommand : ClientObjectCmdlet<ITermSetService>
 {
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ValueFromPipeline = true
-    )]
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
     public TermSet Identity { get; private set; }
 
     [Parameter(Mandatory = false)]

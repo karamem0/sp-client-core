@@ -42,9 +42,7 @@ public class TenantHubSiteService(ClientContext clientContext)
         _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath1.Id,
@@ -58,8 +56,7 @@ public class TenantHubSiteService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(HubSite))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<HubSite>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -67,23 +64,16 @@ public class TenantHubSiteService(ClientContext clientContext)
     {
         _ = hubSiteId ?? throw new ArgumentNullException(nameof(hubSiteId));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
-                objectPath1.Id,
-                "GetHubSitePropertiesById",
-                requestPayload.CreateParameter(hubSiteId)
-            ),
+            new ObjectPathMethod(objectPath1.Id, "GetHubSitePropertiesById", requestPayload.CreateParameter(hubSiteId)),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(HubSite))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<HubSite>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -91,9 +81,7 @@ public class TenantHubSiteService(ClientContext clientContext)
     {
         _ = hubSiteUrl ?? throw new ArgumentNullException(nameof(hubSiteUrl));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath1.Id,
@@ -106,17 +94,14 @@ public class TenantHubSiteService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(HubSite))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<HubSite>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
     public IEnumerable<HubSite> GetObjectEnumerable()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             new ObjectPathMethod(objectPath1.Id, "GetHubSitesProperties"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -126,8 +111,7 @@ public class TenantHubSiteService(ClientContext clientContext)
                 ChildItemQuery = new ClientQuery(true, typeof(HubSite))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<HubSiteEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -135,9 +119,7 @@ public class TenantHubSiteService(ClientContext clientContext)
     {
         _ = hubSiteObject ?? throw new ArgumentNullException(nameof(hubSiteObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             objectPath1,
             objectPathId => new ClientActionMethod(
@@ -154,9 +136,7 @@ public class TenantHubSiteService(ClientContext clientContext)
         _ = hubSiteObject ?? throw new ArgumentNullException(nameof(hubSiteObject));
         _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath1.Id,

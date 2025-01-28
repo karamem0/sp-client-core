@@ -37,16 +37,8 @@ public class MoveFolderCommand : ClientObjectCmdlet<IFolderService>
     )]
     public Folder Identity { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet1"
-    )]
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
     public Uri NewUrl { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
@@ -73,11 +65,7 @@ public class MoveFolderCommand : ClientObjectCmdlet<IFolderService>
         {
             if (this.NewUrl.IsAbsoluteUri)
             {
-                this.Service.MoveObject(
-                    this.Identity,
-                    this.NewUrl,
-                    this.MyInvocation.BoundParameters
-                );
+                this.Service.MoveObject(this.Identity, this.NewUrl, this.MyInvocation.BoundParameters);
             }
             else
             {

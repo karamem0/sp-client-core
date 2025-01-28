@@ -33,11 +33,7 @@ public class AddTermLocalCustomPropertyCommand : ClientObjectCmdlet<ITermLocalCu
 
     protected override void ProcessRecordCore()
     {
-        this.Service.AddObject(
-            this.Term,
-            this.Name,
-            this.Value
-        );
+        this.Service.AddObject(this.Term, this.Name, this.Value);
     }
 
 }

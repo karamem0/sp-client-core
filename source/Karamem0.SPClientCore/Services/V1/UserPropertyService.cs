@@ -34,9 +34,7 @@ public class UserPropertyService(ClientContext clientContext)
     public UserProperty GetObject()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(PeopleManager))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(PeopleManager)));
         var objectPath2 = requestPayload.Add(
             new ObjectPathMethod(objectPath1.Id, "GetMyProperties"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -45,8 +43,7 @@ public class UserPropertyService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(UserProperty))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<UserProperty>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -54,23 +51,16 @@ public class UserPropertyService(ClientContext clientContext)
     {
         _ = userLoginName ?? throw new ArgumentNullException(nameof(userLoginName));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(PeopleManager))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(PeopleManager)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
-                objectPath1.Id,
-                "GetPropertiesFor",
-                requestPayload.CreateParameter(userLoginName)
-            ),
+            new ObjectPathMethod(objectPath1.Id, "GetPropertiesFor", requestPayload.CreateParameter(userLoginName)),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(UserProperty))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<UserProperty>(requestPayload.GetActionId<ClientActionQuery>());
     }
 

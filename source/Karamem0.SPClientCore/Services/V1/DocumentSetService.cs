@@ -19,22 +19,14 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IDocumentSetService
 {
 
-    string AddObject(
-        Folder folderObject,
-        string documentSetName,
-        ContentType contentTypeObject
-    );
+    string AddObject(Folder folderObject, string documentSetName, ContentType contentTypeObject);
 
 }
 
 public class DocumentSetService(ClientContext clientContext) : ClientService(clientContext), IDocumentSetService
 {
 
-    public string AddObject(
-        Folder folderObject,
-        string documentSetName,
-        ContentType contentTypeObject
-    )
+    public string AddObject(Folder folderObject, string documentSetName, ContentType contentTypeObject)
     {
         _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
         _ = documentSetName ?? throw new ArgumentNullException(nameof(documentSetName));
@@ -49,8 +41,7 @@ public class DocumentSetService(ClientContext clientContext) : ClientService(cli
                 requestPayload.CreateParameter(contentTypeObject.Id)
             )
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<string>(requestPayload.GetActionId<ClientActionStaticMethod>());
     }
 

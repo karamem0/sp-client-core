@@ -19,11 +19,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public abstract class ClientRequestProperty : ClientRequestObject
 {
 
-    public static ClientRequestProperty Create(
-        PropertyInfo propertyInfo,
-        ClientRequestPayload payload,
-        object value
-    )
+    public static ClientRequestProperty Create(PropertyInfo propertyInfo, ClientRequestPayload payload, object value)
     {
         var propertyAttribute = propertyInfo.GetCustomAttribute<JsonPropertyAttribute>();
         var propertyName = string.IsNullOrEmpty(propertyAttribute.PropertyName)

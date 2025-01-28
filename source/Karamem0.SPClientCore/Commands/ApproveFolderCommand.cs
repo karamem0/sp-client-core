@@ -22,11 +22,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class ApproveFolderCommand : ClientObjectCmdlet<IFolderService>
 {
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ValueFromPipeline = true
-    )]
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
     public Folder Identity { get; private set; }
 
     [Parameter(Mandatory = false)]

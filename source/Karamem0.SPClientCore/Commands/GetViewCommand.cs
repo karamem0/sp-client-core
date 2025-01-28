@@ -30,31 +30,15 @@ public class GetViewCommand : ClientObjectCmdlet<IViewService>
     )]
     public View Identity { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet2"
-    )]
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet3"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet3")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet4")]
     public List List { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
     public Guid ViewId { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet3"
-    )]
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet3")]
     public string ViewTitle { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet4")]

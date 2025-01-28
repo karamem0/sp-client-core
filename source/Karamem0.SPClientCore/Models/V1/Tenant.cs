@@ -557,7 +557,11 @@ public class Tenant : ClientObject
     public virtual MediaTranscriptionPolicyType MediaTranscription { get; protected set; }
 
     [JsonProperty()]
-    public virtual MediaTranscriptionAutomaticFeaturesPolicyType MediaTranscriptionAutomaticFeatures { get; protected set; }
+    public virtual MediaTranscriptionAutomaticFeaturesPolicyType MediaTranscriptionAutomaticFeatures
+    {
+        get;
+        protected set;
+    }
 
     [JsonProperty()]
     public virtual bool MobileFriendlyUrlEnabledInTenant { get; protected set; }

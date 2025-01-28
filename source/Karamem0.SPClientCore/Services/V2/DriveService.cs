@@ -23,11 +23,7 @@ public interface IDriveService
 
     Drive GetObject(Drive driveObject);
 
-    Drive GetObject(
-        Guid? siteCollectionId,
-        Guid? siteId,
-        Guid? listId
-    );
+    Drive GetObject(Guid? siteCollectionId, Guid? siteId, Guid? listId);
 
     Drive GetObject(string driveId);
 
@@ -40,21 +36,13 @@ public class DriveService(ClientContext clientContext) : ClientService(clientCon
     public Drive GetObject(Drive driveObject)
     {
         _ = driveObject ?? throw new ArgumentNullException(nameof(driveObject));
-        var requestUrl = this.ClientContext.BaseAddress
-            .ConcatPath(
-                "_api/v2.0/drives/{0}",
-                driveObject.Id
-            )
+        var requestUrl = this.ClientContext.BaseAddress.ConcatPath("_api/v2.0/drives/{0}", driveObject.Id)
             .ConcatQuery(ODataQuery.CreateSelect<Drive>())
             .ConcatQuery(ODataQuery.CreateExpand<Drive>());
         return this.ClientContext.GetObjectV2<Drive>(requestUrl);
     }
 
-    public Drive GetObject(
-        Guid? siteCollectionId,
-        Guid? siteId,
-        Guid? listId
-    )
+    public Drive GetObject(Guid? siteCollectionId, Guid? siteId, Guid? listId)
     {
         _ = siteCollectionId ?? throw new ArgumentNullException(nameof(siteCollectionId));
         _ = siteId ?? throw new ArgumentNullException(nameof(siteId));
@@ -75,11 +63,7 @@ public class DriveService(ClientContext clientContext) : ClientService(clientCon
     public Drive GetObject(string driveId)
     {
         _ = driveId ?? throw new ArgumentNullException(nameof(driveId));
-        var requestUrl = this.ClientContext.BaseAddress
-            .ConcatPath(
-                "_api/v2.0/drives/{0}",
-                driveId
-            )
+        var requestUrl = this.ClientContext.BaseAddress.ConcatPath("_api/v2.0/drives/{0}", driveId)
             .ConcatQuery(ODataQuery.CreateSelect<Drive>())
             .ConcatQuery(ODataQuery.CreateExpand<Drive>());
         return this.ClientContext.GetObjectV2<Drive>(requestUrl);
@@ -87,8 +71,7 @@ public class DriveService(ClientContext clientContext) : ClientService(clientCon
 
     public IEnumerable<Drive> GetObjectEnumerable()
     {
-        var requestUrl = this.ClientContext.BaseAddress
-            .ConcatPath("_api/v2.0/drives")
+        var requestUrl = this.ClientContext.BaseAddress.ConcatPath("_api/v2.0/drives")
             .ConcatQuery(ODataQuery.CreateSelect<Drive>())
             .ConcatQuery(ODataQuery.CreateExpand<Drive>());
         return this.ClientContext.GetObjectV2<ODataV2ObjectEnumerable<Drive>>(requestUrl);

@@ -27,11 +27,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class RemoveTenantExternalUserCommand : ClientObjectCmdlet<ITenantExternalUserService>
 {
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ValueFromPipeline = true
-    )]
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
     public ExternalUser User { get; private set; }
 
     protected override void ProcessRecordCore()

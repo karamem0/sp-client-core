@@ -34,9 +34,7 @@ public class SiteCollectionService(ClientContext clientContext)
     public SiteCollection GetObject()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(
             new ObjectPathProperty(objectPath1.Id, "Site"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -45,8 +43,7 @@ public class SiteCollectionService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(SiteCollection))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<SiteCollection>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -54,9 +51,7 @@ public class SiteCollectionService(ClientContext clientContext)
     {
         _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath1.Id,
@@ -70,8 +65,7 @@ public class SiteCollectionService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(SiteCollection))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<SiteCollection>(requestPayload.GetActionId<ClientActionQuery>());
     }
 

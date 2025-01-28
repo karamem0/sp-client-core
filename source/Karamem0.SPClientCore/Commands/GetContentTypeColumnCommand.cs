@@ -30,19 +30,11 @@ public class GetContentTypeColumnCommand : ClientObjectCmdlet<IContentTypeColumn
     )]
     public ContentTypeColumn Identity { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
     public ContentType ContentType { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
     public Column Column { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]

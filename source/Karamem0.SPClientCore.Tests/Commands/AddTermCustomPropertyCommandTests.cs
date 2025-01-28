@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace Karamem0.SharePoint.PowerShell.Commands.Tests;
 
@@ -31,7 +32,7 @@ public class AddTermCustomPropertyCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         var result1 = context.Runspace.InvokeCommand<TermGroup>(
@@ -58,6 +59,7 @@ public class AddTermCustomPropertyCommandTests
                 ["Value"] = "Test Value 0"
             }
         );
+        Thread.Sleep(TimeSpan.FromSeconds(15));
         var result3 = context.Runspace.InvokeCommand<TermSet>(
             "Get-KshTermSet",
             new Dictionary<string, object>()
@@ -88,7 +90,7 @@ public class AddTermCustomPropertyCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         var result1 = context.Runspace.InvokeCommand<TermGroup>(
@@ -123,6 +125,7 @@ public class AddTermCustomPropertyCommandTests
                 ["Value"] = "Test Value 0"
             }
         );
+        Thread.Sleep(TimeSpan.FromSeconds(15));
         var result4 = context.Runspace.InvokeCommand<Term>(
             "Get-KshTerm",
             new Dictionary<string, object>()

@@ -34,9 +34,7 @@ public class TenantSiteTemplateService(ClientContext clientContext)
         _ = lcid ?? throw new ArgumentNullException(nameof(lcid));
         _ = compatibilityLevel ?? throw new ArgumentNullException(nameof(compatibilityLevel));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath1.Id,
@@ -51,17 +49,14 @@ public class TenantSiteTemplateService(ClientContext clientContext)
                 ChildItemQuery = ClientQuery.Empty
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantSiteTemplateEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
     public IEnumerable<TenantSiteTemplate> GetObjectEnumerable()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             new ObjectPathMethod(objectPath1.Id, "GetSPOTenantAllWebTemplates"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -71,8 +66,7 @@ public class TenantSiteTemplateService(ClientContext clientContext)
                 ChildItemQuery = ClientQuery.Empty
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantSiteTemplateEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 

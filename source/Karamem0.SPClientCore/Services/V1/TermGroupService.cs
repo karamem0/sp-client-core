@@ -43,12 +43,8 @@ public class TermGroupService(ClientContext clientContext) : ClientService<TermG
         _ = termGroupName ?? throw new ArgumentNullException(nameof(termGroupName));
         _ = termGroupId ?? throw new ArgumentNullException(nameof(termGroupId));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession"));
+        var objectPath2 = requestPayload.Add(new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore"));
         var objectPath3 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath2.Id,
@@ -62,8 +58,7 @@ public class TermGroupService(ClientContext clientContext) : ClientService<TermG
                 Query = new ClientQuery(true, typeof(TermGroup))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<TermGroup>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -71,30 +66,21 @@ public class TermGroupService(ClientContext clientContext) : ClientService<TermG
     {
         _ = termGroupId ?? throw new ArgumentNullException(nameof(termGroupId));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession"));
+        var objectPath2 = requestPayload.Add(new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore"));
         var objectPath3 = requestPayload.Add(
             new ObjectPathProperty(objectPath2.Id, "Groups"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId)
         );
         var objectPath4 = requestPayload.Add(
-            new ObjectPathMethod(
-                objectPath3.Id,
-                "GetById",
-                requestPayload.CreateParameter(termGroupId)
-            ),
+            new ObjectPathMethod(objectPath3.Id, "GetById", requestPayload.CreateParameter(termGroupId)),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(TermGroup))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<TermGroup>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -102,42 +88,29 @@ public class TermGroupService(ClientContext clientContext) : ClientService<TermG
     {
         _ = termGroupName ?? throw new ArgumentNullException(nameof(termGroupName));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession"));
+        var objectPath2 = requestPayload.Add(new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore"));
         var objectPath3 = requestPayload.Add(
             new ObjectPathProperty(objectPath2.Id, "Groups"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId)
         );
         var objectPath4 = requestPayload.Add(
-            new ObjectPathMethod(
-                objectPath3.Id,
-                "GetByName",
-                requestPayload.CreateParameter(termGroupName)
-            ),
+            new ObjectPathMethod(objectPath3.Id, "GetByName", requestPayload.CreateParameter(termGroupName)),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(TermGroup))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<TermGroup>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
     public IEnumerable<TermGroup> GetObjectEnumerable()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession"));
+        var objectPath2 = requestPayload.Add(new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore"));
         var objectPath3 = requestPayload.Add(
             new ObjectPathProperty(objectPath2.Id, "Groups"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -147,8 +120,7 @@ public class TermGroupService(ClientContext clientContext) : ClientService<TermG
                 ChildItemQuery = new ClientQuery(true, typeof(TermGroup))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<TermGroupEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -157,9 +129,7 @@ public class TermGroupService(ClientContext clientContext) : ClientService<TermG
         _ = termGroupObject ?? throw new ArgumentNullException(nameof(termGroupObject));
         _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(termGroupObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termGroupObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             objectPath1,
             requestPayload.CreateSetPropertyDelegates(termGroupObject, modificationInfo).ToArray()

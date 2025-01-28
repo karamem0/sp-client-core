@@ -22,11 +22,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddSubscriptionCommand : ClientObjectCmdlet<ISubscriptionService>
 {
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ValueFromPipeline = true
-    )]
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
     public List List { get; private set; }
 
     [Parameter(Mandatory = false)]

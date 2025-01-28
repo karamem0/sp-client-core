@@ -44,11 +44,7 @@ public static class TypeExtensions
 
     public static T GetCustomAttribute<T>(this Type type, bool inherit) where T : Attribute
     {
-        return (T)Attribute.GetCustomAttribute(
-            type,
-            typeof(T),
-            inherit
-        );
+        return (T)Attribute.GetCustomAttribute(type, typeof(T), inherit);
     }
 
     public static PropertyInfo GetDeclaredProperty(this Type type, string name)

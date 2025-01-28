@@ -33,11 +33,7 @@ public class SetContentTypeColumnOrderCommand : ClientObjectCmdlet<IContentTypeC
 
     protected override void ProcessRecordCore()
     {
-        this.Service.ReorderObject(
-            this.ContentType,
-            this.ContentTypeColumns,
-            this.PushChanges
-        );
+        this.Service.ReorderObject(this.ContentType, this.ContentTypeColumns, this.PushChanges);
     }
 
 }

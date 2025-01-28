@@ -22,59 +22,23 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddExternalUserCommand : ClientObjectCmdlet<IExternalUserService>
 {
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet1"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
     public SwitchParameter Site { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
     public File File { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet3"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet3")]
     public Folder Folder { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet1"
-    )]
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet2"
-    )]
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet3"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet3")]
     public string[] UserId { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet1"
-    )]
-    [Parameter(
-        Mandatory = true,
-        Position = 2,
-        ParameterSetName = "ParamSet2"
-    )]
-    [Parameter(
-        Mandatory = true,
-        Position = 2,
-        ParameterSetName = "ParamSet3"
-    )]
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = true, Position = 2, ParameterSetName = "ParamSet2")]
+    [Parameter(Mandatory = true, Position = 2, ParameterSetName = "ParamSet3")]
     public RoleType Role { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]

@@ -31,7 +31,7 @@ public class SetColumnGuidCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
@@ -41,7 +41,7 @@ public class SetColumnGuidCommandTests
                 ["ListId"] = context.AppSettings["List1Id"]
             }
         );
-        var result2 = context.Runspace.InvokeCommand<ColumnText>(
+        var result2 = context.Runspace.InvokeCommand<ColumnGuid>(
             "Add-KshColumnGuid",
             new Dictionary<string, object>()
             {
@@ -52,32 +52,27 @@ public class SetColumnGuidCommandTests
                 ["AddToDefaultView"] = true
             }
         );
-        var result3 = context.Runspace.InvokeCommand<ColumnText>(
+        var result3 = context.Runspace.InvokeCommand<ColumnGuid>(
             "Set-KshColumnGuid",
             new Dictionary<string, object>()
             {
                 ["Identity"] = result2.ElementAt(0),
                 // { "ClientSideComponentId", null },
                 // { "ClientSideComponentProperties", null },
-                ["ClientValidationFormula"] = "=FALSE",
-                ["ClientValidationMessage"] = "ERROR",
                 ["CustomFormatter"] = /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }",
-                ["DefaultValue"] = "Test Value 0",
-                ["EnforceUniqueValues"] = true,
-                ["Direction"] = "none",
+                ["DefaultValue"] = "00000000-0000-0000-0000-000000000000",
                 ["Description"] = "Test Column 0 Description",
+                ["Direction"] = "none",
+                ["EnforceUniqueValues"] = true,
                 ["Group"] = "Test Group 0",
                 ["Hidden"] = true,
                 ["Indexed"] = true,
                 ["JSLink"] = "clienttemplates.js",
-                ["MaxLength"] = 128,
                 ["NoCrawl"] = true,
                 ["ReadOnly"] = true,
                 ["Required"] = true,
                 ["StaticName"] = "TestColumn0",
                 ["Title"] = "Test Column 0",
-                ["ValidationFormula"] = "=FALSE",
-                ["ValidationMessage"] = "ERROR",
                 ["PassThru"] = true
             }
         );
@@ -112,10 +107,10 @@ public class SetColumnGuidCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
-        var result1 = context.Runspace.InvokeCommand<ColumnText>(
+        var result1 = context.Runspace.InvokeCommand<ColumnGuid>(
             "Add-KshColumnGuid",
             new Dictionary<string, object>()
             {
@@ -125,32 +120,27 @@ public class SetColumnGuidCommandTests
                 ["AddToDefaultView"] = true
             }
         );
-        var result2 = context.Runspace.InvokeCommand<ColumnText>(
+        var result2 = context.Runspace.InvokeCommand<ColumnGuid>(
             "Set-KshColumnGuid",
             new Dictionary<string, object>()
             {
                 ["Identity"] = result1.ElementAt(0),
                 // { "ClientSideComponentId", null },
                 // { "ClientSideComponentProperties", null },
-                ["ClientValidationFormula"] = "=TRUE",
-                ["ClientValidationMessage"] = "ERROR",
                 ["CustomFormatter"] = /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }",
-                ["DefaultValue"] = "Test Value 0",
-                ["EnforceUniqueValues"] = true,
-                ["Direction"] = "none",
+                ["DefaultValue"] = "00000000-0000-0000-0000-000000000000",
                 ["Description"] = "Test Column 0 Description",
+                ["Direction"] = "none",
+                ["EnforceUniqueValues"] = true,
                 ["Group"] = "Test Group 0",
                 ["Hidden"] = true,
                 ["Indexed"] = true,
                 ["JSLink"] = "clienttemplates.js",
-                ["MaxLength"] = 128,
                 ["NoCrawl"] = true,
                 ["ReadOnly"] = true,
                 ["Required"] = true,
                 ["StaticName"] = "TestColumn0",
                 ["Title"] = "Test Column 0",
-                ["ValidationFormula"] = "=TRUE",
-                ["ValidationMessage"] = "ERROR",
                 ["PassThru"] = true
             }
         );

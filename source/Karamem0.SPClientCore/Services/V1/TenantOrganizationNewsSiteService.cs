@@ -35,9 +35,7 @@ public class TenantOrganizationNewsSiteService(ClientContext clientContext)
     {
         _ = organizationNewsSiteUrl ?? throw new ArgumentNullException(nameof(organizationNewsSiteUrl));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             objectPath1,
             objectPathId => new ClientActionMethod(
@@ -52,18 +50,12 @@ public class TenantOrganizationNewsSiteService(ClientContext clientContext)
     public IEnumerable<string> GetObjectEnumerable()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             objectPath1,
-            objectPathId => new ClientActionMethod(
-                objectPathId,
-                "GetOrgNewsSites"
-            )
+            objectPathId => new ClientActionMethod(objectPathId, "GetOrgNewsSites")
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<IEnumerable<string>>(requestPayload.GetActionId<ClientActionMethod>());
     }
 
@@ -71,9 +63,7 @@ public class TenantOrganizationNewsSiteService(ClientContext clientContext)
     {
         _ = organizationNewsSiteUrl ?? throw new ArgumentNullException(nameof(organizationNewsSiteUrl));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             objectPath1,
             objectPathId => new ClientActionMethod(

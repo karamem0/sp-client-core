@@ -20,8 +20,8 @@ function Install-TestSite {
         [string]
         $CertificatePath,
         [Parameter(Mandatory = $true)]
-        [SecureString]
-        $CertificatePassword,
+        [string]
+        $PrivateKeyPath,
         [Parameter(Mandatory = $true)]
         [string]
         $OwnerUserName,
@@ -41,12 +41,10 @@ function Install-TestSite {
         $authorityUrl = "https://${TenantName}.sharepoint.com"
         $adminUrl = "https://${TenantName}-admin.sharepoint.com"
 
-        $credential = New-Object System.Net.NetworkCredential('', $CertificatePassword)
-
         $appSettings.LoginDomainName = $domainName
         $appSettings.ClientId = $ClientId
         $appSettings.CertificatePath = $CertificatePath
-        $appSettings.CertificatePassword = $credential.Password
+        $appSettings.PrivateKeyPath = $PrivateKeyPath
         $appSettings.OwnerUserName = $OwnerUserName
         $appSettings.ExternalUserName = $ExternalUserName
         $appSettings.BaseUrl = $baseUrl
@@ -58,7 +56,7 @@ function Install-TestSite {
             -Url $adminUrl `
             -ClientId $ClientId `
             -CertificatePath $CertificatePath `
-            -CertificatePassword $CertificatePassword
+            -PrivateKeyPath $PrivateKeyPath
 
         $tenantAppCatalogUrl = Get-KshTenantAppCatalog
         $appSettings.TenantAppCatalogUrl = $tenantAppCatalogUrl
@@ -244,7 +242,7 @@ function Install-TestSite {
             -Url $baseUrl `
             -ClientId $ClientId `
             -CertificatePath $CertificatePath `
-            -CertificatePassword $CertificatePassword
+            -PrivateKeyPath $PrivateKeyPath
 
         Write-Progress -Activity 'Removing site groups...' -Status 'Processing'
         Get-KshGroup | Remove-KshGroup
@@ -1552,7 +1550,7 @@ function Install-TestSite {
             -Url $tenantAppCatalogUrl `
             -ClientId $ClientId `
             -CertificatePath $CertificatePath `
-            -CertificatePassword $CertificatePassword
+            -PrivateKeyPath $PrivateKeyPath
 
         Write-Progress -Activity 'Creating storage entities...' -Status 'Test Entity 1'
         Add-KshStorageEntity `
@@ -1611,7 +1609,7 @@ function Install-TestSite {
             -Url $baseUrl `
             -ClientId $ClientId `
             -CertificatePath $CertificatePath `
-            -CertificatePassword $CertificatePassword
+            -PrivateKeyPath $PrivateKeyPath
 
         Write-Progress -Activity 'Creating site collection apps...' -Status 'Test App 1'
         $app1 = Add-KshSiteCollectionApp `
@@ -1677,8 +1675,8 @@ function Uninstall-TestSite {
         [string]
         $CertificatePath,
         [Parameter(Mandatory = $true)]
-        [SecureString]
-        $CertificatePassword
+        [string]
+        $PrivateKeyPath
     )
 
     process {
@@ -1694,7 +1692,7 @@ function Uninstall-TestSite {
             -Url $adminUrl `
             -ClientId $ClientId `
             -CertificatePath $CertificatePath `
-            -CertificatePassword $CertificatePassword
+            -PrivateKeyPath $PrivateKeyPath
 
         Write-Progress -Activity 'Removing site collection app catalogs...' -Status 'Processing'
         Get-KshSiteCollectionAppCatalog -SiteCollectionUrl $baseUrl | Remove-KshSiteCollectionAppCatalog
@@ -1761,7 +1759,7 @@ function Uninstall-TestSite {
             -Url $tenantAppCatalogUrl `
             -ClientId $ClientId `
             -CertificatePath $CertificatePath `
-            -CertificatePassword $CertificatePassword
+            -PrivateKeyPath $PrivateKeyPath
 
         Write-Progress -Activity 'Removing tenant apps...' -Status 'Processing'
         Get-KshTenantApp | Where-Object { $_.Title -eq 'TestApp1' } | Remove-KshTenantApp

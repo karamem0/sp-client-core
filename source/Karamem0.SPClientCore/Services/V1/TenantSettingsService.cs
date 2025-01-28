@@ -28,8 +28,7 @@ public class TenantSettingsService(ClientContext clientContext) : ClientService(
 
     public TenantSettings GetObject()
     {
-        var requestUrl = this.ClientContext.BaseAddress
-            .ConcatPath("_api/sp_tenantsettings_current");
+        var requestUrl = this.ClientContext.BaseAddress.ConcatPath("_api/sp_tenantsettings_current");
         return this.ClientContext.GetObject<TenantSettings>(requestUrl);
     }
 

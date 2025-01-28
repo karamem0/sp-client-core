@@ -33,13 +33,7 @@ public class AddContentTypeColumnCommand : ClientObjectCmdlet<IContentTypeColumn
 
     protected override void ProcessRecordCore()
     {
-        this.Outputs.Add(
-            this.Service.AddObject(
-                this.ContentType,
-                this.MyInvocation.BoundParameters,
-                this.PushChanges
-            )
-        );
+        this.Outputs.Add(this.Service.AddObject(this.ContentType, this.MyInvocation.BoundParameters, this.PushChanges));
     }
 
 }

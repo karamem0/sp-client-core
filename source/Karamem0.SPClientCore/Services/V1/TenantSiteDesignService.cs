@@ -37,9 +37,7 @@ public class TenantSiteDesignService(ClientContext clientContext)
     {
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath1.Id,
@@ -52,8 +50,7 @@ public class TenantSiteDesignService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(TenantSiteDesign))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantSiteDesign>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -62,28 +59,18 @@ public class TenantSiteDesignService(ClientContext clientContext)
         _ = siteDesignId ?? throw new ArgumentNullException(nameof(siteDesignId));
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
-            new ClientActionStaticMethod(
-                typeof(Tenant),
-                "GetSiteDesign",
-                requestPayload.CreateParameter(siteDesignId)
-            )
+            new ClientActionStaticMethod(typeof(Tenant), "GetSiteDesign", requestPayload.CreateParameter(siteDesignId))
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantSiteDesign>(requestPayload.GetActionId<ClientActionStaticMethod>());
     }
 
     public IEnumerable<TenantSiteDesign> GetObjectEnumerable()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
-                objectPath1.Id,
-                "GetSiteDesigns"
-            ),
+            new ObjectPathMethod(objectPath1.Id, "GetSiteDesigns"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
@@ -91,8 +78,7 @@ public class TenantSiteDesignService(ClientContext clientContext)
                 ChildItemQuery = new ClientQuery(true, typeof(TenantSiteDesign))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantSiteDesignEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -100,9 +86,7 @@ public class TenantSiteDesignService(ClientContext clientContext)
     {
         _ = siteDesignObject ?? throw new ArgumentNullException(nameof(siteDesignObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             objectPath1,
             objectPathId => new ClientActionMethod(

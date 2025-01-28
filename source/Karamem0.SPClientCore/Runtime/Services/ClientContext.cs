@@ -23,35 +23,14 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services;
 public class ClientContext
 {
 
-    public static ClientContext Create(
-        Uri baseAddress,
-        AadOAuthContext oAuthContext,
-        AadOAuthToken oAuthToken
-    )
+    public static ClientContext Create(Uri baseAddress, AadOAuthContext oAuthContext, AadOAuthToken oAuthToken)
     {
-        return new ClientContext(
-            baseAddress,
-            new AadOAuthTokenProvider(
-                baseAddress,
-                oAuthContext,
-                oAuthToken
-            )
-        );
+        return new ClientContext(baseAddress, new AadOAuthTokenProvider(baseAddress, oAuthContext, oAuthToken));
     }
 
-    public static ClientContext Create(
-        Uri baseAddress,
-        AcsOAuthContext oAuthContext,
-        AcsOAuthToken oAuthToken
-    )
+    public static ClientContext Create(Uri baseAddress, AcsOAuthContext oAuthContext, AcsOAuthToken oAuthToken)
     {
-        return new ClientContext(
-            baseAddress,
-            new AcsOAuthTokenProvider(
-                oAuthContext,
-                oAuthToken
-            )
-        );
+        return new ClientContext(baseAddress, new AcsOAuthTokenProvider(oAuthContext, oAuthToken));
     }
 
     private Uri baseAddress;

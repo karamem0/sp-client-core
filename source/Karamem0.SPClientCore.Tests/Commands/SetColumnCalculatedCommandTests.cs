@@ -31,7 +31,7 @@ public class SetColumnCalculatedCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
@@ -86,8 +86,8 @@ public class SetColumnCalculatedCommandTests
                     result3.ElementAt(0)
                 },
                 ["CustomFormatter"] = /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }",
-                ["Direction"] = "none",
                 ["Description"] = "Test Column 0 Description",
+                ["Direction"] = "none",
                 ["Formula"] = "=[Test Column 10]",
                 ["Group"] = "Test Group 0",
                 ["Hidden"] = true,
@@ -129,7 +129,7 @@ public class SetColumnCalculatedCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
@@ -185,8 +185,8 @@ public class SetColumnCalculatedCommandTests
                 },
                 ["CurrencyLcid"] = 1041,
                 ["CustomFormatter"] = /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }",
-                ["Direction"] = "none",
                 ["Description"] = "Test Column 0 Description",
+                ["Direction"] = "none",
                 ["Formula"] = "=[Test Column 6]",
                 ["Group"] = "Test Group 0",
                 ["Hidden"] = true,
@@ -229,7 +229,7 @@ public class SetColumnCalculatedCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
@@ -284,9 +284,9 @@ public class SetColumnCalculatedCommandTests
                     result3.ElementAt(0)
                 },
                 ["CustomFormatter"] = /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }",
+                ["Description"] = "Test Column 0 Description",
                 ["DateFormat"] = "DateTime",
                 ["Direction"] = "none",
-                ["Description"] = "Test Column 0 Description",
                 ["Formula"] = "=[Test Column 7]",
                 ["Group"] = "Test Group 0",
                 ["Hidden"] = true,
@@ -328,7 +328,7 @@ public class SetColumnCalculatedCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
@@ -383,8 +383,8 @@ public class SetColumnCalculatedCommandTests
                     result3.ElementAt(0)
                 },
                 ["CustomFormatter"] = /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }",
-                ["Direction"] = "none",
                 ["Description"] = "Test Column 0 Description",
+                ["Direction"] = "none",
                 ["Formula"] = "=[Test Column 5]",
                 ["Group"] = "Test Group 0",
                 ["Hidden"] = true,
@@ -427,7 +427,7 @@ public class SetColumnCalculatedCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
@@ -482,8 +482,8 @@ public class SetColumnCalculatedCommandTests
                     result3.ElementAt(0)
                 },
                 ["CustomFormatter"] = /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }",
-                ["Direction"] = "none",
                 ["Description"] = "Test Column 0 Description",
+                ["Direction"] = "none",
                 ["Formula"] = "=[Test Column 1]",
                 ["Group"] = "Test Group 0",
                 ["Hidden"] = true,
@@ -525,7 +525,7 @@ public class SetColumnCalculatedCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         var result1 = context.Runspace.InvokeCommand<Column>(
@@ -570,8 +570,8 @@ public class SetColumnCalculatedCommandTests
                     result2.ElementAt(0)
                 },
                 ["CustomFormatter"] = /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }",
-                ["Direction"] = "none",
                 ["Description"] = "Test Column 0 Description",
+                ["Direction"] = "none",
                 ["Formula"] = "=TestColumn10",
                 ["Group"] = "Test Group 0",
                 ["Hidden"] = true,
@@ -613,7 +613,7 @@ public class SetColumnCalculatedCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         var result1 = context.Runspace.InvokeCommand<Column>(
@@ -659,8 +659,8 @@ public class SetColumnCalculatedCommandTests
                 },
                 ["CurrencyLcid"] = 1041,
                 ["CustomFormatter"] = /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }",
-                ["Direction"] = "none",
                 ["Description"] = "Test Column 0 Description",
+                ["Direction"] = "none",
                 ["Formula"] = "=TestColumn6",
                 ["Group"] = "Test Group 0",
                 ["Hidden"] = true,
@@ -703,7 +703,7 @@ public class SetColumnCalculatedCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         var result1 = context.Runspace.InvokeCommand<Column>(
@@ -748,9 +748,9 @@ public class SetColumnCalculatedCommandTests
                     result2.ElementAt(0)
                 },
                 ["CustomFormatter"] = /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }",
+                ["Description"] = "Test Column 0 Description",
                 ["DateFormat"] = "DateTime",
                 ["Direction"] = "none",
-                ["Description"] = "Test Column 0 Description",
                 ["Formula"] = "=TestColumn7",
                 ["Group"] = "Test Group 0",
                 ["Hidden"] = true,
@@ -792,7 +792,7 @@ public class SetColumnCalculatedCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         var result1 = context.Runspace.InvokeCommand<Column>(
@@ -837,8 +837,8 @@ public class SetColumnCalculatedCommandTests
                     result2.ElementAt(0)
                 },
                 ["CustomFormatter"] = /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }",
-                ["Direction"] = "none",
                 ["Description"] = "Test Column 0 Description",
+                ["Direction"] = "none",
                 ["Formula"] = "=TestColumn5",
                 ["Group"] = "Test Group 0",
                 ["Hidden"] = true,
@@ -882,7 +882,7 @@ public class SetColumnCalculatedCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         var result1 = context.Runspace.InvokeCommand<Column>(
@@ -927,8 +927,8 @@ public class SetColumnCalculatedCommandTests
                     result2.ElementAt(0)
                 },
                 ["CustomFormatter"] = /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }",
-                ["Direction"] = "none",
                 ["Description"] = "Test Column 0 Description",
+                ["Direction"] = "none",
                 ["Group"] = "Test Group 0",
                 ["Formula"] = "=TestColumn2",
                 ["Hidden"] = true,

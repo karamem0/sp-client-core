@@ -26,17 +26,10 @@ public class ClientRequestParameterClientObject(ClientRequestPayload payload, ob
     public virtual Guid TypeId { get; protected set; } = ClientObjectAttribute.GetId(value.GetType());
 
     [XmlElement("Property")]
-    public virtual IReadOnlyCollection<ClientRequestProperty> Properties { get; protected set; } = value
-        .GetType()
+    public virtual IReadOnlyCollection<ClientRequestProperty> Properties { get; protected set; } = value.GetType()
         .GetDeclaredProperties()
         .Where(propertyInfo => propertyInfo.IsDefined(typeof(JsonPropertyAttribute)))
-        .Select(
-            propertyInfo => ClientRequestProperty.Create(
-                propertyInfo,
-                payload,
-                value
-            )
-        )
+        .Select(propertyInfo => ClientRequestProperty.Create(propertyInfo, payload, value))
         .ToArray();
 
 }

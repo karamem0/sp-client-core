@@ -106,11 +106,7 @@ public class JsonBase64BinaryConverterTests
         var jsonWriter = new JsonTextWriter(textWriter);
         jsonWriter.WriteStartObject();
         jsonWriter.WritePropertyName("value");
-        converter.WriteJson(
-            jsonWriter,
-            Encoding.UTF8.GetBytes("Test Value 1"),
-            null
-        );
+        converter.WriteJson(jsonWriter, Encoding.UTF8.GetBytes("Test Value 1"), null);
         jsonWriter.WriteEndObject();
         var expected = /*lang=json,strict*/ "{\"value\":\"VGVzdCBWYWx1ZSAx\"}";
         var actual = textWriter.ToString();
@@ -125,11 +121,7 @@ public class JsonBase64BinaryConverterTests
         var jsonWriter = new JsonTextWriter(textWriter);
         jsonWriter.WriteStartObject();
         jsonWriter.WritePropertyName("value");
-        converter.WriteJson(
-            jsonWriter,
-            null,
-            null
-        );
+        converter.WriteJson(jsonWriter, null, null);
         jsonWriter.WriteEndObject();
         var expected = /*lang=json,strict*/ "{\"value\":null}";
         var actual = textWriter.ToString();

@@ -41,11 +41,7 @@ public class RemoveFileVersionCommand : ClientObjectCmdlet<IFileVersionService>
     )]
     public FileVersion Identity { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet3"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet3")]
     public File File { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
@@ -56,7 +52,7 @@ public class RemoveFileVersionCommand : ClientObjectCmdlet<IFileVersionService>
 
     protected override void ProcessRecordCore()
     {
-        if (this.ShouldProcess(this.Identity.VersionLabel, VerbsCommon.Remove))
+        if (this.ShouldProcess(this.Identity is null ? "All" : this.Identity.VersionLabel, VerbsCommon.Remove))
         {
             if (this.ParameterSetName == "ParamSet1")
             {

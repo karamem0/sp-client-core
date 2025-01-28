@@ -70,6 +70,13 @@ public class ClientRequestValue
                     Value = Convert.ToBase64String(byteArrayValue)
                 };
                 return true;
+            case BinaryData binaryDataValue:
+                output = new ClientRequestValue()
+                {
+                    Type = "Binary",
+                    Value = Convert.ToBase64String(binaryDataValue)
+                };
+                return true;
             case char charValue:
                 output = new ClientRequestValue()
                 {

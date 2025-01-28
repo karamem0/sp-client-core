@@ -19,41 +19,25 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ISitePageService
 {
 
-    void AddObject(
-        Folder folderObject,
-        string pageName,
-        SitePageLayoutType pageLayoutType
-    );
+    void AddObject(Folder folderObject, string pageName, SitePageLayoutType pageLayoutType);
 
     void RemoveObject(Folder folderObject, string pageName);
 
-    void SetObject(
-        Folder folderObject,
-        string pageName,
-        IReadOnlyDictionary<string, object> modificationInfo
-    );
+    void SetObject(Folder folderObject, string pageName, IReadOnlyDictionary<string, object> modificationInfo);
 
 }
 
 public class SitePageService(ClientContext clientContext) : ClientService(clientContext), ISitePageService
 {
 
-    public void AddObject(
-        Folder folderObject,
-        string pageName,
-        SitePageLayoutType pageLayoutType
-    )
+    public void AddObject(Folder folderObject, string pageName, SitePageLayoutType pageLayoutType)
     {
         _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
         _ = pageName ?? throw new ArgumentNullException(nameof(pageName));
         var fileName = System.IO.Path.ChangeExtension(pageName, ".aspx");
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(folderObject.ObjectIdentity)
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Files")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Files"));
         var objectPath3 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath2.Id,
@@ -99,18 +83,10 @@ public class SitePageService(ClientContext clientContext) : ClientService(client
         _ = pageName ?? throw new ArgumentNullException(nameof(pageName));
         var fileName = System.IO.Path.ChangeExtension(pageName, ".aspx");
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(folderObject.ObjectIdentity)
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Files")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Files"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(
-                objectPath2.Id,
-                "GetByUrl",
-                requestPayload.CreateParameter(fileName)
-            )
+            new ObjectPathMethod(objectPath2.Id, "GetByUrl", requestPayload.CreateParameter(fileName))
         );
         var objectPath4 = requestPayload.Add(
             objectPath3,
@@ -119,33 +95,19 @@ public class SitePageService(ClientContext clientContext) : ClientService(client
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public void SetObject(
-        Folder folderObject,
-        string pageName,
-        IReadOnlyDictionary<string, object> modificationInfo
-    )
+    public void SetObject(Folder folderObject, string pageName, IReadOnlyDictionary<string, object> modificationInfo)
     {
         _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
         _ = pageName ?? throw new ArgumentNullException(nameof(pageName));
         _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
         var fileName = System.IO.Path.ChangeExtension(pageName, ".aspx");
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(folderObject.ObjectIdentity)
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Files")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Files"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(
-                objectPath2.Id,
-                "GetByUrl",
-                requestPayload.CreateParameter(fileName)
-            )
+            new ObjectPathMethod(objectPath2.Id, "GetByUrl", requestPayload.CreateParameter(fileName))
         );
-        var objectPath4 = requestPayload.Add(
-            new ObjectPathProperty(objectPath3.Id, "ListItemAllFields")
-        );
+        var objectPath4 = requestPayload.Add(new ObjectPathProperty(objectPath3.Id, "ListItemAllFields"));
         if (modificationInfo.ContainsKey("PageLayoutType"))
         {
             var objectPath5 = requestPayload.Add(

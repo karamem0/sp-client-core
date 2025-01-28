@@ -39,18 +39,10 @@ public class SiteCollectionAppCatalogService(ClientContext clientContext)
     {
         _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web")
-        );
-        var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "TenantAppCatalog")
-        );
-        var objectPath4 = requestPayload.Add(
-            new ObjectPathProperty(objectPath3.Id, "SiteCollectionAppCatalogsSites")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
+        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "TenantAppCatalog"));
+        var objectPath4 = requestPayload.Add(new ObjectPathProperty(objectPath3.Id, "SiteCollectionAppCatalogsSites"));
         var objectPath5 = requestPayload.Add(
             objectPath4,
             objectPathId => new ClientActionMethod(
@@ -65,15 +57,9 @@ public class SiteCollectionAppCatalogService(ClientContext clientContext)
     public IEnumerable<SiteCollectionAppCatalog> GetObjectEnumerable()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web")
-        );
-        var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "TenantAppCatalog")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
+        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "TenantAppCatalog"));
         var objectPath4 = requestPayload.Add(
             new ObjectPathProperty(objectPath3.Id, "SiteCollectionAppCatalogsSites"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -83,8 +69,7 @@ public class SiteCollectionAppCatalogService(ClientContext clientContext)
                 ChildItemQuery = new ClientQuery(true, typeof(SiteCollectionAppCatalog))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<SiteCollectionAppCatalogEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -92,18 +77,10 @@ public class SiteCollectionAppCatalogService(ClientContext clientContext)
     {
         _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web")
-        );
-        var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "TenantAppCatalog")
-        );
-        var objectPath4 = requestPayload.Add(
-            new ObjectPathProperty(objectPath3.Id, "SiteCollectionAppCatalogsSites")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
+        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "TenantAppCatalog"));
+        var objectPath4 = requestPayload.Add(new ObjectPathProperty(objectPath3.Id, "SiteCollectionAppCatalogsSites"));
         var objectPath5 = requestPayload.Add(
             objectPath4,
             objectPathId => new ClientActionMethod(
@@ -119,18 +96,10 @@ public class SiteCollectionAppCatalogService(ClientContext clientContext)
     {
         _ = siteCollectionId ?? throw new ArgumentNullException(nameof(siteCollectionId));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web")
-        );
-        var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "TenantAppCatalog")
-        );
-        var objectPath4 = requestPayload.Add(
-            new ObjectPathProperty(objectPath3.Id, "SiteCollectionAppCatalogsSites")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
+        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "TenantAppCatalog"));
+        var objectPath4 = requestPayload.Add(new ObjectPathProperty(objectPath3.Id, "SiteCollectionAppCatalogsSites"));
         var objectPath5 = requestPayload.Add(
             objectPath4,
             objectPathId => new ClientActionMethod(

@@ -33,19 +33,11 @@ public class TermStoreLanguageService(ClientContext clientContext)
     {
         _ = lcid ?? throw new ArgumentNullException(nameof(lcid));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession"));
+        var objectPath2 = requestPayload.Add(new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore"));
         var objectPath3 = requestPayload.Add(
             objectPath2,
-            objectPathId => new ClientActionMethod(
-                objectPathId,
-                "AddLanguage",
-                requestPayload.CreateParameter(lcid)
-            )
+            objectPathId => new ClientActionMethod(objectPathId, "AddLanguage", requestPayload.CreateParameter(lcid))
         );
         var objectPath4 = requestPayload.Add(
             objectPath2,
@@ -58,19 +50,11 @@ public class TermStoreLanguageService(ClientContext clientContext)
     {
         _ = lcid ?? throw new ArgumentNullException(nameof(lcid));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession"));
+        var objectPath2 = requestPayload.Add(new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore"));
         var objectPath3 = requestPayload.Add(
             objectPath2,
-            objectPathId => new ClientActionMethod(
-                objectPathId,
-                "DeleteLanguage",
-                requestPayload.CreateParameter(lcid)
-            )
+            objectPathId => new ClientActionMethod(objectPathId, "DeleteLanguage", requestPayload.CreateParameter(lcid))
         );
         var objectPath4 = requestPayload.Add(
             objectPath2,

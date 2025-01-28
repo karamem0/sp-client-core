@@ -31,7 +31,7 @@ public class SaveImageCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
@@ -47,12 +47,7 @@ public class SaveImageCommandTests
             {
                 ["List"] = result1.ElementAt(0),
                 ["FileName"] = "TestFile1.png",
-                ["Content"] = new System.IO.MemoryStream(
-                    Convert.FromBase64String(
-                        "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMA" +
-                        "QObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII="
-                    )
-                )
+                ["Content"] = new System.IO.MemoryStream(Convert.FromBase64String(PSCmdletOptions.Instance.ImageFileBase64))
             }
         );
         var result3 = context.Runspace.InvokeCommand<File>(
@@ -84,7 +79,7 @@ public class SaveImageCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
@@ -108,12 +103,7 @@ public class SaveImageCommandTests
             {
                 ["ListItem"] = result2.ElementAt(0),
                 ["FileName"] = "TestFile1.png",
-                ["Content"] = new System.IO.MemoryStream(
-                    Convert.FromBase64String(
-                        "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMA" +
-                        "QObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII="
-                    )
-                )
+                ["Content"] = new System.IO.MemoryStream(Convert.FromBase64String(PSCmdletOptions.Instance.ImageFileBase64))
             }
         );
         var result4 = context.Runspace.InvokeCommand<File>(

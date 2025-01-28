@@ -19,11 +19,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITermLocalCustomPropertyService
 {
 
-    void AddObject(
-        Term termObject,
-        string propertyName,
-        string propertyValue
-    );
+    void AddObject(Term termObject, string propertyName, string propertyValue);
 
     void RemoveObject(Term termObject, string propertyName);
 
@@ -33,19 +29,13 @@ public class TermLocalCustomPropertyService(ClientContext clientContext)
     : ClientService(clientContext), ITermLocalCustomPropertyService
 {
 
-    public void AddObject(
-        Term termObject,
-        string propertyName,
-        string propertyValue
-    )
+    public void AddObject(Term termObject, string propertyName, string propertyValue)
     {
         _ = termObject ?? throw new ArgumentNullException(nameof(termObject));
         _ = propertyName ?? throw new ArgumentNullException(nameof(propertyName));
         _ = propertyValue ?? throw new ArgumentNullException(nameof(propertyValue));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(termObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             objectPath1,
             objectPathId => new ClientActionMethod(
@@ -63,9 +53,7 @@ public class TermLocalCustomPropertyService(ClientContext clientContext)
         _ = termObject ?? throw new ArgumentNullException(nameof(termObject));
         _ = propertyName ?? throw new ArgumentNullException(nameof(propertyName));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(termObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             objectPath1,
             objectPathId => new ClientActionMethod(

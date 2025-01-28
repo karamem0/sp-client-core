@@ -57,23 +57,16 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
     {
         _ = termObject ?? throw new ArgumentNullException(nameof(termObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(termObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
-                objectPath1.Id,
-                "Copy",
-                requestPayload.CreateParameter(copyChildren)
-            ),
+            new ObjectPathMethod(objectPath1.Id, "Copy", requestPayload.CreateParameter(copyChildren)),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(Term))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<Term>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -89,9 +82,7 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
         _ = termId ?? throw new ArgumentNullException(nameof(termId));
         _ = lcid ?? throw new ArgumentNullException(nameof(lcid));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(termSetItemObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termSetItemObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath1.Id,
@@ -106,8 +97,7 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
                 Query = new ClientQuery(true, typeof(Term))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<Term>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -115,9 +105,7 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
     {
         _ = termObject ?? throw new ArgumentNullException(nameof(termObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(termObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             objectPath1,
             objectPathId => new ClientActionMethod(
@@ -133,9 +121,7 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
     {
         _ = termLabelObject ?? throw new ArgumentNullException(nameof(termLabelObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(termLabelObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termLabelObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             new ObjectPathProperty(objectPath1.Id, "Term"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -144,8 +130,7 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
                 Query = new ClientQuery(true, typeof(Term))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<Term>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -154,26 +139,17 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
         _ = termSetItemObject ?? throw new ArgumentNullException(nameof(termSetItemObject));
         _ = termId ?? throw new ArgumentNullException(nameof(termId));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(termSetItemObject.ObjectIdentity)
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Terms")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termSetItemObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Terms"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(
-                objectPath2.Id,
-                "GetById",
-                requestPayload.CreateParameter(termId)
-            ),
+            new ObjectPathMethod(objectPath2.Id, "GetById", requestPayload.CreateParameter(termId)),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(Term))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<Term>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -182,26 +158,17 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
         _ = termSetItemObject ?? throw new ArgumentNullException(nameof(termSetItemObject));
         _ = termName ?? throw new ArgumentNullException(nameof(termName));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(termSetItemObject.ObjectIdentity)
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Terms")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termSetItemObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Terms"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(
-                objectPath2.Id,
-                "GetByName",
-                requestPayload.CreateParameter(termName)
-            ),
+            new ObjectPathMethod(objectPath2.Id, "GetByName", requestPayload.CreateParameter(termName)),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(TermSetItem))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<Term>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -209,9 +176,7 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
     {
         _ = termSetItemObject ?? throw new ArgumentNullException(nameof(termSetItemObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(termSetItemObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termSetItemObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             new ObjectPathProperty(objectPath1.Id, "Terms"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -221,8 +186,7 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
                 ChildItemQuery = new ClientQuery(true, typeof(Term))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<TermEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -231,9 +195,7 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
         _ = sourceTermObject ?? throw new ArgumentNullException(nameof(sourceTermObject));
         _ = destinationTermObject ?? throw new ArgumentNullException(nameof(destinationTermObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(sourceTermObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(sourceTermObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             objectPath1,
             objectPathId => new ClientActionMethod(
@@ -250,9 +212,7 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
         _ = termObject ?? throw new ArgumentNullException(nameof(termObject));
         _ = termSetItemObject ?? throw new ArgumentNullException(nameof(termSetItemObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(termObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             objectPath1,
             objectPathId => new ClientActionMethod(
@@ -269,16 +229,12 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
         _ = termObject ?? throw new ArgumentNullException(nameof(termObject));
         _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(termObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             objectPath1,
             requestPayload.CreateSetPropertyDelegates(termObject, modificationInfo).ToArray()
         );
-        var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "TermStore")
-        );
+        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "TermStore"));
         var objectPath4 = requestPayload.Add(
             objectPath3,
             objectPathId => new ClientActionMethod(objectPathId, "CommitAll")

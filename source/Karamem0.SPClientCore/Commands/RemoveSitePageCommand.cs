@@ -27,23 +27,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class RemoveSitePageCommand : ClientObjectCmdlet<ISitePageService, IListService, IFolderService>
 {
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet1"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
     public List List { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet1"
-    )]
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
     public string PageName { get; private set; }
 
     protected override void ProcessRecordCore()

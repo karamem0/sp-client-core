@@ -17,7 +17,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class ObjectPathCollection : IEnumerable<ObjectPath>
 {
 
-    private readonly Dictionary<long, ObjectPath> collection = new();
+    private readonly Dictionary<long, ObjectPath> collection = [];
 
     public ObjectPath this[long id] => this.collection[id];
 

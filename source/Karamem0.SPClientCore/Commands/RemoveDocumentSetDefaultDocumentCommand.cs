@@ -40,11 +40,7 @@ public class RemoveDocumentSetDefaultDocumentCommand : ClientObjectCmdlet<IDocum
     {
         if (this.ShouldProcess(this.FileName, VerbsCommon.Remove))
         {
-            this.Service.RemoveObject(
-                this.ContentType,
-                this.FileName,
-                this.PushChanges
-            );
+            this.Service.RemoveObject(this.ContentType, this.FileName, this.PushChanges);
         }
     }
 

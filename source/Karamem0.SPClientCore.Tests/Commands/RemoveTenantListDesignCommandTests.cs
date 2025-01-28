@@ -31,7 +31,7 @@ public class RemoveTenantListDesignCommandTests
                 ["Url"] = context.AppSettings["AdminUrl"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         var result1 = context.Runspace.InvokeCommand<TenantListDesign>(
@@ -43,7 +43,7 @@ public class RemoveTenantListDesignCommandTests
                 ["ListIcon"] = "CubeShape",
                 ["SiteScriptIds"] = new[]
                 {
-                    context.AppSettings["SiteScript1Id"]
+                    context.AppSettings["ListScript1Id"]
                 },
                 ["TemplateFeatures"] = null,
                 ["ThumbnailUrl"] = null,

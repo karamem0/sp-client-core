@@ -31,7 +31,7 @@ public class AddStorageEntityTests
                 ["Url"] = context.AppSettings["TenantAppCatalogUrl"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         _ = context.Runspace.InvokeCommand(

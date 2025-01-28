@@ -19,11 +19,13 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class ClientRequestParameterValue(ClientRequestValue value) : ClientRequestParameter
 {
 
-    public ClientRequestParameterValue() : this(ClientRequestValue.Create(null))
+    public ClientRequestParameterValue()
+        : this(ClientRequestValue.Create(null))
     {
     }
 
-    public ClientRequestParameterValue(object value) : this(ClientRequestValue.Create(value))
+    public ClientRequestParameterValue(object value)
+        : this(ClientRequestValue.Create(value))
     {
     }
 

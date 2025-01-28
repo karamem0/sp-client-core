@@ -31,7 +31,7 @@ public class SetColumnTextCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
@@ -63,9 +63,9 @@ public class SetColumnTextCommandTests
                 ["ClientValidationMessage"] = "ERROR",
                 ["CustomFormatter"] = /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }",
                 ["DefaultValue"] = "Test Value 0",
-                ["EnforceUniqueValues"] = true,
-                ["Direction"] = "none",
                 ["Description"] = "Test Column 0 Description",
+                ["Direction"] = "none",
+                ["EnforceUniqueValues"] = true,
                 ["Group"] = "Test Group 0",
                 ["Hidden"] = true,
                 ["Indexed"] = true,
@@ -112,7 +112,7 @@ public class SetColumnTextCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         var result1 = context.Runspace.InvokeCommand<ColumnText>(
@@ -136,9 +136,9 @@ public class SetColumnTextCommandTests
                 ["ClientValidationMessage"] = "ERROR",
                 ["CustomFormatter"] = /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }",
                 ["DefaultValue"] = "Test Value 0",
-                ["EnforceUniqueValues"] = true,
-                ["Direction"] = "none",
                 ["Description"] = "Test Column 0 Description",
+                ["Direction"] = "none",
+                ["EnforceUniqueValues"] = true,
                 ["Group"] = "Test Group 0",
                 ["Hidden"] = true,
                 ["Indexed"] = true,

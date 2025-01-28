@@ -20,7 +20,8 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services;
 public class ClientHttpMessageHandler : DelegatingHandler
 {
 
-    public ClientHttpMessageHandler() : base(new HttpClientHandler())
+    public ClientHttpMessageHandler()
+        : base(new HttpClientHandler())
     {
     }
 

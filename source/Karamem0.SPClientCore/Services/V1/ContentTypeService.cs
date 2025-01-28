@@ -49,15 +49,9 @@ public class ContentTypeService(ClientContext clientContext)
     {
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web")
-        );
-        var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "ContentTypes")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
+        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "ContentTypes"));
         var objectPath4 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath3.Id,
@@ -70,8 +64,7 @@ public class ContentTypeService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(ContentType))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<ContentType>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -100,8 +93,7 @@ public class ContentTypeService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(ContentType))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<ContentType>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -110,12 +102,8 @@ public class ContentTypeService(ClientContext clientContext)
         _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
         _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(listObject.ObjectIdentity)
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "ContentTypes")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "ContentTypes"));
         var objectPath3 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath2.Id,
@@ -128,8 +116,7 @@ public class ContentTypeService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(ContentType))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<ContentType>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -137,29 +124,18 @@ public class ContentTypeService(ClientContext clientContext)
     {
         _ = contentTypeId ?? throw new ArgumentNullException(nameof(contentTypeId));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web")
-        );
-        var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "ContentTypes")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
+        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "ContentTypes"));
         var objectPath4 = requestPayload.Add(
-            new ObjectPathMethod(
-                objectPath3.Id,
-                "GetById",
-                requestPayload.CreateParameter(contentTypeId)
-            ),
+            new ObjectPathMethod(objectPath3.Id, "GetById", requestPayload.CreateParameter(contentTypeId)),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(ContentType))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<ContentType>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -168,38 +144,25 @@ public class ContentTypeService(ClientContext clientContext)
         _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
         _ = contentTypeId ?? throw new ArgumentNullException(nameof(contentTypeId));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(listObject.ObjectIdentity)
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "ContentTypes")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "ContentTypes"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(
-                objectPath2.Id,
-                "GetById",
-                requestPayload.CreateParameter(contentTypeId)
-            ),
+            new ObjectPathMethod(objectPath2.Id, "GetById", requestPayload.CreateParameter(contentTypeId)),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(ContentType))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<ContentType>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
     public IEnumerable<ContentType> GetObjectEnumerable()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(
             new ObjectPathProperty(objectPath2.Id, "ContentTypes"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -209,8 +172,7 @@ public class ContentTypeService(ClientContext clientContext)
                 ChildItemQuery = new ClientQuery(true, typeof(ContentType))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<ContentTypeEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -218,9 +180,7 @@ public class ContentTypeService(ClientContext clientContext)
     {
         _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(listObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             new ObjectPathProperty(objectPath1.Id, "ContentTypes"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -230,8 +190,7 @@ public class ContentTypeService(ClientContext clientContext)
                 ChildItemQuery = new ClientQuery(true, typeof(ContentType))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<ContentTypeEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 

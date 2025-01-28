@@ -31,7 +31,7 @@ public class SetColumnMultiChoiceCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
@@ -67,8 +67,8 @@ public class SetColumnMultiChoiceCommandTests
                 },
                 ["CustomFormatter"] = /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }",
                 ["DefaultValue"] = "Test Value 1",
-                ["Direction"] = "none",
                 ["Description"] = "Test Column 0 Description",
+                ["Direction"] = "none",
                 ["FillInChoice"] = true,
                 ["Group"] = "Test Group 0",
                 ["Hidden"] = true,
@@ -112,7 +112,7 @@ public class SetColumnMultiChoiceCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         var result1 = context.Runspace.InvokeCommand<ColumnMultiChoice>(
@@ -140,8 +140,8 @@ public class SetColumnMultiChoiceCommandTests
                 },
                 ["CustomFormatter"] = /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }",
                 ["DefaultValue"] = "Test Value 1",
-                ["Direction"] = "none",
                 ["Description"] = "Test Column 0 Description",
+                ["Direction"] = "none",
                 ["FillInChoice"] = true,
                 ["Group"] = "Test Group 0",
                 ["Hidden"] = true,

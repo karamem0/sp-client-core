@@ -31,9 +31,7 @@ public class TermStoreService(ClientContext clientContext) : ClientService(clien
     public TermStore GetObject()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession"));
         var objectPath2 = requestPayload.Add(
             new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -42,8 +40,7 @@ public class TermStoreService(ClientContext clientContext) : ClientService(clien
                 Query = new ClientQuery(true, typeof(TermStore))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<TermStore>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -51,9 +48,7 @@ public class TermStoreService(ClientContext clientContext) : ClientService(clien
     {
         _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession"));
         var objectPath2 = requestPayload.Add(
             new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId)

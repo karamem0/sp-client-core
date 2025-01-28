@@ -69,9 +69,7 @@ public class TenantSiteCollectionService(ClientContext clientContext)
     {
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath1.Id,
@@ -84,8 +82,7 @@ public class TenantSiteCollectionService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(TenantOperationResult))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -106,8 +103,7 @@ public class TenantSiteCollectionService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(TenantSiteCollection))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantSiteCollection>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -115,9 +111,7 @@ public class TenantSiteCollectionService(ClientContext clientContext)
     {
         _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath1.Id,
@@ -131,8 +125,7 @@ public class TenantSiteCollectionService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(TenantSiteCollection))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantSiteCollection>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -171,9 +164,7 @@ public class TenantSiteCollectionService(ClientContext clientContext)
     public IEnumerable<TenantSiteCollection> GetObjectEnumerable()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath1.Id,
@@ -188,17 +179,14 @@ public class TenantSiteCollectionService(ClientContext clientContext)
                 ChildItemQuery = new ClientQuery(true, typeof(TenantSiteCollection))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantSiteCollectionEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
     public IEnumerable<TenantSiteCollection> GetObjectEnumerable(IReadOnlyDictionary<string, object> filterInfo)
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath1.Id,
@@ -212,8 +200,7 @@ public class TenantSiteCollectionService(ClientContext clientContext)
                 ChildItemQuery = new ClientQuery(true, typeof(TenantSiteCollection))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantSiteCollectionEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -237,8 +224,7 @@ public class TenantSiteCollectionService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(TenantOperationResult))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -252,9 +238,7 @@ public class TenantSiteCollectionService(ClientContext clientContext)
         _ = siteCollectionObject ?? throw new ArgumentNullException(nameof(siteCollectionObject));
         _ = siteCollectionObject.Url ?? throw new ArgumentNullException(nameof(siteCollectionObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath1.Id,
@@ -267,8 +251,7 @@ public class TenantSiteCollectionService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(TenantOperationResult))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -297,8 +280,7 @@ public class TenantSiteCollectionService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(TenantOperationResult))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -330,8 +312,7 @@ public class TenantSiteCollectionService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(TenantOperationResult))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
     }
 

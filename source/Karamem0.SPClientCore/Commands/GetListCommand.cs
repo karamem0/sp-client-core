@@ -55,32 +55,16 @@ public class GetListCommand : ClientObjectCmdlet<IListService>
     )]
     public Drive Drive { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet5"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet5")]
     public Guid ListId { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet6"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet6")]
     public Uri ListUrl { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet7"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet7")]
     public string ListTitle { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet8"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet8")]
     public LibraryType LibraryType { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet9")]

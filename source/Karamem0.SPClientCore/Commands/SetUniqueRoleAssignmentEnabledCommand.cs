@@ -22,40 +22,16 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class SetUniqueRoleAssignmentEnabledCommand : ClientObjectCmdlet<ISiteService, IRoleAssignmentService>
 {
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet1"
-    )]
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
     public SwitchParameter Site { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet3"
-    )]
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet4"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet3")]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet4")]
     public List List { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet5"
-    )]
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet6"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet5")]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet6")]
     public ListItem ListItem { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
@@ -99,11 +75,7 @@ public class SetUniqueRoleAssignmentEnabledCommand : ClientObjectCmdlet<ISiteSer
         if (this.ParameterSetName == "ParamSet3")
         {
             this.ValidateSwitchParameter(nameof(this.Enabled));
-            this.Service2.BreakObjectInheritance(
-                this.List,
-                this.CopyRoleAssignments,
-                this.ClearSubscopes
-            );
+            this.Service2.BreakObjectInheritance(this.List, this.CopyRoleAssignments, this.ClearSubscopes);
         }
         if (this.ParameterSetName == "ParamSet4")
         {
@@ -113,11 +85,7 @@ public class SetUniqueRoleAssignmentEnabledCommand : ClientObjectCmdlet<ISiteSer
         if (this.ParameterSetName == "ParamSet5")
         {
             this.ValidateSwitchParameter(nameof(this.Enabled));
-            this.Service2.BreakObjectInheritance(
-                this.ListItem,
-                this.CopyRoleAssignments,
-                this.ClearSubscopes
-            );
+            this.Service2.BreakObjectInheritance(this.ListItem, this.CopyRoleAssignments, this.ClearSubscopes);
         }
         if (this.ParameterSetName == "ParamSet6")
         {

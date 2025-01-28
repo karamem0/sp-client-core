@@ -31,7 +31,7 @@ public class SetColumnLookupCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
@@ -64,8 +64,8 @@ public class SetColumnLookupCommandTests
                 // { "ClientSideComponentId", null },
                 // { "ClientSideComponentProperties", null },
                 ["CustomFormatter"] = /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }",
-                ["Direction"] = "none",
                 ["Description"] = "Test Column 0 Description",
+                ["Direction"] = "none",
                 ["EnforceUniqueValues"] = false,
                 ["Group"] = "Test Group 0",
                 ["Hidden"] = true,
@@ -114,7 +114,7 @@ public class SetColumnLookupCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         var result1 = context.Runspace.InvokeCommand<ColumnLookup>(
@@ -139,8 +139,8 @@ public class SetColumnLookupCommandTests
                 // { "ClientSideComponentId", null },
                 // { "ClientSideComponentProperties", null },
                 ["CustomFormatter"] = /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }",
-                ["Direction"] = "none",
                 ["Description"] = "Test Column 0 Description",
+                ["Direction"] = "none",
                 ["EnforceUniqueValues"] = false,
                 ["Group"] = "Test Group 0",
                 ["Hidden"] = true,

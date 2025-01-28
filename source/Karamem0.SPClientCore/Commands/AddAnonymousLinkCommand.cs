@@ -52,13 +52,7 @@ public class AddAnonymousLinkCommand : ClientObjectCmdlet<ISharingLinkService>
         {
             if (this.Url.IsAbsoluteUri)
             {
-                this.Outputs.Add(
-                    this.Service.CreateAnonymousLink(
-                        this.Url,
-                        this.IsEditLink,
-                        this.Expiration
-                    )
-                );
+                this.Outputs.Add(this.Service.CreateAnonymousLink(this.Url, this.IsEditLink, this.Expiration));
             }
             else
             {

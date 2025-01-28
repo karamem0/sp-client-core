@@ -18,20 +18,19 @@ public static class JsonSerializerManager
 {
 
     private static readonly Lazy<JsonSerializer> instance = new(
-        () =>
-            JsonSerializer.Create(
-                new JsonSerializerSettings()
-                {
-                    Converters =
-                    [
-                        new JsonBase64BinaryConverter(),
-                        new JsonDateTimeConverter(),
-                        new JsonGuidConverter()
-                    ],
-                    MaxDepth = 128,
-                    NullValueHandling = NullValueHandling.Ignore
-                }
-            )
+        () => JsonSerializer.Create(
+            new JsonSerializerSettings()
+            {
+                Converters =
+                [
+                    new JsonBase64BinaryConverter(),
+                    new JsonDateTimeConverter(),
+                    new JsonGuidConverter()
+                ],
+                MaxDepth = 128,
+                NullValueHandling = NullValueHandling.Ignore
+            }
+        )
     );
 
     public static JsonSerializer Instance => instance.Value;

@@ -27,9 +27,7 @@ public class ListItem : SecurableObject
 
     [JsonIgnore()]
     public PSObject FieldValues => new(
-        this.ExtensionProperties
-            .Select(ClientResultValue.Create)
-            .ToDictionary(item => item.Key, item => item.Value)
+        this.ExtensionProperties.Select(ClientResultValue.Create).ToDictionary(item => item.Key, item => item.Value)
     );
 
     [JsonProperty()]

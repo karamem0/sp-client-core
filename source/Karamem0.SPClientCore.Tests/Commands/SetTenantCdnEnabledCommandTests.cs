@@ -30,7 +30,7 @@ public class SetTenantCdnEnabledCommandTests
                 ["Url"] = context.AppSettings["AdminUrl"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -54,7 +54,7 @@ public class SetTenantCdnEnabledCommandTests
                 ["Url"] = context.AppSettings["AdminUrl"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         _ = context.Runspace.InvokeCommand(

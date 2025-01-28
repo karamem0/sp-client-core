@@ -32,11 +32,7 @@ public interface IAttachmentFileService
 
     void RemoveObject(AttachmentFile attachmentFileObject);
 
-    void UploadObject(
-        ListItem listItemObject,
-        string attachmentFileName,
-        System.IO.Stream attachmentFileContent
-    );
+    void UploadObject(ListItem listItemObject, string attachmentFileName, System.IO.Stream attachmentFileContent);
 
 }
 
@@ -47,11 +43,10 @@ public class AttachmentFileService(ClientContext clientContext)
     public System.IO.Stream DownloadObject(AttachmentFile attachmentFileObject)
     {
         _ = attachmentFileObject ?? throw new ArgumentNullException(nameof(attachmentFileObject));
-        var requestUrl = this.ClientContext.BaseAddress
-            .ConcatPath(
-                "_api/web/getfilebyserverrelativeurl('{0}')/openbinarystream",
-                attachmentFileObject.ServerRelativeUrl
-            );
+        var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
+            "_api/web/getfilebyserverrelativeurl('{0}')/openbinarystream",
+            attachmentFileObject.ServerRelativeUrl
+        );
         return this.ClientContext.GetStream(requestUrl);
     }
 
@@ -60,26 +55,17 @@ public class AttachmentFileService(ClientContext clientContext)
         _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
         _ = attachmentFileName ?? throw new ArgumentNullException(nameof(attachmentFileName));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(listItemObject.ObjectIdentity)
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "AttachmentFiles")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listItemObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "AttachmentFiles"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(
-                objectPath2.Id,
-                "GetByFileName",
-                requestPayload.CreateParameter(attachmentFileName)
-            ),
+            new ObjectPathMethod(objectPath2.Id, "GetByFileName", requestPayload.CreateParameter(attachmentFileName)),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(AttachmentFile))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<AttachmentFile>(ClientRequestObject.CurrentId());
     }
 
@@ -87,9 +73,7 @@ public class AttachmentFileService(ClientContext clientContext)
     {
         _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(listItemObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listItemObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             new ObjectPathProperty(objectPath1.Id, "AttachmentFiles"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -99,8 +83,7 @@ public class AttachmentFileService(ClientContext clientContext)
                 ChildItemQuery = new ClientQuery(true, typeof(AttachmentFile))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<AttachmentFileEnumerable>(ClientRequestObject.CurrentId());
     }
 
@@ -115,19 +98,13 @@ public class AttachmentFileService(ClientContext clientContext)
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public void UploadObject(
-        ListItem listItemObject,
-        string attachmentFileName,
-        System.IO.Stream attachmentFileContent
-    )
+    public void UploadObject(ListItem listItemObject, string attachmentFileName, System.IO.Stream attachmentFileContent)
     {
         _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
         _ = attachmentFileName ?? throw new ArgumentNullException(nameof(attachmentFileName));
         _ = attachmentFileContent ?? throw new ArgumentNullException(nameof(attachmentFileContent));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(listItemObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listItemObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             new ObjectPathProperty(objectPath1.Id, "ParentList"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -136,16 +113,14 @@ public class AttachmentFileService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(List))
             }
         );
-        var listObject = this.ClientContext
-            .ProcessQuery(requestPayload)
+        var listObject = this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<List>(ClientRequestObject.CurrentId());
-        var requestUrl = this.ClientContext.BaseAddress
-            .ConcatPath(
-                "_api/web/lists('{0}')/items({1})/attachmentfiles/add(filename='{2}')",
-                listObject.Id,
-                listItemObject.Id,
-                attachmentFileName
-            );
+        var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
+            "_api/web/lists('{0}')/items({1})/attachmentfiles/add(filename='{2}')",
+            listObject.Id,
+            listItemObject.Id,
+            attachmentFileName
+        );
         this.ClientContext.PostStream(requestUrl, attachmentFileContent);
     }
 

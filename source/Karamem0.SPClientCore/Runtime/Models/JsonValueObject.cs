@@ -24,8 +24,7 @@ public abstract class JsonValueObject : ValueObject
     public virtual object this[string key] => this.ExtensionProperties[key];
 
     [JsonIgnore()]
-    public virtual IEnumerable<string> ExtensionKeys => this.ExtensionProperties
-        .Where(item => item.Value is not null)
+    public virtual IEnumerable<string> ExtensionKeys => this.ExtensionProperties.Where(item => item.Value is not null)
         .Select(ClientResultValue.Create)
         .Select(item => item.Key)
         .ToArray();
@@ -35,11 +34,10 @@ public abstract class JsonValueObject : ValueObject
 
     [JsonIgnore()]
     protected override Lazy<IReadOnlyCollection<PropertyInfo>> EqualityProperties => new(
-        () =>
-            this.GetType()
-                .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-                .Where(property => property.IsDefined(typeof(JsonPropertyAttribute), true))
-                .ToArray()
+        () => this.GetType()
+            .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+            .Where(property => property.IsDefined(typeof(JsonPropertyAttribute), true))
+            .ToArray()
     );
 
 }

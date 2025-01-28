@@ -45,18 +45,10 @@ public class GetUserPermissionCommand : ClientObjectCmdlet<ISiteService, IUserPe
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     public SwitchParameter Site { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
     public List List { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet3"
-    )]
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet3")]
     public ListItem ListItem { get; private set; }
 
     protected override void ProcessRecordCore()

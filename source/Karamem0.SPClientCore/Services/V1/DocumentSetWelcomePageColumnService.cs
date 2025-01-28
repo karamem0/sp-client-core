@@ -19,19 +19,11 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IDocumentSetWelcomePageColumnService
 {
 
-    void AddObject(
-        ContentType contentTypeObject,
-        Column columnObject,
-        bool pushChanges
-    );
+    void AddObject(ContentType contentTypeObject, Column columnObject, bool pushChanges);
 
     IEnumerable<Column> GetObjectEnumerable(ContentType contentTypeObject);
 
-    void RemoveObject(
-        ContentType contentTypeObject,
-        Column columnObject,
-        bool pushChanges
-    );
+    void RemoveObject(ContentType contentTypeObject, Column columnObject, bool pushChanges);
 
 }
 
@@ -39,21 +31,13 @@ public class DocumentSetWelcomePageColumnService(ClientContext clientContext)
     : ClientService(clientContext), IDocumentSetWelcomePageColumnService
 {
 
-    public void AddObject(
-        ContentType contentTypeObject,
-        Column columnObject,
-        bool pushChanges
-    )
+    public void AddObject(ContentType contentTypeObject, Column columnObject, bool pushChanges)
     {
         _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
         _ = columnObject ?? throw new ArgumentNullException(nameof(columnObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(contentTypeObject.ObjectIdentity)
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathIdentity(columnObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(new ObjectPathIdentity(columnObject.ObjectIdentity));
         var objectPath3 = requestPayload.Add(
             new ObjectPathStaticMethod(
                 typeof(DocumentSetTemplate),
@@ -61,9 +45,7 @@ public class DocumentSetWelcomePageColumnService(ClientContext clientContext)
                 new ClientRequestParameterObjectPath(objectPath1)
             )
         );
-        var objectPath4 = requestPayload.Add(
-            new ObjectPathProperty(objectPath3.Id, "WelcomePageFields")
-        );
+        var objectPath4 = requestPayload.Add(new ObjectPathProperty(objectPath3.Id, "WelcomePageFields"));
         var objectPath5 = requestPayload.Add(
             objectPath4,
             objectPathId => new ClientActionMethod(
@@ -74,11 +56,7 @@ public class DocumentSetWelcomePageColumnService(ClientContext clientContext)
         );
         var objectPath6 = requestPayload.Add(
             objectPath3,
-            objectPathId => new ClientActionMethod(
-                objectPathId,
-                "Update",
-                requestPayload.CreateParameter(pushChanges)
-            )
+            objectPathId => new ClientActionMethod(objectPathId, "Update", requestPayload.CreateParameter(pushChanges))
         );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
@@ -87,9 +65,7 @@ public class DocumentSetWelcomePageColumnService(ClientContext clientContext)
     {
         _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(contentTypeObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             new ObjectPathStaticMethod(
                 typeof(DocumentSetTemplate),
@@ -106,23 +82,16 @@ public class DocumentSetWelcomePageColumnService(ClientContext clientContext)
                 ChildItemQuery = new ClientQuery(true, typeof(Column))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<WelcomePageColumnEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public void RemoveObject(
-        ContentType contentTypeObject,
-        Column columnObject,
-        bool pushChanges
-    )
+    public void RemoveObject(ContentType contentTypeObject, Column columnObject, bool pushChanges)
     {
         _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
         _ = columnObject ?? throw new ArgumentNullException(nameof(columnObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(contentTypeObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             new ObjectPathStaticMethod(
                 typeof(DocumentSetTemplate),
@@ -130,9 +99,7 @@ public class DocumentSetWelcomePageColumnService(ClientContext clientContext)
                 new ClientRequestParameterObjectPath(objectPath1)
             )
         );
-        var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "WelcomePageFields")
-        );
+        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "WelcomePageFields"));
         var objectPath4 = requestPayload.Add(
             objectPath3,
             objectPathId => new ClientActionMethod(
@@ -143,11 +110,7 @@ public class DocumentSetWelcomePageColumnService(ClientContext clientContext)
         );
         var objectPath5 = requestPayload.Add(
             objectPath2,
-            objectPathId => new ClientActionMethod(
-                objectPathId,
-                "Update",
-                requestPayload.CreateParameter(pushChanges)
-            )
+            objectPathId => new ClientActionMethod(objectPathId, "Update", requestPayload.CreateParameter(pushChanges))
         );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }

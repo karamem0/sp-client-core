@@ -8,7 +8,7 @@ schema: 2.0.0
 # Set-KshTenant
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Updates the tenant properties.
 
 ## SYNTAX
 
@@ -47,11 +47,10 @@ Set-KshTenant [-AddressbarLinkPermission <RoleType>]
  [-EnableAzureAdB2BIntegration <Boolean>] [-EnableGuestSignInAcceleration <Boolean>]
  [-EnableMinimumVersionRequirement <Boolean>] [-EnableMipSiteLabel <Boolean>]
  [-EnablePromotedFileHandlers <Boolean>] [-EnableRestrictedAccessControl <Boolean>]
- [-EnableVersionExpirationSetting <Boolean>] [-ExcludedFileExtensionsForSyncClient <String[]>]
- [-ExternalServicesEnabled <Boolean>] [-ExternalUserExpirationRequired <Boolean>]
- [-ExternalUserExpireInDays <Int32>] [-FileAnonymousLinkType <AnonymousLinkType>]
- [-FilePickerExternalImageSearchEnabled <Boolean>] [-FolderAnonymousLinkType <AnonymousLinkType>]
- [-GuestSharingGroupAllowListInTenant <String>]
+ [-ExcludedFileExtensionsForSyncClient <String[]>] [-ExternalServicesEnabled <Boolean>]
+ [-ExternalUserExpirationRequired <Boolean>] [-ExternalUserExpireInDays <Int32>]
+ [-FileAnonymousLinkType <AnonymousLinkType>] [-FilePickerExternalImageSearchEnabled <Boolean>]
+ [-FolderAnonymousLinkType <AnonymousLinkType>] [-GuestSharingGroupAllowListInTenant <String>]
  [-GuestSharingGroupAllowListInTenantByPrincipalIdentity <String[]>]
  [-HasAdminCompletedCUConfiguration <Boolean>] [-HideDefaultThemes <Boolean>]
  [-HideSyncButtonOnDocLib <Boolean>] [-HideSyncButtonOnOneDrive <Boolean>]
@@ -61,9 +60,10 @@ Set-KshTenant [-AddressbarLinkPermission <RoleType>]
  [-IsAppBarTemporarilyDisabled <Boolean>] [-IsCollabMeetingNotesFluidEnabled <Boolean>]
  [-IsFluidEnabled <Boolean>] [-IsLoopEnabled <Boolean>] [-IsUnmanagedSyncClientForTenantRestricted <Boolean>]
  [-IsVivaHomeFlightEnabled <Boolean>] [-IsWhiteboardFluidEnabled <Boolean>]
- [-LabelMismatchEmailHelpLink <String>] [-LegacyAuthProtocolsEnabled <Boolean>]
- [-LimitedAccessFileType <LimitedAccessFileType>] [-MachineLearningCaptureEnabled <Boolean>]
- [-MajorVersionLimit <Int32>] [-MarkNewFilesSensitiveByDefault <SensitiveByDefaultState>]
+ [-LabelMismatchEmailHelpLink <String>] [-LegacyBrowserAuthProtocolsEnabled <Boolean>]
+ [-LegacyAuthProtocolsEnabled <Boolean>] [-LimitedAccessFileType <LimitedAccessFileType>]
+ [-MachineLearningCaptureEnabled <Boolean>] [-MajorVersionLimit <Int32>]
+ [-MarkNewFilesSensitiveByDefault <SensitiveByDefaultState>]
  [-MediaTranscription <MediaTranscriptionPolicyType>] [-MobileFriendlyUrlEnabledInTenant <Boolean>]
  [-NoAccessRedirectUrl <String>] [-NotificationsInOneDriveEnabled <Boolean>]
  [-NotificationsInSharePointEnabled <Boolean>] [-NotifyOwnersWhenInvitationsAccepted <Boolean>]
@@ -79,14 +79,18 @@ Set-KshTenant [-AddressbarLinkPermission <RoleType>]
  [-ProvisionSharedWithEveryoneFolder <Boolean>] [-ReduceTempTokenLifetimeEnabled <Boolean>]
  [-ReduceTempTokenLifetimeValue <Int32>] [-RequireAcceptingAccountMatchInvitedAccount <Boolean>]
  [-RequireAnonymousLinksExpireInDays <Int32>] [-SearchResolveExactEmailOrUpn <Boolean>]
+ [-SelfServiceSiteCreationDisabled <Boolean>] [-SharePointAddInsDisabled <Boolean>]
  [-SharingAllowedDomainList <String>] [-SharingBlockedDomainList <String>]
  [-SharingCapability <SharingCapabilities>] [-SharingDomainRestrictionMode <SharingDomainRestrictionMode>]
  [-ShowAllUsersClaim <Boolean>] [-ShowEveryoneClaim <Boolean>]
  [-ShowEveryoneExceptExternalUsersClaim <Boolean>] [-ShowPeoplePickerSuggestionsForGuestUsers <Boolean>]
  [-ShowPeoplePickerGroupSuggestionsForInformationBarriers <Boolean>] [-SignInAccelerationDomain <String>]
- [-SocialBarOnSitePagesDisabled <Boolean>] [-SpecialCharactersStateInFileFolderNames <SpecialCharactersState>]
- [-StartASiteFormUrl <String>] [-StopNew2010Workflows <Boolean>] [-StopNew2013Workflows <Boolean>]
- [-SyncPrivacyProfileProperties <Boolean>] [-UseFindPeopleInPeoplePicker <Boolean>]
+ [-SiteOwnerManageLegacyServicePrincipalEnabled <Boolean>] [-SocialBarOnSitePagesDisabled <Boolean>]
+ [-SpecialCharactersStateInFileFolderNames <SpecialCharactersState>] [-StartASiteFormUrl <String>]
+ [-StopNew2010Workflows <Boolean>] [-StopNew2013Workflows <Boolean>] [-SyncPrivacyProfileProperties <Boolean>]
+ [-TaxonomyTaggingEnabled <Boolean>] [-TaxonomyTaggingSiteListFileName <String>]
+ [-TranslationEnabled <Boolean>] [-TranslationSiteListFileName <String>]
+ [-UniversalAnnotationDisabled <Boolean>] [-UseFindPeopleInPeoplePicker <Boolean>]
  [-UsePersistentCookiesForExplorerView <Boolean>] [-ViewersCanCommentOnMediaDisabled <Boolean>]
  [-ViewInFileExplorerEnabled <Boolean>] [-WhoCanShareAllowListInTenant <String>]
  [-WhoCanShareAllowListInTenantByPrincipalIdentity <String[]>] [-Workflow2010Disabled <Boolean>] [-PassThru]
@@ -94,21 +98,21 @@ Set-KshTenant [-AddressbarLinkPermission <RoleType>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+The `Set-KshTenant` cmdlet updates the properties of the tenant.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Set-KshTenant -AllowEditing $true
 ```
 
-{{ Add example description here }}
+This example enables editing for the tenant.
 
 ## PARAMETERS
 
 ### -AddressbarLinkPermission
-{{ Fill AddressbarLinkPermission Description }}
+Specifies the permission level for links in the address bar.
 
 ```yaml
 Type: RoleType
@@ -124,7 +128,7 @@ Accept wildcard characters: False
 ```
 
 ### -AllowAnonymousMeetingParticipantsToAccessWhiteboards
-{{ Fill AllowAnonymousMeetingParticipantsToAccessWhiteboards Description }}
+Specifies whether anonymous meeting participants can access whiteboards.
 
 ```yaml
 Type: SharingState
@@ -140,7 +144,7 @@ Accept wildcard characters: False
 ```
 
 ### -AllowCommentsTextOnEmailEnabled
-{{ Fill AllowCommentsTextOnEmailEnabled Description }}
+Specifies whether comments text on email is enabled.
 
 ```yaml
 Type: Boolean
@@ -155,7 +159,7 @@ Accept wildcard characters: False
 ```
 
 ### -AllowDownloadingNonWebViewableFiles
-{{ Fill AllowDownloadingNonWebViewableFiles Description }}
+Specifies whether downloading non-web viewable files is allowed.
 
 ```yaml
 Type: Boolean
@@ -170,7 +174,7 @@ Accept wildcard characters: False
 ```
 
 ### -AllowEditing
-{{ Fill AllowEditing Description }}
+Specifies whether editing is allowed.
 
 ```yaml
 Type: Boolean
@@ -185,7 +189,7 @@ Accept wildcard characters: False
 ```
 
 ### -AllowEveryoneExceptExternalUsersClaimInPrivateSite
-{{ Fill AllowEveryoneExceptExternalUsersClaimInPrivateSite Description }}
+Specifies whether everyone except external users claim is allowed in private sites.
 
 ```yaml
 Type: Boolean
@@ -200,7 +204,7 @@ Accept wildcard characters: False
 ```
 
 ### -AllowGuestUserShareToUsersNotInSiteCollection
-{{ Fill AllowGuestUserShareToUsersNotInSiteCollection Description }}
+Specifies whether guest users can share to users not in the site collection.
 
 ```yaml
 Type: Boolean
@@ -215,7 +219,7 @@ Accept wildcard characters: False
 ```
 
 ### -AllowLimitedAccessOnUnmanagedDevices
-{{ Fill AllowLimitedAccessOnUnmanagedDevices Description }}
+Specifies whether limited access is allowed on unmanaged devices.
 
 ```yaml
 Type: Boolean
@@ -230,7 +234,7 @@ Accept wildcard characters: False
 ```
 
 ### -AllowOverrideForBlockUserInfoVisibility
-{{ Fill AllowOverrideForBlockUserInfoVisibility Description }}
+Specifies whether override for block user info visibility is allowed.
 
 ```yaml
 Type: Boolean
@@ -245,7 +249,7 @@ Accept wildcard characters: False
 ```
 
 ### -AllowedDomainListForSyncClient
-{{ Fill AllowedDomainListForSyncClient Description }}
+Specifies the list of allowed domains for the sync client.
 
 ```yaml
 Type: Guid[]
@@ -260,7 +264,7 @@ Accept wildcard characters: False
 ```
 
 ### -AnyoneLinkTrackUsers
-{{ Fill AnyoneLinkTrackUsers Description }}
+Specifies whether anyone link track users is enabled.
 
 ```yaml
 Type: Boolean
@@ -275,7 +279,7 @@ Accept wildcard characters: False
 ```
 
 ### -ApplyAppEnforcedRestrictionsToAdHocRecipients
-{{ Fill ApplyAppEnforcedRestrictionsToAdHocRecipients Description }}
+Specifies whether app enforced restrictions apply to ad hoc recipients.
 
 ```yaml
 Type: Boolean
@@ -290,7 +294,7 @@ Accept wildcard characters: False
 ```
 
 ### -AuthenticationContextResilienceMode
-{{ Fill AuthenticationContextResilienceMode Description }}
+Specifies the resilience mode for authentication context.
 
 ```yaml
 Type: ResilienceMode
@@ -306,7 +310,7 @@ Accept wildcard characters: False
 ```
 
 ### -BccExternalSharingInvitations
-{{ Fill BccExternalSharingInvitations Description }}
+Specifies whether BCC is enabled for external sharing invitations.
 
 ```yaml
 Type: Boolean
@@ -321,7 +325,7 @@ Accept wildcard characters: False
 ```
 
 ### -BccExternalSharingInvitationsList
-{{ Fill BccExternalSharingInvitationsList Description }}
+Specifies the list of email addresses to BCC for external sharing invitations.
 
 ```yaml
 Type: String
@@ -336,7 +340,7 @@ Accept wildcard characters: False
 ```
 
 ### -BlockAccessOnUnmanagedDevices
-{{ Fill BlockAccessOnUnmanagedDevices Description }}
+Specifies whether access is blocked on unmanaged devices.
 
 ```yaml
 Type: Boolean
@@ -351,7 +355,7 @@ Accept wildcard characters: False
 ```
 
 ### -BlockDownloadLinksFileType
-{{ Fill BlockDownloadLinksFileType Description }}
+Specifies the file types for which download links are blocked.
 
 ```yaml
 Type: BlockDownloadLinksFileType
@@ -367,7 +371,7 @@ Accept wildcard characters: False
 ```
 
 ### -BlockMacSync
-{{ Fill BlockMacSync Description }}
+Specifies whether Mac sync is blocked.
 
 ```yaml
 Type: Boolean
@@ -382,7 +386,7 @@ Accept wildcard characters: False
 ```
 
 ### -BlockSendLabelMismatchEmail
-{{ Fill BlockSendLabelMismatchEmail Description }}
+Specifies whether sending label mismatch emails is blocked.
 
 ```yaml
 Type: Boolean
@@ -397,7 +401,7 @@ Accept wildcard characters: False
 ```
 
 ### -BlockUserInfoVisibility
-{{ Fill BlockUserInfoVisibility Description }}
+Specifies the user info visibility settings.
 
 ```yaml
 Type: String
@@ -412,7 +416,7 @@ Accept wildcard characters: False
 ```
 
 ### -BlockUserInfoVisibilityInOneDrive
-{{ Fill BlockUserInfoVisibilityInOneDrive Description }}
+Specifies the user info visibility settings in OneDrive.
 
 ```yaml
 Type: TenantBrowseUserInfoPolicyType
@@ -428,7 +432,7 @@ Accept wildcard characters: False
 ```
 
 ### -BlockUserInfoVisibilityInSharePoint
-{{ Fill BlockUserInfoVisibilityInSharePoint Description }}
+Specifies the user info visibility settings in SharePoint.
 
 ```yaml
 Type: TenantBrowseUserInfoPolicyType
@@ -444,7 +448,7 @@ Accept wildcard characters: False
 ```
 
 ### -CommentsOnFilesDisabled
-{{ Fill CommentsOnFilesDisabled Description }}
+Specifies whether comments on files are disabled.
 
 ```yaml
 Type: Boolean
@@ -459,7 +463,7 @@ Accept wildcard characters: False
 ```
 
 ### -CommentsOnListItemsDisabled
-{{ Fill CommentsOnListItemsDisabled Description }}
+Specifies whether comments on list items are disabled.
 
 ```yaml
 Type: Boolean
@@ -474,7 +478,7 @@ Accept wildcard characters: False
 ```
 
 ### -CommentsOnSitePagesDisabled
-{{ Fill CommentsOnSitePagesDisabled Description }}
+Specifies whether comments on site pages are disabled.
 
 ```yaml
 Type: Boolean
@@ -489,7 +493,7 @@ Accept wildcard characters: False
 ```
 
 ### -CompatibilityRange
-{{ Fill CompatibilityRange Description }}
+Specifies the compatibility range.
 
 ```yaml
 Type: String
@@ -504,7 +508,7 @@ Accept wildcard characters: False
 ```
 
 ### -ConditionalAccessPolicy
-{{ Fill ConditionalAccessPolicy Description }}
+Specifies the conditional access policy.
 
 ```yaml
 Type: ConditionalAccessPolicyType
@@ -520,7 +524,7 @@ Accept wildcard characters: False
 ```
 
 ### -ConditionalAccessPolicyErrorHelpLink
-{{ Fill ConditionalAccessPolicyErrorHelpLink Description }}
+Specifies the help link for conditional access policy errors.
 
 ```yaml
 Type: String
@@ -535,7 +539,7 @@ Accept wildcard characters: False
 ```
 
 ### -ContentTypeSyncSiteTemplatesList
-{{ Fill ContentTypeSyncSiteTemplatesList Description }}
+Specifies the list of site templates for content type sync.
 
 ```yaml
 Type: String[]
@@ -550,7 +554,7 @@ Accept wildcard characters: False
 ```
 
 ### -CoreLoopDefaultSharingLinkRole
-{{ Fill CoreLoopDefaultSharingLinkRole Description }}
+Specifies the default sharing link role for Core Loop.
 
 ```yaml
 Type: RoleType
@@ -566,7 +570,7 @@ Accept wildcard characters: False
 ```
 
 ### -CoreLoopDefaultSharingLinkScope
-{{ Fill CoreLoopDefaultSharingLinkScope Description }}
+Specifies the default sharing link scope for Core Loop.
 
 ```yaml
 Type: SharingScope
@@ -582,7 +586,7 @@ Accept wildcard characters: False
 ```
 
 ### -CoreLoopSharingCapability
-{{ Fill CoreLoopSharingCapability Description }}
+Specifies the sharing capability for Core Loop.
 
 ```yaml
 Type: SharingCapabilities
@@ -598,7 +602,7 @@ Accept wildcard characters: False
 ```
 
 ### -CoreRequestFilesLinkEnabled
-{{ Fill CoreRequestFilesLinkEnabled Description }}
+Specifies whether request files link is enabled for Core.
 
 ```yaml
 Type: Boolean
@@ -613,7 +617,7 @@ Accept wildcard characters: False
 ```
 
 ### -CoreRequestFilesLinkExpirationInDays
-{{ Fill CoreRequestFilesLinkExpirationInDays Description }}
+Specifies the expiration in days for request files link in Core.
 
 ```yaml
 Type: Int32
@@ -628,7 +632,7 @@ Accept wildcard characters: False
 ```
 
 ### -CoreSharingCapability
-{{ Fill CoreSharingCapability Description }}
+Specifies the sharing capability for Core.
 
 ```yaml
 Type: SharingCapabilities
@@ -644,7 +648,7 @@ Accept wildcard characters: False
 ```
 
 ### -CustomizedExternalSharingServiceUrl
-{{ Fill CustomizedExternalSharingServiceUrl Description }}
+Specifies the customized external sharing service URL.
 
 ```yaml
 Type: String
@@ -659,7 +663,7 @@ Accept wildcard characters: False
 ```
 
 ### -DefaultContentCenterSite
-{{ Fill DefaultContentCenterSite Description }}
+Specifies the default content center site.
 
 ```yaml
 Type: SiteInfoForSitePicker
@@ -674,7 +678,7 @@ Accept wildcard characters: False
 ```
 
 ### -DefaultLinkPermission
-{{ Fill DefaultLinkPermission Description }}
+Specifies the default link permission.
 
 ```yaml
 Type: SharingPermissionType
@@ -690,7 +694,7 @@ Accept wildcard characters: False
 ```
 
 ### -DefaultOneDriveMode
-{{ Fill DefaultOneDriveMode Description }}
+Specifies the default OneDrive mode.
 
 ```yaml
 Type: String
@@ -705,7 +709,7 @@ Accept wildcard characters: False
 ```
 
 ### -DefaultSharingLinkType
-{{ Fill DefaultSharingLinkType Description }}
+Specifies the default sharing link type.
 
 ```yaml
 Type: SharingLinkType
@@ -721,7 +725,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisableAddToOneDrive
-{{ Fill DisableAddToOneDrive Description }}
+Specifies whether Add to OneDrive is disabled.
 
 ```yaml
 Type: Boolean
@@ -736,7 +740,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisableBackToClassic
-{{ Fill DisableBackToClassic Description }}
+Specifies whether Back to Classic is disabled.
 
 ```yaml
 Type: Boolean
@@ -751,7 +755,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisableCustomAppAuthentication
-{{ Fill DisableCustomAppAuthentication Description }}
+Specifies whether custom app authentication is disabled.
 
 ```yaml
 Type: Boolean
@@ -766,7 +770,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisableOutlookPSTVersionTrimming
-{{ Fill DisableOutlookPSTVersionTrimming Description }}
+Specifies whether Outlook PST version trimming is disabled.
 
 ```yaml
 Type: Boolean
@@ -781,7 +785,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisablePersonalListCreation
-{{ Fill DisablePersonalListCreation Description }}
+Specifies whether personal list creation is disabled.
 
 ```yaml
 Type: Boolean
@@ -796,7 +800,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisableReportProblemDialog
-{{ Fill DisableReportProblemDialog Description }}
+Specifies whether the report problem dialog is disabled.
 
 ```yaml
 Type: Boolean
@@ -811,7 +815,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisableSpacesActivation
-{{ Fill DisableSpacesActivation Description }}
+Specifies whether Spaces activation is disabled.
 
 ```yaml
 Type: Boolean
@@ -826,7 +830,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisabledModernListTemplateIds
-{{ Fill DisabledModernListTemplateIds Description }}
+Specifies the list of disabled modern list template IDs.
 
 ```yaml
 Type: Guid[]
@@ -841,7 +845,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisabledWebPartIds
-{{ Fill DisabledWebPartIds Description }}
+Specifies the list of disabled web part IDs.
 
 ```yaml
 Type: Guid[]
@@ -856,7 +860,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisallowInfectedFileDownload
-{{ Fill DisallowInfectedFileDownload Description }}
+Specifies whether infected file download is disallowed.
 
 ```yaml
 Type: Boolean
@@ -871,7 +875,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayNamesOfFileViewers
-{{ Fill DisplayNamesOfFileViewers Description }}
+Specifies whether the display names of file viewers are shown.
 
 ```yaml
 Type: Boolean
@@ -886,7 +890,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayNamesOfFileViewersInSharePoint
-{{ Fill DisplayNamesOfFileViewersInSharePoint Description }}
+Specifies whether the display names of file viewers in SharePoint are shown.
 
 ```yaml
 Type: Boolean
@@ -901,7 +905,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisplayStartASiteOption
-{{ Fill DisplayStartASiteOption Description }}
+Specifies whether the Start a Site option is displayed.
 
 ```yaml
 Type: Boolean
@@ -916,7 +920,7 @@ Accept wildcard characters: False
 ```
 
 ### -EmailAttestationEnabled
-{{ Fill EmailAttestationEnabled Description }}
+Specifies whether email attestation is enabled.
 
 ```yaml
 Type: Boolean
@@ -931,7 +935,7 @@ Accept wildcard characters: False
 ```
 
 ### -EmailAttestationReAuthDays
-{{ Fill EmailAttestationReAuthDays Description }}
+Specifies the re-authentication days for email attestation.
 
 ```yaml
 Type: Int32
@@ -946,7 +950,7 @@ Accept wildcard characters: False
 ```
 
 ### -EmailAttestationRequired
-{{ Fill EmailAttestationRequired Description }}
+Specifies whether email attestation is required.
 
 ```yaml
 Type: Boolean
@@ -961,7 +965,7 @@ Accept wildcard characters: False
 ```
 
 ### -EnableAIPIntegration
-{{ Fill EnableAIPIntegration Description }}
+Specifies whether AIP integration is enabled.
 
 ```yaml
 Type: Boolean
@@ -976,7 +980,7 @@ Accept wildcard characters: False
 ```
 
 ### -EnableAutoNewsDigest
-{{ Fill EnableAutoNewsDigest Description }}
+Specifies whether auto news digest is enabled.
 
 ```yaml
 Type: Boolean
@@ -991,7 +995,7 @@ Accept wildcard characters: False
 ```
 
 ### -EnableAzureAdB2BIntegration
-{{ Fill EnableAzureAdB2BIntegration Description }}
+Specifies whether Azure AD B2B integration is enabled.
 
 ```yaml
 Type: Boolean
@@ -1006,7 +1010,7 @@ Accept wildcard characters: False
 ```
 
 ### -EnableGuestSignInAcceleration
-{{ Fill EnableGuestSignInAcceleration Description }}
+Specifies whether guest sign-in acceleration is enabled.
 
 ```yaml
 Type: Boolean
@@ -1021,7 +1025,7 @@ Accept wildcard characters: False
 ```
 
 ### -EnableMinimumVersionRequirement
-{{ Fill EnableMinimumVersionRequirement Description }}
+Specifies whether minimum version requirement is enabled.
 
 ```yaml
 Type: Boolean
@@ -1036,7 +1040,7 @@ Accept wildcard characters: False
 ```
 
 ### -EnableMipSiteLabel
-{{ Fill EnableMipSiteLabel Description }}
+Specifies whether MIP site label is enabled.
 
 ```yaml
 Type: Boolean
@@ -1051,7 +1055,7 @@ Accept wildcard characters: False
 ```
 
 ### -EnablePromotedFileHandlers
-{{ Fill EnablePromotedFileHandlers Description }}
+Specifies whether promoted file handlers are enabled.
 
 ```yaml
 Type: Boolean
@@ -1066,22 +1070,7 @@ Accept wildcard characters: False
 ```
 
 ### -EnableRestrictedAccessControl
-{{ Fill EnableRestrictedAccessControl Description }}
-
-```yaml
-Type: Boolean
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -EnableVersionExpirationSetting
-{{ Fill EnableVersionExpirationSetting Description }}
+Specifies whether restricted access control is enabled.
 
 ```yaml
 Type: Boolean
@@ -1096,7 +1085,7 @@ Accept wildcard characters: False
 ```
 
 ### -ExcludedFileExtensionsForSyncClient
-{{ Fill ExcludedFileExtensionsForSyncClient Description }}
+Specifies the list of excluded file extensions for the sync client.
 
 ```yaml
 Type: String[]
@@ -1111,7 +1100,7 @@ Accept wildcard characters: False
 ```
 
 ### -ExternalServicesEnabled
-{{ Fill ExternalServicesEnabled Description }}
+Specifies whether external services are enabled.
 
 ```yaml
 Type: Boolean
@@ -1126,7 +1115,7 @@ Accept wildcard characters: False
 ```
 
 ### -ExternalUserExpirationRequired
-{{ Fill ExternalUserExpirationRequired Description }}
+Specifies whether external user expiration is required.
 
 ```yaml
 Type: Boolean
@@ -1141,7 +1130,7 @@ Accept wildcard characters: False
 ```
 
 ### -ExternalUserExpireInDays
-{{ Fill ExternalUserExpireInDays Description }}
+Specifies the expiration in days for external users.
 
 ```yaml
 Type: Int32
@@ -1156,7 +1145,7 @@ Accept wildcard characters: False
 ```
 
 ### -FileAnonymousLinkType
-{{ Fill FileAnonymousLinkType Description }}
+Specifies the anonymous link type for files.
 
 ```yaml
 Type: AnonymousLinkType
@@ -1172,7 +1161,7 @@ Accept wildcard characters: False
 ```
 
 ### -FilePickerExternalImageSearchEnabled
-{{ Fill FilePickerExternalImageSearchEnabled Description }}
+Specifies whether external image search in file picker is enabled.
 
 ```yaml
 Type: Boolean
@@ -1187,7 +1176,7 @@ Accept wildcard characters: False
 ```
 
 ### -FolderAnonymousLinkType
-{{ Fill FolderAnonymousLinkType Description }}
+Specifies the anonymous link type for folders.
 
 ```yaml
 Type: AnonymousLinkType
@@ -1203,7 +1192,7 @@ Accept wildcard characters: False
 ```
 
 ### -GuestSharingGroupAllowListInTenant
-{{ Fill GuestSharingGroupAllowListInTenant Description }}
+Specifies the guest sharing group allow list in the tenant.
 
 ```yaml
 Type: String
@@ -1218,7 +1207,7 @@ Accept wildcard characters: False
 ```
 
 ### -GuestSharingGroupAllowListInTenantByPrincipalIdentity
-{{ Fill GuestSharingGroupAllowListInTenantByPrincipalIdentity Description }}
+Specifies the guest sharing group allow list in the tenant by principal identity.
 
 ```yaml
 Type: String[]
@@ -1233,7 +1222,7 @@ Accept wildcard characters: False
 ```
 
 ### -HasAdminCompletedCUConfiguration
-{{ Fill HasAdminCompletedCUConfiguration Description }}
+Specifies whether the admin has completed CU configuration.
 
 ```yaml
 Type: Boolean
@@ -1248,7 +1237,7 @@ Accept wildcard characters: False
 ```
 
 ### -HideDefaultThemes
-{{ Fill HideDefaultThemes Description }}
+Specifies whether default themes are hidden.
 
 ```yaml
 Type: Boolean
@@ -1263,7 +1252,7 @@ Accept wildcard characters: False
 ```
 
 ### -HideSyncButtonOnDocLib
-{{ Fill HideSyncButtonOnDocLib Description }}
+Specifies whether the sync button on document libraries is hidden.
 
 ```yaml
 Type: Boolean
@@ -1278,7 +1267,7 @@ Accept wildcard characters: False
 ```
 
 ### -HideSyncButtonOnOneDrive
-{{ Fill HideSyncButtonOnOneDrive Description }}
+Specifies whether the sync button on OneDrive is hidden.
 
 ```yaml
 Type: Boolean
@@ -1293,7 +1282,7 @@ Accept wildcard characters: False
 ```
 
 ### -IPAddressAllowList
-{{ Fill IPAddressAllowList Description }}
+Specifies the IP address allow list.
 
 ```yaml
 Type: String
@@ -1308,7 +1297,7 @@ Accept wildcard characters: False
 ```
 
 ### -IPAddressEnforcement
-{{ Fill IPAddressEnforcement Description }}
+Specifies whether IP address enforcement is enabled.
 
 ```yaml
 Type: Boolean
@@ -1323,7 +1312,7 @@ Accept wildcard characters: False
 ```
 
 ### -IPAddressWacTokenLifetime
-{{ Fill IPAddressWacTokenLifetime Description }}
+Specifies the WAC token lifetime for IP addresses.
 
 ```yaml
 Type: Int32
@@ -1338,7 +1327,7 @@ Accept wildcard characters: False
 ```
 
 ### -ImageTaggingOption
-{{ Fill ImageTaggingOption Description }}
+Specifies the image tagging option.
 
 ```yaml
 Type: ImageTaggingChoice
@@ -1354,7 +1343,7 @@ Accept wildcard characters: False
 ```
 
 ### -IncludeAtAGlanceInShareEmails
-{{ Fill IncludeAtAGlanceInShareEmails Description }}
+Specifies whether to include "At a Glance" in share emails.
 
 ```yaml
 Type: Boolean
@@ -1369,7 +1358,7 @@ Accept wildcard characters: False
 ```
 
 ### -InformationBarriersImplicitGroupBased
-{{ Fill InformationBarriersImplicitGroupBased Description }}
+Specifies whether information barriers implicit group-based is enabled.
 
 ```yaml
 Type: Boolean
@@ -1384,7 +1373,7 @@ Accept wildcard characters: False
 ```
 
 ### -InformationBarriersSuspension
-{{ Fill InformationBarriersSuspension Description }}
+Specifies whether information barriers suspension is enabled.
 
 ```yaml
 Type: Boolean
@@ -1399,7 +1388,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsAppBarTemporarilyDisabled
-{{ Fill IsAppBarTemporarilyDisabled Description }}
+Specifies whether the app bar is temporarily disabled.
 
 ```yaml
 Type: Boolean
@@ -1414,7 +1403,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsCollabMeetingNotesFluidEnabled
-{{ Fill IsCollabMeetingNotesFluidEnabled Description }}
+Specifies whether collaboration meeting notes fluid is enabled.
 
 ```yaml
 Type: Boolean
@@ -1429,7 +1418,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsFluidEnabled
-{{ Fill IsFluidEnabled Description }}
+Specifies whether fluid is enabled.
 
 ```yaml
 Type: Boolean
@@ -1444,7 +1433,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsLoopEnabled
-{{ Fill IsLoopEnabled Description }}
+Specifies whether Loop is enabled.
 
 ```yaml
 Type: Boolean
@@ -1459,7 +1448,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsUnmanagedSyncClientForTenantRestricted
-{{ Fill IsUnmanagedSyncClientForTenantRestricted Description }}
+Specifies whether unmanaged sync client for tenant is restricted.
 
 ```yaml
 Type: Boolean
@@ -1474,7 +1463,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsVivaHomeFlightEnabled
-{{ Fill IsVivaHomeFlightEnabled Description }}
+Specifies whether Viva Home flight is enabled.
 
 ```yaml
 Type: Boolean
@@ -1489,7 +1478,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsWhiteboardFluidEnabled
-{{ Fill IsWhiteboardFluidEnabled Description }}
+Specifies whether whiteboard fluid is enabled.
 
 ```yaml
 Type: Boolean
@@ -1504,7 +1493,7 @@ Accept wildcard characters: False
 ```
 
 ### -LabelMismatchEmailHelpLink
-{{ Fill LabelMismatchEmailHelpLink Description }}
+Specifies the help link for label mismatch emails.
 
 ```yaml
 Type: String
@@ -1519,7 +1508,22 @@ Accept wildcard characters: False
 ```
 
 ### -LegacyAuthProtocolsEnabled
-{{ Fill LegacyAuthProtocolsEnabled Description }}
+Specifies whether legacy auth protocols are enabled.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -LegacyBrowserAuthProtocolsEnabled
+Specifies whether legacy browser auth protocols are enabled.
 
 ```yaml
 Type: Boolean
@@ -1534,7 +1538,7 @@ Accept wildcard characters: False
 ```
 
 ### -LimitedAccessFileType
-{{ Fill LimitedAccessFileType Description }}
+Specifies the limited access file type.
 
 ```yaml
 Type: LimitedAccessFileType
@@ -1550,7 +1554,7 @@ Accept wildcard characters: False
 ```
 
 ### -MachineLearningCaptureEnabled
-{{ Fill MachineLearningCaptureEnabled Description }}
+Specifies whether machine learning capture is enabled.
 
 ```yaml
 Type: Boolean
@@ -1565,7 +1569,7 @@ Accept wildcard characters: False
 ```
 
 ### -MajorVersionLimit
-{{ Fill MajorVersionLimit Description }}
+Specifies the major version limit.
 
 ```yaml
 Type: Int32
@@ -1580,7 +1584,7 @@ Accept wildcard characters: False
 ```
 
 ### -MarkNewFilesSensitiveByDefault
-{{ Fill MarkNewFilesSensitiveByDefault Description }}
+Specifies whether new files are marked sensitive by default.
 
 ```yaml
 Type: SensitiveByDefaultState
@@ -1596,7 +1600,7 @@ Accept wildcard characters: False
 ```
 
 ### -MediaTranscription
-{{ Fill MediaTranscription Description }}
+Specifies the media transcription policy.
 
 ```yaml
 Type: MediaTranscriptionPolicyType
@@ -1612,7 +1616,7 @@ Accept wildcard characters: False
 ```
 
 ### -MobileFriendlyUrlEnabledInTenant
-{{ Fill MobileFriendlyUrlEnabledInTenant Description }}
+Specifies whether mobile-friendly URL is enabled in the tenant.
 
 ```yaml
 Type: Boolean
@@ -1627,7 +1631,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoAccessRedirectUrl
-{{ Fill NoAccessRedirectUrl Description }}
+Specifies the no access redirect URL.
 
 ```yaml
 Type: String
@@ -1642,7 +1646,7 @@ Accept wildcard characters: False
 ```
 
 ### -NotificationsInOneDriveEnabled
-{{ Fill NotificationsInOneDriveEnabled Description }}
+Specifies whether notifications in OneDrive are enabled.
 
 ```yaml
 Type: Boolean
@@ -1657,7 +1661,7 @@ Accept wildcard characters: False
 ```
 
 ### -NotificationsInSharePointEnabled
-{{ Fill NotificationsInSharePointEnabled Description }}
+Specifies whether notifications in SharePoint are enabled.
 
 ```yaml
 Type: Boolean
@@ -1672,7 +1676,7 @@ Accept wildcard characters: False
 ```
 
 ### -NotifyOwnersWhenInvitationsAccepted
-{{ Fill NotifyOwnersWhenInvitationsAccepted Description }}
+Specifies whether owners are notified when invitations are accepted.
 
 ```yaml
 Type: Boolean
@@ -1687,7 +1691,7 @@ Accept wildcard characters: False
 ```
 
 ### -NotifyOwnersWhenItemsReshared
-{{ Fill NotifyOwnersWhenItemsReshared Description }}
+Specifies whether owners are notified when items are reshared.
 
 ```yaml
 Type: Boolean
@@ -1702,7 +1706,7 @@ Accept wildcard characters: False
 ```
 
 ### -OfficeClientAdalDisabled
-{{ Fill OfficeClientAdalDisabled Description }}
+Specifies whether Office client ADAL is disabled.
 
 ```yaml
 Type: Boolean
@@ -1717,7 +1721,7 @@ Accept wildcard characters: False
 ```
 
 ### -OneDriveAccessRequests
-{{ Fill OneDriveAccessRequests Description }}
+Specifies the access requests settings for OneDrive.
 
 ```yaml
 Type: SharingState
@@ -1733,7 +1737,7 @@ Accept wildcard characters: False
 ```
 
 ### -OneDriveForGuestsEnabled
-{{ Fill OneDriveForGuestsEnabled Description }}
+Specifies whether OneDrive for guests is enabled.
 
 ```yaml
 Type: Boolean
@@ -1748,7 +1752,7 @@ Accept wildcard characters: False
 ```
 
 ### -OneDriveLoopDefaultSharingLinkRole
-{{ Fill OneDriveLoopDefaultSharingLinkRole Description }}
+Specifies the default sharing link role for OneDrive Loop.
 
 ```yaml
 Type: RoleType
@@ -1764,7 +1768,7 @@ Accept wildcard characters: False
 ```
 
 ### -OneDriveLoopDefaultSharingLinkScope
-{{ Fill OneDriveLoopDefaultSharingLinkScope Description }}
+Specifies the default sharing link scope for OneDrive Loop.
 
 ```yaml
 Type: SharingScope
@@ -1780,7 +1784,7 @@ Accept wildcard characters: False
 ```
 
 ### -OneDriveLoopSharingCapability
-{{ Fill OneDriveLoopSharingCapability Description }}
+Specifies the sharing capability for OneDrive Loop.
 
 ```yaml
 Type: SharingCapabilities
@@ -1796,7 +1800,7 @@ Accept wildcard characters: False
 ```
 
 ### -OneDriveMembersCanShare
-{{ Fill OneDriveMembersCanShare Description }}
+Specifies whether OneDrive members can share.
 
 ```yaml
 Type: SharingState
@@ -1812,7 +1816,7 @@ Accept wildcard characters: False
 ```
 
 ### -OneDriveRequestFilesLinkEnabled
-{{ Fill OneDriveRequestFilesLinkEnabled Description }}
+Specifies whether request files link is enabled for OneDrive.
 
 ```yaml
 Type: Boolean
@@ -1827,7 +1831,7 @@ Accept wildcard characters: False
 ```
 
 ### -OneDriveRequestFilesLinkExpirationInDays
-{{ Fill OneDriveRequestFilesLinkExpirationInDays Description }}
+Specifies the expiration in days for request files link in OneDrive.
 
 ```yaml
 Type: Int32
@@ -1842,7 +1846,7 @@ Accept wildcard characters: False
 ```
 
 ### -OneDriveSharingCapability
-{{ Fill OneDriveSharingCapability Description }}
+Specifies the sharing capability for OneDrive.
 
 ```yaml
 Type: SharingCapabilities
@@ -1858,7 +1862,7 @@ Accept wildcard characters: False
 ```
 
 ### -OneDriveStorageQuota
-{{ Fill OneDriveStorageQuota Description }}
+Specifies the storage quota for OneDrive.
 
 ```yaml
 Type: Int64
@@ -1873,7 +1877,7 @@ Accept wildcard characters: False
 ```
 
 ### -OptOutOfGrooveBlock
-{{ Fill OptOutOfGrooveBlock Description }}
+Specifies whether to opt out of Groove block.
 
 ```yaml
 Type: Boolean
@@ -1888,7 +1892,7 @@ Accept wildcard characters: False
 ```
 
 ### -OptOutOfGrooveSoftBlock
-{{ Fill OptOutOfGrooveSoftBlock Description }}
+Specifies whether to opt out of Groove soft block.
 
 ```yaml
 Type: Boolean
@@ -1903,7 +1907,7 @@ Accept wildcard characters: False
 ```
 
 ### -OrphanedPersonalSitesRetentionPeriod
-{{ Fill OrphanedPersonalSitesRetentionPeriod Description }}
+Specifies the retention period for orphaned personal sites.
 
 ```yaml
 Type: Int32
@@ -1918,7 +1922,7 @@ Accept wildcard characters: False
 ```
 
 ### -OwnerAnonymousNotification
-{{ Fill OwnerAnonymousNotification Description }}
+Specifies whether owners are notified of anonymous access.
 
 ```yaml
 Type: Boolean
@@ -1933,7 +1937,7 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
-{{ Fill PassThru Description }}
+Returns the tenant object that was processed.
 
 ```yaml
 Type: SwitchParameter
@@ -1948,7 +1952,7 @@ Accept wildcard characters: False
 ```
 
 ### -PermissiveBrowserFileHandlingOverride
-{{ Fill PermissiveBrowserFileHandlingOverride Description }}
+Specifies whether permissive browser file handling override is enabled.
 
 ```yaml
 Type: Boolean
@@ -1963,7 +1967,7 @@ Accept wildcard characters: False
 ```
 
 ### -PreventExternalUsersFromResharing
-{{ Fill PreventExternalUsersFromResharing Description }}
+Specifies whether external users are prevented from resharing.
 
 ```yaml
 Type: Boolean
@@ -1978,7 +1982,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProvisionSharedWithEveryoneFolder
-{{ Fill ProvisionSharedWithEveryoneFolder Description }}
+Specifies whether the "Shared with Everyone" folder is provisioned.
 
 ```yaml
 Type: Boolean
@@ -1993,7 +1997,7 @@ Accept wildcard characters: False
 ```
 
 ### -ReduceTempTokenLifetimeEnabled
-{{ Fill ReduceTempTokenLifetimeEnabled Description }}
+Specifies whether reducing temporary token lifetime is enabled.
 
 ```yaml
 Type: Boolean
@@ -2008,7 +2012,7 @@ Accept wildcard characters: False
 ```
 
 ### -ReduceTempTokenLifetimeValue
-{{ Fill ReduceTempTokenLifetimeValue Description }}
+Specifies the value for reducing temporary token lifetime.
 
 ```yaml
 Type: Int32
@@ -2023,7 +2027,7 @@ Accept wildcard characters: False
 ```
 
 ### -RequireAcceptingAccountMatchInvitedAccount
-{{ Fill RequireAcceptingAccountMatchInvitedAccount Description }}
+Specifies whether the accepting account must match the invited account.
 
 ```yaml
 Type: Boolean
@@ -2038,7 +2042,7 @@ Accept wildcard characters: False
 ```
 
 ### -RequireAnonymousLinksExpireInDays
-{{ Fill RequireAnonymousLinksExpireInDays Description }}
+Specifies the expiration in days for anonymous links.
 
 ```yaml
 Type: Int32
@@ -2053,7 +2057,37 @@ Accept wildcard characters: False
 ```
 
 ### -SearchResolveExactEmailOrUpn
-{{ Fill SearchResolveExactEmailOrUpn Description }}
+Specifies whether to resolve exact email or UPN in search.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SelfServiceSiteCreationDisabled
+Specifies whether self-service site creation is disabled.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SharePointAddInsDisabled
+Specifies whether SharePoint add-ins are disabled.
 
 ```yaml
 Type: Boolean
@@ -2068,7 +2102,7 @@ Accept wildcard characters: False
 ```
 
 ### -SharingAllowedDomainList
-{{ Fill SharingAllowedDomainList Description }}
+Specifies the list of allowed domains for sharing.
 
 ```yaml
 Type: String
@@ -2083,7 +2117,7 @@ Accept wildcard characters: False
 ```
 
 ### -SharingBlockedDomainList
-{{ Fill SharingBlockedDomainList Description }}
+Specifies the list of blocked domains for sharing.
 
 ```yaml
 Type: String
@@ -2098,7 +2132,7 @@ Accept wildcard characters: False
 ```
 
 ### -SharingCapability
-{{ Fill SharingCapability Description }}
+Specifies the sharing capability.
 
 ```yaml
 Type: SharingCapabilities
@@ -2114,7 +2148,7 @@ Accept wildcard characters: False
 ```
 
 ### -SharingDomainRestrictionMode
-{{ Fill SharingDomainRestrictionMode Description }}
+Specifies the sharing domain restriction mode.
 
 ```yaml
 Type: SharingDomainRestrictionMode
@@ -2130,7 +2164,7 @@ Accept wildcard characters: False
 ```
 
 ### -ShowAllUsersClaim
-{{ Fill ShowAllUsersClaim Description }}
+Specifies whether to show all users claim.
 
 ```yaml
 Type: Boolean
@@ -2145,7 +2179,7 @@ Accept wildcard characters: False
 ```
 
 ### -ShowEveryoneClaim
-{{ Fill ShowEveryoneClaim Description }}
+Specifies whether to show everyone claim.
 
 ```yaml
 Type: Boolean
@@ -2160,7 +2194,7 @@ Accept wildcard characters: False
 ```
 
 ### -ShowEveryoneExceptExternalUsersClaim
-{{ Fill ShowEveryoneExceptExternalUsersClaim Description }}
+Specifies whether to show everyone except external users claim.
 
 ```yaml
 Type: Boolean
@@ -2175,7 +2209,7 @@ Accept wildcard characters: False
 ```
 
 ### -ShowPeoplePickerGroupSuggestionsForInformationBarriers
-{{ Fill ShowPeoplePickerGroupSuggestionsForInformationBarriers Description }}
+Specifies whether to show people picker group suggestions for information barriers.
 
 ```yaml
 Type: Boolean
@@ -2190,7 +2224,7 @@ Accept wildcard characters: False
 ```
 
 ### -ShowPeoplePickerSuggestionsForGuestUsers
-{{ Fill ShowPeoplePickerSuggestionsForGuestUsers Description }}
+Specifies whether to show people picker suggestions for guest users.
 
 ```yaml
 Type: Boolean
@@ -2205,7 +2239,7 @@ Accept wildcard characters: False
 ```
 
 ### -SignInAccelerationDomain
-{{ Fill SignInAccelerationDomain Description }}
+Specifies the sign-in acceleration domain.
 
 ```yaml
 Type: String
@@ -2219,8 +2253,23 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -SiteOwnerManageLegacyServicePrincipalEnabled
+Specifies whether site owners can manage legacy service principals.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -SocialBarOnSitePagesDisabled
-{{ Fill SocialBarOnSitePagesDisabled Description }}
+Specifies whether the social bar on site pages is disabled.
 
 ```yaml
 Type: Boolean
@@ -2235,7 +2284,7 @@ Accept wildcard characters: False
 ```
 
 ### -SpecialCharactersStateInFileFolderNames
-{{ Fill SpecialCharactersStateInFileFolderNames Description }}
+Specifies the state of special characters in file and folder names.
 
 ```yaml
 Type: SpecialCharactersState
@@ -2251,7 +2300,7 @@ Accept wildcard characters: False
 ```
 
 ### -StartASiteFormUrl
-{{ Fill StartASiteFormUrl Description }}
+Specifies the URL for the Start a Site form.
 
 ```yaml
 Type: String
@@ -2266,7 +2315,7 @@ Accept wildcard characters: False
 ```
 
 ### -StopNew2010Workflows
-{{ Fill StopNew2010Workflows Description }}
+Specifies whether new 2010 workflows are stopped.
 
 ```yaml
 Type: Boolean
@@ -2281,7 +2330,7 @@ Accept wildcard characters: False
 ```
 
 ### -StopNew2013Workflows
-{{ Fill StopNew2013Workflows Description }}
+Specifies whether new 2013 workflows are stopped.
 
 ```yaml
 Type: Boolean
@@ -2296,7 +2345,82 @@ Accept wildcard characters: False
 ```
 
 ### -SyncPrivacyProfileProperties
-{{ Fill SyncPrivacyProfileProperties Description }}
+Specifies whether to sync privacy profile properties.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -TaxonomyTaggingEnabled
+Specifies whether taxonomy tagging is enabled.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -TaxonomyTaggingSiteListFileName
+Specifies the file name for the taxonomy tagging site list.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -TranslationEnabled
+Specifies whether translation is enabled.
+
+```yaml
+Type: Boolean
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -TranslationSiteListFileName
+Specifies the file name for the translation site list.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -UniversalAnnotationDisabled
+Specifies whether universal annotation is disabled.
 
 ```yaml
 Type: Boolean
@@ -2311,7 +2435,7 @@ Accept wildcard characters: False
 ```
 
 ### -UseFindPeopleInPeoplePicker
-{{ Fill UseFindPeopleInPeoplePicker Description }}
+Specifies whether to use Find People in People Picker.
 
 ```yaml
 Type: Boolean
@@ -2326,7 +2450,7 @@ Accept wildcard characters: False
 ```
 
 ### -UsePersistentCookiesForExplorerView
-{{ Fill UsePersistentCookiesForExplorerView Description }}
+Specifies whether to use persistent cookies for Explorer view.
 
 ```yaml
 Type: Boolean
@@ -2341,7 +2465,7 @@ Accept wildcard characters: False
 ```
 
 ### -ViewInFileExplorerEnabled
-{{ Fill ViewInFileExplorerEnabled Description }}
+Specifies whether View in File Explorer is enabled.
 
 ```yaml
 Type: Boolean
@@ -2356,7 +2480,7 @@ Accept wildcard characters: False
 ```
 
 ### -ViewersCanCommentOnMediaDisabled
-{{ Fill ViewersCanCommentOnMediaDisabled Description }}
+Specifies whether viewers can comment on media is disabled.
 
 ```yaml
 Type: Boolean
@@ -2371,7 +2495,7 @@ Accept wildcard characters: False
 ```
 
 ### -WhoCanShareAllowListInTenant
-{{ Fill WhoCanShareAllowListInTenant Description }}
+Specifies the allow list for who can share in the tenant.
 
 ```yaml
 Type: String
@@ -2386,7 +2510,7 @@ Accept wildcard characters: False
 ```
 
 ### -WhoCanShareAllowListInTenantByPrincipalIdentity
-{{ Fill WhoCanShareAllowListInTenantByPrincipalIdentity Description }}
+Specifies the allow list for who can share in the tenant by principal identity.
 
 ```yaml
 Type: String[]
@@ -2401,7 +2525,7 @@ Accept wildcard characters: False
 ```
 
 ### -Workflow2010Disabled
-{{ Fill Workflow2010Disabled Description }}
+Specifies whether 2010 workflows are disabled.
 
 ```yaml
 Type: Boolean
@@ -2416,7 +2540,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+Specifies the action preference for progress.
 
 ```yaml
 Type: ActionPreference

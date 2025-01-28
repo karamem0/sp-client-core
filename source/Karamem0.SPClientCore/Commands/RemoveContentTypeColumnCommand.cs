@@ -27,11 +27,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class RemoveContentTypeColumnCommand : ClientObjectCmdlet<IContentTypeColumnService>
 {
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ValueFromPipeline = true
-    )]
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
     public ContentTypeColumn Identity { get; private set; }
 
     [Parameter(Mandatory = false)]

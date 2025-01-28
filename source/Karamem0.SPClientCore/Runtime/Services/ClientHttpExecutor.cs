@@ -32,10 +32,7 @@ public class ClientHttpExecutor
             Timeout = Timeout.InfiniteTimeSpan
         };
         this.httpClient.DefaultRequestHeaders.UserAgent.Add(
-            new ProductInfoHeaderValue(
-                ClientConstants.UserAgent,
-                this.GetType().Assembly.GetName().Version.ToString(3)
-            )
+            new ProductInfoHeaderValue(ClientConstants.UserAgent, this.GetType().Assembly.GetName().Version.ToString(3))
         );
     }
 
@@ -58,10 +55,7 @@ public class ClientHttpExecutor
         }
     }
 
-    public T Execute<T>(
-        Func<HttpRequestMessage> requestCallback,
-        Func<HttpResponseMessage, Task<T>> responseCallback
-    )
+    public T Execute<T>(Func<HttpRequestMessage> requestCallback, Func<HttpResponseMessage, Task<T>> responseCallback)
     {
         var syncContext = new ClientHttpSynchronizationContext();
         try
@@ -115,10 +109,7 @@ public class ClientHttpExecutor
                     else
                     {
                         var responseContent = await responseMessage.Content.ReadAsStringAsync();
-                        if (JsonSerializerManager.Instance.TryDeserialize(
-                                responseContent,
-                                out OAuthError oAuthError
-                            ))
+                        if (JsonSerializerManager.Instance.TryDeserialize(responseContent, out OAuthError oAuthError))
                         {
                             throw new InvalidOperationException(oAuthError.ErrorDescription);
                         }

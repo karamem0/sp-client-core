@@ -32,9 +32,7 @@ public class GroupOwnerService(ClientContext clientContext) : ClientService(clie
     {
         _ = groupObject ?? throw new ArgumentNullException(nameof(groupObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(groupObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(groupObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             new ObjectPathProperty(objectPath1.Id, "Owner"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -43,8 +41,7 @@ public class GroupOwnerService(ClientContext clientContext) : ClientService(clie
                 Query = new ClientQuery(false, typeof(Principal))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<Principal>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -53,9 +50,7 @@ public class GroupOwnerService(ClientContext clientContext) : ClientService(clie
         _ = groupObject ?? throw new ArgumentNullException(nameof(groupObject));
         _ = principalObject ?? throw new ArgumentNullException(nameof(principalObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(groupObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(groupObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             objectPath1,
             objectPathId => new ClientActionSetProperty(

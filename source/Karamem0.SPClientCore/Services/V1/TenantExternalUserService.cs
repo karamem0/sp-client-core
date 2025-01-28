@@ -21,11 +21,7 @@ public interface ITenantExternalUserService
 
     IEnumerable<ExternalUser> GetObjectEnumerable(string filter, SortOrder sortOrder);
 
-    IEnumerable<ExternalUser> GetObjectEnumerable(
-        string siteCollectionUrl,
-        string filter,
-        SortOrder sortOrder
-    );
+    IEnumerable<ExternalUser> GetObjectEnumerable(string siteCollectionUrl, string filter, SortOrder sortOrder);
 
     void RemoveObject(ExternalUser userObject);
 
@@ -42,9 +38,7 @@ public class TenantExternalUserService(ClientContext clientContext)
         do
         {
             var requestPayload = new ClientRequestPayload();
-            var objectPath1 = requestPayload.Add(
-                new ObjectPathConstructor(typeof(Office365Tenant))
-            );
+            var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Office365Tenant)));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathMethod(
                     objectPath1.Id,
@@ -60,8 +54,7 @@ public class TenantExternalUserService(ClientContext clientContext)
                     Query = new ClientQuery(true, typeof(ExternalUserResult)),
                 }
             );
-            var resultObject = this.ClientContext
-                .ProcessQuery(requestPayload)
+            var resultObject = this.ClientContext.ProcessQuery(requestPayload)
                 .ToObject<ExternalUserResult>(requestPayload.GetActionId<ClientActionQuery>());
             if (resultObject.ExternalUsers is not null)
             {
@@ -75,11 +68,7 @@ public class TenantExternalUserService(ClientContext clientContext)
         } while (position >= 0 && position < totalCount);
     }
 
-    public IEnumerable<ExternalUser> GetObjectEnumerable(
-        string siteCollectionUrl,
-        string filter,
-        SortOrder sortOrder
-    )
+    public IEnumerable<ExternalUser> GetObjectEnumerable(string siteCollectionUrl, string filter, SortOrder sortOrder)
     {
         _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));
         var position = 0;
@@ -87,9 +76,7 @@ public class TenantExternalUserService(ClientContext clientContext)
         do
         {
             var requestPayload = new ClientRequestPayload();
-            var objectPath1 = requestPayload.Add(
-                new ObjectPathConstructor(typeof(Office365Tenant))
-            );
+            var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Office365Tenant)));
             var objectPath2 = requestPayload.Add(
                 new ObjectPathMethod(
                     objectPath1.Id,
@@ -106,8 +93,7 @@ public class TenantExternalUserService(ClientContext clientContext)
                     Query = new ClientQuery(true, typeof(ExternalUserResult)),
                 }
             );
-            var resultObject = this.ClientContext
-                .ProcessQuery(requestPayload)
+            var resultObject = this.ClientContext.ProcessQuery(requestPayload)
                 .ToObject<ExternalUserResult>(requestPayload.GetActionId<ClientActionQuery>());
             if (resultObject.ExternalUsers is not null)
             {
@@ -125,9 +111,7 @@ public class TenantExternalUserService(ClientContext clientContext)
     {
         _ = userObject ?? throw new ArgumentNullException(nameof(userObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Office365Tenant))
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Office365Tenant)));
         var objectPath2 = requestPayload.Add(
             objectPath1,
             objectPathId => new ClientActionMethod(

@@ -41,20 +41,12 @@ public class SetTenantCdnEnabledCommand : ClientObjectCmdlet<ITenantCdnService>
         if (this.ParameterSetName == "ParamSet1")
         {
             this.ValidateSwitchParameter(nameof(this.Public));
-            this.Service.SetEnabled(
-                TenantCdnType.Public,
-                this.Enabled,
-                this.NoDefaultOrigins
-            );
+            this.Service.SetEnabled(TenantCdnType.Public, this.Enabled, this.NoDefaultOrigins);
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             this.ValidateSwitchParameter(nameof(this.Private));
-            this.Service.SetEnabled(
-                TenantCdnType.Private,
-                this.Enabled,
-                this.NoDefaultOrigins
-            );
+            this.Service.SetEnabled(TenantCdnType.Private, this.Enabled, this.NoDefaultOrigins);
         }
     }
 

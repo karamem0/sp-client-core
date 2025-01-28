@@ -22,31 +22,15 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetGroupMemberCommand : ClientObjectCmdlet<IGroupMemberService>
 {
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet1"
-    )]
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
     public Group Group { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet1"
-    )]
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet1")]
     public int MemberId { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
     public string MemberName { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]

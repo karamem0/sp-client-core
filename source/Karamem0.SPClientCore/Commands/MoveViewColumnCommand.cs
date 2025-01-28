@@ -22,61 +22,29 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class MoveViewColumnCommand : ClientObjectCmdlet<IViewColumnService>
 {
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet1"
-    )]
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
     public View View { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet1"
-    )]
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet1")]
     public Column Column { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
     public string ColumnName { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 2,
-        ParameterSetName = "ParamSet1"
-    )]
-    [Parameter(
-        Mandatory = true,
-        Position = 2,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, Position = 2, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = true, Position = 2, ParameterSetName = "ParamSet2")]
     public int NewIndex { get; private set; }
 
     protected override void ProcessRecordCore()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
-            this.Service.MoveObject(
-                this.View,
-                this.Column,
-                this.NewIndex
-            );
+            this.Service.MoveObject(this.View, this.Column, this.NewIndex);
         }
         if (this.ParameterSetName == "ParamSet2")
         {
-            this.Service.MoveObject(
-                this.View,
-                this.ColumnName,
-                this.NewIndex
-            );
+            this.Service.MoveObject(this.View, this.ColumnName, this.NewIndex);
         }
     }
 

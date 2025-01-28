@@ -22,39 +22,19 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetPropertyCommand : ClientObjectCmdlet<IPropertyService>
 {
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet1"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
     public Alert Alert { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
     public File File { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet3"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet3")]
     public Folder Folder { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet4"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet4")]
     public ListItem ListItem { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet5"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet5")]
     public Site Site { get; private set; }
 
     protected override void ProcessRecordCore()

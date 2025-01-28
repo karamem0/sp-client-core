@@ -152,11 +152,7 @@ public class JsonDateTimeConverterTests
         var jsonWriter = new JsonTextWriter(textWriter);
         jsonWriter.WriteStartObject();
         jsonWriter.WritePropertyName("value");
-        converter.WriteJson(
-            jsonWriter,
-            null,
-            null
-        );
+        converter.WriteJson(jsonWriter, null, null);
         jsonWriter.WriteEndObject();
         var expected = /*lang=json,strict*/ "{\"value\":null}";
         var actual = textWriter.ToString();

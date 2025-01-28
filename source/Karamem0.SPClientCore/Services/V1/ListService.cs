@@ -55,15 +55,9 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
     {
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web")
-        );
-        var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "Lists")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
+        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "Lists"));
         var objectPath4 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath3.Id,
@@ -76,8 +70,7 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
                 Query = new ClientQuery(true, typeof(List))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -85,9 +78,7 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
     {
         _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(listItemObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listItemObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             new ObjectPathProperty(objectPath1.Id, "ParentList"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -96,8 +87,7 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
                 Query = new ClientQuery(true, typeof(List))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -113,8 +103,7 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
                 Query = new ClientQuery(true, typeof(List))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -122,15 +111,9 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
     {
         _ = driveObject ?? throw new ArgumentNullException(nameof(driveObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web")
-        );
-        var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "Lists")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
+        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "Lists"));
         var objectPath4 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath3.Id,
@@ -143,8 +126,7 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
                 Query = new ClientQuery(true, typeof(List))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -152,29 +134,18 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
     {
         _ = listId ?? throw new ArgumentNullException(nameof(listId));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web")
-        );
-        var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "Lists")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
+        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "Lists"));
         var objectPath4 = requestPayload.Add(
-            new ObjectPathMethod(
-                objectPath3.Id,
-                "GetById",
-                requestPayload.CreateParameter(listId)
-            ),
+            new ObjectPathMethod(objectPath3.Id, "GetById", requestPayload.CreateParameter(listId)),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(List))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -182,26 +153,17 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
     {
         _ = listUrl ?? throw new ArgumentNullException(nameof(listUrl));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(
-                objectPath2.Id,
-                "GetList",
-                requestPayload.CreateParameter(listUrl)
-            ),
+            new ObjectPathMethod(objectPath2.Id, "GetList", requestPayload.CreateParameter(listUrl)),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(List))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -209,29 +171,18 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
     {
         _ = listTitle ?? throw new ArgumentNullException(nameof(listTitle));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web")
-        );
-        var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "Lists")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
+        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "Lists"));
         var objectPath4 = requestPayload.Add(
-            new ObjectPathMethod(
-                objectPath3.Id,
-                "GetByTitle",
-                requestPayload.CreateParameter(listTitle)
-            ),
+            new ObjectPathMethod(objectPath3.Id, "GetByTitle", requestPayload.CreateParameter(listTitle)),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(List))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -239,15 +190,9 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
     {
         _ = libraryType ?? throw new ArgumentNullException(nameof(libraryType));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web")
-        );
-        var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "Lists")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
+        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "Lists"));
         if (libraryType == LibraryType.SitePages)
         {
             var objectPath4 = requestPayload.Add(
@@ -281,20 +226,15 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
                 }
             );
         }
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
     public IEnumerable<List> GetObjectEnumerable()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(
             new ObjectPathProperty(objectPath2.Id, "Lists"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -304,8 +244,7 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
                 ChildItemQuery = new ClientQuery(true, typeof(List))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<ListEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -317,8 +256,7 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
             new ObjectPathIdentity(listObject.ObjectIdentity),
             objectPathId => new ClientActionMethod(objectPathId, "Recycle")
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<Guid>(requestPayload.GetActionId<ClientActionMethod>());
     }
 

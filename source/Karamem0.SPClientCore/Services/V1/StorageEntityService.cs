@@ -45,9 +45,7 @@ public class StorageEntityService(ClientContext clientContext) : ClientService(c
         _ = key ?? throw new ArgumentNullException(nameof(key));
         _ = value ?? throw new ArgumentNullException(nameof(value));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(
             new ObjectPathProperty(objectPath1.Id, "Web"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId)
@@ -70,27 +68,20 @@ public class StorageEntityService(ClientContext clientContext) : ClientService(c
     {
         _ = key ?? throw new ArgumentNullException(nameof(key));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(
             new ObjectPathProperty(objectPath1.Id, "Web"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId)
         );
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(
-                objectPath2.Id,
-                "GetStorageEntity",
-                requestPayload.CreateParameter(key)
-            ),
+            new ObjectPathMethod(objectPath2.Id, "GetStorageEntity", requestPayload.CreateParameter(key)),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(StorageEntity))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<StorageEntity>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -98,9 +89,7 @@ public class StorageEntityService(ClientContext clientContext) : ClientService(c
     {
         _ = key ?? throw new ArgumentNullException(nameof(key));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(
             new ObjectPathProperty(objectPath1.Id, "Web"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId)

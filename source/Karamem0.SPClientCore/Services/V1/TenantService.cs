@@ -39,8 +39,7 @@ public class TenantService(ClientContext clientContext) : ClientService(clientCo
                 Query = new ClientQuery(true, typeof(Tenant))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<Tenant>(requestPayload.GetActionId<ClientActionQuery>());
     }
 

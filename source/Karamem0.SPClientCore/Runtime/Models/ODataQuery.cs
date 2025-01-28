@@ -21,26 +21,26 @@ public static class ODataQuery
 
     public static string CreateSelect<T>() where T : ODataObject
     {
-        var properties = Enumerable.Repeat("*", 1).Union(
-            typeof(T)
-                .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-                .Where(property => Attribute.IsDefined(property, typeof(JsonPropertyAttribute)))
-                .Where(
-                    property =>
-                    {
-                        if (property.PropertyType.IsSubclassOf(typeof(ODataObject)))
+        var properties = Enumerable.Repeat("*", 1)
+            .Union(
+                typeof(T).GetProperties(BindingFlags.Instance | BindingFlags.Public)
+                    .Where(property => Attribute.IsDefined(property, typeof(JsonPropertyAttribute)))
+                    .Where(
+                        property =>
                         {
-                            return false;
+                            if (property.PropertyType.IsSubclassOf(typeof(ODataObject)))
+                            {
+                                return false;
+                            }
+                            if (property.PropertyType.IsSubclassOf(typeof(ClientObject)))
+                            {
+                                return false;
+                            }
+                            return true;
                         }
-                        if (property.PropertyType.IsSubclassOf(typeof(ClientObject)))
-                        {
-                            return false;
-                        }
-                        return true;
-                    }
-                )
-                .Select(property => property.Name)
-        );
+                    )
+                    .Select(property => property.Name)
+            );
         return UriQuery.Create(
             new Dictionary<string, object>
             {
@@ -53,8 +53,7 @@ public static class ODataQuery
 
     public static string CreateExpand<T>() where T : ODataObject
     {
-        var properties = typeof(T)
-            .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+        var properties = typeof(T).GetProperties(BindingFlags.Instance | BindingFlags.Public)
             .Where(property => Attribute.IsDefined(property, typeof(JsonPropertyAttribute)))
             .Where(property => property.PropertyType.IsSubclassOf(typeof(ODataObject)))
             .Select(property => property.Name);

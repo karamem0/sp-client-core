@@ -19,11 +19,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITermCustomPropertyService
 {
 
-    void AddObject(
-        TermSetItem termSetItemObject,
-        string propertyName,
-        string propertyValue
-    );
+    void AddObject(TermSetItem termSetItemObject, string propertyName, string propertyValue);
 
     void RemoveObject(TermSetItem termSetItemObject, string propertyName);
 
@@ -33,19 +29,13 @@ public class TermCustomPropertyService(ClientContext clientContext)
     : ClientService(clientContext), ITermCustomPropertyService
 {
 
-    public void AddObject(
-        TermSetItem termSetItemObject,
-        string propertyName,
-        string propertyValue
-    )
+    public void AddObject(TermSetItem termSetItemObject, string propertyName, string propertyValue)
     {
         _ = termSetItemObject ?? throw new ArgumentNullException(nameof(termSetItemObject));
         _ = propertyName ?? throw new ArgumentNullException(nameof(propertyName));
         _ = propertyValue ?? throw new ArgumentNullException(nameof(propertyValue));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(termSetItemObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termSetItemObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             objectPath1,
             objectPathId => new ClientActionMethod(
@@ -63,9 +53,7 @@ public class TermCustomPropertyService(ClientContext clientContext)
         _ = termSetItemObject ?? throw new ArgumentNullException(nameof(termSetItemObject));
         _ = propertyName ?? throw new ArgumentNullException(nameof(propertyName));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(termSetItemObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termSetItemObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             objectPath1,
             objectPathId => new ClientActionMethod(

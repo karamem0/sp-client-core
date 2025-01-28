@@ -22,7 +22,8 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class ClientValueObject : JsonValueObject
 {
 
-    public static ClientValueObject Create<T>(IReadOnlyDictionary<string, object> parameters) where T : ClientValueObject, new()
+    public static ClientValueObject Create<T>(IReadOnlyDictionary<string, object> parameters)
+        where T : ClientValueObject, new()
     {
         _ = parameters ?? throw new ArgumentNullException(nameof(parameters));
         var value = new T();
@@ -62,19 +63,16 @@ public class ClientValueObject : JsonValueObject
         return value;
     }
 
-    private static readonly IReadOnlyDictionary<string, Type> ClientValueObjectDictionary =
-        Assembly.GetExecutingAssembly()
-            .GetTypes()
-            .Where(type => type.IsSubclassOf(typeof(ClientValueObject)))
-            .Where(type => type.IsDefined(typeof(ClientObjectAttribute)))
-            .ToDictionary(type => type.GetCustomAttribute<ClientObjectAttribute>().Name, type => type);
+    private static readonly IReadOnlyDictionary<string, Type> ClientValueObjectDictionary = Assembly
+        .GetExecutingAssembly()
+        .GetTypes()
+        .Where(type => type.IsSubclassOf(typeof(ClientValueObject)))
+        .Where(type => type.IsDefined(typeof(ClientObjectAttribute)))
+        .ToDictionary(type => type.GetCustomAttribute<ClientObjectAttribute>().Name, type => type);
 
     public static Type GetType(string name)
     {
-        return ClientValueObjectDictionary
-            .Where(item => item.Key == name)
-            .Select(item => item.Value)
-            .SingleOrDefault();
+        return ClientValueObjectDictionary.Where(item => item.Key == name).Select(item => item.Value).SingleOrDefault();
     }
 
     [JsonProperty("_ObjectType_")]

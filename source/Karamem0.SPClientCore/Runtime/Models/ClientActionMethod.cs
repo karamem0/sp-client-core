@@ -15,23 +15,12 @@ using System.Xml.Serialization;
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
 [XmlType("Method", Namespace = "http://schemas.microsoft.com/sharepoint/clientquery/2009")]
-public class ClientActionMethod(
-    long objectPathId,
-    string name,
-    params ClientRequestParameter[] parameters
-) : ClientAction
+public class ClientActionMethod(long objectPathId, string name, params ClientRequestParameter[] parameters)
+    : ClientAction
 {
 
-    public ClientActionMethod(
-        long objectPathId,
-        string name,
-        IEnumerable<ClientRequestParameter> parameters
-    )
-        : this(
-            objectPathId,
-            name,
-            [.. parameters]
-        )
+    public ClientActionMethod(long objectPathId, string name, IEnumerable<ClientRequestParameter> parameters)
+        : this(objectPathId, name, [.. parameters])
     {
     }
 

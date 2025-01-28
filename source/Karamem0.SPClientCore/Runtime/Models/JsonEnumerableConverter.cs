@@ -57,12 +57,10 @@ public class JsonEnumerableConverter : JsonConverter
                         }
                     )
                     .ToArray();
-                var result2 = typeof(Enumerable)
-                    .GetMethod("OfType", BindingFlags.Public | BindingFlags.Static)
+                var result2 = typeof(Enumerable).GetMethod("OfType", BindingFlags.Public | BindingFlags.Static)
                     .MakeGenericMethod(objectType.GetGenericArguments())
                     .Invoke(null, [result1]);
-                var result3 = typeof(Enumerable)
-                    .GetMethod("ToArray", BindingFlags.Public | BindingFlags.Static)
+                var result3 = typeof(Enumerable).GetMethod("ToArray", BindingFlags.Public | BindingFlags.Static)
                     .MakeGenericMethod(objectType.GetGenericArguments())
                     .Invoke(null, [result2]);
                 return result3;
@@ -75,11 +73,7 @@ public class JsonEnumerableConverter : JsonConverter
         return null;
     }
 
-    public override void WriteJson(
-        JsonWriter writer,
-        object value,
-        JsonSerializer serializer
-    )
+    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
     {
         throw new NotImplementedException();
     }

@@ -22,59 +22,23 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddRoleAssignmentCommand : ClientObjectCmdlet<ISiteService, IRoleAssignmentService>
 {
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet1"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
     public SwitchParameter Site { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
     public List List { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet3"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet3")]
     public ListItem ListItem { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet1"
-    )]
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet2"
-    )]
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet3"
-    )]
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
+    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet3")]
     public Principal Principal { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 2,
-        ParameterSetName = "ParamSet1"
-    )]
-    [Parameter(
-        Mandatory = true,
-        Position = 2,
-        ParameterSetName = "ParamSet2"
-    )]
-    [Parameter(
-        Mandatory = true,
-        Position = 2,
-        ParameterSetName = "ParamSet3"
-    )]
+    [Parameter(Mandatory = true, Position = 2, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = true, Position = 2, ParameterSetName = "ParamSet2")]
+    [Parameter(Mandatory = true, Position = 2, ParameterSetName = "ParamSet3")]
     public RoleDefinition RoleDefinition { get; private set; }
 
     protected override void ProcessRecordCore()
@@ -82,33 +46,15 @@ public class AddRoleAssignmentCommand : ClientObjectCmdlet<ISiteService, IRoleAs
         if (this.ParameterSetName == "ParamSet1")
         {
             this.ValidateSwitchParameter(nameof(this.Site));
-            this.Outputs.Add(
-                this.Service2.AddObject(
-                    this.Service1.GetObject(),
-                    this.Principal,
-                    this.RoleDefinition
-                )
-            );
+            this.Outputs.Add(this.Service2.AddObject(this.Service1.GetObject(), this.Principal, this.RoleDefinition));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
-            this.Outputs.Add(
-                this.Service2.AddObject(
-                    this.List,
-                    this.Principal,
-                    this.RoleDefinition
-                )
-            );
+            this.Outputs.Add(this.Service2.AddObject(this.List, this.Principal, this.RoleDefinition));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
-            this.Outputs.Add(
-                this.Service2.AddObject(
-                    this.ListItem,
-                    this.Principal,
-                    this.RoleDefinition
-                )
-            );
+            this.Outputs.Add(this.Service2.AddObject(this.ListItem, this.Principal, this.RoleDefinition));
         }
     }
 

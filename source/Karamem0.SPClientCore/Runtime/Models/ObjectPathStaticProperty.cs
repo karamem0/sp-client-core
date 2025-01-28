@@ -22,7 +22,8 @@ public class ObjectPathStaticProperty(Type type, string name) : ObjectPath
     public override long Id { get; protected set; } = NewId();
 
     [XmlAttribute()]
-    public virtual Guid TypeId { get; protected set; } = ClientObjectAttribute.GetId(type ?? throw new ArgumentNullException(nameof(type)));
+    public virtual Guid TypeId { get; protected set; } =
+        ClientObjectAttribute.GetId(type ?? throw new ArgumentNullException(nameof(type)));
 
     [XmlAttribute()]
     public virtual string Name { get; protected set; } = name ?? throw new ArgumentNullException(nameof(name));

@@ -22,26 +22,14 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetSiteTemplateCommand : ClientObjectCmdlet<ISiteService, ISiteTemplateService>
 {
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet1"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
     public string SiteTemplateName { get; private set; }
 
-    [Parameter(
-        Mandatory = false,
-        Position = 1,
-        ParameterSetName = "ParamSet1"
-    )]
+    [Parameter(Mandatory = false, Position = 1, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     public SwitchParameter IncludeCrossLanguage { get; private set; }
 
-    [Parameter(
-        Mandatory = false,
-        Position = 2,
-        ParameterSetName = "ParamSet1"
-    )]
+    [Parameter(Mandatory = false, Position = 2, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     public uint Lcid { get; private set; }
 
@@ -60,13 +48,7 @@ public class GetSiteTemplateCommand : ClientObjectCmdlet<ISiteService, ISiteTemp
         }
         if (this.ParameterSetName == "ParamSet1")
         {
-            this.Outputs.Add(
-                this.Service2.GetObject(
-                    this.SiteTemplateName,
-                    this.Lcid,
-                    this.IncludeCrossLanguage
-                )
-            );
+            this.Outputs.Add(this.Service2.GetObject(this.SiteTemplateName, this.Lcid, this.IncludeCrossLanguage));
         }
         if (this.ParameterSetName == "ParamSet2")
         {

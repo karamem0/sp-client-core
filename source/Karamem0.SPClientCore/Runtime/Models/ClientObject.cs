@@ -20,27 +20,23 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class ClientObject : JsonValueObject
 {
 
-    private static readonly IReadOnlyDictionary<string, Type> dictionary =
-        Assembly.GetExecutingAssembly()
-            .GetTypes()
-            .Where(type => type.IsSubclassOf(typeof(ClientObject)))
-            .Where(type => type.IsDefined(typeof(ClientObjectAttribute)))
-            .Select(
-                type => new
-                {
-                    Type = type,
-                    Attribute = type.GetCustomAttribute<ClientObjectAttribute>()
-                }
-            )
-            .Where(value => value.Attribute.Name is not null)
-            .ToDictionary(value => value.Attribute.Name, value => value.Type);
+    private static readonly IReadOnlyDictionary<string, Type> dictionary = Assembly.GetExecutingAssembly()
+        .GetTypes()
+        .Where(type => type.IsSubclassOf(typeof(ClientObject)))
+        .Where(type => type.IsDefined(typeof(ClientObjectAttribute)))
+        .Select(
+            type => new
+            {
+                Type = type,
+                Attribute = type.GetCustomAttribute<ClientObjectAttribute>()
+            }
+        )
+        .Where(value => value.Attribute.Name is not null)
+        .ToDictionary(value => value.Attribute.Name, value => value.Type);
 
     public static Type GetType(string name)
     {
-        return dictionary
-            .Where(item => item.Key == name)
-            .Select(item => item.Value)
-            .SingleOrDefault();
+        return dictionary.Where(item => item.Key == name).Select(item => item.Value).SingleOrDefault();
     }
 
     public static Type GetType<T>(string name)
@@ -64,8 +60,7 @@ public class ClientObject : JsonValueObject
     }
 
     [JsonIgnore()]
-    public override object this[string key] => this.ExtensionProperties
-        .Where(item => item.Key == key)
+    public override object this[string key] => this.ExtensionProperties.Where(item => item.Key == key)
         .Select(ClientResultValue.Create)
         .Select(item => item.Value)
         .SingleOrDefault();

@@ -33,11 +33,7 @@ public class SetTermDescriptionCommand : ClientObjectCmdlet<ITermDescriptionServ
 
     protected override void ProcessRecordCore()
     {
-        this.Service.SetObject(
-            this.Term,
-            this.Description,
-            this.Lcid
-        );
+        this.Service.SetObject(this.Term, this.Description, this.Lcid);
     }
 
 }

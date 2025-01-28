@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace Karamem0.SharePoint.PowerShell.Commands.Tests;
 
@@ -31,7 +32,7 @@ public class SetTermLabelCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         var result1 = context.Runspace.InvokeCommand<TermGroup>(
@@ -67,6 +68,7 @@ public class SetTermLabelCommandTests
                 ["IsDefault"] = false
             }
         );
+        Thread.Sleep(TimeSpan.FromSeconds(15));
         var result5 = context.Runspace.InvokeCommand<TermLabel>(
             "Set-KshTermLabel",
             new Dictionary<string, object>()
@@ -98,7 +100,7 @@ public class SetTermLabelCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         var result1 = context.Runspace.InvokeCommand<TermGroup>(
@@ -134,6 +136,7 @@ public class SetTermLabelCommandTests
                 ["IsDefault"] = false
             }
         );
+        Thread.Sleep(TimeSpan.FromSeconds(15));
         var result5 = context.Runspace.InvokeCommand<TermLabel>(
             "Set-KshTermLabel",
             new Dictionary<string, object>()
@@ -165,7 +168,7 @@ public class SetTermLabelCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         var result1 = context.Runspace.InvokeCommand<TermGroup>(
@@ -201,6 +204,7 @@ public class SetTermLabelCommandTests
                 ["IsDefault"] = false
             }
         );
+        Thread.Sleep(TimeSpan.FromSeconds(15));
         var result5 = context.Runspace.InvokeCommand<TermLabel>(
             "Set-KshTermLabel",
             new Dictionary<string, object>()

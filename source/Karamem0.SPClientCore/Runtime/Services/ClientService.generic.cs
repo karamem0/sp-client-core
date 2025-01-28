@@ -30,8 +30,7 @@ public abstract class ClientService<T>(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(T))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<T>(requestPayload.GetActionId<ClientActionQuery>());
     }
 

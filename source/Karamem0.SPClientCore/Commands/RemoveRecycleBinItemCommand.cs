@@ -44,7 +44,7 @@ public class RemoveRecycleBinItemCommand : ClientObjectCmdlet<IRecycleBinItemSer
 
     protected override void ProcessRecordCore()
     {
-        if (this.ShouldProcess(this.Identity?.Title ?? "All", VerbsCommon.Remove))
+        if (this.ShouldProcess(this.Identity is null ? "All" : this.Identity.Title, VerbsCommon.Remove))
         {
             if (this.ParameterSetName == "ParamSet1")
             {

@@ -22,6 +22,7 @@ public class ObjectPathConstructor(Type type) : ObjectPath
     public override long Id { get; protected set; } = NewId();
 
     [XmlAttribute()]
-    public virtual Guid TypeId { get; protected set; } = ClientObjectAttribute.GetId(type ?? throw new ArgumentNullException(nameof(type)));
+    public virtual Guid TypeId { get; protected set; } =
+        ClientObjectAttribute.GetId(type ?? throw new ArgumentNullException(nameof(type)));
 
 }

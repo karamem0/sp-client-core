@@ -19,11 +19,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ISiteTemplateService
 {
 
-    SiteTemplate GetObject(
-        string name,
-        uint? lcid,
-        bool includeCrossLanguage
-    );
+    SiteTemplate GetObject(string name, uint? lcid, bool includeCrossLanguage);
 
     IEnumerable<SiteTemplate> GetObjectEnumerable(uint? lcid, bool includeCrossLanguage);
 
@@ -32,21 +28,13 @@ public interface ISiteTemplateService
 public class SiteTemplateService(ClientContext clientContext) : ClientService(clientContext), ISiteTemplateService
 {
 
-    public SiteTemplate GetObject(
-        string name,
-        uint? lcid,
-        bool includeCrossLanguage
-    )
+    public SiteTemplate GetObject(string name, uint? lcid, bool includeCrossLanguage)
     {
         _ = name ?? throw new ArgumentNullException(nameof(name));
         _ = lcid ?? throw new ArgumentNullException(nameof(lcid));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath2.Id,
@@ -57,19 +45,14 @@ public class SiteTemplateService(ClientContext clientContext) : ClientService(cl
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId)
         );
         var objectPath4 = requestPayload.Add(
-            new ObjectPathMethod(
-                objectPath3.Id,
-                "GetByName",
-                requestPayload.CreateParameter(name)
-            ),
+            new ObjectPathMethod(objectPath3.Id, "GetByName", requestPayload.CreateParameter(name)),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(SiteTemplate))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<SiteTemplate>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -77,12 +60,8 @@ public class SiteTemplateService(ClientContext clientContext) : ClientService(cl
     {
         _ = lcid ?? throw new ArgumentNullException(nameof(lcid));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath2.Id,
@@ -97,8 +76,7 @@ public class SiteTemplateService(ClientContext clientContext) : ClientService(cl
                 ChildItemQuery = new ClientQuery(true, typeof(SiteTemplate))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<SiteTemplateEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 

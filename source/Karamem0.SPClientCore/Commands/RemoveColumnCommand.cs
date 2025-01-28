@@ -27,11 +27,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class RemoveColumnCommand : ClientObjectCmdlet<IColumnService>
 {
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ValueFromPipeline = true
-    )]
+    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
     public Column Identity { get; private set; }
 
     protected override void ProcessRecordCore()

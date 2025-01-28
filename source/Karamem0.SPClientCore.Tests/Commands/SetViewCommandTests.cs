@@ -31,7 +31,7 @@ public class SetViewCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
@@ -77,13 +77,15 @@ public class SetViewCommandTests
                 ["Title"] = "Test View 9",
                 ["Toolbar"] = "Standard",
                 ["ViewData"] = "",
-                ["ViewJoins"] = "<Join Type='LEFT' ListAlias='TestList1'>" +
-                                "<Eq>" +
-                                "<FieldRef Name='TestColumn8' RefType='Id'/>" +
-                                "<FieldRef List='TestList1' Name='ID'/>" +
-                                "</Eq>" +
-                                "</Join>",
-                ["ViewProjectedColumns"] = "<Field Name='TestColumn16' Type='Lookup' List='TestList1' ShowField='Title'/>",
+                ["ViewJoins"] =
+                    "<Join Type='LEFT' ListAlias='TestList1'>" +
+                    "<Eq>" +
+                    "<FieldRef Name='TestColumn8' RefType='Id'/>" +
+                    "<FieldRef List='TestList1' Name='ID'/>" +
+                    "</Eq>" +
+                    "</Join>",
+                ["ViewProjectedColumns"] =
+                    "<Field Name='TestColumn16' Type='Lookup' List='TestList1' ShowField='Title'/>",
                 ["ViewQuery"] = "<OrderBy><FieldRef Name='Title'/></OrderBy>",
                 ["ViewType2"] = null,
                 ["PassThru"] = true

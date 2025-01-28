@@ -117,13 +117,7 @@ public class JsonEnumerableConverterTests
         var converter = new JsonEnumerableConverter();
         var textWriter = new StringWriter();
         var jsonWriter = new JsonTextWriter(textWriter);
-        _ = Assert.Throws<NotImplementedException>(
-            () => converter.WriteJson(
-                jsonWriter,
-                null,
-                null
-            )
-        );
+        _ = Assert.Throws<NotImplementedException>(() => converter.WriteJson(jsonWriter, null, null));
     }
 
 }

@@ -41,23 +41,21 @@ public interface IOAuthService
         Uri authority,
         string clientId,
         Uri resource,
-        byte[] certificate,
-        SecureString password,
-        bool userMode
+        BinaryData certificate,
+        SecureString certificatePassword
     );
 
-    void ConnectWithCache(
+    void ConnectWithCertificate(
         Uri authority,
         string clientId,
         Uri resource,
-        bool userMode
+        BinaryData certificate,
+        BinaryData privateKey
     );
 
-    void ConnectWithClientSecret(
-        string clientId,
-        string clientSecret,
-        Uri resource
-    );
+    void ConnectWithCache(Uri authority, string clientId, Uri resource);
+
+    void ConnectWithClientSecret(string clientId, string clientSecret, Uri resource);
 
 }
 
@@ -110,13 +108,7 @@ public class OAuthService : IOAuthService
                     if (oAuthTokenMessage is AadOAuthToken oAuthToken)
                     {
                         AadOAuthTokenStore.Add(resource, oAuthToken);
-                        ClientService.Register(
-                            ClientContext.Create(
-                                resource,
-                                oAuthContext,
-                                oAuthToken
-                            )
-                        );
+                        ClientService.Register(ClientContext.Create(resource, oAuthContext, oAuthToken));
                     }
                     if (oAuthTokenMessage is OAuthError oAuthTokenError)
                     {
@@ -166,13 +158,7 @@ public class OAuthService : IOAuthService
         if (oAuthMessage is AadOAuthToken oAuthToken)
         {
             AadOAuthTokenStore.Add(resource, oAuthToken);
-            ClientService.Register(
-                ClientContext.Create(
-                    resource,
-                    oAuthContext,
-                    oAuthToken
-                )
-            );
+            ClientService.Register(ClientContext.Create(resource, oAuthContext, oAuthToken));
         }
         if (oAuthMessage is OAuthError oAuthError)
         {
@@ -184,30 +170,18 @@ public class OAuthService : IOAuthService
         Uri authority,
         string clientId,
         Uri resource,
-        byte[] certificate,
-        SecureString password,
-        bool userMode
+        BinaryData certificate,
+        SecureString certificatePassword
     )
     {
         authority ??= new Uri(OAuthConstants.AadAuthority);
         clientId ??= OAuthConstants.ClientId;
-        var oAuthContext = new AadOAuthContext(
-            authority.GetAuthority(),
-            clientId,
-            resource.GetAuthority(),
-            userMode
-        );
-        var oAuthMessage = oAuthContext.AcquireTokenByCertificate(certificate, password);
+        var oAuthContext = new AadOAuthContext(authority.GetAuthority(), clientId, resource.GetAuthority());
+        var oAuthMessage = oAuthContext.AcquireTokenByCertificate(certificate, certificatePassword);
         if (oAuthMessage is AadOAuthToken oAuthToken)
         {
             AadOAuthTokenStore.Add(resource, oAuthToken);
-            ClientService.Register(
-                ClientContext.Create(
-                    resource,
-                    oAuthContext,
-                    oAuthToken
-                )
-            );
+            ClientService.Register(ClientContext.Create(resource, oAuthContext, oAuthToken));
         }
         if (oAuthMessage is OAuthError oAuthError)
         {
@@ -215,52 +189,45 @@ public class OAuthService : IOAuthService
         }
     }
 
-    public void ConnectWithCache(
+    public void ConnectWithCertificate(
         Uri authority,
         string clientId,
         Uri resource,
-        bool userMode
+        BinaryData certificate,
+        BinaryData privateKey
     )
     {
         authority ??= new Uri(OAuthConstants.AadAuthority);
         clientId ??= OAuthConstants.ClientId;
-        var oAuthContext = new AadOAuthContext(
-            authority.GetAuthority(),
-            clientId,
-            resource.GetAuthority(),
-            userMode
-        );
-        var oAuthToken = AadOAuthTokenStore.Get(resource);
-        ClientService.Register(
-            ClientContext.Create(
-                resource,
-                oAuthContext,
-                oAuthToken
-            )
-        );
+        var oAuthContext = new AadOAuthContext(authority.GetAuthority(), clientId, resource.GetAuthority());
+        var oAuthMessage = oAuthContext.AcquireTokenByCertificate(certificate, privateKey);
+        if (oAuthMessage is AadOAuthToken oAuthToken)
+        {
+            AadOAuthTokenStore.Add(resource, oAuthToken);
+            ClientService.Register(ClientContext.Create(resource, oAuthContext, oAuthToken));
+        }
+        if (oAuthMessage is OAuthError oAuthError)
+        {
+            throw new InvalidOperationException(oAuthError.ErrorDescription);
+        }
     }
 
-    public void ConnectWithClientSecret(
-        string clientId,
-        string clientSecret,
-        Uri resource
-    )
+    public void ConnectWithCache(Uri authority, string clientId, Uri resource)
     {
-        var oAuthContext = new AcsOAuthContext(
-            clientId,
-            clientSecret,
-            resource.GetAuthority()
-        );
+        authority ??= new Uri(OAuthConstants.AadAuthority);
+        clientId ??= OAuthConstants.ClientId;
+        var oAuthContext = new AadOAuthContext(authority.GetAuthority(), clientId, resource.GetAuthority());
+        var oAuthToken = AadOAuthTokenStore.Get(resource);
+        ClientService.Register(ClientContext.Create(resource, oAuthContext, oAuthToken));
+    }
+
+    public void ConnectWithClientSecret(string clientId, string clientSecret, Uri resource)
+    {
+        var oAuthContext = new AcsOAuthContext(clientId, clientSecret, resource.GetAuthority());
         var oAuthMessage = oAuthContext.AcquireToken();
         if (oAuthMessage is AcsOAuthToken oAuthToken)
         {
-            ClientService.Register(
-                ClientContext.Create(
-                    resource,
-                    oAuthContext,
-                    oAuthToken
-                )
-            );
+            ClientService.Register(ClientContext.Create(resource, oAuthContext, oAuthToken));
         }
         if (oAuthMessage is OAuthError oAuthError)
         {

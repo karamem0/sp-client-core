@@ -36,11 +36,7 @@ public class SetTenantFileVersionPolicyCommand : ClientObjectCmdlet<ITenantServi
 
     protected override void ProcessRecordCore()
     {
-        this.Service2.SetObject(
-            this.IsAutoTrimEnabled,
-            this.MajorVersionLimit,
-            this.ExpireVersionsAfterDays
-        );
+        this.Service2.SetObject(this.IsAutoTrimEnabled, this.MajorVersionLimit, this.ExpireVersionsAfterDays);
         if (this.PassThru)
         {
             this.Outputs.Add(new FileVersionPolicy(this.Service1.GetObject()));

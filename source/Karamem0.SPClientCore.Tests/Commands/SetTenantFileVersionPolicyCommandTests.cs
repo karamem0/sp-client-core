@@ -31,10 +31,10 @@ public class SetTenantFileVersionPolicyCommandTests
                 ["Url"] = context.AppSettings["AdminUrl"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["CertificatePassword"] = context.AppSettings["CertificatePassword"].ToSecureString()
+                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
-        var result1 = context.Runspace.InvokeCommand<string>(
+        var result1 = context.Runspace.InvokeCommand<FileVersionPolicy>(
             "Set-KshTenantFileVersionPolicy",
             new Dictionary<string, object>()
             {

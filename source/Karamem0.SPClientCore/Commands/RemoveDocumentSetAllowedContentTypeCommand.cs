@@ -40,11 +40,7 @@ public class RemoveDocumentSetAllowedContentTypeCommand : ClientObjectCmdlet<IDo
     {
         if (this.ShouldProcess(this.AllowedContentType.Name, VerbsCommon.Remove))
         {
-            this.Service.RemoveObject(
-                this.ContentType,
-                this.AllowedContentType,
-                this.PushChanges
-            );
+            this.Service.RemoveObject(this.ContentType, this.AllowedContentType, this.PushChanges);
         }
     }
 

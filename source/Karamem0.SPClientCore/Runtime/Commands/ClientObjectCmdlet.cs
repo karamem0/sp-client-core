@@ -26,11 +26,7 @@ public abstract class ClientObjectCmdlet : PSCmdlet
     {
         var telemetry = TelemetryClientFactory.Create();
         var stopwatch = new Stopwatch();
-        if (string.Compare(
-                this.MyInvocation.InvocationName,
-                this.MyInvocation.MyCommand.Name,
-                true
-            ) != 0)
+        if (string.Compare(this.MyInvocation.InvocationName, this.MyInvocation.MyCommand.Name, true) != 0)
         {
             this.WriteWarning(
                 string.Format(

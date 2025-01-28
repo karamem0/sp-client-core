@@ -50,9 +50,7 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
     {
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(
             new ObjectPathProperty(objectPath1.Id, "Web"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId)
@@ -73,17 +71,14 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
                 Query = new ClientQuery(true, typeof(Site))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<Site>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
     public Site GetObject()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(
             new ObjectPathProperty(objectPath1.Id, "Web"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -92,8 +87,7 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
                 Query = new ClientQuery(true, typeof(Site))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<Site>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -101,12 +95,8 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
     {
         _ = siteCollectionObject ?? throw new ArgumentNullException(nameof(siteCollectionObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Site")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Site"));
         var objectPath3 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath2.Id,
@@ -119,8 +109,7 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
                 Query = new ClientQuery(true, typeof(Site))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<Site>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -128,9 +117,7 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
     {
         _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(listObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             new ObjectPathProperty(objectPath1.Id, "ParentWeb"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -139,8 +126,7 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
                 Query = new ClientQuery(true, typeof(Site))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<Site>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -148,26 +134,17 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
     {
         _ = siteId ?? throw new ArgumentNullException(nameof(siteId));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Site")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Site"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(
-                objectPath2.Id,
-                "OpenWebById",
-                requestPayload.CreateParameter(siteId)
-            ),
+            new ObjectPathMethod(objectPath2.Id, "OpenWebById", requestPayload.CreateParameter(siteId)),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(Site))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<Site>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -175,38 +152,25 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
     {
         _ = siteUrl ?? throw new ArgumentNullException(nameof(siteUrl));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Site")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Site"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(
-                objectPath2.Id,
-                "OpenWeb",
-                requestPayload.CreateParameter(siteUrl)
-            ),
+            new ObjectPathMethod(objectPath2.Id, "OpenWeb", requestPayload.CreateParameter(siteUrl)),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(Site))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<Site>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
     public IEnumerable<Site> GetObjectEnumerable()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticProperty(typeof(Context), "Current")
-        );
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Web")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(
             new ObjectPathProperty(objectPath2.Id, "Webs"),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -216,8 +180,7 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
                 ChildItemQuery = new ClientQuery(true, typeof(Site))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<SiteEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 

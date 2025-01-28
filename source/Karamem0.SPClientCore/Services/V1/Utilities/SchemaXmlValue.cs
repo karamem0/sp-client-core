@@ -29,6 +29,7 @@ public class SchemaXmlValue(object value)
             bool boolValue => boolValue.ToString().ToUpper(),
             byte byteValue => byteValue.ToString(),
             byte[] byteArrayValue => Convert.ToBase64String(byteArrayValue),
+            BinaryData binaryDataValue => Convert.ToBase64String(binaryDataValue),
             char charValue => charValue.ToString(),
             short shortValue => shortValue.ToString(),
             ushort ushortValue => ushortValue.ToString(),

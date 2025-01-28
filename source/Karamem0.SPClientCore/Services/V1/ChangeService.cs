@@ -34,15 +34,9 @@ public class ChangeService(ClientContext clientContext) : ClientService(clientCo
     {
         _ = siteCollectionObject ?? throw new ArgumentNullException(nameof(siteCollectionObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(siteCollectionObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(siteCollectionObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
-                objectPath1.Id,
-                "GetChanges",
-                requestPayload.CreateParameter(changeQueryObject)
-            ),
+            new ObjectPathMethod(objectPath1.Id, "GetChanges", requestPayload.CreateParameter(changeQueryObject)),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
@@ -50,8 +44,7 @@ public class ChangeService(ClientContext clientContext) : ClientService(clientCo
                 ChildItemQuery = new ClientQuery(true, typeof(Change))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<ChangeEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -59,15 +52,9 @@ public class ChangeService(ClientContext clientContext) : ClientService(clientCo
     {
         _ = siteObject ?? throw new ArgumentNullException(nameof(siteObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(siteObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(siteObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
-                objectPath1.Id,
-                "GetChanges",
-                requestPayload.CreateParameter(changeQueryObject)
-            ),
+            new ObjectPathMethod(objectPath1.Id, "GetChanges", requestPayload.CreateParameter(changeQueryObject)),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
@@ -75,8 +62,7 @@ public class ChangeService(ClientContext clientContext) : ClientService(clientCo
                 ChildItemQuery = new ClientQuery(true, typeof(Change))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<ChangeEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -84,15 +70,9 @@ public class ChangeService(ClientContext clientContext) : ClientService(clientCo
     {
         _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(listObject.ObjectIdentity)
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
-                objectPath1.Id,
-                "GetChanges",
-                requestPayload.CreateParameter(changeQueryObject)
-            ),
+            new ObjectPathMethod(objectPath1.Id, "GetChanges", requestPayload.CreateParameter(changeQueryObject)),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
@@ -100,8 +80,7 @@ public class ChangeService(ClientContext clientContext) : ClientService(clientCo
                 ChildItemQuery = new ClientQuery(true, typeof(Change))
             }
         );
-        return this.ClientContext
-            .ProcessQuery(requestPayload)
+        return this.ClientContext.ProcessQuery(requestPayload)
             .ToObject<ChangeEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 

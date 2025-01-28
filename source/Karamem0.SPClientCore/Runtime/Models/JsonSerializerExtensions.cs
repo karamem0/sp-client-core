@@ -24,11 +24,7 @@ public static class JsonSerializerExtensions
         return serializer.Deserialize<T>(new JsonTextReader(reader));
     }
 
-    public static bool TryDeserialize<T>(
-        this JsonSerializer serializer,
-        string value,
-        out T result
-    )
+    public static bool TryDeserialize<T>(this JsonSerializer serializer, string value, out T result)
     {
         try
         {

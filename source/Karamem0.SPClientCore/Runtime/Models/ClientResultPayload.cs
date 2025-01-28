@@ -22,16 +22,16 @@ public class ClientResultPayload
 
     public ClientResultPayload(string jsonString)
     {
-        var jsonArray = JsonSerializerManager.Instance.Deserialize<JArray>(JsonHelper.ReplaceDoubleToInfinity(jsonString));
+        var jsonArray =
+            JsonSerializerManager.Instance.Deserialize<JArray>(JsonHelper.ReplaceDoubleToInfinity(jsonString));
         var jsonToken = jsonArray.ElementAt(0);
         this.SchemaVersion = jsonToken.Value<string>(nameof(this.SchemaVersion));
         this.LibraryVersion = jsonToken.Value<string>(nameof(this.LibraryVersion));
         this.ErrorInfo = jsonToken[nameof(this.ErrorInfo)].ToObject<ClientResultError>();
         this.TraceCorrelationId = jsonToken.Value<string>(nameof(this.TraceCorrelationId));
-        this.ClientObjects = jsonArray.Skip(1).Chunks(2).ToDictionary(
-            chunk => chunk.ElementAt(0).Value<long>(),
-            chunk => chunk.ElementAt(1)
-        );
+        this.ClientObjects = jsonArray.Skip(1)
+            .Chunks(2)
+            .ToDictionary(chunk => chunk.ElementAt(0).Value<long>(), chunk => chunk.ElementAt(1));
     }
 
     public string SchemaVersion { get; private set; }

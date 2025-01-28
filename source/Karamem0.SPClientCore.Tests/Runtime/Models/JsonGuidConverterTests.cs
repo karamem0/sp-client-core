@@ -117,11 +117,7 @@ public class JsonGuidConverterTests
         var jsonWriter = new JsonTextWriter(textWriter);
         jsonWriter.WriteStartObject();
         jsonWriter.WritePropertyName("value");
-        converter.WriteJson(
-            jsonWriter,
-            Guid.Parse("8155c423-5475-4cbc-89f9-e0f7b5f2bc68"),
-            null
-        );
+        converter.WriteJson(jsonWriter, Guid.Parse("8155c423-5475-4cbc-89f9-e0f7b5f2bc68"), null);
         jsonWriter.WriteEndObject();
         var expected = /*lang=json,strict*/ "{\"value\":\"8155c423-5475-4cbc-89f9-e0f7b5f2bc68\"}";
         var actual = textWriter.ToString();
@@ -136,11 +132,7 @@ public class JsonGuidConverterTests
         var jsonWriter = new JsonTextWriter(textWriter);
         jsonWriter.WriteStartObject();
         jsonWriter.WritePropertyName("value");
-        converter.WriteJson(
-            jsonWriter,
-            null,
-            null
-        );
+        converter.WriteJson(jsonWriter, null, null);
         jsonWriter.WriteEndObject();
         var expected = /*lang=json,strict*/ "{\"value\":null}";
         var actual = textWriter.ToString();

@@ -7,9 +7,6 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
-using Karamem0.SharePoint.PowerShell.Runtime.Common;
-using Karamem0.SharePoint.PowerShell.Runtime.OAuth;
-using Karamem0.SharePoint.PowerShell.Runtime.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,7 +14,6 @@ using System.Linq;
 using System.Management.Automation;
 using System.Security;
 using System.Text;
-using System.Threading;
 
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
@@ -56,6 +52,12 @@ public class ConnectSiteCommand : OAuthCmdlet
         Position = 0,
         ValueFromPipeline = true
     )]
+    [Parameter(
+        Mandatory = true,
+        ParameterSetName = "ParamSet6",
+        Position = 0,
+        ValueFromPipeline = true
+    )]
     public Uri Url { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
@@ -64,14 +66,16 @@ public class ConnectSiteCommand : OAuthCmdlet
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
-    [Parameter(Mandatory = false, ParameterSetName = "ParamSet4")]
-    [Parameter(Mandatory = true, ParameterSetName = "ParamSet5")]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet4")]
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet5")]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet6")]
     public string ClientId { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet4")]
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet5")]
     public Uri Authority { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
@@ -79,15 +83,19 @@ public class ConnectSiteCommand : OAuthCmdlet
     public SwitchParameter UserMode { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet4")]
     public string CertificatePath { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
     public SecureString CertificatePassword { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet4")]
-    public SwitchParameter Cached { get; private set; }
+    public string PrivateKeyPath { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet5")]
+    public SwitchParameter Cached { get; private set; }
+
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet6")]
     public string ClientSecret { get; private set; }
 
     protected override void ProcessRecordCore()
@@ -115,33 +123,37 @@ public class ConnectSiteCommand : OAuthCmdlet
         if (this.ParameterSetName == "ParamSet3")
         {
             var certificatePath = this.SessionState.Path.GetResolvedPSPathFromPSPath(this.CertificatePath)[0];
-            var certificateBytes = File.ReadAllBytes(Path.GetFullPath(certificatePath.Path));
+            var certificateBytes = BinaryData.FromBytes(File.ReadAllBytes(Path.GetFullPath(certificatePath.Path)));
             this.Service.ConnectWithCertificate(
                 this.Authority,
                 this.ClientId,
                 this.Url,
                 certificateBytes,
-                this.CertificatePassword,
-                this.UserMode
+                this.CertificatePassword
             );
         }
         if (this.ParameterSetName == "ParamSet4")
         {
-            this.ValidateSwitchParameter(nameof(this.Cached));
-            this.Service.ConnectWithCache(
+            var certificatePath = this.SessionState.Path.GetResolvedPSPathFromPSPath(this.CertificatePath)[0];
+            var certificateBytes = BinaryData.FromBytes(File.ReadAllBytes(Path.GetFullPath(certificatePath.Path)));
+            var privateKeyPath = this.SessionState.Path.GetResolvedPSPathFromPSPath(this.PrivateKeyPath)[0];
+            var privateKeyBytes = BinaryData.FromBytes(File.ReadAllBytes(Path.GetFullPath(privateKeyPath.Path)));
+            this.Service.ConnectWithCertificate(
                 this.Authority,
                 this.ClientId,
                 this.Url,
-                this.UserMode
+                certificateBytes,
+                privateKeyBytes
             );
         }
         if (this.ParameterSetName == "ParamSet5")
         {
-            this.Service.ConnectWithClientSecret(
-                this.ClientId,
-                this.ClientSecret,
-                this.Url
-            );
+            this.ValidateSwitchParameter(nameof(this.Cached));
+            this.Service.ConnectWithCache(this.Authority, this.ClientId, this.Url);
+        }
+        if (this.ParameterSetName == "ParamSet6")
+        {
+            this.Service.ConnectWithClientSecret(this.ClientId, this.ClientSecret, this.Url);
         }
     }
 

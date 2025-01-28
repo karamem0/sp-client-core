@@ -31,11 +31,7 @@ public class GetTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteColl
     )]
     public TenantSiteCollection Identity { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
     public Uri SiteCollectionUrl { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
