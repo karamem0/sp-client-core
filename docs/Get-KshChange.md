@@ -8,11 +8,13 @@ schema: 2.0.0
 # Get-KshChange
 
 ## SYNOPSIS
-Retrieves changes from a site collection, site, or list.
+
+Retrieves changes.
 
 ## SYNTAX
 
 ### ParamSet1
+
 ```
 Get-KshChange [-SiteCollection] [-BeginToken <ChangeToken>] [-EndToken <ChangeToken>] [-FetchLimit <Int64>]
  [-Objects <ChangeObjects>] [-Operations <ChangeOperations>] [-RecursiveAll <Boolean>] [-NoEnumerate]
@@ -20,6 +22,7 @@ Get-KshChange [-SiteCollection] [-BeginToken <ChangeToken>] [-EndToken <ChangeTo
 ```
 
 ### ParamSet2
+
 ```
 Get-KshChange [-Site] [-BeginToken <ChangeToken>] [-EndToken <ChangeToken>] [-FetchLimit <Int64>]
  [-Objects <ChangeObjects>] [-Operations <ChangeOperations>] [-RecursiveAll <Boolean>] [-NoEnumerate]
@@ -27,6 +30,7 @@ Get-KshChange [-Site] [-BeginToken <ChangeToken>] [-EndToken <ChangeToken>] [-Fe
 ```
 
 ### ParamSet3
+
 ```
 Get-KshChange [-List] <List> [-BeginToken <ChangeToken>] [-EndToken <ChangeToken>] [-FetchLimit <Int64>]
  [-Objects <ChangeObjects>] [-Operations <ChangeOperations>] [-RecursiveAll <Boolean>] [-NoEnumerate]
@@ -34,11 +38,13 @@ Get-KshChange [-List] <List> [-BeginToken <ChangeToken>] [-EndToken <ChangeToken
 ```
 
 ## DESCRIPTION
+
 The `Get-KshChange` cmdlet retrieves changes from a site collection, site, or list based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Get-KshChange -SiteCollection -BeginToken $beginToken -EndToken $endToken -FetchLimit 100
 ```
@@ -46,6 +52,7 @@ PS C:\> Get-KshChange -SiteCollection -BeginToken $beginToken -EndToken $endToke
 This example retrieves site collection changes between the given change tokens with a fetch limit of 100.
 
 ### Example 2
+
 ```powershell
 PS C:\> Get-KshChange -Site -BeginToken $beginToken -EndToken $endToken -FetchLimit 50
 ```
@@ -53,6 +60,7 @@ PS C:\> Get-KshChange -Site -BeginToken $beginToken -EndToken $endToken -FetchLi
 This example retrieves site changes between the given change tokens with a fetch limit of 50.
 
 ### Example 3
+
 ```powershell
 PS C:\> Get-KshChange -List $list -BeginToken $beginToken -EndToken $endToken -FetchLimit 200
 ```
@@ -62,6 +70,7 @@ This example retrieves list changes  between the given change tokens with a fetc
 ## PARAMETERS
 
 ### -BeginToken
+
 Specifies the beginning change token.
 
 ```yaml
@@ -77,6 +86,7 @@ Accept wildcard characters: False
 ```
 
 ### -EndToken
+
 Specifies the ending change token.
 
 ```yaml
@@ -92,6 +102,7 @@ Accept wildcard characters: False
 ```
 
 ### -FetchLimit
+
 Specifies the maximum number of changes to retrieve.
 
 ```yaml
@@ -107,6 +118,7 @@ Accept wildcard characters: False
 ```
 
 ### -List
+
 Specifies the list from which to retrieve changes.
 
 ```yaml
@@ -122,6 +134,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
+
 Indicates that the cmdlet does not enumerate the changes.
 
 ```yaml
@@ -137,6 +150,7 @@ Accept wildcard characters: False
 ```
 
 ### -Objects
+
 Specifies the types of objects to retrieve changes for.
 
 ```yaml
@@ -153,6 +167,7 @@ Accept wildcard characters: False
 ```
 
 ### -Operations
+
 Specifies the types of operations to retrieve changes for.
 
 ```yaml
@@ -169,6 +184,7 @@ Accept wildcard characters: False
 ```
 
 ### -RecursiveAll
+
 Indicates that the cmdlet retrieves changes recursively.
 
 ```yaml
@@ -184,6 +200,7 @@ Accept wildcard characters: False
 ```
 
 ### -Site
+
 Specifies that the cmdlet retrieves changes from a site.
 
 ```yaml
@@ -199,6 +216,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteCollection
+
 Specifies that the cmdlet retrieves changes from a site collection.
 
 ```yaml
@@ -214,6 +232,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress.
 
 ```yaml
@@ -229,15 +248,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.Change
+
 ## NOTES
 
 ## RELATED LINKS
-

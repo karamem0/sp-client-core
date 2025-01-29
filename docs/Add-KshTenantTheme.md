@@ -8,7 +8,8 @@ schema: 2.0.0
 # Add-KshTenantTheme
 
 ## SYNOPSIS
-Adds a new theme to the tenant.
+
+Adds a new theme.
 
 ## SYNTAX
 
@@ -18,11 +19,13 @@ Add-KshTenantTheme -IsInverted <Boolean> -Name <String> -Palette <Hashtable>
 ```
 
 ## DESCRIPTION
+
 The `Add-KshTenantTheme` cmdlet adds a new theme to the tenant.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Add-KshTenantTheme -IsInverted $false -Name "CustomTheme" -Palette $palette
 ```
@@ -32,6 +35,7 @@ This example adds a new custom theme named "CustomTheme" to the tenant with the 
 ## PARAMETERS
 
 ### -IsInverted
+
 Specifies whether the theme is inverted.
 
 ```yaml
@@ -47,6 +51,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
+
 Specifies the name of the theme.
 
 ```yaml
@@ -62,6 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -Palette
+
 Specifies the color palette for the theme.
 
 ```yaml
@@ -77,6 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress.
 
 ```yaml
@@ -92,15 +99,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.TenantTheme
+
 ## NOTES
 
 ## RELATED LINKS
-

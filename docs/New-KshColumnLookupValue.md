@@ -8,7 +8,8 @@ schema: 2.0.0
 # New-KshColumnLookupValue
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+
+Creates a new lookup column value.
 
 ## SYNTAX
 
@@ -18,21 +19,24 @@ New-KshColumnLookupValue [-LookupId] <Int32> [[-LookupValue] <String>] [-Progres
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+
+The `New-KshColumnLookupValue` cmdlet creates a new lookup column value.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> $lookupValue = New-KshColumnLookupValue -LookupId 1 -LookupValue "Example Value"
 ```
 
-{{ Add example description here }}
+This example creates a new lookup column value with the specified ID and value.
 
 ## PARAMETERS
 
 ### -LookupId
-{{ Fill LookupId Description }}
+
+Specifies the ID of the lookup item.
 
 ```yaml
 Type: Int32
@@ -47,7 +51,8 @@ Accept wildcard characters: False
 ```
 
 ### -LookupValue
-{{ Fill LookupValue Description }}
+
+Specifies the value of the lookup item.
 
 ```yaml
 Type: String
@@ -62,7 +67,8 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference
@@ -77,15 +83,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.ColumnLookupValue
+
 ## NOTES
 
 ## RELATED LINKS
-

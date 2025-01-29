@@ -8,7 +8,8 @@ schema: 2.0.0
 # New-KshColumnGeolocationValue
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+
+Creates a new geolocation column value.
 
 ## SYNTAX
 
@@ -18,21 +19,24 @@ New-KshColumnGeolocationValue [-Altitude <Double>] -Latitude <Double> -Longitude
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+
+The `New-KshColumnGeolocationValue` cmdlet creates a new geolocation column value with the specified latitude, longitude, altitude, and measure.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> New-KshColumnGeolocationValue -Latitude 47.6097 -Longitude -122.3331
 ```
 
-{{ Add example description here }}
+This example creates a new geolocation column value with the specified latitude and longitude.
 
 ## PARAMETERS
 
 ### -Altitude
-{{ Fill Altitude Description }}
+
+Specifies the altitude of the geolocation.
 
 ```yaml
 Type: Double
@@ -47,7 +51,8 @@ Accept wildcard characters: False
 ```
 
 ### -Latitude
-{{ Fill Latitude Description }}
+
+Specifies the latitude of the geolocation.
 
 ```yaml
 Type: Double
@@ -62,7 +67,8 @@ Accept wildcard characters: False
 ```
 
 ### -Longitude
-{{ Fill Longitude Description }}
+
+Specifies the longitude of the geolocation.
 
 ```yaml
 Type: Double
@@ -77,7 +83,8 @@ Accept wildcard characters: False
 ```
 
 ### -Measure
-{{ Fill Measure Description }}
+
+Specifies the measure of the geolocation.
 
 ```yaml
 Type: Double
@@ -92,7 +99,8 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference
@@ -107,15 +115,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.ColumnGeolocationValue
+
 ## NOTES
 
 ## RELATED LINKS
-

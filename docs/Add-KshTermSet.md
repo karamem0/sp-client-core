@@ -8,7 +8,8 @@ schema: 2.0.0
 # Add-KshTermSet
 
 ## SYNOPSIS
-Adds a new term set to a term group.
+
+Adds a new term set.
 
 ## SYNTAX
 
@@ -18,11 +19,13 @@ Add-KshTermSet [-TermGroup] <TermGroup> [-Id <Guid>] -Lcid <UInt32> -Name <Strin
 ```
 
 ## DESCRIPTION
+
 The `Add-KshTermSet` cmdlet adds a new term set to a term group.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Add-KshTermSet -TermGroup $termGroup -Lcid 1033 -Name "New Term Set"
 ```
@@ -32,6 +35,7 @@ This example adds a new term set named "New Term Set" to the specified term grou
 ## PARAMETERS
 
 ### -Id
+
 Specifies the unique identifier of the term set.
 
 ```yaml
@@ -47,6 +51,7 @@ Accept wildcard characters: False
 ```
 
 ### -Lcid
+
 Specifies the locale ID for the term set.
 
 ```yaml
@@ -62,6 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
+
 Specifies the name of the term set.
 
 ```yaml
@@ -77,6 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -TermGroup
+
 Specifies the term group to which the term set is added.
 
 ```yaml
@@ -92,6 +99,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -107,15 +115,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.TermGroup
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.TermSet
+
 ## NOTES
 
 ## RELATED LINKS
-

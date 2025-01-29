@@ -8,6 +8,7 @@ schema: 2.0.0
 # Approve-KshFile
 
 ## SYNOPSIS
+
 Approves a file.
 
 ## SYNTAX
@@ -18,11 +19,13 @@ Approve-KshFile [-Identity] <File> [-Comment <String>] [-PassThru] [-ProgressAct
 ```
 
 ## DESCRIPTION
+
 The `Approve-KshFile` cmdlet approves a draft of a file with an optional comment.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Approve-KshFile -Identity $file -Comment "Approved"
 ```
@@ -32,6 +35,7 @@ This example approves the specified file with the comment "Approved".
 ## PARAMETERS
 
 ### -Comment
+
 Specifies a comment to associate with the approval.
 
 ```yaml
@@ -47,6 +51,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
+
 Specifies the file to approve.
 
 ```yaml
@@ -62,6 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
+
 Returns the file object that was processed.
 
 ```yaml
@@ -77,6 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -92,15 +99,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.File
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.File
+
 ## NOTES
 
 ## RELATED LINKS
-

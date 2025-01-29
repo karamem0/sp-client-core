@@ -8,6 +8,7 @@ schema: 2.0.0
 # Add-KshSiteFeature
 
 ## SYNOPSIS
+
 Activates a feature in a site.
 
 ## SYNTAX
@@ -18,11 +19,13 @@ Add-KshSiteFeature -FeatureId <Guid> [-Force <Boolean>] [-Scope <FeatureDefiniti
 ```
 
 ## DESCRIPTION
+
 The `Add-KshSiteFeature` cmdlet activates a feature in the current site using the feature ID.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Add-KshSiteFeature -FeatureId "12345678-1234-1234-1234-1234567890ab" -Force $true
 ```
@@ -32,6 +35,7 @@ This example activates the feature with the specified feature ID in the site, fo
 ## PARAMETERS
 
 ### -FeatureId
+
 Specifies the ID of the feature to add.
 
 ```yaml
@@ -47,6 +51,7 @@ Accept wildcard characters: False
 ```
 
 ### -Force
+
 Forces the addition of the feature, even if it is already activated.
 
 ```yaml
@@ -62,6 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -Scope
+
 Specifies the scope of the feature to add.
 
 ```yaml
@@ -78,6 +84,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -93,15 +100,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### System.Void
+
 ## NOTES
 
 ## RELATED LINKS
-

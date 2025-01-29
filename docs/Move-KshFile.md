@@ -8,11 +8,13 @@ schema: 2.0.0
 # Move-KshFile
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+
+Moves a file.
 
 ## SYNTAX
 
 ### ParamSet1
+
 ```
 Move-KshFile [-Identity] <File> [-NewUrl] <Uri> [-Overwrite] [-KeepBoth] [-ResetAuthorAndCreatedOnCopy]
  [-RetainEditorAndModifiedOnMove] [-ShouldBypassSharedLocks] [-ProgressAction <ActionPreference>]
@@ -20,27 +22,39 @@ Move-KshFile [-Identity] <File> [-NewUrl] <Uri> [-Overwrite] [-KeepBoth] [-Reset
 ```
 
 ### ParamSet2
+
 ```
 Move-KshFile [-Identity] <File> [-NewUrl] <Uri> [-Overwrite] [-Legacy] [-AllowBrokenThickets]
  [-BypassApprovePermission] [-PassThru] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+
+The `Move-KshFile` cmdlet moves a file to a new location. You can specify various options such as overwriting the file, keeping both versions, and retaining editor and modified information.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Move-KshFile -Identity $file -NewUrl "https://contoso.sharepoint.com/Shared%20Documents/README.txt" -Overwrite
 ```
 
-{{ Add example description here }}
+This example moves the specified file to the new location and overwrites the existing file if it exists.
+
+### Example 2
+
+```powershell
+PS C:\> Move-KshFile -Identity $file -NewUrl "/Shared%20Documents/README.txt" -Overwrite -Legacy -AllowBrokenThickets
+```
+
+This example moves the file to the new location using the legacy API and allows the move to proceed even if the file has broken thickets.
 
 ## PARAMETERS
 
 ### -AllowBrokenThickets
-{{ Fill AllowBrokenThickets Description }}
+
+Allows the move operation to proceed even if the file has broken thickets.
 
 ```yaml
 Type: SwitchParameter
@@ -55,7 +69,8 @@ Accept wildcard characters: False
 ```
 
 ### -BypassApprovePermission
-{{ Fill BypassApprovePermission Description }}
+
+Bypasses the approval permission requirement for the move operation.
 
 ```yaml
 Type: SwitchParameter
@@ -70,7 +85,8 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-{{ Fill Identity Description }}
+
+Specifies the file to be moved.
 
 ```yaml
 Type: File
@@ -85,7 +101,8 @@ Accept wildcard characters: False
 ```
 
 ### -KeepBoth
-{{ Fill KeepBoth Description }}
+
+Keeps both the original and the moved file.
 
 ```yaml
 Type: SwitchParameter
@@ -100,7 +117,8 @@ Accept wildcard characters: False
 ```
 
 ### -Legacy
-{{ Fill Legacy Description }}
+
+Indicates that the legacy API should be used for the move operation.
 
 ```yaml
 Type: SwitchParameter
@@ -115,7 +133,8 @@ Accept wildcard characters: False
 ```
 
 ### -NewUrl
-{{ Fill NewUrl Description }}
+
+Specifies the new URL for the file.
 
 ```yaml
 Type: Uri
@@ -130,7 +149,8 @@ Accept wildcard characters: False
 ```
 
 ### -Overwrite
-{{ Fill Overwrite Description }}
+
+Overwrites the file at the new URL if it already exists.
 
 ```yaml
 Type: SwitchParameter
@@ -145,7 +165,8 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
-{{ Fill PassThru Description }}
+
+Returns the file object that was processed.
 
 ```yaml
 Type: SwitchParameter
@@ -160,7 +181,8 @@ Accept wildcard characters: False
 ```
 
 ### -ResetAuthorAndCreatedOnCopy
-{{ Fill ResetAuthorAndCreatedOnCopy Description }}
+
+Resets the author and created date on the copied file.
 
 ```yaml
 Type: SwitchParameter
@@ -175,7 +197,8 @@ Accept wildcard characters: False
 ```
 
 ### -RetainEditorAndModifiedOnMove
-{{ Fill RetainEditorAndModifiedOnMove Description }}
+
+Retains the editor and modified date on the moved file.
 
 ```yaml
 Type: SwitchParameter
@@ -190,7 +213,8 @@ Accept wildcard characters: False
 ```
 
 ### -ShouldBypassSharedLocks
-{{ Fill ShouldBypassSharedLocks Description }}
+
+Bypasses shared locks during the move operation.
 
 ```yaml
 Type: SwitchParameter
@@ -205,7 +229,8 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+
+Specifies the action to take when progress is reported.
 
 ```yaml
 Type: ActionPreference
@@ -220,15 +245,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.File
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.File
+
 ## NOTES
 
 ## RELATED LINKS
-

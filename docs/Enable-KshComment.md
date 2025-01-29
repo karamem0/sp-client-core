@@ -8,7 +8,8 @@ schema: 2.0.0
 # Enable-KshComment
 
 ## SYNOPSIS
-Enables comments on a list item.
+
+Enables comments.
 
 ## SYNTAX
 
@@ -17,11 +18,13 @@ Enable-KshComment [-Identity] <ListItem> [-ProgressAction <ActionPreference>] [<
 ```
 
 ## DESCRIPTION
+
 The `Enable-KshComment` cmdlet enables comments on a list item.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Enable-KshComment -Identity $listItem
 ```
@@ -31,6 +34,7 @@ This example enables comments on the specified list item.
 ## PARAMETERS
 
 ### -Identity
+
 Specifies the list item on which to enable comments.
 
 ```yaml
@@ -46,6 +50,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -61,15 +66,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.ListItem
+
 ## OUTPUTS
 
 ### System.Void
+
 ## NOTES
 
 ## RELATED LINKS
-

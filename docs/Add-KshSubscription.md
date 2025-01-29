@@ -8,6 +8,7 @@ schema: 2.0.0
 # Add-KshSubscription
 
 ## SYNOPSIS
+
 Creates a new subscription for a list.
 
 ## SYNTAX
@@ -18,11 +19,13 @@ Add-KshSubscription [-List] <List> [-ClientState <String>] -ExpirationDateTime <
 ```
 
 ## DESCRIPTION
+
 The `Add-KshSubscription` cmdlet creates a new subscription for a list with the given parameters.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Add-KshSubscription -List $list -ExpirationDateTime (Get-Date).AddMonths(3) -NotificationUrl "https://example.com/notifications"
 ```
@@ -32,6 +35,7 @@ This example creates a new subscription for the specified list that expires in 3
 ## PARAMETERS
 
 ### -ClientState
+
 Specifies the client state that will be sent with the notification.
 
 ```yaml
@@ -47,6 +51,7 @@ Accept wildcard characters: False
 ```
 
 ### -ExpirationDateTime
+
 Specifies the expiration date and time for the subscription.
 
 ```yaml
@@ -62,6 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -List
+
 Specifies the list to which the subscription is added.
 
 ```yaml
@@ -77,6 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -NotificationUrl
+
 Specifies the URL to which notifications will be sent.
 
 ```yaml
@@ -92,6 +99,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -107,15 +115,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.List
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.Subscription
+
 ## NOTES
 
 ## RELATED LINKS
-

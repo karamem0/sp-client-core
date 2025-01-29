@@ -8,7 +8,8 @@ schema: 2.0.0
 # New-KshBasePermission
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+
+Creates a new base permission.
 
 ## SYNTAX
 
@@ -18,21 +19,24 @@ New-KshBasePermission [-Permission] <PermissionKind[]> [-ProgressAction <ActionP
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+
+The `New-KshBasePermission` cmdlet creates a new base permission.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> $permission = New-KshBasePermission -Permission "ViewListItems", "AddListItems"
 ```
 
-{{ Add example description here }}
+This example creates a new base permission with the specified permissions.
 
 ## PARAMETERS
 
 ### -Permission
-{{ Fill Permission Description }}
+
+Specifies the permissions to include in the base permission.
 
 ```yaml
 Type: PermissionKind[]
@@ -48,7 +52,8 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference
@@ -63,15 +68,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.BasePermission
+
 ## NOTES
 
 ## RELATED LINKS
-

@@ -8,7 +8,8 @@ schema: 2.0.0
 # New-KshColumnTaxonomyValue
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+
+Creates a new taxonomy column value.
 
 ## SYNTAX
 
@@ -17,21 +18,24 @@ New-KshColumnTaxonomyValue -Term <Term> [-ProgressAction <ActionPreference>] [<C
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+
+The `New-KshColumnTaxonomyValue` cmdlet creates a new taxonomy column value.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> New-KshColumnTaxonomyValue -Term $term
 ```
 
-{{ Add example description here }}
+This example creates a new taxonomy column value with the specified term.
 
 ## PARAMETERS
 
 ### -Term
-{{ Fill Term Description }}
+
+Specifies the term to be used for the taxonomy column value.
 
 ```yaml
 Type: Term
@@ -46,7 +50,8 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference
@@ -61,15 +66,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.ColumnTaxonomyValue
+
 ## NOTES
 
 ## RELATED LINKS
-

@@ -8,7 +8,8 @@ schema: 2.0.0
 # Add-KshTermLabel
 
 ## SYNOPSIS
-Adds a new label to a term.
+
+Adds a new label.
 
 ## SYNTAX
 
@@ -18,11 +19,13 @@ Add-KshTermLabel [-Term] <Term> -Name <String> -Lcid <UInt32> -IsDefault <Boolea
 ```
 
 ## DESCRIPTION
+
 The `Add-KshTermLabel` cmdlet adds a new label to a term with the name, language code identifier (LCID), and default status.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Add-KshTermLabel -Term $term -Name "NewLabel" -Lcid 1033 -IsDefault $true
 ```
@@ -32,6 +35,7 @@ This example adds a new default label "NewLabel" with LCID 1033 to the specified
 ## PARAMETERS
 
 ### -IsDefault
+
 Specifies whether the label is the default label for the term.
 
 ```yaml
@@ -47,6 +51,7 @@ Accept wildcard characters: False
 ```
 
 ### -Lcid
+
 Specifies the language code identifier (LCID) for the label.
 
 ```yaml
@@ -62,6 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
+
 Specifies the name of the label.
 
 ```yaml
@@ -77,6 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -Term
+
 Specifies the term to which the label is added.
 
 ```yaml
@@ -92,6 +99,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -107,15 +115,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.Term
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.TermLabel
+
 ## NOTES
 
 ## RELATED LINKS
-

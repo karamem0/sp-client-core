@@ -8,6 +8,7 @@ schema: 2.0.0
 # Set-KshView
 
 ## SYNOPSIS
+
 {{ Fill in the Synopsis }}
 
 ## SYNTAX
@@ -26,11 +27,13 @@ Set-KshView [-Identity] <View> [-Aggregations <String>] [-AggregationsStatus <St
 ```
 
 ## DESCRIPTION
+
 {{ Fill in the Description }}
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> {{ Add example code here }}
 ```
@@ -40,6 +43,7 @@ PS C:\> {{ Add example code here }}
 ## PARAMETERS
 
 ### -Aggregations
+
 {{ Fill Aggregations Description }}
 
 ```yaml
@@ -55,6 +59,7 @@ Accept wildcard characters: False
 ```
 
 ### -AggregationsStatus
+
 {{ Fill AggregationsStatus Description }}
 
 ```yaml
@@ -70,6 +75,7 @@ Accept wildcard characters: False
 ```
 
 ### -AssociatedContentTypeId
+
 {{ Fill AssociatedContentTypeId Description }}
 
 ```yaml
@@ -85,6 +91,7 @@ Accept wildcard characters: False
 ```
 
 ### -CalendarViewStyles
+
 {{ Fill CalendarViewStyles Description }}
 
 ```yaml
@@ -100,6 +107,7 @@ Accept wildcard characters: False
 ```
 
 ### -ContentTypeId
+
 {{ Fill ContentTypeId Description }}
 
 ```yaml
@@ -115,6 +123,7 @@ Accept wildcard characters: False
 ```
 
 ### -DefaultView
+
 {{ Fill DefaultView Description }}
 
 ```yaml
@@ -130,6 +139,7 @@ Accept wildcard characters: False
 ```
 
 ### -DefaultViewForContentType
+
 {{ Fill DefaultViewForContentType Description }}
 
 ```yaml
@@ -145,6 +155,7 @@ Accept wildcard characters: False
 ```
 
 ### -EditorModified
+
 {{ Fill EditorModified Description }}
 
 ```yaml
@@ -160,6 +171,7 @@ Accept wildcard characters: False
 ```
 
 ### -Formats
+
 {{ Fill Formats Description }}
 
 ```yaml
@@ -175,6 +187,7 @@ Accept wildcard characters: False
 ```
 
 ### -GridLayout
+
 {{ Fill GridLayout Description }}
 
 ```yaml
@@ -190,6 +203,7 @@ Accept wildcard characters: False
 ```
 
 ### -Hidden
+
 {{ Fill Hidden Description }}
 
 ```yaml
@@ -205,6 +219,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
+
 {{ Fill Identity Description }}
 
 ```yaml
@@ -220,6 +235,7 @@ Accept wildcard characters: False
 ```
 
 ### -ImageUrl
+
 {{ Fill ImageUrl Description }}
 
 ```yaml
@@ -235,6 +251,7 @@ Accept wildcard characters: False
 ```
 
 ### -IncludeRootFolder
+
 {{ Fill IncludeRootFolder Description }}
 
 ```yaml
@@ -250,6 +267,7 @@ Accept wildcard characters: False
 ```
 
 ### -JSLink
+
 {{ Fill JSLink Description }}
 
 ```yaml
@@ -265,6 +283,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListViewXml
+
 {{ Fill ListViewXml Description }}
 
 ```yaml
@@ -280,6 +299,7 @@ Accept wildcard characters: False
 ```
 
 ### -Method
+
 {{ Fill Method Description }}
 
 ```yaml
@@ -295,6 +315,7 @@ Accept wildcard characters: False
 ```
 
 ### -MobileDefaultView
+
 {{ Fill MobileDefaultView Description }}
 
 ```yaml
@@ -310,6 +331,7 @@ Accept wildcard characters: False
 ```
 
 ### -MobileView
+
 {{ Fill MobileView Description }}
 
 ```yaml
@@ -325,6 +347,7 @@ Accept wildcard characters: False
 ```
 
 ### -NewDocumentTemplates
+
 {{ Fill NewDocumentTemplates Description }}
 
 ```yaml
@@ -340,6 +363,7 @@ Accept wildcard characters: False
 ```
 
 ### -Paged
+
 {{ Fill Paged Description }}
 
 ```yaml
@@ -355,6 +379,7 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
+
 {{ Fill PassThru Description }}
 
 ```yaml
@@ -370,6 +395,7 @@ Accept wildcard characters: False
 ```
 
 ### -RowLimit
+
 {{ Fill RowLimit Description }}
 
 ```yaml
@@ -385,6 +411,7 @@ Accept wildcard characters: False
 ```
 
 ### -Scope
+
 {{ Fill Scope Description }}
 
 ```yaml
@@ -401,6 +428,7 @@ Accept wildcard characters: False
 ```
 
 ### -TabularView
+
 {{ Fill TabularView Description }}
 
 ```yaml
@@ -416,6 +444,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
+
 {{ Fill Title Description }}
 
 ```yaml
@@ -431,6 +460,7 @@ Accept wildcard characters: False
 ```
 
 ### -Toolbar
+
 {{ Fill Toolbar Description }}
 
 ```yaml
@@ -446,6 +476,7 @@ Accept wildcard characters: False
 ```
 
 ### -ViewData
+
 {{ Fill ViewData Description }}
 
 ```yaml
@@ -461,6 +492,7 @@ Accept wildcard characters: False
 ```
 
 ### -ViewJoins
+
 {{ Fill ViewJoins Description }}
 
 ```yaml
@@ -476,6 +508,7 @@ Accept wildcard characters: False
 ```
 
 ### -ViewProjectedColumns
+
 {{ Fill ViewProjectedColumns Description }}
 
 ```yaml
@@ -491,6 +524,7 @@ Accept wildcard characters: False
 ```
 
 ### -ViewQuery
+
 {{ Fill ViewQuery Description }}
 
 ```yaml
@@ -506,6 +540,7 @@ Accept wildcard characters: False
 ```
 
 ### -ViewType2
+
 {{ Fill ViewType2 Description }}
 
 ```yaml
@@ -521,6 +556,7 @@ Accept wildcard characters: False
 ```
 
 ### -VisualizationInfo
+
 {{ Fill VisualizationInfo Description }}
 
 ```yaml
@@ -536,6 +572,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 {{ Fill ProgressAction Description }}
 
 ```yaml
@@ -551,15 +588,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.View
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.View
+
 ## NOTES
 
 ## RELATED LINKS
-

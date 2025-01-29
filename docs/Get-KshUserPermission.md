@@ -8,32 +8,38 @@ schema: 2.0.0
 # Get-KshUserPermission
 
 ## SYNOPSIS
-Retrieves user permissions from a site, list, or list item.
+
+Retrieves user permissions.
 
 ## SYNTAX
 
 ### ParamSet1
+
 ```
 Get-KshUserPermission [-User] <User> [-Site] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet2
+
 ```
 Get-KshUserPermission [-User] <User> [-List] <List> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet3
+
 ```
 Get-KshUserPermission [-User] <User> [-ListItem] <ListItem> [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 The `Get-KshUserPermission` cmdlet retrieves user permissions from a site, list, or list item based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Get-KshUserPermission -User $user -Site
 ```
@@ -41,6 +47,7 @@ PS C:\> Get-KshUserPermission -User $user -Site
 This example retrieves the site permissions for the specified user.
 
 ### Example 2
+
 ```powershell
 PS C:\> Get-KshUserPermission -User $user -List $list
 ```
@@ -48,6 +55,7 @@ PS C:\> Get-KshUserPermission -User $user -List $list
 This example retrieves the list permissions for the specified user.
 
 ### Example 3
+
 ```powershell
 PS C:\> Get-KshUserPermission -User $user -ListItem $listItem
 ```
@@ -57,6 +65,7 @@ This example retrieves the list item permissions for the specified user.
 ## PARAMETERS
 
 ### -List
+
 Specifies the list for which to retrieve the user permissions.
 
 ```yaml
@@ -72,6 +81,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListItem
+
 Specifies the list item for which to retrieve the user permissions.
 
 ```yaml
@@ -87,6 +97,7 @@ Accept wildcard characters: False
 ```
 
 ### -Site
+
 Specifies that the cmdlet retrieves the user permissions for the site.
 
 ```yaml
@@ -102,6 +113,7 @@ Accept wildcard characters: False
 ```
 
 ### -User
+
 Specifies the user for whom to retrieve permissions.
 
 ```yaml
@@ -117,6 +129,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -132,15 +145,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.User
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.BasePermission
+
 ## NOTES
 
 ## RELATED LINKS
-

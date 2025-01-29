@@ -8,52 +8,61 @@ schema: 2.0.0
 # Connect-KshSite
 
 ## SYNOPSIS
+
 Connects to a site.
 
 ## SYNTAX
 
 ### ParamSet1
+
 ```
 Connect-KshSite [-Url] <Uri> [-ClientId <String>] [-Authority <Uri>] [-UserMode]
  [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet2
+
 ```
 Connect-KshSite [-Url] <Uri> -Credential <PSCredential> [-ClientId <String>] [-Authority <Uri>] [-UserMode]
  [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet3
+
 ```
 Connect-KshSite [-Url] <Uri> -ClientId <String> [-Authority <Uri>] -CertificatePath <String>
  -CertificatePassword <SecureString> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet4
+
 ```
 Connect-KshSite [-Url] <Uri> -ClientId <String> [-Authority <Uri>] -CertificatePath <String>
  -PrivateKeyPath <String> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet5
+
 ```
 Connect-KshSite [-Url] <Uri> [-ClientId <String>] [-Authority <Uri>] [-Cached]
  [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet6
+
 ```
 Connect-KshSite [-Url] <Uri> -ClientId <String> -ClientSecret <String> [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 The `Connect-KshSite` cmdlet connects to a site using a device code, client ID and certificate, or from cache.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Connect-KshSite -Url "https://consoto.sharepoint.com"
 ```
@@ -61,6 +70,7 @@ PS C:\> Connect-KshSite -Url "https://consoto.sharepoint.com"
 This example connects to the site at "https://consoto.sharepoint.com" using a device code.
 
 ### Example 2
+
 ```powershell
 PS C:\> Connect-KshSite -Url "https://consoto.sharepoint.com" -Credential $credential
 ```
@@ -68,6 +78,7 @@ PS C:\> Connect-KshSite -Url "https://consoto.sharepoint.com" -Credential $crede
 This example connects to the site at "https://consoto.sharepoint.com" using a user ID and password. This method is not recommended.
 
 ### Example 3
+
 ```powershell
 PS C:\> Connect-KshSite -Url "https://consoto.sharepoint.com" -ClientId "12345678-1234-1234-1234-1234567890ab" -CertificatePath "path/to/certificate.pfx" -CertificatePassword $password
 ```
@@ -75,6 +86,7 @@ PS C:\> Connect-KshSite -Url "https://consoto.sharepoint.com" -ClientId "1234567
 This example connects to the site at "https://consoto.sharepoint.com" using a client ID, a certificate file, and a password.
 
 ### Example 4
+
 ```powershell
 PS C:\> Connect-KshSite -Url "https://consoto.sharepoint.com" -ClientId "12345678-1234-1234-1234-1234567890ab" -CertificatePath "path/to/certificate.cer" -PrivateKeyPath "path/to/privatekey.key"
 ```
@@ -82,6 +94,7 @@ PS C:\> Connect-KshSite -Url "https://consoto.sharepoint.com" -ClientId "1234567
 This example connects to the site at "https://consoto.sharepoint.com" using a client ID, a certificate file, and a private key file.
 
 ### Example 5
+
 ```powershell
 PS C:\> Connect-KshSite -Url "https://consoto.sharepoint.com" -ClientId "12345678-1234-1234-1234-1234567890ab" -ClientSecret "MTIz..."
 ```
@@ -89,6 +102,7 @@ PS C:\> Connect-KshSite -Url "https://consoto.sharepoint.com" -ClientId "1234567
 This example connects to the site at "https://consoto.sharepoint.com" using a client ID and client secret. This method is not recommended.
 
 ### Example 6
+
 ```powershell
 PS C:\> Connect-KshSite -Url "https://consoto.sharepoint.com" -Cached
 ```
@@ -98,6 +112,7 @@ This example connects to the site at "https://consoto.sharepoint.com" using cach
 ## PARAMETERS
 
 ### -Authority
+
 Specifies the authority URI to use for authentication.
 
 ```yaml
@@ -113,6 +128,7 @@ Accept wildcard characters: False
 ```
 
 ### -Cached
+
 Indicates that cached credentials should be used.
 
 ```yaml
@@ -128,6 +144,7 @@ Accept wildcard characters: False
 ```
 
 ### -CertificatePassword
+
 Specifies the password for the certificate file.
 
 ```yaml
@@ -143,6 +160,7 @@ Accept wildcard characters: False
 ```
 
 ### -CertificatePath
+
 Specifies the path to the certificate file.
 
 ```yaml
@@ -158,6 +176,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClientId
+
 Specifies the client ID to use for authentication.
 
 ```yaml
@@ -185,6 +204,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClientSecret
+
 Specifies the client secret to use for authentication.
 
 ```yaml
@@ -200,6 +220,7 @@ Accept wildcard characters: False
 ```
 
 ### -Credential
+
 Specifies the user credentials to use for authentication.
 
 ```yaml
@@ -215,6 +236,7 @@ Accept wildcard characters: False
 ```
 
 ### -PrivateKeyPath
+
 Specifies the path to the private key file.
 
 ```yaml
@@ -230,6 +252,7 @@ Accept wildcard characters: False
 ```
 
 ### -Url
+
 Specifies the URL of the site to connect to.
 
 ```yaml
@@ -245,6 +268,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserMode
+
 Indicates that user mode should be used for authentication.
 
 ```yaml
@@ -260,6 +284,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -275,15 +300,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### System.Uri
+
 ## OUTPUTS
 
 ### System.Void
+
 ## NOTES
 
 ## RELATED LINKS
-

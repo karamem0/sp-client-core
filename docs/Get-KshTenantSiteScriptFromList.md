@@ -8,7 +8,8 @@ schema: 2.0.0
 # Get-KshTenantSiteScriptFromList
 
 ## SYNOPSIS
-Retrieves a site script from a list.
+
+Retrieves a site script.
 
 ## SYNTAX
 
@@ -17,11 +18,13 @@ Get-KshTenantSiteScriptFromList [-ListUrl] <String> [-ProgressAction <ActionPref
 ```
 
 ## DESCRIPTION
+
 The `Get-KshTenantSiteScriptFromList` cmdlet retrieves a site script from a list.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Get-KshTenantSiteScriptFromList -ListUrl "https://contoso.sharepoint.com/sites/sitecollection/Shared Documents"
 ```
@@ -31,6 +34,7 @@ This example retrieves the site script by list URL.
 ## PARAMETERS
 
 ### -ListUrl
+
 Specifies the URL of the list from which to retrieve the tenant site script.
 
 ```yaml
@@ -46,6 +50,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -61,15 +66,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### System.String
+
 ## NOTES
 
 ## RELATED LINKS
-

@@ -8,6 +8,7 @@ schema: 2.0.0
 # Add-KshOrganizationSharingLink
 
 ## SYNOPSIS
+
 Creates a new sharing link for an organization.
 
 ## SYNTAX
@@ -18,11 +19,13 @@ Add-KshOrganizationSharingLink -Url <Uri> -IsEditLink <Boolean> [-ProgressAction
 ```
 
 ## DESCRIPTION
-The `Add-KshOrganizationSharingLink` cmdlet creates a sharing link for an organization, allowing users to share resources with specified permissions.
+
+The `Add-KshOrganizationSharingLink` cmdlet creates a organization sharing link for an URL, allowing users to share resources with specified permissions.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Add-KshOrganizationSharingLink -Url "https://example.com/resource" -IsEditLink $true
 ```
@@ -32,6 +35,7 @@ This example creates an edit sharing link for the specified URL.
 ## PARAMETERS
 
 ### -IsEditLink
+
 Specifies whether the sharing link allows editing.
 
 ```yaml
@@ -47,6 +51,7 @@ Accept wildcard characters: False
 ```
 
 ### -Url
+
 Specifies the URL of the resource to share.
 
 ```yaml
@@ -62,6 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -77,15 +83,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### System.String
+
 ## NOTES
 
 ## RELATED LINKS
-

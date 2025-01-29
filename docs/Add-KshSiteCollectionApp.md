@@ -8,7 +8,8 @@ schema: 2.0.0
 # Add-KshSiteCollectionApp
 
 ## SYNOPSIS
-Adds a new app to a site collection app catalog.
+
+Adds a new site collection app.
 
 ## SYNTAX
 
@@ -18,11 +19,13 @@ Add-KshSiteCollectionApp -Content <Stream> -FileName <String> [-Overwrite <Boole
 ```
 
 ## DESCRIPTION
+
 The `Add-KshSiteCollectionApp` cmdlet adds a new app to the current site collection app catalog.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Add-KshSiteCollectionApp -Content $content -FileName "app.zip" -Overwrite $true
 ```
@@ -32,6 +35,7 @@ This example adds a new app to the current site collection app catalog from the 
 ## PARAMETERS
 
 ### -Content
+
 Specifies the content of the app as a stream.
 
 ```yaml
@@ -47,6 +51,7 @@ Accept wildcard characters: False
 ```
 
 ### -FileName
+
 Specifies the name of the app file.
 
 ```yaml
@@ -62,6 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -Overwrite
+
 Indicates whether to overwrite the existing app if it exists.
 
 ```yaml
@@ -77,6 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -92,15 +99,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.App
+
 ## NOTES
 
 ## RELATED LINKS
-

@@ -8,7 +8,8 @@ schema: 2.0.0
 # Add-KshListItem
 
 ## SYNOPSIS
-Adds a new list item to a list.
+
+Adds a new list item.
 
 ## SYNTAX
 
@@ -18,11 +19,13 @@ Add-KshListItem [-List] <List> [-Value] <PSObject[]> [-NoEnumerate] [-ProgressAc
 ```
 
 ## DESCRIPTION
+
 The `Add-KshListItem` cmdlet adds a new item to a list.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Add-KshListItem -List $list -Value @{ Title = "New Document"; FileName = "document.docx" }
 ```
@@ -32,6 +35,7 @@ This example adds a new item to the specified list with the title "New Document"
 ## PARAMETERS
 
 ### -List
+
 Specifies the list to which the item will be added.
 
 ```yaml
@@ -47,6 +51,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
+
 Indicates that the cmdlet does not enumerate the collection.
 
 ```yaml
@@ -62,6 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -Value
+
 Specifies the values of the item to be added.
 
 ```yaml
@@ -77,6 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -92,15 +99,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.List
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.ListItem
+
 ## NOTES
 
 ## RELATED LINKS
-

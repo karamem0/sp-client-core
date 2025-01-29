@@ -8,7 +8,8 @@ schema: 2.0.0
 # Add-KshDocumentSetWelcomePageColumn
 
 ## SYNOPSIS
-Adds a column to the welcome page of a document set.
+
+Adds the column of the welcome page for a document set.
 
 ## SYNTAX
 
@@ -18,11 +19,13 @@ Add-KshDocumentSetWelcomePageColumn [-ContentType] <ContentType> -Column <Column
 ```
 
 ## DESCRIPTION
+
 The `Add-KshDocumentSetWelcomePageColumn` cmdlet adds a specified column to the welcome page of a document set.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Add-KshDocumentSetWelcomePageColumn -ContentType $contentType -Column $column -PushChanges
 ```
@@ -32,6 +35,7 @@ This example adds the specified column to the welcome page of the document set a
 ## PARAMETERS
 
 ### -Column
+
 Specifies the column to add to the welcome page.
 
 ```yaml
@@ -47,6 +51,7 @@ Accept wildcard characters: False
 ```
 
 ### -ContentType
+
 Specifies the content type of the document set.
 
 ```yaml
@@ -62,6 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -PushChanges
+
 Indicates that the changes should be pushed immediately.
 
 ```yaml
@@ -77,6 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -92,15 +99,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### System.Void
+
 ## NOTES
 
 ## RELATED LINKS
-

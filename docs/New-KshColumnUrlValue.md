@@ -8,7 +8,8 @@ schema: 2.0.0
 # New-KshColumnUrlValue
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+
+Creates a new URL column value.
 
 ## SYNTAX
 
@@ -18,21 +19,24 @@ New-KshColumnUrlValue [-Url] <String> [[-Description] <String>] [-ProgressAction
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+
+The `New-KshColumnUrlValue` cmdlet creates a new URL column value with an optional description.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> New-KshColumnUrlValue -Url "http://www.example.com" -Description "This is an Example URL"
 ```
 
-{{ Add example description here }}
+This example creates a new URL column value with the specified URL and description.
 
 ## PARAMETERS
 
 ### -Description
-{{ Fill Description Description }}
+
+Specifies the description for the URL.
 
 ```yaml
 Type: String
@@ -47,7 +51,8 @@ Accept wildcard characters: False
 ```
 
 ### -Url
-{{ Fill Url Description }}
+
+Specifies the URL to be used for the column value.
 
 ```yaml
 Type: String
@@ -62,7 +67,8 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference
@@ -77,15 +83,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.ColumnUserValue
+
 ## NOTES
 
 ## RELATED LINKS
-

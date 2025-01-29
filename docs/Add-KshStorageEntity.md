@@ -8,6 +8,7 @@ schema: 2.0.0
 # Add-KshStorageEntity
 
 ## SYNOPSIS
+
 Adds a new storage entity.
 
 ## SYNTAX
@@ -18,11 +19,13 @@ Add-KshStorageEntity -Key <String> -Value <String> [-Description <String>] [-Com
 ```
 
 ## DESCRIPTION
+
 The `Add-KshStorageEntity` cmdlet adds a new storage entity with the key and value. Optionally, you can provide a description and a comment for the storage entity.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Add-KshStorageEntity -Key "Copyright" -Value "Copyright (C) Contoso Corporation" -Description "Updated description" -Comment "Updated comment"
 ```
@@ -32,6 +35,7 @@ This example adds a new storage entity with the key "Copyright" and value "Copyr
 ## PARAMETERS
 
 ### -Comment
+
 Specifies a comment for the storage entity.
 
 ```yaml
@@ -47,6 +51,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
+
 Specifies a description for the storage entity.
 
 ```yaml
@@ -62,6 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -Key
+
 Specifies the key for the storage entity.
 
 ```yaml
@@ -77,6 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -Value
+
 Specifies the value for the storage entity.
 
 ```yaml
@@ -92,6 +99,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -107,15 +115,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### System.Void
+
 ## NOTES
 
 ## RELATED LINKS
-

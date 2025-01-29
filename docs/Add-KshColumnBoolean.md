@@ -8,11 +8,13 @@ schema: 2.0.0
 # Add-KshColumnBoolean
 
 ## SYNOPSIS
-Adds a new Boolean column to a list or library.
+
+Adds a new Boolean column.
 
 ## SYNTAX
 
 ### ParamSet1
+
 ```
 Add-KshColumnBoolean [-List] <List> [-ClientSideComponentId <String>] [-ClientSideComponentProperties <String>]
  [-CustomFormatter <String>] [-DefaultFormula <String>] [-DefaultValue <String>] [-Description <String>]
@@ -24,6 +26,7 @@ Add-KshColumnBoolean [-List] <List> [-ClientSideComponentId <String>] [-ClientSi
 ```
 
 ### ParamSet2
+
 ```
 Add-KshColumnBoolean [-ClientSideComponentId <String>] [-ClientSideComponentProperties <String>]
  [-CustomFormatter <String>] [-DefaultFormula <String>] [-DefaultValue <String>] [-Description <String>]
@@ -35,6 +38,7 @@ Add-KshColumnBoolean [-ClientSideComponentId <String>] [-ClientSideComponentProp
 ```
 
 ### ParamSet3
+
 ```
 Add-KshColumnBoolean [-ClientSideComponentId <String>] [-ClientSideComponentProperties <String>]
  [-CustomFormatter <String>] [-DefaultFormula <String>] [-DefaultValue <String>] [-Description <String>]
@@ -44,11 +48,13 @@ Add-KshColumnBoolean [-ClientSideComponentId <String>] [-ClientSideComponentProp
 ```
 
 ## DESCRIPTION
+
 The `Add-KshColumnBoolean` cmdlet adds a new Boolean column to a list or library. You can specify various properties for the column, such as its name, description, default value, and whether it is required.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Add-KshColumnBoolean -List $list -Name "IsActive" -Title "Active" -DefaultValue "true"
 ```
@@ -56,6 +62,7 @@ PS C:\> Add-KshColumnBoolean -List $list -Name "IsActive" -Title "Active" -Defau
 This example adds a new Boolean column named "IsActive" with the title "Active" and a default value of "true" to the specified list.
 
 ### Example 2
+
 ```powershell
 PS C:\> Add-KshColumnBoolean -Name "IsActive" -Title "Active" -DefaultValue "true"
 ```
@@ -63,6 +70,7 @@ PS C:\> Add-KshColumnBoolean -Name "IsActive" -Title "Active" -DefaultValue "tru
 This example adds a new Boolean column named "IsActive" with the title "Active" and a default value of "true" as a site column.
 
 ### Example 3
+
 ```powershell
 PS C:\> Add-KshColumnBoolean -Name "IsActive" -Title "Active" -DefaultValue "true" -WhatIf
 ```
@@ -72,6 +80,7 @@ This example shows what would happen if the cmdlet runs without actually creatin
 ## PARAMETERS
 
 ### -AddColumnCheckDisplayName
+
 Specifies whether to check for display name conflicts when adding the column.
 
 ```yaml
@@ -87,6 +96,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddColumnInternalNameHint
+
 Specifies whether to use the internal name hint when adding the column.
 
 ```yaml
@@ -102,6 +112,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddColumnToDefaultView
+
 Specifies whether to add the column to the default view.
 
 ```yaml
@@ -117,6 +128,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToAllContentTypes
+
 Specifies whether to add the column to all content types.
 
 ```yaml
@@ -132,6 +144,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToDefaultContentType
+
 Specifies whether to add the column to the default content type.
 
 ```yaml
@@ -147,6 +160,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToDefaultView
+
 Specifies whether to add the column to the default view.
 
 ```yaml
@@ -162,6 +176,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToNoContentType
+
 Specifies whether to add the column to no content type.
 
 ```yaml
@@ -177,6 +192,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClientSideComponentId
+
 Specifies the client-side component ID for the column.
 
 ```yaml
@@ -192,6 +208,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClientSideComponentProperties
+
 Specifies the client-side component properties for the column.
 
 ```yaml
@@ -207,6 +224,7 @@ Accept wildcard characters: False
 ```
 
 ### -CustomFormatter
+
 Specifies the custom formatter for the column.
 
 ```yaml
@@ -222,6 +240,7 @@ Accept wildcard characters: False
 ```
 
 ### -DefaultFormula
+
 Specifies the default formula for the column.
 
 ```yaml
@@ -237,6 +256,7 @@ Accept wildcard characters: False
 ```
 
 ### -DefaultValue
+
 Specifies the default value for the column.
 
 ```yaml
@@ -252,6 +272,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
+
 Specifies the description of the column.
 
 ```yaml
@@ -267,6 +288,7 @@ Accept wildcard characters: False
 ```
 
 ### -Direction
+
 Specifies the direction of the column.
 
 ```yaml
@@ -282,6 +304,7 @@ Accept wildcard characters: False
 ```
 
 ### -Group
+
 Specifies the group to which the column belongs.
 
 ```yaml
@@ -297,6 +320,7 @@ Accept wildcard characters: False
 ```
 
 ### -Hidden
+
 Specifies whether the column is hidden.
 
 ```yaml
@@ -312,6 +336,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
+
 Specifies the ID of the column.
 
 ```yaml
@@ -327,6 +352,7 @@ Accept wildcard characters: False
 ```
 
 ### -JSLink
+
 Specifies the JSLink for the column.
 
 ```yaml
@@ -342,6 +368,7 @@ Accept wildcard characters: False
 ```
 
 ### -List
+
 Specifies the list to which the column is added.
 
 ```yaml
@@ -357,6 +384,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
+
 Specifies the name of the column.
 
 ```yaml
@@ -372,6 +400,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoCrawl
+
 Specifies whether the column is excluded from search crawling.
 
 ```yaml
@@ -387,6 +416,7 @@ Accept wildcard characters: False
 ```
 
 ### -ReadOnly
+
 Specifies whether the column is read-only.
 
 ```yaml
@@ -402,6 +432,7 @@ Accept wildcard characters: False
 ```
 
 ### -Required
+
 Specifies whether the column is required.
 
 ```yaml
@@ -417,6 +448,7 @@ Accept wildcard characters: False
 ```
 
 ### -StaticName
+
 Specifies the static name of the column.
 
 ```yaml
@@ -432,6 +464,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
+
 Specifies the title of the column.
 
 ```yaml
@@ -447,6 +480,7 @@ Accept wildcard characters: False
 ```
 
 ### -WhatIf
+
 Shows what would happen if the cmdlet runs. The cmdlet is not run.
 
 ```yaml
@@ -462,6 +496,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -477,15 +512,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.List
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.Column
+
 ## NOTES
 
 ## RELATED LINKS
-

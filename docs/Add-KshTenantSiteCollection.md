@@ -8,11 +8,13 @@ schema: 2.0.0
 # Add-KshTenantSiteCollection
 
 ## SYNOPSIS
-Adds a new site collection to the tenant.
+
+Adds a new site collection.
 
 ## SYNTAX
 
 ### ParamSet1
+
 ```
 Add-KshTenantSiteCollection [-CompatibilityLevel <Int32>] [-Lcid <UInt32>] -Owner <String>
  [-StorageMaxLevel <Int64>] [-StorageWarningLevel <Int64>] [-Template <String>] [-TimeZoneId <Int32>]
@@ -21,6 +23,7 @@ Add-KshTenantSiteCollection [-CompatibilityLevel <Int32>] [-Lcid <UInt32>] -Owne
 ```
 
 ### ParamSet2
+
 ```
 Add-KshTenantSiteCollection [-CompatibilityLevel <Int32>] [-Lcid <UInt32>] -Owner <String>
  [-StorageMaxLevel <Int64>] [-StorageWarningLevel <Int64>] [-Template <String>] [-TimeZoneId <Int32>]
@@ -29,11 +32,13 @@ Add-KshTenantSiteCollection [-CompatibilityLevel <Int32>] [-Lcid <UInt32>] -Owne
 ```
 
 ## DESCRIPTION
+
 The `Add-KshTenantSiteCollection` cmdlet adds a new site collection to the tenant with the given parameters.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Add-KshTenantSiteCollection -Owner "owner@contoso.com" -Url "https://contoso.sharepoint.com/sites/newsite" -Title "New Site" -Template "STS#0"
 ```
@@ -43,6 +48,7 @@ This example adds a new site collection to the tenant with the specified owner, 
 ## PARAMETERS
 
 ### -CompatibilityLevel
+
 Specifies the compatibility level of the site collection.
 
 ```yaml
@@ -58,6 +64,7 @@ Accept wildcard characters: False
 ```
 
 ### -Lcid
+
 Specifies the locale ID of the site collection.
 
 ```yaml
@@ -73,6 +80,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoWait
+
 Indicates that the cmdlet does not wait for the operation to complete.
 
 ```yaml
@@ -88,6 +96,7 @@ Accept wildcard characters: False
 ```
 
 ### -Owner
+
 Specifies the owner of the site collection.
 
 ```yaml
@@ -103,6 +112,7 @@ Accept wildcard characters: False
 ```
 
 ### -StorageMaxLevel
+
 Specifies the maximum storage level for the site collection.
 
 ```yaml
@@ -118,6 +128,7 @@ Accept wildcard characters: False
 ```
 
 ### -StorageWarningLevel
+
 Specifies the storage warning level for the site collection.
 
 ```yaml
@@ -133,6 +144,7 @@ Accept wildcard characters: False
 ```
 
 ### -Template
+
 Specifies the template to use for the site collection.
 
 ```yaml
@@ -148,6 +160,7 @@ Accept wildcard characters: False
 ```
 
 ### -TimeZoneId
+
 Specifies the time zone ID for the site collection.
 
 ```yaml
@@ -163,6 +176,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
+
 Specifies the title of the site collection.
 
 ```yaml
@@ -178,6 +192,7 @@ Accept wildcard characters: False
 ```
 
 ### -Url
+
 Specifies the URL of the site collection.
 
 ```yaml
@@ -193,6 +208,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserCodeMaxLevel
+
 Specifies the maximum user code level for the site collection.
 
 ```yaml
@@ -208,6 +224,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserCodeWarningLevel
+
 Specifies the user code warning level for the site collection.
 
 ```yaml
@@ -223,6 +240,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -238,15 +256,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.TenantSiteCollection
+
 ## NOTES
 
 ## RELATED LINKS
-

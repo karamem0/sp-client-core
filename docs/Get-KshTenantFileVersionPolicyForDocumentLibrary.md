@@ -8,28 +8,33 @@ schema: 2.0.0
 # Get-KshTenantFileVersionPolicyForDocumentLibrary
 
 ## SYNOPSIS
+
 Retrieves the file version policy for a document library.
 
 ## SYNTAX
 
 ### ParamSet1
+
 ```
 Get-KshTenantFileVersionPolicyForDocumentLibrary -SiteUrl <Uri> -ListId <Guid>
  [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet2
+
 ```
 Get-KshTenantFileVersionPolicyForDocumentLibrary -SiteUrl <Uri> -ListTitle <String>
  [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 The `Get-KshTenantFileVersionPolicyForDocumentLibrary` cmdlet retrieves the file version policy for a document library based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Get-KshTenantFileVersionPolicyForDocumentLibrary -SiteUrl "https://contoso.sharepoint.com" -ListId "12345678-1234-1234-1234-1234567890ab"
 ```
@@ -37,6 +42,7 @@ PS C:\> Get-KshTenantFileVersionPolicyForDocumentLibrary -SiteUrl "https://conto
 This example retrieves the file version policy for the document library with the specified ListId at the specified site URL.
 
 ### Example 2
+
 ```powershell
 PS C:\> Get-KshTenantFileVersionPolicyForDocumentLibrary -SiteUrl "https://contoso.sharepoint.com" -ListTitle "Documents"
 ```
@@ -46,6 +52,7 @@ This example retrieves the file version policy for the document library named "D
 ## PARAMETERS
 
 ### -ListId
+
 Specifies the ID of the document library.
 
 ```yaml
@@ -61,6 +68,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListTitle
+
 Specifies the title of the document library.
 
 ```yaml
@@ -76,6 +84,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteUrl
+
 Specifies the URL of the site that contains the document library.
 
 ```yaml
@@ -91,6 +100,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -106,7 +116,8 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -119,4 +130,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
-

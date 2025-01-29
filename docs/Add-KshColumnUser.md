@@ -8,11 +8,13 @@ schema: 2.0.0
 # Add-KshColumnUser
 
 ## SYNOPSIS
-Adds a new User column to a list or library.
+
+Adds a new User column.
 
 ## SYNTAX
 
 ### ParamSet1
+
 ```
 Add-KshColumnUser [-List] <List> [-AllowMultipleValues <Boolean>] [-ClientSideComponentId <String>]
  [-ClientSideComponentProperties <String>] [-CustomFormatter <String>] [-Description <String>]
@@ -26,6 +28,7 @@ Add-KshColumnUser [-List] <List> [-AllowMultipleValues <Boolean>] [-ClientSideCo
 ```
 
 ### ParamSet2
+
 ```
 Add-KshColumnUser [-AllowMultipleValues <Boolean>] [-ClientSideComponentId <String>]
  [-ClientSideComponentProperties <String>] [-CustomFormatter <String>] [-Description <String>]
@@ -39,6 +42,7 @@ Add-KshColumnUser [-AllowMultipleValues <Boolean>] [-ClientSideComponentId <Stri
 ```
 
 ### ParamSet3
+
 ```
 Add-KshColumnUser [-AllowMultipleValues <Boolean>] [-ClientSideComponentId <String>]
  [-ClientSideComponentProperties <String>] [-CustomFormatter <String>] [-Description <String>]
@@ -51,11 +55,13 @@ Add-KshColumnUser [-AllowMultipleValues <Boolean>] [-ClientSideComponentId <Stri
 ```
 
 ## DESCRIPTION
+
 The `Add-KshColumnUser` cmdlet adds a new User column to a list or library. The column can be configured to allow multiple values, enforce unique values, and other settings.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Add-KshColumnUser -List $list -Name "AssignedTo" -Title "Assigned To" -SelectionMode PeopleOnly
 ```
@@ -63,6 +69,7 @@ PS C:\> Add-KshColumnUser -List $list -Name "AssignedTo" -Title "Assigned To" -S
 This example adds a new user column named "AssignedTo" to the specified list with the title "Assigned To" and selection mode set to "PeopleOnly".
 
 ### Example 2
+
 ```powershell
 PS C:\> Add-KshColumnUser -Name "Reviewer" -Title "Reviewer" -SelectionMode PeopleAndGroups -AllowMultipleValues $true
 ```
@@ -70,6 +77,7 @@ PS C:\> Add-KshColumnUser -Name "Reviewer" -Title "Reviewer" -SelectionMode Peop
 This example adds a new user column named "Reviewer" as a site column with the title "Reviewer", allowing multiple values and setting the selection mode to "PeopleAndGroups".
 
 ### Example 3
+
 ```powershell
 PS C:\> Add-KshColumnUser -Name "Approver" -Title "Approver" -SelectionMode GroupsOnly -EnforceUniqueValues $true -WhatIf
 ```
@@ -79,6 +87,7 @@ This example shows what would happen if the cmdlet runs without actually creatin
 ## PARAMETERS
 
 ### -AddColumnCheckDisplayName
+
 Specifies whether to check the display name when adding the column.
 
 ```yaml
@@ -94,6 +103,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddColumnInternalNameHint
+
 Specifies whether to add an internal name hint for the column.
 
 ```yaml
@@ -109,6 +119,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddColumnToDefaultView
+
 Specifies whether to add the column to the default view.
 
 ```yaml
@@ -124,6 +135,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToAllContentTypes
+
 Specifies whether to add the column to all content types.
 
 ```yaml
@@ -139,6 +151,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToDefaultContentType
+
 Specifies whether to add the column to the default content type.
 
 ```yaml
@@ -154,6 +167,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToDefaultView
+
 Specifies whether to add the column to the default view.
 
 ```yaml
@@ -169,6 +183,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToNoContentType
+
 Specifies whether to add the column to no content type.
 
 ```yaml
@@ -184,6 +199,7 @@ Accept wildcard characters: False
 ```
 
 ### -AllowMultipleValues
+
 Specifies whether to allow multiple values for the column.
 
 ```yaml
@@ -199,6 +215,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClientSideComponentId
+
 Specifies the client-side component ID for the column.
 
 ```yaml
@@ -214,6 +231,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClientSideComponentProperties
+
 Specifies the client-side component properties for the column.
 
 ```yaml
@@ -229,6 +247,7 @@ Accept wildcard characters: False
 ```
 
 ### -CustomFormatter
+
 Specifies the custom formatter for the column.
 
 ```yaml
@@ -244,6 +263,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
+
 Specifies the description of the column.
 
 ```yaml
@@ -259,6 +279,7 @@ Accept wildcard characters: False
 ```
 
 ### -Direction
+
 Specifies the direction of the column.
 
 ```yaml
@@ -274,6 +295,7 @@ Accept wildcard characters: False
 ```
 
 ### -EnforceUniqueValues
+
 Specifies whether to enforce unique values for the column.
 
 ```yaml
@@ -289,6 +311,7 @@ Accept wildcard characters: False
 ```
 
 ### -Group
+
 Specifies the group of the column.
 
 ```yaml
@@ -304,6 +327,7 @@ Accept wildcard characters: False
 ```
 
 ### -Hidden
+
 Specifies whether the column is hidden.
 
 ```yaml
@@ -319,6 +343,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
+
 Specifies the ID of the column.
 
 ```yaml
@@ -334,6 +359,7 @@ Accept wildcard characters: False
 ```
 
 ### -Indexed
+
 Specifies whether the column is indexed.
 
 ```yaml
@@ -349,6 +375,7 @@ Accept wildcard characters: False
 ```
 
 ### -JSLink
+
 Specifies the JSLink for the column.
 
 ```yaml
@@ -364,6 +391,7 @@ Accept wildcard characters: False
 ```
 
 ### -List
+
 Specifies the list to which the column is added.
 
 ```yaml
@@ -379,6 +407,7 @@ Accept wildcard characters: False
 ```
 
 ### -LookupColumnName
+
 Specifies the lookup column name.
 
 ```yaml
@@ -394,6 +423,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
+
 Specifies the name of the column.
 
 ```yaml
@@ -409,6 +439,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoCrawl
+
 Specifies whether to exclude the column from search crawling.
 
 ```yaml
@@ -424,6 +455,7 @@ Accept wildcard characters: False
 ```
 
 ### -ReadOnly
+
 Specifies whether the column is read-only.
 
 ```yaml
@@ -439,6 +471,7 @@ Accept wildcard characters: False
 ```
 
 ### -RelationshipDeleteBehavior
+
 Specifies the relationship delete behavior for the column.
 
 ```yaml
@@ -455,6 +488,7 @@ Accept wildcard characters: False
 ```
 
 ### -Required
+
 Specifies whether the column is required.
 
 ```yaml
@@ -470,6 +504,7 @@ Accept wildcard characters: False
 ```
 
 ### -SelectionGroupId
+
 Specifies the selection group ID for the column.
 
 ```yaml
@@ -485,6 +520,7 @@ Accept wildcard characters: False
 ```
 
 ### -SelectionMode
+
 Specifies the selection mode for the column.
 
 ```yaml
@@ -501,6 +537,7 @@ Accept wildcard characters: False
 ```
 
 ### -StaticName
+
 Specifies the static name of the column.
 
 ```yaml
@@ -516,6 +553,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
+
 Specifies the title of the column.
 
 ```yaml
@@ -531,6 +569,7 @@ Accept wildcard characters: False
 ```
 
 ### -UnlimitedLengthInDocumentLibrary
+
 Specifies whether the column has unlimited length in the document library.
 
 ```yaml
@@ -546,6 +585,7 @@ Accept wildcard characters: False
 ```
 
 ### -WhatIf
+
 Shows what would happen if the cmdlet runs.
 The cmdlet is not run.
 
@@ -562,6 +602,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress.
 
 ```yaml
@@ -577,15 +618,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.List
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.ColumnUser
+
 ## NOTES
 
 ## RELATED LINKS
-

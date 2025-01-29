@@ -8,37 +8,51 @@ schema: 2.0.0
 # Remove-KshList
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+
+Removes a list.
 
 ## SYNTAX
 
 ### ParamSet1
+
 ```
 Remove-KshList [-Identity] <List> [-ProgressAction <ActionPreference>] [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
 ### ParamSet2
+
 ```
 Remove-KshList [-Identity] <List> [-RecycleBin] [-ProgressAction <ActionPreference>] [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+
+The `Remove-KshList` cmdlet removes a list from the current site. You can choose to either delete the list permanently or move it to the recycle bin.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Remove-KshList -Identity $list
 ```
 
-{{ Add example description here }}
+This example removes the specified list.
+
+### Example 2
+
+```powershell
+PS C:\> Remove-KshList -Identity $list -RecycleBin
+```
+
+This example moves the specified list to the recycle bin.
 
 ## PARAMETERS
 
 ### -Confirm
+
 Prompts you for confirmation before running the cmdlet.
 
 ```yaml
@@ -54,7 +68,8 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-{{ Fill Identity Description }}
+
+Specifies the list to remove.
 
 ```yaml
 Type: List
@@ -69,7 +84,8 @@ Accept wildcard characters: False
 ```
 
 ### -RecycleBin
-{{ Fill RecycleBin Description }}
+
+Indicates that the list should be sent to the recycle bin instead of being permanently deleted.
 
 ```yaml
 Type: SwitchParameter
@@ -84,6 +100,7 @@ Accept wildcard characters: False
 ```
 
 ### -WhatIf
+
 Shows what would happen if the cmdlet runs.
 The cmdlet is not run.
 
@@ -100,7 +117,8 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference
@@ -115,15 +133,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.List
+
+Specifies the list object that is piped to the cmdlet.
+
 ## OUTPUTS
 
 ### System.Void
+
 ## NOTES
 
 ## RELATED LINKS
-

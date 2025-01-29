@@ -8,38 +8,44 @@ schema: 2.0.0
 # New-KshColumnImageValue
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+
+Creates a new column image value.
 
 ## SYNTAX
 
 ### ParamSet1
+
 ```
 New-KshColumnImageValue -ImageItem <ImageItem> [-ColumnName <String>] [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
 
 ### ParamSet2
+
 ```
 New-KshColumnImageValue [-ColumnName <String>] [-FileName <String>] [-ServerUrl <String>]
  [-ServerRelativeUrl <String>] [-Id <Guid>] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+
+The `New-KshColumnImageValue` cmdlet creates a new column image value.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> New-KshColumnImageValue -ImageItem $imageItem -ColumnName "ImageColumn"
 ```
 
-{{ Add example description here }}
+This example creates a new column image value with the specified image item and column name.
 
 ## PARAMETERS
 
 ### -ColumnName
-{{ Fill ColumnName Description }}
+
+Specifies the name of the column.
 
 ```yaml
 Type: String
@@ -54,7 +60,8 @@ Accept wildcard characters: False
 ```
 
 ### -FileName
-{{ Fill FileName Description }}
+
+Specifies the name of the file.
 
 ```yaml
 Type: String
@@ -69,7 +76,8 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-{{ Fill Id Description }}
+
+Specifies the ID of the image item.
 
 ```yaml
 Type: Guid
@@ -84,7 +92,8 @@ Accept wildcard characters: False
 ```
 
 ### -ImageItem
-{{ Fill ImageItem Description }}
+
+Specifies the image item to use.
 
 ```yaml
 Type: ImageItem
@@ -99,7 +108,8 @@ Accept wildcard characters: False
 ```
 
 ### -ServerRelativeUrl
-{{ Fill ServerRelativeUrl Description }}
+
+Specifies the server-relative URL of the image item.
 
 ```yaml
 Type: String
@@ -114,7 +124,8 @@ Accept wildcard characters: False
 ```
 
 ### -ServerUrl
-{{ Fill ServerUrl Description }}
+
+Specifies the server URL of the image item.
 
 ```yaml
 Type: String
@@ -129,7 +140,8 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference
@@ -144,15 +156,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.ColumnImageValue
+
 ## NOTES
 
 ## RELATED LINKS
-

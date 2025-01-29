@@ -8,7 +8,8 @@ schema: 2.0.0
 # New-KshContentTypeId
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+
+Creates a new content type ID.
 
 ## SYNTAX
 
@@ -17,21 +18,24 @@ New-KshContentTypeId [-StringValue] <String> [-ProgressAction <ActionPreference>
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+
+The `New-KshContentTypeId` cmdlet creates a new content type ID.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> New-KshContentTypeId -StringValue "0x0101009189AB5D3D2647B580F011DA2F356FB2"
 ```
 
-{{ Add example description here }}
+This example creates a new content type ID with the specified string value.
 
 ## PARAMETERS
 
 ### -StringValue
-{{ Fill StringValue Description }}
+
+Specifies the string value for the new content type ID.
 
 ```yaml
 Type: String
@@ -46,7 +50,8 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference
@@ -61,15 +66,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.ContentTypeId
+
 ## NOTES
 
 ## RELATED LINKS
-

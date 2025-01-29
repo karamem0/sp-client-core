@@ -8,7 +8,8 @@ schema: 2.0.0
 # Add-KshUser
 
 ## SYNOPSIS
-Creates a new user.
+
+Adds a new user.
 
 ## SYNTAX
 
@@ -18,11 +19,13 @@ Add-KshUser [-Email <String>] -LoginName <String> [-Title <String>] [-ProgressAc
 ```
 
 ## DESCRIPTION
-The `Add-KshUser` cmdlet creates a new user to the current site with the specified login name, email, and title.
+
+The `Add-KshUser` cmdlet adds a new user to the current site with the specified login name, email, and title.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Add-KshUser -LoginName "Megan Bowen" -Email "meganb@contoso.com" -Title "Developer"
 ```
@@ -32,6 +35,7 @@ This example adds a new user with the login name "Megan Bowen", email "meganb@co
 ## PARAMETERS
 
 ### -Email
+
 Specifies the email address of the user.
 
 ```yaml
@@ -47,6 +51,7 @@ Accept wildcard characters: False
 ```
 
 ### -LoginName
+
 Specifies the login name of the user.
 
 ```yaml
@@ -62,6 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
+
 Specifies the title of the user.
 
 ```yaml
@@ -77,6 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -92,15 +99,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.User
+
 ## NOTES
 
 ## RELATED LINKS
-

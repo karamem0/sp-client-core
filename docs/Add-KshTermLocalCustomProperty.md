@@ -8,7 +8,8 @@ schema: 2.0.0
 # Add-KshTermLocalCustomProperty
 
 ## SYNOPSIS
-Adds a custom property to a term.
+
+Adds a custom property.
 
 ## SYNTAX
 
@@ -18,11 +19,13 @@ Add-KshTermLocalCustomProperty [-Term] <Term> -Name <String> -Value <String>
 ```
 
 ## DESCRIPTION
+
 The `Add-KshTermLocalCustomProperty` cmdlet adds a custom property to a term.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Add-KshTermLocalCustomProperty -Term $term -Name "SortOrder" -Value "1"
 ```
@@ -32,6 +35,7 @@ This example adds a custom property named "SortOrder" with the value "1" to the 
 ## PARAMETERS
 
 ### -Name
+
 Specifies the name of the custom property to add.
 
 ```yaml
@@ -47,6 +51,7 @@ Accept wildcard characters: False
 ```
 
 ### -Term
+
 Specifies the term to which the custom property is added.
 
 ```yaml
@@ -62,6 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -Value
+
 Specifies the value of the custom property.
 
 ```yaml
@@ -77,6 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -92,15 +99,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### System.Void
+
 ## NOTES
 
 ## RELATED LINKS
-

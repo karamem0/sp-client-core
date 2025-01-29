@@ -8,34 +8,40 @@ schema: 2.0.0
 # Get-KshContentTypeColumn
 
 ## SYNOPSIS
-Retrieves one or more columns from a content type.
+
+Retrieves one or more columns.
 
 ## SYNTAX
 
 ### ParamSet1
+
 ```
 Get-KshContentTypeColumn [-Identity] <ContentTypeColumn> [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
 
 ### ParamSet2
+
 ```
 Get-KshContentTypeColumn [-ContentType] <ContentType> [-Column] <Column> [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
 
 ### ParamSet3
+
 ```
 Get-KshContentTypeColumn [-ContentType] <ContentType> [-NoEnumerate] [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 The `Get-KshContentTypeColumn` cmdlet retrieves one or more columns from a content type based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Get-KshContentTypeColumn -Identity $contentTypeColumn
 ```
@@ -43,6 +49,7 @@ PS C:\> Get-KshContentTypeColumn -Identity $contentTypeColumn
 This example retrieves a content type column by identity.
 
 ### Example 2
+
 ```powershell
 PS C:\> Get-KshContentTypeColumn -ContentType $contentType -Column $column
 ```
@@ -50,6 +57,7 @@ PS C:\> Get-KshContentTypeColumn -ContentType $contentType -Column $column
 This example retrieves a content type column by column.
 
 ### Example 3
+
 ```powershell
 PS C:\> Get-KshContentTypeColumn -ContentType $contentType
 ```
@@ -59,6 +67,7 @@ This example retrieves all content type columns.
 ## PARAMETERS
 
 ### -Column
+
 Specifies the column to retrieve from the content type.
 
 ```yaml
@@ -74,6 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -ContentType
+
 Specifies the content type from which to retrieve columns.
 
 ```yaml
@@ -89,6 +99,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
+
 Specifies the content type column to retrieve.
 
 ```yaml
@@ -104,6 +115,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
+
 Indicates that the cmdlet does not enumerate the content type columns.
 
 ```yaml
@@ -119,6 +131,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -134,15 +147,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.ContentTypeColumn
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.ContentTypeColumn
+
 ## NOTES
 
 ## RELATED LINKS
-

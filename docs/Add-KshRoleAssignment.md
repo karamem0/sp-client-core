@@ -8,34 +8,40 @@ schema: 2.0.0
 # Add-KshRoleAssignment
 
 ## SYNOPSIS
-Adds a new role assignment to a site, list, or list item.
+
+Adds a new role assignment.
 
 ## SYNTAX
 
 ### ParamSet1
+
 ```
 Add-KshRoleAssignment [-Site] [-Principal] <Principal> [-RoleDefinition] <RoleDefinition>
  [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet2
+
 ```
 Add-KshRoleAssignment [-List] <List> [-Principal] <Principal> [-RoleDefinition] <RoleDefinition>
  [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet3
+
 ```
 Add-KshRoleAssignment [-ListItem] <ListItem> [-Principal] <Principal> [-RoleDefinition] <RoleDefinition>
  [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 The `Add-KshRoleAssignment` cmdlet adds a new role assignment to a site, list, or list item for a specified principal and role definition.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Add-KshRoleAssignment -Site -Principal $user -RoleDefinition "Contribute"
 ```
@@ -43,6 +49,7 @@ PS C:\> Add-KshRoleAssignment -Site -Principal $user -RoleDefinition "Contribute
 This example adds the "Contribute" role assignment to the current site for the specified user.
 
 ### Example 2
+
 ```powershell
 PS C:\> Add-KshRoleAssignment -List $list -Principal $user -RoleDefinition "Read"
 ```
@@ -50,6 +57,7 @@ PS C:\> Add-KshRoleAssignment -List $list -Principal $user -RoleDefinition "Read
 This example adds the "Read" role assignment to the specified list for the specified user.
 
 ### Example 3
+
 ```powershell
 PS C:\> Add-KshRoleAssignment -ListItem $listItem -Principal $user -RoleDefinition "Edit"
 ```
@@ -59,6 +67,7 @@ This example adds the "Edit" role assignment to the specified list item for the 
 ## PARAMETERS
 
 ### -List
+
 Specifies the list to which the role assignment is added.
 
 ```yaml
@@ -74,6 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListItem
+
 Specifies the list item to which the role assignment is added.
 
 ```yaml
@@ -89,6 +99,7 @@ Accept wildcard characters: False
 ```
 
 ### -Principal
+
 Specifies the principal (user or group) to which the role assignment is added.
 
 ```yaml
@@ -104,6 +115,7 @@ Accept wildcard characters: False
 ```
 
 ### -RoleDefinition
+
 Specifies the role definition (permission level) to assign to the principal.
 
 ```yaml
@@ -119,6 +131,7 @@ Accept wildcard characters: False
 ```
 
 ### -Site
+
 Specifies that the role assignment is added to the site.
 
 ```yaml
@@ -134,6 +147,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -149,15 +163,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.RoleAssignment
+
 ## NOTES
 
 ## RELATED LINKS
-

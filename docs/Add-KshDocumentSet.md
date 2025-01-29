@@ -8,7 +8,8 @@ schema: 2.0.0
 # Add-KshDocumentSet
 
 ## SYNOPSIS
-Adds a new document set to a folder.
+
+Adds a new document set.
 
 ## SYNTAX
 
@@ -18,11 +19,13 @@ Add-KshDocumentSet -Folder <Folder> -Name <String> -ContentType <ContentType>
 ```
 
 ## DESCRIPTION
+
 The `Add-KshDocumentSet` cmdlet adds a new document set to a folder with the given name and content type.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Add-KshDocumentSet -Folder $folder -Name "Project Documents" -ContentType $contentType
 ```
@@ -32,6 +35,7 @@ This example adds a new document set named "ProjectDocs" to the specified folder
 ## PARAMETERS
 
 ### -ContentType
+
 Specifies the content type of the document set.
 
 ```yaml
@@ -47,6 +51,7 @@ Accept wildcard characters: False
 ```
 
 ### -Folder
+
 Specifies the folder where the document set will be created.
 
 ```yaml
@@ -62,6 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
+
 Specifies the name of the document set.
 
 ```yaml
@@ -77,6 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -92,15 +99,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### System.String
+
 ## NOTES
 
 ## RELATED LINKS
-

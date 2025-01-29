@@ -8,7 +8,8 @@ schema: 2.0.0
 # Publish-KshFile
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+
+Publishes a file.
 
 ## SYNTAX
 
@@ -18,21 +19,24 @@ Publish-KshFile [-Identity] <File> [-Comment <String>] [-PassThru] [-ProgressAct
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+
+The `Publish-KshFile` cmdlet publishes a file with an optional comment.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Publish-KshFile -Identity $file -Comment "Published"
 ```
 
-{{ Add example description here }}
+This example publishes the specified file with the comment "Published".
 
 ## PARAMETERS
 
 ### -Comment
-{{ Fill Comment Description }}
+
+Specifies a comment for the file being published.
 
 ```yaml
 Type: String
@@ -47,7 +51,8 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-{{ Fill Identity Description }}
+
+Specifies the file to be published.
 
 ```yaml
 Type: File
@@ -62,7 +67,8 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
-{{ Fill PassThru Description }}
+
+Returns the file object that was processed.
 
 ```yaml
 Type: SwitchParameter
@@ -77,7 +83,8 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference
@@ -92,15 +99,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.File
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.File
+
 ## NOTES
 
 ## RELATED LINKS
-

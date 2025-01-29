@@ -8,6 +8,7 @@ schema: 2.0.0
 # Set-KshTerm
 
 ## SYNOPSIS
+
 {{ Fill in the Synopsis }}
 
 ## SYNTAX
@@ -18,11 +19,13 @@ Set-KshTerm [-Identity] <Term> [-CustomSortOrder <String>] [-IsAvailableForTaggi
 ```
 
 ## DESCRIPTION
+
 {{ Fill in the Description }}
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> {{ Add example code here }}
 ```
@@ -32,6 +35,7 @@ PS C:\> {{ Add example code here }}
 ## PARAMETERS
 
 ### -CustomSortOrder
+
 {{ Fill CustomSortOrder Description }}
 
 ```yaml
@@ -47,6 +51,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
+
 {{ Fill Identity Description }}
 
 ```yaml
@@ -62,6 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -IsAvailableForTagging
+
 {{ Fill IsAvailableForTagging Description }}
 
 ```yaml
@@ -77,6 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
+
 {{ Fill Name Description }}
 
 ```yaml
@@ -92,6 +99,7 @@ Accept wildcard characters: False
 ```
 
 ### -Owner
+
 {{ Fill Owner Description }}
 
 ```yaml
@@ -107,6 +115,7 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
+
 {{ Fill PassThru Description }}
 
 ```yaml
@@ -122,6 +131,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 {{ Fill ProgressAction Description }}
 
 ```yaml
@@ -137,15 +147,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.Term
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.Term
+
 ## NOTES
 
 ## RELATED LINKS
-

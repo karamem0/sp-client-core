@@ -8,6 +8,7 @@ schema: 2.0.0
 # Get-KshTermDescription
 
 ## SYNOPSIS
+
 Retrieves the description of a term.
 
 ## SYNTAX
@@ -18,11 +19,13 @@ Get-KshTermDescription [-Identity] <Term> -Lcid <UInt32> [-ProgressAction <Actio
 ```
 
 ## DESCRIPTION
+
 The `Get-KshTermDescription` cmdlet retrieves the description of a term for a given language code identifier (LCID).
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Get-KshTermDescription -Identity $term -Lcid 1033
 ```
@@ -32,6 +35,7 @@ This example retrieves the description of the specified term in English (LCID 10
 ## PARAMETERS
 
 ### -Identity
+
 Specifies the term for which to retrieve the description.
 
 ```yaml
@@ -47,6 +51,7 @@ Accept wildcard characters: False
 ```
 
 ### -Lcid
+
 Specifies the language code identifier (LCID) for the term description.
 
 ```yaml
@@ -62,6 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -77,15 +83,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.Term
+
 ## OUTPUTS
 
 ### System.String
+
 ## NOTES
 
 ## RELATED LINKS
-

@@ -8,69 +8,82 @@ schema: 2.0.0
 # Get-KshColumn
 
 ## SYNOPSIS
-Retrieves one or more columns from a list or content type.
+
+Retrieves one or more columns.
 
 ## SYNTAX
 
 ### ParamSet1
+
 ```
 Get-KshColumn [-Identity] <Column> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet2
+
 ```
 Get-KshColumn [-ContentType] <ContentType> [-ColumnId] <Guid> [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
 
 ### ParamSet3
+
 ```
 Get-KshColumn [-ContentType] <ContentType> [-ColumnTitle] <String> [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
 
 ### ParamSet4
+
 ```
 Get-KshColumn [-ContentType] <ContentType> [-NoEnumerate] [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
 
 ### ParamSet5
+
 ```
 Get-KshColumn [-List] <List> [-ColumnId] <Guid> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet6
+
 ```
 Get-KshColumn [-List] <List> [-ColumnTitle] <String> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet7
+
 ```
 Get-KshColumn [-List] <List> [-NoEnumerate] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet8
+
 ```
 Get-KshColumn [-ColumnId] <Guid> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet9
+
 ```
 Get-KshColumn [-ColumnTitle] <String> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet10
+
 ```
 Get-KshColumn [-NoEnumerate] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 The `Get-KshColumn` cmdlet retrieves one or more columns from a list or content type based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Get-KshColumn -Identity $column
 ```
@@ -78,6 +91,7 @@ PS C:\> Get-KshColumn -Identity $column
 This example retrieves a column by identity.
 
 ### Example 2
+
 ```powershell
 PS C:\> Get-KshColumn -ContentType $contentType -ColumnId $columnId
 ```
@@ -85,6 +99,7 @@ PS C:\> Get-KshColumn -ContentType $contentType -ColumnId $columnId
 This example retrieves a content type column by column ID.
 
 ### Example 3
+
 ```powershell
 PS C:\> Get-KshColumn -ContentType $contentType -ColumnTitle "Title"
 ```
@@ -92,6 +107,7 @@ PS C:\> Get-KshColumn -ContentType $contentType -ColumnTitle "Title"
 This example retrieves a content type column by column title.
 
 ### Example 4
+
 ```powershell
 PS C:\> Get-KshColumn -ContentType $contentType
 ```
@@ -99,6 +115,7 @@ PS C:\> Get-KshColumn -ContentType $contentType
 This example retrieves all content type columns.
 
 ### Example 5
+
 ```powershell
 PS C:\> Get-KshColumn -List $list -ColumnId $columnId
 ```
@@ -106,6 +123,7 @@ PS C:\> Get-KshColumn -List $list -ColumnId $columnId
 This example retrieves a list column by column ID.
 
 ### Example 6
+
 ```powershell
 PS C:\> Get-KshColumn -List $list -ColumnTitle "Title"
 ```
@@ -113,6 +131,7 @@ PS C:\> Get-KshColumn -List $list -ColumnTitle "Title"
 This example retrieves a list column by column title.
 
 ### Example 7
+
 ```powershell
 PS C:\> Get-KshColumn -List $list -NoEnumerate
 ```
@@ -120,6 +139,7 @@ PS C:\> Get-KshColumn -List $list -NoEnumerate
 This example retrieves all list column.
 
 ### Example 8
+
 ```powershell
 PS C:\> Get-KshColumn -ColumnId $columnId
 ```
@@ -127,6 +147,7 @@ PS C:\> Get-KshColumn -ColumnId $columnId
 This example retrieves a site column by column ID.
 
 ### Example 9
+
 ```powershell
 PS C:\> Get-KshColumn -ColumnTitle "Title"
 ```
@@ -134,6 +155,7 @@ PS C:\> Get-KshColumn -ColumnTitle "Title"
 This example retrieves a site column by column title.
 
 ### Example 10
+
 ```powershell
 PS C:\> Get-KshColumn
 ```
@@ -143,6 +165,7 @@ This example retrieves all site columns.
 ## PARAMETERS
 
 ### -ColumnId
+
 Specifies the ID of the column to retrieve.
 
 ```yaml
@@ -158,6 +181,7 @@ Accept wildcard characters: False
 ```
 
 ### -ColumnTitle
+
 Specifies the title of the column to retrieve.
 
 ```yaml
@@ -173,6 +197,7 @@ Accept wildcard characters: False
 ```
 
 ### -ContentType
+
 Specifies the content type that contains the column.
 
 ```yaml
@@ -188,6 +213,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
+
 Specifies the column to retrieve.
 
 ```yaml
@@ -203,6 +229,7 @@ Accept wildcard characters: False
 ```
 
 ### -List
+
 Specifies the list that contains the column.
 
 ```yaml
@@ -218,6 +245,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
+
 Indicates that the cmdlet does not enumerate the collection.
 
 ```yaml
@@ -233,6 +261,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -248,15 +277,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.Column
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.ContentType
+
 ## NOTES
 
 ## RELATED LINKS
-

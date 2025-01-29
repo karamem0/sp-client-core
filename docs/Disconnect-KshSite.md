@@ -8,6 +8,7 @@ schema: 2.0.0
 # Disconnect-KshSite
 
 ## SYNOPSIS
+
 Disconnects from a site.
 
 ## SYNTAX
@@ -17,11 +18,13 @@ Disconnect-KshSite [[-Url] <Uri>] [-ProgressAction <ActionPreference>] [<CommonP
 ```
 
 ## DESCRIPTION
+
 The `Disconnect-KshSite` cmdlet disconnects from a site and clear a credential cache.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Disconnect-KshSite -Url "https://consoto.sharepoint.com"
 ```
@@ -31,6 +34,7 @@ This example disconnects from the site at "https://consoto.sharepoint.com".
 ## PARAMETERS
 
 ### -Url
+
 Specifies the URL of the site to disconnect from.
 
 ```yaml
@@ -46,6 +50,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -61,15 +66,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### System.Uri
+
 ## OUTPUTS
 
 ### System.Void
+
 ## NOTES
 
 ## RELATED LINKS
-

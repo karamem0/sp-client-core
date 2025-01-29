@@ -8,7 +8,8 @@ schema: 2.0.0
 # Get-KshViewColumn
 
 ## SYNOPSIS
-Retrieves the columns of a view.
+
+Retrieves view columns.
 
 ## SYNTAX
 
@@ -17,11 +18,13 @@ Get-KshViewColumn [-View] <View> [-NoEnumerate] [-ProgressAction <ActionPreferen
 ```
 
 ## DESCRIPTION
+
 The `Get-KshViewColumn` cmdlet retrieves the columns of a view.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Get-KshViewColumn -View $view
 ```
@@ -31,6 +34,7 @@ This example retrieves the view columns.
 ## PARAMETERS
 
 ### -NoEnumerate
+
 Indicates that the cmdlet does not enumerate the columns.
 
 ```yaml
@@ -46,6 +50,7 @@ Accept wildcard characters: False
 ```
 
 ### -View
+
 Specifies the view object from which to retrieve the columns.
 
 ```yaml
@@ -61,6 +66,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -76,15 +82,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### System.String
+
 ## NOTES
 
 ## RELATED LINKS
-

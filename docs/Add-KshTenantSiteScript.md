@@ -8,7 +8,8 @@ schema: 2.0.0
 # Add-KshTenantSiteScript
 
 ## SYNOPSIS
-Adds a new site script to the tenant.
+
+Adds a new site script.
 
 ## SYNTAX
 
@@ -18,11 +19,13 @@ Add-KshTenantSiteScript -Content <String> [-Description <String>] -Title <String
 ```
 
 ## DESCRIPTION
+
 The `Add-KshTenantSiteScript` cmdlet adds a new site script to the tenant with the content and title. Optionally, a description can be provided.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Add-KshTenantSiteScript -Content "<JSON content>" -Title "My Site Script" -Description "This is a sample site script."
 ```
@@ -32,6 +35,7 @@ This example adds a new tenant site script to the tenant with the specified cont
 ## PARAMETERS
 
 ### -Content
+
 Specifies the JSON content of the site script.
 
 ```yaml
@@ -47,6 +51,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
+
 Specifies the description of the site script.
 
 ```yaml
@@ -62,6 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
+
 Specifies the title of the site script.
 
 ```yaml
@@ -77,6 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -92,15 +99,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.TenantSiteScript
+
 ## NOTES
 
 ## RELATED LINKS
-

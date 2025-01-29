@@ -8,46 +8,55 @@ schema: 2.0.0
 # Get-KshListItem
 
 ## SYNOPSIS
-Retrieves one or more list items from a list.
+
+Retrieves one or more list items.
 
 ## SYNTAX
 
 ### ParamSet1
+
 ```
 Get-KshListItem [-Identity] <ListItem> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet2
+
 ```
 Get-KshListItem [-Folder] <Folder> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet3
+
 ```
 Get-KshListItem [-File] <File> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet4
+
 ```
 Get-KshListItem [-DriveItem] <DriveItem> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet5
+
 ```
 Get-KshListItem [-ItemUrl] <String> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet6
+
 ```
 Get-KshListItem [-List] <List> [-ItemId] <Int32> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet7
+
 ```
 Get-KshListItem [-List] <List> [-All] [-NoEnumerate] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet8
+
 ```
 Get-KshListItem [-List] <List> [-FolderServerRelativeUrl <String>]
  [-ListItemCollectionPosition <ListItemCollectionPosition>] [-ViewXml <String>] [-NoEnumerate]
@@ -55,11 +64,13 @@ Get-KshListItem [-List] <List> [-FolderServerRelativeUrl <String>]
 ```
 
 ## DESCRIPTION
+
 The `Get-KshListItem` cmdlet retrieves one or more list items from a list based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Get-KshListItem -Identity $ListItem
 ```
@@ -69,6 +80,7 @@ This example retrieves a list item by identity.
 ## PARAMETERS
 
 ### -All
+
 Retrieves all list items.
 
 ```yaml
@@ -84,6 +96,7 @@ Accept wildcard characters: False
 ```
 
 ### -DriveItem
+
 Specifies the drive item to retrieve.
 
 ```yaml
@@ -99,6 +112,7 @@ Accept wildcard characters: False
 ```
 
 ### -File
+
 Specifies the file to retrieve.
 
 ```yaml
@@ -114,6 +128,7 @@ Accept wildcard characters: False
 ```
 
 ### -Folder
+
 Specifies the folder to retrieve.
 
 ```yaml
@@ -129,6 +144,7 @@ Accept wildcard characters: False
 ```
 
 ### -FolderServerRelativeUrl
+
 Specifies the server-relative URL of the folder.
 
 ```yaml
@@ -144,6 +160,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
+
 Specifies the list item to retrieve.
 
 ```yaml
@@ -159,6 +176,7 @@ Accept wildcard characters: False
 ```
 
 ### -ItemId
+
 Specifies the ID of the list item to retrieve.
 
 ```yaml
@@ -174,6 +192,7 @@ Accept wildcard characters: False
 ```
 
 ### -ItemUrl
+
 Specifies the URL of the list item to retrieve.
 
 ```yaml
@@ -189,6 +208,7 @@ Accept wildcard characters: False
 ```
 
 ### -List
+
 Specifies the list that contains the item to retrieve.
 
 ```yaml
@@ -204,6 +224,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListItemCollectionPosition
+
 Specifies the position of the list item collection.
 
 ```yaml
@@ -219,6 +240,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
+
 Indicates that the cmdlet does not enumerate the collection.
 
 ```yaml
@@ -234,6 +256,7 @@ Accept wildcard characters: False
 ```
 
 ### -ViewXml
+
 Specifies the XML view of the list items.
 
 ```yaml
@@ -249,6 +272,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress.
 
 ```yaml
@@ -264,18 +288,23 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.ListItem
+
 ### Karamem0.SharePoint.PowerShell.Models.V1.Folder
+
 ### Karamem0.SharePoint.PowerShell.Models.V1.File
+
 ### Karamem0.SharePoint.PowerShell.Models.V2.DriveItem
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.ListItem
+
 ## NOTES
 
 ## RELATED LINKS
-

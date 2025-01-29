@@ -8,33 +8,39 @@ schema: 2.0.0
 # Get-KshAttachmentFile
 
 ## SYNOPSIS
-Retrieves one or more attachment files from a list item.
+
+Retrieves one or more attachment files.
 
 ## SYNTAX
 
 ### ParamSet1
+
 ```
 Get-KshAttachmentFile [-Identity] <AttachmentFile> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet2
+
 ```
 Get-KshAttachmentFile [-ListItem] <ListItem> [-FileName] <String> [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
 
 ### ParamSet3
+
 ```
 Get-KshAttachmentFile [-ListItem] <ListItem> [-NoEnumerate] [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 The `Get-KshAttachmentFile` cmdlet retrieves one or more attachment files from a list item based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Get-KshAttachmentFile -Identity $attachmentFile
 ```
@@ -42,6 +48,7 @@ PS C:\> Get-KshAttachmentFile -Identity $attachmentFile
 This example retrieves an attachment file by identity.
 
 ### Example 2
+
 ```powershell
 PS C:\> Get-KshAttachmentFile -ListItem $listItem -FileName "example.txt"
 ```
@@ -49,6 +56,7 @@ PS C:\> Get-KshAttachmentFile -ListItem $listItem -FileName "example.txt"
 This example retrieves an attachment file by file name.
 
 ### Example 3
+
 ```powershell
 PS C:\> Get-KshAttachmentFile -ListItem $listItem
 ```
@@ -58,6 +66,7 @@ This example retrieves all attachment files.
 ## PARAMETERS
 
 ### -FileName
+
 Specifies the name of the attachment file to retrieve.
 
 ```yaml
@@ -73,6 +82,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
+
 Specifies the attachment file to retrieve.
 
 ```yaml
@@ -88,6 +98,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListItem
+
 Specifies the list item that contains the attachment file.
 
 ```yaml
@@ -103,6 +114,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
+
 Indicates that the cmdlet does not enumerate the collection.
 
 ```yaml
@@ -118,6 +130,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -133,15 +146,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.AttachmentFile
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.AttachmentFile
+
 ## NOTES
 
 ## RELATED LINKS
-

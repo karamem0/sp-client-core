@@ -8,6 +8,7 @@ schema: 2.0.0
 # Set-KshSite
 
 ## SYNOPSIS
+
 {{ Fill in the Synopsis }}
 
 ## SYNTAX
@@ -29,11 +30,13 @@ Set-KshSite [[-Identity] <Site>] [-AllowAutomaticASPXPageIndexing <Boolean>] [-A
 ```
 
 ## DESCRIPTION
+
 {{ Fill in the Description }}
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> {{ Add example code here }}
 ```
@@ -43,6 +46,7 @@ PS C:\> {{ Add example code here }}
 ## PARAMETERS
 
 ### -AllowAutomaticASPXPageIndexing
+
 {{ Fill AllowAutomaticASPXPageIndexing Description }}
 
 ```yaml
@@ -58,6 +62,7 @@ Accept wildcard characters: False
 ```
 
 ### -AlternateCssUrl
+
 {{ Fill AlternateCssUrl Description }}
 
 ```yaml
@@ -73,6 +78,7 @@ Accept wildcard characters: False
 ```
 
 ### -CommentsOnSitePagesDisabled
+
 {{ Fill CommentsOnSitePagesDisabled Description }}
 
 ```yaml
@@ -88,6 +94,7 @@ Accept wildcard characters: False
 ```
 
 ### -ContainsConfidentialInfo
+
 {{ Fill ContainsConfidentialInfo Description }}
 
 ```yaml
@@ -103,6 +110,7 @@ Accept wildcard characters: False
 ```
 
 ### -CustomMasterUrl
+
 {{ Fill CustomMasterUrl Description }}
 
 ```yaml
@@ -118,6 +126,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
+
 {{ Fill Description Description }}
 
 ```yaml
@@ -133,6 +142,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisableAppViews
+
 {{ Fill DisableAppViews Description }}
 
 ```yaml
@@ -148,6 +158,7 @@ Accept wildcard characters: False
 ```
 
 ### -DisableFlows
+
 {{ Fill DisableFlows Description }}
 
 ```yaml
@@ -163,6 +174,7 @@ Accept wildcard characters: False
 ```
 
 ### -EnableMinimalDownload
+
 {{ Fill EnableMinimalDownload Description }}
 
 ```yaml
@@ -178,6 +190,7 @@ Accept wildcard characters: False
 ```
 
 ### -ExcludeFromOfflineClient
+
 {{ Fill ExcludeFromOfflineClient Description }}
 
 ```yaml
@@ -193,6 +206,7 @@ Accept wildcard characters: False
 ```
 
 ### -FooterEnabled
+
 {{ Fill FooterEnabled Description }}
 
 ```yaml
@@ -208,6 +222,7 @@ Accept wildcard characters: False
 ```
 
 ### -FooterLayout
+
 {{ Fill FooterLayout Description }}
 
 ```yaml
@@ -224,6 +239,7 @@ Accept wildcard characters: False
 ```
 
 ### -HeaderEmphasis
+
 {{ Fill HeaderEmphasis Description }}
 
 ```yaml
@@ -240,6 +256,7 @@ Accept wildcard characters: False
 ```
 
 ### -HeaderLayout
+
 {{ Fill HeaderLayout Description }}
 
 ```yaml
@@ -256,6 +273,7 @@ Accept wildcard characters: False
 ```
 
 ### -HorizontalQuickLaunch
+
 {{ Fill HorizontalQuickLaunch Description }}
 
 ```yaml
@@ -271,6 +289,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
+
 {{ Fill Identity Description }}
 
 ```yaml
@@ -286,6 +305,7 @@ Accept wildcard characters: False
 ```
 
 ### -LogoAlignment
+
 {{ Fill LogoAlignment Description }}
 
 ```yaml
@@ -302,6 +322,7 @@ Accept wildcard characters: False
 ```
 
 ### -MasterUrl
+
 {{ Fill MasterUrl Description }}
 
 ```yaml
@@ -317,6 +338,7 @@ Accept wildcard characters: False
 ```
 
 ### -MegaMenuEnabled
+
 {{ Fill MegaMenuEnabled Description }}
 
 ```yaml
@@ -332,6 +354,7 @@ Accept wildcard characters: False
 ```
 
 ### -MembersCanShare
+
 {{ Fill MembersCanShare Description }}
 
 ```yaml
@@ -347,6 +370,7 @@ Accept wildcard characters: False
 ```
 
 ### -NavAudienceTargetingEnabled
+
 {{ Fill NavAudienceTargetingEnabled Description }}
 
 ```yaml
@@ -362,6 +386,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoCrawl
+
 {{ Fill NoCrawl Description }}
 
 ```yaml
@@ -377,6 +402,7 @@ Accept wildcard characters: False
 ```
 
 ### -ObjectCacheEnabled
+
 {{ Fill ObjectCacheEnabled Description }}
 
 ```yaml
@@ -392,6 +418,7 @@ Accept wildcard characters: False
 ```
 
 ### -OverwriteTranslationsOnChange
+
 {{ Fill OverwriteTranslationsOnChange Description }}
 
 ```yaml
@@ -407,6 +434,7 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
+
 {{ Fill PassThru Description }}
 
 ```yaml
@@ -422,6 +450,7 @@ Accept wildcard characters: False
 ```
 
 ### -QuickLaunchEnabled
+
 {{ Fill QuickLaunchEnabled Description }}
 
 ```yaml
@@ -437,6 +466,7 @@ Accept wildcard characters: False
 ```
 
 ### -RequestAccessEmail
+
 {{ Fill RequestAccessEmail Description }}
 
 ```yaml
@@ -452,6 +482,7 @@ Accept wildcard characters: False
 ```
 
 ### -SaveSiteAsTemplateEnabled
+
 {{ Fill SaveSiteAsTemplateEnabled Description }}
 
 ```yaml
@@ -467,6 +498,7 @@ Accept wildcard characters: False
 ```
 
 ### -SearchScope
+
 {{ Fill SearchScope Description }}
 
 ```yaml
@@ -483,6 +515,7 @@ Accept wildcard characters: False
 ```
 
 ### -ServerRelativeUrl
+
 {{ Fill ServerRelativeUrl Description }}
 
 ```yaml
@@ -498,6 +531,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteLogoDescription
+
 {{ Fill SiteLogoDescription Description }}
 
 ```yaml
@@ -513,6 +547,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteLogoUrl
+
 {{ Fill SiteLogoUrl Description }}
 
 ```yaml
@@ -528,6 +563,7 @@ Accept wildcard characters: False
 ```
 
 ### -SyndicationEnabled
+
 {{ Fill SyndicationEnabled Description }}
 
 ```yaml
@@ -543,6 +579,7 @@ Accept wildcard characters: False
 ```
 
 ### -ThemedCssFolderUrl
+
 {{ Fill ThemedCssFolderUrl Description }}
 
 ```yaml
@@ -558,6 +595,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
+
 {{ Fill Title Description }}
 
 ```yaml
@@ -573,6 +611,7 @@ Accept wildcard characters: False
 ```
 
 ### -TreeViewEnabled
+
 {{ Fill TreeViewEnabled Description }}
 
 ```yaml
@@ -588,6 +627,7 @@ Accept wildcard characters: False
 ```
 
 ### -UIVersion
+
 {{ Fill UIVersion Description }}
 
 ```yaml
@@ -603,6 +643,7 @@ Accept wildcard characters: False
 ```
 
 ### -UIVersionConfigurationEnabled
+
 {{ Fill UIVersionConfigurationEnabled Description }}
 
 ```yaml
@@ -618,6 +659,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 {{ Fill ProgressAction Description }}
 
 ```yaml
@@ -633,15 +675,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.Site
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.Site
+
 ## NOTES
 
 ## RELATED LINKS
-

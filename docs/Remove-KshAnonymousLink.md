@@ -8,7 +8,8 @@ schema: 2.0.0
 # Remove-KshAnonymousLink
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+
+Removes an anonymous sharing link.
 
 ## SYNTAX
 
@@ -18,20 +19,23 @@ Remove-KshAnonymousLink [-Url] <Uri> [-IsEditLink] <Boolean> [-RemoveAssociatedS
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+
+The `Remove-KshAnonymousLink` cmdlet removes anonymous sharing link for an URL. This cmdlet can also remove associated sharing link groups.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Remove-KshAnonymousLink -Url "https://contoso.sharepoint.com/Shared Documents/file.txt" -IsEditLink $true -RemoveAssociatedSharingLinkGroup $false
 ```
 
-{{ Add example description here }}
+This example removes an edit anonymous sharing link from the specified URL without removing associated sharing link groups.
 
 ## PARAMETERS
 
 ### -Confirm
+
 Prompts you for confirmation before running the cmdlet.
 
 ```yaml
@@ -47,7 +51,8 @@ Accept wildcard characters: False
 ```
 
 ### -IsEditLink
-{{ Fill IsEditLink Description }}
+
+Specifies whether the link to be removed is an edit link.
 
 ```yaml
 Type: Boolean
@@ -62,7 +67,8 @@ Accept wildcard characters: False
 ```
 
 ### -RemoveAssociatedSharingLinkGroup
-{{ Fill RemoveAssociatedSharingLinkGroup Description }}
+
+Specifies whether to remove associated sharing link groups.
 
 ```yaml
 Type: Boolean
@@ -77,7 +83,8 @@ Accept wildcard characters: False
 ```
 
 ### -Url
-{{ Fill Url Description }}
+
+Specifies the URL from which to remove the anonymous link.
 
 ```yaml
 Type: Uri
@@ -92,6 +99,7 @@ Accept wildcard characters: False
 ```
 
 ### -WhatIf
+
 Shows what would happen if the cmdlet runs.
 The cmdlet is not run.
 
@@ -108,7 +116,8 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference
@@ -123,15 +132,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### System.Void
+
 ## NOTES
 
 ## RELATED LINKS
-

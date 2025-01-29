@@ -8,11 +8,13 @@ schema: 2.0.0
 # Add-KshColumnCurrency
 
 ## SYNOPSIS
-Adds a new Currency column to a list or library.
+
+Adds a new Currency column.
 
 ## SYNTAX
 
 ### ParamSet1
+
 ```
 Add-KshColumnCurrency [-List] <List> [-ClientSideComponentId <String>]
  [-ClientSideComponentProperties <String>] [-CurrencyLcid <UInt32>] [-CustomFormatter <String>]
@@ -26,6 +28,7 @@ Add-KshColumnCurrency [-List] <List> [-ClientSideComponentId <String>]
 ```
 
 ### ParamSet2
+
 ```
 Add-KshColumnCurrency [-ClientSideComponentId <String>] [-ClientSideComponentProperties <String>]
  [-CurrencyLcid <UInt32>] [-CustomFormatter <String>] [-DefaultFormula <String>] [-DefaultValue <String>]
@@ -38,6 +41,7 @@ Add-KshColumnCurrency [-ClientSideComponentId <String>] [-ClientSideComponentPro
 ```
 
 ### ParamSet3
+
 ```
 Add-KshColumnCurrency [-ClientSideComponentId <String>] [-ClientSideComponentProperties <String>]
  [-CurrencyLcid <UInt32>] [-CustomFormatter <String>] [-DefaultFormula <String>] [-DefaultValue <String>]
@@ -49,11 +53,13 @@ Add-KshColumnCurrency [-ClientSideComponentId <String>] [-ClientSideComponentPro
 ```
 
 ## DESCRIPTION
+
 The `Add-KshColumnCurrency` cmdlet adds a new Currency column to a list or library. This cmdlet allows you to configure various properties of the currency column, such as the default value, description, and whether the column is required.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Add-KshColumnCurrency -List $list -Name "Budget" -Title "Budget" -CurrencyLcid 1033 -DefaultValue "0"
 ```
@@ -61,6 +67,7 @@ PS C:\> Add-KshColumnCurrency -List $list -Name "Budget" -Title "Budget" -Curren
 This example adds a new Currency column named "Budget" to the specified list with a default value of 0 and the currency locale ID set to 1033 (English - United States).
 
 ### Example 2
+
 ```powershell
 PS C:\> Add-KshColumnCurrency -Name "Budget" -Title "Budget" -CurrencyLcid 1033 -DefaultValue "0"
 ```
@@ -68,6 +75,7 @@ PS C:\> Add-KshColumnCurrency -Name "Budget" -Title "Budget" -CurrencyLcid 1033 
 This example adds a new Currency column named "Budget" as a site column with a default value of 0 and the currency locale ID set to 1033 (English - United States).
 
 ### Example 3
+
 ```powershell
 PS C:\> Add-KshColumnCurrency -Name "Budget" -Title "Budget" -CurrencyLcid 1033 -DefaultValue "0" -WhatIf
 ```
@@ -77,6 +85,7 @@ This example shows what would happen if the cmdlet runs without actually creatin
 ## PARAMETERS
 
 ### -AddColumnCheckDisplayName
+
 Specifies whether to check the display name of the column.
 
 ```yaml
@@ -92,6 +101,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddColumnInternalNameHint
+
 Specifies whether to add an internal name hint for the column.
 
 ```yaml
@@ -107,6 +117,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddColumnToDefaultView
+
 Specifies whether to add the column to the default view.
 
 ```yaml
@@ -122,6 +133,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToAllContentTypes
+
 Specifies whether to add the column to all content types.
 
 ```yaml
@@ -137,6 +149,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToDefaultContentType
+
 Specifies whether to add the column to the default content type.
 
 ```yaml
@@ -152,6 +165,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToDefaultView
+
 Specifies whether to add the column to the default view.
 
 ```yaml
@@ -167,6 +181,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToNoContentType
+
 Specifies whether to add the column to no content type.
 
 ```yaml
@@ -182,6 +197,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClientSideComponentId
+
 Specifies the client-side component ID.
 
 ```yaml
@@ -197,6 +213,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClientSideComponentProperties
+
 Specifies the client-side component properties.
 
 ```yaml
@@ -212,6 +229,7 @@ Accept wildcard characters: False
 ```
 
 ### -CurrencyLcid
+
 Specifies the locale ID for the currency.
 
 ```yaml
@@ -227,6 +245,7 @@ Accept wildcard characters: False
 ```
 
 ### -CustomFormatter
+
 Specifies a custom formatter for the column.
 
 ```yaml
@@ -242,6 +261,7 @@ Accept wildcard characters: False
 ```
 
 ### -DefaultFormula
+
 Specifies the default formula for the column.
 
 ```yaml
@@ -257,6 +277,7 @@ Accept wildcard characters: False
 ```
 
 ### -DefaultValue
+
 Specifies the default value for the column.
 
 ```yaml
@@ -272,6 +293,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
+
 Specifies the description of the column.
 
 ```yaml
@@ -287,6 +309,7 @@ Accept wildcard characters: False
 ```
 
 ### -Direction
+
 Specifies the direction of the column.
 
 ```yaml
@@ -302,6 +325,7 @@ Accept wildcard characters: False
 ```
 
 ### -EnforceUniqueValues
+
 Specifies whether to enforce unique values for the column.
 
 ```yaml
@@ -317,6 +341,7 @@ Accept wildcard characters: False
 ```
 
 ### -Group
+
 Specifies the group of the column.
 
 ```yaml
@@ -332,6 +357,7 @@ Accept wildcard characters: False
 ```
 
 ### -Hidden
+
 Specifies whether the column is hidden.
 
 ```yaml
@@ -347,6 +373,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
+
 Specifies the ID of the column.
 
 ```yaml
@@ -362,6 +389,7 @@ Accept wildcard characters: False
 ```
 
 ### -Indexed
+
 Specifies whether the column is indexed.
 
 ```yaml
@@ -377,6 +405,7 @@ Accept wildcard characters: False
 ```
 
 ### -JSLink
+
 Specifies the JSLink for the column.
 
 ```yaml
@@ -392,6 +421,7 @@ Accept wildcard characters: False
 ```
 
 ### -List
+
 Specifies the list to which the column is added.
 
 ```yaml
@@ -407,6 +437,7 @@ Accept wildcard characters: False
 ```
 
 ### -MaxValue
+
 Specifies the maximum value for the column.
 
 ```yaml
@@ -422,6 +453,7 @@ Accept wildcard characters: False
 ```
 
 ### -MinValue
+
 Specifies the minimum value for the column.
 
 ```yaml
@@ -437,6 +469,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
+
 Specifies the name of the column.
 
 ```yaml
@@ -452,6 +485,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoCrawl
+
 Specifies whether the column is excluded from search crawling.
 
 ```yaml
@@ -467,6 +501,7 @@ Accept wildcard characters: False
 ```
 
 ### -NumberFormat
+
 Specifies the number format for the column.
 
 ```yaml
@@ -482,6 +517,7 @@ Accept wildcard characters: False
 ```
 
 ### -ReadOnly
+
 Specifies whether the column is read-only.
 
 ```yaml
@@ -497,6 +533,7 @@ Accept wildcard characters: False
 ```
 
 ### -Required
+
 Specifies whether the column is required.
 
 ```yaml
@@ -512,6 +549,7 @@ Accept wildcard characters: False
 ```
 
 ### -StaticName
+
 Specifies the static name of the column.
 
 ```yaml
@@ -527,6 +565,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
+
 Specifies the title of the column.
 
 ```yaml
@@ -542,6 +581,7 @@ Accept wildcard characters: False
 ```
 
 ### -WhatIf
+
 Shows what would happen if the cmdlet runs.
 The cmdlet is not run.
 
@@ -558,6 +598,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress.
 
 ```yaml
@@ -573,15 +614,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.List
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.ColumnCurrency
+
 ## NOTES
 
 ## RELATED LINKS
-

@@ -8,7 +8,8 @@ schema: 2.0.0
 # Remove-KshContentTypeColumn
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+
+Removes a content type column.
 
 ## SYNTAX
 
@@ -18,20 +19,23 @@ Remove-KshContentTypeColumn [-Identity] <ContentTypeColumn> [-PushChanges] [-Pro
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+
+The `Remove-KshContentTypeColumn` cmdlet removes a column from a content type.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Remove-KshContentTypeColumn -Identity $column -PushChanges
 ```
 
-{{ Add example description here }}
+This example removes the specified column from the content type and pushes the changes.
 
 ## PARAMETERS
 
 ### -Confirm
+
 Prompts you for confirmation before running the cmdlet.
 
 ```yaml
@@ -47,7 +51,8 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-{{ Fill Identity Description }}
+
+Specifies the column to remove from the content type.
 
 ```yaml
 Type: ContentTypeColumn
@@ -62,7 +67,8 @@ Accept wildcard characters: False
 ```
 
 ### -PushChanges
-{{ Fill PushChanges Description }}
+
+Indicates that the changes should be pushed to child content types.
 
 ```yaml
 Type: SwitchParameter
@@ -77,6 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -WhatIf
+
 Shows what would happen if the cmdlet runs.
 The cmdlet is not run.
 
@@ -93,7 +100,8 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference
@@ -108,15 +116,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.ContentTypeColumn
+
 ## OUTPUTS
 
 ### System.Void
+
 ## NOTES
 
 ## RELATED LINKS
-

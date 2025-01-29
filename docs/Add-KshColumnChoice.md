@@ -8,11 +8,13 @@ schema: 2.0.0
 # Add-KshColumnChoice
 
 ## SYNOPSIS
-Adds a new Choice column to a list or library.
+
+Adds a new Choice column.
 
 ## SYNTAX
 
 ### ParamSet1
+
 ```
 Add-KshColumnChoice [-List] <List> [-ChoiceFormat <ChoiceFormatType>] [-Choices <String[]>]
  [-ClientSideComponentId <String>] [-ClientSideComponentProperties <String>] [-CustomFormatter <String>]
@@ -25,6 +27,7 @@ Add-KshColumnChoice [-List] <List> [-ChoiceFormat <ChoiceFormatType>] [-Choices 
 ```
 
 ### ParamSet2
+
 ```
 Add-KshColumnChoice [-ChoiceFormat <ChoiceFormatType>] [-Choices <String[]>] [-ClientSideComponentId <String>]
  [-ClientSideComponentProperties <String>] [-CustomFormatter <String>] [-DefaultFormula <String>]
@@ -37,6 +40,7 @@ Add-KshColumnChoice [-ChoiceFormat <ChoiceFormatType>] [-Choices <String[]>] [-C
 ```
 
 ### ParamSet3
+
 ```
 Add-KshColumnChoice [-ChoiceFormat <ChoiceFormatType>] [-Choices <String[]>] [-ClientSideComponentId <String>]
  [-ClientSideComponentProperties <String>] [-CustomFormatter <String>] [-DefaultFormula <String>]
@@ -47,11 +51,13 @@ Add-KshColumnChoice [-ChoiceFormat <ChoiceFormatType>] [-Choices <String[]>] [-C
 ```
 
 ## DESCRIPTION
+
 The `Add-KshColumnChoice` cmdlet adds a new Choice column to a list or library. This cmdlet allows you to specify various properties for the column, such as the choices available, the default value, and whether the column is required.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Add-KshColumnChoice -List $list -Name "Category" -Choices "High", "Medium", "Low" -Required $true
 ```
@@ -59,6 +65,7 @@ PS C:\> Add-KshColumnChoice -List $list -Name "Category" -Choices "High", "Mediu
 This example adds a new Choice column named "Category" to the specified list with the choices "High", "Medium", and "Low", and sets the column as required.
 
 ### Example 2
+
 ```powershell
 PS C:\> Add-KshColumnChoice -Name "Priority" -Choices "Urgent", "Normal", "Low" -AddToDefaultView
 ```
@@ -66,6 +73,7 @@ PS C:\> Add-KshColumnChoice -Name "Priority" -Choices "Urgent", "Normal", "Low" 
 This example adds a new Choice column named "Priority" as a site column with the choices "Urgent", "Normal", and "Low".
 
 ### Example 3
+
 ```powershell
 PS C:\> Add-KshColumnChoice -Name "Status" -Choices "Open", "Closed" -WhatIf
 ```
@@ -75,6 +83,7 @@ This example shows what would happen if the cmdlet runs without actually creatin
 ## PARAMETERS
 
 ### -AddColumnCheckDisplayName
+
 Specifies whether to check the display name of the column.
 
 ```yaml
@@ -90,6 +99,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddColumnInternalNameHint
+
 Specifies whether to add an internal name hint for the column.
 
 ```yaml
@@ -105,6 +115,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddColumnToDefaultView
+
 Specifies whether to add the column to the default view.
 
 ```yaml
@@ -120,6 +131,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToAllContentTypes
+
 Specifies whether to add the column to all content types.
 
 ```yaml
@@ -135,6 +147,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToDefaultContentType
+
 Specifies whether to add the column to the default content type.
 
 ```yaml
@@ -150,6 +163,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToDefaultView
+
 Specifies whether to add the column to the default view.
 
 ```yaml
@@ -165,6 +179,7 @@ Accept wildcard characters: False
 ```
 
 ### -AddToNoContentType
+
 Specifies whether to add the column to no content type.
 
 ```yaml
@@ -180,6 +195,7 @@ Accept wildcard characters: False
 ```
 
 ### -ChoiceFormat
+
 Specifies the format of the choice field.
 
 ```yaml
@@ -196,6 +212,7 @@ Accept wildcard characters: False
 ```
 
 ### -Choices
+
 Specifies the choices available in the column.
 
 ```yaml
@@ -211,6 +228,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClientSideComponentId
+
 Specifies the client-side component ID.
 
 ```yaml
@@ -226,6 +244,7 @@ Accept wildcard characters: False
 ```
 
 ### -ClientSideComponentProperties
+
 Specifies the client-side component properties.
 
 ```yaml
@@ -241,6 +260,7 @@ Accept wildcard characters: False
 ```
 
 ### -CustomFormatter
+
 Specifies the custom formatter for the column.
 
 ```yaml
@@ -256,6 +276,7 @@ Accept wildcard characters: False
 ```
 
 ### -DefaultFormula
+
 Specifies the default formula for the column.
 
 ```yaml
@@ -271,6 +292,7 @@ Accept wildcard characters: False
 ```
 
 ### -DefaultValue
+
 Specifies the default value for the column.
 
 ```yaml
@@ -286,6 +308,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
+
 Specifies the description of the column.
 
 ```yaml
@@ -301,6 +324,7 @@ Accept wildcard characters: False
 ```
 
 ### -Direction
+
 Specifies the direction of the column.
 
 ```yaml
@@ -316,6 +340,7 @@ Accept wildcard characters: False
 ```
 
 ### -EnforceUniqueValues
+
 Specifies whether to enforce unique values for the column.
 
 ```yaml
@@ -331,6 +356,7 @@ Accept wildcard characters: False
 ```
 
 ### -FillInChoice
+
 Specifies whether to allow fill-in choices.
 
 ```yaml
@@ -346,6 +372,7 @@ Accept wildcard characters: False
 ```
 
 ### -Group
+
 Specifies the group of the column.
 
 ```yaml
@@ -361,6 +388,7 @@ Accept wildcard characters: False
 ```
 
 ### -Hidden
+
 Specifies whether the column is hidden.
 
 ```yaml
@@ -376,6 +404,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
+
 Specifies the ID of the column.
 
 ```yaml
@@ -391,6 +420,7 @@ Accept wildcard characters: False
 ```
 
 ### -Indexed
+
 Specifies whether the column is indexed.
 
 ```yaml
@@ -406,6 +436,7 @@ Accept wildcard characters: False
 ```
 
 ### -JSLink
+
 Specifies the JSLink for the column.
 
 ```yaml
@@ -421,6 +452,7 @@ Accept wildcard characters: False
 ```
 
 ### -List
+
 Specifies the list to which the column is added.
 
 ```yaml
@@ -436,6 +468,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
+
 Specifies the name of the column.
 
 ```yaml
@@ -451,6 +484,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoCrawl
+
 Specifies whether to exclude the column from search indexing.
 
 ```yaml
@@ -466,6 +500,7 @@ Accept wildcard characters: False
 ```
 
 ### -ReadOnly
+
 Specifies whether the column is read-only.
 
 ```yaml
@@ -481,6 +516,7 @@ Accept wildcard characters: False
 ```
 
 ### -Required
+
 Specifies whether the column is required.
 
 ```yaml
@@ -496,6 +532,7 @@ Accept wildcard characters: False
 ```
 
 ### -StaticName
+
 Specifies the static name of the column.
 
 ```yaml
@@ -511,6 +548,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
+
 Specifies the title of the column.
 
 ```yaml
@@ -526,6 +564,7 @@ Accept wildcard characters: False
 ```
 
 ### -WhatIf
+
 Shows what would happen if the cmdlet runs.
 The cmdlet is not run.
 
@@ -542,6 +581,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress.
 
 ```yaml
@@ -557,15 +597,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.List
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.ColumnChoice
+
 ## NOTES
 
 ## RELATED LINKS
-

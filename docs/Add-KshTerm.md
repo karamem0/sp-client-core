@@ -8,28 +8,33 @@ schema: 2.0.0
 # Add-KshTerm
 
 ## SYNOPSIS
-Adds a new term to a term set or term.
+
+Adds a new term.
 
 ## SYNTAX
 
 ### ParamSet1
+
 ```
 Add-KshTerm [-TermSet] <TermSet> [-Id <Guid>] -Lcid <UInt32> -Name <String>
  [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet2
+
 ```
 Add-KshTerm [-Term] <Term> [-Id <Guid>] -Lcid <UInt32> -Name <String> [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 The `Add-KshTerm` cmdlet adds a new term to a term set or term.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Add-KshTerm -TermSet $termSet -Lcid 1033 -Name "Human Resources"
 ```
@@ -37,6 +42,7 @@ PS C:\> Add-KshTerm -TermSet $termSet -Lcid 1033 -Name "Human Resources"
 This example adds a new term named "Human Resources" to the specified term set.
 
 ### Example 2
+
 ```powershell
 PS C:\> Add-KshTerm -Term $term -Lcid 1033 -Name "Accounts Payable"
 ```
@@ -46,6 +52,7 @@ This example adds a new term named "Accounts Payable" to the specified term.
 ## PARAMETERS
 
 ### -Id
+
 Specifies the unique identifier of the term.
 
 ```yaml
@@ -61,6 +68,7 @@ Accept wildcard characters: False
 ```
 
 ### -Lcid
+
 Specifies the language code identifier (LCID) for the term.
 
 ```yaml
@@ -76,6 +84,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
+
 Specifies the name of the term.
 
 ```yaml
@@ -91,6 +100,7 @@ Accept wildcard characters: False
 ```
 
 ### -Term
+
 Specifies the parent term to which the new term will be added.
 
 ```yaml
@@ -106,6 +116,7 @@ Accept wildcard characters: False
 ```
 
 ### -TermSet
+
 Specifies the term set to which the new term will be added.
 
 ```yaml
@@ -121,6 +132,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -136,16 +148,19 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.TermSet
+
 ### Karamem0.SharePoint.PowerShell.Models.V1.Term
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.Term
+
 ## NOTES
 
 ## RELATED LINKS
-

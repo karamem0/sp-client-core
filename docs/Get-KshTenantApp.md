@@ -8,31 +8,37 @@ schema: 2.0.0
 # Get-KshTenantApp
 
 ## SYNOPSIS
-Retrieves one or more apps from a tenant app catalog.
+
+Retrieves one or more tenant apps.
 
 ## SYNTAX
 
 ### ParamSet1
+
 ```
 Get-KshTenantApp [-Identity] <App> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet2
+
 ```
 Get-KshTenantApp [-AppId] <Guid> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet3
+
 ```
 Get-KshTenantApp [-NoEnumerate] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 The `Get-KshTenantApp` cmdlet retrieves one or more apps from a tenant app catalog based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Get-KshTenantApp -Identity $app
 ```
@@ -40,6 +46,7 @@ PS C:\> Get-KshTenantApp -Identity $app
 This example retrieves a app by identity.
 
 ### Example 2
+
 ```powershell
 PS C:\> Get-KshTenantApp -AppId $appId
 ```
@@ -47,6 +54,7 @@ PS C:\> Get-KshTenantApp -AppId $appId
 This example retrieves a app by app ID.
 
 ### Example 3
+
 ```powershell
 PS C:\> Get-KshTenantApp
 ```
@@ -56,6 +64,7 @@ This example retrieves all apps.
 ## PARAMETERS
 
 ### -AppId
+
 Specifies the ID of the application to retrieve.
 
 ```yaml
@@ -71,6 +80,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
+
 Specifies the app to retrieve.
 
 ```yaml
@@ -86,6 +96,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
+
 Indicates that the cmdlet does not enumerate the collection.
 
 ```yaml
@@ -101,6 +112,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -116,15 +128,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.App
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.App
+
 ## NOTES
 
 ## RELATED LINKS
-

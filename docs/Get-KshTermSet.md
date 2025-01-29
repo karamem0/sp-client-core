@@ -8,39 +8,46 @@ schema: 2.0.0
 # Get-KshTermSet
 
 ## SYNOPSIS
-Retrieves one or more term sets from the term store.
+
+Retrieves one or more term sets.
 
 ## SYNTAX
 
 ### ParamSet1
+
 ```
 Get-KshTermSet [-Identity] <TermSet> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet2
+
 ```
 Get-KshTermSet [-TermGroup] <TermGroup> [-TermSetId] <Guid> [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
 
 ### ParamSet3
+
 ```
 Get-KshTermSet [-TermGroup] <TermGroup> [-TermSetName] <String> [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
 
 ### ParamSet4
+
 ```
 Get-KshTermSet [-TermGroup] <TermGroup> [-NoEnumerate] [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 The `Get-KshTermSet` cmdlet retrieves a term set from a term store based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Get-KshTermSet -Identity $termSet
 ```
@@ -48,6 +55,7 @@ PS C:\> Get-KshTermSet -Identity $termSet
 This example retrieves a term set by identity.
 
 ### Example 2
+
 ```powershell
 PS C:\> Get-KshTermSet -TermGroup $termGroup -TermSetId $termSetId
 ```
@@ -55,6 +63,7 @@ PS C:\> Get-KshTermSet -TermGroup $termGroup -TermSetId $termSetId
 This example retrieves a term set by term group and term set ID.
 
 ### Example 3
+
 ```powershell
 PS C:\> Get-KshTermSet -TermGroup $termGroup -TermSetName "TermSetName"
 ```
@@ -62,6 +71,7 @@ PS C:\> Get-KshTermSet -TermGroup $termGroup -TermSetName "TermSetName"
 This example retrieves a term set by term group and term set name.
 
 ### Example 4
+
 ```powershell
 PS C:\> Get-KshTermSet -TermGroup $termGroup
 ```
@@ -71,6 +81,7 @@ This example retrieves all term sets in a term group.
 ## PARAMETERS
 
 ### -Identity
+
 Specifies the term set to retrieve.
 
 ```yaml
@@ -86,6 +97,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
+
 Indicates that the cmdlet does not enumerate the term set.
 
 ```yaml
@@ -101,6 +113,7 @@ Accept wildcard characters: False
 ```
 
 ### -TermGroup
+
 Specifies the term group that contains the term set.
 
 ```yaml
@@ -116,6 +129,7 @@ Accept wildcard characters: False
 ```
 
 ### -TermSetId
+
 Specifies the ID of the term set to retrieve.
 
 ```yaml
@@ -131,6 +145,7 @@ Accept wildcard characters: False
 ```
 
 ### -TermSetName
+
 Specifies the name of the term set to retrieve.
 
 ```yaml
@@ -146,6 +161,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -161,15 +177,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.TermSet
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.TermSet
+
 ## NOTES
 
 ## RELATED LINKS
-

@@ -8,32 +8,38 @@ schema: 2.0.0
 # Get-KshTenantSiteScript
 
 ## SYNOPSIS
-Retrieves one or more site scripts from the tenant.
+
+Retrieves one or more site scripts.
 
 ## SYNTAX
 
 ### ParamSet1
+
 ```
 Get-KshTenantSiteScript [-Identity] <TenantSiteScript> [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
 
 ### ParamSet2
+
 ```
 Get-KshTenantSiteScript [-SiteScriptId] <Guid> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet3
+
 ```
 Get-KshTenantSiteScript [-NoEnumerate] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 The `Get-KshTenantSiteScript` cmdlet retrieves one or more site scripts from the tenant based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Get-KshTenantSiteScript -Identity $siteScript
 ```
@@ -41,6 +47,7 @@ PS C:\> Get-KshTenantSiteScript -Identity $siteScript
 This example retrieves a site script by identity.
 
 ### Example 2
+
 ```powershell
 PS C:\> Get-KshTenantSiteScript -SiteScriptId "12345678-1234-1234-1234-1234567890ab"
 ```
@@ -48,6 +55,7 @@ PS C:\> Get-KshTenantSiteScript -SiteScriptId "12345678-1234-1234-1234-123456789
 This example retrieves a site script by site script ID.
 
 ### Example 3
+
 ```powershell
 PS C:\> Get-KshTenantSiteScript
 ```
@@ -57,6 +65,7 @@ This example retrieves all site scripts.
 ## PARAMETERS
 
 ### -Identity
+
 Specifies the site script to retrieve.
 
 ```yaml
@@ -72,6 +81,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
+
 Indicates that the cmdlet does not enumerate the collection.
 
 ```yaml
@@ -87,6 +97,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteScriptId
+
 Specifies the ID of the site script to retrieve.
 
 ```yaml
@@ -102,6 +113,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -117,15 +129,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.TenantSiteScript
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.TenantSiteScript
+
 ## NOTES
 
 ## RELATED LINKS
-

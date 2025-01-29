@@ -8,7 +8,8 @@ schema: 2.0.0
 # Remove-KshAlert
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+
+Removes an alert.
 
 ## SYNTAX
 
@@ -18,20 +19,23 @@ Remove-KshAlert [-Identity] <Alert> [-ProgressAction <ActionPreference>] [-WhatI
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+
+The `Remove-KshAlert` cmdlet removes an alert from a list or list item.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Remove-KshAlert -Identity $alert
 ```
 
-{{ Add example description here }}
+This example removes the specified alert.
 
 ## PARAMETERS
 
 ### -Confirm
+
 Prompts you for confirmation before running the cmdlet.
 
 ```yaml
@@ -47,7 +51,8 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-{{ Fill Identity Description }}
+
+Specifies the alert to remove.
 
 ```yaml
 Type: Alert
@@ -62,6 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -WhatIf
+
 Shows what would happen if the cmdlet runs.
 The cmdlet is not run.
 
@@ -78,7 +84,8 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference
@@ -93,15 +100,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.Alert
+
 ## OUTPUTS
 
 ### System.Void
+
 ## NOTES
 
 ## RELATED LINKS
-

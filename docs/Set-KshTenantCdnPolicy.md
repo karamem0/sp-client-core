@@ -8,28 +8,33 @@ schema: 2.0.0
 # Set-KshTenantCdnPolicy
 
 ## SYNOPSIS
+
 {{ Fill in the Synopsis }}
 
 ## SYNTAX
 
 ### ParamSet1
+
 ```
 Set-KshTenantCdnPolicy [-Public] -Type <TenantCdnPolicyType> -Value <String>
  [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet2
+
 ```
 Set-KshTenantCdnPolicy [-Private] -Type <TenantCdnPolicyType> -Value <String>
  [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 {{ Fill in the Description }}
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> {{ Add example code here }}
 ```
@@ -39,6 +44,7 @@ PS C:\> {{ Add example code here }}
 ## PARAMETERS
 
 ### -Private
+
 {{ Fill Private Description }}
 
 ```yaml
@@ -54,6 +60,7 @@ Accept wildcard characters: False
 ```
 
 ### -Public
+
 {{ Fill Public Description }}
 
 ```yaml
@@ -69,6 +76,7 @@ Accept wildcard characters: False
 ```
 
 ### -Type
+
 {{ Fill Type Description }}
 
 ```yaml
@@ -85,6 +93,7 @@ Accept wildcard characters: False
 ```
 
 ### -Value
+
 {{ Fill Value Description }}
 
 ```yaml
@@ -100,6 +109,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 {{ Fill ProgressAction Description }}
 
 ```yaml
@@ -115,15 +125,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### System.Void
+
 ## NOTES
 
 ## RELATED LINKS
-

@@ -8,7 +8,8 @@ schema: 2.0.0
 # Add-KshGroup
 
 ## SYNOPSIS
-Creates a new group.
+
+Adds a new group.
 
 ## SYNTAX
 
@@ -17,20 +18,23 @@ Add-KshGroup [-Description <String>] -Title <String> [-ProgressAction <ActionPre
 ```
 
 ## DESCRIPTION
-The `Add-KshGroup` cmdlet creates a new group in the current site with the title and description.
+
+The `Add-KshGroup` cmdlet adds a new group in the current site with the title and description.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Add-KshGroup -Title "Project Team" -Description "Group for project team members"
 ```
 
-This example creates a new group named "Project Team" with the description "Group for project team members".
+This example adds a new group named "Project Team" with the description "Group for project team members".
 
 ## PARAMETERS
 
 ### -Description
+
 Specifies the description of the group.
 
 ```yaml
@@ -46,6 +50,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
+
 Specifies the title of the group.
 
 ```yaml
@@ -61,6 +66,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress.
 
 ```yaml
@@ -76,15 +82,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.Group
+
 ## NOTES
 
 ## RELATED LINKS
-

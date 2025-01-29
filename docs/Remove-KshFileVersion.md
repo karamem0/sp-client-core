@@ -8,44 +8,59 @@ schema: 2.0.0
 # Remove-KshFileVersion
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+
+Removes a file version.
 
 ## SYNTAX
 
 ### ParamSet1
+
 ```
 Remove-KshFileVersion [-Identity] <FileVersion> [-ProgressAction <ActionPreference>] [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
 ### ParamSet2
+
 ```
 Remove-KshFileVersion [-Identity] <FileVersion> [-RecycleBin] [-ProgressAction <ActionPreference>] [-WhatIf]
  [-Confirm] [<CommonParameters>]
 ```
 
 ### ParamSet3
+
 ```
 Remove-KshFileVersion [-File] <File> [-All] [-ProgressAction <ActionPreference>] [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+
+The `Remove-KshFileVersion` cmdlet removes a file version or all versions of a file.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Remove-KshFileVersion -Identity $fileVersion
 ```
 
-{{ Add example description here }}
+This example removes the specified file version.
+
+### Example 2
+
+```powershell
+PS C:\> Remove-KshFileVersion -File $file -All
+```
+
+This example removes all versions of the specified file.
 
 ## PARAMETERS
 
 ### -All
-{{ Fill All Description }}
+
+Removes all versions of the specified file.
 
 ```yaml
 Type: SwitchParameter
@@ -60,6 +75,7 @@ Accept wildcard characters: False
 ```
 
 ### -Confirm
+
 Prompts you for confirmation before running the cmdlet.
 
 ```yaml
@@ -75,7 +91,8 @@ Accept wildcard characters: False
 ```
 
 ### -File
-{{ Fill File Description }}
+
+Specifies the file whose versions are to be removed.
 
 ```yaml
 Type: File
@@ -90,7 +107,8 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-{{ Fill Identity Description }}
+
+Specifies the file version to be removed.
 
 ```yaml
 Type: FileVersion
@@ -105,7 +123,8 @@ Accept wildcard characters: False
 ```
 
 ### -RecycleBin
-{{ Fill RecycleBin Description }}
+
+Moves the specified file version to the recycle bin instead of permanently deleting it.
 
 ```yaml
 Type: SwitchParameter
@@ -120,6 +139,7 @@ Accept wildcard characters: False
 ```
 
 ### -WhatIf
+
 Shows what would happen if the cmdlet runs.
 The cmdlet is not run.
 
@@ -136,7 +156,8 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference
@@ -151,15 +172,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.FileVersion
+
 ## OUTPUTS
 
 ### System.Void
+
 ## NOTES
 
 ## RELATED LINKS
-

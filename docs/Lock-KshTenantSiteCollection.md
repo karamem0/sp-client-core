@@ -8,38 +8,44 @@ schema: 2.0.0
 # Lock-KshTenantSiteCollection
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+
+Locks a site collection.
 
 ## SYNTAX
 
 ### ParamSet1
+
 ```
 Lock-KshTenantSiteCollection [-Identity] <TenantSiteCollection> [-PassThru]
  [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet2
+
 ```
 Lock-KshTenantSiteCollection [-Identity] <TenantSiteCollection> [-NoWait] [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+
+The `Lock-KshTenantSiteCollection` cmdlet locks a site collection to prevent users from accessing it.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Lock-KshTenantSiteCollection -Identity "https://tenant.sharepoint.com/sites/site1"
 ```
 
-{{ Add example description here }}
+This example locks the specified site collection.
 
 ## PARAMETERS
 
 ### -Identity
-{{ Fill Identity Description }}
+
+Specifies the tenant site collection to lock.
 
 ```yaml
 Type: TenantSiteCollection
@@ -54,7 +60,8 @@ Accept wildcard characters: False
 ```
 
 ### -NoWait
-{{ Fill NoWait Description }}
+
+Indicates that the cmdlet returns immediately without waiting for the operation to complete.
 
 ```yaml
 Type: SwitchParameter
@@ -69,7 +76,8 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
-{{ Fill PassThru Description }}
+
+Returns the tenant site collection object that was processed.
 
 ```yaml
 Type: SwitchParameter
@@ -84,7 +92,8 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference
@@ -99,15 +108,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.TenantSiteCollection
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.TenantSiteCollection
+
 ## NOTES
 
 ## RELATED LINKS
-

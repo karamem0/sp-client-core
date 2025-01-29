@@ -8,7 +8,8 @@ schema: 2.0.0
 # Publish-KshSiteCollectionApp
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+
+Publishes an app to a site collection.
 
 ## SYNTAX
 
@@ -18,21 +19,24 @@ Publish-KshSiteCollectionApp [-Identity] <App> [-PassThru] [-ProgressAction <Act
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+
+The `Publish-KshSiteCollectionApp` cmdlet publishes an app to a site collection.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Publish-KshSiteCollectionApp -Identity $app
 ```
 
-{{ Add example description here }}
+This example publishes the specified app to the site collection.
 
 ## PARAMETERS
 
 ### -Identity
-{{ Fill Identity Description }}
+
+Specifies the app to publish.
 
 ```yaml
 Type: App
@@ -47,7 +51,8 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
-{{ Fill PassThru Description }}
+
+Returns the app object that was processed.
 
 ```yaml
 Type: SwitchParameter
@@ -62,7 +67,8 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference
@@ -77,15 +83,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.App
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.App
+
 ## NOTES
 
 ## RELATED LINKS
-

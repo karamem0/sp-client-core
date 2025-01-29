@@ -8,7 +8,8 @@ schema: 2.0.0
 # Lock-KshFile
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+
+Checks out a file.
 
 ## SYNTAX
 
@@ -17,21 +18,24 @@ Lock-KshFile [-Identity] <File> [-PassThru] [-ProgressAction <ActionPreference>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+
+The `Lock-KshFile` cmdlet checks out a file.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Lock-KshFile -Identity $file
 ```
 
-{{ Add example description here }}
+This example checks out the specified file.
 
 ## PARAMETERS
 
 ### -Identity
-{{ Fill Identity Description }}
+
+Specifies the file to check out.
 
 ```yaml
 Type: File
@@ -46,7 +50,8 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
-{{ Fill PassThru Description }}
+
+Returns the file object that was processed.
 
 ```yaml
 Type: SwitchParameter
@@ -61,7 +66,8 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference
@@ -76,15 +82,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.File
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.File
+
 ## NOTES
 
 ## RELATED LINKS
-

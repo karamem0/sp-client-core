@@ -8,42 +8,50 @@ schema: 2.0.0
 # Get-KshContentType
 
 ## SYNOPSIS
-Retrieves one or more content types from a list or site.
+
+Retrieves one or more content types.
 
 ## SYNTAX
 
 ### ParamSet1
+
 ```
 Get-KshContentType [-Identity] <ContentType> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet2
+
 ```
 Get-KshContentType [-List] <List> [-ContentTypeId] <String> [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
 
 ### ParamSet3
+
 ```
 Get-KshContentType [-List] <List> [-NoEnumerate] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet4
+
 ```
 Get-KshContentType [-ContentTypeId] <String> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet5
+
 ```
 Get-KshContentType [-NoEnumerate] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 The `Get-KshContentType` cmdlet retrieves one or more content types from a list or site based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Get-KshContentType -Identity "0x0101009189AB5D3D2647B580F011DA2F356FB2"
 ```
@@ -51,6 +59,7 @@ PS C:\> Get-KshContentType -Identity "0x0101009189AB5D3D2647B580F011DA2F356FB2"
 This example retrieves a content type by identity.
 
 ### Example 2
+
 ```powershell
 PS C:\> Get-KshContentType -List $list -ContentTypeId "0x0101009189AB5D3D2647B580F011DA2F356FB2"
 ```
@@ -58,6 +67,7 @@ PS C:\> Get-KshContentType -List $list -ContentTypeId "0x0101009189AB5D3D2647B58
 This example retrieves a list content type by content type ID.
 
 ### Example 3
+
 ```powershell
 PS C:\> Get-KshContentType -List $list
 ```
@@ -65,6 +75,7 @@ PS C:\> Get-KshContentType -List $list
 This example retrieves all list content types from.
 
 ### Example 4
+
 ```powershell
 PS C:\> Get-KshContentType -ContentTypeId "0x0101009189AB5D3D2647B580F011DA2F356FB2"
 ```
@@ -72,6 +83,7 @@ PS C:\> Get-KshContentType -ContentTypeId "0x0101009189AB5D3D2647B580F011DA2F356
 This example retrieves a site content type by content type ID.
 
 ### Example 5
+
 ```powershell
 PS C:\> Get-KshContentType
 ```
@@ -81,6 +93,7 @@ This example retrieves all site content types.
 ## PARAMETERS
 
 ### -ContentTypeId
+
 Specifies the ID of the content type to retrieve.
 
 ```yaml
@@ -96,6 +109,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
+
 Specifies the content type to retrieve.
 
 ```yaml
@@ -111,6 +125,7 @@ Accept wildcard characters: False
 ```
 
 ### -List
+
 Specifies the list from which to retrieve the content type.
 
 ```yaml
@@ -126,6 +141,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
+
 Indicates that the cmdlet does not enumerate the content types.
 
 ```yaml
@@ -141,6 +157,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -156,15 +173,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.ContentType
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.ContentType
+
 ## NOTES
 
 ## RELATED LINKS
-

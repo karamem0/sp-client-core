@@ -8,38 +8,44 @@ schema: 2.0.0
 # Move-KshViewColumn
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+
+Moves a view column.
 
 ## SYNTAX
 
 ### ParamSet1
+
 ```
 Move-KshViewColumn [-View] <View> [-Column] <Column> [-NewIndex] <Int32> [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
 
 ### ParamSet2
+
 ```
 Move-KshViewColumn [-View] <View> [-ColumnName] <String> [-NewIndex] <Int32>
  [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+
+The `Move-KshViewColumn` cmdlet moves a column to a new index within a view.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Move-KshViewColumn -View $view -Column $column -NewIndex 2
 ```
 
-{{ Add example description here }}
+This example moves the specified column to the new index position within the given view.
 
 ## PARAMETERS
 
 ### -Column
-{{ Fill Column Description }}
+
+Specifies the column object to move.
 
 ```yaml
 Type: Column
@@ -54,7 +60,8 @@ Accept wildcard characters: False
 ```
 
 ### -ColumnName
-{{ Fill ColumnName Description }}
+
+Specifies the name of the column to move.
 
 ```yaml
 Type: String
@@ -69,7 +76,8 @@ Accept wildcard characters: False
 ```
 
 ### -NewIndex
-{{ Fill NewIndex Description }}
+
+Specifies the new index position for the column.
 
 ```yaml
 Type: Int32
@@ -84,7 +92,8 @@ Accept wildcard characters: False
 ```
 
 ### -View
-{{ Fill View Description }}
+
+Specifies the view object that contains the column.
 
 ```yaml
 Type: View
@@ -99,7 +108,8 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference
@@ -114,15 +124,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### System.Void
+
 ## NOTES
 
 ## RELATED LINKS
-

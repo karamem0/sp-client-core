@@ -8,7 +8,8 @@ schema: 2.0.0
 # Add-KshAlert
 
 ## SYNOPSIS
-Creates a new alert for a user on a list or list item.
+
+Creates a new alert.
 
 ## SYNTAX
 
@@ -23,11 +24,13 @@ Add-KshAlert [-AlertFrequency <AlertFrequency>] [-AlertTemplateName <String>] [-
 ```
 
 ## DESCRIPTION
+
 The `Add-KshAlert` cmdlet creates a new alert for a user on a specified list or list item. Alerts notify users of changes to list items or documents.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Add-KshAlert -List $list -User $user -Title "New Alert" -AlertFrequency "Daily" -DeliveryChannels "Email"
 ```
@@ -37,6 +40,7 @@ This example creates a daily email alert for the specified user on the specified
 ## PARAMETERS
 
 ### -AlertFrequency
+
 Specifies how frequently the alert is sent.
 
 ```yaml
@@ -53,6 +57,7 @@ Accept wildcard characters: False
 ```
 
 ### -AlertTemplateName
+
 Specifies the name of the alert template to use.
 
 ```yaml
@@ -68,6 +73,7 @@ Accept wildcard characters: False
 ```
 
 ### -AlertTime
+
 Specifies the time of day the alert is sent.
 
 ```yaml
@@ -83,6 +89,7 @@ Accept wildcard characters: False
 ```
 
 ### -AlertType
+
 Specifies the type of alert.
 
 ```yaml
@@ -99,6 +106,7 @@ Accept wildcard characters: False
 ```
 
 ### -AlwaysNotify
+
 Indicates whether the user should always be notified.
 
 ```yaml
@@ -114,6 +122,7 @@ Accept wildcard characters: False
 ```
 
 ### -DeliveryChannels
+
 Specifies the delivery channels for the alert.
 
 ```yaml
@@ -130,6 +139,7 @@ Accept wildcard characters: False
 ```
 
 ### -EventType
+
 Specifies the type of event that triggers the alert.
 
 ```yaml
@@ -146,6 +156,7 @@ Accept wildcard characters: False
 ```
 
 ### -EventTypeBitmask
+
 Specifies a bitmask value for the event type.
 
 ```yaml
@@ -161,6 +172,7 @@ Accept wildcard characters: False
 ```
 
 ### -Filter
+
 Specifies a filter for the alert.
 
 ```yaml
@@ -176,6 +188,7 @@ Accept wildcard characters: False
 ```
 
 ### -List
+
 Specifies the list for the alert.
 
 ```yaml
@@ -191,6 +204,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListItem
+
 Specifies the list item for the alert.
 
 ```yaml
@@ -206,6 +220,7 @@ Accept wildcard characters: False
 ```
 
 ### -Properties
+
 Specifies additional properties for the alert.
 
 ```yaml
@@ -221,6 +236,7 @@ Accept wildcard characters: False
 ```
 
 ### -Status
+
 Specifies the status of the alert.
 
 ```yaml
@@ -237,6 +253,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
+
 Specifies the title of the alert.
 
 ```yaml
@@ -252,6 +269,7 @@ Accept wildcard characters: False
 ```
 
 ### -User
+
 Specifies the user for the alert.
 
 ```yaml
@@ -267,6 +285,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -282,15 +301,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.Alert
+
 ## NOTES
 
 ## RELATED LINKS
-

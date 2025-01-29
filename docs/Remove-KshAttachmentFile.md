@@ -8,37 +8,43 @@ schema: 2.0.0
 # Remove-KshAttachmentFile
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+
+Removes an attachment file.
 
 ## SYNTAX
 
 ### ParamSet1
+
 ```
 Remove-KshAttachmentFile [-Identity] <AttachmentFile> [-ProgressAction <ActionPreference>] [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
 ### ParamSet2
+
 ```
 Remove-KshAttachmentFile [-Identity] <AttachmentFile> [-RecycleBin] [-ProgressAction <ActionPreference>]
  [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+
+The `Remove-KshAttachmentFile` cmdlet removes an attachment file from a list item.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Remove-KshAttachmentFile -Identity $attachmentFile
 ```
 
-{{ Add example description here }}
+This example removes the specified attachment file.
 
 ## PARAMETERS
 
 ### -Confirm
+
 Prompts you for confirmation before running the cmdlet.
 
 ```yaml
@@ -54,7 +60,8 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
-{{ Fill Identity Description }}
+
+Specifies the attachment file to remove.
 
 ```yaml
 Type: AttachmentFile
@@ -69,7 +76,8 @@ Accept wildcard characters: False
 ```
 
 ### -RecycleBin
-{{ Fill RecycleBin Description }}
+
+Moves the attachment file to the recycle bin instead of permanently deleting it.
 
 ```yaml
 Type: SwitchParameter
@@ -84,6 +92,7 @@ Accept wildcard characters: False
 ```
 
 ### -WhatIf
+
 Shows what would happen if the cmdlet runs.
 The cmdlet is not run.
 
@@ -100,7 +109,8 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference
@@ -115,15 +125,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.AttachmentFile
+
 ## OUTPUTS
 
 ### System.Void
+
 ## NOTES
 
 ## RELATED LINKS
-

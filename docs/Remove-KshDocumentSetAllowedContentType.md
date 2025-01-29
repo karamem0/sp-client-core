@@ -8,7 +8,8 @@ schema: 2.0.0
 # Remove-KshDocumentSetAllowedContentType
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+
+Removes an allowed content type for a document set.
 
 ## SYNTAX
 
@@ -18,21 +19,24 @@ Remove-KshDocumentSetAllowedContentType [-ContentType] <ContentType> [-AllowedCo
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+
+The `Remove-KshDocumentSetAllowedContentType` cmdlet removes an allowed content type from a document set.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Remove-KshDocumentSetAllowedContentType -ContentType $contentType -AllowedContentType  $allowedContentType -PushChanges
 ```
 
-{{ Add example description here }}
+This example removes the specified allowed content type and pushes the changes.
 
 ## PARAMETERS
 
 ### -AllowedContentType
-{{ Fill AllowedContentType Description }}
+
+Specifies the content type to be removed from the allowed content types.
 
 ```yaml
 Type: ContentType
@@ -47,6 +51,7 @@ Accept wildcard characters: False
 ```
 
 ### -Confirm
+
 Prompts you for confirmation before running the cmdlet.
 
 ```yaml
@@ -62,7 +67,8 @@ Accept wildcard characters: False
 ```
 
 ### -ContentType
-{{ Fill ContentType Description }}
+
+Specifies the document set content type from which the allowed content type will be removed.
 
 ```yaml
 Type: ContentType
@@ -77,7 +83,8 @@ Accept wildcard characters: False
 ```
 
 ### -PushChanges
-{{ Fill PushChanges Description }}
+
+Indicates that the changes should be pushed to all child content types.
 
 ```yaml
 Type: SwitchParameter
@@ -92,6 +99,7 @@ Accept wildcard characters: False
 ```
 
 ### -WhatIf
+
 Shows what would happen if the cmdlet runs.
 The cmdlet is not run.
 
@@ -108,7 +116,8 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference
@@ -123,15 +132,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### System.Void
+
 ## NOTES
 
 ## RELATED LINKS
-

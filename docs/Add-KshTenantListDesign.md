@@ -8,7 +8,8 @@ schema: 2.0.0
 # Add-KshTenantListDesign
 
 ## SYNOPSIS
-Adds a new list design to the tenant.
+
+Adds a new list design.
 
 ## SYNTAX
 
@@ -19,11 +20,13 @@ Add-KshTenantListDesign [-Description <String>] [-ListColor <TenantListDesignCol
 ```
 
 ## DESCRIPTION
+
 The `Add-KshTenantListDesign` cmdlet adds a new list design to the tenant with the specified properties.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Add-KshTenantListDesign -Title "Project Tracker" -SiteScriptIds $siteScriptIds -Description "Tracks project tasks and milestones" -ListColor Blue -ListIcon ClipboardList
 ```
@@ -33,6 +36,7 @@ This example adds a new list design to the list with the specified site script I
 ## PARAMETERS
 
 ### -Description
+
 Specifies the description of the list design.
 
 ```yaml
@@ -48,6 +52,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListColor
+
 Specifies the color of the list design.
 
 ```yaml
@@ -64,6 +69,7 @@ Accept wildcard characters: False
 ```
 
 ### -ListIcon
+
 Specifies the icon of the list design.
 
 ```yaml
@@ -80,6 +86,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteScriptIds
+
 Specifies the site script IDs associated with the list design.
 
 ```yaml
@@ -95,6 +102,7 @@ Accept wildcard characters: False
 ```
 
 ### -TemplateFeatures
+
 Specifies the template features of the list design.
 
 ```yaml
@@ -110,6 +118,7 @@ Accept wildcard characters: False
 ```
 
 ### -ThumbnailUrl
+
 Specifies the URL of the thumbnail image for the list design.
 
 ```yaml
@@ -125,6 +134,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
+
 Specifies the title of the list design.
 
 ```yaml
@@ -140,6 +150,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -155,15 +166,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.TenantListDesign
+
 ## NOTES
 
 ## RELATED LINKS
-

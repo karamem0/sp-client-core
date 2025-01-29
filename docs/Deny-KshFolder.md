@@ -8,6 +8,7 @@ schema: 2.0.0
 # Deny-KshFolder
 
 ## SYNOPSIS
+
 Rejects a folder.
 
 ## SYNTAX
@@ -18,11 +19,13 @@ Deny-KshFolder [-Identity] <Folder> [-Comment <String>] [-PassThru] [-ProgressAc
 ```
 
 ## DESCRIPTION
+
 The `Deny-KshFolder` cmdlet rejects a draft of a folder with an optional comment.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Deny-KshFolder -Identity $folder -Comment "Rejected"
 ```
@@ -32,6 +35,7 @@ This example rejects the specified folder with the comment "Rejected".
 ## PARAMETERS
 
 ### -Comment
+
 Specifies a comment to associate with the approval.
 
 ```yaml
@@ -47,6 +51,7 @@ Accept wildcard characters: False
 ```
 
 ### -Identity
+
 Specifies the folder to reject.
 
 ```yaml
@@ -62,6 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
+
 Returns the folder object that was processed.
 
 ```yaml
@@ -77,6 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -92,15 +99,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.Folder
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.Folder
+
 ## NOTES
 
 ## RELATED LINKS
-

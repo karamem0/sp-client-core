@@ -8,6 +8,7 @@ schema: 2.0.0
 # Add-KshRoleDefinition
 
 ## SYNOPSIS
+
 Adds a new role definition.
 
 ## SYNTAX
@@ -18,11 +19,13 @@ Add-KshRoleDefinition [-BasePermission <BasePermission>] [-Description <String>]
 ```
 
 ## DESCRIPTION
+
 The `Add-KshRoleDefinition` cmdlet adds a new role definition in the current site with the given parameters.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Add-KshRoleDefinition -Name "CustomRole" -Description "This is a custom role" -BasePermission "FullControl"
 ```
@@ -32,6 +35,7 @@ This example adds a new role definition named "CustomRole" with full control per
 ## PARAMETERS
 
 ### -BasePermission
+
 Specifies the base permissions for the role definition.
 
 ```yaml
@@ -47,6 +51,7 @@ Accept wildcard characters: False
 ```
 
 ### -Description
+
 Specifies the description of the role definition.
 
 ```yaml
@@ -62,6 +67,7 @@ Accept wildcard characters: False
 ```
 
 ### -Name
+
 Specifies the name of the role definition.
 
 ```yaml
@@ -77,6 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -Order
+
 Specifies the order of the role definition.
 
 ```yaml
@@ -92,6 +99,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress.
 
 ```yaml
@@ -107,15 +115,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.RoleDefinition
+
 ## NOTES
 
 ## RELATED LINKS
-

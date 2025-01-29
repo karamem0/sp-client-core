@@ -8,7 +8,8 @@ schema: 2.0.0
 # Disable-KshComment
 
 ## SYNOPSIS
-Disables a comment on a list item.
+
+Disables a comment.
 
 ## SYNTAX
 
@@ -17,11 +18,13 @@ Disable-KshComment [-Identity] <ListItem> [-ProgressAction <ActionPreference>] [
 ```
 
 ## DESCRIPTION
+
 The `Disable-KshComment` cmdlet disables a comment on a list item.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Disable-KshComment -Identity $listItem
 ```
@@ -31,6 +34,7 @@ This example disables a comment on the specified list item.
 ## PARAMETERS
 
 ### -Identity
+
 Specifies the list item that contains the comment to disable.
 
 ```yaml
@@ -46,6 +50,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -61,15 +66,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.ListItem
+
 ## OUTPUTS
 
 ### System.Void
+
 ## NOTES
 
 ## RELATED LINKS
-

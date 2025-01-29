@@ -8,36 +8,43 @@ schema: 2.0.0
 # Get-KshUser
 
 ## SYNOPSIS
-Retrieves one or more users from the current site.
+
+Retrieves one or more users.
 
 ## SYNTAX
 
 ### ParamSet1
+
 ```
 Get-KshUser [-Identity] <User> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet2
+
 ```
 Get-KshUser [-UserId] <Int32> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet3
+
 ```
 Get-KshUser [-UserName] <String> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet4
+
 ```
 Get-KshUser [-NoEnumerate] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 The `Get-KshUser` cmdlet retrieves one or more users from the current site based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Get-KshUser -Identity $user
 ```
@@ -45,6 +52,7 @@ PS C:\> Get-KshUser -Identity $user
 This example retrieves a user by identity.
 
 ### Example 2
+
 ```powershell
 PS C:\> Get-KshUser -UserId 13
 ```
@@ -52,6 +60,7 @@ PS C:\> Get-KshUser -UserId 13
 This example retrieves a user by user ID.
 
 ### Example 3
+
 ```powershell
 PS C:\> Get-KshUser -UserName "meganb@contoso.com"
 ```
@@ -59,6 +68,7 @@ PS C:\> Get-KshUser -UserName "meganb@contoso.com"
 This example retrieves a user by user name.
 
 ### Example 4
+
 ```powershell
 PS C:\> Get-KshUser
 ```
@@ -68,6 +78,7 @@ This example retrieves all users.
 ## PARAMETERS
 
 ### -Identity
+
 Specifies the user identity to retrieve.
 
 ```yaml
@@ -83,6 +94,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
+
 Indicates that the cmdlet does not enumerate the collection.
 
 ```yaml
@@ -98,6 +110,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserId
+
 Specifies the user ID to retrieve.
 
 ```yaml
@@ -113,6 +126,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserName
+
 Specifies the user name to retrieve.
 
 ```yaml
@@ -128,6 +142,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -143,15 +158,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.User
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.User
+
 ## NOTES
 
 ## RELATED LINKS
-

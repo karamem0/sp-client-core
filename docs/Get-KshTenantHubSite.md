@@ -8,31 +8,37 @@ schema: 2.0.0
 # Get-KshTenantHubSite
 
 ## SYNOPSIS
-Retrieves one or more hub sites from the tenant.
+
+Retrieves one or more hub sites.
 
 ## SYNTAX
 
 ### ParamSet1
+
 ```
 Get-KshTenantHubSite [-HubSiteId] <Guid> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet2
+
 ```
 Get-KshTenantHubSite [-HubSiteUrl] <String> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ### ParamSet3
+
 ```
 Get-KshTenantHubSite [-NoEnumerate] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
+
 The `Get-KshTenantHubSite` cmdletone or more hub sites from the tenant based on the specified parameters.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Get-KshTenantHubSite -HubSiteId "12345678-1234-1234-1234-1234567890ab"
 ```
@@ -40,6 +46,7 @@ PS C:\> Get-KshTenantHubSite -HubSiteId "12345678-1234-1234-1234-1234567890ab"
 This example retrieves a hub site by hub site ID.
 
 ### Example 2
+
 ```powershell
 PS C:\> Get-KshTenantHubSite -HubSiteUrl "https://contoso.sharepoint.com/sites/HubSite"
 ```
@@ -47,6 +54,7 @@ PS C:\> Get-KshTenantHubSite -HubSiteUrl "https://contoso.sharepoint.com/sites/H
 This example retrieves a hub site by hub site URL.
 
 ### Example 3
+
 ```powershell
 PS C:\> Get-KshTenantHubSite
 ```
@@ -56,6 +64,7 @@ This example retrieves all hub sites.
 ## PARAMETERS
 
 ### -HubSiteId
+
 Specifies the ID of the hub site to retrieve.
 
 ```yaml
@@ -71,6 +80,7 @@ Accept wildcard characters: False
 ```
 
 ### -HubSiteUrl
+
 Specifies the URL of the hub site to retrieve.
 
 ```yaml
@@ -86,6 +96,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoEnumerate
+
 Indicates that the cmdlet does not enumerate the hub sites.
 
 ```yaml
@@ -101,6 +112,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -116,15 +128,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.HubSite
+
 ## NOTES
 
 ## RELATED LINKS
-

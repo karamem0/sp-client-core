@@ -8,7 +8,8 @@ schema: 2.0.0
 # Add-KshView
 
 ## SYNOPSIS
-Adds a new view to a list.
+
+Adds a new view.
 
 ## SYNTAX
 
@@ -19,11 +20,13 @@ Add-KshView [-List] <List> [-BaseViewId <Int32>] [-Paged <Boolean>] [-PersonalVi
 ```
 
 ## DESCRIPTION
+
 The `Add-KshView` cmdlet adds a new view to a list with the given parameters.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Add-KshView -List $list -Title "New View" -ViewColumns @("Title", "Created") -RowLimit 100
 ```
@@ -33,6 +36,7 @@ This example adds a new view titled "New View" to the specified list with the co
 ## PARAMETERS
 
 ### -BaseViewId
+
 Specifies the base view ID.
 
 ```yaml
@@ -48,6 +52,7 @@ Accept wildcard characters: False
 ```
 
 ### -List
+
 Specifies the list to which the view is added.
 
 ```yaml
@@ -63,6 +68,7 @@ Accept wildcard characters: False
 ```
 
 ### -Paged
+
 Indicates whether the view is paged.
 
 ```yaml
@@ -78,6 +84,7 @@ Accept wildcard characters: False
 ```
 
 ### -PersonalView
+
 Indicates whether the view is personal.
 
 ```yaml
@@ -93,6 +100,7 @@ Accept wildcard characters: False
 ```
 
 ### -RowLimit
+
 Specifies the row limit for the view.
 
 ```yaml
@@ -108,6 +116,7 @@ Accept wildcard characters: False
 ```
 
 ### -SetAsDefaultView
+
 Indicates whether the view is set as the default view.
 
 ```yaml
@@ -123,6 +132,7 @@ Accept wildcard characters: False
 ```
 
 ### -Title
+
 Specifies the title of the view.
 
 ```yaml
@@ -138,6 +148,7 @@ Accept wildcard characters: False
 ```
 
 ### -ViewColumns
+
 Specifies the columns to include in the view.
 
 ```yaml
@@ -153,6 +164,7 @@ Accept wildcard characters: False
 ```
 
 ### -ViewQuery
+
 Specifies the query for the view.
 
 ```yaml
@@ -168,6 +180,7 @@ Accept wildcard characters: False
 ```
 
 ### -ViewType
+
 Specifies the type of the view.
 
 ```yaml
@@ -184,6 +197,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress.
 
 ```yaml
@@ -199,15 +213,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.List
+
 ## OUTPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.View
+
 ## NOTES
 
 ## RELATED LINKS
-

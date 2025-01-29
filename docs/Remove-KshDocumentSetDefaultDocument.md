@@ -8,7 +8,8 @@ schema: 2.0.0
 # Remove-KshDocumentSetDefaultDocument
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+
+Removes a default document for a document set.
 
 ## SYNTAX
 
@@ -18,20 +19,23 @@ Remove-KshDocumentSetDefaultDocument [-ContentType] <ContentType> [-FileName] <S
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+
+The `Remove-KshDocumentSetDefaultDocument` cmdlet removes a default document from a document set.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Remove-KshDocumentSetDefaultDocument -ContentType $contentType -FileName "example.docx" -PushChanges
 ```
 
-{{ Add example description here }}
+This example removes the specified default document and pushes the changes.
 
 ## PARAMETERS
 
 ### -Confirm
+
 Prompts you for confirmation before running the cmdlet.
 
 ```yaml
@@ -47,7 +51,8 @@ Accept wildcard characters: False
 ```
 
 ### -ContentType
-{{ Fill ContentType Description }}
+
+Specifies the content type of the document set.
 
 ```yaml
 Type: ContentType
@@ -62,7 +67,8 @@ Accept wildcard characters: False
 ```
 
 ### -FileName
-{{ Fill FileName Description }}
+
+Specifies the name of the file to remove from the document set.
 
 ```yaml
 Type: String
@@ -77,7 +83,8 @@ Accept wildcard characters: False
 ```
 
 ### -PushChanges
-{{ Fill PushChanges Description }}
+
+Indicates that the changes should be pushed to the server.
 
 ```yaml
 Type: SwitchParameter
@@ -92,6 +99,7 @@ Accept wildcard characters: False
 ```
 
 ### -WhatIf
+
 Shows what would happen if the cmdlet runs.
 The cmdlet is not run.
 
@@ -108,7 +116,8 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference
@@ -123,15 +132,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### System.Void
+
 ## NOTES
 
 ## RELATED LINKS
-

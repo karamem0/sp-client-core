@@ -8,7 +8,8 @@ schema: 2.0.0
 # Remove-KshGroupMember
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+
+Removes a group member.
 
 ## SYNTAX
 
@@ -18,20 +19,23 @@ Remove-KshGroupMember [-Group] <Group> [-Member] <User> [-ProgressAction <Action
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+
+The `Remove-KshGroupMember` cmdlet removes a member from a group.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Remove-KshGroupMember -Group $group -Member $member
 ```
 
-{{ Add example description here }}
+This example removes the specified user from the specified group.
 
 ## PARAMETERS
 
 ### -Confirm
+
 Prompts you for confirmation before running the cmdlet.
 
 ```yaml
@@ -47,7 +51,8 @@ Accept wildcard characters: False
 ```
 
 ### -Group
-{{ Fill Group Description }}
+
+Specifies the group from which the member will be removed.
 
 ```yaml
 Type: Group
@@ -62,7 +67,8 @@ Accept wildcard characters: False
 ```
 
 ### -Member
-{{ Fill Member Description }}
+
+Specifies the member to be removed from the group.
 
 ```yaml
 Type: User
@@ -77,6 +83,7 @@ Accept wildcard characters: False
 ```
 
 ### -WhatIf
+
 Shows what would happen if the cmdlet runs.
 The cmdlet is not run.
 
@@ -93,7 +100,8 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{ Fill ProgressAction Description }}
+
+Specifies the action preference for progress updates.
 
 ```yaml
 Type: ActionPreference
@@ -108,15 +116,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### System.Void
+
 ## NOTES
 
 ## RELATED LINKS
-

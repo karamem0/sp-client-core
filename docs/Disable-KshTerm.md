@@ -8,6 +8,7 @@ schema: 2.0.0
 # Disable-KshTerm
 
 ## SYNOPSIS
+
 Disables a term.
 
 ## SYNTAX
@@ -17,11 +18,13 @@ Disable-KshTerm [-Identity] <Term> [-PassThru] [-ProgressAction <ActionPreferenc
 ```
 
 ## DESCRIPTION
+
 The `Disable-KshTerm` cmdlet disables a term.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Disable-KshTerm -Identity $term
 ```
@@ -31,6 +34,7 @@ This example disables the specified term.
 ## PARAMETERS
 
 ### -Identity
+
 Specifies the term to disable.
 
 ```yaml
@@ -46,6 +50,7 @@ Accept wildcard characters: False
 ```
 
 ### -PassThru
+
 Returns the term object that was processed.
 
 ```yaml
@@ -61,6 +66,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
+
 Specifies the action preference for progress updates.
 
 ```yaml
@@ -76,15 +82,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about\_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### Karamem0.SharePoint.PowerShell.Models.V1.Term
+
 ## OUTPUTS
 
 ### System.Void
+
 ## NOTES
 
 ## RELATED LINKS
-
