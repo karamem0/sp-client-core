@@ -1,0 +1,21 @@
+name: Deploy to PowerShell Gallery
+
+on:
+  workflow_call: {}
+
+permissions: {}
+
+jobs:
+  run:
+    name: Run
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build
+          path: build/SPClientCore
+      - name: Publish to PowerShell Gallery
+        shell: pwsh
+        run: |
+          Publish-Module -Path ${{github.workspace}}/build/SPClientCore -NugetApiKey ${{secrets.NUGET_API_KEY}}

@@ -1,0 +1,14 @@
+name: Trigger on main
+
+on:
+  push:
+    branches:
+      - main
+
+permissions: {}
+
+jobs:
+  build-source:
+    name: Build source
+    uses: ./.github/workflows/build-source.yml
+    secrets: inherit

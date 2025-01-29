@@ -1,0 +1,25 @@
+name: Trigger on tags
+
+on:
+  push:
+    tags:
+      - v*.*.*
+
+permissions:
+  contents: write
+
+jobs:
+  build-source:
+    name: Build source
+    uses: ./.github/workflows/build-source.yml
+    secrets: inherit
+  deploy-to-powershell-gallery:
+    name: Deploy to PowerShell Gallery
+    needs: build-source
+    uses: ./.github/workflows/deploy-to-powershell-gallery.yml
+    secrets: inherit
+  deploy-to-github-release:
+    name: Deploy to GitHub Release
+    needs: build-source
+    uses: ./.github/workflows/deploy-to-github-release.yml
+    secrets: inherit
