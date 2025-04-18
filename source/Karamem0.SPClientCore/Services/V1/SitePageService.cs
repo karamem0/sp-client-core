@@ -19,18 +19,30 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ISitePageService
 {
 
-    void AddObject(Folder folderObject, string pageName, SitePageLayoutType pageLayoutType);
+    void AddObject(
+        Folder folderObject,
+        string pageName,
+        SitePageLayoutType pageLayoutType
+    );
 
     void RemoveObject(Folder folderObject, string pageName);
 
-    void SetObject(Folder folderObject, string pageName, IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObject(
+        Folder folderObject,
+        string pageName,
+        IReadOnlyDictionary<string, object> modificationInfo
+    );
 
 }
 
 public class SitePageService(ClientContext clientContext) : ClientService(clientContext), ISitePageService
 {
 
-    public void AddObject(Folder folderObject, string pageName, SitePageLayoutType pageLayoutType)
+    public void AddObject(
+        Folder folderObject,
+        string pageName,
+        SitePageLayoutType pageLayoutType
+    )
     {
         _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
         _ = pageName ?? throw new ArgumentNullException(nameof(pageName));
@@ -86,16 +98,21 @@ public class SitePageService(ClientContext clientContext) : ClientService(client
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Files"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(objectPath2.Id, "GetByUrl", requestPayload.CreateParameter(fileName))
+            new ObjectPathMethod(
+                objectPath2.Id,
+                "GetByUrl",
+                requestPayload.CreateParameter(fileName)
+            )
         );
-        var objectPath4 = requestPayload.Add(
-            objectPath3,
-            objectPathId => new ClientActionMethod(objectPathId, "DeleteObject")
-        );
+        var objectPath4 = requestPayload.Add(objectPath3, objectPathId => new ClientActionMethod(objectPathId, "DeleteObject"));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public void SetObject(Folder folderObject, string pageName, IReadOnlyDictionary<string, object> modificationInfo)
+    public void SetObject(
+        Folder folderObject,
+        string pageName,
+        IReadOnlyDictionary<string, object> modificationInfo
+    )
     {
         _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
         _ = pageName ?? throw new ArgumentNullException(nameof(pageName));
@@ -105,7 +122,11 @@ public class SitePageService(ClientContext clientContext) : ClientService(client
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Files"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(objectPath2.Id, "GetByUrl", requestPayload.CreateParameter(fileName))
+            new ObjectPathMethod(
+                objectPath2.Id,
+                "GetByUrl",
+                requestPayload.CreateParameter(fileName)
+            )
         );
         var objectPath4 = requestPayload.Add(new ObjectPathProperty(objectPath3.Id, "ListItemAllFields"));
         if (modificationInfo.ContainsKey("PageLayoutType"))
@@ -116,7 +137,10 @@ public class SitePageService(ClientContext clientContext) : ClientService(client
                     objectPathId,
                     "SetFieldValue",
                     requestPayload.CreateParameter("PageLayoutType"),
-                    requestPayload.CreateParameter(modificationInfo["PageLayoutType"].ToString())
+                    requestPayload.CreateParameter(
+                        modificationInfo["PageLayoutType"]
+                            .ToString()
+                    )
                 )
             );
         }
@@ -132,10 +156,7 @@ public class SitePageService(ClientContext clientContext) : ClientService(client
                 )
             );
         }
-        var objectPath6 = requestPayload.Add(
-            objectPath4,
-            objectPathId => new ClientActionMethod(objectPathId, "Update")
-        );
+        var objectPath6 = requestPayload.Add(objectPath4, objectPathId => new ClientActionMethod(objectPathId, "Update"));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

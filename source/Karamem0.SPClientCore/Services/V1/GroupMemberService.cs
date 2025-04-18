@@ -42,14 +42,19 @@ public class GroupMemberService(ClientContext clientContext) : ClientService(cli
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(groupObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Users"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(objectPath2.Id, "AddUser", requestPayload.CreateParameter(memberObject)),
+            new ObjectPathMethod(
+                objectPath2.Id,
+                "AddUser",
+                requestPayload.CreateParameter(memberObject)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(User))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -61,14 +66,19 @@ public class GroupMemberService(ClientContext clientContext) : ClientService(cli
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(groupObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Users"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(objectPath2.Id, "GetById", requestPayload.CreateParameter(userId)),
+            new ObjectPathMethod(
+                objectPath2.Id,
+                "GetById",
+                requestPayload.CreateParameter(userId)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(User))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -82,14 +92,19 @@ public class GroupMemberService(ClientContext clientContext) : ClientService(cli
             var objectPath1 = requestPayload.Add(new ObjectPathIdentity(groupObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Users"));
             var objectPath3 = requestPayload.Add(
-                new ObjectPathMethod(objectPath2.Id, "GetByLoginName", requestPayload.CreateParameter(userName)),
+                new ObjectPathMethod(
+                    objectPath2.Id,
+                    "GetByLoginName",
+                    requestPayload.CreateParameter(userName)
+                ),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {
                     Query = new ClientQuery(true, typeof(User))
                 }
             );
-            return this.ClientContext.ProcessQuery(requestPayload)
+            return this
+                .ClientContext.ProcessQuery(requestPayload)
                 .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
         }
         else
@@ -98,14 +113,19 @@ public class GroupMemberService(ClientContext clientContext) : ClientService(cli
             var objectPath1 = requestPayload.Add(new ObjectPathIdentity(groupObject.ObjectIdentity));
             var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Users"));
             var objectPath3 = requestPayload.Add(
-                new ObjectPathMethod(objectPath2.Id, "GetByEmail", requestPayload.CreateParameter(userName)),
+                new ObjectPathMethod(
+                    objectPath2.Id,
+                    "GetByEmail",
+                    requestPayload.CreateParameter(userName)
+                ),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {
                     Query = new ClientQuery(true, typeof(User))
                 }
             );
-            return this.ClientContext.ProcessQuery(requestPayload)
+            return this
+                .ClientContext.ProcessQuery(requestPayload)
                 .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
         }
     }
@@ -124,7 +144,8 @@ public class GroupMemberService(ClientContext clientContext) : ClientService(cli
                 ChildItemQuery = new ClientQuery(true, typeof(User))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<UserEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -137,7 +158,11 @@ public class GroupMemberService(ClientContext clientContext) : ClientService(cli
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Users"));
         var objectPath3 = requestPayload.Add(
             objectPath2,
-            objectPathId => new ClientActionMethod(objectPathId, "Remove", requestPayload.CreateParameter(memberObject))
+            objectPathId => new ClientActionMethod(
+                objectPathId,
+                "Remove",
+                requestPayload.CreateParameter(memberObject)
+            )
         );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }

@@ -47,8 +47,7 @@ public interface IColumnTaxonomyService
 
 }
 
-public class ColumnTaxonomyService(ClientContext clientContext)
-    : ClientService<ColumnTaxonomy>(clientContext), IColumnTaxonomyService
+public class ColumnTaxonomyService(ClientContext clientContext) : ClientService<ColumnTaxonomy>(clientContext), IColumnTaxonomyService
 {
 
     public ColumnTaxonomy AddObject(
@@ -66,12 +65,7 @@ public class ColumnTaxonomyService(ClientContext clientContext)
             new ObjectPathMethod(
                 objectPath3.Id,
                 "AddFieldAsXml",
-                requestPayload.CreateParameter(
-                    SchemaXmlColumn.Create(
-                        new XElement("Field", new XAttribute("Type", "TaxonomyFieldType")),
-                        creationInfo
-                    )
-                ),
+                requestPayload.CreateParameter(SchemaXmlColumn.Create(new XElement("Field", new XAttribute("Type", "TaxonomyFieldType")), creationInfo)),
                 requestPayload.CreateParameter(addToDefaultView),
                 requestPayload.CreateParameter(addColumnOptions)
             ),
@@ -81,7 +75,8 @@ public class ColumnTaxonomyService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(Column))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ColumnTaxonomy>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -101,12 +96,7 @@ public class ColumnTaxonomyService(ClientContext clientContext)
             new ObjectPathMethod(
                 objectPath2.Id,
                 "AddFieldAsXml",
-                requestPayload.CreateParameter(
-                    SchemaXmlColumn.Create(
-                        new XElement("Field", new XAttribute("Type", "TaxonomyFieldType")),
-                        creationInfo
-                    )
-                ),
+                requestPayload.CreateParameter(SchemaXmlColumn.Create(new XElement("Field", new XAttribute("Type", "TaxonomyFieldType")), creationInfo)),
                 requestPayload.CreateParameter(addToDefaultView),
                 requestPayload.CreateParameter(addColumnOptions)
             ),
@@ -116,7 +106,8 @@ public class ColumnTaxonomyService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(Column))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ColumnTaxonomy>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -143,10 +134,7 @@ public class ColumnTaxonomyService(ClientContext clientContext)
                 requestPayload.CreateParameter(lcid)
             )
         );
-        var objectPath4 = requestPayload.Add(
-            objectPath2,
-            objectPathId => new ClientActionMethod(objectPathId, "Update")
-        );
+        var objectPath4 = requestPayload.Add(objectPath2, objectPathId => new ClientActionMethod(objectPathId, "Update"));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

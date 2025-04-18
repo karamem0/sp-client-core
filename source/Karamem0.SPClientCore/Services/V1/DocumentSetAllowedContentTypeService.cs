@@ -19,19 +19,30 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IDocumentSetAllowedContentTypeService
 {
 
-    void AddObject(ContentType contentTypeObject, ContentType allowedContentTypeObject, bool pushChanges);
+    void AddObject(
+        ContentType contentTypeObject,
+        ContentType allowedContentTypeObject,
+        bool pushChanges
+    );
 
     IEnumerable<ContentTypeId> GetObjectEnumerable(ContentType contentTypeObject);
 
-    void RemoveObject(ContentType contentTypeObject, ContentType allowedContentTypeObject, bool pushChanges);
+    void RemoveObject(
+        ContentType contentTypeObject,
+        ContentType allowedContentTypeObject,
+        bool pushChanges
+    );
 
 }
 
-public class DocumentSetAllowedContentTypeService(ClientContext clientContext)
-    : ClientService(clientContext), IDocumentSetAllowedContentTypeService
+public class DocumentSetAllowedContentTypeService(ClientContext clientContext) : ClientService(clientContext), IDocumentSetAllowedContentTypeService
 {
 
-    public void AddObject(ContentType contentTypeObject, ContentType allowedContentTypeObject, bool pushChanges)
+    public void AddObject(
+        ContentType contentTypeObject,
+        ContentType allowedContentTypeObject,
+        bool pushChanges
+    )
     {
         _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
         _ = allowedContentTypeObject ?? throw new ArgumentNullException(nameof(allowedContentTypeObject));
@@ -55,7 +66,11 @@ public class DocumentSetAllowedContentTypeService(ClientContext clientContext)
         );
         var objectPath5 = requestPayload.Add(
             objectPath2,
-            objectPathId => new ClientActionMethod(objectPathId, "Update", requestPayload.CreateParameter(pushChanges))
+            objectPathId => new ClientActionMethod(
+                objectPathId,
+                "Update",
+                requestPayload.CreateParameter(pushChanges)
+            )
         );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
@@ -81,11 +96,16 @@ public class DocumentSetAllowedContentTypeService(ClientContext clientContext)
                 ChildItemQuery = new ClientQuery(true, typeof(ContentTypeId))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<AllowedContentTypeEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public void RemoveObject(ContentType contentTypeObject, ContentType allowedContentTypeObject, bool pushChanges)
+    public void RemoveObject(
+        ContentType contentTypeObject,
+        ContentType allowedContentTypeObject,
+        bool pushChanges
+    )
     {
         _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
         _ = allowedContentTypeObject ?? throw new ArgumentNullException(nameof(allowedContentTypeObject));
@@ -109,7 +129,11 @@ public class DocumentSetAllowedContentTypeService(ClientContext clientContext)
         );
         var objectPath5 = requestPayload.Add(
             objectPath2,
-            objectPathId => new ClientActionMethod(objectPathId, "Update", requestPayload.CreateParameter(pushChanges))
+            objectPathId => new ClientActionMethod(
+                objectPathId,
+                "Update",
+                requestPayload.CreateParameter(pushChanges)
+            )
         );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }

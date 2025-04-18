@@ -30,9 +30,17 @@ public interface ITenantUserService
 
     void RemoveObject(Uri siteCollectionUrl, User userObject);
 
-    void SetObject(Uri siteCollectionUrl, User userObject, bool isSiteCollectionAdmin);
+    void SetObject(
+        Uri siteCollectionUrl,
+        User userObject,
+        bool isSiteCollectionAdmin
+    );
 
-    void SetObject(Uri siteCollectionUrl, string userName, bool isSiteCollectionAdmin);
+    void SetObject(
+        Uri siteCollectionUrl,
+        string userName,
+        bool isSiteCollectionAdmin
+    );
 
 }
 
@@ -45,7 +53,11 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(objectPath1.Id, "GetSiteByUrl", requestPayload.CreateParameter(siteCollectionUrl))
+            new ObjectPathMethod(
+                objectPath1.Id,
+                "GetSiteByUrl",
+                requestPayload.CreateParameter(siteCollectionUrl)
+            )
         );
         var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "RootWeb"));
         var objectPath4 = requestPayload.Add(new ObjectPathProperty(objectPath3.Id, "SiteUsers"));
@@ -61,7 +73,8 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
                 Query = new ClientQuery(true, typeof(User))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -72,19 +85,28 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(objectPath1.Id, "GetSiteByUrl", requestPayload.CreateParameter(siteCollectionUrl))
+            new ObjectPathMethod(
+                objectPath1.Id,
+                "GetSiteByUrl",
+                requestPayload.CreateParameter(siteCollectionUrl)
+            )
         );
         var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "RootWeb"));
         var objectPath4 = requestPayload.Add(new ObjectPathProperty(objectPath3.Id, "SiteUsers"));
         var objectPath5 = requestPayload.Add(
-            new ObjectPathMethod(objectPath4.Id, "GetById", requestPayload.CreateParameter(userId)),
+            new ObjectPathMethod(
+                objectPath4.Id,
+                "GetById",
+                requestPayload.CreateParameter(userId)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(User))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -97,19 +119,28 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
             var objectPath2 = requestPayload.Add(
-                new ObjectPathMethod(objectPath1.Id, "GetSiteByUrl", requestPayload.CreateParameter(siteCollectionUrl))
+                new ObjectPathMethod(
+                    objectPath1.Id,
+                    "GetSiteByUrl",
+                    requestPayload.CreateParameter(siteCollectionUrl)
+                )
             );
             var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "RootWeb"));
             var objectPath4 = requestPayload.Add(new ObjectPathProperty(objectPath3.Id, "SiteUsers"));
             var objectPath5 = requestPayload.Add(
-                new ObjectPathMethod(objectPath4.Id, "GetByLoginName", requestPayload.CreateParameter(userName)),
+                new ObjectPathMethod(
+                    objectPath4.Id,
+                    "GetByLoginName",
+                    requestPayload.CreateParameter(userName)
+                ),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {
                     Query = new ClientQuery(true, typeof(User))
                 }
             );
-            return this.ClientContext.ProcessQuery(requestPayload)
+            return this
+                .ClientContext.ProcessQuery(requestPayload)
                 .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
         }
         else
@@ -117,19 +148,28 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
             var objectPath2 = requestPayload.Add(
-                new ObjectPathMethod(objectPath1.Id, "GetSiteByUrl", requestPayload.CreateParameter(siteCollectionUrl))
+                new ObjectPathMethod(
+                    objectPath1.Id,
+                    "GetSiteByUrl",
+                    requestPayload.CreateParameter(siteCollectionUrl)
+                )
             );
             var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "RootWeb"));
             var objectPath4 = requestPayload.Add(new ObjectPathProperty(objectPath3.Id, "SiteUsers"));
             var objectPath5 = requestPayload.Add(
-                new ObjectPathMethod(objectPath4.Id, "GetByEmail", requestPayload.CreateParameter(userName)),
+                new ObjectPathMethod(
+                    objectPath4.Id,
+                    "GetByEmail",
+                    requestPayload.CreateParameter(userName)
+                ),
                 objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
                 objectPathId => new ClientActionQuery(objectPathId)
                 {
                     Query = new ClientQuery(true, typeof(User))
                 }
             );
-            return this.ClientContext.ProcessQuery(requestPayload)
+            return this
+                .ClientContext.ProcessQuery(requestPayload)
                 .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
         }
     }
@@ -140,7 +180,11 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(objectPath1.Id, "GetSiteByUrl", requestPayload.CreateParameter(siteCollectionUrl))
+            new ObjectPathMethod(
+                objectPath1.Id,
+                "GetSiteByUrl",
+                requestPayload.CreateParameter(siteCollectionUrl)
+            )
         );
         var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "RootWeb"));
         var objectPath4 = requestPayload.Add(
@@ -152,7 +196,8 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
                 ChildItemQuery = new ClientQuery(true, typeof(User))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<UserEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -163,28 +208,45 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(objectPath1.Id, "GetSiteByUrl", requestPayload.CreateParameter(siteCollectionUrl))
+            new ObjectPathMethod(
+                objectPath1.Id,
+                "GetSiteByUrl",
+                requestPayload.CreateParameter(siteCollectionUrl)
+            )
         );
         var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "RootWeb"));
         var objectPath4 = requestPayload.Add(new ObjectPathProperty(objectPath3.Id, "SiteUsers"));
         var objectPath5 = requestPayload.Add(
-            new ObjectPathMethod(objectPath4.Id, "GetById", requestPayload.CreateParameter(userObject.Id))
+            new ObjectPathMethod(
+                objectPath4.Id,
+                "GetById",
+                requestPayload.CreateParameter(userObject.Id)
+            )
         );
-        var objectPath6 = requestPayload.Add(
-            objectPath5,
-            objectPathId => new ClientActionMethod(objectPathId, "DeleteObject")
-        );
+        var objectPath6 = requestPayload.Add(objectPath5, objectPathId => new ClientActionMethod(objectPathId, "DeleteObject"));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public void SetObject(Uri siteCollectionUrl, User userObject, bool isSiteCollectionAdmin)
+    public void SetObject(
+        Uri siteCollectionUrl,
+        User userObject,
+        bool isSiteCollectionAdmin
+    )
     {
         _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));
         _ = userObject ?? throw new ArgumentNullException(nameof(userObject));
-        this.SetObject(siteCollectionUrl, userObject.LoginName, isSiteCollectionAdmin);
+        this.SetObject(
+            siteCollectionUrl,
+            userObject.LoginName,
+            isSiteCollectionAdmin
+        );
     }
 
-    public void SetObject(Uri siteCollectionUrl, string userName, bool isSiteCollectionAdmin)
+    public void SetObject(
+        Uri siteCollectionUrl,
+        string userName,
+        bool isSiteCollectionAdmin
+    )
     {
         _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));
         _ = userName ?? throw new ArgumentNullException(nameof(userName));

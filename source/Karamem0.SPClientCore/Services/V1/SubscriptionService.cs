@@ -42,9 +42,12 @@ public class SubscriptionService(ClientContext clientContext) : ClientService(cl
         _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var listUrl = this.ClientContext.BaseAddress.ConcatPath("_api/web/lists('{0}')", listObject.Id);
-        var requestUrl = listUrl.ConcatPath("subscriptions").ConcatQuery(ODataQuery.CreateSelect<Subscription>());
+        var requestUrl = listUrl
+            .ConcatPath("subscriptions")
+            .ConcatQuery(ODataQuery.CreateSelect<Subscription>());
         var requestPayload = ODataV1RequestPayload.Create<SubscriptionCreationInfo>(
-            creationInfo.Concat(
+            creationInfo
+                .Concat(
                     new Dictionary<string, object>()
                     {
                         ["Resource"] = listUrl.ToString()
@@ -58,7 +61,8 @@ public class SubscriptionService(ClientContext clientContext) : ClientService(cl
     public Subscription GetObject(Subscription subscriptionObject)
     {
         _ = subscriptionObject ?? throw new ArgumentNullException(nameof(subscriptionObject));
-        var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
+        var requestUrl = this
+            .ClientContext.BaseAddress.ConcatPath(
                 "_api/web/lists('{0}')/subscriptions('{1}')",
                 subscriptionObject.Resource,
                 subscriptionObject.Id
@@ -71,8 +75,12 @@ public class SubscriptionService(ClientContext clientContext) : ClientService(cl
     {
         _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
         _ = subscriptionId ?? throw new ArgumentNullException(nameof(subscriptionId));
-        var requestUrl = this.ClientContext.BaseAddress
-            .ConcatPath("_api/web/lists('{0}')/subscriptions('{1}')", listObject.Id, subscriptionId)
+        var requestUrl = this
+            .ClientContext.BaseAddress.ConcatPath(
+                "_api/web/lists('{0}')/subscriptions('{1}')",
+                listObject.Id,
+                subscriptionId
+            )
             .ConcatQuery(ODataQuery.CreateSelect<Subscription>());
         return this.ClientContext.GetObject<Subscription>(requestUrl);
     }
@@ -80,7 +88,8 @@ public class SubscriptionService(ClientContext clientContext) : ClientService(cl
     public IEnumerable<Subscription> GetObjectEnumerable(List listObject)
     {
         _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
-        var requestUrl = this.ClientContext.BaseAddress.ConcatPath("_api/web/lists('{0}')/subscriptions", listObject.Id)
+        var requestUrl = this
+            .ClientContext.BaseAddress.ConcatPath("_api/web/lists('{0}')/subscriptions", listObject.Id)
             .ConcatQuery(ODataQuery.CreateSelect<Subscription>());
         return this.ClientContext.GetObject<ODataV1ObjectEnumerable<Subscription>>(requestUrl);
     }

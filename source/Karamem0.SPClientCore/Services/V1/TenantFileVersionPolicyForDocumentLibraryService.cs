@@ -23,7 +23,11 @@ public interface ITenantFileVersionPolicyForDocumentLibraryService
 
     FileVersionPolicyForDocumentLibrary GetObject(Uri siteUrl, string listTitle);
 
-    TenantOperationResult SetObject(Uri siteUrl, Guid listId, IReadOnlyDictionary<string, object> modificationInfo);
+    TenantOperationResult SetObject(
+        Uri siteUrl,
+        Guid listId,
+        IReadOnlyDictionary<string, object> modificationInfo
+    );
 
     TenantOperationResult SetObject(
         Uri siteUrl,
@@ -31,14 +35,21 @@ public interface ITenantFileVersionPolicyForDocumentLibraryService
         IReadOnlyDictionary<string, object> modificationInfo
     );
 
-    void SetObjectAwait(Uri siteUrl, Guid listId, IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObjectAwait(
+        Uri siteUrl,
+        Guid listId,
+        IReadOnlyDictionary<string, object> modificationInfo
+    );
 
-    void SetObjectAwait(Uri siteUrl, string listTitle, IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObjectAwait(
+        Uri siteUrl,
+        string listTitle,
+        IReadOnlyDictionary<string, object> modificationInfo
+    );
 
 }
 
-public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clientContext)
-    : TenantClientService(clientContext), ITenantFileVersionPolicyForDocumentLibraryService
+public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clientContext) : TenantClientService(clientContext), ITenantFileVersionPolicyForDocumentLibraryService
 {
 
     public FileVersionPolicyForDocumentLibrary GetObject(Uri siteUrl, Guid listId)
@@ -55,7 +66,8 @@ public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clie
                 requestPayload.CreateParameter(new ListParameters(listId))
             )
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<FileVersionPolicyForDocumentLibrary>(requestPayload.GetActionId<ClientActionMethod>());
     }
 
@@ -74,7 +86,8 @@ public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clie
                 requestPayload.CreateParameter(new ListParameters(listTitle))
             )
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<FileVersionPolicyForDocumentLibrary>(requestPayload.GetActionId<ClientActionMethod>());
     }
 
@@ -93,9 +106,7 @@ public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clie
                 "SetFileVersionPolicyForLibrary",
                 requestPayload.CreateParameter(siteUrl),
                 requestPayload.CreateParameter(new ListParameters(listId)),
-                requestPayload.CreateParameter(
-                    ClientValueObject.Create<FileVersionPolicyForDocumentLibrary>(modificationInfo)
-                )
+                requestPayload.CreateParameter(ClientValueObject.Create<FileVersionPolicyForDocumentLibrary>(modificationInfo))
             ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
@@ -103,7 +114,8 @@ public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clie
                 Query = new ClientQuery(true, typeof(TenantOperationResult))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -123,9 +135,7 @@ public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clie
                 "SetFileVersionPolicyForLibrary",
                 requestPayload.CreateParameter(siteUrl),
                 requestPayload.CreateParameter(new ListParameters(listTitle)),
-                requestPayload.CreateParameter(
-                    ClientValueObject.Create<FileVersionPolicyForDocumentLibrary>(modificationInfo)
-                )
+                requestPayload.CreateParameter(ClientValueObject.Create<FileVersionPolicyForDocumentLibrary>(modificationInfo))
             ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
@@ -133,18 +143,39 @@ public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clie
                 Query = new ClientQuery(true, typeof(TenantOperationResult))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public void SetObjectAwait(Uri siteUrl, Guid listId, IReadOnlyDictionary<string, object> modificationInfo)
+    public void SetObjectAwait(
+        Uri siteUrl,
+        Guid listId,
+        IReadOnlyDictionary<string, object> modificationInfo
+    )
     {
-        this.WaitObject(this.SetObject(siteUrl, listId, modificationInfo));
+        this.WaitObject(
+            this.SetObject(
+                siteUrl,
+                listId,
+                modificationInfo
+            )
+        );
     }
 
-    public void SetObjectAwait(Uri siteUrl, string listTitle, IReadOnlyDictionary<string, object> modificationInfo)
+    public void SetObjectAwait(
+        Uri siteUrl,
+        string listTitle,
+        IReadOnlyDictionary<string, object> modificationInfo
+    )
     {
-        this.WaitObject(this.SetObject(siteUrl, listTitle, modificationInfo));
+        this.WaitObject(
+            this.SetObject(
+                siteUrl,
+                listTitle,
+                modificationInfo
+            )
+        );
     }
 
 }

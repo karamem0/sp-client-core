@@ -26,7 +26,13 @@ public class NewColumnUserValueCommand : ClientObjectCmdlet
 
     protected override void ProcessRecordCore()
     {
-        this.Outputs.Add(new ColumnUserValue(this.LookupId, null, null));
+        this.Outputs.Add(
+            new ColumnUserValue(
+                this.LookupId,
+                null,
+                null
+            )
+        );
     }
 
 }

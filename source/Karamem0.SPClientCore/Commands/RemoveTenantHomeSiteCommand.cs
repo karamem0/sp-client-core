@@ -30,7 +30,7 @@ public class RemoveTenantHomeSiteCommand : ClientObjectCmdlet<ITenantHomeSiteSer
     protected override void ProcessRecordCore()
     {
         var site = this.Service.GetObject();
-        if (this.ShouldProcess(site, VerbsCommon.Remove))
+        if (this.ShouldProcess(site.ToString(), VerbsCommon.Remove))
         {
             this.Service.RemoveObject();
         }

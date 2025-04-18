@@ -22,10 +22,18 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
 {
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet1"
+    )]
     public TenantSiteCollection SiteCollection { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet2"
+    )]
     public Uri SiteCollectionUrl { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
@@ -44,12 +52,7 @@ public class AddTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
     {
         if (this.ParameterSetName == "ParamSet1")
         {
-            this.Outputs.Add(
-                this.Service.AddObject(
-                    new Uri(this.SiteCollection.Url, UriKind.Absolute),
-                    this.MyInvocation.BoundParameters
-                )
-            );
+            this.Outputs.Add(this.Service.AddObject(new Uri(this.SiteCollection.Url, UriKind.Absolute), this.MyInvocation.BoundParameters));
         }
         if (this.ParameterSetName == "ParamSet2")
         {

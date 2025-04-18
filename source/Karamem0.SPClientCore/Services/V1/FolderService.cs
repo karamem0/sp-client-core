@@ -22,7 +22,11 @@ public interface IFolderService
 
     void ApproveObject(Folder folderObject, string comment);
 
-    void CopyObject(Folder folderObject, Uri folderUrl, IReadOnlyDictionary<string, object> moveCopyOptions);
+    void CopyObject(
+        Folder folderObject,
+        Uri folderUrl,
+        IReadOnlyDictionary<string, object> moveCopyOptions
+    );
 
     Folder AddObject(Folder folderObject, string folderName);
 
@@ -46,7 +50,11 @@ public interface IFolderService
 
     void MoveObject(Folder folderObject, Uri folderUrl);
 
-    void MoveObject(Folder folderObject, Uri folderUrl, IReadOnlyDictionary<string, object> moveCopyOptions);
+    void MoveObject(
+        Folder folderObject,
+        Uri folderUrl,
+        IReadOnlyDictionary<string, object> moveCopyOptions
+    );
 
     Guid RecycleObject(Folder folderObject);
 
@@ -85,7 +93,11 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public void CopyObject(Folder folderObject, Uri folderUrl, IReadOnlyDictionary<string, object> moveCopyOptions)
+    public void CopyObject(
+        Folder folderObject,
+        Uri folderUrl,
+        IReadOnlyDictionary<string, object> moveCopyOptions
+    )
     {
         _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
         _ = folderUrl ?? throw new ArgumentNullException(nameof(folderUrl));
@@ -115,14 +127,19 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Folders"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(objectPath2.Id, "Add", requestPayload.CreateParameter(folderName)),
+            new ObjectPathMethod(
+                objectPath2.Id,
+                "Add",
+                requestPayload.CreateParameter(folderName)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(Folder))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -163,7 +180,8 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
                 Query = new ClientQuery(true, typeof(Folder))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -180,7 +198,8 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
                 Query = new ClientQuery(true, typeof(Folder))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -191,14 +210,19 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(objectPath2.Id, "GetFolderById", requestPayload.CreateParameter(folderId)),
+            new ObjectPathMethod(
+                objectPath2.Id,
+                "GetFolderById",
+                requestPayload.CreateParameter(folderId)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(Folder))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -220,7 +244,8 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
                 Query = new ClientQuery(true, typeof(Folder))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -232,14 +257,19 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Folders"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(objectPath2.Id, "GetByUrl", requestPayload.CreateParameter(folderName)),
+            new ObjectPathMethod(
+                objectPath2.Id,
+                "GetByUrl",
+                requestPayload.CreateParameter(folderName)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(Folder))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -257,7 +287,8 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
                 ChildItemQuery = new ClientQuery(true)
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<FolderEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -275,7 +306,8 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
                 ChildItemQuery = new ClientQuery(true, typeof(Folder))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<FolderEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -286,12 +318,20 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(folderObject.ObjectIdentity),
-            objectPathId => new ClientActionMethod(objectPathId, "MoveTo", requestPayload.CreateParameter(folderUrl))
+            objectPathId => new ClientActionMethod(
+                objectPathId,
+                "MoveTo",
+                requestPayload.CreateParameter(folderUrl)
+            )
         );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public void MoveObject(Folder folderObject, Uri folderUrl, IReadOnlyDictionary<string, object> moveCopyOptions)
+    public void MoveObject(
+        Folder folderObject,
+        Uri folderUrl,
+        IReadOnlyDictionary<string, object> moveCopyOptions
+    )
     {
         _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
         _ = folderUrl ?? throw new ArgumentNullException(nameof(folderUrl));
@@ -317,11 +357,9 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
     {
         _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(folderObject.ObjectIdentity),
-            objectPathId => new ClientActionMethod(objectPathId, "Recycle")
-        );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity), objectPathId => new ClientActionMethod(objectPathId, "Recycle"));
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Guid>(requestPayload.GetActionId<ClientActionMethod>());
     }
 

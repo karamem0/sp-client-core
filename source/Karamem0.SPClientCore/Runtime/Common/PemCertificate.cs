@@ -22,7 +22,8 @@ public class PemCertificate(BinaryData certData, BinaryData keyData)
     {
         get
         {
-            var base64 = certData.ToString()
+            var base64 = certData
+                .ToString()
                 .Replace("-----BEGIN CERTIFICATE-----", "")
                 .Replace("-----END CERTIFICATE-----", "")
                 .Replace("\r", "")
@@ -39,7 +40,8 @@ public class PemCertificate(BinaryData certData, BinaryData keyData)
     {
         get
         {
-            var base64 = keyData.ToString()
+            var base64 = keyData
+                .ToString()
                 .Replace("-----BEGIN PRIVATE KEY-----", "")
                 .Replace("-----END PRIVATE KEY-----", "")
                 .Replace("\r", "")

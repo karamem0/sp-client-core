@@ -21,7 +21,11 @@ public interface ISharingLinkService
 
     string CreateAnonymousLink(Uri url, bool isEditLink);
 
-    string CreateAnonymousLink(Uri url, bool isEditLink, DateTime expiration);
+    string CreateAnonymousLink(
+        Uri url,
+        bool isEditLink,
+        DateTime expiration
+    );
 
     string CreateOrganizationSharingLink(Uri url, bool isEditLink);
 
@@ -36,13 +40,25 @@ public interface ISharingLinkService
         bool retrievePermissionLevels
     );
 
-    SharingSettings GetSharingSettings(Uri url, int groupId, bool useSimplifiedRoles);
+    SharingSettings GetSharingSettings(
+        Uri url,
+        int groupId,
+        bool useSimplifiedRoles
+    );
 
     SharingLinkKind GetSharingLinkKind(Uri url);
 
-    void RemoveAnonymousLink(Uri url, bool isEditLink, bool removeAssociatedSharingLinkGroup);
+    void RemoveAnonymousLink(
+        Uri url,
+        bool isEditLink,
+        bool removeAssociatedSharingLinkGroup
+    );
 
-    void RemoveOrganizationSharingLink(Uri url, bool isEditLink, bool removeAssociatedSharingLinkGroup);
+    void RemoveOrganizationSharingLink(
+        Uri url,
+        bool isEditLink,
+        bool removeAssociatedSharingLinkGroup
+    );
 
 }
 
@@ -61,11 +77,16 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
                 requestPayload.CreateParameter(isEditLink)
             )
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<string>(requestPayload.GetActionId<ClientActionStaticMethod>());
     }
 
-    public string CreateAnonymousLink(Uri url, bool isEditLink, DateTime expiration)
+    public string CreateAnonymousLink(
+        Uri url,
+        bool isEditLink,
+        DateTime expiration
+    )
     {
         _ = url ?? throw new ArgumentNullException(nameof(url));
         var requestPayload = new ClientRequestPayload();
@@ -78,7 +99,8 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
                 requestPayload.CreateParameter(expiration.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'sszzz"))
             )
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<string>(requestPayload.GetActionId<ClientActionStaticMethod>());
     }
 
@@ -94,7 +116,8 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
                 requestPayload.CreateParameter(isEditLink)
             )
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<string>(requestPayload.GetActionId<ClientActionStaticMethod>());
     }
 
@@ -129,11 +152,16 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
                 Query = new ClientQuery(true, typeof(SharingInfo))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<SharingInfo>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public SharingSettings GetSharingSettings(Uri url, int groupId, bool useSimplifiedRoles)
+    public SharingSettings GetSharingSettings(
+        Uri url,
+        int groupId,
+        bool useSimplifiedRoles
+    )
     {
         _ = url ?? throw new ArgumentNullException(nameof(url));
         var requestPayload = new ClientRequestPayload();
@@ -150,7 +178,8 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
                 Query = new ClientQuery(true, typeof(SharingSettings))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<SharingSettings>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -159,13 +188,22 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
         _ = url ?? throw new ArgumentNullException(nameof(url));
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
-            new ClientActionStaticMethod(typeof(Site), "GetSharingLinkKind", requestPayload.CreateParameter(url))
+            new ClientActionStaticMethod(
+                typeof(Site),
+                "GetSharingLinkKind",
+                requestPayload.CreateParameter(url)
+            )
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<SharingLinkKind>(requestPayload.GetActionId<ClientActionStaticMethod>());
     }
 
-    public void RemoveAnonymousLink(Uri url, bool isEditLink, bool removeAssociatedSharingLinkGroup)
+    public void RemoveAnonymousLink(
+        Uri url,
+        bool isEditLink,
+        bool removeAssociatedSharingLinkGroup
+    )
     {
         _ = url ?? throw new ArgumentNullException(nameof(url));
         var requestPayload = new ClientRequestPayload();
@@ -181,7 +219,11 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public void RemoveOrganizationSharingLink(Uri url, bool isEditLink, bool removeAssociatedSharingLinkGroup)
+    public void RemoveOrganizationSharingLink(
+        Uri url,
+        bool isEditLink,
+        bool removeAssociatedSharingLinkGroup
+    )
     {
         _ = url ?? throw new ArgumentNullException(nameof(url));
         var requestPayload = new ClientRequestPayload();

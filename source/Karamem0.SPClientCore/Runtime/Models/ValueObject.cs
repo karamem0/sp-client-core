@@ -18,7 +18,9 @@ public abstract class ValueObject
 {
 
     protected virtual Lazy<IReadOnlyCollection<PropertyInfo>> EqualityProperties => new(
-        () => this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public)
+        () => this
+            .GetType()
+            .GetProperties(BindingFlags.Instance | BindingFlags.Public)
     );
 
     public override bool Equals(object value)

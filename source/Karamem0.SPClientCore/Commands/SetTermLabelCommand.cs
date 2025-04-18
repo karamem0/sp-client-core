@@ -65,7 +65,13 @@ public class SetTermLabelCommand : ClientObjectCmdlet<ITermService, ITermLabelSe
             {
                 var termObject = this.Service1.GetObject(this.Identity);
                 this.Service2.SetObject(this.Identity, this.MyInvocation.BoundParameters);
-                this.Outputs.Add(this.Service2.GetObject(termObject, this.Identity.Name, this.Lcid));
+                this.Outputs.Add(
+                    this.Service2.GetObject(
+                        termObject,
+                        this.Identity.Name,
+                        this.Lcid
+                    )
+                );
             }
             else
             {
@@ -78,7 +84,13 @@ public class SetTermLabelCommand : ClientObjectCmdlet<ITermService, ITermLabelSe
             {
                 var termObject = this.Service1.GetObject(this.Identity);
                 this.Service2.SetObject(this.Identity, this.MyInvocation.BoundParameters);
-                this.Outputs.Add(this.Service2.GetObject(termObject, this.Name, this.Identity.Lcid));
+                this.Outputs.Add(
+                    this.Service2.GetObject(
+                        termObject,
+                        this.Name,
+                        this.Identity.Lcid
+                    )
+                );
             }
             else
             {

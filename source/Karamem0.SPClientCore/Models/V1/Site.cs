@@ -168,8 +168,8 @@ public class Site : SecurableObject
     [JsonProperty()]
     public virtual bool NoCrawl { get; protected set; }
 
-    [JsonProperty()]
-    public virtual bool NotificationsInOneDriveForBusinessEnabled { get; protected set; }
+    [JsonProperty("NotificationsInOneDriveForBusinessEnabled")]
+    public virtual bool NotificationsInOneDriveEnabled { get; protected set; }
 
     [JsonProperty()]
     public virtual bool NotificationsInSharePointEnabled { get; protected set; }

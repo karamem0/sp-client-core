@@ -25,10 +25,7 @@ public class ClientResultValue
         {
             return output;
         }
-        throw new ArgumentException(
-            string.Format(StringResources.ErrorValueIsInvalid, input.ToString()),
-            nameof(input)
-        );
+        throw new ArgumentException(string.Format(StringResources.ErrorValueIsInvalid, input.ToString()), nameof(input));
     }
 
     public static bool TryCreate(KeyValuePair<string, JToken> input, out ClientResultValue output)
@@ -53,7 +50,10 @@ public class ClientResultValue
                 return true;
             case JTokenType.Integer:
             case JTokenType.Float:
-                switch (input.Key.Split('$').Last().Trim())
+                switch (input
+                            .Key.Split('$')
+                            .Last()
+                            .Trim())
                 {
                     case "Byte":
                         output.Value = input.Value.ToObject<byte>();
@@ -112,8 +112,15 @@ public class ClientResultValue
                 }
                 return true;
             case JTokenType.Array:
-                output.Value = input.Value
-                    .Select(item => new KeyValuePair<string, JToken>(input.Key.Split('$').First(), item))
+                output.Value = input
+                    .Value.Select(
+                        item => new KeyValuePair<string, JToken>(
+                            input
+                                .Key.Split('$')
+                                .First(),
+                            item
+                        )
+                    )
                     .Select(Create)
                     .Select(item => item.Value)
                     .ToArray();

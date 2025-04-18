@@ -55,15 +55,35 @@ public class GetListItemCommand : ClientObjectCmdlet<IListItemService>
     )]
     public DriveItem DriveItem { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet5")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet5"
+    )]
     public string ItemUrl { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet6")]
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet7")]
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet8")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet6"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet7"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet8"
+    )]
     public List List { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet6")]
+    [Parameter(
+        Mandatory = true,
+        Position = 1,
+        ParameterSetName = "ParamSet6"
+    )]
     public int ItemId { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet7")]

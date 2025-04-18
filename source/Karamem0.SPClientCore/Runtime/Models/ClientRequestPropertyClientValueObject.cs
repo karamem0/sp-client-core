@@ -27,16 +27,15 @@ public class ClientRequestPropertyClientValueObject : ClientRequestProperty
         _ = value ?? throw new ArgumentNullException(nameof(value));
         this.Name = name;
         this.TypeId = ClientObjectAttribute.GetId(value.GetType());
-        this.Values = value.GetType()
+        this.Values = value
+            .GetType()
             .GetDeclaredProperties()
             .Where(propertyInfo => propertyInfo.IsDefined(typeof(JsonPropertyAttribute)))
             .Select(
                 propertyInfo =>
                 {
                     var propertyAttribute = propertyInfo.GetCustomAttribute<JsonPropertyAttribute>();
-                    var propertyName = string.IsNullOrEmpty(propertyAttribute.PropertyName)
-                        ? propertyInfo.Name
-                        : propertyAttribute.PropertyName;
+                    var propertyName = string.IsNullOrEmpty(propertyAttribute.PropertyName) ? propertyInfo.Name : propertyAttribute.PropertyName;
                     var propertyValue = propertyInfo.GetValue(value);
                     if (ClientRequestValue.TryCreate(propertyValue, out var valueObject))
                     {

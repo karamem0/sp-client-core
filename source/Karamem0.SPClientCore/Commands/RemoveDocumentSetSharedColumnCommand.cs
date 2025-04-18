@@ -40,7 +40,11 @@ public class RemoveDocumentSetSharedColumnCommand : ClientObjectCmdlet<IDocument
     {
         if (this.ShouldProcess(this.Column.Name, VerbsCommon.Remove))
         {
-            this.Service.RemoveObject(this.ContentType, this.Column, this.PushChanges);
+            this.Service.RemoveObject(
+                this.ContentType,
+                this.Column,
+                this.PushChanges
+            );
         }
     }
 

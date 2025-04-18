@@ -33,7 +33,13 @@ public class AddTenantAppCommand : ClientObjectCmdlet<ITenantAppService>
 
     protected override void ProcessRecordCore()
     {
-        this.Outputs.Add(this.Service.AddObject(this.Content, this.FileName, this.Overwrite));
+        this.Outputs.Add(
+            this.Service.AddObject(
+                this.Content,
+                this.FileName,
+                this.Overwrite
+            )
+        );
     }
 
 }

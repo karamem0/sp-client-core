@@ -22,10 +22,18 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class TestExternalUserSharingCommand : ClientObjectCmdlet<IExternalUserService>
 {
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet1"
+    )]
     public SwitchParameter Site { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet2"
+    )]
     public List List { get; private set; }
 
     protected override void ProcessRecordCore()

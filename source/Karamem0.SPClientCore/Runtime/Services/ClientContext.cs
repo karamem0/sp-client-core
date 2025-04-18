@@ -23,12 +23,27 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services;
 public class ClientContext
 {
 
-    public static ClientContext Create(Uri baseAddress, AadOAuthContext oAuthContext, AadOAuthToken oAuthToken)
+    public static ClientContext Create(
+        Uri baseAddress,
+        AadOAuthContext oAuthContext,
+        AadOAuthToken oAuthToken
+    )
     {
-        return new ClientContext(baseAddress, new AadOAuthTokenProvider(baseAddress, oAuthContext, oAuthToken));
+        return new ClientContext(
+            baseAddress,
+            new AadOAuthTokenProvider(
+                baseAddress,
+                oAuthContext,
+                oAuthToken
+            )
+        );
     }
 
-    public static ClientContext Create(Uri baseAddress, AcsOAuthContext oAuthContext, AcsOAuthToken oAuthToken)
+    public static ClientContext Create(
+        Uri baseAddress,
+        AcsOAuthContext oAuthContext,
+        AcsOAuthToken oAuthToken
+    )
     {
         return new ClientContext(baseAddress, new AcsOAuthTokenProvider(oAuthContext, oAuthToken));
     }
@@ -43,7 +58,12 @@ public class ClientContext
         : base()
     {
         this.baseAddress = (baseAddress is not null)
-            ? new Uri(baseAddress.ToString().TrimEnd('/'), UriKind.Absolute)
+            ? new Uri(
+                baseAddress
+                    .ToString()
+                    .TrimEnd('/'),
+                UriKind.Absolute
+            )
             : throw new ArgumentNullException(nameof(baseAddress));
         this.oAuthTokenProvider = oAuthTokenProvider ?? throw new ArgumentNullException(nameof(oAuthTokenProvider));
         this.clientHttpExecutor = new ClientHttpExecutor();
@@ -53,7 +73,12 @@ public class ClientContext
     {
         get => this.baseAddress;
         set => this.baseAddress = (value is not null)
-            ? new Uri(value.ToString().TrimEnd('/'), UriKind.Absolute)
+            ? new Uri(
+                value
+                    .ToString()
+                    .TrimEnd('/'),
+                UriKind.Absolute
+            )
             : throw new ArgumentNullException(nameof(value));
     }
 
@@ -90,8 +115,7 @@ public class ClientContext
             async responseMessage =>
             {
                 var responseContent = await responseMessage.Content.ReadAsStringAsync();
-                var responsePayload =
-                    JsonSerializerManager.Instance.Deserialize<ODataV1ResultPayload<T>>(responseContent);
+                var responsePayload = JsonSerializerManager.Instance.Deserialize<ODataV1ResultPayload<T>>(responseContent);
                 if (responsePayload.Error is null)
                 {
                     return responsePayload.Entry;
@@ -161,8 +185,7 @@ public class ClientContext
                 {
                     var requestContent = JsonSerializerManager.Instance.Serialize(requestPayload);
                     requestMessage.Content = new StringContent(requestContent, Encoding.UTF8);
-                    requestMessage.Content.Headers.ContentType =
-                        MediaTypeHeaderValue.Parse("application/json;odata=verbose");
+                    requestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json;odata=verbose");
                 }
                 return requestMessage;
             },
@@ -183,8 +206,7 @@ public class ClientContext
                 {
                     var jsonContent = JsonSerializerManager.Instance.Serialize(requestPayload);
                     requestMessage.Content = new StringContent(jsonContent, Encoding.UTF8);
-                    requestMessage.Content.Headers.ContentType =
-                        MediaTypeHeaderValue.Parse("application/json;odata=verbose");
+                    requestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json;odata=verbose");
                 }
                 return requestMessage;
             },
@@ -205,16 +227,14 @@ public class ClientContext
                 {
                     var requestContent = JsonSerializerManager.Instance.Serialize(requestPayload);
                     requestMessage.Content = new StringContent(requestContent, Encoding.UTF8);
-                    requestMessage.Content.Headers.ContentType =
-                        MediaTypeHeaderValue.Parse("application/json;odata=verbose");
+                    requestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json;odata=verbose");
                 }
                 return requestMessage;
             },
             async responseMessage =>
             {
                 var responseContent = await responseMessage.Content.ReadAsStringAsync();
-                var responsePayload =
-                    JsonSerializerManager.Instance.Deserialize<ODataV1ResultPayload<T>>(responseContent);
+                var responsePayload = JsonSerializerManager.Instance.Deserialize<ODataV1ResultPayload<T>>(responseContent);
                 if (responsePayload.Error is null)
                 {
                     return responsePayload.Entry;
@@ -238,8 +258,7 @@ public class ClientContext
                 requestMessage.Headers.Add("Authorization", $"Bearer {this.oAuthTokenProvider.GetAccessToken()}");
                 requestMessage.Headers.Add("Accept", "application/json;odata=verbose");
                 requestMessage.Content = new StreamContent(requestStream);
-                requestMessage.Content.Headers.ContentType =
-                    MediaTypeHeaderValue.Parse("application/json;odata=verbose");
+                requestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json;odata=verbose");
                 return requestMessage;
             },
             responseMessage => Task.FromResult(default(object))
@@ -257,15 +276,13 @@ public class ClientContext
                 requestMessage.Headers.Add("Authorization", $"Bearer {this.oAuthTokenProvider.GetAccessToken()}");
                 requestMessage.Headers.Add("Accept", "application/json;odata=verbose");
                 requestMessage.Content = new StreamContent(requestStream);
-                requestMessage.Content.Headers.ContentType =
-                    MediaTypeHeaderValue.Parse("application/json;odata=verbose");
+                requestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json;odata=verbose");
                 return requestMessage;
             },
             async responseMessage =>
             {
                 var responseContent = await responseMessage.Content.ReadAsStringAsync();
-                var responsePayload =
-                    JsonSerializerManager.Instance.Deserialize<ODataV1ResultPayload<T>>(responseContent);
+                var responsePayload = JsonSerializerManager.Instance.Deserialize<ODataV1ResultPayload<T>>(responseContent);
                 if (responsePayload.Error is null)
                 {
                     return responsePayload.Entry;

@@ -36,7 +36,13 @@ public class GetSharingSettingsCommand : ClientObjectCmdlet<ISharingLinkService>
     {
         if (this.Url.IsAbsoluteUri)
         {
-            this.Outputs.Add(this.Service.GetSharingSettings(this.Url, this.GroupId, this.UseSimplifiedRoles));
+            this.Outputs.Add(
+                this.Service.GetSharingSettings(
+                    this.Url,
+                    this.GroupId,
+                    this.UseSimplifiedRoles
+                )
+            );
         }
         else
         {

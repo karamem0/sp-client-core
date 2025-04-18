@@ -46,10 +46,18 @@ public class GetSiteCommand : ClientObjectCmdlet<ISiteService>
     )]
     public List List { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet4")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet4"
+    )]
     public Guid SiteId { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet5")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet5"
+    )]
     public Uri SiteUrl { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet6")]

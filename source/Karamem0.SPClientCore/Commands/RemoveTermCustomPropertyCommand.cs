@@ -27,14 +27,30 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class RemoveTermCustomPropertyCommand : ClientObjectCmdlet<ITermCustomPropertyService>
 {
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet1"
+    )]
     public TermSet TermSet { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet2"
+    )]
     public Term Term { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet1")]
-    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 1,
+        ParameterSetName = "ParamSet1"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 1,
+        ParameterSetName = "ParamSet2"
+    )]
     public string Name { get; private set; }
 
     protected override void ProcessRecordCore()

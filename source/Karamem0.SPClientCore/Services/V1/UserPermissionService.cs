@@ -40,7 +40,8 @@ public class UserPermissionService(ClientContext clientContext) : ClientService(
                 requestPayload.CreateParameter(userObject.LoginName)
             )
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<BasePermission>(requestPayload.GetActionId<ClientActionMethod>());
     }
 

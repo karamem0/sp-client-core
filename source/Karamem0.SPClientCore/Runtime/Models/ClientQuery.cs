@@ -18,13 +18,25 @@ using System.Xml.Serialization;
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
 [XmlType("Query", Namespace = "http://schemas.microsoft.com/sharepoint/clientquery/2009")]
-public class ClientQuery(bool selectAllProperties, Type type = null, params string[] conditions) : ClientRequestObject
+public class ClientQuery(
+    bool selectAllProperties,
+    Type type = null,
+    params string[] conditions
+) : ClientRequestObject
 {
 
     public static readonly ClientQuery Empty = new(false);
 
-    public ClientQuery(bool selectAllProperties, Type type, IEnumerable<string> conditions)
-        : this(selectAllProperties, type, [.. conditions])
+    public ClientQuery(
+        bool selectAllProperties,
+        Type type,
+        IEnumerable<string> conditions
+    )
+        : this(
+            selectAllProperties,
+            type,
+            [.. conditions]
+        )
     {
     }
 
@@ -34,7 +46,8 @@ public class ClientQuery(bool selectAllProperties, Type type = null, params stri
     [XmlArray()]
     public virtual IReadOnlyCollection<ClientQueryProperty> Properties { get; protected set; } = type is null
         ? []
-        : type.GetDeclaredProperties()
+        : type
+            .GetDeclaredProperties()
             .Where(propertyInfo => propertyInfo.IsDefined(typeof(JsonPropertyAttribute)))
             .Where(propertyInfo => ClientQueryIgnoreAttribute.IsMatch(propertyInfo, conditions))
             .Select(propertyInfo => ClientQueryProperty.Create(propertyInfo, selectAllProperties))

@@ -42,9 +42,13 @@ public class CommentService(ClientContext clientContext) : ClientService(clientC
     public Comment AddObject(ListItem listItemObject, IReadOnlyDictionary<string, object> creationInfo)
     {
         _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
-        var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
+        var requestUrl = this
+            .ClientContext.BaseAddress.ConcatPath(
                 "_api/web/lists('{0}')/items({1})/comments",
-                listItemObject.ObjectIdentity.Split(':').SkipLast(2).Last(),
+                listItemObject
+                    .ObjectIdentity.Split(':')
+                    .SkipLast(2)
+                    .Last(),
                 listItemObject.Id
             )
             .ConcatQuery(ODataQuery.CreateSelect<Comment>());
@@ -55,7 +59,8 @@ public class CommentService(ClientContext clientContext) : ClientService(clientC
     public Comment AddObject(Comment commentObject, IReadOnlyDictionary<string, object> creationInfo)
     {
         _ = commentObject ?? throw new ArgumentNullException(nameof(commentObject));
-        var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
+        var requestUrl = this
+            .ClientContext.BaseAddress.ConcatPath(
                 "_api/web/lists('{0}')/items({1})/comments({2})/replies",
                 commentObject.ListId,
                 commentObject.ItemId,
@@ -69,7 +74,8 @@ public class CommentService(ClientContext clientContext) : ClientService(clientC
     public Comment GetObject(Comment commentObject)
     {
         _ = commentObject ?? throw new ArgumentNullException(nameof(commentObject));
-        var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
+        var requestUrl = this
+            .ClientContext.BaseAddress.ConcatPath(
                 "_api/web/lists('{0}')/items({1})/comments({2})?$expand=LikedBy",
                 commentObject.ListId,
                 commentObject.ItemId,
@@ -83,9 +89,13 @@ public class CommentService(ClientContext clientContext) : ClientService(clientC
     {
         _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
         _ = commentId ?? throw new ArgumentNullException(nameof(commentId));
-        var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
+        var requestUrl = this
+            .ClientContext.BaseAddress.ConcatPath(
                 "_api/web/lists('{0}')/items({1})/comments({2})?$expand=LikedBy",
-                listItemObject.ObjectIdentity.Split(':').SkipLast(2).Last(),
+                listItemObject
+                    .ObjectIdentity.Split(':')
+                    .SkipLast(2)
+                    .Last(),
                 listItemObject.Id,
                 commentId
             )
@@ -96,9 +106,13 @@ public class CommentService(ClientContext clientContext) : ClientService(clientC
     public IEnumerable<Comment> GetObjectEnumerable(ListItem listItemObject)
     {
         _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
-        var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
+        var requestUrl = this
+            .ClientContext.BaseAddress.ConcatPath(
                 "_api/web/lists('{0}')/items({1})/comments?$expand=LikedBy",
-                listItemObject.ObjectIdentity.Split(':').SkipLast(2).Last(),
+                listItemObject
+                    .ObjectIdentity.Split(':')
+                    .SkipLast(2)
+                    .Last(),
                 listItemObject.Id
             )
             .ConcatQuery(ODataQuery.CreateSelect<Comment>());

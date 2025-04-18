@@ -23,7 +23,8 @@ public static class FlagsParser
         if (type.IsDefined(typeof(FlagsAttribute), false))
         {
             var names = Enum.GetNames(type);
-            var keys = parameters.Where(parameter => parameter.Value is SwitchParameter)
+            var keys = parameters
+                .Where(parameter => parameter.Value is SwitchParameter)
                 .Where(parameter => (SwitchParameter)parameter.Value)
                 .Where(parameter => names.Contains(parameter.Key))
                 .Select(parameter => parameter.Key)

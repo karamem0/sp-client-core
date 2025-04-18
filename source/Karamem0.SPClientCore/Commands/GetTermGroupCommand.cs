@@ -30,10 +30,18 @@ public class GetTermGroupCommand : ClientObjectCmdlet<ITermGroupService>
     )]
     public TermGroup Identity { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet2"
+    )]
     public Guid TermGroupId { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet3")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet3"
+    )]
     public string TermGroupName { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet4")]

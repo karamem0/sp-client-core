@@ -25,8 +25,7 @@ public interface ITenantDeletedPersonalSiteCollectionService
 
 }
 
-public class TenantDeletedPersonalSiteCollectionService(ClientContext clientContext)
-    : ClientService(clientContext), ITenantDeletedPersonalSiteCollectionService
+public class TenantDeletedPersonalSiteCollectionService(ClientContext clientContext) : ClientService(clientContext), ITenantDeletedPersonalSiteCollectionService
 {
 
     public IEnumerable<TenantDeletedSiteCollection> GetObjectEnumerable()
@@ -46,7 +45,8 @@ public class TenantDeletedPersonalSiteCollectionService(ClientContext clientCont
                 ChildItemQuery = new ClientQuery(true, typeof(TenantDeletedSiteCollection))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantDeletedSiteCollectionsEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -67,7 +67,8 @@ public class TenantDeletedPersonalSiteCollectionService(ClientContext clientCont
                 Query = new ClientQuery(true, typeof(TenantDeletedSiteCollection))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantDeletedSiteCollectionsEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 

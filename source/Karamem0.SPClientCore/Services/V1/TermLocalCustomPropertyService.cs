@@ -19,17 +19,24 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITermLocalCustomPropertyService
 {
 
-    void AddObject(Term termObject, string propertyName, string propertyValue);
+    void AddObject(
+        Term termObject,
+        string propertyName,
+        string propertyValue
+    );
 
     void RemoveObject(Term termObject, string propertyName);
 
 }
 
-public class TermLocalCustomPropertyService(ClientContext clientContext)
-    : ClientService(clientContext), ITermLocalCustomPropertyService
+public class TermLocalCustomPropertyService(ClientContext clientContext) : ClientService(clientContext), ITermLocalCustomPropertyService
 {
 
-    public void AddObject(Term termObject, string propertyName, string propertyValue)
+    public void AddObject(
+        Term termObject,
+        string propertyName,
+        string propertyValue
+    )
     {
         _ = termObject ?? throw new ArgumentNullException(nameof(termObject));
         _ = propertyName ?? throw new ArgumentNullException(nameof(propertyName));

@@ -50,9 +50,7 @@ public class RemoveOrganizationSharingLinkCommand : ClientObjectCmdlet<ISharingL
             }
             else
             {
-                throw new InvalidOperationException(
-                    string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.Url)
-                );
+                throw new InvalidOperationException(string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.Url));
             }
         }
     }

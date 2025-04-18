@@ -59,7 +59,11 @@ public interface IColumnService
 
     void SetObject(Column columnObject, IReadOnlyDictionary<string, object> modificationInfo);
 
-    void SetObject(Column columnObject, IReadOnlyDictionary<string, object> modificationInfo, bool pushChanges);
+    void SetObject(
+        Column columnObject,
+        IReadOnlyDictionary<string, object> modificationInfo,
+        bool pushChanges
+    );
 
 }
 
@@ -92,7 +96,8 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
                 Query = new ClientQuery(true, typeof(Column))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -123,7 +128,8 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
                 Query = new ClientQuery(true, typeof(Column))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -135,14 +141,19 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "Fields"));
         var objectPath4 = requestPayload.Add(
-            new ObjectPathMethod(objectPath3.Id, "GetById", requestPayload.CreateParameter(columnId)),
+            new ObjectPathMethod(
+                objectPath3.Id,
+                "GetById",
+                requestPayload.CreateParameter(columnId)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(Column))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -165,7 +176,8 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
                 Query = new ClientQuery(true, typeof(Column))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -177,14 +189,19 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Fields"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(objectPath2.Id, "GetById", requestPayload.CreateParameter(columnId)),
+            new ObjectPathMethod(
+                objectPath2.Id,
+                "GetById",
+                requestPayload.CreateParameter(columnId)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(Column))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -207,7 +224,8 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
                 Query = new ClientQuery(true, typeof(Column))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -219,14 +237,19 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Fields"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(objectPath2.Id, "GetById", requestPayload.CreateParameter(columnId)),
+            new ObjectPathMethod(
+                objectPath2.Id,
+                "GetById",
+                requestPayload.CreateParameter(columnId)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(Column))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -249,7 +272,8 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
                 Query = new ClientQuery(true, typeof(Column))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -267,7 +291,8 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
                 ChildItemQuery = new ClientQuery(true, typeof(Column))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ColumnEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -285,7 +310,8 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
                 ChildItemQuery = new ClientQuery(true, typeof(Column))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ColumnEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -303,7 +329,8 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
                 ChildItemQuery = new ClientQuery(true, typeof(Column))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ColumnEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -326,7 +353,11 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public void SetObject(Column columnObject, IReadOnlyDictionary<string, object> modificationInfo, bool pushChanges)
+    public void SetObject(
+        Column columnObject,
+        IReadOnlyDictionary<string, object> modificationInfo,
+        bool pushChanges
+    )
     {
         _ = columnObject ?? throw new ArgumentNullException(nameof(columnObject));
         _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));

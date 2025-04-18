@@ -24,7 +24,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class AddListItemCommand : ClientObjectCmdlet<IListItemService>
 {
 
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true
+    )]
     public List List { get; private set; }
 
     [Parameter(Mandatory = true, Position = 1)]
@@ -40,7 +44,8 @@ public class AddListItemCommand : ClientObjectCmdlet<IListItemService>
             this.Outputs.Add(
                 this.Service.AddObjectEnumerable(
                     this.List,
-                    this.Value.Select(
+                    this
+                        .Value.Select(
                             value =>
                             {
                                 if (value.BaseObject is Hashtable hashtable)
@@ -49,10 +54,7 @@ public class AddListItemCommand : ClientObjectCmdlet<IListItemService>
                                 }
                                 else
                                 {
-                                    return value.Properties.ToDictionary(
-                                        property => property.Name,
-                                        property => property.Value
-                                    );
+                                    return value.Properties.ToDictionary(property => property.Name, property => property.Value);
                                 }
                             }
                         )
@@ -65,7 +67,8 @@ public class AddListItemCommand : ClientObjectCmdlet<IListItemService>
             this.Outputs.AddRange(
                 this.Service.AddObjectEnumerable(
                     this.List,
-                    this.Value.Select(
+                    this
+                        .Value.Select(
                             value =>
                             {
                                 if (value.BaseObject is Hashtable hashtable)
@@ -74,10 +77,7 @@ public class AddListItemCommand : ClientObjectCmdlet<IListItemService>
                                 }
                                 else
                                 {
-                                    return value.Properties.ToDictionary(
-                                        property => property.Name,
-                                        property => property.Value
-                                    );
+                                    return value.Properties.ToDictionary(property => property.Name, property => property.Value);
                                 }
                             }
                         )

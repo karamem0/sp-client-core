@@ -26,7 +26,12 @@ public abstract class ClientObjectCmdlet : PSCmdlet
     {
         var telemetry = TelemetryClientFactory.Create();
         var stopwatch = new Stopwatch();
-        if (string.Compare(this.MyInvocation.InvocationName, this.MyInvocation.MyCommand.Name, true) != 0)
+        if (string.Compare(
+                this.MyInvocation.InvocationName,
+                this.MyInvocation.MyCommand.Name,
+                true
+            ) !=
+            0)
         {
             this.WriteWarning(
                 string.Format(
@@ -67,7 +72,9 @@ public abstract class ClientObjectCmdlet : PSCmdlet
         {
             Trace.Listeners.Remove(listener);
             stopwatch.Stop();
-            telemetry.GetMetric(this.MyInvocation.InvocationName).TrackValue(stopwatch.ElapsedMilliseconds);
+            telemetry
+                .GetMetric(this.MyInvocation.InvocationName)
+                .TrackValue(stopwatch.ElapsedMilliseconds);
         }
     }
 
@@ -81,10 +88,7 @@ public abstract class ClientObjectCmdlet : PSCmdlet
             {
                 if (switchParameter ? false : true)
                 {
-                    throw new ArgumentException(
-                        string.Format(StringResources.ErrorValueCannotBeValue, false),
-                        nameof(parameterName)
-                    );
+                    throw new ArgumentException(string.Format(StringResources.ErrorValueCannotBeValue, false), nameof(parameterName));
                 }
             }
         }

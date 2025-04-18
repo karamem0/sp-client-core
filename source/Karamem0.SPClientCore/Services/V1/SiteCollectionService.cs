@@ -27,8 +27,7 @@ public interface ISiteCollectionService
 
 }
 
-public class SiteCollectionService(ClientContext clientContext)
-    : ClientService<SiteCollection>(clientContext), ISiteCollectionService
+public class SiteCollectionService(ClientContext clientContext) : ClientService<SiteCollection>(clientContext), ISiteCollectionService
 {
 
     public SiteCollection GetObject()
@@ -43,7 +42,8 @@ public class SiteCollectionService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(SiteCollection))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<SiteCollection>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -65,7 +65,8 @@ public class SiteCollectionService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(SiteCollection))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<SiteCollection>(requestPayload.GetActionId<ClientActionQuery>());
     }
 

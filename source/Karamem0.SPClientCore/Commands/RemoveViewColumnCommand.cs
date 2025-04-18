@@ -27,15 +27,35 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class RemoveViewColumnCommand : ClientObjectCmdlet<IViewColumnService>
 {
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet3")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet1"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet2"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet3"
+    )]
     public View View { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet1")]
+    [Parameter(
+        Mandatory = true,
+        Position = 1,
+        ParameterSetName = "ParamSet1"
+    )]
     public Column Column { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 1,
+        ParameterSetName = "ParamSet2"
+    )]
     public string ColumnName { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]

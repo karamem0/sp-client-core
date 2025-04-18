@@ -33,7 +33,11 @@ public class AddSiteCollectionFeatureCommand : ClientObjectCmdlet<ISiteCollectio
 
     protected override void ProcessRecordCore()
     {
-        this.Service.AddObject(this.FeatureId, this.Force, this.Scope);
+        this.Service.AddObject(
+            this.FeatureId,
+            this.Force,
+            this.Scope
+        );
     }
 
 }

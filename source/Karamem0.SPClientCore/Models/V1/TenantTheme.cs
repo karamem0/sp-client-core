@@ -15,10 +15,7 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
-[ClientObject(
-    Name = "Microsoft.Online.SharePoint.TenantManagement.ThemeProperties",
-    Id = "{ce4f6bf8-b123-4cbf-b8be-90a8abb881ee}"
-)]
+[ClientObject(Name = "Microsoft.Online.SharePoint.TenantManagement.ThemeProperties", Id = "{ce4f6bf8-b123-4cbf-b8be-90a8abb881ee}")]
 [JsonObject()]
 public class TenantTheme : ClientObject
 {

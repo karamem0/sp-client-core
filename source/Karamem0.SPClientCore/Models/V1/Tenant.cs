@@ -15,10 +15,7 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
-[ClientObject(
-    Name = "Microsoft.Online.SharePoint.TenantAdministration.Tenant",
-    Id = "{268004ae-ef6b-4e9b-8425-127220d84719}"
-)]
+[ClientObject(Name = "Microsoft.Online.SharePoint.TenantAdministration.Tenant", Id = "{268004ae-ef6b-4e9b-8425-127220d84719}")]
 [JsonObject()]
 public class Tenant : ClientObject
 {
@@ -78,17 +75,17 @@ public class Tenant : ClientObject
     [JsonProperty()]
     public virtual bool AllowOverrideForBlockUserInfoVisibility { get; protected set; }
 
-    [JsonProperty()]
-    public virtual bool AllowSharingOutsideRestrictedAccessControlGroups { get; protected set; }
+    [JsonProperty("AllowSelectSecurityGroupsInSPSitesList")]
+    public virtual bool AllowSelectSecurityGroupsInSharePointSitesList { get; protected set; }
 
     [JsonProperty("AllowSelectSGsInODBListInTenant")]
     public virtual IReadOnlyCollection<string> AllowSelectSecurityGroupsInOneDriveListInTenant { get; protected set; }
 
-    [JsonProperty("AllowSelectSecurityGroupsInSPSitesList")]
-    public virtual bool AllowSelectSecurityGroupsInSharePointSitesList { get; protected set; }
-
     [JsonProperty()]
     public virtual bool AllowSensitivityLabelOnRecords { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool AllowSharingOutsideRestrictedAccessControlGroups { get; protected set; }
 
     [JsonProperty()]
     public virtual bool AllowWebPropertyBagUpdateWhenDenyAddAndCustomizePagesIsEnabled { get; protected set; }
@@ -235,6 +232,9 @@ public class Tenant : ClientObject
     public virtual string CustomizedExternalSharingServiceUrl { get; protected set; }
 
     [JsonProperty()]
+    public virtual bool DataverseUsageConsentEnabled { get; protected set; }
+
+    [JsonProperty()]
     public virtual SiteInfoForSitePicker DefaultContentCenterSite { get; protected set; }
 
     [JsonProperty()]
@@ -268,6 +268,12 @@ public class Tenant : ClientObject
     public virtual bool DisabledAdaptiveCardExtensionIds { get; protected set; }
 
     [JsonProperty()]
+    public virtual IReadOnlyCollection<Guid> DisabledModernListTemplateIds { get; protected set; }
+
+    [JsonProperty()]
+    public virtual IReadOnlyCollection<Guid> DisabledWebPartIds { get; protected set; }
+
+    [JsonProperty()]
     public virtual bool DisableBackToClassic { get; protected set; }
 
     [JsonProperty()]
@@ -277,12 +283,6 @@ public class Tenant : ClientObject
     public virtual bool DisableDocumentLibraryDefaultLabeling { get; protected set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<Guid> DisabledModernListTemplateIds { get; protected set; }
-
-    [JsonProperty()]
-    public virtual IReadOnlyCollection<Guid> DisabledWebPartIds { get; protected set; }
-
-    [JsonProperty()]
     public virtual bool DisableOutlookPSTVersionTrimming { get; protected set; }
 
     [JsonProperty()]
@@ -290,6 +290,9 @@ public class Tenant : ClientObject
 
     [JsonProperty()]
     public virtual bool DisableReportProblemDialog { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool DisableSharePointStoreAccess { get; protected set; }
 
     [JsonProperty()]
     public virtual bool DisableSpacesActivation { get; protected set; }
@@ -374,6 +377,9 @@ public class Tenant : ClientObject
 
     [JsonProperty()]
     public virtual bool EnableTenantRestrictionsInsights { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool EnforceRequestDigest { get; protected set; }
 
     [JsonProperty()]
     public virtual IReadOnlyCollection<string> ESignatureAppList { get; protected set; }
@@ -807,6 +813,9 @@ public class Tenant : ClientObject
     public virtual bool SyncPrivacyProfileProperties { get; protected set; }
 
     [JsonProperty()]
+    public virtual SyntexBillingContext SyntexBillingSubscriptionSettings { get; protected set; }
+
+    [JsonProperty()]
     public virtual bool TaxonomyTaggingEnabled { get; protected set; }
 
     [JsonProperty()]
@@ -820,6 +829,9 @@ public class Tenant : ClientObject
 
     [JsonProperty()]
     public virtual string TranslationSiteListFileName { get; protected set; }
+
+    [JsonProperty("UnlicensedOdbSyntexBillingEnabled")]
+    public virtual bool UnlicensedOneDriveSyntexBillingEnabled { get; protected set; }
 
     [JsonProperty()]
     public virtual bool UniversalAnnotationDisabled { get; protected set; }

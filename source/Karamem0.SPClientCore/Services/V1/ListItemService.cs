@@ -22,10 +22,7 @@ public interface IListItemService
 
     ListItem AddObject(List listObject, IReadOnlyDictionary<string, object> creationInfo);
 
-    IEnumerable<ListItem> AddObjectEnumerable(
-        List listObject,
-        IReadOnlyCollection<IReadOnlyDictionary<string, object>> creationInfos
-    );
+    IEnumerable<ListItem> AddObjectEnumerable(List listObject, IReadOnlyCollection<IReadOnlyDictionary<string, object>> creationInfos);
 
     void ApproveObject(ListItem listItemObject, string comment);
 
@@ -51,7 +48,11 @@ public interface IListItemService
 
     void RemoveObject(ListItem listItemObject);
 
-    void SetObject(ListItem listItemObject, IReadOnlyDictionary<string, object> modificationInfo, bool useSyetemUpdate);
+    void SetObject(
+        ListItem listItemObject,
+        IReadOnlyDictionary<string, object> modificationInfo,
+        bool useSyetemUpdate
+    );
 
     void SuspendObject(ListItem listItemObject, string comment);
 
@@ -90,17 +91,19 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
         );
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(objectPath1.Id, "AddItem", requestPayload.CreateParameter(new ListItemCreationInfo()))
+            new ObjectPathMethod(
+                objectPath1.Id,
+                "AddItem",
+                requestPayload.CreateParameter(new ListItemCreationInfo())
+            )
         );
         var objectPath3 = requestPayload.Add(objectPath2, [.. delegates]);
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<ListItem> AddObjectEnumerable(
-        List listObject,
-        IReadOnlyCollection<IReadOnlyDictionary<string, object>> creationInfos
-    )
+    public IEnumerable<ListItem> AddObjectEnumerable(List listObject, IReadOnlyCollection<IReadOnlyDictionary<string, object>> creationInfos)
     {
         _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
         _ = creationInfos ?? throw new ArgumentNullException(nameof(creationInfos));
@@ -140,7 +143,8 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
             );
             var objectPath3 = requestPayload.Add(objectPath2, [.. delegates]);
         }
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObjectEnumerable<ListItem>(requestPayload.GetActionIds<ClientActionQuery>());
     }
 
@@ -202,7 +206,8 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
                 Query = new ClientQuery(true, typeof(ListItem))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -219,7 +224,8 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
                 Query = new ClientQuery(true, typeof(ListItem))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -236,7 +242,8 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
                 Query = new ClientQuery(true, typeof(ListItem))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -266,7 +273,8 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
                 Query = new ClientQuery(true)
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -277,14 +285,19 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(objectPath1.Id, "GetItemById", requestPayload.CreateParameter(listItemId)),
+            new ObjectPathMethod(
+                objectPath1.Id,
+                "GetItemById",
+                requestPayload.CreateParameter(listItemId)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true)
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -295,14 +308,19 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(objectPath2.Id, "GetListItem", requestPayload.CreateParameter(listItemUrl)),
+            new ObjectPathMethod(
+                objectPath2.Id,
+                "GetListItem",
+                requestPayload.CreateParameter(listItemUrl)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true)
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -323,8 +341,7 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
                             new Dictionary<string, object>()
                             {
                                 {
-                                    "ViewXml",
-                                    "<View Scope=\"Recursive\"><RowLimit Paged=\"TRUE\">5000</RowLimit></View>"
+                                    "ViewXml", "<View Scope=\"Recursive\"><RowLimit Paged=\"TRUE\">5000</RowLimit></View>"
                                 },
                                 {
                                     "ListItemCollectionPosition", listItemCollectionPosition
@@ -340,7 +357,8 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
                     ChildItemQuery = new ClientQuery(true)
                 }
             );
-            var listItemEnumerable = this.ClientContext.ProcessQuery(requestPayload)
+            var listItemEnumerable = this
+                .ClientContext.ProcessQuery(requestPayload)
                 .ToObject<ListItemEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
             foreach (var listItem in listItemEnumerable)
             {
@@ -369,7 +387,8 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
                 ChildItemQuery = new ClientQuery(true)
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ListItemEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -377,11 +396,9 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
     {
         _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(listItemObject.ObjectIdentity),
-            objectPathId => new ClientActionMethod(objectPathId, "Recycle")
-        );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listItemObject.ObjectIdentity), objectPathId => new ClientActionMethod(objectPathId, "Recycle"));
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Guid>(requestPayload.GetActionId<ClientActionMethod>());
     }
 
@@ -396,7 +413,8 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(listItemObject.ObjectIdentity),
-            modificationInfo.Select(
+            modificationInfo
+                .Select(
                     parameter => new ClientActionDelegate(
                         objectPathId => new ClientActionMethod(
                             objectPathId,
@@ -406,9 +424,7 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
                         )
                     )
                 )
-                .Append(
-                    objectPathId => new ClientActionMethod(objectPathId, useSyetemUpdate ? "SystemUpdate" : "Update")
-                )
+                .Append(objectPathId => new ClientActionMethod(objectPathId, useSyetemUpdate ? "SystemUpdate" : "Update"))
                 .Where(item => item is not null)
         );
         _ = this.ClientContext.ProcessQuery(requestPayload);

@@ -43,22 +43,24 @@ public class AddAnonymousLinkCommand : ClientObjectCmdlet<ISharingLinkService>
             }
             else
             {
-                throw new InvalidOperationException(
-                    string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.Url)
-                );
+                throw new InvalidOperationException(string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.Url));
             }
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             if (this.Url.IsAbsoluteUri)
             {
-                this.Outputs.Add(this.Service.CreateAnonymousLink(this.Url, this.IsEditLink, this.Expiration));
+                this.Outputs.Add(
+                    this.Service.CreateAnonymousLink(
+                        this.Url,
+                        this.IsEditLink,
+                        this.Expiration
+                    )
+                );
             }
             else
             {
-                throw new InvalidOperationException(
-                    string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.Url)
-                );
+                throw new InvalidOperationException(string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.Url));
             }
         }
     }

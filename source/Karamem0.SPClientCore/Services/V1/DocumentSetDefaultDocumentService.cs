@@ -29,12 +29,15 @@ public interface IDocumentSetDefaultDocumentService
 
     IEnumerable<DefaultDocument> GetObjectEnumerable(ContentType documentContentTypeObject);
 
-    void RemoveObject(ContentType contentTypeObject, string fileName, bool pushChanges);
+    void RemoveObject(
+        ContentType contentTypeObject,
+        string fileName,
+        bool pushChanges
+    );
 
 }
 
-public class DocumentSetDefaultDocumentService(ClientContext clientContext)
-    : ClientService(clientContext), IDocumentSetDefaultDocumentService
+public class DocumentSetDefaultDocumentService(ClientContext clientContext) : ClientService(clientContext), IDocumentSetDefaultDocumentService
 {
 
     public DefaultDocument AddObject(
@@ -75,9 +78,14 @@ public class DocumentSetDefaultDocumentService(ClientContext clientContext)
         );
         var objectPath5 = requestPayload.Add(
             objectPath2,
-            objectPathId => new ClientActionMethod(objectPathId, "Update", requestPayload.CreateParameter(pushChanges))
+            objectPathId => new ClientActionMethod(
+                objectPathId,
+                "Update",
+                requestPayload.CreateParameter(pushChanges)
+            )
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<DefaultDocument>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -102,11 +110,16 @@ public class DocumentSetDefaultDocumentService(ClientContext clientContext)
                 ChildItemQuery = new ClientQuery(true, typeof(DefaultDocument))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<DefaultDocumentEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public void RemoveObject(ContentType contentTypeObject, string fileName, bool pushChanges)
+    public void RemoveObject(
+        ContentType contentTypeObject,
+        string fileName,
+        bool pushChanges
+    )
     {
         _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
         _ = fileName ?? throw new ArgumentNullException(nameof(fileName));
@@ -122,11 +135,19 @@ public class DocumentSetDefaultDocumentService(ClientContext clientContext)
         var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "DefaultDocuments"));
         var objectPath4 = requestPayload.Add(
             objectPath3,
-            objectPathId => new ClientActionMethod(objectPathId, "Remove", requestPayload.CreateParameter(fileName))
+            objectPathId => new ClientActionMethod(
+                objectPathId,
+                "Remove",
+                requestPayload.CreateParameter(fileName)
+            )
         );
         var objectPath5 = requestPayload.Add(
             objectPath2,
-            objectPathId => new ClientActionMethod(objectPathId, "Update", requestPayload.CreateParameter(pushChanges))
+            objectPathId => new ClientActionMethod(
+                objectPathId,
+                "Update",
+                requestPayload.CreateParameter(pushChanges)
+            )
         );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }

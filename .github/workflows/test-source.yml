@@ -25,7 +25,7 @@ jobs:
             -p:AltCover=true `
             -- NUnit.TestOutputXml=${{github.workspace}}/source/test
         env:
-          TARGET_FILE: source/Karamem0.SPClientCore.Tests/Karamem0.SPClientCore.Tests.csproj
+          TARGET_FILE: source/Karamem0.SPClientCore.Test/Karamem0.SPClientCore.Test.csproj
       - name: Upload test results
         uses: enricomi/publish-unit-test-result-action/linux@170bf24d20d201b842d7a52403b73ed297e6645b
         if: always()

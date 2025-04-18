@@ -88,10 +88,7 @@ public class ClientRequestPayload : ClientRequestObject
         }
     }
 
-    public IEnumerable<ClientActionDelegate> CreateSetPropertyDelegates(
-        Type objectType,
-        IReadOnlyDictionary<string, object> parameters
-    )
+    public IEnumerable<ClientActionDelegate> CreateSetPropertyDelegates(Type objectType, IReadOnlyDictionary<string, object> parameters)
     {
         foreach (var parameter in parameters)
         {
@@ -106,12 +103,8 @@ public class ClientRequestPayload : ClientRequestObject
                         yield return new ClientActionDelegate(
                             objectPathId => new ClientActionSetProperty(
                                 objectPathId,
-                                string.IsNullOrEmpty(propertyAttribute.PropertyName)
-                                    ? parameter.Key
-                                    : propertyAttribute.PropertyName,
-                                new ClientRequestParameterObjectPath(
-                                    this.Add(new ObjectPathIdentity(value.ObjectIdentity))
-                                )
+                                string.IsNullOrEmpty(propertyAttribute.PropertyName) ? parameter.Key : propertyAttribute.PropertyName,
+                                new ClientRequestParameterObjectPath(this.Add(new ObjectPathIdentity(value.ObjectIdentity)))
                             )
                         );
                     }
@@ -120,9 +113,7 @@ public class ClientRequestPayload : ClientRequestObject
                         yield return new ClientActionDelegate(
                             objectPathId => new ClientActionSetProperty(
                                 objectPathId,
-                                string.IsNullOrEmpty(propertyAttribute.PropertyName)
-                                    ? parameter.Key
-                                    : propertyAttribute.PropertyName,
+                                string.IsNullOrEmpty(propertyAttribute.PropertyName) ? parameter.Key : propertyAttribute.PropertyName,
                                 this.CreateParameter(parameter.Value)
                             )
                         );
@@ -132,10 +123,7 @@ public class ClientRequestPayload : ClientRequestObject
         }
     }
 
-    public IEnumerable<ClientActionDelegate> CreateSetPropertyDelegates<T>(
-        T clientObject,
-        IReadOnlyDictionary<string, object> parameters
-    ) where T : ClientObject
+    public IEnumerable<ClientActionDelegate> CreateSetPropertyDelegates<T>(T clientObject, IReadOnlyDictionary<string, object> parameters) where T : ClientObject
     {
         var objectName = clientObject.ObjectType;
         var objectType = ClientObject.GetType(objectName);
@@ -144,12 +132,18 @@ public class ClientRequestPayload : ClientRequestObject
 
     public long GetActionId<T>() where T : ClientAction
     {
-        return this.Actions.OfType<T>().Select(action => action.Id).LastOrDefault();
+        return this
+            .Actions.OfType<T>()
+            .Select(action => action.Id)
+            .LastOrDefault();
     }
 
     public IEnumerable<long> GetActionIds<T>() where T : ClientAction
     {
-        return this.Actions.OfType<T>().Select(action => action.Id).ToArray();
+        return this
+            .Actions.OfType<T>()
+            .Select(action => action.Id)
+            .ToArray();
     }
 
 }

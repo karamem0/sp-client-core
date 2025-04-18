@@ -21,7 +21,11 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ISiteCollectionAppService
 {
 
-    App AddObject(System.IO.Stream appContent, string appName, bool overwrite);
+    App AddObject(
+        System.IO.Stream appContent,
+        string appName,
+        bool overwrite
+    );
 
     App GetObject(App appObject);
 
@@ -41,20 +45,32 @@ public interface ISiteCollectionAppService
 
 }
 
-public class SiteCollectionAppService(ClientContext clientContext)
-    : ClientService(clientContext), ISiteCollectionAppService
+public class SiteCollectionAppService(ClientContext clientContext) : ClientService(clientContext), ISiteCollectionAppService
 {
 
-    public App AddObject(System.IO.Stream appContent, string appName, bool overwrite)
+    public App AddObject(
+        System.IO.Stream appContent,
+        string appName,
+        bool overwrite
+    )
     {
         _ = appContent ?? throw new ArgumentNullException(nameof(appContent));
         _ = appName ?? throw new ArgumentNullException(nameof(appName));
-        var requestUrl = this.ClientContext.BaseAddress
-            .ConcatPath("_api/web/sitecollectionappcatalog/add(url='{0}',overwrite={1})", appName, overwrite)
+        var requestUrl = this
+            .ClientContext.BaseAddress.ConcatPath(
+                "_api/web/sitecollectionappcatalog/add(url='{0}',overwrite={1})",
+                appName,
+                overwrite
+            )
             .ConcatQuery("$expand=ListItemAllFields&$select=ListItemAllFields/UniqueId");
         var file = this.ClientContext.PostStream<ODataV1Object>(requestUrl, appContent);
         var item = file["ListItemAllFields"] as JToken;
-        return this.GetObject(new Guid(item["UniqueId"].ToString()));
+        return this.GetObject(
+            new Guid(
+                item["UniqueId"]
+                    .ToString()
+            )
+        );
     }
 
     public App GetObject(App appObject)
@@ -66,15 +82,16 @@ public class SiteCollectionAppService(ClientContext clientContext)
     public App GetObject(Guid? appId)
     {
         _ = appId ?? throw new ArgumentNullException(nameof(appId));
-        var requestUrl = this.ClientContext.BaseAddress
-            .ConcatPath("_api/web/sitecollectionappcatalog/availableapps/getbyid('{0}')", appId)
+        var requestUrl = this
+            .ClientContext.BaseAddress.ConcatPath("_api/web/sitecollectionappcatalog/availableapps/getbyid('{0}')", appId)
             .ConcatQuery(ODataQuery.CreateSelect<App>());
         return this.ClientContext.GetObject<App>(requestUrl);
     }
 
     public IEnumerable<App> GetObjectEnumerable()
     {
-        var requestUrl = this.ClientContext.BaseAddress.ConcatPath("_api/web/sitecollectionappcatalog/availableapps")
+        var requestUrl = this
+            .ClientContext.BaseAddress.ConcatPath("_api/web/sitecollectionappcatalog/availableapps")
             .ConcatQuery(ODataQuery.CreateSelect<App>());
         return this.ClientContext.GetObject<ODataV1ObjectEnumerable<App>>(requestUrl);
     }
@@ -82,50 +99,35 @@ public class SiteCollectionAppService(ClientContext clientContext)
     public void InstallObject(App appObject)
     {
         _ = appObject ?? throw new ArgumentNullException(nameof(appObject));
-        var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
-            "_api/web/sitecollectionappcatalog/availableapps/getbyid('{0}')/install",
-            appObject.Id
-        );
+        var requestUrl = this.ClientContext.BaseAddress.ConcatPath("_api/web/sitecollectionappcatalog/availableapps/getbyid('{0}')/install", appObject.Id);
         this.ClientContext.PostObject(requestUrl, null);
     }
 
     public void PublishObject(App appObject)
     {
         _ = appObject ?? throw new ArgumentNullException(nameof(appObject));
-        var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
-            "_api/web/sitecollectionappcatalog/availableapps/getbyid('{0}')/deploy",
-            appObject.Id
-        );
+        var requestUrl = this.ClientContext.BaseAddress.ConcatPath("_api/web/sitecollectionappcatalog/availableapps/getbyid('{0}')/deploy", appObject.Id);
         this.ClientContext.PostObject(requestUrl, null);
     }
 
     public void RemoveObject(App appObject)
     {
         _ = appObject ?? throw new ArgumentNullException(nameof(appObject));
-        var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
-            "_api/web/sitecollectionappcatalog/availableapps/getbyid('{0}')/remove",
-            appObject.Id
-        );
+        var requestUrl = this.ClientContext.BaseAddress.ConcatPath("_api/web/sitecollectionappcatalog/availableapps/getbyid('{0}')/remove", appObject.Id);
         this.ClientContext.PostObject(requestUrl, null);
     }
 
     public void UninstallObject(App appObject)
     {
         _ = appObject ?? throw new ArgumentNullException(nameof(appObject));
-        var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
-            "_api/web/sitecollectionappcatalog/availableapps/getbyid('{0}')/uninstall",
-            appObject.Id
-        );
+        var requestUrl = this.ClientContext.BaseAddress.ConcatPath("_api/web/sitecollectionappcatalog/availableapps/getbyid('{0}')/uninstall", appObject.Id);
         this.ClientContext.PostObject(requestUrl, null);
     }
 
     public void UnpublishObject(App appObject)
     {
         _ = appObject ?? throw new ArgumentNullException(nameof(appObject));
-        var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
-            "_api/web/sitecollectionappcatalog/availableapps/getbyid('{0}')/deploy",
-            appObject.Id
-        );
+        var requestUrl = this.ClientContext.BaseAddress.ConcatPath("_api/web/sitecollectionappcatalog/availableapps/getbyid('{0}')/deploy", appObject.Id);
         this.ClientContext.PostObject(requestUrl, null);
     }
 

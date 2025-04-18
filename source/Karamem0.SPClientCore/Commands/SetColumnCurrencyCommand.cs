@@ -22,7 +22,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class SetColumnCurrencyCommand : ClientObjectCmdlet<IColumnService>
 {
 
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true
+    )]
     public Column Identity { get; private set; }
 
     [Parameter(Mandatory = false)]
@@ -108,7 +112,11 @@ public class SetColumnCurrencyCommand : ClientObjectCmdlet<IColumnService>
 
     protected override void ProcessRecordCore()
     {
-        this.Service.SetObject(this.Identity, this.MyInvocation.BoundParameters, this.PushChanges);
+        this.Service.SetObject(
+            this.Identity,
+            this.MyInvocation.BoundParameters,
+            this.PushChanges
+        );
         if (this.PassThru)
         {
             this.Outputs.Add(this.Service.GetObject(this.Identity));

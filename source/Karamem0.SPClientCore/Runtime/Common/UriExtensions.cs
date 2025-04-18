@@ -20,19 +20,32 @@ public static class UriExtensions
     {
         _ = uri ?? throw new ArgumentNullException(nameof(uri));
         _ = path ?? throw new ArgumentNullException(nameof(path));
-        var str1 = uri.ToString().TrimEnd('/');
+        var str1 = uri
+            .ToString()
+            .TrimEnd('/');
         var str2 = path.Trim('/');
         var slash = uri.OriginalString.EndsWith('/') ? "/" : "";
         return new Uri($"{str1}/{str2}{slash}", UriKind.RelativeOrAbsolute);
     }
 
-    public static Uri ConcatPath(this Uri uri, string path, params object[] args)
+    public static Uri ConcatPath(
+        this Uri uri,
+        string path,
+        params object[] args
+    )
     {
         return uri.ConcatPath(
             string.Format(
                 path,
-                args.Select(obj => obj ?? "")
-                    .Select(obj => obj is bool ? obj.ToString().ToLower() : obj.ToString())
+                args
+                    .Select(obj => obj ?? "")
+                    .Select(
+                        obj => obj is bool
+                            ? obj
+                                .ToString()
+                                .ToLower()
+                            : obj.ToString()
+                    )
                     .Select(Uri.EscapeDataString)
                     .ToArray()
             )

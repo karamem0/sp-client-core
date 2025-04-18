@@ -31,8 +31,7 @@ public interface ISiteCollectionAppCatalogService
 
 }
 
-public class SiteCollectionAppCatalogService(ClientContext clientContext)
-    : ClientService<SiteCollectionAppCatalog>(clientContext), ISiteCollectionAppCatalogService
+public class SiteCollectionAppCatalogService(ClientContext clientContext) : ClientService<SiteCollectionAppCatalog>(clientContext), ISiteCollectionAppCatalogService
 {
 
     public void AddObject(Uri siteCollectionUrl)
@@ -69,7 +68,8 @@ public class SiteCollectionAppCatalogService(ClientContext clientContext)
                 ChildItemQuery = new ClientQuery(true, typeof(SiteCollectionAppCatalog))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<SiteCollectionAppCatalogEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 

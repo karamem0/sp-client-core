@@ -15,10 +15,7 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
-[ClientObject(
-    Name = "Microsoft.Online.SharePoint.TenantAdministration.SPOSitePropertiesEnumerableFilter",
-    Id = "{b92aeee2-c92c-4b67-abcc-024e471bc140}"
-)]
+[ClientObject(Name = "Microsoft.Online.SharePoint.TenantAdministration.SPOSitePropertiesEnumerableFilter", Id = "{b92aeee2-c92c-4b67-abcc-024e471bc140}")]
 [JsonObject()]
 public class TenantSiteCollectionFilter : ClientValueObject
 {

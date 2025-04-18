@@ -19,7 +19,11 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IRoleAssignmentService
 {
 
-    void BreakObjectInheritance(SecurableObject securableObject, bool copyRoleAssignments, bool clearSubscopes);
+    void BreakObjectInheritance(
+        SecurableObject securableObject,
+        bool copyRoleAssignments,
+        bool clearSubscopes
+    );
 
     RoleAssignment AddObject(
         SecurableObject securableObject,
@@ -39,11 +43,14 @@ public interface IRoleAssignmentService
 
 }
 
-public class RoleAssignmentService(ClientContext clientContext)
-    : ClientService<RoleAssignment>(clientContext), IRoleAssignmentService
+public class RoleAssignmentService(ClientContext clientContext) : ClientService<RoleAssignment>(clientContext), IRoleAssignmentService
 {
 
-    public void BreakObjectInheritance(SecurableObject securableObject, bool copyRoleAssignments, bool clearSubscopes)
+    public void BreakObjectInheritance(
+        SecurableObject securableObject,
+        bool copyRoleAssignments,
+        bool clearSubscopes
+    )
     {
         _ = securableObject ?? throw new ArgumentNullException(nameof(securableObject));
         var requestPayload = new ClientRequestPayload();
@@ -92,7 +99,8 @@ public class RoleAssignmentService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(RoleAssignment))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<RoleAssignment>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -110,7 +118,8 @@ public class RoleAssignmentService(ClientContext clientContext)
                 ChildItemQuery = new ClientQuery(true, typeof(RoleAssignment))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<RoleAssignmentEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -122,14 +131,19 @@ public class RoleAssignmentService(ClientContext clientContext)
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(securableObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "RoleAssignments"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(objectPath2.Id, "GetByPrincipalId", requestPayload.CreateParameter(principalId)),
+            new ObjectPathMethod(
+                objectPath2.Id,
+                "GetByPrincipalId",
+                requestPayload.CreateParameter(principalId)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(RoleAssignment))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<RoleAssignment>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -137,10 +151,7 @@ public class RoleAssignmentService(ClientContext clientContext)
     {
         _ = securableObject ?? throw new ArgumentNullException(nameof(securableObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(securableObject.ObjectIdentity),
-            objectPathId => new ClientActionMethod(objectPathId, "ResetRoleInheritance")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(securableObject.ObjectIdentity), objectPathId => new ClientActionMethod(objectPathId, "ResetRoleInheritance"));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

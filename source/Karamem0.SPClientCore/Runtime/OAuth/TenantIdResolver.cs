@@ -34,7 +34,10 @@ public class TenantIdResolver(Uri baseAddress)
             var requestUrl = this.baseAddress.ConcatPath("_vti_bin/client.svc");
             var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
             requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer");
-            var responseMessage = this.httpClient.SendAsync(requestMessage).GetAwaiter().GetResult();
+            var responseMessage = this
+                .httpClient.SendAsync(requestMessage)
+                .GetAwaiter()
+                .GetResult();
             var authHeaderValue = responseMessage.Headers.WwwAuthenticate.FirstOrDefault();
             if (authHeaderValue is not null)
             {

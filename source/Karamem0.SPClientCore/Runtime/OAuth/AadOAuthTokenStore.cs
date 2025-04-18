@@ -31,7 +31,9 @@ public static class AadOAuthTokenStore
     public static AadOAuthToken Get(Uri resource)
     {
         _ = resource ?? throw new ArgumentNullException(nameof(resource));
-        if (AadOAuthTokenDictionary.Load().TryGetValue(resource.GetAuthority(), out var oAuthToken))
+        if (AadOAuthTokenDictionary
+            .Load()
+            .TryGetValue(resource.GetAuthority(), out var oAuthToken))
         {
             return oAuthToken;
         }
@@ -50,7 +52,8 @@ public static class AadOAuthTokenStore
     {
         _ = tenantId ?? throw new ArgumentNullException(nameof(tenantId));
         var oAuthTokens = AadOAuthTokenDictionary.Load();
-        var resource = oAuthTokens.Where(
+        var resource = oAuthTokens
+            .Where(
                 oAuthToken =>
                 {
                     var accessToken = oAuthToken.Value.AccessToken;

@@ -30,10 +30,18 @@ public class GetAppInstanceCommand : ClientObjectCmdlet<IAppInstanceService>
     )]
     public AppInstance Identity { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet2"
+    )]
     public Guid AppInstanceId { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet3")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet3"
+    )]
     public Guid AppProductId { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]

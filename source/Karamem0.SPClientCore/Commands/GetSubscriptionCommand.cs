@@ -30,11 +30,23 @@ public class GetSubscriptionCommand : ClientObjectCmdlet<ISubscriptionService>
     )]
     public Subscription Identity { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet3")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet2"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet3"
+    )]
     public List List { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 1,
+        ParameterSetName = "ParamSet2"
+    )]
     public Guid SubscriptionId { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]

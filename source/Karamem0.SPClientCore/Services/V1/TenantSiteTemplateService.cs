@@ -25,8 +25,7 @@ public interface ITenantSiteTemplateService
 
 }
 
-public class TenantSiteTemplateService(ClientContext clientContext)
-    : ClientService(clientContext), ITenantSiteTemplateService
+public class TenantSiteTemplateService(ClientContext clientContext) : ClientService(clientContext), ITenantSiteTemplateService
 {
 
     public IEnumerable<TenantSiteTemplate> GetObjectEnumerable(uint? lcid, int? compatibilityLevel)
@@ -49,7 +48,8 @@ public class TenantSiteTemplateService(ClientContext clientContext)
                 ChildItemQuery = ClientQuery.Empty
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantSiteTemplateEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -66,7 +66,8 @@ public class TenantSiteTemplateService(ClientContext clientContext)
                 ChildItemQuery = ClientQuery.Empty
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantSiteTemplateEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 

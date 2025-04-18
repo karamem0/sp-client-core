@@ -27,7 +27,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class RemoveRoleAssignmentCommand : ClientObjectCmdlet<IRoleAssignmentService>
 {
 
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true
+    )]
     public RoleAssignment Identity { get; private set; }
 
     protected override void ProcessRecordCore()

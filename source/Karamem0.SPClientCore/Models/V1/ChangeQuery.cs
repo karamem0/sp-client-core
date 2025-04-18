@@ -46,17 +46,27 @@ public class ChangeQuery : ClientValueObject
                     break;
                 case "Objects":
                     var objects = (ChangeObjects)parameter.Value;
-                    foreach (var e in Enum.GetValues(typeof(ChangeObjects)).Cast<Enum>().Where(objects.HasFlag))
+                    foreach (var e in Enum
+                                 .GetValues(typeof(ChangeObjects))
+                                 .Cast<Enum>()
+                                 .Where(objects.HasFlag))
                     {
-                        var property = this.GetType().GetProperty(Enum.GetName(typeof(ChangeObjects), e), flags);
+                        var property = this
+                            .GetType()
+                            .GetProperty(Enum.GetName(typeof(ChangeObjects), e), flags);
                         property?.SetValue(this, true);
                     }
                     break;
                 case "Operations":
                     var operations = (ChangeOperations)parameter.Value;
-                    foreach (var e in Enum.GetValues(typeof(ChangeOperations)).Cast<Enum>().Where(operations.HasFlag))
+                    foreach (var e in Enum
+                                 .GetValues(typeof(ChangeOperations))
+                                 .Cast<Enum>()
+                                 .Where(operations.HasFlag))
                     {
-                        var property = this.GetType().GetProperty(Enum.GetName(typeof(ChangeOperations), e), flags);
+                        var property = this
+                            .GetType()
+                            .GetProperty(Enum.GetName(typeof(ChangeOperations), e), flags);
                         property?.SetValue(this, true);
                     }
                     break;

@@ -21,9 +21,11 @@ public static class ODataQuery
 
     public static string CreateSelect<T>() where T : ODataObject
     {
-        var properties = Enumerable.Repeat("*", 1)
+        var properties = Enumerable
+            .Repeat("*", 1)
             .Union(
-                typeof(T).GetProperties(BindingFlags.Instance | BindingFlags.Public)
+                typeof(T)
+                    .GetProperties(BindingFlags.Instance | BindingFlags.Public)
                     .Where(property => Attribute.IsDefined(property, typeof(JsonPropertyAttribute)))
                     .Where(
                         property =>
@@ -53,7 +55,8 @@ public static class ODataQuery
 
     public static string CreateExpand<T>() where T : ODataObject
     {
-        var properties = typeof(T).GetProperties(BindingFlags.Instance | BindingFlags.Public)
+        var properties = typeof(T)
+            .GetProperties(BindingFlags.Instance | BindingFlags.Public)
             .Where(property => Attribute.IsDefined(property, typeof(JsonPropertyAttribute)))
             .Where(property => property.PropertyType.IsSubclassOf(typeof(ODataObject)))
             .Select(property => property.Name);

@@ -22,11 +22,19 @@ public interface IFileService
 
     void ApproveObject(File fileObject, string comment);
 
-    void CheckInObject(File fileObject, string comment, CheckInType checkInType);
+    void CheckInObject(
+        File fileObject,
+        string comment,
+        CheckInType checkInType
+    );
 
     void CheckOutObject(File fileObject);
 
-    void CopyObject(File fileObject, Uri fileUrl, bool overwrite);
+    void CopyObject(
+        File fileObject,
+        Uri fileUrl,
+        bool overwrite
+    );
 
     void CopyObject(
         File fileObject,
@@ -57,7 +65,11 @@ public interface IFileService
 
     IEnumerable<File> GetObjectEnumerable(Folder folderObject);
 
-    void MoveObject(File fileObject, Uri fileUrl, MoveOperations fileMoveOperations);
+    void MoveObject(
+        File fileObject,
+        Uri fileUrl,
+        MoveOperations fileMoveOperations
+    );
 
     void MoveObject(
         File fileObject,
@@ -96,12 +108,20 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(fileObject.ObjectIdentity),
-            objectPathId => new ClientActionMethod(objectPathId, "Approve", requestPayload.CreateParameter(comment))
+            objectPathId => new ClientActionMethod(
+                objectPathId,
+                "Approve",
+                requestPayload.CreateParameter(comment)
+            )
         );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public void CheckInObject(File fileObject, string comment, CheckInType checkInType)
+    public void CheckInObject(
+        File fileObject,
+        string comment,
+        CheckInType checkInType
+    )
     {
         _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
         var requestPayload = new ClientRequestPayload();
@@ -121,14 +141,15 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
     {
         _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(fileObject.ObjectIdentity),
-            objectPathId => new ClientActionMethod(objectPathId, "CheckOut")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(fileObject.ObjectIdentity), objectPathId => new ClientActionMethod(objectPathId, "CheckOut"));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public void CopyObject(File fileObject, Uri fileUrl, bool overwrite)
+    public void CopyObject(
+        File fileObject,
+        Uri fileUrl,
+        bool overwrite
+    )
     {
         _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
         _ = fileUrl ?? throw new ArgumentNullException(nameof(fileUrl));
@@ -192,7 +213,8 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                 Query = new ClientQuery(true, typeof(File))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<File>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -202,7 +224,11 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(fileObject.ObjectIdentity),
-            objectPathId => new ClientActionMethod(objectPathId, "Deny", requestPayload.CreateParameter(comment))
+            objectPathId => new ClientActionMethod(
+                objectPathId,
+                "Deny",
+                requestPayload.CreateParameter(comment)
+            )
         );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
@@ -210,10 +236,7 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
     public System.IO.Stream DownloadObject(File fileObject)
     {
         _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
-        var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
-            "_api/web/getfilebyserverrelativeurl('{0}')/openbinarystream",
-            fileObject.ServerRelativeUrl
-        );
+        var requestUrl = this.ClientContext.BaseAddress.ConcatPath("_api/web/getfilebyserverrelativeurl('{0}')/openbinarystream", fileObject.ServerRelativeUrl);
         return this.ClientContext.GetStream(requestUrl);
     }
 
@@ -222,14 +245,22 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
         _ = fileVersionObject ?? throw new ArgumentNullException(nameof(fileVersionObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(string.Join(":", fileVersionObject.ObjectIdentity.Split(':').SkipLast(2))),
+            new ObjectPathIdentity(
+                string.Join(
+                    ":",
+                    fileVersionObject
+                        .ObjectIdentity.Split(':')
+                        .SkipLast(2)
+                )
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(File))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<File>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -240,14 +271,19 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(objectPath2.Id, "GetFileById", requestPayload.CreateParameter(appObject.Id)),
+            new ObjectPathMethod(
+                objectPath2.Id,
+                "GetFileById",
+                requestPayload.CreateParameter(appObject.Id)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(File))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<File>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -264,7 +300,8 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                 Query = new ClientQuery(true, typeof(File))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<File>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -275,14 +312,19 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(objectPath2.Id, "GetFileById", requestPayload.CreateParameter(fileId)),
+            new ObjectPathMethod(
+                objectPath2.Id,
+                "GetFileById",
+                requestPayload.CreateParameter(fileId)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(File))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<File>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -293,14 +335,19 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(objectPath2.Id, "GetFileByServerRelativeUrl", requestPayload.CreateParameter(fileUrl)),
+            new ObjectPathMethod(
+                objectPath2.Id,
+                "GetFileByServerRelativeUrl",
+                requestPayload.CreateParameter(fileUrl)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(File))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<File>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -312,14 +359,19 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Files"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(objectPath2.Id, "GetByUrl", requestPayload.CreateParameter(fileName)),
+            new ObjectPathMethod(
+                objectPath2.Id,
+                "GetByUrl",
+                requestPayload.CreateParameter(fileName)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(File))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<File>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -337,11 +389,16 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                 ChildItemQuery = new ClientQuery(true, typeof(File))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<FileEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public void MoveObject(File fileObject, Uri fileUrl, MoveOperations fileMoveOperations)
+    public void MoveObject(
+        File fileObject,
+        Uri fileUrl,
+        MoveOperations fileMoveOperations
+    )
     {
         _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
         _ = fileUrl ?? throw new ArgumentNullException(nameof(fileUrl));
@@ -392,7 +449,11 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(fileObject.ObjectIdentity),
-            objectPathId => new ClientActionMethod(objectPathId, "Publish", requestPayload.CreateParameter(comment))
+            objectPathId => new ClientActionMethod(
+                objectPathId,
+                "Publish",
+                requestPayload.CreateParameter(comment)
+            )
         );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
@@ -401,11 +462,9 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
     {
         _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(fileObject.ObjectIdentity),
-            objectPathId => new ClientActionMethod(objectPathId, "Recycle")
-        );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(fileObject.ObjectIdentity), objectPathId => new ClientActionMethod(objectPathId, "Recycle"));
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Guid>(requestPayload.GetActionId<ClientActionMethod>());
     }
 
@@ -437,10 +496,7 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
     {
         _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(fileObject.ObjectIdentity),
-            objectPathId => new ClientActionMethod(objectPathId, "UndoCheckOut")
-        );
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(fileObject.ObjectIdentity), objectPathId => new ClientActionMethod(objectPathId, "UndoCheckOut"));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
@@ -450,7 +506,11 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(fileObject.ObjectIdentity),
-            objectPathId => new ClientActionMethod(objectPathId, "UnPublish", requestPayload.CreateParameter(comment))
+            objectPathId => new ClientActionMethod(
+                objectPathId,
+                "UnPublish",
+                requestPayload.CreateParameter(comment)
+            )
         );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
@@ -487,7 +547,11 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
             this.ClientContext.PostObject(requestUrl, null);
             var uploadId = Guid.NewGuid();
             var chunk = new byte[ClientConstants.ChunkSize];
-            var bytes = fileContent.Read(chunk, 0, chunk.Length);
+            var bytes = fileContent.Read(
+                chunk,
+                0,
+                chunk.Length
+            );
             if (bytes > 0)
             {
                 using (var stream = new System.IO.MemoryStream(chunk))
@@ -501,7 +565,12 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                     this.ClientContext.PostStream(requestUrl, stream);
                 }
                 var offset = bytes;
-                while ((bytes = fileContent.Read(chunk, 0, chunk.Length)) > 0)
+                while ((bytes = fileContent.Read(
+                           chunk,
+                           0,
+                           chunk.Length
+                       )) >
+                       0)
                 {
                     if (fileContent.Position < fileContent.Length)
                     {
@@ -518,7 +587,11 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                     else
                     {
                         var buffer = new byte[bytes];
-                        Array.Copy(chunk, buffer, buffer.Length);
+                        Array.Copy(
+                            chunk,
+                            buffer,
+                            buffer.Length
+                        );
                         using var stream = new System.IO.MemoryStream(buffer);
                         requestUrl = this.ClientContext.BaseAddress.ConcatPath(
                             "_api/web/getfilebyserverrelativeurl('{0}/{1}')/finishupload(uploadid='{2}',fileoffset={3})",

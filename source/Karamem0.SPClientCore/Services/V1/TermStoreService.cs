@@ -40,7 +40,8 @@ public class TermStoreService(ClientContext clientContext) : ClientService(clien
                 Query = new ClientQuery(true, typeof(TermStore))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TermStore>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -49,18 +50,14 @@ public class TermStoreService(ClientContext clientContext) : ClientService(clien
         _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession"));
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore"),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId)
-        );
+        var objectPath2 = requestPayload.Add(new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore"), objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
         var objectPath3 = requestPayload.Add(
             objectPath2,
-            requestPayload.CreateSetPropertyDelegates(typeof(TermStore), modificationInfo).ToArray()
+            requestPayload
+                .CreateSetPropertyDelegates(typeof(TermStore), modificationInfo)
+                .ToArray()
         );
-        var objectPath4 = requestPayload.Add(
-            objectPath2,
-            objectPathId => new ClientActionMethod(objectPathId, "CommitAll")
-        );
+        var objectPath4 = requestPayload.Add(objectPath2, objectPathId => new ClientActionMethod(objectPathId, "CommitAll"));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

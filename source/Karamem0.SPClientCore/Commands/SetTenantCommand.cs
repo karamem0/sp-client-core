@@ -18,7 +18,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
 [Cmdlet(VerbsCommon.Set, "KshTenant")]
-[OutputType(typeof(void))]
+[OutputType(typeof(Tenant))]
 public class SetTenantCommand : ClientObjectCmdlet<ITenantService>
 {
 

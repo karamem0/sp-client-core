@@ -33,7 +33,11 @@ public class AddDocumentSetSharedColumnCommand : ClientObjectCmdlet<IDocumentSet
 
     protected override void ProcessRecordCore()
     {
-        this.Service.AddObject(this.ContentType, this.Column, this.PushChanges);
+        this.Service.AddObject(
+            this.ContentType,
+            this.Column,
+            this.PushChanges
+        );
     }
 
 }
