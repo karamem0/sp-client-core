@@ -33,8 +33,7 @@ public interface ITenantSiteScriptService
 
 }
 
-public class TenantSiteScriptService(ClientContext clientContext)
-    : ClientService(clientContext), ITenantSiteScriptService
+public class TenantSiteScriptService(ClientContext clientContext) : ClientService(clientContext), ITenantSiteScriptService
 {
 
     public TenantSiteScript AddObject(IReadOnlyDictionary<string, object> creationInfo)
@@ -50,7 +49,8 @@ public class TenantSiteScriptService(ClientContext clientContext)
                 requestPayload.CreateParameter(ClientValueObject.Create<TenantSiteScriptCreationInfo>(creationInfo))
             )
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantSiteScript>(requestPayload.GetActionId<ClientActionMethod>());
     }
 
@@ -59,9 +59,14 @@ public class TenantSiteScriptService(ClientContext clientContext)
         _ = siteScriptId ?? throw new ArgumentNullException(nameof(siteScriptId));
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
-            new ClientActionStaticMethod(typeof(Tenant), "GetSiteScript", requestPayload.CreateParameter(siteScriptId))
+            new ClientActionStaticMethod(
+                typeof(Tenant),
+                "GetSiteScript",
+                requestPayload.CreateParameter(siteScriptId)
+            )
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantSiteScript>(requestPayload.GetActionId<ClientActionStaticMethod>());
     }
 
@@ -78,7 +83,8 @@ public class TenantSiteScriptService(ClientContext clientContext)
                 ChildItemQuery = new ClientQuery(true, typeof(TenantSiteScript))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantSiteScriptEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -109,7 +115,8 @@ public class TenantSiteScriptService(ClientContext clientContext)
                 requestPayload.CreateParameter(listUrl)
             )
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<string>(requestPayload.GetActionId<ClientActionStaticMethod>());
     }
 
@@ -125,12 +132,11 @@ public class TenantSiteScriptService(ClientContext clientContext)
                 objectPathId,
                 "GetSiteScriptFromSite",
                 requestPayload.CreateParameter(siteUrl),
-                requestPayload.CreateParameter(
-                    ClientValueObject.Create<TenantSiteScriptSerializationInfo>(serializationInfo)
-                )
+                requestPayload.CreateParameter(ClientValueObject.Create<TenantSiteScriptSerializationInfo>(serializationInfo))
             )
         );
-        var clientObject = this.ClientContext.ProcessQuery(requestPayload)
+        var clientObject = this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantSiteScriptSerializationResult>(requestPayload.GetActionId<ClientActionMethod>());
         if (clientObject.Warnings.Any())
         {

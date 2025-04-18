@@ -54,7 +54,10 @@ public class LikeService(ClientContext clientContext) : ClientService(clientCont
         _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/lists('{0}')/items({1})/likedby",
-            listItemObject.ObjectIdentity.Split(':').SkipLast(2).Last(),
+            listItemObject
+                .ObjectIdentity.Split(':')
+                .SkipLast(2)
+                .Last(),
             listItemObject.Id
         );
         return this.ClientContext.GetObject<ODataV1ObjectEnumerable<LikedUser>>(requestUrl);
@@ -77,7 +80,10 @@ public class LikeService(ClientContext clientContext) : ClientService(clientCont
         _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/lists('{0}')/items({1})/like",
-            listItemObject.ObjectIdentity.Split(':').SkipLast(2).Last(),
+            listItemObject
+                .ObjectIdentity.Split(':')
+                .SkipLast(2)
+                .Last(),
             listItemObject.Id
         );
         this.ClientContext.PostObject(requestUrl, null);
@@ -100,7 +106,10 @@ public class LikeService(ClientContext clientContext) : ClientService(clientCont
         _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/lists('{0}')/items({1})/unlike",
-            listItemObject.ObjectIdentity.Split(':').SkipLast(2).Last(),
+            listItemObject
+                .ObjectIdentity.Split(':')
+                .SkipLast(2)
+                .Last(),
             listItemObject.Id
         );
         this.ClientContext.PostObject(requestUrl, null);

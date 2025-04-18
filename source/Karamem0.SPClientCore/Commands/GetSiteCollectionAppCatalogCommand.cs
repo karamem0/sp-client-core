@@ -31,13 +31,25 @@ public class GetSiteCollectionAppCatalogCommand : ClientObjectCmdlet<ISiteCollec
     )]
     public SiteCollectionAppCatalog Identity { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet2"
+    )]
     public SiteCollection SiteCollection { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet3")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet3"
+    )]
     public Uri SiteCollectionUrl { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet4")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet4"
+    )]
     public Guid SiteCollectionId { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -57,7 +69,8 @@ public class GetSiteCollectionAppCatalogCommand : ClientObjectCmdlet<ISiteCollec
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(
-                    this.Service.GetObjectEnumerable()
+                    this
+                        .Service.GetObjectEnumerable()
                         .Where(obj => obj.SiteCollectionId == this.SiteCollection.Id)
                         .ToArray()
                 );
@@ -65,7 +78,8 @@ public class GetSiteCollectionAppCatalogCommand : ClientObjectCmdlet<ISiteCollec
             else
             {
                 this.Outputs.AddRange(
-                    this.Service.GetObjectEnumerable()
+                    this
+                        .Service.GetObjectEnumerable()
                         .Where(obj => obj.SiteCollectionId == this.SiteCollection.Id)
                         .ToArray()
                 );
@@ -78,7 +92,8 @@ public class GetSiteCollectionAppCatalogCommand : ClientObjectCmdlet<ISiteCollec
                 if (this.NoEnumerate)
                 {
                     this.Outputs.Add(
-                        this.Service.GetObjectEnumerable()
+                        this
+                            .Service.GetObjectEnumerable()
                             .Where(obj => obj.AbsoluteUrl == this.SiteCollectionUrl.ToString())
                             .ToArray()
                     );
@@ -86,7 +101,8 @@ public class GetSiteCollectionAppCatalogCommand : ClientObjectCmdlet<ISiteCollec
                 else
                 {
                     this.Outputs.AddRange(
-                        this.Service.GetObjectEnumerable()
+                        this
+                            .Service.GetObjectEnumerable()
                             .Where(obj => obj.AbsoluteUrl == this.SiteCollectionUrl.ToString())
                             .ToArray()
                     );
@@ -94,9 +110,7 @@ public class GetSiteCollectionAppCatalogCommand : ClientObjectCmdlet<ISiteCollec
             }
             else
             {
-                throw new InvalidOperationException(
-                    string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.SiteCollectionUrl)
-                );
+                throw new InvalidOperationException(string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.SiteCollectionUrl));
             }
         }
         if (this.ParameterSetName == "ParamSet4")
@@ -104,7 +118,8 @@ public class GetSiteCollectionAppCatalogCommand : ClientObjectCmdlet<ISiteCollec
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(
-                    this.Service.GetObjectEnumerable()
+                    this
+                        .Service.GetObjectEnumerable()
                         .Where(obj => obj.SiteCollectionId == this.SiteCollectionId)
                         .ToArray()
                 );
@@ -112,7 +127,8 @@ public class GetSiteCollectionAppCatalogCommand : ClientObjectCmdlet<ISiteCollec
             else
             {
                 this.Outputs.AddRange(
-                    this.Service.GetObjectEnumerable()
+                    this
+                        .Service.GetObjectEnumerable()
                         .Where(obj => obj.SiteCollectionId == this.SiteCollectionId)
                         .ToArray()
                 );

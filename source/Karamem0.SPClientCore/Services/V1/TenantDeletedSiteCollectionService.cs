@@ -35,8 +35,7 @@ public interface ITenantDeletedSiteCollectionService
 
 }
 
-public class TenantDeletedSiteCollectionService(ClientContext clientContext)
-    : TenantClientService(clientContext), ITenantDeletedSiteCollectionService
+public class TenantDeletedSiteCollectionService(ClientContext clientContext) : TenantClientService(clientContext), ITenantDeletedSiteCollectionService
 {
 
     public TenantDeletedSiteCollection GetObject(TenantDeletedSiteCollection siteCollectionObject)
@@ -51,7 +50,8 @@ public class TenantDeletedSiteCollectionService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(TenantDeletedSiteCollection))
             }
         );
-        var clientObject = this.ClientContext.ProcessQuery(requestPayload)
+        var clientObject = this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantDeletedSiteCollection>(requestPayload.GetActionId<ClientActionQuery>());
         return this.GetObject(new Uri(clientObject.Url, UriKind.Absolute));
     }
@@ -74,7 +74,8 @@ public class TenantDeletedSiteCollectionService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(TenantDeletedSiteCollection))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantDeletedSiteCollection>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -95,7 +96,8 @@ public class TenantDeletedSiteCollectionService(ClientContext clientContext)
                 ChildItemQuery = new ClientQuery(true, typeof(TenantDeletedSiteCollection))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantDeletedSiteCollectionsEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -117,7 +119,8 @@ public class TenantDeletedSiteCollectionService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(TenantOperationResult))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -145,7 +148,8 @@ public class TenantDeletedSiteCollectionService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(TenantOperationResult))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
     }
 

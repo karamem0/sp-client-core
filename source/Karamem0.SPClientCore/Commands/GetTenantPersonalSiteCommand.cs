@@ -22,10 +22,18 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetTenantPersonalSiteCommand : ClientObjectCmdlet<ITenantPersonalSiteService>
 {
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet1"
+    )]
     public User User { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet2"
+    )]
     public string UserId { get; private set; }
 
     protected override void ProcessRecordCore()

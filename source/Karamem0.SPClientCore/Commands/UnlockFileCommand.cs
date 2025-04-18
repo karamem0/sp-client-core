@@ -53,7 +53,11 @@ public class UnlockFileCommand : ClientObjectCmdlet<IFileService>
     {
         if (this.ParameterSetName == "ParamSet1")
         {
-            this.Service.CheckInObject(this.Identity, this.Comment, this.CheckInType);
+            this.Service.CheckInObject(
+                this.Identity,
+                this.Comment,
+                this.CheckInType
+            );
             if (this.PassThru)
             {
                 this.Outputs.Add(this.Service.GetObject(this.Identity));

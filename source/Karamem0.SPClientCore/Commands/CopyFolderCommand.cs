@@ -23,7 +23,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class CopyFolderCommand : ClientObjectCmdlet<IFolderService>
 {
 
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true
+    )]
     public Folder Identity { get; private set; }
 
     [Parameter(Mandatory = true, Position = 1)]
@@ -45,7 +49,11 @@ public class CopyFolderCommand : ClientObjectCmdlet<IFolderService>
     {
         if (this.NewUrl.IsAbsoluteUri)
         {
-            this.Service.CopyObject(this.Identity, this.NewUrl, this.MyInvocation.BoundParameters);
+            this.Service.CopyObject(
+                this.Identity,
+                this.NewUrl,
+                this.MyInvocation.BoundParameters
+            );
         }
         else
         {

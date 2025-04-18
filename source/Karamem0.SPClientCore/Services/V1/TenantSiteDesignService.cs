@@ -29,8 +29,7 @@ public interface ITenantSiteDesignService
 
 }
 
-public class TenantSiteDesignService(ClientContext clientContext)
-    : ClientService(clientContext), ITenantSiteDesignService
+public class TenantSiteDesignService(ClientContext clientContext) : ClientService(clientContext), ITenantSiteDesignService
 {
 
     public TenantSiteDesign AddObject(IReadOnlyDictionary<string, object> creationInfo)
@@ -50,7 +49,8 @@ public class TenantSiteDesignService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(TenantSiteDesign))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantSiteDesign>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -59,9 +59,14 @@ public class TenantSiteDesignService(ClientContext clientContext)
         _ = siteDesignId ?? throw new ArgumentNullException(nameof(siteDesignId));
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
-            new ClientActionStaticMethod(typeof(Tenant), "GetSiteDesign", requestPayload.CreateParameter(siteDesignId))
+            new ClientActionStaticMethod(
+                typeof(Tenant),
+                "GetSiteDesign",
+                requestPayload.CreateParameter(siteDesignId)
+            )
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantSiteDesign>(requestPayload.GetActionId<ClientActionStaticMethod>());
     }
 
@@ -78,7 +83,8 @@ public class TenantSiteDesignService(ClientContext clientContext)
                 ChildItemQuery = new ClientQuery(true, typeof(TenantSiteDesign))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantSiteDesignEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 

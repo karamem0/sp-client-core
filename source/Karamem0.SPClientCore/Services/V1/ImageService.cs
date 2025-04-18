@@ -20,22 +20,34 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IImageService
 {
 
-    ImageItem UploadObject(List listObject, string fileName, System.IO.Stream fileContent);
+    ImageItem UploadObject(
+        List listObject,
+        string fileName,
+        System.IO.Stream fileContent
+    );
 
-    ImageItem UploadObject(ListItem listItemObject, string fileName, System.IO.Stream fileContent);
+    ImageItem UploadObject(
+        ListItem listItemObject,
+        string fileName,
+        System.IO.Stream fileContent
+    );
 
 }
 
 public class ImageService(ClientContext clientContext) : ClientService(clientContext), IImageService
 {
 
-    public ImageItem UploadObject(List listObject, string fileName, System.IO.Stream fileContent)
+    public ImageItem UploadObject(
+        List listObject,
+        string fileName,
+        System.IO.Stream fileContent
+    )
     {
         _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
         _ = fileName ?? throw new ArgumentNullException(nameof(fileName));
         _ = fileContent ?? throw new ArgumentNullException(nameof(fileContent));
-        var requestUrl = this.ClientContext.BaseAddress
-            .ConcatPath("_api/web/uploadimage(listtitle=@v1,imagename=@v2,listid=@v3,itemid=@v4)")
+        var requestUrl = this
+            .ClientContext.BaseAddress.ConcatPath("_api/web/uploadimage(listtitle=@v1,imagename=@v2,listid=@v3,itemid=@v4)")
             .ConcatQuery(
                 UriQuery.Create(
                     new Dictionary<string, object>()
@@ -56,11 +68,16 @@ public class ImageService(ClientContext clientContext) : ClientService(clientCon
                     true
                 )
             );
-        return this.ClientContext.PostStream<ODataV1MethodReturnValue>(requestUrl, fileContent)
+        return this
+            .ClientContext.PostStream<ODataV1MethodReturnValue>(requestUrl, fileContent)
             .GetValue<ImageItem>("UploadImage");
     }
 
-    public ImageItem UploadObject(ListItem listItemObject, string fileName, System.IO.Stream fileContent)
+    public ImageItem UploadObject(
+        ListItem listItemObject,
+        string fileName,
+        System.IO.Stream fileContent
+    )
     {
         _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
         _ = fileName ?? throw new ArgumentNullException(nameof(fileName));
@@ -75,10 +92,11 @@ public class ImageService(ClientContext clientContext) : ClientService(clientCon
                 Query = new ClientQuery(true)
             }
         );
-        var listObject = this.ClientContext.ProcessQuery(requestPayload)
+        var listObject = this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
-        var requestUrl = this.ClientContext.BaseAddress
-            .ConcatPath("_api/web/uploadimage(listtitle=@v1,imagename=@v2,listid=@v3,itemid=@v4)")
+        var requestUrl = this
+            .ClientContext.BaseAddress.ConcatPath("_api/web/uploadimage(listtitle=@v1,imagename=@v2,listid=@v3,itemid=@v4)")
             .ConcatQuery(
                 UriQuery.Create(
                     new Dictionary<string, object>()
@@ -99,7 +117,8 @@ public class ImageService(ClientContext clientContext) : ClientService(clientCon
                     true
                 )
             );
-        return this.ClientContext.PostStream<ODataV1MethodReturnValue>(requestUrl, fileContent)
+        return this
+            .ClientContext.PostStream<ODataV1MethodReturnValue>(requestUrl, fileContent)
             .GetValue<ImageItem>("UploadImage");
     }
 

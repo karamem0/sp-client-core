@@ -25,10 +25,7 @@ public class ClientRequestValue
         {
             return output;
         }
-        throw new ArgumentException(
-            string.Format(StringResources.ErrorValueIsInvalid, input.ToString()),
-            nameof(input)
-        );
+        throw new ArgumentException(string.Format(StringResources.ErrorValueIsInvalid, input.ToString()), nameof(input));
     }
 
     public static bool TryCreate(object input, out ClientRequestValue output)
@@ -46,14 +43,18 @@ public class ClientRequestValue
                 output = new ClientRequestValue()
                 {
                     Type = "Enum",
-                    Value = Convert.ToInt32(input).ToString(CultureInfo.InvariantCulture)
+                    Value = Convert
+                        .ToInt32(input)
+                        .ToString(CultureInfo.InvariantCulture)
                 };
                 return true;
             case bool boolValue:
                 output = new ClientRequestValue()
                 {
                     Type = "Boolean",
-                    Value = boolValue.ToString().ToLower()
+                    Value = boolValue
+                        .ToString()
+                        .ToLower()
                 };
                 return true;
             case byte byteValue:
@@ -179,7 +180,10 @@ public class ClientRequestValue
                 output = new ClientRequestValue()
                 {
                     Type = "Boolean",
-                    Value = switchValue.ToBool().ToString().ToLower()
+                    Value = switchValue
+                        .ToBool()
+                        .ToString()
+                        .ToLower()
                 };
                 return true;
             case ODataObject oDataValue:

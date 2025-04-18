@@ -30,7 +30,11 @@ public class GetSiteCollectionAppCommand : ClientObjectCmdlet<ISiteCollectionApp
     )]
     public App Identity { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet2"
+    )]
     public Guid AppId { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]

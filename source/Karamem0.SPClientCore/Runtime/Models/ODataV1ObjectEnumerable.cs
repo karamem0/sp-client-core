@@ -32,7 +32,9 @@ public class ODataV1ObjectEnumerable<T>(T[] results = null) : ODataV1Object, IEn
     {
         if (this.Entries is null)
         {
-            return Enumerable.Empty<T>().GetEnumerator();
+            return Enumerable
+                .Empty<T>()
+                .GetEnumerator();
         }
         else
         {

@@ -40,7 +40,8 @@ public class DocumentLibraryService(ClientContext clientContext) : ClientService
                 requestPayload.CreateParameter(this.ClientContext.BaseAddress)
             )
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<DocumentLibraryInfo>(requestPayload.GetActionId<ClientActionStaticMethod>());
     }
 
@@ -54,7 +55,8 @@ public class DocumentLibraryService(ClientContext clientContext) : ClientService
                 requestPayload.CreateParameter(this.ClientContext.BaseAddress)
             )
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<List<DocumentLibraryInfo>>(requestPayload.GetActionId<ClientActionStaticMethod>());
     }
 
@@ -69,7 +71,8 @@ public class DocumentLibraryService(ClientContext clientContext) : ClientService
                 requestPayload.CreateParameter(includePageLibraries)
             )
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<List<DocumentLibraryInfo>>(requestPayload.GetActionId<ClientActionStaticMethod>());
     }
 

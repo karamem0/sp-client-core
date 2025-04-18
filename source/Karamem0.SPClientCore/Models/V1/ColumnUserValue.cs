@@ -24,7 +24,11 @@ public class ColumnUserValue : ClientValueObject
     {
     }
 
-    public ColumnUserValue(int lookupId, string lookupValue, string email)
+    public ColumnUserValue(
+        int lookupId,
+        string lookupValue,
+        string email
+    )
     {
         this.LookupId = lookupId;
         this.LookupValue = lookupValue;

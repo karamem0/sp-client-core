@@ -31,7 +31,9 @@ public abstract class ClientObjectEnumerable<T> : ClientObject, IEnumerable<T>
     {
         if (this.Entries is null)
         {
-            return Enumerable.Empty<T>().GetEnumerator();
+            return Enumerable
+                .Empty<T>()
+                .GetEnumerator();
         }
         else
         {

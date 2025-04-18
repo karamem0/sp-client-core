@@ -22,7 +22,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class ConvertToLocalTimeCommand : ClientObjectCmdlet<IRegionalSettingsService>
 {
 
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true
+    )]
     public DateTime Value { get; private set; }
 
     protected override void ProcessRecordCore()

@@ -22,10 +22,18 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetTenantHubSiteCommand : ClientObjectCmdlet<ITenantHubSiteService>
 {
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet1"
+    )]
     public Guid HubSiteId { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet2"
+    )]
     public string HubSiteUrl { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]

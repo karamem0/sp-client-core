@@ -23,9 +23,7 @@ public class ClientQueryProperty(string name) : ClientRequestObject
     public static ClientQueryProperty Create(PropertyInfo propertyInfo, bool selectAllProperties)
     {
         var propertyAttribute = propertyInfo.GetCustomAttribute<JsonPropertyAttribute>();
-        var propertyName = string.IsNullOrEmpty(propertyAttribute.PropertyName)
-            ? propertyInfo.Name
-            : propertyAttribute.PropertyName;
+        var propertyName = string.IsNullOrEmpty(propertyAttribute.PropertyName) ? propertyInfo.Name : propertyAttribute.PropertyName;
         var propertyType = propertyInfo.PropertyType;
         if (propertyType.IsSubclassOf(typeof(ClientObject)))
         {

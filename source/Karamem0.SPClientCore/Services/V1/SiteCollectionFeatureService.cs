@@ -19,7 +19,11 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ISiteCollectionFeatureService
 {
 
-    void AddObject(Guid? featureId, bool force, FeatureDefinitionScope scope);
+    void AddObject(
+        Guid? featureId,
+        bool force,
+        FeatureDefinitionScope scope
+    );
 
     Feature GetObject(Feature featureObject);
 
@@ -31,11 +35,14 @@ public interface ISiteCollectionFeatureService
 
 }
 
-public class SiteCollectionFeatureService(ClientContext clientContext)
-    : ClientService<Feature>(clientContext), ISiteCollectionFeatureService
+public class SiteCollectionFeatureService(ClientContext clientContext) : ClientService<Feature>(clientContext), ISiteCollectionFeatureService
 {
 
-    public void AddObject(Guid? featureId, bool force, FeatureDefinitionScope scope)
+    public void AddObject(
+        Guid? featureId,
+        bool force,
+        FeatureDefinitionScope scope
+    )
     {
         _ = featureId ?? throw new ArgumentNullException(nameof(featureId));
         var requestPayload = new ClientRequestPayload();
@@ -63,14 +70,19 @@ public class SiteCollectionFeatureService(ClientContext clientContext)
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Site"));
         var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "Features"));
         var objectPath4 = requestPayload.Add(
-            new ObjectPathMethod(objectPath3.Id, "GetById", requestPayload.CreateParameter(featureId)),
+            new ObjectPathMethod(
+                objectPath3.Id,
+                "GetById",
+                requestPayload.CreateParameter(featureId)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(Feature))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Feature>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -88,7 +100,8 @@ public class SiteCollectionFeatureService(ClientContext clientContext)
                 ChildItemQuery = new ClientQuery(true, typeof(Feature))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<FeatureEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 

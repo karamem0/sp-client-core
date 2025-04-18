@@ -27,7 +27,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class RemoveSiteCollectionFeatureCommand : ClientObjectCmdlet<ISiteCollectionFeatureService>
 {
 
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true
+    )]
     public Feature Identity { get; private set; }
 
     [Parameter(Mandatory = false)]

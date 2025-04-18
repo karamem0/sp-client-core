@@ -71,7 +71,8 @@ public class BasePermission : ClientValueObject
                 yield return PermissionKind.EmptyMask;
                 yield break;
             }
-            foreach (var permission in Enum.GetValues(typeof(PermissionKind))
+            foreach (var permission in Enum
+                         .GetValues(typeof(PermissionKind))
                          .OfType<PermissionKind>()
                          .Where(value => value != PermissionKind.EmptyMask)
                          .Where(value => value != PermissionKind.FullMask))

@@ -122,7 +122,8 @@ public class ConnectSiteCommand : OAuthCmdlet
         }
         if (this.ParameterSetName == "ParamSet3")
         {
-            var certificatePath = this.SessionState.Path.GetResolvedPSPathFromPSPath(this.CertificatePath)[0];
+            var certificatePath = this
+                .SessionState.Path.GetResolvedPSPathFromPSPath(this.CertificatePath)[0];
             var certificateBytes = BinaryData.FromBytes(File.ReadAllBytes(Path.GetFullPath(certificatePath.Path)));
             this.Service.ConnectWithCertificate(
                 this.Authority,
@@ -134,9 +135,11 @@ public class ConnectSiteCommand : OAuthCmdlet
         }
         if (this.ParameterSetName == "ParamSet4")
         {
-            var certificatePath = this.SessionState.Path.GetResolvedPSPathFromPSPath(this.CertificatePath)[0];
+            var certificatePath = this
+                .SessionState.Path.GetResolvedPSPathFromPSPath(this.CertificatePath)[0];
             var certificateBytes = BinaryData.FromBytes(File.ReadAllBytes(Path.GetFullPath(certificatePath.Path)));
-            var privateKeyPath = this.SessionState.Path.GetResolvedPSPathFromPSPath(this.PrivateKeyPath)[0];
+            var privateKeyPath = this
+                .SessionState.Path.GetResolvedPSPathFromPSPath(this.PrivateKeyPath)[0];
             var privateKeyBytes = BinaryData.FromBytes(File.ReadAllBytes(Path.GetFullPath(privateKeyPath.Path)));
             this.Service.ConnectWithCertificate(
                 this.Authority,
@@ -149,11 +152,19 @@ public class ConnectSiteCommand : OAuthCmdlet
         if (this.ParameterSetName == "ParamSet5")
         {
             this.ValidateSwitchParameter(nameof(this.Cached));
-            this.Service.ConnectWithCache(this.Authority, this.ClientId, this.Url);
+            this.Service.ConnectWithCache(
+                this.Authority,
+                this.ClientId,
+                this.Url
+            );
         }
         if (this.ParameterSetName == "ParamSet6")
         {
-            this.Service.ConnectWithClientSecret(this.ClientId, this.ClientSecret, this.Url);
+            this.Service.ConnectWithClientSecret(
+                this.ClientId,
+                this.ClientSecret,
+                this.Url
+            );
         }
     }
 

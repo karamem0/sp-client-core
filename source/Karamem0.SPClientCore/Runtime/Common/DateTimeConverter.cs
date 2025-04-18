@@ -30,10 +30,7 @@ public static class DateTimeConverter
             result = dateTime;
             return true;
         }
-        var match = Regex.Match(
-            input,
-            "^/Date\\((\\d{1,4}),(\\d{1,2}),(\\d{1,2}),(\\d{1,2}),(\\d{1,2}),(\\d{1,2}),(\\d{1,3})\\)/$"
-        );
+        var match = Regex.Match(input, "^/Date\\((\\d{1,4}),(\\d{1,2}),(\\d{1,2}),(\\d{1,2}),(\\d{1,2}),(\\d{1,2}),(\\d{1,3})\\)/$");
         if (match.Success)
         {
             result = new DateTime(

@@ -33,8 +33,7 @@ public interface ITenantHubSiteService
 
 }
 
-public class TenantHubSiteService(ClientContext clientContext)
-    : ClientService<HubSite>(clientContext), ITenantHubSiteService
+public class TenantHubSiteService(ClientContext clientContext) : ClientService<HubSite>(clientContext), ITenantHubSiteService
 {
 
     public HubSite AddObject(string siteCollectionUrl, IReadOnlyDictionary<string, object> creationInfo)
@@ -56,7 +55,8 @@ public class TenantHubSiteService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(HubSite))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<HubSite>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -66,14 +66,19 @@ public class TenantHubSiteService(ClientContext clientContext)
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(objectPath1.Id, "GetHubSitePropertiesById", requestPayload.CreateParameter(hubSiteId)),
+            new ObjectPathMethod(
+                objectPath1.Id,
+                "GetHubSitePropertiesById",
+                requestPayload.CreateParameter(hubSiteId)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(HubSite))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<HubSite>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -94,7 +99,8 @@ public class TenantHubSiteService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(HubSite))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<HubSite>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -111,7 +117,8 @@ public class TenantHubSiteService(ClientContext clientContext)
                 ChildItemQuery = new ClientQuery(true, typeof(HubSite))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<HubSiteEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -151,12 +158,11 @@ public class TenantHubSiteService(ClientContext clientContext)
         );
         var objectPath3 = requestPayload.Add(
             objectPath2,
-            requestPayload.CreateSetPropertyDelegates(hubSiteObject, modificationInfo).ToArray()
+            requestPayload
+                .CreateSetPropertyDelegates(hubSiteObject, modificationInfo)
+                .ToArray()
         );
-        var objectPath4 = requestPayload.Add(
-            objectPath3,
-            objectPathId => new ClientActionMethod(objectPathId, "Update")
-        );
+        var objectPath4 = requestPayload.Add(objectPath3, objectPathId => new ClientActionMethod(objectPathId, "Update"));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

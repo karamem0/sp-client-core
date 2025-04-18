@@ -28,7 +28,8 @@ public class ClientRequestParameterArray(ClientRequestPayload payload, params ob
     public virtual string Type { get; protected set; } = "Array";
 
     [XmlElement("Object")]
-    public virtual IReadOnlyCollection<ClientRequestParameter> Values { get; protected set; } =
-        values.Select(payload.CreateParameter).ToArray();
+    public virtual IReadOnlyCollection<ClientRequestParameter> Values { get; protected set; } = values
+        .Select(payload.CreateParameter)
+        .ToArray();
 
 }

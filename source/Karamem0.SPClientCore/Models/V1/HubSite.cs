@@ -15,10 +15,7 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
-[ClientObject(
-    Name = "Microsoft.Online.SharePoint.TenantAdministration.HubSiteProperties",
-    Id = "{ac013530-0896-414d-af66-ee9171a3b54e}"
-)]
+[ClientObject(Name = "Microsoft.Online.SharePoint.TenantAdministration.HubSiteProperties", Id = "{ac013530-0896-414d-af66-ee9171a3b54e}")]
 [JsonObject()]
 public class HubSite : ClientObject
 {

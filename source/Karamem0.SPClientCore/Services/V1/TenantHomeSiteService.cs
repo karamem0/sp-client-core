@@ -19,41 +19,36 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantHomeSiteService
 {
 
-    string GetObject();
+    Uri GetObject();
 
     void RemoveObject();
 
-    void SetObject(string homeSiteUrl);
+    void SetObject(Uri homeSiteUrl);
 
 }
 
 public class TenantHomeSiteService(ClientContext clientContext) : ClientService(clientContext), ITenantHomeSiteService
 {
 
-    public string GetObject()
+    public Uri GetObject()
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
-        var objectPath2 = requestPayload.Add(
-            objectPath1,
-            objectPathId => new ClientActionMethod(objectPathId, "GetSPHSiteUrl")
-        );
-        return this.ClientContext.ProcessQuery(requestPayload)
-            .ToObject<string>(requestPayload.GetActionId<ClientActionMethod>());
+        var objectPath2 = requestPayload.Add(objectPath1, objectPathId => new ClientActionMethod(objectPathId, "GetSPHSiteUrl"));
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
+            .ToObject<Uri>(requestPayload.GetActionId<ClientActionMethod>());
     }
 
     public void RemoveObject()
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
-        var objectPath2 = requestPayload.Add(
-            objectPath1,
-            objectPathId => new ClientActionMethod(objectPathId, "RemoveSPHSite")
-        );
+        var objectPath2 = requestPayload.Add(objectPath1, objectPathId => new ClientActionMethod(objectPathId, "RemoveSPHSite"));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public void SetObject(string homeSiteUrl)
+    public void SetObject(Uri homeSiteUrl)
     {
         _ = homeSiteUrl ?? throw new ArgumentNullException(nameof(homeSiteUrl));
         var requestPayload = new ClientRequestPayload();

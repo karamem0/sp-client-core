@@ -207,12 +207,7 @@ public class AddColumnTaxonomyCommand : ClientObjectCmdlet<IColumnService, IColu
         }
         if (this.ParameterSetName == "ParamSet3")
         {
-            this.Outputs.Add(
-                SchemaXmlColumn.Create(
-                    new XElement("Field", new XAttribute("Type", "TaxonomyFieldType")),
-                    this.MyInvocation.BoundParameters
-                )
-            );
+            this.Outputs.Add(SchemaXmlColumn.Create(new XElement("Field", new XAttribute("Type", "TaxonomyFieldType")), this.MyInvocation.BoundParameters));
         }
     }
 

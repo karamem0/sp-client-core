@@ -41,7 +41,11 @@ public class RemoveFileVersionCommand : ClientObjectCmdlet<IFileVersionService>
     )]
     public FileVersion Identity { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet3")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet3"
+    )]
     public File File { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]

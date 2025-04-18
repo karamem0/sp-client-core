@@ -30,7 +30,11 @@ public class GetAlertCommand : ClientObjectCmdlet<IAlertService>
     )]
     public Alert Identity { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet2"
+    )]
     public Guid AlertId { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]

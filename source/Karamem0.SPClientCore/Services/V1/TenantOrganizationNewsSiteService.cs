@@ -27,8 +27,7 @@ public interface ITenantOrganizationNewsSiteService
 
 }
 
-public class TenantOrganizationNewsSiteService(ClientContext clientContext)
-    : ClientService(clientContext), ITenantOrganizationNewsSiteService
+public class TenantOrganizationNewsSiteService(ClientContext clientContext) : ClientService(clientContext), ITenantOrganizationNewsSiteService
 {
 
     public void AddObject(string organizationNewsSiteUrl)
@@ -51,11 +50,9 @@ public class TenantOrganizationNewsSiteService(ClientContext clientContext)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
-        var objectPath2 = requestPayload.Add(
-            objectPath1,
-            objectPathId => new ClientActionMethod(objectPathId, "GetOrgNewsSites")
-        );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        var objectPath2 = requestPayload.Add(objectPath1, objectPathId => new ClientActionMethod(objectPathId, "GetOrgNewsSites"));
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<IEnumerable<string>>(requestPayload.GetActionId<ClientActionMethod>());
     }
 

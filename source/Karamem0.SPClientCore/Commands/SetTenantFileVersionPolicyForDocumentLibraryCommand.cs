@@ -19,9 +19,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 
 [Cmdlet(VerbsCommon.Set, "KshTenantFileVersionPolicyForDocumentLibrary")]
 [OutputType(typeof(FileVersionPolicyForDocumentLibrary))]
-public class
-    SetTenantFileVersionPolicyForDocumentLibraryCommand : ClientObjectCmdlet<
-    ITenantFileVersionPolicyForDocumentLibraryService>
+public class SetTenantFileVersionPolicyForDocumentLibraryCommand : ClientObjectCmdlet<ITenantFileVersionPolicyForDocumentLibraryService>
 {
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
@@ -68,7 +66,11 @@ public class
     {
         if (this.ParameterSetName == "ParamSet1")
         {
-            this.Service.SetObjectAwait(this.SiteUrl, this.ListId, this.MyInvocation.BoundParameters);
+            this.Service.SetObjectAwait(
+                this.SiteUrl,
+                this.ListId,
+                this.MyInvocation.BoundParameters
+            );
             if (this.PassThru)
             {
                 this.Outputs.Add(this.Service.GetObject(this.SiteUrl, this.ListId));
@@ -77,11 +79,19 @@ public class
         if (this.ParameterSetName == "ParamSet2")
         {
             this.ValidateSwitchParameter(nameof(this.NoWait));
-            _ = this.Service.SetObject(this.SiteUrl, this.ListId, this.MyInvocation.BoundParameters);
+            _ = this.Service.SetObject(
+                this.SiteUrl,
+                this.ListId,
+                this.MyInvocation.BoundParameters
+            );
         }
         if (this.ParameterSetName == "ParamSet3")
         {
-            this.Service.SetObjectAwait(this.SiteUrl, this.ListTitle, this.MyInvocation.BoundParameters);
+            this.Service.SetObjectAwait(
+                this.SiteUrl,
+                this.ListTitle,
+                this.MyInvocation.BoundParameters
+            );
             if (this.PassThru)
             {
                 this.Outputs.Add(this.Service.GetObject(this.SiteUrl, this.ListTitle));
@@ -90,7 +100,11 @@ public class
         if (this.ParameterSetName == "ParamSet4")
         {
             this.ValidateSwitchParameter(nameof(this.NoWait));
-            _ = this.Service.SetObject(this.SiteUrl, this.ListTitle, this.MyInvocation.BoundParameters);
+            _ = this.Service.SetObject(
+                this.SiteUrl,
+                this.ListTitle,
+                this.MyInvocation.BoundParameters
+            );
         }
     }
 

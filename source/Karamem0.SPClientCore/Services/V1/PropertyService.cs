@@ -46,7 +46,8 @@ public class PropertyService(ClientContext clientContext) : ClientService(client
                 Query = new ClientQuery(true)
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<PropertyValues>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -62,7 +63,8 @@ public class PropertyService(ClientContext clientContext) : ClientService(client
                 Query = new ClientQuery(true)
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<PropertyValues>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -78,7 +80,8 @@ public class PropertyService(ClientContext clientContext) : ClientService(client
                 Query = new ClientQuery(true)
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<PropertyValues>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -94,7 +97,8 @@ public class PropertyService(ClientContext clientContext) : ClientService(client
                 Query = new ClientQuery(true)
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<PropertyValues>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -110,7 +114,8 @@ public class PropertyService(ClientContext clientContext) : ClientService(client
                 Query = new ClientQuery(true)
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<PropertyValues>(requestPayload.GetActionId<ClientActionQuery>());
     }
 

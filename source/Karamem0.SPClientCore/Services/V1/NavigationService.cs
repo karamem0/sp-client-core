@@ -41,7 +41,8 @@ public class NavigationService(ClientContext clientContext) : ClientService(clie
                 Query = new ClientQuery(true, typeof(Navigation))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Navigation>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -53,12 +54,11 @@ public class NavigationService(ClientContext clientContext) : ClientService(clie
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(
             new ObjectPathProperty(objectPath2.Id, "Navigation"),
-            requestPayload.CreateSetPropertyDelegates(typeof(Navigation), modificationInfo).ToArray()
+            requestPayload
+                .CreateSetPropertyDelegates(typeof(Navigation), modificationInfo)
+                .ToArray()
         );
-        var objectPath4 = requestPayload.Add(
-            objectPath2,
-            objectPathId => new ClientActionMethod(objectPathId, "Update")
-        );
+        var objectPath4 = requestPayload.Add(objectPath2, objectPathId => new ClientActionMethod(objectPathId, "Update"));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

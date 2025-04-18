@@ -30,7 +30,11 @@ public class GetUserPropertyCommand : ClientObjectCmdlet<IUserPropertyService>
     )]
     public UserProperty Identity { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet2"
+    )]
     public string UserLoginName { get; private set; }
 
     protected override void ProcessRecordCore()

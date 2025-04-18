@@ -26,7 +26,13 @@ public class NewColumnTaxonomyValueCommand : ClientObjectCmdlet
 
     protected override void ProcessRecordCore()
     {
-        this.Outputs.Add(new ColumnTaxonomyValue(this.Term.Name, this.Term.Id.ToString(), -1));
+        this.Outputs.Add(
+            new ColumnTaxonomyValue(
+                this.Term.Name,
+                this.Term.Id.ToString(),
+                -1
+            )
+        );
     }
 
 }

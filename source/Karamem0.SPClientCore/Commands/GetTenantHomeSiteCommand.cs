@@ -17,7 +17,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
 [Cmdlet(VerbsCommon.Get, "KshTenantHomeSite")]
-[OutputType(typeof(string))]
+[OutputType(typeof(Uri))]
 public class GetTenantHomeSiteCommand : ClientObjectCmdlet<ITenantHomeSiteService>
 {
 

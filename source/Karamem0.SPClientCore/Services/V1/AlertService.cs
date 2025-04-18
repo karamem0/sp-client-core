@@ -51,7 +51,8 @@ public class AlertService(ClientContext clientContext) : ClientService<Alert>(cl
                 requestPayload.CreateParameter(ClientValueObject.Create<AlertCreationInfo>(creationInfo))
             )
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Guid>(requestPayload.GetActionId<ClientActionMethod>());
     }
 
@@ -73,10 +74,15 @@ public class AlertService(ClientContext clientContext) : ClientService<Alert>(cl
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
-                Query = new ClientQuery(true, typeof(Alert), [.. conditions])
+                Query = new ClientQuery(
+                    true,
+                    typeof(Alert),
+                    [.. conditions]
+                )
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Alert>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -88,7 +94,11 @@ public class AlertService(ClientContext clientContext) : ClientService<Alert>(cl
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "Alerts"));
         var objectPath4 = requestPayload.Add(
-            new ObjectPathMethod(objectPath3.Id, "GetById", requestPayload.CreateParameter(alertId)),
+            new ObjectPathMethod(
+                objectPath3.Id,
+                "GetById",
+                requestPayload.CreateParameter(alertId)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
@@ -96,7 +106,8 @@ public class AlertService(ClientContext clientContext) : ClientService<Alert>(cl
             }
         );
         return this.GetObject(
-            this.ClientContext.ProcessQuery(requestPayload)
+            this
+                .ClientContext.ProcessQuery(requestPayload)
                 .ToObject<Alert>(requestPayload.GetActionId<ClientActionQuery>())
         );
     }
@@ -115,7 +126,8 @@ public class AlertService(ClientContext clientContext) : ClientService<Alert>(cl
                 ChildItemQuery = new ClientQuery(true, typeof(Alert))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<AlertEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -146,12 +158,11 @@ public class AlertService(ClientContext clientContext) : ClientService<Alert>(cl
         var objectType = ClientObject.GetType(objectName);
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(alertObject.ObjectIdentity),
-            requestPayload.CreateSetPropertyDelegates(alertObject, modificationInfo).ToArray()
+            requestPayload
+                .CreateSetPropertyDelegates(alertObject, modificationInfo)
+                .ToArray()
         );
-        var objectPath2 = requestPayload.Add(
-            objectPath1,
-            objectPathId => new ClientActionMethod(objectPathId, "UpdateAlert")
-        );
+        var objectPath2 = requestPayload.Add(objectPath1, objectPathId => new ClientActionMethod(objectPathId, "UpdateAlert"));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

@@ -41,7 +41,8 @@ public class GroupOwnerService(ClientContext clientContext) : ClientService(clie
                 Query = new ClientQuery(false, typeof(Principal))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Principal>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -56,9 +57,7 @@ public class GroupOwnerService(ClientContext clientContext) : ClientService(clie
             objectPathId => new ClientActionSetProperty(
                 objectPathId,
                 "Owner",
-                new ClientRequestParameterObjectPath(
-                    requestPayload.Add(new ObjectPathIdentity(principalObject.ObjectIdentity))
-                )
+                new ClientRequestParameterObjectPath(requestPayload.Add(new ObjectPathIdentity(principalObject.ObjectIdentity)))
             ),
             objectPathId => new ClientActionMethod(objectPathId, "Update")
         );

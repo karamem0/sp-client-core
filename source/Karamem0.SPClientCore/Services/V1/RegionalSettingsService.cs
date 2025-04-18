@@ -29,8 +29,7 @@ public interface IRegionalSettingsService
 
 }
 
-public class RegionalSettingsService(ClientContext clientContext)
-    : ClientService<RegionalSettings>(clientContext), IRegionalSettingsService
+public class RegionalSettingsService(ClientContext clientContext) : ClientService<RegionalSettings>(clientContext), IRegionalSettingsService
 {
 
     public DateTime ConvertUniversalToLocal(DateTime date)
@@ -42,9 +41,14 @@ public class RegionalSettingsService(ClientContext clientContext)
         var objectPath4 = requestPayload.Add(new ObjectPathProperty(objectPath3.Id, "TimeZone"));
         var objectPath5 = requestPayload.Add(
             objectPath4,
-            objectPathId => new ClientActionMethod(objectPathId, "UTCToLocalTime", requestPayload.CreateParameter(date))
+            objectPathId => new ClientActionMethod(
+                objectPathId,
+                "UTCToLocalTime",
+                requestPayload.CreateParameter(date)
+            )
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<DateTime>(requestPayload.GetActionId<ClientActionMethod>());
     }
 
@@ -57,9 +61,14 @@ public class RegionalSettingsService(ClientContext clientContext)
         var objectPath4 = requestPayload.Add(new ObjectPathProperty(objectPath3.Id, "TimeZone"));
         var objectPath5 = requestPayload.Add(
             objectPath4,
-            objectPathId => new ClientActionMethod(objectPathId, "LocalTimeToUTC", requestPayload.CreateParameter(date))
+            objectPathId => new ClientActionMethod(
+                objectPathId,
+                "LocalTimeToUTC",
+                requestPayload.CreateParameter(date)
+            )
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<DateTime>(requestPayload.GetActionId<ClientActionMethod>());
     }
 
@@ -76,7 +85,8 @@ public class RegionalSettingsService(ClientContext clientContext)
                 Query = new ClientQuery(true, typeof(RegionalSettings))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<RegionalSettings>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -88,12 +98,11 @@ public class RegionalSettingsService(ClientContext clientContext)
         var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "RegionalSettings"));
         var objectPath4 = requestPayload.Add(
             objectPath3,
-            requestPayload.CreateSetPropertyDelegates(typeof(RegionalSettings), modificationInfo).ToArray()
+            requestPayload
+                .CreateSetPropertyDelegates(typeof(RegionalSettings), modificationInfo)
+                .ToArray()
         );
-        var objectPath5 = requestPayload.Add(
-            objectPath4,
-            objectPathId => new ClientActionMethod(objectPathId, "Update")
-        );
+        var objectPath5 = requestPayload.Add(objectPath4, objectPathId => new ClientActionMethod(objectPathId, "Update"));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

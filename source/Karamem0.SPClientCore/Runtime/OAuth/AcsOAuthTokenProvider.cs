@@ -17,8 +17,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth;
 public class AcsOAuthTokenProvider(AcsOAuthContext oAuthContext, AcsOAuthToken oAuthToken) : OAuthTokenProvider
 {
 
-    private readonly AcsOAuthContext oAuthContext =
-        oAuthContext ?? throw new ArgumentNullException(nameof(oAuthContext));
+    private readonly AcsOAuthContext oAuthContext = oAuthContext ?? throw new ArgumentNullException(nameof(oAuthContext));
 
     private AcsOAuthToken oAuthToken = oAuthToken ?? throw new ArgumentNullException(nameof(oAuthToken));
 

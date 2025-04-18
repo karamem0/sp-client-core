@@ -26,7 +26,11 @@ public static class SharingUrl
 
     public static string Create(string baseUrl, string relativeUrl)
     {
-        return Create(new Uri(baseUrl).ConcatPath(relativeUrl).ToString());
+        return Create(
+            new Uri(baseUrl)
+                .ConcatPath(relativeUrl)
+                .ToString()
+        );
     }
 
 }

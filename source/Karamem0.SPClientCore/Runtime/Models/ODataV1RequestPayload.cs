@@ -19,14 +19,15 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class ODataV1RequestPayload
 {
 
-    public static ODataV1RequestPayload Create<T>(IReadOnlyDictionary<string, object> parameters)
-        where T : ODataV1Object, new()
+    public static ODataV1RequestPayload Create<T>(IReadOnlyDictionary<string, object> parameters) where T : ODataV1Object, new()
     {
         var value = new ODataV1RequestPayload()
         {
             Entity = new T()
         };
-        foreach (var property in value.Entity.GetType().GetDeclaredProperties())
+        foreach (var property in value
+                     .Entity.GetType()
+                     .GetDeclaredProperties())
         {
             if (parameters.TryGetValue(property.Name, out var propertyValue))
             {

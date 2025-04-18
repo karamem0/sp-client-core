@@ -15,10 +15,7 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
-[ClientObject(
-    Name = "Microsoft.Online.SharePoint.TenantAdministration.SPOTenantWebTemplate",
-    Id = "{fd9d5ea3-4b21-481a-9a1d-e27e14db87d0}"
-)]
+[ClientObject(Name = "Microsoft.Online.SharePoint.TenantAdministration.SPOTenantWebTemplate", Id = "{fd9d5ea3-4b21-481a-9a1d-e27e14db87d0}")]
 [JsonObject()]
 public class TenantSiteTemplate : ClientObject
 {

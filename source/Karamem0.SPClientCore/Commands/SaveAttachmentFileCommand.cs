@@ -22,7 +22,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class SaveAttachmentFileCommand : ClientObjectCmdlet<IAttachmentFileService>
 {
 
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true
+    )]
     public ListItem ListItem { get; private set; }
 
     [Parameter(Mandatory = true)]
@@ -36,7 +40,11 @@ public class SaveAttachmentFileCommand : ClientObjectCmdlet<IAttachmentFileServi
 
     protected override void ProcessRecordCore()
     {
-        this.Service.UploadObject(this.ListItem, this.FileName, this.Content);
+        this.Service.UploadObject(
+            this.ListItem,
+            this.FileName,
+            this.Content
+        );
         if (this.PassThru)
         {
             this.Outputs.Add(this.Service.GetObject(this.ListItem, this.FileName));

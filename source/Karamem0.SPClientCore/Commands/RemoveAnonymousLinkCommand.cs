@@ -42,13 +42,15 @@ public class RemoveAnonymousLinkCommand : ClientObjectCmdlet<ISharingLinkService
         {
             if (this.Url.IsAbsoluteUri)
             {
-                this.Service.RemoveAnonymousLink(this.Url, this.IsEditLink, this.RemoveAssociatedSharingLinkGroup);
+                this.Service.RemoveAnonymousLink(
+                    this.Url,
+                    this.IsEditLink,
+                    this.RemoveAssociatedSharingLinkGroup
+                );
             }
             else
             {
-                throw new InvalidOperationException(
-                    string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.Url)
-                );
+                throw new InvalidOperationException(string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.Url));
             }
         }
     }

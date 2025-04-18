@@ -26,7 +26,9 @@ public class SchemaXmlValue(object value)
         {
             null => "",
             Enum enumValue => enumValue.ToString(),
-            bool boolValue => boolValue.ToString().ToUpper(),
+            bool boolValue => boolValue
+                .ToString()
+                .ToUpper(),
             byte byteValue => byteValue.ToString(),
             byte[] byteArrayValue => Convert.ToBase64String(byteArrayValue),
             BinaryData binaryDataValue => Convert.ToBase64String(binaryDataValue),
@@ -43,7 +45,10 @@ public class SchemaXmlValue(object value)
             DateTime dateValue => dateValue.ToString("s"),
             Guid guidValue => guidValue.ToString("B"),
             string stringValue => stringValue,
-            SwitchParameter switchValue => switchValue.ToBool().ToString().ToUpper(),
+            SwitchParameter switchValue => switchValue
+                .ToBool()
+                .ToString()
+                .ToUpper(),
             _ => throw new NotImplementedException(string.Format(StringResources.ErrorValueIsInvalid, this.value)),
         };
     }

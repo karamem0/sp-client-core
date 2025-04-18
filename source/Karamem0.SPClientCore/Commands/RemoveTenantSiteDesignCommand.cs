@@ -27,7 +27,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class RemoveTenantSiteDesignCommand : ClientObjectCmdlet<ITenantSiteDesignService>
 {
 
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true
+    )]
     public TenantSiteDesign Identity { get; private set; }
 
     protected override void ProcessRecordCore()

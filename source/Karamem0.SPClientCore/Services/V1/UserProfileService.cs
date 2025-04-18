@@ -38,7 +38,8 @@ public class UserProfileService(ClientContext clientContext) : ClientService(cli
                 Query = new ClientQuery(true, typeof(UserProfile))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<UserProfile>(requestPayload.GetActionId<ClientActionQuery>());
     }
 

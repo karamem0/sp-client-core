@@ -22,11 +22,23 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class SetSitePageCommand : ClientObjectCmdlet<ISitePageService, IListService, IFolderService>
 {
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet1")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet1"
+    )]
     public List List { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet1")]
-    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet2")]
+    [Parameter(
+        Mandatory = true,
+        Position = 1,
+        ParameterSetName = "ParamSet1"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 1,
+        ParameterSetName = "ParamSet2"
+    )]
     public string PageName { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
@@ -42,13 +54,21 @@ public class SetSitePageCommand : ClientObjectCmdlet<ISitePageService, IListServ
         if (this.ParameterSetName == "ParamSet1")
         {
             var folderObject = this.Service3.GetObject(this.List);
-            this.Service1.SetObject(folderObject, this.PageName, this.MyInvocation.BoundParameters);
+            this.Service1.SetObject(
+                folderObject,
+                this.PageName,
+                this.MyInvocation.BoundParameters
+            );
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             var listObject = this.Service2.GetObject(LibraryType.ClientRenderedSitePages);
             var folderObject = this.Service3.GetObject(listObject);
-            this.Service1.SetObject(folderObject, this.PageName, this.MyInvocation.BoundParameters);
+            this.Service1.SetObject(
+                folderObject,
+                this.PageName,
+                this.MyInvocation.BoundParameters
+            );
         }
     }
 

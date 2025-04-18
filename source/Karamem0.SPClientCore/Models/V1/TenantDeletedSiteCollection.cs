@@ -15,10 +15,7 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
-[ClientObject(
-    Name = "Microsoft.Online.SharePoint.TenantAdministration.DeletedSiteProperties",
-    Id = "{550d568e-79ff-484b-b957-e08eb256e1dc}"
-)]
+[ClientObject(Name = "Microsoft.Online.SharePoint.TenantAdministration.DeletedSiteProperties", Id = "{550d568e-79ff-484b-b957-e08eb256e1dc}")]
 [JsonObject()]
 public class TenantDeletedSiteCollection : ClientObject
 {

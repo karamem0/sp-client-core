@@ -58,7 +58,11 @@ public class JsonDateTimeConverter : JsonConverter
         return null;
     }
 
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    public override void WriteJson(
+        JsonWriter writer,
+        object value,
+        JsonSerializer serializer
+    )
     {
         if (value is null || (DateTime)value == new DateTime())
         {
@@ -66,7 +70,9 @@ public class JsonDateTimeConverter : JsonConverter
         }
         else
         {
-            JToken.FromObject(value).WriteTo(writer);
+            JToken
+                .FromObject(value)
+                .WriteTo(writer);
         }
     }
 

@@ -27,8 +27,7 @@ public interface ITenantPersonalSiteService
 
 }
 
-public class TenantPersonalSiteService(ClientContext clientContext)
-    : TenantClientService(clientContext), ITenantPersonalSiteService
+public class TenantPersonalSiteService(ClientContext clientContext) : TenantClientService(clientContext), ITenantPersonalSiteService
 {
 
     public TenantOperationResult AddObject(IReadOnlyCollection<string> userId)
@@ -37,14 +36,19 @@ public class TenantPersonalSiteService(ClientContext clientContext)
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(objectPath1.Id, "RequestPersonalSites", requestPayload.CreateParameter(userId)),
+            new ObjectPathMethod(
+                objectPath1.Id,
+                "RequestPersonalSites",
+                requestPayload.CreateParameter(userId)
+            ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
             {
                 Query = new ClientQuery(true, typeof(TenantOperationResult))
             }
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
@@ -66,7 +70,8 @@ public class TenantPersonalSiteService(ClientContext clientContext)
                 requestPayload.CreateParameter(userId)
             )
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<string>(requestPayload.GetActionId<ClientActionMethod>());
     }
 

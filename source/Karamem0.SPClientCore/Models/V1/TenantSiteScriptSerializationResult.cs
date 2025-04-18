@@ -16,10 +16,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [JsonObject()]
-[ClientObject(
-    Name = "Microsoft.Online.SharePoint.TenantAdministration.TenantSiteScriptSerializationResult",
-    Id = "{71513b8b-a638-4407-81a5-3b3354c53848}"
-)]
+[ClientObject(Name = "Microsoft.Online.SharePoint.TenantAdministration.TenantSiteScriptSerializationResult", Id = "{71513b8b-a638-4407-81a5-3b3354c53848}")]
 public class TenantSiteScriptSerializationResult : ClientValueObject
 {
 

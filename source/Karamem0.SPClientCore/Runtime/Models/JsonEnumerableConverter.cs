@@ -43,24 +43,30 @@ public class JsonEnumerableConverter : JsonConverter
         JsonSerializer serializer
     )
     {
-        if (objectType.GetGenericArguments()[0].IsSubclassOf(typeof(ClientObject)))
+        if (objectType
+            .GetGenericArguments()[0]
+            .IsSubclassOf(typeof(ClientObject)))
         {
             var jsonArray = serializer.Deserialize<JArray>(reader);
             if (jsonArray is not null)
             {
-                var result1 = jsonArray.Select(
+                var result1 = jsonArray
+                    .Select(
                         jsonToken =>
                         {
-                            var valueName = jsonToken["_ObjectType_"].ToString();
+                            var valueName = jsonToken["_ObjectType_"]
+                                .ToString();
                             var valueType = ClientObject.GetType(valueName);
                             return jsonToken.ToObject(valueType, serializer);
                         }
                     )
                     .ToArray();
-                var result2 = typeof(Enumerable).GetMethod("OfType", BindingFlags.Public | BindingFlags.Static)
+                var result2 = typeof(Enumerable)
+                    .GetMethod("OfType", BindingFlags.Public | BindingFlags.Static)
                     .MakeGenericMethod(objectType.GetGenericArguments())
                     .Invoke(null, [result1]);
-                var result3 = typeof(Enumerable).GetMethod("ToArray", BindingFlags.Public | BindingFlags.Static)
+                var result3 = typeof(Enumerable)
+                    .GetMethod("ToArray", BindingFlags.Public | BindingFlags.Static)
                     .MakeGenericMethod(objectType.GetGenericArguments())
                     .Invoke(null, [result2]);
                 return result3;
@@ -73,7 +79,11 @@ public class JsonEnumerableConverter : JsonConverter
         return null;
     }
 
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    public override void WriteJson(
+        JsonWriter writer,
+        object value,
+        JsonSerializer serializer
+    )
     {
         throw new NotImplementedException();
     }

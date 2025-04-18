@@ -19,12 +19,14 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public abstract class ClientRequestProperty : ClientRequestObject
 {
 
-    public static ClientRequestProperty Create(PropertyInfo propertyInfo, ClientRequestPayload payload, object value)
+    public static ClientRequestProperty Create(
+        PropertyInfo propertyInfo,
+        ClientRequestPayload payload,
+        object value
+    )
     {
         var propertyAttribute = propertyInfo.GetCustomAttribute<JsonPropertyAttribute>();
-        var propertyName = string.IsNullOrEmpty(propertyAttribute.PropertyName)
-            ? propertyInfo.Name
-            : propertyAttribute.PropertyName;
+        var propertyName = string.IsNullOrEmpty(propertyAttribute.PropertyName) ? propertyInfo.Name : propertyAttribute.PropertyName;
         var propertyValue = propertyInfo.GetValue(value);
         if (ClientRequestValue.TryCreate(propertyValue, out var valueObject))
         {
@@ -40,10 +42,7 @@ public abstract class ClientRequestProperty : ClientRequestObject
         }
         else if (propertyValue is ClientObject clientObject)
         {
-            return new ClientRequestPropertyObjectPath(
-                propertyName,
-                payload.Add(new ObjectPathIdentity(clientObject.ObjectIdentity))
-            );
+            return new ClientRequestPropertyObjectPath(propertyName, payload.Add(new ObjectPathIdentity(clientObject.ObjectIdentity)));
         }
         else if (propertyValue is ClientValueObject clientValueObject)
         {

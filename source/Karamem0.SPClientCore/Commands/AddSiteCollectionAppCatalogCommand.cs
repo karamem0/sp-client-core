@@ -50,9 +50,7 @@ public class AddSiteCollectionAppCatalogCommand : ClientObjectCmdlet<ISiteCollec
             }
             else
             {
-                throw new InvalidOperationException(
-                    string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.SiteCollectionUrl)
-                );
+                throw new InvalidOperationException(string.Format(StringResources.ErrorValueIsNotAbsoluteUrl, this.SiteCollectionUrl));
             }
         }
     }

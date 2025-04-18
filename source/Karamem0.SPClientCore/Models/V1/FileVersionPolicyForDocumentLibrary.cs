@@ -15,10 +15,7 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
-[ClientObject(
-    Name = "Microsoft.Online.SharePoint.TenantAdministration.SPOFileVersionPolicySettings",
-    Id = "{9937c8a3-f14f-4630-afbc-aa59c4305618}"
-)]
+[ClientObject(Name = "Microsoft.Online.SharePoint.TenantAdministration.SPOFileVersionPolicySettings", Id = "{9937c8a3-f14f-4630-afbc-aa59c4305618}")]
 [JsonObject()]
 public class FileVersionPolicyForDocumentLibrary : ClientValueObject
 {

@@ -22,7 +22,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class OpenFileCommand : ClientObjectCmdlet<IFileService>
 {
 
-    [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true
+    )]
     public File Identity { get; private set; }
 
     protected override void ProcessRecordCore()

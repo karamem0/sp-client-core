@@ -32,14 +32,17 @@ public class ClientHttpExecutor
             Timeout = Timeout.InfiniteTimeSpan
         };
         this.httpClient.DefaultRequestHeaders.UserAgent.Add(
-            new ProductInfoHeaderValue(ClientConstants.UserAgent, this.GetType().Assembly.GetName().Version.ToString(3))
+            new ProductInfoHeaderValue(
+                ClientConstants.UserAgent,
+                this
+                    .GetType()
+                    .Assembly.GetName()
+                    .Version.ToString(3)
+            )
         );
     }
 
-    public void Execute(
-        Func<HttpRequestMessage> requestCallback,
-        Func<HttpResponseMessage, Task<object>> responseCallback
-    )
+    public void Execute(Func<HttpRequestMessage> requestCallback, Func<HttpResponseMessage, Task<object>> responseCallback)
     {
         var syncContext = new ClientHttpSynchronizationContext();
         try
@@ -47,7 +50,9 @@ public class ClientHttpExecutor
             SynchronizationContext.SetSynchronizationContext(syncContext);
             var executeTask = this.ExecuteAsync(requestCallback, responseCallback);
             syncContext.Wait();
-            _ = executeTask.GetAwaiter().GetResult();
+            _ = executeTask
+                .GetAwaiter()
+                .GetResult();
         }
         finally
         {
@@ -63,7 +68,9 @@ public class ClientHttpExecutor
             SynchronizationContext.SetSynchronizationContext(syncContext);
             var executeTask = this.ExecuteAsync(requestCallback, responseCallback);
             syncContext.Wait();
-            return executeTask.GetAwaiter().GetResult();
+            return executeTask
+                .GetAwaiter()
+                .GetResult();
         }
         finally
         {
@@ -71,10 +78,7 @@ public class ClientHttpExecutor
         }
     }
 
-    public async Task<T> ExecuteAsync<T>(
-        Func<HttpRequestMessage> requestCallback,
-        Func<HttpResponseMessage, Task<T>> responseCallback
-    )
+    public async Task<T> ExecuteAsync<T>(Func<HttpRequestMessage> requestCallback, Func<HttpResponseMessage, Task<T>> responseCallback)
     {
         _ = requestCallback ?? throw new ArgumentNullException(nameof(requestCallback));
         _ = responseCallback ?? throw new ArgumentNullException(nameof(responseCallback));
@@ -100,11 +104,7 @@ public class ClientHttpExecutor
                         {
                             throw new InvalidOperationException(StringResources.ErrorMaxRetryCountExceeded);
                         }
-                        await Task.Delay(
-                            responseMessage.Headers.RetryAfter.Delta.GetValueOrDefault(
-                                TimeSpan.FromSeconds(errorCount + 1)
-                            )
-                        );
+                        await Task.Delay(responseMessage.Headers.RetryAfter.Delta.GetValueOrDefault(TimeSpan.FromSeconds(errorCount + 1)));
                     }
                     else
                     {
@@ -113,17 +113,11 @@ public class ClientHttpExecutor
                         {
                             throw new InvalidOperationException(oAuthError.ErrorDescription);
                         }
-                        if (JsonSerializerManager.Instance.TryDeserialize(
-                                responseContent,
-                                out ODataV1ResultPayload v1Payload
-                            ))
+                        if (JsonSerializerManager.Instance.TryDeserialize(responseContent, out ODataV1ResultPayload v1Payload))
                         {
                             throw new InvalidOperationException(v1Payload.Error.Message.Value);
                         }
-                        if (JsonSerializerManager.Instance.TryDeserialize(
-                                responseContent,
-                                out ODataV2ResultPayload v2Payload
-                            ))
+                        if (JsonSerializerManager.Instance.TryDeserialize(responseContent, out ODataV2ResultPayload v2Payload))
                         {
                             throw new InvalidOperationException(v2Payload.Error.Message);
                         }

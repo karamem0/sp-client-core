@@ -34,17 +34,37 @@ public class GetRoleAssignmentCommand : ClientObjectCmdlet<ISiteService, IRoleAs
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
     public SwitchParameter Site { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet4")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet4"
+    )]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet5")]
     public List List { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet6")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet6"
+    )]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet7")]
     public ListItem ListItem { get; private set; }
 
-    [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ParamSet2")]
-    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet4")]
-    [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ParamSet6")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ParameterSetName = "ParamSet2"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 1,
+        ParameterSetName = "ParamSet4"
+    )]
+    [Parameter(
+        Mandatory = true,
+        Position = 1,
+        ParameterSetName = "ParamSet6"
+    )]
     public int PrincipalId { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]

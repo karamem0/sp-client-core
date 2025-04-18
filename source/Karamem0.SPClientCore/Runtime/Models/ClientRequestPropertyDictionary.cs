@@ -27,8 +27,8 @@ public class ClientRequestPropertyDictionary(string name, IDictionary values) : 
     public virtual string Type { get; protected set; } = "Dictionary";
 
     [XmlElement("Property")]
-    public virtual IReadOnlyCollection<ClientRequestPropertyValue> Values { get; protected set; } = values.Keys
-        .OfType<object>()
+    public virtual IReadOnlyCollection<ClientRequestPropertyValue> Values { get; protected set; } = values
+        .Keys.OfType<object>()
         .ToDictionary(key => key.ToString(), key => values[key])
         .Select(value => new ClientRequestPropertyValue(value.Key, ClientRequestValue.Create(value.Value)))
         .ToArray();

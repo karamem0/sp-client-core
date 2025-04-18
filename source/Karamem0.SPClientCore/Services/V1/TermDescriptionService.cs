@@ -21,7 +21,11 @@ public interface ITermDescriptionService
 
     string GetObject(Term termObject, uint? lcid);
 
-    void SetObject(Term termObject, string description, uint? lcid);
+    void SetObject(
+        Term termObject,
+        string description,
+        uint? lcid
+    );
 
 }
 
@@ -36,13 +40,22 @@ public class TermDescriptionService(ClientContext clientContext) : ClientService
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             objectPath1,
-            objectPathId => new ClientActionMethod(objectPathId, "GetDescription", requestPayload.CreateParameter(lcid))
+            objectPathId => new ClientActionMethod(
+                objectPathId,
+                "GetDescription",
+                requestPayload.CreateParameter(lcid)
+            )
         );
-        return this.ClientContext.ProcessQuery(requestPayload)
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
             .ToObject<string>(requestPayload.GetActionId<ClientActionMethod>());
     }
 
-    public void SetObject(Term termObject, string description, uint? lcid)
+    public void SetObject(
+        Term termObject,
+        string description,
+        uint? lcid
+    )
     {
         _ = termObject ?? throw new ArgumentNullException(nameof(termObject));
         _ = description ?? throw new ArgumentNullException(nameof(description));

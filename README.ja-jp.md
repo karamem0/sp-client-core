@@ -4,7 +4,8 @@
 
 PowerShell 向けの SharePoint サービス モジュール
 
-[![.github/workflows/develop.yml](https://github.com/karamem0/sp-client-core/actions/workflows/develop.yml/badge.svg)](https://github.com/karamem0/sp-client-core/actions/workflows/develop.yml)
+[![.github/workflows/trigger-on-main.yml](https://github.com/karamem0/sp-client-core/actions/workflows/trigger-on-main.yml/badge.svg)](https://github.com/karamem0/sp-client-core/actions/workflows/trigger-on-main.yml)
+[![.github/workflows/trigger-on-develop.yml](https://github.com/karamem0/sp-client-core/actions/workflows/trigger-on-develop.yml/badge.svg)](https://github.com/karamem0/sp-client-core/actions/workflows/trigger-on-develop.yml)
 [![License](https://img.shields.io/github/license/karamem0/sp-client-core.svg)](https://github.com/karamem0/sp-client-core/blob/main/LICENSE)
 
 ## インストール
@@ -29,7 +30,13 @@ CSOM の名前付けは非プログラマーにとって難解です。例えば
 
 ### 先端認証の使用
 
-SPClientCore は Microsoft Entra ID 2.0 認証をサポートします (Device Code Grant および Password Grant)。もしあなたが MFA を有効にしていても異なるデバイスの Web ブラウザーでログインすることができます。MFA を有効にしていないアカウントであれば、ユーザー名とパスワードを使ってログインできます (組織の承認が必要です)。資格情報はキャッシュされるので何度もログインする必要はありません。
+SPClientCore は Microsoft Entra ID 2.0 認証をサポートします。
+
+- デバイス コード認証
+- クライアント クレデンシャル認証
+- パスワード認証 (非推奨)
+
+もしあなたが MFA を有効にしていても異なるデバイスの Web ブラウザーでログインすることができます。MFA を有効にしていないアカウントであれば、ユーザー名とパスワードを使ってログインできます (組織の承認が必要です)。資格情報はキャッシュされるので何度もログインする必要はありません。
 
 ## 依存関係
 
@@ -43,386 +50,388 @@ SPClientCore は Microsoft Entra ID 2.0 認証をサポートします (Device C
 - [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/13.0.3) (13.0.3)
 - [PowerShellStandard.Library](https://www.nuget.org/packages/PowerShellStandard.Library/5.1.1) (5.1.1)
 
-## コマンド リファレンス (英語)
+## コマンドレット
 
 - ログイン
-  - [Connect-KshSite](docs/Connect-KshSite.md)
-  - [Disconnect-KshSite](docs/Disconnect-KshSite.md)
-  - [Get-KshCurrentConnection](docs/Get-KshCurrentConnection.md)
-  - [Get-KshCurrentSite](docs/Get-KshCurrentSite.md)
-  - [Get-KshCurrentSiteCollection](docs/Get-KshCurrentSiteCollection.md)
-  - [Get-KshCurrentUser](docs/Get-KshCurrentUser.md)
-  - [Get-KshCurrentUserProfile](docs/Get-KshCurrentUserProfile.md)
-  - [Get-KshCurrentUserProperty](docs/Get-KshCurrentUserProperty.md)
-  - [Select-KshSite](docs/Select-KshSite.md)
-  - [Test-KshTenantSiteCollection](docs/Test-KshTenantSiteCollection.md)
+  - Connect-KshSite
+  - Disconnect-KshSite
+  - Get-KshCurrentConnection
+  - Get-KshCurrentSite
+  - Get-KshCurrentSiteCollection
+  - Get-KshCurrentUser
+  - Get-KshCurrentUserProfile
+  - Get-KshCurrentUserProperty
+  - Select-KshSite
+  - Test-KshTenantSiteCollection
 - サイト管理
   - 通知
-    - [Get-KshAlert](docs/Get-KshAlert.md)
-    - [Add-KshAlert](docs/Add-KshAlert.md)
-    - [Remove-KshAlert](docs/Remove-KshAlert.md)
-    - [Set-KshAlert](docs/Set-KshAlert.md)
+    - Get-KshAlert
+    - Add-KshAlert
+    - Remove-KshAlert
+    - Set-KshAlert
   - アプリ インスタンス
-    - [Get-KshAppInstance](docs/Get-KshAppInstance.md)
+    - Get-KshAppInstance
   - 添付ファイル
-    - [Get-KshAttachmentFile](docs/Get-KshAttachmentFile.md)
-    - [Remove-KshAttachmentFile](docs/Remove-KshAttachmentFile.md)
-    - [Open-KshAttachmentFile](docs/Open-KshAttachmentFile.md)
-    - [Save-KshAttachmentFile](docs/Save-KshAttachmentFile.md)
+    - Get-KshAttachmentFile
+    - Remove-KshAttachmentFile
+    - Open-KshAttachmentFile
+    - Save-KshAttachmentFile
   - 変更
-    - [Get-KshChange](docs/Get-KshChange.md)
+    - Get-KshChange
   - クライアント コンポーネントのプロパティ
-    - [Get-KshStorageEntity](docs/Get-KshStorageEntity.md)
-    - [Add-KshStorageEntity](docs/Add-KshStorageEntity.md)
-    - [Remove-KshStorageEntity](docs/Remove-KshStorageEntity.md)
+    - Get-KshStorageEntity
+    - Add-KshStorageEntity
+    - Remove-KshStorageEntity
   - 列
-    - [Get-KshColumn](docs/Get-KshColumn.md)
-    - [Add-KshColumnBoolean](docs/Add-KshColumnBoolean.md)
-    - [Add-KshColumnCalculated](docs/Add-KshColumnCalculated.md)
-    - [Add-KshColumnChoice](docs/Add-KshColumnChoice.md)
-    - [Add-KshColumnCurrency](docs/Add-KshColumnCurrency.md)
-    - [Add-KshColumnDateTime](docs/Add-KshColumnDateTime.md)
-    - [Add-KshColumnGeolocation](docs/Add-KshColumnGeolocation.md)
-    - [Add-KshColumnGuid](docs/Add-KshColumnGuid.md)
-    - [Add-KshColumnImage](docs/Add-KshColumnImage.md)
-    - [Add-KshColumnLookup](docs/Add-KshColumnLookup.md)
-    - [Add-KshColumnMultiChoice](docs/Add-KshColumnMultiChoice.md)
-    - [Add-KshColumnMultiLineText](docs/Add-KshColumnMultiLineText.md)
-    - [Add-KshColumnNumber](docs/Add-KshColumnNumber.md)
-    - [Add-KshColumnTaxonomy](docs/Add-KshColumnTaxonomy.md)
-    - [Add-KshColumnText](docs/Add-KshColumnText.md)
-    - [Add-KshColumnUrl](docs/Add-KshColumnUrl.md)
-    - [Add-KshColumnUser](docs/Add-KshColumnUser.md)
-    - [Remove-KshColumn](docs/Remove-KshColumn.md)
-    - [Set-KshColumnBoolean](docs/Set-KshColumnBoolean.md)
-    - [Set-KshColumnCalculated](docs/Set-KshColumnCalculated.md)
-    - [Set-KshColumnChoice](docs/Set-KshColumnChoice.md)
-    - [Set-KshColumnCurrency](docs/Set-KshColumnCurrency.md)
-    - [Set-KshColumnDateTime](docs/Set-KshColumnDateTime.md)
-    - [Set-KshColumnGeolocation](docs/Set-KshColumnGeolocation.md)
-    - [Set-KshColumnGuid](docs/Set-KshColumnGuid.md)
-    - [Set-KshColumnImage](docs/Set-KshColumnImage.md)
-    - [Set-KshColumnLookup](docs/Set-KshColumnLookup.md)
-    - [Set-KshColumnMultiChoice](docs/Set-KshColumnMultiChoice.md)
-    - [Set-KshColumnMultiLineText](docs/Set-KshColumnMultiLineText.md)
-    - [Set-KshColumnNumber](docs/Set-KshColumnNumber.md)
-    - [Set-KshColumnTaxonomy](docs/Set-KshColumnTaxonomy.md)
-    - [Set-KshColumnText](docs/Set-KshColumnText.md)
-    - [Set-KshColumnUrl](docs/Set-KshColumnUrl.md)
-    - [Set-KshColumnUser](docs/Set-KshColumnUser.md)
+    - Get-KshColumn
+    - Add-KshColumnBoolean
+    - Add-KshColumnCalculated
+    - Add-KshColumnChoice
+    - Add-KshColumnCurrency
+    - Add-KshColumnDateTime
+    - Add-KshColumnGeolocation
+    - Add-KshColumnGuid
+    - Add-KshColumnImage
+    - Add-KshColumnLookup
+    - Add-KshColumnMultiChoice
+    - Add-KshColumnMultiLineText
+    - Add-KshColumnNumber
+    - Add-KshColumnTaxonomy
+    - Add-KshColumnText
+    - Add-KshColumnUrl
+    - Add-KshColumnUser
+    - Remove-KshColumn
+    - Set-KshColumnBoolean
+    - Set-KshColumnCalculated
+    - Set-KshColumnChoice
+    - Set-KshColumnCurrency
+    - Set-KshColumnDateTime
+    - Set-KshColumnGeolocation
+    - Set-KshColumnGuid
+    - Set-KshColumnImage
+    - Set-KshColumnLookup
+    - Set-KshColumnMultiChoice
+    - Set-KshColumnMultiLineText
+    - Set-KshColumnNumber
+    - Set-KshColumnTaxonomy
+    - Set-KshColumnText
+    - Set-KshColumnUrl
+    - Set-KshColumnUser
   - コメント
-    - [Get-KshComment](docs/Get-KshComment.md)
-    - [Add-KshComment](docs/Add-KshComment.md)
-    - [Remove-KshComment](docs/Remove-KshComment.md)
-    - [Enable-KshComment](docs/Enable-KshComment.md)
-    - [Disable-KshComment](docs/Disable-KshComment.md)
+    - Get-KshComment
+    - Add-KshComment
+    - Remove-KshComment
+    - Enable-KshComment
+    - Disable-KshComment
   - コンテンツ タイプ
-    - [Get-KshContentType](docs/Get-KshContentType.md)
-    - [Add-KshContentType](docs/Add-KshContentType.md)
-    - [Remove-KshContentType](docs/Remove-KshContentType.md)
-    - [Set-KshContentType](docs/Set-KshContentType.md)
-    - [New-KshContentTypeId](docs/New-KshContentTypeId.md)
-    - [Get-KshContentTypeColumn](docs/Get-KshContentTypeColumn.md)
-    - [Add-KshContentTypeColumn](docs/Add-KshContentTypeColumn.md)
-    - [Remove-KshContentTypeColumn](docs/Remove-KshContentTypeColumn.md)
-    - [Set-KshContentTypeColumn](docs/Set-KshContentTypeColumn.md)
-    - [Set-KshContentTypeColumnOrder](docs/Set-KshContentTypeColumnOrder.md)
+    - Get-KshContentType
+    - Add-KshContentType
+    - Remove-KshContentType
+    - Set-KshContentType
+    - New-KshContentTypeId
+    - Get-KshContentTypeColumn
+    - Add-KshContentTypeColumn
+    - Remove-KshContentTypeColumn
+    - Set-KshContentTypeColumn
+    - Set-KshContentTypeColumnOrder
   - ドキュメント ライブラリ
-    - [Get-KshDocumentLibrary](docs/Get-KshDocumentLibrary.md)
+    - Get-KshDocumentLibrary
   - ドキュメント セット
-    - [Add-KshDocumentSet](docs/Add-KshDocumentSet.md)
+    - Add-KshDocumentSet
   - ドキュメント セット テンプレート
-    - [Get-KshDocumentSetAllowedContentType](docs/Get-KshDocumentSetAllowedContentType.md)
-    - [Add-KshDocumentSetAllowedContentType](docs/Add-KshDocumentSetAllowedContentType.md)
-    - [Remove-KshDocumentSetAllowedContentType](docs/Remove-KshDocumentSetAllowedContentType.md)
-    - [Add-KshDocumentSetDefaultDocument](docs/Add-KshDocumentSetDefaultDocument.md)
-    - [Get-KshDocumentSetDefaultDocument](docs/Get-KshDocumentSetDefaultDocument.md)
-    - [Remove-KshDocumentSetDefaultDocument](docs/Remove-KshDocumentSetDefaultDocument.md)
-    - [Get-KshDocumentSetSharedColumn](docs/Get-KshDocumentSetSharedColumn.md)
-    - [Add-KshDocumentSetSharedColumn](docs/Add-KshDocumentSetSharedColumn.md)
-    - [Remove-KshDocumentSetSharedColumn](docs/Remove-KshDocumentSetSharedColumn.md)
-    - [Add-KshDocumentSetWelcomePageColumn](docs/Add-KshDocumentSetWelcomePageColumn.md)
-    - [Get-KshDocumentSetWelcomePageColumn](docs/Get-KshDocumentSetWelcomePageColumn.md)
-    - [Remove-KshDocumentSetWelcomePageColumn](docs/Remove-KshDocumentSetWelcomePageColumn.md)
+    - Get-KshDocumentSetAllowedContentType
+    - Add-KshDocumentSetAllowedContentType
+    - Remove-KshDocumentSetAllowedContentType
+    - Add-KshDocumentSetDefaultDocument
+    - Get-KshDocumentSetDefaultDocument
+    - Remove-KshDocumentSetDefaultDocument
+    - Get-KshDocumentSetSharedColumn
+    - Add-KshDocumentSetSharedColumn
+    - Remove-KshDocumentSetSharedColumn
+    - Add-KshDocumentSetWelcomePageColumn
+    - Get-KshDocumentSetWelcomePageColumn
+    - Remove-KshDocumentSetWelcomePageColumn
   - ドライブ
-    - [Get-KshDrive](docs/Get-KshDrive.md)
+    - Get-KshDrive
   - ドライブ アイテム
-    - [Get-KshDriveItem](docs/Get-KshDriveItem.md)
+    - Get-KshDriveItem
   - 外部共有
-    - [Get-KshSharingInfo](docs/Get-KshSharingInfo.md)
-    - [Get-KshSharingSettings](docs/Get-KshSharingSettings.md)
-    - [Test-KshExternalUserSharing](docs/Test-KshExternalUserSharing.md)
+    - Get-KshSharingInfo
+    - Get-KshSharingSettings
+    - Test-KshExternalUserSharing
   - ファイル
-    - [Get-KshFile](docs/Get-KshFile.md)
-    - [Add-KshFile](docs/Add-KshFile.md)
-    - [Remove-KshFile](docs/Remove-KshFile.md)
-    - [Open-KshFile](docs/Open-KshFile.md)
-    - [Save-KshFile](docs/Save-KshFile.md)
-    - [Copy-KshFile](docs/Copy-KshFile.md)
-    - [Move-KshFile](docs/Move-KshFile.md)
-    - [Approve-KshFile](docs/Approve-KshFile.md)
-    - [Deny-KshFile](docs/Deny-KshFile.md)
-    - [Lock-KshFile](docs/Lock-KshFile.md)
-    - [Unlock-KshFile](docs/Unlock-KshFile.md)
-    - [Publish-KshFile](docs/Publish-KshFile.md)
-    - [Unpublish-KshFile](docs/Unpublish-KshFile.md)
+    - Get-KshFile
+    - Add-KshFile
+    - Remove-KshFile
+    - Open-KshFile
+    - Save-KshFile
+    - Copy-KshFile
+    - Move-KshFile
+    - Approve-KshFile
+    - Deny-KshFile
+    - Lock-KshFile
+    - Unlock-KshFile
+    - Publish-KshFile
+    - Unpublish-KshFile
   - ファイル バージョン
-    - [Get-KshFileVersion](docs/Get-KshFileVersion.md)
-    - [Remove-KshFileVersion](docs/Remove-KshFileVersion.md)
-    - [Restore-KshFileVersion](docs/Restore-KshFileVersion.md)
+    - Get-KshFileVersion
+    - Remove-KshFileVersion
+    - Restore-KshFileVersion
   - フォルダー
-    - [Get-KshFolder](docs/Get-KshFolder.md)
-    - [Add-KshFolder](docs/Add-KshFolder.md)
-    - [Remove-KshFolder](docs/Remove-KshFolder.md)
-    - [Set-KshFolder](docs/Set-KshFolder.md)
-    - [Copy-KshFolder](docs/Copy-KshFolder.md)
-    - [Move-KshFolder](docs/Move-KshFolder.md)
-    - [Approve-KshFolder](docs/Approve-KshFolder.md)
-    - [Deny-KshFolder](docs/Deny-KshFolder.md)
-    - [Suspend-KshFolder](docs/Suspend-KshFolder.md)
+    - Get-KshFolder
+    - Add-KshFolder
+    - Remove-KshFolder
+    - Set-KshFolder
+    - Copy-KshFolder
+    - Move-KshFolder
+    - Approve-KshFolder
+    - Deny-KshFolder
+    - Suspend-KshFolder
   - グループ
-    - [Get-KshGroup](docs/Get-KshGroup.md)
-    - [Add-KshGroup](docs/Add-KshGroup.md)
-    - [Remove-KshGroup](docs/Remove-KshGroup.md)
-    - [Set-KshGroup](docs/Set-KshGroup.md)
-    - [Add-KshGroupMember](docs/Add-KshGroupMember.md)
-    - [Get-KshGroupMember](docs/Get-KshGroupMember.md)
-    - [Remove-KshGroupMember](docs/Remove-KshGroupMember.md)
-    - [Get-KshGroupOwner](docs/Get-KshGroupOwner.md)
-    - [Set-KshGroupOwner](docs/Set-KshGroupOwner.md)
+    - Get-KshGroup
+    - Add-KshGroup
+    - Remove-KshGroup
+    - Set-KshGroup
+    - Add-KshGroupMember
+    - Get-KshGroupMember
+    - Remove-KshGroupMember
+    - Get-KshGroupOwner
+    - Set-KshGroupOwner
   - 画像
-    - [Save-KshImage](docs/Save-KshImage.md)
+    - Save-KshImage
   - いいね
-    - [Get-KshLike](docs/Get-KshLike.md)
-    - [Enable-KshLike](docs/Enable-KshLike.md)
-    - [Disable-KshLike](docs/Disable-KshLike.md)
+    - Get-KshLike
+    - Enable-KshLike
+    - Disable-KshLike
   - リスト
-    - [Get-KshList](docs/Get-KshList.md)
-    - [Add-KshList](docs/Add-KshList.md)
-    - [Remove-KshList](docs/Remove-KshList.md)
-    - [Set-KshList](docs/Set-KshList.md)
+    - Get-KshList
+    - Add-KshList
+    - Remove-KshList
+    - Set-KshList
   - リスト アイテム
-    - [Get-KshListItem](docs/Get-KshListItem.md)
-    - [Add-KshListItem](docs/Add-KshListItem.md)
-    - [Remove-KshListItem](docs/Remove-KshListItem.md)
-    - [Set-KshListItem](docs/Set-KshListItem.md)
-    - [Approve-KshListItem](docs/Approve-KshListItem.md)
-    - [Deny-KshListItem](docs/Deny-KshListItem.md)
-    - [Suspend-KshListItem](docs/Suspend-KshListItem.md)
-    - [New-KshColumnGeolocationValue](docs/New-KshColumnGeolocationValue.md)
-    - [New-KshColumnImageValue](docs/New-KshColumnImageValue.md)
-    - [New-KshColumnLookupValue](docs/New-KshColumnLookupValue.md)
-    - [New-KshColumnTaxonomyValue](docs/New-KshColumnTaxonomyValue.md)
-    - [New-KshColumnUrlValue](docs/New-KshColumnUrlValue.md)
-    - [New-KshColumnUserValue](docs/New-KshColumnUserValue.md)
-    - [Set-KshColumnTaxonomyValue](docs/Set-KshColumnTaxonomyValue.md)
+    - Get-KshListItem
+    - Add-KshListItem
+    - Remove-KshListItem
+    - Set-KshListItem
+    - Approve-KshListItem
+    - Deny-KshListItem
+    - Suspend-KshListItem
+    - New-KshColumnGeolocationValue
+    - New-KshColumnImageValue
+    - New-KshColumnLookupValue
+    - New-KshColumnTaxonomyValue
+    - New-KshColumnUrlValue
+    - New-KshColumnUserValue
+    - Set-KshColumnTaxonomyValue
   - リスト テンプレート
-    - [Get-KshListTemplate](docs/Get-KshListTemplate.md)
+    - Get-KshListTemplate
   - ナビゲーション
-    - [Get-KshNavigation](docs/Get-KshNavigation.md)
-    - [Set-KshNavigation](docs/Set-KshNavigation.md)
-    - [Get-KshNavigationNode](docs/Get-KshNavigationNode.md)
-    - [Add-KshNavigationNode](docs/Add-KshNavigationNode.md)
-    - [Remove-KshNavigationNode](docs/Remove-KshNavigationNode.md)
-    - [Set-KshNavigationNode](docs/Set-KshNavigationNode.md)
+    - Get-KshNavigation
+    - Set-KshNavigation
+    - Get-KshNavigationNode
+    - Add-KshNavigationNode
+    - Remove-KshNavigationNode
+    - Set-KshNavigationNode
   - プロパティ
-    - [Get-KshProperty](docs/Get-KshProperty.md)
+    - Get-KshProperty
   - ごみ箱
-    - [Get-KshRecycleBinItem](docs/Get-KshRecycleBinItem.md)
-    - [Move-KshRecycleBinItem](docs/Move-KshRecycleBinItem.md)
-    - [Remove-KshRecycleBinItem](docs/Remove-KshRecycleBinItem.md)
-    - [Restore-KshRecycleBinItem](docs/Restore-KshRecycleBinItem.md)
+    - Get-KshRecycleBinItem
+    - Move-KshRecycleBinItem
+    - Remove-KshRecycleBinItem
+    - Restore-KshRecycleBinItem
   - 地域と言語の設定
-    - [Get-KshRegionalSettings](docs/Get-KshRegionalSettings.md)
-    - [Set-KshRegionalSettings](docs/Set-KshRegionalSettings.md)
-    - [ConvertTo-KshLocalTime](docs/ConvertTo-KshLocalTime.md)
-    - [ConvertTo-KshUniversalTime](docs/ConvertTo-KshUniversalTime.md)
+    - Get-KshRegionalSettings
+    - Set-KshRegionalSettings
+    - ConvertTo-KshLocalTime
+    - ConvertTo-KshUniversalTime
   - アクセス許可
-    - [Get-KshRoleAssignment](docs/Get-KshRoleAssignment.md)
-    - [Add-KshRoleAssignment](docs/Add-KshRoleAssignment.md)
-    - [Remove-KshRoleAssignment](docs/Remove-KshRoleAssignment.md)
-    - [Set-KshUniqueRoleAssignmentEnabled](docs/Set-KshUniqueRoleAssignmentEnabled.md)
+    - Get-KshRoleAssignment
+    - Add-KshRoleAssignment
+    - Remove-KshRoleAssignment
+    - Set-KshUniqueRoleAssignmentEnabled
   - アクセス許可レベル
-    - [Get-KshRoleDefinition](docs/Get-KshRoleDefinition.md)
-    - [Add-KshRoleDefinition](docs/Add-KshRoleDefinition.md)
-    - [Remove-KshRoleDefinition](docs/Remove-KshRoleDefinition.md)
-    - [Set-KshRoleDefinition](docs/Set-KshRoleDefinition.md)
-    - [New-KshBasePermission](docs/New-KshBasePermission.md)
+    - Get-KshRoleDefinition
+    - Add-KshRoleDefinition
+    - Remove-KshRoleDefinition
+    - Set-KshRoleDefinition
+    - New-KshBasePermission
   - 共有リンク
-    - [Add-KshAnonymousLink](docs/Add-KshAnonymousLink.md)
-    - [Remove-KshAnonymousLink](docs/Remove-KshAnonymousLink.md)
-    - [Add-KshOrganizationSharingLink](docs/Add-KshOrganizationSharingLink.md)
-    - [Remove-KshOrganizationSharingLink](docs/Remove-KshOrganizationSharingLink.md)
-    - [Test-KshSharingLink](docs/Add-KshSharingLink.md)
+    - Add-KshAnonymousLink
+    - Remove-KshAnonymousLink
+    - Add-KshOrganizationSharingLink
+    - Remove-KshOrganizationSharingLink
+    - Test-KshSharingLink
   - サイト
-    - [Get-KshSite](docs/Get-KshSite.md)
-    - [Add-KshSite](docs/Add-KshSite.md)
-    - [Remove-KshSite](docs/Remove-KshSite.md)
-    - [Set-KshSite](docs/Set-KshSite.md)
+    - Get-KshSite
+    - Add-KshSite
+    - Remove-KshSite
+    - Set-KshSite
   - サイト コレクションのアプリ
-    - [Get-KshSiteCollectionApp](docs/Get-KshSiteCollectionApp.md)
-    - [Add-KshSiteCollectionApp](docs/Add-KshSiteCollectionApp.md)
-    - [Remove-KshSiteCollectionApp](docs/Remove-KshSiteCollectionApp.md)
-    - [Install-KshSiteCollectionApp](docs/Install-KshSiteCollectionApp.md)
-    - [Uninstall-KshSiteCollectionApp](docs/Uninstall-KshSiteCollectionApp.md)
-    - [Publish-KshSiteCollectionApp](docs/Publish-KshSiteCollectionApp.md)
-    - [Unpublish-KshSiteCollectionApp](docs/Unpublish-KshSiteCollectionApp.md)
+    - Get-KshSiteCollectionApp
+    - Add-KshSiteCollectionApp
+    - Remove-KshSiteCollectionApp
+    - Install-KshSiteCollectionApp
+    - Uninstall-KshSiteCollectionApp
+    - Publish-KshSiteCollectionApp
+    - Unpublish-KshSiteCollectionApp
   - サイト コレクションのアプリ カタログ
-    - [Get-KshSiteCollectionAppCatalog](docs/Get-KshSiteCollectionAppCatalog.md)
-    - [Add-KshSiteCollectionAppCatalog](docs/Add-KshSiteCollectionAppCatalog.md)
-    - [Remove-KshSiteCollectionAppCatalog](docs/Remove-KshSiteCollectionAppCatalog.md)
+    - Get-KshSiteCollectionAppCatalog
+    - Add-KshSiteCollectionAppCatalog
+    - Remove-KshSiteCollectionAppCatalog
   - サイト コレクションの機能
-    - [Get-KshSiteCollectionFeature](docs/Get-KshSiteCollectionFeature.md)
-    - [Add-KshSiteCollectionFeature](docs/Add-KshSiteCollectionFeature.md)
-    - [Remove-KshSiteCollectionFeature](docs/Remove-KshSiteCollectionFeature.md)
+    - Get-KshSiteCollectionFeature
+    - Add-KshSiteCollectionFeature
+    - Remove-KshSiteCollectionFeature
   - サイトの機能
-    - [Get-KshSiteFeature](docs/Get-KshSiteFeature.md)
-    - [Add-KshSiteFeature](docs/Add-KshSiteFeature.md)
-    - [Remove-KshSiteFeature](docs/Remove-KshSiteFeature.md)
+    - Get-KshSiteFeature
+    - Add-KshSiteFeature
+    - Remove-KshSiteFeature
   - サイト ページ
-    - [Add-KshSitePage](docs/Add-KshSitePage.md)
-    - [Remove-KshSitePage](docs/Remove-KshSitePage.md)
-    - [Set-KshSitePage](docs/Set-KshSitePage.md)
+    - Add-KshSitePage
+    - Remove-KshSitePage
+    - Set-KshSitePage
   - サイト テンプレート
-    - [Get-KshSiteTemplate](docs/Get-KshSiteTemplate.md)
+    - Get-KshSiteTemplate
   - テナントのアプリ
-    - [Get-KshTenantApp](docs/Get-KshTenantApp.md)
-    - [Add-KshTenantApp](docs/Add-KshTenantApp.md)
-    - [Remove-KshTenantApp](docs/Remove-KshTenantApp.md)
-    - [Install-KshTenantApp](docs/Install-KshTenantApp.md)
-    - [Uninstall-KshTenantApp](docs/Uninstall-KshTenantApp.md)
-    - [Publish-KshTenantApp](docs/Publish-KshTenantApp.md)
-    - [Unpublish-KshTenantApp](docs/Unpublish-KshTenantApp.md)
+    - Get-KshTenantApp
+    - Add-KshTenantApp
+    - Remove-KshTenantApp
+    - Install-KshTenantApp
+    - Uninstall-KshTenantApp
+    - Publish-KshTenantApp
+    - Unpublish-KshTenantApp
   - テナントのアプリ カタログ
-    - [Get-KshTenantAppCatalog](docs/Get-KshTenantAppCatalog.md)
+    - Get-KshTenantAppCatalog
   - ユーザー
-    - [Get-KshUser](docs/Get-KshUser.md)
-    - [Add-KshUser](docs/Add-KshUser.md)
-    - [Remove-KshUser](docs/Remove-KshUser.md)
-    - [Set-KshUser](docs/Set-KshUser.md)
-    - [Resolve-KshUser](docs/Resolve-KshUser.md)
-    - [Add-KshExternalUser](docs/Get-KshExternalUser.md)
+    - Get-KshUser
+    - Add-KshUser
+    - Remove-KshUser
+    - Set-KshUser
+    - Resolve-KshUser
+    - Add-KshExternalUser
   - ユーザーの権限
-    - [Get-KshUserPermission](docs/Get-KshUserPermission.md)
+    - Get-KshUserPermission
   - ユーザー プロパティ
-    - [Get-KshUserProperty](docs/Get-KshUserProperty.md)
+    - Get-KshUserProperty
   - ビュー
-    - [Get-KshView](docs/Get-KshView.md)
-    - [Add-KshView](docs/Add-KshView.md)
-    - [Remove-KshView](docs/Remove-KshView.md)
-    - [Set-KshView](docs/Set-KshView.md)
-    - [Add-KshViewColumn](docs/Add-KshViewColumn.md)
-    - [Get-KshViewColumn](docs/Get-KshViewColumn.md)
-    - [Move-KshViewColumn](docs/Move-KshViewColumn.md)
-    - [Remove-KshViewColumn](docs/Remove-KshViewColumn.md)
+    - Get-KshView
+    - Add-KshView
+    - Remove-KshView
+    - Set-KshView
+    - Add-KshViewColumn
+    - Get-KshViewColumn
+    - Move-KshViewColumn
+    - Remove-KshViewColumn
   - Webhook
-    - [Get-KshSubscription](docs/Get-KshSubscription.md)
-    - [Add-KshSubscription](docs/Add-KshSubscription.md)
-    - [Remove-KshSubscription](docs/Remove-KshSubscription.md)
-    - [Set-KshSubscription](docs/Set-KshSubscription.md)
+    - Get-KshSubscription
+    - Add-KshSubscription
+    - Remove-KshSubscription
+    - Set-KshSubscription
 - テナント管理
   - 削除されたサイト コレクション
-    - [Get-KshTenantDeletedPersonalSiteCollection](docs/Get-KshTenantDeletedPersonalSiteCollection.md)
-    - [Get-KshTenantDeletedSiteCollection](docs/Get-KshTenantDeletedSiteCollection.md)
-    - [Remove-KshTenantDeletedSiteCollection](docs/Remove-KshTenantDeletedSiteCollection.md)
-    - [Restore-KshTenantDeletedSiteCollection](docs/Restore-KshTenantDeletedSiteCollection.md)
+    - Get-KshTenantDeletedPersonalSiteCollection
+    - Get-KshTenantDeletedSiteCollection
+    - Remove-KshTenantDeletedSiteCollection
+    - Restore-KshTenantDeletedSiteCollection
   - ファイル バージョン ポリシー
-    - [Set-KshTenantFileVersionPolicy](docs/Set-KshTenantFileVersionPolicy.md)
-    - [Get-KshTenantFileVersionPolicyForDocumentLibrary](docs/Get-KshTenantFileVersionPolicyForDocumentLibrary.md)
-    - [Set-KshTenantFileVersionPolicyForDocumentLibrary](docs/Set-KshTenantFileVersionPolicyForDocumentLibrary.md)
+    - Set-KshTenantFileVersionPolicy
+    - Get-KshTenantFileVersionPolicyForDocumentLibrary
+    - Set-KshTenantFileVersionPolicyForDocumentLibrary
   - ホーム サイト
-    - [Get-KshTenantHomeSite](docs/Get-KshTenantHomeSite.md)
-    - [Remove-KshTenantHomeSite](docs/Remove-KshTenantHomeSite.md)
-    - [Set-KshTenantHomeSite](docs/Set-KshTenantHomeSite.md)
+    - Get-KshTenantHomeSite
+    - Remove-KshTenantHomeSite
+    - Set-KshTenantHomeSite
   - ハブ サイト
-    - [Get-KshTenantHubSite](docs/Get-KshTenantHubSite.md)
-    - [Add-KshTenantHubSite](docs/Add-KshTenantHubSite.md)
-    - [Remove-KshTenantHubSite](docs/Remove-KshTenantHubSite.md)
-    - [Set-KshTenantHubSite](docs/Set-KshTenantHubSite.md)
+    - Get-KshTenantHubSite
+    - Add-KshTenantHubSite
+    - Remove-KshTenantHubSite
+    - Set-KshTenantHubSite
   - リスト デザイン
-    - [Get-KshTenantListDesign](docs/Get-KshTenantListDesign.md)
-    - [Add-KshTenantListDesign](docs/Add-KshTenantListDesign.md)
-    - [Remove-KshTenantListDesign](docs/Remove-KshTenantListDesign.md)
+    - Get-KshTenantListDesign
+    - Add-KshTenantListDesign
+    - Remove-KshTenantListDesign
   - Office 365 CDN
-    - [Get-KshTenantCdnEnabled](docs/Get-KshTenantCdnEnabled.md)
-    - [Set-KshTenantCdnEnabled](docs/Set-KshTenantCdnEnabled.md)
-    - [Get-KshTenantCdnOrigin](docs/Set-KshTenantCdnOrigin.md)
-    - [Add-KshTenantCdnOrigin](docs/Get-KshTenantCdnOrigin.md)
-    - [Remove-KshTenantCdnOrigin](docs/Remove-KshTenantCdnOrigin.md)
-    - [Get-KshTenantCdnPolicy](docs/Get-KshTenantCdnPolicy.md)
-    - [Set-KshTenantCdnPolicy](docs/Set-KshTenantCdnPolicy.md)
+    - Get-KshTenantCdnEnabled
+    - Set-KshTenantCdnEnabled
+    - Get-KshTenantCdnOrigin
+    - Add-KshTenantCdnOrigin
+    - Remove-KshTenantCdnOrigin
+    - Get-KshTenantCdnPolicy
+    - Set-KshTenantCdnPolicy
   - 組織のニュース サイト
-    - [Get-KshTenantOrganizationNewsSite](docs/Get-KshTenantOrganizationNewsSite.md)
-    - [Add-KshTenantOrganizationNewsSite](docs/Add-KshTenantOrganizationNewsSite.md)
-    - [Remove-KshTenantOrganizationNewsSite](docs/Remove-KshTenantOrganizationNewsSite.md)
+    - Get-KshTenantOrganizationNewsSite
+    - Add-KshTenantOrganizationNewsSite
+    - Remove-KshTenantOrganizationNewsSite
   - 個人用サイト
-    - [Get-KshTenantPersonalSite](docs/Get-KshTenantPersonalSite.md)
+    - Get-KshTenantPersonalSite
+  - ルート サイト
+    - Get-KshTenantRootSite
   - サイト コレクション
-    - [Get-KshSiteCollection](docs/Get-KshSiteCollection.md)
-    - [Get-KshTenantSiteCollection](docs/Get-KshTenantSiteCollection.md)
-    - [Add-KshTenantSiteCollection](docs/Add-KshTenantSiteCollection.md)
-    - [Remove-KshTenantSiteCollection](docs/Remove-KshTenantSiteCollection.md)
-    - [Set-KshTenantSiteCollection](docs/Set-KshTenantSiteCollection.md)
-    - [Lock-KshTenantSiteCollection](docs/Lock-KshTenantSiteCollection.md)
-    - [Unlock-KshTenantSiteCollection](docs/Unlock-KshTenantSiteCollection.md)
+    - Get-KshSiteCollection
+    - Get-KshTenantSiteCollection
+    - Add-KshTenantSiteCollection
+    - Remove-KshTenantSiteCollection
+    - Set-KshTenantSiteCollection
+    - Lock-KshTenantSiteCollection
+    - Unlock-KshTenantSiteCollection
   - サイト スクリプト
-    - [Get-KshTenantSiteScript](docs/Get-KshTenantSiteScript.md)
-    - [Add-KshTenantSiteScript](docs/Add-KshTenantSiteScript.md)
-    - [Remove-KshTenantSiteScript](docs/Remove-KshTenantSiteScript.md)
-    - [Get-KshTenantSiteScriptFromList](docs/Get-KshTenantSiteScriptFromList.md)
-    - [Get-KshTenantSiteScriptFromSite](docs/Get-KshTenantSiteScriptFromSite.md)
+    - Get-KshTenantSiteScript
+    - Add-KshTenantSiteScript
+    - Remove-KshTenantSiteScript
+    - Get-KshTenantSiteScriptFromList
+    - Get-KshTenantSiteScriptFromSite
   - サイト テンプレート
-    - [Get-KshTenantSiteTemplate](docs/Get-KshTenantSiteTemplate.md)
+    - Get-KshTenantSiteTemplate
   - テナント
-    - [Get-KshTenant](docs/Get-KshTenant.md)
-    - [Set-KshTenant](docs/Set-KshTenant.md)
+    - Get-KshTenant
+    - Set-KshTenant
   - テーマ
-    - [Get-KshTenantTheme](docs/Get-KshTenantTheme.md)
-    - [Add-KshTenantTheme](docs/Add-KshTenantTheme.md)
-    - [Remove-KshTenantTheme](docs/Remove-KshTenantTheme.md)
-    - [Set-KshTenantTheme](docs/Set-KshTenantTheme.md)
+    - Get-KshTenantTheme
+    - Add-KshTenantTheme
+    - Remove-KshTenantTheme
+    - Set-KshTenantTheme
   - ユーザー
-    - [Get-KshTenantUser](docs/Get-KshTenantUser.md)
-    - [Add-KshTenantUser](docs/Add-KshTenantUser.md)
-    - [Remove-KshTenantUser](docs/Remove-KshTenantUser.md)
-    - [Set-KshTenantUser](docs/Set-KshTenantUser.md)
-    - [Get-KshTenantExternalUser](docs/Get-KshTenantExternalUser.md)
-    - [Remove-KshTenantExternalUser](docs/Remove-KshTenantExternalUser.md)
+    - Get-KshTenantUser
+    - Add-KshTenantUser
+    - Remove-KshTenantUser
+    - Set-KshTenantUser
+    - Get-KshTenantExternalUser
+    - Remove-KshTenantExternalUser
 - 管理されたメタデータ
   - カスタム プロパティ
-    - [Add-KshTermCustomProperty](docs/Add-KshTermCustomProperty.md)
-    - [Remove-KshTermCustomProperty](docs/Remove-KshTermCustomProperty.md)
-    - [Add-KshTermLocalCustomProperty](docs/Add-KshTermLocalCustomProperty.md)
-    - [Remove-KshTermLocalCustomProperty](docs/Remove-KshTermLocalCustomProperty.md)
+    - Add-KshTermCustomProperty
+    - Remove-KshTermCustomProperty
+    - Add-KshTermLocalCustomProperty
+    - Remove-KshTermLocalCustomProperty
   - 用語
-    - [Get-KshTerm](docs/Get-KshTerm.md)
-    - [Add-KshTerm](docs/Add-KshTerm.md)
-    - [Remove-KshTerm](docs/Remove-KshTerm.md)
-    - [Set-KshTerm](docs/Set-KshTerm.md)
-    - [Copy-KshTerm](docs/Copy-KshTerm.md)
-    - [Move-KshTerm](docs/Move-KshTerm.md)
-    - [Merge-KshTerm](docs/Merge-KshTerm.md)
-    - [Disable-KshTerm](docs/Disable-KshTerm.md)
-    - [Enable-KshTerm](docs/Enable-KshTerm.md)
-    - [Get-KshTermDescription](docs/Get-KshTermDescription.md)
-    - [Set-KshTermDescription](docs/Set-KshTermDescription.md)
+    - Get-KshTerm
+    - Add-KshTerm
+    - Remove-KshTerm
+    - Set-KshTerm
+    - Copy-KshTerm
+    - Move-KshTerm
+    - Merge-KshTerm
+    - Disable-KshTerm
+    - Enable-KshTerm
+    - Get-KshTermDescription
+    - Set-KshTermDescription
   - 用語グループ
-    - [Get-KshTermGroup](docs/Get-KshTermGroup.md)
-    - [Add-KshTermGroup](docs/Add-KshTermGroup.md)
-    - [Remove-KshTermGroup](docs/Remove-KshTermGroup.md)
-    - [Set-KshTermGroup](docs/Set-KshTermGroup.md)
+    - Get-KshTermGroup
+    - Add-KshTermGroup
+    - Remove-KshTermGroup
+    - Set-KshTermGroup
   - 用語ラベル
-    - [Get-KshTermLabel](docs/Get-KshTermLabel.md)
-    - [Add-KshTermLabel](docs/Add-KshTermLabel.md)
-    - [Remove-KshTermLabel](docs/Remove-KshTermLabel.md)
-    - [Set-KshTermLabel](docs/Set-KshTermLabel.md)
+    - Get-KshTermLabel
+    - Add-KshTermLabel
+    - Remove-KshTermLabel
+    - Set-KshTermLabel
   - 用語セット
-    - [Get-KshTermSet](docs/Get-KshTermSet.md)
-    - [Add-KshTermSet](docs/Add-KshTermSet.md)
-    - [Remove-KshTermSet](docs/Remove-KshTermSet.md)
-    - [Set-KshTermSet](docs/Set-KshTermSet.md)
+    - Get-KshTermSet
+    - Add-KshTermSet
+    - Remove-KshTermSet
+    - Set-KshTermSet
   - 用語ストア
-    - [Get-KshTermStore](docs/Get-KshTermStore.md)
-    - [Set-KshTermStore](docs/Set-KshTermStore.md)
-    - [Add-KshTermStoreLanguage](docs/Add-KshTermStoreLanguage.md)
-    - [Remove-KshTermStoreLanguage](docs/Remove-KshTermStoreLanguage.md)
+    - Get-KshTermStore
+    - Set-KshTermStore
+    - Add-KshTermStoreLanguage
+    - Remove-KshTermStoreLanguage

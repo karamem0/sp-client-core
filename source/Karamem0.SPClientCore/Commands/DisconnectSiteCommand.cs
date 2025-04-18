@@ -26,7 +26,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class DisconnectSiteCommand : ClientObjectCmdlet
 {
 
-    [Parameter(Mandatory = false, Position = 0, ValueFromPipeline = true)]
+    [Parameter(
+        Mandatory = false,
+        Position = 0,
+        ValueFromPipeline = true
+    )]
     public Uri Url { get; private set; }
 
     protected override void ProcessRecordCore()

@@ -22,12 +22,13 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class ClientValueObject : JsonValueObject
 {
 
-    public static ClientValueObject Create<T>(IReadOnlyDictionary<string, object> parameters)
-        where T : ClientValueObject, new()
+    public static ClientValueObject Create<T>(IReadOnlyDictionary<string, object> parameters) where T : ClientValueObject, new()
     {
         _ = parameters ?? throw new ArgumentNullException(nameof(parameters));
         var value = new T();
-        foreach (var propertyInfo in value.GetType().GetDeclaredProperties())
+        foreach (var propertyInfo in value
+                     .GetType()
+                     .GetDeclaredProperties())
         {
             if (parameters.TryGetValue(propertyInfo.Name, out var propertyValue))
             {
@@ -36,10 +37,7 @@ public class ClientValueObject : JsonValueObject
                     var switchAttribute = propertyInfo.GetCustomAttribute<SwitchParameterValueAttribute>();
                     if (switchAttribute is not null)
                     {
-                        propertyInfo.SetValue(
-                            value,
-                            switchValue.ToBool() ? switchAttribute.TrueValue : switchAttribute.FalseValue
-                        );
+                        propertyInfo.SetValue(value, switchValue.ToBool() ? switchAttribute.TrueValue : switchAttribute.FalseValue);
                     }
                     else
                     {
@@ -68,11 +66,18 @@ public class ClientValueObject : JsonValueObject
         .GetTypes()
         .Where(type => type.IsSubclassOf(typeof(ClientValueObject)))
         .Where(type => type.IsDefined(typeof(ClientObjectAttribute)))
-        .ToDictionary(type => type.GetCustomAttribute<ClientObjectAttribute>().Name, type => type);
+        .ToDictionary(
+            type => type.GetCustomAttribute<ClientObjectAttribute>()
+                .Name,
+            type => type
+        );
 
     public static Type GetType(string name)
     {
-        return ClientValueObjectDictionary.Where(item => item.Key == name).Select(item => item.Value).SingleOrDefault();
+        return ClientValueObjectDictionary
+            .Where(item => item.Key == name)
+            .Select(item => item.Value)
+            .SingleOrDefault();
     }
 
     [JsonProperty("_ObjectType_")]

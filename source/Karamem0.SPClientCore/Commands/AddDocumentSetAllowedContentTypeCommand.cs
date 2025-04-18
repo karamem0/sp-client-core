@@ -33,7 +33,11 @@ public class AddDocumentSetAllowedContentTypeCommand : ClientObjectCmdlet<IDocum
 
     protected override void ProcessRecordCore()
     {
-        this.Service.AddObject(this.ContentType, this.AllowedContentType, this.PushChanges);
+        this.Service.AddObject(
+            this.ContentType,
+            this.AllowedContentType,
+            this.PushChanges
+        );
     }
 
 }
