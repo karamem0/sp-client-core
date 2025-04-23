@@ -17,11 +17,4 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.Taxonomy.TermCollection", Id = "{ac6d0da8-9769-4425-a395-6413a9a0367e}")]
 [JsonObject()]
-public class TermEnumerable : ClientObjectEnumerable<Term>
-{
-
-    public TermEnumerable()
-    {
-    }
-
-}
+public class TermEnumerable : ClientObjectEnumerable<Term>;

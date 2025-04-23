@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class UserProfile : ClientObject
 {
 
-    public UserProfile()
-    {
-    }
-
     [JsonProperty()]
     public virtual string AccountName { get; protected set; }
 

@@ -19,10 +19,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V2;
 public class IdentitySet : ODataV2Object
 {
 
-    public IdentitySet()
-    {
-    }
-
     [JsonProperty("application")]
     public virtual Identity Application { get; protected set; }
 

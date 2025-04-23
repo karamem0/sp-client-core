@@ -19,10 +19,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class ImageItem : ODataV1Object
 {
 
-    public ImageItem()
-    {
-    }
-
     [JsonProperty("Name")]
     public virtual string Name { get; protected set; }
 

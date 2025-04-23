@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class UserSharingResult : ClientValueObject
 {
 
-    public UserSharingResult()
-    {
-    }
-
     [JsonProperty()]
     public virtual IReadOnlyCollection<RoleType> AllowedRoles { get; protected set; }
 

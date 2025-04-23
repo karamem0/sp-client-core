@@ -17,11 +17,4 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.DocumentSet.AllowedContentTypeCollection", Id = "{60664bb3-3d6d-49c5-9573-1d524ee82e34}")]
 [JsonObject()]
-public class AllowedContentTypeEnumerable : ClientObjectEnumerable<ContentTypeId>
-{
-
-    public AllowedContentTypeEnumerable()
-    {
-    }
-
-}
+public class AllowedContentTypeEnumerable : ClientObjectEnumerable<ContentTypeId>;

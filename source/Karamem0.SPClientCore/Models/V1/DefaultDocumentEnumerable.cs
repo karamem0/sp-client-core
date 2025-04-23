@@ -17,11 +17,4 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.DocumentSet.DefaultDocumentCollection", Id = "{36d215c9-7f02-426f-9689-e08bea511d74}")]
 [JsonObject()]
-public class DefaultDocumentEnumerable : ClientObjectEnumerable<DefaultDocument>
-{
-
-    public DefaultDocumentEnumerable()
-    {
-    }
-
-}
+public class DefaultDocumentEnumerable : ClientObjectEnumerable<DefaultDocument>;

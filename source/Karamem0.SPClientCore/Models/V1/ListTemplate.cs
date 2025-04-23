@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class ListTemplate : ClientObject
 {
 
-    public ListTemplate()
-    {
-    }
-
     [JsonProperty()]
     public virtual bool AllowsFolderCreation { get; protected set; }
 

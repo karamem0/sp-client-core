@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class TenantSiteCollection : ClientObject
 {
 
-    public TenantSiteCollection()
-    {
-    }
-
     [JsonProperty()]
     public virtual bool AllowDownloadingNonWebViewableFiles { get; protected set; }
 

@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class ChangeItem : Change
 {
 
-    public ChangeItem()
-    {
-    }
-
     [JsonProperty()]
     public override ChangeToken ChangeToken { get; protected set; }
 

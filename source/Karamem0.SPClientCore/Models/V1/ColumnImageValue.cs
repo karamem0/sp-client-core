@@ -16,45 +16,31 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [JsonObject()]
-public class ColumnImageValue : ODataObject
+public class ColumnImageValue(
+    string columnName = null,
+    string fileName = null,
+    string serverUrl = null,
+    string serverRelativeUrl = null,
+    string id = null
+) : ODataObject
 {
 
-    public ColumnImageValue()
-    {
-    }
-
-    public ColumnImageValue(
-        string columnName,
-        string fileName,
-        string serverUrl,
-        string serverRelativeUrl,
-        string id
-    )
-    {
-        this.Type = "thumbnail";
-        this.ColumnName = columnName;
-        this.FileName = fileName;
-        this.ServerUrl = serverUrl;
-        this.ServerRelativeUrl = serverRelativeUrl;
-        this.Id = id;
-    }
-
     [JsonProperty("fieldName")]
-    public virtual string ColumnName { get; protected set; }
+    public virtual string ColumnName { get; protected set; } = columnName;
 
     [JsonProperty("fileName")]
-    public virtual string FileName { get; protected set; }
+    public virtual string FileName { get; protected set; } = fileName;
 
     [JsonProperty("id")]
-    public virtual string Id { get; protected set; }
+    public virtual string Id { get; protected set; } = id;
 
     [JsonProperty("serverRelativeUrl")]
-    public virtual string ServerRelativeUrl { get; protected set; }
+    public virtual string ServerRelativeUrl { get; protected set; } = serverRelativeUrl;
 
     [JsonProperty("serverUrl")]
-    public virtual string ServerUrl { get; protected set; }
+    public virtual string ServerUrl { get; protected set; } = serverUrl;
 
     [JsonProperty("type")]
-    public virtual string Type { get; protected set; }
+    public virtual string Type { get; protected set; } = "thumbnail";
 
 }

@@ -17,11 +17,4 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.FieldLinkCollection", Id = "{6d87e76a-b8a8-4634-8170-082b1d454bfd}")]
 [JsonObject()]
-public class ContentTypeColumnEnumerable : ClientObjectEnumerable<ContentTypeColumn>
-{
-
-    public ContentTypeColumnEnumerable()
-    {
-    }
-
-}
+public class ContentTypeColumnEnumerable : ClientObjectEnumerable<ContentTypeColumn>;

@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class TenantDeletedSiteCollection : ClientObject
 {
 
-    public TenantDeletedSiteCollection()
-    {
-    }
-
     [JsonProperty()]
     public virtual int DaysRemaining { get; protected set; }
 

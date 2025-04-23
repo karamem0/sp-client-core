@@ -20,8 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IFolderService
 {
 
-    void ApproveObject(Folder folderObject, string comment);
-
     void CopyObject(
         Folder folderObject,
         Uri folderUrl,
@@ -29,8 +27,6 @@ public interface IFolderService
     );
 
     Folder AddObject(Folder folderObject, string folderName);
-
-    void DenyObject(Folder folderObject, string comment);
 
     Folder GetObject(Folder folderObject);
 
@@ -62,36 +58,10 @@ public interface IFolderService
 
     void SetObject(Folder folderObject, IReadOnlyDictionary<string, object> modificationInfo);
 
-    void SuspendObject(Folder folderObject, string comment);
-
 }
 
 public class FolderService(ClientContext clientContext) : ClientService<Folder>(clientContext), IFolderService
 {
-
-    public void ApproveObject(Folder folderObject, string comment)
-    {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
-        var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity));
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "ListItemAllFields"),
-            objectPathId => new ClientActionMethod(
-                objectPathId,
-                "SetFieldValue",
-                requestPayload.CreateParameter("_ModerationStatus"),
-                requestPayload.CreateParameter(ModerationStatusType.Approved)
-            ),
-            objectPathId => new ClientActionMethod(
-                objectPathId,
-                "SetFieldValue",
-                requestPayload.CreateParameter("_ModerationComments"),
-                requestPayload.CreateParameter(comment)
-            ),
-            objectPathId => new ClientActionMethod(objectPathId, "Update")
-        );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
-    }
 
     public void CopyObject(
         Folder folderObject,
@@ -141,30 +111,6 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
-    }
-
-    public void DenyObject(Folder folderObject, string comment)
-    {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
-        var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity));
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "ListItemAllFields"),
-            objectPathId => new ClientActionMethod(
-                objectPathId,
-                "SetFieldValue",
-                requestPayload.CreateParameter("_ModerationStatus"),
-                requestPayload.CreateParameter(ModerationStatusType.Denied)
-            ),
-            objectPathId => new ClientActionMethod(
-                objectPathId,
-                "SetFieldValue",
-                requestPayload.CreateParameter("_ModerationComments"),
-                requestPayload.CreateParameter(comment)
-            ),
-            objectPathId => new ClientActionMethod(objectPathId, "Update")
-        );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
     public Folder GetObject(List listObject)
@@ -361,30 +307,6 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Guid>(requestPayload.GetActionId<ClientActionMethod>());
-    }
-
-    public void SuspendObject(Folder folderObject, string comment)
-    {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
-        var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity));
-        var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "ListItemAllFields"),
-            objectPathId => new ClientActionMethod(
-                objectPathId,
-                "SetFieldValue",
-                requestPayload.CreateParameter("_ModerationStatus"),
-                requestPayload.CreateParameter(ModerationStatusType.Pending)
-            ),
-            objectPathId => new ClientActionMethod(
-                objectPathId,
-                "SetFieldValue",
-                requestPayload.CreateParameter("_ModerationComments"),
-                requestPayload.CreateParameter(comment)
-            ),
-            objectPathId => new ClientActionMethod(objectPathId, "Update")
-        );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
 }

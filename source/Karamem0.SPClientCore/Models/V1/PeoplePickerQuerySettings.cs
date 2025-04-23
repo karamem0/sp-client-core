@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class PeoplePickerQuerySettings : ClientValueObject
 {
 
-    public PeoplePickerQuerySettings()
-    {
-    }
-
     [JsonProperty()]
     public virtual bool ExcludeAllUsersOnTenantClaim { get; protected set; }
 

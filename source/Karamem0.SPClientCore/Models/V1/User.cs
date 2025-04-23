@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class User : Principal
 {
 
-    public User()
-    {
-    }
-
     [JsonProperty()]
     public virtual string Email { get; protected set; }
 

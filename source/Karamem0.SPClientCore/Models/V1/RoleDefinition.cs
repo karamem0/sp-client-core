@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class RoleDefinition : ClientObject
 {
 
-    public RoleDefinition()
-    {
-    }
-
     [JsonProperty("BasePermissions")]
     public virtual BasePermission BasePermission { get; protected set; }
 

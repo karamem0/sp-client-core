@@ -20,14 +20,14 @@ public enum AzureSubscriptionState
 
     Active = 1,
 
-	Deleted = 2,
+    Deleted = 2,
 
-	Disabled = 3,
+    Disabled = 3,
 
-	Expired = 4,
+    Expired = 4,
 
-	PastDue = 5,
+    PastDue = 5,
 
-	Warned = 6,
+    Warned = 6,
 
 }

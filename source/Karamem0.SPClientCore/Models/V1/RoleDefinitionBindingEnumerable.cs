@@ -17,11 +17,4 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.RoleDefinitionBindingCollection", Id = "{07bf1941-6953-4761-b114-58374b4aaf57}")]
 [JsonObject()]
-public class RoleDefinitionBindingEnumerable : ClientObjectEnumerable<RoleDefinition>
-{
-
-    public RoleDefinitionBindingEnumerable()
-    {
-    }
-
-}
+public class RoleDefinitionBindingEnumerable : ClientObjectEnumerable<RoleDefinition>;

@@ -7,7 +7,6 @@
 //
 
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +17,6 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 [JsonObject()]
 public class ODataV1MethodReturnValue : ODataV1Object
 {
-
-    public ODataV1MethodReturnValue()
-    {
-    }
 
     public virtual T GetValue<T>(string methodName) where T : ODataV1Object
     {

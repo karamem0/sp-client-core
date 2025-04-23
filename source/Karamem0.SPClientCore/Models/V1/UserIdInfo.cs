@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class UserIdInfo : ClientValueObject
 {
 
-    public UserIdInfo()
-    {
-    }
-
     [JsonProperty()]
     public virtual string NameId { get; protected set; }
 

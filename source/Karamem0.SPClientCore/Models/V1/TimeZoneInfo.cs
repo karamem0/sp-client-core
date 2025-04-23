@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class TimeZoneInfo : ClientValueObject
 {
 
-    public TimeZoneInfo()
-    {
-    }
-
     [JsonProperty()]
     public virtual int Bias { get; protected set; }
 

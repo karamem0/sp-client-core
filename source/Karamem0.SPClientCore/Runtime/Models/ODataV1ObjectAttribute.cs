@@ -17,10 +17,6 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class ODataV1ObjectAttribute : Attribute
 {
 
-    public ODataV1ObjectAttribute()
-    {
-    }
-
     public string Name { get; set; }
 
 }

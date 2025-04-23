@@ -17,11 +17,4 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.CustomActionElementCollection", Id = "{8085c8a0-ac08-44c8-ac9f-8a35540b34d1}")]
 [JsonObject()]
-public class CustomActionElementEnumerable : ClientObjectEnumerable<CustomActionElement>
-{
-
-    public CustomActionElementEnumerable()
-    {
-    }
-
-}
+public class CustomActionElementEnumerable : ClientObjectEnumerable<CustomActionElement>;

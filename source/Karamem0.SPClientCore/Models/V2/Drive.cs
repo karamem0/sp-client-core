@@ -19,10 +19,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V2;
 public class Drive : ODataV2Object
 {
 
-    public Drive()
-    {
-    }
-
     [JsonProperty("createdBy")]
     public virtual IdentitySet Author { get; protected set; }
 

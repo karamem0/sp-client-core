@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class View : ClientObject
 {
 
-    public View()
-    {
-    }
-
     [JsonProperty()]
     public string Aggregations { get; private set; }
 

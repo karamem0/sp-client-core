@@ -19,10 +19,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V2;
 public class Folder : ODataV2Object
 {
 
-    public Folder()
-    {
-    }
-
     [JsonProperty("childCount")]
     public virtual int ChildCount { get; protected set; }
 

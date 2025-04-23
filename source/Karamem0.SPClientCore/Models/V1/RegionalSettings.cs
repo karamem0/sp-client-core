@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class RegionalSettings : ClientObject
 {
 
-    public RegionalSettings()
-    {
-    }
-
     [JsonProperty()]
     public virtual short AdjustHijriDays { get; protected set; }
 

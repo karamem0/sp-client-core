@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class List : SecurableObject
 {
 
-    public List()
-    {
-    }
-
     [JsonProperty()]
     public virtual bool AllowContentTypes { get; protected set; }
 

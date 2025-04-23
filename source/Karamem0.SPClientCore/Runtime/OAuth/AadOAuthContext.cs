@@ -42,22 +42,23 @@ public class AadOAuthContext(
         var requertParameters = new Dictionary<string, object>()
         {
             ["client_id"] = this.clientId,
-            ["scope"] = string.Join(
-                " ",
-                this.userMode
-                    ?
+            ["scope"] = this.userMode
+                ? string.Join(
+                    " ",
                     [
                         "offline_access",
                         $"{OAuthConstants.ResourceId}/AllSites.Manage"
                     ]
-                    :
+                )
+                : string.Join(
+                    " ",
                     [
                         "offline_access",
                         $"{OAuthConstants.ResourceId}/AllSites.FullControl",
                         $"{OAuthConstants.ResourceId}/TermStore.ReadWrite.All",
                         $"{OAuthConstants.ResourceId}/User.Read.All"
                     ]
-            )
+                )
         };
         var tenantId = this.tenantIdResolver.Resolve();
         var requestUrl = new Uri(this.authority, UriKind.Absolute)
@@ -96,22 +97,23 @@ public class AadOAuthContext(
             ["grant_type"] = "device_code",
             ["client_id"] = this.clientId,
             ["code"] = deviceCode,
-            ["scope"] = string.Join(
-                " ",
-                this.userMode
-                    ?
+            ["scope"] = this.userMode
+                ? string.Join(
+                    " ",
                     [
                         "offline_access",
                         $"{OAuthConstants.ResourceId}/AllSites.Manage"
                     ]
-                    :
+                )
+                : string.Join(
+                    " ",
                     [
                         "offline_access",
                         $"{OAuthConstants.ResourceId}/AllSites.FullControl",
                         $"{OAuthConstants.ResourceId}/TermStore.ReadWrite.All",
                         $"{OAuthConstants.ResourceId}/User.Read.All"
                     ]
-            )
+                )
         };
         var requestContent = UriQuery.Create(requertParameters);
         var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl)
@@ -155,22 +157,23 @@ public class AadOAuthContext(
             ["client_id"] = this.clientId,
             ["username"] = userName,
             ["password"] = password,
-            ["scope"] = string.Join(
-                " ",
-                this.userMode
-                    ?
+            ["scope"] = this.userMode
+                ? string.Join(
+                    " ",
                     [
                         "offline_access",
                         $"{OAuthConstants.ResourceId}/AllSites.Manage"
                     ]
-                    :
+                )
+                : string.Join(
+                    " ",
                     [
                         "offline_access",
                         $"{OAuthConstants.ResourceId}/AllSites.FullControl",
                         $"{OAuthConstants.ResourceId}/TermStore.ReadWrite.All",
                         $"{OAuthConstants.ResourceId}/User.Read.All"
                     ]
-            )
+                )
         };
         var requestContent = UriQuery.Create(requertParameters);
         var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl)
@@ -212,22 +215,23 @@ public class AadOAuthContext(
             ["grant_type"] = "refresh_token",
             ["client_id"] = this.clientId,
             ["refresh_token"] = refreshToken,
-            ["scope"] = string.Join(
-                " ",
-                this.userMode
-                    ?
+            ["scope"] = this.userMode
+                ? string.Join(
+                    " ",
                     [
                         "offline_access",
                         $"{OAuthConstants.ResourceId}/AllSites.Manage"
                     ]
-                    :
+                )
+                : string.Join(
+                    " ",
                     [
                         "offline_access",
                         $"{OAuthConstants.ResourceId}/AllSites.FullControl",
                         $"{OAuthConstants.ResourceId}/TermStore.ReadWrite.All",
                         $"{OAuthConstants.ResourceId}/User.Read.All"
                     ]
-            )
+                )
         };
         var requestContent = UriQuery.Create(requertParameters);
         var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl)

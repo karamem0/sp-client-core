@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class Feature : ClientObject
 {
 
-    public Feature()
-    {
-    }
-
     [JsonProperty()]
     public virtual Guid DefinitionId { get; protected set; }
 

@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class CustomActionElement : ClientObject
 {
 
-    public CustomActionElement()
-    {
-    }
-
     [JsonProperty()]
     public virtual Guid ClientSideComponentId { get; protected set; }
 

@@ -96,8 +96,9 @@ public class OAuthService : IOAuthService
                 var expiresOn = DateTime.UtcNow.AddSeconds(oAuthDeviceCode.ExpiresIn);
                 do
                 {
-                    for (var second = 0; second < oAuthDeviceCode.Interval; second++)
+                    for (var second = 0; second <= oAuthDeviceCode.Interval; second++)
                     {
+                        Thread.Sleep(TimeSpan.FromSeconds(1));
                         if (Console.KeyAvailable)
                         {
                             var key = Console.ReadKey(true);
@@ -110,7 +111,6 @@ public class OAuthService : IOAuthService
                                 return;
                             }
                         }
-                        Thread.Sleep(TimeSpan.FromSeconds(1));
                     }
                     var oAuthTokenMessage = oAuthContext.AcquireTokenByDeviceCode(oAuthDeviceCode.DeviceCode);
                     if (oAuthTokenMessage is AadOAuthToken oAuthToken)

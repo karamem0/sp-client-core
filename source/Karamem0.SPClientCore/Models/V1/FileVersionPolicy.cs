@@ -16,27 +16,16 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [JsonObject()]
-public class FileVersionPolicy : ODataObject
+public class FileVersionPolicy(Tenant tenant = null) : ODataObject
 {
 
-    public FileVersionPolicy()
-    {
-    }
-
-    public FileVersionPolicy(Tenant tenant)
-    {
-        this.EnableAutoExpirationVersionTrim = tenant.EnableAutoExpirationVersionTrim;
-        this.ExpireVersionsAfterDays = tenant.ExpireVersionsAfterDays;
-        this.MajorVersionLimit = tenant.MajorVersionLimit;
-    }
+    [JsonProperty()]
+    public virtual bool EnableAutoExpirationVersionTrim { get; protected set; } = tenant.EnableAutoExpirationVersionTrim;
 
     [JsonProperty()]
-    public virtual bool EnableAutoExpirationVersionTrim { get; protected set; }
+    public virtual int ExpireVersionsAfterDays { get; protected set; } = tenant.ExpireVersionsAfterDays;
 
     [JsonProperty()]
-    public virtual int ExpireVersionsAfterDays { get; protected set; }
-
-    [JsonProperty()]
-    public virtual int MajorVersionLimit { get; protected set; }
+    public virtual int MajorVersionLimit { get; protected set; } = tenant.MajorVersionLimit;
 
 }

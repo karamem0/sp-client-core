@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class ExternalUser : ClientObject
 {
 
-    public ExternalUser()
-    {
-    }
-
     [JsonProperty()]
     public virtual string AcceptedAs { get; protected set; }
 

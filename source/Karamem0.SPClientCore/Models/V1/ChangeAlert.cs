@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class ChangeAlert : Change
 {
 
-    public ChangeAlert()
-    {
-    }
-
     [JsonProperty()]
     public virtual Guid AlertId { get; protected set; }
 

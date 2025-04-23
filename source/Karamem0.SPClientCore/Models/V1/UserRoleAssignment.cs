@@ -17,23 +17,12 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.Sharing.UserRoleAssignment", Id = "{74485063-e2b5-424b-950c-4b62e816e31f}")]
 [JsonObject()]
-public class UserRoleAssignment : ClientValueObject
+public class UserRoleAssignment(string userId = null, RoleType role = RoleType.None) : ClientValueObject
 {
-
-    public UserRoleAssignment()
-    {
-    }
-
-    public UserRoleAssignment(string userId, RoleType role)
-    {
-        this.UserId = userId;
-        this.Role = role;
-    }
+    [JsonProperty()]
+    public virtual RoleType Role { get; protected set; } = role;
 
     [JsonProperty()]
-    public virtual RoleType Role { get; protected set; }
-
-    [JsonProperty()]
-    public virtual string UserId { get; protected set; }
+    public virtual string UserId { get; protected set; } = userId;
 
 }

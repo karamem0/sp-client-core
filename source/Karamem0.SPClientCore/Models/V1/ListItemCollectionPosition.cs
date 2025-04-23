@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class ListItemCollectionPosition : ClientValueObject
 {
 
-    public ListItemCollectionPosition()
-    {
-    }
-
     [JsonProperty()]
     public virtual string PagingInfo { get; protected set; }
 

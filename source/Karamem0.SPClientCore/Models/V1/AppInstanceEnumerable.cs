@@ -17,11 +17,4 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject()]
 [JsonObject()]
-public class AppInstanceEnumerable : ClientObjectEnumerable<AppInstance>
-{
-
-    public AppInstanceEnumerable()
-    {
-    }
-
-}
+public class AppInstanceEnumerable : ClientObjectEnumerable<AppInstance>;

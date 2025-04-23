@@ -21,10 +21,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class ChangeQuery : ClientValueObject
 {
 
-    public ChangeQuery()
-    {
-    }
-
     public ChangeQuery(IReadOnlyDictionary<string, object> parameters)
     {
         var flags = BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public;

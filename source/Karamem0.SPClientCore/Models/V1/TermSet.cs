@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class TermSet : TermSetItem
 {
 
-    public TermSet()
-    {
-    }
-
     [JsonProperty()]
     public virtual string Contact { get; protected set; }
 

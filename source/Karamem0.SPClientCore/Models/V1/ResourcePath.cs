@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class ResourcePath : ClientValueObject
 {
 
-    public ResourcePath()
-    {
-    }
-
     [JsonProperty()]
     public virtual string DecodedUrl { get; protected set; }
 

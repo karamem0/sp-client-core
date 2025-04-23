@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class TermStore : ClientObject
 {
 
-    public TermStore()
-    {
-    }
-
     [JsonProperty()]
     public virtual string ContentTypePublishingHub { get; protected set; }
 

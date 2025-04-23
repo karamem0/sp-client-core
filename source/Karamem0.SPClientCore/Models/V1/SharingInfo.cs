@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class SharingInfo : ClientObject
 {
 
-    public SharingInfo()
-    {
-    }
-
     [JsonProperty()]
     public virtual string AnonymousEditLink { get; protected set; }
 

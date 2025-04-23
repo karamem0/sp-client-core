@@ -17,11 +17,4 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.DocumentSet.DocumentSetTemplate", Id = "{1554af8c-7213-418c-a4a8-b06e7603c68a}")]
 [JsonObject()]
-public class DocumentSetTemplate : ClientObject
-{
-
-    public DocumentSetTemplate()
-    {
-    }
-
-}
+public class DocumentSetTemplate : ClientObject;

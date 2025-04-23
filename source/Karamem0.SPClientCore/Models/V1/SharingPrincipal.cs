@@ -19,10 +19,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class SharingPrincipal : ODataV1Object
 {
 
-    public SharingPrincipal()
-    {
-    }
-
     [JsonProperty("email")]
     public virtual string Email { get; protected set; }
 

@@ -21,10 +21,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class ListItem : SecurableObject
 {
 
-    public ListItem()
-    {
-    }
-
     [JsonIgnore()]
     public PSObject FieldValues => new(
         this

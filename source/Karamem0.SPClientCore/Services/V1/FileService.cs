@@ -20,15 +20,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IFileService
 {
 
-    void ApproveObject(File fileObject, string comment);
-
-    void CheckInObject(
-        File fileObject,
-        string comment,
-        CheckInType checkInType
-    );
-
-    void CheckOutObject(File fileObject);
+    File AddObject(Folder folderObject, IReadOnlyDictionary<string, object> creationInfo);
 
     void CopyObject(
         File fileObject,
@@ -42,10 +34,6 @@ public interface IFileService
         bool overwrite,
         IReadOnlyDictionary<string, object> moveCopyOptions
     );
-
-    File AddObject(Folder folderObject, IReadOnlyDictionary<string, object> creationInfo);
-
-    void DenyObject(File fileObject, string comment);
 
     System.IO.Stream DownloadObject(File fileObject);
 
@@ -86,8 +74,6 @@ public interface IFileService
 
     void SetObject(File fileObject, IReadOnlyDictionary<string, object> modificationInfo);
 
-    void UndoCheckOutObject(File fileObject);
-
     void UnpublishObject(File fileObject, string comment);
 
     void UploadObject(
@@ -102,47 +88,28 @@ public interface IFileService
 public class FileService(ClientContext clientContext) : ClientService<File>(clientContext), IFileService
 {
 
-    public void ApproveObject(File fileObject, string comment)
+    public File AddObject(Folder folderObject, IReadOnlyDictionary<string, object> creationInfo)
     {
-        _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
+        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
+        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(fileObject.ObjectIdentity),
-            objectPathId => new ClientActionMethod(
-                objectPathId,
-                "Approve",
-                requestPayload.CreateParameter(comment)
-            )
+        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Files"));
+        var objectPath3 = requestPayload.Add(
+            new ObjectPathMethod(
+                objectPath2.Id,
+                "Add",
+                requestPayload.CreateParameter(ClientValueObject.Create<FileCreationInfo>(creationInfo))
+            ),
+            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
+            objectPathId => new ClientActionQuery(objectPathId)
+            {
+                Query = new ClientQuery(true, typeof(File))
+            }
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
-    }
-
-    public void CheckInObject(
-        File fileObject,
-        string comment,
-        CheckInType checkInType
-    )
-    {
-        _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
-        var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(fileObject.ObjectIdentity),
-            objectPathId => new ClientActionMethod(
-                objectPathId,
-                "CheckIn",
-                requestPayload.CreateParameter(comment),
-                requestPayload.CreateParameter(checkInType)
-            )
-        );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
-    }
-
-    public void CheckOutObject(File fileObject)
-    {
-        _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
-        var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(fileObject.ObjectIdentity), objectPathId => new ClientActionMethod(objectPathId, "CheckOut"));
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
+            .ToObject<File>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
     public void CopyObject(
@@ -189,45 +156,6 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                 requestPayload.CreateParameter(fileUrl),
                 requestPayload.CreateParameter(overwrite),
                 requestPayload.CreateParameter(ClientValueObject.Create<MoveCopyOptions>(moveCopyOptions))
-            )
-        );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
-    }
-
-    public File AddObject(Folder folderObject, IReadOnlyDictionary<string, object> creationInfo)
-    {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
-        var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Files"));
-        var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(
-                objectPath2.Id,
-                "Add",
-                requestPayload.CreateParameter(ClientValueObject.Create<FileCreationInfo>(creationInfo))
-            ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(File))
-            }
-        );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<File>(requestPayload.GetActionId<ClientActionQuery>());
-    }
-
-    public void DenyObject(File fileObject, string comment)
-    {
-        _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
-        var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(fileObject.ObjectIdentity),
-            objectPathId => new ClientActionMethod(
-                objectPathId,
-                "Deny",
-                requestPayload.CreateParameter(comment)
             )
         );
         _ = this.ClientContext.ProcessQuery(requestPayload);
@@ -489,14 +417,6 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                 )
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
-    }
-
-    public void UndoCheckOutObject(File fileObject)
-    {
-        _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
-        var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(fileObject.ObjectIdentity), objectPathId => new ClientActionMethod(objectPathId, "UndoCheckOut"));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

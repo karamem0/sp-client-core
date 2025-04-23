@@ -16,11 +16,4 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [JsonObject()]
-public class HubSiteEnumerable : ClientObjectEnumerable<HubSite>
-{
-
-    public HubSiteEnumerable()
-    {
-    }
-
-}
+public class HubSiteEnumerable : ClientObjectEnumerable<HubSite>;

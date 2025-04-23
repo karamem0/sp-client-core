@@ -19,10 +19,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class TenantSettings : ODataV1Object
 {
 
-    public TenantSettings()
-    {
-    }
-
     [JsonProperty("CorporateCatalogUrl")]
     public virtual string AppCatalogUrl { get; protected set; }
 

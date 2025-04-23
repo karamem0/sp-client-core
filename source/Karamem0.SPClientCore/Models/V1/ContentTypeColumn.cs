@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class ContentTypeColumn : ClientObject
 {
 
-    public ContentTypeColumn()
-    {
-    }
-
     [JsonProperty("FieldInternalName")]
     public virtual string ColumnName { get; protected set; }
 

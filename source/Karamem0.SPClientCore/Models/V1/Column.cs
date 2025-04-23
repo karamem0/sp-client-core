@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class Column : ClientObject
 {
 
-    public Column()
-    {
-    }
-
     [JsonProperty()]
     public virtual bool AutoIndexed { get; protected set; }
 

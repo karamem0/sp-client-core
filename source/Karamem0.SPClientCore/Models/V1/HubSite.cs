@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class HubSite : ClientObject
 {
 
-    public HubSite()
-    {
-    }
-
     [JsonProperty()]
     public virtual string Description { get; protected set; }
 

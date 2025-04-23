@@ -19,10 +19,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V2;
 public class FileSystemInfo : ODataV2Object
 {
 
-    public FileSystemInfo()
-    {
-    }
-
     [JsonProperty("createdDateTime")]
     public virtual DateTime Created { get; protected set; }
 

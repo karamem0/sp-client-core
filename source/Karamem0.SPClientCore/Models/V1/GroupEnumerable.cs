@@ -17,11 +17,4 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.GroupCollection", Id = "{0b9f0e6c-2c15-425e-b0b2-961f78bf1ecf}")]
 [JsonObject()]
-public class GroupEnumerable : ClientObjectEnumerable<Group>
-{
-
-    public GroupEnumerable()
-    {
-    }
-
-}
+public class GroupEnumerable : ClientObjectEnumerable<Group>;

@@ -19,10 +19,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V2;
 public class SharePointIds : ODataV2Object
 {
 
-    public SharePointIds()
-    {
-    }
-
     [JsonProperty("listId")]
     public virtual string ListId { get; protected set; }
 

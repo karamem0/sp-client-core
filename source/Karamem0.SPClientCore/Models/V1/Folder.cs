@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class Folder : ClientObject
 {
 
-    public Folder()
-    {
-    }
-
     [JsonProperty()]
     public virtual IReadOnlyCollection<ContentTypeId> ContentTypeOrder { get; protected set; }
 
@@ -32,6 +28,12 @@ public class Folder : ClientObject
 
     [JsonProperty()]
     public virtual bool Exists { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool ExistsAllowThrowForPolicyFailures { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool ExistsWithException { get; protected set; }
 
     [JsonProperty()]
     public virtual bool IsWOPIEnabled { get; protected set; }

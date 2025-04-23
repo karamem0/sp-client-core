@@ -139,7 +139,7 @@ public class TenantSiteCollectionService(ClientContext clientContext) : TenantCl
             var errorCount = 0;
             try
             {
-                Thread.Sleep(TimeSpan.FromSeconds(ClientConstants.TenantServiceWaitSeconds));
+                Thread.Sleep(TimeSpan.FromSeconds(ClientConstants.WaitIntervalForTenantService));
                 var siteCollectionObject = this.GetObject(siteCollectionUrl);
                 if (siteCollectionObject.Status == "Active")
                 {

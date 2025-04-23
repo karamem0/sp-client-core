@@ -17,11 +17,4 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.AttachmentCollection", Id = "{f4e86471-7dab-4b47-b061-50a40e27140e}")]
 [JsonObject()]
-public class AttachmentFileEnumerable : ClientObjectEnumerable<AttachmentFile>
-{
-
-    public AttachmentFileEnumerable()
-    {
-    }
-
-}
+public class AttachmentFileEnumerable : ClientObjectEnumerable<AttachmentFile>;

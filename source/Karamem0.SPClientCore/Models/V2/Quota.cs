@@ -19,10 +19,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V2;
 public class Quota : ODataV2Object
 {
 
-    public Quota()
-    {
-    }
-
     [JsonProperty("deleted")]
     public virtual long Deleted { get; protected set; }
 

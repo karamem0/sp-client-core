@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class ChangeUser : Change
 {
 
-    public ChangeUser()
-    {
-    }
-
     [JsonProperty()]
     public virtual bool Activate { get; protected set; }
 

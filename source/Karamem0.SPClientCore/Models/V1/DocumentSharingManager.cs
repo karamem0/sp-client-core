@@ -17,11 +17,4 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.Sharing.DocumentSharingManager", Id = "{10c23c0e-cead-4f15-9deb-a0f1d7507495}")]
 [JsonObject()]
-public class DocumentSharingManager : ClientObject
-{
-
-    public DocumentSharingManager()
-    {
-    }
-
-}
+public class DocumentSharingManager : ClientObject;

@@ -17,11 +17,4 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.DocumentSet.WelcomePageFieldCollection", Id = "{d9662ecf-16a1-4530-84ea-029e69ff60aa}")]
 [JsonObject()]
-public class WelcomePageColumnEnumerable : ClientObjectEnumerable<Column>
-{
-
-    public WelcomePageColumnEnumerable()
-    {
-    }
-
-}
+public class WelcomePageColumnEnumerable : ClientObjectEnumerable<Column>;

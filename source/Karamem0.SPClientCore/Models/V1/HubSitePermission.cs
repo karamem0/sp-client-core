@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class HubSitePermission : ClientValueObject
 {
 
-    public HubSitePermission()
-    {
-    }
-
     [JsonProperty()]
     public virtual string DisplayName { get; protected set; }
 

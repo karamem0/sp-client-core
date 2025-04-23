@@ -19,10 +19,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V2;
 public class ItemReference : ODataV2Object
 {
 
-    public ItemReference()
-    {
-    }
-
     [JsonProperty("driveId")]
     public virtual string DriveId { get; protected set; }
 

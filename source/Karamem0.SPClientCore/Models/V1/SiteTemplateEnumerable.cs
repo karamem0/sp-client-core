@@ -17,11 +17,4 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.WebTemplateCollection", Id = "{15c2ecda-d49e-4fda-97c8-c538a203dfb5}")]
 [JsonObject()]
-public class SiteTemplateEnumerable : ClientObjectEnumerable<SiteTemplate>
-{
-
-    public SiteTemplateEnumerable()
-    {
-    }
-
-}
+public class SiteTemplateEnumerable : ClientObjectEnumerable<SiteTemplate>;

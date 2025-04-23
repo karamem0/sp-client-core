@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class Group : Principal
 {
 
-    public Group()
-    {
-    }
-
     [JsonProperty()]
     public virtual bool AllowMembersEditMembership { get; protected set; }
 

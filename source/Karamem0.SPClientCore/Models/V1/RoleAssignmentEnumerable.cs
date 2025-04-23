@@ -17,11 +17,4 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.RoleAssignmentCollection", Id = "{2690207a-e174-4d49-b2ca-cff663225dc1}")]
 [JsonObject()]
-public class RoleAssignmentEnumerable : ClientObjectEnumerable<RoleAssignment>
-{
-
-    public RoleAssignmentEnumerable()
-    {
-    }
-
-}
+public class RoleAssignmentEnumerable : ClientObjectEnumerable<RoleAssignment>;

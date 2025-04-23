@@ -17,11 +17,4 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.UserProfiles.PeopleManager", Id = "{cf560d69-0fdb-4489-a216-b6b47adf8ef8}")]
 [JsonObject()]
-public class PeopleManager : ClientObject
-{
-
-    public PeopleManager()
-    {
-    }
-
-}
+public class PeopleManager : ClientObject;

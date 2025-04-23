@@ -19,10 +19,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V2;
 public class Identity : ODataV2Object
 {
 
-    public Identity()
-    {
-    }
-
     [JsonProperty("displayName")]
     public virtual string DisplayName { get; protected set; }
 

@@ -17,23 +17,13 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.SPResourceEntry", Id = "{376ca521-1f79-4e53-b4b9-9ea9f24bb844}")]
 [JsonObject()]
-public class ResourceEntry : ClientValueObject
+public class ResourceEntry(uint lcid = 0, string value = null) : ClientValueObject
 {
 
-    public ResourceEntry()
-    {
-    }
-
-    public ResourceEntry(uint lcid, string value)
-    {
-        this.Lcid = lcid;
-        this.Value = value;
-    }
-
     [JsonProperty("LCID")]
-    public virtual uint Lcid { get; protected set; }
+    public virtual uint Lcid { get; protected set; } = lcid;
 
     [JsonProperty()]
-    public virtual string Value { get; protected set; }
+    public virtual string Value { get; protected set; } = value;
 
 }

@@ -63,7 +63,7 @@ public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clie
                 objectPathId,
                 "GetFileVersionPolicyForLibrary",
                 requestPayload.CreateParameter(siteUrl),
-                requestPayload.CreateParameter(new ListParameters(listId))
+                requestPayload.CreateParameter(new ListParameters(id: listId))
             )
         );
         return this
@@ -83,7 +83,7 @@ public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clie
                 objectPathId,
                 "GetFileVersionPolicyForLibrary",
                 requestPayload.CreateParameter(siteUrl),
-                requestPayload.CreateParameter(new ListParameters(listTitle))
+                requestPayload.CreateParameter(new ListParameters(title: listTitle))
             )
         );
         return this
@@ -105,7 +105,7 @@ public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clie
                 objectPath1.Id,
                 "SetFileVersionPolicyForLibrary",
                 requestPayload.CreateParameter(siteUrl),
-                requestPayload.CreateParameter(new ListParameters(listId)),
+                requestPayload.CreateParameter(new ListParameters(id: listId)),
                 requestPayload.CreateParameter(ClientValueObject.Create<FileVersionPolicyForDocumentLibrary>(modificationInfo))
             ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
@@ -134,7 +134,7 @@ public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clie
                 objectPath1.Id,
                 "SetFileVersionPolicyForLibrary",
                 requestPayload.CreateParameter(siteUrl),
-                requestPayload.CreateParameter(new ListParameters(listTitle)),
+                requestPayload.CreateParameter(new ListParameters(title: listTitle)),
                 requestPayload.CreateParameter(ClientValueObject.Create<FileVersionPolicyForDocumentLibrary>(modificationInfo))
             ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),

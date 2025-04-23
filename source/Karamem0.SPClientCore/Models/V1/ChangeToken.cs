@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class ChangeToken : ClientValueObject
 {
 
-    public ChangeToken()
-    {
-    }
-
     [JsonProperty()]
     public virtual string StringValue { get; protected set; }
 

@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class SharingSettings : ClientObject
 {
 
-    public SharingSettings()
-    {
-    }
-
     [JsonProperty()]
     public virtual bool AccessRequestMode { get; protected set; }
 

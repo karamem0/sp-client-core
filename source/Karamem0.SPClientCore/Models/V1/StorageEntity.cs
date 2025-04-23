@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class StorageEntity : ClientObject
 {
 
-    public StorageEntity()
-    {
-    }
-
     [JsonProperty()]
     public virtual string Comment { get; protected set; }
 

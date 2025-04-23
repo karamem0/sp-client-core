@@ -17,11 +17,4 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.UserProfiles.ProfileLoader", Id = "{9c42543a-91b3-4902-b2fe-14ccdefb6e2b}")]
 [JsonObject()]
-public class ProfileLoader : ClientObject
-{
-
-    public ProfileLoader()
-    {
-    }
-
-}
+public class ProfileLoader : ClientObject;

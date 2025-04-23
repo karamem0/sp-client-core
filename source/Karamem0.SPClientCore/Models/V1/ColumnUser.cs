@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class ColumnUser : Column
 {
 
-    public ColumnUser()
-    {
-    }
-
     [JsonProperty()]
     public virtual bool AllowDisplay { get; protected set; }
 

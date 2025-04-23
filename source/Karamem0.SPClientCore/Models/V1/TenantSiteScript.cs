@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class TenantSiteScript : ClientObject
 {
 
-    public TenantSiteScript()
-    {
-    }
-
     [JsonProperty()]
     public virtual string Content { get; protected set; }
 

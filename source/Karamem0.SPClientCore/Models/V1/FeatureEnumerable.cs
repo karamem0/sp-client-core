@@ -17,11 +17,4 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.FeatureCollection", Id = "{8b9c0015-193d-4062-8e98-8d23c303eedd}")]
 [JsonObject()]
-public class FeatureEnumerable : ClientObjectEnumerable<Feature>
-{
-
-    public FeatureEnumerable()
-    {
-    }
-
-}
+public class FeatureEnumerable : ClientObjectEnumerable<Feature>;

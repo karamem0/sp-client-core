@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class SiteCollection : ClientObject
 {
 
-    public SiteCollection()
-    {
-    }
-
     [JsonProperty()]
     public virtual bool AllowCreateDeclarativeWorkflow { get; protected set; }
 

@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class TermGroup : TaxonomyItem
 {
 
-    public TermGroup()
-    {
-    }
-
     [JsonProperty("ContributorPrincipalNames")]
     public virtual IReadOnlyList<string> Contributors { get; protected set; }
 

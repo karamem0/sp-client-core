@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class ColumnComputed : Column
 {
 
-    public ColumnComputed()
-    {
-    }
-
     [JsonProperty()]
     public override bool AutoIndexed { get; protected set; }
 

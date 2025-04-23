@@ -17,11 +17,4 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.ObjectSharingInformationUserCollection", Id = "{1eca4555-5715-4122-9c3d-0ab651518bc1}")]
 [JsonObject()]
-public class SharingInfoUserEnumerable : ClientObjectEnumerable<SharingInforUser>
-{
-
-    public SharingInfoUserEnumerable()
-    {
-    }
-
-}
+public class SharingInfoUserEnumerable : ClientObjectEnumerable<SharingInforUser>;

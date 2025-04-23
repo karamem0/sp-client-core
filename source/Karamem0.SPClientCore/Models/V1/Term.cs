@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class Term : TermSetItem
 {
 
-    public Term()
-    {
-    }
-
     [JsonProperty("CreatedDate")]
     public override DateTime Created { get; protected set; }
 

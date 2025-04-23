@@ -65,25 +65,36 @@ If you enable MFA, you can log in with a web browser of another device. If you d
   - Test-KshTenantSiteCollection
 - Site Administration
   - Alerts
-    - Get-KshAlert
     - Add-KshAlert
+    - Get-KshAlert
     - Remove-KshAlert
     - Set-KshAlert
+  - App Catalogs
+    - Add-KshSiteCollectionAppCatalog
+    - Get-KshSiteCollectionAppCatalog
+    - Get-KshTenantAppCatalog
+    - Remove-KshSiteCollectionAppCatalog
   - App Instances
     - Get-KshAppInstance
+  - Apps
+    - Add-KshApp
+    - Get-KshApp
+    - Remove-KshApp
+    - Set-KshAppInstalled
+    - Set-KshAppPublished
+    - Update-KshApp
   - Attachment Files
     - Get-KshAttachmentFile
-    - Remove-KshAttachmentFile
     - Open-KshAttachmentFile
+    - Remove-KshAttachmentFile
     - Save-KshAttachmentFile
   - Changes
     - Get-KshChange
   - Client Components Properties
-    - Get-KshStorageEntity
     - Add-KshStorageEntity
+    - Get-KshStorageEntity
     - Remove-KshStorageEntity
   - Columns
-    - Get-KshColumn
     - Add-KshColumnBoolean
     - Add-KshColumnCalculated
     - Add-KshColumnChoice
@@ -100,6 +111,7 @@ If you enable MFA, you can log in with a web browser of another device. If you d
     - Add-KshColumnText
     - Add-KshColumnUrl
     - Add-KshColumnUser
+    - Get-KshColumn
     - Remove-KshColumn
     - Set-KshColumnBoolean
     - Set-KshColumnCalculated
@@ -107,6 +119,7 @@ If you enable MFA, you can log in with a web browser of another device. If you d
     - Set-KshColumnCurrency
     - Set-KshColumnDateTime
     - Set-KshColumnGeolocation
+    - Set-KshColumnGuid
     - Set-KshColumnImage
     - Set-KshColumnLookup
     - Set-KshColumnMultiChoice
@@ -117,119 +130,109 @@ If you enable MFA, you can log in with a web browser of another device. If you d
     - Set-KshColumnUrl
     - Set-KshColumnUser
   - Comments
-    - Get-KshComment
     - Add-KshComment
+    - Get-KshComment
     - Remove-KshComment
-    - Enable-KshComment
-    - Disable-KshComment
+    - Set-KshCommentEnabled
+  - Content Approvals
+    - Set-KshApprovalStatus
   - Content Types
-    - Get-KshContentType
     - Add-KshContentType
-    - Remove-KshContentType
-    - Set-KshContentType
-    - New-KshContentTypeId
-    - Get-KshContentTypeColumn
     - Add-KshContentTypeColumn
+    - Get-KshContentType
+    - Get-KshContentTypeColumn
+    - New-KshContentTypeId
+    - Remove-KshContentType
     - Remove-KshContentTypeColumn
+    - Set-KshContentType
     - Set-KshContentTypeColumn
     - Set-KshContentTypeColumnOrder
   - Document Libraries
     - Get-KshDocumentLibrary
+  - Document Set Templates
+    - Add-KshDocumentSetAllowedContentType
+    - Add-KshDocumentSetDefaultDocument
+    - Add-KshDocumentSetSharedColumn
+    - Add-KshDocumentSetWelcomePageColumn
+    - Get-KshDocumentSetAllowedContentType
+    - Get-KshDocumentSetDefaultDocument
+    - Get-KshDocumentSetSharedColumn
+    - Get-KshDocumentSetWelcomePageColumn
+    - Remove-KshDocumentSetAllowedContentType
+    - Remove-KshDocumentSetDefaultDocument
+    - Remove-KshDocumentSetSharedColumn
+    - Remove-KshDocumentSetWelcomePageColumn
   - Document Sets
     - Add-KshDocumentSet
-  - Document Set Templates
-    - Get-KshDocumentSetAllowedContentType
-    - Add-KshDocumentSetAllowedContentType
-    - Remove-KshDocumentSetAllowedContentType
-    - Add-KshDocumentSetDefaultDocument
-    - Get-KshDocumentSetDefaultDocument
-    - Remove-KshDocumentSetDefaultDocument
-    - Get-KshDocumentSetSharedColumn
-    - Add-KshDocumentSetSharedColumn
-    - Remove-KshDocumentSetSharedColumn
-    - Add-KshDocumentSetWelcomePageColumn
-    - Get-KshDocumentSetWelcomePageColumn
-    - Remove-KshDocumentSetWelcomePageColumn
-  - Drives
-    - Get-KshDrive
   - Drive Items
     - Get-KshDriveItem
+  - Drives
+    - Get-KshDrive
   - External Sharing
     - Get-KshSharingInfo
     - Get-KshSharingSettings
     - Test-KshExternalUserSharing
   - Files
-    - Get-KshFile
     - Add-KshFile
-    - Remove-KshFile
-    - Open-KshFile
-    - Save-KshFile
     - Copy-KshFile
+    - Get-KshFile
     - Move-KshFile
-    - Approve-KshFile
-    - Deny-KshFile
-    - Lock-KshFile
-    - Unlock-KshFile
-    - Publish-KshFile
-    - Unpublish-KshFile
+    - Open-KshFile
+    - Remove-KshFile
+    - Save-KshFile
+    - Set-KshFileCheckOutStatus
+    - Set-KshFilePublished
   - File Versions
     - Get-KshFileVersion
     - Remove-KshFileVersion
     - Restore-KshFileVersion
   - Folders
-    - Get-KshFolder
     - Add-KshFolder
+    - Copy-KshFolder
+    - Get-KshFolder
+    - Move-KshFolder
     - Remove-KshFolder
     - Set-KshFolder
-    - Copy-KshFolder
-    - Move-KshFolder
-    - Approve-KshFolder
-    - Deny-KshFolder
-    - Suspend-KshFolder
   - Groups
-    - Get-KshGroup
     - Add-KshGroup
-    - Remove-KshGroup
-    - Set-KshGroup
     - Add-KshGroupMember
+    - Get-KshGroup
     - Get-KshGroupMember
-    - Remove-KshGroupMember
     - Get-KshGroupOwner
+    - Remove-KshGroup
+    - Remove-KshGroupMember
+    - Set-KshGroup
     - Set-KshGroupOwner
   - Images
     - Save-KshImage
   - Likes
     - Get-KshLike
-    - Enable-KshLike
-    - Disable-KshLike
+    - Set-KshLike
   - Lists
-    - Get-KshList
     - Add-KshList
+    - Get-KshList
     - Remove-KshList
     - Set-KshList
   - List Items
-    - Get-KshListItem
     - Add-KshListItem
-    - Remove-KshListItem
-    - Set-KshListItem
-    - Approve-KshListItem
-    - Deny-KshListItem
-    - Suspend-KshListItem
+    - Get-KshListItem
     - New-KshColumnGeolocationValue
     - New-KshColumnImageValue
     - New-KshColumnLookupValue
     - New-KshColumnTaxonomyValue
     - New-KshColumnUrlValue
     - New-KshColumnUserValue
+    - Remove-KshListItem
     - Set-KshColumnTaxonomyValue
+    - Set-KshListItem
   - List Templates
     - Get-KshListTemplate
   - Navigation
-    - Get-KshNavigation
-    - Set-KshNavigation
-    - Get-KshNavigationNode
     - Add-KshNavigationNode
+    - Get-KshNavigation
+    - Get-KshNavigationNode
     - Remove-KshNavigationNode
+    - Set-KshNavigation
     - Set-KshNavigationNode
   - Properties
     - Get-KshProperty
@@ -239,51 +242,39 @@ If you enable MFA, you can log in with a web browser of another device. If you d
     - Remove-KshRecycleBinItem
     - Restore-KshRecycleBinItem
   - Regional Settings
-    - Get-KshRegionalSettings
-    - Set-KshRegionalSettings
     - ConvertTo-KshLocalTime
     - ConvertTo-KshUniversalTime
+    - Get-KshRegionalSettings
+    - Set-KshRegionalSettings
   - Role Assignments
-    - Get-KshRoleAssignment
     - Add-KshRoleAssignment
+    - Get-KshRoleAssignment
     - Remove-KshRoleAssignment
     - Set-KshUniqueRoleAssignmentEnabled
   - Role Definitions
-    - Get-KshRoleDefinition
     - Add-KshRoleDefinition
+    - Get-KshRoleDefinition
+    - New-KshBasePermission
     - Remove-KshRoleDefinition
     - Set-KshRoleDefinition
-    - New-KshBasePermission
   - Sharing Links
     - Add-KshAnonymousLink
-    - Remove-KshAnonymousLink
     - Add-KshOrganizationSharingLink
+    - Remove-KshAnonymousLink
     - Remove-KshOrganizationSharingLink
     - Test-KshSharingLink
   - Sites
-    - Get-KshSite
     - Add-KshSite
+    - Get-KshSite
     - Remove-KshSite
     - Set-KshSite
-  - Site Collection Apps
-    - Get-KshSiteCollectionApp
-    - Add-KshSiteCollectionApp
-    - Remove-KshSiteCollectionApp
-    - Install-KshSiteCollectionApp
-    - Uninstall-KshSiteCollectionApp
-    - Publish-KshSiteCollectionApp
-    - Unpublish-KshSiteCollectionApp
-  - Site Collection App Catalogs
-    - Get-KshSiteCollectionAppCatalog
-    - Add-KshSiteCollectionAppCatalog
-    - Remove-KshSiteCollectionAppCatalog
   - Site Collection Features
-    - Get-KshSiteCollectionFeature
     - Add-KshSiteCollectionFeature
+    - Get-KshSiteCollectionFeature
     - Remove-KshSiteCollectionFeature
   - Site Features
-    - Get-KshSiteFeature
     - Add-KshSiteFeature
+    - Get-KshSiteFeature
     - Remove-KshSiteFeature
   - Site Pages
     - Add-KshSitePage
@@ -291,39 +282,29 @@ If you enable MFA, you can log in with a web browser of another device. If you d
     - Set-KshSitePage
   - Site Templates
     - Get-KshSiteTemplate
-  - Tenant Apps
-    - Get-KshTenantApp
-    - Add-KshTenantApp
-    - Remove-KshTenantApp
-    - Install-KshTenantApp
-    - Uninstall-KshTenantApp
-    - Publish-KshTenantApp
-    - Unpublish-KshTenantApp
-  - Tenant App Catalog
-    - Get-KshTenantAppCatalog
   - Users
-    - Get-KshUser
-    - Add-KshUser
-    - Remove-KshUser
-    - Set-KshUser
-    - Resolve-KshUser
     - Add-KshExternalUser
+    - Add-KshUser
+    - Get-KshUser
+    - Remove-KshUser
+    - Resolve-KshUser
+    - Set-KshUser
   - User Permissions
     - Get-KshUserPermission
   - User Properties
     - Get-KshUserProperty
   - Views
-    - Get-KshView
     - Add-KshView
-    - Remove-KshView
-    - Set-KshView
     - Add-KshViewColumn
+    - Get-KshView
     - Get-KshViewColumn
     - Move-KshViewColumn
+    - Remove-KshView
     - Remove-KshViewColumn
+    - Set-KshView
   - Webhooks
-    - Get-KshSubscription
     - Add-KshSubscription
+    - Get-KshSubscription
     - Remove-KshSubscription
     - Set-KshSubscription
 - Tenant Administration
@@ -333,104 +314,103 @@ If you enable MFA, you can log in with a web browser of another device. If you d
     - Remove-KshTenantDeletedSiteCollection
     - Restore-KshTenantDeletedSiteCollection
   - File Version Policy
-    - Set-KshTenantFileVersionPolicy
     - Get-KshTenantFileVersionPolicyForDocumentLibrary
+    - Set-KshTenantFileVersionPolicy
     - Set-KshTenantFileVersionPolicyForDocumentLibrary
   - Home Site
     - Get-KshTenantHomeSite
     - Remove-KshTenantHomeSite
     - Set-KshTenantHomeSite
   - Hub Sites
-    - Get-KshTenantHubSite
     - Add-KshTenantHubSite
+    - Get-KshTenantHubSite
     - Remove-KshTenantHubSite
     - Set-KshTenantHubSite
   - List Designs
-    - Get-KshTenantListDesign
     - Add-KshTenantListDesign
+    - Get-KshTenantListDesign
     - Remove-KshTenantListDesign
   - Office 365 CDN
-    - Get-KshTenantCdnEnabled
-    - Set-KshTenantCdnEnabled
-    - Get-KshTenantCdnOrigin
     - Add-KshTenantCdnOrigin
-    - Remove-KshTenantCdnOrigin
+    - Get-KshTenantCdnEnabled
+    - Get-KshTenantCdnOrigin
     - Get-KshTenantCdnPolicy
+    - Remove-KshTenantCdnOrigin
+    - Set-KshTenantCdnEnabled
     - Set-KshTenantCdnPolicy
   - Organization News Sites
-    - Get-KshTenantOrganizationNewsSite
     - Add-KshTenantOrganizationNewsSite
+    - Get-KshTenantOrganizationNewsSite
     - Remove-KshTenantOrganizationNewsSite
   - Personal Sites
     - Get-KshTenantPersonalSite
   - Root site
     - Get-KshTenantRootSite
   - Site Collections
+    - Add-KshTenantSiteCollection
     - Get-KshSiteCollection
     - Get-KshTenantSiteCollection
-    - Add-KshTenantSiteCollection
+    - Lock-KshTenantSiteCollection
     - Remove-KshTenantSiteCollection
     - Set-KshTenantSiteCollection
-    - Lock-KshTenantSiteCollection
     - Unlock-KshTenantSiteCollection
   - Site Scripts
-    - Get-KshTenantSiteScript
     - Add-KshTenantSiteScript
-    - Remove-KshTenantSiteScript
+    - Get-KshTenantSiteScript
     - Get-KshTenantSiteScriptFromList
     - Get-KshTenantSiteScriptFromSite
+    - Remove-KshTenantSiteScript
   - Site Templates
     - Get-KshTenantSiteTemplate
   - Tenant
     - Get-KshTenant
     - Set-KshTenant
   - Themes
-    - Get-KshTenantTheme
     - Add-KshTenantTheme
+    - Get-KshTenantTheme
     - Remove-KshTenantTheme
     - Set-KshTenantTheme
   - Users
-    - Get-KshTenantUser
     - Add-KshTenantUser
+    - Get-KshTenantExternalUser
+    - Get-KshTenantUser
+    - Remove-KshTenantExternalUser
     - Remove-KshTenantUser
     - Set-KshTenantUser
-    - Get-KshTenantExternalUser
-    - Remove-KshTenantExternalUser
 - Managed Metadata
   - Custom Properties
     - Add-KshTermCustomProperty
-    - Remove-KshTermCustomProperty
     - Add-KshTermLocalCustomProperty
+    - Remove-KshTermCustomProperty
     - Remove-KshTermLocalCustomProperty
-  - Terms
-    - Get-KshTerm
-    - Add-KshTerm
-    - Remove-KshTerm
-    - Set-KshTerm
-    - Copy-KshTerm
-    - Move-KshTerm
-    - Merge-KshTerm
-    - Disable-KshTerm
-    - Enable-KshTerm
-    - Get-KshTermDescription
-    - Set-KshTermDescription
   - Term Groups
-    - Get-KshTermGroup
     - Add-KshTermGroup
+    - Get-KshTermGroup
     - Remove-KshTermGroup
     - Set-KshTermGroup
   - Term Labels
-    - Get-KshTermLabel
     - Add-KshTermLabel
+    - Get-KshTermLabel
     - Remove-KshTermLabel
     - Set-KshTermLabel
   - Term Sets
-    - Get-KshTermSet
     - Add-KshTermSet
+    - Get-KshTermSet
     - Remove-KshTermSet
     - Set-KshTermSet
   - Term Store
-    - Get-KshTermStore
-    - Set-KshTermStore
     - Add-KshTermStoreLanguage
+    - Get-KshTermStore
     - Remove-KshTermStoreLanguage
+    - Set-KshTermStore
+  - Terms
+    - Add-KshTerm
+    - Copy-KshTerm
+    - Get-KshTerm
+    - Get-KshTermDescription
+    - Merge-KshTerm
+    - Move-KshTerm
+    - Remove-KshTerm
+    - Set-KshTerm
+    - Set-KshTermDescription
+    - Set-KshTermDeprecated

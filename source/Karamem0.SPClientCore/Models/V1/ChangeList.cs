@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class ChangeList : Change
 {
 
-    public ChangeList()
-    {
-    }
-
     [JsonProperty()]
     public virtual ListTemplateType BaseTemplate { get; protected set; }
 

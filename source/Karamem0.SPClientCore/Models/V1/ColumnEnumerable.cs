@@ -17,11 +17,4 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.FieldCollection", Id = "{d449d756-e113-4d27-a5e7-609cbc3eba7e}")]
 [JsonObject()]
-public class ColumnEnumerable : ClientObjectEnumerable<Column>
-{
-
-    public ColumnEnumerable()
-    {
-    }
-
-}
+public class ColumnEnumerable : ClientObjectEnumerable<Column>;

@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class RoleAssignment : ClientObject
 {
 
-    public RoleAssignment()
-    {
-    }
-
     [JsonProperty()]
     public virtual Principal Member { get; protected set; }
 

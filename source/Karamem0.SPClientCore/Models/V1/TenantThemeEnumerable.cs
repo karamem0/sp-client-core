@@ -16,11 +16,4 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [JsonObject()]
-public class TenantThemeEnumerable : ClientObjectEnumerable<TenantTheme>
-{
-
-    public TenantThemeEnumerable()
-    {
-    }
-
-}
+public class TenantThemeEnumerable : ClientObjectEnumerable<TenantTheme>;

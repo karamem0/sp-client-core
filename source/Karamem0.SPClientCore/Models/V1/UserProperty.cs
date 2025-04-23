@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class UserProperty : ClientObject
 {
 
-    public UserProperty()
-    {
-    }
-
     [JsonProperty()]
     public virtual IReadOnlyCollection<string> DirectReports { get; protected set; }
 

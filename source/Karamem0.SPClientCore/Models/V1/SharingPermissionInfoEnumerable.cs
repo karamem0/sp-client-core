@@ -17,11 +17,4 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.SharingPermissionInformationCollection", Id = "{7ee2a862-17c8-46b8-8f66-0373ee06afbf}")]
 [JsonObject()]
-public class SharingPermissionInfoEnumerable : ClientObjectEnumerable<SharingPermissionInfo>
-{
-
-    public SharingPermissionInfoEnumerable()
-    {
-    }
-
-}
+public class SharingPermissionInfoEnumerable : ClientObjectEnumerable<SharingPermissionInfo>;

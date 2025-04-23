@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class Navigation : ClientObject
 {
 
-    public Navigation()
-    {
-    }
-
     [JsonProperty()]
     public virtual NavigationNodeEnumerable QuickLaunch { get; protected set; }
 

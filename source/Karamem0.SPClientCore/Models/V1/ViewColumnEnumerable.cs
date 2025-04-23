@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class ViewColumnEnumerable : ClientObjectEnumerable<string>
 {
 
-    public ViewColumnEnumerable()
-    {
-    }
-
     [JsonProperty()]
     public virtual string SchemaXml { get; protected set; }
 

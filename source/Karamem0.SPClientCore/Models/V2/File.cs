@@ -19,10 +19,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V2;
 public class File : ODataV2Object
 {
 
-    public File()
-    {
-    }
-
     [JsonProperty("hashes")]
     public virtual Hashes Hashes { get; protected set; }
 

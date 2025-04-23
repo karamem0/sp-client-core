@@ -17,11 +17,4 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.ListDataSource")]
 [JsonObject()]
-public class ListDataSource : ClientValueObject
-{
-
-    public ListDataSource()
-    {
-    }
-
-}
+public class ListDataSource : ClientValueObject;

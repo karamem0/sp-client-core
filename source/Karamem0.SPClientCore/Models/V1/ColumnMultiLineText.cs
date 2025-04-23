@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class ColumnMultiLineText : Column
 {
 
-    public ColumnMultiLineText()
-    {
-    }
-
     [JsonProperty()]
     public virtual bool AllowHyperlink { get; protected set; }
 

@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class File : ClientObject
 {
 
-    public File()
-    {
-    }
-
     [JsonProperty()]
     public virtual User Author { get; protected set; }
 
@@ -53,6 +49,12 @@ public class File : ClientObject
 
     [JsonProperty()]
     public virtual bool Exists { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool ExistsAllowThrowForPolicyFailures { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool ExistsWithException { get; protected set; }
 
     [JsonProperty()]
     public virtual bool IrmEnabled { get; protected set; }

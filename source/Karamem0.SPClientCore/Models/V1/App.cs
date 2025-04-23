@@ -19,10 +19,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class App : ODataV1Object
 {
 
-    public App()
-    {
-    }
-
     [JsonProperty()]
     public virtual Guid AadAppId { get; protected set; }
 

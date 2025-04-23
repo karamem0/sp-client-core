@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class ColumnMultiChoice : Column
 {
 
-    public ColumnMultiChoice()
-    {
-    }
-
     [JsonProperty()]
     public override bool AutoIndexed { get; protected set; }
 

@@ -190,7 +190,7 @@ public class TermLabelService(ClientContext clientContext) : ClientService<TermL
                 .ClientContext.ProcessQuery(requestPayload)
                 .IsNull(requestPayload.GetActionId<ClientActionInstantiateObjectPath>()))
             {
-                Thread.Sleep(TimeSpan.FromSeconds(ClientConstants.TermLabelServiceWaitSeconds));
+                Thread.Sleep(TimeSpan.FromSeconds(ClientConstants.WaitIntervalForTermLabelService));
             }
             else
             {

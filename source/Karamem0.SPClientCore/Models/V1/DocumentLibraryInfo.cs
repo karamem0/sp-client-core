@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class DocumentLibraryInfo : ClientValueObject
 {
 
-    public DocumentLibraryInfo()
-    {
-    }
-
     [JsonProperty()]
     public virtual string AbsoluteUrl { get; protected set; }
 

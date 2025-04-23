@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class ContentType : ClientObject
 {
 
-    public ContentType()
-    {
-    }
-
     [JsonProperty()]
     public virtual string ClientFormCustomFormatter { get; protected set; }
 

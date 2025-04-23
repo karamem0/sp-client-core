@@ -19,10 +19,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V2;
 public class Hashes : ODataV2Object
 {
 
-    public Hashes()
-    {
-    }
-
     [JsonProperty("crc32Hash")]
     public virtual string Crc32Hash { get; protected set; }
 

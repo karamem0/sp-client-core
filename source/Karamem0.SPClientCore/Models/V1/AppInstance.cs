@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class AppInstance : ClientObject
 {
 
-    public AppInstance()
-    {
-    }
-
     [JsonProperty()]
     public virtual string AppPrincipalId { get; protected set; }
 

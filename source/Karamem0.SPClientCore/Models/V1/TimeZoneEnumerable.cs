@@ -17,11 +17,4 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.Taxonomy.TimeZoneCollection", Id = "{117cbf47-7e74-4165-b26b-c24180ab2095}")]
 [JsonObject()]
-public class TimeZoneEnumerable : ClientObjectEnumerable<TimeZone>
-{
-
-    public TimeZoneEnumerable()
-    {
-    }
-
-}
+public class TimeZoneEnumerable : ClientObjectEnumerable<TimeZone>;

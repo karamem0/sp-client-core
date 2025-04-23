@@ -19,10 +19,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class LikedUser : ODataV1Object
 {
 
-    public LikedUser()
-    {
-    }
-
     [JsonProperty("creationDate")]
     public virtual DateTime Created { get; protected set; }
 

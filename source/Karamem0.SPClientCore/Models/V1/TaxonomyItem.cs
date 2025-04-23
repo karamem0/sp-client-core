@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class TaxonomyItem : ClientObject
 {
 
-    public TaxonomyItem()
-    {
-    }
-
     [JsonProperty("CreatedDate")]
     public virtual DateTime Created { get; protected set; }
 

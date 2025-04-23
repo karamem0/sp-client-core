@@ -17,11 +17,4 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.AlertCollection", Id = "{86531f9b-b741-453d-96fc-5f05f038000a}")]
 [JsonObject()]
-public class AlertEnumerable : ClientObjectEnumerable<Alert>
-{
-
-    public AlertEnumerable()
-    {
-    }
-
-}
+public class AlertEnumerable : ClientObjectEnumerable<Alert>;

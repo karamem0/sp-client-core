@@ -17,11 +17,4 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.FileVersionCollection", Id = "{3826e282-67a6-4861-88fb-474e8aac897b}")]
 [JsonObject()]
-public class FileVersionEnumerable : ClientObjectEnumerable<FileVersion>
-{
-
-    public FileVersionEnumerable()
-    {
-    }
-
-}
+public class FileVersionEnumerable : ClientObjectEnumerable<FileVersion>;

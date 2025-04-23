@@ -24,10 +24,6 @@ public interface IListItemService
 
     IEnumerable<ListItem> AddObjectEnumerable(List listObject, IReadOnlyCollection<IReadOnlyDictionary<string, object>> creationInfos);
 
-    void ApproveObject(ListItem listItemObject, string comment);
-
-    void DenyObject(ListItem listItemObject, string comment);
-
     ListItem GetObject(ListItem listItemObject);
 
     ListItem GetObject(Models.V1.Folder folderObject);
@@ -53,8 +49,6 @@ public interface IListItemService
         IReadOnlyDictionary<string, object> modificationInfo,
         bool useSyetemUpdate
     );
-
-    void SuspendObject(ListItem listItemObject, string comment);
 
 }
 
@@ -146,52 +140,6 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObjectEnumerable<ListItem>(requestPayload.GetActionIds<ClientActionQuery>());
-    }
-
-    public void ApproveObject(ListItem listItemObject, string comment)
-    {
-        _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
-        var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(listItemObject.ObjectIdentity),
-            objectPathId => new ClientActionMethod(
-                objectPathId,
-                "SetFieldValue",
-                requestPayload.CreateParameter("_ModerationStatus"),
-                requestPayload.CreateParameter(ModerationStatusType.Approved)
-            ),
-            objectPathId => new ClientActionMethod(
-                objectPathId,
-                "SetFieldValue",
-                requestPayload.CreateParameter("_ModerationComments"),
-                requestPayload.CreateParameter(comment)
-            ),
-            objectPathId => new ClientActionMethod(objectPathId, "Update")
-        );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
-    }
-
-    public void DenyObject(ListItem listItemObject, string comment)
-    {
-        _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
-        var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(listItemObject.ObjectIdentity),
-            objectPathId => new ClientActionMethod(
-                objectPathId,
-                "SetFieldValue",
-                requestPayload.CreateParameter("_ModerationStatus"),
-                requestPayload.CreateParameter(ModerationStatusType.Denied)
-            ),
-            objectPathId => new ClientActionMethod(
-                objectPathId,
-                "SetFieldValue",
-                requestPayload.CreateParameter("_ModerationComments"),
-                requestPayload.CreateParameter(comment)
-            ),
-            objectPathId => new ClientActionMethod(objectPathId, "Update")
-        );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
     public override ListItem GetObject(ListItem listItemObject)
@@ -426,29 +374,6 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
                 )
                 .Append(objectPathId => new ClientActionMethod(objectPathId, useSyetemUpdate ? "SystemUpdate" : "Update"))
                 .Where(item => item is not null)
-        );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
-    }
-
-    public void SuspendObject(ListItem listItemObject, string comment)
-    {
-        _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
-        var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(listItemObject.ObjectIdentity),
-            objectPathId => new ClientActionMethod(
-                objectPathId,
-                "SetFieldValue",
-                requestPayload.CreateParameter("_ModerationStatus"),
-                requestPayload.CreateParameter(ModerationStatusType.Pending)
-            ),
-            objectPathId => new ClientActionMethod(
-                objectPathId,
-                "SetFieldValue",
-                requestPayload.CreateParameter("_ModerationComments"),
-                requestPayload.CreateParameter(comment)
-            ),
-            objectPathId => new ClientActionMethod(objectPathId, "Update")
         );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }

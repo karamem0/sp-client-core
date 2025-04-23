@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class ChangeFolder : Change
 {
 
-    public ChangeFolder()
-    {
-    }
-
     [JsonProperty()]
     public override ChangeToken ChangeToken { get; protected set; }
 

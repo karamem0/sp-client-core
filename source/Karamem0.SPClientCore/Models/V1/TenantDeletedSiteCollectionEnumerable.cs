@@ -17,11 +17,4 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "Microsoft.Online.SharePoint.TenantAdministration.SPODeletedSitePropertiesEnumerable", Id = "{15e69cc5-cabb-4052-b165-cb223e924c84}")]
 [JsonObject()]
-public class TenantDeletedSiteCollectionsEnumerable : ClientObjectEnumerable<TenantDeletedSiteCollection>
-{
-
-    public TenantDeletedSiteCollectionsEnumerable()
-    {
-    }
-
-}
+public class TenantDeletedSiteCollectionsEnumerable : ClientObjectEnumerable<TenantDeletedSiteCollection>;

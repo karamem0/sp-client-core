@@ -17,11 +17,4 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.MoveCopyUtil", Id = "{c668c5ca-bbdd-435f-8008-502f3180cf20}")]
 [JsonObject()]
-public class MoveCopyUtil : ClientObject
-{
-
-    public MoveCopyUtil()
-    {
-    }
-
-}
+public class MoveCopyUtil : ClientObject;

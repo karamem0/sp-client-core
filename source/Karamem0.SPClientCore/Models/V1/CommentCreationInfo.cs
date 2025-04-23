@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class CommentCreationInfo : ODataV1Object
 {
 
-    public CommentCreationInfo()
-    {
-    }
-
     [JsonProperty("text")]
     public virtual string Text { get; protected set; }
 

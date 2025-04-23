@@ -65,25 +65,36 @@ SPClientCore は Microsoft Entra ID 2.0 認証をサポートします。
   - Test-KshTenantSiteCollection
 - サイト管理
   - 通知
-    - Get-KshAlert
     - Add-KshAlert
+    - Get-KshAlert
     - Remove-KshAlert
     - Set-KshAlert
+  - アプリ カタログ
+    - Add-KshSiteCollectionAppCatalog
+    - Get-KshSiteCollectionAppCatalog
+    - Get-KshTenantAppCatalog
+    - Remove-KshSiteCollectionAppCatalog
   - アプリ インスタンス
     - Get-KshAppInstance
+  - アプリ
+    - Add-KshApp
+    - Get-KshApp
+    - Remove-KshApp
+    - Set-KshAppInstalled
+    - Set-KshAppPublished
+    - Update-KshApp
   - 添付ファイル
     - Get-KshAttachmentFile
-    - Remove-KshAttachmentFile
     - Open-KshAttachmentFile
+    - Remove-KshAttachmentFile
     - Save-KshAttachmentFile
   - 変更
     - Get-KshChange
   - クライアント コンポーネントのプロパティ
-    - Get-KshStorageEntity
     - Add-KshStorageEntity
+    - Get-KshStorageEntity
     - Remove-KshStorageEntity
   - 列
-    - Get-KshColumn
     - Add-KshColumnBoolean
     - Add-KshColumnCalculated
     - Add-KshColumnChoice
@@ -100,6 +111,7 @@ SPClientCore は Microsoft Entra ID 2.0 認証をサポートします。
     - Add-KshColumnText
     - Add-KshColumnUrl
     - Add-KshColumnUser
+    - Get-KshColumn
     - Remove-KshColumn
     - Set-KshColumnBoolean
     - Set-KshColumnCalculated
@@ -118,119 +130,109 @@ SPClientCore は Microsoft Entra ID 2.0 認証をサポートします。
     - Set-KshColumnUrl
     - Set-KshColumnUser
   - コメント
-    - Get-KshComment
     - Add-KshComment
+    - Get-KshComment
     - Remove-KshComment
-    - Enable-KshComment
-    - Disable-KshComment
+    - Set-KshCommentEnabled
+  - コンテンツの承認
+    - Set-KshApprovalStatus
   - コンテンツ タイプ
-    - Get-KshContentType
     - Add-KshContentType
-    - Remove-KshContentType
-    - Set-KshContentType
-    - New-KshContentTypeId
-    - Get-KshContentTypeColumn
     - Add-KshContentTypeColumn
+    - Get-KshContentType
+    - Get-KshContentTypeColumn
+    - New-KshContentTypeId
+    - Remove-KshContentType
     - Remove-KshContentTypeColumn
+    - Set-KshContentType
     - Set-KshContentTypeColumn
     - Set-KshContentTypeColumnOrder
   - ドキュメント ライブラリ
     - Get-KshDocumentLibrary
+  - ドキュメント セット テンプレート
+    - Add-KshDocumentSetAllowedContentType
+    - Add-KshDocumentSetDefaultDocument
+    - Add-KshDocumentSetSharedColumn
+    - Add-KshDocumentSetWelcomePageColumn
+    - Get-KshDocumentSetAllowedContentType
+    - Get-KshDocumentSetDefaultDocument
+    - Get-KshDocumentSetSharedColumn
+    - Get-KshDocumentSetWelcomePageColumn
+    - Remove-KshDocumentSetAllowedContentType
+    - Remove-KshDocumentSetDefaultDocument
+    - Remove-KshDocumentSetSharedColumn
+    - Remove-KshDocumentSetWelcomePageColumn
   - ドキュメント セット
     - Add-KshDocumentSet
-  - ドキュメント セット テンプレート
-    - Get-KshDocumentSetAllowedContentType
-    - Add-KshDocumentSetAllowedContentType
-    - Remove-KshDocumentSetAllowedContentType
-    - Add-KshDocumentSetDefaultDocument
-    - Get-KshDocumentSetDefaultDocument
-    - Remove-KshDocumentSetDefaultDocument
-    - Get-KshDocumentSetSharedColumn
-    - Add-KshDocumentSetSharedColumn
-    - Remove-KshDocumentSetSharedColumn
-    - Add-KshDocumentSetWelcomePageColumn
-    - Get-KshDocumentSetWelcomePageColumn
-    - Remove-KshDocumentSetWelcomePageColumn
-  - ドライブ
-    - Get-KshDrive
   - ドライブ アイテム
     - Get-KshDriveItem
+  - ドライブ
+    - Get-KshDrive
   - 外部共有
     - Get-KshSharingInfo
     - Get-KshSharingSettings
     - Test-KshExternalUserSharing
   - ファイル
-    - Get-KshFile
     - Add-KshFile
-    - Remove-KshFile
-    - Open-KshFile
-    - Save-KshFile
     - Copy-KshFile
+    - Get-KshFile
     - Move-KshFile
-    - Approve-KshFile
-    - Deny-KshFile
-    - Lock-KshFile
-    - Unlock-KshFile
-    - Publish-KshFile
-    - Unpublish-KshFile
+    - Open-KshFile
+    - Remove-KshFile
+    - Save-KshFile
+    - Set-KshFileCheckOutStatus
+    - Set-KshFilePublished
   - ファイル バージョン
     - Get-KshFileVersion
     - Remove-KshFileVersion
     - Restore-KshFileVersion
   - フォルダー
-    - Get-KshFolder
     - Add-KshFolder
+    - Copy-KshFolder
+    - Get-KshFolder
+    - Move-KshFolder
     - Remove-KshFolder
     - Set-KshFolder
-    - Copy-KshFolder
-    - Move-KshFolder
-    - Approve-KshFolder
-    - Deny-KshFolder
-    - Suspend-KshFolder
   - グループ
-    - Get-KshGroup
     - Add-KshGroup
-    - Remove-KshGroup
-    - Set-KshGroup
     - Add-KshGroupMember
+    - Get-KshGroup
     - Get-KshGroupMember
-    - Remove-KshGroupMember
     - Get-KshGroupOwner
+    - Remove-KshGroup
+    - Remove-KshGroupMember
+    - Set-KshGroup
     - Set-KshGroupOwner
   - 画像
     - Save-KshImage
   - いいね
     - Get-KshLike
-    - Enable-KshLike
-    - Disable-KshLike
+    - Set-KshLike
   - リスト
-    - Get-KshList
     - Add-KshList
+    - Get-KshList
     - Remove-KshList
     - Set-KshList
   - リスト アイテム
-    - Get-KshListItem
     - Add-KshListItem
-    - Remove-KshListItem
-    - Set-KshListItem
-    - Approve-KshListItem
-    - Deny-KshListItem
-    - Suspend-KshListItem
+    - Get-KshListItem
     - New-KshColumnGeolocationValue
     - New-KshColumnImageValue
     - New-KshColumnLookupValue
     - New-KshColumnTaxonomyValue
     - New-KshColumnUrlValue
     - New-KshColumnUserValue
+    - Remove-KshListItem
     - Set-KshColumnTaxonomyValue
+    - Set-KshListItem
   - リスト テンプレート
     - Get-KshListTemplate
   - ナビゲーション
-    - Get-KshNavigation
-    - Set-KshNavigation
-    - Get-KshNavigationNode
     - Add-KshNavigationNode
+    - Get-KshNavigation
+    - Get-KshNavigationNode
     - Remove-KshNavigationNode
+    - Set-KshNavigation
     - Set-KshNavigationNode
   - プロパティ
     - Get-KshProperty
@@ -240,51 +242,39 @@ SPClientCore は Microsoft Entra ID 2.0 認証をサポートします。
     - Remove-KshRecycleBinItem
     - Restore-KshRecycleBinItem
   - 地域と言語の設定
-    - Get-KshRegionalSettings
-    - Set-KshRegionalSettings
     - ConvertTo-KshLocalTime
     - ConvertTo-KshUniversalTime
+    - Get-KshRegionalSettings
+    - Set-KshRegionalSettings
   - アクセス許可
-    - Get-KshRoleAssignment
     - Add-KshRoleAssignment
+    - Get-KshRoleAssignment
     - Remove-KshRoleAssignment
     - Set-KshUniqueRoleAssignmentEnabled
   - アクセス許可レベル
-    - Get-KshRoleDefinition
     - Add-KshRoleDefinition
+    - Get-KshRoleDefinition
+    - New-KshBasePermission
     - Remove-KshRoleDefinition
     - Set-KshRoleDefinition
-    - New-KshBasePermission
   - 共有リンク
     - Add-KshAnonymousLink
-    - Remove-KshAnonymousLink
     - Add-KshOrganizationSharingLink
+    - Remove-KshAnonymousLink
     - Remove-KshOrganizationSharingLink
     - Test-KshSharingLink
   - サイト
-    - Get-KshSite
     - Add-KshSite
+    - Get-KshSite
     - Remove-KshSite
     - Set-KshSite
-  - サイト コレクションのアプリ
-    - Get-KshSiteCollectionApp
-    - Add-KshSiteCollectionApp
-    - Remove-KshSiteCollectionApp
-    - Install-KshSiteCollectionApp
-    - Uninstall-KshSiteCollectionApp
-    - Publish-KshSiteCollectionApp
-    - Unpublish-KshSiteCollectionApp
-  - サイト コレクションのアプリ カタログ
-    - Get-KshSiteCollectionAppCatalog
-    - Add-KshSiteCollectionAppCatalog
-    - Remove-KshSiteCollectionAppCatalog
   - サイト コレクションの機能
-    - Get-KshSiteCollectionFeature
     - Add-KshSiteCollectionFeature
+    - Get-KshSiteCollectionFeature
     - Remove-KshSiteCollectionFeature
   - サイトの機能
-    - Get-KshSiteFeature
     - Add-KshSiteFeature
+    - Get-KshSiteFeature
     - Remove-KshSiteFeature
   - サイト ページ
     - Add-KshSitePage
@@ -292,39 +282,29 @@ SPClientCore は Microsoft Entra ID 2.0 認証をサポートします。
     - Set-KshSitePage
   - サイト テンプレート
     - Get-KshSiteTemplate
-  - テナントのアプリ
-    - Get-KshTenantApp
-    - Add-KshTenantApp
-    - Remove-KshTenantApp
-    - Install-KshTenantApp
-    - Uninstall-KshTenantApp
-    - Publish-KshTenantApp
-    - Unpublish-KshTenantApp
-  - テナントのアプリ カタログ
-    - Get-KshTenantAppCatalog
   - ユーザー
-    - Get-KshUser
-    - Add-KshUser
-    - Remove-KshUser
-    - Set-KshUser
-    - Resolve-KshUser
     - Add-KshExternalUser
+    - Add-KshUser
+    - Get-KshUser
+    - Remove-KshUser
+    - Resolve-KshUser
+    - Set-KshUser
   - ユーザーの権限
     - Get-KshUserPermission
   - ユーザー プロパティ
     - Get-KshUserProperty
   - ビュー
-    - Get-KshView
     - Add-KshView
-    - Remove-KshView
-    - Set-KshView
     - Add-KshViewColumn
+    - Get-KshView
     - Get-KshViewColumn
     - Move-KshViewColumn
+    - Remove-KshView
     - Remove-KshViewColumn
-  - Webhook
-    - Get-KshSubscription
+    - Set-KshView
+  - Webhooks
     - Add-KshSubscription
+    - Get-KshSubscription
     - Remove-KshSubscription
     - Set-KshSubscription
 - テナント管理
@@ -334,104 +314,103 @@ SPClientCore は Microsoft Entra ID 2.0 認証をサポートします。
     - Remove-KshTenantDeletedSiteCollection
     - Restore-KshTenantDeletedSiteCollection
   - ファイル バージョン ポリシー
-    - Set-KshTenantFileVersionPolicy
     - Get-KshTenantFileVersionPolicyForDocumentLibrary
+    - Set-KshTenantFileVersionPolicy
     - Set-KshTenantFileVersionPolicyForDocumentLibrary
   - ホーム サイト
     - Get-KshTenantHomeSite
     - Remove-KshTenantHomeSite
     - Set-KshTenantHomeSite
   - ハブ サイト
-    - Get-KshTenantHubSite
     - Add-KshTenantHubSite
+    - Get-KshTenantHubSite
     - Remove-KshTenantHubSite
     - Set-KshTenantHubSite
   - リスト デザイン
-    - Get-KshTenantListDesign
     - Add-KshTenantListDesign
+    - Get-KshTenantListDesign
     - Remove-KshTenantListDesign
   - Office 365 CDN
-    - Get-KshTenantCdnEnabled
-    - Set-KshTenantCdnEnabled
-    - Get-KshTenantCdnOrigin
     - Add-KshTenantCdnOrigin
-    - Remove-KshTenantCdnOrigin
+    - Get-KshTenantCdnEnabled
+    - Get-KshTenantCdnOrigin
     - Get-KshTenantCdnPolicy
+    - Remove-KshTenantCdnOrigin
+    - Set-KshTenantCdnEnabled
     - Set-KshTenantCdnPolicy
   - 組織のニュース サイト
-    - Get-KshTenantOrganizationNewsSite
     - Add-KshTenantOrganizationNewsSite
+    - Get-KshTenantOrganizationNewsSite
     - Remove-KshTenantOrganizationNewsSite
   - 個人用サイト
     - Get-KshTenantPersonalSite
   - ルート サイト
     - Get-KshTenantRootSite
   - サイト コレクション
+    - Add-KshTenantSiteCollection
     - Get-KshSiteCollection
     - Get-KshTenantSiteCollection
-    - Add-KshTenantSiteCollection
+    - Lock-KshTenantSiteCollection
     - Remove-KshTenantSiteCollection
     - Set-KshTenantSiteCollection
-    - Lock-KshTenantSiteCollection
     - Unlock-KshTenantSiteCollection
   - サイト スクリプト
-    - Get-KshTenantSiteScript
     - Add-KshTenantSiteScript
-    - Remove-KshTenantSiteScript
+    - Get-KshTenantSiteScript
     - Get-KshTenantSiteScriptFromList
     - Get-KshTenantSiteScriptFromSite
+    - Remove-KshTenantSiteScript
   - サイト テンプレート
     - Get-KshTenantSiteTemplate
   - テナント
     - Get-KshTenant
     - Set-KshTenant
   - テーマ
-    - Get-KshTenantTheme
     - Add-KshTenantTheme
+    - Get-KshTenantTheme
     - Remove-KshTenantTheme
     - Set-KshTenantTheme
   - ユーザー
-    - Get-KshTenantUser
     - Add-KshTenantUser
+    - Get-KshTenantExternalUser
+    - Get-KshTenantUser
+    - Remove-KshTenantExternalUser
     - Remove-KshTenantUser
     - Set-KshTenantUser
-    - Get-KshTenantExternalUser
-    - Remove-KshTenantExternalUser
 - 管理されたメタデータ
   - カスタム プロパティ
     - Add-KshTermCustomProperty
-    - Remove-KshTermCustomProperty
     - Add-KshTermLocalCustomProperty
+    - Remove-KshTermCustomProperty
     - Remove-KshTermLocalCustomProperty
-  - 用語
-    - Get-KshTerm
-    - Add-KshTerm
-    - Remove-KshTerm
-    - Set-KshTerm
-    - Copy-KshTerm
-    - Move-KshTerm
-    - Merge-KshTerm
-    - Disable-KshTerm
-    - Enable-KshTerm
-    - Get-KshTermDescription
-    - Set-KshTermDescription
   - 用語グループ
-    - Get-KshTermGroup
     - Add-KshTermGroup
+    - Get-KshTermGroup
     - Remove-KshTermGroup
     - Set-KshTermGroup
   - 用語ラベル
-    - Get-KshTermLabel
     - Add-KshTermLabel
+    - Get-KshTermLabel
     - Remove-KshTermLabel
     - Set-KshTermLabel
   - 用語セット
-    - Get-KshTermSet
     - Add-KshTermSet
+    - Get-KshTermSet
     - Remove-KshTermSet
     - Set-KshTermSet
   - 用語ストア
-    - Get-KshTermStore
-    - Set-KshTermStore
     - Add-KshTermStoreLanguage
+    - Get-KshTermStore
     - Remove-KshTermStoreLanguage
+    - Set-KshTermStore
+  - 用語
+    - Add-KshTerm
+    - Copy-KshTerm
+    - Get-KshTerm
+    - Get-KshTermDescription
+    - Merge-KshTerm
+    - Move-KshTerm
+    - Remove-KshTerm
+    - Set-KshTerm
+    - Set-KshTermDescription
+    - Set-KshTermDeprecated

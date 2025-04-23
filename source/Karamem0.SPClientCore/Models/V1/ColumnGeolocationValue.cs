@@ -17,36 +17,24 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.FieldGeolocationValue", Id = "{97650aff-7e7b-44be-ac6e-d559f7f897a2}")]
 [JsonObject()]
-public class ColumnGeolocationValue : ClientValueObject
+public class ColumnGeolocationValue(
+    double altitude = 0,
+    double latitude = 0,
+    double longitude = 0,
+    double measure = 0
+) : ClientValueObject
 {
 
-    public ColumnGeolocationValue()
-    {
-    }
-
-    public ColumnGeolocationValue(
-        double altitude,
-        double latitude,
-        double longitude,
-        double measure
-    )
-    {
-        this.Altitude = altitude;
-        this.Latitude = latitude;
-        this.Longitude = longitude;
-        this.Measure = measure;
-    }
+    [JsonProperty()]
+    public virtual double Altitude { get; protected set; } = altitude;
 
     [JsonProperty()]
-    public virtual double Altitude { get; protected set; }
+    public virtual double Latitude { get; protected set; } = latitude;
 
     [JsonProperty()]
-    public virtual double Latitude { get; protected set; }
+    public virtual double Longitude { get; protected set; } = longitude;
 
     [JsonProperty()]
-    public virtual double Longitude { get; protected set; }
-
-    [JsonProperty()]
-    public virtual double Measure { get; protected set; }
+    public virtual double Measure { get; protected set; } = measure;
 
 }

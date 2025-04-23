@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class ColumnLookup : Column
 {
 
-    public ColumnLookup()
-    {
-    }
-
     [JsonProperty()]
     public virtual bool AllowMultipleValues { get; protected set; }
 

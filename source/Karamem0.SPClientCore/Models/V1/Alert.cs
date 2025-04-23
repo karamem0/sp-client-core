@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class Alert : ClientObject
 {
 
-    public Alert()
-    {
-    }
-
     [JsonProperty()]
     public virtual AlertFrequency AlertFrequency { get; protected set; }
 

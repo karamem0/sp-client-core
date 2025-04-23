@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class NavigationNode : ClientObject
 {
 
-    public NavigationNode()
-    {
-    }
-
     [JsonProperty()]
     public virtual IReadOnlyCollection<Guid> AudienceIds { get; protected set; }
 

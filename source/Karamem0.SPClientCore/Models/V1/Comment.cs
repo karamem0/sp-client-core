@@ -19,10 +19,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class Comment : ODataV1Object
 {
 
-    public Comment()
-    {
-    }
-
     [JsonProperty("author")]
     public virtual SharingPrincipal Author { get; protected set; }
 

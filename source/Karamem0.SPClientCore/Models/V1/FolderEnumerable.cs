@@ -17,11 +17,4 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.FolderCollection", Id = "{b6b425aa-9e17-4205-a4aa-b82c2c3f884d}")]
 [JsonObject()]
-public class FolderEnumerable : ClientObjectEnumerable<Folder>
-{
-
-    public FolderEnumerable()
-    {
-    }
-
-}
+public class FolderEnumerable : ClientObjectEnumerable<Folder>;

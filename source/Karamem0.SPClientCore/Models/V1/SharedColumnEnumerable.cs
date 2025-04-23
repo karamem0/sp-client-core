@@ -17,11 +17,4 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.DocumentSet.SharedFieldCollection", Id = "{1554af8c-7213-418c-a4a8-b06e7603c68a}")]
 [JsonObject()]
-public class SharedColumnEnumerable : ClientObjectEnumerable<Column>
-{
-
-    public SharedColumnEnumerable()
-    {
-    }
-
-}
+public class SharedColumnEnumerable : ClientObjectEnumerable<Column>;

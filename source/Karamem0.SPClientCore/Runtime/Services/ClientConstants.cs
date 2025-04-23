@@ -20,9 +20,9 @@ public static class ClientConstants
 
     public const int MaxRetryCount = 3;
 
-    public const int TenantServiceWaitSeconds = 10;
+    public const int WaitIntervalForTenantService = 10;
 
-    public const int TermLabelServiceWaitSeconds = 1;
+    public const int WaitIntervalForTermLabelService = 1;
 
     public const int ChunkSize = 10 * 1024 * 1024;
 

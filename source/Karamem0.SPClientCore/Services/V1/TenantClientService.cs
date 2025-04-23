@@ -28,7 +28,7 @@ public abstract class TenantClientService(ClientContext clientContext) : ClientS
             Thread.Sleep(operationResultObject.PollingInterval);
             if (operationResultObject.IsComplete)
             {
-                Thread.Sleep(TimeSpan.FromSeconds(ClientConstants.TenantServiceWaitSeconds));
+                Thread.Sleep(TimeSpan.FromSeconds(ClientConstants.WaitIntervalForTenantService));
                 break;
             }
             if (operationResultObject.HasTimedout)

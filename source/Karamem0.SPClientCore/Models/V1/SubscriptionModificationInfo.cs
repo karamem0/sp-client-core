@@ -20,10 +20,6 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class SubscriptionModificationInfo : ODataV1Object
 {
 
-    public SubscriptionModificationInfo()
-    {
-    }
-
     [JsonProperty("clientState")]
     public virtual string ClientState { get; protected set; }
 

@@ -17,11 +17,4 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.Taxonomy.TaxonomySession", Id = "{981cbc68-9edc-4f8d-872f-71146fcbb84f}")]
 [JsonObject()]
-public class TaxonomySession : ClientObject
-{
-
-    public TaxonomySession()
-    {
-    }
-
-}
+public class TaxonomySession : ClientObject;

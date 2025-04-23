@@ -17,11 +17,4 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.FileCollection", Id = "{d367b17c-170b-4691-a1e3-8bccf7686ce4}")]
 [JsonObject()]
-public class FileEnumerable : ClientObjectEnumerable<File>
-{
-
-    public FileEnumerable()
-    {
-    }
-
-}
+public class FileEnumerable : ClientObjectEnumerable<File>;

@@ -17,11 +17,4 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.PropertyValues", Id = "{3973524d-2d5a-4683-aa39-38a2acc6e63c}")]
 [JsonObject()]
-public class PropertyValues : ClientObject
-{
-
-    public PropertyValues()
-    {
-    }
-
-}
+public class PropertyValues : ClientObject;
