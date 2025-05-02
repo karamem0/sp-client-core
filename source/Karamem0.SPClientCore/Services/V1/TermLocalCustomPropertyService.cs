@@ -38,14 +38,11 @@ public class TermLocalCustomPropertyService(ClientContext clientContext) : Clien
         string propertyValue
     )
     {
-        _ = termObject ?? throw new ArgumentNullException(nameof(termObject));
-        _ = propertyName ?? throw new ArgumentNullException(nameof(propertyName));
-        _ = propertyValue ?? throw new ArgumentNullException(nameof(propertyValue));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(termObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             objectPath1,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "SetLocalCustomProperty",
                 requestPayload.CreateParameter(propertyName),
@@ -57,13 +54,11 @@ public class TermLocalCustomPropertyService(ClientContext clientContext) : Clien
 
     public void RemoveObject(Term termObject, string propertyName)
     {
-        _ = termObject ?? throw new ArgumentNullException(nameof(termObject));
-        _ = propertyName ?? throw new ArgumentNullException(nameof(propertyName));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(termObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             objectPath1,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "DeleteLocalCustomProperty",
                 requestPayload.CreateParameter(propertyName)

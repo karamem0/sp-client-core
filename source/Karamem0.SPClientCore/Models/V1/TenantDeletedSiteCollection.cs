@@ -30,13 +30,13 @@ public class TenantDeletedSiteCollection : ClientObject
     public virtual Guid Id { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Status { get; protected set; }
+    public virtual string? Status { get; protected set; }
 
     [JsonProperty()]
     public virtual int StorageMaximumLevel { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Url { get; protected set; }
+    public virtual string? Url { get; protected set; }
 
     [JsonProperty()]
     public virtual int UserCodeMaximumLevel { get; protected set; }

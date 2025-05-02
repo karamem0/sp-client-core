@@ -15,12 +15,11 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
 [JsonObject()]
-public class ODataV1MethodReturnValue : ODataV1Object
+public class ODataV1MethodReturnValue : ODataV1Object<ODataV1MethodReturnValue>
 {
 
-    public virtual T GetValue<T>(string methodName) where T : ODataV1Object
+    public virtual T? GetValue<T>(string methodName) where T : ODataV1Object
     {
-        _ = methodName ?? throw new ArgumentNullException(nameof(methodName));
         return this
             .ExtensionProperties[methodName]
             .ToObject<T>(JsonSerializerManager.Instance);

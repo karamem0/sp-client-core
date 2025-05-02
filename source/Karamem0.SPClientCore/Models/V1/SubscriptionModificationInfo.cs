@@ -17,16 +17,16 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [JsonObject()]
 [ODataV1Object(Name = "Microsoft.SharePoint.Webhooks.Subscription")]
-public class SubscriptionModificationInfo : ODataV1Object
+public class SubscriptionModificationInfo : ODataV1Object<SubscriptionModificationInfo>
 {
 
     [JsonProperty("clientState")]
-    public virtual string ClientState { get; protected set; }
+    public virtual string? ClientState { get; protected set; }
 
     [JsonProperty("expirationDateTime")]
     public virtual DateTime ExpirationDateTime { get; protected set; }
 
     [JsonProperty("notificationUrl")]
-    public virtual string NotificationUrl { get; protected set; }
+    public virtual string? NotificationUrl { get; protected set; }
 
 }

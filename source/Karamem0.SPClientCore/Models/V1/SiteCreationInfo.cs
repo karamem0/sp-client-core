@@ -21,19 +21,19 @@ public class SiteCreationInfo : ClientValueObject
 {
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; protected set; }
 
     [JsonProperty("Language")]
     public virtual uint Lcid { get; protected set; }
 
     [JsonProperty("Url")]
-    public virtual string ServerRelativeUrl { get; protected set; }
+    public virtual string? ServerRelativeUrl { get; protected set; }
 
     [JsonProperty("WebTemplate")]
-    public virtual string Template { get; protected set; }
+    public virtual string? Template { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; protected set; }
 
     [JsonProperty()]
     public virtual bool UseSamePermissionsAsParentSite { get; protected set; }

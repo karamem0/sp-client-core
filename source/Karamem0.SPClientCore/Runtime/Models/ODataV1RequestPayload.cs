@@ -19,7 +19,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class ODataV1RequestPayload
 {
 
-    public static ODataV1RequestPayload Create<T>(IReadOnlyDictionary<string, object> parameters) where T : ODataV1Object, new()
+    public static ODataV1RequestPayload Create<T>(IReadOnlyDictionary<string, object?> parameters) where T : ODataV1Object, new()
     {
         var value = new ODataV1RequestPayload()
         {
@@ -37,11 +37,7 @@ public class ODataV1RequestPayload
         return value;
     }
 
-    private ODataV1RequestPayload()
-    {
-    }
-
     [JsonProperty("parameters")]
-    public ODataV1Object Entity { get; private set; }
+    public ODataV1Object? Entity { get; protected set; }
 
 }

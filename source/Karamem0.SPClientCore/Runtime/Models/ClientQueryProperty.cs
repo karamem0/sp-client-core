@@ -17,7 +17,7 @@ using System.Xml.Serialization;
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
 [XmlType("Property", Namespace = "http://schemas.microsoft.com/sharepoint/clientquery/2009")]
-public class ClientQueryProperty(string name) : ClientRequestObject
+public class ClientQueryProperty : ClientRequestObject
 {
 
     public static ClientQueryProperty Create(PropertyInfo propertyInfo, bool selectAllProperties)
@@ -27,31 +27,33 @@ public class ClientQueryProperty(string name) : ClientRequestObject
         var propertyType = propertyInfo.PropertyType;
         if (propertyType.IsSubclassOf(typeof(ClientObject)))
         {
-            return new ClientQueryProperty(propertyName)
+            return new ClientQueryProperty()
             {
+                Name = propertyName,
                 SelectAll = true,
-                Query = new ClientQuery(selectAllProperties, propertyType)
+                Query = ClientQuery.Create(selectAllProperties, propertyType)
             };
         }
         else
         {
-            return new ClientQueryProperty(propertyName)
+            return new ClientQueryProperty()
             {
+                Name = propertyName,
                 ScalarProperty = true
             };
         }
     }
 
     [XmlAttribute()]
-    public virtual string Name { get; protected set; } = name ?? throw new ArgumentNullException(nameof(name));
+    public virtual string? Name { get; protected set; }
 
     [XmlAttribute()]
-    public virtual bool? ScalarProperty { get; set; }
+    public virtual bool? ScalarProperty { get; protected set; }
 
     [XmlAttribute()]
-    public virtual bool? SelectAll { get; set; }
+    public virtual bool? SelectAll { get; protected set; }
 
     [XmlElement()]
-    public virtual ClientQuery Query { get; set; }
+    public virtual ClientQuery? Query { get; protected set; }
 
 }

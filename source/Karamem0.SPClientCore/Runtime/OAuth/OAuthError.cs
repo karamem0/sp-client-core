@@ -18,26 +18,22 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth;
 public class OAuthError : OAuthMessage
 {
 
-    public OAuthError()
-    {
-    }
-
     [JsonProperty("error")]
-    public string Error { get; private set; }
+    public string? Error { get; protected set; }
 
     [JsonProperty("error_description")]
-    public string ErrorDescription { get; private set; }
+    public string? ErrorDescription { get; protected set; }
 
     [JsonProperty("error_codes")]
-    public int[] ErrorCodes { get; private set; }
+    public int[]? ErrorCodes { get; protected set; }
 
     [JsonProperty("timestamp")]
-    public DateTime Timestamp { get; private set; }
+    public DateTime Timestamp { get; protected set; }
 
     [JsonProperty("trace_id")]
-    public string TraceId { get; private set; }
+    public string? TraceId { get; protected set; }
 
     [JsonProperty("correlation_id")]
-    public string CorrelationId { get; private set; }
+    public string? CorrelationId { get; protected set; }
 
 }

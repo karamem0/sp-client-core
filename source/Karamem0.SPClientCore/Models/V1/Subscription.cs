@@ -16,11 +16,11 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [JsonObject()]
-public class Subscription : ODataV1Object
+public class Subscription : ODataV1Object<Subscription>
 {
 
     [JsonProperty("clientState")]
-    public virtual string ClientState { get; protected set; }
+    public virtual string? ClientState { get; protected set; }
 
     [JsonProperty("expirationDateTime")]
     public virtual DateTime ExpirationDateTime { get; protected set; }
@@ -29,12 +29,12 @@ public class Subscription : ODataV1Object
     public virtual Guid Id { get; protected set; }
 
     [JsonProperty("notificationUrl")]
-    public virtual string NotificationUrl { get; protected set; }
+    public virtual string? NotificationUrl { get; protected set; }
 
     [JsonProperty("resource")]
     public virtual Guid Resource { get; protected set; }
 
     [JsonProperty("resourceData")]
-    public virtual string ResourceData { get; protected set; }
+    public virtual string? ResourceData { get; protected set; }
 
 }

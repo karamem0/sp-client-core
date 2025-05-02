@@ -22,7 +22,7 @@ Yes, SPClientCore works with the latest version of PowerShell 7. It means that y
 
 ### One module, manage all
 
-SPClientCore includes both elements that site admin features and tenant admin features. You can run cmdlets for site admin by connecting to a site `(`https://tenant.sharepoint.com` and its sub URLs), and you can run tenant admin cmdlets for connecting to the SharePoint admin center (`https://tenant-admin.sharepoint.com`). You can also determine whether you are currently connected to the SharePoint admin center.
+SPClientCore includes both elements that site admin features and tenant admin features. You can run cmdlets for site admin by connecting to a site (`https://tenant.sharepoint.com` and its sub URLs), and you can run tenant admin cmdlets for connecting to the SharePoint admin center (`https://tenant-admin.sharepoint.com`). You can also determine whether you are currently connected to the SharePoint admin center.
 
 ### Friendly Naming
 

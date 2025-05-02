@@ -6,6 +6,7 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.OAuth;
@@ -57,37 +58,32 @@ public class ClientContext
     private ClientContext(Uri baseAddress, OAuthTokenProvider oAuthTokenProvider)
         : base()
     {
-        this.baseAddress = (baseAddress is not null)
-            ? new Uri(
-                baseAddress
-                    .ToString()
-                    .TrimEnd('/'),
-                UriKind.Absolute
-            )
-            : throw new ArgumentNullException(nameof(baseAddress));
-        this.oAuthTokenProvider = oAuthTokenProvider ?? throw new ArgumentNullException(nameof(oAuthTokenProvider));
+        this.baseAddress = new Uri(
+            baseAddress
+                .ToString()
+                .TrimEnd('/'),
+            UriKind.Absolute
+        );
+        this.oAuthTokenProvider = oAuthTokenProvider;
         this.clientHttpExecutor = new ClientHttpExecutor();
     }
 
     public Uri BaseAddress
     {
         get => this.baseAddress;
-        set => this.baseAddress = (value is not null)
-            ? new Uri(
-                value
-                    .ToString()
-                    .TrimEnd('/'),
-                UriKind.Absolute
-            )
-            : throw new ArgumentNullException(nameof(value));
+        set => this.baseAddress = new Uri(
+            value
+                .ToString()
+                .TrimEnd('/'),
+            UriKind.Absolute
+        );
     }
 
-    public string AccessToken => this.oAuthTokenProvider.CurrentAceessToken;
+    public string? AccessToken => this.oAuthTokenProvider.CurrentAceessToken;
 
     public void DeleteObject(Uri requestUrl)
     {
-        _ = requestUrl ?? throw new ArgumentNullException(nameof(requestUrl));
-        this.clientHttpExecutor.Execute(
+        _ = this.clientHttpExecutor.Execute(
             () =>
             {
                 var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -97,13 +93,12 @@ public class ClientContext
                 requestMessage.Headers.Add("If-Match", "*");
                 return requestMessage;
             },
-            responseMessage => Task.FromResult(default(object))
+            responseMessage => responseMessage.Content.ReadAsStringAsync()
         );
     }
 
-    public T GetObject<T>(Uri requestUrl) where T : ODataV1Object
+    public T? GetObject<T>(Uri requestUrl) where T : ODataV1Object
     {
-        _ = requestUrl ?? throw new ArgumentNullException(nameof(requestUrl));
         return this.clientHttpExecutor.Execute(
             () =>
             {
@@ -116,21 +111,21 @@ public class ClientContext
             {
                 var responseContent = await responseMessage.Content.ReadAsStringAsync();
                 var responsePayload = JsonSerializerManager.Instance.Deserialize<ODataV1ResultPayload<T>>(responseContent);
+                _ = responsePayload ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
                 if (responsePayload.Error is null)
                 {
                     return responsePayload.Entry;
                 }
                 else
                 {
-                    throw new InvalidOperationException(responsePayload.Error.Message.Value);
+                    throw new InvalidOperationException(responsePayload.Error.Message?.Value);
                 }
             }
         );
     }
 
-    public T GetObjectV2<T>(Uri requestUrl) where T : ODataV2Object
+    public T? GetObjectV2<T>(Uri requestUrl) where T : ODataV2Object
     {
-        _ = requestUrl ?? throw new ArgumentNullException(nameof(requestUrl));
         return this.clientHttpExecutor.Execute(
             () =>
             {
@@ -143,7 +138,8 @@ public class ClientContext
             {
                 var responseContent = await responseMessage.Content.ReadAsStringAsync();
                 var responsePayload = JsonSerializerManager.Instance.Deserialize<JToken>(responseContent);
-                if (responsePayload.Value<bool>("@odata.null"))
+                _ = responsePayload ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
+                if (responsePayload.Value<bool>("@odata.null") is true)
                 {
                     return null;
                 }
@@ -157,7 +153,6 @@ public class ClientContext
 
     public System.IO.Stream GetStream(Uri requestUrl)
     {
-        _ = requestUrl ?? throw new ArgumentNullException(nameof(requestUrl));
         return this.clientHttpExecutor.Execute(
             () =>
             {
@@ -170,10 +165,9 @@ public class ClientContext
         );
     }
 
-    public void PatchObject(Uri requestUrl, object requestPayload)
+    public void PatchObject(Uri requestUrl, object? requestPayload)
     {
-        _ = requestUrl ?? throw new ArgumentNullException(nameof(requestUrl));
-        this.clientHttpExecutor.Execute(
+        _ = this.clientHttpExecutor.Execute(
             () =>
             {
                 var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -189,14 +183,13 @@ public class ClientContext
                 }
                 return requestMessage;
             },
-            responseMessage => Task.FromResult(default(object))
+            responseMessage => responseMessage.Content.ReadAsStringAsync()
         );
     }
 
-    public void PostObject(Uri requestUrl, object requestPayload)
+    public void PostObject(Uri requestUrl, object? requestPayload)
     {
-        _ = requestUrl ?? throw new ArgumentNullException(nameof(requestUrl));
-        this.clientHttpExecutor.Execute(
+        _ = this.clientHttpExecutor.Execute(
             () =>
             {
                 var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -210,13 +203,12 @@ public class ClientContext
                 }
                 return requestMessage;
             },
-            responseMessage => Task.FromResult(default(object))
+            responseMessage => responseMessage.Content.ReadAsStringAsync()
         );
     }
 
-    public T PostObject<T>(Uri requestUrl, object requestPayload) where T : ODataV1Object
+    public T? PostObject<T>(Uri requestUrl, object? requestPayload) where T : ODataV1Object
     {
-        _ = requestUrl ?? throw new ArgumentNullException(nameof(requestUrl));
         return this.clientHttpExecutor.Execute(
             () =>
             {
@@ -235,13 +227,14 @@ public class ClientContext
             {
                 var responseContent = await responseMessage.Content.ReadAsStringAsync();
                 var responsePayload = JsonSerializerManager.Instance.Deserialize<ODataV1ResultPayload<T>>(responseContent);
+                _ = responsePayload ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
                 if (responsePayload.Error is null)
                 {
                     return responsePayload.Entry;
                 }
                 else
                 {
-                    throw new InvalidOperationException(responsePayload.Error.Message.Value);
+                    throw new InvalidOperationException(responsePayload.Error.Message?.Value);
                 }
             }
         );
@@ -249,9 +242,7 @@ public class ClientContext
 
     public void PostStream(Uri requestUrl, System.IO.Stream requestStream)
     {
-        _ = requestUrl ?? throw new ArgumentNullException(nameof(requestUrl));
-        _ = requestStream ?? throw new ArgumentNullException(nameof(requestStream));
-        this.clientHttpExecutor.Execute(
+        _ = this.clientHttpExecutor.Execute(
             () =>
             {
                 var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -261,14 +252,12 @@ public class ClientContext
                 requestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json;odata=verbose");
                 return requestMessage;
             },
-            responseMessage => Task.FromResult(default(object))
+            responseMessage => responseMessage.Content.ReadAsStringAsync()
         );
     }
 
-    public T PostStream<T>(Uri requestUrl, System.IO.Stream requestStream) where T : ODataV1Object
+    public T? PostStream<T>(Uri requestUrl, System.IO.Stream requestStream) where T : ODataV1Object
     {
-        _ = requestUrl ?? throw new ArgumentNullException(nameof(requestUrl));
-        _ = requestStream ?? throw new ArgumentNullException(nameof(requestStream));
         return this.clientHttpExecutor.Execute(
             () =>
             {
@@ -283,13 +272,14 @@ public class ClientContext
             {
                 var responseContent = await responseMessage.Content.ReadAsStringAsync();
                 var responsePayload = JsonSerializerManager.Instance.Deserialize<ODataV1ResultPayload<T>>(responseContent);
+                _ = responsePayload ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
                 if (responsePayload.Error is null)
                 {
                     return responsePayload.Entry;
                 }
                 else
                 {
-                    throw new InvalidOperationException(responsePayload.Error.Message.Value);
+                    throw new InvalidOperationException(responsePayload.Error.Message?.Value);
                 }
             }
         );
@@ -297,7 +287,6 @@ public class ClientContext
 
     public ClientResultPayload ProcessQuery(ClientRequestPayload requestPayload)
     {
-        _ = requestPayload ?? throw new ArgumentNullException(nameof(requestPayload));
         return this.clientHttpExecutor.Execute(
             () =>
             {

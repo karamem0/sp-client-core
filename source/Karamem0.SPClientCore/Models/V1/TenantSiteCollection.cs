@@ -33,10 +33,10 @@ public class TenantSiteCollection : ClientObject
     public virtual int AnonymousLinkExpirationInDays { get; protected set; }
 
     [JsonProperty("AuthContextStrength")]
-    public virtual string AuthenticationContextStrength { get; protected set; }
+    public virtual string? AuthenticationContextStrength { get; protected set; }
 
     [JsonProperty()]
-    public virtual string AuthenticationContextName { get; protected set; }
+    public virtual string? AuthenticationContextName { get; protected set; }
 
     [JsonProperty()]
     public virtual int AverageResourceUsage { get; protected set; }
@@ -45,10 +45,10 @@ public class TenantSiteCollection : ClientObject
     public virtual bool AuthenticationContextLimitedAccess { get; protected set; }
 
     [JsonProperty()]
-    public virtual BlockDownloadLinksFileType BlockDownloadLinksFileType { get; protected set; }
+    public virtual BlockDownloadLinksFileType? BlockDownloadLinksFileType { get; protected set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyList<Guid> BlockDownloadMicrosoft365GroupIds { get; protected set; }
+    public virtual IReadOnlyList<Guid>? BlockDownloadMicrosoft365GroupIds { get; protected set; }
 
     [JsonProperty()]
     public virtual bool BlockDownloadPolicy { get; protected set; }
@@ -66,13 +66,13 @@ public class TenantSiteCollection : ClientObject
     public virtual int CompatibilityLevel { get; protected set; }
 
     [JsonProperty()]
-    public virtual ConditionalAccessPolicyType ConditionalAccessPolicy { get; protected set; }
+    public virtual ConditionalAccessPolicyType? ConditionalAccessPolicy { get; protected set; }
 
     [JsonProperty()]
-    public virtual double CurrentResourceUsage { get; protected set; }
+    public virtual double? CurrentResourceUsage { get; protected set; }
 
     [JsonProperty()]
-    public virtual SharingPermissionType DefaultLinkPermission { get; protected set; }
+    public virtual SharingPermissionType? DefaultLinkPermission { get; protected set; }
 
     [JsonProperty()]
     public virtual bool DefaultLinkToExistingAccess { get; protected set; }
@@ -81,31 +81,31 @@ public class TenantSiteCollection : ClientObject
     public virtual bool DefaultLinkToExistingAccessReset { get; protected set; }
 
     [JsonProperty("DefaultShareLinkRole")]
-    public virtual RoleType DefaultSharingLinkRole { get; protected set; }
+    public virtual RoleType? DefaultSharingLinkRole { get; protected set; }
 
     [JsonProperty("DefaultShareLinkScope")]
-    public virtual SharingScope DefaultSharingLinkScope { get; protected set; }
+    public virtual SharingScope? DefaultSharingLinkScope { get; protected set; }
 
     [JsonProperty()]
-    public virtual SharingLinkType DefaultSharingLinkType { get; protected set; }
+    public virtual SharingLinkType? DefaultSharingLinkType { get; protected set; }
 
     [JsonProperty()]
-    public virtual DenyAddAndCustomizePagesStatus DenyAddAndCustomizePages { get; protected set; }
+    public virtual DenyAddAndCustomizePagesStatus? DenyAddAndCustomizePages { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; protected set; }
 
     [JsonProperty()]
-    public virtual AppViewsPolicy DisableAppViews { get; protected set; }
+    public virtual AppViewsPolicy? DisableAppViews { get; protected set; }
 
     [JsonProperty()]
-    public virtual CompanyWideSharingLinksPolicyType DisableCompanyWideSharingLinks { get; protected set; }
+    public virtual CompanyWideSharingLinksPolicyType? DisableCompanyWideSharingLinks { get; protected set; }
 
     [JsonProperty()]
-    public virtual FlowsPolicyType DisableFlows { get; protected set; }
+    public virtual FlowsPolicyType? DisableFlows { get; protected set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<Guid> ExcludedBlockDownloadGroupIds { get; protected set; }
+    public virtual IReadOnlyCollection<Guid>? ExcludedBlockDownloadGroupIds { get; protected set; }
 
     [JsonProperty()]
     public virtual bool ExcludeBlockDownloadPolicySiteOwners { get; protected set; }
@@ -117,7 +117,7 @@ public class TenantSiteCollection : ClientObject
     public virtual Guid GroupId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string GroupOwnerLoginName { get; protected set; }
+    public virtual string? GroupOwnerLoginName { get; protected set; }
 
     [JsonProperty()]
     public virtual bool HasHolds { get; protected set; }
@@ -126,16 +126,16 @@ public class TenantSiteCollection : ClientObject
     public virtual Guid HubSiteId { get; protected set; }
 
     [JsonProperty("IBMode")]
-    public virtual string InformationBarriersMode { get; protected set; }
+    public virtual string? InformationBarriersMode { get; protected set; }
 
     [JsonProperty("IBSegments")]
-    public virtual IReadOnlyList<Guid> InformationBarriersSegments { get; protected set; }
+    public virtual IReadOnlyList<Guid>? InformationBarriersSegments { get; protected set; }
 
     [JsonProperty("IBSegmentsToAdd")]
-    public virtual IReadOnlyList<Guid> InformationBarriersSegmentsToAdd { get; protected set; }
+    public virtual IReadOnlyList<Guid>? InformationBarriersSegmentsToAdd { get; protected set; }
 
     [JsonProperty("IBSegmentsToRemove")]
-    public virtual IReadOnlyList<Guid> InformationBarriersSegmentsToRemove { get; protected set; }
+    public virtual IReadOnlyList<Guid>? InformationBarriersSegmentsToRemove { get; protected set; }
 
     [JsonProperty("IsGroupOwnerSiteAdmin")]
     public virtual bool IsGroupOwnerSiteCollectionAdmin { get; protected set; }
@@ -156,25 +156,25 @@ public class TenantSiteCollection : ClientObject
     public virtual uint Lcid { get; protected set; }
 
     [JsonProperty()]
-    public virtual LimitedAccessFileType LimitedAccessFileType { get; protected set; }
+    public virtual LimitedAccessFileType? LimitedAccessFileType { get; protected set; }
 
     [JsonProperty()]
-    public virtual string LockIssue { get; protected set; }
+    public virtual string? LockIssue { get; protected set; }
 
     [JsonProperty()]
-    public virtual string LockState { get; protected set; }
+    public virtual string? LockState { get; protected set; }
 
     [JsonProperty()]
-    public virtual RoleType LoopDefaultSharingLinkRole { get; protected set; }
+    public virtual RoleType? LoopDefaultSharingLinkRole { get; protected set; }
 
     [JsonProperty()]
-    public virtual SharingScope LoopDefaultSharingLinkScope { get; protected set; }
+    public virtual SharingScope? LoopDefaultSharingLinkScope { get; protected set; }
 
     [JsonProperty()]
-    public virtual MediaTranscriptionPolicyType MediaTranscription { get; protected set; }
+    public virtual MediaTranscriptionPolicyType? MediaTranscription { get; protected set; }
 
     [JsonProperty()]
-    public virtual SiteUserInfoVisibilityPolicyType OverrideBlockUserInfoVisibility { get; protected set; }
+    public virtual SiteUserInfoVisibilityPolicyType? OverrideBlockUserInfoVisibility { get; protected set; }
 
     [JsonProperty()]
     public virtual bool OverrideSharingCapability { get; protected set; }
@@ -186,19 +186,19 @@ public class TenantSiteCollection : ClientObject
     public virtual bool OverrideTenantExternalUserExpirationPolicy { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Owner { get; protected set; }
+    public virtual string? Owner { get; protected set; }
 
     [JsonProperty()]
-    public virtual string OwnerEmail { get; protected set; }
+    public virtual string? OwnerEmail { get; protected set; }
 
     [JsonProperty()]
-    public virtual string OwnerLoginName { get; protected set; }
+    public virtual string? OwnerLoginName { get; protected set; }
 
     [JsonProperty()]
-    public virtual string OwnerName { get; protected set; }
+    public virtual string? OwnerName { get; protected set; }
 
     [JsonProperty()]
-    public virtual PWAEnabledStatus PWAEnabled { get; protected set; }
+    public virtual PWAEnabledStatus? PWAEnabled { get; protected set; }
 
     [JsonProperty()]
     public virtual bool ReadOnlyAccessPolicy { get; protected set; }
@@ -222,40 +222,40 @@ public class TenantSiteCollection : ClientObject
     public virtual bool RestrictedAccessControl { get; protected set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<Guid> RestrictedAccessControlGroups { get; protected set; }
+    public virtual IReadOnlyCollection<Guid>? RestrictedAccessControlGroups { get; protected set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<Guid> RestrictedAccessControlGroupsToAdd { get; protected set; }
+    public virtual IReadOnlyCollection<Guid>? RestrictedAccessControlGroupsToAdd { get; protected set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<Guid> RestrictedAccessControlGroupsToRemove { get; protected set; }
+    public virtual IReadOnlyCollection<Guid>? RestrictedAccessControlGroupsToRemove { get; protected set; }
 
     [JsonProperty()]
-    public virtual RestrictedToRegion RestrictedToRegion { get; protected set; }
+    public virtual RestrictedToRegion? RestrictedToRegion { get; protected set; }
 
     [JsonProperty()]
-    public virtual SandboxedCodeActivationCapabilities SandboxedCodeActivationCapability { get; protected set; }
+    public virtual SandboxedCodeActivationCapabilities? SandboxedCodeActivationCapability { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid SensitivityLabel { get; protected set; }
 
     [JsonProperty()]
-    public virtual string SensitivityLabel2 { get; protected set; }
+    public virtual string? SensitivityLabel2 { get; protected set; }
 
     [JsonProperty()]
     public virtual bool SetOwnerWithoutUpdatingSecondaryAdmin { get; protected set; }
 
     [JsonProperty()]
-    public virtual string SharingAllowedDomainList { get; protected set; }
+    public virtual string? SharingAllowedDomainList { get; protected set; }
 
     [JsonProperty()]
-    public virtual string SharingBlockedDomainList { get; protected set; }
+    public virtual string? SharingBlockedDomainList { get; protected set; }
 
     [JsonProperty()]
-    public virtual SharingCapabilities SharingCapability { get; protected set; }
+    public virtual SharingCapabilities? SharingCapability { get; protected set; }
 
     [JsonProperty()]
-    public virtual SharingDomainRestrictionMode SharingDomainRestrictionMode { get; protected set; }
+    public virtual SharingDomainRestrictionMode? SharingDomainRestrictionMode { get; protected set; }
 
     [JsonProperty()]
     public virtual bool SharingLockDownCanBeCleared { get; protected set; }
@@ -267,19 +267,19 @@ public class TenantSiteCollection : ClientObject
     public virtual bool ShowPeoplePickerSuggestionsForGuestUsers { get; protected set; }
 
     [JsonProperty()]
-    public virtual SharingCapabilities SiteDefinedSharingCapability { get; protected set; }
+    public virtual SharingCapabilities? SiteDefinedSharingCapability { get; protected set; }
 
     [JsonProperty()]
     public virtual bool SocialBarOnSitePagesDisabled { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Status { get; protected set; }
+    public virtual string? Status { get; protected set; }
 
     [JsonProperty()]
     public virtual int StorageMaximumLevel { get; protected set; }
 
     [JsonProperty()]
-    public virtual string StorageQuotaType { get; protected set; }
+    public virtual string? StorageQuotaType { get; protected set; }
 
     [JsonProperty()]
     public virtual int StorageUsage { get; protected set; }
@@ -288,22 +288,22 @@ public class TenantSiteCollection : ClientObject
     public virtual int StorageWarningLevel { get; protected set; }
 
     [JsonProperty()]
-    public virtual TeamsChannelType TeamsChannelType { get; protected set; }
+    public virtual TeamsChannelType? TeamsChannelType { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Template { get; protected set; }
+    public virtual string? Template { get; protected set; }
 
     [JsonProperty()]
     public virtual int TimeZoneId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; protected set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<ResourceEntry> TitleTranslations { get; protected set; }
+    public virtual IReadOnlyCollection<ResourceEntry>? TitleTranslations { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Url { get; protected set; }
+    public virtual string? Url { get; protected set; }
 
     [JsonProperty()]
     public virtual int UserCodeMaximumLevel { get; protected set; }

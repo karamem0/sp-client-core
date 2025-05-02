@@ -21,6 +21,6 @@ public class RecycleBinItemEnumerable : ClientObjectEnumerable<RecycleBinItem>
 {
 
     [JsonProperty()]
-    public virtual ListItemCollectionPosition ListItemCollectionPosition { get; protected set; }
+    public virtual ListItemCollectionPosition? ListItemCollectionPosition { get; protected set; }
 
 }

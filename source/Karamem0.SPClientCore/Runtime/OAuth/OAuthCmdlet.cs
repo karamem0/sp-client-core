@@ -17,11 +17,6 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Commands;
 public abstract class OAuthCmdlet : ClientObjectCmdlet
 {
 
-    protected OAuthCmdlet()
-    {
-        this.Service = new OAuthService();
-    }
-
-    protected IOAuthService Service { get; private set; }
+    protected IOAuthService Service { get; } = new OAuthService();
 
 }

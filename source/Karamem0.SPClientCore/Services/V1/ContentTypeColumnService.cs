@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.Services;
 using System;
@@ -19,17 +20,17 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IContentTypeColumnService
 {
 
-    ContentTypeColumn AddObject(
+    ContentTypeColumn? AddObject(
         ContentType contentTypeObject,
-        IReadOnlyDictionary<string, object> creationInfo,
+        IReadOnlyDictionary<string, object?> creationInfo,
         bool pushChanges
     );
 
-    ContentTypeColumn GetObject(ContentTypeColumn contentTypeColumnObject);
+    ContentTypeColumn? GetObject(ContentTypeColumn contentTypeColumnObject);
 
-    ContentTypeColumn GetObject(ContentType contentTypeObject, Guid? columnId);
+    ContentTypeColumn? GetObject(ContentType contentTypeObject, Guid? columnId);
 
-    IEnumerable<ContentTypeColumn> GetObjectEnumerable(ContentType contentTypeObject);
+    IEnumerable<ContentTypeColumn>? GetObjectEnumerable(ContentType contentTypeObject);
 
     void RemoveObject(ContentTypeColumn contentTypeColumnObject, bool pushChanges);
 
@@ -41,7 +42,7 @@ public interface IContentTypeColumnService
 
     void SetObject(
         ContentTypeColumn contentTypeColumnObject,
-        IReadOnlyDictionary<string, object> modificationInfo,
+        IReadOnlyDictionary<string, object?> modificationInfo,
         bool pushChanges
     );
 
@@ -50,32 +51,27 @@ public interface IContentTypeColumnService
 public class ContentTypeColumnService(ClientContext clientContext) : ClientService<ContentTypeColumn>(clientContext), IContentTypeColumnService
 {
 
-    public ContentTypeColumn AddObject(
+    public ContentTypeColumn? AddObject(
         ContentType contentTypeObject,
-        IReadOnlyDictionary<string, object> creationInfo,
+        IReadOnlyDictionary<string, object?> creationInfo,
         bool pushChanges
     )
     {
-        _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "FieldLinks"));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(contentTypeObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "FieldLinks"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath2.Id,
                 "Add",
                 requestPayload.CreateParameter(ClientValueObject.Create<ContentTypeColumnCreationInfo>(creationInfo))
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(ContentTypeColumn))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(ContentTypeColumn)))
         );
         var objectPath4 = requestPayload.Add(
             objectPath1,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "Update",
                 requestPayload.CreateParameter(pushChanges)
@@ -86,43 +82,37 @@ public class ContentTypeColumnService(ClientContext clientContext) : ClientServi
             .ToObject<ContentTypeColumn>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public ContentTypeColumn GetObject(ContentType contentTypeObject, Guid? columnId)
+    public ContentTypeColumn? GetObject(ContentType contentTypeObject, Guid? columnId)
     {
-        _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
-        _ = columnId ?? throw new ArgumentNullException(nameof(columnId));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "FieldLinks"));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(contentTypeObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "FieldLinks"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath2.Id,
                 "GetById",
                 requestPayload.CreateParameter(columnId)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(ContentTypeColumn))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(ContentTypeColumn)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ContentTypeColumn>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<ContentTypeColumn> GetObjectEnumerable(ContentType contentTypeObject)
+    public IEnumerable<ContentTypeColumn>? GetObjectEnumerable(ContentType contentTypeObject)
     {
-        _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(contentTypeObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "FieldLinks"),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = ClientQuery.Empty,
-                ChildItemQuery = new ClientQuery(true, typeof(ContentTypeColumn))
-            }
+            ObjectPathProperty.Create(objectPath1.Id, "FieldLinks"),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(
+                objectPathId,
+                ClientQuery.Empty,
+                ClientQuery.Create(true, typeof(ContentTypeColumn))
+            )
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
@@ -131,23 +121,24 @@ public class ContentTypeColumnService(ClientContext clientContext) : ClientServi
 
     public void RemoveObject(ContentTypeColumn contentTypeColumnObject, bool pushChanges)
     {
-        _ = contentTypeColumnObject ?? throw new ArgumentNullException(nameof(contentTypeColumnObject));
+        var objectIdentity = contentTypeColumnObject.ObjectIdentity;
+        _ = objectIdentity ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(
+            ObjectPathIdentity.Create(
                 string.Join(
                     ":",
-                    contentTypeColumnObject
-                        .ObjectIdentity.Split(':')
+                    objectIdentity
+                        .Split(':')
                         .SkipLast(2)
                 )
             )
         );
-        var objectPath2 = requestPayload.Add(new ObjectPathIdentity(contentTypeColumnObject.ObjectIdentity));
-        var objectPath3 = requestPayload.Add(objectPath2, objectPathId => new ClientActionMethod(objectPathId, "DeleteObject"));
+        var objectPath2 = requestPayload.Add(ObjectPathIdentity.Create(contentTypeColumnObject.ObjectIdentity));
+        var objectPath3 = requestPayload.Add(objectPath2, objectPathId => ClientActionMethod.Create(objectPathId, "DeleteObject"));
         var objectPath4 = requestPayload.Add(
             objectPath1,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "Update",
                 requestPayload.CreateParameter(pushChanges)
@@ -162,14 +153,12 @@ public class ContentTypeColumnService(ClientContext clientContext) : ClientServi
         bool pushChanges
     )
     {
-        _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
-        _ = contentTypeColumnNames ?? throw new ArgumentNullException(nameof(contentTypeColumnNames));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "FieldLinks"));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(contentTypeObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "FieldLinks"));
         var objectPath3 = requestPayload.Add(
             objectPath2,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "Reorder",
                 requestPayload.CreateParameter(contentTypeColumnNames)
@@ -177,7 +166,7 @@ public class ContentTypeColumnService(ClientContext clientContext) : ClientServi
         );
         var objectPath4 = requestPayload.Add(
             objectPath1,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "Update",
                 requestPayload.CreateParameter(pushChanges)
@@ -188,33 +177,28 @@ public class ContentTypeColumnService(ClientContext clientContext) : ClientServi
 
     public void SetObject(
         ContentTypeColumn contentTypeColumnObject,
-        IReadOnlyDictionary<string, object> modificationInfo,
+        IReadOnlyDictionary<string, object?> modificationInfo,
         bool pushChanges
     )
     {
-        _ = contentTypeColumnObject ?? throw new ArgumentNullException(nameof(contentTypeColumnObject));
-        _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
+        var objectIdentity = contentTypeColumnObject.ObjectIdentity;
+        _ = objectIdentity ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(
+            ObjectPathIdentity.Create(
                 string.Join(
                     ":",
-                    contentTypeColumnObject
-                        .ObjectIdentity.Split(':')
+                    objectIdentity
+                        .Split(':')
                         .SkipLast(2)
                 )
             )
         );
-        var objectPath2 = requestPayload.Add(new ObjectPathIdentity(contentTypeColumnObject.ObjectIdentity));
-        var objectPath3 = requestPayload.Add(
-            objectPath2,
-            requestPayload
-                .CreateSetPropertyDelegates(contentTypeColumnObject, modificationInfo)
-                .ToArray()
-        );
+        var objectPath2 = requestPayload.Add(ObjectPathIdentity.Create(contentTypeColumnObject.ObjectIdentity));
+        var objectPath3 = requestPayload.Add(objectPath2, requestPayload.CreateSetPropertyDelegates(contentTypeColumnObject, modificationInfo));
         var objectPath4 = requestPayload.Add(
             objectPath1,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "Update",
                 requestPayload.CreateParameter(pushChanges)

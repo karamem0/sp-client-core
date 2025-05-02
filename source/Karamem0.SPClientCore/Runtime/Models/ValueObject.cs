@@ -23,7 +23,7 @@ public abstract class ValueObject
             .GetProperties(BindingFlags.Instance | BindingFlags.Public)
     );
 
-    public override bool Equals(object value)
+    public override bool Equals(object? value)
     {
         if (value is null)
         {

@@ -15,7 +15,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
-public class ClientQueryIgnoreAttribute(string name = null) : Attribute
+public class ClientQueryIgnoreAttribute : Attribute
 {
 
     public static bool IsMatch(PropertyInfo propertyInfo, IEnumerable<string> conditions)
@@ -39,6 +39,6 @@ public class ClientQueryIgnoreAttribute(string name = null) : Attribute
         }
     }
 
-    public string Name { get; private set; } = name;
+    public string? Name { get; set; }
 
 }

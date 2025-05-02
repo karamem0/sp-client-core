@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.Services;
 using System;
@@ -23,7 +24,7 @@ public interface IViewColumnService
 
     void AddObject(View viewObject, string columnName);
 
-    IEnumerable<string> GetObjectEnumerable(View viewObject);
+    IEnumerable<string>? GetObjectEnumerable(View viewObject);
 
     void MoveObject(
         View viewObject,
@@ -50,42 +51,40 @@ public class ViewColumnService(ClientContext clientContext) : ClientService(clie
 
     public void AddObject(View viewObject, Column columnObject)
     {
-        _ = columnObject ?? throw new ArgumentNullException(nameof(columnObject));
-        this.AddObject(viewObject, columnObject.Name);
+        var columnName = columnObject.Name;
+        _ = columnName ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
+        this.AddObject(viewObject, columnName);
     }
 
     public void AddObject(View viewObject, string columnName)
     {
-        _ = viewObject ?? throw new ArgumentNullException(nameof(viewObject));
-        _ = columnName ?? throw new ArgumentNullException(nameof(columnName));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(viewObject.ObjectIdentity));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "ViewFields"));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(viewObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "ViewFields"));
         var objectPath3 = requestPayload.Add(
             objectPath2,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "Add",
                 requestPayload.CreateParameter(columnName)
             )
         );
-        var objectPath4 = requestPayload.Add(objectPath1, objectPathId => new ClientActionMethod(objectPathId, "Update"));
+        var objectPath4 = requestPayload.Add(objectPath1, objectPathId => ClientActionMethod.Create(objectPathId, "Update"));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public IEnumerable<string> GetObjectEnumerable(View viewObject)
+    public IEnumerable<string>? GetObjectEnumerable(View viewObject)
     {
-        _ = viewObject ?? throw new ArgumentNullException(nameof(viewObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(viewObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(viewObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "ViewFields"),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(ViewColumnEnumerable)),
-                ChildItemQuery = new ClientQuery(true)
-            }
+            ObjectPathProperty.Create(objectPath1.Id, "ViewFields"),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(
+                objectPathId,
+                ClientQuery.Create(true, typeof(ViewColumnEnumerable)),
+                ClientQuery.Create(true)
+            )
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
@@ -98,10 +97,11 @@ public class ViewColumnService(ClientContext clientContext) : ClientService(clie
         int columnIndex
     )
     {
-        _ = columnObject ?? throw new ArgumentNullException(nameof(columnObject));
+        var columnName = columnObject.Name;
+        _ = columnName ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
         this.MoveObject(
             viewObject,
-            columnObject.Name,
+            columnName,
             columnIndex
         );
     }
@@ -112,61 +112,57 @@ public class ViewColumnService(ClientContext clientContext) : ClientService(clie
         int columnIndex
     )
     {
-        _ = viewObject ?? throw new ArgumentNullException(nameof(viewObject));
-        _ = columnName ?? throw new ArgumentNullException(nameof(columnName));
         if (columnIndex < 0)
         {
             throw new ArgumentOutOfRangeException(nameof(columnIndex));
         }
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(viewObject.ObjectIdentity));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "ViewFields"));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(viewObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "ViewFields"));
         var objectPath3 = requestPayload.Add(
             objectPath2,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "MoveFieldTo",
                 requestPayload.CreateParameter(columnName),
                 requestPayload.CreateParameter(columnIndex)
             )
         );
-        var objectPath4 = requestPayload.Add(objectPath1, objectPathId => new ClientActionMethod(objectPathId, "Update"));
+        var objectPath4 = requestPayload.Add(objectPath1, objectPathId => ClientActionMethod.Create(objectPathId, "Update"));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
     public void RemoveObject(View viewObject, Column columnObject)
     {
-        _ = columnObject ?? throw new ArgumentNullException(nameof(columnObject));
-        this.RemoveObject(viewObject, columnObject.Name);
+        var columnName = columnObject.Name;
+        _ = columnName ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
+        this.RemoveObject(viewObject, columnName);
     }
 
     public void RemoveObject(View viewObject, string columnName)
     {
-        _ = viewObject ?? throw new ArgumentNullException(nameof(viewObject));
-        _ = columnName ?? throw new ArgumentNullException(nameof(columnName));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(viewObject.ObjectIdentity));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "ViewFields"));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(viewObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "ViewFields"));
         var objectPath3 = requestPayload.Add(
             objectPath2,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "Remove",
                 requestPayload.CreateParameter(columnName)
             )
         );
-        var objectPath4 = requestPayload.Add(objectPath1, objectPathId => new ClientActionMethod(objectPathId, "Update"));
+        var objectPath4 = requestPayload.Add(objectPath1, objectPathId => ClientActionMethod.Create(objectPathId, "Update"));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
     public void RemoveObjectAll(View viewObject)
     {
-        _ = viewObject ?? throw new ArgumentNullException(nameof(viewObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(viewObject.ObjectIdentity));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "ViewFields"));
-        var objectPath3 = requestPayload.Add(objectPath2, objectPathId => new ClientActionMethod(objectPathId, "RemoveAll"));
-        var objectPath4 = requestPayload.Add(objectPath1, objectPathId => new ClientActionMethod(objectPathId, "Update"));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(viewObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "ViewFields"));
+        var objectPath3 = requestPayload.Add(objectPath2, objectPathId => ClientActionMethod.Create(objectPathId, "RemoveAll"));
+        var objectPath4 = requestPayload.Add(objectPath1, objectPathId => ClientActionMethod.Create(objectPathId, "Update"));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

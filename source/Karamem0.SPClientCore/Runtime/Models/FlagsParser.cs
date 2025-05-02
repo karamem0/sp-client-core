@@ -6,6 +6,7 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
+using Karamem0.SharePoint.PowerShell.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,15 +18,14 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public static class FlagsParser
 {
 
-    public static T Parse<T>(IReadOnlyDictionary<string, object> parameters) where T : Enum
+    public static T? Parse<T>(IReadOnlyDictionary<string, object?> parameters) where T : Enum
     {
         var type = typeof(T);
         if (type.IsDefined(typeof(FlagsAttribute), false))
         {
             var names = Enum.GetNames(type);
             var keys = parameters
-                .Where(parameter => parameter.Value is SwitchParameter)
-                .Where(parameter => (SwitchParameter)parameter.Value)
+                .Where(parameter => parameter.Value is SwitchParameter value && value)
                 .Where(parameter => names.Contains(parameter.Key))
                 .Select(parameter => parameter.Key)
                 .ToList();
@@ -40,7 +40,7 @@ public static class FlagsParser
         }
         else
         {
-            throw new InvalidOperationException();
+            throw new InvalidOperationException(StringResources.ErrorValueIsInvalid);
         }
     }
 

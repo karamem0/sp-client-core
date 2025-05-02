@@ -16,10 +16,10 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [JsonObject()]
-public class TenantSettings : ODataV1Object
+public class TenantSettings : ODataV1Object<TenantSettings>
 {
 
     [JsonProperty("CorporateCatalogUrl")]
-    public virtual string AppCatalogUrl { get; protected set; }
+    public virtual string? AppCatalogUrl { get; protected set; }
 
 }

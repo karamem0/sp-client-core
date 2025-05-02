@@ -19,14 +19,14 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantSettingsService
 {
 
-    TenantSettings GetObject();
+    TenantSettings? GetObject();
 
 }
 
 public class TenantSettingsService(ClientContext clientContext) : ClientService(clientContext), ITenantSettingsService
 {
 
-    public TenantSettings GetObject()
+    public TenantSettings? GetObject()
     {
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath("_api/sp_tenantsettings_current");
         return this.ClientContext.GetObject<TenantSettings>(requestUrl);

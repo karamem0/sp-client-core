@@ -19,7 +19,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class ODataV1Metadata : ValueObject
 {
 
-    public static ODataV1Metadata Create(Type type)
+    public static ODataV1Metadata? Create(Type type)
     {
         var attribute = type.GetCustomAttribute<ODataV1ObjectAttribute>(false);
         if (attribute is not null)
@@ -38,12 +38,12 @@ public class ODataV1Metadata : ValueObject
     }
 
     [JsonProperty("id")]
-    public string Id { get; private set; }
+    public string? Id { get; protected set; }
 
     [JsonProperty("uri")]
-    public Uri Uri { get; private set; }
+    public Uri? Uri { get; protected set; }
 
     [JsonProperty("type")]
-    public string Type { get; private set; }
+    public string? Type { get; protected set; }
 
 }

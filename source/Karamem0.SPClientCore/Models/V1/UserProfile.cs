@@ -21,13 +21,13 @@ public class UserProfile : ClientObject
 {
 
     [JsonProperty()]
-    public virtual string AccountName { get; protected set; }
+    public virtual string? AccountName { get; protected set; }
 
     [JsonProperty()]
-    public virtual string DisplayName { get; protected set; }
+    public virtual string? DisplayName { get; protected set; }
 
     [JsonProperty()]
-    public virtual string FollowPersonalSiteUrl { get; protected set; }
+    public virtual string? FollowPersonalSiteUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual bool IsDefaultDocumentLibraryBlocked { get; protected set; }
@@ -42,31 +42,31 @@ public class UserProfile : ClientObject
     public virtual bool IsSelf { get; protected set; }
 
     [JsonProperty()]
-    public virtual string JobTitle { get; protected set; }
+    public virtual string? JobTitle { get; protected set; }
 
     [JsonProperty("MySiteFirstRunExperience")]
     public virtual int MySiteCollectionFirstRunExperience { get; protected set; }
 
     [JsonProperty("MySiteHostUrl")]
-    public virtual string MySiteCollectionHostUrl { get; protected set; }
+    public virtual string? MySiteCollectionHostUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual int O15FirstRunExperience { get; protected set; }
 
     [JsonProperty()]
-    public virtual SiteCollection PersonalSite { get; protected set; }
+    public virtual SiteCollection? PersonalSite { get; protected set; }
 
     [JsonProperty()]
-    public virtual PersonalSiteCapabilities PersonalSiteCapabilities { get; protected set; }
+    public virtual PersonalSiteCapabilities? PersonalSiteCapabilities { get; protected set; }
 
     [JsonProperty()]
-    public virtual string PersonalSiteFirstCreationError { get; protected set; }
+    public virtual string? PersonalSiteFirstCreationError { get; protected set; }
 
     [JsonProperty()]
     public virtual DateTime PersonalSiteFirstCreationTime { get; protected set; }
 
     [JsonProperty()]
-    public virtual PersonalSiteInstantiationState PersonalSiteInstantiationState { get; protected set; }
+    public virtual PersonalSiteInstantiationState? PersonalSiteInstantiationState { get; protected set; }
 
     [JsonProperty()]
     public virtual DateTime PersonalSiteLastCreationTime { get; protected set; }
@@ -78,15 +78,15 @@ public class UserProfile : ClientObject
     public virtual bool PictureImportEnabled { get; protected set; }
 
     [JsonProperty()]
-    public virtual string PictureUrl { get; protected set; }
+    public virtual string? PictureUrl { get; protected set; }
 
     [JsonProperty()]
-    public virtual string PublicUrl { get; protected set; }
+    public virtual string? PublicUrl { get; protected set; }
 
     [JsonProperty()]
-    public virtual string SipAddress { get; protected set; }
+    public virtual string? SipAddress { get; protected set; }
 
     [JsonProperty()]
-    public virtual string UrlToCreatePersonalSite { get; protected set; }
+    public virtual string? UrlToCreatePersonalSite { get; protected set; }
 
 }

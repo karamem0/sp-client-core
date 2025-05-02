@@ -19,52 +19,47 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantPersonalSiteService
 {
 
-    TenantOperationResult AddObject(IReadOnlyCollection<string> userId);
+    TenantOperationResult? AddObject(IReadOnlyCollection<string> userIds);
 
-    void AddObjectAwait(IReadOnlyCollection<string> userId);
+    void AddObjectAwait(IReadOnlyCollection<string> userIds);
 
-    string GetObject(string userId);
+    string? GetObject(string userId);
 
 }
 
 public class TenantPersonalSiteService(ClientContext clientContext) : TenantClientService(clientContext), ITenantPersonalSiteService
 {
 
-    public TenantOperationResult AddObject(IReadOnlyCollection<string> userId)
+    public TenantOperationResult? AddObject(IReadOnlyCollection<string> userIds)
     {
-        _ = userId ?? throw new ArgumentNullException(nameof(userId));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath1.Id,
                 "RequestPersonalSites",
-                requestPayload.CreateParameter(userId)
+                requestPayload.CreateParameter(userIds)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(TenantOperationResult))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(TenantOperationResult)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public void AddObjectAwait(IReadOnlyCollection<string> userId)
+    public void AddObjectAwait(IReadOnlyCollection<string> userIds)
     {
-        this.WaitObject(this.AddObject(userId));
+        this.WaitObject(this.AddObject(userIds));
     }
 
-    public string GetObject(string userId)
+    public string? GetObject(string userId)
     {
-        _ = userId ?? throw new ArgumentNullException(nameof(userId));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             objectPath1,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "GetPersonalSiteUrl",
                 requestPayload.CreateParameter(userId)

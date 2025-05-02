@@ -19,50 +19,43 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IUserPropertyService
 {
 
-    UserProperty GetObject();
+    UserProperty? GetObject();
 
-    UserProperty GetObject(UserProperty userPropertyObject);
+    UserProperty? GetObject(UserProperty userPropertyObject);
 
-    UserProperty GetObject(string userLoginName);
+    UserProperty? GetObject(string userLoginName);
 
 }
 
 public class UserPropertyService(ClientContext clientContext) : ClientService<UserProperty>(clientContext), IUserPropertyService
 {
 
-    public UserProperty GetObject()
+    public UserProperty? GetObject()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(PeopleManager)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(PeopleManager)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(objectPath1.Id, "GetMyProperties"),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(UserProperty))
-            }
+            ObjectPathMethod.Create(objectPath1.Id, "GetMyProperties"),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(UserProperty)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<UserProperty>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public UserProperty GetObject(string userLoginName)
+    public UserProperty? GetObject(string userLoginName)
     {
-        _ = userLoginName ?? throw new ArgumentNullException(nameof(userLoginName));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(PeopleManager)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(PeopleManager)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath1.Id,
                 "GetPropertiesFor",
                 requestPayload.CreateParameter(userLoginName)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(UserProperty))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(UserProperty)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)

@@ -18,7 +18,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public static class JsonSerializerExtensions
 {
 
-    public static T Deserialize<T>(this JsonSerializer serializer, string value)
+    public static T? Deserialize<T>(this JsonSerializer serializer, string value)
     {
         using var reader = new StringReader(value);
         return serializer.Deserialize<T>(new JsonTextReader(reader));
@@ -27,7 +27,7 @@ public static class JsonSerializerExtensions
     public static bool TryDeserialize<T>(
         this JsonSerializer serializer,
         string value,
-        out T result
+        out T? result
     )
     {
         try
@@ -43,7 +43,7 @@ public static class JsonSerializerExtensions
         }
     }
 
-    public static string Serialize<T>(this JsonSerializer serializer, T value)
+    public static string Serialize<T>(this JsonSerializer serializer, T? value)
     {
         using var writer = new StringWriter();
         serializer.Serialize(new JsonTextWriter(writer), value);

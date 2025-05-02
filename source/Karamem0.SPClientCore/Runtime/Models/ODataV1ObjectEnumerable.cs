@@ -16,12 +16,11 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
 [JsonObject()]
-[method: JsonConstructor()]
-public class ODataV1ObjectEnumerable<T>(T[] results = null) : ODataV1Object, IEnumerable<T> where T : ODataV1Object
+public class ODataV1ObjectEnumerable<T> : ODataV1Object<ODataV1ObjectEnumerable<T>>, IEnumerable<T> where T : ODataV1Object
 {
 
     [JsonProperty("results")]
-    public IReadOnlyCollection<T> Entries { get; private set; } = results;
+    public IReadOnlyCollection<T> Entries { get; protected set; } = [];
 
     IEnumerator IEnumerable.GetEnumerator()
     {
@@ -30,16 +29,7 @@ public class ODataV1ObjectEnumerable<T>(T[] results = null) : ODataV1Object, IEn
 
     public IEnumerator<T> GetEnumerator()
     {
-        if (this.Entries is null)
-        {
-            return Enumerable
-                .Empty<T>()
-                .GetEnumerator();
-        }
-        else
-        {
-            return this.Entries.GetEnumerator();
-        }
+        return this.Entries.GetEnumerator();
     }
 
 }

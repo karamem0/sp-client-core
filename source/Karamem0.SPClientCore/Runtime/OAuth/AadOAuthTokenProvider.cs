@@ -22,15 +22,15 @@ public class AadOAuthTokenProvider(
 ) : OAuthTokenProvider
 {
 
-    private readonly Uri uri = uri ?? throw new ArgumentNullException(nameof(uri));
+    private readonly Uri uri = uri;
 
-    private readonly AadOAuthContext oAuthContext = oAuthContext ?? throw new ArgumentNullException(nameof(oAuthContext));
+    private readonly AadOAuthContext oAuthContext = oAuthContext;
 
-    private AadOAuthToken oAuthToken = oAuthToken ?? throw new ArgumentNullException(nameof(oAuthToken));
+    private AadOAuthToken oAuthToken = oAuthToken;
 
-    public override string CurrentAceessToken => this.oAuthToken.AccessToken;
+    public override string? CurrentAceessToken => this.oAuthToken.AccessToken;
 
-    public override string GetAccessToken()
+    public override string? GetAccessToken()
     {
         var jwtToken = new JsonWebToken(this.oAuthToken.AccessToken);
         var jwtExpireIn = jwtToken.GetPayloadValue<double>("exp");

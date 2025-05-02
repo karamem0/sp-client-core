@@ -6,6 +6,7 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Karamem0.SharePoint.PowerShell.Runtime.Services;
 using System;
@@ -81,8 +82,6 @@ public class OAuthService : IOAuthService
         try
         {
             Console.TreatControlCAsInput = true;
-            authority ??= new Uri(OAuthConstants.AadAuthority);
-            clientId ??= OAuthConstants.ClientId;
             var oAuthContext = new AadOAuthContext(
                 authority.GetAuthority(),
                 clientId,
@@ -92,6 +91,8 @@ public class OAuthService : IOAuthService
             var oAuthDeviceCodeMessage = oAuthContext.AcquireDeviceCode();
             if (oAuthDeviceCodeMessage is OAuthDeviceCode oAuthDeviceCode)
             {
+                _ = oAuthDeviceCode.Message ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
+                _ = oAuthDeviceCode.DeviceCode ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
                 callback?.Invoke(oAuthDeviceCode.Message);
                 var expiresOn = DateTime.UtcNow.AddSeconds(oAuthDeviceCode.ExpiresIn);
                 do
@@ -160,8 +161,6 @@ public class OAuthService : IOAuthService
         bool userMode
     )
     {
-        authority ??= new Uri(OAuthConstants.AadAuthority);
-        clientId ??= OAuthConstants.ClientId;
         var oAuthContext = new AadOAuthContext(
             authority.GetAuthority(),
             clientId,
@@ -194,8 +193,6 @@ public class OAuthService : IOAuthService
         SecureString certificatePassword
     )
     {
-        authority ??= new Uri(OAuthConstants.AadAuthority);
-        clientId ??= OAuthConstants.ClientId;
         var oAuthContext = new AadOAuthContext(
             authority.GetAuthority(),
             clientId,
@@ -227,8 +224,6 @@ public class OAuthService : IOAuthService
         BinaryData privateKey
     )
     {
-        authority ??= new Uri(OAuthConstants.AadAuthority);
-        clientId ??= OAuthConstants.ClientId;
         var oAuthContext = new AadOAuthContext(
             authority.GetAuthority(),
             clientId,
@@ -258,8 +253,6 @@ public class OAuthService : IOAuthService
         Uri resource
     )
     {
-        authority ??= new Uri(OAuthConstants.AadAuthority);
-        clientId ??= OAuthConstants.ClientId;
         var oAuthContext = new AadOAuthContext(
             authority.GetAuthority(),
             clientId,

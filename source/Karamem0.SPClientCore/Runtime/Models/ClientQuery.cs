@@ -18,39 +18,34 @@ using System.Xml.Serialization;
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
 [XmlType("Query", Namespace = "http://schemas.microsoft.com/sharepoint/clientquery/2009")]
-public class ClientQuery(
-    bool selectAllProperties,
-    Type type = null,
-    params string[] conditions
-) : ClientRequestObject
+public class ClientQuery : ClientRequestObject
 {
 
-    public static readonly ClientQuery Empty = new(false);
+    public static readonly ClientQuery Empty = new();
 
-    public ClientQuery(
+    public static ClientQuery Create(
         bool selectAllProperties,
-        Type type,
-        IEnumerable<string> conditions
+        Type? type = null,
+        params string[] conditions
     )
-        : this(
-            selectAllProperties,
-            type,
-            [.. conditions]
-        )
     {
+        return new ClientQuery()
+        {
+            SelectAllProperties = selectAllProperties,
+            Properties = type
+                             ?.GetDeclaredProperties()
+                             .Where(propertyInfo => propertyInfo.IsDefined(typeof(JsonPropertyAttribute)))
+                             .Where(propertyInfo => ClientQueryIgnoreAttribute.IsMatch(propertyInfo, conditions))
+                             .Select(propertyInfo => ClientQueryProperty.Create(propertyInfo, selectAllProperties))
+                             .ToArray() ??
+                         []
+        };
     }
 
     [XmlAttribute()]
-    public virtual bool SelectAllProperties { get; protected set; } = selectAllProperties;
+    public virtual bool SelectAllProperties { get; protected set; }
 
     [XmlArray()]
-    public virtual IReadOnlyCollection<ClientQueryProperty> Properties { get; protected set; } = type is null
-        ? []
-        : type
-            .GetDeclaredProperties()
-            .Where(propertyInfo => propertyInfo.IsDefined(typeof(JsonPropertyAttribute)))
-            .Where(propertyInfo => ClientQueryIgnoreAttribute.IsMatch(propertyInfo, conditions))
-            .Select(propertyInfo => ClientQueryProperty.Create(propertyInfo, selectAllProperties))
-            .ToArray();
+    public virtual IReadOnlyCollection<ClientQueryProperty>? Properties { get; protected set; } = [];
 
 }

@@ -30,9 +30,9 @@ public class TaxonomyItem : ClientObject
     public virtual DateTime LastModified { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; protected set; }
 
     [JsonProperty()]
-    public virtual TermStore TermStore { get; protected set; }
+    public virtual TermStore? TermStore { get; protected set; }
 
 }

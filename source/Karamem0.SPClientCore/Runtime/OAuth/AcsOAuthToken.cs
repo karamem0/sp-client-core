@@ -18,26 +18,22 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth;
 public class AcsOAuthToken : OAuthMessage
 {
 
-    public AcsOAuthToken()
-    {
-    }
-
     [JsonProperty("token_type")]
-    public string TokenType { get; private set; }
+    public virtual string? TokenType { get; protected set; }
 
     [JsonProperty("expires_in")]
-    public int ExpiresIn { get; private set; }
+    public virtual int ExpiresIn { get; protected set; }
 
     [JsonProperty("not_before")]
-    public int NotBefore { get; private set; }
+    public virtual int NotBefore { get; protected set; }
 
     [JsonProperty("expires_on")]
-    public int ExpiresOn { get; private set; }
+    public virtual int ExpiresOn { get; protected set; }
 
     [JsonProperty("resource")]
-    public string Resource { get; private set; }
+    public virtual string? Resource { get; protected set; }
 
     [JsonProperty("access_token")]
-    public string AccessToken { get; private set; }
+    public virtual string? AccessToken { get; protected set; }
 
 }

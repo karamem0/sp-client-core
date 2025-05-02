@@ -48,7 +48,7 @@ public class Base64BinaryConverterTests
             () =>
             {
                 Assert.That(actual, Is.False);
-                Assert.That(result, Is.Null);
+                Assert.That(result, Is.Empty);
             }
         );
     }

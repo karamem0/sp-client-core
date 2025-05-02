@@ -21,7 +21,7 @@ public interface ITenantOrganizationNewsSiteService
 
     void AddObject(string organizationNewsSiteUrl);
 
-    IEnumerable<string> GetObjectEnumerable();
+    IEnumerable<string>? GetObjectEnumerable();
 
     void RemoveObject(string organizationNewsSiteUrl);
 
@@ -32,12 +32,11 @@ public class TenantOrganizationNewsSiteService(ClientContext clientContext) : Cl
 
     public void AddObject(string organizationNewsSiteUrl)
     {
-        _ = organizationNewsSiteUrl ?? throw new ArgumentNullException(nameof(organizationNewsSiteUrl));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             objectPath1,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "SetOrgNewsSite",
                 requestPayload.CreateParameter(organizationNewsSiteUrl)
@@ -46,11 +45,11 @@ public class TenantOrganizationNewsSiteService(ClientContext clientContext) : Cl
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public IEnumerable<string> GetObjectEnumerable()
+    public IEnumerable<string>? GetObjectEnumerable()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
-        var objectPath2 = requestPayload.Add(objectPath1, objectPathId => new ClientActionMethod(objectPathId, "GetOrgNewsSites"));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
+        var objectPath2 = requestPayload.Add(objectPath1, objectPathId => ClientActionMethod.Create(objectPathId, "GetOrgNewsSites"));
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<IEnumerable<string>>(requestPayload.GetActionId<ClientActionMethod>());
@@ -58,12 +57,11 @@ public class TenantOrganizationNewsSiteService(ClientContext clientContext) : Cl
 
     public void RemoveObject(string organizationNewsSiteUrl)
     {
-        _ = organizationNewsSiteUrl ?? throw new ArgumentNullException(nameof(organizationNewsSiteUrl));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             objectPath1,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "RemoveOrgNewsSite",
                 requestPayload.CreateParameter(organizationNewsSiteUrl)

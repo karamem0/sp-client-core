@@ -16,14 +16,14 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [JsonObject()]
-public class SharingPrincipal : ODataV1Object
+public class SharingPrincipal : ODataV1Object<SharingPrincipal>
 {
 
     [JsonProperty("email")]
-    public virtual string Email { get; protected set; }
+    public virtual string? Email { get; protected set; }
 
     [JsonProperty("expiration")]
-    public virtual string Expiration { get; protected set; }
+    public virtual string? Expiration { get; protected set; }
 
     [JsonProperty("id")]
     public virtual int Id { get; protected set; }
@@ -35,21 +35,21 @@ public class SharingPrincipal : ODataV1Object
     public virtual bool IsExternal { get; protected set; }
 
     [JsonProperty("jobTitle")]
-    public virtual string JobTitle { get; protected set; }
+    public virtual string? JobTitle { get; protected set; }
 
     [JsonProperty("loginName")]
-    public virtual string LoginName { get; protected set; }
+    public virtual string? LoginName { get; protected set; }
 
     [JsonProperty("name")]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; protected set; }
 
     [JsonProperty("principalType")]
-    public virtual PrincipalType PrincipalType { get; protected set; }
+    public virtual PrincipalType? PrincipalType { get; protected set; }
 
     [JsonProperty("userId")]
-    public virtual string UserId { get; protected set; }
+    public virtual string? UserId { get; protected set; }
 
     [JsonProperty("userPrincipalName")]
-    public virtual string UserPrincipalName { get; protected set; }
+    public virtual string? UserPrincipalName { get; protected set; }
 
 }

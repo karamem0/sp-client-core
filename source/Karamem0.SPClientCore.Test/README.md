@@ -49,7 +49,7 @@
         ExternalUserName = "someone@example.com"
     }
     $settings = Install-TestSite @params
-    $settings | ConvertTo-Json -Depth 16 | Out-File "./bin/Debug/net8.0/SPClientCore.Tests.config.json"
+    $settings | ConvertTo-Json -Depth 16 | Out-File "./bin/Debug/net8.0/SPClientCore.Test.config.json"
     ```
 
 1. These components are created.

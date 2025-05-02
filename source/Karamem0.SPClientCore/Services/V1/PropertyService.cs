@@ -19,100 +19,80 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IPropertyService
 {
 
-    PropertyValues GetObject(Alert alertObject);
+    PropertyValues? GetObject(Alert alertObject);
 
-    PropertyValues GetObject(File fileObject);
+    PropertyValues? GetObject(File fileObject);
 
-    PropertyValues GetObject(Folder folderObject);
+    PropertyValues? GetObject(Folder folderObject);
 
-    PropertyValues GetObject(ListItem listItemObject);
+    PropertyValues? GetObject(ListItem listItemObject);
 
-    PropertyValues GetObject(Site siteObject);
+    PropertyValues? GetObject(Site siteObject);
 
 }
 
 public class PropertyService(ClientContext clientContext) : ClientService(clientContext), IPropertyService
 {
 
-    public PropertyValues GetObject(Alert alertObject)
+    public PropertyValues? GetObject(Alert alertObject)
     {
-        _ = alertObject ?? throw new ArgumentNullException(nameof(alertObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(alertObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(alertObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "AllProperties"),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true)
-            }
+            ObjectPathProperty.Create(objectPath1.Id, "AllProperties"),
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<PropertyValues>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public PropertyValues GetObject(File fileObject)
+    public PropertyValues? GetObject(File fileObject)
     {
-        _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(fileObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(fileObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Properties"),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true)
-            }
+            ObjectPathProperty.Create(objectPath1.Id, "Properties"),
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<PropertyValues>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public PropertyValues GetObject(Folder folderObject)
+    public PropertyValues? GetObject(Folder folderObject)
     {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(folderObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Properties"),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true)
-            }
+            ObjectPathProperty.Create(objectPath1.Id, "Properties"),
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<PropertyValues>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public PropertyValues GetObject(ListItem listItemObject)
+    public PropertyValues? GetObject(ListItem listItemObject)
     {
-        _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listItemObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listItemObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Properties"),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true)
-            }
+            ObjectPathProperty.Create(objectPath1.Id, "Properties"),
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<PropertyValues>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public PropertyValues GetObject(Site siteObject)
+    public PropertyValues? GetObject(Site siteObject)
     {
-        _ = siteObject ?? throw new ArgumentNullException(nameof(siteObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(siteObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(siteObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "AllProperties"),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true)
-            }
+            ObjectPathProperty.Create(objectPath1.Id, "AllProperties"),
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)

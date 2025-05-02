@@ -21,48 +21,48 @@ public class UserProperty : ClientObject
 {
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<string> DirectReports { get; protected set; }
+    public virtual IReadOnlyCollection<string>? DirectReports { get; protected set; }
 
     [JsonProperty()]
-    public virtual string DisplayName { get; protected set; }
+    public virtual string? DisplayName { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Email { get; protected set; }
+    public virtual string? Email { get; protected set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<string> ExtendedManagers { get; protected set; }
+    public virtual IReadOnlyCollection<string>? ExtendedManagers { get; protected set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<string> ExtendedReports { get; protected set; }
+    public virtual IReadOnlyCollection<string>? ExtendedReports { get; protected set; }
 
     [JsonProperty()]
     public virtual bool IsFollowed { get; protected set; }
 
     [JsonProperty()]
-    public virtual string LatestPost { get; protected set; }
+    public virtual string? LatestPost { get; protected set; }
 
     [JsonProperty("AccountName")]
-    public virtual string LoginName { get; protected set; }
+    public virtual string? LoginName { get; protected set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<string> Peers { get; protected set; }
+    public virtual IReadOnlyCollection<string>? Peers { get; protected set; }
 
     [JsonProperty()]
-    public virtual string PersonalSiteHostUrl { get; protected set; }
+    public virtual string? PersonalSiteHostUrl { get; protected set; }
 
     [JsonProperty()]
-    public virtual string PersonalUrl { get; protected set; }
+    public virtual string? PersonalUrl { get; protected set; }
 
     [JsonProperty()]
-    public virtual string PictureUrl { get; protected set; }
+    public virtual string? PictureUrl { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; protected set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyDictionary<string, string> UserProfileProperties { get; protected set; }
+    public virtual IReadOnlyDictionary<string, string>? UserProfileProperties { get; protected set; }
 
     [JsonProperty()]
-    public virtual string UserUrl { get; protected set; }
+    public virtual string? UserUrl { get; protected set; }
 
 }

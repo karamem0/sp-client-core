@@ -16,20 +16,28 @@ using System.Xml.Serialization;
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
 [XmlType("Parameter", Namespace = "http://schemas.microsoft.com/sharepoint/clientquery/2009")]
-public class ClientRequestParameterArray(ClientRequestPayload payload, params object[] values) : ClientRequestParameter
+public class ClientRequestParameterArray : ClientRequestParameter
 {
 
-    public ClientRequestParameterArray(ClientRequestPayload payload, IEnumerable<object> values)
-        : this(payload, [.. values])
+    public static ClientRequestParameterArray Create(ClientRequestPayload payload, params object[] values)
     {
+        return new ClientRequestParameterArray()
+        {
+            Values = values
+                .Select(payload.CreateParameter)
+                .ToArray()
+        };
+    }
+
+    public static ClientRequestParameterArray Create(ClientRequestPayload payload, IEnumerable<object> values)
+    {
+        return Create(payload, [.. values]);
     }
 
     [XmlAttribute()]
     public virtual string Type { get; protected set; } = "Array";
 
     [XmlElement("Object")]
-    public virtual IReadOnlyCollection<ClientRequestParameter> Values { get; protected set; } = values
-        .Select(payload.CreateParameter)
-        .ToArray();
+    public virtual IReadOnlyCollection<ClientRequestParameter>? Values { get; protected set; }
 
 }

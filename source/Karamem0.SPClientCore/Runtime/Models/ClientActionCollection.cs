@@ -17,7 +17,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class ClientActionCollection : IEnumerable<ClientAction>
 {
 
-    private readonly IDictionary<long, ClientAction> collection = new Dictionary<long, ClientAction>();
+    private readonly Dictionary<long, ClientAction> collection = [];
 
     public ClientAction this[long id] => this.collection[id];
 

@@ -21,10 +21,10 @@ public class ContentTypeColumn : ClientObject
 {
 
     [JsonProperty("FieldInternalName")]
-    public virtual string ColumnName { get; protected set; }
+    public virtual string? ColumnName { get; protected set; }
 
     [JsonProperty()]
-    public virtual string DisplayName { get; protected set; }
+    public virtual string? DisplayName { get; protected set; }
 
     [JsonProperty()]
     public virtual bool Hidden { get; protected set; }
@@ -33,7 +33,7 @@ public class ContentTypeColumn : ClientObject
     public virtual Guid Id { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; protected set; }
 
     [JsonProperty()]
     public virtual bool ReadOnly { get; protected set; }

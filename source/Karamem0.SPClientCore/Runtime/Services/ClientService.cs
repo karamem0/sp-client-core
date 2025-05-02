@@ -18,7 +18,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services;
 public abstract class ClientService(ClientContext clientContext)
 {
 
-    public static IServiceProvider ServiceProvider { get; private set; }
+    public static IServiceProvider? ServiceProvider { get; private set; }
 
     public static void Register(ClientContext clientContext)
     {

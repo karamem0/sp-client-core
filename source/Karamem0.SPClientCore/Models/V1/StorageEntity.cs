@@ -21,12 +21,12 @@ public class StorageEntity : ClientObject
 {
 
     [JsonProperty()]
-    public virtual string Comment { get; protected set; }
+    public virtual string? Comment { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Value { get; protected set; }
+    public virtual string? Value { get; protected set; }
 
 }

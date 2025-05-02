@@ -19,7 +19,6 @@ public static class HashtableExtensions
 
     public static Dictionary<TKey, TValue> ToDictionary<TKey, TValue>(this Hashtable hashtable)
     {
-        _ = hashtable ?? throw new ArgumentNullException(nameof(hashtable));
         return hashtable
             .Keys.Cast<object>()
             .ToDictionary(key => (TKey)key, key => (TValue)hashtable[key]);

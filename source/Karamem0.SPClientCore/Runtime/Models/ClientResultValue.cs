@@ -139,17 +139,13 @@ public class ClientResultValue
                 output.Value = input.Value.ToString();
                 return true;
             default:
-                output = null;
+                output = new ClientResultValue();
                 return false;
         }
     }
 
-    private ClientResultValue()
-    {
-    }
+    public string? Key { get; protected set; }
 
-    public string Key { get; private set; }
-
-    public object Value { get; private set; }
+    public object? Value { get; protected set; }
 
 }

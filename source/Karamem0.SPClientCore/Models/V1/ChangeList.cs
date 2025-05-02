@@ -21,19 +21,19 @@ public class ChangeList : Change
 {
 
     [JsonProperty()]
-    public virtual ListTemplateType BaseTemplate { get; protected set; }
+    public virtual ListTemplateType? BaseTemplate { get; protected set; }
 
     [JsonProperty()]
-    public override ChangeToken ChangeToken { get; protected set; }
+    public override ChangeToken? ChangeToken { get; protected set; }
 
     [JsonProperty()]
-    public override ChangeType ChangeType { get; protected set; }
+    public override ChangeType? ChangeType { get; protected set; }
 
     [JsonProperty()]
-    public virtual User Creator { get; protected set; }
+    public virtual User? Creator { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Editor { get; protected set; }
+    public virtual string? Editor { get; protected set; }
 
     [JsonProperty()]
     public virtual bool Hidden { get; protected set; }
@@ -42,10 +42,10 @@ public class ChangeList : Change
     public virtual Guid ListId { get; protected set; }
 
     [JsonProperty()]
-    public override string RelativeTime { get; protected set; }
+    public override string? RelativeTime { get; protected set; }
 
     [JsonProperty()]
-    public virtual string RootFolderUrl { get; protected set; }
+    public virtual string? RootFolderUrl { get; protected set; }
 
     [JsonProperty("SiteId")]
     public override Guid SiteCollectionId { get; protected set; }
@@ -57,6 +57,6 @@ public class ChangeList : Change
     public override DateTime Time { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; protected set; }
 
 }

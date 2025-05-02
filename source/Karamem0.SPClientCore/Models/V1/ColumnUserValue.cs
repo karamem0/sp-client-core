@@ -19,18 +19,18 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 [JsonObject()]
 public class ColumnUserValue(
     int lookupId = 0,
-    string lookupValue = null,
-    string email = null
+    string? lookupValue = null,
+    string? email = null
 ) : ClientValueObject
 {
 
     [JsonProperty()]
-    public virtual string Email { get; protected set; } = email;
+    public virtual string? Email { get; protected set; } = email;
 
     [JsonProperty()]
     public virtual int LookupId { get; protected set; } = lookupId;
 
     [JsonProperty()]
-    public virtual string LookupValue { get; protected set; } = lookupValue;
+    public virtual string? LookupValue { get; protected set; } = lookupValue;
 
 }
