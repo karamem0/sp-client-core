@@ -21,39 +21,39 @@ public class ListTemplate : ClientObject
 {
 
     [JsonProperty()]
-    public virtual bool AllowsFolderCreation { get; protected set; }
+    public virtual bool AllowsFolderCreation { get; set; }
 
     [JsonProperty()]
-    public virtual BaseType BaseType { get; protected set; }
+    public virtual BaseType? BaseType { get; set; }
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; set; }
 
     [JsonProperty()]
-    public virtual Guid FeatureId { get; protected set; }
+    public virtual Guid FeatureId { get; set; }
 
     [JsonProperty()]
-    public virtual bool Hidden { get; protected set; }
+    public virtual bool Hidden { get; set; }
 
     [JsonProperty()]
-    public virtual string ImageUrl { get; protected set; }
+    public virtual string? ImageUrl { get; set; }
 
     [JsonProperty("InternalName")]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsCustomTemplate { get; protected set; }
+    public virtual bool IsCustomTemplate { get; set; }
 
     [JsonProperty()]
-    public virtual int ListTemplateTypeKind { get; protected set; }
+    public virtual int ListTemplateTypeKind { get; set; }
 
     [JsonProperty("Name")]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; set; }
 
     [JsonProperty()]
-    public virtual bool OnQuickLaunch { get; protected set; }
+    public virtual bool OnQuickLaunch { get; set; }
 
     [JsonProperty()]
-    public virtual bool Unique { get; protected set; }
+    public virtual bool Unique { get; set; }
 
 }

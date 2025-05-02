@@ -21,21 +21,21 @@ public class ChangeSite : Change
 {
 
     [JsonProperty()]
-    public override ChangeToken ChangeToken { get; protected set; }
+    public override ChangeToken? ChangeToken { get; set; }
 
     [JsonProperty()]
-    public override ChangeType ChangeType { get; protected set; }
+    public override ChangeType? ChangeType { get; set; }
 
     [JsonProperty()]
-    public override string RelativeTime { get; protected set; }
+    public override string? RelativeTime { get; set; }
 
     [JsonProperty("SiteId")]
-    public override Guid SiteCollectionId { get; protected set; }
+    public override Guid SiteCollectionId { get; set; }
 
     [JsonProperty("WebId")]
-    public virtual Guid SiteId { get; protected set; }
+    public virtual Guid SiteId { get; set; }
 
     [JsonProperty()]
-    public override DateTime Time { get; protected set; }
+    public override DateTime Time { get; set; }
 
 }

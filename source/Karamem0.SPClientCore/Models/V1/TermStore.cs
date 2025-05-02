@@ -21,24 +21,24 @@ public class TermStore : ClientObject
 {
 
     [JsonProperty()]
-    public virtual string ContentTypePublishingHub { get; protected set; }
+    public virtual string? ContentTypePublishingHub { get; set; }
 
     [JsonProperty("DefaultLanguage")]
-    public virtual uint DefaultLcid { get; protected set; }
+    public virtual uint DefaultLcid { get; set; }
 
     [JsonProperty()]
-    public virtual Guid Id { get; protected set; }
+    public virtual Guid Id { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsOnline { get; protected set; }
+    public virtual bool IsOnline { get; set; }
 
     [JsonProperty("Languages")]
-    public virtual IReadOnlyList<uint> Lcids { get; protected set; }
+    public virtual IReadOnlyList<uint>? Lcids { get; set; }
 
     [JsonProperty()]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; set; }
 
     [JsonProperty("WorkingLanguage")]
-    public virtual uint WorkingLcid { get; protected set; }
+    public virtual uint WorkingLcid { get; set; }
 
 }

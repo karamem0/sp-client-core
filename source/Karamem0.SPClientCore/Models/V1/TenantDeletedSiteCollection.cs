@@ -21,24 +21,24 @@ public class TenantDeletedSiteCollection : ClientObject
 {
 
     [JsonProperty()]
-    public virtual int DaysRemaining { get; protected set; }
+    public virtual int DaysRemaining { get; set; }
 
     [JsonProperty()]
-    public virtual DateTime DeletionTime { get; protected set; }
+    public virtual DateTime DeletionTime { get; set; }
 
     [JsonProperty("SiteId")]
-    public virtual Guid Id { get; protected set; }
+    public virtual Guid Id { get; set; }
 
     [JsonProperty()]
-    public virtual string Status { get; protected set; }
+    public virtual string? Status { get; set; }
 
     [JsonProperty()]
-    public virtual int StorageMaximumLevel { get; protected set; }
+    public virtual int StorageMaximumLevel { get; set; }
 
     [JsonProperty()]
-    public virtual string Url { get; protected set; }
+    public virtual string? Url { get; set; }
 
     [JsonProperty()]
-    public virtual int UserCodeMaximumLevel { get; protected set; }
+    public virtual int UserCodeMaximumLevel { get; set; }
 
 }

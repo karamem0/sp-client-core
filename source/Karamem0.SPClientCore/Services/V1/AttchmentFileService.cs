@@ -45,15 +45,15 @@ public class AttachmentFileService(ClientContext clientContext) : ClientService<
 
     public System.IO.Stream DownloadObject(AttachmentFile attachmentFileObject)
     {
-        _ = attachmentFileObject ?? throw new ArgumentNullException(nameof(attachmentFileObject));
-        var requestUrl = this.ClientContext.BaseAddress.ConcatPath("_api/web/getfilebyserverrelativeurl('{0}')/openbinarystream", attachmentFileObject.ServerRelativeUrl);
+        var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
+            "_api/web/getfilebyserverrelativeurl('{0}')/openbinarystream",
+            attachmentFileObject.ServerRelativeUrl
+        );
         return this.ClientContext.GetStream(requestUrl);
     }
 
     public AttachmentFile GetObject(ListItem listItemObject, string attachmentFileName)
     {
-        _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
-        _ = attachmentFileName ?? throw new ArgumentNullException(nameof(attachmentFileName));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listItemObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "AttachmentFiles"));
@@ -76,7 +76,6 @@ public class AttachmentFileService(ClientContext clientContext) : ClientService<
 
     public IEnumerable<AttachmentFile> GetObjectEnumerable(ListItem listItemObject)
     {
-        _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listItemObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -95,9 +94,11 @@ public class AttachmentFileService(ClientContext clientContext) : ClientService<
 
     public void RecycleObject(AttachmentFile attachmentFileObject)
     {
-        _ = attachmentFileObject ?? throw new ArgumentNullException(nameof(attachmentFileObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(attachmentFileObject.ObjectIdentity), objectPathId => new ClientActionMethod(objectPathId, "RecycleObject"));
+        var objectPath1 = requestPayload.Add(
+            new ObjectPathIdentity(attachmentFileObject.ObjectIdentity),
+            objectPathId => new ClientActionMethod(objectPathId, "RecycleObject")
+        );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
@@ -107,9 +108,6 @@ public class AttachmentFileService(ClientContext clientContext) : ClientService<
         System.IO.Stream attachmentFileContent
     )
     {
-        _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
-        _ = attachmentFileName ?? throw new ArgumentNullException(nameof(attachmentFileName));
-        _ = attachmentFileContent ?? throw new ArgumentNullException(nameof(attachmentFileContent));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listItemObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(

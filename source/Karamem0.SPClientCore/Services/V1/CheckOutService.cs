@@ -21,8 +21,8 @@ public interface ICheckOutService
 
     void CheckInObject(
         File fileObject,
-        string comment,
-        CheckInType checkInType
+        string? comment,
+        CheckInType? checkInType
     );
 
     void CheckOutObject(File fileObject);
@@ -36,11 +36,10 @@ public class CheckOutService(ClientContext clientContext) : ClientService(client
 
     public void CheckInObject(
         File fileObject,
-        string comment,
-        CheckInType checkInType
+        string? comment,
+        CheckInType? checkInType
     )
     {
-        _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(fileObject.ObjectIdentity),
@@ -48,7 +47,7 @@ public class CheckOutService(ClientContext clientContext) : ClientService(client
                 objectPathId,
                 "CheckIn",
                 requestPayload.CreateParameter(comment),
-                requestPayload.CreateParameter(checkInType)
+                requestPayload.CreateParameter(checkInType ?? CheckInType.MinorCheckIn)
             )
         );
         _ = this.ClientContext.ProcessQuery(requestPayload);
@@ -56,17 +55,21 @@ public class CheckOutService(ClientContext clientContext) : ClientService(client
 
     public void CheckOutObject(File fileObject)
     {
-        _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(fileObject.ObjectIdentity), objectPathId => new ClientActionMethod(objectPathId, "CheckOut"));
+        var objectPath1 = requestPayload.Add(
+            new ObjectPathIdentity(fileObject.ObjectIdentity),
+            objectPathId => new ClientActionMethod(objectPathId, "CheckOut")
+        );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
     public void UndoCheckOutObject(File fileObject)
     {
-        _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(fileObject.ObjectIdentity), objectPathId => new ClientActionMethod(objectPathId, "UndoCheckOut"));
+        var objectPath1 = requestPayload.Add(
+            new ObjectPathIdentity(fileObject.ObjectIdentity),
+            objectPathId => new ClientActionMethod(objectPathId, "UndoCheckOut")
+        );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

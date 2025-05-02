@@ -21,30 +21,30 @@ public class ExternalUser : ClientObject
 {
 
     [JsonProperty()]
-    public virtual string AcceptedAs { get; protected set; }
+    public virtual string? AcceptedAs { get; set; }
 
     [JsonProperty()]
-    public virtual string DisplayName { get; protected set; }
+    public virtual string? DisplayName { get; set; }
 
     [JsonProperty()]
-    public virtual string InvitedAs { get; protected set; }
+    public virtual string? InvitedAs { get; set; }
 
     [JsonProperty()]
-    public virtual string InvitedBy { get; protected set; }
+    public virtual string? InvitedBy { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsCrossTenant { get; protected set; }
+    public virtual bool IsCrossTenant { get; set; }
 
     [JsonProperty()]
-    public virtual string LoginName { get; protected set; }
+    public virtual string? LoginName { get; set; }
 
     [JsonProperty()]
-    public virtual string UniqueId { get; protected set; }
+    public virtual string? UniqueId { get; set; }
 
     [JsonProperty()]
-    public virtual int UserId { get; protected set; }
+    public virtual int UserId { get; set; }
 
     [JsonProperty()]
-    public virtual DateTime WhenCreated { get; protected set; }
+    public virtual DateTime WhenCreated { get; set; }
 
 }

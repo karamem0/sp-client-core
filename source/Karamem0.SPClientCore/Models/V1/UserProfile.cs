@@ -21,72 +21,72 @@ public class UserProfile : ClientObject
 {
 
     [JsonProperty()]
-    public virtual string AccountName { get; protected set; }
+    public virtual string? AccountName { get; set; }
 
     [JsonProperty()]
-    public virtual string DisplayName { get; protected set; }
+    public virtual string? DisplayName { get; set; }
 
     [JsonProperty()]
-    public virtual string FollowPersonalSiteUrl { get; protected set; }
+    public virtual string? FollowPersonalSiteUrl { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsDefaultDocumentLibraryBlocked { get; protected set; }
+    public virtual bool IsDefaultDocumentLibraryBlocked { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsPeopleListPublic { get; protected set; }
+    public virtual bool IsPeopleListPublic { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsPrivacySettingOn { get; protected set; }
+    public virtual bool IsPrivacySettingOn { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsSelf { get; protected set; }
+    public virtual bool IsSelf { get; set; }
 
     [JsonProperty()]
-    public virtual string JobTitle { get; protected set; }
+    public virtual string? JobTitle { get; set; }
 
     [JsonProperty("MySiteFirstRunExperience")]
-    public virtual int MySiteCollectionFirstRunExperience { get; protected set; }
+    public virtual int MySiteCollectionFirstRunExperience { get; set; }
 
     [JsonProperty("MySiteHostUrl")]
-    public virtual string MySiteCollectionHostUrl { get; protected set; }
+    public virtual string? MySiteCollectionHostUrl { get; set; }
 
     [JsonProperty()]
-    public virtual int O15FirstRunExperience { get; protected set; }
+    public virtual int O15FirstRunExperience { get; set; }
 
     [JsonProperty()]
-    public virtual SiteCollection PersonalSite { get; protected set; }
+    public virtual SiteCollection? PersonalSite { get; set; }
 
     [JsonProperty()]
-    public virtual PersonalSiteCapabilities PersonalSiteCapabilities { get; protected set; }
+    public virtual PersonalSiteCapabilities? PersonalSiteCapabilities { get; set; }
 
     [JsonProperty()]
-    public virtual string PersonalSiteFirstCreationError { get; protected set; }
+    public virtual string? PersonalSiteFirstCreationError { get; set; }
 
     [JsonProperty()]
-    public virtual DateTime PersonalSiteFirstCreationTime { get; protected set; }
+    public virtual DateTime PersonalSiteFirstCreationTime { get; set; }
 
     [JsonProperty()]
-    public virtual PersonalSiteInstantiationState PersonalSiteInstantiationState { get; protected set; }
+    public virtual PersonalSiteInstantiationState? PersonalSiteInstantiationState { get; set; }
 
     [JsonProperty()]
-    public virtual DateTime PersonalSiteLastCreationTime { get; protected set; }
+    public virtual DateTime PersonalSiteLastCreationTime { get; set; }
 
     [JsonProperty()]
-    public virtual int PersonalSiteNumberOfRetries { get; protected set; }
+    public virtual int PersonalSiteNumberOfRetries { get; set; }
 
     [JsonProperty()]
-    public virtual bool PictureImportEnabled { get; protected set; }
+    public virtual bool PictureImportEnabled { get; set; }
 
     [JsonProperty()]
-    public virtual string PictureUrl { get; protected set; }
+    public virtual string? PictureUrl { get; set; }
 
     [JsonProperty()]
-    public virtual string PublicUrl { get; protected set; }
+    public virtual string? PublicUrl { get; set; }
 
     [JsonProperty()]
-    public virtual string SipAddress { get; protected set; }
+    public virtual string? SipAddress { get; set; }
 
     [JsonProperty()]
-    public virtual string UrlToCreatePersonalSite { get; protected set; }
+    public virtual string? UrlToCreatePersonalSite { get; set; }
 
 }

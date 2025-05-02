@@ -23,7 +23,7 @@ public static class PSCmdletExtensions
     public static IReadOnlyList<object> InvokeCommand(
         this Runspace runspace,
         string name,
-        IReadOnlyDictionary<string, object> parameters
+        IReadOnlyDictionary<string, object?> parameters
     )
     {
         return runspace.InvokeCommand<object>(name, parameters);
@@ -33,7 +33,7 @@ public static class PSCmdletExtensions
     public static IReadOnlyList<T> InvokeCommand<T>(
         this Runspace runspace,
         string name,
-        IReadOnlyDictionary<string, object> parameters
+        IReadOnlyDictionary<string, object?> parameters
     )
     {
         _ = runspace ?? throw new ArgumentNullException(nameof(runspace));

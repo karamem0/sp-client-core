@@ -19,7 +19,6 @@ public abstract class ClientService<T>(ClientContext clientContext) : ClientServ
 
     public virtual T GetObject(T clientObject)
     {
-        _ = clientObject ?? throw new ArgumentNullException(nameof(clientObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(clientObject.ObjectIdentity),
@@ -36,24 +35,22 @@ public abstract class ClientService<T>(ClientContext clientContext) : ClientServ
 
     public virtual void RemoveObject(T clientObject)
     {
-        _ = clientObject ?? throw new ArgumentNullException(nameof(clientObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(clientObject.ObjectIdentity), objectPathId => new ClientActionMethod(objectPathId, "DeleteObject"));
+        var objectPath1 = requestPayload.Add(
+            new ObjectPathIdentity(clientObject.ObjectIdentity),
+            objectPathId => new ClientActionMethod(objectPathId, "DeleteObject")
+        );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public virtual void SetObject(T clientObject, IReadOnlyDictionary<string, object> modificationInfo)
+    public virtual void SetObject(T clientObject, IReadOnlyDictionary<string, object?> modificationInfo)
     {
-        _ = clientObject ?? throw new ArgumentNullException(nameof(clientObject));
-        _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectName = clientObject.ObjectType;
         var objectType = ClientObject.GetType(objectName);
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(clientObject.ObjectIdentity),
-            requestPayload
-                .CreateSetPropertyDelegates(clientObject, modificationInfo)
-                .ToArray()
+            requestPayload.CreateSetPropertyDelegates(clientObject, modificationInfo)
         );
         var objectPath2 = requestPayload.Add(objectPath1, objectPathId => new ClientActionMethod(objectPathId, "Update"));
         _ = this.ClientContext.ProcessQuery(requestPayload);

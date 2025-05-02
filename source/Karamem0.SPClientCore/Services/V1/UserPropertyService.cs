@@ -49,7 +49,6 @@ public class UserPropertyService(ClientContext clientContext) : ClientService<Us
 
     public UserProperty GetObject(string userLoginName)
     {
-        _ = userLoginName ?? throw new ArgumentNullException(nameof(userLoginName));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(PeopleManager)));
         var objectPath2 = requestPayload.Add(

@@ -21,9 +21,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantSiteCollectionService
 {
 
-    TenantOperationResult AddObject(IReadOnlyDictionary<string, object> creationInfo);
+    TenantOperationResult AddObject(IReadOnlyDictionary<string, object?> creationInfo);
 
-    void AddObjectAwait(IReadOnlyDictionary<string, object> creationInfo);
+    void AddObjectAwait(IReadOnlyDictionary<string, object?> creationInfo);
 
     TenantSiteCollection GetObject(TenantSiteCollection siteCollectionObject);
 
@@ -35,7 +35,7 @@ public interface ITenantSiteCollectionService
 
     IEnumerable<TenantSiteCollection> GetObjectEnumerable();
 
-    IEnumerable<TenantSiteCollection> GetObjectEnumerable(IReadOnlyDictionary<string, object> filterInfo);
+    IEnumerable<TenantSiteCollection> GetObjectEnumerable(IReadOnlyDictionary<string, object?> filterInfo);
 
     TenantOperationResult LockObject(TenantSiteCollection siteCollectionObject);
 
@@ -45,9 +45,9 @@ public interface ITenantSiteCollectionService
 
     void RemoveObjectAwait(TenantSiteCollection siteCollectionObject);
 
-    TenantOperationResult SetObject(TenantSiteCollection siteCollectionObject, IReadOnlyDictionary<string, object> modificationInfo);
+    TenantOperationResult SetObject(TenantSiteCollection siteCollectionObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
-    void SetObjectAwait(TenantSiteCollection siteCollectionObject, IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObjectAwait(TenantSiteCollection siteCollectionObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
     TenantOperationResult UnlockObject(TenantSiteCollection siteCollectionObject);
 
@@ -58,9 +58,8 @@ public interface ITenantSiteCollectionService
 public class TenantSiteCollectionService(ClientContext clientContext) : TenantClientService(clientContext), ITenantSiteCollectionService
 {
 
-    public TenantOperationResult AddObject(IReadOnlyDictionary<string, object> creationInfo)
+    public TenantOperationResult AddObject(IReadOnlyDictionary<string, object?> creationInfo)
     {
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
@@ -80,14 +79,13 @@ public class TenantSiteCollectionService(ClientContext clientContext) : TenantCl
             .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public void AddObjectAwait(IReadOnlyDictionary<string, object> creationInfo)
+    public void AddObjectAwait(IReadOnlyDictionary<string, object?> creationInfo)
     {
         this.WaitObject(this.AddObject(creationInfo));
     }
 
     public TenantSiteCollection GetObject(TenantSiteCollection siteCollectionObject)
     {
-        _ = siteCollectionObject ?? throw new ArgumentNullException(nameof(siteCollectionObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(siteCollectionObject.ObjectIdentity),
@@ -104,7 +102,6 @@ public class TenantSiteCollectionService(ClientContext clientContext) : TenantCl
 
     public TenantSiteCollection GetObject(Uri siteCollectionUrl)
     {
-        _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
@@ -127,13 +124,11 @@ public class TenantSiteCollectionService(ClientContext clientContext) : TenantCl
 
     public TenantSiteCollection GetObjectAwait(TenantSiteCollection siteCollectionObject)
     {
-        _ = siteCollectionObject ?? throw new ArgumentNullException(nameof(siteCollectionObject));
         return this.GetObjectAwait(new Uri(siteCollectionObject.Url, UriKind.Absolute));
     }
 
     public TenantSiteCollection GetObjectAwait(Uri siteCollectionUrl)
     {
-        _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));
         while (true)
         {
             var errorCount = 0;
@@ -180,7 +175,7 @@ public class TenantSiteCollectionService(ClientContext clientContext) : TenantCl
             .ToObject<TenantSiteCollectionEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<TenantSiteCollection> GetObjectEnumerable(IReadOnlyDictionary<string, object> filterInfo)
+    public IEnumerable<TenantSiteCollection> GetObjectEnumerable(IReadOnlyDictionary<string, object?> filterInfo)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
@@ -204,7 +199,6 @@ public class TenantSiteCollectionService(ClientContext clientContext) : TenantCl
 
     public TenantOperationResult LockObject(TenantSiteCollection siteCollectionObject)
     {
-        _ = siteCollectionObject ?? throw new ArgumentNullException(nameof(siteCollectionObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(siteCollectionObject.ObjectIdentity),
@@ -234,8 +228,6 @@ public class TenantSiteCollectionService(ClientContext clientContext) : TenantCl
 
     public TenantOperationResult RemoveObject(TenantSiteCollection siteCollectionObject)
     {
-        _ = siteCollectionObject ?? throw new ArgumentNullException(nameof(siteCollectionObject));
-        _ = siteCollectionObject.Url ?? throw new ArgumentNullException(nameof(siteCollectionObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
@@ -260,16 +252,12 @@ public class TenantSiteCollectionService(ClientContext clientContext) : TenantCl
         this.WaitObject(this.RemoveObject(siteCollectionObject));
     }
 
-    public TenantOperationResult SetObject(TenantSiteCollection siteCollectionObject, IReadOnlyDictionary<string, object> modificationInfo)
+    public TenantOperationResult SetObject(TenantSiteCollection siteCollectionObject, IReadOnlyDictionary<string, object?> modificationInfo)
     {
-        _ = siteCollectionObject ?? throw new ArgumentNullException(nameof(siteCollectionObject));
-        _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(siteCollectionObject.ObjectIdentity),
-            requestPayload
-                .CreateSetPropertyDelegates(siteCollectionObject, modificationInfo)
-                .ToArray()
+            requestPayload.CreateSetPropertyDelegates(siteCollectionObject, modificationInfo)
         );
         var objectPath2 = requestPayload.Add(
             new ObjectPathMethod(objectPath1.Id, "Update"),
@@ -284,14 +272,13 @@ public class TenantSiteCollectionService(ClientContext clientContext) : TenantCl
             .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public void SetObjectAwait(TenantSiteCollection siteCollectionObject, IReadOnlyDictionary<string, object> modificationInfo)
+    public void SetObjectAwait(TenantSiteCollection siteCollectionObject, IReadOnlyDictionary<string, object?> modificationInfo)
     {
         this.WaitObject(this.SetObject(siteCollectionObject, modificationInfo));
     }
 
     public TenantOperationResult UnlockObject(TenantSiteCollection siteCollectionObject)
     {
-        _ = siteCollectionObject ?? throw new ArgumentNullException(nameof(siteCollectionObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(siteCollectionObject.ObjectIdentity),

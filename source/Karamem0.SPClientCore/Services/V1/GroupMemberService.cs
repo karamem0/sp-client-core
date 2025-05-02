@@ -21,7 +21,7 @@ public interface IGroupMemberService
 
     User AddObject(Group groupObject, User memberObject);
 
-    User GetObject(Group groupObject, int? userId);
+    User GetObject(Group groupObject, int userId);
 
     User GetObject(Group groupObject, string userName);
 
@@ -36,8 +36,6 @@ public class GroupMemberService(ClientContext clientContext) : ClientService(cli
 
     public User AddObject(Group groupObject, User memberObject)
     {
-        _ = groupObject ?? throw new ArgumentNullException(nameof(groupObject));
-        _ = memberObject ?? throw new ArgumentNullException(nameof(memberObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(groupObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Users"));
@@ -58,10 +56,8 @@ public class GroupMemberService(ClientContext clientContext) : ClientService(cli
             .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public User GetObject(Group groupObject, int? userId)
+    public User GetObject(Group groupObject, int userId)
     {
-        _ = groupObject ?? throw new ArgumentNullException(nameof(groupObject));
-        _ = userId ?? throw new ArgumentNullException(nameof(userId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(groupObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Users"));
@@ -84,8 +80,6 @@ public class GroupMemberService(ClientContext clientContext) : ClientService(cli
 
     public User GetObject(Group groupObject, string userName)
     {
-        _ = groupObject ?? throw new ArgumentNullException(nameof(groupObject));
-        _ = userName ?? throw new ArgumentNullException(nameof(userName));
         if (System.Text.RegularExpressions.Regex.IsMatch(userName, "^[ci]:0"))
         {
             var requestPayload = new ClientRequestPayload();
@@ -132,7 +126,6 @@ public class GroupMemberService(ClientContext clientContext) : ClientService(cli
 
     public IEnumerable<User> GetObjectEnumerable(Group groupObject)
     {
-        _ = groupObject ?? throw new ArgumentNullException(nameof(groupObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(groupObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -151,8 +144,6 @@ public class GroupMemberService(ClientContext clientContext) : ClientService(cli
 
     public void RemoveObject(Group groupObject, User memberObject)
     {
-        _ = groupObject ?? throw new ArgumentNullException(nameof(groupObject));
-        _ = memberObject ?? throw new ArgumentNullException(nameof(memberObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(groupObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Users"));

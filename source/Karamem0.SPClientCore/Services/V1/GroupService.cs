@@ -19,11 +19,11 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IGroupService
 {
 
-    Group AddObject(IReadOnlyDictionary<string, object> creationInfo);
+    Group AddObject(IReadOnlyDictionary<string, object?> creationInfo);
 
     Group GetObject(Group groupObject);
 
-    Group GetObject(int? groupId);
+    Group GetObject(int groupId);
 
     Group GetObject(string groupName);
 
@@ -31,16 +31,15 @@ public interface IGroupService
 
     void RemoveObject(Group groupObject);
 
-    void SetObject(Group groupObject, IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObject(Group groupObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class GroupService(ClientContext clientContext) : ClientService<Group>(clientContext), IGroupService
 {
 
-    public Group AddObject(IReadOnlyDictionary<string, object> creationInfo)
+    public Group AddObject(IReadOnlyDictionary<string, object?> creationInfo)
     {
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -62,9 +61,8 @@ public class GroupService(ClientContext clientContext) : ClientService<Group>(cl
             .ToObject<Group>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public Group GetObject(int? groupId)
+    public Group GetObject(int groupId)
     {
-        _ = groupId ?? throw new ArgumentNullException(nameof(groupId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -88,7 +86,6 @@ public class GroupService(ClientContext clientContext) : ClientService<Group>(cl
 
     public Group GetObject(string groupName)
     {
-        _ = groupName ?? throw new ArgumentNullException(nameof(groupName));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -131,7 +128,6 @@ public class GroupService(ClientContext clientContext) : ClientService<Group>(cl
 
     public override void RemoveObject(Group groupObject)
     {
-        _ = groupObject ?? throw new ArgumentNullException(nameof(groupObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));

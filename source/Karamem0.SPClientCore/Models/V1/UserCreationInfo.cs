@@ -21,12 +21,12 @@ public class UserCreationInfo : ClientValueObject
 {
 
     [JsonProperty()]
-    public virtual string Email { get; protected set; }
+    public virtual string? Email { get; set; }
 
     [JsonProperty()]
-    public virtual string LoginName { get; protected set; }
+    public virtual string? LoginName { get; set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; set; }
 
 }

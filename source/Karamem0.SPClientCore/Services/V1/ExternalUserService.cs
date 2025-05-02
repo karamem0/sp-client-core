@@ -24,7 +24,7 @@ public interface IExternalUserService
         IReadOnlyCollection<string> userId,
         RoleType role,
         bool sendServerManagedNotification,
-        string customMessage,
+        string? customMessage,
         bool additivePermission,
         bool allowExternalSharing
     );
@@ -36,7 +36,7 @@ public interface IExternalUserService
         bool validateExistingPermissions,
         bool additivePermission,
         bool sendServerManagedNotification,
-        string customMessage,
+        string? customMessage,
         bool includeAnonymousLinksInNotification,
         bool propagateAcl
     );
@@ -54,12 +54,11 @@ public class ExternalUserService(ClientContext clientContext) : ClientService(cl
         IReadOnlyCollection<string> userId,
         RoleType role,
         bool sendServerManagedNotification,
-        string customMessage,
+        string? customMessage,
         bool additivePermission,
         bool allowExternalSharing
     )
     {
-        _ = userId ?? throw new ArgumentNullException(nameof(userId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -87,13 +86,11 @@ public class ExternalUserService(ClientContext clientContext) : ClientService(cl
         bool validateExistingPermissions,
         bool additivePermission,
         bool sendServerManagedNotification,
-        string customMessage,
+        string? customMessage,
         bool includeAnonymousLinksInNotification,
         bool propagateAcl
     )
     {
-        _ = documentUrl ?? throw new ArgumentNullException(nameof(documentUrl));
-        _ = userId ?? throw new ArgumentNullException(nameof(userId));
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
             new ClientActionStaticMethod(
@@ -137,7 +134,6 @@ public class ExternalUserService(ClientContext clientContext) : ClientService(cl
 
     public bool CheckObject(List listObject)
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
             new ClientActionStaticMethod(

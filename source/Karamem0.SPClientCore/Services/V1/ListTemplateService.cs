@@ -32,7 +32,6 @@ public class ListTemplateService(ClientContext clientContext) : ClientService<Li
 
     public ListTemplate GetObject(string listTemplateTitle)
     {
-        _ = listTemplateTitle ?? throw new ArgumentNullException(nameof(listTemplateTitle));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));

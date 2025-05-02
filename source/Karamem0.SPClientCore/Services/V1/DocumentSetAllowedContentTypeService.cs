@@ -44,8 +44,6 @@ public class DocumentSetAllowedContentTypeService(ClientContext clientContext) :
         bool pushChanges
     )
     {
-        _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
-        _ = allowedContentTypeObject ?? throw new ArgumentNullException(nameof(allowedContentTypeObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -77,7 +75,6 @@ public class DocumentSetAllowedContentTypeService(ClientContext clientContext) :
 
     public IEnumerable<ContentTypeId> GetObjectEnumerable(ContentType contentTypeObject)
     {
-        _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -107,8 +104,6 @@ public class DocumentSetAllowedContentTypeService(ClientContext clientContext) :
         bool pushChanges
     )
     {
-        _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
-        _ = allowedContentTypeObject ?? throw new ArgumentNullException(nameof(allowedContentTypeObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(

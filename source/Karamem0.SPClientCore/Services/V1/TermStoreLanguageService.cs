@@ -19,18 +19,17 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITermStoreLanguageService
 {
 
-    void AddObject(uint? lcid);
+    void AddObject(uint lcid);
 
-    void RemoveObject(uint? lcid);
+    void RemoveObject(uint lcid);
 
 }
 
 public class TermStoreLanguageService(ClientContext clientContext) : ClientService(clientContext), ITermStoreLanguageService
 {
 
-    public void AddObject(uint? lcid)
+    public void AddObject(uint lcid)
     {
-        _ = lcid ?? throw new ArgumentNullException(nameof(lcid));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession"));
         var objectPath2 = requestPayload.Add(new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore"));
@@ -46,9 +45,8 @@ public class TermStoreLanguageService(ClientContext clientContext) : ClientServi
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public void RemoveObject(uint? lcid)
+    public void RemoveObject(uint lcid)
     {
-        _ = lcid ?? throw new ArgumentNullException(nameof(lcid));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession"));
         var objectPath2 = requestPayload.Add(new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore"));

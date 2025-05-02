@@ -20,7 +20,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IFileService
 {
 
-    File AddObject(Folder folderObject, IReadOnlyDictionary<string, object> creationInfo);
+    File AddObject(Folder folderObject, IReadOnlyDictionary<string, object?> creationInfo);
 
     void CopyObject(
         File fileObject,
@@ -32,7 +32,7 @@ public interface IFileService
         File fileObject,
         Uri fileUrl,
         bool overwrite,
-        IReadOnlyDictionary<string, object> moveCopyOptions
+        IReadOnlyDictionary<string, object?> moveCopyOptions
     );
 
     System.IO.Stream DownloadObject(File fileObject);
@@ -45,7 +45,7 @@ public interface IFileService
 
     File GetObject(ListItem listItemObject);
 
-    File GetObject(Guid? fileId);
+    File GetObject(Guid fileId);
 
     File GetObject(Uri fileUrl);
 
@@ -63,18 +63,18 @@ public interface IFileService
         File fileObject,
         Uri fileUrl,
         bool overwrite,
-        IReadOnlyDictionary<string, object> moveCopyOptions
+        IReadOnlyDictionary<string, object?> moveCopyOptions
     );
 
-    void PublishObject(File fileObject, string comment);
+    void PublishObject(File fileObject, string? comment);
 
     Guid RecycleObject(File fileObject);
 
     void RemoveObject(File fileObject, bool force);
 
-    void SetObject(File fileObject, IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObject(File fileObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
-    void UnpublishObject(File fileObject, string comment);
+    void UnpublishObject(File fileObject, string? comment);
 
     void UploadObject(
         string folderUrl,
@@ -88,10 +88,8 @@ public interface IFileService
 public class FileService(ClientContext clientContext) : ClientService<File>(clientContext), IFileService
 {
 
-    public File AddObject(Folder folderObject, IReadOnlyDictionary<string, object> creationInfo)
+    public File AddObject(Folder folderObject, IReadOnlyDictionary<string, object?> creationInfo)
     {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Files"));
@@ -118,8 +116,6 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
         bool overwrite
     )
     {
-        _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
-        _ = fileUrl ?? throw new ArgumentNullException(nameof(fileUrl));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(fileObject.ObjectIdentity),
@@ -137,12 +133,9 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
         File fileObject,
         Uri fileUrl,
         bool overwrite,
-        IReadOnlyDictionary<string, object> moveCopyOptions
+        IReadOnlyDictionary<string, object?> moveCopyOptions
     )
     {
-        _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
-        _ = fileUrl ?? throw new ArgumentNullException(nameof(fileUrl));
-        _ = moveCopyOptions ?? throw new ArgumentNullException(nameof(moveCopyOptions));
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
             new ClientActionStaticMethod(
@@ -163,14 +156,12 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
 
     public System.IO.Stream DownloadObject(File fileObject)
     {
-        _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath("_api/web/getfilebyserverrelativeurl('{0}')/openbinarystream", fileObject.ServerRelativeUrl);
         return this.ClientContext.GetStream(requestUrl);
     }
 
     public File GetObject(FileVersion fileVersionObject)
     {
-        _ = fileVersionObject ?? throw new ArgumentNullException(nameof(fileVersionObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(
@@ -194,7 +185,6 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
 
     public File GetObject(App appObject)
     {
-        _ = appObject ?? throw new ArgumentNullException(nameof(appObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -217,7 +207,6 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
 
     public File GetObject(ListItem listItemObject)
     {
-        _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listItemObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -233,9 +222,8 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
             .ToObject<File>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public File GetObject(Guid? fileId)
+    public File GetObject(Guid fileId)
     {
-        _ = fileId ?? throw new ArgumentNullException(nameof(fileId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -258,7 +246,6 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
 
     public File GetObject(Uri fileUrl)
     {
-        _ = fileUrl ?? throw new ArgumentNullException(nameof(fileUrl));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -281,8 +268,6 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
 
     public File GetObject(Folder folderObject, string fileName)
     {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
-        _ = fileName ?? throw new ArgumentNullException(nameof(fileName));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Files"));
@@ -305,7 +290,6 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
 
     public IEnumerable<File> GetObjectEnumerable(Folder folderObject)
     {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -328,8 +312,6 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
         MoveOperations fileMoveOperations
     )
     {
-        _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
-        _ = fileUrl ?? throw new ArgumentNullException(nameof(fileUrl));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(fileObject.ObjectIdentity),
@@ -347,12 +329,9 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
         File fileObject,
         Uri fileUrl,
         bool overwrite,
-        IReadOnlyDictionary<string, object> moveCopyOptions
+        IReadOnlyDictionary<string, object?> moveCopyOptions
     )
     {
-        _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
-        _ = fileUrl ?? throw new ArgumentNullException(nameof(fileUrl));
-        _ = moveCopyOptions ?? throw new ArgumentNullException(nameof(moveCopyOptions));
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
             new ClientActionStaticMethod(
@@ -371,9 +350,8 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public void PublishObject(File fileObject, string comment)
+    public void PublishObject(File fileObject, string? comment)
     {
-        _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(fileObject.ObjectIdentity),
@@ -388,9 +366,11 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
 
     public Guid RecycleObject(File fileObject)
     {
-        _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(fileObject.ObjectIdentity), objectPathId => new ClientActionMethod(objectPathId, "Recycle"));
+        var objectPath1 = requestPayload.Add(
+            new ObjectPathIdentity(fileObject.ObjectIdentity),
+            objectPathId => new ClientActionMethod(objectPathId, "Recycle")
+        );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Guid>(requestPayload.GetActionId<ClientActionMethod>());
@@ -398,7 +378,6 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
 
     public virtual void RemoveObject(File fileObject, bool force)
     {
-        _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(fileObject.ObjectIdentity),
@@ -407,11 +386,9 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                 "DeleteWithParameters",
                 requestPayload.CreateParameter(
                     ClientValueObject.Create<FileDeleteParameters>(
-                        new Dictionary<string, object>()
+                        new Dictionary<string, object?>()
                         {
-                            {
-                                "BypassSharedLock", force
-                            }
+                            ["BypassSharedLock"] = force
                         }
                     )
                 )
@@ -420,9 +397,8 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public void UnpublishObject(File fileObject, string comment)
+    public void UnpublishObject(File fileObject, string? comment)
     {
-        _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(fileObject.ObjectIdentity),
@@ -442,9 +418,6 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
         bool overwrite
     )
     {
-        _ = folderUrl ?? throw new ArgumentNullException(nameof(folderUrl));
-        _ = fileName ?? throw new ArgumentNullException(nameof(fileName));
-        _ = fileContent ?? throw new ArgumentNullException(nameof(fileContent));
         fileContent.Position = 0;
         if (fileContent.Length <= ClientConstants.ChunkSize)
         {

@@ -21,96 +21,96 @@ public class RegionalSettings : ClientObject
 {
 
     [JsonProperty()]
-    public virtual short AdjustHijriDays { get; protected set; }
+    public virtual short? AdjustHijriDays { get; set; }
 
     [JsonProperty()]
-    public virtual short AlternateCalendarType { get; protected set; }
+    public virtual short? AlternateCalendarType { get; set; }
 
     [JsonProperty()]
-    public virtual string AM { get; protected set; }
+    public virtual string? AM { get; set; }
 
     [JsonProperty()]
-    public virtual short CalendarType { get; protected set; }
+    public virtual short? CalendarType { get; set; }
 
     [JsonProperty()]
-    public virtual short Collation { get; protected set; }
+    public virtual short? Collation { get; set; }
 
     [JsonProperty("CollationLCID")]
-    public virtual uint CollationLcid { get; protected set; }
+    public virtual uint CollationLcid { get; set; }
 
     [JsonProperty()]
-    public virtual uint DateFormat { get; protected set; }
+    public virtual uint DateFormat { get; set; }
 
     [JsonProperty()]
-    public virtual string DateSeparator { get; protected set; }
+    public virtual string? DateSeparator { get; set; }
 
     [JsonProperty()]
-    public virtual string DecimalSeparator { get; protected set; }
+    public virtual string? DecimalSeparator { get; set; }
 
     [JsonProperty()]
-    public virtual string DigitGrouping { get; protected set; }
+    public virtual string? DigitGrouping { get; set; }
 
     [JsonProperty()]
-    public virtual uint FirstDayOfWeek { get; protected set; }
+    public virtual uint FirstDayOfWeek { get; set; }
 
     [JsonProperty()]
-    public virtual short FirstWeekOfYear { get; protected set; }
+    public virtual short? FirstWeekOfYear { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsEastAsia { get; protected set; }
+    public virtual bool IsEastAsia { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsRightToLeft { get; protected set; }
+    public virtual bool IsRightToLeft { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsUIRightToLeft { get; protected set; }
+    public virtual bool IsUIRightToLeft { get; set; }
 
     [JsonProperty()]
-    public virtual string ListSeparator { get; protected set; }
+    public virtual string? ListSeparator { get; set; }
 
     [JsonProperty("LocaleId")]
-    public virtual uint Lcid { get; protected set; }
+    public virtual uint Lcid { get; set; }
 
     [JsonProperty()]
-    public virtual string NegativeSign { get; protected set; }
+    public virtual string? NegativeSign { get; set; }
 
     [JsonProperty()]
-    public virtual uint NegNumberMode { get; protected set; }
+    public virtual uint NegNumberMode { get; set; }
 
     [JsonProperty()]
-    public virtual string PM { get; protected set; }
+    public virtual string? PM { get; set; }
 
     [JsonProperty()]
-    public virtual string PositiveSign { get; protected set; }
+    public virtual string? PositiveSign { get; set; }
 
     [JsonProperty()]
-    public virtual bool ShowWeeks { get; protected set; }
+    public virtual bool ShowWeeks { get; set; }
 
     [JsonProperty()]
-    public virtual string ThousandSeparator { get; protected set; }
+    public virtual string? ThousandSeparator { get; set; }
 
     [JsonProperty()]
-    public virtual bool Time24 { get; protected set; }
+    public virtual bool Time24 { get; set; }
 
     [JsonProperty()]
-    public virtual uint TimeMarkerPosition { get; protected set; }
+    public virtual uint TimeMarkerPosition { get; set; }
 
     [JsonProperty()]
-    public virtual string TimeSeparator { get; protected set; }
+    public virtual string? TimeSeparator { get; set; }
 
     [JsonProperty()]
-    public virtual TimeZone TimeZone { get; protected set; }
+    public virtual TimeZone? TimeZone { get; set; }
 
     [JsonProperty()]
-    public virtual TimeZoneEnumerable TimeZones { get; protected set; }
+    public virtual TimeZoneEnumerable? TimeZones { get; set; }
 
     [JsonProperty()]
-    public virtual short WorkDayEndHour { get; protected set; }
+    public virtual short? WorkDayEndHour { get; set; }
 
     [JsonProperty()]
-    public virtual short WorkDays { get; protected set; }
+    public virtual short? WorkDays { get; set; }
 
     [JsonProperty()]
-    public virtual short WorkDayStartHour { get; protected set; }
+    public virtual short? WorkDayStartHour { get; set; }
 
 }

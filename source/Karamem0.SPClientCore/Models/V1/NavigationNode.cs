@@ -21,30 +21,30 @@ public class NavigationNode : ClientObject
 {
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<Guid> AudienceIds { get; protected set; }
+    public virtual IReadOnlyCollection<Guid>? AudienceIds { get; set; }
 
     [JsonProperty("CurrentLCID")]
-    public virtual uint CurrentLcid { get; protected set; }
+    public virtual uint CurrentLcid { get; set; }
 
     [JsonProperty()]
-    public virtual int Id { get; protected set; }
+    public virtual int Id { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsDocLib { get; protected set; }
+    public virtual bool IsDocLib { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsExternal { get; protected set; }
+    public virtual bool IsExternal { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsVisible { get; protected set; }
+    public virtual bool IsVisible { get; set; }
 
     [JsonProperty()]
-    public virtual ListTemplateType ListTemplateType { get; protected set; }
+    public virtual ListTemplateType? ListTemplateType { get; set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; set; }
 
     [JsonProperty()]
-    public virtual string Url { get; protected set; }
+    public virtual string? Url { get; set; }
 
 }

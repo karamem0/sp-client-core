@@ -24,9 +24,9 @@ public class TenantThemeCreationInfo : ClientValueObject
     public virtual bool IsInverted { get; set; }
 
     [JsonProperty("name")]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; set; }
 
     [JsonProperty("palette")]
-    public virtual Hashtable Palette { get; protected set; }
+    public virtual Hashtable? Palette { get; set; }
 
 }

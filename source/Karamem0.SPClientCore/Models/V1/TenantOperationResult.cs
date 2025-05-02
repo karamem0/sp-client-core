@@ -21,12 +21,12 @@ public class TenantOperationResult : ClientObject
 {
 
     [JsonProperty()]
-    public virtual bool HasTimedout { get; protected set; }
+    public virtual bool HasTimedout { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsComplete { get; protected set; }
+    public virtual bool IsComplete { get; set; }
 
     [JsonProperty()]
-    public virtual int PollingInterval { get; protected set; }
+    public virtual int PollingInterval { get; set; }
 
 }

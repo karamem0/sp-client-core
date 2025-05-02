@@ -21,228 +21,228 @@ public class Site : SecurableObject
 {
 
     [JsonProperty()]
-    public virtual bool AllowAutomaticASPXPageIndexing { get; protected set; }
+    public virtual bool AllowAutomaticASPXPageIndexing { get; set; }
 
     [JsonProperty()]
-    public virtual bool AllowCreateDeclarativeWorkflowForCurrentUser { get; protected set; }
+    public virtual bool AllowCreateDeclarativeWorkflowForCurrentUser { get; set; }
 
     [JsonProperty()]
-    public virtual bool AllowDesignerForCurrentUser { get; protected set; }
+    public virtual bool AllowDesignerForCurrentUser { get; set; }
 
     [JsonProperty()]
-    public virtual bool AllowMasterPageEditingForCurrentUser { get; protected set; }
+    public virtual bool AllowMasterPageEditingForCurrentUser { get; set; }
 
     [JsonProperty()]
-    public virtual bool AllowRevertFromTemplateForCurrentUser { get; protected set; }
+    public virtual bool AllowRevertFromTemplateForCurrentUser { get; set; }
 
     [JsonProperty()]
-    public virtual bool AllowRssFeeds { get; protected set; }
+    public virtual bool AllowRssFeeds { get; set; }
 
     [JsonProperty()]
-    public virtual bool AllowSaveDeclarativeWorkflowAsTemplateForCurrentUser { get; protected set; }
+    public virtual bool AllowSaveDeclarativeWorkflowAsTemplateForCurrentUser { get; set; }
 
     [JsonProperty()]
-    public virtual bool AllowSavePublishDeclarativeWorkflowForCurrentUser { get; protected set; }
+    public virtual bool AllowSavePublishDeclarativeWorkflowForCurrentUser { get; set; }
 
     [JsonProperty()]
-    public virtual string AlternateCssUrl { get; protected set; }
+    public virtual string? AlternateCssUrl { get; set; }
 
     [JsonProperty()]
-    public virtual Guid AppInstanceId { get; protected set; }
+    public virtual Guid AppInstanceId { get; set; }
 
     [JsonProperty()]
-    public virtual User Author { get; protected set; }
+    public virtual User? Author { get; set; }
 
     [JsonProperty()]
-    public virtual string ClassicWelcomePage { get; protected set; }
+    public virtual string? ClassicWelcomePage { get; set; }
 
     [JsonProperty()]
-    public virtual bool CommentsOnSitePagesDisabled { get; protected set; }
+    public virtual bool CommentsOnSitePagesDisabled { get; set; }
 
     [JsonProperty()]
-    public virtual int Configuration { get; protected set; }
+    public virtual int Configuration { get; set; }
 
     [JsonProperty()]
-    public virtual bool ContainsConfidentialInfo { get; protected set; }
+    public virtual bool ContainsConfidentialInfo { get; set; }
 
     [JsonProperty()]
-    public virtual DateTime Created { get; protected set; }
+    public virtual DateTime Created { get; set; }
 
     [JsonProperty()]
-    public virtual ChangeToken CurrentChangeToken { get; protected set; }
+    public virtual ChangeToken? CurrentChangeToken { get; set; }
 
     [JsonProperty()]
-    public virtual string CustomMasterUrl { get; protected set; }
+    public virtual string? CustomMasterUrl { get; set; }
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; set; }
 
     [JsonProperty()]
-    public virtual string DesignerDownloadUrlForCurrentUser { get; protected set; }
+    public virtual string? DesignerDownloadUrlForCurrentUser { get; set; }
 
     [JsonProperty()]
-    public virtual Guid DesignPackageId { get; protected set; }
+    public virtual Guid DesignPackageId { get; set; }
 
     [JsonProperty()]
-    public virtual bool DisableAppViews { get; protected set; }
+    public virtual bool DisableAppViews { get; set; }
 
     [JsonProperty()]
-    public virtual bool DisableFlows { get; protected set; }
+    public virtual bool DisableFlows { get; set; }
 
     [JsonProperty()]
-    public virtual bool DocumentLibraryCalloutOfficeWebAppPreviewersDisabled { get; protected set; }
+    public virtual bool DocumentLibraryCalloutOfficeWebAppPreviewersDisabled { get; set; }
 
     [JsonProperty()]
-    public virtual bool EnableMinimalDownload { get; protected set; }
+    public virtual bool EnableMinimalDownload { get; set; }
 
     [JsonProperty()]
-    public virtual bool ExcludeFromOfflineClient { get; protected set; }
+    public virtual bool ExcludeFromOfflineClient { get; set; }
 
     [JsonProperty()]
-    public virtual FooterVariantThemeType FooterEmphasis { get; protected set; }
+    public virtual FooterVariantThemeType? FooterEmphasis { get; set; }
 
     [JsonProperty()]
-    public virtual bool FooterEnabled { get; protected set; }
+    public virtual bool FooterEnabled { get; set; }
 
     [JsonProperty()]
-    public virtual FooterLayoutType FooterLayout { get; protected set; }
+    public virtual FooterLayoutType? FooterLayout { get; set; }
 
     [JsonProperty()]
-    public override bool HasUniqueRoleAssignments { get; protected set; }
+    public override bool HasUniqueRoleAssignments { get; set; }
 
     [JsonProperty()]
-    public virtual VariantThemeType HeaderEmphasis { get; protected set; }
+    public virtual VariantThemeType? HeaderEmphasis { get; set; }
 
     [JsonProperty()]
-    public virtual HeaderLayoutType HeaderLayout { get; protected set; }
+    public virtual HeaderLayoutType? HeaderLayout { get; set; }
 
     [JsonProperty()]
-    public virtual bool HideTitleInHeader { get; protected set; }
+    public virtual bool HideTitleInHeader { get; set; }
 
     [JsonProperty()]
-    public virtual bool HorizontalQuickLaunch { get; protected set; }
+    public virtual bool HorizontalQuickLaunch { get; set; }
 
     [JsonProperty()]
-    public virtual Guid Id { get; protected set; }
+    public virtual Guid Id { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsEduClass { get; protected set; }
+    public virtual bool IsEduClass { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsHomepageModernized { get; protected set; }
+    public virtual bool IsHomepageModernized { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsMultilingual { get; protected set; }
+    public virtual bool IsMultilingual { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsRevertHomepageLinkHidden { get; protected set; }
+    public virtual bool IsRevertHomepageLinkHidden { get; set; }
 
     [JsonProperty()]
-    public virtual DateTime LastItemModifiedDate { get; protected set; }
+    public virtual DateTime LastItemModifiedDate { get; set; }
 
     [JsonProperty()]
-    public virtual DateTime LastItemUserModifiedDate { get; protected set; }
+    public virtual DateTime LastItemUserModifiedDate { get; set; }
 
     [JsonProperty("Language")]
-    public virtual uint Lcid { get; protected set; }
+    public virtual uint Lcid { get; set; }
 
     [JsonProperty()]
-    public virtual LogoAlignment LogoAlignment { get; protected set; }
+    public virtual LogoAlignment? LogoAlignment { get; set; }
 
     [JsonProperty()]
-    public virtual string MasterUrl { get; protected set; }
+    public virtual string? MasterUrl { get; set; }
 
     [JsonProperty()]
-    public virtual bool MembersCanShare { get; protected set; }
+    public virtual bool MembersCanShare { get; set; }
 
     [JsonProperty()]
-    public virtual bool MegaMenuEnabled { get; protected set; }
+    public virtual bool MegaMenuEnabled { get; set; }
 
     [JsonProperty()]
-    public virtual bool NavAudienceTargetingEnabled { get; protected set; }
+    public virtual bool NavAudienceTargetingEnabled { get; set; }
 
     [JsonProperty()]
-    public virtual bool NoCrawl { get; protected set; }
+    public virtual bool NoCrawl { get; set; }
 
     [JsonProperty("NotificationsInOneDriveForBusinessEnabled")]
-    public virtual bool NotificationsInOneDriveEnabled { get; protected set; }
+    public virtual bool NotificationsInOneDriveEnabled { get; set; }
 
     [JsonProperty()]
-    public virtual bool NotificationsInSharePointEnabled { get; protected set; }
+    public virtual bool NotificationsInSharePointEnabled { get; set; }
 
     [JsonProperty()]
-    public virtual bool ObjectCacheEnabled { get; protected set; }
+    public virtual bool ObjectCacheEnabled { get; set; }
 
     [JsonProperty()]
-    public virtual bool OverwriteTranslationsOnChange { get; protected set; }
+    public virtual bool OverwriteTranslationsOnChange { get; set; }
 
     [JsonProperty()]
-    public virtual bool QuickLaunchEnabled { get; protected set; }
+    public virtual bool QuickLaunchEnabled { get; set; }
 
     [JsonProperty()]
-    public virtual bool RecycleBinEnabled { get; protected set; }
+    public virtual bool RecycleBinEnabled { get; set; }
 
     [JsonProperty()]
-    public virtual ResourcePath ResourcePath { get; protected set; }
+    public virtual ResourcePath? ResourcePath { get; set; }
 
     [JsonProperty()]
-    public virtual string RequestAccessEmail { get; protected set; }
+    public virtual string? RequestAccessEmail { get; set; }
 
     [JsonProperty()]
-    public virtual bool SaveSiteAsTemplateEnabled { get; protected set; }
+    public virtual bool SaveSiteAsTemplateEnabled { get; set; }
 
     [JsonProperty()]
-    public virtual SearchScopeType SearchScope { get; protected set; }
+    public virtual SearchScopeType? SearchScope { get; set; }
 
     [JsonProperty()]
-    public virtual string ServerRelativeUrl { get; protected set; }
+    public virtual string? ServerRelativeUrl { get; set; }
 
     [JsonProperty()]
-    public virtual bool ShowUrlStructureForCurrentUser { get; protected set; }
+    public virtual bool ShowUrlStructureForCurrentUser { get; set; }
 
     [JsonProperty()]
-    public virtual string SiteLogoDescription { get; protected set; }
+    public virtual string? SiteLogoDescription { get; set; }
 
     [JsonProperty()]
-    public virtual string SiteLogoUrl { get; protected set; }
+    public virtual string? SiteLogoUrl { get; set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<int> SupportedUILanguageIds { get; protected set; }
+    public virtual IReadOnlyCollection<int>? SupportedUILanguageIds { get; set; }
 
     [JsonProperty()]
-    public virtual bool SyndicationEnabled { get; protected set; }
+    public virtual bool SyndicationEnabled { get; set; }
 
     [JsonProperty("WebTemplate")]
-    public virtual string Template { get; protected set; }
+    public virtual string? Template { get; set; }
 
     [JsonProperty()]
-    public virtual bool TenantTagPolicyEnabled { get; protected set; }
+    public virtual bool TenantTagPolicyEnabled { get; set; }
 
     [JsonProperty()]
-    public virtual bool TenantAdminMembersCanShare { get; protected set; }
+    public virtual bool TenantAdminMembersCanShare { get; set; }
 
     [JsonProperty()]
-    public virtual string ThemedCssFolderUrl { get; protected set; }
+    public virtual string? ThemedCssFolderUrl { get; set; }
 
     [JsonProperty()]
-    public virtual bool ThirdPartyMdmEnabled { get; protected set; }
+    public virtual bool ThirdPartyMdmEnabled { get; set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; set; }
 
     [JsonProperty()]
-    public virtual bool TreeViewEnabled { get; protected set; }
+    public virtual bool TreeViewEnabled { get; set; }
 
     [JsonProperty()]
-    public virtual int UIVersion { get; protected set; }
+    public virtual int UIVersion { get; set; }
 
     [JsonProperty()]
-    public virtual bool UIVersionConfigurationEnabled { get; protected set; }
+    public virtual bool UIVersionConfigurationEnabled { get; set; }
 
     [JsonProperty()]
-    public virtual string Url { get; protected set; }
+    public virtual string? Url { get; set; }
 
     [JsonProperty()]
-    public virtual string WelcomePage { get; protected set; }
+    public virtual string? WelcomePage { get; set; }
 
 }

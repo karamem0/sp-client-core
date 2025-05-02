@@ -21,39 +21,39 @@ public class TenantSiteDesign : ClientObject
 {
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; set; }
 
     [JsonProperty()]
-    public virtual Guid DesignPackageId { get; protected set; }
+    public virtual Guid DesignPackageId { get; set; }
 
     [JsonProperty()]
-    public virtual TenantTemplateDesignType DesignType { get; protected set; }
+    public virtual TenantTemplateDesignType? DesignType { get; set; }
 
     [JsonProperty()]
-    public virtual Guid Id { get; protected set; }
+    public virtual Guid Id { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsDefault { get; protected set; }
+    public virtual bool IsDefault { get; set; }
 
     [JsonProperty()]
-    public virtual string PreviewImageAltText { get; protected set; }
+    public virtual string? PreviewImageAltText { get; set; }
 
     [JsonProperty()]
-    public virtual string PreviewImageUrl { get; protected set; }
+    public virtual string? PreviewImageUrl { get; set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<string> SiteScriptIds { get; protected set; }
+    public virtual IReadOnlyCollection<string>? SiteScriptIds { get; set; }
 
     [JsonProperty("WebTemplate")]
-    public virtual string SiteTemplate { get; protected set; }
+    public virtual string? SiteTemplate { get; set; }
 
     [JsonProperty()]
-    public virtual string ThumbnailUrl { get; protected set; }
+    public virtual string? ThumbnailUrl { get; set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; set; }
 
     [JsonProperty()]
-    public virtual int Version { get; protected set; }
+    public virtual int Version { get; set; }
 
 }

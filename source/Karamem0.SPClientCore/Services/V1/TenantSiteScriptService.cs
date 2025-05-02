@@ -19,9 +19,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantSiteScriptService
 {
 
-    TenantSiteScript AddObject(IReadOnlyDictionary<string, object> creationInfo);
+    TenantSiteScript AddObject(IReadOnlyDictionary<string, object?> creationInfo);
 
-    TenantSiteScript GetObject(Guid? siteScriptId);
+    TenantSiteScript GetObject(Guid siteScriptId);
 
     IEnumerable<TenantSiteScript> GetObjectEnumerable();
 
@@ -29,16 +29,15 @@ public interface ITenantSiteScriptService
 
     string GetScriptFromList(string listUrl);
 
-    string GetScriptFromSite(string siteUrl, IReadOnlyDictionary<string, object> serializationInfo);
+    string GetScriptFromSite(string siteUrl, IReadOnlyDictionary<string, object?> serializationInfo);
 
 }
 
 public class TenantSiteScriptService(ClientContext clientContext) : ClientService(clientContext), ITenantSiteScriptService
 {
 
-    public TenantSiteScript AddObject(IReadOnlyDictionary<string, object> creationInfo)
+    public TenantSiteScript AddObject(IReadOnlyDictionary<string, object?> creationInfo)
     {
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
@@ -54,9 +53,8 @@ public class TenantSiteScriptService(ClientContext clientContext) : ClientServic
             .ToObject<TenantSiteScript>(requestPayload.GetActionId<ClientActionMethod>());
     }
 
-    public TenantSiteScript GetObject(Guid? siteScriptId)
+    public TenantSiteScript GetObject(Guid siteScriptId)
     {
-        _ = siteScriptId ?? throw new ArgumentNullException(nameof(siteScriptId));
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
             new ClientActionStaticMethod(
@@ -90,7 +88,6 @@ public class TenantSiteScriptService(ClientContext clientContext) : ClientServic
 
     public void RemoveObject(TenantSiteScript siteScriptObject)
     {
-        _ = siteScriptObject ?? throw new ArgumentNullException(nameof(siteScriptObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
@@ -106,7 +103,6 @@ public class TenantSiteScriptService(ClientContext clientContext) : ClientServic
 
     public string GetScriptFromList(string listUrl)
     {
-        _ = listUrl ?? throw new ArgumentNullException(nameof(listUrl));
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
             new ClientActionStaticMethod(
@@ -120,10 +116,8 @@ public class TenantSiteScriptService(ClientContext clientContext) : ClientServic
             .ToObject<string>(requestPayload.GetActionId<ClientActionStaticMethod>());
     }
 
-    public string GetScriptFromSite(string siteUrl, IReadOnlyDictionary<string, object> serializationInfo)
+    public string GetScriptFromSite(string siteUrl, IReadOnlyDictionary<string, object?> serializationInfo)
     {
-        _ = siteUrl ?? throw new ArgumentNullException(nameof(siteUrl));
-        _ = serializationInfo ?? throw new ArgumentNullException(nameof(serializationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(

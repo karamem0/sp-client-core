@@ -21,27 +21,27 @@ public class ContentTypeColumn : ClientObject
 {
 
     [JsonProperty("FieldInternalName")]
-    public virtual string ColumnName { get; protected set; }
+    public virtual string? ColumnName { get; set; }
 
     [JsonProperty()]
-    public virtual string DisplayName { get; protected set; }
+    public virtual string? DisplayName { get; set; }
 
     [JsonProperty()]
-    public virtual bool Hidden { get; protected set; }
+    public virtual bool Hidden { get; set; }
 
     [JsonProperty()]
-    public virtual Guid Id { get; protected set; }
+    public virtual Guid Id { get; set; }
 
     [JsonProperty()]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; set; }
 
     [JsonProperty()]
-    public virtual bool ReadOnly { get; protected set; }
+    public virtual bool ReadOnly { get; set; }
 
     [JsonProperty()]
-    public virtual bool Required { get; protected set; }
+    public virtual bool Required { get; set; }
 
     [JsonProperty()]
-    public virtual bool ShowInDisplayForm { get; protected set; }
+    public virtual bool ShowInDisplayForm { get; set; }
 
 }

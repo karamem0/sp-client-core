@@ -21,51 +21,51 @@ public class SharingInfo : ClientObject
 {
 
     [JsonProperty()]
-    public virtual string AnonymousEditLink { get; protected set; }
+    public virtual string? AnonymousEditLink { get; set; }
 
     [JsonProperty()]
-    public virtual string AnonymousViewLink { get; protected set; }
+    public virtual string? AnonymousViewLink { get; set; }
 
     [JsonProperty()]
-    public virtual bool CanBeShared { get; protected set; }
+    public virtual bool CanBeShared { get; set; }
 
     [JsonProperty()]
-    public virtual bool CanBeUnshared { get; protected set; }
+    public virtual bool CanBeUnshared { get; set; }
 
     [JsonProperty()]
-    public virtual bool CanManagePermissions { get; protected set; }
+    public virtual bool CanManagePermissions { get; set; }
 
     [JsonProperty()]
-    public virtual bool HasPendingAccessRequests { get; protected set; }
+    public virtual bool HasPendingAccessRequests { get; set; }
 
     [JsonProperty()]
-    public virtual bool HasPermissionLevels { get; protected set; }
+    public virtual bool HasPermissionLevels { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsFolder { get; protected set; }
+    public virtual bool IsFolder { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsSharedWithCurrentUser { get; protected set; }
+    public virtual bool IsSharedWithCurrentUser { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsSharedWithGuest { get; protected set; }
+    public virtual bool IsSharedWithGuest { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsSharedWithMany { get; protected set; }
+    public virtual bool IsSharedWithMany { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsSharedWithSecurityGroup { get; protected set; }
+    public virtual bool IsSharedWithSecurityGroup { get; set; }
 
     [JsonProperty()]
-    public virtual string PendingAccessRequestsLink { get; protected set; }
+    public virtual string? PendingAccessRequestsLink { get; set; }
 
     [JsonProperty("SharedWithUsersCollection")]
-    public virtual SharingInfoUserEnumerable SharedWithUsers { get; protected set; }
+    public virtual SharingInfoUserEnumerable? SharedWithUsers { get; set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<SharingLinkInfo> SharingLinks { get; protected set; }
+    public virtual IReadOnlyCollection<SharingLinkInfo>? SharingLinks { get; set; }
 
     [JsonProperty()]
-    public virtual int TotalFileCount { get; protected set; }
+    public virtual int TotalFileCount { get; set; }
 
 }

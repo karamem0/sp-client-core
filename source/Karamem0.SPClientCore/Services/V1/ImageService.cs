@@ -43,27 +43,16 @@ public class ImageService(ClientContext clientContext) : ClientService(clientCon
         System.IO.Stream fileContent
     )
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
-        _ = fileName ?? throw new ArgumentNullException(nameof(fileName));
-        _ = fileContent ?? throw new ArgumentNullException(nameof(fileContent));
         var requestUrl = this
             .ClientContext.BaseAddress.ConcatPath("_api/web/uploadimage(listtitle=@v1,imagename=@v2,listid=@v3,itemid=@v4)")
             .ConcatQuery(
                 UriQuery.Create(
-                    new Dictionary<string, object>()
+                    new Dictionary<string, object?>()
                     {
-                        {
-                            "@v1", listObject.Title
-                        },
-                        {
-                            "@v2", fileName
-                        },
-                        {
-                            "@v3", listObject.Id
-                        },
-                        {
-                            "@v4", 0
-                        }
+                        ["@v1"] = listObject.Title,
+                        ["@v2"] = fileName,
+                        ["@v3"] = listObject.Id,
+                        ["@v4"] = 0
                     },
                     true
                 )
@@ -79,9 +68,6 @@ public class ImageService(ClientContext clientContext) : ClientService(clientCon
         System.IO.Stream fileContent
     )
     {
-        _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
-        _ = fileName ?? throw new ArgumentNullException(nameof(fileName));
-        _ = fileContent ?? throw new ArgumentNullException(nameof(fileContent));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listItemObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -99,20 +85,12 @@ public class ImageService(ClientContext clientContext) : ClientService(clientCon
             .ClientContext.BaseAddress.ConcatPath("_api/web/uploadimage(listtitle=@v1,imagename=@v2,listid=@v3,itemid=@v4)")
             .ConcatQuery(
                 UriQuery.Create(
-                    new Dictionary<string, object>()
+                    new Dictionary<string, object?>()
                     {
-                        {
-                            "@v1", listObject.Title
-                        },
-                        {
-                            "@v2", fileName
-                        },
-                        {
-                            "@v3", listObject.Id
-                        },
-                        {
-                            "@v4", listItemObject.Id
-                        }
+                        ["@v1"] = listObject.Title,
+                        ["@v2"] = fileName,
+                        ["@v3"] = listObject.Id,
+                        ["@v4"] = listItemObject.Id
                     },
                     true
                 )

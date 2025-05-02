@@ -22,8 +22,8 @@ public interface IStorageEntityService
     void AddObject(
         string key,
         string value,
-        string description,
-        string comments
+        string? description,
+        string? comments
     );
 
     StorageEntity GetObject(string key);
@@ -38,15 +38,16 @@ public class StorageEntityService(ClientContext clientContext) : ClientService(c
     public void AddObject(
         string key,
         string value,
-        string description,
-        string comment
+        string? description,
+        string? comment
     )
     {
-        _ = key ?? throw new ArgumentNullException(nameof(key));
-        _ = value ?? throw new ArgumentNullException(nameof(value));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"), objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+        var objectPath2 = requestPayload.Add(
+            new ObjectPathProperty(objectPath1.Id, "Web"),
+            objectPathId => new ClientActionInstantiateObjectPath(objectPathId)
+        );
         var objectPath3 = requestPayload.Add(
             objectPath2,
             objectPathId => new ClientActionMethod(
@@ -63,10 +64,12 @@ public class StorageEntityService(ClientContext clientContext) : ClientService(c
 
     public StorageEntity GetObject(string key)
     {
-        _ = key ?? throw new ArgumentNullException(nameof(key));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"), objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+        var objectPath2 = requestPayload.Add(
+            new ObjectPathProperty(objectPath1.Id, "Web"),
+            objectPathId => new ClientActionInstantiateObjectPath(objectPathId)
+        );
         var objectPath3 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath2.Id,
@@ -86,10 +89,12 @@ public class StorageEntityService(ClientContext clientContext) : ClientService(c
 
     public void RemoveObject(string key)
     {
-        _ = key ?? throw new ArgumentNullException(nameof(key));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"), objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+        var objectPath2 = requestPayload.Add(
+            new ObjectPathProperty(objectPath1.Id, "Web"),
+            objectPathId => new ClientActionInstantiateObjectPath(objectPathId)
+        );
         var objectPath3 = requestPayload.Add(
             objectPath2,
             objectPathId => new ClientActionMethod(

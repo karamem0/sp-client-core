@@ -78,7 +78,6 @@ public class TenantExternalUserService(ClientContext clientContext) : ClientServ
         SortOrder sortOrder
     )
     {
-        _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));
         var position = 0;
         var totalCount = 0;
         do
@@ -118,7 +117,6 @@ public class TenantExternalUserService(ClientContext clientContext) : ClientServ
 
     public void RemoveObject(ExternalUser userObject)
     {
-        _ = userObject ?? throw new ArgumentNullException(nameof(userObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Office365Tenant)));
         var objectPath2 = requestPayload.Add(

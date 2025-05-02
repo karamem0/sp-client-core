@@ -21,21 +21,21 @@ public class TenantSiteScriptSerializationInfo : ClientValueObject
 {
 
     [JsonProperty()]
-    public virtual bool IncludeBranding { get; protected set; }
+    public virtual bool IncludeBranding { get; set; }
 
     [JsonProperty()]
-    public virtual string[] IncludedLists { get; protected set; }
+    public virtual string[]? IncludedLists { get; set; }
 
     [JsonProperty()]
-    public virtual bool IncludeLinksToExportedItems { get; protected set; }
+    public virtual bool IncludeLinksToExportedItems { get; set; }
 
     [JsonProperty()]
-    public virtual bool IncludeRegionalSettings { get; protected set; }
+    public virtual bool IncludeRegionalSettings { get; set; }
 
     [JsonProperty()]
-    public virtual bool IncludeSiteExternalSharingCapability { get; protected set; }
+    public virtual bool IncludeSiteExternalSharingCapability { get; set; }
 
     [JsonProperty()]
-    public virtual bool IncludeTheme { get; protected set; }
+    public virtual bool IncludeTheme { get; set; }
 
 }

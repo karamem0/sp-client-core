@@ -19,20 +19,19 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IAppInstanceService
 {
 
-    AppInstance GetObject(Guid? appInstanceId);
+    AppInstance GetObject(Guid appInstanceId);
 
     IEnumerable<AppInstance> GetObjectEnumerable();
 
-    IEnumerable<AppInstance> GetObjectEnumerable(Guid? appProductId);
+    IEnumerable<AppInstance> GetObjectEnumerable(Guid appProductId);
 
 }
 
 public class AppInstanceService(ClientContext clientContext) : ClientService(clientContext), IAppInstanceService
 {
 
-    public AppInstance GetObject(Guid? appInstanceId)
+    public AppInstance GetObject(Guid appInstanceId)
     {
-        _ = appInstanceId ?? throw new ArgumentNullException(nameof(appInstanceId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -76,9 +75,8 @@ public class AppInstanceService(ClientContext clientContext) : ClientService(cli
             .ToObject<AppInstanceEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<AppInstance> GetObjectEnumerable(Guid? appProductId)
+    public IEnumerable<AppInstance> GetObjectEnumerable(Guid appProductId)
     {
-        _ = appProductId ?? throw new ArgumentNullException(nameof(appProductId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));

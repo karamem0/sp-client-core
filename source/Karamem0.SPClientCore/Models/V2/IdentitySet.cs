@@ -20,15 +20,15 @@ public class IdentitySet : ODataV2Object
 {
 
     [JsonProperty("application")]
-    public virtual Identity Application { get; protected set; }
+    public virtual Identity? Application { get; protected set; }
 
     [JsonProperty("device")]
-    public virtual Identity Device { get; protected set; }
+    public virtual Identity? Device { get; protected set; }
 
     [JsonProperty("group")]
-    public virtual Identity Group { get; protected set; }
+    public virtual Identity? Group { get; protected set; }
 
     [JsonProperty("user")]
-    public virtual Identity User { get; protected set; }
+    public virtual Identity? User { get; protected set; }
 
 }

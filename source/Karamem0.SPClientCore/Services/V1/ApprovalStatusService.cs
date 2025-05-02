@@ -19,30 +19,29 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IApprovalStatusService
 {
 
-    void ApproveObject(File fileObject, string comment);
+    void ApproveObject(File fileObject, string? comment);
 
-    void ApproveObject(Folder folderObject, string comment);
+    void ApproveObject(Folder folderObject, string? comment);
 
-    void ApproveObject(ListItem listItemObject, string comment);
+    void ApproveObject(ListItem listItemObject, string? comment);
 
-    void DenyObject(File fileObject, string comment);
+    void DenyObject(File fileObject, string? comment);
 
-    void DenyObject(Folder folderObject, string comment);
+    void DenyObject(Folder folderObject, string? comment);
 
-    void DenyObject(ListItem listItemObject, string comment);
+    void DenyObject(ListItem listItemObject, string? comment);
 
-    void SuspendObject(Folder folderObject, string comment);
+    void SuspendObject(Folder folderObject, string? comment);
 
-    void SuspendObject(ListItem listItemObject, string comment);
+    void SuspendObject(ListItem listItemObject, string? comment);
 
 }
 
 public class ApprovalStatusService(ClientContext clientContext) : ClientService(clientContext), IApprovalStatusService
 {
 
-    public void ApproveObject(File fileObject, string comment)
+    public void ApproveObject(File fileObject, string? comment)
     {
-        _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(fileObject.ObjectIdentity),
@@ -55,9 +54,8 @@ public class ApprovalStatusService(ClientContext clientContext) : ClientService(
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public void ApproveObject(Folder folderObject, string comment)
+    public void ApproveObject(Folder folderObject, string? comment)
     {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -79,9 +77,8 @@ public class ApprovalStatusService(ClientContext clientContext) : ClientService(
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public void ApproveObject(ListItem listItemObject, string comment)
+    public void ApproveObject(ListItem listItemObject, string? comment)
     {
-        _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(listItemObject.ObjectIdentity),
@@ -102,9 +99,8 @@ public class ApprovalStatusService(ClientContext clientContext) : ClientService(
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public void DenyObject(File fileObject, string comment)
+    public void DenyObject(File fileObject, string? comment)
     {
-        _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(fileObject.ObjectIdentity),
@@ -117,9 +113,8 @@ public class ApprovalStatusService(ClientContext clientContext) : ClientService(
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public void DenyObject(Folder folderObject, string comment)
+    public void DenyObject(Folder folderObject, string? comment)
     {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -141,9 +136,8 @@ public class ApprovalStatusService(ClientContext clientContext) : ClientService(
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public void DenyObject(ListItem listItemObject, string comment)
+    public void DenyObject(ListItem listItemObject, string? comment)
     {
-        _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(listItemObject.ObjectIdentity),
@@ -164,9 +158,8 @@ public class ApprovalStatusService(ClientContext clientContext) : ClientService(
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public void SuspendObject(Folder folderObject, string comment)
+    public void SuspendObject(Folder folderObject, string? comment)
     {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -188,9 +181,8 @@ public class ApprovalStatusService(ClientContext clientContext) : ClientService(
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public void SuspendObject(ListItem listItemObject, string comment)
+    public void SuspendObject(ListItem listItemObject, string? comment)
     {
-        _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(listItemObject.ObjectIdentity),

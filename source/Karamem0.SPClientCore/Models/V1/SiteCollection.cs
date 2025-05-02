@@ -21,138 +21,138 @@ public class SiteCollection : ClientObject
 {
 
     [JsonProperty()]
-    public virtual bool AllowCreateDeclarativeWorkflow { get; protected set; }
+    public virtual bool AllowCreateDeclarativeWorkflow { get; set; }
 
     [JsonProperty()]
-    public virtual bool AllowDesigner { get; protected set; }
+    public virtual bool AllowDesigner { get; set; }
 
     [JsonProperty()]
-    public virtual bool AllowMasterPageEditing { get; protected set; }
+    public virtual bool AllowMasterPageEditing { get; set; }
 
     [JsonProperty()]
-    public virtual bool AllowRevertFromTemplate { get; protected set; }
+    public virtual bool AllowRevertFromTemplate { get; set; }
 
     [JsonProperty()]
-    public virtual bool AllowSaveDeclarativeWorkflowAsTemplate { get; protected set; }
+    public virtual bool AllowSaveDeclarativeWorkflowAsTemplate { get; set; }
 
     [JsonProperty()]
-    public virtual bool AllowSavePublishDeclarativeWorkflow { get; protected set; }
+    public virtual bool AllowSavePublishDeclarativeWorkflow { get; set; }
 
     [JsonProperty()]
-    public virtual bool AllowSelfServiceUpgrade { get; protected set; }
+    public virtual bool AllowSelfServiceUpgrade { get; set; }
 
     [JsonProperty()]
-    public virtual bool AllowSelfServiceUpgradeEvaluation { get; protected set; }
+    public virtual bool AllowSelfServiceUpgradeEvaluation { get; set; }
 
     [JsonProperty()]
-    public virtual int AuditLogTrimmingRetention { get; protected set; }
+    public virtual int AuditLogTrimmingRetention { get; set; }
 
     [JsonProperty()]
-    public virtual Guid ChannelGroupId { get; protected set; }
+    public virtual Guid ChannelGroupId { get; set; }
 
     [JsonProperty()]
-    public virtual string Classification { get; protected set; }
+    public virtual string? Classification { get; set; }
 
     [JsonProperty()]
-    public virtual int CompatibilityLevel { get; protected set; }
+    public virtual int CompatibilityLevel { get; set; }
 
     [JsonProperty()]
-    public virtual ChangeToken CurrentChangeToken { get; protected set; }
+    public virtual ChangeToken? CurrentChangeToken { get; set; }
 
     [JsonProperty()]
-    public virtual bool DisableAppViews { get; protected set; }
+    public virtual bool DisableAppViews { get; set; }
 
     [JsonProperty()]
-    public virtual bool DisableCompanyWideSharingLinks { get; protected set; }
+    public virtual bool DisableCompanyWideSharingLinks { get; set; }
 
     [JsonProperty()]
-    public virtual bool DisableFlows { get; protected set; }
+    public virtual bool DisableFlows { get; set; }
 
     [JsonProperty()]
-    public virtual bool ExternalSharingTipsEnabled { get; protected set; }
+    public virtual bool ExternalSharingTipsEnabled { get; set; }
 
     [JsonProperty()]
-    public virtual string GeoLocation { get; protected set; }
+    public virtual string? GeoLocation { get; set; }
 
     [JsonProperty()]
-    public virtual Guid GroupId { get; protected set; }
+    public virtual Guid GroupId { get; set; }
 
     [JsonProperty()]
-    public virtual Guid HubSiteId { get; protected set; }
+    public virtual Guid HubSiteId { get; set; }
 
     [JsonProperty()]
-    public virtual Guid Id { get; protected set; }
+    public virtual Guid Id { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsHubSite { get; protected set; }
+    public virtual bool IsHubSite { get; set; }
 
     [JsonProperty()]
-    public virtual string LockIssue { get; protected set; }
+    public virtual string? LockIssue { get; set; }
 
     [JsonProperty()]
-    public virtual int MaxItemsPerThrottledOperation { get; protected set; }
+    public virtual int MaxItemsPerThrottledOperation { get; set; }
 
     [JsonProperty()]
-    public virtual bool MediaTranscriptionDisabled { get; protected set; }
+    public virtual bool MediaTranscriptionDisabled { get; set; }
 
     [JsonProperty()]
-    public virtual bool NeedsB2BUpgrade { get; protected set; }
+    public virtual bool NeedsB2BUpgrade { get; set; }
 
     [JsonProperty()]
-    public virtual ResourcePath ResourcePath { get; protected set; }
+    public virtual ResourcePath? ResourcePath { get; set; }
 
     [JsonProperty("PrimaryUri")]
-    public virtual string PrimaryUrl { get; protected set; }
+    public virtual string? PrimaryUrl { get; set; }
 
     [JsonProperty()]
-    public virtual bool ReadOnly { get; protected set; }
+    public virtual bool ReadOnly { get; set; }
 
     [JsonProperty()]
-    public virtual string RequiredDesignerVersion { get; protected set; }
+    public virtual string? RequiredDesignerVersion { get; set; }
 
     [JsonProperty()]
-    public virtual int SandboxedCodeActivationCapability { get; protected set; }
+    public virtual int SandboxedCodeActivationCapability { get; set; }
 
     [JsonProperty()]
-    public virtual Guid SensitivityLabel { get; protected set; }
+    public virtual Guid SensitivityLabel { get; set; }
 
     [JsonProperty()]
-    public virtual string SensitivityLabelId { get; protected set; }
+    public virtual string? SensitivityLabelId { get; set; }
 
     [JsonProperty()]
-    public virtual string ServerRelativeUrl { get; protected set; }
+    public virtual string? ServerRelativeUrl { get; set; }
 
     [JsonProperty()]
-    public virtual bool ShareByEmailEnabled { get; protected set; }
+    public virtual bool ShareByEmailEnabled { get; set; }
 
     [JsonProperty()]
-    public virtual bool ShareByLinkEnabled { get; protected set; }
+    public virtual bool ShareByLinkEnabled { get; set; }
 
     [JsonProperty()]
-    public virtual bool ShowUrlStructure { get; protected set; }
+    public virtual bool ShowUrlStructure { get; set; }
 
     [JsonProperty()]
-    public virtual bool TrimAuditLog { get; protected set; }
+    public virtual bool TrimAuditLog { get; set; }
 
     [JsonProperty()]
-    public virtual bool UIVersionConfigurationEnabled { get; protected set; }
+    public virtual bool UIVersionConfigurationEnabled { get; set; }
 
     [JsonProperty()]
-    public virtual DateTime UpgradeReminderDate { get; protected set; }
+    public virtual DateTime UpgradeReminderDate { get; set; }
 
     [JsonProperty()]
-    public virtual bool UpgradeScheduled { get; protected set; }
+    public virtual bool UpgradeScheduled { get; set; }
 
     [JsonProperty()]
-    public virtual DateTime UpgradeScheduledDate { get; protected set; }
+    public virtual DateTime UpgradeScheduledDate { get; set; }
 
     [JsonProperty()]
-    public virtual bool Upgrading { get; protected set; }
+    public virtual bool Upgrading { get; set; }
 
     [JsonProperty()]
-    public virtual string Url { get; protected set; }
+    public virtual string? Url { get; set; }
 
     [JsonProperty()]
-    public virtual bool WriteLocked { get; protected set; }
+    public virtual bool WriteLocked { get; set; }
 
 }

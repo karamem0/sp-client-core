@@ -21,12 +21,12 @@ public class SubscriptionModificationInfo : ODataV1Object
 {
 
     [JsonProperty("clientState")]
-    public virtual string ClientState { get; protected set; }
+    public virtual string? ClientState { get; set; }
 
     [JsonProperty("expirationDateTime")]
-    public virtual DateTime ExpirationDateTime { get; protected set; }
+    public virtual DateTime ExpirationDateTime { get; set; }
 
     [JsonProperty("notificationUrl")]
-    public virtual string NotificationUrl { get; protected set; }
+    public virtual string? NotificationUrl { get; set; }
 
 }

@@ -21,12 +21,12 @@ public class TenantTheme : ClientObject
 {
 
     [JsonProperty()]
-    public virtual bool IsInverted { get; protected set; }
+    public virtual bool IsInverted { get; set; }
 
     [JsonProperty()]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyDictionary<string, string> Palette { get; protected set; }
+    public virtual IReadOnlyDictionary<string, string>? Palette { get; set; }
 
 }

@@ -19,11 +19,11 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITermGroupService
 {
 
-    TermGroup AddObject(string termGroupName, Guid? termGroupId);
+    TermGroup AddObject(string termGroupName, Guid termGroupId);
 
     TermGroup GetObject(TermGroup termGroupObject);
 
-    TermGroup GetObject(Guid? termGroupId);
+    TermGroup GetObject(Guid termGroupId);
 
     TermGroup GetObject(string termGroupName);
 
@@ -31,17 +31,15 @@ public interface ITermGroupService
 
     void RemoveObject(TermGroup termGroupObject);
 
-    void SetObject(TermGroup termGroupObject, IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObject(TermGroup termGroupObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class TermGroupService(ClientContext clientContext) : ClientService<TermGroup>(clientContext), ITermGroupService
 {
 
-    public TermGroup AddObject(string termGroupName, Guid? termGroupId)
+    public TermGroup AddObject(string termGroupName, Guid termGroupId)
     {
-        _ = termGroupName ?? throw new ArgumentNullException(nameof(termGroupName));
-        _ = termGroupId ?? throw new ArgumentNullException(nameof(termGroupId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession"));
         var objectPath2 = requestPayload.Add(new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore"));
@@ -63,13 +61,15 @@ public class TermGroupService(ClientContext clientContext) : ClientService<TermG
             .ToObject<TermGroup>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public TermGroup GetObject(Guid? termGroupId)
+    public TermGroup GetObject(Guid termGroupId)
     {
-        _ = termGroupId ?? throw new ArgumentNullException(nameof(termGroupId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession"));
         var objectPath2 = requestPayload.Add(new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore"));
-        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "Groups"), objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+        var objectPath3 = requestPayload.Add(
+            new ObjectPathProperty(objectPath2.Id, "Groups"),
+            objectPathId => new ClientActionInstantiateObjectPath(objectPathId)
+        );
         var objectPath4 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath3.Id,
@@ -89,11 +89,13 @@ public class TermGroupService(ClientContext clientContext) : ClientService<TermG
 
     public TermGroup GetObject(string termGroupName)
     {
-        _ = termGroupName ?? throw new ArgumentNullException(nameof(termGroupName));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession"));
         var objectPath2 = requestPayload.Add(new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore"));
-        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "Groups"), objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+        var objectPath3 = requestPayload.Add(
+            new ObjectPathProperty(objectPath2.Id, "Groups"),
+            objectPathId => new ClientActionInstantiateObjectPath(objectPathId)
+        );
         var objectPath4 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath3.Id,
@@ -130,19 +132,15 @@ public class TermGroupService(ClientContext clientContext) : ClientService<TermG
             .ToObject<TermGroupEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public override void SetObject(TermGroup termGroupObject, IReadOnlyDictionary<string, object> modificationInfo)
+    public override void SetObject(TermGroup termGroupObject, IReadOnlyDictionary<string, object?> modificationInfo)
     {
-        _ = termGroupObject ?? throw new ArgumentNullException(nameof(termGroupObject));
-        _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termGroupObject.ObjectIdentity));
-        var objectPath2 = requestPayload.Add(
-            objectPath1,
-            requestPayload
-                .CreateSetPropertyDelegates(termGroupObject, modificationInfo)
-                .ToArray()
+        var objectPath2 = requestPayload.Add(objectPath1, requestPayload.CreateSetPropertyDelegates(termGroupObject, modificationInfo));
+        var objectPath3 = requestPayload.Add(
+            new ObjectPathProperty(objectPath2.Id, "TermStore"),
+            objectPathId => new ClientActionInstantiateObjectPath(objectPathId)
         );
-        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "TermStore"), objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
         var objectPath4 = requestPayload.Add(objectPath3, objectPathId => new ClientActionMethod(objectPathId, "CommitAll"));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }

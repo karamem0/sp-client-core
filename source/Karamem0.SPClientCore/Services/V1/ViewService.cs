@@ -19,11 +19,11 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IViewService
 {
 
-    View AddObject(List listObject, IReadOnlyDictionary<string, object> creationInfo);
+    View AddObject(List listObject, IReadOnlyDictionary<string, object?> creationInfo);
 
     View GetObject(View viewObject);
 
-    View GetObject(List listObject, Guid? viewId);
+    View GetObject(List listObject, Guid viewId);
 
     View GetObject(List listObject, string viewTitle);
 
@@ -31,17 +31,15 @@ public interface IViewService
 
     void RemoveObject(View viewObject);
 
-    void SetObject(View viewObject, IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObject(View viewObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class ViewService(ClientContext clientContext) : ClientService<View>(clientContext), IViewService
 {
 
-    public View AddObject(List listObject, IReadOnlyDictionary<string, object> creationInfo)
+    public View AddObject(List listObject, IReadOnlyDictionary<string, object?> creationInfo)
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Views"));
@@ -62,10 +60,8 @@ public class ViewService(ClientContext clientContext) : ClientService<View>(clie
             .ToObject<View>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public View GetObject(List listObject, Guid? viewId)
+    public View GetObject(List listObject, Guid viewId)
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
-        _ = viewId ?? throw new ArgumentNullException(nameof(viewId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Views"));
@@ -91,8 +87,6 @@ public class ViewService(ClientContext clientContext) : ClientService<View>(clie
 
     public View GetObject(List listObject, string viewTitle)
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
-        _ = viewTitle ?? throw new ArgumentNullException(nameof(viewTitle));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Views"));
@@ -118,7 +112,6 @@ public class ViewService(ClientContext clientContext) : ClientService<View>(clie
 
     public IEnumerable<View> GetObjectEnumerable(List listObject)
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(

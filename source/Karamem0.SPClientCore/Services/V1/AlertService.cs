@@ -19,26 +19,25 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IAlertService
 {
 
-    Guid AddObject(IReadOnlyDictionary<string, object> creationInfo);
+    Guid AddObject(IReadOnlyDictionary<string, object?> creationInfo);
 
     Alert GetObject(Alert alertObject);
 
-    Alert GetObject(Guid? alertId);
+    Alert GetObject(Guid alertId);
 
     IEnumerable<Alert> GetObjectEnumerable();
 
     void RemoveObject(Alert alertObject);
 
-    void SetObject(Alert alertObject, IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObject(Alert alertObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class AlertService(ClientContext clientContext) : ClientService<Alert>(clientContext), IAlertService
 {
 
-    public Guid AddObject(IReadOnlyDictionary<string, object> creationInfo)
+    public Guid AddObject(IReadOnlyDictionary<string, object?> creationInfo)
     {
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -58,7 +57,6 @@ public class AlertService(ClientContext clientContext) : ClientService<Alert>(cl
 
     public override Alert GetObject(Alert clientObject)
     {
-        _ = clientObject ?? throw new ArgumentNullException(nameof(clientObject));
         var conditions = new List<string>();
         if (clientObject.AlertFrequency != AlertFrequency.Immediate)
         {
@@ -86,9 +84,8 @@ public class AlertService(ClientContext clientContext) : ClientService<Alert>(cl
             .ToObject<Alert>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public Alert GetObject(Guid? alertId)
+    public Alert GetObject(Guid alertId)
     {
-        _ = alertId ?? throw new ArgumentNullException(nameof(alertId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -149,18 +146,14 @@ public class AlertService(ClientContext clientContext) : ClientService<Alert>(cl
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public override void SetObject(Alert alertObject, IReadOnlyDictionary<string, object> modificationInfo)
+    public override void SetObject(Alert alertObject, IReadOnlyDictionary<string, object?> modificationInfo)
     {
-        _ = alertObject ?? throw new ArgumentNullException(nameof(alertObject));
-        _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectName = alertObject.ObjectType;
         var objectType = ClientObject.GetType(objectName);
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(alertObject.ObjectIdentity),
-            requestPayload
-                .CreateSetPropertyDelegates(alertObject, modificationInfo)
-                .ToArray()
+            requestPayload.CreateSetPropertyDelegates(alertObject, modificationInfo)
         );
         var objectPath2 = requestPayload.Add(objectPath1, objectPathId => new ClientActionMethod(objectPathId, "UpdateAlert"));
         _ = this.ClientContext.ProcessQuery(requestPayload);

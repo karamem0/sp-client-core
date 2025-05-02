@@ -20,7 +20,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IUserService
 {
 
-    User AddObject(IReadOnlyDictionary<string, object> creationInfo);
+    User AddObject(IReadOnlyDictionary<string, object?> creationInfo);
 
     User EnsureObject(string userLoginName);
 
@@ -28,7 +28,7 @@ public interface IUserService
 
     User GetObject(User userObject);
 
-    User GetObject(int? userId);
+    User GetObject(int userId);
 
     User GetObject(string userName);
 
@@ -36,16 +36,15 @@ public interface IUserService
 
     void RemoveObject(User userObject);
 
-    void SetObject(User userObject, IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObject(User userObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class UserService(ClientContext clientContext) : ClientService<User>(clientContext), IUserService
 {
 
-    public User AddObject(IReadOnlyDictionary<string, object> creationInfo)
+    public User AddObject(IReadOnlyDictionary<string, object?> creationInfo)
     {
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -69,7 +68,6 @@ public class UserService(ClientContext clientContext) : ClientService<User>(clie
 
     public User EnsureObject(string userLoginName)
     {
-        _ = userLoginName ?? throw new ArgumentNullException(nameof(userLoginName));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -108,9 +106,8 @@ public class UserService(ClientContext clientContext) : ClientService<User>(clie
             .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public User GetObject(int? userId)
+    public User GetObject(int userId)
     {
-        _ = userId ?? throw new ArgumentNullException(nameof(userId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -134,7 +131,6 @@ public class UserService(ClientContext clientContext) : ClientService<User>(clie
 
     public User GetObject(string userName)
     {
-        _ = userName ?? throw new ArgumentNullException(nameof(userName));
         if (Regex.IsMatch(userName, "^[ci]:0"))
         {
             var requestPayload = new ClientRequestPayload();

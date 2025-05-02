@@ -21,30 +21,30 @@ public class TenantSiteDesignCreationInfo : ClientValueObject
 {
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; set; }
 
     [JsonProperty()]
-    public virtual Guid DesignPackageId { get; protected set; }
+    public virtual Guid DesignPackageId { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsDefault { get; protected set; }
+    public virtual bool IsDefault { get; set; }
 
     [JsonProperty()]
-    public virtual string PreviewImageAltText { get; protected set; }
+    public virtual string? PreviewImageAltText { get; set; }
 
     [JsonProperty()]
-    public virtual string PreviewImageUrl { get; protected set; }
+    public virtual string? PreviewImageUrl { get; set; }
 
     [JsonProperty()]
-    public virtual string[] SiteScriptIds { get; protected set; }
+    public virtual string[]? SiteScriptIds { get; set; }
 
     [JsonProperty("WebTemplate")]
-    public virtual string SiteTemplate { get; protected set; }
+    public virtual string? SiteTemplate { get; set; }
 
     [JsonProperty()]
-    public virtual string ThumbnailUrl { get; protected set; }
+    public virtual string? ThumbnailUrl { get; set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; set; }
 
 }

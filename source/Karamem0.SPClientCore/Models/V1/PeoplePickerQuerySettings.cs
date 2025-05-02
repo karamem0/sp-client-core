@@ -21,9 +21,9 @@ public class PeoplePickerQuerySettings : ClientValueObject
 {
 
     [JsonProperty()]
-    public virtual bool ExcludeAllUsersOnTenantClaim { get; protected set; }
+    public virtual bool ExcludeAllUsersOnTenantClaim { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsSharing { get; protected set; }
+    public virtual bool IsSharing { get; set; }
 
 }

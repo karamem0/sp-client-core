@@ -21,7 +21,7 @@ public interface ITenantService
 
     Tenant GetObject();
 
-    void SetObject(IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObject(IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
@@ -44,15 +44,12 @@ public class TenantService(ClientContext clientContext) : ClientService(clientCo
             .ToObject<Tenant>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public void SetObject(IReadOnlyDictionary<string, object> modificationInfo)
+    public void SetObject(IReadOnlyDictionary<string, object?> modificationInfo)
     {
-        _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathConstructor(typeof(Tenant)),
-            requestPayload
-                .CreateSetPropertyDelegates(typeof(Tenant), modificationInfo)
-                .ToArray()
+            requestPayload.CreateSetPropertyDelegates(typeof(Tenant), modificationInfo)
         );
         var objectPath2 = requestPayload.Add(objectPath1, objectPathId => new ClientActionMethod(objectPathId, "Update"));
         _ = this.ClientContext.ProcessQuery(requestPayload);

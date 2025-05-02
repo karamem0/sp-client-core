@@ -21,33 +21,33 @@ public class HubSiteCreationInfo : ClientValueObject
 {
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; set; }
 
     [JsonProperty()]
-    public virtual bool EnablePermissionsSync { get; protected set; }
+    public virtual bool EnablePermissionsSync { get; set; }
 
     [JsonProperty()]
-    public virtual bool HideNameInNavigation { get; protected set; }
+    public virtual bool HideNameInNavigation { get; set; }
 
     [JsonProperty()]
-    public virtual string LogoUrl { get; protected set; }
+    public virtual string? LogoUrl { get; set; }
 
     [JsonProperty()]
-    public virtual Guid ParentHubSiteId { get; protected set; }
+    public virtual Guid ParentHubSiteId { get; set; }
 
     [JsonProperty("SiteId")]
-    public virtual Guid SiteCollectionId { get; protected set; }
+    public virtual Guid SiteCollectionId { get; set; }
 
     [JsonProperty("SiteUrl")]
-    public virtual string SiteCollectionUrl { get; protected set; }
+    public virtual string? SiteCollectionUrl { get; set; }
 
     [JsonProperty()]
-    public virtual string Targets { get; protected set; }
+    public virtual string? Targets { get; set; }
 
     [JsonProperty()]
-    public virtual Guid TenantInstanceId { get; protected set; }
+    public virtual Guid TenantInstanceId { get; set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; set; }
 
 }

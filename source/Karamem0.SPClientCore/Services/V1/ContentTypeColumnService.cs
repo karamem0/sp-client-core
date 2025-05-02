@@ -21,7 +21,7 @@ public interface IContentTypeColumnService
 
     ContentTypeColumn AddObject(
         ContentType contentTypeObject,
-        IReadOnlyDictionary<string, object> creationInfo,
+        IReadOnlyDictionary<string, object?> creationInfo,
         bool pushChanges
     );
 
@@ -41,7 +41,7 @@ public interface IContentTypeColumnService
 
     void SetObject(
         ContentTypeColumn contentTypeColumnObject,
-        IReadOnlyDictionary<string, object> modificationInfo,
+        IReadOnlyDictionary<string, object?> modificationInfo,
         bool pushChanges
     );
 
@@ -52,12 +52,10 @@ public class ContentTypeColumnService(ClientContext clientContext) : ClientServi
 
     public ContentTypeColumn AddObject(
         ContentType contentTypeObject,
-        IReadOnlyDictionary<string, object> creationInfo,
+        IReadOnlyDictionary<string, object?> creationInfo,
         bool pushChanges
     )
     {
-        _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "FieldLinks"));
@@ -88,8 +86,6 @@ public class ContentTypeColumnService(ClientContext clientContext) : ClientServi
 
     public ContentTypeColumn GetObject(ContentType contentTypeObject, Guid? columnId)
     {
-        _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
-        _ = columnId ?? throw new ArgumentNullException(nameof(columnId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "FieldLinks"));
@@ -112,7 +108,6 @@ public class ContentTypeColumnService(ClientContext clientContext) : ClientServi
 
     public IEnumerable<ContentTypeColumn> GetObjectEnumerable(ContentType contentTypeObject)
     {
-        _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -131,7 +126,6 @@ public class ContentTypeColumnService(ClientContext clientContext) : ClientServi
 
     public void RemoveObject(ContentTypeColumn contentTypeColumnObject, bool pushChanges)
     {
-        _ = contentTypeColumnObject ?? throw new ArgumentNullException(nameof(contentTypeColumnObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(
@@ -162,8 +156,6 @@ public class ContentTypeColumnService(ClientContext clientContext) : ClientServi
         bool pushChanges
     )
     {
-        _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
-        _ = contentTypeColumnNames ?? throw new ArgumentNullException(nameof(contentTypeColumnNames));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "FieldLinks"));
@@ -188,12 +180,10 @@ public class ContentTypeColumnService(ClientContext clientContext) : ClientServi
 
     public void SetObject(
         ContentTypeColumn contentTypeColumnObject,
-        IReadOnlyDictionary<string, object> modificationInfo,
+        IReadOnlyDictionary<string, object?> modificationInfo,
         bool pushChanges
     )
     {
-        _ = contentTypeColumnObject ?? throw new ArgumentNullException(nameof(contentTypeColumnObject));
-        _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(

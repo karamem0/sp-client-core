@@ -21,42 +21,42 @@ public class CustomActionElement : ClientObject
 {
 
     [JsonProperty()]
-    public virtual Guid ClientSideComponentId { get; protected set; }
+    public virtual Guid ClientSideComponentId { get; set; }
 
     [JsonProperty()]
-    public virtual string ClientSideComponentProperties { get; protected set; }
+    public virtual string? ClientSideComponentProperties { get; set; }
 
     [JsonProperty()]
-    public virtual string CommandUIExtension { get; protected set; }
+    public virtual string? CommandUIExtension { get; set; }
 
     [JsonProperty()]
-    public virtual string Id { get; protected set; }
+    public virtual string? Id { get; set; }
 
     [JsonProperty()]
-    public virtual string EnabledScript { get; protected set; }
+    public virtual string? EnabledScript { get; set; }
 
     [JsonProperty()]
-    public virtual string ImageUrl { get; protected set; }
+    public virtual string? ImageUrl { get; set; }
 
     [JsonProperty()]
-    public virtual string Location { get; protected set; }
+    public virtual string? Location { get; set; }
 
     [JsonProperty()]
-    public virtual string RegistrationId { get; protected set; }
+    public virtual string? RegistrationId { get; set; }
 
     [JsonProperty()]
-    public virtual int RegistrationType { get; protected set; }
+    public virtual int RegistrationType { get; set; }
 
     [JsonProperty()]
-    public virtual bool RequireSiteAdministrator { get; protected set; }
+    public virtual bool RequireSiteAdministrator { get; set; }
 
     [JsonProperty()]
-    public virtual BasePermission Rights { get; protected set; }
+    public virtual BasePermission? Rights { get; set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; set; }
 
     [JsonProperty()]
-    public virtual string UrlAction { get; protected set; }
+    public virtual string? UrlAction { get; set; }
 
 }

@@ -50,7 +50,6 @@ public class TenantHomeSiteService(ClientContext clientContext) : ClientService(
 
     public void SetObject(Uri homeSiteUrl)
     {
-        _ = homeSiteUrl ?? throw new ArgumentNullException(nameof(homeSiteUrl));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(

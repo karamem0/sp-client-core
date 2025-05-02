@@ -21,30 +21,30 @@ public class DocumentLibraryInfo : ClientValueObject
 {
 
     [JsonProperty()]
-    public virtual string AbsoluteUrl { get; protected set; }
+    public virtual string? AbsoluteUrl { get; set; }
 
     [JsonProperty()]
-    public virtual bool FromCrossFarm { get; protected set; }
+    public virtual bool FromCrossFarm { get; set; }
 
     [JsonProperty()]
-    public virtual string DriveId { get; protected set; }
+    public virtual string? DriveId { get; set; }
 
     [JsonProperty()]
-    public virtual Guid Id { get; protected set; }
+    public virtual Guid Id { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsDefaultDocumentLibrary { get; protected set; }
+    public virtual bool IsDefaultDocumentLibrary { get; set; }
 
     [JsonProperty()]
-    public virtual DateTime Modified { get; protected set; }
+    public virtual DateTime Modified { get; set; }
 
     [JsonProperty()]
-    public virtual string ModifiedFriendlyDisplay { get; protected set; }
+    public virtual string? ModifiedFriendlyDisplay { get; set; }
 
     [JsonProperty()]
-    public virtual string ServerRelativeUrl { get; protected set; }
+    public virtual string? ServerRelativeUrl { get; set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; set; }
 
 }

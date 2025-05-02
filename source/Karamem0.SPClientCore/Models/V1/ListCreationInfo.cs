@@ -22,19 +22,19 @@ public class ListCreationInfo : ClientValueObject
 {
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; set; }
 
     [JsonProperty()]
     [DefaultValue(QuickLaunchOptions.DefaultValue)]
-    public virtual QuickLaunchOptions QuickLaunchOption { get; protected set; }
+    public virtual QuickLaunchOptions? QuickLaunchOption { get; set; }
 
     [JsonProperty("Url")]
-    public virtual string ServerRelativeUrl { get; protected set; }
+    public virtual string? ServerRelativeUrl { get; set; }
 
     [JsonProperty("TemplateType")]
-    public virtual int Template { get; protected set; }
+    public virtual int Template { get; set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; set; }
 
 }

@@ -21,21 +21,21 @@ public class FileVersionPolicyForDocumentLibrary : ClientValueObject
 {
 
     [JsonProperty()]
-    public virtual bool EnableAutoExpirationVersionTrim { get; protected set; }
+    public virtual bool EnableAutoExpirationVersionTrim { get; set; }
 
     [JsonProperty()]
-    public virtual int ExpireVersionsAfterDays { get; protected set; }
+    public virtual int ExpireVersionsAfterDays { get; set; }
 
     [JsonProperty()]
-    public virtual int MajorVersionLimit { get; protected set; }
+    public virtual int MajorVersionLimit { get; set; }
 
     [JsonProperty()]
-    public virtual int MajorWithMinorVersionsLimit { get; protected set; }
+    public virtual int MajorWithMinorVersionsLimit { get; set; }
 
     [JsonProperty()]
-    public virtual bool MinorVersionsEnabled { get; protected set; }
+    public virtual bool MinorVersionsEnabled { get; set; }
 
     [JsonProperty()]
-    public virtual bool VersioningEnabled { get; protected set; }
+    public virtual bool VersioningEnabled { get; set; }
 
 }

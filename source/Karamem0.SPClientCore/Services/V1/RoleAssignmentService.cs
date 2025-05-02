@@ -35,7 +35,7 @@ public interface IRoleAssignmentService
 
     RoleAssignment GetObject(RoleAssignment roleAssignmentObject);
 
-    RoleAssignment GetObject(SecurableObject securableObject, int? principalId);
+    RoleAssignment GetObject(SecurableObject securableObject, int principalId);
 
     void RemoveObject(RoleAssignment roleAssignmentObject);
 
@@ -52,7 +52,6 @@ public class RoleAssignmentService(ClientContext clientContext) : ClientService<
         bool clearSubscopes
     )
     {
-        _ = securableObject ?? throw new ArgumentNullException(nameof(securableObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(securableObject.ObjectIdentity),
@@ -72,9 +71,6 @@ public class RoleAssignmentService(ClientContext clientContext) : ClientService<
         RoleDefinition roleDefinitionObject
     )
     {
-        _ = securableObject ?? throw new ArgumentNullException(nameof(securableObject));
-        _ = principalObject ?? throw new ArgumentNullException(nameof(principalObject));
-        _ = roleDefinitionObject ?? throw new ArgumentNullException(nameof(roleDefinitionObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathConstructor(typeof(RoleDefinitionBindingEnumerable)),
@@ -106,7 +102,6 @@ public class RoleAssignmentService(ClientContext clientContext) : ClientService<
 
     public IEnumerable<RoleAssignment> GetObjectEnumerable(SecurableObject securableObject)
     {
-        _ = securableObject ?? throw new ArgumentNullException(nameof(securableObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(securableObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -123,10 +118,8 @@ public class RoleAssignmentService(ClientContext clientContext) : ClientService<
             .ToObject<RoleAssignmentEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public RoleAssignment GetObject(SecurableObject securableObject, int? principalId)
+    public RoleAssignment GetObject(SecurableObject securableObject, int principalId)
     {
-        _ = securableObject ?? throw new ArgumentNullException(nameof(securableObject));
-        _ = principalId ?? throw new ArgumentNullException(nameof(principalId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(securableObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "RoleAssignments"));
@@ -149,9 +142,11 @@ public class RoleAssignmentService(ClientContext clientContext) : ClientService<
 
     public void ResetObjectInheritance(SecurableObject securableObject)
     {
-        _ = securableObject ?? throw new ArgumentNullException(nameof(securableObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(securableObject.ObjectIdentity), objectPathId => new ClientActionMethod(objectPathId, "ResetRoleInheritance"));
+        var objectPath1 = requestPayload.Add(
+            new ObjectPathIdentity(securableObject.ObjectIdentity),
+            objectPathId => new ClientActionMethod(objectPathId, "ResetRoleInheritance")
+        );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

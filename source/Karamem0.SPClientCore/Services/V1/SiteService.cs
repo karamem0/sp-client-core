@@ -19,7 +19,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ISiteService
 {
 
-    Site AddObject(IReadOnlyDictionary<string, object> creationInfo);
+    Site AddObject(IReadOnlyDictionary<string, object?> creationInfo);
 
     Site GetObject();
 
@@ -29,7 +29,7 @@ public interface ISiteService
 
     Site GetObject(List listObject);
 
-    Site GetObject(Guid? siteId);
+    Site GetObject(Guid siteId);
 
     Site GetObject(Uri siteUrl);
 
@@ -39,20 +39,25 @@ public interface ISiteService
 
     void SelectObject(Site siteObject);
 
-    void SetObject(Site siteObject, IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObject(Site siteObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class SiteService(ClientContext clientContext) : ClientService<Site>(clientContext), ISiteService
 {
 
-    public Site AddObject(IReadOnlyDictionary<string, object> creationInfo)
+    public Site AddObject(IReadOnlyDictionary<string, object?> creationInfo)
     {
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"), objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
-        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "Webs"), objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+        var objectPath2 = requestPayload.Add(
+            new ObjectPathProperty(objectPath1.Id, "Web"),
+            objectPathId => new ClientActionInstantiateObjectPath(objectPathId)
+        );
+        var objectPath3 = requestPayload.Add(
+            new ObjectPathProperty(objectPath2.Id, "Webs"),
+            objectPathId => new ClientActionInstantiateObjectPath(objectPathId)
+        );
         var objectPath4 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath3.Id,
@@ -89,7 +94,6 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
 
     public Site GetObject(SiteCollection siteCollectionObject)
     {
-        _ = siteCollectionObject ?? throw new ArgumentNullException(nameof(siteCollectionObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Site"));
@@ -112,7 +116,6 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
 
     public Site GetObject(List listObject)
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -128,9 +131,8 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
             .ToObject<Site>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public Site GetObject(Guid? siteId)
+    public Site GetObject(Guid siteId)
     {
-        _ = siteId ?? throw new ArgumentNullException(nameof(siteId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Site"));
@@ -153,7 +155,6 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
 
     public Site GetObject(Uri siteUrl)
     {
-        _ = siteUrl ?? throw new ArgumentNullException(nameof(siteUrl));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Site"));
@@ -195,7 +196,6 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
 
     public void SelectObject(Site siteObject)
     {
-        _ = siteObject ?? throw new ArgumentNullException(nameof(siteObject));
         this.ClientContext.BaseAddress = new Uri(siteObject.Url, UriKind.Absolute);
     }
 

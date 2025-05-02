@@ -32,7 +32,6 @@ public class ChangeService(ClientContext clientContext) : ClientService(clientCo
 
     public IEnumerable<Change> GetObjectEnumerable(SiteCollection siteCollectionObject, ChangeQuery changeQueryObject)
     {
-        _ = siteCollectionObject ?? throw new ArgumentNullException(nameof(siteCollectionObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(siteCollectionObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -55,7 +54,6 @@ public class ChangeService(ClientContext clientContext) : ClientService(clientCo
 
     public IEnumerable<Change> GetObjectEnumerable(Site siteObject, ChangeQuery changeQueryObject)
     {
-        _ = siteObject ?? throw new ArgumentNullException(nameof(siteObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(siteObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -78,7 +76,6 @@ public class ChangeService(ClientContext clientContext) : ClientService(clientCo
 
     public IEnumerable<Change> GetObjectEnumerable(List listObject, ChangeQuery changeQueryObject)
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(

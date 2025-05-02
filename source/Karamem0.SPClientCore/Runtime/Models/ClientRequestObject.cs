@@ -87,7 +87,10 @@ public abstract class ClientRequestObject : ValueObject
                 {
                     if (ClientRequestValue.TryCreate(value, out var requestValue))
                     {
-                        writer.WriteAttributeString(string.IsNullOrEmpty(attributeAttribute.AttributeName) ? propertyInfo.Name : attributeAttribute.AttributeName, requestValue.Value);
+                        writer.WriteAttributeString(
+                            string.IsNullOrEmpty(attributeAttribute.AttributeName) ? propertyInfo.Name : attributeAttribute.AttributeName,
+                            requestValue.Value
+                        );
                     }
                     else
                     {
@@ -99,7 +102,10 @@ public abstract class ClientRequestObject : ValueObject
                 {
                     if (ClientRequestValue.TryCreate(value, out var requestValue))
                     {
-                        writer.WriteElementString(string.IsNullOrEmpty(elementAttribute.ElementName) ? propertyInfo.Name : elementAttribute.ElementName, requestValue.Value);
+                        writer.WriteElementString(
+                            string.IsNullOrEmpty(elementAttribute.ElementName) ? propertyInfo.Name : elementAttribute.ElementName,
+                            requestValue.Value
+                        );
                     }
                     else if (value is ClientRequestObject requestObject)
                     {
@@ -111,11 +117,17 @@ public abstract class ClientRequestObject : ValueObject
                         {
                             if (ClientRequestValue.TryCreate(elementValue, out var elementRequestValue))
                             {
-                                writer.WriteElementString(string.IsNullOrEmpty(elementAttribute.ElementName) ? propertyInfo.Name : elementAttribute.ElementName, elementRequestValue.Value);
+                                writer.WriteElementString(
+                                    string.IsNullOrEmpty(elementAttribute.ElementName) ? propertyInfo.Name : elementAttribute.ElementName,
+                                    elementRequestValue.Value
+                                );
                             }
                             else if (elementValue is ClientRequestObject elementRequestObject)
                             {
-                                elementRequestObject.WriteXml(writer, string.IsNullOrEmpty(elementAttribute.ElementName) ? propertyInfo.Name : elementAttribute.ElementName);
+                                elementRequestObject.WriteXml(
+                                    writer,
+                                    string.IsNullOrEmpty(elementAttribute.ElementName) ? propertyInfo.Name : elementAttribute.ElementName
+                                );
                             }
                             else
                             {

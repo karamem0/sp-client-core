@@ -49,7 +49,6 @@ public class SiteCollectionService(ClientContext clientContext) : ClientService<
 
     public SiteCollection GetObject(Uri siteCollectionUrl)
     {
-        _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(

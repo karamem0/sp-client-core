@@ -21,9 +21,9 @@ public class UserIdInfo : ClientValueObject
 {
 
     [JsonProperty()]
-    public virtual string NameId { get; protected set; }
+    public virtual string? NameId { get; set; }
 
     [JsonProperty()]
-    public virtual string NameIdIssuer { get; protected set; }
+    public virtual string? NameIdIssuer { get; set; }
 
 }

@@ -21,6 +21,6 @@ public class CommentCreationInfo : ODataV1Object
 {
 
     [JsonProperty("text")]
-    public virtual string Text { get; protected set; }
+    public virtual string? Text { get; set; }
 
 }

@@ -20,7 +20,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IListService
 {
 
-    List AddObject(IReadOnlyDictionary<string, object> creationInfo);
+    List AddObject(IReadOnlyDictionary<string, object?> creationInfo);
 
     List GetObject(List listObject);
 
@@ -30,13 +30,13 @@ public interface IListService
 
     List GetObject(Drive driveObject);
 
-    List GetObject(Guid? listId);
+    List GetObject(Guid listId);
 
     List GetObject(Uri listUrl);
 
     List GetObject(string listTitle);
 
-    List GetObject(LibraryType? libraryType);
+    List GetObject(LibraryType libraryType);
 
     IEnumerable<List> GetObjectEnumerable();
 
@@ -44,16 +44,15 @@ public interface IListService
 
     void RemoveObject(List listObject);
 
-    void SetObject(List listObject, IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObject(List listObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class ListService(ClientContext clientContext) : ClientService<List>(clientContext), IListService
 {
 
-    public List AddObject(IReadOnlyDictionary<string, object> creationInfo)
+    public List AddObject(IReadOnlyDictionary<string, object?> creationInfo)
     {
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -77,7 +76,6 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
 
     public List GetObject(ListItem listItemObject)
     {
-        _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listItemObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -95,7 +93,6 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
 
     public List GetObject(View viewObject)
     {
-        _ = viewObject ?? throw new ArgumentNullException(nameof(viewObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(
@@ -119,7 +116,6 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
 
     public List GetObject(Drive driveObject)
     {
-        _ = driveObject ?? throw new ArgumentNullException(nameof(driveObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -141,9 +137,8 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
             .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public List GetObject(Guid? listId)
+    public List GetObject(Guid listId)
     {
-        _ = listId ?? throw new ArgumentNullException(nameof(listId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -167,7 +162,6 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
 
     public List GetObject(Uri listUrl)
     {
-        _ = listUrl ?? throw new ArgumentNullException(nameof(listUrl));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -190,7 +184,6 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
 
     public List GetObject(string listTitle)
     {
-        _ = listTitle ?? throw new ArgumentNullException(nameof(listTitle));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -212,9 +205,8 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
             .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public List GetObject(LibraryType? libraryType)
+    public List GetObject(LibraryType libraryType)
     {
-        _ = libraryType ?? throw new ArgumentNullException(nameof(libraryType));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -278,9 +270,11 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
 
     public Guid RecycleObject(List listObject)
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity), objectPathId => new ClientActionMethod(objectPathId, "Recycle"));
+        var objectPath1 = requestPayload.Add(
+            new ObjectPathIdentity(listObject.ObjectIdentity),
+            objectPathId => new ClientActionMethod(objectPathId, "Recycle")
+        );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Guid>(requestPayload.GetActionId<ClientActionMethod>());

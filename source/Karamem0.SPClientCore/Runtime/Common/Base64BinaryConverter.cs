@@ -25,7 +25,7 @@ public static class Base64BinaryConverter
             result = Convert.FromBase64String(match.Groups[1].Value);
             return true;
         }
-        result = default;
+        result = [];
         return false;
     }
 

@@ -24,8 +24,8 @@ public interface ITermService
     Term AddObject(
         TermSetItem termSetItemObject,
         string termName,
-        Guid? termId,
-        uint? lcid
+        Guid termId,
+        uint lcid
     );
 
     void DeprecateObject(Term termObject, bool deprecated);
@@ -34,7 +34,7 @@ public interface ITermService
 
     Term GetObject(TermLabel termLabelObject);
 
-    Term GetObject(TermSetItem termSetItemObject, Guid? termId);
+    Term GetObject(TermSetItem termSetItemObject, Guid termId);
 
     Term GetObject(TermSetItem termSetItemObject, string termName);
 
@@ -46,7 +46,7 @@ public interface ITermService
 
     void RemoveObject(Term termObject);
 
-    void SetObject(Term termObject, IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObject(Term termObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
@@ -55,7 +55,6 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
 
     public Term CopyObject(Term termObject, bool copyChildren)
     {
-        _ = termObject ?? throw new ArgumentNullException(nameof(termObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -78,14 +77,10 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
     public Term AddObject(
         TermSetItem termSetItemObject,
         string termName,
-        Guid? termId,
-        uint? lcid
+        Guid termId,
+        uint lcid
     )
     {
-        _ = termSetItemObject ?? throw new ArgumentNullException(nameof(termSetItemObject));
-        _ = termName ?? throw new ArgumentNullException(nameof(termName));
-        _ = termId ?? throw new ArgumentNullException(nameof(termId));
-        _ = lcid ?? throw new ArgumentNullException(nameof(lcid));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termSetItemObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -109,7 +104,6 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
 
     public void DeprecateObject(Term termObject, bool deprecated)
     {
-        _ = termObject ?? throw new ArgumentNullException(nameof(termObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -125,7 +119,6 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
 
     public Term GetObject(TermLabel termLabelObject)
     {
-        _ = termLabelObject ?? throw new ArgumentNullException(nameof(termLabelObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termLabelObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -141,10 +134,8 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
             .ToObject<Term>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public Term GetObject(TermSetItem termSetItemObject, Guid? termId)
+    public Term GetObject(TermSetItem termSetItemObject, Guid termId)
     {
-        _ = termSetItemObject ?? throw new ArgumentNullException(nameof(termSetItemObject));
-        _ = termId ?? throw new ArgumentNullException(nameof(termId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termSetItemObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Terms"));
@@ -167,8 +158,6 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
 
     public Term GetObject(TermSetItem termSetItemObject, string termName)
     {
-        _ = termSetItemObject ?? throw new ArgumentNullException(nameof(termSetItemObject));
-        _ = termName ?? throw new ArgumentNullException(nameof(termName));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termSetItemObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Terms"));
@@ -191,7 +180,6 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
 
     public IEnumerable<Term> GetObjectEnumerable(TermSetItem termSetItemObject)
     {
-        _ = termSetItemObject ?? throw new ArgumentNullException(nameof(termSetItemObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termSetItemObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -210,8 +198,6 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
 
     public void MergeObject(Term sourceTermObject, TermSetItem destinationTermObject)
     {
-        _ = sourceTermObject ?? throw new ArgumentNullException(nameof(sourceTermObject));
-        _ = destinationTermObject ?? throw new ArgumentNullException(nameof(destinationTermObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(sourceTermObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -227,8 +213,6 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
 
     public void MoveObject(Term termObject, TermSetItem termSetItemObject)
     {
-        _ = termObject ?? throw new ArgumentNullException(nameof(termObject));
-        _ = termSetItemObject ?? throw new ArgumentNullException(nameof(termSetItemObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -242,18 +226,11 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public override void SetObject(Term termObject, IReadOnlyDictionary<string, object> modificationInfo)
+    public override void SetObject(Term termObject, IReadOnlyDictionary<string, object?> modificationInfo)
     {
-        _ = termObject ?? throw new ArgumentNullException(nameof(termObject));
-        _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termObject.ObjectIdentity));
-        var objectPath2 = requestPayload.Add(
-            objectPath1,
-            requestPayload
-                .CreateSetPropertyDelegates(termObject, modificationInfo)
-                .ToArray()
-        );
+        var objectPath2 = requestPayload.Add(objectPath1, requestPayload.CreateSetPropertyDelegates(termObject, modificationInfo));
         var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "TermStore"));
         var objectPath4 = requestPayload.Add(objectPath3, objectPathId => new ClientActionMethod(objectPathId, "CommitAll"));
         _ = this.ClientContext.ProcessQuery(requestPayload);

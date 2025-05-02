@@ -21,84 +21,84 @@ public class File : ClientObject
 {
 
     [JsonProperty()]
-    public virtual User Author { get; protected set; }
+    public virtual User? Author { get; set; }
 
     [JsonProperty()]
-    public virtual string CheckInComment { get; protected set; }
+    public virtual string? CheckInComment { get; set; }
 
     [JsonProperty()]
-    public virtual CheckOutType CheckOutType { get; protected set; }
+    public virtual CheckOutType? CheckOutType { get; set; }
 
     [JsonProperty("CheckedOutByUser")]
-    public virtual User CheckOutUser { get; protected set; }
+    public virtual User? CheckOutUser { get; set; }
 
     [JsonProperty()]
-    public virtual string ContentTag { get; protected set; }
+    public virtual string? ContentTag { get; set; }
 
     [JsonProperty("TimeCreated")]
-    public virtual DateTime Created { get; protected set; }
+    public virtual DateTime Created { get; set; }
 
     [JsonProperty()]
-    public virtual int CustomizedPageStatus { get; protected set; }
+    public virtual int CustomizedPageStatus { get; set; }
 
     [JsonProperty("ModifiedBy")]
-    public virtual User Editor { get; protected set; }
+    public virtual User? Editor { get; set; }
 
     [JsonProperty()]
-    public virtual string ETag { get; protected set; }
+    public virtual string? ETag { get; set; }
 
     [JsonProperty()]
-    public virtual bool Exists { get; protected set; }
+    public virtual bool Exists { get; set; }
 
     [JsonProperty()]
-    public virtual bool ExistsAllowThrowForPolicyFailures { get; protected set; }
+    public virtual bool ExistsAllowThrowForPolicyFailures { get; set; }
 
     [JsonProperty()]
-    public virtual bool ExistsWithException { get; protected set; }
+    public virtual bool ExistsWithException { get; set; }
 
     [JsonProperty()]
-    public virtual bool IrmEnabled { get; protected set; }
+    public virtual bool IrmEnabled { get; set; }
 
     [JsonProperty("TimeLastModified")]
-    public virtual DateTime LastModified { get; protected set; }
+    public virtual DateTime LastModified { get; set; }
 
     [JsonProperty()]
-    public virtual long Length { get; protected set; }
+    public virtual long Length { get; set; }
 
     [JsonProperty()]
-    public virtual byte Level { get; protected set; }
+    public virtual byte? Level { get; set; }
 
     [JsonProperty()]
-    public virtual string LinkingUri { get; protected set; }
+    public virtual string? LinkingUri { get; set; }
 
     [JsonProperty()]
-    public virtual string LinkingUrl { get; protected set; }
+    public virtual string? LinkingUrl { get; set; }
 
     [JsonProperty("LockedByUser")]
-    public virtual User LockUser { get; protected set; }
+    public virtual User? LockUser { get; set; }
 
     [JsonProperty()]
-    public virtual int MajorVersion { get; protected set; }
+    public virtual int MajorVersion { get; set; }
 
     [JsonProperty()]
-    public virtual int MinorVersion { get; protected set; }
+    public virtual int MinorVersion { get; set; }
 
     [JsonProperty()]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; set; }
 
     [JsonProperty()]
-    public virtual string ServerRelativeUrl { get; protected set; }
+    public virtual string? ServerRelativeUrl { get; set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; set; }
 
     [JsonProperty()]
-    public virtual int UIVersion { get; protected set; }
+    public virtual int UIVersion { get; set; }
 
     [JsonProperty()]
-    public virtual string UIVersionLabel { get; protected set; }
+    public virtual string? UIVersionLabel { get; set; }
 
     [JsonProperty()]
-    public virtual Guid UniqueId { get; protected set; }
+    public virtual Guid UniqueId { get; set; }
 
 }

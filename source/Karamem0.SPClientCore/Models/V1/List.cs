@@ -21,195 +21,195 @@ public class List : SecurableObject
 {
 
     [JsonProperty()]
-    public virtual bool AllowContentTypes { get; protected set; }
+    public virtual bool AllowContentTypes { get; set; }
 
     [JsonProperty()]
-    public virtual int BaseTemplate { get; protected set; }
+    public virtual int BaseTemplate { get; set; }
 
     [JsonProperty()]
-    public virtual BaseType BaseType { get; protected set; }
+    public virtual BaseType? BaseType { get; set; }
 
     [JsonProperty()]
-    public virtual BrowserFileHandling BrowserFileHandling { get; protected set; }
+    public virtual BrowserFileHandling? BrowserFileHandling { get; set; }
 
     [JsonProperty()]
-    public virtual bool ContentTypesEnabled { get; protected set; }
+    public virtual bool ContentTypesEnabled { get; set; }
 
     [JsonProperty()]
-    public virtual bool CrawlNonDefaultViews { get; protected set; }
+    public virtual bool CrawlNonDefaultViews { get; set; }
 
     [JsonProperty()]
-    public virtual DateTime Created { get; protected set; }
+    public virtual DateTime Created { get; set; }
 
     [JsonProperty()]
-    public virtual ChangeToken CurrentChangeToken { get; protected set; }
+    public virtual ChangeToken? CurrentChangeToken { get; set; }
 
     [JsonProperty()]
-    public virtual CustomActionElementEnumerable CustomActionElements { get; protected set; }
+    public virtual CustomActionElementEnumerable? CustomActionElements { get; set; }
 
     [JsonProperty()]
-    public virtual ListDataSource DataSource { get; protected set; }
+    public virtual ListDataSource? DataSource { get; set; }
 
     [JsonProperty()]
-    public virtual Guid DefaultContentApprovalWorkflowId { get; protected set; }
+    public virtual Guid DefaultContentApprovalWorkflowId { get; set; }
 
     [JsonProperty()]
-    public virtual string DefaultDisplayFormUrl { get; protected set; }
+    public virtual string? DefaultDisplayFormUrl { get; set; }
 
     [JsonProperty()]
-    public virtual string DefaultEditFormUrl { get; protected set; }
+    public virtual string? DefaultEditFormUrl { get; set; }
 
     [JsonProperty()]
-    public virtual bool DefaultItemOpenUseListSetting { get; protected set; }
+    public virtual bool DefaultItemOpenUseListSetting { get; set; }
 
     [JsonProperty()]
-    public virtual string DefaultNewFormUrl { get; protected set; }
+    public virtual string? DefaultNewFormUrl { get; set; }
 
     [JsonProperty()]
-    public virtual string DefaultViewUrl { get; protected set; }
+    public virtual string? DefaultViewUrl { get; set; }
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; set; }
 
     [JsonProperty()]
-    public virtual string Direction { get; protected set; }
+    public virtual string? Direction { get; set; }
 
     [JsonProperty()]
-    public virtual bool DisableCommenting { get; protected set; }
+    public virtual bool DisableCommenting { get; set; }
 
     [JsonProperty()]
-    public virtual bool DisableGridEditing { get; protected set; }
+    public virtual bool DisableGridEditing { get; set; }
 
     [JsonProperty()]
-    public virtual string DocumentTemplateUrl { get; protected set; }
+    public virtual string? DocumentTemplateUrl { get; set; }
 
     [JsonProperty()]
-    public virtual DraftVisibilityType DraftVersionVisibility { get; protected set; }
+    public virtual DraftVisibilityType? DraftVersionVisibility { get; set; }
 
     [JsonProperty()]
-    public virtual bool EnableAttachments { get; protected set; }
+    public virtual bool EnableAttachments { get; set; }
 
     [JsonProperty()]
-    public virtual bool EnableFolderCreation { get; protected set; }
+    public virtual bool EnableFolderCreation { get; set; }
 
     [JsonProperty()]
-    public virtual bool EnableMinorVersions { get; protected set; }
+    public virtual bool EnableMinorVersions { get; set; }
 
     [JsonProperty()]
-    public virtual bool EnableModeration { get; protected set; }
+    public virtual bool EnableModeration { get; set; }
 
     [JsonProperty()]
-    public virtual bool EnableRequestSignOff { get; protected set; }
+    public virtual bool EnableRequestSignOff { get; set; }
 
     [JsonProperty()]
-    public virtual bool EnableVersioning { get; protected set; }
+    public virtual bool EnableVersioning { get; set; }
 
     [JsonProperty()]
-    public virtual string EntityTypeName { get; protected set; }
+    public virtual string? EntityTypeName { get; set; }
 
     [JsonProperty()]
-    public virtual bool ExemptFromBlockDownloadOfNonViewableFiles { get; protected set; }
+    public virtual bool ExemptFromBlockDownloadOfNonViewableFiles { get; set; }
 
     [JsonProperty()]
-    public virtual bool FileSavePostProcessingEnabled { get; protected set; }
+    public virtual bool FileSavePostProcessingEnabled { get; set; }
 
     [JsonProperty("ForceCheckout")]
-    public virtual bool ForceCheckOut { get; protected set; }
+    public virtual bool ForceCheckOut { get; set; }
 
     [JsonProperty()]
-    public virtual bool HasExternalDataSource { get; protected set; }
+    public virtual bool HasExternalDataSource { get; set; }
 
     [JsonProperty()]
-    public override bool HasUniqueRoleAssignments { get; protected set; }
+    public override bool HasUniqueRoleAssignments { get; set; }
 
     [JsonProperty()]
-    public virtual bool Hidden { get; protected set; }
+    public virtual bool Hidden { get; set; }
 
     [JsonProperty()]
-    public virtual Guid Id { get; protected set; }
+    public virtual Guid Id { get; set; }
 
     [JsonProperty()]
-    public virtual ResourcePath ImagePath { get; protected set; }
+    public virtual ResourcePath? ImagePath { get; set; }
 
     [JsonProperty()]
-    public virtual string ImageUrl { get; protected set; }
+    public virtual string? ImageUrl { get; set; }
 
     [JsonProperty()]
-    public virtual bool IrmEnabled { get; protected set; }
+    public virtual bool IrmEnabled { get; set; }
 
     [JsonProperty()]
-    public virtual bool IrmExpire { get; protected set; }
+    public virtual bool IrmExpire { get; set; }
 
     [JsonProperty()]
-    public virtual bool IrmReject { get; protected set; }
+    public virtual bool IrmReject { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsApplicationList { get; protected set; }
+    public virtual bool IsApplicationList { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsCatalog { get; protected set; }
+    public virtual bool IsCatalog { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsPrivate { get; protected set; }
+    public virtual bool IsPrivate { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsSiteAssetsLibrary { get; protected set; }
+    public virtual bool IsSiteAssetsLibrary { get; set; }
 
     [JsonProperty()]
-    public virtual int ItemCount { get; protected set; }
+    public virtual int ItemCount { get; set; }
 
     [JsonProperty()]
-    public virtual DateTime LastItemDeletedDate { get; protected set; }
+    public virtual DateTime LastItemDeletedDate { get; set; }
 
     [JsonProperty()]
-    public virtual DateTime LastItemModifiedDate { get; protected set; }
+    public virtual DateTime LastItemModifiedDate { get; set; }
 
     [JsonProperty()]
-    public virtual DateTime LastItemUserModifiedDate { get; protected set; }
+    public virtual DateTime LastItemUserModifiedDate { get; set; }
 
     [JsonProperty()]
-    public virtual ListExperience ListExperienceOptions { get; protected set; }
+    public virtual ListExperience? ListExperienceOptions { get; set; }
 
     [JsonProperty()]
-    public virtual string ListItemEntityTypeFullName { get; protected set; }
+    public virtual string? ListItemEntityTypeFullName { get; set; }
 
     [JsonProperty()]
-    public virtual int MajorVersionLimit { get; protected set; }
+    public virtual int MajorVersionLimit { get; set; }
 
     [JsonProperty()]
-    public virtual int MajorWithMinorVersionsLimit { get; protected set; }
+    public virtual int MajorWithMinorVersionsLimit { get; set; }
 
     [JsonProperty()]
-    public virtual bool MultipleDataList { get; protected set; }
+    public virtual bool MultipleDataList { get; set; }
 
     [JsonProperty()]
-    public virtual bool NoCrawl { get; protected set; }
+    public virtual bool NoCrawl { get; set; }
 
     [JsonProperty("ParentWebPath")]
-    public virtual ResourcePath ParentSitePath { get; protected set; }
+    public virtual ResourcePath? ParentSitePath { get; set; }
 
     [JsonProperty("ParentWebUrl")]
-    public virtual string ParentSiteUrl { get; protected set; }
+    public virtual string? ParentSiteUrl { get; set; }
 
     [JsonProperty()]
-    public virtual bool ParserDisabled { get; protected set; }
+    public virtual bool ParserDisabled { get; set; }
 
     [JsonProperty()]
-    public virtual string SchemaXml { get; protected set; }
+    public virtual string? SchemaXml { get; set; }
 
     [JsonProperty()]
-    public virtual bool ServerTemplateCanCreateFolders { get; protected set; }
+    public virtual bool ServerTemplateCanCreateFolders { get; set; }
 
     [JsonProperty()]
-    public virtual Guid TemplateFeatureId { get; protected set; }
+    public virtual Guid TemplateFeatureId { get; set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; set; }
 
     [JsonProperty()]
-    public virtual string ValidationFormula { get; protected set; }
+    public virtual string? ValidationFormula { get; set; }
 
     [JsonProperty()]
-    public virtual string ValidationMessage { get; protected set; }
+    public virtual string? ValidationMessage { get; set; }
 
 }

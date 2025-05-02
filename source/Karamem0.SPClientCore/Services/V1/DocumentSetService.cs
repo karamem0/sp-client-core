@@ -36,9 +36,6 @@ public class DocumentSetService(ClientContext clientContext) : ClientService(cli
         ContentType contentTypeObject
     )
     {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
-        _ = documentSetName ?? throw new ArgumentNullException(nameof(documentSetName));
-        _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
             new ClientActionStaticMethod(

@@ -44,8 +44,6 @@ public class DocumentSetWelcomePageColumnService(ClientContext clientContext) : 
         bool pushChanges
     )
     {
-        _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
-        _ = columnObject ?? throw new ArgumentNullException(nameof(columnObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathIdentity(columnObject.ObjectIdentity));
@@ -78,7 +76,6 @@ public class DocumentSetWelcomePageColumnService(ClientContext clientContext) : 
 
     public IEnumerable<Column> GetObjectEnumerable(ContentType contentTypeObject)
     {
-        _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -108,8 +105,6 @@ public class DocumentSetWelcomePageColumnService(ClientContext clientContext) : 
         bool pushChanges
     )
     {
-        _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
-        _ = columnObject ?? throw new ArgumentNullException(nameof(columnObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(

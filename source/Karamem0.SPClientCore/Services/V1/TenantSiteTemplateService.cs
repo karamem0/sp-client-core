@@ -19,7 +19,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantSiteTemplateService
 {
 
-    IEnumerable<TenantSiteTemplate> GetObjectEnumerable(uint? lcid, int? compatibilityLevel);
+    IEnumerable<TenantSiteTemplate> GetObjectEnumerable(uint lcid, int compatibilityLevel);
 
     IEnumerable<TenantSiteTemplate> GetObjectEnumerable();
 
@@ -28,10 +28,8 @@ public interface ITenantSiteTemplateService
 public class TenantSiteTemplateService(ClientContext clientContext) : ClientService(clientContext), ITenantSiteTemplateService
 {
 
-    public IEnumerable<TenantSiteTemplate> GetObjectEnumerable(uint? lcid, int? compatibilityLevel)
+    public IEnumerable<TenantSiteTemplate> GetObjectEnumerable(uint lcid, int compatibilityLevel)
     {
-        _ = lcid ?? throw new ArgumentNullException(nameof(lcid));
-        _ = compatibilityLevel ?? throw new ArgumentNullException(nameof(compatibilityLevel));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(

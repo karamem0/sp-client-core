@@ -21,48 +21,48 @@ public class Group : Principal
 {
 
     [JsonProperty()]
-    public virtual bool AllowMembersEditMembership { get; protected set; }
+    public virtual bool AllowMembersEditMembership { get; set; }
 
     [JsonProperty()]
-    public virtual bool AllowRequestToJoinLeave { get; protected set; }
+    public virtual bool AllowRequestToJoinLeave { get; set; }
 
     [JsonProperty()]
-    public virtual bool AutoAcceptRequestToJoinLeave { get; protected set; }
+    public virtual bool AutoAcceptRequestToJoinLeave { get; set; }
 
     [JsonProperty()]
-    public virtual bool CanCurrentUserEditMembership { get; protected set; }
+    public virtual bool CanCurrentUserEditMembership { get; set; }
 
     [JsonProperty()]
-    public virtual bool CanCurrentUserManageGroup { get; protected set; }
+    public virtual bool CanCurrentUserManageGroup { get; set; }
 
     [JsonProperty()]
-    public virtual bool CanCurrentUserViewMembership { get; protected set; }
+    public virtual bool CanCurrentUserViewMembership { get; set; }
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; set; }
 
     [JsonProperty()]
-    public override int Id { get; protected set; }
+    public override int Id { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsHiddenInUI { get; protected set; }
+    public virtual bool IsHiddenInUI { get; set; }
 
     [JsonProperty()]
-    public override string LoginName { get; protected set; }
+    public override string? LoginName { get; set; }
 
     [JsonProperty()]
-    public virtual string OwnerTitle { get; protected set; }
+    public virtual string? OwnerTitle { get; set; }
 
     [JsonProperty()]
-    public virtual bool OnlyAllowMembersViewMembership { get; protected set; }
+    public virtual bool OnlyAllowMembersViewMembership { get; set; }
 
     [JsonProperty()]
-    public override PrincipalType PrincipalType { get; protected set; }
+    public override PrincipalType? PrincipalType { get; set; }
 
     [JsonProperty()]
-    public virtual string RequestToJoinLeaveEmailSetting { get; protected set; }
+    public virtual string? RequestToJoinLeaveEmailSetting { get; set; }
 
     [JsonProperty()]
-    public override string Title { get; protected set; }
+    public override string? Title { get; set; }
 
 }

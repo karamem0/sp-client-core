@@ -20,36 +20,36 @@ public class SharingPrincipal : ODataV1Object
 {
 
     [JsonProperty("email")]
-    public virtual string Email { get; protected set; }
+    public virtual string? Email { get; set; }
 
     [JsonProperty("expiration")]
-    public virtual string Expiration { get; protected set; }
+    public virtual string? Expiration { get; set; }
 
     [JsonProperty("id")]
-    public virtual int Id { get; protected set; }
+    public virtual int Id { get; set; }
 
     [JsonProperty("isActive")]
-    public virtual bool IsActive { get; protected set; }
+    public virtual bool IsActive { get; set; }
 
     [JsonProperty("isExternal")]
-    public virtual bool IsExternal { get; protected set; }
+    public virtual bool IsExternal { get; set; }
 
     [JsonProperty("jobTitle")]
-    public virtual string JobTitle { get; protected set; }
+    public virtual string? JobTitle { get; set; }
 
     [JsonProperty("loginName")]
-    public virtual string LoginName { get; protected set; }
+    public virtual string? LoginName { get; set; }
 
     [JsonProperty("name")]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; set; }
 
     [JsonProperty("principalType")]
-    public virtual PrincipalType PrincipalType { get; protected set; }
+    public virtual PrincipalType? PrincipalType { get; set; }
 
     [JsonProperty("userId")]
-    public virtual string UserId { get; protected set; }
+    public virtual string? UserId { get; set; }
 
     [JsonProperty("userPrincipalName")]
-    public virtual string UserPrincipalName { get; protected set; }
+    public virtual string? UserPrincipalName { get; set; }
 
 }

@@ -16,7 +16,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Common;
 public static class UriQuery
 {
 
-    public static string Create(IReadOnlyDictionary<string, object> parameters, bool quote = false)
+    public static string Create(IReadOnlyDictionary<string, object?> parameters, bool quote = false)
     {
         parameters ??= new Dictionary<string, object>();
         return string.Join(

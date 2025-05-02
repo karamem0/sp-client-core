@@ -39,7 +39,6 @@ public class LikeService(ClientContext clientContext) : ClientService(clientCont
 
     public IEnumerable<LikedUser> GetObjectEnumerable(Comment commentObject)
     {
-        _ = commentObject ?? throw new ArgumentNullException(nameof(commentObject));
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/lists('{0}')/items({1})/comments({2})/likedby",
             commentObject.ListId,
@@ -51,7 +50,6 @@ public class LikeService(ClientContext clientContext) : ClientService(clientCont
 
     public IEnumerable<LikedUser> GetObjectEnumerable(ListItem listItemObject)
     {
-        _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/lists('{0}')/items({1})/likedby",
             listItemObject
@@ -65,7 +63,6 @@ public class LikeService(ClientContext clientContext) : ClientService(clientCont
 
     public void LikeObject(Comment commentObject)
     {
-        _ = commentObject ?? throw new ArgumentNullException(nameof(commentObject));
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/lists('{0}')/items({1})/comments({2})/like",
             commentObject.ListId,
@@ -77,7 +74,6 @@ public class LikeService(ClientContext clientContext) : ClientService(clientCont
 
     public void LikeObject(ListItem listItemObject)
     {
-        _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/lists('{0}')/items({1})/like",
             listItemObject
@@ -91,7 +87,6 @@ public class LikeService(ClientContext clientContext) : ClientService(clientCont
 
     public void UnlikeObject(Comment commentObject)
     {
-        _ = commentObject ?? throw new ArgumentNullException(nameof(commentObject));
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/lists('{0}')/items({1})/comments({2})/unlike",
             commentObject.ListId,
@@ -103,7 +98,6 @@ public class LikeService(ClientContext clientContext) : ClientService(clientCont
 
     public void UnlikeObject(ListItem listItemObject)
     {
-        _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/lists('{0}')/items({1})/unlike",
             listItemObject

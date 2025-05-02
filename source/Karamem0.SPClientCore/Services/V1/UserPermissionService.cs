@@ -28,8 +28,6 @@ public class UserPermissionService(ClientContext clientContext) : ClientService(
 
     public BasePermission GetObject(User userObject, SecurableObject securableObject)
     {
-        _ = userObject ?? throw new ArgumentNullException(nameof(userObject));
-        _ = securableObject ?? throw new ArgumentNullException(nameof(securableObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(securableObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(

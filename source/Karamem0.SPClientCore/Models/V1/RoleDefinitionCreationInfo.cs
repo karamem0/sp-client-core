@@ -21,15 +21,15 @@ public class RoleDefinitionCreationInfo : ClientValueObject
 {
 
     [JsonProperty("BasePermissions")]
-    public virtual BasePermission BasePermission { get; protected set; }
+    public virtual BasePermission? BasePermission { get; set; }
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; set; }
 
     [JsonProperty()]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; set; }
 
     [JsonProperty()]
-    public virtual int Order { get; protected set; }
+    public virtual int Order { get; set; }
 
 }

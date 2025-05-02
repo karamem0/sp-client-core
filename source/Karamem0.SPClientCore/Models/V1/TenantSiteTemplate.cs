@@ -21,24 +21,24 @@ public class TenantSiteTemplate : ClientObject
 {
 
     [JsonProperty()]
-    public virtual int CompatibilityLevel { get; protected set; }
+    public virtual int CompatibilityLevel { get; set; }
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; set; }
 
     [JsonProperty()]
-    public virtual string DisplayCategory { get; protected set; }
+    public virtual string? DisplayCategory { get; set; }
 
     [JsonProperty()]
-    public virtual int Id { get; protected set; }
+    public virtual int Id { get; set; }
 
     [JsonProperty()]
-    public virtual uint Lcid { get; protected set; }
+    public virtual uint Lcid { get; set; }
 
     [JsonProperty()]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; set; }
 
 }

@@ -21,24 +21,24 @@ public class PickerSettings : ClientObject
 {
 
     [JsonProperty()]
-    public virtual bool AllowEmailAddresses { get; protected set; }
+    public virtual bool AllowEmailAddresses { get; set; }
 
     [JsonProperty()]
-    public virtual bool AllowOnlyEmailAddresses { get; protected set; }
+    public virtual bool AllowOnlyEmailAddresses { get; set; }
 
     [JsonProperty()]
-    public virtual string PrincipalAccountType { get; protected set; }
+    public virtual string? PrincipalAccountType { get; set; }
 
     [JsonProperty()]
-    public virtual PrincipalSource PrincipalSource { get; protected set; }
+    public virtual PrincipalSource? PrincipalSource { get; set; }
 
     [JsonProperty()]
-    public virtual PeoplePickerQuerySettings QuerySettings { get; protected set; }
+    public virtual PeoplePickerQuerySettings? QuerySettings { get; set; }
 
     [JsonProperty()]
-    public virtual bool UseSubstrateSearch { get; protected set; }
+    public virtual bool UseSubstrateSearch { get; set; }
 
     [JsonProperty()]
-    public virtual int VisibleSuggestions { get; protected set; }
+    public virtual int VisibleSuggestions { get; set; }
 
 }

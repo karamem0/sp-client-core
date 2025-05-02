@@ -21,45 +21,45 @@ public class Folder : ClientObject
 {
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<ContentTypeId> ContentTypeOrder { get; protected set; }
+    public virtual IReadOnlyCollection<ContentTypeId>? ContentTypeOrder { get; set; }
 
     [JsonProperty("TimeCreated")]
-    public virtual DateTime Created { get; protected set; }
+    public virtual DateTime Created { get; set; }
 
     [JsonProperty()]
-    public virtual bool Exists { get; protected set; }
+    public virtual bool Exists { get; set; }
 
     [JsonProperty()]
-    public virtual bool ExistsAllowThrowForPolicyFailures { get; protected set; }
+    public virtual bool ExistsAllowThrowForPolicyFailures { get; set; }
 
     [JsonProperty()]
-    public virtual bool ExistsWithException { get; protected set; }
+    public virtual bool ExistsWithException { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsWOPIEnabled { get; protected set; }
+    public virtual bool IsWOPIEnabled { get; set; }
 
     [JsonProperty()]
-    public virtual int ItemCount { get; protected set; }
+    public virtual int ItemCount { get; set; }
 
     [JsonProperty("TimeLastModified")]
-    public virtual DateTime LastModified { get; protected set; }
+    public virtual DateTime LastModified { get; set; }
 
     [JsonProperty()]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; set; }
 
     [JsonProperty("ProgID")]
-    public virtual string ProgId { get; protected set; }
+    public virtual string? ProgId { get; set; }
 
     [JsonProperty()]
-    public virtual string ServerRelativeUrl { get; protected set; }
+    public virtual string? ServerRelativeUrl { get; set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<ContentTypeId> UniqueContentTypeOrder { get; protected set; }
+    public virtual IReadOnlyCollection<ContentTypeId>? UniqueContentTypeOrder { get; set; }
 
     [JsonProperty()]
-    public virtual Guid UniqueId { get; protected set; }
+    public virtual Guid UniqueId { get; set; }
 
     [JsonProperty()]
-    public virtual string WelcomePage { get; protected set; }
+    public virtual string? WelcomePage { get; set; }
 
 }

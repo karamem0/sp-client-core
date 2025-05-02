@@ -19,9 +19,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IContentTypeService
 {
 
-    ContentType AddObject(IReadOnlyDictionary<string, object> creationInfo);
+    ContentType AddObject(IReadOnlyDictionary<string, object?> creationInfo);
 
-    ContentType AddObject(List listObject, IReadOnlyDictionary<string, object> creationInfo);
+    ContentType AddObject(List listObject, IReadOnlyDictionary<string, object?> creationInfo);
 
     ContentType AddObject(List listObject, ContentType contentTypeObject);
 
@@ -37,16 +37,15 @@ public interface IContentTypeService
 
     void RemoveObject(ContentType contentTypeObject);
 
-    void SetObject(ContentType contentTypeObject, IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObject(ContentType contentTypeObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class ContentTypeService(ClientContext clientContext) : ClientService<ContentType>(clientContext), IContentTypeService
 {
 
-    public ContentType AddObject(IReadOnlyDictionary<string, object> creationInfo)
+    public ContentType AddObject(IReadOnlyDictionary<string, object?> creationInfo)
     {
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -68,13 +67,17 @@ public class ContentTypeService(ClientContext clientContext) : ClientService<Con
             .ToObject<ContentType>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public ContentType AddObject(List listObject, IReadOnlyDictionary<string, object> creationInfo)
+    public ContentType AddObject(List listObject, IReadOnlyDictionary<string, object?> creationInfo)
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity), objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "ContentTypes"), objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+        var objectPath1 = requestPayload.Add(
+            new ObjectPathIdentity(listObject.ObjectIdentity),
+            objectPathId => new ClientActionInstantiateObjectPath(objectPathId)
+        );
+        var objectPath2 = requestPayload.Add(
+            new ObjectPathProperty(objectPath1.Id, "ContentTypes"),
+            objectPathId => new ClientActionInstantiateObjectPath(objectPathId)
+        );
         var objectPath3 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath2.Id,
@@ -94,8 +97,6 @@ public class ContentTypeService(ClientContext clientContext) : ClientService<Con
 
     public ContentType AddObject(List listObject, ContentType contentTypeObject)
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
-        _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "ContentTypes"));
@@ -118,7 +119,6 @@ public class ContentTypeService(ClientContext clientContext) : ClientService<Con
 
     public ContentType GetObject(string contentTypeId)
     {
-        _ = contentTypeId ?? throw new ArgumentNullException(nameof(contentTypeId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -142,8 +142,6 @@ public class ContentTypeService(ClientContext clientContext) : ClientService<Con
 
     public ContentType GetObject(List listObject, string contentTypeId)
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
-        _ = contentTypeId ?? throw new ArgumentNullException(nameof(contentTypeId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "ContentTypes"));
@@ -185,7 +183,6 @@ public class ContentTypeService(ClientContext clientContext) : ClientService<Con
 
     public IEnumerable<ContentType> GetObjectEnumerable(List listObject)
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(

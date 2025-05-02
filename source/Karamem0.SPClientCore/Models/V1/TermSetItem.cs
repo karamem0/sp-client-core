@@ -21,27 +21,27 @@ public class TermSetItem : TaxonomyItem
 {
 
     [JsonProperty("CreatedDate")]
-    public override DateTime Created { get; protected set; }
+    public override DateTime Created { get; set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyDictionary<string, string> CustomProperties { get; protected set; }
+    public virtual IReadOnlyDictionary<string, string>? CustomProperties { get; set; }
 
     [JsonProperty()]
-    public virtual string CustomSortOrder { get; protected set; }
+    public virtual string? CustomSortOrder { get; set; }
 
     [JsonProperty()]
-    public override Guid Id { get; protected set; }
+    public override Guid Id { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsAvailableForTagging { get; protected set; }
+    public virtual bool IsAvailableForTagging { get; set; }
 
     [JsonProperty("LastModifiedDate")]
-    public override DateTime LastModified { get; protected set; }
+    public override DateTime LastModified { get; set; }
 
     [JsonProperty()]
-    public override string Name { get; protected set; }
+    public override string? Name { get; set; }
 
     [JsonProperty()]
-    public virtual string Owner { get; protected set; }
+    public virtual string? Owner { get; set; }
 
 }

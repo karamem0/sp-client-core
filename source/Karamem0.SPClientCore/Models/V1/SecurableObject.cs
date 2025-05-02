@@ -21,6 +21,6 @@ public class SecurableObject : ClientObject
 {
 
     [JsonProperty()]
-    public virtual bool HasUniqueRoleAssignments { get; protected set; }
+    public virtual bool HasUniqueRoleAssignments { get; set; }
 
 }

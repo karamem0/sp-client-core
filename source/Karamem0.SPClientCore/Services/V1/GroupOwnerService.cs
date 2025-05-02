@@ -30,7 +30,6 @@ public class GroupOwnerService(ClientContext clientContext) : ClientService(clie
 
     public Principal GetObject(Group groupObject)
     {
-        _ = groupObject ?? throw new ArgumentNullException(nameof(groupObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(groupObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -48,8 +47,6 @@ public class GroupOwnerService(ClientContext clientContext) : ClientService(clie
 
     public void SetObject(Group groupObject, Principal principalObject)
     {
-        _ = groupObject ?? throw new ArgumentNullException(nameof(groupObject));
-        _ = principalObject ?? throw new ArgumentNullException(nameof(principalObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(groupObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(

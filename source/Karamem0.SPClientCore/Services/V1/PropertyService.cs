@@ -36,7 +36,6 @@ public class PropertyService(ClientContext clientContext) : ClientService(client
 
     public PropertyValues GetObject(Alert alertObject)
     {
-        _ = alertObject ?? throw new ArgumentNullException(nameof(alertObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(alertObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -53,7 +52,6 @@ public class PropertyService(ClientContext clientContext) : ClientService(client
 
     public PropertyValues GetObject(File fileObject)
     {
-        _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(fileObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -70,7 +68,6 @@ public class PropertyService(ClientContext clientContext) : ClientService(client
 
     public PropertyValues GetObject(Folder folderObject)
     {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -87,7 +84,6 @@ public class PropertyService(ClientContext clientContext) : ClientService(client
 
     public PropertyValues GetObject(ListItem listItemObject)
     {
-        _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listItemObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -104,7 +100,6 @@ public class PropertyService(ClientContext clientContext) : ClientService(client
 
     public PropertyValues GetObject(Site siteObject)
     {
-        _ = siteObject ?? throw new ArgumentNullException(nameof(siteObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(siteObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(

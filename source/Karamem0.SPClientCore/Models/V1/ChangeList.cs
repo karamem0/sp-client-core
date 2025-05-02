@@ -21,42 +21,42 @@ public class ChangeList : Change
 {
 
     [JsonProperty()]
-    public virtual ListTemplateType BaseTemplate { get; protected set; }
+    public virtual ListTemplateType? BaseTemplate { get; set; }
 
     [JsonProperty()]
-    public override ChangeToken ChangeToken { get; protected set; }
+    public override ChangeToken? ChangeToken { get; set; }
 
     [JsonProperty()]
-    public override ChangeType ChangeType { get; protected set; }
+    public override ChangeType? ChangeType { get; set; }
 
     [JsonProperty()]
-    public virtual User Creator { get; protected set; }
+    public virtual User? Creator { get; set; }
 
     [JsonProperty()]
-    public virtual string Editor { get; protected set; }
+    public virtual string? Editor { get; set; }
 
     [JsonProperty()]
-    public virtual bool Hidden { get; protected set; }
+    public virtual bool Hidden { get; set; }
 
     [JsonProperty()]
-    public virtual Guid ListId { get; protected set; }
+    public virtual Guid ListId { get; set; }
 
     [JsonProperty()]
-    public override string RelativeTime { get; protected set; }
+    public override string? RelativeTime { get; set; }
 
     [JsonProperty()]
-    public virtual string RootFolderUrl { get; protected set; }
+    public virtual string? RootFolderUrl { get; set; }
 
     [JsonProperty("SiteId")]
-    public override Guid SiteCollectionId { get; protected set; }
+    public override Guid SiteCollectionId { get; set; }
 
     [JsonProperty("WebId")]
-    public virtual Guid SiteId { get; protected set; }
+    public virtual Guid SiteId { get; set; }
 
     [JsonProperty()]
-    public override DateTime Time { get; protected set; }
+    public override DateTime Time { get; set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; set; }
 
 }

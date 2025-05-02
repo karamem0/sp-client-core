@@ -21,18 +21,18 @@ public class TaxonomyItem : ClientObject
 {
 
     [JsonProperty("CreatedDate")]
-    public virtual DateTime Created { get; protected set; }
+    public virtual DateTime Created { get; set; }
 
     [JsonProperty()]
-    public virtual Guid Id { get; protected set; }
+    public virtual Guid Id { get; set; }
 
     [JsonProperty("LastModifiedDate")]
-    public virtual DateTime LastModified { get; protected set; }
+    public virtual DateTime LastModified { get; set; }
 
     [JsonProperty()]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; set; }
 
     [JsonProperty()]
-    public virtual TermStore TermStore { get; protected set; }
+    public virtual TermStore? TermStore { get; set; }
 
 }

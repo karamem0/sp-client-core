@@ -19,31 +19,29 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface INavigationNodeService
 {
 
-    NavigationNode AddObject(NavigationNode navigationNodeObject, IReadOnlyDictionary<string, object> creationInfo);
+    NavigationNode AddObject(NavigationNode navigationNodeObject, IReadOnlyDictionary<string, object?> creationInfo);
 
-    NavigationNode AddObjectToQuickLaunch(IReadOnlyDictionary<string, object> creationInfo);
+    NavigationNode AddObjectToQuickLaunch(IReadOnlyDictionary<string, object?> creationInfo);
 
-    NavigationNode AddObjectToTopNavigationBar(IReadOnlyDictionary<string, object> creationInfo);
+    NavigationNode AddObjectToTopNavigationBar(IReadOnlyDictionary<string, object?> creationInfo);
 
     NavigationNode GetObject(NavigationNode navigationNodeObject);
 
-    NavigationNode GetObject(int? navigationNodeId);
+    NavigationNode GetObject(int navigationNodeId);
 
     NavigationNodeEnumerable GetObjectEnumerable(NavigationNode navigationNodeObject);
 
     void RemoveObject(NavigationNode navigationNodeObject);
 
-    void SetObject(NavigationNode navigationNodeObject, IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObject(NavigationNode navigationNodeObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class NavigationNodeService(ClientContext clientContext) : ClientService<NavigationNode>(clientContext), INavigationNodeService
 {
 
-    public NavigationNode AddObject(NavigationNode navigationNodeObject, IReadOnlyDictionary<string, object> creationInfo)
+    public NavigationNode AddObject(NavigationNode navigationNodeObject, IReadOnlyDictionary<string, object?> creationInfo)
     {
-        _ = navigationNodeObject ?? throw new ArgumentNullException(nameof(navigationNodeObject));
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(navigationNodeObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Children"));
@@ -64,9 +62,8 @@ public class NavigationNodeService(ClientContext clientContext) : ClientService<
             .ToObject<NavigationNode>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public NavigationNode AddObjectToQuickLaunch(IReadOnlyDictionary<string, object> creationInfo)
+    public NavigationNode AddObjectToQuickLaunch(IReadOnlyDictionary<string, object?> creationInfo)
     {
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -89,9 +86,8 @@ public class NavigationNodeService(ClientContext clientContext) : ClientService<
             .ToObject<NavigationNode>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public NavigationNode AddObjectToTopNavigationBar(IReadOnlyDictionary<string, object> creationInfo)
+    public NavigationNode AddObjectToTopNavigationBar(IReadOnlyDictionary<string, object?> creationInfo)
     {
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -114,9 +110,8 @@ public class NavigationNodeService(ClientContext clientContext) : ClientService<
             .ToObject<NavigationNode>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public NavigationNode GetObject(int? navigationNodeId)
+    public NavigationNode GetObject(int navigationNodeId)
     {
-        _ = navigationNodeId ?? throw new ArgumentNullException(nameof(navigationNodeId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -140,7 +135,6 @@ public class NavigationNodeService(ClientContext clientContext) : ClientService<
 
     public NavigationNodeEnumerable GetObjectEnumerable(NavigationNode navigationNodeObject)
     {
-        _ = navigationNodeObject ?? throw new ArgumentNullException(nameof(navigationNodeObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(navigationNodeObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(

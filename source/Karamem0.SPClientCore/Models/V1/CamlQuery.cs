@@ -23,15 +23,15 @@ public class CamlQuery : ClientValueObject
 
     [JsonProperty()]
     [DefaultValue(true)]
-    public virtual bool DatesInUtc { get; protected set; }
+    public virtual bool DatesInUtc { get; set; }
 
     [JsonProperty()]
-    public virtual string FolderServerRelativeUrl { get; protected set; }
+    public virtual string? FolderServerRelativeUrl { get; set; }
 
     [JsonProperty()]
-    public virtual ListItemCollectionPosition ListItemCollectionPosition { get; protected set; }
+    public virtual ListItemCollectionPosition? ListItemCollectionPosition { get; set; }
 
     [JsonProperty()]
-    public virtual string ViewXml { get; protected set; }
+    public virtual string? ViewXml { get; set; }
 
 }

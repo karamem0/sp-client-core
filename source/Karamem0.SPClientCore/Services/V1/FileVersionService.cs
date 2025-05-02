@@ -21,7 +21,7 @@ public interface IFileVersionService
 
     FileVersion GetObject(FileVersion fileVersionObject);
 
-    FileVersion GetObject(File fileObject, int? fileVersionId);
+    FileVersion GetObject(File fileObject, int fileVersionId);
 
     IEnumerable<FileVersion> GetObjectEnumerable(File fileObject);
 
@@ -38,10 +38,8 @@ public interface IFileVersionService
 public class FileVersionService(ClientContext clientContext) : ClientService<FileVersion>(clientContext), IFileVersionService
 {
 
-    public FileVersion GetObject(File fileObject, int? fileVersionId)
+    public FileVersion GetObject(File fileObject, int fileVersionId)
     {
-        _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
-        _ = fileVersionId ?? throw new ArgumentNullException(nameof(fileVersionId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(fileObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Versions"));
@@ -64,7 +62,6 @@ public class FileVersionService(ClientContext clientContext) : ClientService<Fil
 
     public IEnumerable<FileVersion> GetObjectEnumerable(File fileObject)
     {
-        _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(fileObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -83,7 +80,6 @@ public class FileVersionService(ClientContext clientContext) : ClientService<Fil
 
     public void RecycleObject(FileVersion fileVersionObject)
     {
-        _ = fileVersionObject ?? throw new ArgumentNullException(nameof(fileVersionObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(
@@ -110,7 +106,6 @@ public class FileVersionService(ClientContext clientContext) : ClientService<Fil
 
     public override void RemoveObject(FileVersion fileVersionObject)
     {
-        _ = fileVersionObject ?? throw new ArgumentNullException(nameof(fileVersionObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(
@@ -136,7 +131,6 @@ public class FileVersionService(ClientContext clientContext) : ClientService<Fil
 
     public void RemoveObjectAll(File fileObject)
     {
-        _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(fileObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Versions"));
@@ -146,7 +140,6 @@ public class FileVersionService(ClientContext clientContext) : ClientService<Fil
 
     public void RestoreObject(FileVersion fileVersionObject)
     {
-        _ = fileVersionObject ?? throw new ArgumentNullException(nameof(fileVersionObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(

@@ -23,7 +23,7 @@ public interface IFolderService
     void CopyObject(
         Folder folderObject,
         Uri folderUrl,
-        IReadOnlyDictionary<string, object> moveCopyOptions
+        IReadOnlyDictionary<string, object?> moveCopyOptions
     );
 
     Folder AddObject(Folder folderObject, string folderName);
@@ -34,7 +34,7 @@ public interface IFolderService
 
     Folder GetObject(ListItem listItemObject);
 
-    Folder GetObject(Guid? folderId);
+    Folder GetObject(Guid folderId);
 
     Folder GetObject(Uri folderUrl);
 
@@ -49,14 +49,14 @@ public interface IFolderService
     void MoveObject(
         Folder folderObject,
         Uri folderUrl,
-        IReadOnlyDictionary<string, object> moveCopyOptions
+        IReadOnlyDictionary<string, object?> moveCopyOptions
     );
 
     Guid RecycleObject(Folder folderObject);
 
     void RemoveObject(Folder folderObject);
 
-    void SetObject(Folder folderObject, IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObject(Folder folderObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
@@ -66,12 +66,9 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
     public void CopyObject(
         Folder folderObject,
         Uri folderUrl,
-        IReadOnlyDictionary<string, object> moveCopyOptions
+        IReadOnlyDictionary<string, object?> moveCopyOptions
     )
     {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
-        _ = folderUrl ?? throw new ArgumentNullException(nameof(folderUrl));
-        _ = moveCopyOptions ?? throw new ArgumentNullException(nameof(moveCopyOptions));
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
             new ClientActionStaticMethod(
@@ -91,8 +88,6 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
 
     public Folder AddObject(Folder folderObject, string folderName)
     {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
-        _ = folderName ?? throw new ArgumentNullException(nameof(folderName));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Folders"));
@@ -115,7 +110,6 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
 
     public Folder GetObject(List listObject)
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -133,7 +127,6 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
 
     public Folder GetObject(ListItem listItemObject)
     {
-        _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listItemObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -149,9 +142,8 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
             .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public Folder GetObject(Guid? folderId)
+    public Folder GetObject(Guid folderId)
     {
-        _ = folderId ?? throw new ArgumentNullException(nameof(folderId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -174,7 +166,6 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
 
     public Folder GetObject(Uri folderUrl)
     {
-        _ = folderUrl ?? throw new ArgumentNullException(nameof(folderUrl));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -197,8 +188,6 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
 
     public Folder GetObject(Folder folderObject, string folderName)
     {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
-        _ = folderName ?? throw new ArgumentNullException(nameof(folderName));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Folders"));
@@ -240,7 +229,6 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
 
     public IEnumerable<Folder> GetObjectEnumerable(Folder folderObject)
     {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -259,8 +247,6 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
 
     public void MoveObject(Folder folderObject, Uri folderUrl)
     {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
-        _ = folderUrl ?? throw new ArgumentNullException(nameof(folderUrl));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(folderObject.ObjectIdentity),
@@ -276,12 +262,9 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
     public void MoveObject(
         Folder folderObject,
         Uri folderUrl,
-        IReadOnlyDictionary<string, object> moveCopyOptions
+        IReadOnlyDictionary<string, object?> moveCopyOptions
     )
     {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
-        _ = folderUrl ?? throw new ArgumentNullException(nameof(folderUrl));
-        _ = moveCopyOptions ?? throw new ArgumentNullException(nameof(moveCopyOptions));
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
             new ClientActionStaticMethod(
@@ -301,9 +284,11 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
 
     public Guid RecycleObject(Folder folderObject)
     {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity), objectPathId => new ClientActionMethod(objectPathId, "Recycle"));
+        var objectPath1 = requestPayload.Add(
+            new ObjectPathIdentity(folderObject.ObjectIdentity),
+            objectPathId => new ClientActionMethod(objectPathId, "Recycle")
+        );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Guid>(requestPayload.GetActionId<ClientActionMethod>());

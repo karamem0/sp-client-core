@@ -21,11 +21,11 @@ public interface ISiteTemplateService
 
     SiteTemplate GetObject(
         string name,
-        uint? lcid,
+        uint lcid,
         bool includeCrossLanguage
     );
 
-    IEnumerable<SiteTemplate> GetObjectEnumerable(uint? lcid, bool includeCrossLanguage);
+    IEnumerable<SiteTemplate> GetObjectEnumerable(uint lcid, bool includeCrossLanguage);
 
 }
 
@@ -34,12 +34,10 @@ public class SiteTemplateService(ClientContext clientContext) : ClientService(cl
 
     public SiteTemplate GetObject(
         string name,
-        uint? lcid,
+        uint lcid,
         bool includeCrossLanguage
     )
     {
-        _ = name ?? throw new ArgumentNullException(nameof(name));
-        _ = lcid ?? throw new ArgumentNullException(nameof(lcid));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -69,9 +67,8 @@ public class SiteTemplateService(ClientContext clientContext) : ClientService(cl
             .ToObject<SiteTemplate>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<SiteTemplate> GetObjectEnumerable(uint? lcid, bool includeCrossLanguage)
+    public IEnumerable<SiteTemplate> GetObjectEnumerable(uint lcid, bool includeCrossLanguage)
     {
-        _ = lcid ?? throw new ArgumentNullException(nameof(lcid));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));

@@ -22,21 +22,21 @@ public interface IColumnTaxonomyService
 {
 
     ColumnTaxonomy AddObject(
-        IReadOnlyDictionary<string, object> creationInfo,
+        IReadOnlyDictionary<string, object?> creationInfo,
         bool addToDefaultView,
         AddColumnOptions addColumnOptions
     );
 
     ColumnTaxonomy AddObject(
         List listObject,
-        IReadOnlyDictionary<string, object> creationInfo,
+        IReadOnlyDictionary<string, object?> creationInfo,
         bool addToDefaultView,
         AddColumnOptions addColumnOptions
     );
 
     void RemoveObject(ColumnTaxonomy columnTaxonomyObject);
 
-    void SetObject(ColumnTaxonomy columnTaxonomyObject, IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObject(ColumnTaxonomy columnTaxonomyObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
     void SetObjectValue(
         ColumnTaxonomy columnTaxonomyObject,
@@ -51,12 +51,11 @@ public class ColumnTaxonomyService(ClientContext clientContext) : ClientService<
 {
 
     public ColumnTaxonomy AddObject(
-        IReadOnlyDictionary<string, object> creationInfo,
+        IReadOnlyDictionary<string, object?> creationInfo,
         bool addToDefaultView,
         AddColumnOptions addColumnOptions
     )
     {
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -82,13 +81,11 @@ public class ColumnTaxonomyService(ClientContext clientContext) : ClientService<
 
     public ColumnTaxonomy AddObject(
         List listObject,
-        IReadOnlyDictionary<string, object> creationInfo,
+        IReadOnlyDictionary<string, object?> creationInfo,
         bool addToDefaultView,
         AddColumnOptions addColumnOptions
     )
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Fields"));
@@ -118,9 +115,6 @@ public class ColumnTaxonomyService(ClientContext clientContext) : ClientService<
         uint lcid
     )
     {
-        _ = columnTaxonomyObject ?? throw new ArgumentNullException(nameof(columnTaxonomyObject));
-        _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
-        _ = termCollection ?? throw new ArgumentNullException(nameof(termCollection));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(columnTaxonomyObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathIdentity(listItemObject.ObjectIdentity));

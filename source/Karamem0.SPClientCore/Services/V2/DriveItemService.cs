@@ -62,7 +62,10 @@ public class DriveItemService(ClientContext clientContext) : ClientService(clien
     {
         _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
         var requestUrl = this
-            .ClientContext.BaseAddress.ConcatPath("_api/v2.0/shares/{0}/driveitem", SharingUrl.Create(this.ClientContext.BaseAddress.GetAuthority(), folderObject.ServerRelativeUrl))
+            .ClientContext.BaseAddress.ConcatPath(
+                "_api/v2.0/shares/{0}/driveitem",
+                SharingUrl.Create(this.ClientContext.BaseAddress.GetAuthority(), folderObject.ServerRelativeUrl)
+            )
             .ConcatQuery(ODataQuery.CreateSelect<DriveItem>())
             .ConcatQuery(ODataQuery.CreateExpand<DriveItem>());
         return this.ClientContext.GetObjectV2<DriveItem>(requestUrl);
@@ -72,7 +75,10 @@ public class DriveItemService(ClientContext clientContext) : ClientService(clien
     {
         _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
         var requestUrl = this
-            .ClientContext.BaseAddress.ConcatPath("_api/v2.0/shares/{0}/driveitem", SharingUrl.Create(this.ClientContext.BaseAddress.GetAuthority(), fileObject.ServerRelativeUrl))
+            .ClientContext.BaseAddress.ConcatPath(
+                "_api/v2.0/shares/{0}/driveitem",
+                SharingUrl.Create(this.ClientContext.BaseAddress.GetAuthority(), fileObject.ServerRelativeUrl)
+            )
             .ConcatQuery(ODataQuery.CreateSelect<DriveItem>())
             .ConcatQuery(ODataQuery.CreateExpand<DriveItem>());
         return this.ClientContext.GetObjectV2<DriveItem>(requestUrl);

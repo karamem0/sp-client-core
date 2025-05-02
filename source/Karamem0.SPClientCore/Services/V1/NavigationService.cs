@@ -21,7 +21,7 @@ public interface INavigationService
 
     Navigation GetObject();
 
-    void SetObject(IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObject(IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
@@ -46,17 +46,14 @@ public class NavigationService(ClientContext clientContext) : ClientService(clie
             .ToObject<Navigation>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public void SetObject(IReadOnlyDictionary<string, object> modificationInfo)
+    public void SetObject(IReadOnlyDictionary<string, object?> modificationInfo)
     {
-        _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(
             new ObjectPathProperty(objectPath2.Id, "Navigation"),
-            requestPayload
-                .CreateSetPropertyDelegates(typeof(Navigation), modificationInfo)
-                .ToArray()
+            requestPayload.CreateSetPropertyDelegates(typeof(Navigation), modificationInfo)
         );
         var objectPath4 = requestPayload.Add(objectPath2, objectPathId => new ClientActionMethod(objectPathId, "Update"));
         _ = this.ClientContext.ProcessQuery(requestPayload);

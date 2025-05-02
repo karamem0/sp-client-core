@@ -21,15 +21,15 @@ public class MoveCopyOptions : ClientValueObject
 {
 
     [JsonProperty()]
-    public virtual bool KeepBoth { get; protected set; }
+    public virtual bool KeepBoth { get; set; }
 
     [JsonProperty()]
-    public virtual bool ResetAuthorAndCreatedOnCopy { get; protected set; }
+    public virtual bool ResetAuthorAndCreatedOnCopy { get; set; }
 
     [JsonProperty()]
-    public virtual bool RetainEditorAndModifiedOnMove { get; protected set; }
+    public virtual bool RetainEditorAndModifiedOnMove { get; set; }
 
     [JsonProperty()]
-    public virtual bool ShouldBypassSharedLocks { get; protected set; }
+    public virtual bool ShouldBypassSharedLocks { get; set; }
 
 }

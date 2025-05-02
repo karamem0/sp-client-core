@@ -21,12 +21,12 @@ public class TimeZoneInfo : ClientValueObject
 {
 
     [JsonProperty()]
-    public virtual int Bias { get; protected set; }
+    public virtual int Bias { get; set; }
 
     [JsonProperty()]
-    public virtual int DaylightBias { get; protected set; }
+    public virtual int DaylightBias { get; set; }
 
     [JsonProperty()]
-    public virtual int StandardBias { get; protected set; }
+    public virtual int StandardBias { get; set; }
 
 }

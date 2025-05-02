@@ -19,9 +19,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantPersonalSiteService
 {
 
-    TenantOperationResult AddObject(IReadOnlyCollection<string> userId);
+    TenantOperationResult AddObject(IReadOnlyCollection<string> userIds);
 
-    void AddObjectAwait(IReadOnlyCollection<string> userId);
+    void AddObjectAwait(IReadOnlyCollection<string> userIds);
 
     string GetObject(string userId);
 
@@ -30,16 +30,15 @@ public interface ITenantPersonalSiteService
 public class TenantPersonalSiteService(ClientContext clientContext) : TenantClientService(clientContext), ITenantPersonalSiteService
 {
 
-    public TenantOperationResult AddObject(IReadOnlyCollection<string> userId)
+    public TenantOperationResult AddObject(IReadOnlyCollection<string> userIds)
     {
-        _ = userId ?? throw new ArgumentNullException(nameof(userId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             new ObjectPathMethod(
                 objectPath1.Id,
                 "RequestPersonalSites",
-                requestPayload.CreateParameter(userId)
+                requestPayload.CreateParameter(userIds)
             ),
             objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
             objectPathId => new ClientActionQuery(objectPathId)
@@ -52,14 +51,13 @@ public class TenantPersonalSiteService(ClientContext clientContext) : TenantClie
             .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public void AddObjectAwait(IReadOnlyCollection<string> userId)
+    public void AddObjectAwait(IReadOnlyCollection<string> userIds)
     {
-        this.WaitObject(this.AddObject(userId));
+        this.WaitObject(this.AddObject(userIds));
     }
 
     public string GetObject(string userId)
     {
-        _ = userId ?? throw new ArgumentNullException(nameof(userId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(

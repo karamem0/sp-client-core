@@ -30,7 +30,7 @@ public interface ISitePageService
     void SetObject(
         Folder folderObject,
         string pageName,
-        IReadOnlyDictionary<string, object> modificationInfo
+        IReadOnlyDictionary<string, object?> modificationInfo
     );
 
 }
@@ -44,8 +44,6 @@ public class SitePageService(ClientContext clientContext) : ClientService(client
         SitePageLayoutType pageLayoutType
     )
     {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
-        _ = pageName ?? throw new ArgumentNullException(nameof(pageName));
         var fileName = System.IO.Path.ChangeExtension(pageName, ".aspx");
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity));
@@ -91,8 +89,6 @@ public class SitePageService(ClientContext clientContext) : ClientService(client
 
     public void RemoveObject(Folder folderObject, string pageName)
     {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
-        _ = pageName ?? throw new ArgumentNullException(nameof(pageName));
         var fileName = System.IO.Path.ChangeExtension(pageName, ".aspx");
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity));
@@ -111,14 +107,13 @@ public class SitePageService(ClientContext clientContext) : ClientService(client
     public void SetObject(
         Folder folderObject,
         string pageName,
-        IReadOnlyDictionary<string, object> modificationInfo
+        IReadOnlyDictionary<string, object?> modificationInfo
     )
     {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
-        _ = pageName ?? throw new ArgumentNullException(nameof(pageName));
-        _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
         var fileName = System.IO.Path.ChangeExtension(pageName, ".aspx");
         var requestPayload = new ClientRequestPayload();
+        var pageLayoutType = modificationInfo["PageLayoutType"]
+            ?.ToString();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Files"));
         var objectPath3 = requestPayload.Add(
@@ -137,10 +132,7 @@ public class SitePageService(ClientContext clientContext) : ClientService(client
                     objectPathId,
                     "SetFieldValue",
                     requestPayload.CreateParameter("PageLayoutType"),
-                    requestPayload.CreateParameter(
-                        modificationInfo["PageLayoutType"]
-                            .ToString()
-                    )
+                    requestPayload.CreateParameter(pageLayoutType)
                 )
             );
         }

@@ -40,7 +40,6 @@ public class TenantDeletedSiteCollectionService(ClientContext clientContext) : T
 
     public TenantDeletedSiteCollection GetObject(TenantDeletedSiteCollection siteCollectionObject)
     {
-        _ = siteCollectionObject ?? throw new ArgumentNullException(nameof(siteCollectionObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(siteCollectionObject.ObjectIdentity),
@@ -58,7 +57,6 @@ public class TenantDeletedSiteCollectionService(ClientContext clientContext) : T
 
     public TenantDeletedSiteCollection GetObject(Uri siteCollectionUrl)
     {
-        _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
@@ -103,8 +101,6 @@ public class TenantDeletedSiteCollectionService(ClientContext clientContext) : T
 
     public TenantOperationResult RemoveObject(TenantDeletedSiteCollection siteCollectionObject)
     {
-        _ = siteCollectionObject ?? throw new ArgumentNullException(nameof(siteCollectionObject));
-        _ = siteCollectionObject.Url ?? throw new ArgumentNullException(nameof(siteCollectionObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
@@ -131,8 +127,6 @@ public class TenantDeletedSiteCollectionService(ClientContext clientContext) : T
 
     public TenantOperationResult RestoreObject(TenantDeletedSiteCollection siteCollectionObject)
     {
-        _ = siteCollectionObject ?? throw new ArgumentNullException(nameof(siteCollectionObject));
-        _ = siteCollectionObject.Url ?? throw new ArgumentNullException(nameof(siteCollectionObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(

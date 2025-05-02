@@ -21,39 +21,39 @@ public class User : Principal
 {
 
     [JsonProperty()]
-    public virtual string Email { get; protected set; }
+    public virtual string? Email { get; set; }
 
     [JsonProperty()]
-    public virtual string Expiration { get; protected set; }
+    public virtual string? Expiration { get; set; }
 
     [JsonProperty()]
-    public override int Id { get; protected set; }
+    public override int Id { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsEmailAuthenticationGuestUser { get; protected set; }
+    public virtual bool IsEmailAuthenticationGuestUser { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsHiddenInUI { get; protected set; }
+    public virtual bool IsHiddenInUI { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsShareByEmailGuestUser { get; protected set; }
+    public virtual bool IsShareByEmailGuestUser { get; set; }
 
     [JsonProperty("IsSiteAdmin")]
-    public virtual bool IsSiteCollectionAdmin { get; protected set; }
+    public virtual bool IsSiteCollectionAdmin { get; set; }
 
     [JsonProperty()]
-    public override string LoginName { get; protected set; }
+    public override string? LoginName { get; set; }
 
     [JsonProperty()]
-    public override PrincipalType PrincipalType { get; protected set; }
+    public override PrincipalType? PrincipalType { get; set; }
 
     [JsonProperty()]
-    public override string Title { get; protected set; }
+    public override string? Title { get; set; }
 
     [JsonProperty()]
-    public virtual UserIdInfo UserId { get; protected set; }
+    public virtual UserIdInfo? UserId { get; set; }
 
     [JsonProperty()]
-    public virtual string UserPrincipalName { get; protected set; }
+    public virtual string? UserPrincipalName { get; set; }
 
 }

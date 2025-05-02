@@ -21,123 +21,123 @@ public class ColumnMultiChoice : Column
 {
 
     [JsonProperty()]
-    public override bool AutoIndexed { get; protected set; }
+    public override bool AutoIndexed { get; set; }
 
     [JsonProperty()]
-    public override bool CanBeDeleted { get; protected set; }
+    public override bool CanBeDeleted { get; set; }
 
     [JsonProperty()]
-    public override string ClientSideComponentId { get; protected set; }
+    public override string? ClientSideComponentId { get; set; }
 
     [JsonProperty()]
-    public override string ClientSideComponentProperties { get; protected set; }
+    public override string? ClientSideComponentProperties { get; set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<Column> Columns { get; protected set; }
+    public virtual IReadOnlyCollection<Column>? Columns { get; set; }
 
     [JsonProperty("FieldTypeKind")]
-    public override ColumnType ColumnType { get; protected set; }
+    public override ColumnType? ColumnType { get; set; }
 
     [JsonProperty()]
-    public override string CustomFormatter { get; protected set; }
+    public override string? CustomFormatter { get; set; }
 
     [JsonProperty()]
-    public override string DefaultFormula { get; protected set; }
+    public override string? DefaultFormula { get; set; }
 
     [JsonProperty()]
-    public override string DefaultValue { get; protected set; }
+    public override string? DefaultValue { get; set; }
 
     [JsonProperty()]
-    public override string Description { get; protected set; }
+    public override string? Description { get; set; }
 
     [JsonProperty()]
-    public override string Direction { get; protected set; }
+    public override string? Direction { get; set; }
 
     [JsonProperty()]
-    public override bool EnforceUniqueValues { get; protected set; }
+    public override bool EnforceUniqueValues { get; set; }
 
     [JsonProperty()]
-    public override string EntityPropertyName { get; protected set; }
+    public override string? EntityPropertyName { get; set; }
 
     [JsonProperty()]
-    public virtual bool FillInChoice { get; protected set; }
+    public virtual bool FillInChoice { get; set; }
 
     [JsonProperty()]
-    public override bool Filterable { get; protected set; }
+    public override bool Filterable { get; set; }
 
     [JsonProperty()]
-    public override bool FromBaseType { get; protected set; }
+    public override bool FromBaseType { get; set; }
 
     [JsonProperty()]
-    public override string Group { get; protected set; }
+    public override string? Group { get; set; }
 
     [JsonProperty()]
-    public override bool Hidden { get; protected set; }
+    public override bool Hidden { get; set; }
 
     [JsonProperty()]
-    public override Guid Id { get; protected set; }
+    public override Guid Id { get; set; }
 
     [JsonProperty()]
-    public override bool Indexed { get; protected set; }
+    public override bool Indexed { get; set; }
 
     [JsonProperty()]
-    public override string JSLink { get; protected set; }
+    public override string? JSLink { get; set; }
 
     [JsonProperty()]
-    public virtual string Mappings { get; protected set; }
+    public virtual string? Mappings { get; set; }
 
     [JsonProperty("InternalName")]
-    public override string Name { get; protected set; }
+    public override string? Name { get; set; }
 
     [JsonProperty()]
-    public override bool NoCrawl { get; protected set; }
+    public override bool NoCrawl { get; set; }
 
     [JsonProperty()]
-    public override bool PinnedToFiltersPane { get; protected set; }
+    public override bool PinnedToFiltersPane { get; set; }
 
     [JsonProperty("ReadOnlyField")]
-    public override bool ReadOnly { get; protected set; }
+    public override bool ReadOnly { get; set; }
 
     [JsonProperty()]
-    public override bool Required { get; protected set; }
+    public override bool Required { get; set; }
 
     [JsonProperty()]
-    public override string SchemaXml { get; protected set; }
+    public override string? SchemaXml { get; set; }
 
     [JsonProperty()]
-    public override string SchemaXmlWithResourceTokens { get; protected set; }
+    public override string? SchemaXmlWithResourceTokens { get; set; }
 
     [JsonProperty()]
-    public override string Scope { get; protected set; }
+    public override string? Scope { get; set; }
 
     [JsonProperty()]
-    public override bool Sealed { get; protected set; }
+    public override bool Sealed { get; set; }
 
     [JsonProperty()]
-    public override bool ShowInFiltersPane { get; protected set; }
+    public override bool ShowInFiltersPane { get; set; }
 
     [JsonProperty()]
-    public override bool Sortable { get; protected set; }
+    public override bool Sortable { get; set; }
 
     [JsonProperty()]
-    public override string StaticName { get; protected set; }
+    public override string? StaticName { get; set; }
 
     [JsonProperty()]
-    public override string Title { get; protected set; }
+    public override string? Title { get; set; }
 
     [JsonProperty()]
-    public override string TypeAsString { get; protected set; }
+    public override string? TypeAsString { get; set; }
 
     [JsonProperty()]
-    public override string TypeDisplayName { get; protected set; }
+    public override string? TypeDisplayName { get; set; }
 
     [JsonProperty()]
-    public override string TypeShortDescription { get; protected set; }
+    public override string? TypeShortDescription { get; set; }
 
     [JsonProperty()]
-    public override string ValidationFormula { get; protected set; }
+    public override string? ValidationFormula { get; set; }
 
     [JsonProperty()]
-    public override string ValidationMessage { get; protected set; }
+    public override string? ValidationMessage { get; set; }
 
 }

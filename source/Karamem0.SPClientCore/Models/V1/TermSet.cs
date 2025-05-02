@@ -21,45 +21,45 @@ public class TermSet : TermSetItem
 {
 
     [JsonProperty()]
-    public virtual string Contact { get; protected set; }
+    public virtual string? Contact { get; set; }
 
     [JsonProperty("CreatedDate")]
-    public override DateTime Created { get; protected set; }
+    public override DateTime Created { get; set; }
 
     [JsonProperty()]
-    public override IReadOnlyDictionary<string, string> CustomProperties { get; protected set; }
+    public override IReadOnlyDictionary<string, string>? CustomProperties { get; set; }
 
     [JsonProperty()]
-    public override string CustomSortOrder { get; protected set; }
+    public override string? CustomSortOrder { get; set; }
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; set; }
 
     [JsonProperty()]
-    public override Guid Id { get; protected set; }
+    public override Guid Id { get; set; }
 
     [JsonProperty()]
-    public override bool IsAvailableForTagging { get; protected set; }
+    public override bool IsAvailableForTagging { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsOpenForTermCreation { get; protected set; }
+    public virtual bool IsOpenForTermCreation { get; set; }
 
     [JsonProperty("LastModifiedDate")]
-    public override DateTime LastModified { get; protected set; }
+    public override DateTime LastModified { get; set; }
 
     [JsonProperty()]
-    public override string Name { get; protected set; }
+    public override string? Name { get; set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyDictionary<string, string> Names { get; protected set; }
+    public virtual IReadOnlyDictionary<string, string>? Names { get; set; }
 
     [JsonProperty()]
-    public override string Owner { get; protected set; }
+    public override string? Owner { get; set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyList<string> Stakeholders { get; protected set; }
+    public virtual IReadOnlyList<string>? Stakeholders { get; set; }
 
     [JsonProperty()]
-    public override TermStore TermStore { get; protected set; }
+    public override TermStore? TermStore { get; set; }
 
 }

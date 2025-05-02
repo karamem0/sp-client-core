@@ -86,8 +86,7 @@ public class ClientContext
 
     public void DeleteObject(Uri requestUrl)
     {
-        _ = requestUrl ?? throw new ArgumentNullException(nameof(requestUrl));
-        this.clientHttpExecutor.Execute(
+        _ = this.clientHttpExecutor.Execute(
             () =>
             {
                 var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -97,13 +96,12 @@ public class ClientContext
                 requestMessage.Headers.Add("If-Match", "*");
                 return requestMessage;
             },
-            responseMessage => Task.FromResult(default(object))
+            responseMessage => responseMessage.Content.ReadAsStringAsync()
         );
     }
 
     public T GetObject<T>(Uri requestUrl) where T : ODataV1Object
     {
-        _ = requestUrl ?? throw new ArgumentNullException(nameof(requestUrl));
         return this.clientHttpExecutor.Execute(
             () =>
             {
@@ -128,9 +126,8 @@ public class ClientContext
         );
     }
 
-    public T GetObjectV2<T>(Uri requestUrl) where T : ODataV2Object
+    public T? GetObjectV2<T>(Uri requestUrl) where T : ODataV2Object
     {
-        _ = requestUrl ?? throw new ArgumentNullException(nameof(requestUrl));
         return this.clientHttpExecutor.Execute(
             () =>
             {
@@ -157,7 +154,6 @@ public class ClientContext
 
     public System.IO.Stream GetStream(Uri requestUrl)
     {
-        _ = requestUrl ?? throw new ArgumentNullException(nameof(requestUrl));
         return this.clientHttpExecutor.Execute(
             () =>
             {
@@ -170,10 +166,9 @@ public class ClientContext
         );
     }
 
-    public void PatchObject(Uri requestUrl, object requestPayload)
+    public void PatchObject(Uri requestUrl, object? requestPayload)
     {
-        _ = requestUrl ?? throw new ArgumentNullException(nameof(requestUrl));
-        this.clientHttpExecutor.Execute(
+        _ = this.clientHttpExecutor.Execute(
             () =>
             {
                 var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -189,14 +184,13 @@ public class ClientContext
                 }
                 return requestMessage;
             },
-            responseMessage => Task.FromResult(default(object))
+            responseMessage => responseMessage.Content.ReadAsStringAsync()
         );
     }
 
-    public void PostObject(Uri requestUrl, object requestPayload)
+    public void PostObject(Uri requestUrl, object? requestPayload)
     {
-        _ = requestUrl ?? throw new ArgumentNullException(nameof(requestUrl));
-        this.clientHttpExecutor.Execute(
+        _ = this.clientHttpExecutor.Execute(
             () =>
             {
                 var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -210,13 +204,12 @@ public class ClientContext
                 }
                 return requestMessage;
             },
-            responseMessage => Task.FromResult(default(object))
+            responseMessage => responseMessage.Content.ReadAsStringAsync()
         );
     }
 
-    public T PostObject<T>(Uri requestUrl, object requestPayload) where T : ODataV1Object
+    public T PostObject<T>(Uri requestUrl, object? requestPayload) where T : ODataV1Object
     {
-        _ = requestUrl ?? throw new ArgumentNullException(nameof(requestUrl));
         return this.clientHttpExecutor.Execute(
             () =>
             {
@@ -249,9 +242,7 @@ public class ClientContext
 
     public void PostStream(Uri requestUrl, System.IO.Stream requestStream)
     {
-        _ = requestUrl ?? throw new ArgumentNullException(nameof(requestUrl));
-        _ = requestStream ?? throw new ArgumentNullException(nameof(requestStream));
-        this.clientHttpExecutor.Execute(
+        _ = this.clientHttpExecutor.Execute(
             () =>
             {
                 var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
@@ -261,14 +252,12 @@ public class ClientContext
                 requestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json;odata=verbose");
                 return requestMessage;
             },
-            responseMessage => Task.FromResult(default(object))
+            responseMessage => responseMessage.Content.ReadAsStringAsync()
         );
     }
 
     public T PostStream<T>(Uri requestUrl, System.IO.Stream requestStream) where T : ODataV1Object
     {
-        _ = requestUrl ?? throw new ArgumentNullException(nameof(requestUrl));
-        _ = requestStream ?? throw new ArgumentNullException(nameof(requestStream));
         return this.clientHttpExecutor.Execute(
             () =>
             {
@@ -297,7 +286,6 @@ public class ClientContext
 
     public ClientResultPayload ProcessQuery(ClientRequestPayload requestPayload)
     {
-        _ = requestPayload ?? throw new ArgumentNullException(nameof(requestPayload));
         return this.clientHttpExecutor.Execute(
             () =>
             {

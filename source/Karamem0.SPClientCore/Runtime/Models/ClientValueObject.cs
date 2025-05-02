@@ -22,7 +22,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class ClientValueObject : JsonValueObject
 {
 
-    public static ClientValueObject Create<T>(IReadOnlyDictionary<string, object> parameters) where T : ClientValueObject, new()
+    public static ClientValueObject Create<T>(IReadOnlyDictionary<string, object?> parameters) where T : ClientValueObject, new()
     {
         _ = parameters ?? throw new ArgumentNullException(nameof(parameters));
         var value = new T();
@@ -81,6 +81,6 @@ public class ClientValueObject : JsonValueObject
     }
 
     [JsonProperty("_ObjectType_")]
-    public string ObjectType { get; private set; }
+    public string? ObjectType { get; private set; }
 
 }

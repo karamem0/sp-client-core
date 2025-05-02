@@ -56,7 +56,7 @@ public class ClientRequestPayload : ClientRequestObject
         return objectPath;
     }
 
-    public ClientRequestParameter CreateParameter(object value)
+    public ClientRequestParameter CreateParameter(object? value)
     {
         if (ClientRequestValue.TryCreate(value, out var clientRequestValue))
         {
@@ -88,7 +88,7 @@ public class ClientRequestPayload : ClientRequestObject
         }
     }
 
-    public IEnumerable<ClientActionDelegate> CreateSetPropertyDelegates(Type objectType, IReadOnlyDictionary<string, object> parameters)
+    public IEnumerable<ClientActionDelegate> CreateSetPropertyDelegates(Type objectType, IReadOnlyDictionary<string, object?> parameters)
     {
         foreach (var parameter in parameters)
         {
@@ -123,7 +123,8 @@ public class ClientRequestPayload : ClientRequestObject
         }
     }
 
-    public IEnumerable<ClientActionDelegate> CreateSetPropertyDelegates<T>(T clientObject, IReadOnlyDictionary<string, object> parameters) where T : ClientObject
+    public IEnumerable<ClientActionDelegate> CreateSetPropertyDelegates<T>(T clientObject, IReadOnlyDictionary<string, object?> parameters)
+        where T : ClientObject
     {
         var objectName = clientObject.ObjectType;
         var objectType = ClientObject.GetType(objectName);

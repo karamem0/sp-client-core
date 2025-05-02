@@ -20,18 +20,18 @@ public interface ISiteCollectionFeatureService
 {
 
     void AddObject(
-        Guid? featureId,
+        Guid featureId,
         bool force,
         FeatureDefinitionScope scope
     );
 
     Feature GetObject(Feature featureObject);
 
-    Feature GetObject(Guid? featureId);
+    Feature GetObject(Guid featureId);
 
     IEnumerable<Feature> GetObjectEnumerable();
 
-    void RemoveObject(Guid? featureId, bool force);
+    void RemoveObject(Guid featureId, bool force);
 
 }
 
@@ -39,12 +39,11 @@ public class SiteCollectionFeatureService(ClientContext clientContext) : ClientS
 {
 
     public void AddObject(
-        Guid? featureId,
+        Guid featureId,
         bool force,
         FeatureDefinitionScope scope
     )
     {
-        _ = featureId ?? throw new ArgumentNullException(nameof(featureId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Site"));
@@ -62,9 +61,8 @@ public class SiteCollectionFeatureService(ClientContext clientContext) : ClientS
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public Feature GetObject(Guid? featureId)
+    public Feature GetObject(Guid featureId)
     {
-        _ = featureId ?? throw new ArgumentNullException(nameof(featureId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Site"));
@@ -105,9 +103,8 @@ public class SiteCollectionFeatureService(ClientContext clientContext) : ClientS
             .ToObject<FeatureEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public void RemoveObject(Guid? featureId, bool force)
+    public void RemoveObject(Guid featureId, bool force)
     {
-        _ = featureId ?? throw new ArgumentNullException(nameof(featureId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Site"));

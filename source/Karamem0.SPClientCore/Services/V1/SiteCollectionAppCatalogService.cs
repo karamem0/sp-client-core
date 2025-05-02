@@ -31,7 +31,8 @@ public interface ISiteCollectionAppCatalogService
 
 }
 
-public class SiteCollectionAppCatalogService(ClientContext clientContext) : ClientService<SiteCollectionAppCatalog>(clientContext), ISiteCollectionAppCatalogService
+public class SiteCollectionAppCatalogService(ClientContext clientContext)
+    : ClientService<SiteCollectionAppCatalog>(clientContext), ISiteCollectionAppCatalogService
 {
 
     public void AddObject(Uri siteCollectionUrl)

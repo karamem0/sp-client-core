@@ -21,54 +21,54 @@ public class SharePointSharingSettings : ClientObject
 {
 
     [JsonProperty()]
-    public virtual string AddToGroupModeName { get; protected set; }
+    public virtual string? AddToGroupModeName { get; set; }
 
     [JsonProperty("txtEmailSubjectText")]
-    public virtual string EmailSubjectText { get; protected set; }
+    public virtual string? EmailSubjectText { get; set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<string> GroupNameLines { get; protected set; }
+    public virtual IReadOnlyCollection<string>? GroupNameLines { get; set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<string> GroupRoleDefinitionNamesLines { get; protected set; }
+    public virtual IReadOnlyCollection<string>? GroupRoleDefinitionNamesLines { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsMobileView { get; protected set; }
+    public virtual bool IsMobileView { get; set; }
 
     [JsonProperty()]
-    public virtual bool PanelGivePermissionsVisible { get; protected set; }
+    public virtual bool PanelGivePermissionsVisible { get; set; }
 
     [JsonProperty()]
-    public virtual bool PanelShowHideMoreOptionsVisible { get; protected set; }
+    public virtual bool PanelShowHideMoreOptionsVisible { get; set; }
 
     [JsonProperty()]
-    public virtual bool PanelSimplifiedRoleSelectorVisible { get; protected set; }
+    public virtual bool PanelSimplifiedRoleSelectorVisible { get; set; }
 
     [JsonProperty()]
-    public virtual PickerSettings PickerProperties { get; protected set; }
+    public virtual PickerSettings? PickerProperties { get; set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<string> RequiredScriptFileLinks { get; protected set; }
+    public virtual IReadOnlyCollection<string>? RequiredScriptFileLinks { get; set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<string> RoleDefinitionNameLines { get; protected set; }
+    public virtual IReadOnlyCollection<string>? RoleDefinitionNameLines { get; set; }
 
     [JsonProperty()]
-    public virtual string SelectedGroup { get; protected set; }
+    public virtual string? SelectedGroup { get; set; }
 
     [JsonProperty()]
-    public virtual bool SharedWithEnabled { get; protected set; }
+    public virtual bool SharedWithEnabled { get; set; }
 
     [JsonProperty()]
-    public virtual string SharingCssLink { get; protected set; }
+    public virtual string? SharingCssLink { get; set; }
 
     [JsonProperty()]
-    public virtual bool TabbedDialogEnabled { get; protected set; }
+    public virtual bool TabbedDialogEnabled { get; set; }
 
     [JsonProperty()]
-    public virtual int TabToShow { get; protected set; }
+    public virtual int TabToShow { get; set; }
 
     [JsonProperty()]
-    public virtual string UserDisplayUrl { get; protected set; }
+    public virtual string? UserDisplayUrl { get; set; }
 
 }

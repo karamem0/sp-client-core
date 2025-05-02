@@ -21,30 +21,30 @@ public class ViewCreationInfo : ClientValueObject
 {
 
     [JsonProperty()]
-    public int BaseViewId { get; private set; }
+    public virtual int BaseViewId { get; private set; }
 
     [JsonProperty()]
-    public bool Paged { get; private set; }
+    public virtual bool Paged { get; private set; }
 
     [JsonProperty()]
-    public bool PersonalView { get; private set; }
+    public virtual bool PersonalView { get; private set; }
 
     [JsonProperty()]
-    public int RowLimit { get; private set; }
+    public virtual int RowLimit { get; private set; }
 
     [JsonProperty()]
-    public bool SetAsDefaultView { get; private set; }
+    public virtual bool SetAsDefaultView { get; private set; }
 
     [JsonProperty()]
-    public string Title { get; private set; }
+    public virtual string? Title { get; private set; }
 
     [JsonProperty("ViewFields")]
-    public string[] ViewColumns { get; private set; }
+    public virtual IReadOnlyCollection<string>? ViewColumns { get; private set; }
 
     [JsonProperty("Query")]
-    public string ViewQuery { get; private set; }
+    public virtual string? ViewQuery { get; private set; }
 
     [JsonProperty("ViewTypeKind")]
-    public ViewType ViewType { get; private set; }
+    public virtual ViewType? ViewType { get; private set; }
 
 }

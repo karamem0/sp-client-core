@@ -21,23 +21,23 @@ public class TenantSiteCollectionFilter : ClientValueObject
 {
 
     [JsonProperty()]
-    public virtual string Filter { get; protected set; }
+    public virtual string? Filter { get; set; }
 
     [JsonProperty()]
     [SwitchParameterValue(TrueValue = 1, FalseValue = 2)]
-    public virtual int GroupIdDefined { get; protected set; }
+    public virtual int GroupIdDefined { get; set; }
 
     [JsonProperty()]
-    public virtual bool IncludeDetail { get; protected set; }
+    public virtual bool IncludeDetail { get; set; }
 
     [JsonProperty()]
     [SwitchParameterValue(TrueValue = PersonalSiteFilter.Include, FalseValue = PersonalSiteFilter.Exclude)]
-    public virtual PersonalSiteFilter IncludePersonalSite { get; protected set; }
+    public virtual PersonalSiteFilter? IncludePersonalSite { get; set; }
 
     [JsonProperty()]
-    public virtual string StartIndex { get; protected set; }
+    public virtual string? StartIndex { get; set; }
 
     [JsonProperty()]
-    public virtual string Template { get; protected set; }
+    public virtual string? Template { get; set; }
 
 }

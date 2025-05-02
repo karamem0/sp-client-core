@@ -21,132 +21,132 @@ public class SharingSettings : ClientObject
 {
 
     [JsonProperty()]
-    public virtual bool AccessRequestMode { get; protected set; }
+    public virtual bool AccessRequestMode { get; set; }
 
     [JsonProperty()]
-    public virtual bool BlockPeoplePickerAndSharing { get; protected set; }
+    public virtual bool BlockPeoplePickerAndSharing { get; set; }
 
     [JsonProperty()]
-    public virtual bool CanCurrentUserManageOrganizationReadonlyLink { get; protected set; }
+    public virtual bool CanCurrentUserManageOrganizationReadonlyLink { get; set; }
 
     [JsonProperty()]
-    public virtual bool CanCurrentUserManageOrganizationReadWriteLink { get; protected set; }
+    public virtual bool CanCurrentUserManageOrganizationReadWriteLink { get; set; }
 
     [JsonProperty()]
-    public virtual bool CanCurrentUserManageReadonlyLink { get; protected set; }
+    public virtual bool CanCurrentUserManageReadonlyLink { get; set; }
 
     [JsonProperty()]
-    public virtual bool CanCurrentUserManageReadWriteLink { get; protected set; }
+    public virtual bool CanCurrentUserManageReadWriteLink { get; set; }
 
     [JsonProperty()]
-    public virtual bool CanCurrentUserRetrieveOrganizationReadonlyLink { get; protected set; }
+    public virtual bool CanCurrentUserRetrieveOrganizationReadonlyLink { get; set; }
 
     [JsonProperty()]
-    public virtual bool CanCurrentUserRetrieveOrganizationReadWriteLink { get; protected set; }
+    public virtual bool CanCurrentUserRetrieveOrganizationReadWriteLink { get; set; }
 
     [JsonProperty()]
-    public virtual bool CanCurrentUserRetrieveReadonlyLink { get; protected set; }
+    public virtual bool CanCurrentUserRetrieveReadonlyLink { get; set; }
 
     [JsonProperty()]
-    public virtual bool CanCurrentUserRetrieveReadWriteLink { get; protected set; }
+    public virtual bool CanCurrentUserRetrieveReadWriteLink { get; set; }
 
     [JsonProperty()]
-    public virtual bool CanCurrentUserShareExternally { get; protected set; }
+    public virtual bool CanCurrentUserShareExternally { get; set; }
 
     [JsonProperty()]
-    public virtual bool CanCurrentUserShareInternally { get; protected set; }
+    public virtual bool CanCurrentUserShareInternally { get; set; }
 
     [JsonProperty()]
-    public virtual bool CanSendEmail { get; protected set; }
+    public virtual bool CanSendEmail { get; set; }
 
     [JsonProperty()]
-    public virtual bool CanSendLink { get; protected set; }
+    public virtual bool CanSendLink { get; set; }
 
     [JsonProperty()]
-    public virtual bool CanShareFolder { get; protected set; }
+    public virtual bool CanShareFolder { get; set; }
 
     [JsonProperty()]
-    public virtual RoleType DefaultShareLinkPermission { get; protected set; }
+    public virtual RoleType? DefaultShareLinkPermission { get; set; }
 
     [JsonProperty()]
-    public virtual SharingLinkKind DefaultShareLinkType { get; protected set; }
+    public virtual SharingLinkKind? DefaultShareLinkType { get; set; }
 
     [JsonProperty("EnforceIBSegmentFiltering")]
-    public virtual bool EnforceInformationBarriersSegmentFiltering { get; protected set; }
+    public virtual bool EnforceInformationBarriersSegmentFiltering { get; set; }
 
     [JsonProperty("EnforceSPOSearch")]
-    public virtual bool EnforceSharePointOnlineSearch { get; protected set; }
+    public virtual bool EnforceSharePointOnlineSearch { get; set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyDictionary<string, string> GroupsList { get; protected set; }
+    public virtual IReadOnlyDictionary<string, string>? GroupsList { get; set; }
 
     [JsonProperty()]
-    public virtual bool HasEditRole { get; protected set; }
+    public virtual bool HasEditRole { get; set; }
 
     [JsonProperty()]
-    public virtual bool HasReadRole { get; protected set; }
+    public virtual bool HasReadRole { get; set; }
 
     [JsonProperty()]
-    public virtual string InheritingWebLink { get; protected set; }
+    public virtual string? InheritingWebLink { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsGuestUser { get; protected set; }
+    public virtual bool IsGuestUser { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsPictureLibrary { get; protected set; }
+    public virtual bool IsPictureLibrary { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsUserSiteAdmin { get; protected set; }
+    public virtual bool IsUserSiteAdmin { get; set; }
 
     [JsonProperty()]
-    public virtual string ItemId { get; protected set; }
+    public virtual string? ItemId { get; set; }
 
     [JsonProperty()]
-    public virtual string ItemName { get; protected set; }
+    public virtual string? ItemName { get; set; }
 
     [JsonProperty()]
-    public virtual string ItemUrl { get; protected set; }
+    public virtual string? ItemUrl { get; set; }
 
     [JsonProperty()]
-    public virtual Guid ListId { get; protected set; }
+    public virtual Guid ListId { get; set; }
 
     [JsonProperty()]
-    public virtual bool PermissionsOnlyMode { get; protected set; }
+    public virtual bool PermissionsOnlyMode { get; set; }
 
     [JsonProperty()]
-    public virtual int RequiredAnonymousLinkExpirationInDays { get; protected set; }
+    public virtual int RequiredAnonymousLinkExpirationInDays { get; set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyDictionary<string, string> Roles { get; protected set; }
+    public virtual IReadOnlyDictionary<string, string>? Roles { get; set; }
 
     [JsonProperty()]
-    public virtual bool ShareByEmailEnabled { get; protected set; }
+    public virtual bool ShareByEmailEnabled { get; set; }
 
     [JsonProperty()]
-    public virtual SharePointSharingSettings SharePointSettings { get; protected set; }
+    public virtual SharePointSharingSettings? SharePointSettings { get; set; }
 
     [JsonProperty("ObjectSharingInformation")]
-    public virtual SharingInfo SharingInfo { get; protected set; }
+    public virtual SharingInfo? SharingInfo { get; set; }
 
     [JsonProperty()]
-    public virtual SharingPermissionInfoEnumerable SharingPermissions { get; protected set; }
+    public virtual SharingPermissionInfoEnumerable? SharingPermissions { get; set; }
 
     [JsonProperty()]
-    public virtual bool ShowExternalSharingWarning { get; protected set; }
+    public virtual bool ShowExternalSharingWarning { get; set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyDictionary<string, string> SimplifiedRoles { get; protected set; }
+    public virtual IReadOnlyDictionary<string, string>? SimplifiedRoles { get; set; }
 
     [JsonProperty("SiteIBMode")]
-    public virtual string SiteInformationBarriersMode { get; protected set; }
+    public virtual string? SiteInformationBarriersMode { get; set; }
 
     [JsonProperty("SiteIBSegmentIDs")]
-    public virtual IReadOnlyCollection<string> SiteInformationBarriersSegmentIDs { get; protected set; }
+    public virtual IReadOnlyCollection<string>? SiteInformationBarriersSegmentIDs { get; set; }
 
     [JsonProperty()]
-    public virtual bool SupportsAclPropagation { get; protected set; }
+    public virtual bool SupportsAclPropagation { get; set; }
 
     [JsonProperty()]
-    public virtual string WebUrl { get; protected set; }
+    public virtual string? WebUrl { get; set; }
 
 }

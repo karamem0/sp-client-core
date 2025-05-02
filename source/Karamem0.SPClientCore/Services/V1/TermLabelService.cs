@@ -7,7 +7,6 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
-using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.Services;
 using System;
@@ -45,9 +44,9 @@ public interface ITermLabelService
 
     void SetObjectAsDefault(TermLabel termLabelObject);
 
-    void SetObject(TermLabel termLabelObject, IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObject(TermLabel termLabelObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
-    void SetObjectAwait(TermLabel termLabelObject, IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObjectAwait(TermLabel termLabelObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
@@ -61,9 +60,6 @@ public class TermLabelService(ClientContext clientContext) : ClientService<TermL
         bool isDefault
     )
     {
-        _ = termObject ?? throw new ArgumentNullException(nameof(termObject));
-        _ = name ?? throw new ArgumentNullException(nameof(name));
-        _ = (lcid != default) ? lcid : throw new ArgumentNullException(nameof(lcid));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -87,8 +83,6 @@ public class TermLabelService(ClientContext clientContext) : ClientService<TermL
 
     public TermLabel GetObject(Term termObject, string name)
     {
-        _ = termObject ?? throw new ArgumentNullException(nameof(termObject));
-        _ = name ?? throw new ArgumentNullException(nameof(name));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Labels"));
@@ -115,9 +109,6 @@ public class TermLabelService(ClientContext clientContext) : ClientService<TermL
         uint lcid
     )
     {
-        _ = termObject ?? throw new ArgumentNullException(nameof(termObject));
-        _ = name ?? throw new ArgumentNullException(nameof(name));
-        _ = (lcid != default) ? lcid : throw new ArgumentNullException(nameof(lcid));
         return this
             .GetObjectEnumerable(termObject)
             .Where(termLabelObject => termLabelObject.Name == name)
@@ -127,7 +118,6 @@ public class TermLabelService(ClientContext clientContext) : ClientService<TermL
 
     public IEnumerable<TermLabel> GetObjectEnumerable(Term termObject)
     {
-        _ = termObject ?? throw new ArgumentNullException(nameof(termObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -146,7 +136,6 @@ public class TermLabelService(ClientContext clientContext) : ClientService<TermL
 
     public override void RemoveObject(TermLabel termLabelObject)
     {
-        _ = termLabelObject ?? throw new ArgumentNullException(nameof(termLabelObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termLabelObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(objectPath1, objectPathId => new ClientActionMethod(objectPathId, "DeleteObject"));
@@ -158,7 +147,6 @@ public class TermLabelService(ClientContext clientContext) : ClientService<TermL
 
     public void SetObjectAsDefault(TermLabel termLabelObject)
     {
-        _ = termLabelObject ?? throw new ArgumentNullException(nameof(termLabelObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termLabelObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(objectPath1, objectPathId => new ClientActionMethod(objectPathId, "SetAsDefaultForLanguage"));
@@ -168,10 +156,8 @@ public class TermLabelService(ClientContext clientContext) : ClientService<TermL
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public override void SetObject(TermLabel termLabelObject, IReadOnlyDictionary<string, object> modificationInfo)
+    public override void SetObject(TermLabel termLabelObject, IReadOnlyDictionary<string, object?> modificationInfo)
     {
-        _ = termLabelObject ?? throw new ArgumentNullException(nameof(termLabelObject));
-        _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
         this.SetObjectAwait(termLabelObject, modificationInfo);
         var termLabelObjectIdentity = Regex.Replace(
             termLabelObject.ObjectIdentity,
@@ -185,7 +171,10 @@ public class TermLabelService(ClientContext clientContext) : ClientService<TermL
         while (true)
         {
             var requestPayload = new ClientRequestPayload();
-            var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termLabelObjectIdentity), objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
+            var objectPath1 = requestPayload.Add(
+                new ObjectPathIdentity(termLabelObjectIdentity),
+                objectPathId => new ClientActionInstantiateObjectPath(objectPathId)
+            );
             if (this
                 .ClientContext.ProcessQuery(requestPayload)
                 .IsNull(requestPayload.GetActionId<ClientActionInstantiateObjectPath>()))
@@ -199,10 +188,8 @@ public class TermLabelService(ClientContext clientContext) : ClientService<TermL
         }
     }
 
-    public void SetObjectAwait(TermLabel termLabelObject, IReadOnlyDictionary<string, object> modificationInfo)
+    public void SetObjectAwait(TermLabel termLabelObject, IReadOnlyDictionary<string, object?> modificationInfo)
     {
-        _ = termLabelObject ?? throw new ArgumentNullException(nameof(termLabelObject));
-        _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termLabelObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(objectPath1, requestPayload.CreateSetPropertyDelegates(termLabelObject, modificationInfo));

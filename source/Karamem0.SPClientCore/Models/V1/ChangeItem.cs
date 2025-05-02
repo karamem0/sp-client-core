@@ -21,69 +21,69 @@ public class ChangeItem : Change
 {
 
     [JsonProperty()]
-    public override ChangeToken ChangeToken { get; protected set; }
+    public override ChangeToken? ChangeToken { get; set; }
 
     [JsonProperty()]
-    public override ChangeType ChangeType { get; protected set; }
+    public override ChangeType? ChangeType { get; set; }
 
     [JsonProperty()]
-    public virtual string Editor { get; protected set; }
+    public virtual string? Editor { get; set; }
 
     [JsonProperty()]
-    public virtual string EditorEmailHint { get; protected set; }
+    public virtual string? EditorEmailHint { get; set; }
 
     [JsonProperty()]
-    public virtual string EditorLoginName { get; protected set; }
+    public virtual string? EditorLoginName { get; set; }
 
     [JsonProperty()]
-    public virtual FileSystemObjectType FileSystemObjectType { get; protected set; }
+    public virtual FileSystemObjectType? FileSystemObjectType { get; set; }
 
     [JsonProperty()]
-    public virtual string FileType { get; protected set; }
+    public virtual string? FileType { get; set; }
 
     [JsonProperty()]
-    public virtual string HashTag { get; protected set; }
+    public virtual string? HashTag { get; set; }
 
     [JsonProperty()]
-    public virtual bool Hidden { get; protected set; }
+    public virtual bool Hidden { get; set; }
 
     [JsonProperty()]
-    public virtual int ItemId { get; protected set; }
+    public virtual int ItemId { get; set; }
 
     [JsonProperty()]
-    public virtual Guid ListId { get; protected set; }
+    public virtual Guid ListId { get; set; }
 
     [JsonProperty()]
-    public virtual ListTemplateType ListTemplate { get; protected set; }
+    public virtual ListTemplateType? ListTemplate { get; set; }
 
     [JsonProperty()]
-    public virtual string ListTitle { get; protected set; }
+    public virtual string? ListTitle { get; set; }
 
     [JsonProperty()]
-    public override string RelativeTime { get; protected set; }
+    public override string? RelativeTime { get; set; }
 
     [JsonProperty()]
-    public virtual string ServerRelativeUrl { get; protected set; }
+    public virtual string? ServerRelativeUrl { get; set; }
 
     [JsonProperty("SharedByUser")]
-    public virtual SharedWithUser SharedWithUser { get; protected set; }
+    public virtual SharedWithUser? SharedWithUser { get; set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<SharedWithUser> SharedWithUsers { get; protected set; }
+    public virtual IReadOnlyCollection<SharedWithUser>? SharedWithUsers { get; set; }
 
     [JsonProperty("SiteId")]
-    public override Guid SiteCollectionId { get; protected set; }
+    public override Guid SiteCollectionId { get; set; }
 
     [JsonProperty("WebId")]
-    public virtual Guid SiteId { get; protected set; }
+    public virtual Guid SiteId { get; set; }
 
     [JsonProperty()]
-    public override DateTime Time { get; protected set; }
+    public override DateTime Time { get; set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; set; }
 
     [JsonProperty()]
-    public virtual Guid UniqueId { get; protected set; }
+    public virtual Guid UniqueId { get; set; }
 
 }

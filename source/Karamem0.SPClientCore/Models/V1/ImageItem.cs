@@ -20,12 +20,12 @@ public class ImageItem : ODataV1Object
 {
 
     [JsonProperty("Name")]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; set; }
 
     [JsonProperty("ServerRelativeUrl")]
-    public virtual string ServerRelativeUrl { get; protected set; }
+    public virtual string? ServerRelativeUrl { get; set; }
 
     [JsonProperty("UniqueId")]
-    public virtual Guid UniqueId { get; protected set; }
+    public virtual Guid UniqueId { get; set; }
 
 }

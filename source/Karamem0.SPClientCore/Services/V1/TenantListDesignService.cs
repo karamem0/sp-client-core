@@ -19,9 +19,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantListDesignService
 {
 
-    TenantListDesign AddObject(IReadOnlyDictionary<string, object> creationInfo);
+    TenantListDesign AddObject(IReadOnlyDictionary<string, object?> creationInfo);
 
-    TenantListDesign GetObject(Guid? listDesignId);
+    TenantListDesign GetObject(Guid listDesignId);
 
     IEnumerable<TenantListDesign> GetObjectEnumerable();
 
@@ -32,9 +32,8 @@ public interface ITenantListDesignService
 public class TenantListDesignService(ClientContext clientContext) : ClientService(clientContext), ITenantListDesignService
 {
 
-    public TenantListDesign AddObject(IReadOnlyDictionary<string, object> creationInfo)
+    public TenantListDesign AddObject(IReadOnlyDictionary<string, object?> creationInfo)
     {
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
@@ -54,9 +53,8 @@ public class TenantListDesignService(ClientContext clientContext) : ClientServic
             .ToObject<TenantListDesign>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public TenantListDesign GetObject(Guid? listDesignId)
+    public TenantListDesign GetObject(Guid listDesignId)
     {
-        _ = listDesignId ?? throw new ArgumentNullException(nameof(listDesignId));
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
             new ClientActionStaticMethod(
@@ -90,7 +88,6 @@ public class TenantListDesignService(ClientContext clientContext) : ClientServic
 
     public void RemoveObject(TenantListDesign listDesignObject)
     {
-        _ = listDesignObject ?? throw new ArgumentNullException(nameof(listDesignObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(

@@ -20,18 +20,18 @@ public class LikedUser : ODataV1Object
 {
 
     [JsonProperty("creationDate")]
-    public virtual DateTime Created { get; protected set; }
+    public virtual DateTime Created { get; set; }
 
     [JsonProperty("email")]
-    public virtual string Email { get; protected set; }
+    public virtual string? Email { get; set; }
 
     [JsonProperty("id")]
-    public virtual int Id { get; protected set; }
+    public virtual int Id { get; set; }
 
     [JsonProperty("loginName")]
-    public virtual string LoginName { get; protected set; }
+    public virtual string? LoginName { get; set; }
 
     [JsonProperty("name")]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; set; }
 
 }

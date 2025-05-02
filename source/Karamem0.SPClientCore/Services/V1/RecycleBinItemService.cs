@@ -22,7 +22,7 @@ public interface IRecycleBinItemService
 
     RecycleBinItem GetObject(RecycleBinItem recycleBinItemObject);
 
-    RecycleBinItem GetObject(Guid? itemId, RecycleBinItemState recycleBinItemState);
+    RecycleBinItem GetObject(Guid itemId, RecycleBinItemState recycleBinItemState);
 
     IEnumerable<RecycleBinItem> GetObjectEnumerable(RecycleBinItemState recycleBinItemState);
 
@@ -45,9 +45,8 @@ public interface IRecycleBinItemService
 public class RecycleBinItemService(ClientContext clientContext) : ClientService<RecycleBinItem>(clientContext), IRecycleBinItemService
 {
 
-    public RecycleBinItem GetObject(Guid? itemId, RecycleBinItemState recycleBinItemState)
+    public RecycleBinItem GetObject(Guid itemId, RecycleBinItemState recycleBinItemState)
     {
-        _ = itemId ?? throw new ArgumentNullException(nameof(itemId));
         if (recycleBinItemState == RecycleBinItemState.FirstStageRecycleBin)
         {
             var requestPayload = new ClientRequestPayload();
@@ -148,9 +147,11 @@ public class RecycleBinItemService(ClientContext clientContext) : ClientService<
 
     public void MoveObjectToSecondStage(RecycleBinItem recycleBinItemObject)
     {
-        _ = recycleBinItemObject ?? throw new ArgumentNullException(nameof(recycleBinItemObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(recycleBinItemObject.ObjectIdentity), objectPathId => new ClientActionMethod(objectPathId, "MoveToSecondStage"));
+        var objectPath1 = requestPayload.Add(
+            new ObjectPathIdentity(recycleBinItemObject.ObjectIdentity),
+            objectPathId => new ClientActionMethod(objectPathId, "MoveToSecondStage")
+        );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
@@ -186,9 +187,11 @@ public class RecycleBinItemService(ClientContext clientContext) : ClientService<
 
     public void RestoreObject(RecycleBinItem recycleBinItemObject)
     {
-        _ = recycleBinItemObject ?? throw new ArgumentNullException(nameof(recycleBinItemObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(recycleBinItemObject.ObjectIdentity), objectPathId => new ClientActionMethod(objectPathId, "Restore"));
+        var objectPath1 = requestPayload.Add(
+            new ObjectPathIdentity(recycleBinItemObject.ObjectIdentity),
+            objectPathId => new ClientActionMethod(objectPathId, "Restore")
+        );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

@@ -20,7 +20,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantThemeService
 {
 
-    bool AddObject(string themeName, IReadOnlyDictionary<string, object> creationInfo);
+    bool AddObject(string themeName, IReadOnlyDictionary<string, object?> creationInfo);
 
     TenantTheme GetObject(TenantTheme themeObject);
 
@@ -32,19 +32,17 @@ public interface ITenantThemeService
 
     void RemoveObject(string themeName);
 
-    bool SetObject(TenantTheme themeObject, IReadOnlyDictionary<string, object> modificationInfo);
+    bool SetObject(TenantTheme themeObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
-    bool SetObject(string themeName, IReadOnlyDictionary<string, object> modificationInfo);
+    bool SetObject(string themeName, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class TenantThemeService(ClientContext clientContext) : ClientService(clientContext), ITenantThemeService
 {
 
-    public bool AddObject(string themeName, IReadOnlyDictionary<string, object> creationInfo)
+    public bool AddObject(string themeName, IReadOnlyDictionary<string, object?> creationInfo)
     {
-        _ = themeName ?? throw new ArgumentNullException(nameof(themeName));
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
@@ -63,13 +61,11 @@ public class TenantThemeService(ClientContext clientContext) : ClientService(cli
 
     public TenantTheme GetObject(TenantTheme themeObject)
     {
-        _ = themeObject ?? throw new ArgumentNullException(nameof(themeObject));
         return this.GetObject(themeObject.Name);
     }
 
     public TenantTheme GetObject(string themeName)
     {
-        _ = themeName ?? throw new ArgumentNullException(nameof(themeName));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
@@ -109,13 +105,11 @@ public class TenantThemeService(ClientContext clientContext) : ClientService(cli
 
     public void RemoveObject(TenantTheme themeObject)
     {
-        _ = themeObject ?? throw new ArgumentNullException(nameof(themeObject));
         this.RemoveObject(themeObject.Name);
     }
 
     public void RemoveObject(string themeName)
     {
-        _ = themeName ?? throw new ArgumentNullException(nameof(themeName));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
@@ -129,16 +123,13 @@ public class TenantThemeService(ClientContext clientContext) : ClientService(cli
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public bool SetObject(TenantTheme themeObject, IReadOnlyDictionary<string, object> modificationInfo)
+    public bool SetObject(TenantTheme themeObject, IReadOnlyDictionary<string, object?> modificationInfo)
     {
-        _ = themeObject ?? throw new ArgumentNullException(nameof(themeObject));
         return this.SetObject(themeObject.Name, modificationInfo);
     }
 
-    public bool SetObject(string themeName, IReadOnlyDictionary<string, object> modificationInfo)
+    public bool SetObject(string themeName, IReadOnlyDictionary<string, object?> modificationInfo)
     {
-        _ = themeName ?? throw new ArgumentNullException(nameof(themeName));
-        _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(

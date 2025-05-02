@@ -21,27 +21,27 @@ public class FileVersion : ClientObject
 {
 
     [JsonProperty()]
-    public virtual string CheckInComment { get; protected set; }
+    public virtual string? CheckInComment { get; set; }
 
     [JsonProperty()]
-    public virtual DateTime Created { get; protected set; }
+    public virtual DateTime Created { get; set; }
 
     [JsonProperty("ID")]
-    public virtual int Id { get; protected set; }
+    public virtual int Id { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsCurrentVersion { get; protected set; }
+    public virtual bool IsCurrentVersion { get; set; }
 
     [JsonProperty()]
-    public virtual int Length { get; protected set; }
+    public virtual int Length { get; set; }
 
     [JsonProperty()]
-    public virtual int Size { get; protected set; }
+    public virtual int Size { get; set; }
 
     [JsonProperty()]
-    public virtual string Url { get; protected set; }
+    public virtual string? Url { get; set; }
 
     [JsonProperty()]
-    public virtual string VersionLabel { get; protected set; }
+    public virtual string? VersionLabel { get; set; }
 
 }

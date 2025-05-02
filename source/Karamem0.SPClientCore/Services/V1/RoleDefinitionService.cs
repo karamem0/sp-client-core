@@ -19,11 +19,11 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IRoleDefinitionService
 {
 
-    RoleDefinition AddObject(IReadOnlyDictionary<string, object> creationInfo);
+    RoleDefinition AddObject(IReadOnlyDictionary<string, object?> creationInfo);
 
     RoleDefinition GetObject(RoleDefinition roleDefinitionObject);
 
-    RoleDefinition GetObject(int? roleDefinitionId);
+    RoleDefinition GetObject(int roleDefinitionId);
 
     RoleDefinition GetObject(string roleDefinitionName);
 
@@ -31,16 +31,15 @@ public interface IRoleDefinitionService
 
     void RemoveObject(RoleDefinition roleDefinitionObject);
 
-    void SetObject(RoleDefinition roleDefinitionObject, IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObject(RoleDefinition roleDefinitionObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class RoleDefinitionService(ClientContext clientContext) : ClientService<RoleDefinition>(clientContext), IRoleDefinitionService
 {
 
-    public RoleDefinition AddObject(IReadOnlyDictionary<string, object> creationInfo)
+    public RoleDefinition AddObject(IReadOnlyDictionary<string, object?> creationInfo)
     {
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -62,9 +61,8 @@ public class RoleDefinitionService(ClientContext clientContext) : ClientService<
             .ToObject<RoleDefinition>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public RoleDefinition GetObject(int? roleDefinitionId)
+    public RoleDefinition GetObject(int roleDefinitionId)
     {
-        _ = roleDefinitionId ?? throw new ArgumentNullException(nameof(roleDefinitionId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -88,7 +86,6 @@ public class RoleDefinitionService(ClientContext clientContext) : ClientService<
 
     public RoleDefinition GetObject(string roleDefinitionName)
     {
-        _ = roleDefinitionName ?? throw new ArgumentNullException(nameof(roleDefinitionName));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));

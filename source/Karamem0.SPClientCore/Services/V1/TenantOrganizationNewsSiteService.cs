@@ -32,7 +32,6 @@ public class TenantOrganizationNewsSiteService(ClientContext clientContext) : Cl
 
     public void AddObject(string organizationNewsSiteUrl)
     {
-        _ = organizationNewsSiteUrl ?? throw new ArgumentNullException(nameof(organizationNewsSiteUrl));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
@@ -58,7 +57,6 @@ public class TenantOrganizationNewsSiteService(ClientContext clientContext) : Cl
 
     public void RemoveObject(string organizationNewsSiteUrl)
     {
-        _ = organizationNewsSiteUrl ?? throw new ArgumentNullException(nameof(organizationNewsSiteUrl));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(

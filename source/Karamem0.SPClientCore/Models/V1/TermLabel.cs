@@ -21,12 +21,12 @@ public class TermLabel : ClientObject
 {
 
     [JsonProperty("IsDefaultForLanguage")]
-    public virtual bool IsDefault { get; protected set; }
+    public virtual bool IsDefault { get; set; }
 
     [JsonProperty("Language")]
-    public virtual uint Lcid { get; protected set; }
+    public virtual uint Lcid { get; set; }
 
     [JsonProperty("Value")]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; set; }
 
 }

@@ -21,57 +21,57 @@ public class SharingInforUser : ClientObject
 {
 
     [JsonProperty()]
-    public virtual string CustomRoleNames { get; protected set; }
+    public virtual string? CustomRoleNames { get; set; }
 
     [JsonProperty()]
-    public virtual string Department { get; protected set; }
+    public virtual string? Department { get; set; }
 
     [JsonProperty()]
-    public virtual string Email { get; protected set; }
+    public virtual string? Email { get; set; }
 
     [JsonProperty()]
-    public virtual bool HasEditPermission { get; protected set; }
+    public virtual bool HasEditPermission { get; set; }
 
     [JsonProperty()]
-    public virtual bool HasReviewPermission { get; protected set; }
+    public virtual bool HasReviewPermission { get; set; }
 
     [JsonProperty()]
-    public virtual bool HasViewPermission { get; protected set; }
+    public virtual bool HasViewPermission { get; set; }
 
     [JsonProperty()]
-    public virtual int Id { get; protected set; }
+    public virtual int Id { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsDomainGroup { get; protected set; }
+    public virtual bool IsDomainGroup { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsExternalUser { get; protected set; }
+    public virtual bool IsExternalUser { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsMemberOfGroup { get; protected set; }
+    public virtual bool IsMemberOfGroup { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsSiteAdmin { get; protected set; }
+    public virtual bool IsSiteAdmin { get; set; }
 
     [JsonProperty()]
-    public virtual string JobTitle { get; protected set; }
+    public virtual string? JobTitle { get; set; }
 
     [JsonProperty()]
-    public virtual string LoginName { get; protected set; }
+    public virtual string? LoginName { get; set; }
 
     [JsonProperty()]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; set; }
 
     [JsonProperty()]
-    public virtual string Picture { get; protected set; }
+    public virtual string? Picture { get; set; }
 
     [JsonProperty()]
-    public virtual Principal Principal { get; protected set; }
+    public virtual Principal? Principal { get; set; }
 
     [JsonProperty()]
-    public virtual string SipAddress { get; protected set; }
+    public virtual string? SipAddress { get; set; }
 
     [JsonProperty()]
-    public virtual User User { get; protected set; }
+    public virtual User? User { get; set; }
 
 }

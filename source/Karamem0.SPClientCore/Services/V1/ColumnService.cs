@@ -22,7 +22,7 @@ public interface IColumnService
 
     Column AddObject(
         ColumnType columnType,
-        IReadOnlyDictionary<string, object> creationInfo,
+        IReadOnlyDictionary<string, object?> creationInfo,
         bool addToDefaultView,
         AddColumnOptions addColumnOptions
     );
@@ -30,22 +30,22 @@ public interface IColumnService
     Column AddObject(
         List listObject,
         ColumnType columnType,
-        IReadOnlyDictionary<string, object> creationInfo,
+        IReadOnlyDictionary<string, object?> creationInfo,
         bool addToDefaultView,
         AddColumnOptions addColumnOptions
     );
 
     Column GetObject(Column columnObject);
 
-    Column GetObject(Guid? columnId);
+    Column GetObject(Guid columnId);
 
     Column GetObject(string columnTitle);
 
-    Column GetObject(ContentType contentTypeObject, Guid? columnId);
+    Column GetObject(ContentType contentTypeObject, Guid columnId);
 
     Column GetObject(ContentType contentTypeObject, string columnTitle);
 
-    Column GetObject(List listObject, Guid? columnId);
+    Column GetObject(List listObject, Guid columnId);
 
     Column GetObject(List listObject, string columnTitle);
 
@@ -57,11 +57,11 @@ public interface IColumnService
 
     void RemoveObject(Column columnObject);
 
-    void SetObject(Column columnObject, IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObject(Column columnObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
     void SetObject(
         Column columnObject,
-        IReadOnlyDictionary<string, object> modificationInfo,
+        IReadOnlyDictionary<string, object?> modificationInfo,
         bool pushChanges
     );
 
@@ -72,12 +72,11 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
 
     public Column AddObject(
         ColumnType columnType,
-        IReadOnlyDictionary<string, object> creationInfo,
+        IReadOnlyDictionary<string, object?> creationInfo,
         bool addToDefaultView,
         AddColumnOptions addColumnOptions
     )
     {
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -104,13 +103,11 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
     public Column AddObject(
         List listObject,
         ColumnType columnType,
-        IReadOnlyDictionary<string, object> creationInfo,
+        IReadOnlyDictionary<string, object?> creationInfo,
         bool addToDefaultView,
         AddColumnOptions addColumnOptions
     )
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Fields"));
@@ -133,9 +130,8 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
             .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public Column GetObject(Guid? columnId)
+    public Column GetObject(Guid columnId)
     {
-        _ = columnId ?? throw new ArgumentNullException(nameof(columnId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -181,10 +177,8 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
             .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public Column GetObject(ContentType contentTypeObject, Guid? columnId)
+    public Column GetObject(ContentType contentTypeObject, Guid columnId)
     {
-        _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
-        _ = columnId ?? throw new ArgumentNullException(nameof(columnId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Fields"));
@@ -229,10 +223,8 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
             .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public Column GetObject(List listObject, Guid? columnId)
+    public Column GetObject(List listObject, Guid columnId)
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
-        _ = columnId ?? throw new ArgumentNullException(nameof(columnId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Fields"));
@@ -255,8 +247,6 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
 
     public Column GetObject(List listObject, string columnTitle)
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
-        _ = columnTitle ?? throw new ArgumentNullException(nameof(columnTitle));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Fields"));
@@ -298,7 +288,6 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
 
     public IEnumerable<Column> GetObjectEnumerable(ContentType contentTypeObject)
     {
-        _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -317,7 +306,6 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
 
     public IEnumerable<Column> GetObjectEnumerable(List listObject)
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -334,10 +322,8 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
             .ToObject<ColumnEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public override void SetObject(Column columnObject, IReadOnlyDictionary<string, object> modificationInfo)
+    public override void SetObject(Column columnObject, IReadOnlyDictionary<string, object?> modificationInfo)
     {
-        _ = columnObject ?? throw new ArgumentNullException(nameof(columnObject));
-        _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectName = columnObject.ObjectType;
         var objectType = ClientObject.GetType(objectName);
@@ -355,12 +341,10 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
 
     public void SetObject(
         Column columnObject,
-        IReadOnlyDictionary<string, object> modificationInfo,
+        IReadOnlyDictionary<string, object?> modificationInfo,
         bool pushChanges
     )
     {
-        _ = columnObject ?? throw new ArgumentNullException(nameof(columnObject));
-        _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectName = columnObject.ObjectType;
         var objectType = ClientObject.GetType(objectName);

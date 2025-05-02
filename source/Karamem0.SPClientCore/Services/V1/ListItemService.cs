@@ -20,9 +20,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IListItemService
 {
 
-    ListItem AddObject(List listObject, IReadOnlyDictionary<string, object> creationInfo);
+    ListItem AddObject(List listObject, IReadOnlyDictionary<string, object?> creationInfo);
 
-    IEnumerable<ListItem> AddObjectEnumerable(List listObject, IReadOnlyCollection<IReadOnlyDictionary<string, object>> creationInfos);
+    IEnumerable<ListItem> AddObjectEnumerable(List listObject, IReadOnlyCollection<IReadOnlyDictionary<string, object?>> creationInfos);
 
     ListItem GetObject(ListItem listItemObject);
 
@@ -32,13 +32,13 @@ public interface IListItemService
 
     ListItem GetObject(DriveItem driveItemObject);
 
-    ListItem GetObject(List listObject, int? listItemId);
+    ListItem GetObject(List listObject, int listItemId);
 
     ListItem GetObject(string listItemUrl);
 
     IEnumerable<ListItem> GetObjectEnumerable(List listObject);
 
-    IEnumerable<ListItem> GetObjectEnumerable(List listObject, IReadOnlyDictionary<string, object> filterInfo);
+    IEnumerable<ListItem> GetObjectEnumerable(List listObject, IReadOnlyDictionary<string, object?> filterInfo);
 
     Guid RecycleObject(ListItem listItemObject);
 
@@ -46,7 +46,7 @@ public interface IListItemService
 
     void SetObject(
         ListItem listItemObject,
-        IReadOnlyDictionary<string, object> modificationInfo,
+        IReadOnlyDictionary<string, object?> modificationInfo,
         bool useSyetemUpdate
     );
 
@@ -55,10 +55,8 @@ public interface IListItemService
 public class ListItemService(ClientContext clientContext) : ClientService<ListItem>(clientContext), IListItemService
 {
 
-    public ListItem AddObject(List listObject, IReadOnlyDictionary<string, object> creationInfo)
+    public ListItem AddObject(List listObject, IReadOnlyDictionary<string, object?> creationInfo)
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var delegates = new List<ClientActionDelegate>
         {
@@ -91,16 +89,14 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
                 requestPayload.CreateParameter(new ListItemCreationInfo())
             )
         );
-        var objectPath3 = requestPayload.Add(objectPath2, [.. delegates]);
+        var objectPath3 = requestPayload.Add(objectPath2, delegates);
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<ListItem> AddObjectEnumerable(List listObject, IReadOnlyCollection<IReadOnlyDictionary<string, object>> creationInfos)
+    public IEnumerable<ListItem> AddObjectEnumerable(List listObject, IReadOnlyCollection<IReadOnlyDictionary<string, object?>> creationInfos)
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
-        _ = creationInfos ?? throw new ArgumentNullException(nameof(creationInfos));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
         foreach (var creationInfo in creationInfos)
@@ -135,7 +131,7 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
                     requestPayload.CreateParameter(new ListItemCreationInfo())
                 )
             );
-            var objectPath3 = requestPayload.Add(objectPath2, [.. delegates]);
+            var objectPath3 = requestPayload.Add(objectPath2, delegates);
         }
         return this
             .ClientContext.ProcessQuery(requestPayload)
@@ -144,7 +140,6 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
 
     public override ListItem GetObject(ListItem listItemObject)
     {
-        _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathIdentity(listItemObject.ObjectIdentity),
@@ -161,7 +156,6 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
 
     public ListItem GetObject(Models.V1.Folder folderObject)
     {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -179,7 +173,6 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
 
     public ListItem GetObject(Models.V1.File fileObject)
     {
-        _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(fileObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -197,7 +190,6 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
 
     public ListItem GetObject(DriveItem driveItemObject)
     {
-        _ = driveItemObject ?? throw new ArgumentNullException(nameof(driveItemObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -226,10 +218,8 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
             .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public ListItem GetObject(List listObject, int? listItemId)
+    public ListItem GetObject(List listObject, int listItemId)
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
-        _ = listItemId ?? throw new ArgumentNullException(nameof(listItemId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -251,7 +241,6 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
 
     public ListItem GetObject(string listItemUrl)
     {
-        _ = listItemUrl ?? throw new ArgumentNullException(nameof(listItemUrl));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
@@ -274,7 +263,6 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
 
     public IEnumerable<ListItem> GetObjectEnumerable(List listObject)
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
         var listItemCollectionPosition = default(ListItemCollectionPosition);
         do
         {
@@ -286,14 +274,10 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
                     "GetItems",
                     requestPayload.CreateParameter(
                         ClientValueObject.Create<CamlQuery>(
-                            new Dictionary<string, object>()
+                            new Dictionary<string, object?>()
                             {
-                                {
-                                    "ViewXml", "<View Scope=\"Recursive\"><RowLimit Paged=\"TRUE\">5000</RowLimit></View>"
-                                },
-                                {
-                                    "ListItemCollectionPosition", listItemCollectionPosition
-                                }
+                                ["ViewXml"] = "<View Scope=\"Recursive\"><RowLimit Paged=\"TRUE\">5000</RowLimit></View>",
+                                ["ListItemCollectionPosition"] = listItemCollectionPosition
                             }
                         )
                     )
@@ -316,10 +300,8 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
         } while (listItemCollectionPosition is not null);
     }
 
-    public IEnumerable<ListItem> GetObjectEnumerable(List listObject, IReadOnlyDictionary<string, object> filterInfo)
+    public IEnumerable<ListItem> GetObjectEnumerable(List listObject, IReadOnlyDictionary<string, object?> filterInfo)
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
-        _ = filterInfo ?? throw new ArgumentNullException(nameof(filterInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -344,7 +326,10 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
     {
         _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listItemObject.ObjectIdentity), objectPathId => new ClientActionMethod(objectPathId, "Recycle"));
+        var objectPath1 = requestPayload.Add(
+            new ObjectPathIdentity(listItemObject.ObjectIdentity),
+            objectPathId => new ClientActionMethod(objectPathId, "Recycle")
+        );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Guid>(requestPayload.GetActionId<ClientActionMethod>());
@@ -352,7 +337,7 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
 
     public void SetObject(
         ListItem listItemObject,
-        IReadOnlyDictionary<string, object> modificationInfo,
+        IReadOnlyDictionary<string, object?> modificationInfo,
         bool useSyetemUpdate
     )
     {

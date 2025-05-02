@@ -26,35 +26,35 @@ public interface ITenantFileVersionPolicyForDocumentLibraryService
     TenantOperationResult SetObject(
         Uri siteUrl,
         Guid listId,
-        IReadOnlyDictionary<string, object> modificationInfo
+        IReadOnlyDictionary<string, object?> modificationInfo
     );
 
     TenantOperationResult SetObject(
         Uri siteUrl,
         string listTitle,
-        IReadOnlyDictionary<string, object> modificationInfo
+        IReadOnlyDictionary<string, object?> modificationInfo
     );
 
     void SetObjectAwait(
         Uri siteUrl,
         Guid listId,
-        IReadOnlyDictionary<string, object> modificationInfo
+        IReadOnlyDictionary<string, object?> modificationInfo
     );
 
     void SetObjectAwait(
         Uri siteUrl,
         string listTitle,
-        IReadOnlyDictionary<string, object> modificationInfo
+        IReadOnlyDictionary<string, object?> modificationInfo
     );
 
 }
 
-public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clientContext) : TenantClientService(clientContext), ITenantFileVersionPolicyForDocumentLibraryService
+public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clientContext)
+    : TenantClientService(clientContext), ITenantFileVersionPolicyForDocumentLibraryService
 {
 
     public FileVersionPolicyForDocumentLibrary GetObject(Uri siteUrl, Guid listId)
     {
-        _ = siteUrl ?? throw new ArgumentNullException(nameof(siteUrl));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
@@ -73,8 +73,6 @@ public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clie
 
     public FileVersionPolicyForDocumentLibrary GetObject(Uri siteUrl, string listTitle)
     {
-        _ = siteUrl ?? throw new ArgumentNullException(nameof(siteUrl));
-        _ = listTitle ?? throw new ArgumentNullException(nameof(listTitle));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
@@ -94,10 +92,9 @@ public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clie
     public TenantOperationResult SetObject(
         Uri siteUrl,
         Guid listId,
-        IReadOnlyDictionary<string, object> modificationInfo
+        IReadOnlyDictionary<string, object?> modificationInfo
     )
     {
-        _ = siteUrl ?? throw new ArgumentNullException(nameof(siteUrl));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
@@ -122,11 +119,9 @@ public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clie
     public TenantOperationResult SetObject(
         Uri siteUrl,
         string listTitle,
-        IReadOnlyDictionary<string, object> modificationInfo
+        IReadOnlyDictionary<string, object?> modificationInfo
     )
     {
-        _ = siteUrl ?? throw new ArgumentNullException(nameof(siteUrl));
-        _ = listTitle ?? throw new ArgumentNullException(nameof(listTitle));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
@@ -151,7 +146,7 @@ public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clie
     public void SetObjectAwait(
         Uri siteUrl,
         Guid listId,
-        IReadOnlyDictionary<string, object> modificationInfo
+        IReadOnlyDictionary<string, object?> modificationInfo
     )
     {
         this.WaitObject(
@@ -166,7 +161,7 @@ public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clie
     public void SetObjectAwait(
         Uri siteUrl,
         string listTitle,
-        IReadOnlyDictionary<string, object> modificationInfo
+        IReadOnlyDictionary<string, object?> modificationInfo
     )
     {
         this.WaitObject(

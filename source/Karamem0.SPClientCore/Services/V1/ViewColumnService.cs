@@ -50,14 +50,11 @@ public class ViewColumnService(ClientContext clientContext) : ClientService(clie
 
     public void AddObject(View viewObject, Column columnObject)
     {
-        _ = columnObject ?? throw new ArgumentNullException(nameof(columnObject));
         this.AddObject(viewObject, columnObject.Name);
     }
 
     public void AddObject(View viewObject, string columnName)
     {
-        _ = viewObject ?? throw new ArgumentNullException(nameof(viewObject));
-        _ = columnName ?? throw new ArgumentNullException(nameof(columnName));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(viewObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "ViewFields"));
@@ -75,7 +72,6 @@ public class ViewColumnService(ClientContext clientContext) : ClientService(clie
 
     public IEnumerable<string> GetObjectEnumerable(View viewObject)
     {
-        _ = viewObject ?? throw new ArgumentNullException(nameof(viewObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(viewObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -98,7 +94,6 @@ public class ViewColumnService(ClientContext clientContext) : ClientService(clie
         int columnIndex
     )
     {
-        _ = columnObject ?? throw new ArgumentNullException(nameof(columnObject));
         this.MoveObject(
             viewObject,
             columnObject.Name,
@@ -112,8 +107,6 @@ public class ViewColumnService(ClientContext clientContext) : ClientService(clie
         int columnIndex
     )
     {
-        _ = viewObject ?? throw new ArgumentNullException(nameof(viewObject));
-        _ = columnName ?? throw new ArgumentNullException(nameof(columnName));
         if (columnIndex < 0)
         {
             throw new ArgumentOutOfRangeException(nameof(columnIndex));
@@ -136,14 +129,11 @@ public class ViewColumnService(ClientContext clientContext) : ClientService(clie
 
     public void RemoveObject(View viewObject, Column columnObject)
     {
-        _ = columnObject ?? throw new ArgumentNullException(nameof(columnObject));
         this.RemoveObject(viewObject, columnObject.Name);
     }
 
     public void RemoveObject(View viewObject, string columnName)
     {
-        _ = viewObject ?? throw new ArgumentNullException(nameof(viewObject));
-        _ = columnName ?? throw new ArgumentNullException(nameof(columnName));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(viewObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "ViewFields"));
@@ -161,7 +151,6 @@ public class ViewColumnService(ClientContext clientContext) : ClientService(clie
 
     public void RemoveObjectAll(View viewObject)
     {
-        _ = viewObject ?? throw new ArgumentNullException(nameof(viewObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(viewObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "ViewFields"));

@@ -80,9 +80,8 @@ public class ClientHttpExecutor
 
     public async Task<T> ExecuteAsync<T>(Func<HttpRequestMessage> requestCallback, Func<HttpResponseMessage, Task<T>> responseCallback)
     {
-        _ = requestCallback ?? throw new ArgumentNullException(nameof(requestCallback));
-        _ = responseCallback ?? throw new ArgumentNullException(nameof(responseCallback));
         var syncContext = SynchronizationContext.Current as ClientHttpSynchronizationContext;
+        _ = syncContext ?? throw new InvalidOperationException(StringResources.ErrorValueIsInvalid);
         try
         {
             var errorCount = 0;

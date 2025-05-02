@@ -21,12 +21,12 @@ public class RoleAssignment : ClientObject
 {
 
     [JsonProperty()]
-    public virtual Principal Member { get; protected set; }
+    public virtual Principal? Member { get; set; }
 
     [JsonProperty()]
-    public virtual int PrincipalId { get; protected set; }
+    public virtual int PrincipalId { get; set; }
 
     [JsonProperty()]
-    public virtual RoleDefinitionBindingEnumerable RoleDefinitionBindings { get; protected set; }
+    public virtual RoleDefinitionBindingEnumerable? RoleDefinitionBindings { get; set; }
 
 }

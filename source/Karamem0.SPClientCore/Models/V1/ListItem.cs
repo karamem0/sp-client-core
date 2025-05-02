@@ -29,134 +29,134 @@ public class ListItem : SecurableObject
     );
 
     [JsonProperty()]
-    public virtual string AccessPolicy { get; protected set; }
+    public virtual string? AccessPolicy { get; set; }
 
     [JsonProperty()]
-    public virtual ColumnLookupValue AppAuthor { get; protected set; }
+    public virtual ColumnLookupValue? AppAuthor { get; set; }
 
     [JsonProperty()]
-    public virtual ColumnLookupValue AppEditor { get; protected set; }
+    public virtual ColumnLookupValue? AppEditor { get; set; }
 
     [ClientQueryIgnore()]
     [JsonProperty()]
-    public virtual bool Attachments { get; protected set; }
+    public virtual bool Attachments { get; set; }
 
     [JsonProperty()]
-    public virtual ColumnUserValue Author { get; protected set; }
+    public virtual ColumnUserValue? Author { get; set; }
 
     [ClientQueryIgnore()]
     [JsonProperty("CheckedOutTitle")]
-    public virtual ColumnLookupValue CheckOutTitle { get; protected set; }
+    public virtual ColumnLookupValue? CheckOutTitle { get; set; }
 
     [ClientQueryIgnore()]
     [JsonProperty()]
-    public virtual ColumnUserValue CheckOutUser { get; protected set; }
+    public virtual ColumnUserValue? CheckOutUser { get; set; }
 
     [ClientQueryIgnore()]
     [JsonProperty("CheckedOutUserId")]
-    public virtual ColumnLookupValue CheckOutUserId { get; protected set; }
+    public virtual ColumnLookupValue? CheckOutUserId { get; set; }
 
     [JsonProperty()]
-    public virtual DateTime Created { get; protected set; }
+    public virtual DateTime Created { get; set; }
 
     [JsonProperty()]
-    public virtual bool CommentsDisabled { get; protected set; }
+    public virtual bool CommentsDisabled { get; set; }
 
     [JsonProperty()]
-    public virtual CommentsDisabledScope CommentsDisabledScope { get; protected set; }
+    public virtual CommentsDisabledScope? CommentsDisabledScope { get; set; }
 
     [JsonProperty()]
-    public virtual ContentTypeId ContentTypeId { get; protected set; }
+    public virtual ContentTypeId? ContentTypeId { get; set; }
 
     [JsonProperty()]
-    public virtual string ContentVersion { get; protected set; }
+    public virtual string? ContentVersion { get; set; }
 
     [JsonProperty()]
-    public virtual string DisplayName { get; protected set; }
+    public virtual string? DisplayName { get; set; }
 
     [ClientQueryIgnore()]
     [JsonProperty()]
-    public virtual string DocConcurrencyNumber { get; protected set; }
+    public virtual string? DocConcurrencyNumber { get; set; }
 
     [JsonProperty()]
-    public virtual string FileDirRef { get; protected set; }
+    public virtual string? FileDirRef { get; set; }
 
     [JsonProperty()]
-    public virtual string FileLeafRef { get; protected set; }
+    public virtual string? FileLeafRef { get; set; }
 
     [JsonProperty()]
-    public virtual string FileRef { get; protected set; }
+    public virtual string? FileRef { get; set; }
 
     [JsonProperty()]
-    public virtual ColumnUserValue Editor { get; protected set; }
+    public virtual ColumnUserValue? Editor { get; set; }
 
     [JsonProperty()]
-    public virtual FileSystemObjectType FileSystemObjectType { get; protected set; }
+    public virtual FileSystemObjectType? FileSystemObjectType { get; set; }
 
     [JsonProperty()]
-    public virtual int FolderChildCount { get; protected set; }
+    public virtual int FolderChildCount { get; set; }
 
     [JsonProperty()]
-    public override bool HasUniqueRoleAssignments { get; protected set; }
+    public override bool HasUniqueRoleAssignments { get; set; }
 
     [JsonProperty()]
-    public virtual int Id { get; protected set; }
+    public virtual int Id { get; set; }
 
     [JsonProperty("InstanceID")]
-    public virtual string InstanceId { get; protected set; }
+    public virtual string? InstanceId { get; set; }
 
     [JsonProperty()]
-    public virtual int ItemChildCount { get; protected set; }
-
-    [ClientQueryIgnore()]
-    [JsonProperty()]
-    public virtual string IsCheckedoutToLocal { get; protected set; }
-
-    [JsonProperty()]
-    public virtual string MetaInfo { get; protected set; }
-
-    [JsonProperty()]
-    public virtual DateTime Modified { get; protected set; }
+    public virtual int ItemChildCount { get; set; }
 
     [ClientQueryIgnore()]
     [JsonProperty()]
-    public virtual ColumnLookupValue ParentLeafName { get; protected set; }
+    public virtual string? IsCheckedoutToLocal { get; set; }
 
     [JsonProperty()]
-    public virtual string ParentUniqueId { get; protected set; }
+    public virtual string? MetaInfo { get; set; }
 
     [JsonProperty()]
-    public virtual string ProgId { get; protected set; }
-
-    [JsonProperty()]
-    public virtual string Restricted { get; protected set; }
-
-    [JsonProperty()]
-    public virtual string OriginatorId { get; protected set; }
-
-    [JsonProperty()]
-    public virtual string ScopeId { get; protected set; }
-
-    [JsonProperty()]
-    public virtual string ServerRedirectedEmbedUrl { get; protected set; }
-
-    [JsonProperty()]
-    public virtual ColumnLookupValue SortBehavior { get; protected set; }
-
-    [JsonProperty()]
-    public virtual ColumnLookupValue SyncClientId { get; protected set; }
-
-    [JsonProperty()]
-    public virtual string Title { get; protected set; }
-
-    [JsonProperty()]
-    public virtual Guid UniqueId { get; protected set; }
+    public virtual DateTime Modified { get; set; }
 
     [ClientQueryIgnore()]
     [JsonProperty()]
-    public virtual ColumnLookupValue VirusStatus { get; protected set; }
+    public virtual ColumnLookupValue? ParentLeafName { get; set; }
+
+    [JsonProperty()]
+    public virtual string? ParentUniqueId { get; set; }
+
+    [JsonProperty()]
+    public virtual string? ProgId { get; set; }
+
+    [JsonProperty()]
+    public virtual string? Restricted { get; set; }
+
+    [JsonProperty()]
+    public virtual string? OriginatorId { get; set; }
+
+    [JsonProperty()]
+    public virtual string? ScopeId { get; set; }
+
+    [JsonProperty()]
+    public virtual string? ServerRedirectedEmbedUrl { get; set; }
+
+    [JsonProperty()]
+    public virtual ColumnLookupValue? SortBehavior { get; set; }
+
+    [JsonProperty()]
+    public virtual ColumnLookupValue? SyncClientId { get; set; }
+
+    [JsonProperty()]
+    public virtual string? Title { get; set; }
+
+    [JsonProperty()]
+    public virtual Guid UniqueId { get; set; }
+
+    [ClientQueryIgnore()]
+    [JsonProperty()]
+    public virtual ColumnLookupValue? VirusStatus { get; set; }
 
     [JsonProperty("WorkflowInstanceID")]
-    public virtual string WorkflowInstanceId { get; protected set; }
+    public virtual string? WorkflowInstanceId { get; set; }
 
 }

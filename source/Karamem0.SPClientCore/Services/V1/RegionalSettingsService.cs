@@ -25,7 +25,7 @@ public interface IRegionalSettingsService
 
     RegionalSettings GetObject();
 
-    void SetObject(IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObject(IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
@@ -90,18 +90,13 @@ public class RegionalSettingsService(ClientContext clientContext) : ClientServic
             .ToObject<RegionalSettings>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public void SetObject(IReadOnlyDictionary<string, object> modificationInfo)
+    public void SetObject(IReadOnlyDictionary<string, object?> modificationInfo)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "RegionalSettings"));
-        var objectPath4 = requestPayload.Add(
-            objectPath3,
-            requestPayload
-                .CreateSetPropertyDelegates(typeof(RegionalSettings), modificationInfo)
-                .ToArray()
-        );
+        var objectPath4 = requestPayload.Add(objectPath3, requestPayload.CreateSetPropertyDelegates(typeof(RegionalSettings), modificationInfo));
         var objectPath5 = requestPayload.Add(objectPath4, objectPathId => new ClientActionMethod(objectPathId, "Update"));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }

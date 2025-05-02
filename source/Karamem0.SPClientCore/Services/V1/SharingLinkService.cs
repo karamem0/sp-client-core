@@ -67,7 +67,6 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
 
     public string CreateAnonymousLink(Uri url, bool isEditLink)
     {
-        _ = url ?? throw new ArgumentNullException(nameof(url));
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
             new ClientActionStaticMethod(
@@ -88,7 +87,6 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
         DateTime expiration
     )
     {
-        _ = url ?? throw new ArgumentNullException(nameof(url));
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
             new ClientActionStaticMethod(
@@ -106,7 +104,6 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
 
     public string CreateOrganizationSharingLink(Uri url, bool isEditLink)
     {
-        _ = url ?? throw new ArgumentNullException(nameof(url));
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
             new ClientActionStaticMethod(
@@ -132,7 +129,6 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
         bool retrievePermissionLevels
     )
     {
-        _ = url ?? throw new ArgumentNullException(nameof(url));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathStaticMethod(
@@ -163,7 +159,6 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
         bool useSimplifiedRoles
     )
     {
-        _ = url ?? throw new ArgumentNullException(nameof(url));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             new ObjectPathStaticMethod(
@@ -185,7 +180,6 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
 
     public SharingLinkKind GetSharingLinkKind(Uri url)
     {
-        _ = url ?? throw new ArgumentNullException(nameof(url));
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
             new ClientActionStaticMethod(
@@ -205,7 +199,6 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
         bool removeAssociatedSharingLinkGroup
     )
     {
-        _ = url ?? throw new ArgumentNullException(nameof(url));
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
             new ClientActionStaticMethod(
@@ -225,7 +218,6 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
         bool removeAssociatedSharingLinkGroup
     )
     {
-        _ = url ?? throw new ArgumentNullException(nameof(url));
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
             new ClientActionStaticMethod(

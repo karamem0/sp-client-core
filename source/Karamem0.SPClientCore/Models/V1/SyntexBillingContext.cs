@@ -21,21 +21,21 @@ public class SyntexBillingContext : ClientObject
 {
 
     [JsonProperty()]
-    public virtual SyntexConsumptionBillingActivationStatus ActivationStatus { get; protected set; }
+    public virtual SyntexConsumptionBillingActivationStatus? ActivationStatus { get; set; }
 
     [JsonProperty()]
-    public virtual string AzureResourceId { get; protected set; }
+    public virtual string? AzureResourceId { get; set; }
 
     [JsonProperty()]
-    public virtual AzureSubscriptionState AzureSubscriptionState { get; protected set; }
+    public virtual AzureSubscriptionState? AzureSubscriptionState { get; set; }
 
     [JsonProperty()]
-    public virtual SyntexConsumptionBillingEnabledFeatures EnabledFeatures { get; protected set; }
+    public virtual SyntexConsumptionBillingEnabledFeatures? EnabledFeatures { get; set; }
 
     [JsonProperty()]
-    public virtual string Location { get; protected set; }
+    public virtual string? Location { get; set; }
 
     [JsonProperty()]
-    public virtual DateTime Updated { get; protected set; }
+    public virtual DateTime Updated { get; set; }
 
 }

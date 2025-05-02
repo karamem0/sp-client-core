@@ -48,10 +48,6 @@ public class DocumentSetDefaultDocumentService(ClientContext clientContext) : Cl
         bool pushChanges
     )
     {
-        _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
-        _ = documentContentTypeObject ?? throw new ArgumentNullException(nameof(documentContentTypeObject));
-        _ = fileName ?? throw new ArgumentNullException(nameof(fileName));
-        _ = fileContent ?? throw new ArgumentNullException(nameof(fileContent));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -91,7 +87,6 @@ public class DocumentSetDefaultDocumentService(ClientContext clientContext) : Cl
 
     public IEnumerable<DefaultDocument> GetObjectEnumerable(ContentType documentContentTypeObject)
     {
-        _ = documentContentTypeObject ?? throw new ArgumentNullException(nameof(documentContentTypeObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(documentContentTypeObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
@@ -121,8 +116,6 @@ public class DocumentSetDefaultDocumentService(ClientContext clientContext) : Cl
         bool pushChanges
     )
     {
-        _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
-        _ = fileName ?? throw new ArgumentNullException(nameof(fileName));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(

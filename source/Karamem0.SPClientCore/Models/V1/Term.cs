@@ -21,66 +21,66 @@ public class Term : TermSetItem
 {
 
     [JsonProperty("CreatedDate")]
-    public override DateTime Created { get; protected set; }
+    public override DateTime Created { get; set; }
 
     [JsonProperty()]
-    public override IReadOnlyDictionary<string, string> CustomProperties { get; protected set; }
+    public override IReadOnlyDictionary<string, string>? CustomProperties { get; set; }
 
     [JsonProperty()]
-    public override string CustomSortOrder { get; protected set; }
+    public override string? CustomSortOrder { get; set; }
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; set; }
 
     [JsonProperty()]
-    public override Guid Id { get; protected set; }
+    public override Guid Id { get; set; }
 
     [JsonProperty()]
-    public override bool IsAvailableForTagging { get; protected set; }
+    public override bool IsAvailableForTagging { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsDeprecated { get; protected set; }
+    public virtual bool IsDeprecated { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsKeyword { get; protected set; }
+    public virtual bool IsKeyword { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsPinned { get; protected set; }
+    public virtual bool IsPinned { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsPinnedRoot { get; protected set; }
+    public virtual bool IsPinnedRoot { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsReused { get; protected set; }
+    public virtual bool IsReused { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsRoot { get; protected set; }
+    public virtual bool IsRoot { get; set; }
 
     [JsonProperty()]
-    public virtual bool IsSourceTerm { get; protected set; }
+    public virtual bool IsSourceTerm { get; set; }
 
     [JsonProperty("LastModifiedDate")]
-    public override DateTime LastModified { get; protected set; }
+    public override DateTime LastModified { get; set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyDictionary<string, string> LocalCustomProperties { get; protected set; }
+    public virtual IReadOnlyDictionary<string, string>? LocalCustomProperties { get; set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyList<Guid> MergedTermIds { get; protected set; }
+    public virtual IReadOnlyList<Guid>? MergedTermIds { get; set; }
 
     [JsonProperty()]
-    public override string Name { get; protected set; }
+    public override string? Name { get; set; }
 
     [JsonProperty()]
-    public virtual string PathOfTerm { get; protected set; }
+    public virtual string? PathOfTerm { get; set; }
 
     [JsonProperty()]
-    public override string Owner { get; protected set; }
+    public override string? Owner { get; set; }
 
     [JsonProperty()]
-    public virtual int TermsCount { get; protected set; }
+    public virtual int TermsCount { get; set; }
 
     [JsonProperty()]
-    public override TermStore TermStore { get; protected set; }
+    public override TermStore? TermStore { get; set; }
 
 }

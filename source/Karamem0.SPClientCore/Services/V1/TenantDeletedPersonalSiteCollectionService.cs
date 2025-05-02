@@ -52,7 +52,6 @@ public class TenantDeletedPersonalSiteCollectionService(ClientContext clientCont
 
     public IEnumerable<TenantDeletedSiteCollection> GetObjectEnumerable(Uri siteCollectionUrl)
     {
-        _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(

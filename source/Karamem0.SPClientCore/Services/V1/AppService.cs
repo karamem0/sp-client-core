@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.Services;
@@ -31,7 +32,7 @@ public interface IAppService
 
     App GetObject(App appObject, bool isTenant);
 
-    App GetObject(Guid? appId, bool isTenant);
+    App GetObject(Guid appId, bool isTenant);
 
     IEnumerable<App> GetObjectEnumerable(bool isTenant);
 
@@ -59,8 +60,6 @@ public class AppService(ClientContext clientContext) : ClientService(clientConte
         bool isTenant
     )
     {
-        _ = appContent ?? throw new ArgumentNullException(nameof(appContent));
-        _ = appName ?? throw new ArgumentNullException(nameof(appName));
         var requestUrl = this
             .ClientContext.BaseAddress.ConcatPath(
                 "_api/web/{0}/add(url='{1}',overwrite={2})",
@@ -70,21 +69,20 @@ public class AppService(ClientContext clientContext) : ClientService(clientConte
             )
             .ConcatQuery("$expand=ListItemAllFields&$select=ListItemAllFields/UniqueId");
         var file = this.ClientContext.PostStream<ODataV1Object>(requestUrl, appContent);
-        var item = file["ListItemAllFields"] as JToken;
-        var appId = item["UniqueId"]
-            ?.ToObject<Guid>();
-        return this.GetObject(appId, isTenant);
+        var item = (JToken)file["ListItemAllFields"];
+        var uniqueId = item?["UniqueId"];
+        var appId = uniqueId?.ToObject<Guid>();
+        _ = appId ?? throw new InvalidOperationException(StringResources.ErrorValueIsInvalid);
+        return this.GetObject(appId.Value, isTenant);
     }
 
     public App GetObject(App appObject, bool isTenant)
     {
-        _ = appObject ?? throw new ArgumentNullException(nameof(appObject));
         return this.GetObject(appObject.Id, isTenant);
     }
 
-    public App GetObject(Guid? appId, bool isTenant)
+    public App GetObject(Guid appId, bool isTenant)
     {
-        _ = appId ?? throw new ArgumentNullException(nameof(appId));
         var requestUrl = this
             .ClientContext.BaseAddress.ConcatPath(
                 "_api/web/{0}/availableapps/getbyid('{1}')",

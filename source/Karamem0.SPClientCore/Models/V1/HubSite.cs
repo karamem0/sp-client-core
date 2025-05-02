@@ -21,39 +21,39 @@ public class HubSite : ClientObject
 {
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; set; }
 
     [JsonProperty()]
-    public virtual bool EnablePermissionsSync { get; protected set; }
+    public virtual bool EnablePermissionsSync { get; set; }
 
     [JsonProperty()]
-    public virtual bool HideNameInNavigation { get; protected set; }
+    public virtual bool HideNameInNavigation { get; set; }
 
     [JsonProperty("ID")]
-    public virtual Guid Id { get; protected set; }
+    public virtual Guid Id { get; set; }
 
     [JsonProperty()]
-    public virtual string LogoUrl { get; protected set; }
+    public virtual string? LogoUrl { get; set; }
 
     [JsonProperty()]
-    public virtual Guid ParentHubSiteId { get; protected set; }
+    public virtual Guid ParentHubSiteId { get; set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<HubSitePermission> Permissions { get; protected set; }
+    public virtual IReadOnlyCollection<HubSitePermission>? Permissions { get; set; }
 
     [JsonProperty()]
-    public virtual bool RequiresJoinApproval { get; protected set; }
+    public virtual bool RequiresJoinApproval { get; set; }
 
     [JsonProperty("SiteId")]
-    public virtual Guid SiteCollectionId { get; protected set; }
+    public virtual Guid SiteCollectionId { get; set; }
 
     [JsonProperty("SiteUrl")]
-    public virtual string SiteCollectionUrl { get; protected set; }
+    public virtual string? SiteCollectionUrl { get; set; }
 
     [JsonProperty()]
-    public virtual Guid SiteDesignId { get; protected set; }
+    public virtual Guid SiteDesignId { get; set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; set; }
 
 }

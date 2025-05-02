@@ -20,9 +20,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantUserService
 {
 
-    User AddObject(Uri siteCollectionUrl, IReadOnlyDictionary<string, object> creationInfo);
+    User AddObject(Uri siteCollectionUrl, IReadOnlyDictionary<string, object?> creationInfo);
 
-    User GetObject(Uri siteCollectionUrl, int? userId);
+    User GetObject(Uri siteCollectionUrl, int userId);
 
     User GetObject(Uri siteCollectionUrl, string userName);
 
@@ -47,9 +47,8 @@ public interface ITenantUserService
 public class TenantUserService(ClientContext clientContext) : ClientService<User>(clientContext), ITenantUserService
 {
 
-    public User AddObject(Uri siteCollectionUrl, IReadOnlyDictionary<string, object> creationInfo)
+    public User AddObject(Uri siteCollectionUrl, IReadOnlyDictionary<string, object?> creationInfo)
     {
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
@@ -78,10 +77,8 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
             .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public User GetObject(Uri siteCollectionUrl, int? userId)
+    public User GetObject(Uri siteCollectionUrl, int userId)
     {
-        _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));
-        _ = userId ?? throw new ArgumentNullException(nameof(userId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
@@ -112,8 +109,6 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
 
     public User GetObject(Uri siteCollectionUrl, string userName)
     {
-        _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));
-        _ = userName ?? throw new ArgumentNullException(nameof(userName));
         if (Regex.IsMatch(userName, "^[ci]:0"))
         {
             var requestPayload = new ClientRequestPayload();
@@ -176,7 +171,6 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
 
     public IEnumerable<User> GetObjectEnumerable(Uri siteCollectionUrl)
     {
-        _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
@@ -203,8 +197,6 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
 
     public void RemoveObject(Uri siteCollectionUrl, User userObject)
     {
-        _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));
-        _ = userObject ?? throw new ArgumentNullException(nameof(userObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(

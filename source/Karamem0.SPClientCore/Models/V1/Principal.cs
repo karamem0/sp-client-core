@@ -21,18 +21,18 @@ public class Principal : ClientObject
 {
 
     [JsonProperty()]
-    public virtual int Id { get; protected set; }
+    public virtual int Id { get; set; }
 
     // [JsonProperty()]
-    // public virtual bool IsHiddenInUI { get; protected set; }
+    // public virtual bool IsHiddenInUI { get; set; }
 
     [JsonProperty()]
-    public virtual string LoginName { get; protected set; }
+    public virtual string? LoginName { get; set; }
 
     [JsonProperty()]
-    public virtual PrincipalType PrincipalType { get; protected set; }
+    public virtual PrincipalType? PrincipalType { get; set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; set; }
 
 }

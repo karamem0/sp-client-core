@@ -20,39 +20,39 @@ public class Comment : ODataV1Object
 {
 
     [JsonProperty("author")]
-    public virtual SharingPrincipal Author { get; protected set; }
+    public virtual SharingPrincipal? Author { get; set; }
 
     [JsonProperty("createdDate")]
-    public virtual DateTime Created { get; protected set; }
+    public virtual DateTime Created { get; set; }
 
     [JsonProperty("id")]
-    public virtual int Id { get; protected set; }
+    public virtual int Id { get; set; }
 
     [JsonProperty("isLikedByUser")]
-    public virtual bool IsLikedByUser { get; protected set; }
+    public virtual bool IsLikedByUser { get; set; }
 
     [JsonProperty("isReply")]
-    public virtual bool IsReply { get; protected set; }
+    public virtual bool IsReply { get; set; }
 
     [JsonProperty("itemId")]
-    public virtual int ItemId { get; protected set; }
+    public virtual int ItemId { get; set; }
 
     [JsonProperty("likeCount")]
-    public virtual int LikeCount { get; protected set; }
+    public virtual int LikeCount { get; set; }
 
     [JsonProperty("likedBy")]
-    public virtual ODataV1ObjectEnumerable<LikedUser> LikedBy { get; protected set; }
+    public virtual ODataV1ObjectEnumerable<LikedUser>? LikedBy { get; set; }
 
     [JsonProperty("listId")]
-    public virtual Guid ListId { get; protected set; }
+    public virtual Guid ListId { get; set; }
 
     [JsonProperty("parentId")]
-    public virtual int ParentId { get; protected set; }
+    public virtual int ParentId { get; set; }
 
     [JsonProperty("replyCount")]
-    public virtual int ReplyCount { get; protected set; }
+    public virtual int ReplyCount { get; set; }
 
     [JsonProperty("text")]
-    public virtual string Text { get; protected set; }
+    public virtual string? Text { get; set; }
 
 }

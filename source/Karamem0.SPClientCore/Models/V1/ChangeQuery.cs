@@ -21,7 +21,7 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class ChangeQuery : ClientValueObject
 {
 
-    public ChangeQuery(IReadOnlyDictionary<string, object> parameters)
+    public ChangeQuery(IReadOnlyDictionary<string, object?> parameters)
     {
         var flags = BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public;
         foreach (var parameter in parameters)
@@ -76,108 +76,108 @@ public class ChangeQuery : ClientValueObject
     }
 
     [JsonProperty()]
-    public virtual bool Activity { get; protected set; }
+    public virtual bool Activity { get; set; }
 
     [JsonProperty()]
-    public virtual bool Add { get; protected set; }
+    public virtual bool Add { get; set; }
 
     [JsonProperty()]
-    public virtual bool Alert { get; protected set; }
+    public virtual bool Alert { get; set; }
 
     [JsonProperty("ChangeTokenStart")]
-    public virtual ChangeToken BeginChangeToken { get; protected set; }
+    public virtual ChangeToken? BeginChangeToken { get; set; }
 
     [JsonProperty("Field")]
-    public virtual bool Column { get; protected set; }
+    public virtual bool Column { get; set; }
 
     [JsonProperty()]
-    public virtual bool ContentType { get; protected set; }
+    public virtual bool ContentType { get; set; }
 
     [JsonProperty()]
-    public virtual bool DeleteObject { get; protected set; }
+    public virtual bool DeleteObject { get; set; }
 
     [JsonProperty("ChangeTokenEnd")]
-    public virtual ChangeToken EndChangeToken { get; protected set; }
+    public virtual ChangeToken? EndChangeToken { get; set; }
 
     [JsonProperty()]
-    public virtual long FetchLimit { get; protected set; }
+    public virtual long FetchLimit { get; set; }
 
     [JsonProperty()]
-    public virtual bool File { get; protected set; }
+    public virtual bool File { get; set; }
 
     [JsonProperty()]
-    public virtual bool Folder { get; protected set; }
+    public virtual bool Folder { get; set; }
 
     [JsonProperty()]
-    public virtual bool Group { get; protected set; }
+    public virtual bool Group { get; set; }
 
     [JsonProperty()]
-    public virtual bool GroupMembershipAdd { get; protected set; }
+    public virtual bool GroupMembershipAdd { get; set; }
 
     [JsonProperty()]
-    public virtual bool GroupMembershipDelete { get; protected set; }
+    public virtual bool GroupMembershipDelete { get; set; }
 
     [JsonProperty()]
-    public virtual bool Item { get; protected set; }
+    public virtual bool Item { get; set; }
 
     [JsonProperty()]
-    public virtual bool LatestFirst { get; protected set; }
+    public virtual bool LatestFirst { get; set; }
 
     [JsonProperty()]
-    public virtual bool List { get; protected set; }
+    public virtual bool List { get; set; }
 
     [JsonProperty()]
-    public virtual bool Move { get; protected set; }
+    public virtual bool Move { get; set; }
 
     [JsonProperty()]
-    public virtual bool Navigation { get; protected set; }
+    public virtual bool Navigation { get; set; }
 
     [JsonProperty()]
-    public virtual bool RecursiveAll { get; protected set; }
+    public virtual bool RecursiveAll { get; set; }
 
     [JsonProperty()]
-    public virtual bool Rename { get; protected set; }
+    public virtual bool Rename { get; set; }
 
     [JsonProperty()]
-    public virtual bool RequireSecurityTrim { get; protected set; }
+    public virtual bool RequireSecurityTrim { get; set; }
 
     [JsonProperty()]
-    public virtual bool Restore { get; protected set; }
+    public virtual bool Restore { get; set; }
 
     [JsonProperty()]
-    public virtual bool RoleAssignmentAdd { get; protected set; }
+    public virtual bool RoleAssignmentAdd { get; set; }
 
     [JsonProperty()]
-    public virtual bool RoleAssignmentDelete { get; protected set; }
+    public virtual bool RoleAssignmentDelete { get; set; }
 
     [JsonProperty()]
-    public virtual bool RoleDefinitionAdd { get; protected set; }
+    public virtual bool RoleDefinitionAdd { get; set; }
 
     [JsonProperty()]
-    public virtual bool RoleDefinitionDelete { get; protected set; }
+    public virtual bool RoleDefinitionDelete { get; set; }
 
     [JsonProperty()]
-    public virtual bool RoleDefinitionUpdate { get; protected set; }
+    public virtual bool RoleDefinitionUpdate { get; set; }
 
     [JsonProperty()]
-    public virtual bool SecurityPolicy { get; protected set; }
+    public virtual bool SecurityPolicy { get; set; }
 
     [JsonProperty("Web")]
-    public virtual bool Site { get; protected set; }
+    public virtual bool Site { get; set; }
 
     [JsonProperty("Site")]
-    public virtual bool SiteCollection { get; protected set; }
+    public virtual bool SiteCollection { get; set; }
 
     [JsonProperty()]
-    public virtual bool SystemUpdate { get; protected set; }
+    public virtual bool SystemUpdate { get; set; }
 
     [JsonProperty()]
-    public virtual bool Update { get; protected set; }
+    public virtual bool Update { get; set; }
 
     [JsonProperty()]
-    public virtual bool User { get; protected set; }
+    public virtual bool User { get; set; }
 
     [JsonProperty()]
-    public virtual bool View { get; protected set; }
+    public virtual bool View { get; set; }
 
 }

@@ -21,7 +21,7 @@ public interface ITermStoreService
 
     TermStore GetObject();
 
-    void SetObject(IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObject(IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
@@ -45,18 +45,15 @@ public class TermStoreService(ClientContext clientContext) : ClientService(clien
             .ToObject<TermStore>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public void SetObject(IReadOnlyDictionary<string, object> modificationInfo)
+    public void SetObject(IReadOnlyDictionary<string, object?> modificationInfo)
     {
-        _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(new ObjectPathStaticMethod(typeof(TaxonomySession), "GetTaxonomySession"));
-        var objectPath2 = requestPayload.Add(new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore"), objectPathId => new ClientActionInstantiateObjectPath(objectPathId));
-        var objectPath3 = requestPayload.Add(
-            objectPath2,
-            requestPayload
-                .CreateSetPropertyDelegates(typeof(TermStore), modificationInfo)
-                .ToArray()
+        var objectPath2 = requestPayload.Add(
+            new ObjectPathMethod(objectPath1.Id, "GetDefaultSiteCollectionTermStore"),
+            objectPathId => new ClientActionInstantiateObjectPath(objectPathId)
         );
+        var objectPath3 = requestPayload.Add(objectPath2, requestPayload.CreateSetPropertyDelegates(typeof(TermStore), modificationInfo));
         var objectPath4 = requestPayload.Add(objectPath2, objectPathId => new ClientActionMethod(objectPathId, "CommitAll"));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
