@@ -19,9 +19,9 @@ public class ODataV1Error : ValueObject
 {
 
     [JsonProperty("code")]
-    public string Code { get; private set; }
+    public string? Code { get; protected set; }
 
     [JsonProperty("message")]
-    public ODataV1ErrorMessage Message { get; private set; }
+    public ODataV1ErrorMessage? Message { get; protected set; }
 
 }

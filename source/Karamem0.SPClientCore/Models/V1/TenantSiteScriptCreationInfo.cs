@@ -21,15 +21,15 @@ public class TenantSiteScriptCreationInfo : ClientValueObject
 {
 
     [JsonProperty()]
-    public virtual string Content { get; protected set; }
+    public virtual string? Content { get; protected set; }
 
     [JsonProperty()]
-    public virtual System.IO.Stream ContentStream { get; protected set; }
+    public virtual System.IO.Stream? ContentStream { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; protected set; }
 
 }

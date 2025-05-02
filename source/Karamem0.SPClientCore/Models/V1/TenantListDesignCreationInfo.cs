@@ -21,24 +21,24 @@ public class TenantListDesignCreationInfo : ClientValueObject
 {
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; protected set; }
 
     [JsonProperty()]
-    public virtual TenantListDesignColor ListColor { get; protected set; }
+    public virtual TenantListDesignColor? ListColor { get; protected set; }
 
     [JsonProperty()]
-    public virtual TenantListDesignIcon ListIcon { get; protected set; }
+    public virtual TenantListDesignIcon? ListIcon { get; protected set; }
 
     [JsonProperty()]
-    public virtual Guid[] SiteScriptIds { get; protected set; }
+    public virtual Guid[]? SiteScriptIds { get; protected set; }
 
     [JsonProperty()]
-    public virtual string[] TemplateFeatures { get; protected set; }
+    public virtual string[]? TemplateFeatures { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ThumbnailUrl { get; protected set; }
+    public virtual string? ThumbnailUrl { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; protected set; }
 
 }

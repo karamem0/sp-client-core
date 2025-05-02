@@ -25,7 +25,7 @@ public class TenantIdResolver(Uri baseAddress)
 
     private readonly Uri baseAddress = baseAddress ?? throw new ArgumentNullException(nameof(baseAddress));
 
-    private string tenantId;
+    private string? tenantId;
 
     public string Resolve()
     {

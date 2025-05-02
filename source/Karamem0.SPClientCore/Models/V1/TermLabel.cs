@@ -27,6 +27,6 @@ public class TermLabel : ClientObject
     public virtual uint Lcid { get; protected set; }
 
     [JsonProperty("Value")]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; protected set; }
 
 }

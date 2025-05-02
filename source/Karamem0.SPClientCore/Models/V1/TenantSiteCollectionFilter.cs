@@ -21,7 +21,7 @@ public class TenantSiteCollectionFilter : ClientValueObject
 {
 
     [JsonProperty()]
-    public virtual string Filter { get; protected set; }
+    public virtual string? Filter { get; protected set; }
 
     [JsonProperty()]
     [SwitchParameterValue(TrueValue = 1, FalseValue = 2)]
@@ -32,12 +32,12 @@ public class TenantSiteCollectionFilter : ClientValueObject
 
     [JsonProperty()]
     [SwitchParameterValue(TrueValue = PersonalSiteFilter.Include, FalseValue = PersonalSiteFilter.Exclude)]
-    public virtual PersonalSiteFilter IncludePersonalSite { get; protected set; }
+    public virtual PersonalSiteFilter? IncludePersonalSite { get; protected set; }
 
     [JsonProperty()]
-    public virtual string StartIndex { get; protected set; }
+    public virtual string? StartIndex { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Template { get; protected set; }
+    public virtual string? Template { get; protected set; }
 
 }

@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.Services;
 using System;
@@ -21,35 +22,35 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantSiteCollectionService
 {
 
-    TenantOperationResult AddObject(IReadOnlyDictionary<string, object> creationInfo);
+    TenantOperationResult? AddObject(IReadOnlyDictionary<string, object?> creationInfo);
 
-    void AddObjectAwait(IReadOnlyDictionary<string, object> creationInfo);
+    void AddObjectAwait(IReadOnlyDictionary<string, object?> creationInfo);
 
-    TenantSiteCollection GetObject(TenantSiteCollection siteCollectionObject);
+    TenantSiteCollection? GetObject(TenantSiteCollection siteCollectionObject);
 
-    TenantSiteCollection GetObject(Uri siteCollectionUrl);
+    TenantSiteCollection? GetObject(Uri siteCollectionUrl);
 
-    TenantSiteCollection GetObjectAwait(TenantSiteCollection siteCollectionObject);
+    TenantSiteCollection? GetObjectAwait(TenantSiteCollection siteCollectionObject);
 
-    TenantSiteCollection GetObjectAwait(Uri siteCollectionUrl);
+    TenantSiteCollection? GetObjectAwait(Uri siteCollectionUrl);
 
-    IEnumerable<TenantSiteCollection> GetObjectEnumerable();
+    IEnumerable<TenantSiteCollection>? GetObjectEnumerable();
 
-    IEnumerable<TenantSiteCollection> GetObjectEnumerable(IReadOnlyDictionary<string, object> filterInfo);
+    IEnumerable<TenantSiteCollection>? GetObjectEnumerable(IReadOnlyDictionary<string, object?> filterInfo);
 
-    TenantOperationResult LockObject(TenantSiteCollection siteCollectionObject);
+    TenantOperationResult? LockObject(TenantSiteCollection siteCollectionObject);
 
     void LockObjectAwait(TenantSiteCollection siteCollectionObject);
 
-    TenantOperationResult RemoveObject(TenantSiteCollection siteCollectionObject);
+    TenantOperationResult? RemoveObject(TenantSiteCollection siteCollectionObject);
 
     void RemoveObjectAwait(TenantSiteCollection siteCollectionObject);
 
-    TenantOperationResult SetObject(TenantSiteCollection siteCollectionObject, IReadOnlyDictionary<string, object> modificationInfo);
+    TenantOperationResult? SetObject(TenantSiteCollection siteCollectionObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
-    void SetObjectAwait(TenantSiteCollection siteCollectionObject, IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObjectAwait(TenantSiteCollection siteCollectionObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
-    TenantOperationResult UnlockObject(TenantSiteCollection siteCollectionObject);
+    TenantOperationResult? UnlockObject(TenantSiteCollection siteCollectionObject);
 
     void UnlockObjectAwait(TenantSiteCollection siteCollectionObject);
 
@@ -58,82 +59,68 @@ public interface ITenantSiteCollectionService
 public class TenantSiteCollectionService(ClientContext clientContext) : TenantClientService(clientContext), ITenantSiteCollectionService
 {
 
-    public TenantOperationResult AddObject(IReadOnlyDictionary<string, object> creationInfo)
+    public TenantOperationResult? AddObject(IReadOnlyDictionary<string, object?> creationInfo)
     {
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath1.Id,
                 "CreateSite",
                 requestPayload.CreateParameter(ClientValueObject.Create<TenantSiteCollectionCreationInfo>(creationInfo))
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(TenantOperationResult))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(TenantOperationResult)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public void AddObjectAwait(IReadOnlyDictionary<string, object> creationInfo)
+    public void AddObjectAwait(IReadOnlyDictionary<string, object?> creationInfo)
     {
         this.WaitObject(this.AddObject(creationInfo));
     }
 
-    public TenantSiteCollection GetObject(TenantSiteCollection siteCollectionObject)
+    public TenantSiteCollection? GetObject(TenantSiteCollection siteCollectionObject)
     {
-        _ = siteCollectionObject ?? throw new ArgumentNullException(nameof(siteCollectionObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(siteCollectionObject.ObjectIdentity),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(TenantSiteCollection))
-            }
+            ObjectPathIdentity.Create(siteCollectionObject.ObjectIdentity),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(TenantSiteCollection)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantSiteCollection>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public TenantSiteCollection GetObject(Uri siteCollectionUrl)
+    public TenantSiteCollection? GetObject(Uri siteCollectionUrl)
     {
-        _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath1.Id,
                 "GetSitePropertiesByUrl",
                 requestPayload.CreateParameter(siteCollectionUrl),
                 requestPayload.CreateParameter(false)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(TenantSiteCollection))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(TenantSiteCollection)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantSiteCollection>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public TenantSiteCollection GetObjectAwait(TenantSiteCollection siteCollectionObject)
+    public TenantSiteCollection? GetObjectAwait(TenantSiteCollection siteCollectionObject)
     {
-        _ = siteCollectionObject ?? throw new ArgumentNullException(nameof(siteCollectionObject));
         return this.GetObjectAwait(new Uri(siteCollectionObject.Url, UriKind.Absolute));
     }
 
-    public TenantSiteCollection GetObjectAwait(Uri siteCollectionUrl)
+    public TenantSiteCollection? GetObjectAwait(Uri siteCollectionUrl)
     {
-        _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));
         while (true)
         {
             var errorCount = 0;
@@ -141,6 +128,7 @@ public class TenantSiteCollectionService(ClientContext clientContext) : TenantCl
             {
                 Thread.Sleep(TimeSpan.FromSeconds(ClientConstants.WaitIntervalForTenantService));
                 var siteCollectionObject = this.GetObject(siteCollectionUrl);
+                _ = siteCollectionObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
                 if (siteCollectionObject.Status == "Active")
                 {
                     return siteCollectionObject;
@@ -157,70 +145,66 @@ public class TenantSiteCollectionService(ClientContext clientContext) : TenantCl
         }
     }
 
-    public IEnumerable<TenantSiteCollection> GetObjectEnumerable()
+    public IEnumerable<TenantSiteCollection>? GetObjectEnumerable()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath1.Id,
                 "GetSitePropertiesFromSharePoint",
                 requestPayload.CreateParameter(null),
                 requestPayload.CreateParameter(false)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = ClientQuery.Empty,
-                ChildItemQuery = new ClientQuery(true, typeof(TenantSiteCollection))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(
+                objectPathId,
+                ClientQuery.Empty,
+                ClientQuery.Create(true, typeof(TenantSiteCollection))
+            )
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantSiteCollectionEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<TenantSiteCollection> GetObjectEnumerable(IReadOnlyDictionary<string, object> filterInfo)
+    public IEnumerable<TenantSiteCollection>? GetObjectEnumerable(IReadOnlyDictionary<string, object?> filterInfo)
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath1.Id,
                 "GetSitePropertiesFromSharePointByFilters",
                 requestPayload.CreateParameter(ClientValueObject.Create<TenantSiteCollectionFilter>(filterInfo))
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = ClientQuery.Empty,
-                ChildItemQuery = new ClientQuery(true, typeof(TenantSiteCollection))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(
+                objectPathId,
+                ClientQuery.Empty,
+                ClientQuery.Create(true, typeof(TenantSiteCollection))
+            )
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantSiteCollectionEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public TenantOperationResult LockObject(TenantSiteCollection siteCollectionObject)
+    public TenantOperationResult? LockObject(TenantSiteCollection siteCollectionObject)
     {
-        _ = siteCollectionObject ?? throw new ArgumentNullException(nameof(siteCollectionObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(siteCollectionObject.ObjectIdentity),
-            objectPathId => new ClientActionSetProperty(
+            ObjectPathIdentity.Create(siteCollectionObject.ObjectIdentity),
+            objectPathId => ClientActionSetProperty.Create(
                 objectPathId,
                 "LockState",
                 requestPayload.CreateParameter("NoAccess")
             )
         );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(objectPath1.Id, "Update"),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(TenantOperationResult))
-            }
+            ObjectPathMethod.Create(objectPath1.Id, "Update"),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(TenantOperationResult)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
@@ -232,23 +216,18 @@ public class TenantSiteCollectionService(ClientContext clientContext) : TenantCl
         this.WaitObject(this.LockObject(siteCollectionObject));
     }
 
-    public TenantOperationResult RemoveObject(TenantSiteCollection siteCollectionObject)
+    public TenantOperationResult? RemoveObject(TenantSiteCollection siteCollectionObject)
     {
-        _ = siteCollectionObject ?? throw new ArgumentNullException(nameof(siteCollectionObject));
-        _ = siteCollectionObject.Url ?? throw new ArgumentNullException(nameof(siteCollectionObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath1.Id,
                 "RemoveSite",
                 requestPayload.CreateParameter(siteCollectionObject.Url)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(TenantOperationResult))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(TenantOperationResult)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
@@ -260,54 +239,43 @@ public class TenantSiteCollectionService(ClientContext clientContext) : TenantCl
         this.WaitObject(this.RemoveObject(siteCollectionObject));
     }
 
-    public TenantOperationResult SetObject(TenantSiteCollection siteCollectionObject, IReadOnlyDictionary<string, object> modificationInfo)
+    public TenantOperationResult? SetObject(TenantSiteCollection siteCollectionObject, IReadOnlyDictionary<string, object?> modificationInfo)
     {
-        _ = siteCollectionObject ?? throw new ArgumentNullException(nameof(siteCollectionObject));
-        _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(siteCollectionObject.ObjectIdentity),
-            requestPayload
-                .CreateSetPropertyDelegates(siteCollectionObject, modificationInfo)
-                .ToArray()
+            ObjectPathIdentity.Create(siteCollectionObject.ObjectIdentity),
+            requestPayload.CreateSetPropertyDelegates(siteCollectionObject, modificationInfo)
         );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(objectPath1.Id, "Update"),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(TenantOperationResult))
-            }
+            ObjectPathMethod.Create(objectPath1.Id, "Update"),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(TenantOperationResult)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public void SetObjectAwait(TenantSiteCollection siteCollectionObject, IReadOnlyDictionary<string, object> modificationInfo)
+    public void SetObjectAwait(TenantSiteCollection siteCollectionObject, IReadOnlyDictionary<string, object?> modificationInfo)
     {
         this.WaitObject(this.SetObject(siteCollectionObject, modificationInfo));
     }
 
-    public TenantOperationResult UnlockObject(TenantSiteCollection siteCollectionObject)
+    public TenantOperationResult? UnlockObject(TenantSiteCollection siteCollectionObject)
     {
-        _ = siteCollectionObject ?? throw new ArgumentNullException(nameof(siteCollectionObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(siteCollectionObject.ObjectIdentity),
-            objectPathId => new ClientActionSetProperty(
+            ObjectPathIdentity.Create(siteCollectionObject.ObjectIdentity),
+            objectPathId => ClientActionSetProperty.Create(
                 objectPathId,
                 "LockState",
                 requestPayload.CreateParameter("Unlock")
             )
         );
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(objectPath1.Id, "Update"),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(TenantOperationResult))
-            }
+            ObjectPathMethod.Create(objectPath1.Id, "Update"),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(TenantOperationResult)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)

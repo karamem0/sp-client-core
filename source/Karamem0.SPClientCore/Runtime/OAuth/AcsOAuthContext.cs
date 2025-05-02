@@ -16,37 +16,29 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth;
 
-public class AcsOAuthContext : OAuthContext
+public class AcsOAuthContext(
+    string clientId,
+    string clientSecret,
+    string resource
+) : OAuthContext
 {
 
-    private readonly string clientId;
+    private readonly string clientId = clientId;
 
-    private readonly string clientSecret;
+    private readonly string clientSecret = clientSecret;
 
-    private readonly string resource;
+    private readonly string resource = resource;
 
-    private readonly TenantIdResolver tenantIdResolver;
+    private readonly TenantIdResolver tenantIdResolver = new(new Uri(resource, UriKind.Absolute));
 
-    public AcsOAuthContext(
-        string clientId,
-        string clientSecret,
-        string resource
-    )
-    {
-        this.clientId = clientId;
-        this.clientSecret = clientSecret;
-        this.resource = resource;
-        this.tenantIdResolver = new TenantIdResolver(new Uri(this.resource, UriKind.Absolute));
-    }
-
-    public OAuthMessage AcquireToken()
+    public OAuthMessage? AcquireToken()
     {
         var tenantId = this.tenantIdResolver.Resolve();
         var resourceId = new Uri(this.resource, UriKind.Absolute).Host;
         var requestUrl = new Uri(OAuthConstants.AcsAuthority, UriKind.Absolute)
             .ConcatPath(tenantId)
             .ConcatPath("tokens/oauth/2");
-        var requertParameters = new Dictionary<string, object>()
+        var requertParameters = new Dictionary<string, object?>()
         {
             {
                 "grant_type", "client_credentials"

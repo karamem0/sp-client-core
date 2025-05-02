@@ -23,9 +23,9 @@ public interface ITenantCdnService
 
     bool GetEnabled(TenantCdnType cdnType);
 
-    IEnumerable<string> GetOriginEnumerable(TenantCdnType cdnType);
+    IEnumerable<string>? GetOriginEnumerable(TenantCdnType cdnType);
 
-    IEnumerable<string> GetPolicyEnumerable(TenantCdnType cdnType);
+    IEnumerable<string>? GetPolicyEnumerable(TenantCdnType cdnType);
 
     void SetEnabled(
         TenantCdnType cdnType,
@@ -49,10 +49,10 @@ public class TenantCdnService(ClientContext clientContext) : ClientService(clien
     public void AddOrigin(TenantCdnType cdnType, string cdnOrigin)
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             objectPath1,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "AddTenantCdnOrigin",
                 requestPayload.CreateParameter(cdnType),
@@ -65,10 +65,10 @@ public class TenantCdnService(ClientContext clientContext) : ClientService(clien
     public bool GetEnabled(TenantCdnType cdnType)
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             objectPath1,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "GetTenantCdnEnabled",
                 requestPayload.CreateParameter(cdnType)
@@ -79,13 +79,13 @@ public class TenantCdnService(ClientContext clientContext) : ClientService(clien
             .ToObject<bool>(requestPayload.GetActionId<ClientActionMethod>());
     }
 
-    public IEnumerable<string> GetOriginEnumerable(TenantCdnType cdnType)
+    public IEnumerable<string>? GetOriginEnumerable(TenantCdnType cdnType)
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             objectPath1,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "GetTenantCdnOrigins",
                 requestPayload.CreateParameter(cdnType)
@@ -96,13 +96,13 @@ public class TenantCdnService(ClientContext clientContext) : ClientService(clien
             .ToObject<IEnumerable<string>>(requestPayload.GetActionId<ClientActionMethod>());
     }
 
-    public IEnumerable<string> GetPolicyEnumerable(TenantCdnType cdnType)
+    public IEnumerable<string>? GetPolicyEnumerable(TenantCdnType cdnType)
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             objectPath1,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "GetTenantCdnPolicies",
                 requestPayload.CreateParameter(cdnType)
@@ -120,10 +120,10 @@ public class TenantCdnService(ClientContext clientContext) : ClientService(clien
     )
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             objectPath1,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "SetTenantCdnEnabled",
                 requestPayload.CreateParameter(cdnType),
@@ -137,7 +137,7 @@ public class TenantCdnService(ClientContext clientContext) : ClientService(clien
         {
             var objectPath3 = requestPayload.Add(
                 objectPath1,
-                objectPathId => new ClientActionMethod(
+                objectPathId => ClientActionMethod.Create(
                     objectPathId,
                     "CreateTenantCdnDefaultOrigins",
                     requestPayload.CreateParameter(cdnType)
@@ -154,10 +154,10 @@ public class TenantCdnService(ClientContext clientContext) : ClientService(clien
     )
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             objectPath1,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "SetTenantCdnPolicy",
                 requestPayload.CreateParameter(cdnType),
@@ -171,10 +171,10 @@ public class TenantCdnService(ClientContext clientContext) : ClientService(clien
     public void RemoveOrigin(TenantCdnType cdnType, string cdnOrigin)
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             objectPath1,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "RemoveTenantCdnOrigin",
                 requestPayload.CreateParameter(cdnType),

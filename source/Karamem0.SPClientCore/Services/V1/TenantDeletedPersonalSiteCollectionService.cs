@@ -19,53 +19,53 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantDeletedPersonalSiteCollectionService
 {
 
-    IEnumerable<TenantDeletedSiteCollection> GetObjectEnumerable();
+    IEnumerable<TenantDeletedSiteCollection>? GetObjectEnumerable();
 
-    IEnumerable<TenantDeletedSiteCollection> GetObjectEnumerable(Uri siteCollectionUrl);
+    IEnumerable<TenantDeletedSiteCollection>? GetObjectEnumerable(Uri siteCollectionUrl);
 
 }
 
 public class TenantDeletedPersonalSiteCollectionService(ClientContext clientContext) : ClientService(clientContext), ITenantDeletedPersonalSiteCollectionService
 {
 
-    public IEnumerable<TenantDeletedSiteCollection> GetObjectEnumerable()
+    public IEnumerable<TenantDeletedSiteCollection>? GetObjectEnumerable()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath1.Id,
                 "GetAllDeletedPersonalSitesPropertiesAllVersions",
                 requestPayload.CreateParameter(null)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = ClientQuery.Empty,
-                ChildItemQuery = new ClientQuery(true, typeof(TenantDeletedSiteCollection))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(
+                objectPathId,
+                ClientQuery.Empty,
+                ClientQuery.Create(true, typeof(TenantDeletedSiteCollection))
+            )
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantDeletedSiteCollectionsEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<TenantDeletedSiteCollection> GetObjectEnumerable(Uri siteCollectionUrl)
+    public IEnumerable<TenantDeletedSiteCollection>? GetObjectEnumerable(Uri siteCollectionUrl)
     {
-        _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath1.Id,
                 "GetDeletedPersonalSitePropertiesAllVersions",
                 requestPayload.CreateParameter(siteCollectionUrl)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(TenantDeletedSiteCollection))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(
+                objectPathId,
+                ClientQuery.Empty,
+                ClientQuery.Create(true, typeof(TenantDeletedSiteCollection))
+            )
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)

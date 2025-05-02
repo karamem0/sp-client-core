@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.Services;
 using System;
@@ -19,11 +20,11 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IFileVersionService
 {
 
-    FileVersion GetObject(FileVersion fileVersionObject);
+    FileVersion? GetObject(FileVersion fileVersionObject);
 
-    FileVersion GetObject(File fileObject, int? fileVersionId);
+    FileVersion? GetObject(File fileObject, int fileVersionId);
 
-    IEnumerable<FileVersion> GetObjectEnumerable(File fileObject);
+    IEnumerable<FileVersion>? GetObjectEnumerable(File fileObject);
 
     void RecycleObject(FileVersion fileVersionObject);
 
@@ -38,43 +39,37 @@ public interface IFileVersionService
 public class FileVersionService(ClientContext clientContext) : ClientService<FileVersion>(clientContext), IFileVersionService
 {
 
-    public FileVersion GetObject(File fileObject, int? fileVersionId)
+    public FileVersion? GetObject(File fileObject, int fileVersionId)
     {
-        _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
-        _ = fileVersionId ?? throw new ArgumentNullException(nameof(fileVersionId));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(fileObject.ObjectIdentity));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Versions"));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(fileObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Versions"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath2.Id,
                 "GetById",
                 requestPayload.CreateParameter(fileVersionId)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(FileVersion))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(FileVersion)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<FileVersion>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<FileVersion> GetObjectEnumerable(File fileObject)
+    public IEnumerable<FileVersion>? GetObjectEnumerable(File fileObject)
     {
-        _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(fileObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(fileObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Versions"),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = ClientQuery.Empty,
-                ChildItemQuery = new ClientQuery(true, typeof(FileVersion))
-            }
+            ObjectPathProperty.Create(objectPath1.Id, "Versions"),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(
+                objectPathId,
+                ClientQuery.Empty,
+                ClientQuery.Create(true, typeof(FileVersion))
+            )
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
@@ -83,23 +78,24 @@ public class FileVersionService(ClientContext clientContext) : ClientService<Fil
 
     public void RecycleObject(FileVersion fileVersionObject)
     {
-        _ = fileVersionObject ?? throw new ArgumentNullException(nameof(fileVersionObject));
+        var objectIdentity = fileVersionObject.ObjectIdentity;
+        _ = objectIdentity ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(
+            ObjectPathIdentity.Create(
                 string.Join(
                     ":",
-                    fileVersionObject
-                        .ObjectIdentity.Split(':')
+                    objectIdentity
+                        .Split(':')
                         .SkipLast(2)
                 )
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId)
+            ClientActionInstantiateObjectPath.Create
         );
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Versions"));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Versions"));
         var objectPath3 = requestPayload.Add(
             objectPath2,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "RecycleByLabel",
                 requestPayload.CreateParameter(fileVersionObject.VersionLabel)
@@ -110,22 +106,23 @@ public class FileVersionService(ClientContext clientContext) : ClientService<Fil
 
     public override void RemoveObject(FileVersion fileVersionObject)
     {
-        _ = fileVersionObject ?? throw new ArgumentNullException(nameof(fileVersionObject));
+        var objectIdentity = fileVersionObject.ObjectIdentity;
+        _ = objectIdentity ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(
+            ObjectPathIdentity.Create(
                 string.Join(
                     ":",
-                    fileVersionObject
-                        .ObjectIdentity.Split(':')
+                    objectIdentity
+                        .Split(':')
                         .SkipLast(2)
                 )
             )
         );
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Versions"));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Versions"));
         var objectPath3 = requestPayload.Add(
             objectPath2,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "DeleteByLabel",
                 requestPayload.CreateParameter(fileVersionObject.VersionLabel)
@@ -136,32 +133,32 @@ public class FileVersionService(ClientContext clientContext) : ClientService<Fil
 
     public void RemoveObjectAll(File fileObject)
     {
-        _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(fileObject.ObjectIdentity));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Versions"));
-        var objectPath3 = requestPayload.Add(objectPath2, objectPathId => new ClientActionMethod(objectPathId, "DeleteAll"));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(fileObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Versions"));
+        var objectPath3 = requestPayload.Add(objectPath2, objectPathId => ClientActionMethod.Create(objectPathId, "DeleteAll"));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
     public void RestoreObject(FileVersion fileVersionObject)
     {
-        _ = fileVersionObject ?? throw new ArgumentNullException(nameof(fileVersionObject));
+        var objectIdentity = fileVersionObject.ObjectIdentity;
+        _ = objectIdentity ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(
+            ObjectPathIdentity.Create(
                 string.Join(
                     ":",
-                    fileVersionObject
-                        .ObjectIdentity.Split(':')
+                    objectIdentity
+                        .Split(':')
                         .SkipLast(2)
                 )
             )
         );
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Versions"));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Versions"));
         var objectPath3 = requestPayload.Add(
             objectPath2,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "RestoreByLabel",
                 requestPayload.CreateParameter(fileVersionObject.VersionLabel)

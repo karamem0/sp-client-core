@@ -45,16 +45,16 @@ public class Site : SecurableObject
     public virtual bool AllowSavePublishDeclarativeWorkflowForCurrentUser { get; protected set; }
 
     [JsonProperty()]
-    public virtual string AlternateCssUrl { get; protected set; }
+    public virtual string? AlternateCssUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid AppInstanceId { get; protected set; }
 
     [JsonProperty()]
-    public virtual User Author { get; protected set; }
+    public virtual User? Author { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ClassicWelcomePage { get; protected set; }
+    public virtual string? ClassicWelcomePage { get; protected set; }
 
     [JsonProperty()]
     public virtual bool CommentsOnSitePagesDisabled { get; protected set; }
@@ -69,16 +69,16 @@ public class Site : SecurableObject
     public virtual DateTime Created { get; protected set; }
 
     [JsonProperty()]
-    public virtual ChangeToken CurrentChangeToken { get; protected set; }
+    public virtual ChangeToken? CurrentChangeToken { get; protected set; }
 
     [JsonProperty()]
-    public virtual string CustomMasterUrl { get; protected set; }
+    public virtual string? CustomMasterUrl { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; protected set; }
 
     [JsonProperty()]
-    public virtual string DesignerDownloadUrlForCurrentUser { get; protected set; }
+    public virtual string? DesignerDownloadUrlForCurrentUser { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid DesignPackageId { get; protected set; }
@@ -99,22 +99,22 @@ public class Site : SecurableObject
     public virtual bool ExcludeFromOfflineClient { get; protected set; }
 
     [JsonProperty()]
-    public virtual FooterVariantThemeType FooterEmphasis { get; protected set; }
+    public virtual FooterVariantThemeType? FooterEmphasis { get; protected set; }
 
     [JsonProperty()]
     public virtual bool FooterEnabled { get; protected set; }
 
     [JsonProperty()]
-    public virtual FooterLayoutType FooterLayout { get; protected set; }
+    public virtual FooterLayoutType? FooterLayout { get; protected set; }
 
     [JsonProperty()]
     public override bool HasUniqueRoleAssignments { get; protected set; }
 
     [JsonProperty()]
-    public virtual VariantThemeType HeaderEmphasis { get; protected set; }
+    public virtual VariantThemeType? HeaderEmphasis { get; protected set; }
 
     [JsonProperty()]
-    public virtual HeaderLayoutType HeaderLayout { get; protected set; }
+    public virtual HeaderLayoutType? HeaderLayout { get; protected set; }
 
     [JsonProperty()]
     public virtual bool HideTitleInHeader { get; protected set; }
@@ -147,10 +147,10 @@ public class Site : SecurableObject
     public virtual uint Lcid { get; protected set; }
 
     [JsonProperty()]
-    public virtual LogoAlignment LogoAlignment { get; protected set; }
+    public virtual LogoAlignment? LogoAlignment { get; protected set; }
 
     [JsonProperty()]
-    public virtual string MasterUrl { get; protected set; }
+    public virtual string? MasterUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual bool MembersCanShare { get; protected set; }
@@ -183,37 +183,37 @@ public class Site : SecurableObject
     public virtual bool RecycleBinEnabled { get; protected set; }
 
     [JsonProperty()]
-    public virtual ResourcePath ResourcePath { get; protected set; }
+    public virtual ResourcePath? ResourcePath { get; protected set; }
 
     [JsonProperty()]
-    public virtual string RequestAccessEmail { get; protected set; }
+    public virtual string? RequestAccessEmail { get; protected set; }
 
     [JsonProperty()]
     public virtual bool SaveSiteAsTemplateEnabled { get; protected set; }
 
     [JsonProperty()]
-    public virtual SearchScopeType SearchScope { get; protected set; }
+    public virtual SearchScopeType? SearchScope { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ServerRelativeUrl { get; protected set; }
+    public virtual string? ServerRelativeUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual bool ShowUrlStructureForCurrentUser { get; protected set; }
 
     [JsonProperty()]
-    public virtual string SiteLogoDescription { get; protected set; }
+    public virtual string? SiteLogoDescription { get; protected set; }
 
     [JsonProperty()]
-    public virtual string SiteLogoUrl { get; protected set; }
+    public virtual string? SiteLogoUrl { get; protected set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<int> SupportedUILanguageIds { get; protected set; }
+    public virtual IReadOnlyCollection<int>? SupportedUILanguageIds { get; protected set; }
 
     [JsonProperty()]
     public virtual bool SyndicationEnabled { get; protected set; }
 
     [JsonProperty("WebTemplate")]
-    public virtual string Template { get; protected set; }
+    public virtual string? Template { get; protected set; }
 
     [JsonProperty()]
     public virtual bool TenantTagPolicyEnabled { get; protected set; }
@@ -222,13 +222,13 @@ public class Site : SecurableObject
     public virtual bool TenantAdminMembersCanShare { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ThemedCssFolderUrl { get; protected set; }
+    public virtual string? ThemedCssFolderUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual bool ThirdPartyMdmEnabled { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; protected set; }
 
     [JsonProperty()]
     public virtual bool TreeViewEnabled { get; protected set; }
@@ -240,9 +240,9 @@ public class Site : SecurableObject
     public virtual bool UIVersionConfigurationEnabled { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Url { get; protected set; }
+    public virtual string? Url { get; protected set; }
 
     [JsonProperty()]
-    public virtual string WelcomePage { get; protected set; }
+    public virtual string? WelcomePage { get; protected set; }
 
 }

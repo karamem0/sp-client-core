@@ -18,12 +18,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services;
 public class ClientHttpSynchronizationContext : SynchronizationContext
 {
 
-    private readonly BlockingCollection<ClientHttpSynchronizationObject> collection;
-
-    public ClientHttpSynchronizationContext()
-    {
-        this.collection = [];
-    }
+    private readonly BlockingCollection<ClientHttpSynchronizationObject> collection = [];
 
     public override void Post(SendOrPostCallback d, object state)
     {

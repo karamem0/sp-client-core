@@ -21,15 +21,15 @@ public class AttachmentFile : ClientObject
 {
 
     [JsonProperty()]
-    public virtual string FileName { get; protected set; }
+    public virtual string? FileName { get; protected set; }
 
     [JsonProperty()]
-    public virtual ResourcePath FileNameAsPath { get; protected set; }
+    public virtual ResourcePath? FileNameAsPath { get; protected set; }
 
     [JsonProperty()]
-    public virtual ResourcePath ServerRelativePath { get; protected set; }
+    public virtual ResourcePath? ServerRelativePath { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ServerRelativeUrl { get; protected set; }
+    public virtual string? ServerRelativeUrl { get; protected set; }
 
 }

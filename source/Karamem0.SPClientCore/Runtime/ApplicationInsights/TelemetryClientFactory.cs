@@ -78,7 +78,7 @@ public static class TelemetryClientFactory
                 .AddSingleton<ITelemetryChannel, InMemoryChannel>()
                 .AddSingleton<TelemetryClient>()
                 .BuildServiceProvider();
-            return services.GetService<TelemetryClient>();
+            return services.GetRequiredService<TelemetryClient>();
         }
     );
 

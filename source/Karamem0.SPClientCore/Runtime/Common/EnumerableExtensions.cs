@@ -19,7 +19,6 @@ public static class EnumerableExtensions
 
     public static IEnumerable<IEnumerable<T>> Chunks<T>(this IEnumerable<T> collection, int size)
     {
-        _ = collection ?? throw new ArgumentNullException(nameof(collection));
         if (size < 1)
         {
             throw new ArgumentException(string.Format(StringResources.ErrorValueCannotBeLessThan, 1), nameof(size));

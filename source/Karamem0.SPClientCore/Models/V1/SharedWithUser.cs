@@ -21,9 +21,9 @@ public class SharedWithUser : ClientValueObject
 {
 
     [JsonProperty()]
-    public virtual string Email { get; protected set; }
+    public virtual string? Email { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; protected set; }
 
 }

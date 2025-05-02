@@ -19,54 +19,50 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IListTemplateService
 {
 
-    ListTemplate GetObject(ListTemplate listTemplateObject);
+    ListTemplate? GetObject(ListTemplate listTemplateObject);
 
-    ListTemplate GetObject(string listTemplateTitle);
+    ListTemplate? GetObject(string listTemplateTitle);
 
-    IEnumerable<ListTemplate> GetObjectEnumerable();
+    IEnumerable<ListTemplate>? GetObjectEnumerable();
 
 }
 
 public class ListTemplateService(ClientContext clientContext) : ClientService<ListTemplate>(clientContext), IListTemplateService
 {
 
-    public ListTemplate GetObject(string listTemplateTitle)
+    public ListTemplate? GetObject(string listTemplateTitle)
     {
-        _ = listTemplateTitle ?? throw new ArgumentNullException(nameof(listTemplateTitle));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
-        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "ListTemplates"));
+        var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
+        var objectPath3 = requestPayload.Add(ObjectPathProperty.Create(objectPath2.Id, "ListTemplates"));
         var objectPath4 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath3.Id,
                 "GetByName",
                 requestPayload.CreateParameter(listTemplateTitle)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(ListTemplate))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(ListTemplate)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ListTemplate>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<ListTemplate> GetObjectEnumerable()
+    public IEnumerable<ListTemplate>? GetObjectEnumerable()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
+        var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "ListTemplates"),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = ClientQuery.Empty,
-                ChildItemQuery = new ClientQuery(true, typeof(ListTemplate))
-            }
+            ObjectPathProperty.Create(objectPath2.Id, "ListTemplates"),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(
+                objectPathId,
+                ClientQuery.Empty,
+                ClientQuery.Create(true, typeof(ListTemplate))
+            )
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)

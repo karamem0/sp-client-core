@@ -19,138 +19,120 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface INavigationNodeService
 {
 
-    NavigationNode AddObject(NavigationNode navigationNodeObject, IReadOnlyDictionary<string, object> creationInfo);
+    NavigationNode? AddObject(NavigationNode navigationNodeObject, IReadOnlyDictionary<string, object?> creationInfo);
 
-    NavigationNode AddObjectToQuickLaunch(IReadOnlyDictionary<string, object> creationInfo);
+    NavigationNode? AddObjectToQuickLaunch(IReadOnlyDictionary<string, object?> creationInfo);
 
-    NavigationNode AddObjectToTopNavigationBar(IReadOnlyDictionary<string, object> creationInfo);
+    NavigationNode? AddObjectToTopNavigationBar(IReadOnlyDictionary<string, object?> creationInfo);
 
-    NavigationNode GetObject(NavigationNode navigationNodeObject);
+    NavigationNode? GetObject(NavigationNode navigationNodeObject);
 
-    NavigationNode GetObject(int? navigationNodeId);
+    NavigationNode? GetObject(int navigationNodeId);
 
-    NavigationNodeEnumerable GetObjectEnumerable(NavigationNode navigationNodeObject);
+    IEnumerable<NavigationNode>? GetObjectEnumerable(NavigationNode navigationNodeObject);
 
     void RemoveObject(NavigationNode navigationNodeObject);
 
-    void SetObject(NavigationNode navigationNodeObject, IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObject(NavigationNode navigationNodeObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class NavigationNodeService(ClientContext clientContext) : ClientService<NavigationNode>(clientContext), INavigationNodeService
 {
 
-    public NavigationNode AddObject(NavigationNode navigationNodeObject, IReadOnlyDictionary<string, object> creationInfo)
+    public NavigationNode? AddObject(NavigationNode navigationNodeObject, IReadOnlyDictionary<string, object?> creationInfo)
     {
-        _ = navigationNodeObject ?? throw new ArgumentNullException(nameof(navigationNodeObject));
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(navigationNodeObject.ObjectIdentity));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Children"));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(navigationNodeObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Children"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath2.Id,
                 "Add",
                 requestPayload.CreateParameter(ClientValueObject.Create<NavigationNodeCreationInfo>(creationInfo))
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(NavigationNode))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(NavigationNode)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<NavigationNode>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public NavigationNode AddObjectToQuickLaunch(IReadOnlyDictionary<string, object> creationInfo)
+    public NavigationNode? AddObjectToQuickLaunch(IReadOnlyDictionary<string, object?> creationInfo)
     {
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
-        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "Navigation"));
-        var objectPath4 = requestPayload.Add(new ObjectPathProperty(objectPath3.Id, "QuickLaunch"));
+        var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
+        var objectPath3 = requestPayload.Add(ObjectPathProperty.Create(objectPath2.Id, "Navigation"));
+        var objectPath4 = requestPayload.Add(ObjectPathProperty.Create(objectPath3.Id, "QuickLaunch"));
         var objectPath5 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath4.Id,
                 "Add",
                 requestPayload.CreateParameter(ClientValueObject.Create<NavigationNodeCreationInfo>(creationInfo))
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(NavigationNode))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(NavigationNode)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<NavigationNode>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public NavigationNode AddObjectToTopNavigationBar(IReadOnlyDictionary<string, object> creationInfo)
+    public NavigationNode? AddObjectToTopNavigationBar(IReadOnlyDictionary<string, object?> creationInfo)
     {
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
-        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "Navigation"));
-        var objectPath4 = requestPayload.Add(new ObjectPathProperty(objectPath3.Id, "TopNavigationBar"));
+        var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
+        var objectPath3 = requestPayload.Add(ObjectPathProperty.Create(objectPath2.Id, "Navigation"));
+        var objectPath4 = requestPayload.Add(ObjectPathProperty.Create(objectPath3.Id, "TopNavigationBar"));
         var objectPath5 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath4.Id,
                 "Add",
                 requestPayload.CreateParameter(ClientValueObject.Create<NavigationNodeCreationInfo>(creationInfo))
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(NavigationNode))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(NavigationNode)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<NavigationNode>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public NavigationNode GetObject(int? navigationNodeId)
+    public NavigationNode? GetObject(int navigationNodeId)
     {
-        _ = navigationNodeId ?? throw new ArgumentNullException(nameof(navigationNodeId));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
-        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "Navigation"));
+        var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
+        var objectPath3 = requestPayload.Add(ObjectPathProperty.Create(objectPath2.Id, "Navigation"));
         var objectPath4 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath3.Id,
                 "GetNodeById",
                 requestPayload.CreateParameter(navigationNodeId)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(NavigationNode))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(NavigationNode)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<NavigationNode>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public NavigationNodeEnumerable GetObjectEnumerable(NavigationNode navigationNodeObject)
+    public IEnumerable<NavigationNode>? GetObjectEnumerable(NavigationNode navigationNodeObject)
     {
-        _ = navigationNodeObject ?? throw new ArgumentNullException(nameof(navigationNodeObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(navigationNodeObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(navigationNodeObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Children"),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = ClientQuery.Empty,
-                ChildItemQuery = new ClientQuery(true, typeof(NavigationNode))
-            }
+            ObjectPathProperty.Create(objectPath1.Id, "Children"),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(
+                objectPathId,
+                ClientQuery.Empty,
+                ClientQuery.Create(true, typeof(NavigationNode))
+            )
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)

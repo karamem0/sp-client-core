@@ -15,10 +15,10 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Services.V1.Utilities;
 
-public class SchemaXmlValue(object value)
+public class SchemaXmlValue(object? value)
 {
 
-    private readonly object value = value;
+    private readonly object? value = value;
 
     public override string ToString()
     {

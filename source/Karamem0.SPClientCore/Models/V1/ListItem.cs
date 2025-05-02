@@ -29,32 +29,32 @@ public class ListItem : SecurableObject
     );
 
     [JsonProperty()]
-    public virtual string AccessPolicy { get; protected set; }
+    public virtual string? AccessPolicy { get; protected set; }
 
     [JsonProperty()]
-    public virtual ColumnLookupValue AppAuthor { get; protected set; }
+    public virtual ColumnLookupValue? AppAuthor { get; protected set; }
 
     [JsonProperty()]
-    public virtual ColumnLookupValue AppEditor { get; protected set; }
+    public virtual ColumnLookupValue? AppEditor { get; protected set; }
 
     [ClientQueryIgnore()]
     [JsonProperty()]
     public virtual bool Attachments { get; protected set; }
 
     [JsonProperty()]
-    public virtual ColumnUserValue Author { get; protected set; }
+    public virtual ColumnUserValue? Author { get; protected set; }
 
     [ClientQueryIgnore()]
     [JsonProperty("CheckedOutTitle")]
-    public virtual ColumnLookupValue CheckOutTitle { get; protected set; }
+    public virtual ColumnLookupValue? CheckOutTitle { get; protected set; }
 
     [ClientQueryIgnore()]
     [JsonProperty()]
-    public virtual ColumnUserValue CheckOutUser { get; protected set; }
+    public virtual ColumnUserValue? CheckOutUser { get; protected set; }
 
     [ClientQueryIgnore()]
     [JsonProperty("CheckedOutUserId")]
-    public virtual ColumnLookupValue CheckOutUserId { get; protected set; }
+    public virtual ColumnLookupValue? CheckOutUserId { get; protected set; }
 
     [JsonProperty()]
     public virtual DateTime Created { get; protected set; }
@@ -63,35 +63,35 @@ public class ListItem : SecurableObject
     public virtual bool CommentsDisabled { get; protected set; }
 
     [JsonProperty()]
-    public virtual CommentsDisabledScope CommentsDisabledScope { get; protected set; }
+    public virtual CommentsDisabledScope? CommentsDisabledScope { get; protected set; }
 
     [JsonProperty()]
-    public virtual ContentTypeId ContentTypeId { get; protected set; }
+    public virtual ContentTypeId? ContentTypeId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ContentVersion { get; protected set; }
+    public virtual string? ContentVersion { get; protected set; }
 
     [JsonProperty()]
-    public virtual string DisplayName { get; protected set; }
+    public virtual string? DisplayName { get; protected set; }
 
     [ClientQueryIgnore()]
     [JsonProperty()]
-    public virtual string DocConcurrencyNumber { get; protected set; }
+    public virtual string? DocConcurrencyNumber { get; protected set; }
 
     [JsonProperty()]
-    public virtual string FileDirRef { get; protected set; }
+    public virtual string? FileDirRef { get; protected set; }
 
     [JsonProperty()]
-    public virtual string FileLeafRef { get; protected set; }
+    public virtual string? FileLeafRef { get; protected set; }
 
     [JsonProperty()]
-    public virtual string FileRef { get; protected set; }
+    public virtual string? FileRef { get; protected set; }
 
     [JsonProperty()]
-    public virtual ColumnUserValue Editor { get; protected set; }
+    public virtual ColumnUserValue? Editor { get; protected set; }
 
     [JsonProperty()]
-    public virtual FileSystemObjectType FileSystemObjectType { get; protected set; }
+    public virtual FileSystemObjectType? FileSystemObjectType { get; protected set; }
 
     [JsonProperty()]
     public virtual int FolderChildCount { get; protected set; }
@@ -103,60 +103,60 @@ public class ListItem : SecurableObject
     public virtual int Id { get; protected set; }
 
     [JsonProperty("InstanceID")]
-    public virtual string InstanceId { get; protected set; }
+    public virtual string? InstanceId { get; protected set; }
 
     [JsonProperty()]
     public virtual int ItemChildCount { get; protected set; }
 
     [ClientQueryIgnore()]
     [JsonProperty()]
-    public virtual string IsCheckedoutToLocal { get; protected set; }
+    public virtual string? IsCheckedoutToLocal { get; protected set; }
 
     [JsonProperty()]
-    public virtual string MetaInfo { get; protected set; }
+    public virtual string? MetaInfo { get; protected set; }
 
     [JsonProperty()]
     public virtual DateTime Modified { get; protected set; }
 
     [ClientQueryIgnore()]
     [JsonProperty()]
-    public virtual ColumnLookupValue ParentLeafName { get; protected set; }
+    public virtual ColumnLookupValue? ParentLeafName { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ParentUniqueId { get; protected set; }
+    public virtual string? ParentUniqueId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ProgId { get; protected set; }
+    public virtual string? ProgId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Restricted { get; protected set; }
+    public virtual string? Restricted { get; protected set; }
 
     [JsonProperty()]
-    public virtual string OriginatorId { get; protected set; }
+    public virtual string? OriginatorId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ScopeId { get; protected set; }
+    public virtual string? ScopeId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ServerRedirectedEmbedUrl { get; protected set; }
+    public virtual string? ServerRedirectedEmbedUrl { get; protected set; }
 
     [JsonProperty()]
-    public virtual ColumnLookupValue SortBehavior { get; protected set; }
+    public virtual ColumnLookupValue? SortBehavior { get; protected set; }
 
     [JsonProperty()]
-    public virtual ColumnLookupValue SyncClientId { get; protected set; }
+    public virtual ColumnLookupValue? SyncClientId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid UniqueId { get; protected set; }
 
     [ClientQueryIgnore()]
     [JsonProperty()]
-    public virtual ColumnLookupValue VirusStatus { get; protected set; }
+    public virtual ColumnLookupValue? VirusStatus { get; protected set; }
 
     [JsonProperty("WorkflowInstanceID")]
-    public virtual string WorkflowInstanceId { get; protected set; }
+    public virtual string? WorkflowInstanceId { get; protected set; }
 
 }

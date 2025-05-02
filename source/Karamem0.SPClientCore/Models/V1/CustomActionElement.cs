@@ -24,25 +24,25 @@ public class CustomActionElement : ClientObject
     public virtual Guid ClientSideComponentId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ClientSideComponentProperties { get; protected set; }
+    public virtual string? ClientSideComponentProperties { get; protected set; }
 
     [JsonProperty()]
-    public virtual string CommandUIExtension { get; protected set; }
+    public virtual string? CommandUIExtension { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Id { get; protected set; }
+    public virtual string? Id { get; protected set; }
 
     [JsonProperty()]
-    public virtual string EnabledScript { get; protected set; }
+    public virtual string? EnabledScript { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ImageUrl { get; protected set; }
+    public virtual string? ImageUrl { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Location { get; protected set; }
+    public virtual string? Location { get; protected set; }
 
     [JsonProperty()]
-    public virtual string RegistrationId { get; protected set; }
+    public virtual string? RegistrationId { get; protected set; }
 
     [JsonProperty()]
     public virtual int RegistrationType { get; protected set; }
@@ -51,12 +51,12 @@ public class CustomActionElement : ClientObject
     public virtual bool RequireSiteAdministrator { get; protected set; }
 
     [JsonProperty()]
-    public virtual BasePermission Rights { get; protected set; }
+    public virtual BasePermission? Rights { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; protected set; }
 
     [JsonProperty()]
-    public virtual string UrlAction { get; protected set; }
+    public virtual string? UrlAction { get; protected set; }
 
 }

@@ -24,10 +24,10 @@ public class TermSetItem : TaxonomyItem
     public override DateTime Created { get; protected set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyDictionary<string, string> CustomProperties { get; protected set; }
+    public virtual IReadOnlyDictionary<string, string>? CustomProperties { get; protected set; }
 
     [JsonProperty()]
-    public virtual string CustomSortOrder { get; protected set; }
+    public virtual string? CustomSortOrder { get; protected set; }
 
     [JsonProperty()]
     public override Guid Id { get; protected set; }
@@ -39,9 +39,9 @@ public class TermSetItem : TaxonomyItem
     public override DateTime LastModified { get; protected set; }
 
     [JsonProperty()]
-    public override string Name { get; protected set; }
+    public override string? Name { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Owner { get; protected set; }
+    public virtual string? Owner { get; protected set; }
 
 }

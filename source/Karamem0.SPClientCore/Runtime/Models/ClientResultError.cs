@@ -19,18 +19,18 @@ public class ClientResultError
 {
 
     [JsonProperty()]
-    public string ErrorMessage { get; private set; }
+    public string? ErrorMessage { get; protected set; }
 
     [JsonProperty()]
-    public string ErrorValue { get; private set; }
+    public string? ErrorValue { get; protected set; }
 
     [JsonProperty()]
-    public string TraceCorrelationId { get; private set; }
+    public string? TraceCorrelationId { get; protected set; }
 
     [JsonProperty()]
-    public int ErrorCode { get; private set; }
+    public int ErrorCode { get; protected set; }
 
     [JsonProperty()]
-    public string ErrorTypeName { get; private set; }
+    public string? ErrorTypeName { get; protected set; }
 
 }

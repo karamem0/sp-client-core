@@ -15,16 +15,25 @@ using System.Xml.Serialization;
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
 [XmlType("Property", Namespace = "http://schemas.microsoft.com/sharepoint/clientquery/2009")]
-public class ObjectPathProperty(long parentId, string name) : ObjectPath
+public class ObjectPathProperty : ObjectPath
 {
+
+    public static ObjectPathProperty Create(long parentId, string name)
+    {
+        return new ObjectPathProperty()
+        {
+            ParentId = parentId,
+            Name = name
+        };
+    }
 
     [XmlAttribute()]
     public override long Id { get; protected set; } = NewId();
 
     [XmlAttribute()]
-    public virtual long ParentId { get; private set; } = parentId;
+    public virtual long ParentId { get; protected set; }
 
     [XmlAttribute()]
-    public virtual string Name { get; private set; } = name ?? throw new ArgumentNullException(nameof(name));
+    public virtual string? Name { get; protected set; }
 
 }

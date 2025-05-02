@@ -19,116 +19,94 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IViewService
 {
 
-    View AddObject(List listObject, IReadOnlyDictionary<string, object> creationInfo);
+    View? AddObject(List listObject, IReadOnlyDictionary<string, object?> creationInfo);
 
-    View GetObject(View viewObject);
+    View? GetObject(View viewObject);
 
-    View GetObject(List listObject, Guid? viewId);
+    View? GetObject(List listObject, Guid viewId);
 
-    View GetObject(List listObject, string viewTitle);
+    View? GetObject(List listObject, string viewTitle);
 
-    IEnumerable<View> GetObjectEnumerable(List listObject);
+    IEnumerable<View>? GetObjectEnumerable(List listObject);
 
     void RemoveObject(View viewObject);
 
-    void SetObject(View viewObject, IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObject(View viewObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class ViewService(ClientContext clientContext) : ClientService<View>(clientContext), IViewService
 {
 
-    public View AddObject(List listObject, IReadOnlyDictionary<string, object> creationInfo)
+    public View? AddObject(List listObject, IReadOnlyDictionary<string, object?> creationInfo)
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Views"));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Views"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath2.Id,
                 "Add",
                 requestPayload.CreateParameter(ClientValueObject.Create<ViewCreationInfo>(creationInfo))
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(View))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(View)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<View>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public View GetObject(List listObject, Guid? viewId)
+    public View? GetObject(List listObject, Guid viewId)
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
-        _ = viewId ?? throw new ArgumentNullException(nameof(viewId));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Views"));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Views"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath2.Id,
                 "GetById",
                 requestPayload.CreateParameter(viewId)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId)
+            ClientActionInstantiateObjectPath.Create
         );
-        var objectPath4 = requestPayload.Add(
-            objectPath3,
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(View))
-            }
-        );
+        var objectPath4 = requestPayload.Add(objectPath3, objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(View))));
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<View>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public View GetObject(List listObject, string viewTitle)
+    public View? GetObject(List listObject, string viewTitle)
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
-        _ = viewTitle ?? throw new ArgumentNullException(nameof(viewTitle));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Views"));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Views"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath2.Id,
                 "GetByTitle",
                 requestPayload.CreateParameter(viewTitle)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId)
+            ClientActionInstantiateObjectPath.Create
         );
-        var objectPath4 = requestPayload.Add(
-            objectPath3,
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(View))
-            }
-        );
+        var objectPath4 = requestPayload.Add(objectPath3, objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(View))));
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<View>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<View> GetObjectEnumerable(List listObject)
+    public IEnumerable<View>? GetObjectEnumerable(List listObject)
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Views"),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = ClientQuery.Empty,
-                ChildItemQuery = new ClientQuery(true, typeof(View))
-            }
+            ObjectPathProperty.Create(objectPath1.Id, "Views"),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(
+                objectPathId,
+                ClientQuery.Empty,
+                ClientQuery.Create(true, typeof(View))
+            )
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)

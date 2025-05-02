@@ -21,13 +21,13 @@ public class TenantSiteScript : ClientObject
 {
 
     [JsonProperty()]
-    public virtual string Content { get; protected set; }
+    public virtual string? Content { get; protected set; }
 
     [JsonProperty()]
-    public virtual System.IO.Stream ContentStream { get; protected set; }
+    public virtual System.IO.Stream? ContentStream { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid Id { get; protected set; }
@@ -36,7 +36,7 @@ public class TenantSiteScript : ClientObject
     public virtual bool IsSiteScriptPackage { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; protected set; }
 
     [JsonProperty()]
     public virtual int Version { get; protected set; }

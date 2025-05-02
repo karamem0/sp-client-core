@@ -21,8 +21,6 @@ public static class AadOAuthTokenStore
 
     public static void Add(Uri resource, AadOAuthToken oAuthToken)
     {
-        _ = resource ?? throw new ArgumentNullException(nameof(resource));
-        _ = oAuthToken ?? throw new ArgumentNullException(nameof(oAuthToken));
         var oAuthTokens = AadOAuthTokenDictionary.Load();
         oAuthTokens[resource.GetAuthority()] = oAuthToken;
         oAuthTokens.Save();
@@ -30,7 +28,6 @@ public static class AadOAuthTokenStore
 
     public static AadOAuthToken Get(Uri resource)
     {
-        _ = resource ?? throw new ArgumentNullException(nameof(resource));
         if (AadOAuthTokenDictionary
             .Load()
             .TryGetValue(resource.GetAuthority(), out var oAuthToken))
@@ -42,7 +39,6 @@ public static class AadOAuthTokenStore
 
     public static void Remove(Uri resource)
     {
-        _ = resource ?? throw new ArgumentNullException(nameof(resource));
         var oAuthTokens = AadOAuthTokenDictionary.Load();
         _ = oAuthTokens.Remove(resource.GetAuthority());
         oAuthTokens.Save();
@@ -50,7 +46,6 @@ public static class AadOAuthTokenStore
 
     public static void Remove(string tenantId)
     {
-        _ = tenantId ?? throw new ArgumentNullException(nameof(tenantId));
         var oAuthTokens = AadOAuthTokenDictionary.Load();
         var resource = oAuthTokens
             .Where(
@@ -64,7 +59,7 @@ public static class AadOAuthTokenStore
             )
             .Select(oAuthToken => oAuthToken.Key)
             .FirstOrDefault();
-        if (resource is null)
+        if (resource is not null)
         {
             _ = oAuthTokens.Remove(resource);
             oAuthTokens.Save();

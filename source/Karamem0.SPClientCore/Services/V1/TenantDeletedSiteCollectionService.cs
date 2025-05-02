@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.Services;
 using System;
@@ -19,17 +20,17 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantDeletedSiteCollectionService
 {
 
-    TenantDeletedSiteCollection GetObject(TenantDeletedSiteCollection siteCollectionObject);
+    TenantDeletedSiteCollection? GetObject(TenantDeletedSiteCollection siteCollectionObject);
 
-    TenantDeletedSiteCollection GetObject(Uri siteCollectionUrl);
+    TenantDeletedSiteCollection? GetObject(Uri siteCollectionUrl);
 
-    IEnumerable<TenantDeletedSiteCollection> GetObjectEnumerable();
+    IEnumerable<TenantDeletedSiteCollection>? GetObjectEnumerable();
 
-    TenantOperationResult RemoveObject(TenantDeletedSiteCollection siteCollectionObject);
+    TenantOperationResult? RemoveObject(TenantDeletedSiteCollection siteCollectionObject);
 
     void RemoveObjectAwait(TenantDeletedSiteCollection siteCollectionObject);
 
-    TenantOperationResult RestoreObject(TenantDeletedSiteCollection siteCollectionObject);
+    TenantOperationResult? RestoreObject(TenantDeletedSiteCollection siteCollectionObject);
 
     void RestoreObjectAwait(TenantDeletedSiteCollection siteCollectionObject);
 
@@ -38,86 +39,75 @@ public interface ITenantDeletedSiteCollectionService
 public class TenantDeletedSiteCollectionService(ClientContext clientContext) : TenantClientService(clientContext), ITenantDeletedSiteCollectionService
 {
 
-    public TenantDeletedSiteCollection GetObject(TenantDeletedSiteCollection siteCollectionObject)
+    public TenantDeletedSiteCollection? GetObject(TenantDeletedSiteCollection siteCollectionObject)
     {
-        _ = siteCollectionObject ?? throw new ArgumentNullException(nameof(siteCollectionObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(siteCollectionObject.ObjectIdentity),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(TenantDeletedSiteCollection))
-            }
+            ObjectPathIdentity.Create(siteCollectionObject.ObjectIdentity),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(TenantDeletedSiteCollection)))
         );
         var clientObject = this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantDeletedSiteCollection>(requestPayload.GetActionId<ClientActionQuery>());
-        return this.GetObject(new Uri(clientObject.Url, UriKind.Absolute));
+        var clientObjectUrl = clientObject?.Url;
+        _ = clientObjectUrl ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
+        return this.GetObject(new Uri(clientObjectUrl, UriKind.Absolute));
     }
 
-    public TenantDeletedSiteCollection GetObject(Uri siteCollectionUrl)
+    public TenantDeletedSiteCollection? GetObject(Uri siteCollectionUrl)
     {
-        _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath1.Id,
                 "GetDeletedSitePropertiesByUrl",
                 requestPayload.CreateParameter(siteCollectionUrl),
                 requestPayload.CreateParameter(false)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(TenantDeletedSiteCollection))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(TenantDeletedSiteCollection)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantDeletedSiteCollection>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<TenantDeletedSiteCollection> GetObjectEnumerable()
+    public IEnumerable<TenantDeletedSiteCollection>? GetObjectEnumerable()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath1.Id,
                 "GetDeletedSitePropertiesFromSharePoint",
                 requestPayload.CreateParameter(null)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = ClientQuery.Empty,
-                ChildItemQuery = new ClientQuery(true, typeof(TenantDeletedSiteCollection))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(
+                objectPathId,
+                ClientQuery.Empty,
+                ClientQuery.Create(true, typeof(TenantDeletedSiteCollection))
+            )
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantDeletedSiteCollectionsEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public TenantOperationResult RemoveObject(TenantDeletedSiteCollection siteCollectionObject)
+    public TenantOperationResult? RemoveObject(TenantDeletedSiteCollection siteCollectionObject)
     {
-        _ = siteCollectionObject ?? throw new ArgumentNullException(nameof(siteCollectionObject));
-        _ = siteCollectionObject.Url ?? throw new ArgumentNullException(nameof(siteCollectionObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath1.Id,
                 "RemoveDeletedSite",
                 requestPayload.CreateParameter(siteCollectionObject.Url)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(TenantOperationResult))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(TenantOperationResult)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
@@ -129,24 +119,19 @@ public class TenantDeletedSiteCollectionService(ClientContext clientContext) : T
         this.WaitObject(this.RemoveObject(siteCollectionObject));
     }
 
-    public TenantOperationResult RestoreObject(TenantDeletedSiteCollection siteCollectionObject)
+    public TenantOperationResult? RestoreObject(TenantDeletedSiteCollection siteCollectionObject)
     {
-        _ = siteCollectionObject ?? throw new ArgumentNullException(nameof(siteCollectionObject));
-        _ = siteCollectionObject.Url ?? throw new ArgumentNullException(nameof(siteCollectionObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath1.Id,
                 "RestoreDeletedSitePreferId",
                 requestPayload.CreateParameter(siteCollectionObject.Url),
                 requestPayload.CreateParameter(siteCollectionObject.Id)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(TenantOperationResult))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(TenantOperationResult)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)

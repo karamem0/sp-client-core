@@ -19,6 +19,18 @@ public class ODataV1ResultPayload : ValueObject
 {
 
     [JsonProperty("error")]
-    public virtual ODataV1Error Error { get; protected set; }
+    public virtual ODataV1Error? Error { get; protected set; }
+
+}
+
+[JsonObject()]
+public class ODataV1ResultPayload<T> : ODataV1ResultPayload where T : ODataV1Object
+{
+
+    [JsonProperty("d")]
+    public virtual T? Entry { get; protected set; }
+
+    [JsonProperty("error")]
+    public override ODataV1Error? Error { get; protected set; }
 
 }

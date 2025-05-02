@@ -21,13 +21,13 @@ public class Change : ClientObject
 {
 
     [JsonProperty()]
-    public virtual ChangeToken ChangeToken { get; protected set; }
+    public virtual ChangeToken? ChangeToken { get; protected set; }
 
     [JsonProperty()]
-    public virtual ChangeType ChangeType { get; protected set; }
+    public virtual ChangeType? ChangeType { get; protected set; }
 
     [JsonProperty()]
-    public virtual string RelativeTime { get; protected set; }
+    public virtual string? RelativeTime { get; protected set; }
 
     [JsonProperty("SiteId")]
     public virtual Guid SiteCollectionId { get; protected set; }

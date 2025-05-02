@@ -39,7 +39,7 @@ public class Group : Principal
     public virtual bool CanCurrentUserViewMembership { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; protected set; }
 
     [JsonProperty()]
     public override int Id { get; protected set; }
@@ -48,21 +48,21 @@ public class Group : Principal
     public virtual bool IsHiddenInUI { get; protected set; }
 
     [JsonProperty()]
-    public override string LoginName { get; protected set; }
+    public override string? LoginName { get; protected set; }
 
     [JsonProperty()]
-    public virtual string OwnerTitle { get; protected set; }
+    public virtual string? OwnerTitle { get; protected set; }
 
     [JsonProperty()]
     public virtual bool OnlyAllowMembersViewMembership { get; protected set; }
 
     [JsonProperty()]
-    public override PrincipalType PrincipalType { get; protected set; }
+    public override PrincipalType? PrincipalType { get; protected set; }
 
     [JsonProperty()]
-    public virtual string RequestToJoinLeaveEmailSetting { get; protected set; }
+    public virtual string? RequestToJoinLeaveEmailSetting { get; protected set; }
 
     [JsonProperty()]
-    public override string Title { get; protected set; }
+    public override string? Title { get; protected set; }
 
 }

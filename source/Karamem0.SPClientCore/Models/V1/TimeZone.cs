@@ -21,12 +21,12 @@ public class TimeZone : ClientObject
 {
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; protected set; }
 
     [JsonProperty()]
     public virtual int Id { get; protected set; }
 
     [JsonProperty("Information")]
-    public virtual TimeZoneInfo TimeZoneInfo { get; protected set; }
+    public virtual TimeZoneInfo? TimeZoneInfo { get; protected set; }
 
 }

@@ -44,11 +44,9 @@ public static class ODataQuery
                     .Select(property => property.Name)
             );
         return UriQuery.Create(
-            new Dictionary<string, object>
+            new Dictionary<string, object?>
             {
-                {
-                    "$select", string.Join(",", properties)
-                }
+                ["$select"] = string.Join(",", properties)
             }
         );
     }
@@ -61,11 +59,9 @@ public static class ODataQuery
             .Where(property => property.PropertyType.IsSubclassOf(typeof(ODataObject)))
             .Select(property => property.Name);
         return UriQuery.Create(
-            new Dictionary<string, object>
+            new Dictionary<string, object?>
             {
-                {
-                    "$expand", string.Join(",", properties)
-                }
+                ["$expand"] = string.Join(",", properties)
             }
         );
     }

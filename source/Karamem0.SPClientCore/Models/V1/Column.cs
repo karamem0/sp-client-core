@@ -27,40 +27,40 @@ public class Column : ClientObject
     public virtual bool CanBeDeleted { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ClientSideComponentId { get; protected set; }
+    public virtual string? ClientSideComponentId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ClientSideComponentProperties { get; protected set; }
+    public virtual string? ClientSideComponentProperties { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ClientValidationFormula { get; protected set; }
+    public virtual string? ClientValidationFormula { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ClientValidationMessage { get; protected set; }
+    public virtual string? ClientValidationMessage { get; protected set; }
 
     [JsonProperty("FieldTypeKind")]
-    public virtual ColumnType ColumnType { get; protected set; }
+    public virtual ColumnType? ColumnType { get; protected set; }
 
     [JsonProperty()]
-    public virtual string CustomFormatter { get; protected set; }
+    public virtual string? CustomFormatter { get; protected set; }
 
     [JsonProperty()]
-    public virtual string DefaultFormula { get; protected set; }
+    public virtual string? DefaultFormula { get; protected set; }
 
     [JsonProperty()]
-    public virtual string DefaultValue { get; protected set; }
+    public virtual string? DefaultValue { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Direction { get; protected set; }
+    public virtual string? Direction { get; protected set; }
 
     [JsonProperty()]
     public virtual bool EnforceUniqueValues { get; protected set; }
 
     [JsonProperty()]
-    public virtual string EntityPropertyName { get; protected set; }
+    public virtual string? EntityPropertyName { get; protected set; }
 
     [JsonProperty()]
     public virtual bool Filterable { get; protected set; }
@@ -69,7 +69,7 @@ public class Column : ClientObject
     public virtual bool FromBaseType { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Group { get; protected set; }
+    public virtual string? Group { get; protected set; }
 
     [JsonProperty()]
     public virtual bool Hidden { get; protected set; }
@@ -81,16 +81,16 @@ public class Column : ClientObject
     public virtual bool Indexed { get; protected set; }
 
     [JsonProperty()]
-    public virtual IndexStatus IndexStatus { get; protected set; }
+    public virtual IndexStatus? IndexStatus { get; protected set; }
 
     [JsonProperty()]
     public virtual bool IsModern { get; protected set; }
 
     [JsonProperty()]
-    public virtual string JSLink { get; protected set; }
+    public virtual string? JSLink { get; protected set; }
 
     [JsonProperty("InternalName")]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; protected set; }
 
     [JsonProperty()]
     public virtual bool NoCrawl { get; protected set; }
@@ -105,13 +105,13 @@ public class Column : ClientObject
     public virtual bool Required { get; protected set; }
 
     [JsonProperty()]
-    public virtual string SchemaXml { get; protected set; }
+    public virtual string? SchemaXml { get; protected set; }
 
     [JsonProperty()]
-    public virtual string SchemaXmlWithResourceTokens { get; protected set; }
+    public virtual string? SchemaXmlWithResourceTokens { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Scope { get; protected set; }
+    public virtual string? Scope { get; protected set; }
 
     [JsonProperty()]
     public virtual bool Sealed { get; protected set; }
@@ -123,24 +123,24 @@ public class Column : ClientObject
     public virtual bool Sortable { get; protected set; }
 
     [JsonProperty()]
-    public virtual string StaticName { get; protected set; }
+    public virtual string? StaticName { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; protected set; }
 
     [JsonProperty()]
-    public virtual string TypeAsString { get; protected set; }
+    public virtual string? TypeAsString { get; protected set; }
 
     [JsonProperty()]
-    public virtual string TypeDisplayName { get; protected set; }
+    public virtual string? TypeDisplayName { get; protected set; }
 
     [JsonProperty()]
-    public virtual string TypeShortDescription { get; protected set; }
+    public virtual string? TypeShortDescription { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ValidationFormula { get; protected set; }
+    public virtual string? ValidationFormula { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ValidationMessage { get; protected set; }
+    public virtual string? ValidationMessage { get; protected set; }
 
 }

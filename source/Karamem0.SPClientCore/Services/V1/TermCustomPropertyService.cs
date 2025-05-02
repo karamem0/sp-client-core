@@ -38,14 +38,11 @@ public class TermCustomPropertyService(ClientContext clientContext) : ClientServ
         string propertyValue
     )
     {
-        _ = termSetItemObject ?? throw new ArgumentNullException(nameof(termSetItemObject));
-        _ = propertyName ?? throw new ArgumentNullException(nameof(propertyName));
-        _ = propertyValue ?? throw new ArgumentNullException(nameof(propertyValue));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termSetItemObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(termSetItemObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             objectPath1,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "SetCustomProperty",
                 requestPayload.CreateParameter(propertyName),
@@ -57,13 +54,11 @@ public class TermCustomPropertyService(ClientContext clientContext) : ClientServ
 
     public void RemoveObject(TermSetItem termSetItemObject, string propertyName)
     {
-        _ = termSetItemObject ?? throw new ArgumentNullException(nameof(termSetItemObject));
-        _ = propertyName ?? throw new ArgumentNullException(nameof(propertyName));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termSetItemObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(termSetItemObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             objectPath1,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "DeleteCustomProperty",
                 requestPayload.CreateParameter(propertyName)

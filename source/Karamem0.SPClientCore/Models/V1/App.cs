@@ -16,17 +16,17 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [JsonObject()]
-public class App : ODataV1Object
+public class App : ODataV1Object<App>
 {
 
     [JsonProperty()]
     public virtual Guid AadAppId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string AadPermissions { get; protected set; }
+    public virtual string? AadPermissions { get; protected set; }
 
     [JsonProperty()]
-    public virtual string AppCatalogVersion { get; protected set; }
+    public virtual string? AppCatalogVersion { get; protected set; }
 
     [JsonProperty()]
     public virtual bool CanUpgrade { get; protected set; }
@@ -35,7 +35,7 @@ public class App : ODataV1Object
     public virtual bool ContainsTenantWideExtension { get; protected set; }
 
     [JsonProperty("CDNLocation")]
-    public virtual string CdnLocation { get; protected set; }
+    public virtual string? CdnLocation { get; protected set; }
 
     [JsonProperty()]
     public virtual bool CurrentVersionDeployed { get; protected set; }
@@ -44,13 +44,13 @@ public class App : ODataV1Object
     public virtual bool Deployed { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ErrorMessage { get; protected set; }
+    public virtual string? ErrorMessage { get; protected set; }
 
     [JsonProperty("ID")]
     public virtual Guid Id { get; protected set; }
 
     [JsonProperty()]
-    public virtual string InstalledVersion { get; protected set; }
+    public virtual string? InstalledVersion { get; protected set; }
 
     [JsonProperty()]
     public virtual bool IsEnabled { get; protected set; }
@@ -68,15 +68,15 @@ public class App : ODataV1Object
     public virtual Guid ProductId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ShortDescription { get; protected set; }
+    public virtual string? ShortDescription { get; protected set; }
 
     [JsonProperty()]
     public virtual bool SkipDeploymentFeature { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ThumbnailUrl { get; protected set; }
+    public virtual string? ThumbnailUrl { get; protected set; }
 
 }

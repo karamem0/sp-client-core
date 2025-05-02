@@ -17,13 +17,13 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.FieldLookupValue", Id = "{f1d34cc0-9b50-4a78-be78-d5facfcccfb7}")]
 [JsonObject()]
-public class ColumnLookupValue(int lookupId = 0, string lookupValue = null) : ClientValueObject
+public class ColumnLookupValue(int lookupId = 0, string? lookupValue = null) : ClientValueObject
 {
 
     [JsonProperty()]
     public virtual int LookupId { get; protected set; } = lookupId;
 
     [JsonProperty()]
-    public virtual string LookupValue { get; protected set; } = lookupValue;
+    public virtual string? LookupValue { get; protected set; } = lookupValue;
 
 }

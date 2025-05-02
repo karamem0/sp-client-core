@@ -21,12 +21,12 @@ public class DefaultDocument : ClientObject
 {
 
     [JsonProperty()]
-    public virtual ContentTypeId ContentTypeId { get; protected set; }
+    public virtual ContentTypeId? ContentTypeId { get; protected set; }
 
     [JsonProperty()]
-    public virtual ResourcePath DocumentPath { get; protected set; }
+    public virtual ResourcePath? DocumentPath { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; protected set; }
 
 }

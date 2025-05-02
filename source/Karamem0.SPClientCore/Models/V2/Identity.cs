@@ -20,10 +20,10 @@ public class Identity : ODataV2Object
 {
 
     [JsonProperty("displayName")]
-    public virtual string DisplayName { get; protected set; }
+    public virtual string? DisplayName { get; protected set; }
 
     [JsonProperty("email")]
-    public virtual string Email { get; protected set; }
+    public virtual string? Email { get; protected set; }
 
     [JsonProperty("id")]
     public virtual Guid Id { get; protected set; }

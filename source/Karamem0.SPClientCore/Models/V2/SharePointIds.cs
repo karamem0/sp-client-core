@@ -20,24 +20,24 @@ public class SharePointIds : ODataV2Object
 {
 
     [JsonProperty("listId")]
-    public virtual string ListId { get; protected set; }
+    public virtual string? ListId { get; protected set; }
 
     [JsonProperty("listItemId")]
-    public virtual string ListItemId { get; protected set; }
+    public virtual string? ListItemId { get; protected set; }
 
     [JsonProperty("listItemUniqueId")]
-    public virtual string ListItemUniqueId { get; protected set; }
+    public virtual string? ListItemUniqueId { get; protected set; }
 
     [JsonProperty("siteId")]
-    public virtual string SiteCollectionId { get; protected set; }
+    public virtual string? SiteCollectionId { get; protected set; }
 
     [JsonProperty("siteUrl")]
-    public virtual string SiteCollectionUrl { get; protected set; }
+    public virtual string? SiteCollectionUrl { get; protected set; }
 
     [JsonProperty("webId")]
-    public virtual string SiteId { get; protected set; }
+    public virtual string? SiteId { get; protected set; }
 
     [JsonProperty("tenantId")]
-    public virtual string TenantId { get; protected set; }
+    public virtual string? TenantId { get; protected set; }
 
 }

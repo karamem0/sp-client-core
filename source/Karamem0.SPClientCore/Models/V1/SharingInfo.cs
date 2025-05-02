@@ -21,10 +21,10 @@ public class SharingInfo : ClientObject
 {
 
     [JsonProperty()]
-    public virtual string AnonymousEditLink { get; protected set; }
+    public virtual string? AnonymousEditLink { get; protected set; }
 
     [JsonProperty()]
-    public virtual string AnonymousViewLink { get; protected set; }
+    public virtual string? AnonymousViewLink { get; protected set; }
 
     [JsonProperty()]
     public virtual bool CanBeShared { get; protected set; }
@@ -57,13 +57,13 @@ public class SharingInfo : ClientObject
     public virtual bool IsSharedWithSecurityGroup { get; protected set; }
 
     [JsonProperty()]
-    public virtual string PendingAccessRequestsLink { get; protected set; }
+    public virtual string? PendingAccessRequestsLink { get; protected set; }
 
     [JsonProperty("SharedWithUsersCollection")]
-    public virtual SharingInfoUserEnumerable SharedWithUsers { get; protected set; }
+    public virtual SharingInfoUserEnumerable? SharedWithUsers { get; protected set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<SharingLinkInfo> SharingLinks { get; protected set; }
+    public virtual IReadOnlyCollection<SharingLinkInfo>? SharingLinks { get; protected set; }
 
     [JsonProperty()]
     public virtual int TotalFileCount { get; protected set; }

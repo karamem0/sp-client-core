@@ -17,13 +17,13 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth;
 public class AcsOAuthTokenProvider(AcsOAuthContext oAuthContext, AcsOAuthToken oAuthToken) : OAuthTokenProvider
 {
 
-    private readonly AcsOAuthContext oAuthContext = oAuthContext ?? throw new ArgumentNullException(nameof(oAuthContext));
+    private readonly AcsOAuthContext oAuthContext = oAuthContext;
 
-    private AcsOAuthToken oAuthToken = oAuthToken ?? throw new ArgumentNullException(nameof(oAuthToken));
+    private AcsOAuthToken oAuthToken = oAuthToken;
 
-    public override string CurrentAceessToken => this.oAuthToken.AccessToken;
+    public override string? CurrentAceessToken => this.oAuthToken.AccessToken;
 
-    public override string GetAccessToken()
+    public override string? GetAccessToken()
     {
         var jwtToken = new JsonWebToken(this.oAuthToken.AccessToken);
         var jwtExpireIn = jwtToken.GetPayloadValue<double>("exp");

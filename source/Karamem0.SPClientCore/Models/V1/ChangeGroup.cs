@@ -21,16 +21,16 @@ public class ChangeGroup : Change
 {
 
     [JsonProperty()]
-    public override ChangeToken ChangeToken { get; protected set; }
+    public override ChangeToken? ChangeToken { get; protected set; }
 
     [JsonProperty()]
-    public override ChangeType ChangeType { get; protected set; }
+    public override ChangeType? ChangeType { get; protected set; }
 
     [JsonProperty()]
     public virtual int GroupId { get; protected set; }
 
     [JsonProperty()]
-    public override string RelativeTime { get; protected set; }
+    public override string? RelativeTime { get; protected set; }
 
     [JsonProperty("SiteId")]
     public override Guid SiteCollectionId { get; protected set; }

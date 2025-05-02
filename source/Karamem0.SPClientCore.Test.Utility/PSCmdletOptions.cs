@@ -24,7 +24,7 @@ public class PSCmdletOptions
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("SPClientCore.Tests.Utilities.config.json");
+                .AddJsonFile("SPClientCore.Test.Utility.config.json");
             var config = builder.Build();
             var options = config.Get<PSCmdletOptions>();
             return options;

@@ -21,9 +21,9 @@ public class AttachmentFileCreationInfo : ClientValueObject
 {
 
     [JsonProperty()]
-    public virtual System.IO.Stream ContentStream { get; protected set; }
+    public virtual System.IO.Stream? ContentStream { get; protected set; }
 
     [JsonProperty()]
-    public virtual string FileName { get; protected set; }
+    public virtual string? FileName { get; protected set; }
 
 }

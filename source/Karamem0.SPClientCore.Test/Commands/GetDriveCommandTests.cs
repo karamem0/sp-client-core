@@ -63,6 +63,7 @@ public class GetDriveCommandTests
             "Get-KshDrive",
             new Dictionary<string, object>()
             {
+                ["DriveId"] = context.AppSettings["List2DriveId"]
             }
         );
         var result2 = context.Runspace.InvokeCommand<Drive>(

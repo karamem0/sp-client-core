@@ -28,9 +28,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Karamem0.SPClientCore.Tests.Utility.config.json">
+    <None Update="Karamem0.SPClientCore.Test.Utility.config.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>SPClientCore.Tests.Utility.config.json</Link>
+      <Link>SPClientCore.Test.Utility.config.json</Link>
     </None>
   </ItemGroup>
 

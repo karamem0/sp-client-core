@@ -19,7 +19,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantHomeSiteService
 {
 
-    Uri GetObject();
+    Uri? GetObject();
 
     void RemoveObject();
 
@@ -30,11 +30,11 @@ public interface ITenantHomeSiteService
 public class TenantHomeSiteService(ClientContext clientContext) : ClientService(clientContext), ITenantHomeSiteService
 {
 
-    public Uri GetObject()
+    public Uri? GetObject()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
-        var objectPath2 = requestPayload.Add(objectPath1, objectPathId => new ClientActionMethod(objectPathId, "GetSPHSiteUrl"));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
+        var objectPath2 = requestPayload.Add(objectPath1, objectPathId => ClientActionMethod.Create(objectPathId, "GetSPHSiteUrl"));
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Uri>(requestPayload.GetActionId<ClientActionMethod>());
@@ -43,19 +43,18 @@ public class TenantHomeSiteService(ClientContext clientContext) : ClientService(
     public void RemoveObject()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
-        var objectPath2 = requestPayload.Add(objectPath1, objectPathId => new ClientActionMethod(objectPathId, "RemoveSPHSite"));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
+        var objectPath2 = requestPayload.Add(objectPath1, objectPathId => ClientActionMethod.Create(objectPathId, "RemoveSPHSite"));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
     public void SetObject(Uri homeSiteUrl)
     {
-        _ = homeSiteUrl ?? throw new ArgumentNullException(nameof(homeSiteUrl));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             objectPath1,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "SetSPHSite",
                 requestPayload.CreateParameter(homeSiteUrl)
