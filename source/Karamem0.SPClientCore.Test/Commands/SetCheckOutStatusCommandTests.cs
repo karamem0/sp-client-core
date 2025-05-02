@@ -50,21 +50,27 @@ public class SetCheckOutStatusCommandTests
                 ["FileName"] = "TestFile0.txt"
             }
         );
-        var result3 = context.Runspace.InvokeCommand<File>(
+        _ = context.Runspace.InvokeCommand(
             "Set-KshCheckOutStatus",
             new Dictionary<string, object>()
             {
-                ["Identity"] = result2[0],
-                ["CheckOut"] = true,
-                ["PassThru"] = true
+                ["File"] = result2[0],
+                ["CheckOut"] = true
             }
         );
         _ = context.Runspace.InvokeCommand(
             "Set-KshCheckOutStatus",
             new Dictionary<string, object>()
             {
-                ["Identity"] = result2[0],
+                ["File"] = result2[0],
                 ["CheckIn"] = true
+            }
+        );
+        var result3 = context.Runspace.InvokeCommand<File>(
+            "Get-KshFile",
+            new Dictionary<string, object>()
+            {
+                ["Identity"] = result2[0]
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -112,19 +118,25 @@ public class SetCheckOutStatusCommandTests
             "Set-KshCheckOutStatus",
             new Dictionary<string, object>()
             {
-                ["Identity"] = result2[0],
+                ["File"] = result2[0],
                 ["CheckOut"] = true
             }
         );
-        var result3 = context.Runspace.InvokeCommand<File>(
+        _ = context.Runspace.InvokeCommand(
             "Set-KshCheckOutStatus",
             new Dictionary<string, object>()
             {
-                ["Identity"] = result2[0],
+                ["File"] = result2[0],
                 ["CheckIn"] = true,
                 ["Comment"] = "Test Comment 0",
-                ["CheckInType"] = "MajorCheckIn",
-                ["PassThru"] = true
+                ["CheckInType"] = "MajorCheckIn"
+            }
+        );
+        var result3 = context.Runspace.InvokeCommand<File>(
+            "Get-KshFile",
+            new Dictionary<string, object>()
+            {
+                ["Identity"] = result2[0]
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -172,17 +184,23 @@ public class SetCheckOutStatusCommandTests
             "Set-KshCheckOutStatus",
             new Dictionary<string, object>()
             {
-                ["Identity"] = result2[0],
+                ["File"] = result2[0],
                 ["CheckOut"] = true
             }
         );
-        var result3 = context.Runspace.InvokeCommand<File>(
+        _ = context.Runspace.InvokeCommand(
             "Set-KshCheckOutStatus",
             new Dictionary<string, object>()
             {
-                ["Identity"] = result2[0],
-                ["UndoCheckOut"] = true,
-                ["PassThru"] = true
+                ["File"] = result2[0],
+                ["UndoCheckOut"] = true
+            }
+        );
+        var result3 = context.Runspace.InvokeCommand<File>(
+            "Get-KshFile",
+            new Dictionary<string, object>()
+            {
+                ["Identity"] = result2[0]
             }
         );
         _ = context.Runspace.InvokeCommand(

@@ -19,11 +19,11 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantSiteDesignService
 {
 
-    TenantSiteDesign AddObject(IReadOnlyDictionary<string, object> creationInfo);
+    TenantSiteDesign? AddObject(IReadOnlyDictionary<string, object?> creationInfo);
 
-    TenantSiteDesign GetObject(Guid? siteDesignId);
+    TenantSiteDesign? GetObject(Guid siteDesignId);
 
-    IEnumerable<TenantSiteDesign> GetObjectEnumerable();
+    IEnumerable<TenantSiteDesign>? GetObjectEnumerable();
 
     void RemoveObject(TenantSiteDesign siteDesignObject);
 
@@ -32,34 +32,29 @@ public interface ITenantSiteDesignService
 public class TenantSiteDesignService(ClientContext clientContext) : ClientService(clientContext), ITenantSiteDesignService
 {
 
-    public TenantSiteDesign AddObject(IReadOnlyDictionary<string, object> creationInfo)
+    public TenantSiteDesign? AddObject(IReadOnlyDictionary<string, object?> creationInfo)
     {
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath1.Id,
                 "CreateSiteDesign",
                 requestPayload.CreateParameter(ClientValueObject.Create<TenantSiteDesignCreationInfo>(creationInfo))
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(TenantSiteDesign))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(TenantSiteDesign)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantSiteDesign>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public TenantSiteDesign GetObject(Guid? siteDesignId)
+    public TenantSiteDesign? GetObject(Guid siteDesignId)
     {
-        _ = siteDesignId ?? throw new ArgumentNullException(nameof(siteDesignId));
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
-            new ClientActionStaticMethod(
+            ClientActionStaticMethod.Create(
                 typeof(Tenant),
                 "GetSiteDesign",
                 requestPayload.CreateParameter(siteDesignId)
@@ -70,18 +65,18 @@ public class TenantSiteDesignService(ClientContext clientContext) : ClientServic
             .ToObject<TenantSiteDesign>(requestPayload.GetActionId<ClientActionStaticMethod>());
     }
 
-    public IEnumerable<TenantSiteDesign> GetObjectEnumerable()
+    public IEnumerable<TenantSiteDesign>? GetObjectEnumerable()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(objectPath1.Id, "GetSiteDesigns"),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = ClientQuery.Empty,
-                ChildItemQuery = new ClientQuery(true, typeof(TenantSiteDesign))
-            }
+            ObjectPathMethod.Create(objectPath1.Id, "GetSiteDesigns"),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(
+                objectPathId,
+                ClientQuery.Empty,
+                ClientQuery.Create(true, typeof(TenantSiteDesign))
+            )
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
@@ -90,12 +85,11 @@ public class TenantSiteDesignService(ClientContext clientContext) : ClientServic
 
     public void RemoveObject(TenantSiteDesign siteDesignObject)
     {
-        _ = siteDesignObject ?? throw new ArgumentNullException(nameof(siteDesignObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             objectPath1,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "DeleteSiteDesign",
                 requestPayload.CreateParameter(siteDesignObject.Id)

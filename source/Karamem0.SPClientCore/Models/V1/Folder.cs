@@ -21,7 +21,7 @@ public class Folder : ClientObject
 {
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<ContentTypeId> ContentTypeOrder { get; protected set; }
+    public virtual IReadOnlyCollection<ContentTypeId>? ContentTypeOrder { get; protected set; }
 
     [JsonProperty("TimeCreated")]
     public virtual DateTime Created { get; protected set; }
@@ -45,21 +45,21 @@ public class Folder : ClientObject
     public virtual DateTime LastModified { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; protected set; }
 
     [JsonProperty("ProgID")]
-    public virtual string ProgId { get; protected set; }
+    public virtual string? ProgId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ServerRelativeUrl { get; protected set; }
+    public virtual string? ServerRelativeUrl { get; protected set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<ContentTypeId> UniqueContentTypeOrder { get; protected set; }
+    public virtual IReadOnlyCollection<ContentTypeId>? UniqueContentTypeOrder { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid UniqueId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string WelcomePage { get; protected set; }
+    public virtual string? WelcomePage { get; protected set; }
 
 }

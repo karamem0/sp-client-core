@@ -21,13 +21,13 @@ public class SharingInforUser : ClientObject
 {
 
     [JsonProperty()]
-    public virtual string CustomRoleNames { get; protected set; }
+    public virtual string? CustomRoleNames { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Department { get; protected set; }
+    public virtual string? Department { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Email { get; protected set; }
+    public virtual string? Email { get; protected set; }
 
     [JsonProperty()]
     public virtual bool HasEditPermission { get; protected set; }
@@ -54,24 +54,24 @@ public class SharingInforUser : ClientObject
     public virtual bool IsSiteAdmin { get; protected set; }
 
     [JsonProperty()]
-    public virtual string JobTitle { get; protected set; }
+    public virtual string? JobTitle { get; protected set; }
 
     [JsonProperty()]
-    public virtual string LoginName { get; protected set; }
+    public virtual string? LoginName { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Picture { get; protected set; }
+    public virtual string? Picture { get; protected set; }
 
     [JsonProperty()]
-    public virtual Principal Principal { get; protected set; }
+    public virtual Principal? Principal { get; protected set; }
 
     [JsonProperty()]
-    public virtual string SipAddress { get; protected set; }
+    public virtual string? SipAddress { get; protected set; }
 
     [JsonProperty()]
-    public virtual User User { get; protected set; }
+    public virtual User? User { get; protected set; }
 
 }

@@ -6,6 +6,7 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
+using Karamem0.SharePoint.PowerShell.Resources;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -21,25 +22,24 @@ public abstract class JsonValueObject : ValueObject
 {
 
     [JsonIgnore()]
-    public virtual object this[string key] => this.ExtensionProperties[key];
+    public virtual object? this[string key] => this.ExtensionProperties[key];
 
     [JsonIgnore()]
     public virtual IEnumerable<string> ExtensionKeys => this
         .ExtensionProperties.Where(item => item.Value is not null)
         .Select(ClientResultValue.Create)
-        .Select(item => item.Key)
+        .Select(item => item.Key ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull))
         .ToArray();
 
     [JsonExtensionData()]
-    protected virtual Dictionary<string, JToken> ExtensionProperties { get; private set; } = [];
+    protected virtual Dictionary<string, JToken> ExtensionProperties { get; set; } = [];
 
     [JsonIgnore()]
-    protected override Lazy<IReadOnlyCollection<PropertyInfo>> EqualityProperties => new(
-        () => this
-            .GetType()
-            .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-            .Where(property => property.IsDefined(typeof(JsonPropertyAttribute), true))
-            .ToArray()
+    protected override Lazy<IReadOnlyCollection<PropertyInfo>> EqualityProperties => new(() => this
+        .GetType()
+        .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+        .Where(property => property.IsDefined(typeof(JsonPropertyAttribute), true))
+        .ToArray()
     );
 
 }

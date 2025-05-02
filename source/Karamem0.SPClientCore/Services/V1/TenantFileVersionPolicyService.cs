@@ -37,10 +37,10 @@ public class TenantFileVersionPolicyService(ClientContext clientContext) : Tenan
     )
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             objectPath1,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "SetFileVersionPolicy",
                 requestPayload.CreateParameter(isAutoTrimEnabled),

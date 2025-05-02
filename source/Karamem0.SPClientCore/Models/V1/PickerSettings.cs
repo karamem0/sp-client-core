@@ -27,13 +27,13 @@ public class PickerSettings : ClientObject
     public virtual bool AllowOnlyEmailAddresses { get; protected set; }
 
     [JsonProperty()]
-    public virtual string PrincipalAccountType { get; protected set; }
+    public virtual string? PrincipalAccountType { get; protected set; }
 
     [JsonProperty()]
-    public virtual PrincipalSource PrincipalSource { get; protected set; }
+    public virtual PrincipalSource? PrincipalSource { get; protected set; }
 
     [JsonProperty()]
-    public virtual PeoplePickerQuerySettings QuerySettings { get; protected set; }
+    public virtual PeoplePickerQuerySettings? QuerySettings { get; protected set; }
 
     [JsonProperty()]
     public virtual bool UseSubstrateSearch { get; protected set; }

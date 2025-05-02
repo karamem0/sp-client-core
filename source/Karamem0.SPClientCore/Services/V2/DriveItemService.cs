@@ -8,6 +8,7 @@
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
 using Karamem0.SharePoint.PowerShell.Models.V2;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.Services;
@@ -22,35 +23,36 @@ namespace Karamem0.SharePoint.PowerShell.Services.V2;
 public interface IDriveItemService
 {
 
-    DriveItem GetObject(DriveItem driveItemObject);
+    DriveItem? GetObject(DriveItem driveItemObject);
 
-    DriveItem GetObject(Models.V1.Folder folderObject);
+    DriveItem? GetObject(Models.V1.Folder folderObject);
 
-    DriveItem GetObject(Models.V1.File fileObject);
+    DriveItem? GetObject(Models.V1.File fileObject);
 
-    DriveItem GetObject(ListItem listItemObject);
+    DriveItem? GetObject(ListItem listItemObject);
 
-    DriveItem GetObject(Uri driveItemUrl);
+    DriveItem? GetObject(Uri driveItemUrl);
 
-    DriveItem GetObject(Drive driveObject, string driveItemId);
+    DriveItem? GetObject(Drive driveObject, string driveItemId);
 
-    DriveItem GetObject(Drive driveObject, Uri DriveItemPath);
+    DriveItem? GetObject(Drive driveObject, Uri DriveItemPath);
 
-    IEnumerable<DriveItem> GetObjectEnumerable(Drive driveObject);
+    IEnumerable<DriveItem>? GetObjectEnumerable(Drive driveObject);
 
-    IEnumerable<DriveItem> GetObjectEnumerable(DriveItem driveItemObject);
+    IEnumerable<DriveItem>? GetObjectEnumerable(DriveItem driveItemObject);
 
 }
 
 public class DriveItemService(ClientContext clientContext) : ClientService(clientContext), IDriveItemService
 {
-    public DriveItem GetObject(DriveItem driveItemObject)
+    public DriveItem? GetObject(DriveItem driveItemObject)
     {
-        _ = driveItemObject ?? throw new ArgumentNullException(nameof(driveItemObject));
+        var parentReference = driveItemObject.ParentReference;
+        _ = parentReference ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
         var requestUrl = this
             .ClientContext.BaseAddress.ConcatPath(
                 "_api/v2.0/drives/{0}/items/{1}",
-                driveItemObject.ParentReference.DriveId,
+                parentReference.DriveId,
                 driveItemObject.Id
             )
             .ConcatQuery(ODataQuery.CreateSelect<DriveItem>())
@@ -58,31 +60,40 @@ public class DriveItemService(ClientContext clientContext) : ClientService(clien
         return this.ClientContext.GetObjectV2<DriveItem>(requestUrl);
     }
 
-    public DriveItem GetObject(Models.V1.Folder folderObject)
+    public DriveItem? GetObject(Models.V1.Folder folderObject)
     {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
+        var serverRelativeUrl = folderObject.ServerRelativeUrl;
+        _ = serverRelativeUrl ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
         var requestUrl = this
-            .ClientContext.BaseAddress.ConcatPath("_api/v2.0/shares/{0}/driveitem", SharingUrl.Create(this.ClientContext.BaseAddress.GetAuthority(), folderObject.ServerRelativeUrl))
+            .ClientContext.BaseAddress.ConcatPath(
+                "_api/v2.0/shares/{0}/driveitem",
+                SharingUrl.Create(this.ClientContext.BaseAddress.GetAuthority(), serverRelativeUrl)
+            )
             .ConcatQuery(ODataQuery.CreateSelect<DriveItem>())
             .ConcatQuery(ODataQuery.CreateExpand<DriveItem>());
         return this.ClientContext.GetObjectV2<DriveItem>(requestUrl);
     }
 
-    public DriveItem GetObject(Models.V1.File fileObject)
+    public DriveItem? GetObject(Models.V1.File fileObject)
     {
-        _ = fileObject ?? throw new ArgumentNullException(nameof(fileObject));
+        var serverRelativeUrl = fileObject.ServerRelativeUrl;
+        _ = serverRelativeUrl ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
         var requestUrl = this
-            .ClientContext.BaseAddress.ConcatPath("_api/v2.0/shares/{0}/driveitem", SharingUrl.Create(this.ClientContext.BaseAddress.GetAuthority(), fileObject.ServerRelativeUrl))
+            .ClientContext.BaseAddress.ConcatPath(
+                "_api/v2.0/shares/{0}/driveitem",
+                SharingUrl.Create(this.ClientContext.BaseAddress.GetAuthority(), serverRelativeUrl)
+            )
             .ConcatQuery(ODataQuery.CreateSelect<DriveItem>())
             .ConcatQuery(ODataQuery.CreateExpand<DriveItem>());
         return this.ClientContext.GetObjectV2<DriveItem>(requestUrl);
     }
 
-    public DriveItem GetObject(ListItem listItemObject)
+    public DriveItem? GetObject(ListItem listItemObject)
     {
-        _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
-        var items = listItemObject
-            .ObjectIdentity.Split(':')
+        var objectIdentity = listItemObject.ObjectIdentity;
+        _ = objectIdentity ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
+        var items = objectIdentity
+            .Split(':')
             .Reverse()
             .ToArray();
         var requestUrl = this
@@ -99,9 +110,8 @@ public class DriveItemService(ClientContext clientContext) : ClientService(clien
         return this.ClientContext.GetObjectV2<DriveItem>(requestUrl);
     }
 
-    public DriveItem GetObject(Uri driveItemUrl)
+    public DriveItem? GetObject(Uri driveItemUrl)
     {
-        _ = driveItemUrl ?? throw new ArgumentNullException(nameof(driveItemUrl));
         var requestUrl = this
             .ClientContext.BaseAddress.ConcatPath("_api/v2.0/shares/{0}/driveitem", SharingUrl.Create(driveItemUrl.ToString()))
             .ConcatQuery(ODataQuery.CreateSelect<DriveItem>())
@@ -109,10 +119,8 @@ public class DriveItemService(ClientContext clientContext) : ClientService(clien
         return this.ClientContext.GetObjectV2<DriveItem>(requestUrl);
     }
 
-    public DriveItem GetObject(Drive driveObject, string driveItemId)
+    public DriveItem? GetObject(Drive driveObject, string driveItemId)
     {
-        _ = driveObject ?? throw new ArgumentNullException(nameof(driveObject));
-        _ = driveItemId ?? throw new ArgumentNullException(nameof(driveItemId));
         var requestUrl = this
             .ClientContext.BaseAddress.ConcatPath(
                 "_api/v2.0/drives/{0}/items/{1}",
@@ -124,10 +132,8 @@ public class DriveItemService(ClientContext clientContext) : ClientService(clien
         return this.ClientContext.GetObjectV2<DriveItem>(requestUrl);
     }
 
-    public DriveItem GetObject(Drive driveObject, Uri driveItemPath)
+    public DriveItem? GetObject(Drive driveObject, Uri driveItemPath)
     {
-        _ = driveObject ?? throw new ArgumentNullException(nameof(driveObject));
-        _ = driveItemPath ?? throw new ArgumentNullException(nameof(driveItemPath));
         var requestUrl = this
             .ClientContext.BaseAddress.ConcatPath(
                 "_api/v2.0/drives/{0}/items/root:/{1}",
@@ -139,22 +145,22 @@ public class DriveItemService(ClientContext clientContext) : ClientService(clien
         return this.ClientContext.GetObjectV2<DriveItem>(requestUrl);
     }
 
-    public IEnumerable<DriveItem> GetObjectEnumerable(Drive driveObject)
+    public IEnumerable<DriveItem>? GetObjectEnumerable(Drive driveObject)
     {
-        _ = driveObject ?? throw new ArgumentNullException(nameof(driveObject));
         var requestUrl = this
             .ClientContext.BaseAddress.ConcatPath("_api/v2.0/drives/{0}/root/children", driveObject.Id)
             .ConcatQuery(ODataQuery.CreateSelect<DriveItem>());
         return this.ClientContext.GetObjectV2<ODataV2ObjectEnumerable<DriveItem>>(requestUrl);
     }
 
-    public IEnumerable<DriveItem> GetObjectEnumerable(DriveItem driveItemObject)
+    public IEnumerable<DriveItem>? GetObjectEnumerable(DriveItem driveItemObject)
     {
-        _ = driveItemObject ?? throw new ArgumentNullException(nameof(driveItemObject));
+        var parentReference = driveItemObject.ParentReference;
+        _ = parentReference ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
         var requestUrl = this
             .ClientContext.BaseAddress.ConcatPath(
                 "_api/v2.0/drives/{0}/items/{1}/children",
-                driveItemObject.ParentReference.DriveId,
+                parentReference.DriveId,
                 driveItemObject.Id
             )
             .ConcatQuery(ODataQuery.CreateSelect<DriveItem>());

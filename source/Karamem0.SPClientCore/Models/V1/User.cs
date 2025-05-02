@@ -21,10 +21,10 @@ public class User : Principal
 {
 
     [JsonProperty()]
-    public virtual string Email { get; protected set; }
+    public virtual string? Email { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Expiration { get; protected set; }
+    public virtual string? Expiration { get; protected set; }
 
     [JsonProperty()]
     public override int Id { get; protected set; }
@@ -42,18 +42,18 @@ public class User : Principal
     public virtual bool IsSiteCollectionAdmin { get; protected set; }
 
     [JsonProperty()]
-    public override string LoginName { get; protected set; }
+    public override string? LoginName { get; protected set; }
 
     [JsonProperty()]
-    public override PrincipalType PrincipalType { get; protected set; }
+    public override PrincipalType? PrincipalType { get; protected set; }
 
     [JsonProperty()]
-    public override string Title { get; protected set; }
+    public override string? Title { get; protected set; }
 
     [JsonProperty()]
-    public virtual UserIdInfo UserId { get; protected set; }
+    public virtual UserIdInfo? UserId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string UserPrincipalName { get; protected set; }
+    public virtual string? UserPrincipalName { get; protected set; }
 
 }

@@ -20,15 +20,15 @@ public class ItemReference : ODataV2Object
 {
 
     [JsonProperty("driveId")]
-    public virtual string DriveId { get; protected set; }
+    public virtual string? DriveId { get; protected set; }
 
     [JsonProperty("driveType")]
-    public virtual DriveType DriveType { get; protected set; }
+    public virtual DriveType? DriveType { get; protected set; }
 
     [JsonProperty("id")]
-    public virtual string Id { get; protected set; }
+    public virtual string? Id { get; protected set; }
 
     [JsonProperty("path")]
-    public virtual string Path { get; protected set; }
+    public virtual string? Path { get; protected set; }
 
 }

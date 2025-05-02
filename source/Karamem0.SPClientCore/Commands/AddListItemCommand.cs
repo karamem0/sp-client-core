@@ -45,8 +45,7 @@ public class AddListItemCommand : ClientObjectCmdlet<IListItemService>
                 this.Service.AddObjectEnumerable(
                     this.List,
                     this
-                        .Value.Select(
-                            value =>
+                        .Value.Select(value =>
                             {
                                 if (value.BaseObject is Hashtable hashtable)
                                 {
@@ -68,8 +67,7 @@ public class AddListItemCommand : ClientObjectCmdlet<IListItemService>
                 this.Service.AddObjectEnumerable(
                     this.List,
                     this
-                        .Value.Select(
-                            value =>
+                        .Value.Select(value =>
                             {
                                 if (value.BaseObject is Hashtable hashtable)
                                 {

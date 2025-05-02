@@ -17,8 +17,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public static class JsonSerializerManager
 {
 
-    private static readonly Lazy<JsonSerializer> instance = new(
-        () => JsonSerializer.Create(
+    private static readonly Lazy<JsonSerializer> instance = new(() => JsonSerializer.Create(
             new JsonSerializerSettings()
             {
                 Converters =

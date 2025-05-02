@@ -20,24 +20,24 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ISubscriptionService
 {
 
-    Subscription AddObject(List listObject, IReadOnlyDictionary<string, object> creationInfo);
+    Subscription? AddObject(List listObject, IReadOnlyDictionary<string, object?> creationInfo);
 
-    Subscription GetObject(Subscription subscriptionObject);
+    Subscription? GetObject(Subscription subscriptionObject);
 
-    Subscription GetObject(List listObject, Guid? subscriptionId);
+    Subscription? GetObject(List listObject, Guid subscriptionId);
 
-    IEnumerable<Subscription> GetObjectEnumerable(List listObject);
+    IEnumerable<Subscription>? GetObjectEnumerable(List listObject);
 
     void RemoveObject(Subscription subscriptionObject);
 
-    void SetObject(Subscription subscriptionObject, IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObject(Subscription subscriptionObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class SubscriptionService(ClientContext clientContext) : ClientService(clientContext), ISubscriptionService
 {
 
-    public Subscription AddObject(List listObject, IReadOnlyDictionary<string, object> creationInfo)
+    public Subscription? AddObject(List listObject, IReadOnlyDictionary<string, object?> creationInfo)
     {
         _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
         _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
@@ -48,7 +48,7 @@ public class SubscriptionService(ClientContext clientContext) : ClientService(cl
         var requestPayload = ODataV1RequestPayload.Create<SubscriptionCreationInfo>(
             creationInfo
                 .Concat(
-                    new Dictionary<string, object>()
+                    new Dictionary<string, object?>()
                     {
                         ["Resource"] = listUrl.ToString()
                     }
@@ -58,9 +58,8 @@ public class SubscriptionService(ClientContext clientContext) : ClientService(cl
         return this.ClientContext.PostObject<Subscription>(requestUrl, requestPayload.Entity);
     }
 
-    public Subscription GetObject(Subscription subscriptionObject)
+    public Subscription? GetObject(Subscription subscriptionObject)
     {
-        _ = subscriptionObject ?? throw new ArgumentNullException(nameof(subscriptionObject));
         var requestUrl = this
             .ClientContext.BaseAddress.ConcatPath(
                 "_api/web/lists('{0}')/subscriptions('{1}')",
@@ -71,10 +70,8 @@ public class SubscriptionService(ClientContext clientContext) : ClientService(cl
         return this.ClientContext.GetObject<Subscription>(requestUrl);
     }
 
-    public Subscription GetObject(List listObject, Guid? subscriptionId)
+    public Subscription? GetObject(List listObject, Guid subscriptionId)
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
-        _ = subscriptionId ?? throw new ArgumentNullException(nameof(subscriptionId));
         var requestUrl = this
             .ClientContext.BaseAddress.ConcatPath(
                 "_api/web/lists('{0}')/subscriptions('{1}')",
@@ -85,9 +82,8 @@ public class SubscriptionService(ClientContext clientContext) : ClientService(cl
         return this.ClientContext.GetObject<Subscription>(requestUrl);
     }
 
-    public IEnumerable<Subscription> GetObjectEnumerable(List listObject)
+    public IEnumerable<Subscription>? GetObjectEnumerable(List listObject)
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
         var requestUrl = this
             .ClientContext.BaseAddress.ConcatPath("_api/web/lists('{0}')/subscriptions", listObject.Id)
             .ConcatQuery(ODataQuery.CreateSelect<Subscription>());
@@ -96,7 +92,6 @@ public class SubscriptionService(ClientContext clientContext) : ClientService(cl
 
     public void RemoveObject(Subscription subscriptionObject)
     {
-        _ = subscriptionObject ?? throw new ArgumentNullException(nameof(subscriptionObject));
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/lists('{0}')/subscriptions('{1}')",
             subscriptionObject.Resource,
@@ -105,10 +100,8 @@ public class SubscriptionService(ClientContext clientContext) : ClientService(cl
         this.ClientContext.DeleteObject(requestUrl);
     }
 
-    public void SetObject(Subscription subscriptionObject, IReadOnlyDictionary<string, object> modificationInfo)
+    public void SetObject(Subscription subscriptionObject, IReadOnlyDictionary<string, object?> modificationInfo)
     {
-        _ = subscriptionObject ?? throw new ArgumentNullException(nameof(subscriptionObject));
-        _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/lists('{0}')/subscriptions('{1}')",
             subscriptionObject.Resource,

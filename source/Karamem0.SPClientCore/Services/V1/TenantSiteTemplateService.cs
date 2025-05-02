@@ -19,52 +19,50 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantSiteTemplateService
 {
 
-    IEnumerable<TenantSiteTemplate> GetObjectEnumerable(uint? lcid, int? compatibilityLevel);
+    IEnumerable<TenantSiteTemplate>? GetObjectEnumerable(uint lcid, int compatibilityLevel);
 
-    IEnumerable<TenantSiteTemplate> GetObjectEnumerable();
+    IEnumerable<TenantSiteTemplate>? GetObjectEnumerable();
 
 }
 
 public class TenantSiteTemplateService(ClientContext clientContext) : ClientService(clientContext), ITenantSiteTemplateService
 {
 
-    public IEnumerable<TenantSiteTemplate> GetObjectEnumerable(uint? lcid, int? compatibilityLevel)
+    public IEnumerable<TenantSiteTemplate>? GetObjectEnumerable(uint lcid, int compatibilityLevel)
     {
-        _ = lcid ?? throw new ArgumentNullException(nameof(lcid));
-        _ = compatibilityLevel ?? throw new ArgumentNullException(nameof(compatibilityLevel));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath1.Id,
                 "GetSPOTenantWebTemplates",
                 requestPayload.CreateParameter(lcid),
                 requestPayload.CreateParameter(compatibilityLevel)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = ClientQuery.Empty,
-                ChildItemQuery = ClientQuery.Empty
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(
+                objectPathId,
+                ClientQuery.Empty,
+                ClientQuery.Empty
+            )
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantSiteTemplateEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<TenantSiteTemplate> GetObjectEnumerable()
+    public IEnumerable<TenantSiteTemplate>? GetObjectEnumerable()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(objectPath1.Id, "GetSPOTenantAllWebTemplates"),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = ClientQuery.Empty,
-                ChildItemQuery = ClientQuery.Empty
-            }
+            ObjectPathMethod.Create(objectPath1.Id, "GetSPOTenantAllWebTemplates"),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(
+                objectPathId,
+                ClientQuery.Empty,
+                ClientQuery.Empty
+            )
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)

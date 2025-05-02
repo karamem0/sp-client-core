@@ -52,10 +52,11 @@ public class SetApprovalStatusCommandTests
             }
         );
         _ = context.Runspace.InvokeCommand(
-            "Publish-KshFile",
+            "Set-KshFilePublished",
             new Dictionary<string, object>()
             {
-                ["Identity"] = result2[0]
+                ["File"] = result2[0],
+                ["Published"] = true
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -116,10 +117,11 @@ public class SetApprovalStatusCommandTests
             }
         );
         _ = context.Runspace.InvokeCommand(
-            "Publish-KshFile",
+            "Set-KshFilePublished",
             new Dictionary<string, object>()
             {
-                ["Identity"] = result2[0]
+                ["File"] = result2[0],
+                ["Published"] = true
             }
         );
         _ = context.Runspace.InvokeCommand(

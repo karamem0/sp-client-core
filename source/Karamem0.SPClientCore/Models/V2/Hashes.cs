@@ -20,15 +20,15 @@ public class Hashes : ODataV2Object
 {
 
     [JsonProperty("crc32Hash")]
-    public virtual string Crc32Hash { get; protected set; }
+    public virtual string? Crc32Hash { get; protected set; }
 
     [JsonProperty("sha1Hash")]
-    public virtual string Sha1Hash { get; protected set; }
+    public virtual string? Sha1Hash { get; protected set; }
 
     [JsonProperty("sha256Hash")]
-    public virtual string Sha256Hash { get; protected set; }
+    public virtual string? Sha256Hash { get; protected set; }
 
     [JsonProperty("quickXorHash")]
-    public virtual string QuickXorHash { get; protected set; }
+    public virtual string? QuickXorHash { get; protected set; }
 
 }

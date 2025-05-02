@@ -19,47 +19,47 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantFileVersionPolicyForDocumentLibraryService
 {
 
-    FileVersionPolicyForDocumentLibrary GetObject(Uri siteUrl, Guid listId);
+    FileVersionPolicyForDocumentLibrary? GetObject(Uri siteUrl, Guid listId);
 
-    FileVersionPolicyForDocumentLibrary GetObject(Uri siteUrl, string listTitle);
+    FileVersionPolicyForDocumentLibrary? GetObject(Uri siteUrl, string listTitle);
 
-    TenantOperationResult SetObject(
+    TenantOperationResult? SetObject(
         Uri siteUrl,
         Guid listId,
-        IReadOnlyDictionary<string, object> modificationInfo
+        IReadOnlyDictionary<string, object?> modificationInfo
     );
 
-    TenantOperationResult SetObject(
+    TenantOperationResult? SetObject(
         Uri siteUrl,
         string listTitle,
-        IReadOnlyDictionary<string, object> modificationInfo
+        IReadOnlyDictionary<string, object?> modificationInfo
     );
 
     void SetObjectAwait(
         Uri siteUrl,
         Guid listId,
-        IReadOnlyDictionary<string, object> modificationInfo
+        IReadOnlyDictionary<string, object?> modificationInfo
     );
 
     void SetObjectAwait(
         Uri siteUrl,
         string listTitle,
-        IReadOnlyDictionary<string, object> modificationInfo
+        IReadOnlyDictionary<string, object?> modificationInfo
     );
 
 }
 
-public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clientContext) : TenantClientService(clientContext), ITenantFileVersionPolicyForDocumentLibraryService
+public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clientContext)
+    : TenantClientService(clientContext), ITenantFileVersionPolicyForDocumentLibraryService
 {
 
-    public FileVersionPolicyForDocumentLibrary GetObject(Uri siteUrl, Guid listId)
+    public FileVersionPolicyForDocumentLibrary? GetObject(Uri siteUrl, Guid listId)
     {
-        _ = siteUrl ?? throw new ArgumentNullException(nameof(siteUrl));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             objectPath1,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "GetFileVersionPolicyForLibrary",
                 requestPayload.CreateParameter(siteUrl),
@@ -71,15 +71,13 @@ public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clie
             .ToObject<FileVersionPolicyForDocumentLibrary>(requestPayload.GetActionId<ClientActionMethod>());
     }
 
-    public FileVersionPolicyForDocumentLibrary GetObject(Uri siteUrl, string listTitle)
+    public FileVersionPolicyForDocumentLibrary? GetObject(Uri siteUrl, string listTitle)
     {
-        _ = siteUrl ?? throw new ArgumentNullException(nameof(siteUrl));
-        _ = listTitle ?? throw new ArgumentNullException(nameof(listTitle));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             objectPath1,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "GetFileVersionPolicyForLibrary",
                 requestPayload.CreateParameter(siteUrl),
@@ -91,57 +89,48 @@ public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clie
             .ToObject<FileVersionPolicyForDocumentLibrary>(requestPayload.GetActionId<ClientActionMethod>());
     }
 
-    public TenantOperationResult SetObject(
+    public TenantOperationResult? SetObject(
         Uri siteUrl,
         Guid listId,
-        IReadOnlyDictionary<string, object> modificationInfo
+        IReadOnlyDictionary<string, object?> modificationInfo
     )
     {
-        _ = siteUrl ?? throw new ArgumentNullException(nameof(siteUrl));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath1.Id,
                 "SetFileVersionPolicyForLibrary",
                 requestPayload.CreateParameter(siteUrl),
                 requestPayload.CreateParameter(new ListParameters(id: listId)),
                 requestPayload.CreateParameter(ClientValueObject.Create<FileVersionPolicyForDocumentLibrary>(modificationInfo))
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(TenantOperationResult))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(TenantOperationResult)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public TenantOperationResult SetObject(
+    public TenantOperationResult? SetObject(
         Uri siteUrl,
         string listTitle,
-        IReadOnlyDictionary<string, object> modificationInfo
+        IReadOnlyDictionary<string, object?> modificationInfo
     )
     {
-        _ = siteUrl ?? throw new ArgumentNullException(nameof(siteUrl));
-        _ = listTitle ?? throw new ArgumentNullException(nameof(listTitle));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath1.Id,
                 "SetFileVersionPolicyForLibrary",
                 requestPayload.CreateParameter(siteUrl),
                 requestPayload.CreateParameter(new ListParameters(title: listTitle)),
                 requestPayload.CreateParameter(ClientValueObject.Create<FileVersionPolicyForDocumentLibrary>(modificationInfo))
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(TenantOperationResult))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(TenantOperationResult)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
@@ -151,7 +140,7 @@ public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clie
     public void SetObjectAwait(
         Uri siteUrl,
         Guid listId,
-        IReadOnlyDictionary<string, object> modificationInfo
+        IReadOnlyDictionary<string, object?> modificationInfo
     )
     {
         this.WaitObject(
@@ -166,7 +155,7 @@ public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clie
     public void SetObjectAwait(
         Uri siteUrl,
         string listTitle,
-        IReadOnlyDictionary<string, object> modificationInfo
+        IReadOnlyDictionary<string, object?> modificationInfo
     )
     {
         this.WaitObject(

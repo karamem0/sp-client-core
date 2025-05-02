@@ -23,9 +23,9 @@ public class TenantIdResolver(Uri baseAddress)
 
     private readonly HttpClient httpClient = OAuthHttpClientFactory.Create();
 
-    private readonly Uri baseAddress = baseAddress ?? throw new ArgumentNullException(nameof(baseAddress));
+    private readonly Uri baseAddress = baseAddress;
 
-    private string tenantId;
+    private string? tenantId;
 
     public string Resolve()
     {
@@ -48,11 +48,7 @@ public class TenantIdResolver(Uri baseAddress)
                 }
             }
         }
-        if (this.tenantId is null)
-        {
-            throw new InvalidOperationException(StringResources.ErrorCannotResolveTenantId);
-        }
-        return this.tenantId;
+        return this.tenantId ?? throw new InvalidOperationException(StringResources.ErrorCannotResolveTenantId);
     }
 
 }

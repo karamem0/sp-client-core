@@ -16,14 +16,14 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [JsonObject()]
-public class ImageItem : ODataV1Object
+public class ImageItem : ODataV1Object<ImageItem>
 {
 
     [JsonProperty("Name")]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; protected set; }
 
     [JsonProperty("ServerRelativeUrl")]
-    public virtual string ServerRelativeUrl { get; protected set; }
+    public virtual string? ServerRelativeUrl { get; protected set; }
 
     [JsonProperty("UniqueId")]
     public virtual Guid UniqueId { get; protected set; }

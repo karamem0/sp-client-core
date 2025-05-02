@@ -80,9 +80,8 @@ public class ClientHttpExecutor
 
     public async Task<T> ExecuteAsync<T>(Func<HttpRequestMessage> requestCallback, Func<HttpResponseMessage, Task<T>> responseCallback)
     {
-        _ = requestCallback ?? throw new ArgumentNullException(nameof(requestCallback));
-        _ = responseCallback ?? throw new ArgumentNullException(nameof(responseCallback));
         var syncContext = SynchronizationContext.Current as ClientHttpSynchronizationContext;
+        _ = syncContext ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
         try
         {
             var errorCount = 0;
@@ -109,17 +108,17 @@ public class ClientHttpExecutor
                     else
                     {
                         var responseContent = await responseMessage.Content.ReadAsStringAsync();
-                        if (JsonSerializerManager.Instance.TryDeserialize(responseContent, out OAuthError oAuthError))
+                        if (JsonSerializerManager.Instance.TryDeserialize(responseContent, out OAuthError? oAuthError))
                         {
-                            throw new InvalidOperationException(oAuthError.ErrorDescription);
+                            throw new InvalidOperationException(oAuthError?.ErrorDescription);
                         }
-                        if (JsonSerializerManager.Instance.TryDeserialize(responseContent, out ODataV1ResultPayload v1Payload))
+                        if (JsonSerializerManager.Instance.TryDeserialize(responseContent, out ODataV1ResultPayload? v1Payload))
                         {
-                            throw new InvalidOperationException(v1Payload.Error.Message.Value);
+                            throw new InvalidOperationException(v1Payload?.Error?.Message?.Value);
                         }
-                        if (JsonSerializerManager.Instance.TryDeserialize(responseContent, out ODataV2ResultPayload v2Payload))
+                        if (JsonSerializerManager.Instance.TryDeserialize(responseContent, out ODataV2ResultPayload? v2Payload))
                         {
-                            throw new InvalidOperationException(v2Payload.Error.Message);
+                            throw new InvalidOperationException(v2Payload?.Error?.Message);
                         }
                         throw new InvalidOperationException(StringResources.ErrorUnknown);
                     }

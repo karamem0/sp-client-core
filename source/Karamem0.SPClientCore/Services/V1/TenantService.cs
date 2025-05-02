@@ -19,42 +19,36 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantService
 {
 
-    Tenant GetObject();
+    Tenant? GetObject();
 
-    void SetObject(IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObject(IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class TenantService(ClientContext clientContext) : ClientService(clientContext), ITenantService
 {
 
-    public Tenant GetObject()
+    public Tenant? GetObject()
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant)),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(Tenant))
-            }
+            ObjectPathConstructor.Create(typeof(Tenant)),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Tenant)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Tenant>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public void SetObject(IReadOnlyDictionary<string, object> modificationInfo)
+    public void SetObject(IReadOnlyDictionary<string, object?> modificationInfo)
     {
-        _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathConstructor(typeof(Tenant)),
-            requestPayload
-                .CreateSetPropertyDelegates(typeof(Tenant), modificationInfo)
-                .ToArray()
+            ObjectPathConstructor.Create(typeof(Tenant)),
+            requestPayload.CreateSetPropertyDelegates(typeof(Tenant), modificationInfo)
         );
-        var objectPath2 = requestPayload.Add(objectPath1, objectPathId => new ClientActionMethod(objectPathId, "Update"));
+        var objectPath2 = requestPayload.Add(objectPath1, objectPathId => ClientActionMethod.Create(objectPathId, "Update"));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

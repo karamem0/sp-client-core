@@ -19,12 +19,12 @@ public class ODataV2Object : ODataObject
 {
 
     [JsonProperty("@odata.context")]
-    public string ODataContext { get; private set; }
+    public string? ODataContext { get; protected set; }
 
     [JsonProperty("@odata.type")]
-    public string ODataType { get; private set; }
+    public string? ODataType { get; protected set; }
 
     [JsonProperty("@odata.id")]
-    public string ODataId { get; private set; }
+    public string? ODataId { get; protected set; }
 
 }

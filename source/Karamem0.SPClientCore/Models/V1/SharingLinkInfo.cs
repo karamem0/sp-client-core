@@ -24,31 +24,31 @@ public class SharingLinkInfo : ClientValueObject
     public virtual bool AllowsAnonymousAccess { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ApplicationId { get; protected set; }
+    public virtual string? ApplicationId { get; protected set; }
 
     [JsonProperty()]
     public virtual bool BlocksDownload { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Created { get; protected set; }
+    public virtual string? Created { get; protected set; }
 
     [JsonProperty()]
-    public virtual SharingPrincipal CreatedBy { get; protected set; }
+    public virtual SharingPrincipal? CreatedBy { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; protected set; }
 
     [JsonProperty()]
     public virtual bool Embeddable { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Expiration { get; protected set; }
+    public virtual string? Expiration { get; protected set; }
 
     [JsonProperty()]
     public virtual bool HasExternalGuestInvitees { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Invitations { get; protected set; }
+    public virtual string? Invitations { get; protected set; }
 
     [JsonProperty()]
     public virtual bool IsActive { get; protected set; }
@@ -78,25 +78,25 @@ public class SharingLinkInfo : ClientValueObject
     public virtual bool IsUnhealthy { get; protected set; }
 
     [JsonProperty()]
-    public virtual string LastModified { get; protected set; }
+    public virtual string? LastModified { get; protected set; }
 
     [JsonProperty()]
-    public virtual SharingPrincipal LastModifiedBy { get; protected set; }
+    public virtual SharingPrincipal? LastModifiedBy { get; protected set; }
 
     [JsonProperty()]
     public virtual bool LimitUseToApplication { get; protected set; }
 
     [JsonProperty()]
-    public virtual SharingLinkKind LinkKind { get; protected set; }
+    public virtual SharingLinkKind? LinkKind { get; protected set; }
 
     [JsonProperty()]
-    public virtual string PasswordLastModified { get; protected set; }
+    public virtual string? PasswordLastModified { get; protected set; }
 
     [JsonProperty()]
-    public virtual SharingPrincipal PasswordLastModifiedBy { get; protected set; }
+    public virtual SharingPrincipal? PasswordLastModifiedBy { get; protected set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<SharingPrincipal> RedeemedUsers { get; protected set; }
+    public virtual IReadOnlyCollection<SharingPrincipal>? RedeemedUsers { get; protected set; }
 
     [JsonProperty()]
     public virtual bool RequiresPassword { get; protected set; }
@@ -105,21 +105,21 @@ public class SharingLinkInfo : ClientValueObject
     public virtual bool RestrictedShareMembership { get; protected set; }
 
     [JsonProperty()]
-    public virtual SharingScope Scope { get; protected set; }
+    public virtual SharingScope? Scope { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid ShareId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ShareTokenString { get; protected set; }
+    public virtual string? ShareTokenString { get; protected set; }
 
     [JsonProperty()]
-    public virtual SharingLinkStatus SharingLinkStatus { get; protected set; }
+    public virtual SharingLinkStatus? SharingLinkStatus { get; protected set; }
 
     [JsonProperty()]
     public virtual bool TrackLinkUsers { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Url { get; protected set; }
+    public virtual string? Url { get; protected set; }
 
 }

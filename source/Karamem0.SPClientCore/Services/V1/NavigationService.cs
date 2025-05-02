@@ -19,46 +19,40 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface INavigationService
 {
 
-    Navigation GetObject();
+    Navigation? GetObject();
 
-    void SetObject(IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObject(IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class NavigationService(ClientContext clientContext) : ClientService(clientContext), INavigationService
 {
 
-    public Navigation GetObject()
+    public Navigation? GetObject()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
+        var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "Navigation"),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(Navigation))
-            }
+            ObjectPathProperty.Create(objectPath2.Id, "Navigation"),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Navigation)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Navigation>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public void SetObject(IReadOnlyDictionary<string, object> modificationInfo)
+    public void SetObject(IReadOnlyDictionary<string, object?> modificationInfo)
     {
-        _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
+        var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "Navigation"),
-            requestPayload
-                .CreateSetPropertyDelegates(typeof(Navigation), modificationInfo)
-                .ToArray()
+            ObjectPathProperty.Create(objectPath2.Id, "Navigation"),
+            requestPayload.CreateSetPropertyDelegates(typeof(Navigation), modificationInfo)
         );
-        var objectPath4 = requestPayload.Add(objectPath2, objectPathId => new ClientActionMethod(objectPathId, "Update"));
+        var objectPath4 = requestPayload.Add(objectPath2, objectPathId => ClientActionMethod.Create(objectPathId, "Update"));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

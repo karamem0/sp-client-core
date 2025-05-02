@@ -21,6 +21,6 @@ public class ChangeToken : ClientValueObject
 {
 
     [JsonProperty()]
-    public virtual string StringValue { get; protected set; }
+    public virtual string? StringValue { get; protected set; }
 
 }

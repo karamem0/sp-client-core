@@ -6,6 +6,7 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -36,10 +37,10 @@ public class JsonEnumerableConverter : JsonConverter
         }
     }
 
-    public override object ReadJson(
+    public override object? ReadJson(
         JsonReader reader,
         Type objectType,
-        object existingValue,
+        object? existingValue,
         JsonSerializer serializer
     )
     {
@@ -51,11 +52,10 @@ public class JsonEnumerableConverter : JsonConverter
             if (jsonArray is not null)
             {
                 var result1 = jsonArray
-                    .Select(
-                        jsonToken =>
+                    .Select(jsonToken =>
                         {
-                            var valueName = jsonToken["_ObjectType_"]
-                                .ToString();
+                            var valueName = jsonToken.Value<string>("_ObjectType_");
+                            _ = valueName ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
                             var valueType = ClientObject.GetType(valueName);
                             return jsonToken.ToObject(valueType, serializer);
                         }
@@ -81,7 +81,7 @@ public class JsonEnumerableConverter : JsonConverter
 
     public override void WriteJson(
         JsonWriter writer,
-        object value,
+        object? value,
         JsonSerializer serializer
     )
     {

@@ -21,16 +21,16 @@ public class TermGroup : TaxonomyItem
 {
 
     [JsonProperty("ContributorPrincipalNames")]
-    public virtual IReadOnlyList<string> Contributors { get; protected set; }
+    public virtual IReadOnlyList<string>? Contributors { get; protected set; }
 
     [JsonProperty("CreatedDate")]
     public override DateTime Created { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; protected set; }
 
     [JsonProperty("GroupManagerPrincipalNames")]
-    public virtual IReadOnlyList<string> GroupManagers { get; protected set; }
+    public virtual IReadOnlyList<string>? GroupManagers { get; protected set; }
 
     [JsonProperty()]
     public override Guid Id { get; protected set; }
@@ -45,9 +45,9 @@ public class TermGroup : TaxonomyItem
     public override DateTime LastModified { get; protected set; }
 
     [JsonProperty()]
-    public override string Name { get; protected set; }
+    public override string? Name { get; protected set; }
 
     [JsonProperty()]
-    public override TermStore TermStore { get; protected set; }
+    public override TermStore? TermStore { get; protected set; }
 
 }

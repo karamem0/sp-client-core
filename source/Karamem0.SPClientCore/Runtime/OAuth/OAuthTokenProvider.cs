@@ -16,12 +16,8 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth;
 public abstract class OAuthTokenProvider
 {
 
-    protected OAuthTokenProvider()
-    {
-    }
+    public abstract string? CurrentAceessToken { get; }
 
-    public abstract string CurrentAceessToken { get; }
-
-    public abstract string GetAccessToken();
+    public abstract string? GetAccessToken();
 
 }

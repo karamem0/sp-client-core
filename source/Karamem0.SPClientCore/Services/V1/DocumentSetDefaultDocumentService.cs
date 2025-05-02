@@ -19,7 +19,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IDocumentSetDefaultDocumentService
 {
 
-    DefaultDocument AddObject(
+    DefaultDocument? AddObject(
         ContentType contentTypeObject,
         ContentType documentContentTypeObject,
         string fileName,
@@ -27,7 +27,7 @@ public interface IDocumentSetDefaultDocumentService
         bool pushChanges
     );
 
-    IEnumerable<DefaultDocument> GetObjectEnumerable(ContentType documentContentTypeObject);
+    IEnumerable<DefaultDocument>? GetObjectEnumerable(ContentType documentContentTypeObject);
 
     void RemoveObject(
         ContentType contentTypeObject,
@@ -40,7 +40,7 @@ public interface IDocumentSetDefaultDocumentService
 public class DocumentSetDefaultDocumentService(ClientContext clientContext) : ClientService(clientContext), IDocumentSetDefaultDocumentService
 {
 
-    public DefaultDocument AddObject(
+    public DefaultDocument? AddObject(
         ContentType contentTypeObject,
         ContentType documentContentTypeObject,
         string fileName,
@@ -48,37 +48,30 @@ public class DocumentSetDefaultDocumentService(ClientContext clientContext) : Cl
         bool pushChanges
     )
     {
-        _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
-        _ = documentContentTypeObject ?? throw new ArgumentNullException(nameof(documentContentTypeObject));
-        _ = fileName ?? throw new ArgumentNullException(nameof(fileName));
-        _ = fileContent ?? throw new ArgumentNullException(nameof(fileContent));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(contentTypeObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathStaticMethod(
+            ObjectPathStaticMethod.Create(
                 typeof(DocumentSetTemplate),
                 "GetDocumentSetTemplate",
-                new ClientRequestParameterObjectPath(objectPath1)
+                ClientRequestParameterObjectPath.Create(objectPath1)
             )
         );
-        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "DefaultDocuments"));
+        var objectPath3 = requestPayload.Add(ObjectPathProperty.Create(objectPath2.Id, "DefaultDocuments"));
         var objectPath4 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath3.Id,
                 "Add",
                 requestPayload.CreateParameter(fileName),
                 requestPayload.CreateParameter(documentContentTypeObject.Id),
                 requestPayload.CreateParameter(fileContent)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(DefaultDocument))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(DefaultDocument)))
         );
         var objectPath5 = requestPayload.Add(
             objectPath2,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "Update",
                 requestPayload.CreateParameter(pushChanges)
@@ -89,26 +82,25 @@ public class DocumentSetDefaultDocumentService(ClientContext clientContext) : Cl
             .ToObject<DefaultDocument>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<DefaultDocument> GetObjectEnumerable(ContentType documentContentTypeObject)
+    public IEnumerable<DefaultDocument>? GetObjectEnumerable(ContentType documentContentTypeObject)
     {
-        _ = documentContentTypeObject ?? throw new ArgumentNullException(nameof(documentContentTypeObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(documentContentTypeObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(documentContentTypeObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathStaticMethod(
+            ObjectPathStaticMethod.Create(
                 typeof(DocumentSetTemplate),
                 "GetDocumentSetTemplate",
-                new ClientRequestParameterObjectPath(objectPath1)
+                ClientRequestParameterObjectPath.Create(objectPath1)
             )
         );
         var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "DefaultDocuments"),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = ClientQuery.Empty,
-                ChildItemQuery = new ClientQuery(true, typeof(DefaultDocument))
-            }
+            ObjectPathProperty.Create(objectPath2.Id, "DefaultDocuments"),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(
+                objectPathId,
+                ClientQuery.Empty,
+                ClientQuery.Create(true, typeof(DefaultDocument))
+            )
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
@@ -121,21 +113,19 @@ public class DocumentSetDefaultDocumentService(ClientContext clientContext) : Cl
         bool pushChanges
     )
     {
-        _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
-        _ = fileName ?? throw new ArgumentNullException(nameof(fileName));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(contentTypeObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathStaticMethod(
+            ObjectPathStaticMethod.Create(
                 typeof(DocumentSetTemplate),
                 "GetDocumentSetTemplate",
-                new ClientRequestParameterObjectPath(objectPath1)
+                ClientRequestParameterObjectPath.Create(objectPath1)
             )
         );
-        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "DefaultDocuments"));
+        var objectPath3 = requestPayload.Add(ObjectPathProperty.Create(objectPath2.Id, "DefaultDocuments"));
         var objectPath4 = requestPayload.Add(
             objectPath3,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "Remove",
                 requestPayload.CreateParameter(fileName)
@@ -143,7 +133,7 @@ public class DocumentSetDefaultDocumentService(ClientContext clientContext) : Cl
         );
         var objectPath5 = requestPayload.Add(
             objectPath2,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "Update",
                 requestPayload.CreateParameter(pushChanges)

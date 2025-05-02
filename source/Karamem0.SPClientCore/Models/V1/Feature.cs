@@ -24,6 +24,6 @@ public class Feature : ClientObject
     public virtual Guid DefinitionId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string DisplayName { get; protected set; }
+    public virtual string? DisplayName { get; protected set; }
 
 }

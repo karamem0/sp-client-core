@@ -35,10 +35,10 @@ public class JsonGuidConverter : JsonConverter
         }
     }
 
-    public override object ReadJson(
+    public override object? ReadJson(
         JsonReader reader,
         Type objectType,
-        object existingValue,
+        object? existingValue,
         JsonSerializer serializer
     )
     {
@@ -60,7 +60,7 @@ public class JsonGuidConverter : JsonConverter
 
     public override void WriteJson(
         JsonWriter writer,
-        object value,
+        object? value,
         JsonSerializer serializer
     )
     {
@@ -70,9 +70,8 @@ public class JsonGuidConverter : JsonConverter
         }
         else
         {
-            JToken
-                .FromObject(value)
-                .WriteTo(writer);
+            var jsonToken = JToken.FromObject(value);
+            jsonToken.WriteTo(writer);
         }
     }
 

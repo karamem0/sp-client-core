@@ -21,6 +21,6 @@ public class ViewColumnEnumerable : ClientObjectEnumerable<string>
 {
 
     [JsonProperty()]
-    public virtual string SchemaXml { get; protected set; }
+    public virtual string? SchemaXml { get; protected set; }
 
 }

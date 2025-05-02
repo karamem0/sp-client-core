@@ -27,8 +27,7 @@ public class Base64BinaryConverterTests
         };
         var expected = Encoding.UTF8.GetBytes("Test Value 1");
         var actual = Base64BinaryConverter.TryParse(args.Input, out var result);
-        Assert.Multiple(
-            () =>
+        Assert.Multiple(() =>
             {
                 Assert.That(actual, Is.True);
                 Assert.That(result, Is.EqualTo(expected.ToArray()));
@@ -44,11 +43,10 @@ public class Base64BinaryConverterTests
             Input = "VGVzdCBWYWx1ZSAx",
         };
         var actual = Base64BinaryConverter.TryParse(args.Input, out var result);
-        Assert.Multiple(
-            () =>
+        Assert.Multiple(() =>
             {
                 Assert.That(actual, Is.False);
-                Assert.That(result, Is.Null);
+                Assert.That(result, Is.Empty);
             }
         );
     }

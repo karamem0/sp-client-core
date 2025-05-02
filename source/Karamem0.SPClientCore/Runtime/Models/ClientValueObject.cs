@@ -6,6 +6,7 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Newtonsoft.Json;
 using System;
@@ -22,9 +23,8 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class ClientValueObject : JsonValueObject
 {
 
-    public static ClientValueObject Create<T>(IReadOnlyDictionary<string, object> parameters) where T : ClientValueObject, new()
+    public static ClientValueObject Create<T>(IReadOnlyDictionary<string, object?> parameters) where T : ClientValueObject, new()
     {
-        _ = parameters ?? throw new ArgumentNullException(nameof(parameters));
         var value = new T();
         foreach (var propertyInfo in value
                      .GetType()
@@ -68,7 +68,8 @@ public class ClientValueObject : JsonValueObject
         .Where(type => type.IsDefined(typeof(ClientObjectAttribute)))
         .ToDictionary(
             type => type.GetCustomAttribute<ClientObjectAttribute>()
-                .Name,
+                        .Name ??
+                    throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull),
             type => type
         );
 
@@ -81,6 +82,6 @@ public class ClientValueObject : JsonValueObject
     }
 
     [JsonProperty("_ObjectType_")]
-    public string ObjectType { get; private set; }
+    public string? ObjectType { get; private set; }
 
 }

@@ -19,16 +19,16 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class ClientRequestValue
 {
 
-    public static ClientRequestValue Create(object input)
+    public static ClientRequestValue Create(object? input)
     {
         if (TryCreate(input, out var output))
         {
             return output;
         }
-        throw new ArgumentException(string.Format(StringResources.ErrorValueIsInvalid, input.ToString()), nameof(input));
+        throw new ArgumentException(string.Format(StringResources.ErrorValueIsInvalid, input?.ToString()), nameof(input));
     }
 
-    public static bool TryCreate(object input, out ClientRequestValue output)
+    public static bool TryCreate(object? input, out ClientRequestValue output)
     {
         switch (input)
         {
@@ -194,17 +194,13 @@ public class ClientRequestValue
                 };
                 return true;
             default:
-                output = null;
+                output = new ClientRequestValue();
                 return false;
         }
     }
 
-    private ClientRequestValue()
-    {
-    }
+    public string? Type { get; protected set; }
 
-    public string Type { get; private set; }
-
-    public string Value { get; private set; }
+    public string? Value { get; protected set; }
 
 }

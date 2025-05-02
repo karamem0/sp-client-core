@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.Services;
@@ -20,15 +21,15 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ICommentService
 {
 
-    Comment AddObject(ListItem listItemObject, IReadOnlyDictionary<string, object> creationInfo);
+    Comment? AddObject(ListItem listItemObject, IReadOnlyDictionary<string, object?> creationInfo);
 
-    Comment AddObject(Comment commentObject, IReadOnlyDictionary<string, object> creationInfo);
+    Comment? AddObject(Comment commentObject, IReadOnlyDictionary<string, object?> creationInfo);
 
-    Comment GetObject(Comment commentObject);
+    Comment? GetObject(Comment commentObject);
 
-    Comment GetObject(ListItem listItemObject, int? commentId);
+    Comment? GetObject(ListItem listItemObject, int commentId);
 
-    IEnumerable<Comment> GetObjectEnumerable(ListItem listItemObject);
+    IEnumerable<Comment>? GetObjectEnumerable(ListItem listItemObject);
 
     void RemoveObject(Comment commentObject);
 
@@ -39,14 +40,15 @@ public interface ICommentService
 public class CommentService(ClientContext clientContext) : ClientService(clientContext), ICommentService
 {
 
-    public Comment AddObject(ListItem listItemObject, IReadOnlyDictionary<string, object> creationInfo)
+    public Comment? AddObject(ListItem listItemObject, IReadOnlyDictionary<string, object?> creationInfo)
     {
-        _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
+        var objectIdentity = listItemObject.ObjectIdentity;
+        _ = objectIdentity ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
         var requestUrl = this
             .ClientContext.BaseAddress.ConcatPath(
                 "_api/web/lists('{0}')/items({1})/comments",
-                listItemObject
-                    .ObjectIdentity.Split(':')
+                objectIdentity
+                    .Split(':')
                     .SkipLast(2)
                     .Last(),
                 listItemObject.Id
@@ -56,9 +58,8 @@ public class CommentService(ClientContext clientContext) : ClientService(clientC
         return this.ClientContext.PostObject<Comment>(requestUrl, requestPayload.Entity);
     }
 
-    public Comment AddObject(Comment commentObject, IReadOnlyDictionary<string, object> creationInfo)
+    public Comment? AddObject(Comment commentObject, IReadOnlyDictionary<string, object?> creationInfo)
     {
-        _ = commentObject ?? throw new ArgumentNullException(nameof(commentObject));
         var requestUrl = this
             .ClientContext.BaseAddress.ConcatPath(
                 "_api/web/lists('{0}')/items({1})/comments({2})/replies",
@@ -71,9 +72,8 @@ public class CommentService(ClientContext clientContext) : ClientService(clientC
         return this.ClientContext.PostObject<Comment>(requestUrl, requestPayload.Entity);
     }
 
-    public Comment GetObject(Comment commentObject)
+    public Comment? GetObject(Comment commentObject)
     {
-        _ = commentObject ?? throw new ArgumentNullException(nameof(commentObject));
         var requestUrl = this
             .ClientContext.BaseAddress.ConcatPath(
                 "_api/web/lists('{0}')/items({1})/comments({2})?$expand=LikedBy",
@@ -85,15 +85,15 @@ public class CommentService(ClientContext clientContext) : ClientService(clientC
         return this.ClientContext.GetObject<Comment>(requestUrl);
     }
 
-    public Comment GetObject(ListItem listItemObject, int? commentId)
+    public Comment? GetObject(ListItem listItemObject, int commentId)
     {
-        _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
-        _ = commentId ?? throw new ArgumentNullException(nameof(commentId));
+        var objectIdentity = listItemObject.ObjectIdentity;
+        _ = objectIdentity ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
         var requestUrl = this
             .ClientContext.BaseAddress.ConcatPath(
                 "_api/web/lists('{0}')/items({1})/comments({2})?$expand=LikedBy",
-                listItemObject
-                    .ObjectIdentity.Split(':')
+                objectIdentity
+                    .Split(':')
                     .SkipLast(2)
                     .Last(),
                 listItemObject.Id,
@@ -103,14 +103,15 @@ public class CommentService(ClientContext clientContext) : ClientService(clientC
         return this.ClientContext.GetObject<Comment>(requestUrl);
     }
 
-    public IEnumerable<Comment> GetObjectEnumerable(ListItem listItemObject)
+    public IEnumerable<Comment>? GetObjectEnumerable(ListItem listItemObject)
     {
-        _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
+        var objectIdentity = listItemObject.ObjectIdentity;
+        _ = objectIdentity ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
         var requestUrl = this
             .ClientContext.BaseAddress.ConcatPath(
                 "_api/web/lists('{0}')/items({1})/comments?$expand=LikedBy",
-                listItemObject
-                    .ObjectIdentity.Split(':')
+                objectIdentity
+                    .Split(':')
                     .SkipLast(2)
                     .Last(),
                 listItemObject.Id
@@ -121,7 +122,6 @@ public class CommentService(ClientContext clientContext) : ClientService(clientC
 
     public void RemoveObject(Comment commentObject)
     {
-        _ = commentObject ?? throw new ArgumentNullException(nameof(commentObject));
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/lists('{0}')/items({1})/comments({2})",
             commentObject.ListId,
@@ -133,11 +133,10 @@ public class CommentService(ClientContext clientContext) : ClientService(clientC
 
     public void SetDisabled(ListItem listItemObject, bool disabled)
     {
-        _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(listItemObject.ObjectIdentity),
-            objectPathId => new ClientActionMethod(
+            ObjectPathIdentity.Create(listItemObject.ObjectIdentity),
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "SetCommentsDisabled",
                 requestPayload.CreateParameter(disabled)

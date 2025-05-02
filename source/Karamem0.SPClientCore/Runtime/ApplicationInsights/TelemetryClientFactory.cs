@@ -25,8 +25,7 @@ public static class TelemetryClientFactory
 
     private static readonly IReadOnlyCollection<string> trueStrings = ["1", "true", "yes"];
 
-    private static readonly Lazy<TelemetryClient> instance = new(
-        () =>
+    private static readonly Lazy<TelemetryClient> instance = new(() =>
         {
             var location = Assembly.GetExecutingAssembly()
                 .Location;
@@ -36,8 +35,7 @@ public static class TelemetryClientFactory
                 .AddEnvironmentVariables()
                 .Build();
             var services = new ServiceCollection()
-                .AddSingleton(
-                    provider =>
+                .AddSingleton(provider =>
                     {
                         var options = new TelemetryConfiguration();
                         var connectionString = config["APPLICATIONINSIGHTS_CONNECTION_STRING"];
@@ -49,25 +47,23 @@ public static class TelemetryClientFactory
                             options.ConnectionString = connectionString;
                         }
                         var optout1 = config["POWERSHELL_TELEMETRY_OPTOUT"];
-                        if (trueStrings.Any(
-                                item => string.Compare(
-                                            item,
-                                            optout1,
-                                            true
-                                        ) ==
-                                        0
+                        if (trueStrings.Any(item => string.Compare(
+                                                        item,
+                                                        optout1,
+                                                        true
+                                                    ) ==
+                                                    0
                             ))
                         {
                             options.DisableTelemetry = true;
                         }
                         var optout2 = config["SPCLIENTCORE_TELEMETRY_OPTOUT"];
-                        if (trueStrings.Any(
-                                item => string.Compare(
-                                            item,
-                                            optout2,
-                                            true
-                                        ) ==
-                                        0
+                        if (trueStrings.Any(item => string.Compare(
+                                                        item,
+                                                        optout2,
+                                                        true
+                                                    ) ==
+                                                    0
                             ))
                         {
                             options.DisableTelemetry = true;
@@ -78,7 +74,7 @@ public static class TelemetryClientFactory
                 .AddSingleton<ITelemetryChannel, InMemoryChannel>()
                 .AddSingleton<TelemetryClient>()
                 .BuildServiceProvider();
-            return services.GetService<TelemetryClient>();
+            return services.GetRequiredService<TelemetryClient>();
         }
     );
 

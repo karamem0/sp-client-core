@@ -27,8 +27,7 @@ public static class ODataQuery
                 typeof(T)
                     .GetProperties(BindingFlags.Instance | BindingFlags.Public)
                     .Where(property => Attribute.IsDefined(property, typeof(JsonPropertyAttribute)))
-                    .Where(
-                        property =>
+                    .Where(property =>
                         {
                             if (property.PropertyType.IsSubclassOf(typeof(ODataObject)))
                             {
@@ -44,11 +43,9 @@ public static class ODataQuery
                     .Select(property => property.Name)
             );
         return UriQuery.Create(
-            new Dictionary<string, object>
+            new Dictionary<string, object?>
             {
-                {
-                    "$select", string.Join(",", properties)
-                }
+                ["$select"] = string.Join(",", properties)
             }
         );
     }
@@ -61,11 +58,9 @@ public static class ODataQuery
             .Where(property => property.PropertyType.IsSubclassOf(typeof(ODataObject)))
             .Select(property => property.Name);
         return UriQuery.Create(
-            new Dictionary<string, object>
+            new Dictionary<string, object?>
             {
-                {
-                    "$expand", string.Join(",", properties)
-                }
+                ["$expand"] = string.Join(",", properties)
             }
         );
     }

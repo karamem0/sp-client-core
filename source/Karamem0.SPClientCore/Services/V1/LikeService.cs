@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.Services;
@@ -20,9 +21,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ILikeService
 {
 
-    IEnumerable<LikedUser> GetObjectEnumerable(Comment commentObject);
+    IEnumerable<LikedUser>? GetObjectEnumerable(Comment commentObject);
 
-    IEnumerable<LikedUser> GetObjectEnumerable(ListItem listItemObject);
+    IEnumerable<LikedUser>? GetObjectEnumerable(ListItem listItemObject);
 
     void LikeObject(Comment commentObject);
 
@@ -37,9 +38,8 @@ public interface ILikeService
 public class LikeService(ClientContext clientContext) : ClientService(clientContext), ILikeService
 {
 
-    public IEnumerable<LikedUser> GetObjectEnumerable(Comment commentObject)
+    public IEnumerable<LikedUser>? GetObjectEnumerable(Comment commentObject)
     {
-        _ = commentObject ?? throw new ArgumentNullException(nameof(commentObject));
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/lists('{0}')/items({1})/comments({2})/likedby",
             commentObject.ListId,
@@ -49,13 +49,14 @@ public class LikeService(ClientContext clientContext) : ClientService(clientCont
         return this.ClientContext.GetObject<ODataV1ObjectEnumerable<LikedUser>>(requestUrl);
     }
 
-    public IEnumerable<LikedUser> GetObjectEnumerable(ListItem listItemObject)
+    public IEnumerable<LikedUser>? GetObjectEnumerable(ListItem listItemObject)
     {
-        _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
+        var objectIdentity = listItemObject.ObjectIdentity;
+        _ = objectIdentity ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/lists('{0}')/items({1})/likedby",
-            listItemObject
-                .ObjectIdentity.Split(':')
+            objectIdentity
+                .Split(':')
                 .SkipLast(2)
                 .Last(),
             listItemObject.Id
@@ -65,7 +66,6 @@ public class LikeService(ClientContext clientContext) : ClientService(clientCont
 
     public void LikeObject(Comment commentObject)
     {
-        _ = commentObject ?? throw new ArgumentNullException(nameof(commentObject));
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/lists('{0}')/items({1})/comments({2})/like",
             commentObject.ListId,
@@ -77,11 +77,12 @@ public class LikeService(ClientContext clientContext) : ClientService(clientCont
 
     public void LikeObject(ListItem listItemObject)
     {
-        _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
+        var objectIdentity = listItemObject.ObjectIdentity;
+        _ = objectIdentity ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/lists('{0}')/items({1})/like",
-            listItemObject
-                .ObjectIdentity.Split(':')
+            objectIdentity
+                .Split(':')
                 .SkipLast(2)
                 .Last(),
             listItemObject.Id
@@ -91,7 +92,6 @@ public class LikeService(ClientContext clientContext) : ClientService(clientCont
 
     public void UnlikeObject(Comment commentObject)
     {
-        _ = commentObject ?? throw new ArgumentNullException(nameof(commentObject));
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/lists('{0}')/items({1})/comments({2})/unlike",
             commentObject.ListId,
@@ -103,11 +103,12 @@ public class LikeService(ClientContext clientContext) : ClientService(clientCont
 
     public void UnlikeObject(ListItem listItemObject)
     {
-        _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
+        var objectIdentity = listItemObject.ObjectIdentity;
+        _ = objectIdentity ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/lists('{0}')/items({1})/unlike",
-            listItemObject
-                .ObjectIdentity.Split(':')
+            objectIdentity
+                .Split(':')
                 .SkipLast(2)
                 .Last(),
             listItemObject.Id

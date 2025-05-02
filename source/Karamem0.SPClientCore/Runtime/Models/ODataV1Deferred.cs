@@ -15,10 +15,10 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
 [JsonObject()]
-public class ODataV1Deferred(Uri uri = null) : ValueObject
+public class ODataV1Deferred : ValueObject
 {
 
     [JsonProperty("uri")]
-    public Uri Uri { get; private set; } = uri;
+    public Uri? Uri { get; protected set; }
 
 }

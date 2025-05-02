@@ -21,9 +21,9 @@ public interface ISiteCollectionAppCatalogService
 
     void AddObject(Uri siteCollectionUrl);
 
-    SiteCollectionAppCatalog GetObject(SiteCollectionAppCatalog siteCollectionAppCatalogObject);
+    SiteCollectionAppCatalog? GetObject(SiteCollectionAppCatalog siteCollectionAppCatalogObject);
 
-    IEnumerable<SiteCollectionAppCatalog> GetObjectEnumerable();
+    IEnumerable<SiteCollectionAppCatalog>? GetObjectEnumerable();
 
     void RemoveObject(Uri siteCollectionUrl);
 
@@ -31,20 +31,20 @@ public interface ISiteCollectionAppCatalogService
 
 }
 
-public class SiteCollectionAppCatalogService(ClientContext clientContext) : ClientService<SiteCollectionAppCatalog>(clientContext), ISiteCollectionAppCatalogService
+public class SiteCollectionAppCatalogService(ClientContext clientContext)
+    : ClientService<SiteCollectionAppCatalog>(clientContext), ISiteCollectionAppCatalogService
 {
 
     public void AddObject(Uri siteCollectionUrl)
     {
-        _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
-        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "TenantAppCatalog"));
-        var objectPath4 = requestPayload.Add(new ObjectPathProperty(objectPath3.Id, "SiteCollectionAppCatalogsSites"));
+        var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
+        var objectPath3 = requestPayload.Add(ObjectPathProperty.Create(objectPath2.Id, "TenantAppCatalog"));
+        var objectPath4 = requestPayload.Add(ObjectPathProperty.Create(objectPath3.Id, "SiteCollectionAppCatalogsSites"));
         var objectPath5 = requestPayload.Add(
             objectPath4,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "Add",
                 requestPayload.CreateParameter(siteCollectionUrl)
@@ -53,20 +53,20 @@ public class SiteCollectionAppCatalogService(ClientContext clientContext) : Clie
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public IEnumerable<SiteCollectionAppCatalog> GetObjectEnumerable()
+    public IEnumerable<SiteCollectionAppCatalog>? GetObjectEnumerable()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
-        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "TenantAppCatalog"));
+        var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
+        var objectPath3 = requestPayload.Add(ObjectPathProperty.Create(objectPath2.Id, "TenantAppCatalog"));
         var objectPath4 = requestPayload.Add(
-            new ObjectPathProperty(objectPath3.Id, "SiteCollectionAppCatalogsSites"),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = ClientQuery.Empty,
-                ChildItemQuery = new ClientQuery(true, typeof(SiteCollectionAppCatalog))
-            }
+            ObjectPathProperty.Create(objectPath3.Id, "SiteCollectionAppCatalogsSites"),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(
+                objectPathId,
+                ClientQuery.Empty,
+                ClientQuery.Create(true, typeof(SiteCollectionAppCatalog))
+            )
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
@@ -77,13 +77,13 @@ public class SiteCollectionAppCatalogService(ClientContext clientContext) : Clie
     {
         _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
-        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "TenantAppCatalog"));
-        var objectPath4 = requestPayload.Add(new ObjectPathProperty(objectPath3.Id, "SiteCollectionAppCatalogsSites"));
+        var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
+        var objectPath3 = requestPayload.Add(ObjectPathProperty.Create(objectPath2.Id, "TenantAppCatalog"));
+        var objectPath4 = requestPayload.Add(ObjectPathProperty.Create(objectPath3.Id, "SiteCollectionAppCatalogsSites"));
         var objectPath5 = requestPayload.Add(
             objectPath4,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "Remove",
                 requestPayload.CreateParameter(siteCollectionUrl)
@@ -96,13 +96,13 @@ public class SiteCollectionAppCatalogService(ClientContext clientContext) : Clie
     {
         _ = siteCollectionId ?? throw new ArgumentNullException(nameof(siteCollectionId));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
-        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "TenantAppCatalog"));
-        var objectPath4 = requestPayload.Add(new ObjectPathProperty(objectPath3.Id, "SiteCollectionAppCatalogsSites"));
+        var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
+        var objectPath3 = requestPayload.Add(ObjectPathProperty.Create(objectPath2.Id, "TenantAppCatalog"));
+        var objectPath4 = requestPayload.Add(ObjectPathProperty.Create(objectPath3.Id, "SiteCollectionAppCatalogsSites"));
         var objectPath5 = requestPayload.Add(
             objectPath4,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "RemoveById",
                 requestPayload.CreateParameter(siteCollectionId)

@@ -36,9 +36,6 @@ public static class PSCmdletExtensions
         IReadOnlyDictionary<string, object> parameters
     )
     {
-        _ = runspace ?? throw new ArgumentNullException(nameof(runspace));
-        _ = name ?? throw new ArgumentNullException(nameof(name));
-        _ = parameters ?? throw new ArgumentNullException(nameof(parameters));
         var command = new Command(name);
         runspace.SessionStateProxy.PSVariable.Set("ConfirmPreference", "None");
         foreach (var parameter in parameters)

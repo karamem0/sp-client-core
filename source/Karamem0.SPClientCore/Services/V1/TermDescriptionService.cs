@@ -19,12 +19,12 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITermDescriptionService
 {
 
-    string GetObject(Term termObject, uint? lcid);
+    string? GetObject(Term termObject, uint lcid);
 
     void SetObject(
         Term termObject,
         string description,
-        uint? lcid
+        uint lcid
     );
 
 }
@@ -32,15 +32,13 @@ public interface ITermDescriptionService
 public class TermDescriptionService(ClientContext clientContext) : ClientService(clientContext), ITermDescriptionService
 {
 
-    public string GetObject(Term termObject, uint? lcid)
+    public string? GetObject(Term termObject, uint lcid)
     {
-        _ = termObject ?? throw new ArgumentNullException(nameof(termObject));
-        _ = lcid ?? throw new ArgumentNullException(nameof(lcid));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(termObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             objectPath1,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "GetDescription",
                 requestPayload.CreateParameter(lcid)
@@ -54,17 +52,14 @@ public class TermDescriptionService(ClientContext clientContext) : ClientService
     public void SetObject(
         Term termObject,
         string description,
-        uint? lcid
+        uint lcid
     )
     {
-        _ = termObject ?? throw new ArgumentNullException(nameof(termObject));
-        _ = description ?? throw new ArgumentNullException(nameof(description));
-        _ = lcid ?? throw new ArgumentNullException(nameof(lcid));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(termObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(termObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             objectPath1,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "SetDescription",
                 requestPayload.CreateParameter(description),

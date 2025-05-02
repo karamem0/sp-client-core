@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.Services;
 using System;
@@ -19,33 +20,32 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IAlertService
 {
 
-    Guid AddObject(IReadOnlyDictionary<string, object> creationInfo);
+    Guid AddObject(IReadOnlyDictionary<string, object?> creationInfo);
 
-    Alert GetObject(Alert alertObject);
+    Alert? GetObject(Alert alertObject);
 
-    Alert GetObject(Guid? alertId);
+    Alert? GetObject(Guid alertId);
 
-    IEnumerable<Alert> GetObjectEnumerable();
+    IEnumerable<Alert>? GetObjectEnumerable();
 
     void RemoveObject(Alert alertObject);
 
-    void SetObject(Alert alertObject, IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObject(Alert alertObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class AlertService(ClientContext clientContext) : ClientService<Alert>(clientContext), IAlertService
 {
 
-    public Guid AddObject(IReadOnlyDictionary<string, object> creationInfo)
+    public Guid AddObject(IReadOnlyDictionary<string, object?> creationInfo)
     {
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
-        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "Alerts"));
+        var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
+        var objectPath3 = requestPayload.Add(ObjectPathProperty.Create(objectPath2.Id, "Alerts"));
         var objectPath4 = requestPayload.Add(
             objectPath3,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "Add",
                 requestPayload.CreateParameter(ClientValueObject.Create<AlertCreationInfo>(creationInfo))
@@ -56,75 +56,69 @@ public class AlertService(ClientContext clientContext) : ClientService<Alert>(cl
             .ToObject<Guid>(requestPayload.GetActionId<ClientActionMethod>());
     }
 
-    public override Alert GetObject(Alert clientObject)
+    public override Alert? GetObject(Alert alertObject)
     {
-        _ = clientObject ?? throw new ArgumentNullException(nameof(clientObject));
         var conditions = new List<string>();
-        if (clientObject.AlertFrequency != AlertFrequency.Immediate)
+        if (alertObject.AlertFrequency != AlertFrequency.Immediate)
         {
             conditions.Add("NotImmediate");
         }
-        if (clientObject.AlertType == AlertType.ListItem)
+        if (alertObject.AlertType == AlertType.ListItem)
         {
             conditions.Add("ListItem");
         }
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(clientObject.ObjectIdentity),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(
+            ObjectPathIdentity.Create(alertObject.ObjectIdentity),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(
+                objectPathId,
+                ClientQuery.Create(
                     true,
                     typeof(Alert),
                     [.. conditions]
                 )
-            }
+            )
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Alert>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public Alert GetObject(Guid? alertId)
+    public Alert? GetObject(Guid alertId)
     {
-        _ = alertId ?? throw new ArgumentNullException(nameof(alertId));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
-        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "Alerts"));
+        var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
+        var objectPath3 = requestPayload.Add(ObjectPathProperty.Create(objectPath2.Id, "Alerts"));
         var objectPath4 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath3.Id,
                 "GetById",
                 requestPayload.CreateParameter(alertId)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(Alert))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Alert)))
         );
-        return this.GetObject(
-            this
-                .ClientContext.ProcessQuery(requestPayload)
-                .ToObject<Alert>(requestPayload.GetActionId<ClientActionQuery>())
-        );
+        var clientObject = this
+            .ClientContext.ProcessQuery(requestPayload)
+            .ToObject<Alert>(requestPayload.GetActionId<ClientActionQuery>());
+        return clientObject is null ? null : this.GetObject(clientObject);
     }
 
-    public IEnumerable<Alert> GetObjectEnumerable()
+    public IEnumerable<Alert>? GetObjectEnumerable()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
+        var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "Alerts"),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = ClientQuery.Empty,
-                ChildItemQuery = new ClientQuery(true, typeof(Alert))
-            }
+            ObjectPathProperty.Create(objectPath2.Id, "Alerts"),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(
+                objectPathId,
+                ClientQuery.Empty,
+                ClientQuery.Create(true, typeof(Alert))
+            )
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
@@ -135,12 +129,12 @@ public class AlertService(ClientContext clientContext) : ClientService<Alert>(cl
     {
         _ = alertObject ?? throw new ArgumentNullException(nameof(alertObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
-        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "Alerts"));
+        var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
+        var objectPath3 = requestPayload.Add(ObjectPathProperty.Create(objectPath2.Id, "Alerts"));
         var objectPath4 = requestPayload.Add(
             objectPath3,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "DeleteAlert",
                 requestPayload.CreateParameter(alertObject.Id)
@@ -149,20 +143,17 @@ public class AlertService(ClientContext clientContext) : ClientService<Alert>(cl
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public override void SetObject(Alert alertObject, IReadOnlyDictionary<string, object> modificationInfo)
+    public override void SetObject(Alert alertObject, IReadOnlyDictionary<string, object?> modificationInfo)
     {
-        _ = alertObject ?? throw new ArgumentNullException(nameof(alertObject));
-        _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
         var requestPayload = new ClientRequestPayload();
         var objectName = alertObject.ObjectType;
+        _ = objectName ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
         var objectType = ClientObject.GetType(objectName);
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(alertObject.ObjectIdentity),
-            requestPayload
-                .CreateSetPropertyDelegates(alertObject, modificationInfo)
-                .ToArray()
+            ObjectPathIdentity.Create(alertObject.ObjectIdentity),
+            requestPayload.CreateSetPropertyDelegates(alertObject, modificationInfo)
         );
-        var objectPath2 = requestPayload.Add(objectPath1, objectPathId => new ClientActionMethod(objectPathId, "UpdateAlert"));
+        var objectPath2 = requestPayload.Add(objectPath1, objectPathId => ClientActionMethod.Create(objectPathId, "UpdateAlert"));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

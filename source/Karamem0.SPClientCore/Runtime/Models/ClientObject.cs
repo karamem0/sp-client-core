@@ -6,6 +6,7 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Newtonsoft.Json;
 using System;
@@ -25,15 +26,14 @@ public class ClientObject : JsonValueObject
         .GetTypes()
         .Where(type => type.IsSubclassOf(typeof(ClientObject)))
         .Where(type => type.IsDefined(typeof(ClientObjectAttribute)))
-        .Select(
-            type => new
+        .Select(type => new
             {
                 Type = type,
                 Attribute = type.GetCustomAttribute<ClientObjectAttribute>()
             }
         )
         .Where(value => value.Attribute.Name is not null)
-        .ToDictionary(value => value.Attribute.Name, value => value.Type);
+        .ToDictionary(value => value.Attribute.Name ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull), value => value.Type);
 
     public static Type GetType(string name)
     {
@@ -64,19 +64,19 @@ public class ClientObject : JsonValueObject
     }
 
     [JsonIgnore()]
-    public override object this[string key] => this
+    public override object? this[string key] => this
         .ExtensionProperties.Where(item => item.Key == key)
         .Select(ClientResultValue.Create)
         .Select(item => item.Value)
         .SingleOrDefault();
 
     [JsonProperty("_ObjectIdentity_")]
-    public string ObjectIdentity { get; private set; }
+    public string? ObjectIdentity { get; private set; }
 
     [JsonProperty("_ObjectType_")]
-    public string ObjectType { get; private set; }
+    public string? ObjectType { get; private set; }
 
     [JsonProperty("_ObjectVersion_")]
-    public string ObjectVersion { get; private set; }
+    public string? ObjectVersion { get; private set; }
 
 }

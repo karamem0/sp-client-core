@@ -19,13 +19,13 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IGroupMemberService
 {
 
-    User AddObject(Group groupObject, User memberObject);
+    User? AddObject(Group groupObject, User memberObject);
 
-    User GetObject(Group groupObject, int? userId);
+    User? GetObject(Group groupObject, int userId);
 
-    User GetObject(Group groupObject, string userName);
+    User? GetObject(Group groupObject, string userName);
 
-    IEnumerable<User> GetObjectEnumerable(Group groupObject);
+    IEnumerable<User>? GetObjectEnumerable(Group groupObject);
 
     void RemoveObject(Group groupObject, User memberObject);
 
@@ -34,74 +34,59 @@ public interface IGroupMemberService
 public class GroupMemberService(ClientContext clientContext) : ClientService(clientContext), IGroupMemberService
 {
 
-    public User AddObject(Group groupObject, User memberObject)
+    public User? AddObject(Group groupObject, User memberObject)
     {
-        _ = groupObject ?? throw new ArgumentNullException(nameof(groupObject));
-        _ = memberObject ?? throw new ArgumentNullException(nameof(memberObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(groupObject.ObjectIdentity));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Users"));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(groupObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Users"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath2.Id,
                 "AddUser",
                 requestPayload.CreateParameter(memberObject)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(User))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(User)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public User GetObject(Group groupObject, int? userId)
+    public User? GetObject(Group groupObject, int userId)
     {
-        _ = groupObject ?? throw new ArgumentNullException(nameof(groupObject));
-        _ = userId ?? throw new ArgumentNullException(nameof(userId));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(groupObject.ObjectIdentity));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Users"));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(groupObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Users"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath2.Id,
                 "GetById",
                 requestPayload.CreateParameter(userId)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(User))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(User)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public User GetObject(Group groupObject, string userName)
+    public User? GetObject(Group groupObject, string userName)
     {
-        _ = groupObject ?? throw new ArgumentNullException(nameof(groupObject));
-        _ = userName ?? throw new ArgumentNullException(nameof(userName));
         if (System.Text.RegularExpressions.Regex.IsMatch(userName, "^[ci]:0"))
         {
             var requestPayload = new ClientRequestPayload();
-            var objectPath1 = requestPayload.Add(new ObjectPathIdentity(groupObject.ObjectIdentity));
-            var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Users"));
+            var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(groupObject.ObjectIdentity));
+            var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Users"));
             var objectPath3 = requestPayload.Add(
-                new ObjectPathMethod(
+                ObjectPathMethod.Create(
                     objectPath2.Id,
                     "GetByLoginName",
                     requestPayload.CreateParameter(userName)
                 ),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-                objectPathId => new ClientActionQuery(objectPathId)
-                {
-                    Query = new ClientQuery(true, typeof(User))
-                }
+                ClientActionInstantiateObjectPath.Create,
+                objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(User)))
             );
             return this
                 .ClientContext.ProcessQuery(requestPayload)
@@ -110,19 +95,16 @@ public class GroupMemberService(ClientContext clientContext) : ClientService(cli
         else
         {
             var requestPayload = new ClientRequestPayload();
-            var objectPath1 = requestPayload.Add(new ObjectPathIdentity(groupObject.ObjectIdentity));
-            var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Users"));
+            var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(groupObject.ObjectIdentity));
+            var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Users"));
             var objectPath3 = requestPayload.Add(
-                new ObjectPathMethod(
+                ObjectPathMethod.Create(
                     objectPath2.Id,
                     "GetByEmail",
                     requestPayload.CreateParameter(userName)
                 ),
-                objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-                objectPathId => new ClientActionQuery(objectPathId)
-                {
-                    Query = new ClientQuery(true, typeof(User))
-                }
+                ClientActionInstantiateObjectPath.Create,
+                objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(User)))
             );
             return this
                 .ClientContext.ProcessQuery(requestPayload)
@@ -130,19 +112,18 @@ public class GroupMemberService(ClientContext clientContext) : ClientService(cli
         }
     }
 
-    public IEnumerable<User> GetObjectEnumerable(Group groupObject)
+    public IEnumerable<User>? GetObjectEnumerable(Group groupObject)
     {
-        _ = groupObject ?? throw new ArgumentNullException(nameof(groupObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(groupObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(groupObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Users"),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = ClientQuery.Empty,
-                ChildItemQuery = new ClientQuery(true, typeof(User))
-            }
+            ObjectPathProperty.Create(objectPath1.Id, "Users"),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(
+                objectPathId,
+                ClientQuery.Empty,
+                ClientQuery.Create(true, typeof(User))
+            )
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
@@ -151,14 +132,12 @@ public class GroupMemberService(ClientContext clientContext) : ClientService(cli
 
     public void RemoveObject(Group groupObject, User memberObject)
     {
-        _ = groupObject ?? throw new ArgumentNullException(nameof(groupObject));
-        _ = memberObject ?? throw new ArgumentNullException(nameof(memberObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(groupObject.ObjectIdentity));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Users"));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(groupObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Users"));
         var objectPath3 = requestPayload.Add(
             objectPath2,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "Remove",
                 requestPayload.CreateParameter(memberObject)

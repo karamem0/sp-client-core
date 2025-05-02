@@ -21,7 +21,7 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class ChangeQuery : ClientValueObject
 {
 
-    public ChangeQuery(IReadOnlyDictionary<string, object> parameters)
+    public ChangeQuery(IReadOnlyDictionary<string, object?> parameters)
     {
         var flags = BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public;
         foreach (var parameter in parameters)
@@ -29,19 +29,19 @@ public class ChangeQuery : ClientValueObject
             switch (parameter.Key)
             {
                 case "BeginToken":
-                    this.BeginChangeToken = (ChangeToken)parameter.Value;
+                    this.BeginChangeToken = (ChangeToken?)parameter.Value;
                     break;
                 case "EndToken":
-                    this.EndChangeToken = (ChangeToken)parameter.Value;
+                    this.EndChangeToken = (ChangeToken?)parameter.Value;
                     break;
                 case "FetchLimit":
-                    this.FetchLimit = (long)parameter.Value;
+                    this.FetchLimit = (long?)parameter.Value ?? default;
                     break;
                 case "LatestFirst":
-                    this.LatestFirst = (bool)parameter.Value;
+                    this.LatestFirst = (bool?)parameter.Value ?? default;
                     break;
                 case "Objects":
-                    var objects = (ChangeObjects)parameter.Value;
+                    var objects = (ChangeObjects?)parameter.Value ?? default;
                     foreach (var e in Enum
                                  .GetValues(typeof(ChangeObjects))
                                  .Cast<Enum>()
@@ -54,7 +54,7 @@ public class ChangeQuery : ClientValueObject
                     }
                     break;
                 case "Operations":
-                    var operations = (ChangeOperations)parameter.Value;
+                    var operations = (ChangeOperations?)parameter.Value ?? default;
                     foreach (var e in Enum
                                  .GetValues(typeof(ChangeOperations))
                                  .Cast<Enum>()
@@ -67,7 +67,7 @@ public class ChangeQuery : ClientValueObject
                     }
                     break;
                 case "RecursiveAll":
-                    this.RecursiveAll = (bool)parameter.Value;
+                    this.RecursiveAll = (bool?)parameter.Value ?? default;
                     break;
                 default:
                     break;
@@ -85,7 +85,7 @@ public class ChangeQuery : ClientValueObject
     public virtual bool Alert { get; protected set; }
 
     [JsonProperty("ChangeTokenStart")]
-    public virtual ChangeToken BeginChangeToken { get; protected set; }
+    public virtual ChangeToken? BeginChangeToken { get; protected set; }
 
     [JsonProperty("Field")]
     public virtual bool Column { get; protected set; }
@@ -97,7 +97,7 @@ public class ChangeQuery : ClientValueObject
     public virtual bool DeleteObject { get; protected set; }
 
     [JsonProperty("ChangeTokenEnd")]
-    public virtual ChangeToken EndChangeToken { get; protected set; }
+    public virtual ChangeToken? EndChangeToken { get; protected set; }
 
     [JsonProperty()]
     public virtual long FetchLimit { get; protected set; }

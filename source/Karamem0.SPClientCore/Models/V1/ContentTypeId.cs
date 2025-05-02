@@ -17,10 +17,10 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.ContentTypeId", Id = "{da0f1e90-296f-480e-bc27-cefe51eff241}")]
 [JsonObject()]
-public class ContentTypeId(string stringValue = null) : ClientValueObject
+public class ContentTypeId(string? stringValue = null) : ClientValueObject
 {
 
     [JsonProperty()]
-    public virtual string StringValue { get; protected set; } = stringValue;
+    public virtual string? StringValue { get; protected set; } = stringValue;
 
 }

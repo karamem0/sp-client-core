@@ -21,6 +21,6 @@ public class ListItemEnumerable : ClientObjectEnumerable<ListItem>
 {
 
     [JsonProperty()]
-    public virtual ListItemCollectionPosition ListItemCollectionPosition { get; protected set; }
+    public virtual ListItemCollectionPosition? ListItemCollectionPosition { get; protected set; }
 
 }

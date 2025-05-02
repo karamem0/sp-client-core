@@ -16,11 +16,4 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth;
 
 [JsonObject()]
-public abstract class OAuthMessage : ValueObject
-{
-
-    protected OAuthMessage()
-    {
-    }
-
-}
+public abstract class OAuthMessage : ValueObject;

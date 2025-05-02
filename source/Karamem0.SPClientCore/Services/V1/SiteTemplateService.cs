@@ -19,75 +19,69 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ISiteTemplateService
 {
 
-    SiteTemplate GetObject(
+    SiteTemplate? GetObject(
         string name,
-        uint? lcid,
+        uint lcid,
         bool includeCrossLanguage
     );
 
-    IEnumerable<SiteTemplate> GetObjectEnumerable(uint? lcid, bool includeCrossLanguage);
+    IEnumerable<SiteTemplate>? GetObjectEnumerable(uint lcid, bool includeCrossLanguage);
 
 }
 
 public class SiteTemplateService(ClientContext clientContext) : ClientService(clientContext), ISiteTemplateService
 {
 
-    public SiteTemplate GetObject(
+    public SiteTemplate? GetObject(
         string name,
-        uint? lcid,
+        uint lcid,
         bool includeCrossLanguage
     )
     {
-        _ = name ?? throw new ArgumentNullException(nameof(name));
-        _ = lcid ?? throw new ArgumentNullException(nameof(lcid));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
+        var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath2.Id,
                 "GetAvailableWebTemplates",
                 requestPayload.CreateParameter(lcid),
                 requestPayload.CreateParameter(includeCrossLanguage)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId)
+            ClientActionInstantiateObjectPath.Create
         );
         var objectPath4 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath3.Id,
                 "GetByName",
                 requestPayload.CreateParameter(name)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(SiteTemplate))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(SiteTemplate)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<SiteTemplate>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<SiteTemplate> GetObjectEnumerable(uint? lcid, bool includeCrossLanguage)
+    public IEnumerable<SiteTemplate>? GetObjectEnumerable(uint lcid, bool includeCrossLanguage)
     {
-        _ = lcid ?? throw new ArgumentNullException(nameof(lcid));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
+        var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath2.Id,
                 "GetAvailableWebTemplates",
                 requestPayload.CreateParameter(lcid),
                 requestPayload.CreateParameter(includeCrossLanguage)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = ClientQuery.Empty,
-                ChildItemQuery = new ClientQuery(true, typeof(SiteTemplate))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(
+                objectPathId,
+                ClientQuery.Empty,
+                ClientQuery.Create(true, typeof(SiteTemplate))
+            )
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)

@@ -14,23 +14,13 @@ using System.Threading;
 
 namespace Karamem0.SharePoint.PowerShell.Runtime.Services;
 
-public class ClientHttpSynchronizationObject
+public class ClientHttpSynchronizationObject(SendOrPostCallback callback, object state)
 {
 
-    public static readonly ClientHttpSynchronizationObject Completed = new(null, null);
+    public static readonly ClientHttpSynchronizationObject Completed = new((state) => { }, new object());
 
-    private ClientHttpSynchronizationObject()
-    {
-    }
+    public SendOrPostCallback Callback { get; private set; } = callback;
 
-    public ClientHttpSynchronizationObject(SendOrPostCallback callback, object state)
-    {
-        this.Callback = callback;
-        this.State = state;
-    }
-
-    public SendOrPostCallback Callback { get; private set; }
-
-    public object State { get; private set; }
+    public object State { get; private set; } = state;
 
 }

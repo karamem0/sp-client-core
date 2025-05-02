@@ -24,6 +24,6 @@ public class FileDeleteParameters : ClientValueObject
     public virtual bool BypassSharedLock { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ETagMatch { get; protected set; }
+    public virtual string? ETagMatch { get; protected set; }
 
 }

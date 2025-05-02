@@ -18,17 +18,17 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1.Utilities;
 public static class SchemaXmlColumn
 {
 
-    public static string Create(ColumnType type, IReadOnlyDictionary<string, object> parameters)
+    public static string Create(ColumnType type, IReadOnlyDictionary<string, object?> parameters)
     {
         return Create(new XElement("Field", new XAttribute("Type", new SchemaXmlValue(type))), parameters);
     }
 
-    public static string Create(string text, IReadOnlyDictionary<string, object> parameters)
+    public static string Create(string text, IReadOnlyDictionary<string, object?> parameters)
     {
         return Create(XElement.Parse(text), parameters);
     }
 
-    public static string Create(XElement element, IReadOnlyDictionary<string, object> parameters)
+    public static string Create(XElement element, IReadOnlyDictionary<string, object?> parameters)
     {
         foreach (var parameter in parameters)
         {
@@ -79,8 +79,7 @@ public static class SchemaXmlColumn
                         element.Add(
                             new XElement(
                                 "FieldRefs",
-                                columns.Select(
-                                    column => new XElement(
+                                columns.Select(column => new XElement(
                                         "FieldRef",
                                         new XAttribute("ID", new SchemaXmlValue(column.Id)),
                                         new XAttribute("Name", new SchemaXmlValue(column.Name))

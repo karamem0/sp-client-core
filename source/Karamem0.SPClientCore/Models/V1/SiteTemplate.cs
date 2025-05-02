@@ -21,16 +21,16 @@ public class SiteTemplate : ClientObject
 {
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; protected set; }
 
     [JsonProperty()]
-    public virtual string DisplayCategory { get; protected set; }
+    public virtual string? DisplayCategory { get; protected set; }
 
     [JsonProperty()]
     public virtual int Id { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ImageUrl { get; protected set; }
+    public virtual string? ImageUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual bool IsHidden { get; protected set; }
@@ -45,9 +45,9 @@ public class SiteTemplate : ClientObject
     public virtual uint Lcid { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; protected set; }
 
 }

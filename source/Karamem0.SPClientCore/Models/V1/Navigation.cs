@@ -21,10 +21,10 @@ public class Navigation : ClientObject
 {
 
     [JsonProperty()]
-    public virtual NavigationNodeEnumerable QuickLaunch { get; protected set; }
+    public virtual NavigationNodeEnumerable? QuickLaunch { get; protected set; }
 
     [JsonProperty()]
-    public virtual NavigationNodeEnumerable TopNavigationBar { get; protected set; }
+    public virtual NavigationNodeEnumerable? TopNavigationBar { get; protected set; }
 
     [JsonProperty()]
     public virtual bool UseShared { get; protected set; }

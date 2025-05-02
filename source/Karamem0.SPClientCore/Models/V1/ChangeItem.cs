@@ -21,28 +21,28 @@ public class ChangeItem : Change
 {
 
     [JsonProperty()]
-    public override ChangeToken ChangeToken { get; protected set; }
+    public override ChangeToken? ChangeToken { get; protected set; }
 
     [JsonProperty()]
-    public override ChangeType ChangeType { get; protected set; }
+    public override ChangeType? ChangeType { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Editor { get; protected set; }
+    public virtual string? Editor { get; protected set; }
 
     [JsonProperty()]
-    public virtual string EditorEmailHint { get; protected set; }
+    public virtual string? EditorEmailHint { get; protected set; }
 
     [JsonProperty()]
-    public virtual string EditorLoginName { get; protected set; }
+    public virtual string? EditorLoginName { get; protected set; }
 
     [JsonProperty()]
-    public virtual FileSystemObjectType FileSystemObjectType { get; protected set; }
+    public virtual FileSystemObjectType? FileSystemObjectType { get; protected set; }
 
     [JsonProperty()]
-    public virtual string FileType { get; protected set; }
+    public virtual string? FileType { get; protected set; }
 
     [JsonProperty()]
-    public virtual string HashTag { get; protected set; }
+    public virtual string? HashTag { get; protected set; }
 
     [JsonProperty()]
     public virtual bool Hidden { get; protected set; }
@@ -54,22 +54,22 @@ public class ChangeItem : Change
     public virtual Guid ListId { get; protected set; }
 
     [JsonProperty()]
-    public virtual ListTemplateType ListTemplate { get; protected set; }
+    public virtual ListTemplateType? ListTemplate { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ListTitle { get; protected set; }
+    public virtual string? ListTitle { get; protected set; }
 
     [JsonProperty()]
-    public override string RelativeTime { get; protected set; }
+    public override string? RelativeTime { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ServerRelativeUrl { get; protected set; }
+    public virtual string? ServerRelativeUrl { get; protected set; }
 
     [JsonProperty("SharedByUser")]
-    public virtual SharedWithUser SharedWithUser { get; protected set; }
+    public virtual SharedWithUser? SharedWithUser { get; protected set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<SharedWithUser> SharedWithUsers { get; protected set; }
+    public virtual IReadOnlyCollection<SharedWithUser>? SharedWithUsers { get; protected set; }
 
     [JsonProperty("SiteId")]
     public override Guid SiteCollectionId { get; protected set; }
@@ -81,7 +81,7 @@ public class ChangeItem : Change
     public override DateTime Time { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid UniqueId { get; protected set; }

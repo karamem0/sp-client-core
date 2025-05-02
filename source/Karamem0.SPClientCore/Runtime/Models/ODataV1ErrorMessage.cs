@@ -19,9 +19,9 @@ public class ODataV1ErrorMessage : ValueObject
 {
 
     [JsonProperty("lang")]
-    public string Language { get; private set; }
+    public string? Language { get; protected set; }
 
     [JsonProperty("value")]
-    public string Value { get; private set; }
+    public string? Value { get; protected set; }
 
 }

@@ -27,12 +27,12 @@ public class NavigationNodeCreationInfo : ClientValueObject
     public virtual bool IsExternal { get; protected set; }
 
     [JsonProperty()]
-    public virtual NavigationNode PreviousNode { get; protected set; }
+    public virtual NavigationNode? PreviousNode { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Url { get; protected set; }
+    public virtual string? Url { get; protected set; }
 
 }

@@ -18,26 +18,22 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth;
 public class OAuthDeviceCode : OAuthMessage
 {
 
-    public OAuthDeviceCode()
-    {
-    }
-
     [JsonProperty("user_code")]
-    public string UserCode { get; private set; }
+    public string? UserCode { get; protected set; }
 
     [JsonProperty("device_code")]
-    public string DeviceCode { get; private set; }
+    public string? DeviceCode { get; protected set; }
 
     [JsonProperty("verification_url")]
-    public string VerificationUrl { get; private set; }
+    public string? VerificationUrl { get; protected set; }
 
     [JsonProperty("expires_in")]
-    public int ExpiresIn { get; private set; }
+    public int ExpiresIn { get; protected set; }
 
     [JsonProperty("interval")]
-    public int Interval { get; private set; }
+    public int Interval { get; protected set; }
 
     [JsonProperty("message")]
-    public string Message { get; private set; }
+    public string? Message { get; protected set; }
 
 }

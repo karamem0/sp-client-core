@@ -25,7 +25,7 @@ public interface IDocumentSetAllowedContentTypeService
         bool pushChanges
     );
 
-    IEnumerable<ContentTypeId> GetObjectEnumerable(ContentType contentTypeObject);
+    IEnumerable<ContentTypeId>? GetObjectEnumerable(ContentType contentTypeObject);
 
     void RemoveObject(
         ContentType contentTypeObject,
@@ -44,21 +44,19 @@ public class DocumentSetAllowedContentTypeService(ClientContext clientContext) :
         bool pushChanges
     )
     {
-        _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
-        _ = allowedContentTypeObject ?? throw new ArgumentNullException(nameof(allowedContentTypeObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(contentTypeObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathStaticMethod(
+            ObjectPathStaticMethod.Create(
                 typeof(DocumentSetTemplate),
                 "GetDocumentSetTemplate",
-                new ClientRequestParameterObjectPath(objectPath1)
+                ClientRequestParameterObjectPath.Create(objectPath1)
             )
         );
-        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "AllowedContentTypes"));
+        var objectPath3 = requestPayload.Add(ObjectPathProperty.Create(objectPath2.Id, "AllowedContentTypes"));
         var objectPath4 = requestPayload.Add(
             objectPath3,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "Add",
                 requestPayload.CreateParameter(allowedContentTypeObject.Id)
@@ -66,7 +64,7 @@ public class DocumentSetAllowedContentTypeService(ClientContext clientContext) :
         );
         var objectPath5 = requestPayload.Add(
             objectPath2,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "Update",
                 requestPayload.CreateParameter(pushChanges)
@@ -75,26 +73,25 @@ public class DocumentSetAllowedContentTypeService(ClientContext clientContext) :
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public IEnumerable<ContentTypeId> GetObjectEnumerable(ContentType contentTypeObject)
+    public IEnumerable<ContentTypeId>? GetObjectEnumerable(ContentType contentTypeObject)
     {
-        _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(contentTypeObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathStaticMethod(
+            ObjectPathStaticMethod.Create(
                 typeof(DocumentSetTemplate),
                 "GetDocumentSetTemplate",
-                new ClientRequestParameterObjectPath(objectPath1)
+                ClientRequestParameterObjectPath.Create(objectPath1)
             )
         );
         var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "AllowedContentTypes"),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = ClientQuery.Empty,
-                ChildItemQuery = new ClientQuery(true, typeof(ContentTypeId))
-            }
+            ObjectPathProperty.Create(objectPath2.Id, "AllowedContentTypes"),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(
+                objectPathId,
+                ClientQuery.Empty,
+                ClientQuery.Create(true, typeof(ContentTypeId))
+            )
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
@@ -107,21 +104,19 @@ public class DocumentSetAllowedContentTypeService(ClientContext clientContext) :
         bool pushChanges
     )
     {
-        _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
-        _ = allowedContentTypeObject ?? throw new ArgumentNullException(nameof(allowedContentTypeObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(contentTypeObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathStaticMethod(
+            ObjectPathStaticMethod.Create(
                 typeof(DocumentSetTemplate),
                 "GetDocumentSetTemplate",
-                new ClientRequestParameterObjectPath(objectPath1)
+                ClientRequestParameterObjectPath.Create(objectPath1)
             )
         );
-        var objectPath3 = requestPayload.Add(new ObjectPathProperty(objectPath2.Id, "AllowedContentTypes"));
+        var objectPath3 = requestPayload.Add(ObjectPathProperty.Create(objectPath2.Id, "AllowedContentTypes"));
         var objectPath4 = requestPayload.Add(
             objectPath3,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "Remove",
                 requestPayload.CreateParameter(allowedContentTypeObject.Id)
@@ -129,7 +124,7 @@ public class DocumentSetAllowedContentTypeService(ClientContext clientContext) :
         );
         var objectPath5 = requestPayload.Add(
             objectPath2,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "Update",
                 requestPayload.CreateParameter(pushChanges)

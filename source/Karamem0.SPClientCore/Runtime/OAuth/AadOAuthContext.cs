@@ -29,17 +29,17 @@ public class AadOAuthContext(
 ) : OAuthContext
 {
 
-    private readonly string authority = authority ?? throw new ArgumentNullException(nameof(authority));
+    private readonly string authority = authority;
 
-    private readonly string clientId = clientId ?? throw new ArgumentNullException(nameof(clientId));
+    private readonly string clientId = clientId;
 
     private readonly bool userMode = userMode;
 
     private readonly TenantIdResolver tenantIdResolver = new(new Uri(resource, UriKind.Absolute));
 
-    public OAuthMessage AcquireDeviceCode()
+    public OAuthMessage? AcquireDeviceCode()
     {
-        var requertParameters = new Dictionary<string, object>()
+        var requertParameters = new Dictionary<string, object?>()
         {
             ["client_id"] = this.clientId,
             ["scope"] = this.userMode
@@ -85,14 +85,13 @@ public class AadOAuthContext(
         }
     }
 
-    public OAuthMessage AcquireTokenByDeviceCode(string deviceCode)
+    public OAuthMessage? AcquireTokenByDeviceCode(string deviceCode)
     {
-        _ = deviceCode ?? throw new ArgumentNullException(nameof(deviceCode));
         var tenantId = this.tenantIdResolver.Resolve();
         var requestUrl = new Uri(this.authority, UriKind.Absolute)
             .ConcatPath(tenantId)
             .ConcatPath("oauth2/v2.0/token");
-        var requertParameters = new Dictionary<string, object>()
+        var requertParameters = new Dictionary<string, object?>()
         {
             ["grant_type"] = "device_code",
             ["client_id"] = this.clientId,
@@ -143,15 +142,13 @@ public class AadOAuthContext(
         }
     }
 
-    public OAuthMessage AcquireTokenByPassword(string userName, string password)
+    public OAuthMessage? AcquireTokenByPassword(string userName, string password)
     {
-        _ = userName ?? throw new ArgumentNullException(nameof(userName));
-        _ = password ?? throw new ArgumentNullException(nameof(password));
         var tenantId = this.tenantIdResolver.Resolve();
         var requestUrl = new Uri(this.authority, UriKind.Absolute)
             .ConcatPath(tenantId)
             .ConcatPath("oauth2/v2.0/token");
-        var requertParameters = new Dictionary<string, object>()
+        var requertParameters = new Dictionary<string, object?>()
         {
             ["grant_type"] = "password",
             ["client_id"] = this.clientId,
@@ -203,14 +200,13 @@ public class AadOAuthContext(
         }
     }
 
-    public OAuthMessage AcquireTokenByRefreshToken(string refreshToken)
+    public OAuthMessage? AcquireTokenByRefreshToken(string refreshToken)
     {
-        _ = refreshToken ?? throw new ArgumentNullException(nameof(refreshToken));
         var tenantId = this.tenantIdResolver.Resolve();
         var requestUrl = new Uri(this.authority, UriKind.Absolute)
             .ConcatPath(tenantId)
             .ConcatPath("oauth2/v2.0/token");
-        var requertParameters = new Dictionary<string, object>()
+        var requertParameters = new Dictionary<string, object?>()
         {
             ["grant_type"] = "refresh_token",
             ["client_id"] = this.clientId,
@@ -261,10 +257,8 @@ public class AadOAuthContext(
         }
     }
 
-    public OAuthMessage AcquireTokenByCertificate(BinaryData certData, SecureString certPassword)
+    public OAuthMessage? AcquireTokenByCertificate(BinaryData certData, SecureString certPassword)
     {
-        _ = certData ?? throw new ArgumentNullException(nameof(certData));
-        _ = certPassword ?? throw new ArgumentNullException(nameof(certPassword));
         var tenantId = this.tenantIdResolver.Resolve();
         var requestUrl = new Uri(this.authority, UriKind.Absolute)
             .ConcatPath(tenantId)
@@ -279,7 +273,7 @@ public class AadOAuthContext(
                 .ToString(),
             ["sub"] = this.clientId
         };
-        var requertParameters = new Dictionary<string, object>()
+        var requertParameters = new Dictionary<string, object?>()
         {
             ["grant_type"] = "client_credentials",
             ["client_id"] = this.clientId,
@@ -321,10 +315,8 @@ public class AadOAuthContext(
         }
     }
 
-    public OAuthMessage AcquireTokenByCertificate(BinaryData certData, BinaryData keyData)
+    public OAuthMessage? AcquireTokenByCertificate(BinaryData certData, BinaryData keyData)
     {
-        _ = certData ?? throw new ArgumentNullException(nameof(certData));
-        _ = keyData ?? throw new ArgumentNullException(nameof(keyData));
         var tenantId = this.tenantIdResolver.Resolve();
         var requestUrl = new Uri(this.authority, UriKind.Absolute)
             .ConcatPath(tenantId)
@@ -371,7 +363,7 @@ public class AadOAuthContext(
             ".",
             signature
         );
-        var requertParameters = new Dictionary<string, object>()
+        var requertParameters = new Dictionary<string, object?>()
         {
             ["grant_type"] = "client_credentials",
             ["client_id"] = this.clientId,

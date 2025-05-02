@@ -19,7 +19,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IGroupOwnerService
 {
 
-    Principal GetObject(Group groupObject);
+    Principal? GetObject(Group groupObject);
 
     void SetObject(Group groupObject, Principal principalObject);
 
@@ -28,18 +28,14 @@ public interface IGroupOwnerService
 public class GroupOwnerService(ClientContext clientContext) : ClientService(clientContext), IGroupOwnerService
 {
 
-    public Principal GetObject(Group groupObject)
+    public Principal? GetObject(Group groupObject)
     {
-        _ = groupObject ?? throw new ArgumentNullException(nameof(groupObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(groupObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(groupObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Owner"),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(false, typeof(Principal))
-            }
+            ObjectPathProperty.Create(objectPath1.Id, "Owner"),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(false, typeof(Principal)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
@@ -48,18 +44,16 @@ public class GroupOwnerService(ClientContext clientContext) : ClientService(clie
 
     public void SetObject(Group groupObject, Principal principalObject)
     {
-        _ = groupObject ?? throw new ArgumentNullException(nameof(groupObject));
-        _ = principalObject ?? throw new ArgumentNullException(nameof(principalObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(groupObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(groupObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             objectPath1,
-            objectPathId => new ClientActionSetProperty(
+            objectPathId => ClientActionSetProperty.Create(
                 objectPathId,
                 "Owner",
-                new ClientRequestParameterObjectPath(requestPayload.Add(new ObjectPathIdentity(principalObject.ObjectIdentity)))
+                ClientRequestParameterObjectPath.Create(requestPayload.Add(ObjectPathIdentity.Create(principalObject.ObjectIdentity)))
             ),
-            objectPathId => new ClientActionMethod(objectPathId, "Update")
+            objectPathId => ClientActionMethod.Create(objectPathId, "Update")
         );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }

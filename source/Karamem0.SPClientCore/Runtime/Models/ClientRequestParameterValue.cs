@@ -16,23 +16,27 @@ using System.Xml.Serialization;
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
 [XmlType("Parameter", Namespace = "http://schemas.microsoft.com/sharepoint/clientquery/2009")]
-public class ClientRequestParameterValue(ClientRequestValue value) : ClientRequestParameter
+public class ClientRequestParameterValue() : ClientRequestParameter
 {
 
-    public ClientRequestParameterValue()
-        : this(ClientRequestValue.Create(null))
+    public static ClientRequestParameterValue Create(ClientRequestValue value)
     {
+        return new ClientRequestParameterValue()
+        {
+            Type = value.Type,
+            Value = value.Value
+        };
     }
 
-    public ClientRequestParameterValue(object value)
-        : this(ClientRequestValue.Create(value))
+    public static ClientRequestParameterValue Create(object value)
     {
+        return Create(ClientRequestValue.Create(value));
     }
 
     [XmlAttribute()]
-    public virtual string Type { get; protected set; } = value.Type;
+    public virtual string? Type { get; protected set; }
 
     [XmlText()]
-    public virtual string Value { get; protected set; } = value.Value;
+    public virtual string? Value { get; protected set; }
 
 }

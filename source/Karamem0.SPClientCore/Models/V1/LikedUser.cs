@@ -16,22 +16,22 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [JsonObject()]
-public class LikedUser : ODataV1Object
+public class LikedUser : ODataV1Object<LikedUser>
 {
 
     [JsonProperty("creationDate")]
     public virtual DateTime Created { get; protected set; }
 
     [JsonProperty("email")]
-    public virtual string Email { get; protected set; }
+    public virtual string? Email { get; protected set; }
 
     [JsonProperty("id")]
     public virtual int Id { get; protected set; }
 
     [JsonProperty("loginName")]
-    public virtual string LoginName { get; protected set; }
+    public virtual string? LoginName { get; protected set; }
 
     [JsonProperty("name")]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; protected set; }
 
 }

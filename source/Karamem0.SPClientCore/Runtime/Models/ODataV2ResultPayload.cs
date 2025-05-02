@@ -19,6 +19,6 @@ public class ODataV2ResultPayload : ValueObject
 {
 
     [JsonProperty("error")]
-    public ODataV2Error Error { get; private set; }
+    public ODataV2Error? Error { get; protected set; }
 
 }

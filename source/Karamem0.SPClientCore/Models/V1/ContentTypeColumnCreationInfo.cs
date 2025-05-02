@@ -21,6 +21,6 @@ public class ContentTypeColumnCreationInfo : ClientValueObject
 {
 
     [JsonProperty("Field")]
-    public virtual Column Column { get; protected set; }
+    public virtual Column? Column { get; protected set; }
 
 }

@@ -19,103 +19,90 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantHubSiteService
 {
 
-    HubSite AddObject(string siteCollectionUrl, IReadOnlyDictionary<string, object> creationInfo);
+    HubSite? AddObject(string siteCollectionUrl, IReadOnlyDictionary<string, object?> creationInfo);
 
-    HubSite GetObject(Guid? hubSiteId);
+    HubSite? GetObject(Guid hubSiteId);
 
-    HubSite GetObject(string hubSiteUrl);
+    HubSite? GetObject(string hubSiteUrl);
 
-    IEnumerable<HubSite> GetObjectEnumerable();
+    IEnumerable<HubSite>? GetObjectEnumerable();
 
     void RemoveObject(HubSite hubSiteObject);
 
-    void SetObject(HubSite hubSiteObject, IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObject(HubSite hubSiteObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class TenantHubSiteService(ClientContext clientContext) : ClientService<HubSite>(clientContext), ITenantHubSiteService
 {
 
-    public HubSite AddObject(string siteCollectionUrl, IReadOnlyDictionary<string, object> creationInfo)
+    public HubSite? AddObject(string siteCollectionUrl, IReadOnlyDictionary<string, object?> creationInfo)
     {
-        _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath1.Id,
                 "RegisterHubSiteWithCreationInformation",
                 requestPayload.CreateParameter(siteCollectionUrl),
                 requestPayload.CreateParameter(ClientValueObject.Create<HubSiteCreationInfo>(creationInfo))
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(HubSite))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(HubSite)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<HubSite>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public HubSite GetObject(Guid? hubSiteId)
+    public HubSite? GetObject(Guid hubSiteId)
     {
-        _ = hubSiteId ?? throw new ArgumentNullException(nameof(hubSiteId));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath1.Id,
                 "GetHubSitePropertiesById",
                 requestPayload.CreateParameter(hubSiteId)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(HubSite))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(HubSite)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<HubSite>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public HubSite GetObject(string hubSiteUrl)
+    public HubSite? GetObject(string hubSiteUrl)
     {
-        _ = hubSiteUrl ?? throw new ArgumentNullException(nameof(hubSiteUrl));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath1.Id,
                 "GetHubSitePropertiesByUrl",
                 requestPayload.CreateParameter(hubSiteUrl)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(HubSite))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(HubSite)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<HubSite>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<HubSite> GetObjectEnumerable()
+    public IEnumerable<HubSite>? GetObjectEnumerable()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(objectPath1.Id, "GetHubSitesProperties"),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = ClientQuery.Empty,
-                ChildItemQuery = new ClientQuery(true, typeof(HubSite))
-            }
+            ObjectPathMethod.Create(objectPath1.Id, "GetHubSitesProperties"),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(
+                objectPathId,
+                ClientQuery.Empty,
+                ClientQuery.Create(true, typeof(HubSite))
+            )
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
@@ -124,12 +111,11 @@ public class TenantHubSiteService(ClientContext clientContext) : ClientService<H
 
     public override void RemoveObject(HubSite hubSiteObject)
     {
-        _ = hubSiteObject ?? throw new ArgumentNullException(nameof(hubSiteObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
             objectPath1,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "UnregisterHubSite",
                 requestPayload.CreateParameter(hubSiteObject.SiteCollectionUrl)
@@ -138,31 +124,21 @@ public class TenantHubSiteService(ClientContext clientContext) : ClientService<H
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public override void SetObject(HubSite hubSiteObject, IReadOnlyDictionary<string, object> modificationInfo)
+    public override void SetObject(HubSite hubSiteObject, IReadOnlyDictionary<string, object?> modificationInfo)
     {
-        _ = hubSiteObject ?? throw new ArgumentNullException(nameof(hubSiteObject));
-        _ = modificationInfo ?? throw new ArgumentNullException(nameof(modificationInfo));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathConstructor(typeof(Tenant)));
+        var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath1.Id,
                 "GetHubSitePropertiesByUrl",
                 requestPayload.CreateParameter(hubSiteObject.SiteCollectionUrl)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = ClientQuery.Empty
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Empty)
         );
-        var objectPath3 = requestPayload.Add(
-            objectPath2,
-            requestPayload
-                .CreateSetPropertyDelegates(hubSiteObject, modificationInfo)
-                .ToArray()
-        );
-        var objectPath4 = requestPayload.Add(objectPath3, objectPathId => new ClientActionMethod(objectPathId, "Update"));
+        var objectPath3 = requestPayload.Add(objectPath2, requestPayload.CreateSetPropertyDelegates(hubSiteObject, modificationInfo));
+        var objectPath4 = requestPayload.Add(objectPath3, objectPathId => ClientActionMethod.Create(objectPathId, "Update"));
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 

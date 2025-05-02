@@ -33,40 +33,40 @@ public class ColumnTaxonomy : Column
     public override bool CanBeDeleted { get; protected set; }
 
     [JsonProperty()]
-    public override string ClientSideComponentId { get; protected set; }
+    public override string? ClientSideComponentId { get; protected set; }
 
     [JsonProperty()]
-    public override string ClientSideComponentProperties { get; protected set; }
+    public override string? ClientSideComponentProperties { get; protected set; }
 
     [JsonProperty("FieldTypeKind")]
-    public override ColumnType ColumnType { get; protected set; }
+    public override ColumnType? ColumnType { get; protected set; }
 
     [JsonProperty()]
     public virtual bool CreateValuesInEditForm { get; protected set; }
 
     [JsonProperty()]
-    public override string CustomFormatter { get; protected set; }
+    public override string? CustomFormatter { get; protected set; }
 
     [JsonProperty()]
-    public override string DefaultFormula { get; protected set; }
+    public override string? DefaultFormula { get; protected set; }
 
     [JsonProperty()]
-    public override string DefaultValue { get; protected set; }
+    public override string? DefaultValue { get; protected set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<string> DependentLookupInternalNames { get; protected set; }
+    public virtual IReadOnlyCollection<string>? DependentLookupInternalNames { get; protected set; }
 
     [JsonProperty()]
-    public override string Description { get; protected set; }
+    public override string? Description { get; protected set; }
 
     [JsonProperty()]
-    public override string Direction { get; protected set; }
+    public override string? Direction { get; protected set; }
 
     [JsonProperty()]
     public override bool EnforceUniqueValues { get; protected set; }
 
     [JsonProperty()]
-    public override string EntityPropertyName { get; protected set; }
+    public override string? EntityPropertyName { get; protected set; }
 
     [JsonProperty()]
     public override bool Filterable { get; protected set; }
@@ -75,7 +75,7 @@ public class ColumnTaxonomy : Column
     public override bool FromBaseType { get; protected set; }
 
     [JsonProperty()]
-    public override string Group { get; protected set; }
+    public override string? Group { get; protected set; }
 
     [JsonProperty()]
     public override bool Hidden { get; protected set; }
@@ -108,10 +108,10 @@ public class ColumnTaxonomy : Column
     public virtual bool IsTermSetValid { get; protected set; }
 
     [JsonProperty()]
-    public override string JSLink { get; protected set; }
+    public override string? JSLink { get; protected set; }
 
     [JsonProperty("LookupField")]
-    public virtual string LookupColumnName { get; protected set; }
+    public virtual string? LookupColumnName { get; protected set; }
 
     [JsonProperty("LookupList")]
     public virtual Guid LookupListId { get; protected set; }
@@ -120,7 +120,7 @@ public class ColumnTaxonomy : Column
     public virtual Guid LookupSiteId { get; protected set; }
 
     [JsonProperty("InternalName")]
-    public override string Name { get; protected set; }
+    public override string? Name { get; protected set; }
 
     [JsonProperty()]
     public override bool NoCrawl { get; protected set; }
@@ -132,25 +132,25 @@ public class ColumnTaxonomy : Column
     public override bool PinnedToFiltersPane { get; protected set; }
 
     [JsonProperty("PrimaryFieldId")]
-    public virtual string PrimaryColumnId { get; protected set; }
+    public virtual string? PrimaryColumnId { get; protected set; }
 
     [JsonProperty("ReadOnlyField")]
     public override bool ReadOnly { get; protected set; }
 
     [JsonProperty()]
-    public virtual RelationshipDeleteBehaviorType RelationshipDeleteBehavior { get; protected set; }
+    public virtual RelationshipDeleteBehaviorType? RelationshipDeleteBehavior { get; protected set; }
 
     [JsonProperty()]
     public override bool Required { get; protected set; }
 
     [JsonProperty()]
-    public override string SchemaXml { get; protected set; }
+    public override string? SchemaXml { get; protected set; }
 
     [JsonProperty()]
-    public override string SchemaXmlWithResourceTokens { get; protected set; }
+    public override string? SchemaXmlWithResourceTokens { get; protected set; }
 
     [JsonProperty()]
-    public override string Scope { get; protected set; }
+    public override string? Scope { get; protected set; }
 
     [JsonProperty()]
     public override bool Sealed { get; protected set; }
@@ -162,10 +162,10 @@ public class ColumnTaxonomy : Column
     public override bool Sortable { get; protected set; }
 
     [JsonProperty()]
-    public override string StaticName { get; protected set; }
+    public override string? StaticName { get; protected set; }
 
     [JsonProperty()]
-    public virtual string TargetTemplate { get; protected set; }
+    public virtual string? TargetTemplate { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid TermSetId { get; protected set; }
@@ -174,16 +174,16 @@ public class ColumnTaxonomy : Column
     public virtual Guid TermStoreId { get; protected set; }
 
     [JsonProperty()]
-    public override string Title { get; protected set; }
+    public override string? Title { get; protected set; }
 
     [JsonProperty()]
-    public override string TypeAsString { get; protected set; }
+    public override string? TypeAsString { get; protected set; }
 
     [JsonProperty()]
-    public override string TypeDisplayName { get; protected set; }
+    public override string? TypeDisplayName { get; protected set; }
 
     [JsonProperty()]
-    public override string TypeShortDescription { get; protected set; }
+    public override string? TypeShortDescription { get; protected set; }
 
     [JsonProperty()]
     public virtual bool UnlimitedLengthInDocumentLibrary { get; protected set; }
@@ -192,9 +192,9 @@ public class ColumnTaxonomy : Column
     public virtual bool UserCreated { get; protected set; }
 
     [JsonProperty()]
-    public override string ValidationFormula { get; protected set; }
+    public override string? ValidationFormula { get; protected set; }
 
     [JsonProperty()]
-    public override string ValidationMessage { get; protected set; }
+    public override string? ValidationMessage { get; protected set; }
 
 }

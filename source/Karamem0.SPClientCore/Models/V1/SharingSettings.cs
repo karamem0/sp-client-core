@@ -66,10 +66,10 @@ public class SharingSettings : ClientObject
     public virtual bool CanShareFolder { get; protected set; }
 
     [JsonProperty()]
-    public virtual RoleType DefaultShareLinkPermission { get; protected set; }
+    public virtual RoleType? DefaultShareLinkPermission { get; protected set; }
 
     [JsonProperty()]
-    public virtual SharingLinkKind DefaultShareLinkType { get; protected set; }
+    public virtual SharingLinkKind? DefaultShareLinkType { get; protected set; }
 
     [JsonProperty("EnforceIBSegmentFiltering")]
     public virtual bool EnforceInformationBarriersSegmentFiltering { get; protected set; }
@@ -78,7 +78,7 @@ public class SharingSettings : ClientObject
     public virtual bool EnforceSharePointOnlineSearch { get; protected set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyDictionary<string, string> GroupsList { get; protected set; }
+    public virtual IReadOnlyDictionary<string, string>? GroupsList { get; protected set; }
 
     [JsonProperty()]
     public virtual bool HasEditRole { get; protected set; }
@@ -87,7 +87,7 @@ public class SharingSettings : ClientObject
     public virtual bool HasReadRole { get; protected set; }
 
     [JsonProperty()]
-    public virtual string InheritingWebLink { get; protected set; }
+    public virtual string? InheritingWebLink { get; protected set; }
 
     [JsonProperty()]
     public virtual bool IsGuestUser { get; protected set; }
@@ -99,13 +99,13 @@ public class SharingSettings : ClientObject
     public virtual bool IsUserSiteAdmin { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ItemId { get; protected set; }
+    public virtual string? ItemId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ItemName { get; protected set; }
+    public virtual string? ItemName { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ItemUrl { get; protected set; }
+    public virtual string? ItemUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid ListId { get; protected set; }
@@ -117,36 +117,36 @@ public class SharingSettings : ClientObject
     public virtual int RequiredAnonymousLinkExpirationInDays { get; protected set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyDictionary<string, string> Roles { get; protected set; }
+    public virtual IReadOnlyDictionary<string, string>? Roles { get; protected set; }
 
     [JsonProperty()]
     public virtual bool ShareByEmailEnabled { get; protected set; }
 
     [JsonProperty()]
-    public virtual SharePointSharingSettings SharePointSettings { get; protected set; }
+    public virtual SharePointSharingSettings? SharePointSettings { get; protected set; }
 
     [JsonProperty("ObjectSharingInformation")]
-    public virtual SharingInfo SharingInfo { get; protected set; }
+    public virtual SharingInfo? SharingInfo { get; protected set; }
 
     [JsonProperty()]
-    public virtual SharingPermissionInfoEnumerable SharingPermissions { get; protected set; }
+    public virtual SharingPermissionInfoEnumerable? SharingPermissions { get; protected set; }
 
     [JsonProperty()]
     public virtual bool ShowExternalSharingWarning { get; protected set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyDictionary<string, string> SimplifiedRoles { get; protected set; }
+    public virtual IReadOnlyDictionary<string, string>? SimplifiedRoles { get; protected set; }
 
     [JsonProperty("SiteIBMode")]
-    public virtual string SiteInformationBarriersMode { get; protected set; }
+    public virtual string? SiteInformationBarriersMode { get; protected set; }
 
     [JsonProperty("SiteIBSegmentIDs")]
-    public virtual IReadOnlyCollection<string> SiteInformationBarriersSegmentIDs { get; protected set; }
+    public virtual IReadOnlyCollection<string>? SiteInformationBarriersSegmentIDs { get; protected set; }
 
     [JsonProperty()]
     public virtual bool SupportsAclPropagation { get; protected set; }
 
     [JsonProperty()]
-    public virtual string WebUrl { get; protected set; }
+    public virtual string? WebUrl { get; protected set; }
 
 }

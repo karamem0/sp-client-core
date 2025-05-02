@@ -27,7 +27,7 @@ public class TenantSiteCollectionCreationInfo : ClientValueObject
     public virtual uint Lcid { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Owner { get; protected set; }
+    public virtual string? Owner { get; protected set; }
 
     [JsonProperty("StorageMaximumLevel")]
     public virtual long StorageMaxLevel { get; protected set; }
@@ -36,21 +36,21 @@ public class TenantSiteCollectionCreationInfo : ClientValueObject
     public virtual long StorageWarningLevel { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Template { get; protected set; }
+    public virtual string? Template { get; protected set; }
 
     [JsonProperty()]
     public virtual int TimeZoneId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Url { get; protected set; }
+    public virtual string? Url { get; protected set; }
 
     [JsonProperty("UserCodeMaximumLevel")]
-    public virtual double UserCodeMaxLevel { get; protected set; }
+    public virtual double? UserCodeMaxLevel { get; protected set; }
 
     [JsonProperty()]
-    public virtual double UserCodeWarningLevel { get; protected set; }
+    public virtual double? UserCodeWarningLevel { get; protected set; }
 
 }

@@ -6,6 +6,7 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
+using Karamem0.SharePoint.PowerShell.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,20 +21,27 @@ public class ClientObjectAttribute : Attribute
 
     public static Guid GetId(Type type)
     {
-        var objectAttribute = type.GetCustomAttribute<ClientObjectAttribute>() ?? throw new InvalidOperationException();
-        var objectId = Guid.Parse(objectAttribute.Id);
-        return objectId;
+        var objectAttribute = type.GetCustomAttribute<ClientObjectAttribute>();
+        _ = objectAttribute ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
+        if (Guid.TryParse(objectAttribute.Id, out var objectId))
+        {
+            return objectId;
+        }
+        else
+        {
+            return Guid.Empty;
+        }
     }
 
-    public static string GetName(Type type)
+    public static string? GetName(Type type)
     {
-        var objectAttribute = type.GetCustomAttribute<ClientObjectAttribute>() ?? throw new InvalidOperationException();
-        var objectName = objectAttribute.Name;
-        return objectName;
+        var objectAttribute = type.GetCustomAttribute<ClientObjectAttribute>();
+        _ = objectAttribute ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
+        return objectAttribute.Name;
     }
 
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
 }

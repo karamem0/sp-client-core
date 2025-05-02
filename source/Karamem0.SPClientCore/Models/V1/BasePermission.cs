@@ -22,32 +22,35 @@ public class BasePermission : ClientValueObject
 
     public BasePermission(params PermissionKind[] permissions)
     {
-        foreach (var permission in permissions)
+        if (permissions != null)
         {
-            switch (permission)
+            foreach (var permission in permissions)
             {
-                case PermissionKind.FullMask:
-                    this.Low = 65535u;
-                    this.High = 32767u;
-                    return;
-                case PermissionKind.EmptyMask:
-                    this.Low = 0u;
-                    this.High = 0u;
-                    return;
-                default:
-                    var num1 = (int)(permission - 1);
-                    var num2 = 1u;
-                    if (num1 is >= 0 and < 32)
-                    {
-                        num2 <<= num1;
-                        this.Low |= num2;
-                    }
-                    if (num1 is >= 32 and < 64)
-                    {
-                        num2 <<= num1 - 32;
-                        this.High |= num2;
-                    }
-                    break;
+                switch (permission)
+                {
+                    case PermissionKind.FullMask:
+                        this.Low = 65535u;
+                        this.High = 32767u;
+                        return;
+                    case PermissionKind.EmptyMask:
+                        this.Low = 0u;
+                        this.High = 0u;
+                        return;
+                    default:
+                        var num1 = (int)(permission - 1);
+                        var num2 = 1u;
+                        if (num1 is >= 0 and < 32)
+                        {
+                            num2 <<= num1;
+                            this.Low |= num2;
+                        }
+                        if (num1 is >= 32 and < 64)
+                        {
+                            num2 <<= num1 - 32;
+                            this.High |= num2;
+                        }
+                        break;
+                }
             }
         }
     }

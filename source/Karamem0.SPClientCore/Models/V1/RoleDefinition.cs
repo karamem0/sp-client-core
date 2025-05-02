@@ -21,10 +21,10 @@ public class RoleDefinition : ClientObject
 {
 
     [JsonProperty("BasePermissions")]
-    public virtual BasePermission BasePermission { get; protected set; }
+    public virtual BasePermission? BasePermission { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; protected set; }
 
     [JsonProperty()]
     public virtual bool Hidden { get; protected set; }
@@ -33,12 +33,12 @@ public class RoleDefinition : ClientObject
     public virtual int Id { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; protected set; }
 
     [JsonProperty()]
     public virtual int Order { get; protected set; }
 
     [JsonProperty()]
-    public virtual RoleTypeKind RoleTypeKind { get; protected set; }
+    public virtual RoleTypeKind? RoleTypeKind { get; protected set; }
 
 }

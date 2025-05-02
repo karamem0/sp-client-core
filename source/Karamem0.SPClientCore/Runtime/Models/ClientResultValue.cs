@@ -113,8 +113,7 @@ public class ClientResultValue
                 return true;
             case JTokenType.Array:
                 output.Value = input
-                    .Value.Select(
-                        item => new KeyValuePair<string, JToken>(
+                    .Value.Select(item => new KeyValuePair<string, JToken>(
                             input
                                 .Key.Split('$')
                                 .First(),
@@ -139,17 +138,13 @@ public class ClientResultValue
                 output.Value = input.Value.ToString();
                 return true;
             default:
-                output = null;
+                output = new ClientResultValue();
                 return false;
         }
     }
 
-    private ClientResultValue()
-    {
-    }
+    public string? Key { get; protected set; }
 
-    public string Key { get; private set; }
-
-    public object Value { get; private set; }
+    public object? Value { get; protected set; }
 
 }

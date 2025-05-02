@@ -21,147 +21,147 @@ public class View : ClientObject
 {
 
     [JsonProperty()]
-    public string Aggregations { get; private set; }
+    public virtual string? Aggregations { get; private set; }
 
     [JsonProperty()]
-    public string AggregationsStatus { get; private set; }
+    public virtual string? AggregationsStatus { get; private set; }
 
     [JsonProperty()]
-    public string AssociatedContentTypeId { get; private set; }
+    public virtual string? AssociatedContentTypeId { get; private set; }
 
     [JsonProperty()]
-    public string BaseViewId { get; private set; }
+    public virtual string? BaseViewId { get; private set; }
 
     [JsonProperty()]
-    public string CalendarViewStyles { get; private set; }
+    public string? CalendarViewStyles { get; private set; }
 
     [JsonProperty()]
-    public string ColumnWidth { get; private set; }
+    public virtual string? ColumnWidth { get; private set; }
 
     [JsonProperty()]
-    public ContentTypeId ContentTypeId { get; private set; }
+    public virtual ContentTypeId? ContentTypeId { get; private set; }
 
     [JsonProperty()]
-    public string CustomFormatter { get; private set; }
+    public virtual string? CustomFormatter { get; private set; }
 
     [JsonProperty()]
-    public bool DefaultView { get; private set; }
+    public virtual bool DefaultView { get; private set; }
 
     [JsonProperty()]
-    public bool DefaultViewForContentType { get; private set; }
+    public virtual bool DefaultViewForContentType { get; private set; }
 
     [JsonProperty()]
-    public bool EditorModified { get; private set; }
+    public virtual bool EditorModified { get; private set; }
 
     [JsonProperty()]
-    public string Formats { get; private set; }
+    public virtual string? Formats { get; private set; }
 
     [JsonProperty()]
-    public string GridLayout { get; private set; }
+    public virtual string? GridLayout { get; private set; }
 
     [JsonProperty()]
-    public bool Hidden { get; private set; }
+    public virtual bool Hidden { get; private set; }
 
     [JsonProperty()]
-    public string HtmlSchemaXml { get; private set; }
+    public virtual string? HtmlSchemaXml { get; private set; }
 
     [JsonProperty()]
-    public Guid Id { get; private set; }
+    public virtual Guid Id { get; private set; }
 
     [JsonProperty()]
-    public string ImageUrl { get; private set; }
+    public virtual string? ImageUrl { get; private set; }
 
     [JsonProperty()]
-    public bool IncludeRootFolder { get; private set; }
+    public virtual bool IncludeRootFolder { get; private set; }
 
     [JsonProperty()]
-    public string JSLink { get; private set; }
+    public virtual string? JSLink { get; private set; }
 
     [JsonProperty()]
-    public string ListViewXml { get; private set; }
+    public virtual string? ListViewXml { get; private set; }
 
     [JsonProperty()]
-    public string Method { get; private set; }
+    public virtual string? Method { get; private set; }
 
     [JsonProperty()]
-    public bool MobileDefaultView { get; private set; }
+    public virtual bool MobileDefaultView { get; private set; }
 
     [JsonProperty()]
-    public bool MobileView { get; private set; }
+    public virtual bool MobileView { get; private set; }
 
     [JsonProperty()]
-    public string ModerationType { get; private set; }
+    public virtual string? ModerationType { get; private set; }
 
     [JsonProperty()]
-    public string NewDocumentTemplates { get; private set; }
+    public virtual string? NewDocumentTemplates { get; private set; }
 
     [JsonProperty()]
-    public bool OrderedView { get; private set; }
+    public virtual bool OrderedView { get; private set; }
 
     [JsonProperty()]
-    public bool Paged { get; private set; }
+    public virtual bool Paged { get; private set; }
 
     [JsonProperty()]
-    public ListPageRenderType PageRenderType { get; private set; }
+    public virtual ListPageRenderType? PageRenderType { get; private set; }
 
     [JsonProperty()]
-    public bool PersonalView { get; private set; }
+    public virtual bool PersonalView { get; private set; }
 
     [JsonProperty()]
-    public bool ReadOnlyView { get; private set; }
+    public virtual bool ReadOnlyView { get; private set; }
 
     [JsonProperty()]
-    public bool RequiresClientIntegration { get; private set; }
+    public virtual bool RequiresClientIntegration { get; private set; }
 
     [JsonProperty()]
-    public int RowLimit { get; private set; }
+    public virtual int RowLimit { get; private set; }
 
     [JsonProperty()]
-    public ViewScope Scope { get; private set; }
+    public virtual ViewScope? Scope { get; private set; }
 
     [JsonProperty()]
-    public ResourcePath ServerRelativePath { get; private set; }
+    public virtual ResourcePath? ServerRelativePath { get; private set; }
 
     [JsonProperty()]
-    public string ServerRelativeUrl { get; private set; }
+    public virtual string? ServerRelativeUrl { get; private set; }
 
     [JsonProperty()]
-    public string StyleId { get; private set; }
+    public virtual string? StyleId { get; private set; }
 
     [JsonProperty()]
-    public bool TabularView { get; private set; }
+    public virtual bool TabularView { get; private set; }
 
     [JsonProperty()]
-    public bool Threaded { get; private set; }
+    public virtual bool Threaded { get; private set; }
 
     [JsonProperty()]
-    public string Title { get; private set; }
+    public virtual string? Title { get; private set; }
 
     [JsonProperty()]
-    public string Toolbar { get; private set; }
+    public virtual string? Toolbar { get; private set; }
 
     [JsonProperty()]
-    public string ToolbarTemplateName { get; private set; }
+    public virtual string? ToolbarTemplateName { get; private set; }
 
     [JsonProperty()]
-    public string ViewData { get; private set; }
+    public virtual string? ViewData { get; private set; }
 
     [JsonProperty()]
-    public string ViewJoins { get; private set; }
+    public virtual string? ViewJoins { get; private set; }
 
     [JsonProperty("ViewProjectedFields")]
-    public string ViewProjectedColumns { get; private set; }
+    public virtual string? ViewProjectedColumns { get; private set; }
 
     [JsonProperty()]
-    public string ViewQuery { get; private set; }
+    public virtual string? ViewQuery { get; private set; }
 
     [JsonProperty()]
-    public string ViewType { get; private set; }
+    public virtual string? ViewType { get; private set; }
 
     [JsonProperty()]
-    public string ViewType2 { get; private set; }
+    public virtual string? ViewType2 { get; private set; }
 
     [JsonProperty()]
-    public string VisualizationInfo { get; private set; }
+    public virtual string? VisualizationInfo { get; private set; }
 
 }

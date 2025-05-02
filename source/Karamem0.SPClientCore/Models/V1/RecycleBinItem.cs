@@ -21,48 +21,48 @@ public class RecycleBinItem : ClientObject
 {
 
     [JsonProperty()]
-    public virtual string AuthorEmail { get; protected set; }
+    public virtual string? AuthorEmail { get; protected set; }
 
     [JsonProperty()]
-    public virtual string AuthorName { get; protected set; }
+    public virtual string? AuthorName { get; protected set; }
 
     [JsonProperty()]
-    public virtual string DeletedByEmail { get; protected set; }
+    public virtual string? DeletedByEmail { get; protected set; }
 
     [JsonProperty()]
-    public virtual string DeletedByName { get; protected set; }
+    public virtual string? DeletedByName { get; protected set; }
 
     [JsonProperty()]
     public virtual DateTime DeletedDate { get; protected set; }
 
     [JsonProperty()]
-    public virtual string DeletedDateLocalFormatted { get; protected set; }
+    public virtual string? DeletedDateLocalFormatted { get; protected set; }
 
     [JsonProperty()]
-    public virtual string DirName { get; protected set; }
+    public virtual string? DirName { get; protected set; }
 
     [JsonProperty()]
-    public virtual ResourcePath DirNamePath { get; protected set; }
+    public virtual ResourcePath? DirNamePath { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid Id { get; protected set; }
 
     [JsonProperty()]
-    public virtual RecycleBinItemState ItemState { get; protected set; }
+    public virtual RecycleBinItemState? ItemState { get; protected set; }
 
     [JsonProperty()]
-    public virtual RecycleBinItemType ItemType { get; protected set; }
+    public virtual RecycleBinItemType? ItemType { get; protected set; }
 
     [JsonProperty()]
-    public virtual string LeafName { get; protected set; }
+    public virtual string? LeafName { get; protected set; }
 
     [JsonProperty()]
-    public virtual ResourcePath LeafNamePath { get; protected set; }
+    public virtual ResourcePath? LeafNamePath { get; protected set; }
 
     [JsonProperty()]
     public virtual int Size { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; protected set; }
 
 }

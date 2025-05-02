@@ -16,24 +16,33 @@ using System.Xml.Serialization;
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
 [XmlType("Property", Namespace = "http://schemas.microsoft.com/sharepoint/clientquery/2009")]
-public class ClientRequestPropertyArray(string name, params object[] values) : ClientRequestProperty
+public class ClientRequestPropertyArray : ClientRequestProperty
 {
 
-    public ClientRequestPropertyArray(string name, IEnumerable<object> values)
-        : this(name, [.. values])
+    public static ClientRequestPropertyArray Create(string name, params object[] values)
     {
+        return new ClientRequestPropertyArray()
+        {
+            Name = name,
+            Values = values
+                .Select(ClientRequestValue.Create)
+                .Select(value => ClientRequestPropertyArrayValue.Create(value.Type, value.Value))
+                .ToArray()
+        };
+    }
+
+    public static ClientRequestPropertyArray Create(string name, IEnumerable<object> values)
+    {
+        return Create(name, [.. values]);
     }
 
     [XmlAttribute()]
-    public virtual string Name { get; protected set; } = name;
+    public virtual string? Name { get; protected set; }
 
     [XmlAttribute()]
-    public virtual string Type { get; protected set; } = "Array";
+    public virtual string? Type { get; protected set; } = "Array";
 
     [XmlElement("Object")]
-    public virtual IReadOnlyCollection<ClientRequestPropertyArrayValue> Values { get; protected set; } = values
-        .Select(ClientRequestValue.Create)
-        .Select(value => new ClientRequestPropertyArrayValue(value.Type, value.Value))
-        .ToArray();
+    public virtual IReadOnlyCollection<ClientRequestPropertyArrayValue>? Values { get; protected set; }
 
 }

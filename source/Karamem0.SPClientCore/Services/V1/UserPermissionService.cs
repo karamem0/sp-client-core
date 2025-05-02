@@ -19,22 +19,20 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IUserPermissionService
 {
 
-    BasePermission GetObject(User userObject, SecurableObject securableObject);
+    BasePermission? GetObject(User userObject, SecurableObject securableObject);
 
 }
 
 public class UserPermissionService(ClientContext clientContext) : ClientService(clientContext), IUserPermissionService
 {
 
-    public BasePermission GetObject(User userObject, SecurableObject securableObject)
+    public BasePermission? GetObject(User userObject, SecurableObject securableObject)
     {
-        _ = userObject ?? throw new ArgumentNullException(nameof(userObject));
-        _ = securableObject ?? throw new ArgumentNullException(nameof(securableObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(securableObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(securableObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             objectPath1,
-            objectPath => new ClientActionMethod(
+            objectPath => ClientActionMethod.Create(
                 objectPath1.Id,
                 "GetUserEffectivePermissions",
                 requestPayload.CreateParameter(userObject.LoginName)

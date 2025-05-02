@@ -31,7 +31,7 @@ public static class UriExtensions
     public static Uri ConcatPath(
         this Uri uri,
         string path,
-        params object[] args
+        params object?[] args
     )
     {
         return uri.ConcatPath(
@@ -39,12 +39,11 @@ public static class UriExtensions
                 path,
                 args
                     .Select(obj => obj ?? "")
-                    .Select(
-                        obj => obj is bool
-                            ? obj
-                                .ToString()
-                                .ToLower()
-                            : obj.ToString()
+                    .Select(obj => obj is bool
+                        ? obj
+                            .ToString()
+                            .ToLower()
+                        : obj.ToString()
                     )
                     .Select(Uri.EscapeDataString)
                     .ToArray()

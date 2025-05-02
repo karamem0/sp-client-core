@@ -17,11 +17,6 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth;
 public abstract class OAuthContext
 {
 
-    protected OAuthContext()
-    {
-        this.HttpClient = OAuthHttpClientFactory.Create();
-    }
-
-    protected HttpClient HttpClient { get; }
+    protected HttpClient HttpClient { get; } = OAuthHttpClientFactory.Create();
 
 }

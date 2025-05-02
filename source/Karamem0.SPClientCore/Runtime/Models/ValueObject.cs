@@ -17,13 +17,12 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public abstract class ValueObject
 {
 
-    protected virtual Lazy<IReadOnlyCollection<PropertyInfo>> EqualityProperties => new(
-        () => this
-            .GetType()
-            .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+    protected virtual Lazy<IReadOnlyCollection<PropertyInfo>> EqualityProperties => new(() => this
+        .GetType()
+        .GetProperties(BindingFlags.Instance | BindingFlags.Public)
     );
 
-    public override bool Equals(object value)
+    public override bool Equals(object? value)
     {
         if (value is null)
         {

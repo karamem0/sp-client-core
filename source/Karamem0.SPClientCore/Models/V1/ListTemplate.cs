@@ -24,10 +24,10 @@ public class ListTemplate : ClientObject
     public virtual bool AllowsFolderCreation { get; protected set; }
 
     [JsonProperty()]
-    public virtual BaseType BaseType { get; protected set; }
+    public virtual BaseType? BaseType { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid FeatureId { get; protected set; }
@@ -36,10 +36,10 @@ public class ListTemplate : ClientObject
     public virtual bool Hidden { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ImageUrl { get; protected set; }
+    public virtual string? ImageUrl { get; protected set; }
 
     [JsonProperty("InternalName")]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; protected set; }
 
     [JsonProperty()]
     public virtual bool IsCustomTemplate { get; protected set; }
@@ -48,7 +48,7 @@ public class ListTemplate : ClientObject
     public virtual int ListTemplateTypeKind { get; protected set; }
 
     [JsonProperty("Name")]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; protected set; }
 
     [JsonProperty()]
     public virtual bool OnQuickLaunch { get; protected set; }

@@ -21,9 +21,9 @@ public class TenantSiteScriptSerializationResult : ClientValueObject
 {
 
     [JsonProperty("JSON")]
-    public virtual string Json { get; protected set; }
+    public virtual string? Json { get; protected set; }
 
     [JsonProperty()]
-    public virtual string[] Warnings { get; protected set; }
+    public virtual string[]? Warnings { get; protected set; }
 
 }

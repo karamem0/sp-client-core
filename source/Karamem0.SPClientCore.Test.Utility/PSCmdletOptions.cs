@@ -19,12 +19,11 @@ namespace Karamem0.SharePoint.PowerShell.Test.Utility;
 public class PSCmdletOptions
 {
 
-    public static readonly Lazy<PSCmdletOptions> instance = new(
-        () =>
+    public static readonly Lazy<PSCmdletOptions> instance = new(() =>
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("SPClientCore.Tests.Utilities.config.json");
+                .AddJsonFile("SPClientCore.Test.Utility.config.json");
             var config = builder.Build();
             var options = config.Get<PSCmdletOptions>();
             return options;

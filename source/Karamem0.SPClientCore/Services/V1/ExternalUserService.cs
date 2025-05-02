@@ -20,23 +20,23 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IExternalUserService
 {
 
-    IEnumerable<UserSharingResult> AddObject(
+    IEnumerable<UserSharingResult>? AddObject(
         IReadOnlyCollection<string> userId,
         RoleType role,
         bool sendServerManagedNotification,
-        string customMessage,
+        string? customMessage,
         bool additivePermission,
         bool allowExternalSharing
     );
 
-    IEnumerable<UserSharingResult> AddObject(
+    IEnumerable<UserSharingResult>? AddObject(
         string documentUrl,
         IReadOnlyCollection<string> userId,
         RoleType role,
         bool validateExistingPermissions,
         bool additivePermission,
         bool sendServerManagedNotification,
-        string customMessage,
+        string? customMessage,
         bool includeAnonymousLinksInNotification,
         bool propagateAcl
     );
@@ -50,24 +50,23 @@ public interface IExternalUserService
 public class ExternalUserService(ClientContext clientContext) : ClientService(clientContext), IExternalUserService
 {
 
-    public IEnumerable<UserSharingResult> AddObject(
+    public IEnumerable<UserSharingResult>? AddObject(
         IReadOnlyCollection<string> userId,
         RoleType role,
         bool sendServerManagedNotification,
-        string customMessage,
+        string? customMessage,
         bool additivePermission,
         bool allowExternalSharing
     )
     {
-        _ = userId ?? throw new ArgumentNullException(nameof(userId));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
+        var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
         requestPayload.Actions.Add(
-            new ClientActionStaticMethod(
+            ClientActionStaticMethod.Create(
                 typeof(WebSharingManager),
                 "UpdateWebSharingInformation",
-                new ClientRequestParameterObjectPath(objectPath2),
+                ClientRequestParameterObjectPath.Create(objectPath2),
                 requestPayload.CreateParameter(userId.Select(value => new UserRoleAssignment(value, role))),
                 requestPayload.CreateParameter(sendServerManagedNotification),
                 requestPayload.CreateParameter(customMessage),
@@ -80,23 +79,21 @@ public class ExternalUserService(ClientContext clientContext) : ClientService(cl
             .ToObject<IEnumerable<UserSharingResult>>(requestPayload.GetActionId<ClientActionStaticMethod>());
     }
 
-    public IEnumerable<UserSharingResult> AddObject(
+    public IEnumerable<UserSharingResult>? AddObject(
         string documentUrl,
         IReadOnlyCollection<string> userId,
         RoleType role,
         bool validateExistingPermissions,
         bool additivePermission,
         bool sendServerManagedNotification,
-        string customMessage,
+        string? customMessage,
         bool includeAnonymousLinksInNotification,
         bool propagateAcl
     )
     {
-        _ = documentUrl ?? throw new ArgumentNullException(nameof(documentUrl));
-        _ = userId ?? throw new ArgumentNullException(nameof(userId));
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
-            new ClientActionStaticMethod(
+            ClientActionStaticMethod.Create(
                 typeof(DocumentSharingManager),
                 "UpdateDocumentSharingInfo",
                 requestPayload.CreateParameter(
@@ -121,13 +118,13 @@ public class ExternalUserService(ClientContext clientContext) : ClientService(cl
     public bool CheckObject()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
+        var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
         requestPayload.Actions.Add(
-            new ClientActionStaticMethod(
+            ClientActionStaticMethod.Create(
                 typeof(WebSharingManager),
                 "CanMemberShare",
-                new ClientRequestParameterObjectPath(objectPath2)
+                ClientRequestParameterObjectPath.Create(objectPath2)
             )
         );
         return this
@@ -137,10 +134,9 @@ public class ExternalUserService(ClientContext clientContext) : ClientService(cl
 
     public bool CheckObject(List listObject)
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
-            new ClientActionStaticMethod(
+            ClientActionStaticMethod.Create(
                 typeof(DocumentSharingManager),
                 "CanMemberShare",
                 requestPayload.CreateParameter(listObject)

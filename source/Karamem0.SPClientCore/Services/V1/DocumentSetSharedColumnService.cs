@@ -25,7 +25,7 @@ public interface IDocumentSetSharedColumnService
         bool pushChanges
     );
 
-    IEnumerable<Column> GetObjectEnumerable(ContentType contentTypeObject);
+    IEnumerable<Column>? GetObjectEnumerable(ContentType contentTypeObject);
 
     void RemoveObject(
         ContentType contentTypeObject,
@@ -44,30 +44,28 @@ public class DocumentSetSharedColumnService(ClientContext clientContext) : Clien
         bool pushChanges
     )
     {
-        _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
-        _ = columnObject ?? throw new ArgumentNullException(nameof(columnObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
-        var objectPath2 = requestPayload.Add(new ObjectPathIdentity(columnObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(contentTypeObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(ObjectPathIdentity.Create(columnObject.ObjectIdentity));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathStaticMethod(
+            ObjectPathStaticMethod.Create(
                 typeof(DocumentSetTemplate),
                 "GetDocumentSetTemplate",
-                new ClientRequestParameterObjectPath(objectPath1)
+                ClientRequestParameterObjectPath.Create(objectPath1)
             )
         );
-        var objectPath4 = requestPayload.Add(new ObjectPathProperty(objectPath3.Id, "SharedFields"));
+        var objectPath4 = requestPayload.Add(ObjectPathProperty.Create(objectPath3.Id, "SharedFields"));
         var objectPath5 = requestPayload.Add(
             objectPath4,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "Add",
-                new ClientRequestParameterObjectPath(objectPath2)
+                ClientRequestParameterObjectPath.Create(objectPath2)
             )
         );
         var objectPath6 = requestPayload.Add(
             objectPath3,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "Update",
                 requestPayload.CreateParameter(pushChanges)
@@ -76,26 +74,25 @@ public class DocumentSetSharedColumnService(ClientContext clientContext) : Clien
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public IEnumerable<Column> GetObjectEnumerable(ContentType contentTypeObject)
+    public IEnumerable<Column>? GetObjectEnumerable(ContentType contentTypeObject)
     {
-        _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(contentTypeObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathStaticMethod(
+            ObjectPathStaticMethod.Create(
                 typeof(DocumentSetTemplate),
                 "GetDocumentSetTemplate",
-                new ClientRequestParameterObjectPath(objectPath1)
+                ClientRequestParameterObjectPath.Create(objectPath1)
             )
         );
         var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "SharedFields"),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = ClientQuery.Empty,
-                ChildItemQuery = new ClientQuery(true, typeof(Column))
-            }
+            ObjectPathProperty.Create(objectPath2.Id, "SharedFields"),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(
+                objectPathId,
+                ClientQuery.Empty,
+                ClientQuery.Create(true, typeof(Column))
+            )
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
@@ -108,30 +105,28 @@ public class DocumentSetSharedColumnService(ClientContext clientContext) : Clien
         bool pushChanges
     )
     {
-        _ = contentTypeObject ?? throw new ArgumentNullException(nameof(contentTypeObject));
-        _ = columnObject ?? throw new ArgumentNullException(nameof(columnObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(contentTypeObject.ObjectIdentity));
-        var objectPath2 = requestPayload.Add(new ObjectPathIdentity(columnObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(contentTypeObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(ObjectPathIdentity.Create(columnObject.ObjectIdentity));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathStaticMethod(
+            ObjectPathStaticMethod.Create(
                 typeof(DocumentSetTemplate),
                 "GetDocumentSetTemplate",
-                new ClientRequestParameterObjectPath(objectPath1)
+                ClientRequestParameterObjectPath.Create(objectPath1)
             )
         );
-        var objectPath4 = requestPayload.Add(new ObjectPathProperty(objectPath3.Id, "SharedFields"));
+        var objectPath4 = requestPayload.Add(ObjectPathProperty.Create(objectPath3.Id, "SharedFields"));
         var objectPath5 = requestPayload.Add(
             objectPath4,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "Remove",
-                new ClientRequestParameterObjectPath(objectPath2)
+                ClientRequestParameterObjectPath.Create(objectPath2)
             )
         );
         var objectPath6 = requestPayload.Add(
             objectPath3,
-            objectPathId => new ClientActionMethod(
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "Update",
                 requestPayload.CreateParameter(pushChanges)

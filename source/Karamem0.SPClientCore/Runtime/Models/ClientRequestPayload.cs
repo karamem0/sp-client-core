@@ -6,6 +6,7 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Newtonsoft.Json;
 using System;
@@ -56,31 +57,31 @@ public class ClientRequestPayload : ClientRequestObject
         return objectPath;
     }
 
-    public ClientRequestParameter CreateParameter(object value)
+    public ClientRequestParameter CreateParameter(object? value)
     {
         if (ClientRequestValue.TryCreate(value, out var clientRequestValue))
         {
-            return new ClientRequestParameterValue(clientRequestValue);
+            return ClientRequestParameterValue.Create(clientRequestValue);
         }
         else if (value is IEnumerable arrayObject)
         {
-            return new ClientRequestParameterArray(this, arrayObject.OfType<object>());
+            return ClientRequestParameterArray.Create(this, arrayObject.OfType<object>());
         }
         else if (value is ObjectPath objectPath)
         {
-            return new ClientRequestParameterObjectPath(objectPath);
+            return ClientRequestParameterObjectPath.Create(objectPath);
         }
         else if (value is ClientObject clientObject)
         {
-            return new ClientRequestParameterObjectPath(this.Add(new ObjectPathIdentity(clientObject.ObjectIdentity)));
+            return ClientRequestParameterObjectPath.Create(this.Add(ObjectPathIdentity.Create(clientObject.ObjectIdentity)));
         }
         else if (value is ClientValueObject clientValueObject)
         {
-            return new ClientRequestParameterClientObject(this, clientValueObject);
+            return ClientRequestParameterClientObject.Create(this, clientValueObject);
         }
         else if (value is PSObject psObject)
         {
-            return new ClientRequestParameterClientObject(this, psObject.BaseObject);
+            return ClientRequestParameterClientObject.Create(this, psObject.BaseObject);
         }
         else
         {
@@ -88,7 +89,7 @@ public class ClientRequestPayload : ClientRequestObject
         }
     }
 
-    public IEnumerable<ClientActionDelegate> CreateSetPropertyDelegates(Type objectType, IReadOnlyDictionary<string, object> parameters)
+    public IEnumerable<ClientActionDelegate> CreateSetPropertyDelegates(Type objectType, IReadOnlyDictionary<string, object?> parameters)
     {
         foreach (var parameter in parameters)
         {
@@ -100,18 +101,16 @@ public class ClientRequestPayload : ClientRequestObject
                 {
                     if (parameter.Value is ClientObject value)
                     {
-                        yield return new ClientActionDelegate(
-                            objectPathId => new ClientActionSetProperty(
+                        yield return new ClientActionDelegate(objectPathId => ClientActionSetProperty.Create(
                                 objectPathId,
                                 string.IsNullOrEmpty(propertyAttribute.PropertyName) ? parameter.Key : propertyAttribute.PropertyName,
-                                new ClientRequestParameterObjectPath(this.Add(new ObjectPathIdentity(value.ObjectIdentity)))
+                                ClientRequestParameterObjectPath.Create(this.Add(ObjectPathIdentity.Create(value.ObjectIdentity)))
                             )
                         );
                     }
                     else
                     {
-                        yield return new ClientActionDelegate(
-                            objectPathId => new ClientActionSetProperty(
+                        yield return new ClientActionDelegate(objectPathId => ClientActionSetProperty.Create(
                                 objectPathId,
                                 string.IsNullOrEmpty(propertyAttribute.PropertyName) ? parameter.Key : propertyAttribute.PropertyName,
                                 this.CreateParameter(parameter.Value)
@@ -123,9 +122,11 @@ public class ClientRequestPayload : ClientRequestObject
         }
     }
 
-    public IEnumerable<ClientActionDelegate> CreateSetPropertyDelegates<T>(T clientObject, IReadOnlyDictionary<string, object> parameters) where T : ClientObject
+    public IEnumerable<ClientActionDelegate> CreateSetPropertyDelegates<T>(T clientObject, IReadOnlyDictionary<string, object?> parameters)
+        where T : ClientObject
     {
         var objectName = clientObject.ObjectType;
+        _ = objectName ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
         var objectType = ClientObject.GetType(objectName);
         return this.CreateSetPropertyDelegates(objectType, parameters);
     }

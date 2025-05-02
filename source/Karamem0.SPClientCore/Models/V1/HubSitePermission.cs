@@ -21,12 +21,12 @@ public class HubSitePermission : ClientValueObject
 {
 
     [JsonProperty()]
-    public virtual string DisplayName { get; protected set; }
+    public virtual string? DisplayName { get; protected set; }
 
     [JsonProperty()]
-    public virtual string PrincipalName { get; protected set; }
+    public virtual string? PrincipalName { get; protected set; }
 
     [JsonProperty()]
-    public virtual HubSiteUserRights Rights { get; protected set; }
+    public virtual HubSiteUserRights? Rights { get; protected set; }
 
 }

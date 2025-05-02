@@ -21,6 +21,6 @@ public class ListItemCollectionPosition : ClientValueObject
 {
 
     [JsonProperty()]
-    public virtual string PagingInfo { get; protected set; }
+    public virtual string? PagingInfo { get; protected set; }
 
 }

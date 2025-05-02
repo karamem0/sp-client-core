@@ -1480,7 +1480,7 @@ function Install-TestSite {
         $appSettings.SitePage3Url = $sitePage3.ServerRelativeUrl
 
         Write-Progress -Activity 'Set like to comment...' -Status 'Test Site Page 1'
-        Enable-KshLike -ListItem (Get-KshListItem -File $sitePage1)
+        Set-KshLike -ListItem (Get-KshListItem -File $sitePage1) -Like
 
         Write-Progress -Activity 'Creating comments...' -Status 'Test Comment 1'
         $comment1 = Add-KshComment `
@@ -1507,7 +1507,7 @@ function Install-TestSite {
         $appSettings.Comment4Id = $comment4.Id
 
         Write-Progress -Activity 'Set like to comment...' -Status 'Test Comment 1'
-        Enable-KshLike -Comment $comment1
+        Set-KshLike -Comment $comment1 -Like
 
         Write-Progress -Activity 'Creating alerts...' -Status 'Test Alert 1'
         $item1 = Get-KshListItem -List $list1 -ItemId $appSettings.ListItem1Id
@@ -1587,19 +1587,22 @@ function Install-TestSite {
         $appSettings.App3Path = $app3Path.ToString()
 
         Write-Progress -Activity 'Creating tenant apps...' -Status 'Test App 1'
-        $app1 = Add-KshTenantApp `
+        $app1 = Add-KshApp `
+            -Tenant `
             -Content ([System.IO.File]::OpenRead($app1Path)) `
             -FileName 'TestApp1.sppkg'
         $appSettings.TenantApp1Id = $app1.Id
 
         Write-Progress -Activity 'Creating tenant apps...' -Status 'Test App 2'
-        $app2 = Add-KshTenantApp `
+        $app2 = Add-KshApp `
+            -Tenant `
             -Content ([System.IO.File]::OpenRead($app2Path)) `
             -FileName 'TestApp2.sppkg'
         $appSettings.TenantApp2Id = $app2.Id
 
         Write-Progress -Activity 'Creating tenant apps...' -Status 'Test App 3'
-        $app3 = Add-KshTenantApp `
+        $app3 = Add-KshApp `
+            -Tenant `
             -Content ([System.IO.File]::OpenRead($app3Path)) `
             -FileName 'TestApp3.sppkg'
         $appSettings.TenantApp3Id = $app3.Id
@@ -1612,7 +1615,7 @@ function Install-TestSite {
             -PrivateKeyPath $PrivateKeyPath
 
         Write-Progress -Activity 'Creating site collection apps...' -Status 'Test App 1'
-        $app1 = Add-KshSiteCollectionApp `
+        $app1 = Add-KshApp `
             -Content ([System.IO.File]::OpenRead($app1Path)) `
             -FileName 'TestApp1.sppkg'
         $file1 = Get-KshFile -App $app1
@@ -1621,7 +1624,7 @@ function Install-TestSite {
         $appSettings.SiteCollectionApp1ProductId = $item1['AppProductID']
 
         Write-Progress -Activity 'Creating site collection apps...' -Status 'Test App 2'
-        $app2 = Add-KshSiteCollectionApp `
+        $app2 = Add-KshApp `
             -Content ([System.IO.File]::OpenRead($app2Path)) `
             -FileName 'TestApp2.sppkg'
         $file2 = Get-KshFile -App $app2
@@ -1630,7 +1633,7 @@ function Install-TestSite {
         $appSettings.SiteCollectionApp2ProductId = $item2['AppProductID']
 
         Write-Progress -Activity 'Creating site collection apps...' -Status 'Test App 3'
-        $app3 = Add-KshSiteCollectionApp `
+        $app3 = Add-KshApp `
             -Content ([System.IO.File]::OpenRead($app3Path)) `
             -FileName 'TestApp3.sppkg'
         $file3 = Get-KshFile -App $app3
@@ -1642,17 +1645,17 @@ function Install-TestSite {
         Select-KshSite -Identity $site1
 
         Write-Progress -Activity 'Installing apps...' -Status 'Test App 1'
-        Install-KshSiteCollectionApp -Identity $app1
+        Set-KshAppInstalled -Identity $app1 -Installed $true
         $appInstance1 = Get-KshAppInstance -AppProductId $item1['AppProductID']
         $appSettings.AppInstance1Id = $appInstance1.Id
 
         Write-Progress -Activity 'Installing apps...' -Status 'Test App 2'
-        Install-KshSiteCollectionApp -Identity $app2
+        Set-KshAppInstalled -Identity $app2 -Installed $true
         $appInstance2 = Get-KshAppInstance -AppProductId $item2['AppProductID']
         $appSettings.AppInstance2Id = $appInstance2.Id
 
         Write-Progress -Activity 'Installing apps...' -Status 'Test App 3'
-        Install-KshSiteCollectionApp -Identity $app3
+        Set-KshAppInstalled -Identity $app3 -Installed $true
         $appInstance3 = Get-KshAppInstance -AppProductId $item3['AppProductID']
         $appSettings.AppInstance3Id = $appInstance3.Id
 
@@ -1762,9 +1765,9 @@ function Uninstall-TestSite {
             -PrivateKeyPath $PrivateKeyPath
 
         Write-Progress -Activity 'Removing tenant apps...' -Status 'Processing'
-        Get-KshTenantApp | Where-Object { $_.Title -eq 'TestApp1' } | Remove-KshTenantApp
-        Get-KshTenantApp | Where-Object { $_.Title -eq 'TestApp2' } | Remove-KshTenantApp
-        Get-KshTenantApp | Where-Object { $_.Title -eq 'TestApp3' } | Remove-KshTenantApp
+        Get-KshApp -Tenant | Where-Object { $_.Title -eq 'TestApp1' } | Remove-KshApp -Tenant
+        Get-KshApp -Tenant | Where-Object { $_.Title -eq 'TestApp2' } | Remove-KshApp -Tenant
+        Get-KshApp -Tenant | Where-Object { $_.Title -eq 'TestApp3' } | Remove-KshApp -Tenant
 
     }
 

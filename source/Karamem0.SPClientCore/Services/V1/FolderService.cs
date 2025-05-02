@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.Services;
@@ -23,40 +24,40 @@ public interface IFolderService
     void CopyObject(
         Folder folderObject,
         Uri folderUrl,
-        IReadOnlyDictionary<string, object> moveCopyOptions
+        IReadOnlyDictionary<string, object?> moveCopyOptions
     );
 
-    Folder AddObject(Folder folderObject, string folderName);
+    Folder? AddObject(Folder folderObject, string folderName);
 
-    Folder GetObject(Folder folderObject);
+    Folder? GetObject(Folder folderObject);
 
-    Folder GetObject(List listObject);
+    Folder? GetObject(List listObject);
 
-    Folder GetObject(ListItem listItemObject);
+    Folder? GetObject(ListItem listItemObject);
 
-    Folder GetObject(Guid? folderId);
+    Folder? GetObject(Guid folderId);
 
-    Folder GetObject(Uri folderUrl);
+    Folder? GetObject(Uri folderUrl);
 
-    Folder GetObject(Folder folderObject, string folderName);
+    Folder? GetObject(Folder folderObject, string folderName);
 
-    IEnumerable<Folder> GetObjectEnumerable();
+    IEnumerable<Folder>? GetObjectEnumerable();
 
-    IEnumerable<Folder> GetObjectEnumerable(Folder folderObject);
+    IEnumerable<Folder>? GetObjectEnumerable(Folder folderObject);
 
     void MoveObject(Folder folderObject, Uri folderUrl);
 
     void MoveObject(
         Folder folderObject,
         Uri folderUrl,
-        IReadOnlyDictionary<string, object> moveCopyOptions
+        IReadOnlyDictionary<string, object?> moveCopyOptions
     );
 
     Guid RecycleObject(Folder folderObject);
 
     void RemoveObject(Folder folderObject);
 
-    void SetObject(Folder folderObject, IReadOnlyDictionary<string, object> modificationInfo);
+    void SetObject(Folder folderObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
@@ -66,20 +67,19 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
     public void CopyObject(
         Folder folderObject,
         Uri folderUrl,
-        IReadOnlyDictionary<string, object> moveCopyOptions
+        IReadOnlyDictionary<string, object?> moveCopyOptions
     )
     {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
-        _ = folderUrl ?? throw new ArgumentNullException(nameof(folderUrl));
-        _ = moveCopyOptions ?? throw new ArgumentNullException(nameof(moveCopyOptions));
+        var serverRelativeUrl = folderObject.ServerRelativeUrl;
+        _ = serverRelativeUrl ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
-            new ClientActionStaticMethod(
+            ClientActionStaticMethod.Create(
                 typeof(MoveCopyUtil),
                 "CopyFolder",
                 requestPayload.CreateParameter(
                     new Uri(this.ClientContext.BaseAddress.GetLeftPart(UriPartial.Authority))
-                        .ConcatPath(folderObject.ServerRelativeUrl)
+                        .ConcatPath(serverRelativeUrl)
                         .ToString()
                 ),
                 requestPayload.CreateParameter(folderUrl),
@@ -89,168 +89,141 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public Folder AddObject(Folder folderObject, string folderName)
+    public Folder? AddObject(Folder folderObject, string folderName)
     {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
-        _ = folderName ?? throw new ArgumentNullException(nameof(folderName));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Folders"));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(folderObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Folders"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath2.Id,
                 "Add",
                 requestPayload.CreateParameter(folderName)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(Folder))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Folder)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public Folder GetObject(List listObject)
+    public Folder? GetObject(List listObject)
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "RootFolder"),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(Folder))
-            }
+            ObjectPathProperty.Create(objectPath1.Id, "RootFolder"),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Folder)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public Folder GetObject(ListItem listItemObject)
+    public Folder? GetObject(ListItem listItemObject)
     {
-        _ = listItemObject ?? throw new ArgumentNullException(nameof(listItemObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listItemObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listItemObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Folder"),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(Folder))
-            }
+            ObjectPathProperty.Create(objectPath1.Id, "Folder"),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Folder)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public Folder GetObject(Guid? folderId)
+    public Folder? GetObject(Guid folderId)
     {
-        _ = folderId ?? throw new ArgumentNullException(nameof(folderId));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
+        var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath2.Id,
                 "GetFolderById",
                 requestPayload.CreateParameter(folderId)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(Folder))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Folder)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public Folder GetObject(Uri folderUrl)
+    public Folder? GetObject(Uri folderUrl)
     {
-        _ = folderUrl ?? throw new ArgumentNullException(nameof(folderUrl));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
+        var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath2.Id,
                 "GetFolderByServerRelativeUrl",
                 requestPayload.CreateParameter(folderUrl)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(Folder))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Folder)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public Folder GetObject(Folder folderObject, string folderName)
+    public Folder? GetObject(Folder folderObject, string folderName)
     {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
-        _ = folderName ?? throw new ArgumentNullException(nameof(folderName));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Folders"));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(folderObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Folders"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath2.Id,
                 "GetByUrl",
                 requestPayload.CreateParameter(folderName)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(Folder))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Folder)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<Folder> GetObjectEnumerable()
+    public IEnumerable<Folder>? GetObjectEnumerable()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
+        var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathProperty(objectPath2.Id, "Folders"),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = ClientQuery.Empty,
-                ChildItemQuery = new ClientQuery(true)
-            }
+            ObjectPathProperty.Create(objectPath2.Id, "Folders"),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(
+                objectPathId,
+                ClientQuery.Empty,
+                ClientQuery.Create(true)
+            )
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<FolderEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<Folder> GetObjectEnumerable(Folder folderObject)
+    public IEnumerable<Folder>? GetObjectEnumerable(Folder folderObject)
     {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(folderObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathProperty(objectPath1.Id, "Folders"),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = ClientQuery.Empty,
-                ChildItemQuery = new ClientQuery(true, typeof(Folder))
-            }
+            ObjectPathProperty.Create(objectPath1.Id, "Folders"),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(
+                objectPathId,
+                ClientQuery.Empty,
+                ClientQuery.Create(true, typeof(Folder))
+            )
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
@@ -259,12 +232,10 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
 
     public void MoveObject(Folder folderObject, Uri folderUrl)
     {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
-        _ = folderUrl ?? throw new ArgumentNullException(nameof(folderUrl));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathIdentity(folderObject.ObjectIdentity),
-            objectPathId => new ClientActionMethod(
+            ObjectPathIdentity.Create(folderObject.ObjectIdentity),
+            objectPathId => ClientActionMethod.Create(
                 objectPathId,
                 "MoveTo",
                 requestPayload.CreateParameter(folderUrl)
@@ -276,20 +247,19 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
     public void MoveObject(
         Folder folderObject,
         Uri folderUrl,
-        IReadOnlyDictionary<string, object> moveCopyOptions
+        IReadOnlyDictionary<string, object?> moveCopyOptions
     )
     {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
-        _ = folderUrl ?? throw new ArgumentNullException(nameof(folderUrl));
-        _ = moveCopyOptions ?? throw new ArgumentNullException(nameof(moveCopyOptions));
+        var serverRelativeUrl = folderObject.ServerRelativeUrl;
+        _ = serverRelativeUrl ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
-            new ClientActionStaticMethod(
+            ClientActionStaticMethod.Create(
                 typeof(MoveCopyUtil),
                 "MoveFolder",
                 requestPayload.CreateParameter(
                     new Uri(this.ClientContext.BaseAddress.GetLeftPart(UriPartial.Authority))
-                        .ConcatPath(folderObject.ServerRelativeUrl)
+                        .ConcatPath(serverRelativeUrl)
                         .ToString()
                 ),
                 requestPayload.CreateParameter(folderUrl),
@@ -301,9 +271,11 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
 
     public Guid RecycleObject(Folder folderObject)
     {
-        _ = folderObject ?? throw new ArgumentNullException(nameof(folderObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(folderObject.ObjectIdentity), objectPathId => new ClientActionMethod(objectPathId, "Recycle"));
+        var objectPath1 = requestPayload.Add(
+            ObjectPathIdentity.Create(folderObject.ObjectIdentity),
+            objectPathId => ClientActionMethod.Create(objectPathId, "Recycle")
+        );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Guid>(requestPayload.GetActionId<ClientActionMethod>());

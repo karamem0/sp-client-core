@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
+using Karamem0.SharePoint.PowerShell.Runtime.OAuth;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -69,14 +70,14 @@ public class ConnectSiteCommand : OAuthCmdlet
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet4")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet5")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet6")]
-    public string ClientId { get; private set; }
+    public string ClientId { get; private set; } = OAuthConstants.ClientId;
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet4")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet5")]
-    public Uri Authority { get; private set; }
+    public Uri Authority { get; private set; } = new Uri(OAuthConstants.AadAuthority, UriKind.Absolute);
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]

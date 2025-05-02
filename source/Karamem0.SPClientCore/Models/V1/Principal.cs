@@ -27,12 +27,12 @@ public class Principal : ClientObject
     // public virtual bool IsHiddenInUI { get; protected set; }
 
     [JsonProperty()]
-    public virtual string LoginName { get; protected set; }
+    public virtual string? LoginName { get; protected set; }
 
     [JsonProperty()]
-    public virtual PrincipalType PrincipalType { get; protected set; }
+    public virtual PrincipalType? PrincipalType { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; protected set; }
 
 }

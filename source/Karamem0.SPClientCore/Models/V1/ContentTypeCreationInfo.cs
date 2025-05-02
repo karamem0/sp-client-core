@@ -21,15 +21,15 @@ public class ContentTypeCreationInfo : ClientValueObject
 {
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Group { get; protected set; }
+    public virtual string? Group { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; protected set; }
 
     [JsonProperty("ParentContentType")]
-    public virtual ContentType ContentType { get; protected set; }
+    public virtual ContentType? ContentType { get; protected set; }
 
 }

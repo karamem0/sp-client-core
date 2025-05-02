@@ -17,10 +17,10 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [JsonObject()]
 [ODataV1Object(Name = "Microsoft.SharePoint.Comments.comment")]
-public class CommentCreationInfo : ODataV1Object
+public class CommentCreationInfo : ODataV1Object<CommentCreationInfo>
 {
 
     [JsonProperty("text")]
-    public virtual string Text { get; protected set; }
+    public virtual string? Text { get; protected set; }
 
 }

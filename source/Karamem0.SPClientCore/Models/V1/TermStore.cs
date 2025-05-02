@@ -21,7 +21,7 @@ public class TermStore : ClientObject
 {
 
     [JsonProperty()]
-    public virtual string ContentTypePublishingHub { get; protected set; }
+    public virtual string? ContentTypePublishingHub { get; protected set; }
 
     [JsonProperty("DefaultLanguage")]
     public virtual uint DefaultLcid { get; protected set; }
@@ -33,10 +33,10 @@ public class TermStore : ClientObject
     public virtual bool IsOnline { get; protected set; }
 
     [JsonProperty("Languages")]
-    public virtual IReadOnlyList<uint> Lcids { get; protected set; }
+    public virtual IReadOnlyList<uint>? Lcids { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; protected set; }
 
     [JsonProperty("WorkingLanguage")]
     public virtual uint WorkingLcid { get; protected set; }

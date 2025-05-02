@@ -6,6 +6,7 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Newtonsoft.Json;
@@ -33,12 +34,13 @@ public class AadOAuthTokenDictionary : Dictionary<string, AadOAuthToken>
         if (fileInfo.Exists)
         {
             var json = File.ReadAllText(fileInfo.FullName);
-            if (JsonSerializerManager.Instance.TryDeserialize(json, out AadOAuthTokenDictionary oAuthTokens))
+            if (JsonSerializerManager.Instance.TryDeserialize(json, out AadOAuthTokenDictionary? oAuthTokens))
             {
-                return oAuthTokens;
+                return oAuthTokens ?? [];
             }
-            if (JsonSerializerManager.Instance.TryDeserialize(json, out AadOAuthToken oAuthToken))
+            if (JsonSerializerManager.Instance.TryDeserialize(json, out AadOAuthToken? oAuthToken))
             {
+                _ = oAuthToken ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
                 var jwtToken = new JsonWebToken(oAuthToken.AccessToken);
                 var jwtAudience = jwtToken.GetPayloadValue<string>("aud");
                 return new AadOAuthTokenDictionary()
@@ -50,10 +52,6 @@ public class AadOAuthTokenDictionary : Dictionary<string, AadOAuthToken>
             }
         }
         return [];
-    }
-
-    public AadOAuthTokenDictionary()
-    {
     }
 
     public void Save()

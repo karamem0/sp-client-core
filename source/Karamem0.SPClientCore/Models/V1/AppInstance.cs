@@ -21,46 +21,46 @@ public class AppInstance : ClientObject
 {
 
     [JsonProperty()]
-    public virtual string AppPrincipalId { get; protected set; }
+    public virtual string? AppPrincipalId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string AppWebFullUrl { get; protected set; }
+    public virtual string? AppWebFullUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid Id { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ImageFallbackUrl { get; protected set; }
+    public virtual string? ImageFallbackUrl { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ImageUrl { get; protected set; }
+    public virtual string? ImageUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual bool InError { get; protected set; }
 
     [JsonProperty()]
-    public virtual byte[] PackageFingerprint { get; protected set; }
+    public virtual byte[]? PackageFingerprint { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid ProductId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string RemoteAppUrl { get; protected set; }
+    public virtual string? RemoteAppUrl { get; protected set; }
 
     [JsonProperty()]
-    public virtual string SettingsPageUrl { get; protected set; }
+    public virtual string? SettingsPageUrl { get; protected set; }
 
     [JsonProperty("SiteId")]
     public virtual Guid SiteCollectionId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string StartPage { get; protected set; }
+    public virtual string? StartPage { get; protected set; }
 
     [JsonProperty()]
-    public virtual AppStatus Status { get; protected set; }
+    public virtual AppStatus? Status { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; protected set; }
 
     [JsonProperty("WebId")]
     public virtual Guid SiteId { get; protected set; }

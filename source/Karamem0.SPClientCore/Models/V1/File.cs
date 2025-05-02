@@ -21,19 +21,19 @@ public class File : ClientObject
 {
 
     [JsonProperty()]
-    public virtual User Author { get; protected set; }
+    public virtual User? Author { get; protected set; }
 
     [JsonProperty()]
-    public virtual string CheckInComment { get; protected set; }
+    public virtual string? CheckInComment { get; protected set; }
 
     [JsonProperty()]
-    public virtual CheckOutType CheckOutType { get; protected set; }
+    public virtual CheckOutType? CheckOutType { get; protected set; }
 
     [JsonProperty("CheckedOutByUser")]
-    public virtual User CheckOutUser { get; protected set; }
+    public virtual User? CheckOutUser { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ContentTag { get; protected set; }
+    public virtual string? ContentTag { get; protected set; }
 
     [JsonProperty("TimeCreated")]
     public virtual DateTime Created { get; protected set; }
@@ -42,10 +42,10 @@ public class File : ClientObject
     public virtual int CustomizedPageStatus { get; protected set; }
 
     [JsonProperty("ModifiedBy")]
-    public virtual User Editor { get; protected set; }
+    public virtual User? Editor { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ETag { get; protected set; }
+    public virtual string? ETag { get; protected set; }
 
     [JsonProperty()]
     public virtual bool Exists { get; protected set; }
@@ -66,16 +66,16 @@ public class File : ClientObject
     public virtual long Length { get; protected set; }
 
     [JsonProperty()]
-    public virtual byte Level { get; protected set; }
+    public virtual byte? Level { get; protected set; }
 
     [JsonProperty()]
-    public virtual string LinkingUri { get; protected set; }
+    public virtual string? LinkingUri { get; protected set; }
 
     [JsonProperty()]
-    public virtual string LinkingUrl { get; protected set; }
+    public virtual string? LinkingUrl { get; protected set; }
 
     [JsonProperty("LockedByUser")]
-    public virtual User LockUser { get; protected set; }
+    public virtual User? LockUser { get; protected set; }
 
     [JsonProperty()]
     public virtual int MajorVersion { get; protected set; }
@@ -84,19 +84,19 @@ public class File : ClientObject
     public virtual int MinorVersion { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ServerRelativeUrl { get; protected set; }
+    public virtual string? ServerRelativeUrl { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; protected set; }
 
     [JsonProperty()]
     public virtual int UIVersion { get; protected set; }
 
     [JsonProperty()]
-    public virtual string UIVersionLabel { get; protected set; }
+    public virtual string? UIVersionLabel { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid UniqueId { get; protected set; }

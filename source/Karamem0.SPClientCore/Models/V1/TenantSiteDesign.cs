@@ -21,13 +21,13 @@ public class TenantSiteDesign : ClientObject
 {
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid DesignPackageId { get; protected set; }
 
     [JsonProperty()]
-    public virtual TenantTemplateDesignType DesignType { get; protected set; }
+    public virtual TenantTemplateDesignType? DesignType { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid Id { get; protected set; }
@@ -36,22 +36,22 @@ public class TenantSiteDesign : ClientObject
     public virtual bool IsDefault { get; protected set; }
 
     [JsonProperty()]
-    public virtual string PreviewImageAltText { get; protected set; }
+    public virtual string? PreviewImageAltText { get; protected set; }
 
     [JsonProperty()]
-    public virtual string PreviewImageUrl { get; protected set; }
+    public virtual string? PreviewImageUrl { get; protected set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<string> SiteScriptIds { get; protected set; }
+    public virtual IReadOnlyCollection<string>? SiteScriptIds { get; protected set; }
 
     [JsonProperty("WebTemplate")]
-    public virtual string SiteTemplate { get; protected set; }
+    public virtual string? SiteTemplate { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ThumbnailUrl { get; protected set; }
+    public virtual string? ThumbnailUrl { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; protected set; }
 
     [JsonProperty()]
     public virtual int Version { get; protected set; }

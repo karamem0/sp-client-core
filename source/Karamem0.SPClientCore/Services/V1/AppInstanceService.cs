@@ -19,81 +19,76 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IAppInstanceService
 {
 
-    AppInstance GetObject(Guid? appInstanceId);
+    AppInstance? GetObject(Guid appInstanceId);
 
-    IEnumerable<AppInstance> GetObjectEnumerable();
+    IEnumerable<AppInstance>? GetObjectEnumerable();
 
-    IEnumerable<AppInstance> GetObjectEnumerable(Guid? appProductId);
+    IEnumerable<AppInstance>? GetObjectEnumerable(Guid appProductId);
 
 }
 
 public class AppInstanceService(ClientContext clientContext) : ClientService(clientContext), IAppInstanceService
 {
 
-    public AppInstance GetObject(Guid? appInstanceId)
+    public AppInstance? GetObject(Guid appInstanceId)
     {
-        _ = appInstanceId ?? throw new ArgumentNullException(nameof(appInstanceId));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
+        var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath2.Id,
                 "GetAppInstanceById",
                 requestPayload.CreateParameter(appInstanceId)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = new ClientQuery(true, typeof(AppInstance))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(AppInstance)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<AppInstance>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<AppInstance> GetObjectEnumerable()
+    public IEnumerable<AppInstance>? GetObjectEnumerable()
     {
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
+        var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathStaticMethod(
+            ObjectPathStaticMethod.Create(
                 typeof(AppCatalog),
                 "GetAppInstances",
-                new ClientRequestParameterObjectPath(objectPath2)
+                ClientRequestParameterObjectPath.Create(objectPath2)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = ClientQuery.Empty,
-                ChildItemQuery = new ClientQuery(true, typeof(AppInstance))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(
+                objectPathId,
+                ClientQuery.Empty,
+                ClientQuery.Create(true, typeof(AppInstance))
+            )
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<AppInstanceEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<AppInstance> GetObjectEnumerable(Guid? appProductId)
+    public IEnumerable<AppInstance>? GetObjectEnumerable(Guid appProductId)
     {
-        _ = appProductId ?? throw new ArgumentNullException(nameof(appProductId));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathStaticProperty(typeof(Context), "Current"));
-        var objectPath2 = requestPayload.Add(new ObjectPathProperty(objectPath1.Id, "Web"));
+        var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath2.Id,
                 "GetAppInstancesByProductId",
                 requestPayload.CreateParameter(appProductId)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = ClientQuery.Empty,
-                ChildItemQuery = new ClientQuery(true, typeof(AppInstance))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(
+                objectPathId,
+                ClientQuery.Empty,
+                ClientQuery.Create(true, typeof(AppInstance))
+            )
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)

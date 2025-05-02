@@ -20,12 +20,12 @@ public class File : ODataV2Object
 {
 
     [JsonProperty("hashes")]
-    public virtual Hashes Hashes { get; protected set; }
+    public virtual Hashes? Hashes { get; protected set; }
 
     [JsonProperty("irmEnabled")]
     public virtual bool IrmEnabled { get; protected set; }
 
     [JsonProperty("mimeType")]
-    public virtual string MimeType { get; protected set; }
+    public virtual string? MimeType { get; protected set; }
 
 }

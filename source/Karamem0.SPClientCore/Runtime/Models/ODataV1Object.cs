@@ -18,15 +18,16 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class ODataV1Object : ODataObject
 {
 
-    public ODataV1Object()
-    {
-        this.Metadata = ODataV1Metadata.Create(this.GetType());
-    }
-
     [JsonProperty("__deferred")]
-    public ODataV1Deferred Deferred { get; private set; }
+    public virtual ODataV1Deferred? Deferred { get; protected set; }
+
+}
+
+[JsonObject()]
+public class ODataV1Object<T> : ODataV1Object
+{
 
     [JsonProperty("__metadata")]
-    public ODataV1Metadata Metadata { get; private set; }
+    public virtual ODataV1Metadata? Metadata { get; protected set; } = ODataV1Metadata.Create(typeof(T));
 
 }

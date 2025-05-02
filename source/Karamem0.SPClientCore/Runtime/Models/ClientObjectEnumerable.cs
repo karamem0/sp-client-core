@@ -20,7 +20,7 @@ public abstract class ClientObjectEnumerable<T> : ClientObject, IEnumerable<T>
 
     [JsonProperty("_Child_Items_")]
     [JsonConverter(typeof(JsonEnumerableConverter))]
-    public IEnumerable<T> Entries { get; private set; }
+    public IEnumerable<T> Entries { get; protected set; } = [];
 
     IEnumerator IEnumerable.GetEnumerator()
     {
@@ -29,16 +29,7 @@ public abstract class ClientObjectEnumerable<T> : ClientObject, IEnumerable<T>
 
     public IEnumerator<T> GetEnumerator()
     {
-        if (this.Entries is null)
-        {
-            return Enumerable
-                .Empty<T>()
-                .GetEnumerator();
-        }
-        else
-        {
-            return this.Entries.GetEnumerator();
-        }
+        return this.Entries.GetEnumerator();
     }
 
 }

@@ -29,7 +29,7 @@
     Import-Module ../Karamem0.SPClientCore/bin/Debug/netstandard2.1/publish/SPClientCore.psd1
     ```
 
-1. Import `SPClientCore.Tests`.
+1. Import `SPClientCore.Test`.
 
     ```pwsh
     Import-Module ./Scripts/SPClientCore.Test.psd1
@@ -49,7 +49,7 @@
         ExternalUserName = "someone@example.com"
     }
     $settings = Install-TestSite @params
-    $settings | ConvertTo-Json -Depth 16 | Out-File "./bin/Debug/net8.0/SPClientCore.Tests.config.json"
+    $settings | ConvertTo-Json -Depth 16 | Out-File "./bin/Debug/net8.0/SPClientCore.Test.config.json"
     ```
 
 1. These components are created.
@@ -95,10 +95,10 @@
     Import-Module ../Karamem0.SPClientCore/bin/Debug/netstandard2.1/publish/SPClientCore.psd1
     ```
 
-1. Import `SPClientCore.Tests`.
+1. Import `SPClientCore.Test`.
 
     ```pwsh
-    Import-Module ./Scripts/SPClientCore.Tests.psd1
+    Import-Module ./Scripts/SPClientCore.Test.psd1
     ```
 
 1. Run `Uninstall-TestSite`.

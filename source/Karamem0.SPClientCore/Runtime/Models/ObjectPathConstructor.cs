@@ -15,13 +15,21 @@ using System.Xml.Serialization;
 namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 
 [XmlType("Constructor", Namespace = "http://schemas.microsoft.com/sharepoint/clientquery/2009")]
-public class ObjectPathConstructor(Type type) : ObjectPath
+public class ObjectPathConstructor : ObjectPath
 {
+
+    public static ObjectPathConstructor Create(Type type)
+    {
+        return new ObjectPathConstructor()
+        {
+            TypeId = ClientObjectAttribute.GetId(type)
+        };
+    }
 
     [XmlAttribute()]
     public override long Id { get; protected set; } = NewId();
 
     [XmlAttribute()]
-    public virtual Guid TypeId { get; protected set; } = ClientObjectAttribute.GetId(type ?? throw new ArgumentNullException(nameof(type)));
+    public virtual Guid TypeId { get; protected set; }
 
 }

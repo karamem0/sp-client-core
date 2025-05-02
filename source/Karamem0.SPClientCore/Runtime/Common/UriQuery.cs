@@ -16,13 +16,12 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Common;
 public static class UriQuery
 {
 
-    public static string Create(IReadOnlyDictionary<string, object> parameters, bool quote = false)
+    public static string Create(IReadOnlyDictionary<string, object?> parameters, bool quote = false)
     {
-        parameters ??= new Dictionary<string, object>();
+        parameters ??= new Dictionary<string, object?>();
         return string.Join(
             "&",
-            parameters.Select(
-                pair =>
+            parameters.Select(pair =>
                 {
                     var key = Uri.EscapeDataString(pair.Key);
                     if (pair.Value is null)

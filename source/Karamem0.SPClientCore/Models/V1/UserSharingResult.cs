@@ -21,30 +21,30 @@ public class UserSharingResult : ClientValueObject
 {
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<RoleType> AllowedRoles { get; protected set; }
+    public virtual IReadOnlyCollection<RoleType>? AllowedRoles { get; protected set; }
 
     [JsonProperty()]
-    public virtual RoleType CurrentRole { get; protected set; }
+    public virtual RoleType? CurrentRole { get; protected set; }
 
     [JsonProperty()]
-    public virtual string DisplayName { get; protected set; }
+    public virtual string? DisplayName { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Email { get; protected set; }
+    public virtual string? Email { get; protected set; }
 
     [JsonProperty()]
-    public virtual string InvitationLink { get; protected set; }
+    public virtual string? InvitationLink { get; protected set; }
 
     [JsonProperty()]
     public virtual bool IsUserKnown { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Message { get; protected set; }
+    public virtual string? Message { get; protected set; }
 
     [JsonProperty()]
     public virtual bool Status { get; protected set; }
 
     [JsonProperty("User")]
-    public virtual string UserId { get; protected set; }
+    public virtual string? UserId { get; protected set; }
 
 }

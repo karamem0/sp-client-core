@@ -18,17 +18,17 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 [ClientObject(Name = "SP.Taxonomy.TaxonomyFieldValue", Id = "{19e70ed0-4177-456b-8156-015e4d163ff8}")]
 [JsonObject()]
 public class ColumnTaxonomyValue(
-    string label = null,
-    string termGuid = null,
+    string? label = null,
+    string? termGuid = null,
     int wssId = 0
 ) : ClientValueObject
 {
 
     [JsonProperty()]
-    public virtual string Label { get; protected set; } = label;
+    public virtual string? Label { get; protected set; } = label;
 
     [JsonProperty()]
-    public virtual string TermGuid { get; protected set; } = termGuid;
+    public virtual string? TermGuid { get; protected set; } = termGuid;
 
     [JsonProperty()]
     public virtual int WssId { get; protected set; } = wssId;

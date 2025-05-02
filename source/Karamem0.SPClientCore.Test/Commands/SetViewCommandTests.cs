@@ -77,7 +77,13 @@ public class SetViewCommandTests
                 ["Title"] = "Test View 9",
                 ["Toolbar"] = "Standard",
                 ["ViewData"] = "",
-                ["ViewJoins"] = "<Join Type='LEFT' ListAlias='TestList1'>" + "<Eq>" + "<FieldRef Name='TestColumn8' RefType='Id'/>" + "<FieldRef List='TestList1' Name='ID'/>" + "</Eq>" + "</Join>",
+                ["ViewJoins"] =
+                    "<Join Type='LEFT' ListAlias='TestList1'>" +
+                    "<Eq>" +
+                    "<FieldRef Name='TestColumn8' RefType='Id'/>" +
+                    "<FieldRef List='TestList1' Name='ID'/>" +
+                    "</Eq>" +
+                    "</Join>",
                 ["ViewProjectedColumns"] = "<Field Name='TestColumn16' Type='Lookup' List='TestList1' ShowField='Title'/>",
                 ["ViewQuery"] = "<OrderBy><FieldRef Name='Title'/></OrderBy>",
                 ["ViewType2"] = null,

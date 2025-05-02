@@ -21,12 +21,12 @@ public class ListItemCreationInfo : ClientValueObject
 {
 
     [JsonProperty()]
-    public virtual string FolderUrl { get; protected set; }
+    public virtual string? FolderUrl { get; protected set; }
 
     [JsonProperty()]
-    public virtual string LeafName { get; protected set; }
+    public virtual string? LeafName { get; protected set; }
 
     [JsonProperty()]
-    public virtual FileSystemObjectType UnderlyingObjectType { get; protected set; }
+    public virtual FileSystemObjectType? UnderlyingObjectType { get; protected set; }
 
 }

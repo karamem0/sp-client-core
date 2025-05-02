@@ -24,13 +24,13 @@ public class Term : TermSetItem
     public override DateTime Created { get; protected set; }
 
     [JsonProperty()]
-    public override IReadOnlyDictionary<string, string> CustomProperties { get; protected set; }
+    public override IReadOnlyDictionary<string, string>? CustomProperties { get; protected set; }
 
     [JsonProperty()]
-    public override string CustomSortOrder { get; protected set; }
+    public override string? CustomSortOrder { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; protected set; }
 
     [JsonProperty()]
     public override Guid Id { get; protected set; }
@@ -63,24 +63,24 @@ public class Term : TermSetItem
     public override DateTime LastModified { get; protected set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyDictionary<string, string> LocalCustomProperties { get; protected set; }
+    public virtual IReadOnlyDictionary<string, string>? LocalCustomProperties { get; protected set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyList<Guid> MergedTermIds { get; protected set; }
+    public virtual IReadOnlyList<Guid>? MergedTermIds { get; protected set; }
 
     [JsonProperty()]
-    public override string Name { get; protected set; }
+    public override string? Name { get; protected set; }
 
     [JsonProperty()]
-    public virtual string PathOfTerm { get; protected set; }
+    public virtual string? PathOfTerm { get; protected set; }
 
     [JsonProperty()]
-    public override string Owner { get; protected set; }
+    public override string? Owner { get; protected set; }
 
     [JsonProperty()]
     public virtual int TermsCount { get; protected set; }
 
     [JsonProperty()]
-    public override TermStore TermStore { get; protected set; }
+    public override TermStore? TermStore { get; protected set; }
 
 }

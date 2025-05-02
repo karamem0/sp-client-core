@@ -19,80 +19,77 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IChangeService
 {
 
-    IEnumerable<Change> GetObjectEnumerable(SiteCollection siteCollectionObject, ChangeQuery changeQueryObject);
+    IEnumerable<Change>? GetObjectEnumerable(SiteCollection siteCollectionObject, ChangeQuery changeQueryObject);
 
-    IEnumerable<Change> GetObjectEnumerable(Site siteObject, ChangeQuery changeQueryObject);
+    IEnumerable<Change>? GetObjectEnumerable(Site siteObject, ChangeQuery changeQueryObject);
 
-    IEnumerable<Change> GetObjectEnumerable(List listObject, ChangeQuery changeQueryObject);
+    IEnumerable<Change>? GetObjectEnumerable(List listObject, ChangeQuery changeQueryObject);
 
 }
 
 public class ChangeService(ClientContext clientContext) : ClientService(clientContext), IChangeService
 {
 
-    public IEnumerable<Change> GetObjectEnumerable(SiteCollection siteCollectionObject, ChangeQuery changeQueryObject)
+    public IEnumerable<Change>? GetObjectEnumerable(SiteCollection siteCollectionObject, ChangeQuery changeQueryObject)
     {
-        _ = siteCollectionObject ?? throw new ArgumentNullException(nameof(siteCollectionObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(siteCollectionObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(siteCollectionObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath1.Id,
                 "GetChanges",
                 requestPayload.CreateParameter(changeQueryObject)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = ClientQuery.Empty,
-                ChildItemQuery = new ClientQuery(true, typeof(Change))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(
+                objectPathId,
+                ClientQuery.Empty,
+                ClientQuery.Create(true, typeof(Change))
+            )
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ChangeEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<Change> GetObjectEnumerable(Site siteObject, ChangeQuery changeQueryObject)
+    public IEnumerable<Change>? GetObjectEnumerable(Site siteObject, ChangeQuery changeQueryObject)
     {
-        _ = siteObject ?? throw new ArgumentNullException(nameof(siteObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(siteObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(siteObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath1.Id,
                 "GetChanges",
                 requestPayload.CreateParameter(changeQueryObject)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = ClientQuery.Empty,
-                ChildItemQuery = new ClientQuery(true, typeof(Change))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(
+                objectPathId,
+                ClientQuery.Empty,
+                ClientQuery.Create(true, typeof(Change))
+            )
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ChangeEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<Change> GetObjectEnumerable(List listObject, ChangeQuery changeQueryObject)
+    public IEnumerable<Change>? GetObjectEnumerable(List listObject, ChangeQuery changeQueryObject)
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
         var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(new ObjectPathIdentity(listObject.ObjectIdentity));
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
-            new ObjectPathMethod(
+            ObjectPathMethod.Create(
                 objectPath1.Id,
                 "GetChanges",
                 requestPayload.CreateParameter(changeQueryObject)
             ),
-            objectPathId => new ClientActionInstantiateObjectPath(objectPathId),
-            objectPathId => new ClientActionQuery(objectPathId)
-            {
-                Query = ClientQuery.Empty,
-                ChildItemQuery = new ClientQuery(true, typeof(Change))
-            }
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(
+                objectPathId,
+                ClientQuery.Empty,
+                ClientQuery.Create(true, typeof(Change))
+            )
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)

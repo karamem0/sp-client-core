@@ -27,10 +27,10 @@ public class List : SecurableObject
     public virtual int BaseTemplate { get; protected set; }
 
     [JsonProperty()]
-    public virtual BaseType BaseType { get; protected set; }
+    public virtual BaseType? BaseType { get; protected set; }
 
     [JsonProperty()]
-    public virtual BrowserFileHandling BrowserFileHandling { get; protected set; }
+    public virtual BrowserFileHandling? BrowserFileHandling { get; protected set; }
 
     [JsonProperty()]
     public virtual bool ContentTypesEnabled { get; protected set; }
@@ -42,37 +42,37 @@ public class List : SecurableObject
     public virtual DateTime Created { get; protected set; }
 
     [JsonProperty()]
-    public virtual ChangeToken CurrentChangeToken { get; protected set; }
+    public virtual ChangeToken? CurrentChangeToken { get; protected set; }
 
     [JsonProperty()]
-    public virtual CustomActionElementEnumerable CustomActionElements { get; protected set; }
+    public virtual CustomActionElementEnumerable? CustomActionElements { get; protected set; }
 
     [JsonProperty()]
-    public virtual ListDataSource DataSource { get; protected set; }
+    public virtual ListDataSource? DataSource { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid DefaultContentApprovalWorkflowId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string DefaultDisplayFormUrl { get; protected set; }
+    public virtual string? DefaultDisplayFormUrl { get; protected set; }
 
     [JsonProperty()]
-    public virtual string DefaultEditFormUrl { get; protected set; }
+    public virtual string? DefaultEditFormUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual bool DefaultItemOpenUseListSetting { get; protected set; }
 
     [JsonProperty()]
-    public virtual string DefaultNewFormUrl { get; protected set; }
+    public virtual string? DefaultNewFormUrl { get; protected set; }
 
     [JsonProperty()]
-    public virtual string DefaultViewUrl { get; protected set; }
+    public virtual string? DefaultViewUrl { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Description { get; protected set; }
+    public virtual string? Description { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Direction { get; protected set; }
+    public virtual string? Direction { get; protected set; }
 
     [JsonProperty()]
     public virtual bool DisableCommenting { get; protected set; }
@@ -81,10 +81,10 @@ public class List : SecurableObject
     public virtual bool DisableGridEditing { get; protected set; }
 
     [JsonProperty()]
-    public virtual string DocumentTemplateUrl { get; protected set; }
+    public virtual string? DocumentTemplateUrl { get; protected set; }
 
     [JsonProperty()]
-    public virtual DraftVisibilityType DraftVersionVisibility { get; protected set; }
+    public virtual DraftVisibilityType? DraftVersionVisibility { get; protected set; }
 
     [JsonProperty()]
     public virtual bool EnableAttachments { get; protected set; }
@@ -105,7 +105,7 @@ public class List : SecurableObject
     public virtual bool EnableVersioning { get; protected set; }
 
     [JsonProperty()]
-    public virtual string EntityTypeName { get; protected set; }
+    public virtual string? EntityTypeName { get; protected set; }
 
     [JsonProperty()]
     public virtual bool ExemptFromBlockDownloadOfNonViewableFiles { get; protected set; }
@@ -129,10 +129,10 @@ public class List : SecurableObject
     public virtual Guid Id { get; protected set; }
 
     [JsonProperty()]
-    public virtual ResourcePath ImagePath { get; protected set; }
+    public virtual ResourcePath? ImagePath { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ImageUrl { get; protected set; }
+    public virtual string? ImageUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual bool IrmEnabled { get; protected set; }
@@ -168,10 +168,10 @@ public class List : SecurableObject
     public virtual DateTime LastItemUserModifiedDate { get; protected set; }
 
     [JsonProperty()]
-    public virtual ListExperience ListExperienceOptions { get; protected set; }
+    public virtual ListExperience? ListExperienceOptions { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ListItemEntityTypeFullName { get; protected set; }
+    public virtual string? ListItemEntityTypeFullName { get; protected set; }
 
     [JsonProperty()]
     public virtual int MajorVersionLimit { get; protected set; }
@@ -186,16 +186,16 @@ public class List : SecurableObject
     public virtual bool NoCrawl { get; protected set; }
 
     [JsonProperty("ParentWebPath")]
-    public virtual ResourcePath ParentSitePath { get; protected set; }
+    public virtual ResourcePath? ParentSitePath { get; protected set; }
 
     [JsonProperty("ParentWebUrl")]
-    public virtual string ParentSiteUrl { get; protected set; }
+    public virtual string? ParentSiteUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual bool ParserDisabled { get; protected set; }
 
     [JsonProperty()]
-    public virtual string SchemaXml { get; protected set; }
+    public virtual string? SchemaXml { get; protected set; }
 
     [JsonProperty()]
     public virtual bool ServerTemplateCanCreateFolders { get; protected set; }
@@ -204,12 +204,12 @@ public class List : SecurableObject
     public virtual Guid TemplateFeatureId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; }
+    public virtual string? Title { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ValidationFormula { get; protected set; }
+    public virtual string? ValidationFormula { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ValidationMessage { get; protected set; }
+    public virtual string? ValidationMessage { get; protected set; }
 
 }

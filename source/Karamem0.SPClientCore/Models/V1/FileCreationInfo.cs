@@ -21,12 +21,12 @@ public class FileCreationInfo : ClientValueObject
 {
 
     [JsonProperty()]
-    public virtual byte[] Content { get; protected set; }
+    public virtual byte[]? Content { get; protected set; }
 
     [JsonProperty()]
     public virtual bool Overwrite { get; protected set; }
 
     [JsonProperty("Url")]
-    public virtual string FileName { get; protected set; }
+    public virtual string? FileName { get; protected set; }
 
 }

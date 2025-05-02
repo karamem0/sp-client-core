@@ -51,13 +51,13 @@ public class SiteCollection : ClientObject
     public virtual Guid ChannelGroupId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Classification { get; protected set; }
+    public virtual string? Classification { get; protected set; }
 
     [JsonProperty()]
     public virtual int CompatibilityLevel { get; protected set; }
 
     [JsonProperty()]
-    public virtual ChangeToken CurrentChangeToken { get; protected set; }
+    public virtual ChangeToken? CurrentChangeToken { get; protected set; }
 
     [JsonProperty()]
     public virtual bool DisableAppViews { get; protected set; }
@@ -72,7 +72,7 @@ public class SiteCollection : ClientObject
     public virtual bool ExternalSharingTipsEnabled { get; protected set; }
 
     [JsonProperty()]
-    public virtual string GeoLocation { get; protected set; }
+    public virtual string? GeoLocation { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid GroupId { get; protected set; }
@@ -87,7 +87,7 @@ public class SiteCollection : ClientObject
     public virtual bool IsHubSite { get; protected set; }
 
     [JsonProperty()]
-    public virtual string LockIssue { get; protected set; }
+    public virtual string? LockIssue { get; protected set; }
 
     [JsonProperty()]
     public virtual int MaxItemsPerThrottledOperation { get; protected set; }
@@ -99,16 +99,16 @@ public class SiteCollection : ClientObject
     public virtual bool NeedsB2BUpgrade { get; protected set; }
 
     [JsonProperty()]
-    public virtual ResourcePath ResourcePath { get; protected set; }
+    public virtual ResourcePath? ResourcePath { get; protected set; }
 
     [JsonProperty("PrimaryUri")]
-    public virtual string PrimaryUrl { get; protected set; }
+    public virtual string? PrimaryUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual bool ReadOnly { get; protected set; }
 
     [JsonProperty()]
-    public virtual string RequiredDesignerVersion { get; protected set; }
+    public virtual string? RequiredDesignerVersion { get; protected set; }
 
     [JsonProperty()]
     public virtual int SandboxedCodeActivationCapability { get; protected set; }
@@ -117,10 +117,10 @@ public class SiteCollection : ClientObject
     public virtual Guid SensitivityLabel { get; protected set; }
 
     [JsonProperty()]
-    public virtual string SensitivityLabelId { get; protected set; }
+    public virtual string? SensitivityLabelId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string ServerRelativeUrl { get; protected set; }
+    public virtual string? ServerRelativeUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual bool ShareByEmailEnabled { get; protected set; }
@@ -150,7 +150,7 @@ public class SiteCollection : ClientObject
     public virtual bool Upgrading { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Url { get; protected set; }
+    public virtual string? Url { get; protected set; }
 
     [JsonProperty()]
     public virtual bool WriteLocked { get; protected set; }

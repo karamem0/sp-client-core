@@ -17,13 +17,13 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "Microsoft.Online.SharePoint.TenantAdministration.SPOListParameters", Id = "{041476cd-5865-49c1-bb67-0682f69a2a51}")]
 [JsonObject()]
-public class ListParameters(Guid id = new Guid(), string title = null) : ClientValueObject
+public class ListParameters(Guid id = new Guid(), string? title = null) : ClientValueObject
 {
 
     [JsonProperty()]
     public virtual Guid Id { get; protected set; } = id;
 
     [JsonProperty()]
-    public virtual string Title { get; protected set; } = title;
+    public virtual string? Title { get; protected set; } = title;
 
 }

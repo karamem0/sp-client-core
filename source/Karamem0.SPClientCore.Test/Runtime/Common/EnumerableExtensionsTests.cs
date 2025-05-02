@@ -47,10 +47,9 @@ public class EnumerableExtensionsTests
             Array = default(int[]),
             Size = 3
         };
-        _ = Assert.Throws<ArgumentNullException>(
-            () => EnumerableExtensions
-                .Chunks(args.Array, args.Size)
-                .ToArray()
+        _ = Assert.Throws<ArgumentNullException>(() => EnumerableExtensions
+            .Chunks(args.Array, args.Size)
+            .ToArray()
         );
     }
 
@@ -65,10 +64,9 @@ public class EnumerableExtensionsTests
             },
             Size = 0
         };
-        _ = Assert.Throws<ArgumentException>(
-            () => EnumerableExtensions
-                .Chunks(args.Array, args.Size)
-                .ToArray()
+        _ = Assert.Throws<ArgumentException>(() => EnumerableExtensions
+            .Chunks(args.Array, args.Size)
+            .ToArray()
         );
     }
 

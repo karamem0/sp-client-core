@@ -19,17 +19,17 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ISharingLinkService
 {
 
-    string CreateAnonymousLink(Uri url, bool isEditLink);
+    string? CreateAnonymousLink(Uri url, bool isEditLink);
 
-    string CreateAnonymousLink(
+    string? CreateAnonymousLink(
         Uri url,
         bool isEditLink,
         DateTime expiration
     );
 
-    string CreateOrganizationSharingLink(Uri url, bool isEditLink);
+    string? CreateOrganizationSharingLink(Uri url, bool isEditLink);
 
-    SharingInfo GetSharingInfo(
+    SharingInfo? GetSharingInfo(
         Uri url,
         bool excludeCurrentUser,
         bool excludeSiteAdmin,
@@ -40,13 +40,13 @@ public interface ISharingLinkService
         bool retrievePermissionLevels
     );
 
-    SharingSettings GetSharingSettings(
+    SharingSettings? GetSharingSettings(
         Uri url,
         int groupId,
         bool useSimplifiedRoles
     );
 
-    SharingLinkKind GetSharingLinkKind(Uri url);
+    SharingLinkKind? GetSharingLinkKind(Uri url);
 
     void RemoveAnonymousLink(
         Uri url,
@@ -65,12 +65,11 @@ public interface ISharingLinkService
 public class SharingLinkService(ClientContext clientContext) : ClientService(clientContext), ISharingLinkService
 {
 
-    public string CreateAnonymousLink(Uri url, bool isEditLink)
+    public string? CreateAnonymousLink(Uri url, bool isEditLink)
     {
-        _ = url ?? throw new ArgumentNullException(nameof(url));
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
-            new ClientActionStaticMethod(
+            ClientActionStaticMethod.Create(
                 typeof(Site),
                 "CreateAnonymousLink",
                 requestPayload.CreateParameter(url),
@@ -82,16 +81,15 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
             .ToObject<string>(requestPayload.GetActionId<ClientActionStaticMethod>());
     }
 
-    public string CreateAnonymousLink(
+    public string? CreateAnonymousLink(
         Uri url,
         bool isEditLink,
         DateTime expiration
     )
     {
-        _ = url ?? throw new ArgumentNullException(nameof(url));
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
-            new ClientActionStaticMethod(
+            ClientActionStaticMethod.Create(
                 typeof(Site),
                 "CreateAnonymousLinkWithExpiration",
                 requestPayload.CreateParameter(url),
@@ -104,12 +102,11 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
             .ToObject<string>(requestPayload.GetActionId<ClientActionStaticMethod>());
     }
 
-    public string CreateOrganizationSharingLink(Uri url, bool isEditLink)
+    public string? CreateOrganizationSharingLink(Uri url, bool isEditLink)
     {
-        _ = url ?? throw new ArgumentNullException(nameof(url));
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
-            new ClientActionStaticMethod(
+            ClientActionStaticMethod.Create(
                 typeof(Site),
                 "CreateOrganizationSharingLink",
                 requestPayload.CreateParameter(url),
@@ -121,7 +118,7 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
             .ToObject<string>(requestPayload.GetActionId<ClientActionStaticMethod>());
     }
 
-    public SharingInfo GetSharingInfo(
+    public SharingInfo? GetSharingInfo(
         Uri url,
         bool excludeCurrentUser,
         bool excludeSiteAdmin,
@@ -132,10 +129,9 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
         bool retrievePermissionLevels
     )
     {
-        _ = url ?? throw new ArgumentNullException(nameof(url));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticMethod(
+            ObjectPathStaticMethod.Create(
                 typeof(SharingInfo),
                 "GetObjectSharingInformationByUrl",
                 requestPayload.CreateParameter(url),
@@ -147,48 +143,40 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
                 requestPayload.CreateParameter(checkForAccessRequests),
                 requestPayload.CreateParameter(retrievePermissionLevels)
             ),
-            objectPath => new ClientActionQuery(objectPath)
-            {
-                Query = new ClientQuery(true, typeof(SharingInfo))
-            }
+            objectPath => ClientActionQuery.Create(objectPath, ClientQuery.Create(true, typeof(SharingInfo)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<SharingInfo>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public SharingSettings GetSharingSettings(
+    public SharingSettings? GetSharingSettings(
         Uri url,
         int groupId,
         bool useSimplifiedRoles
     )
     {
-        _ = url ?? throw new ArgumentNullException(nameof(url));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
-            new ObjectPathStaticMethod(
+            ObjectPathStaticMethod.Create(
                 typeof(Site),
                 "GetObjectSharingSettings",
                 requestPayload.CreateParameter(url),
                 requestPayload.CreateParameter(groupId),
                 requestPayload.CreateParameter(useSimplifiedRoles)
             ),
-            objectPath => new ClientActionQuery(objectPath)
-            {
-                Query = new ClientQuery(true, typeof(SharingSettings))
-            }
+            objectPath => ClientActionQuery.Create(objectPath, ClientQuery.Create(true, typeof(SharingSettings)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<SharingSettings>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public SharingLinkKind GetSharingLinkKind(Uri url)
+    public SharingLinkKind? GetSharingLinkKind(Uri url)
     {
-        _ = url ?? throw new ArgumentNullException(nameof(url));
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
-            new ClientActionStaticMethod(
+            ClientActionStaticMethod.Create(
                 typeof(Site),
                 "GetSharingLinkKind",
                 requestPayload.CreateParameter(url)
@@ -205,10 +193,9 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
         bool removeAssociatedSharingLinkGroup
     )
     {
-        _ = url ?? throw new ArgumentNullException(nameof(url));
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
-            new ClientActionStaticMethod(
+            ClientActionStaticMethod.Create(
                 typeof(Site),
                 "DeleteAnonymousLinkForObject",
                 requestPayload.CreateParameter(url),
@@ -225,10 +212,9 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
         bool removeAssociatedSharingLinkGroup
     )
     {
-        _ = url ?? throw new ArgumentNullException(nameof(url));
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
-            new ClientActionStaticMethod(
+            ClientActionStaticMethod.Create(
                 typeof(Site),
                 "DestroyOrganizationSharingLink",
                 requestPayload.CreateParameter(url),

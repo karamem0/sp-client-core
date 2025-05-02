@@ -172,14 +172,10 @@ public class AddColumnTaxonomyCommand : ClientObjectCmdlet<IColumnService, IColu
             );
             this.Service2.SetObject(
                 clientObject,
-                new Dictionary<string, object>()
+                new Dictionary<string, object?>()
                 {
-                    {
-                        "TermSetId", this.TermSet.Id
-                    },
-                    {
-                        "TermStoreId", this.TermSet.TermStore.Id
-                    }
+                    ["TermSetId"] = this.TermSet.Id,
+                    ["TermStoreId"] = this.TermSet.TermStore.Id
                 }
             );
             this.Outputs.Add(this.Service1.GetObject(clientObject));
@@ -193,14 +189,10 @@ public class AddColumnTaxonomyCommand : ClientObjectCmdlet<IColumnService, IColu
             );
             this.Service2.SetObject(
                 clientObject,
-                new Dictionary<string, object>()
+                new Dictionary<string, object?>()
                 {
-                    {
-                        "TermSetId", this.TermSet.Id
-                    },
-                    {
-                        "TermStoreId", this.TermSet.TermStore.Id
-                    }
+                    ["TermSetId"] = this.TermSet.Id,
+                    ["TermStoreId"] = this.TermSet.TermStore.Id
                 }
             );
             this.Outputs.Add(this.Service1.GetObject(clientObject));

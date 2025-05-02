@@ -6,6 +6,7 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Newtonsoft.Json;
 using System;
@@ -22,41 +23,42 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class ClientRequestPropertyClientValueObject : ClientRequestProperty
 {
 
-    public ClientRequestPropertyClientValueObject(string name, ClientValueObject value)
+    public static ClientRequestPropertyClientValueObject Create(string name, ClientValueObject value)
     {
-        _ = value ?? throw new ArgumentNullException(nameof(value));
-        this.Name = name;
-        this.TypeId = ClientObjectAttribute.GetId(value.GetType());
-        this.Values = value
-            .GetType()
-            .GetDeclaredProperties()
-            .Where(propertyInfo => propertyInfo.IsDefined(typeof(JsonPropertyAttribute)))
-            .Select(
-                propertyInfo =>
-                {
-                    var propertyAttribute = propertyInfo.GetCustomAttribute<JsonPropertyAttribute>();
-                    var propertyName = string.IsNullOrEmpty(propertyAttribute.PropertyName) ? propertyInfo.Name : propertyAttribute.PropertyName;
-                    var propertyValue = propertyInfo.GetValue(value);
-                    if (ClientRequestValue.TryCreate(propertyValue, out var valueObject))
+        return new ClientRequestPropertyClientValueObject()
+        {
+            Name = name,
+            TypeId = ClientObjectAttribute.GetId(value.GetType()),
+            Values = value
+                .GetType()
+                .GetDeclaredProperties()
+                .Where(propertyInfo => propertyInfo.IsDefined(typeof(JsonPropertyAttribute)))
+                .Select(propertyInfo =>
                     {
-                        return new ClientRequestPropertyValue(propertyName, valueObject);
+                        var propertyAttribute = propertyInfo.GetCustomAttribute<JsonPropertyAttribute>();
+                        var propertyName = string.IsNullOrEmpty(propertyAttribute.PropertyName) ? propertyInfo.Name : propertyAttribute.PropertyName;
+                        var propertyValue = propertyInfo.GetValue(value);
+                        if (ClientRequestValue.TryCreate(propertyValue, out var valueObject))
+                        {
+                            return ClientRequestPropertyValue.Create(propertyName, valueObject);
+                        }
+                        else
+                        {
+                            throw new InvalidOperationException(StringResources.ErrorValueIsInvalid);
+                        }
                     }
-                    else
-                    {
-                        throw new InvalidOperationException();
-                    }
-                }
-            )
-            .ToList();
+                )
+                .ToArray()
+        };
     }
 
     [XmlAttribute()]
-    public virtual string Name { get; protected set; }
+    public virtual string? Name { get; protected set; }
 
     [XmlAttribute()]
     public virtual Guid TypeId { get; protected set; }
 
     [XmlElement("Property")]
-    public virtual IReadOnlyCollection<ClientRequestPropertyValue> Values { get; protected set; }
+    public virtual IReadOnlyCollection<ClientRequestPropertyValue>? Values { get; protected set; }
 
 }

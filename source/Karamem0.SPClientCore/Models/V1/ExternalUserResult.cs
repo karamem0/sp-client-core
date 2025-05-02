@@ -21,12 +21,12 @@ public class ExternalUserResult : ClientObject
 {
 
     [JsonProperty("ExternalUserCollection")]
-    public ExternalUserEnumerable ExternalUsers { get; protected set; }
+    public virtual ExternalUserEnumerable? ExternalUsers { get; protected set; }
 
     [JsonProperty("TotalUserCount")]
-    public int TotalCount { get; protected set; }
+    public virtual int TotalCount { get; protected set; }
 
     [JsonProperty("UserCollectionPosition")]
-    public int Position { get; protected set; }
+    public virtual int Position { get; protected set; }
 
 }

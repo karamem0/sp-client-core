@@ -24,7 +24,7 @@ public class TenantSiteScriptSerializationInfo : ClientValueObject
     public virtual bool IncludeBranding { get; protected set; }
 
     [JsonProperty()]
-    public virtual string[] IncludedLists { get; protected set; }
+    public virtual string[]? IncludedLists { get; protected set; }
 
     [JsonProperty()]
     public virtual bool IncludeLinksToExportedItems { get; protected set; }

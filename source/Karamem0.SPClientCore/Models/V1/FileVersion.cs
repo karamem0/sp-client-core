@@ -21,7 +21,7 @@ public class FileVersion : ClientObject
 {
 
     [JsonProperty()]
-    public virtual string CheckInComment { get; protected set; }
+    public virtual string? CheckInComment { get; protected set; }
 
     [JsonProperty()]
     public virtual DateTime Created { get; protected set; }
@@ -39,9 +39,9 @@ public class FileVersion : ClientObject
     public virtual int Size { get; protected set; }
 
     [JsonProperty()]
-    public virtual string Url { get; protected set; }
+    public virtual string? Url { get; protected set; }
 
     [JsonProperty()]
-    public virtual string VersionLabel { get; protected set; }
+    public virtual string? VersionLabel { get; protected set; }
 
 }

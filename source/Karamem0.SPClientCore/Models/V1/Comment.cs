@@ -16,11 +16,11 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [JsonObject()]
-public class Comment : ODataV1Object
+public class Comment : ODataV1Object<Comment>
 {
 
     [JsonProperty("author")]
-    public virtual SharingPrincipal Author { get; protected set; }
+    public virtual SharingPrincipal? Author { get; protected set; }
 
     [JsonProperty("createdDate")]
     public virtual DateTime Created { get; protected set; }
@@ -41,7 +41,7 @@ public class Comment : ODataV1Object
     public virtual int LikeCount { get; protected set; }
 
     [JsonProperty("likedBy")]
-    public virtual ODataV1ObjectEnumerable<LikedUser> LikedBy { get; protected set; }
+    public virtual ODataV1ObjectEnumerable<LikedUser>? LikedBy { get; protected set; }
 
     [JsonProperty("listId")]
     public virtual Guid ListId { get; protected set; }
@@ -53,6 +53,6 @@ public class Comment : ODataV1Object
     public virtual int ReplyCount { get; protected set; }
 
     [JsonProperty("text")]
-    public virtual string Text { get; protected set; }
+    public virtual string? Text { get; protected set; }
 
 }
