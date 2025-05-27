@@ -17,9 +17,9 @@ using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
-[Cmdlet(VerbsCommon.Set, "KshCheckOutStatus")]
+[Cmdlet(VerbsCommon.Set, "KshFileCheckOutStatus")]
 [OutputType(typeof(void))]
-public class SetCheckOutStatusCommand : ClientObjectCmdlet<ICheckOutService>
+public class SetFileCheckOutStatusCommand : ClientObjectCmdlet<IFileService>
 {
 
     [Parameter(

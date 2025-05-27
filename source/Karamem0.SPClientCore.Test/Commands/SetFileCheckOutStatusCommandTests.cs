@@ -17,7 +17,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands.Test;
 
 [Category("Karamem0.SharePoint.PowerShell.Commands")]
-public class SetCheckOutStatusCommandTests
+public class SetFileCheckOutStatusCommandTests
 {
 
     [Test()]
@@ -51,7 +51,7 @@ public class SetCheckOutStatusCommandTests
             }
         );
         _ = context.Runspace.InvokeCommand(
-            "Set-KshCheckOutStatus",
+            "Set-KshFileCheckOutStatus",
             new Dictionary<string, object>()
             {
                 ["File"] = result2[0],
@@ -59,7 +59,7 @@ public class SetCheckOutStatusCommandTests
             }
         );
         _ = context.Runspace.InvokeCommand(
-            "Set-KshCheckOutStatus",
+            "Set-KshFileCheckOutStatus",
             new Dictionary<string, object>()
             {
                 ["File"] = result2[0],
@@ -115,7 +115,7 @@ public class SetCheckOutStatusCommandTests
             }
         );
         _ = context.Runspace.InvokeCommand(
-            "Set-KshCheckOutStatus",
+            "Set-KshFileCheckOutStatus",
             new Dictionary<string, object>()
             {
                 ["File"] = result2[0],
@@ -123,7 +123,7 @@ public class SetCheckOutStatusCommandTests
             }
         );
         _ = context.Runspace.InvokeCommand(
-            "Set-KshCheckOutStatus",
+            "Set-KshFileCheckOutStatus",
             new Dictionary<string, object>()
             {
                 ["File"] = result2[0],
@@ -181,7 +181,7 @@ public class SetCheckOutStatusCommandTests
             }
         );
         _ = context.Runspace.InvokeCommand(
-            "Set-KshCheckOutStatus",
+            "Set-KshFileCheckOutStatus",
             new Dictionary<string, object>()
             {
                 ["File"] = result2[0],
@@ -189,7 +189,7 @@ public class SetCheckOutStatusCommandTests
             }
         );
         _ = context.Runspace.InvokeCommand(
-            "Set-KshCheckOutStatus",
+            "Set-KshFileCheckOutStatus",
             new Dictionary<string, object>()
             {
                 ["File"] = result2[0],

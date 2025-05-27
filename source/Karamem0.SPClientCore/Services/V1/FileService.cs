@@ -23,6 +23,14 @@ public interface IFileService
 
     File? AddObject(Folder folderObject, IReadOnlyDictionary<string, object?> creationInfo);
 
+    void CheckInObject(
+        File fileObject,
+        string? comment,
+        CheckInType? checkInType
+    );
+
+    void CheckOutObject(File fileObject);
+
     void CopyObject(
         File fileObject,
         Uri fileUrl,
@@ -75,6 +83,8 @@ public interface IFileService
 
     void SetObject(File fileObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
+    void UndoCheckOutObject(File fileObject);
+
     void UnpublishObject(File fileObject, string? comment);
 
     void UploadObject(
@@ -106,6 +116,35 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<File>(requestPayload.GetActionId<ClientActionQuery>());
+    }
+
+    public void CheckInObject(
+        File fileObject,
+        string? comment,
+        CheckInType? checkInType
+    )
+    {
+        var requestPayload = new ClientRequestPayload();
+        var objectPath1 = requestPayload.Add(
+            ObjectPathIdentity.Create(fileObject.ObjectIdentity),
+            objectPathId => ClientActionMethod.Create(
+                objectPathId,
+                "CheckIn",
+                requestPayload.CreateParameter(comment),
+                requestPayload.CreateParameter(checkInType ?? CheckInType.MinorCheckIn)
+            )
+        );
+        _ = this.ClientContext.ProcessQuery(requestPayload);
+    }
+
+    public void CheckOutObject(File fileObject)
+    {
+        var requestPayload = new ClientRequestPayload();
+        var objectPath1 = requestPayload.Add(
+            ObjectPathIdentity.Create(fileObject.ObjectIdentity),
+            objectPathId => ClientActionMethod.Create(objectPathId, "CheckOut")
+        );
+        _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
     public void CopyObject(
@@ -379,6 +418,16 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                     )
                 )
             )
+        );
+        _ = this.ClientContext.ProcessQuery(requestPayload);
+    }
+
+    public void UndoCheckOutObject(File fileObject)
+    {
+        var requestPayload = new ClientRequestPayload();
+        var objectPath1 = requestPayload.Add(
+            ObjectPathIdentity.Create(fileObject.ObjectIdentity),
+            objectPathId => ClientActionMethod.Create(objectPathId, "UndoCheckOut")
         );
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
