@@ -34,6 +34,6 @@ public class PSCmdletOptions
 
     public string ImageFileBase64 { get; set; }
 
-    public string SubscriptionNotificationUrl { get; set; }
+    public Uri SubscriptionNotificationUrl { get; set; }
 
 }

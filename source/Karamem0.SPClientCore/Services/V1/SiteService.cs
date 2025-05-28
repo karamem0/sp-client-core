@@ -172,7 +172,7 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
 
     public void SelectObject(Site siteObject)
     {
-        this.ClientContext.BaseAddress = new Uri(siteObject.Url, UriKind.Absolute);
+        this.ClientContext.BaseAddress = siteObject.Url;
     }
 
 }

@@ -18,8 +18,6 @@ public static class UriExtensions
 
     public static Uri ConcatPath(this Uri uri, string path)
     {
-        _ = uri ?? throw new ArgumentNullException(nameof(uri));
-        _ = path ?? throw new ArgumentNullException(nameof(path));
         var str1 = uri
             .ToString()
             .TrimEnd('/');
@@ -53,11 +51,6 @@ public static class UriExtensions
 
     public static Uri ConcatQuery(this Uri uri, string query)
     {
-        _ = uri ?? throw new ArgumentNullException(nameof(uri));
-        if (query is null)
-        {
-            return uri;
-        }
         var str1 = uri.ToString();
         var str2 = query.TrimStart('?');
         if (str1.Contains('?'))

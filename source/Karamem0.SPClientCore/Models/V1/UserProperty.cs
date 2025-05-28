@@ -48,13 +48,13 @@ public class UserProperty : ClientObject
     public virtual IReadOnlyCollection<string>? Peers { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? PersonalSiteHostUrl { get; protected set; }
+    public virtual Uri? PersonalSiteHostUrl { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? PersonalUrl { get; protected set; }
+    public virtual Uri? PersonalUrl { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? PictureUrl { get; protected set; }
+    public virtual Uri? PictureUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual string? Title { get; protected set; }
@@ -63,6 +63,6 @@ public class UserProperty : ClientObject
     public virtual IReadOnlyDictionary<string, string>? UserProfileProperties { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? UserUrl { get; protected set; }
+    public virtual Uri? UserUrl { get; protected set; }
 
 }

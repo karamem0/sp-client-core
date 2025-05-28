@@ -28,9 +28,9 @@ public interface ITenantSiteScriptService
 
     void RemoveObject(TenantSiteScript siteScriptObject);
 
-    string? GetScriptFromList(string listUrl);
+    string? GetScriptFromList(Uri listUrl);
 
-    string? GetScriptFromSite(string siteUrl, IReadOnlyDictionary<string, object?> serializationInfo);
+    string? GetScriptFromSite(Uri siteUrl, IReadOnlyDictionary<string, object?> serializationInfo);
 
 }
 
@@ -102,7 +102,7 @@ public class TenantSiteScriptService(ClientContext clientContext) : ClientServic
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public string? GetScriptFromList(string listUrl)
+    public string? GetScriptFromList(Uri listUrl)
     {
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
@@ -117,7 +117,7 @@ public class TenantSiteScriptService(ClientContext clientContext) : ClientServic
             .ToObject<string>(requestPayload.GetActionId<ClientActionStaticMethod>());
     }
 
-    public string? GetScriptFromSite(string siteUrl, IReadOnlyDictionary<string, object?> serializationInfo)
+    public string? GetScriptFromSite(Uri siteUrl, IReadOnlyDictionary<string, object?> serializationInfo)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));

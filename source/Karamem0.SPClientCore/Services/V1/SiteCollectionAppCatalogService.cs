@@ -27,7 +27,7 @@ public interface ISiteCollectionAppCatalogService
 
     void RemoveObject(Uri siteCollectionUrl);
 
-    void RemoveObject(Guid? siteCollectionId);
+    void RemoveObject(Guid siteCollectionId);
 
 }
 
@@ -75,7 +75,6 @@ public class SiteCollectionAppCatalogService(ClientContext clientContext)
 
     public void RemoveObject(Uri siteCollectionUrl)
     {
-        _ = siteCollectionUrl ?? throw new ArgumentNullException(nameof(siteCollectionUrl));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
@@ -92,9 +91,8 @@ public class SiteCollectionAppCatalogService(ClientContext clientContext)
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public void RemoveObject(Guid? siteCollectionId)
+    public void RemoveObject(Guid siteCollectionId)
     {
-        _ = siteCollectionId ?? throw new ArgumentNullException(nameof(siteCollectionId));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));

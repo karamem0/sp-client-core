@@ -102,7 +102,7 @@ public class SiteCollection : ClientObject
     public virtual ResourcePath? ResourcePath { get; protected set; }
 
     [JsonProperty("PrimaryUri")]
-    public virtual string? PrimaryUrl { get; protected set; }
+    public virtual Uri? PrimaryUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual bool ReadOnly { get; protected set; }
@@ -120,7 +120,7 @@ public class SiteCollection : ClientObject
     public virtual string? SensitivityLabelId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? ServerRelativeUrl { get; protected set; }
+    public virtual Uri? ServerRelativeUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual bool ShareByEmailEnabled { get; protected set; }
@@ -150,7 +150,7 @@ public class SiteCollection : ClientObject
     public virtual bool Upgrading { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? Url { get; protected set; }
+    public virtual Uri? Url { get; protected set; }
 
     [JsonProperty()]
     public virtual bool WriteLocked { get; protected set; }

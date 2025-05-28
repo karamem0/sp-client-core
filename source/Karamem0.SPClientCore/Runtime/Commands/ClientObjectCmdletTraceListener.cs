@@ -20,7 +20,7 @@ public class ClientObjectCmdletTraceListener(Cmdlet cmdlet) : TraceListener
 
     private readonly List<string> messages = [];
 
-    private readonly Cmdlet cmdlet = cmdlet ?? throw new ArgumentNullException(nameof(cmdlet));
+    private readonly Cmdlet cmdlet = cmdlet;
 
     public override void Write(string message)
     {

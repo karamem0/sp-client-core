@@ -36,7 +36,7 @@ public class ListTemplate : ClientObject
     public virtual bool Hidden { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? ImageUrl { get; protected set; }
+    public virtual Uri? ImageUrl { get; protected set; }
 
     [JsonProperty("InternalName")]
     public virtual string? Name { get; protected set; }

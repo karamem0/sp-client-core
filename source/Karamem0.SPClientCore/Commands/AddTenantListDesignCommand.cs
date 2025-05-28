@@ -38,7 +38,7 @@ public class AddTenantListDesignCommand : ClientObjectCmdlet<ITenantListDesignSe
     public string[] TemplateFeatures { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string ThumbnailUrl { get; private set; }
+    public Uri ThumbnailUrl { get; private set; }
 
     [Parameter(Mandatory = true)]
     public string Title { get; private set; }

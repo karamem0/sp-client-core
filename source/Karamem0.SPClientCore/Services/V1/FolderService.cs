@@ -79,8 +79,7 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
                 "CopyFolder",
                 requestPayload.CreateParameter(
                     new Uri(this.ClientContext.BaseAddress.GetLeftPart(UriPartial.Authority))
-                        .ConcatPath(serverRelativeUrl)
-                        .ToString()
+                        .ConcatPath(serverRelativeUrl.ToString())
                 ),
                 requestPayload.CreateParameter(folderUrl),
                 requestPayload.CreateParameter(ClientValueObject.Create<MoveCopyOptions>(moveCopyOptions))
@@ -259,8 +258,7 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
                 "MoveFolder",
                 requestPayload.CreateParameter(
                     new Uri(this.ClientContext.BaseAddress.GetLeftPart(UriPartial.Authority))
-                        .ConcatPath(serverRelativeUrl)
-                        .ToString()
+                        .ConcatPath(serverRelativeUrl.ToString())
                 ),
                 requestPayload.CreateParameter(folderUrl),
                 requestPayload.CreateParameter(ClientValueObject.Create<MoveCopyOptions>(moveCopyOptions))

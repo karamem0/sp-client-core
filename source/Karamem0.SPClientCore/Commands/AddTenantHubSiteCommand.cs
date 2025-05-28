@@ -32,13 +32,13 @@ public class AddTenantHubSiteCommand : ClientObjectCmdlet<ITenantHubSiteService>
     public bool HideNameInNavigation { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string LogoUrl { get; private set; }
+    public Uri LogoUrl { get; private set; }
 
     [Parameter(Mandatory = true)]
     public Guid SiteCollectionId { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public string SiteCollectionUrl { get; private set; }
+    public Uri SiteCollectionUrl { get; private set; }
 
     [Parameter(Mandatory = true)]
     public string Title { get; private set; }

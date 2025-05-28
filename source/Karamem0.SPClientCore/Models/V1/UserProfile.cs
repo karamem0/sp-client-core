@@ -27,7 +27,7 @@ public class UserProfile : ClientObject
     public virtual string? DisplayName { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? FollowPersonalSiteUrl { get; protected set; }
+    public virtual Uri? FollowPersonalSiteUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual bool IsDefaultDocumentLibraryBlocked { get; protected set; }
@@ -48,7 +48,7 @@ public class UserProfile : ClientObject
     public virtual int MySiteCollectionFirstRunExperience { get; protected set; }
 
     [JsonProperty("MySiteHostUrl")]
-    public virtual string? MySiteCollectionHostUrl { get; protected set; }
+    public virtual Uri? MySiteCollectionHostUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual int O15FirstRunExperience { get; protected set; }
@@ -78,15 +78,15 @@ public class UserProfile : ClientObject
     public virtual bool PictureImportEnabled { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? PictureUrl { get; protected set; }
+    public virtual Uri? PictureUrl { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? PublicUrl { get; protected set; }
+    public virtual Uri? PublicUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual string? SipAddress { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? UrlToCreatePersonalSite { get; protected set; }
+    public virtual Uri? UrlToCreatePersonalSite { get; protected set; }
 
 }

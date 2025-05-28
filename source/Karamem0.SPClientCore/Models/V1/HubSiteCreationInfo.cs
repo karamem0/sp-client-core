@@ -30,7 +30,7 @@ public class HubSiteCreationInfo : ClientValueObject
     public virtual bool HideNameInNavigation { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? LogoUrl { get; protected set; }
+    public virtual Uri? LogoUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid ParentHubSiteId { get; protected set; }
@@ -39,7 +39,7 @@ public class HubSiteCreationInfo : ClientValueObject
     public virtual Guid SiteCollectionId { get; protected set; }
 
     [JsonProperty("SiteUrl")]
-    public virtual string? SiteCollectionUrl { get; protected set; }
+    public virtual Uri? SiteCollectionUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual string? Targets { get; protected set; }

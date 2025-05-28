@@ -23,7 +23,7 @@ public interface ITenantExternalUserService
     IEnumerable<ExternalUser>? GetObjectEnumerable(string filter, SortOrder sortOrder);
 
     IEnumerable<ExternalUser>? GetObjectEnumerable(
-        string siteCollectionUrl,
+        Uri siteCollectionUrl,
         string filter,
         SortOrder sortOrder
     );
@@ -72,7 +72,7 @@ public class TenantExternalUserService(ClientContext clientContext) : ClientServ
     }
 
     public IEnumerable<ExternalUser>? GetObjectEnumerable(
-        string siteCollectionUrl,
+        Uri siteCollectionUrl,
         string filter,
         SortOrder sortOrder
     )

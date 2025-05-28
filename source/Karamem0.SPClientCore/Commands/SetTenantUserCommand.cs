@@ -81,25 +81,25 @@ public class SetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
         if (this.ParameterSetName == "ParamSet1")
         {
             this.Service.SetObject(
-                new Uri(this.SiteCollection.Url, UriKind.Absolute),
+                this.SiteCollection.Url,
                 this.User,
                 this.IsSiteCollectionAdmin
             );
             if (this.PassThru)
             {
-                this.Outputs.Add(this.Service.GetObject(new Uri(this.SiteCollection.Url, UriKind.Absolute), this.User.LoginName));
+                this.Outputs.Add(this.Service.GetObject(this.SiteCollection.Url, this.User.LoginName));
             }
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             this.Service.SetObject(
-                new Uri(this.SiteCollection.Url, UriKind.Absolute),
+                this.SiteCollection.Url,
                 this.UserName,
                 this.IsSiteCollectionAdmin
             );
             if (this.PassThru)
             {
-                this.Outputs.Add(this.Service.GetObject(new Uri(this.SiteCollection.Url, UriKind.Absolute), this.UserName));
+                this.Outputs.Add(this.Service.GetObject(this.SiteCollection.Url, this.UserName));
             }
         }
         if (this.ParameterSetName == "ParamSet3")

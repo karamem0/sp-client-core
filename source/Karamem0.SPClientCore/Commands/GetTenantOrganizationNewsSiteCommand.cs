@@ -17,7 +17,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
 [Cmdlet(VerbsCommon.Get, "KshTenantOrganizationNewsSite")]
-[OutputType(typeof(string))]
+[OutputType(typeof(Uri))]
 public class GetTenantOrganizationNewsSiteCommand : ClientObjectCmdlet<ITenantOrganizationNewsSiteService>
 {
 

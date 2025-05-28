@@ -52,7 +52,7 @@ public class TenantDeletedSiteCollectionService(ClientContext clientContext) : T
             .ToObject<TenantDeletedSiteCollection>(requestPayload.GetActionId<ClientActionQuery>());
         var clientObjectUrl = clientObject?.Url;
         _ = clientObjectUrl ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
-        return this.GetObject(new Uri(clientObjectUrl, UriKind.Absolute));
+        return this.GetObject(clientObjectUrl);
     }
 
     public TenantDeletedSiteCollection? GetObject(Uri siteCollectionUrl)

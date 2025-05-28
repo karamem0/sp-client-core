@@ -36,7 +36,7 @@ public class RemoveSiteCollectionAppCatalogCommand : ClientObjectCmdlet<ISiteCol
 
     protected override void ProcessRecordCore()
     {
-        if (this.ShouldProcess(this.Identity.AbsoluteUrl, VerbsCommon.Remove))
+        if (this.ShouldProcess(this.Identity.AbsoluteUrl.ToString(), VerbsCommon.Remove))
         {
             this.Service.RemoveObject(this.Identity.SiteCollectionId);
         }

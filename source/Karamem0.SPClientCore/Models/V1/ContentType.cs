@@ -30,19 +30,19 @@ public class ContentType : ClientObject
     public virtual string? DisplayFormTemplateName { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? DisplayFormUrl { get; protected set; }
+    public virtual Uri? DisplayFormUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual string? DocumentTemplate { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? DocumentTemplateUrl { get; protected set; }
+    public virtual Uri? DocumentTemplateUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual string? EditFormTemplateName { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? EditFormUrl { get; protected set; }
+    public virtual Uri? EditFormUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual string? Group { get; protected set; }
@@ -57,13 +57,13 @@ public class ContentType : ClientObject
     public virtual string? JSLink { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? MobileDisplayFormUrl { get; protected set; }
+    public virtual Uri? MobileDisplayFormUrl { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? MobileEditFormUrl { get; protected set; }
+    public virtual Uri? MobileEditFormUrl { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? MobileNewFormUrl { get; protected set; }
+    public virtual Uri? MobileNewFormUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual string? Name { get; protected set; }
@@ -72,7 +72,7 @@ public class ContentType : ClientObject
     public virtual string? NewFormTemplateName { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? NewFormUrl { get; protected set; }
+    public virtual Uri? NewFormUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual bool ReadOnly { get; protected set; }

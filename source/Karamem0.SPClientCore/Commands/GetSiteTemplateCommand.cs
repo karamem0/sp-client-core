@@ -52,10 +52,10 @@ public class GetSiteTemplateCommand : ClientObjectCmdlet<ISiteService, ISiteTemp
     {
         if (this.Lcid == default)
         {
-            var site = this.Service1.GetObject();
-            if (site is not null)
+            var siteObject = this.Service1.GetObject();
+            if (siteObject is not null)
             {
-                this.Lcid = site.Lcid;
+                this.Lcid = siteObject.Lcid;
             }
         }
         if (this.ParameterSetName == "ParamSet1")

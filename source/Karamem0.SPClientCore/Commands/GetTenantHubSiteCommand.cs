@@ -34,7 +34,7 @@ public class GetTenantHubSiteCommand : ClientObjectCmdlet<ITenantHubSiteService>
         Position = 0,
         ParameterSetName = "ParamSet2"
     )]
-    public string HubSiteUrl { get; private set; }
+    public Uri HubSiteUrl { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     public SwitchParameter NoEnumerate { get; private set; }

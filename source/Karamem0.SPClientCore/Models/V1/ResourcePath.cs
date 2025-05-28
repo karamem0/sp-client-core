@@ -21,6 +21,6 @@ public class ResourcePath : ClientValueObject
 {
 
     [JsonProperty()]
-    public virtual string? DecodedUrl { get; protected set; }
+    public virtual Uri? DecodedUrl { get; protected set; }
 
 }

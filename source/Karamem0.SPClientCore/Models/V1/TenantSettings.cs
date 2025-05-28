@@ -20,6 +20,6 @@ public class TenantSettings : ODataV1Object<TenantSettings>
 {
 
     [JsonProperty("CorporateCatalogUrl")]
-    public virtual string? AppCatalogUrl { get; protected set; }
+    public virtual Uri? AppCatalogUrl { get; protected set; }
 
 }

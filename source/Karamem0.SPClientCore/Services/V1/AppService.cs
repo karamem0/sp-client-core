@@ -103,7 +103,6 @@ public class AppService(ClientContext clientContext) : ClientService(clientConte
 
     public void InstallObject(App appObject, bool isTenant)
     {
-        _ = appObject ?? throw new ArgumentNullException(nameof(appObject));
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/{0}/availableapps/getbyid('{1}')/install",
             isTenant ? "tenantappcatalog" : "sitecollectionappcatalog",
@@ -114,7 +113,6 @@ public class AppService(ClientContext clientContext) : ClientService(clientConte
 
     public void PublishObject(App appObject, bool isTenant)
     {
-        _ = appObject ?? throw new ArgumentNullException(nameof(appObject));
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/{0}/availableapps/getbyid('{1}')/deploy",
             isTenant ? "tenantappcatalog" : "sitecollectionappcatalog",
@@ -125,7 +123,6 @@ public class AppService(ClientContext clientContext) : ClientService(clientConte
 
     public void RemoveObject(App appObject, bool isTenant)
     {
-        _ = appObject ?? throw new ArgumentNullException(nameof(appObject));
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/{0}/availableapps/getbyid('{1}')/remove",
             isTenant ? "tenantappcatalog" : "sitecollectionappcatalog",
@@ -136,7 +133,6 @@ public class AppService(ClientContext clientContext) : ClientService(clientConte
 
     public void UninstallObject(App appObject, bool isTenant)
     {
-        _ = appObject ?? throw new ArgumentNullException(nameof(appObject));
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/{0}/availableapps/getbyid('{1}')/uninstall",
             isTenant ? "tenantappcatalog" : "sitecollectionappcatalog",
@@ -147,7 +143,6 @@ public class AppService(ClientContext clientContext) : ClientService(clientConte
 
     public void UnpublishObject(App appObject, bool isTenant)
     {
-        _ = appObject ?? throw new ArgumentNullException(nameof(appObject));
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/{0}/availableapps/getbyid('{1}')/retract",
             isTenant ? "tenantappcatalog" : "sitecollectionappcatalog",
@@ -158,7 +153,6 @@ public class AppService(ClientContext clientContext) : ClientService(clientConte
 
     public void UpdateObject(App appObject, bool isTenant)
     {
-        _ = appObject ?? throw new ArgumentNullException(nameof(appObject));
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/{0}/availableapps/getbyid('{1}')/upgrade",
             isTenant ? "tenantappcatalog" : "sitecollectionappcatalog",

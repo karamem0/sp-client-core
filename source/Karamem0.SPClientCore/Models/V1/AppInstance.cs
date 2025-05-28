@@ -24,16 +24,16 @@ public class AppInstance : ClientObject
     public virtual string? AppPrincipalId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? AppWebFullUrl { get; protected set; }
+    public virtual Uri? AppWebFullUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid Id { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? ImageFallbackUrl { get; protected set; }
+    public virtual Uri? ImageFallbackUrl { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? ImageUrl { get; protected set; }
+    public virtual Uri? ImageUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual bool InError { get; protected set; }
@@ -45,10 +45,10 @@ public class AppInstance : ClientObject
     public virtual Guid ProductId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? RemoteAppUrl { get; protected set; }
+    public virtual Uri? RemoteAppUrl { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? SettingsPageUrl { get; protected set; }
+    public virtual Uri? SettingsPageUrl { get; protected set; }
 
     [JsonProperty("SiteId")]
     public virtual Guid SiteCollectionId { get; protected set; }

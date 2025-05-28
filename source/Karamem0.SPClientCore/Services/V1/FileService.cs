@@ -88,7 +88,7 @@ public interface IFileService
     void UnpublishObject(File fileObject, string? comment);
 
     void UploadObject(
-        string folderUrl,
+        Uri folderUrl,
         string fileName,
         System.IO.Stream fileContent,
         bool overwrite
@@ -182,8 +182,7 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                 "CopyFile",
                 requestPayload.CreateParameter(
                     new Uri(this.ClientContext.BaseAddress.GetLeftPart(UriPartial.Authority))
-                        .ConcatPath(serverRelativeUrl)
-                        .ToString()
+                        .ConcatPath(serverRelativeUrl.ToString())
                 ),
                 requestPayload.CreateParameter(fileUrl),
                 requestPayload.CreateParameter(overwrite),
@@ -364,8 +363,7 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                 "MoveFile",
                 requestPayload.CreateParameter(
                     new Uri(this.ClientContext.BaseAddress.GetLeftPart(UriPartial.Authority))
-                        .ConcatPath(serverRelativeUrl)
-                        .ToString()
+                        .ConcatPath(serverRelativeUrl.ToString())
                 ),
                 requestPayload.CreateParameter(fileUrl),
                 requestPayload.CreateParameter(overwrite),
@@ -447,7 +445,7 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
     }
 
     public void UploadObject(
-        string folderUrl,
+        Uri folderUrl,
         string fileName,
         System.IO.Stream fileContent,
         bool overwrite

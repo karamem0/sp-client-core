@@ -33,7 +33,7 @@ public class GetTenantAppCatalogCommandTests
                 ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
             }
         );
-        var result1 = context.Runspace.InvokeCommand<string>(
+        var result1 = context.Runspace.InvokeCommand<Uri>(
             "Get-KshTenantAppCatalog",
             new Dictionary<string, object>()
             {

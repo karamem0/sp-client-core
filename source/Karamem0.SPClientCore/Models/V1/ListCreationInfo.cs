@@ -29,7 +29,7 @@ public class ListCreationInfo : ClientValueObject
     public virtual QuickLaunchOptions? QuickLaunchOption { get; protected set; }
 
     [JsonProperty("Url")]
-    public virtual string? ServerRelativeUrl { get; protected set; }
+    public virtual Uri? ServerRelativeUrl { get; protected set; }
 
     [JsonProperty("TemplateType")]
     public virtual int Template { get; protected set; }

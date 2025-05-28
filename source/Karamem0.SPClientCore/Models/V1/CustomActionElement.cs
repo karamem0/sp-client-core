@@ -36,7 +36,7 @@ public class CustomActionElement : ClientObject
     public virtual string? EnabledScript { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? ImageUrl { get; protected set; }
+    public virtual Uri? ImageUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual string? Location { get; protected set; }
@@ -57,6 +57,6 @@ public class CustomActionElement : ClientObject
     public virtual string? Title { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? UrlAction { get; protected set; }
+    public virtual Uri? UrlAction { get; protected set; }
 
 }

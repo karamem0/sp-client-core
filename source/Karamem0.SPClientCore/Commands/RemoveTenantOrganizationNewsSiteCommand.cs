@@ -27,11 +27,11 @@ public class RemoveTenantOrganizationNewsSiteCommand : ClientObjectCmdlet<ITenan
 {
 
     [Parameter(Mandatory = true)]
-    public string Url { get; private set; }
+    public Uri Url { get; private set; }
 
     protected override void ProcessRecordCore()
     {
-        if (this.ShouldProcess(this.Url, VerbsCommon.Remove))
+        if (this.ShouldProcess(this.Url.ToString(), VerbsCommon.Remove))
         {
             this.Service.RemoveObject(this.Url);
         }

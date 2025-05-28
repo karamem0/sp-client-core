@@ -36,7 +36,7 @@ public class TenantListDesignCreationInfo : ClientValueObject
     public virtual string[]? TemplateFeatures { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? ThumbnailUrl { get; protected set; }
+    public virtual Uri? ThumbnailUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual string? Title { get; protected set; }

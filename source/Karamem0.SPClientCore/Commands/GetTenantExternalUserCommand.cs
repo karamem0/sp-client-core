@@ -27,7 +27,7 @@ public class GetTenantExternalUserCommand : ClientObjectCmdlet<ITenantExternalUs
         Position = 0,
         ParameterSetName = "ParamSet1"
     )]
-    public string SiteCollectionUrl { get; private set; }
+    public Uri SiteCollectionUrl { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]

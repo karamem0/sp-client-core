@@ -22,7 +22,7 @@ public class NewColumnUrlValueCommand : ClientObjectCmdlet
 {
 
     [Parameter(Mandatory = true, Position = 0)]
-    public string Url { get; private set; }
+    public Uri Url { get; private set; }
 
     [Parameter(Mandatory = false, Position = 1)]
     public string Description { get; private set; }

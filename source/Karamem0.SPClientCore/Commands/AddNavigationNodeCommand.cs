@@ -49,7 +49,7 @@ public class AddNavigationNodeCommand : ClientObjectCmdlet<INavigationNodeServic
     public string Title { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string Url { get; private set; }
+    public Uri Url { get; private set; }
 
     protected override void ProcessRecordCore()
     {

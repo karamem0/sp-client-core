@@ -48,7 +48,6 @@ public class ClientRequestPayload : ClientRequestObject
 
     public ObjectPath Add(ObjectPath objectPath, params ClientActionDelegate[] delegates)
     {
-        _ = objectPath ?? throw new ArgumentNullException(nameof(objectPath));
         if (this.ObjectPaths.Count(item => item.Id == objectPath.Id) == 0)
         {
             this.ObjectPaths.Add(objectPath);

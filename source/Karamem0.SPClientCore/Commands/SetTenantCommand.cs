@@ -128,7 +128,7 @@ public class SetTenantCommand : ClientObjectCmdlet<ITenantService>
     public SharingCapabilities CoreSharingCapability { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string CustomizedExternalSharingServiceUrl { get; private set; }
+    public Uri CustomizedExternalSharingServiceUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
     public SiteInfoForSitePicker DefaultContentCenterSite { get; private set; }
@@ -323,7 +323,7 @@ public class SetTenantCommand : ClientObjectCmdlet<ITenantService>
     public bool MobileFriendlyUrlEnabledInTenant { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string NoAccessRedirectUrl { get; private set; }
+    public Uri NoAccessRedirectUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool NotificationsInOneDriveEnabled { get; private set; }
@@ -452,7 +452,7 @@ public class SetTenantCommand : ClientObjectCmdlet<ITenantService>
     public SpecialCharactersState SpecialCharactersStateInFileFolderNames { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string StartASiteFormUrl { get; private set; }
+    public Uri StartASiteFormUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool StopNew2010Workflows { get; private set; }

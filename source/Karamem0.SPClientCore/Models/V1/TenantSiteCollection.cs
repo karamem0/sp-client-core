@@ -303,7 +303,7 @@ public class TenantSiteCollection : ClientObject
     public virtual IReadOnlyCollection<ResourceEntry>? TitleTranslations { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? Url { get; protected set; }
+    public virtual Uri? Url { get; protected set; }
 
     [JsonProperty()]
     public virtual int UserCodeMaximumLevel { get; protected set; }

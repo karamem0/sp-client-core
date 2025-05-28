@@ -22,7 +22,7 @@ public class GetTenantSiteScriptFromSiteCommand : ClientObjectCmdlet<ITenantSite
 {
 
     [Parameter(Mandatory = true, Position = 0)]
-    public string SiteUrl { get; private set; }
+    public Uri SiteUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
     public SwitchParameter IncludeBranding { get; private set; }

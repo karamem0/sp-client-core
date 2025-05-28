@@ -59,7 +59,7 @@ public class RemoveTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
         {
             if (this.ParameterSetName == "ParamSet1")
             {
-                this.Service.RemoveObject(new Uri(this.SiteCollection.Url, UriKind.Absolute), this.User);
+                this.Service.RemoveObject(this.SiteCollection.Url, this.User);
             }
             if (this.ParameterSetName == "ParamSet2")
             {

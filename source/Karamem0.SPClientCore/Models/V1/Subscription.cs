@@ -29,7 +29,7 @@ public class Subscription : ODataV1Object<Subscription>
     public virtual Guid Id { get; protected set; }
 
     [JsonProperty("notificationUrl")]
-    public virtual string? NotificationUrl { get; protected set; }
+    public virtual Uri? NotificationUrl { get; protected set; }
 
     [JsonProperty("resource")]
     public virtual Guid Resource { get; protected set; }

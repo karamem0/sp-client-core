@@ -21,7 +21,7 @@ public class DocumentLibraryInfo : ClientValueObject
 {
 
     [JsonProperty()]
-    public virtual string? AbsoluteUrl { get; protected set; }
+    public virtual Uri? AbsoluteUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual bool FromCrossFarm { get; protected set; }
@@ -42,7 +42,7 @@ public class DocumentLibraryInfo : ClientValueObject
     public virtual string? ModifiedFriendlyDisplay { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? ServerRelativeUrl { get; protected set; }
+    public virtual Uri? ServerRelativeUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual string? Title { get; protected set; }

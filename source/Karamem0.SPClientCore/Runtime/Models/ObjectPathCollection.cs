@@ -23,7 +23,7 @@ public class ObjectPathCollection : IEnumerable<ObjectPath>
 
     public void Add(ObjectPath item)
     {
-        this.collection.Add(item.Id, item ?? throw new ArgumentNullException(nameof(item)));
+        this.collection.Add(item.Id, item);
     }
 
     public void Remove(long id)

@@ -30,7 +30,7 @@ public interface IExternalUserService
     );
 
     IEnumerable<UserSharingResult>? AddObject(
-        string documentUrl,
+        Uri documentUrl,
         IReadOnlyCollection<string> userId,
         RoleType role,
         bool validateExistingPermissions,
@@ -80,7 +80,7 @@ public class ExternalUserService(ClientContext clientContext) : ClientService(cl
     }
 
     public IEnumerable<UserSharingResult>? AddObject(
-        string documentUrl,
+        Uri documentUrl,
         IReadOnlyCollection<string> userId,
         RoleType role,
         bool validateExistingPermissions,
@@ -98,8 +98,7 @@ public class ExternalUserService(ClientContext clientContext) : ClientService(cl
                 "UpdateDocumentSharingInfo",
                 requestPayload.CreateParameter(
                     new Uri(this.ClientContext.BaseAddress.GetLeftPart(UriPartial.Authority))
-                        .ConcatPath(documentUrl)
-                        .ToString()
+                        .ConcatPath(documentUrl.ToString())
                 ),
                 requestPayload.CreateParameter(userId.Select(value => new UserRoleAssignment(value, role))),
                 requestPayload.CreateParameter(validateExistingPermissions),

@@ -19,18 +19,18 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantOrganizationNewsSiteService
 {
 
-    void AddObject(string organizationNewsSiteUrl);
+    void AddObject(Uri organizationNewsSiteUrl);
 
-    IEnumerable<string>? GetObjectEnumerable();
+    IEnumerable<Uri>? GetObjectEnumerable();
 
-    void RemoveObject(string organizationNewsSiteUrl);
+    void RemoveObject(Uri organizationNewsSiteUrl);
 
 }
 
 public class TenantOrganizationNewsSiteService(ClientContext clientContext) : ClientService(clientContext), ITenantOrganizationNewsSiteService
 {
 
-    public void AddObject(string organizationNewsSiteUrl)
+    public void AddObject(Uri organizationNewsSiteUrl)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -45,17 +45,17 @@ public class TenantOrganizationNewsSiteService(ClientContext clientContext) : Cl
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public IEnumerable<string>? GetObjectEnumerable()
+    public IEnumerable<Uri>? GetObjectEnumerable()
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(objectPath1, objectPathId => ClientActionMethod.Create(objectPathId, "GetOrgNewsSites"));
         return this
             .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<IEnumerable<string>>(requestPayload.GetActionId<ClientActionMethod>());
+            .ToObject<IEnumerable<Uri>>(requestPayload.GetActionId<ClientActionMethod>());
     }
 
-    public void RemoveObject(string organizationNewsSiteUrl)
+    public void RemoveObject(Uri organizationNewsSiteUrl)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));

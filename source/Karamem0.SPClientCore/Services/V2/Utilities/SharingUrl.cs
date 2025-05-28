@@ -17,20 +17,16 @@ namespace Karamem0.SharePoint.PowerShell.Services.V2.Utilities;
 public static class SharingUrl
 {
 
-    public static string Create(string absoluteUrl)
+    public static string Create(Uri absoluteUrl)
     {
-        var bytes = Encoding.UTF8.GetBytes(absoluteUrl);
+        var bytes = Encoding.UTF8.GetBytes(absoluteUrl.ToString());
         var base64 = Convert.ToBase64String(bytes);
         return $"u!{base64.TrimEnd('=').Replace('/', '_').Replace('+', '-')}";
     }
 
-    public static string Create(string baseUrl, string relativeUrl)
+    public static string Create(Uri baseUrl, Uri relativeUrl)
     {
-        return Create(
-            new Uri(baseUrl)
-                .ConcatPath(relativeUrl)
-                .ToString()
-        );
+        return Create(baseUrl.ConcatPath(relativeUrl.ToString()));
     }
 
 }

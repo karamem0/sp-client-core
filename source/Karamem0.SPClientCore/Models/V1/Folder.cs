@@ -51,7 +51,7 @@ public class Folder : ClientObject
     public virtual string? ProgId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? ServerRelativeUrl { get; protected set; }
+    public virtual Uri? ServerRelativeUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual IReadOnlyCollection<ContentTypeId>? UniqueContentTypeOrder { get; protected set; }

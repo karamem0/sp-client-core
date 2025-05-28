@@ -138,7 +138,7 @@ public class ListItem : SecurableObject
     public virtual string? ScopeId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? ServerRedirectedEmbedUrl { get; protected set; }
+    public virtual Uri? ServerRedirectedEmbedUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual ColumnLookupValue? SortBehavior { get; protected set; }

@@ -56,7 +56,7 @@ public class Alert : ClientObject
     public virtual int ListItemId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? ListUrl { get; protected set; }
+    public virtual Uri? ListUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual IReadOnlyDictionary<string, string>? Properties { get; protected set; }

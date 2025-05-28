@@ -29,7 +29,7 @@ public class AddListCommand : ClientObjectCmdlet<IListService>
     public QuickLaunchOptions QuickLaunchOption { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string ServerRelativeUrl { get; private set; }
+    public Uri ServerRelativeUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
     public ListTemplateType Template { get; private set; }

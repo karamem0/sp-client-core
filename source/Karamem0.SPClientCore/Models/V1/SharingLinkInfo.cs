@@ -120,6 +120,6 @@ public class SharingLinkInfo : ClientValueObject
     public virtual bool TrackLinkUsers { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? Url { get; protected set; }
+    public virtual Uri? Url { get; protected set; }
 
 }

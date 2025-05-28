@@ -39,7 +39,7 @@ public class SetTenantHubSiteCommand : ClientObjectCmdlet<ITenantHubSiteService>
     public bool HideNameInNavigation { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string LogoUrl { get; private set; }
+    public Uri LogoUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
     public Guid ParentHubSiteId { get; private set; }

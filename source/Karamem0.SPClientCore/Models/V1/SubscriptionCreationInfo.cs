@@ -27,7 +27,7 @@ public class SubscriptionCreationInfo : ODataV1Object<SubscriptionCreationInfo>
     public virtual DateTime ExpirationDateTime { get; protected set; }
 
     [JsonProperty("notificationUrl")]
-    public virtual string? NotificationUrl { get; protected set; }
+    public virtual Uri? NotificationUrl { get; protected set; }
 
     [JsonProperty("resource")]
     public virtual string? Resource { get; protected set; }

@@ -18,7 +18,7 @@ using System.Text;
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
 [Cmdlet(VerbsCommon.Get, "KshTenantAppCatalog")]
-[OutputType(typeof(string))]
+[OutputType(typeof(Uri))]
 public class GetTenantAppCatalogCommand : ClientObjectCmdlet<ITenantSettingsService>
 {
 

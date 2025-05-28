@@ -19,8 +19,8 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class ColumnImageValue(
     string? columnName = null,
     string? fileName = null,
-    string? serverUrl = null,
-    string? serverRelativeUrl = null,
+    Uri? serverUrl = null,
+    Uri? serverRelativeUrl = null,
     string? id = null,
     string? type = "thumbnail"
 ) : ODataObject
@@ -36,10 +36,10 @@ public class ColumnImageValue(
     public virtual string? Id { get; protected set; } = id;
 
     [JsonProperty("serverRelativeUrl")]
-    public virtual string? ServerRelativeUrl { get; protected set; } = serverRelativeUrl;
+    public virtual Uri? ServerRelativeUrl { get; protected set; } = serverRelativeUrl;
 
     [JsonProperty("serverUrl")]
-    public virtual string? ServerUrl { get; protected set; } = serverUrl;
+    public virtual Uri? ServerUrl { get; protected set; } = serverUrl;
 
     [JsonProperty("type")]
     public virtual string? Type { get; protected set; } = type;

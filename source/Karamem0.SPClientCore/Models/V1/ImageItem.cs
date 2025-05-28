@@ -23,7 +23,7 @@ public class ImageItem : ODataV1Object<ImageItem>
     public virtual string? Name { get; protected set; }
 
     [JsonProperty("ServerRelativeUrl")]
-    public virtual string? ServerRelativeUrl { get; protected set; }
+    public virtual Uri? ServerRelativeUrl { get; protected set; }
 
     [JsonProperty("UniqueId")]
     public virtual Guid UniqueId { get; protected set; }

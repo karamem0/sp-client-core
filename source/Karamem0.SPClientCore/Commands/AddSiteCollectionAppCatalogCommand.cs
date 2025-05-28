@@ -36,11 +36,11 @@ public class AddSiteCollectionAppCatalogCommand : ClientObjectCmdlet<ISiteCollec
     {
         if (this.ParameterSetName == "ParamSet1")
         {
-            this.Service.AddObject(new Uri(this.SiteCollection.Url, UriKind.Absolute));
+            this.Service.AddObject(this.SiteCollection.Url);
         }
         if (this.ParameterSetName == "ParamSet2")
         {
-            this.Service.AddObject(new Uri(this.TenantSiteCollection.Url, UriKind.Absolute));
+            this.Service.AddObject(this.TenantSiteCollection.Url);
         }
         if (this.ParameterSetName == "ParamSet3")
         {

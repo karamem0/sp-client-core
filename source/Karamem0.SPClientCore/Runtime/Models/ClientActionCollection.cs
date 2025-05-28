@@ -23,7 +23,7 @@ public class ClientActionCollection : IEnumerable<ClientAction>
 
     public void Add(ClientAction item)
     {
-        this.collection.Add(item.Id, item ?? throw new ArgumentNullException(nameof(item)));
+        this.collection.Add(item.Id, item);
     }
 
     public void AddRange(IEnumerable<ClientAction> items)

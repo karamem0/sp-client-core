@@ -94,7 +94,7 @@ public class GetSiteCollectionAppCatalogCommand : ClientObjectCmdlet<ISiteCollec
                     this.Outputs.Add(
                         this
                             .Service.GetObjectEnumerable()
-                            .Where(obj => obj.AbsoluteUrl == this.SiteCollectionUrl.ToString())
+                            .Where(obj => obj.AbsoluteUrl == this.SiteCollectionUrl)
                             .ToArray()
                     );
                 }
@@ -103,7 +103,7 @@ public class GetSiteCollectionAppCatalogCommand : ClientObjectCmdlet<ISiteCollec
                     this.Outputs.AddRange(
                         this
                             .Service.GetObjectEnumerable()
-                            .Where(obj => obj.AbsoluteUrl == this.SiteCollectionUrl.ToString())
+                            .Where(obj => obj.AbsoluteUrl == this.SiteCollectionUrl)
                             .ToArray()
                     );
                 }

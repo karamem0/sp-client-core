@@ -69,7 +69,7 @@ public class View : ClientObject
     public virtual Guid Id { get; private set; }
 
     [JsonProperty()]
-    public virtual string? ImageUrl { get; private set; }
+    public virtual Uri? ImageUrl { get; private set; }
 
     [JsonProperty()]
     public virtual bool IncludeRootFolder { get; private set; }
@@ -123,7 +123,7 @@ public class View : ClientObject
     public virtual ResourcePath? ServerRelativePath { get; private set; }
 
     [JsonProperty()]
-    public virtual string? ServerRelativeUrl { get; private set; }
+    public virtual Uri? ServerRelativeUrl { get; private set; }
 
     [JsonProperty()]
     public virtual string? StyleId { get; private set; }

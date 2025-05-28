@@ -32,7 +32,7 @@ public class SharePointIds : ODataV2Object
     public virtual string? SiteCollectionId { get; protected set; }
 
     [JsonProperty("siteUrl")]
-    public virtual string? SiteCollectionUrl { get; protected set; }
+    public virtual Uri? SiteCollectionUrl { get; protected set; }
 
     [JsonProperty("webId")]
     public virtual string? SiteId { get; protected set; }

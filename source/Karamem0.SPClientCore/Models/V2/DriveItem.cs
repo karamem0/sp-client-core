@@ -29,7 +29,7 @@ public class DriveItem : ODataV2Object
     public virtual string? CTag { get; protected set; }
 
     [JsonProperty("@content.downloadUrl")]
-    public virtual string? DownloadUrl { get; protected set; }
+    public virtual Uri? DownloadUrl { get; protected set; }
 
     [JsonProperty("lastModifiedBy")]
     public virtual IdentitySet? Editor { get; protected set; }
@@ -65,6 +65,6 @@ public class DriveItem : ODataV2Object
     public virtual double Size { get; protected set; }
 
     [JsonProperty("webUrl")]
-    public virtual string? WebUrl { get; protected set; }
+    public virtual Uri? WebUrl { get; protected set; }
 
 }

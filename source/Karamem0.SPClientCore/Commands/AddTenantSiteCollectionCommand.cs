@@ -56,7 +56,7 @@ public class AddTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteColl
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-    public string Url { get; private set; }
+    public Uri Url { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -74,7 +74,7 @@ public class AddTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteColl
         if (this.ParameterSetName == "ParamSet1")
         {
             this.Service.AddObjectAwait(this.MyInvocation.BoundParameters);
-            this.Outputs.Add(this.Service.GetObjectAwait(new Uri(this.Url, UriKind.Absolute)));
+            this.Outputs.Add(this.Service.GetObjectAwait(this.Url));
         }
         if (this.ParameterSetName == "ParamSet2")
         {

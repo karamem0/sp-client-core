@@ -17,13 +17,13 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
 [ClientObject(Name = "SP.FieldUrlValue", Id = "{fa8b44af-7b43-43f2-904a-bd319497011e}")]
 [JsonObject()]
-public class ColumnUrlValue(string? url = null, string? description = null) : ClientValueObject
+public class ColumnUrlValue(Uri? url = null, string? description = null) : ClientValueObject
 {
 
     [JsonProperty()]
     public virtual string? Description { get; protected set; } = description;
 
     [JsonProperty()]
-    public virtual string? Url { get; protected set; } = url;
+    public virtual Uri? Url { get; protected set; } = url;
 
 }

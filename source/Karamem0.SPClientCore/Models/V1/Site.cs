@@ -45,7 +45,7 @@ public class Site : SecurableObject
     public virtual bool AllowSavePublishDeclarativeWorkflowForCurrentUser { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? AlternateCssUrl { get; protected set; }
+    public virtual Uri? AlternateCssUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid AppInstanceId { get; protected set; }
@@ -72,13 +72,13 @@ public class Site : SecurableObject
     public virtual ChangeToken? CurrentChangeToken { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? CustomMasterUrl { get; protected set; }
+    public virtual Uri? CustomMasterUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual string? Description { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? DesignerDownloadUrlForCurrentUser { get; protected set; }
+    public virtual Uri? DesignerDownloadUrlForCurrentUser { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid DesignPackageId { get; protected set; }
@@ -150,7 +150,7 @@ public class Site : SecurableObject
     public virtual LogoAlignment? LogoAlignment { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? MasterUrl { get; protected set; }
+    public virtual Uri? MasterUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual bool MembersCanShare { get; protected set; }
@@ -195,7 +195,7 @@ public class Site : SecurableObject
     public virtual SearchScopeType? SearchScope { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? ServerRelativeUrl { get; protected set; }
+    public virtual Uri? ServerRelativeUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual bool ShowUrlStructureForCurrentUser { get; protected set; }
@@ -204,7 +204,7 @@ public class Site : SecurableObject
     public virtual string? SiteLogoDescription { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? SiteLogoUrl { get; protected set; }
+    public virtual Uri? SiteLogoUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual IReadOnlyCollection<int>? SupportedUILanguageIds { get; protected set; }
@@ -222,7 +222,7 @@ public class Site : SecurableObject
     public virtual bool TenantAdminMembersCanShare { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? ThemedCssFolderUrl { get; protected set; }
+    public virtual Uri? ThemedCssFolderUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual bool ThirdPartyMdmEnabled { get; protected set; }
@@ -240,7 +240,7 @@ public class Site : SecurableObject
     public virtual bool UIVersionConfigurationEnabled { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? Url { get; protected set; }
+    public virtual Uri? Url { get; protected set; }
 
     [JsonProperty()]
     public virtual string? WelcomePage { get; protected set; }

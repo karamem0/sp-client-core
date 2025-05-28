@@ -60,7 +60,7 @@ public class GetListItemCommand : ClientObjectCmdlet<IListItemService>
         Position = 0,
         ParameterSetName = "ParamSet5"
     )]
-    public string ItemUrl { get; private set; }
+    public Uri ItemUrl { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -90,7 +90,7 @@ public class GetListItemCommand : ClientObjectCmdlet<IListItemService>
     public SwitchParameter All { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet8")]
-    public string FolderServerRelativeUrl { get; private set; }
+    public Uri FolderServerRelativeUrl { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet8")]
     public ListItemCollectionPosition ListItemCollectionPosition { get; private set; }

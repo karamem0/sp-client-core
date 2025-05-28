@@ -45,7 +45,7 @@ public class ChangeList : Change
     public override string? RelativeTime { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? RootFolderUrl { get; protected set; }
+    public virtual Uri? RootFolderUrl { get; protected set; }
 
     [JsonProperty("SiteId")]
     public override Guid SiteCollectionId { get; protected set; }

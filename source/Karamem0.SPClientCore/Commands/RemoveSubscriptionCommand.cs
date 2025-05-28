@@ -36,7 +36,7 @@ public class RemoveSubscriptionCommand : ClientObjectCmdlet<ISubscriptionService
 
     protected override void ProcessRecordCore()
     {
-        if (this.ShouldProcess(this.Identity.NotificationUrl, VerbsCommon.Remove))
+        if (this.ShouldProcess(this.Identity.NotificationUrl.ToString(), VerbsCommon.Remove))
         {
             this.Service.RemoveObject(this.Identity);
         }

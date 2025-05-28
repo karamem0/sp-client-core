@@ -63,7 +63,7 @@ public class SetViewCommand : ClientObjectCmdlet<IViewService>
     public bool Hidden { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string ImageUrl { get; private set; }
+    public Uri ImageUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool IncludeRootFolder { get; private set; }

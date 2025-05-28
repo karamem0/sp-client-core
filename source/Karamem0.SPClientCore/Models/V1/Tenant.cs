@@ -102,7 +102,7 @@ public class Tenant : ClientObject
     public virtual bool AppOnlyBypassPeoplePickerPolicies { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? ArchiveRedirectUrl { get; protected set; }
+    public virtual Uri? ArchiveRedirectUrl { get; protected set; }
 
     [JsonProperty("AuthContextResilienceMode")]
     public virtual ResilienceMode? AuthenticationContextResilienceMode { get; protected set; }
@@ -225,7 +225,7 @@ public class Tenant : ClientObject
     public virtual SharingCapabilities? CoreSharingCapability { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? CustomizedExternalSharingServiceUrl { get; protected set; }
+    public virtual Uri? CustomizedExternalSharingServiceUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual bool DataverseUsageConsentEnabled { get; protected set; }
@@ -561,7 +561,7 @@ public class Tenant : ClientObject
     public virtual bool MobileFriendlyUrlEnabledInTenant { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? NoAccessRedirectUrl { get; protected set; }
+    public virtual Uri? NoAccessRedirectUrl { get; protected set; }
 
     [JsonProperty("NotificationsInOneDriveForBusinessEnabled")]
     public virtual bool NotificationsInOneDriveEnabled { get; protected set; }
@@ -648,7 +648,7 @@ public class Tenant : ClientObject
     public virtual bool OptOutOfGrooveSoftBlock { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? OrgNewsSiteUrl { get; protected set; }
+    public virtual Uri? OrgNewsSiteUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual int OrphanedPersonalSitesRetentionPeriod { get; protected set; }
@@ -717,7 +717,7 @@ public class Tenant : ClientObject
     public virtual double? ResourceQuotaAllocated { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? RootSiteUrl { get; protected set; }
+    public virtual Uri? RootSiteUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual bool SelfServiceSiteCreationDisabled { get; protected set; }
@@ -774,7 +774,7 @@ public class Tenant : ClientObject
     public virtual SpecialCharactersState? SpecialCharactersStateInFileFolderNames { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? StartASiteFormUrl { get; protected set; }
+    public virtual Uri? StartASiteFormUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual bool StopNew2010Workflows { get; protected set; }

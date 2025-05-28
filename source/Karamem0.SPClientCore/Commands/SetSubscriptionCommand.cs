@@ -33,7 +33,7 @@ public class SetSubscriptionCommand : ClientObjectCmdlet<ISubscriptionService>
     public DateTime ExpirationDateTime { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string NotificationUrl { get; private set; }
+    public Uri NotificationUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
     public SwitchParameter PassThru { get; private set; }

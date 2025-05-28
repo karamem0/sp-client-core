@@ -54,19 +54,19 @@ public class List : SecurableObject
     public virtual Guid DefaultContentApprovalWorkflowId { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? DefaultDisplayFormUrl { get; protected set; }
+    public virtual Uri? DefaultDisplayFormUrl { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? DefaultEditFormUrl { get; protected set; }
+    public virtual Uri? DefaultEditFormUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual bool DefaultItemOpenUseListSetting { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? DefaultNewFormUrl { get; protected set; }
+    public virtual Uri? DefaultNewFormUrl { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? DefaultViewUrl { get; protected set; }
+    public virtual Uri? DefaultViewUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual string? Description { get; protected set; }
@@ -81,7 +81,7 @@ public class List : SecurableObject
     public virtual bool DisableGridEditing { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? DocumentTemplateUrl { get; protected set; }
+    public virtual Uri? DocumentTemplateUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual DraftVisibilityType? DraftVersionVisibility { get; protected set; }
@@ -132,7 +132,7 @@ public class List : SecurableObject
     public virtual ResourcePath? ImagePath { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? ImageUrl { get; protected set; }
+    public virtual Uri? ImageUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual bool IrmEnabled { get; protected set; }
@@ -189,7 +189,7 @@ public class List : SecurableObject
     public virtual ResourcePath? ParentSitePath { get; protected set; }
 
     [JsonProperty("ParentWebUrl")]
-    public virtual string? ParentSiteUrl { get; protected set; }
+    public virtual Uri? ParentSiteUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual bool ParserDisabled { get; protected set; }

@@ -39,7 +39,7 @@ public class SetNavigationNodeCommand : ClientObjectCmdlet<INavigationNodeServic
     public string Title { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string Url { get; private set; }
+    public Uri Url { get; private set; }
 
     [Parameter(Mandatory = false)]
     public SwitchParameter PassThru { get; private set; }

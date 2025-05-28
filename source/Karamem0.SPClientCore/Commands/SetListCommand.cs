@@ -36,13 +36,13 @@ public class SetListCommand : ClientObjectCmdlet<IListService>
     public string DefaultContentApprovalWorkflowId { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string DefaultDisplayFormUrl { get; private set; }
+    public Uri DefaultDisplayFormUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string DefaultEditFormUrl { get; private set; }
+    public Uri DefaultEditFormUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string DefaultNewFormUrl { get; private set; }
+    public Uri DefaultNewFormUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
     public string Description { get; private set; }
@@ -57,7 +57,7 @@ public class SetListCommand : ClientObjectCmdlet<IListService>
     public bool DisableGridEditing { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string DocumentTemplateUrl { get; private set; }
+    public Uri DocumentTemplateUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
     public DraftVisibilityType DraftVersionVisibility { get; private set; }

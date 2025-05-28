@@ -88,21 +88,21 @@ public class GetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
     {
         if (this.ParameterSetName == "ParamSet1")
         {
-            this.Outputs.Add(this.Service.GetObject(new Uri(this.SiteCollection.Url, UriKind.Absolute), this.UserId));
+            this.Outputs.Add(this.Service.GetObject(this.SiteCollection.Url, this.UserId));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
-            this.Outputs.Add(this.Service.GetObject(new Uri(this.SiteCollection.Url, UriKind.Absolute), this.UserName));
+            this.Outputs.Add(this.Service.GetObject(this.SiteCollection.Url, this.UserName));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(new Uri(this.SiteCollection.Url, UriKind.Absolute)));
+                this.Outputs.Add(this.Service.GetObjectEnumerable(this.SiteCollection.Url));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(new Uri(this.SiteCollection.Url, UriKind.Absolute)));
+                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.SiteCollection.Url));
             }
         }
         if (this.ParameterSetName == "ParamSet4")

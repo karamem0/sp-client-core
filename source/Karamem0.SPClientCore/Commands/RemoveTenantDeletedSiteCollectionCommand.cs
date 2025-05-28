@@ -46,7 +46,7 @@ public class RemoveTenantDeletedSiteCollectionCommand : ClientObjectCmdlet<ITena
 
     protected override void ProcessRecordCore()
     {
-        if (this.ShouldProcess(this.Identity.Url, VerbsCommon.Remove))
+        if (this.ShouldProcess(this.Identity.Url.ToString(), VerbsCommon.Remove))
         {
             if (this.ParameterSetName == "ParamSet1")
             {

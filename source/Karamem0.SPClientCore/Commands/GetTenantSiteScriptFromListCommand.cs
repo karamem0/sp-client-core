@@ -22,7 +22,7 @@ public class GetTenantSiteScriptFromListCommand : ClientObjectCmdlet<ITenantSite
 {
 
     [Parameter(Mandatory = true, Position = 0)]
-    public string ListUrl { get; private set; }
+    public Uri ListUrl { get; private set; }
 
     protected override void ProcessRecordCore()
     {

@@ -116,7 +116,7 @@ public class TenantSiteCollectionService(ClientContext clientContext) : TenantCl
 
     public TenantSiteCollection? GetObjectAwait(TenantSiteCollection siteCollectionObject)
     {
-        return this.GetObjectAwait(new Uri(siteCollectionObject.Url, UriKind.Absolute));
+        return this.GetObjectAwait(siteCollectionObject.Url);
     }
 
     public TenantSiteCollection? GetObjectAwait(Uri siteCollectionUrl)

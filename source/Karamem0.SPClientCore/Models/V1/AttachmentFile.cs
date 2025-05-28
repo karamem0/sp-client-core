@@ -30,6 +30,6 @@ public class AttachmentFile : ClientObject
     public virtual ResourcePath? ServerRelativePath { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? ServerRelativeUrl { get; protected set; }
+    public virtual Uri? ServerRelativeUrl { get; protected set; }
 
 }

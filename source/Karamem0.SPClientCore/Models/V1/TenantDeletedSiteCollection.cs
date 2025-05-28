@@ -36,7 +36,7 @@ public class TenantDeletedSiteCollection : ClientObject
     public virtual int StorageMaximumLevel { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? Url { get; protected set; }
+    public virtual Uri? Url { get; protected set; }
 
     [JsonProperty()]
     public virtual int UserCodeMaximumLevel { get; protected set; }

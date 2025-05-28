@@ -52,7 +52,7 @@ public class AddTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
     {
         if (this.ParameterSetName == "ParamSet1")
         {
-            this.Outputs.Add(this.Service.AddObject(new Uri(this.SiteCollection.Url, UriKind.Absolute), this.MyInvocation.BoundParameters));
+            this.Outputs.Add(this.Service.AddObject(this.SiteCollection.Url, this.MyInvocation.BoundParameters));
         }
         if (this.ParameterSetName == "ParamSet2")
         {

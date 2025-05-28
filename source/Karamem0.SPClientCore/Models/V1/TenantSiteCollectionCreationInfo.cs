@@ -45,7 +45,7 @@ public class TenantSiteCollectionCreationInfo : ClientValueObject
     public virtual string? Title { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? Url { get; protected set; }
+    public virtual Uri? Url { get; protected set; }
 
     [JsonProperty("UserCodeMaximumLevel")]
     public virtual double? UserCodeMaxLevel { get; protected set; }

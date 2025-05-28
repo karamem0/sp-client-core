@@ -35,7 +35,7 @@ public class AddTenantSiteDesignCommand : ClientObjectCmdlet<ITenantSiteDesignSe
     public string PreviewImageAltText { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string PreviewImageUrl { get; private set; }
+    public Uri PreviewImageUrl { get; private set; }
 
     [Parameter(Mandatory = true)]
     public string[] SiteScriptIds { get; private set; }
@@ -44,7 +44,7 @@ public class AddTenantSiteDesignCommand : ClientObjectCmdlet<ITenantSiteDesignSe
     public string SiteTemplate { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string ThumbnailUrl { get; private set; }
+    public Uri ThumbnailUrl { get; private set; }
 
     [Parameter(Mandatory = true)]
     public string Title { get; private set; }

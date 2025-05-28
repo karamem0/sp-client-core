@@ -30,7 +30,7 @@ public class SiteTemplate : ClientObject
     public virtual int Id { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? ImageUrl { get; protected set; }
+    public virtual Uri? ImageUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual bool IsHidden { get; protected set; }

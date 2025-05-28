@@ -34,10 +34,10 @@ public class NewColumnImageValueCommand : ClientObjectCmdlet<ISiteService>
     public string FileName { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-    public string ServerUrl { get; private set; }
+    public Uri ServerUrl { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-    public string ServerRelativeUrl { get; private set; }
+    public Uri ServerRelativeUrl { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     public Guid Id { get; private set; }
@@ -51,7 +51,7 @@ public class NewColumnImageValueCommand : ClientObjectCmdlet<ISiteService>
                 new ColumnImageValue(
                     this.ColumnName,
                     this.ImageItem.Name,
-                    new Uri(siteObject.Url).GetAuthority(),
+                    new Uri(siteObject.Url.GetAuthority(), UriKind.Absolute),
                     this.ImageItem.ServerRelativeUrl,
                     this.ImageItem.UniqueId.ToString()
                 )

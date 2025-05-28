@@ -50,7 +50,7 @@ public class RemoveTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteC
     {
         if (this.ShouldProcess(this.Identity.Title, VerbsCommon.Remove))
         {
-            if (new Uri(this.Identity.Url).AbsolutePath == "/")
+            if (this.Identity.Url.ToString() == "/")
             {
                 throw new InvalidOperationException(StringResources.ErrorCannotDeleteRootSiteCollection);
             }

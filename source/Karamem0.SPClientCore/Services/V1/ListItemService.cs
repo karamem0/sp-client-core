@@ -35,7 +35,7 @@ public interface IListItemService
 
     ListItem? GetObject(List listObject, int listItemId);
 
-    ListItem? GetObject(string listItemUrl);
+    ListItem? GetObject(Uri listItemUrl);
 
     IEnumerable<ListItem>? GetObjectEnumerable(List listObject);
 
@@ -215,7 +215,7 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
             .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public ListItem? GetObject(string listItemUrl)
+    public ListItem? GetObject(Uri listItemUrl)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));

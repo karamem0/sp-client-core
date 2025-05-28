@@ -36,7 +36,7 @@ public class AddSubscriptionCommand : ClientObjectCmdlet<ISubscriptionService>
     public DateTime ExpirationDateTime { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public string NotificationUrl { get; private set; }
+    public Uri NotificationUrl { get; private set; }
 
     protected override void ProcessRecordCore()
     {

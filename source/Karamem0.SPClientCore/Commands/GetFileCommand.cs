@@ -102,15 +102,7 @@ public class GetFileCommand : ClientObjectCmdlet<IFileService>
         }
         if (this.ParameterSetName == "ParamSet2")
         {
-            var fileUrl = new Uri(this.AttachmentFile.ServerRelativeUrl, UriKind.RelativeOrAbsolute);
-            if (fileUrl.IsAbsoluteUri)
-            {
-                this.Outputs.Add(this.Service.GetObject(new Uri(fileUrl.AbsolutePath, UriKind.Relative)));
-            }
-            else
-            {
-                this.Outputs.Add(this.Service.GetObject(fileUrl));
-            }
+            this.Outputs.Add(this.Service.GetObject(this.AttachmentFile.ServerRelativeUrl));
         }
         if (this.ParameterSetName == "ParamSet3")
         {

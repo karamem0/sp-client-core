@@ -127,7 +127,6 @@ public class AlertService(ClientContext clientContext) : ClientService<Alert>(cl
 
     public override void RemoveObject(Alert alertObject)
     {
-        _ = alertObject ?? throw new ArgumentNullException(nameof(alertObject));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));

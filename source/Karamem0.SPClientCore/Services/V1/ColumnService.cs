@@ -147,7 +147,6 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
 
     public Column? GetObject(string columnTitle)
     {
-        _ = columnTitle ?? throw new ArgumentNullException(nameof(columnTitle));
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));

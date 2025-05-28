@@ -24,7 +24,7 @@ public class SiteCollectionAppCatalog : ClientObject
 {
 
     [JsonProperty()]
-    public virtual string? AbsoluteUrl { get; protected set; }
+    public virtual Uri? AbsoluteUrl { get; protected set; }
 
     [JsonProperty("SiteID")]
     public virtual Guid SiteCollectionId { get; protected set; }

@@ -72,7 +72,7 @@ public class File : ClientObject
     public virtual string? LinkingUri { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? LinkingUrl { get; protected set; }
+    public virtual Uri? LinkingUrl { get; protected set; }
 
     [JsonProperty("LockedByUser")]
     public virtual User? LockUser { get; protected set; }
@@ -87,7 +87,7 @@ public class File : ClientObject
     public virtual string? Name { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? ServerRelativeUrl { get; protected set; }
+    public virtual Uri? ServerRelativeUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual string? Title { get; protected set; }

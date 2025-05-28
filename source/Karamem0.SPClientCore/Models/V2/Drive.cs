@@ -53,6 +53,6 @@ public class Drive : ODataV2Object
     public virtual SharePointIds? SharePointIds { get; protected set; }
 
     [JsonProperty("webUrl")]
-    public virtual string? WebUrl { get; protected set; }
+    public virtual Uri? WebUrl { get; protected set; }
 
 }

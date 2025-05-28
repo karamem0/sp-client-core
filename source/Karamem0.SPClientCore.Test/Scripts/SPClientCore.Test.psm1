@@ -1460,7 +1460,7 @@ function Install-TestSite {
             -List $sitePageList `
             -PageName 'Test Site Page 1' `
             -PageLayoutType 'Article'
-        $sitePage1 = Get-KshFile -FileUrl ($sitePageFolder.ServerRelativeUrl + '/Test Site Page 1.aspx')
+        $sitePage1 = Get-KshFile -FileUrl "$($sitePageFolder.ServerRelativeUrl)/Test Site Page 1.aspx"
         $appSettings.SitePage1Url = $sitePage1.ServerRelativeUrl
 
         Write-Progress -Activity 'Creating site pages...' -Status 'Test Site Page 2'
@@ -1468,7 +1468,7 @@ function Install-TestSite {
             -List $sitePageList `
             -PageName 'Test Site Page 2' `
             -PageLayoutType 'Article'
-        $sitePage2 = Get-KshFile -FileUrl ($sitePageFolder.ServerRelativeUrl + '/Test Site Page 2.aspx')
+        $sitePage2 = Get-KshFile -FileUrl "$($sitePageFolder.ServerRelativeUrl)/Test Site Page 2.aspx"
         $appSettings.SitePage2Url = $sitePage2.ServerRelativeUrl
 
         Write-Progress -Activity 'Creating site pages...' -Status 'Test Site Page 3'
@@ -1476,7 +1476,7 @@ function Install-TestSite {
             -List $sitePageList `
             -PageName 'Test Site Page 3' `
             -PageLayoutType 'Article'
-        $sitePage3 = Get-KshFile -FileUrl ($sitePageFolder.ServerRelativeUrl + '/Test Site Page 3.aspx')
+        $sitePage3 = Get-KshFile -FileUrl "$($sitePageFolder.ServerRelativeUrl)/Test Site Page 3.aspx"
         $appSettings.SitePage3Url = $sitePage3.ServerRelativeUrl
 
         Write-Progress -Activity 'Set like to comment...' -Status 'Test Site Page 1'

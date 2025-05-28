@@ -52,7 +52,7 @@ public class GetTenantOrganizationNewsSiteCommandTests
             }
         );
         Thread.Sleep(TimeSpan.FromSeconds(15));
-        var result3 = context.Runspace.InvokeCommand<string>(
+        var result3 = context.Runspace.InvokeCommand<Uri>(
             "Get-KshTenantOrganizationNewsSite",
             new Dictionary<string, object>()
             {

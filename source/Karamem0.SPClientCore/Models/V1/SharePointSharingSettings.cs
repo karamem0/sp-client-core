@@ -69,6 +69,6 @@ public class SharePointSharingSettings : ClientObject
     public virtual int TabToShow { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? UserDisplayUrl { get; protected set; }
+    public virtual Uri? UserDisplayUrl { get; protected set; }
 
 }

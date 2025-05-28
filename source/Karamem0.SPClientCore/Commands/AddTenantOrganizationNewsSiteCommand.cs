@@ -22,7 +22,7 @@ public class AddTenantOrganizationNewsSiteCommand : ClientObjectCmdlet<ITenantOr
 {
 
     [Parameter(Mandatory = true)]
-    public string Url { get; private set; }
+    public Uri Url { get; private set; }
 
     protected override void ProcessRecordCore()
     {

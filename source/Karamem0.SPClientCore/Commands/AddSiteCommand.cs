@@ -29,7 +29,7 @@ public class AddSiteCommand : ClientObjectCmdlet<ISiteService>
     public uint Lcid { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string ServerRelativeUrl { get; private set; }
+    public Uri ServerRelativeUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
     public string Template { get; private set; }

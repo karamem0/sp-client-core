@@ -26,7 +26,7 @@ public class CamlQuery : ClientValueObject
     public virtual bool DatesInUtc { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? FolderServerRelativeUrl { get; protected set; }
+    public virtual Uri? FolderServerRelativeUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual ListItemCollectionPosition? ListItemCollectionPosition { get; protected set; }

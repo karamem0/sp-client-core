@@ -27,7 +27,7 @@ public class SiteCreationInfo : ClientValueObject
     public virtual uint Lcid { get; protected set; }
 
     [JsonProperty("Url")]
-    public virtual string? ServerRelativeUrl { get; protected set; }
+    public virtual Uri? ServerRelativeUrl { get; protected set; }
 
     [JsonProperty("WebTemplate")]
     public virtual string? Template { get; protected set; }

@@ -33,7 +33,7 @@ public class HubSite : ClientObject
     public virtual Guid Id { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? LogoUrl { get; protected set; }
+    public virtual Uri? LogoUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid ParentHubSiteId { get; protected set; }
@@ -48,7 +48,7 @@ public class HubSite : ClientObject
     public virtual Guid SiteCollectionId { get; protected set; }
 
     [JsonProperty("SiteUrl")]
-    public virtual string? SiteCollectionUrl { get; protected set; }
+    public virtual Uri? SiteCollectionUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid SiteDesignId { get; protected set; }

@@ -39,8 +39,6 @@ public class SubscriptionService(ClientContext clientContext) : ClientService(cl
 
     public Subscription? AddObject(List listObject, IReadOnlyDictionary<string, object?> creationInfo)
     {
-        _ = listObject ?? throw new ArgumentNullException(nameof(listObject));
-        _ = creationInfo ?? throw new ArgumentNullException(nameof(creationInfo));
         var listUrl = this.ClientContext.BaseAddress.ConcatPath("_api/web/lists('{0}')", listObject.Id);
         var requestUrl = listUrl
             .ConcatPath("subscriptions")

@@ -63,7 +63,7 @@ public class ChangeItem : Change
     public override string? RelativeTime { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? ServerRelativeUrl { get; protected set; }
+    public virtual Uri? ServerRelativeUrl { get; protected set; }
 
     [JsonProperty("SharedByUser")]
     public virtual SharedWithUser? SharedWithUser { get; protected set; }

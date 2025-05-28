@@ -57,10 +57,10 @@ public class GetDriveCommand : ClientObjectCmdlet<IDriveService, ISiteCollection
         }
         if (this.ParameterSetName == "ParamSet2")
         {
-            var siteCollectionId = this.Service2.GetObject()
-                .Id;
-            var siteId = this.Service3.GetObject()
-                .Id;
+            var siteCollectionObject = this.Service2.GetObject();
+            var siteCollectionId = siteCollectionObject.Id;
+            var siteObject = this.Service3.GetObject();
+            var siteId = siteObject.Id;
             var listId = this.List.Id;
             this.Outputs.Add(
                 this.Service1.GetObject(

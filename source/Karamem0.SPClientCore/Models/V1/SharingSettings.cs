@@ -105,7 +105,7 @@ public class SharingSettings : ClientObject
     public virtual string? ItemName { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? ItemUrl { get; protected set; }
+    public virtual Uri? ItemUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid ListId { get; protected set; }
@@ -147,6 +147,6 @@ public class SharingSettings : ClientObject
     public virtual bool SupportsAclPropagation { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? WebUrl { get; protected set; }
+    public virtual Uri? WebUrl { get; protected set; }
 
 }

@@ -33,10 +33,10 @@ public class SetContentTypeCommand : ClientObjectCmdlet<IContentTypeService>
     public string Description { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string DisplayFormUrl { get; private set; }
+    public Uri DisplayFormUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string EditFormUrl { get; private set; }
+    public Uri EditFormUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
     public string Group { get; private set; }
@@ -51,7 +51,7 @@ public class SetContentTypeCommand : ClientObjectCmdlet<IContentTypeService>
     public string Name { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string NewFormUrl { get; private set; }
+    public Uri NewFormUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool ReadOnly { get; private set; }

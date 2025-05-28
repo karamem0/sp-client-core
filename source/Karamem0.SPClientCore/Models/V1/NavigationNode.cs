@@ -45,6 +45,6 @@ public class NavigationNode : ClientObject
     public virtual string? Title { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? Url { get; protected set; }
+    public virtual Uri? Url { get; protected set; }
 
 }

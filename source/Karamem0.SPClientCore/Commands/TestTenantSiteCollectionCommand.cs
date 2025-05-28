@@ -25,14 +25,14 @@ public class TestTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantService
     {
         try
         {
-            var tenant = this.Service.GetObject();
-            if (tenant is not null)
+            var tenantObject = this.Service.GetObject();
+            if (tenantObject is null)
             {
-                this.Outputs.Add(true);
+                this.Outputs.Add(false);
             }
             else
             {
-                this.Outputs.Add(false);
+                this.Outputs.Add(true);
             }
         }
         catch

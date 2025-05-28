@@ -19,11 +19,11 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantHubSiteService
 {
 
-    HubSite? AddObject(string siteCollectionUrl, IReadOnlyDictionary<string, object?> creationInfo);
+    HubSite? AddObject(Uri siteCollectionUrl, IReadOnlyDictionary<string, object?> creationInfo);
 
     HubSite? GetObject(Guid hubSiteId);
 
-    HubSite? GetObject(string hubSiteUrl);
+    HubSite? GetObject(Uri hubSiteUrl);
 
     IEnumerable<HubSite>? GetObjectEnumerable();
 
@@ -36,7 +36,7 @@ public interface ITenantHubSiteService
 public class TenantHubSiteService(ClientContext clientContext) : ClientService<HubSite>(clientContext), ITenantHubSiteService
 {
 
-    public HubSite? AddObject(string siteCollectionUrl, IReadOnlyDictionary<string, object?> creationInfo)
+    public HubSite? AddObject(Uri siteCollectionUrl, IReadOnlyDictionary<string, object?> creationInfo)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -73,7 +73,7 @@ public class TenantHubSiteService(ClientContext clientContext) : ClientService<H
             .ToObject<HubSite>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public HubSite? GetObject(string hubSiteUrl)
+    public HubSite? GetObject(Uri hubSiteUrl)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));

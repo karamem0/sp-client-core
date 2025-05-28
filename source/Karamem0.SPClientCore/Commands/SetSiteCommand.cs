@@ -33,7 +33,7 @@ public class SetSiteCommand : ClientObjectCmdlet<ISiteService>
     public bool AllowAutomaticASPXPageIndexing { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string AlternateCssUrl { get; private set; }
+    public Uri AlternateCssUrl { get; private set; }
 
     // [Parameter(Mandatory = false)]
     // public Group AssociatedMemberGroup { get; private set; }
@@ -51,7 +51,7 @@ public class SetSiteCommand : ClientObjectCmdlet<ISiteService>
     public bool ContainsConfidentialInfo { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string CustomMasterUrl { get; private set; }
+    public Uri CustomMasterUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool DisableAppViews { get; private set; }
@@ -87,7 +87,7 @@ public class SetSiteCommand : ClientObjectCmdlet<ISiteService>
     public LogoAlignment LogoAlignment { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string MasterUrl { get; private set; }
+    public Uri MasterUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool MembersCanShare { get; private set; }
@@ -120,19 +120,19 @@ public class SetSiteCommand : ClientObjectCmdlet<ISiteService>
     public SearchScopeType SearchScope { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string ServerRelativeUrl { get; private set; }
+    public Uri ServerRelativeUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
     public string SiteLogoDescription { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string SiteLogoUrl { get; private set; }
+    public Uri SiteLogoUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool SyndicationEnabled { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string ThemedCssFolderUrl { get; private set; }
+    public Uri ThemedCssFolderUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
     public string Title { get; private set; }

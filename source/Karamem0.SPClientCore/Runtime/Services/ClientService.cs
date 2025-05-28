@@ -47,6 +47,6 @@ public abstract class ClientService(ClientContext clientContext)
         ServiceProvider = null;
     }
 
-    protected ClientContext ClientContext { get; private set; } = clientContext ?? throw new ArgumentNullException(nameof(clientContext));
+    protected ClientContext ClientContext { get; private set; } = clientContext;
 
 }

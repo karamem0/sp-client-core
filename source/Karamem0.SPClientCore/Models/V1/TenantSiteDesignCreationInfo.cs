@@ -33,7 +33,7 @@ public class TenantSiteDesignCreationInfo : ClientValueObject
     public virtual string? PreviewImageAltText { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? PreviewImageUrl { get; protected set; }
+    public virtual Uri? PreviewImageUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual string[]? SiteScriptIds { get; protected set; }
@@ -42,7 +42,7 @@ public class TenantSiteDesignCreationInfo : ClientValueObject
     public virtual string? SiteTemplate { get; protected set; }
 
     [JsonProperty()]
-    public virtual string? ThumbnailUrl { get; protected set; }
+    public virtual Uri? ThumbnailUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual string? Title { get; protected set; }
