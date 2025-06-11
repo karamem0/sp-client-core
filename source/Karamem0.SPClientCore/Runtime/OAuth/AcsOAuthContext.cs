@@ -11,21 +11,21 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Security;
 using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth;
 
 public class AcsOAuthContext(
     string clientId,
-    string clientSecret,
+    SecureString clientSecret,
     string resource
 ) : OAuthContext
 {
 
-    private readonly string clientId = clientId;
-
-    private readonly string clientSecret = clientSecret;
+    private readonly NetworkCredential credential = new(clientId, clientSecret);
 
     private readonly string resource = resource;
 
@@ -44,10 +44,10 @@ public class AcsOAuthContext(
                 "grant_type", "client_credentials"
             },
             {
-                "client_id", $"{this.clientId}@{tenantId}"
+                "client_id", $"{this.credential.UserName}@{tenantId}"
             },
             {
-                "client_secret", this.clientSecret
+                "client_secret", this.credential.Password
             },
             {
                 "resource", $"{OAuthConstants.ResourceId}/{resourceId}@{tenantId}"

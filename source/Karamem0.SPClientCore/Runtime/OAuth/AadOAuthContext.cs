@@ -142,64 +142,6 @@ public class AadOAuthContext(
         }
     }
 
-    public OAuthMessage? AcquireTokenByPassword(string userName, string password)
-    {
-        var tenantId = this.tenantIdResolver.Resolve();
-        var requestUrl = new Uri(this.authority, UriKind.Absolute)
-            .ConcatPath(tenantId)
-            .ConcatPath("oauth2/v2.0/token");
-        var requertParameters = new Dictionary<string, object?>()
-        {
-            ["grant_type"] = "password",
-            ["client_id"] = this.clientId,
-            ["username"] = userName,
-            ["password"] = password,
-            ["scope"] = this.userMode
-                ? string.Join(
-                    " ",
-                    [
-                        "offline_access",
-                        $"{OAuthConstants.ResourceId}/AllSites.Manage"
-                    ]
-                )
-                : string.Join(
-                    " ",
-                    [
-                        "offline_access",
-                        $"{OAuthConstants.ResourceId}/AllSites.FullControl",
-                        $"{OAuthConstants.ResourceId}/TermStore.ReadWrite.All",
-                        $"{OAuthConstants.ResourceId}/User.Read.All"
-                    ]
-                )
-        };
-        var requestContent = UriQuery.Create(requertParameters);
-        var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl)
-        {
-            Content = new StringContent(
-                requestContent,
-                Encoding.UTF8,
-                "application/x-www-form-urlencoded"
-            )
-        };
-        requestMessage.Headers.Add("Accept", "application/json");
-        var responseMessage = this
-            .HttpClient.SendAsync(requestMessage)
-            .GetAwaiter()
-            .GetResult();
-        var responseContent = responseMessage
-            .Content.ReadAsStringAsync()
-            .GetAwaiter()
-            .GetResult();
-        if (responseMessage.IsSuccessStatusCode)
-        {
-            return JsonConvert.DeserializeObject<AadOAuthToken>(responseContent);
-        }
-        else
-        {
-            return JsonConvert.DeserializeObject<OAuthError>(responseContent);
-        }
-    }
-
     public OAuthMessage? AcquireTokenByRefreshToken(string refreshToken)
     {
         var tenantId = this.tenantIdResolver.Resolve();

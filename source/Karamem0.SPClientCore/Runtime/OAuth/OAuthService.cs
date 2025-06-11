@@ -30,14 +30,6 @@ public interface IOAuthService
         Action<string> callback
     );
 
-    void ConnectWithPassword(
-        Uri authority,
-        string clientId,
-        Uri resource,
-        NetworkCredential credential,
-        bool userMode
-    );
-
     void ConnectWithCertificate(
         Uri authority,
         string clientId,
@@ -62,7 +54,7 @@ public interface IOAuthService
 
     void ConnectWithClientSecret(
         string clientId,
-        string clientSecret,
+        SecureString clientSecret,
         Uri resource
     );
 
@@ -153,38 +145,6 @@ public class OAuthService : IOAuthService
         }
     }
 
-    public void ConnectWithPassword(
-        Uri authority,
-        string clientId,
-        Uri resource,
-        NetworkCredential credential,
-        bool userMode
-    )
-    {
-        var oAuthContext = new AadOAuthContext(
-            authority.GetAuthority(),
-            clientId,
-            resource.GetAuthority(),
-            userMode
-        );
-        var oAuthMessage = oAuthContext.AcquireTokenByPassword(credential.UserName, credential.Password);
-        if (oAuthMessage is AadOAuthToken oAuthToken)
-        {
-            AadOAuthTokenStore.Add(resource, oAuthToken);
-            ClientService.Register(
-                ClientContext.Create(
-                    resource,
-                    oAuthContext,
-                    oAuthToken
-                )
-            );
-        }
-        if (oAuthMessage is OAuthError oAuthError)
-        {
-            throw new InvalidOperationException(oAuthError.ErrorDescription);
-        }
-    }
-
     public void ConnectWithCertificate(
         Uri authority,
         string clientId,
@@ -270,7 +230,7 @@ public class OAuthService : IOAuthService
 
     public void ConnectWithClientSecret(
         string clientId,
-        string clientSecret,
+        SecureString clientSecret,
         Uri resource
     )
     {
