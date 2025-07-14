@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -27,7 +28,7 @@ public class AddViewCommand : ClientObjectCmdlet<IViewService>
         Position = 0,
         ValueFromPipeline = true
     )]
-    public List List { get; private set; }
+    public List? List { get; private set; }
 
     [Parameter(Mandatory = false)]
     public int BaseViewId { get; private set; }
@@ -45,19 +46,20 @@ public class AddViewCommand : ClientObjectCmdlet<IViewService>
     public bool SetAsDefaultView { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public string Title { get; private set; }
+    public string? Title { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string[] ViewColumns { get; private set; }
+    public string[]? ViewColumns { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string ViewQuery { get; private set; }
+    public string? ViewQuery { get; private set; }
 
     [Parameter(Mandatory = false)]
     public ViewType ViewType { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
         this.Outputs.Add(this.Service.AddObject(this.List, this.MyInvocation.BoundParameters));
     }
 

@@ -26,14 +26,9 @@ public class ClientObject : JsonValueObject
         .GetTypes()
         .Where(type => type.IsSubclassOf(typeof(ClientObject)))
         .Where(type => type.IsDefined(typeof(ClientObjectAttribute)))
-        .Select(type => new
-            {
-                Type = type,
-                Attribute = type.GetCustomAttribute<ClientObjectAttribute>()
-            }
-        )
-        .Where(value => value.Attribute.Name is not null)
-        .ToDictionary(value => value.Attribute.Name ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull), value => value.Type);
+        .Select(type => Tuple.Create(type, type.GetCustomAttribute<ClientObjectAttribute>()))
+        .Where(value => value.Item2.Name is not null)
+        .ToDictionary(value => value.Item2.Name ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull), value => value.Item1);
 
     public static Type GetType(string name)
     {

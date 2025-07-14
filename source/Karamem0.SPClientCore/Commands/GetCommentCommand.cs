@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -28,7 +29,7 @@ public class GetCommentCommand : ClientObjectCmdlet<ICommentService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet1"
     )]
-    public Comment Identity { get; private set; }
+    public Comment? Identity { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -40,7 +41,7 @@ public class GetCommentCommand : ClientObjectCmdlet<ICommentService>
         Position = 0,
         ParameterSetName = "ParamSet3"
     )]
-    public ListItem ListItem { get; private set; }
+    public ListItem? ListItem { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -56,14 +57,17 @@ public class GetCommentCommand : ClientObjectCmdlet<ICommentService>
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
             this.Outputs.Add(this.Service.GetObject(this.Identity));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
             this.Outputs.Add(this.Service.GetObject(this.ListItem, this.CommentId));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
+            _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(this.Service.GetObjectEnumerable(this.ListItem));

@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -23,10 +24,10 @@ public class AddAppCommand : ClientObjectCmdlet<IAppService>
 {
 
     [Parameter(Mandatory = true)]
-    public System.IO.Stream Content { get; private set; }
+    public System.IO.Stream? Content { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public string FileName { get; private set; }
+    public string? FileName { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool Overwrite { get; private set; }
@@ -36,6 +37,8 @@ public class AddAppCommand : ClientObjectCmdlet<IAppService>
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Content ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Content));
+        _ = this.FileName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.FileName));
         this.Outputs.Add(
             this.Service.AddObject(
                 this.Content,

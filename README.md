@@ -5,7 +5,7 @@
 SharePoint Service Module for PowerShell
 
 [![.github/workflows/trigger-on-main.yml](https://github.com/karamem0/sp-client-core/actions/workflows/trigger-on-main.yml/badge.svg)](https://github.com/karamem0/sp-client-core/actions/workflows/trigger-on-main.yml)
-[![.github/workflows/trigger-on-develop.yml](https://github.com/karamem0/sp-client-core/actions/workflows/trigger-on-develop.yml/badge.svg)](https://github.com/karamem0/sp-client-core/actions/workflows/trigger-on-develop.yml)
+[![codecov](https://codecov.io/gh/karamem0/sp-client-core/graph/badge.svg?token=W4W9CALNPA)](https://codecov.io/gh/karamem0/sp-client-core)
 [![License](https://img.shields.io/github/license/karamem0/sp-client-core.svg)](https://github.com/karamem0/sp-client-core/blob/main/LICENSE)
 
 ## Installation
@@ -34,21 +34,22 @@ SPClientCore supports Microsoft Entra ID 2.0 authentication.
 
 - Device Code Grant
 - Client Credential Grant
-- Password Grant (NOT RECOMMENDED)
+- <s>Password Grant</s> (DEPRECATED)
 
 If you enable MFA, you can log in with a web browser of another device. If you do not enable MFA, you can log in using your user name and password (admin consent is required). You don't need to log in each time because the credentials are cached.
 
 ## Dependencies
 
-- [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights/2.21.0) (2.21.0)
-- [Microsoft.Extensions.Configuration.Json](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Json/8.0.0) (8.0.0)
+- [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights/2.22.0) (2.22.0)
+- [Microsoft.Extensions.Configuration.Json](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Json/8.0.1) (8.0.1)
 - [Microsoft.Extensions.Configuration.EnvironmentVariables](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.EnvironmentVariables/8.0.0) (8.0.0)
-- [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/8.0.0) (8.0.0)
-- [Microsoft.Extensions.DependencyInjection.Abstractions](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection.Abstractions/8.0.1) (8.0.1)
+- [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/8.0.1) (8.0.1)
+- [Microsoft.Extensions.DependencyInjection.Abstractions](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection.Abstractions/8.0.2) (8.0.2)
 - [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/8.0.0) (8.0.0)
-- [Microsoft.IdentityModel.JsonWebTokens](https://www.nuget.org/packages/Microsoft.IdentityModel.JsonWebTokens/7.5.0) (8.1.0)
+- [Microsoft.IdentityModel.JsonWebTokens](https://www.nuget.org/packages/Microsoft.IdentityModel.JsonWebTokens/8.13.0) (8.13.0)
 - [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/13.0.3) (13.0.3)
 - [PowerShellStandard.Library](https://www.nuget.org/packages/PowerShellStandard.Library/5.1.1) (5.1.1)
+- [System.Memory.Data](https://www.nuget.org/packages/System.Memory.Data/8.0.1) (8.0.1)
 
 ## Cmdlets
 
@@ -103,6 +104,7 @@ If you enable MFA, you can log in with a web browser of another device. If you d
     - Add-KshColumnGeolocation
     - Add-KshColumnGuid
     - Add-KshColumnImage
+    - Add-KshColumnLocation
     - Add-KshColumnLookup
     - Add-KshColumnMultiChoice
     - Add-KshColumnMultiLineText
@@ -121,6 +123,7 @@ If you enable MFA, you can log in with a web browser of another device. If you d
     - Set-KshColumnGeolocation
     - Set-KshColumnGuid
     - Set-KshColumnImage
+    - Set-KshColumnLocation
     - Set-KshColumnLookup
     - Set-KshColumnMultiChoice
     - Set-KshColumnMultiLineText
@@ -188,11 +191,13 @@ If you enable MFA, you can log in with a web browser of another device. If you d
     - Restore-KshFileVersion
   - Folders
     - Add-KshFolder
+    - Add-KshFolderColoring
     - Copy-KshFolder
     - Get-KshFolder
     - Move-KshFolder
     - Remove-KshFolder
     - Set-KshFolder
+    - Set-KshFolderColoring
   - Groups
     - Add-KshGroup
     - Add-KshGroupMember

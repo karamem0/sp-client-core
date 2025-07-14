@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -28,7 +29,7 @@ public class AddNavigationNodeCommand : ClientObjectCmdlet<INavigationNodeServic
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet1"
     )]
-    public NavigationNode NavigationNode { get; private set; }
+    public NavigationNode? NavigationNode { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public SwitchParameter QuickLaunch { get; private set; }
@@ -43,18 +44,19 @@ public class AddNavigationNodeCommand : ClientObjectCmdlet<INavigationNodeServic
     public bool IsExternal { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public NavigationNode PreviousNode { get; private set; }
+    public NavigationNode? PreviousNode { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string Title { get; private set; }
+    public string? Title { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public Uri Url { get; private set; }
+    public Uri? Url { get; private set; }
 
     protected override void ProcessRecordCore()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.NavigationNode ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.NavigationNode));
             this.Outputs.Add(this.Service.AddObject(this.NavigationNode, this.MyInvocation.BoundParameters));
         }
         if (this.ParameterSetName == "ParamSet2")

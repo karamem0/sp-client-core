@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -34,7 +35,7 @@ public class GetTenantHubSiteCommand : ClientObjectCmdlet<ITenantHubSiteService>
         Position = 0,
         ParameterSetName = "ParamSet2"
     )]
-    public Uri HubSiteUrl { get; private set; }
+    public Uri? HubSiteUrl { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     public SwitchParameter NoEnumerate { get; private set; }
@@ -47,7 +48,9 @@ public class GetTenantHubSiteCommand : ClientObjectCmdlet<ITenantHubSiteService>
         }
         if (this.ParameterSetName == "ParamSet2")
         {
-            this.Outputs.Add(this.Service.GetObject(this.HubSiteUrl));
+            this.Outputs.Add(
+                this.Service.GetObject(this.HubSiteUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.HubSiteUrl)))
+            );
         }
         if (this.ParameterSetName == "ParamSet3")
         {

@@ -1,7 +1,6 @@
 name: Test source
 
-on:
-  workflow_call: {}
+on: workflow_call
 
 permissions:
   checks: write

@@ -23,7 +23,7 @@ public class AddTenantSiteDesignCommand : ClientObjectCmdlet<ITenantSiteDesignSe
 {
 
     [Parameter(Mandatory = false)]
-    public string Description { get; private set; }
+    public string? Description { get; private set; }
 
     [Parameter(Mandatory = false)]
     public Guid DesignPackageId { get; private set; }
@@ -32,22 +32,22 @@ public class AddTenantSiteDesignCommand : ClientObjectCmdlet<ITenantSiteDesignSe
     public bool IsDefault { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string PreviewImageAltText { get; private set; }
+    public string? PreviewImageAltText { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public Uri PreviewImageUrl { get; private set; }
+    public Uri? PreviewImageUrl { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public string[] SiteScriptIds { get; private set; }
+    public string[]? SiteScriptIds { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string SiteTemplate { get; private set; }
+    public string? SiteTemplate { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public Uri ThumbnailUrl { get; private set; }
+    public Uri? ThumbnailUrl { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public string Title { get; private set; }
+    public string? Title { get; private set; }
 
     protected override void ProcessRecordCore()
     {

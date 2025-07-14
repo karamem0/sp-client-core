@@ -66,10 +66,10 @@ public class SharingSettings : ClientObject
     public virtual bool CanShareFolder { get; protected set; }
 
     [JsonProperty()]
-    public virtual RoleType? DefaultShareLinkPermission { get; protected set; }
+    public virtual RoleType DefaultShareLinkPermission { get; protected set; }
 
     [JsonProperty()]
-    public virtual SharingLinkKind? DefaultShareLinkType { get; protected set; }
+    public virtual SharingLinkKind DefaultShareLinkType { get; protected set; }
 
     [JsonProperty("EnforceIBSegmentFiltering")]
     public virtual bool EnforceInformationBarriersSegmentFiltering { get; protected set; }

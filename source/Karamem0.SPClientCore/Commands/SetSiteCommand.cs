@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -27,13 +28,13 @@ public class SetSiteCommand : ClientObjectCmdlet<ISiteService>
         Position = 0,
         ValueFromPipeline = true
     )]
-    public Site Identity { get; private set; }
+    public Site? Identity { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool AllowAutomaticASPXPageIndexing { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public Uri AlternateCssUrl { get; private set; }
+    public Uri? AlternateCssUrl { get; private set; }
 
     // [Parameter(Mandatory = false)]
     // public Group AssociatedMemberGroup { get; private set; }
@@ -51,7 +52,7 @@ public class SetSiteCommand : ClientObjectCmdlet<ISiteService>
     public bool ContainsConfidentialInfo { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public Uri CustomMasterUrl { get; private set; }
+    public Uri? CustomMasterUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool DisableAppViews { get; private set; }
@@ -60,7 +61,7 @@ public class SetSiteCommand : ClientObjectCmdlet<ISiteService>
     public bool DisableFlows { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string Description { get; private set; }
+    public string? Description { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool EnableMinimalDownload { get; private set; }
@@ -87,7 +88,7 @@ public class SetSiteCommand : ClientObjectCmdlet<ISiteService>
     public LogoAlignment LogoAlignment { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public Uri MasterUrl { get; private set; }
+    public Uri? MasterUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool MembersCanShare { get; private set; }
@@ -111,7 +112,7 @@ public class SetSiteCommand : ClientObjectCmdlet<ISiteService>
     public bool QuickLaunchEnabled { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string RequestAccessEmail { get; private set; }
+    public string? RequestAccessEmail { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool SaveSiteAsTemplateEnabled { get; private set; }
@@ -120,22 +121,22 @@ public class SetSiteCommand : ClientObjectCmdlet<ISiteService>
     public SearchScopeType SearchScope { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public Uri ServerRelativeUrl { get; private set; }
+    public Uri? ServerRelativeUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string SiteLogoDescription { get; private set; }
+    public string? SiteLogoDescription { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public Uri SiteLogoUrl { get; private set; }
+    public Uri? SiteLogoUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool SyndicationEnabled { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public Uri ThemedCssFolderUrl { get; private set; }
+    public Uri? ThemedCssFolderUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string Title { get; private set; }
+    public string? Title { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool TreeViewEnabled { get; private set; }
@@ -151,6 +152,7 @@ public class SetSiteCommand : ClientObjectCmdlet<ISiteService>
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
         this.Service.SetObject(this.Identity, this.MyInvocation.BoundParameters);
         if (this.PassThru)
         {

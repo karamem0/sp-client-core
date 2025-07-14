@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -32,14 +33,14 @@ public class RemoveTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
         Position = 0,
         ParameterSetName = "ParamSet1"
     )]
-    public TenantSiteCollection SiteCollection { get; private set; }
+    public TenantSiteCollection? SiteCollection { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 0,
         ParameterSetName = "ParamSet2"
     )]
-    public Uri SiteCollectionUrl { get; private set; }
+    public Uri? SiteCollectionUrl { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -51,18 +52,21 @@ public class RemoveTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
         Position = 1,
         ParameterSetName = "ParamSet2"
     )]
-    public User User { get; private set; }
+    public User? User { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.User ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.User));
         if (this.ShouldProcess(this.User.Title, VerbsCommon.Remove))
         {
             if (this.ParameterSetName == "ParamSet1")
             {
+                _ = this.SiteCollection?.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollection));
                 this.Service.RemoveObject(this.SiteCollection.Url, this.User);
             }
             if (this.ParameterSetName == "ParamSet2")
             {
+                _ = this.SiteCollectionUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollectionUrl));
                 this.Service.RemoveObject(this.SiteCollectionUrl, this.User);
             }
         }

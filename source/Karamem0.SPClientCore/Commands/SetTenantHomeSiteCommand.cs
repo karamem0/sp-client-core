@@ -23,13 +23,14 @@ public class SetTenantHomeSiteCommand : ClientObjectCmdlet<ITenantHomeSiteServic
 {
 
     [Parameter(Mandatory = true)]
-    public Uri Url { get; private set; }
+    public Uri? Url { get; private set; }
 
     [Parameter(Mandatory = false)]
     public SwitchParameter PassThru { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Url));
         if (this.Url.IsAbsoluteUri)
         {
             this.Service.SetObject(this.Url);

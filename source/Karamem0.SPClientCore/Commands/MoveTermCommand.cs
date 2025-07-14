@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -27,16 +28,18 @@ public class MoveTermCommand : ClientObjectCmdlet<ITermService>
         Position = 0,
         ValueFromPipeline = true
     )]
-    public Term Identity { get; private set; }
+    public Term? Identity { get; private set; }
 
     [Parameter(Mandatory = true, Position = 1)]
-    public TermSetItem NewParent { get; private set; }
+    public TermSetItem? NewParent { get; private set; }
 
     [Parameter(Mandatory = false)]
     public SwitchParameter PassThru { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
+        _ = this.NewParent ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.NewParent));
         this.Service.MoveObject(this.Identity, this.NewParent);
         if (this.PassThru)
         {

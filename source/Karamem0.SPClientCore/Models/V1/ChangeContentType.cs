@@ -24,7 +24,7 @@ public class ChangeContentType : Change
     public override ChangeToken? ChangeToken { get; protected set; }
 
     [JsonProperty()]
-    public override ChangeType? ChangeType { get; protected set; }
+    public override ChangeType ChangeType { get; protected set; }
 
     [JsonProperty()]
     public virtual ContentTypeId? ContentTypeId { get; protected set; }

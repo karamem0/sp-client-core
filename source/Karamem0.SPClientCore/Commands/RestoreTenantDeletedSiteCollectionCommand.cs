@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -34,7 +35,7 @@ public class RestoreTenantDeletedSiteCollectionCommand : ClientObjectCmdlet<ITen
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet2"
     )]
-    public TenantDeletedSiteCollection Identity { get; private set; }
+    public TenantDeletedSiteCollection? Identity { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public SwitchParameter NoWait { get; private set; }
@@ -43,11 +44,13 @@ public class RestoreTenantDeletedSiteCollectionCommand : ClientObjectCmdlet<ITen
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
             this.Service.RestoreObjectAwait(this.Identity);
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             this.ValidateSwitchParameter(nameof(this.NoWait));
+            _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
             _ = this.Service.RestoreObject(this.Identity);
         }
     }

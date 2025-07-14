@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -27,13 +28,15 @@ public class MergeTermCommand : ClientObjectCmdlet<ITermService>
         Position = 0,
         ValueFromPipeline = true
     )]
-    public Term Identity { get; private set; }
+    public Term? Identity { get; private set; }
 
     [Parameter(Mandatory = true, Position = 1)]
-    public Term ToMerge { get; private set; }
+    public Term? ToMerge { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
+        _ = this.ToMerge ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ToMerge));
         this.Service.MergeObject(this.Identity, this.ToMerge);
     }
 

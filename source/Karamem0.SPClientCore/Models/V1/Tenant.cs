@@ -21,7 +21,7 @@ public class Tenant : ClientObject
 {
 
     [JsonProperty()]
-    public virtual RoleType? AddressbarLinkPermission { get; protected set; }
+    public virtual RoleType AddressbarLinkPermission { get; protected set; }
 
     [JsonProperty()]
     public virtual string? AIBuilderDefaultPowerAppsEnvironment { get; protected set; }
@@ -45,7 +45,7 @@ public class Tenant : ClientObject
     public virtual Guid AllOrganizationSecurityGroupId { get; protected set; }
 
     [JsonProperty()]
-    public virtual SharingState? AllowAnonymousMeetingParticipantsToAccessWhiteboards { get; protected set; }
+    public virtual SharingState AllowAnonymousMeetingParticipantsToAccessWhiteboards { get; protected set; }
 
     [JsonProperty()]
     public virtual bool AllowCommentsTextOnEmailEnabled { get; protected set; }
@@ -105,7 +105,7 @@ public class Tenant : ClientObject
     public virtual Uri? ArchiveRedirectUrl { get; protected set; }
 
     [JsonProperty("AuthContextResilienceMode")]
-    public virtual ResilienceMode? AuthenticationContextResilienceMode { get; protected set; }
+    public virtual ResilienceMode AuthenticationContextResilienceMode { get; protected set; }
 
     [JsonProperty()]
     public virtual bool AutofillColumnsEnabled { get; protected set; }
@@ -132,7 +132,7 @@ public class Tenant : ClientObject
     public virtual bool BlockDownloadFileTypePolicy { get; protected set; }
 
     [JsonProperty()]
-    public virtual BlockDownloadLinksFileType? BlockDownloadLinksFileType { get; protected set; }
+    public virtual BlockDownloadLinksFileType BlockDownloadLinksFileType { get; protected set; }
 
     [JsonProperty()]
     public virtual bool BlockDownloadOfAllFilesForGuests { get; protected set; }
@@ -156,10 +156,10 @@ public class Tenant : ClientObject
     public virtual string? BlockUserInfoVisibility { get; protected set; }
 
     [JsonProperty()]
-    public virtual TenantBrowseUserInfoPolicyType? BlockUserInfoVisibilityInOneDrive { get; protected set; }
+    public virtual TenantBrowseUserInfoPolicyType BlockUserInfoVisibilityInOneDrive { get; protected set; }
 
     [JsonProperty()]
-    public virtual TenantBrowseUserInfoPolicyType? BlockUserInfoVisibilityInSharePoint { get; protected set; }
+    public virtual TenantBrowseUserInfoPolicyType BlockUserInfoVisibilityInSharePoint { get; protected set; }
 
     [JsonProperty()]
     public virtual long BonusStorageQuotaMB { get; protected set; }
@@ -180,7 +180,7 @@ public class Tenant : ClientObject
     public virtual string? CompatibilityRange { get; protected set; }
 
     [JsonProperty()]
-    public virtual ConditionalAccessPolicyType? ConditionalAccessPolicy { get; protected set; }
+    public virtual ConditionalAccessPolicyType ConditionalAccessPolicy { get; protected set; }
 
     [JsonProperty()]
     public virtual string? ConditionalAccessPolicyErrorHelpLink { get; protected set; }
@@ -201,19 +201,19 @@ public class Tenant : ClientObject
     public virtual bool CoreDefaultLinkToExistingAccess { get; protected set; }
 
     [JsonProperty("CoreDefaultShareLinkRole")]
-    public virtual RoleType? CoreDefaultSharingLinkRole { get; protected set; }
+    public virtual RoleType CoreDefaultSharingLinkRole { get; protected set; }
 
     [JsonProperty("CoreDefaultShareLinkScope")]
-    public virtual SharingScope? CoreDefaultSharingLinkScope { get; protected set; }
+    public virtual SharingScope CoreDefaultSharingLinkScope { get; protected set; }
 
     [JsonProperty()]
-    public virtual RoleType? CoreLoopDefaultSharingLinkRole { get; protected set; }
+    public virtual RoleType CoreLoopDefaultSharingLinkRole { get; protected set; }
 
     [JsonProperty()]
-    public virtual SharingScope? CoreLoopDefaultSharingLinkScope { get; protected set; }
+    public virtual SharingScope CoreLoopDefaultSharingLinkScope { get; protected set; }
 
     [JsonProperty()]
-    public virtual SharingCapabilities? CoreLoopSharingCapability { get; protected set; }
+    public virtual SharingCapabilities CoreLoopSharingCapability { get; protected set; }
 
     [JsonProperty()]
     public virtual bool CoreRequestFilesLinkEnabled { get; protected set; }
@@ -222,7 +222,7 @@ public class Tenant : ClientObject
     public virtual int CoreRequestFilesLinkExpirationInDays { get; protected set; }
 
     [JsonProperty()]
-    public virtual SharingCapabilities? CoreSharingCapability { get; protected set; }
+    public virtual SharingCapabilities CoreSharingCapability { get; protected set; }
 
     [JsonProperty()]
     public virtual Uri? CustomizedExternalSharingServiceUrl { get; protected set; }
@@ -234,13 +234,13 @@ public class Tenant : ClientObject
     public virtual SiteInfoForSitePicker? DefaultContentCenterSite { get; protected set; }
 
     [JsonProperty()]
-    public virtual SharingPermissionType? DefaultLinkPermission { get; protected set; }
+    public virtual SharingPermissionType DefaultLinkPermission { get; protected set; }
 
     [JsonProperty("DefaultODBMode")]
     public virtual string? DefaultOneDriveMode { get; protected set; }
 
     [JsonProperty()]
-    public virtual SharingLinkType? DefaultSharingLinkType { get; protected set; }
+    public virtual SharingLinkType DefaultSharingLinkType { get; protected set; }
 
     [JsonProperty()]
     public virtual bool DelayDenyAddAndCustomizePagesEnforcement { get; protected set; }
@@ -414,7 +414,7 @@ public class Tenant : ClientObject
     public virtual int ExternalUserExpireInDays { get; protected set; }
 
     [JsonProperty()]
-    public virtual AnonymousLinkType? FileAnonymousLinkType { get; protected set; }
+    public virtual AnonymousLinkType FileAnonymousLinkType { get; protected set; }
 
     [JsonProperty()]
     public virtual bool FilePickerExternalImageSearchEnabled { get; protected set; }
@@ -423,7 +423,7 @@ public class Tenant : ClientObject
     public virtual string? FileVersionPolicyXml { get; protected set; }
 
     [JsonProperty()]
-    public virtual AnonymousLinkType? FolderAnonymousLinkType { get; protected set; }
+    public virtual AnonymousLinkType FolderAnonymousLinkType { get; protected set; }
 
     [JsonProperty()]
     public virtual string? GuestSharingGroupAllowListInTenant { get; protected set; }
@@ -453,7 +453,7 @@ public class Tenant : ClientObject
     public virtual bool HideSyncButtonOnOneDrive { get; protected set; }
 
     [JsonProperty()]
-    public virtual ImageTaggingChoice? ImageTaggingOption { get; protected set; }
+    public virtual ImageTaggingChoice ImageTaggingOption { get; protected set; }
 
     [JsonProperty()]
     public virtual string? ImageTaggingSiteListFileName { get; protected set; }
@@ -534,7 +534,7 @@ public class Tenant : ClientObject
     public virtual bool LegacyAuthProtocolsEnabled { get; protected set; }
 
     [JsonProperty()]
-    public virtual LimitedAccessFileType? LimitedAccessFileType { get; protected set; }
+    public virtual LimitedAccessFileType LimitedAccessFileType { get; protected set; }
 
     [JsonProperty()]
     public virtual bool MachineLearningCaptureEnabled { get; protected set; }
@@ -549,10 +549,10 @@ public class Tenant : ClientObject
     public virtual int MajorVersionLimit { get; protected set; }
 
     [JsonProperty()]
-    public virtual SensitiveByDefaultState? MarkNewFilesSensitiveByDefault { get; protected set; }
+    public virtual SensitiveByDefaultState MarkNewFilesSensitiveByDefault { get; protected set; }
 
     [JsonProperty()]
-    public virtual MediaTranscriptionPolicyType? MediaTranscription { get; protected set; }
+    public virtual MediaTranscriptionPolicyType MediaTranscription { get; protected set; }
 
     [JsonProperty()]
     public virtual MediaTranscriptionAutomaticFeaturesPolicyType MediaTranscriptionAutomaticFeatures { get; protected set; }
@@ -594,7 +594,7 @@ public class Tenant : ClientObject
     public virtual bool OfficeClientAdalDisabled { get; protected set; }
 
     [JsonProperty("ODBAccessRequests")]
-    public virtual SharingState? OneDriveAccessRequests { get; protected set; }
+    public virtual SharingState OneDriveAccessRequests { get; protected set; }
 
     [JsonProperty()]
     public virtual int OneDriveBlockGuestsAsSiteAdmin { get; protected set; }
@@ -603,25 +603,25 @@ public class Tenant : ClientObject
     public virtual bool OneDriveDefaultLinkToExistingAccess { get; protected set; }
 
     [JsonProperty("OneDriveDefaultShareLinkRole")]
-    public virtual RoleType? OneDriveDefaultSharingLinkRole { get; protected set; }
+    public virtual RoleType OneDriveDefaultSharingLinkRole { get; protected set; }
 
     [JsonProperty("OneDriveDefaultShareLinkScope")]
-    public virtual SharingScope? OneDriveDefaultSharingLinkScope { get; protected set; }
+    public virtual SharingScope OneDriveDefaultSharingLinkScope { get; protected set; }
 
     [JsonProperty()]
     public virtual bool OneDriveForGuestsEnabled { get; protected set; }
 
     [JsonProperty()]
-    public virtual RoleType? OneDriveLoopDefaultSharingLinkRole { get; protected set; }
+    public virtual RoleType OneDriveLoopDefaultSharingLinkRole { get; protected set; }
 
     [JsonProperty()]
-    public virtual SharingScope? OneDriveLoopDefaultSharingLinkScope { get; protected set; }
+    public virtual SharingScope OneDriveLoopDefaultSharingLinkScope { get; protected set; }
 
     [JsonProperty()]
-    public virtual SharingCapabilities? OneDriveLoopSharingCapability { get; protected set; }
+    public virtual SharingCapabilities OneDriveLoopSharingCapability { get; protected set; }
 
     [JsonProperty("ODBMembersCanShare")]
-    public virtual SharingState? OneDriveMembersCanShare { get; protected set; }
+    public virtual SharingState OneDriveMembersCanShare { get; protected set; }
 
     [JsonProperty()]
     public virtual bool OneDriveRequestFilesLinkEnabled { get; protected set; }
@@ -633,7 +633,7 @@ public class Tenant : ClientObject
     public virtual int OneDriveSensitivityRefreshWindowInHours { get; protected set; }
 
     [JsonProperty("ODBSharingCapability")]
-    public virtual SharingCapabilities? OneDriveSharingCapability { get; protected set; }
+    public virtual SharingCapabilities OneDriveSharingCapability { get; protected set; }
 
     [JsonProperty()]
     public virtual long OneDriveStorageQuota { get; protected set; }
@@ -711,10 +711,10 @@ public class Tenant : ClientObject
     public virtual bool RestrictedSharePointLicense { get; protected set; }
 
     [JsonProperty()]
-    public virtual double? ResourceQuota { get; protected set; }
+    public virtual double ResourceQuota { get; protected set; }
 
     [JsonProperty()]
-    public virtual double? ResourceQuotaAllocated { get; protected set; }
+    public virtual double ResourceQuotaAllocated { get; protected set; }
 
     [JsonProperty()]
     public virtual Uri? RootSiteUrl { get; protected set; }
@@ -735,10 +735,10 @@ public class Tenant : ClientObject
     public virtual string? SharingBlockedDomainList { get; protected set; }
 
     [JsonProperty()]
-    public virtual SharingCapabilities? SharingCapability { get; protected set; }
+    public virtual SharingCapabilities SharingCapability { get; protected set; }
 
     [JsonProperty()]
-    public virtual SharingDomainRestrictionMode? SharingDomainRestrictionMode { get; protected set; }
+    public virtual SharingDomainRestrictionMode SharingDomainRestrictionMode { get; protected set; }
 
     [JsonProperty()]
     public virtual bool ShowAllUsersClaim { get; protected set; }
@@ -771,7 +771,7 @@ public class Tenant : ClientObject
     public virtual bool SocialBarOnSitePagesDisabled { get; protected set; }
 
     [JsonProperty()]
-    public virtual SpecialCharactersState? SpecialCharactersStateInFileFolderNames { get; protected set; }
+    public virtual SpecialCharactersState SpecialCharactersStateInFileFolderNames { get; protected set; }
 
     [JsonProperty()]
     public virtual Uri? StartASiteFormUrl { get; protected set; }
@@ -849,6 +849,6 @@ public class Tenant : ClientObject
     public virtual bool Workflow2010Disabled { get; protected set; }
 
     [JsonProperty()]
-    public virtual Workflows2013State? Workflows2013State { get; protected set; }
+    public virtual Workflows2013State Workflows2013State { get; protected set; }
 
 }

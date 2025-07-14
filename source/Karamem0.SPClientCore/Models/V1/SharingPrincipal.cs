@@ -44,7 +44,7 @@ public class SharingPrincipal : ODataV1Object<SharingPrincipal>
     public virtual string? Name { get; protected set; }
 
     [JsonProperty("principalType")]
-    public virtual PrincipalType? PrincipalType { get; protected set; }
+    public virtual PrincipalType PrincipalType { get; protected set; }
 
     [JsonProperty("userId")]
     public virtual string? UserId { get; protected set; }

@@ -35,7 +35,7 @@ public class SetTenantCommand : ClientObjectCmdlet<ITenantService>
     public bool AllowDownloadingNonWebViewableFiles { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public Guid[] AllowedDomainListForSyncClient { get; private set; }
+    public Guid[]? AllowedDomainListForSyncClient { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool AllowEditing { get; private set; }
@@ -65,7 +65,7 @@ public class SetTenantCommand : ClientObjectCmdlet<ITenantService>
     public bool BccExternalSharingInvitations { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string BccExternalSharingInvitationsList { get; private set; }
+    public string? BccExternalSharingInvitationsList { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool BlockAccessOnUnmanagedDevices { get; private set; }
@@ -80,7 +80,7 @@ public class SetTenantCommand : ClientObjectCmdlet<ITenantService>
     public bool BlockSendLabelMismatchEmail { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string BlockUserInfoVisibility { get; private set; }
+    public string? BlockUserInfoVisibility { get; private set; }
 
     [Parameter(Mandatory = false)]
     public TenantBrowseUserInfoPolicyType BlockUserInfoVisibilityInOneDrive { get; private set; }
@@ -98,16 +98,16 @@ public class SetTenantCommand : ClientObjectCmdlet<ITenantService>
     public bool CommentsOnSitePagesDisabled { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string CompatibilityRange { get; private set; }
+    public string? CompatibilityRange { get; private set; }
 
     [Parameter(Mandatory = false)]
     public ConditionalAccessPolicyType ConditionalAccessPolicy { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string ConditionalAccessPolicyErrorHelpLink { get; private set; }
+    public string? ConditionalAccessPolicyErrorHelpLink { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string[] ContentTypeSyncSiteTemplatesList { get; private set; }
+    public string[]? ContentTypeSyncSiteTemplatesList { get; private set; }
 
     [Parameter(Mandatory = false)]
     public RoleType CoreLoopDefaultSharingLinkRole { get; private set; }
@@ -128,16 +128,16 @@ public class SetTenantCommand : ClientObjectCmdlet<ITenantService>
     public SharingCapabilities CoreSharingCapability { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public Uri CustomizedExternalSharingServiceUrl { get; private set; }
+    public Uri? CustomizedExternalSharingServiceUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public SiteInfoForSitePicker DefaultContentCenterSite { get; private set; }
+    public SiteInfoForSitePicker? DefaultContentCenterSite { get; private set; }
 
     [Parameter(Mandatory = false)]
     public SharingPermissionType DefaultLinkPermission { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string DefaultOneDriveMode { get; private set; }
+    public string? DefaultOneDriveMode { get; private set; }
 
     [Parameter(Mandatory = false)]
     public SharingLinkType DefaultSharingLinkType { get; private set; }
@@ -152,10 +152,10 @@ public class SetTenantCommand : ClientObjectCmdlet<ITenantService>
     public bool DisableCustomAppAuthentication { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public Guid[] DisabledModernListTemplateIds { get; private set; }
+    public Guid[]? DisabledModernListTemplateIds { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public Guid[] DisabledWebPartIds { get; private set; }
+    public Guid[]? DisabledWebPartIds { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool DisableOutlookPSTVersionTrimming { get; private set; }
@@ -215,7 +215,7 @@ public class SetTenantCommand : ClientObjectCmdlet<ITenantService>
     public bool EnableRestrictedAccessControl { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string[] ExcludedFileExtensionsForSyncClient { get; private set; }
+    public string[]? ExcludedFileExtensionsForSyncClient { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool ExternalServicesEnabled { get; private set; }
@@ -236,10 +236,10 @@ public class SetTenantCommand : ClientObjectCmdlet<ITenantService>
     public AnonymousLinkType FolderAnonymousLinkType { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string GuestSharingGroupAllowListInTenant { get; private set; }
+    public string? GuestSharingGroupAllowListInTenant { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string[] GuestSharingGroupAllowListInTenantByPrincipalIdentity { get; private set; }
+    public string[]? GuestSharingGroupAllowListInTenantByPrincipalIdentity { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool HasAdminCompletedCUConfiguration { get; private set; }
@@ -266,7 +266,7 @@ public class SetTenantCommand : ClientObjectCmdlet<ITenantService>
     public bool InformationBarriersSuspension { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string IPAddressAllowList { get; private set; }
+    public string? IPAddressAllowList { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool IPAddressEnforcement { get; private set; }
@@ -296,7 +296,7 @@ public class SetTenantCommand : ClientObjectCmdlet<ITenantService>
     public bool IsWhiteboardFluidEnabled { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string LabelMismatchEmailHelpLink { get; private set; }
+    public string? LabelMismatchEmailHelpLink { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool LegacyBrowserAuthProtocolsEnabled { get; private set; }
@@ -323,7 +323,7 @@ public class SetTenantCommand : ClientObjectCmdlet<ITenantService>
     public bool MobileFriendlyUrlEnabledInTenant { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public Uri NoAccessRedirectUrl { get; private set; }
+    public Uri? NoAccessRedirectUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool NotificationsInOneDriveEnabled { get; private set; }
@@ -413,10 +413,10 @@ public class SetTenantCommand : ClientObjectCmdlet<ITenantService>
     public bool SharePointAddInsDisabled { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string SharingAllowedDomainList { get; private set; }
+    public string? SharingAllowedDomainList { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string SharingBlockedDomainList { get; private set; }
+    public string? SharingBlockedDomainList { get; private set; }
 
     [Parameter(Mandatory = false)]
     public SharingCapabilities SharingCapability { get; private set; }
@@ -440,7 +440,7 @@ public class SetTenantCommand : ClientObjectCmdlet<ITenantService>
     public bool ShowPeoplePickerGroupSuggestionsForInformationBarriers { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string SignInAccelerationDomain { get; private set; }
+    public string? SignInAccelerationDomain { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool SiteOwnerManageLegacyServicePrincipalEnabled { get; private set; }
@@ -452,7 +452,7 @@ public class SetTenantCommand : ClientObjectCmdlet<ITenantService>
     public SpecialCharactersState SpecialCharactersStateInFileFolderNames { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public Uri StartASiteFormUrl { get; private set; }
+    public Uri? StartASiteFormUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool StopNew2010Workflows { get; private set; }
@@ -467,13 +467,13 @@ public class SetTenantCommand : ClientObjectCmdlet<ITenantService>
     public bool TaxonomyTaggingEnabled { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string TaxonomyTaggingSiteListFileName { get; private set; }
+    public string? TaxonomyTaggingSiteListFileName { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool TranslationEnabled { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string TranslationSiteListFileName { get; private set; }
+    public string? TranslationSiteListFileName { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool UniversalAnnotationDisabled { get; private set; }
@@ -491,10 +491,10 @@ public class SetTenantCommand : ClientObjectCmdlet<ITenantService>
     public bool ViewInFileExplorerEnabled { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string WhoCanShareAllowListInTenant { get; private set; }
+    public string? WhoCanShareAllowListInTenant { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string[] WhoCanShareAllowListInTenantByPrincipalIdentity { get; private set; }
+    public string[]? WhoCanShareAllowListInTenantByPrincipalIdentity { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool Workflow2010Disabled { get; private set; }

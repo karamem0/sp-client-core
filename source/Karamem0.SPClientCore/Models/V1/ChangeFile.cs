@@ -24,7 +24,7 @@ public class ChangeFile : Change
     public override ChangeToken? ChangeToken { get; protected set; }
 
     [JsonProperty()]
-    public override ChangeType? ChangeType { get; protected set; }
+    public override ChangeType ChangeType { get; protected set; }
 
     [JsonProperty()]
     public override string? RelativeTime { get; protected set; }

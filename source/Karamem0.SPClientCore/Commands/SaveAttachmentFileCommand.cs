@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -27,19 +28,22 @@ public class SaveAttachmentFileCommand : ClientObjectCmdlet<IAttachmentFileServi
         Position = 0,
         ValueFromPipeline = true
     )]
-    public ListItem ListItem { get; private set; }
+    public ListItem? ListItem { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public System.IO.Stream Content { get; private set; }
+    public System.IO.Stream? Content { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public string FileName { get; private set; }
+    public string? FileName { get; private set; }
 
     [Parameter(Mandatory = true)]
     public SwitchParameter PassThru { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
+        _ = this.FileName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.FileName));
+        _ = this.Content ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Content));
         this.Service.UploadObject(
             this.ListItem,
             this.FileName,

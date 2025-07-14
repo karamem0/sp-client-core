@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -27,13 +28,14 @@ public class SelectSiteCommand : ClientObjectCmdlet<ISiteService>
         Position = 0,
         ValueFromPipeline = true
     )]
-    public Site Identity { get; private set; }
+    public Site? Identity { get; private set; }
 
     [Parameter(Mandatory = false)]
     public SwitchParameter PassThru { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
         this.Service.SelectObject(this.Identity);
         if (this.PassThru)
         {

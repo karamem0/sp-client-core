@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -27,11 +28,11 @@ public class GetTenantExternalUserCommand : ClientObjectCmdlet<ITenantExternalUs
         Position = 0,
         ParameterSetName = "ParamSet1"
     )]
-    public Uri SiteCollectionUrl { get; private set; }
+    public Uri? SiteCollectionUrl { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-    public string Filter { get; private set; }
+    public string? Filter { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -45,6 +46,8 @@ public class GetTenantExternalUserCommand : ClientObjectCmdlet<ITenantExternalUs
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.SiteCollectionUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollectionUrl));
+            _ = this.Filter ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Filter));
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(
@@ -68,6 +71,7 @@ public class GetTenantExternalUserCommand : ClientObjectCmdlet<ITenantExternalUs
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.Filter ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Filter));
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(this.Service.GetObjectEnumerable(this.Filter, this.SortOrder));

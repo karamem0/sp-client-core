@@ -17,7 +17,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Common;
 public static class HashtableExtensions
 {
 
-    public static Dictionary<TKey, TValue> ToDictionary<TKey, TValue>(this Hashtable hashtable)
+    public static IDictionary<TKey, TValue> ToDictionary<TKey, TValue>(this Hashtable hashtable)
     {
         return hashtable
             .Keys.Cast<object>()

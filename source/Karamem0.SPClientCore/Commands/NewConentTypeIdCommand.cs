@@ -22,7 +22,7 @@ public class NewContentTypeIdCommand : ClientObjectCmdlet
 {
 
     [Parameter(Mandatory = true, Position = 0)]
-    public string StringValue { get; private set; }
+    public string? StringValue { get; private set; }
 
     protected override void ProcessRecordCore()
     {

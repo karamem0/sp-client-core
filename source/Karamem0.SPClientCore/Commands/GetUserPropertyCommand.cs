@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -28,23 +29,25 @@ public class GetUserPropertyCommand : ClientObjectCmdlet<IUserPropertyService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet1"
     )]
-    public UserProperty Identity { get; private set; }
+    public UserProperty? Identity { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 0,
         ParameterSetName = "ParamSet2"
     )]
-    public string UserLoginName { get; private set; }
+    public string? UserLoginName { get; private set; }
 
     protected override void ProcessRecordCore()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
             this.Outputs.Add(this.Service.GetObject(this.Identity));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.UserLoginName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.UserLoginName));
             this.Outputs.Add(this.Service.GetObject(this.UserLoginName));
         }
     }

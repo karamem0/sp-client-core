@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -28,7 +29,7 @@ public class GetTenantSiteDesignCommand : ClientObjectCmdlet<ITenantSiteDesignSe
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet1"
     )]
-    public TenantSiteDesign Identity { get; private set; }
+    public TenantSiteDesign? Identity { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -44,6 +45,7 @@ public class GetTenantSiteDesignCommand : ClientObjectCmdlet<ITenantSiteDesignSe
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.Identity?.Id ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
             this.Outputs.Add(this.Service.GetObject(this.Identity.Id));
         }
         if (this.ParameterSetName == "ParamSet2")

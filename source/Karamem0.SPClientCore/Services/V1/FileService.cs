@@ -181,8 +181,7 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                 typeof(MoveCopyUtil),
                 "CopyFile",
                 requestPayload.CreateParameter(
-                    new Uri(this.ClientContext.BaseAddress.GetLeftPart(UriPartial.Authority))
-                        .ConcatPath(serverRelativeUrl.ToString())
+                    new Uri(this.ClientContext.BaseAddress.GetLeftPart(UriPartial.Authority)).ConcatPath(serverRelativeUrl.ToString())
                 ),
                 requestPayload.CreateParameter(fileUrl),
                 requestPayload.CreateParameter(overwrite),
@@ -362,8 +361,7 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                 typeof(MoveCopyUtil),
                 "MoveFile",
                 requestPayload.CreateParameter(
-                    new Uri(this.ClientContext.BaseAddress.GetLeftPart(UriPartial.Authority))
-                        .ConcatPath(serverRelativeUrl.ToString())
+                    new Uri(this.ClientContext.BaseAddress.GetLeftPart(UriPartial.Authority)).ConcatPath(serverRelativeUrl.ToString())
                 ),
                 requestPayload.CreateParameter(fileUrl),
                 requestPayload.CreateParameter(overwrite),

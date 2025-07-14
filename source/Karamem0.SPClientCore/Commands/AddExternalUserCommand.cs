@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -34,14 +35,14 @@ public class AddExternalUserCommand : ClientObjectCmdlet<IExternalUserService>
         Position = 0,
         ParameterSetName = "ParamSet2"
     )]
-    public File File { get; private set; }
+    public File? File { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 0,
         ParameterSetName = "ParamSet3"
     )]
-    public Folder Folder { get; private set; }
+    public Folder? Folder { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -58,7 +59,7 @@ public class AddExternalUserCommand : ClientObjectCmdlet<IExternalUserService>
         Position = 1,
         ParameterSetName = "ParamSet3"
     )]
-    public string[] UserId { get; private set; }
+    public string[]? UserId { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -88,7 +89,7 @@ public class AddExternalUserCommand : ClientObjectCmdlet<IExternalUserService>
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
-    public string CustomMessage { get; private set; }
+    public string? CustomMessage { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
@@ -115,6 +116,7 @@ public class AddExternalUserCommand : ClientObjectCmdlet<IExternalUserService>
         if (this.ParameterSetName == "ParamSet1")
         {
             this.ValidateSwitchParameter(nameof(this.Site));
+            _ = this.UserId ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.UserId));
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(
@@ -144,6 +146,8 @@ public class AddExternalUserCommand : ClientObjectCmdlet<IExternalUserService>
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.File?.ServerRelativeUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.File));
+            _ = this.UserId ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.UserId));
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(
@@ -179,6 +183,8 @@ public class AddExternalUserCommand : ClientObjectCmdlet<IExternalUserService>
         }
         if (this.ParameterSetName == "ParamSet3")
         {
+            _ = this.Folder?.ServerRelativeUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Folder));
+            _ = this.UserId ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.UserId));
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(

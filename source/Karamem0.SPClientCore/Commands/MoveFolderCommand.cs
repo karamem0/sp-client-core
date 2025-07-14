@@ -35,7 +35,7 @@ public class MoveFolderCommand : ClientObjectCmdlet<IFolderService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet2"
     )]
-    public Folder Identity { get; private set; }
+    public Folder? Identity { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -47,7 +47,7 @@ public class MoveFolderCommand : ClientObjectCmdlet<IFolderService>
         Position = 1,
         ParameterSetName = "ParamSet2"
     )]
-    public Uri NewUrl { get; private set; }
+    public Uri? NewUrl { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     public SwitchParameter KeepBoth { get; protected set; }
@@ -71,8 +71,10 @@ public class MoveFolderCommand : ClientObjectCmdlet<IFolderService>
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.NewUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.NewUrl));
             if (this.NewUrl.IsAbsoluteUri)
             {
+                _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
                 this.Service.MoveObject(
                     this.Identity,
                     this.NewUrl,
@@ -86,9 +88,11 @@ public class MoveFolderCommand : ClientObjectCmdlet<IFolderService>
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.NewUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.NewUrl));
             if (this.NewUrl.IsAbsoluteUri)
             {
                 var newUrl = new Uri(this.NewUrl.AbsolutePath, UriKind.Relative);
+                _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
                 this.Service.MoveObject(this.Identity, newUrl);
                 if (this.PassThru)
                 {
@@ -97,6 +101,7 @@ public class MoveFolderCommand : ClientObjectCmdlet<IFolderService>
             }
             else
             {
+                _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
                 this.Service.MoveObject(this.Identity, this.NewUrl);
                 if (this.PassThru)
                 {

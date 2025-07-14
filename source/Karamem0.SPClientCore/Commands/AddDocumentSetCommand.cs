@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -23,16 +24,19 @@ public class AddDocumentSetCommand : ClientObjectCmdlet<IDocumentSetService>
 {
 
     [Parameter(Mandatory = true)]
-    public Folder Folder { get; private set; }
+    public Folder? Folder { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public string Name { get; private set; }
+    public string? Name { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public ContentType ContentType { get; private set; }
+    public ContentType? ContentType { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Folder ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Folder));
+        _ = this.Name ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Name));
+        _ = this.ContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentType));
         this.Outputs.Add(
             this.Service.AddObject(
                 this.Folder,

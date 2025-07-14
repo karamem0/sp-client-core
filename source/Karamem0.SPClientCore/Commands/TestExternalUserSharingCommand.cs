@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -34,7 +35,7 @@ public class TestExternalUserSharingCommand : ClientObjectCmdlet<IExternalUserSe
         Position = 0,
         ParameterSetName = "ParamSet2"
     )]
-    public List List { get; private set; }
+    public List? List { get; private set; }
 
     protected override void ProcessRecordCore()
     {
@@ -45,6 +46,7 @@ public class TestExternalUserSharingCommand : ClientObjectCmdlet<IExternalUserSe
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
             this.Outputs.Add(this.Service.CheckObject(this.List));
         }
     }

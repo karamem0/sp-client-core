@@ -27,7 +27,7 @@ public class TenantSiteDesign : ClientObject
     public virtual Guid DesignPackageId { get; protected set; }
 
     [JsonProperty()]
-    public virtual TenantTemplateDesignType? DesignType { get; protected set; }
+    public virtual TenantTemplateDesignType DesignType { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid Id { get; protected set; }

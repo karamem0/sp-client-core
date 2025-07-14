@@ -59,11 +59,17 @@ public class ListItem : SecurableObject
     [JsonProperty()]
     public virtual DateTime Created { get; protected set; }
 
+    [JsonProperty("_ColorHex")]
+    public virtual string? ColorHex { get; protected set; }
+
+    [JsonProperty("_ColorTag")]
+    public virtual string? ColorTag { get; protected set; }
+
     [JsonProperty()]
     public virtual bool CommentsDisabled { get; protected set; }
 
     [JsonProperty()]
-    public virtual CommentsDisabledScope? CommentsDisabledScope { get; protected set; }
+    public virtual CommentsDisabledScope CommentsDisabledScope { get; protected set; }
 
     [JsonProperty()]
     public virtual ContentTypeId? ContentTypeId { get; protected set; }
@@ -90,8 +96,11 @@ public class ListItem : SecurableObject
     [JsonProperty()]
     public virtual ColumnUserValue? Editor { get; protected set; }
 
+    [JsonProperty("_Emoji")]
+    public virtual string? Emoji { get; protected set; }
+
     [JsonProperty()]
-    public virtual FileSystemObjectType? FileSystemObjectType { get; protected set; }
+    public virtual FileSystemObjectType FileSystemObjectType { get; protected set; }
 
     [JsonProperty()]
     public virtual int FolderChildCount { get; protected set; }

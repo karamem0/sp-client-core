@@ -6,6 +6,7 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -22,10 +23,11 @@ public class AddTenantOrganizationNewsSiteCommand : ClientObjectCmdlet<ITenantOr
 {
 
     [Parameter(Mandatory = true)]
-    public Uri Url { get; private set; }
+    public Uri? Url { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Url));
         this.Service.AddObject(this.Url);
     }
 

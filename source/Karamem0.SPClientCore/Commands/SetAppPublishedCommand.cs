@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -27,7 +28,7 @@ public class SetAppPublishedCommand : ClientObjectCmdlet<IAppService>
         Position = 0,
         ValueFromPipeline = true
     )]
-    public App Identity { get; private set; }
+    public App? Identity { get; private set; }
 
     [Parameter(Mandatory = true)]
     public bool Published { get; private set; }
@@ -40,6 +41,7 @@ public class SetAppPublishedCommand : ClientObjectCmdlet<IAppService>
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
         if (this.Published)
         {
             this.Service.PublishObject(this.Identity, this.Tenant);

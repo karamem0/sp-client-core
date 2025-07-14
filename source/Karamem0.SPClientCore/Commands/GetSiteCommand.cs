@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -28,7 +29,7 @@ public class GetSiteCommand : ClientObjectCmdlet<ISiteService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet1"
     )]
-    public Site Identity { get; private set; }
+    public Site? Identity { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -36,7 +37,7 @@ public class GetSiteCommand : ClientObjectCmdlet<ISiteService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet2"
     )]
-    public SiteCollection SiteCollection { get; private set; }
+    public SiteCollection? SiteCollection { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -44,7 +45,7 @@ public class GetSiteCommand : ClientObjectCmdlet<ISiteService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet3"
     )]
-    public List List { get; private set; }
+    public List? List { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -58,7 +59,7 @@ public class GetSiteCommand : ClientObjectCmdlet<ISiteService>
         Position = 0,
         ParameterSetName = "ParamSet5"
     )]
-    public Uri SiteUrl { get; private set; }
+    public Uri? SiteUrl { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet6")]
     public SwitchParameter NoEnumerate { get; private set; }
@@ -67,14 +68,17 @@ public class GetSiteCommand : ClientObjectCmdlet<ISiteService>
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
             this.Outputs.Add(this.Service.GetObject(this.Identity));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.SiteCollection ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollection));
             this.Outputs.Add(this.Service.GetObject(this.SiteCollection));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
+            _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
             this.Outputs.Add(this.Service.GetObject(this.List));
         }
         if (this.ParameterSetName == "ParamSet4")
@@ -83,6 +87,7 @@ public class GetSiteCommand : ClientObjectCmdlet<ISiteService>
         }
         if (this.ParameterSetName == "ParamSet5")
         {
+            _ = this.SiteUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteUrl));
             if (this.SiteUrl.IsAbsoluteUri)
             {
                 this.Outputs.Add(this.Service.GetObject(new Uri(this.SiteUrl.AbsolutePath, UriKind.Relative)));

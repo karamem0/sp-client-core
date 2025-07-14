@@ -21,7 +21,7 @@ public class Alert : ClientObject
 {
 
     [JsonProperty()]
-    public virtual AlertFrequency? AlertFrequency { get; protected set; }
+    public virtual AlertFrequency AlertFrequency { get; protected set; }
 
     [JsonProperty()]
     public virtual string? AlertTemplateName { get; protected set; }
@@ -31,16 +31,16 @@ public class Alert : ClientObject
     public virtual DateTime AlertTime { get; protected set; }
 
     [JsonProperty()]
-    public virtual AlertType? AlertType { get; protected set; }
+    public virtual AlertType AlertType { get; protected set; }
 
     [JsonProperty()]
     public virtual bool AlwaysNotify { get; protected set; }
 
     [JsonProperty()]
-    public virtual AlertDeliveryChannel? DeliveryChannels { get; protected set; }
+    public virtual AlertDeliveryChannel DeliveryChannels { get; protected set; }
 
     [JsonProperty()]
-    public virtual AlertEventType? EventType { get; protected set; }
+    public virtual AlertEventType EventType { get; protected set; }
 
     [JsonProperty()]
     public virtual string? Filter { get; protected set; }
@@ -62,7 +62,7 @@ public class Alert : ClientObject
     public virtual IReadOnlyDictionary<string, string>? Properties { get; protected set; }
 
     [JsonProperty()]
-    public virtual AlertStatus? Status { get; protected set; }
+    public virtual AlertStatus Status { get; protected set; }
 
     [JsonProperty()]
     public virtual string? Title { get; protected set; }

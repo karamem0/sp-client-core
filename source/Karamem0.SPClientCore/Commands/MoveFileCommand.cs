@@ -36,7 +36,7 @@ public class MoveFileCommand : ClientObjectCmdlet<IFileService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet2"
     )]
-    public File Identity { get; private set; }
+    public File? Identity { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -48,7 +48,7 @@ public class MoveFileCommand : ClientObjectCmdlet<IFileService>
         Position = 1,
         ParameterSetName = "ParamSet2"
     )]
-    public Uri NewUrl { get; private set; }
+    public Uri? NewUrl { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -82,8 +82,10 @@ public class MoveFileCommand : ClientObjectCmdlet<IFileService>
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.NewUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.NewUrl));
             if (this.NewUrl.IsAbsoluteUri)
             {
+                _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
                 this.Service.MoveObject(
                     this.Identity,
                     this.NewUrl,
@@ -98,6 +100,8 @@ public class MoveFileCommand : ClientObjectCmdlet<IFileService>
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
+            _ = this.NewUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.NewUrl));
             var moveOperations = FlagsParser.Parse<MoveOperations>(this.MyInvocation.BoundParameters);
             if (this.NewUrl.IsAbsoluteUri)
             {

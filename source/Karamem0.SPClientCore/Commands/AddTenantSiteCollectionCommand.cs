@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -32,7 +33,7 @@ public class AddTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteColl
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-    public string Owner { get; private set; }
+    public string? Owner { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -44,7 +45,7 @@ public class AddTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteColl
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-    public string Template { get; private set; }
+    public string? Template { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -52,11 +53,11 @@ public class AddTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteColl
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-    public string Title { get; private set; }
+    public string? Title { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-    public Uri Url { get; private set; }
+    public Uri? Url { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -73,6 +74,7 @@ public class AddTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteColl
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Url));
             this.Service.AddObjectAwait(this.MyInvocation.BoundParameters);
             this.Outputs.Add(this.Service.GetObjectAwait(this.Url));
         }

@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -27,19 +28,20 @@ public class SetTermGroupCommand : ClientObjectCmdlet<ITermGroupService>
         Position = 0,
         ValueFromPipeline = true
     )]
-    public TermGroup Identity { get; private set; }
+    public TermGroup? Identity { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string Description { get; private set; }
+    public string? Description { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string Name { get; private set; }
+    public string? Name { get; private set; }
 
     [Parameter(Mandatory = false)]
     public SwitchParameter PassThru { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
         this.Service.SetObject(this.Identity, this.MyInvocation.BoundParameters);
         if (this.PassThru)
         {

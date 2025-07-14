@@ -23,7 +23,7 @@ public interface IListItemService
 
     ListItem? AddObject(List listObject, IReadOnlyDictionary<string, object?> creationInfo);
 
-    IEnumerable<ListItem?>? AddObjectEnumerable(List listObject, IReadOnlyCollection<IReadOnlyDictionary<string, object?>> creationInfos);
+    IEnumerable<ListItem?>? AddObjectEnumerable(List listObject, IEnumerable<IReadOnlyDictionary<string, object?>> creationInfos);
 
     ListItem? GetObject(ListItem listItemObject);
 
@@ -89,7 +89,7 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
             .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<ListItem?>? AddObjectEnumerable(List listObject, IReadOnlyCollection<IReadOnlyDictionary<string, object?>> creationInfos)
+    public IEnumerable<ListItem?>? AddObjectEnumerable(List listObject, IEnumerable<IReadOnlyDictionary<string, object?>> creationInfos)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));

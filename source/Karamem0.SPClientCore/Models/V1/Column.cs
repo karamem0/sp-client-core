@@ -21,6 +21,9 @@ public class Column : ClientObject
 {
 
     [JsonProperty()]
+    public virtual string? AutofillInfo { get; protected set; }
+
+    [JsonProperty()]
     public virtual bool AutoIndexed { get; protected set; }
 
     [JsonProperty()]
@@ -39,7 +42,7 @@ public class Column : ClientObject
     public virtual string? ClientValidationMessage { get; protected set; }
 
     [JsonProperty("FieldTypeKind")]
-    public virtual ColumnType? ColumnType { get; protected set; }
+    public virtual ColumnType ColumnType { get; protected set; }
 
     [JsonProperty()]
     public virtual string? CustomFormatter { get; protected set; }
@@ -81,7 +84,7 @@ public class Column : ClientObject
     public virtual bool Indexed { get; protected set; }
 
     [JsonProperty()]
-    public virtual IndexStatus? IndexStatus { get; protected set; }
+    public virtual IndexStatus IndexStatus { get; protected set; }
 
     [JsonProperty()]
     public virtual bool IsModern { get; protected set; }

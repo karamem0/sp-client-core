@@ -23,19 +23,19 @@ public class AddListCommand : ClientObjectCmdlet<IListService>
 {
 
     [Parameter(Mandatory = false)]
-    public string Description { get; private set; }
+    public string? Description { get; private set; }
 
     [Parameter(Mandatory = false)]
     public QuickLaunchOptions QuickLaunchOption { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public Uri ServerRelativeUrl { get; private set; }
+    public Uri? ServerRelativeUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
     public ListTemplateType Template { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public string Title { get; private set; }
+    public string? Title { get; private set; }
 
     protected override void ProcessRecordCore()
     {

@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -28,7 +29,7 @@ public class GetColumnCommand : ClientObjectCmdlet<IColumnService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet1"
     )]
-    public Column Identity { get; private set; }
+    public Column? Identity { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -41,7 +42,7 @@ public class GetColumnCommand : ClientObjectCmdlet<IColumnService>
         ParameterSetName = "ParamSet3"
     )]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet4")]
-    public ContentType ContentType { get; private set; }
+    public ContentType? ContentType { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -54,7 +55,7 @@ public class GetColumnCommand : ClientObjectCmdlet<IColumnService>
         ParameterSetName = "ParamSet6"
     )]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet7")]
-    public List List { get; private set; }
+    public List? List { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -88,7 +89,7 @@ public class GetColumnCommand : ClientObjectCmdlet<IColumnService>
         Position = 0,
         ParameterSetName = "ParamSet9"
     )]
-    public string ColumnTitle { get; private set; }
+    public string? ColumnTitle { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet4")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet7")]
@@ -99,18 +100,23 @@ public class GetColumnCommand : ClientObjectCmdlet<IColumnService>
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
             this.Outputs.Add(this.Service.GetObject(this.Identity));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.ContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentType));
             this.Outputs.Add(this.Service.GetObject(this.ContentType, this.ColumnId));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
+            _ = this.ContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentType));
+            _ = this.ColumnTitle ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ColumnTitle));
             this.Outputs.Add(this.Service.GetObject(this.ContentType, this.ColumnTitle));
         }
         if (this.ParameterSetName == "ParamSet4")
         {
+            _ = this.ContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentType));
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(this.Service.GetObjectEnumerable(this.ContentType));
@@ -122,14 +128,18 @@ public class GetColumnCommand : ClientObjectCmdlet<IColumnService>
         }
         if (this.ParameterSetName == "ParamSet5")
         {
+            _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
             this.Outputs.Add(this.Service.GetObject(this.List, this.ColumnId));
         }
         if (this.ParameterSetName == "ParamSet6")
         {
+            _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
+            _ = this.ColumnTitle ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ColumnTitle));
             this.Outputs.Add(this.Service.GetObject(this.List, this.ColumnTitle));
         }
         if (this.ParameterSetName == "ParamSet7")
         {
+            _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(this.Service.GetObjectEnumerable(this.List));
@@ -145,6 +155,7 @@ public class GetColumnCommand : ClientObjectCmdlet<IColumnService>
         }
         if (this.ParameterSetName == "ParamSet9")
         {
+            _ = this.ColumnTitle ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ColumnTitle));
             this.Outputs.Add(this.Service.GetObject(this.ColumnTitle));
         }
         if (this.ParameterSetName == "ParamSet10")

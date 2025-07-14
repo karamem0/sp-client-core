@@ -23,13 +23,14 @@ public class AddOrganizationSharingLinkCommand : ClientObjectCmdlet<ISharingLink
 {
 
     [Parameter(Mandatory = true)]
-    public Uri Url { get; private set; }
+    public Uri? Url { get; private set; }
 
     [Parameter(Mandatory = true)]
     public bool IsEditLink { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Url));
         if (this.Url.IsAbsoluteUri)
         {
             this.Outputs.Add(this.Service.CreateOrganizationSharingLink(this.Url, this.IsEditLink));

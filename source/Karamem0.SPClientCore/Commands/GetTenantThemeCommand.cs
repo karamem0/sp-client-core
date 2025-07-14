@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -23,10 +24,10 @@ public class GetTenantThemeCommand : ClientObjectCmdlet<ITenantThemeService>
 {
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
-    public TenantTheme Identity { get; private set; }
+    public TenantTheme? Identity { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-    public string ThemeName { get; private set; }
+    public string? ThemeName { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     public SwitchParameter NoEnumerate { get; private set; }
@@ -35,11 +36,15 @@ public class GetTenantThemeCommand : ClientObjectCmdlet<ITenantThemeService>
     {
         if (this.ParameterSetName == "ParamSet1")
         {
-            this.Outputs.Add(this.Service.GetObject(this.Identity));
+            this.Outputs.Add(
+                this.Service.GetObject(this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity)))
+            );
         }
         if (this.ParameterSetName == "ParamSet2")
         {
-            this.Outputs.Add(this.Service.GetObject(this.ThemeName));
+            this.Outputs.Add(
+                this.Service.GetObject(this.ThemeName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ThemeName)))
+            );
         }
         if (this.ParameterSetName == "ParamSet3")
         {

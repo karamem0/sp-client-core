@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -27,7 +28,7 @@ public class AddTermSetCommand : ClientObjectCmdlet<ITermSetService>
         Position = 0,
         ValueFromPipeline = true
     )]
-    public TermGroup TermGroup { get; private set; }
+    public TermGroup? TermGroup { get; private set; }
 
     [Parameter(Mandatory = false)]
     public Guid Id { get; private set; }
@@ -36,7 +37,7 @@ public class AddTermSetCommand : ClientObjectCmdlet<ITermSetService>
     public uint Lcid { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public string Name { get; private set; }
+    public string? Name { get; private set; }
 
     protected override void ProcessRecordCore()
     {
@@ -44,6 +45,8 @@ public class AddTermSetCommand : ClientObjectCmdlet<ITermSetService>
         {
             this.Id = Guid.NewGuid();
         }
+        _ = this.TermGroup ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.TermGroup));
+        _ = this.Name ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Name));
         this.Outputs.Add(
             this.Service.AddObject(
                 this.TermGroup,

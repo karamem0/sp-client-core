@@ -28,7 +28,7 @@ public class RemoveOrganizationSharingLinkCommand : ClientObjectCmdlet<ISharingL
 {
 
     [Parameter(Mandatory = true, Position = 0)]
-    public Uri Url { get; private set; }
+    public Uri? Url { get; private set; }
 
     [Parameter(Mandatory = true, Position = 1)]
     public bool IsEditLink { get; private set; }
@@ -38,6 +38,7 @@ public class RemoveOrganizationSharingLinkCommand : ClientObjectCmdlet<ISharingL
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Url));
         if (this.ShouldProcess(this.Url.ToString(), VerbsCommon.Remove))
         {
             if (this.Url.IsAbsoluteUri)

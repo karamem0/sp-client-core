@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -27,19 +28,20 @@ public class AddSubscriptionCommand : ClientObjectCmdlet<ISubscriptionService>
         Position = 0,
         ValueFromPipeline = true
     )]
-    public List List { get; private set; }
+    public List? List { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string ClientState { get; private set; }
+    public string? ClientState { get; private set; }
 
     [Parameter(Mandatory = true)]
     public DateTime ExpirationDateTime { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public Uri NotificationUrl { get; private set; }
+    public Uri? NotificationUrl { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
         this.Outputs.Add(this.Service.AddObject(this.List, this.MyInvocation.BoundParameters));
     }
 

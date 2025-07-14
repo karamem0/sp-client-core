@@ -23,13 +23,13 @@ public class AddRoleDefinitionCommand : ClientObjectCmdlet<IRoleDefinitionServic
 {
 
     [Parameter(Mandatory = false)]
-    public BasePermission BasePermission { get; private set; }
+    public BasePermission? BasePermission { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string Description { get; private set; }
+    public string? Description { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public string Name { get; private set; }
+    public string? Name { get; private set; }
 
     [Parameter(Mandatory = false)]
     public int Order { get; private set; }

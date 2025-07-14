@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -23,16 +24,18 @@ public class SetContentTypeColumnOrderCommand : ClientObjectCmdlet<IContentTypeC
 {
 
     [Parameter(Mandatory = true, Position = 0)]
-    public ContentType ContentType { get; private set; }
+    public ContentType? ContentType { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public string[] ContentTypeColumns { get; private set; }
+    public string[]? ContentTypeColumns { get; private set; }
 
     [Parameter(Mandatory = false)]
     public SwitchParameter PushChanges { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.ContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentType));
+        _ = this.ContentTypeColumns ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentTypeColumns));
         this.Service.ReorderObject(
             this.ContentType,
             this.ContentTypeColumns,

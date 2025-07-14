@@ -21,6 +21,9 @@ public class ColumnTaxonomy : Column
 {
 
     [JsonProperty()]
+    public override string? AutofillInfo { get; protected set; }
+
+    [JsonProperty()]
     public virtual bool AllowMultipleValues { get; protected set; }
 
     [JsonProperty()]
@@ -39,7 +42,7 @@ public class ColumnTaxonomy : Column
     public override string? ClientSideComponentProperties { get; protected set; }
 
     [JsonProperty("FieldTypeKind")]
-    public override ColumnType? ColumnType { get; protected set; }
+    public override ColumnType ColumnType { get; protected set; }
 
     [JsonProperty()]
     public virtual bool CreateValuesInEditForm { get; protected set; }
@@ -138,7 +141,7 @@ public class ColumnTaxonomy : Column
     public override bool ReadOnly { get; protected set; }
 
     [JsonProperty()]
-    public virtual RelationshipDeleteBehaviorType? RelationshipDeleteBehavior { get; protected set; }
+    public virtual RelationshipDeleteBehaviorType RelationshipDeleteBehavior { get; protected set; }
 
     [JsonProperty()]
     public override bool Required { get; protected set; }

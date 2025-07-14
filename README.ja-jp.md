@@ -5,7 +5,7 @@
 PowerShell 向けの SharePoint サービス モジュール
 
 [![.github/workflows/trigger-on-main.yml](https://github.com/karamem0/sp-client-core/actions/workflows/trigger-on-main.yml/badge.svg)](https://github.com/karamem0/sp-client-core/actions/workflows/trigger-on-main.yml)
-[![.github/workflows/trigger-on-develop.yml](https://github.com/karamem0/sp-client-core/actions/workflows/trigger-on-develop.yml/badge.svg)](https://github.com/karamem0/sp-client-core/actions/workflows/trigger-on-develop.yml)
+[![codecov](https://codecov.io/gh/karamem0/sp-client-core/graph/badge.svg?token=W4W9CALNPA)](https://codecov.io/gh/karamem0/sp-client-core)
 [![License](https://img.shields.io/github/license/karamem0/sp-client-core.svg)](https://github.com/karamem0/sp-client-core/blob/main/LICENSE)
 
 ## インストール
@@ -34,21 +34,22 @@ SPClientCore は Microsoft Entra ID 2.0 認証をサポートします。
 
 - デバイス コード認証
 - クライアント クレデンシャル認証
-- パスワード認証 (非推奨)
+- <s>パスワード認証</s> (廃止)
 
 もしあなたが MFA を有効にしていても異なるデバイスの Web ブラウザーでログインすることができます。MFA を有効にしていないアカウントであれば、ユーザー名とパスワードを使ってログインできます (組織の承認が必要です)。資格情報はキャッシュされるので何度もログインする必要はありません。
 
 ## 依存関係
 
-- [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights/2.21.0) (2.21.0)
-- [Microsoft.Extensions.Configuration.Json](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Json/8.0.0) (8.0.0)
+- [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights/2.22.0) (2.22.0)
+- [Microsoft.Extensions.Configuration.Json](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Json/8.0.1) (8.0.1)
 - [Microsoft.Extensions.Configuration.EnvironmentVariables](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.EnvironmentVariables/8.0.0) (8.0.0)
-- [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/8.0.0) (8.0.0)
-- [Microsoft.Extensions.DependencyInjection.Abstractions](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection.Abstractions/8.0.1) (8.0.1)
+- [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/8.0.1) (8.0.1)
+- [Microsoft.Extensions.DependencyInjection.Abstractions](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection.Abstractions/8.0.2) (8.0.2)
 - [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/8.0.0) (8.0.0)
-- [Microsoft.IdentityModel.JsonWebTokens](https://www.nuget.org/packages/Microsoft.IdentityModel.JsonWebTokens/7.5.0) (8.1.0)
+- [Microsoft.IdentityModel.JsonWebTokens](https://www.nuget.org/packages/Microsoft.IdentityModel.JsonWebTokens/8.13.0) (8.13.0)
 - [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/13.0.3) (13.0.3)
 - [PowerShellStandard.Library](https://www.nuget.org/packages/PowerShellStandard.Library/5.1.1) (5.1.1)
+- [System.Memory.Data](https://www.nuget.org/packages/System.Memory.Data/8.0.1) (8.0.1)
 
 ## コマンドレット
 
@@ -103,6 +104,7 @@ SPClientCore は Microsoft Entra ID 2.0 認証をサポートします。
     - Add-KshColumnGeolocation
     - Add-KshColumnGuid
     - Add-KshColumnImage
+    - Add-KshColumnLocation
     - Add-KshColumnLookup
     - Add-KshColumnMultiChoice
     - Add-KshColumnMultiLineText
@@ -121,6 +123,7 @@ SPClientCore は Microsoft Entra ID 2.0 認証をサポートします。
     - Set-KshColumnGeolocation
     - Set-KshColumnGuid
     - Set-KshColumnImage
+    - Set-KshColumnLocation
     - Set-KshColumnLookup
     - Set-KshColumnMultiChoice
     - Set-KshColumnMultiLineText
@@ -188,11 +191,13 @@ SPClientCore は Microsoft Entra ID 2.0 認証をサポートします。
     - Restore-KshFileVersion
   - フォルダー
     - Add-KshFolder
+    - Add-KshFolderColoring
     - Copy-KshFolder
     - Get-KshFolder
     - Move-KshFolder
     - Remove-KshFolder
     - Set-KshFolder
+    - Set-KshFolderColoring
   - グループ
     - Add-KshGroup
     - Add-KshGroupMember

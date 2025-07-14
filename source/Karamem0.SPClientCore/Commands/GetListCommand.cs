@@ -8,6 +8,7 @@
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
 using Karamem0.SharePoint.PowerShell.Models.V2;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -29,7 +30,7 @@ public class GetListCommand : ClientObjectCmdlet<IListService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet1"
     )]
-    public List Identity { get; private set; }
+    public List? Identity { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -37,7 +38,7 @@ public class GetListCommand : ClientObjectCmdlet<IListService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet2"
     )]
-    public ListItem ListItem { get; private set; }
+    public ListItem? ListItem { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -45,7 +46,7 @@ public class GetListCommand : ClientObjectCmdlet<IListService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet3"
     )]
-    public View View { get; private set; }
+    public View? View { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -53,7 +54,7 @@ public class GetListCommand : ClientObjectCmdlet<IListService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet4"
     )]
-    public Drive Drive { get; private set; }
+    public Drive? Drive { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -67,14 +68,14 @@ public class GetListCommand : ClientObjectCmdlet<IListService>
         Position = 0,
         ParameterSetName = "ParamSet6"
     )]
-    public Uri ListUrl { get; private set; }
+    public Uri? ListUrl { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 0,
         ParameterSetName = "ParamSet7"
     )]
-    public string ListTitle { get; private set; }
+    public string? ListTitle { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -90,18 +91,22 @@ public class GetListCommand : ClientObjectCmdlet<IListService>
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
             this.Outputs.Add(this.Service.GetObject(this.Identity));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
             this.Outputs.Add(this.Service.GetObject(this.ListItem));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
+            _ = this.View ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.View));
             this.Outputs.Add(this.Service.GetObject(this.View));
         }
         if (this.ParameterSetName == "ParamSet4")
         {
+            _ = this.Drive ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Drive));
             this.Outputs.Add(this.Service.GetObject(this.Drive));
         }
         if (this.ParameterSetName == "ParamSet5")
@@ -110,6 +115,7 @@ public class GetListCommand : ClientObjectCmdlet<IListService>
         }
         if (this.ParameterSetName == "ParamSet6")
         {
+            _ = this.ListUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListUrl));
             if (this.ListUrl.IsAbsoluteUri)
             {
                 this.Outputs.Add(this.Service.GetObject(new Uri(this.ListUrl.AbsolutePath, UriKind.Relative)));
@@ -121,6 +127,7 @@ public class GetListCommand : ClientObjectCmdlet<IListService>
         }
         if (this.ParameterSetName == "ParamSet7")
         {
+            _ = this.ListTitle ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListTitle));
             this.Outputs.Add(this.Service.GetObject(this.ListTitle));
         }
         if (this.ParameterSetName == "ParamSet8")

@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -27,22 +28,22 @@ public class SetViewCommand : ClientObjectCmdlet<IViewService>
         Position = 0,
         ValueFromPipeline = true
     )]
-    public View Identity { get; private set; }
+    public View? Identity { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string Aggregations { get; private set; }
+    public string? Aggregations { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string AggregationsStatus { get; private set; }
+    public string? AggregationsStatus { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string AssociatedContentTypeId { get; private set; }
+    public string? AssociatedContentTypeId { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string CalendarViewStyles { get; private set; }
+    public string? CalendarViewStyles { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public ContentTypeId ContentTypeId { get; private set; }
+    public ContentTypeId? ContentTypeId { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool DefaultView { get; private set; }
@@ -54,28 +55,28 @@ public class SetViewCommand : ClientObjectCmdlet<IViewService>
     public bool EditorModified { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string Formats { get; private set; }
+    public string? Formats { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string GridLayout { get; private set; }
+    public string? GridLayout { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool Hidden { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public Uri ImageUrl { get; private set; }
+    public Uri? ImageUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool IncludeRootFolder { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string JSLink { get; private set; }
+    public string? JSLink { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string ListViewXml { get; private set; }
+    public string? ListViewXml { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string Method { get; private set; }
+    public string? Method { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool MobileDefaultView { get; private set; }
@@ -84,7 +85,7 @@ public class SetViewCommand : ClientObjectCmdlet<IViewService>
     public bool MobileView { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string NewDocumentTemplates { get; private set; }
+    public string? NewDocumentTemplates { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool Paged { get; private set; }
@@ -99,34 +100,35 @@ public class SetViewCommand : ClientObjectCmdlet<IViewService>
     public bool TabularView { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string Title { get; private set; }
+    public string? Title { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string Toolbar { get; private set; }
+    public string? Toolbar { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string ViewData { get; private set; }
+    public string? ViewData { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string ViewJoins { get; private set; }
+    public string? ViewJoins { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string ViewProjectedColumns { get; private set; }
+    public string? ViewProjectedColumns { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string ViewQuery { get; private set; }
+    public string? ViewQuery { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string ViewType2 { get; private set; }
+    public string? ViewType2 { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string VisualizationInfo { get; private set; }
+    public string? VisualizationInfo { get; private set; }
 
     [Parameter(Mandatory = false)]
     public SwitchParameter PassThru { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
         this.Service.SetObject(this.Identity, this.MyInvocation.BoundParameters);
         if (this.PassThru)
         {

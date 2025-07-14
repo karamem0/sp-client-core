@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -28,7 +29,7 @@ public class GetContentTypeColumnCommand : ClientObjectCmdlet<IContentTypeColumn
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet1"
     )]
-    public ContentTypeColumn Identity { get; private set; }
+    public ContentTypeColumn? Identity { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -36,14 +37,14 @@ public class GetContentTypeColumnCommand : ClientObjectCmdlet<IContentTypeColumn
         ParameterSetName = "ParamSet2"
     )]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
-    public ContentType ContentType { get; private set; }
+    public ContentType? ContentType { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 1,
         ParameterSetName = "ParamSet2"
     )]
-    public Column Column { get; private set; }
+    public Column? Column { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     public SwitchParameter NoEnumerate { get; private set; }
@@ -52,14 +53,18 @@ public class GetContentTypeColumnCommand : ClientObjectCmdlet<IContentTypeColumn
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
             this.Outputs.Add(this.Service.GetObject(this.Identity));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.ContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentType));
+            _ = this.Column?.Id ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Column));
             this.Outputs.Add(this.Service.GetObject(this.ContentType, this.Column.Id));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
+            _ = this.ContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentType));
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(this.Service.GetObjectEnumerable(this.ContentType));

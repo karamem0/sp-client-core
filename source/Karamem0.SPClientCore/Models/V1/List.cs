@@ -27,10 +27,10 @@ public class List : SecurableObject
     public virtual int BaseTemplate { get; protected set; }
 
     [JsonProperty()]
-    public virtual BaseType? BaseType { get; protected set; }
+    public virtual BaseType BaseType { get; protected set; }
 
     [JsonProperty()]
-    public virtual BrowserFileHandling? BrowserFileHandling { get; protected set; }
+    public virtual BrowserFileHandling BrowserFileHandling { get; protected set; }
 
     [JsonProperty()]
     public virtual bool ContentTypesEnabled { get; protected set; }
@@ -63,6 +63,9 @@ public class List : SecurableObject
     public virtual bool DefaultItemOpenUseListSetting { get; protected set; }
 
     [JsonProperty()]
+    public virtual string? DefaultSensitivityLabelForLibrary { get; protected set; }
+
+    [JsonProperty()]
     public virtual Uri? DefaultNewFormUrl { get; protected set; }
 
     [JsonProperty()]
@@ -84,7 +87,7 @@ public class List : SecurableObject
     public virtual Uri? DocumentTemplateUrl { get; protected set; }
 
     [JsonProperty()]
-    public virtual DraftVisibilityType? DraftVersionVisibility { get; protected set; }
+    public virtual DraftVisibilityType DraftVersionVisibility { get; protected set; }
 
     [JsonProperty()]
     public virtual bool EnableAttachments { get; protected set; }
@@ -118,6 +121,9 @@ public class List : SecurableObject
 
     [JsonProperty()]
     public virtual bool HasExternalDataSource { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool HasFolderColoringFields { get; protected set; }
 
     [JsonProperty()]
     public override bool HasUniqueRoleAssignments { get; protected set; }
@@ -168,7 +174,7 @@ public class List : SecurableObject
     public virtual DateTime LastItemUserModifiedDate { get; protected set; }
 
     [JsonProperty()]
-    public virtual ListExperience? ListExperienceOptions { get; protected set; }
+    public virtual ListExperience ListExperienceOptions { get; protected set; }
 
     [JsonProperty()]
     public virtual string? ListItemEntityTypeFullName { get; protected set; }
@@ -199,6 +205,9 @@ public class List : SecurableObject
 
     [JsonProperty()]
     public virtual bool ServerTemplateCanCreateFolders { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string? SensitivityLabelToEncryptOnDownloadForLibrary { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid TemplateFeatureId { get; protected set; }

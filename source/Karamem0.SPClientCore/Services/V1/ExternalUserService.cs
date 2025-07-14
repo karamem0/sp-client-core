@@ -21,7 +21,7 @@ public interface IExternalUserService
 {
 
     IEnumerable<UserSharingResult>? AddObject(
-        IReadOnlyCollection<string> userId,
+        IEnumerable<string> userId,
         RoleType role,
         bool sendServerManagedNotification,
         string? customMessage,
@@ -31,7 +31,7 @@ public interface IExternalUserService
 
     IEnumerable<UserSharingResult>? AddObject(
         Uri documentUrl,
-        IReadOnlyCollection<string> userId,
+        IEnumerable<string> userId,
         RoleType role,
         bool validateExistingPermissions,
         bool additivePermission,
@@ -51,7 +51,7 @@ public class ExternalUserService(ClientContext clientContext) : ClientService(cl
 {
 
     public IEnumerable<UserSharingResult>? AddObject(
-        IReadOnlyCollection<string> userId,
+        IEnumerable<string> userId,
         RoleType role,
         bool sendServerManagedNotification,
         string? customMessage,
@@ -81,7 +81,7 @@ public class ExternalUserService(ClientContext clientContext) : ClientService(cl
 
     public IEnumerable<UserSharingResult>? AddObject(
         Uri documentUrl,
-        IReadOnlyCollection<string> userId,
+        IEnumerable<string> userId,
         RoleType role,
         bool validateExistingPermissions,
         bool additivePermission,
@@ -96,10 +96,7 @@ public class ExternalUserService(ClientContext clientContext) : ClientService(cl
             ClientActionStaticMethod.Create(
                 typeof(DocumentSharingManager),
                 "UpdateDocumentSharingInfo",
-                requestPayload.CreateParameter(
-                    new Uri(this.ClientContext.BaseAddress.GetLeftPart(UriPartial.Authority))
-                        .ConcatPath(documentUrl.ToString())
-                ),
+                requestPayload.CreateParameter(new Uri(this.ClientContext.BaseAddress.GetLeftPart(UriPartial.Authority)).ConcatPath(documentUrl.ToString())),
                 requestPayload.CreateParameter(userId.Select(value => new UserRoleAssignment(value, role))),
                 requestPayload.CreateParameter(validateExistingPermissions),
                 requestPayload.CreateParameter(additivePermission),

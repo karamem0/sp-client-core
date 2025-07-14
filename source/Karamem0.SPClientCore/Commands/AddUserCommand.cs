@@ -23,13 +23,13 @@ public class AddUserCommand : ClientObjectCmdlet<IUserService>
 {
 
     [Parameter(Mandatory = false)]
-    public string Email { get; private set; }
+    public string? Email { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public string LoginName { get; private set; }
+    public string? LoginName { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string Title { get; private set; }
+    public string? Title { get; private set; }
 
     protected override void ProcessRecordCore()
     {

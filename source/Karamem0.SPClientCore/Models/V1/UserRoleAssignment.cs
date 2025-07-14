@@ -20,7 +20,7 @@ namespace Karamem0.SharePoint.PowerShell.Models.V1;
 public class UserRoleAssignment(string? userId = null, RoleType role = RoleType.None) : ClientValueObject
 {
     [JsonProperty()]
-    public virtual RoleType? Role { get; protected set; } = role;
+    public virtual RoleType Role { get; protected set; } = role;
 
     [JsonProperty()]
     public virtual string? UserId { get; protected set; } = userId;

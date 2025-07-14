@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -28,7 +29,7 @@ public class GetFileCommand : ClientObjectCmdlet<IFileService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet1"
     )]
-    public File Identity { get; private set; }
+    public File? Identity { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -36,7 +37,7 @@ public class GetFileCommand : ClientObjectCmdlet<IFileService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet2"
     )]
-    public AttachmentFile AttachmentFile { get; private set; }
+    public AttachmentFile? AttachmentFile { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -44,7 +45,7 @@ public class GetFileCommand : ClientObjectCmdlet<IFileService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet3"
     )]
-    public FileVersion FileVersion { get; private set; }
+    public FileVersion? FileVersion { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -52,7 +53,7 @@ public class GetFileCommand : ClientObjectCmdlet<IFileService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet4"
     )]
-    public App App { get; private set; }
+    public App? App { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -60,7 +61,7 @@ public class GetFileCommand : ClientObjectCmdlet<IFileService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet5"
     )]
-    public ListItem ListItem { get; private set; }
+    public ListItem? ListItem { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -74,7 +75,7 @@ public class GetFileCommand : ClientObjectCmdlet<IFileService>
         Position = 0,
         ParameterSetName = "ParamSet7"
     )]
-    public Uri FileUrl { get; private set; }
+    public Uri? FileUrl { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -82,14 +83,14 @@ public class GetFileCommand : ClientObjectCmdlet<IFileService>
         ParameterSetName = "ParamSet8"
     )]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet9")]
-    public Folder Folder { get; private set; }
+    public Folder? Folder { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 1,
         ParameterSetName = "ParamSet8"
     )]
-    public string FileName { get; private set; }
+    public string? FileName { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet9")]
     public SwitchParameter NoEnumerate { get; private set; }
@@ -98,22 +99,27 @@ public class GetFileCommand : ClientObjectCmdlet<IFileService>
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
             this.Outputs.Add(this.Service.GetObject(this.Identity));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.AttachmentFile?.ServerRelativeUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.AttachmentFile));
             this.Outputs.Add(this.Service.GetObject(this.AttachmentFile.ServerRelativeUrl));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
+            _ = this.FileVersion ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.FileVersion));
             this.Outputs.Add(this.Service.GetObject(this.FileVersion));
         }
         if (this.ParameterSetName == "ParamSet4")
         {
+            _ = this.App ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.App));
             this.Outputs.Add(this.Service.GetObject(this.App));
         }
         if (this.ParameterSetName == "ParamSet5")
         {
+            _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
             this.Outputs.Add(this.Service.GetObject(this.ListItem));
         }
         if (this.ParameterSetName == "ParamSet6")
@@ -122,6 +128,7 @@ public class GetFileCommand : ClientObjectCmdlet<IFileService>
         }
         if (this.ParameterSetName == "ParamSet7")
         {
+            _ = this.FileUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.FileUrl));
             if (this.FileUrl.IsAbsoluteUri)
             {
                 this.Outputs.Add(this.Service.GetObject(new Uri(this.FileUrl.AbsolutePath, UriKind.Relative)));
@@ -133,10 +140,13 @@ public class GetFileCommand : ClientObjectCmdlet<IFileService>
         }
         if (this.ParameterSetName == "ParamSet8")
         {
+            _ = this.Folder ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Folder));
+            _ = this.FileName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.FileName));
             this.Outputs.Add(this.Service.GetObject(this.Folder, this.FileName));
         }
         if (this.ParameterSetName == "ParamSet9")
         {
+            _ = this.Folder ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Folder));
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(this.Service.GetObjectEnumerable(this.Folder));

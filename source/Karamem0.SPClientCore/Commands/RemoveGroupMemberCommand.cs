@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -28,13 +29,15 @@ public class RemoveGroupMemberCommand : ClientObjectCmdlet<IGroupMemberService>
 {
 
     [Parameter(Mandatory = true, Position = 0)]
-    public Group Group { get; private set; }
+    public Group? Group { get; private set; }
 
     [Parameter(Mandatory = true, Position = 1)]
-    public User Member { get; private set; }
+    public User? Member { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Member ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Member));
+        _ = this.Group ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Group));
         if (this.ShouldProcess(this.Member.Title, VerbsCommon.Remove))
         {
             this.Service.RemoveObject(this.Group, this.Member);

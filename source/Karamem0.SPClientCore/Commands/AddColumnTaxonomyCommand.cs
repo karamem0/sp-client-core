@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Karamem0.SharePoint.PowerShell.Services.V1;
@@ -31,7 +32,7 @@ public class AddColumnTaxonomyCommand : ClientObjectCmdlet<IColumnService, IColu
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet1"
     )]
-    public List List { get; private set; }
+    public List? List { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -41,42 +42,42 @@ public class AddColumnTaxonomyCommand : ClientObjectCmdlet<IColumnService, IColu
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
-    public string ClientSideComponentId { get; private set; }
+    public string? ClientSideComponentId { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
-    public string ClientSideComponentProperties { get; private set; }
+    public string? ClientSideComponentProperties { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
-    public string CustomFormatter { get; private set; }
+    public string? CustomFormatter { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
-    public string DefaultFormula { get; private set; }
+    public string? DefaultFormula { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
-    public string DefaultValue { get; private set; }
+    public string? DefaultValue { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
-    public string Description { get; private set; }
+    public string? Description { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
-    public string Direction { get; private set; }
+    public string? Direction { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
-    public string Group { get; private set; }
+    public string? Group { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -91,12 +92,12 @@ public class AddColumnTaxonomyCommand : ClientObjectCmdlet<IColumnService, IColu
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
-    public string JSLink { get; private set; }
+    public string? JSLink { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
-    public string Name { get; private set; }
+    public string? Name { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -116,17 +117,17 @@ public class AddColumnTaxonomyCommand : ClientObjectCmdlet<IColumnService, IColu
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
-    public string StaticName { get; private set; }
+    public string? StaticName { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
-    public TermSet TermSet { get; private set; }
+    public TermSet? TermSet { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
-    public string Title { get; private set; }
+    public string? Title { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -164,38 +165,42 @@ public class AddColumnTaxonomyCommand : ClientObjectCmdlet<IColumnService, IColu
         var addColumnOptions = FlagsParser.Parse<AddColumnOptions>(this.MyInvocation.BoundParameters);
         if (this.ParameterSetName == "ParamSet1")
         {
-            var clientObject = this.Service2.AddObject(
+            _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
+            _ = this.TermSet?.TermStore ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.TermSet));
+            var columnObject = this.Service2.AddObject(
                 this.List,
                 this.MyInvocation.BoundParameters,
                 this.AddToDefaultView,
                 addColumnOptions
             );
+            _ = columnObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
             this.Service2.SetObject(
-                clientObject,
+                columnObject,
                 new Dictionary<string, object?>()
                 {
                     ["TermSetId"] = this.TermSet.Id,
                     ["TermStoreId"] = this.TermSet.TermStore.Id
                 }
             );
-            this.Outputs.Add(this.Service1.GetObject(clientObject));
+            this.Outputs.Add(this.Service1.GetObject(columnObject));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
-            var clientObject = this.Service2.AddObject(
+            var columnObject = this.Service2.AddObject(
                 this.MyInvocation.BoundParameters,
                 this.AddToDefaultView,
                 addColumnOptions
             );
+            _ = columnObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
             this.Service2.SetObject(
-                clientObject,
+                columnObject,
                 new Dictionary<string, object?>()
                 {
-                    ["TermSetId"] = this.TermSet.Id,
-                    ["TermStoreId"] = this.TermSet.TermStore.Id
+                    ["TermSetId"] = this.TermSet?.Id,
+                    ["TermStoreId"] = this.TermSet?.TermStore?.Id
                 }
             );
-            this.Outputs.Add(this.Service1.GetObject(clientObject));
+            this.Outputs.Add(this.Service1.GetObject(columnObject));
         }
         if (this.ParameterSetName == "ParamSet3")
         {

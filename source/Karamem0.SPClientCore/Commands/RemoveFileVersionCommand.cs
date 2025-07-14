@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -39,14 +40,14 @@ public class RemoveFileVersionCommand : ClientObjectCmdlet<IFileVersionService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet2"
     )]
-    public FileVersion Identity { get; private set; }
+    public FileVersion? Identity { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 0,
         ParameterSetName = "ParamSet3"
     )]
-    public File File { get; private set; }
+    public File? File { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public SwitchParameter RecycleBin { get; private set; }
@@ -60,16 +61,19 @@ public class RemoveFileVersionCommand : ClientObjectCmdlet<IFileVersionService>
         {
             if (this.ParameterSetName == "ParamSet1")
             {
+                _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
                 this.Service.RemoveObject(this.Identity);
             }
             if (this.ParameterSetName == "ParamSet2")
             {
                 this.ValidateSwitchParameter(nameof(this.RecycleBin));
+                _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
                 this.Service.RecycleObject(this.Identity);
             }
             if (this.ParameterSetName == "ParamSet3")
             {
                 this.ValidateSwitchParameter(nameof(this.All));
+                _ = this.File ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.File));
                 this.Service.RemoveObjectAll(this.File);
             }
         }

@@ -24,7 +24,7 @@ public class ChangeColumn : Change
     public override ChangeToken? ChangeToken { get; protected set; }
 
     [JsonProperty()]
-    public override ChangeType? ChangeType { get; protected set; }
+    public override ChangeType ChangeType { get; protected set; }
 
     [JsonProperty("FieldId")]
     public virtual Guid ColumnId { get; protected set; }

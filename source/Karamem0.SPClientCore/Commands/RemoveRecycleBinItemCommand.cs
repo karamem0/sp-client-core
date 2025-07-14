@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -33,7 +34,7 @@ public class RemoveRecycleBinItemCommand : ClientObjectCmdlet<IRecycleBinItemSer
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet1"
     )]
-    public RecycleBinItem Identity { get; private set; }
+    public RecycleBinItem? Identity { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
@@ -48,6 +49,7 @@ public class RemoveRecycleBinItemCommand : ClientObjectCmdlet<IRecycleBinItemSer
         {
             if (this.ParameterSetName == "ParamSet1")
             {
+                _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
                 this.Service.RemoveObject(this.Identity);
             }
             if (this.ParameterSetName == "ParamSet2")

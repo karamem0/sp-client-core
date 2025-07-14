@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -32,10 +33,11 @@ public class RemoveTenantExternalUserCommand : ClientObjectCmdlet<ITenantExterna
         Position = 0,
         ValueFromPipeline = true
     )]
-    public ExternalUser User { get; private set; }
+    public ExternalUser? User { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.User ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.User));
         if (this.ShouldProcess(this.User.DisplayName, VerbsCommon.Remove))
         {
             this.Service.RemoveObject(this.User);

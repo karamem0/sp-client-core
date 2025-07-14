@@ -24,7 +24,7 @@ public class ListTemplate : ClientObject
     public virtual bool AllowsFolderCreation { get; protected set; }
 
     [JsonProperty()]
-    public virtual BaseType? BaseType { get; protected set; }
+    public virtual BaseType BaseType { get; protected set; }
 
     [JsonProperty()]
     public virtual string? Description { get; protected set; }

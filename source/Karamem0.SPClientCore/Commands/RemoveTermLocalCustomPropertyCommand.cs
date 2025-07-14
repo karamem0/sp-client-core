@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -28,13 +29,15 @@ public class RemoveTermLocalCustomPropertyCommand : ClientObjectCmdlet<ITermLoca
 {
 
     [Parameter(Mandatory = true, Position = 0)]
-    public Term Term { get; private set; }
+    public Term? Term { get; private set; }
 
     [Parameter(Mandatory = true, Position = 1)]
-    public string Name { get; private set; }
+    public string? Name { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Term ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Term));
+        _ = this.Name ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Name));
         if (this.ShouldProcess(this.Name, VerbsCommon.Remove))
         {
             this.Service.RemoveObject(this.Term, this.Name);

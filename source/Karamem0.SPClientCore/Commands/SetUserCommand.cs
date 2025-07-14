@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -27,22 +28,23 @@ public class SetUserCommand : ClientObjectCmdlet<IUserService>
         Position = 0,
         ValueFromPipeline = true
     )]
-    public User Identity { get; private set; }
+    public User? Identity { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string Email { get; private set; }
+    public string? Email { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool IsSiteCollectionAdmin { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string Title { get; private set; }
+    public string? Title { get; private set; }
 
     [Parameter(Mandatory = false)]
     public SwitchParameter PassThru { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
         this.Service.SetObject(this.Identity, this.MyInvocation.BoundParameters);
         if (this.PassThru)
         {

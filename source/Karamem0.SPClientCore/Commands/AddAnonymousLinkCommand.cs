@@ -24,7 +24,7 @@ public class AddAnonymousLinkCommand : ClientObjectCmdlet<ISharingLinkService>
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-    public Uri Url { get; private set; }
+    public Uri? Url { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
@@ -37,6 +37,7 @@ public class AddAnonymousLinkCommand : ClientObjectCmdlet<ISharingLinkService>
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Url));
             if (this.Url.IsAbsoluteUri)
             {
                 this.Outputs.Add(this.Service.CreateAnonymousLink(this.Url, this.IsEditLink));
@@ -48,6 +49,7 @@ public class AddAnonymousLinkCommand : ClientObjectCmdlet<ISharingLinkService>
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Url));
             if (this.Url.IsAbsoluteUri)
             {
                 this.Outputs.Add(

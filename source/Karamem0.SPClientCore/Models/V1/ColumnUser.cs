@@ -21,6 +21,9 @@ public class ColumnUser : Column
 {
 
     [JsonProperty()]
+    public override string? AutofillInfo { get; protected set; }
+
+    [JsonProperty()]
     public virtual bool AllowDisplay { get; protected set; }
 
     [JsonProperty()]
@@ -39,7 +42,7 @@ public class ColumnUser : Column
     public override string? ClientSideComponentProperties { get; protected set; }
 
     [JsonProperty("FieldTypeKind")]
-    public override ColumnType? ColumnType { get; protected set; }
+    public override ColumnType ColumnType { get; protected set; }
 
     [JsonProperty()]
     public override string? CustomFormatter { get; protected set; }
@@ -120,7 +123,7 @@ public class ColumnUser : Column
     public override bool ReadOnly { get; protected set; }
 
     [JsonProperty()]
-    public virtual RelationshipDeleteBehaviorType? RelationshipDeleteBehavior { get; protected set; }
+    public virtual RelationshipDeleteBehaviorType RelationshipDeleteBehavior { get; protected set; }
 
     [JsonProperty()]
     public override bool Required { get; protected set; }
@@ -141,7 +144,7 @@ public class ColumnUser : Column
     public virtual int SelectionGroupId { get; protected set; }
 
     [JsonProperty()]
-    public virtual ColumnUserSelectionMode? SelectionMode { get; protected set; }
+    public virtual ColumnUserSelectionMode SelectionMode { get; protected set; }
 
     [JsonProperty()]
     public override bool ShowInFiltersPane { get; protected set; }
@@ -168,7 +171,7 @@ public class ColumnUser : Column
     public virtual bool UnlimitedLengthInDocumentLibrary { get; protected set; }
 
     [JsonProperty()]
-    public virtual ColumnUrlFormatType? UrlFormat { get; protected set; }
+    public virtual ColumnUrlFormatType UrlFormat { get; protected set; }
 
     [JsonProperty()]
     public override string? ValidationFormula { get; protected set; }

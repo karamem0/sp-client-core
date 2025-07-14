@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -28,7 +29,7 @@ public class GetRoleAssignmentCommand : ClientObjectCmdlet<ISiteService, IRoleAs
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet1"
     )]
-    public RoleAssignment Identity { get; private set; }
+    public RoleAssignment? Identity { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
@@ -40,7 +41,7 @@ public class GetRoleAssignmentCommand : ClientObjectCmdlet<ISiteService, IRoleAs
         ParameterSetName = "ParamSet4"
     )]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet5")]
-    public List List { get; private set; }
+    public List? List { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -48,7 +49,7 @@ public class GetRoleAssignmentCommand : ClientObjectCmdlet<ISiteService, IRoleAs
         ParameterSetName = "ParamSet6"
     )]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet7")]
-    public ListItem ListItem { get; private set; }
+    public ListItem? ListItem { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -76,31 +77,38 @@ public class GetRoleAssignmentCommand : ClientObjectCmdlet<ISiteService, IRoleAs
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
             this.Outputs.Add(this.Service2.GetObject(this.Identity));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             this.ValidateSwitchParameter(nameof(this.Site));
-            this.Outputs.Add(this.Service2.GetObject(this.Service1.GetObject(), this.PrincipalId));
+            var siteObject = this.Service1.GetObject();
+            _ = siteObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
+            this.Outputs.Add(this.Service2.GetObject(siteObject, this.PrincipalId));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             this.ValidateSwitchParameter(nameof(this.Site));
+            var siteObject = this.Service1.GetObject();
+            _ = siteObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service2.GetObjectEnumerable(this.Service1.GetObject()));
+                this.Outputs.Add(this.Service2.GetObjectEnumerable(siteObject));
             }
             else
             {
-                this.Outputs.AddRange(this.Service2.GetObjectEnumerable(this.Service1.GetObject()));
+                this.Outputs.AddRange(this.Service2.GetObjectEnumerable(siteObject));
             }
         }
         if (this.ParameterSetName == "ParamSet4")
         {
+            _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
             this.Outputs.Add(this.Service2.GetObject(this.List, this.PrincipalId));
         }
         if (this.ParameterSetName == "ParamSet5")
         {
+            _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(this.Service2.GetObjectEnumerable(this.List));
@@ -112,10 +120,12 @@ public class GetRoleAssignmentCommand : ClientObjectCmdlet<ISiteService, IRoleAs
         }
         if (this.ParameterSetName == "ParamSet6")
         {
+            _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
             this.Outputs.Add(this.Service2.GetObject(this.ListItem, this.PrincipalId));
         }
         if (this.ParameterSetName == "ParamSet7")
         {
+            _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(this.Service2.GetObjectEnumerable(this.ListItem));

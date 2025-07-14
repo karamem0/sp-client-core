@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -27,13 +28,13 @@ public class SetFilePublishedCommand : ClientObjectCmdlet<IFileService>
         Position = 0,
         ValueFromPipeline = true
     )]
-    public File File { get; private set; }
+    public File? File { get; private set; }
 
     [Parameter(Mandatory = true)]
     public bool Published { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string Comment { get; private set; }
+    public string? Comment { get; private set; }
 
     [Parameter(Mandatory = false)]
     public SwitchParameter PassThru { get; private set; }
@@ -42,10 +43,12 @@ public class SetFilePublishedCommand : ClientObjectCmdlet<IFileService>
     {
         if (this.Published)
         {
+            _ = this.File ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.File));
             this.Service.PublishObject(this.File, this.Comment);
         }
         else
         {
+            _ = this.File ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.File));
             this.Service.UnpublishObject(this.File, this.Comment);
         }
         if (this.PassThru)

@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -26,7 +27,7 @@ public class SetTenantFileVersionPolicyForDocumentLibraryCommand : ClientObjectC
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet4")]
-    public Uri SiteUrl { get; private set; }
+    public Uri? SiteUrl { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
@@ -34,7 +35,7 @@ public class SetTenantFileVersionPolicyForDocumentLibraryCommand : ClientObjectC
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet4")]
-    public string ListTitle { get; set; }
+    public string? ListTitle { get; set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
@@ -66,6 +67,7 @@ public class SetTenantFileVersionPolicyForDocumentLibraryCommand : ClientObjectC
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.SiteUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteUrl));
             this.Service.SetObjectAwait(
                 this.SiteUrl,
                 this.ListId,
@@ -79,6 +81,7 @@ public class SetTenantFileVersionPolicyForDocumentLibraryCommand : ClientObjectC
         if (this.ParameterSetName == "ParamSet2")
         {
             this.ValidateSwitchParameter(nameof(this.NoWait));
+            _ = this.SiteUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteUrl));
             _ = this.Service.SetObject(
                 this.SiteUrl,
                 this.ListId,
@@ -87,6 +90,8 @@ public class SetTenantFileVersionPolicyForDocumentLibraryCommand : ClientObjectC
         }
         if (this.ParameterSetName == "ParamSet3")
         {
+            _ = this.SiteUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteUrl));
+            _ = this.ListTitle ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListTitle));
             this.Service.SetObjectAwait(
                 this.SiteUrl,
                 this.ListTitle,
@@ -100,6 +105,8 @@ public class SetTenantFileVersionPolicyForDocumentLibraryCommand : ClientObjectC
         if (this.ParameterSetName == "ParamSet4")
         {
             this.ValidateSwitchParameter(nameof(this.NoWait));
+            _ = this.SiteUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteUrl));
+            _ = this.ListTitle ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListTitle));
             _ = this.Service.SetObject(
                 this.SiteUrl,
                 this.ListTitle,

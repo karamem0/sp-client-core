@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -27,7 +28,7 @@ public class SetContentTypeColumnCommand : ClientObjectCmdlet<IContentTypeColumn
         Position = 0,
         ValueFromPipeline = true
     )]
-    public ContentTypeColumn Identity { get; private set; }
+    public ContentTypeColumn? Identity { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool Hidden { get; private set; }
@@ -43,6 +44,7 @@ public class SetContentTypeColumnCommand : ClientObjectCmdlet<IContentTypeColumn
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
         this.Service.SetObject(
             this.Identity,
             this.MyInvocation.BoundParameters,

@@ -57,7 +57,7 @@ public class UserProfile : ClientObject
     public virtual SiteCollection? PersonalSite { get; protected set; }
 
     [JsonProperty()]
-    public virtual PersonalSiteCapabilities? PersonalSiteCapabilities { get; protected set; }
+    public virtual PersonalSiteCapabilities PersonalSiteCapabilities { get; protected set; }
 
     [JsonProperty()]
     public virtual string? PersonalSiteFirstCreationError { get; protected set; }
@@ -66,7 +66,7 @@ public class UserProfile : ClientObject
     public virtual DateTime PersonalSiteFirstCreationTime { get; protected set; }
 
     [JsonProperty()]
-    public virtual PersonalSiteInstantiationState? PersonalSiteInstantiationState { get; protected set; }
+    public virtual PersonalSiteInstantiationState PersonalSiteInstantiationState { get; protected set; }
 
     [JsonProperty()]
     public virtual DateTime PersonalSiteLastCreationTime { get; protected set; }

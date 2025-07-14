@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -32,7 +33,7 @@ public class SetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
         Position = 0,
         ParameterSetName = "ParamSet2"
     )]
-    public TenantSiteCollection SiteCollection { get; private set; }
+    public TenantSiteCollection? SiteCollection { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -44,7 +45,7 @@ public class SetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
         Position = 0,
         ParameterSetName = "ParamSet4"
     )]
-    public Uri SiteCollectionUrl { get; private set; }
+    public Uri? SiteCollectionUrl { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -56,7 +57,7 @@ public class SetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
         Position = 1,
         ParameterSetName = "ParamSet3"
     )]
-    public User User { get; private set; }
+    public User? User { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -68,7 +69,7 @@ public class SetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
         Position = 1,
         ParameterSetName = "ParamSet4"
     )]
-    public string UserName { get; private set; }
+    public string? UserName { get; private set; }
 
     [Parameter(Mandatory = true)]
     public bool IsSiteCollectionAdmin { get; private set; }
@@ -80,6 +81,8 @@ public class SetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.SiteCollection?.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollection));
+            _ = this.User?.LoginName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.User));
             this.Service.SetObject(
                 this.SiteCollection.Url,
                 this.User,
@@ -92,6 +95,8 @@ public class SetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.SiteCollection?.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollection));
+            _ = this.UserName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.UserName));
             this.Service.SetObject(
                 this.SiteCollection.Url,
                 this.UserName,
@@ -104,6 +109,8 @@ public class SetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
         }
         if (this.ParameterSetName == "ParamSet3")
         {
+            _ = this.SiteCollectionUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollectionUrl));
+            _ = this.User?.LoginName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.User));
             this.Service.SetObject(
                 this.SiteCollectionUrl,
                 this.User,
@@ -116,6 +123,8 @@ public class SetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
         }
         if (this.ParameterSetName == "ParamSet4")
         {
+            _ = this.SiteCollectionUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollectionUrl));
+            _ = this.UserName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.UserName));
             this.Service.SetObject(
                 this.SiteCollectionUrl,
                 this.UserName,

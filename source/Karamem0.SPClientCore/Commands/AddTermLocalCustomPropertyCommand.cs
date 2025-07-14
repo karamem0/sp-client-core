@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -23,16 +24,19 @@ public class AddTermLocalCustomPropertyCommand : ClientObjectCmdlet<ITermLocalCu
 {
 
     [Parameter(Mandatory = true, Position = 0)]
-    public Term Term { get; private set; }
+    public Term? Term { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public string Name { get; private set; }
+    public string? Name { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public string Value { get; private set; }
+    public string? Value { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Term ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Term));
+        _ = this.Name ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Name));
+        _ = this.Value ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Value));
         this.Service.AddObject(
             this.Term,
             this.Name,

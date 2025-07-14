@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -30,6 +31,7 @@ public class RemoveTenantHomeSiteCommand : ClientObjectCmdlet<ITenantHomeSiteSer
     protected override void ProcessRecordCore()
     {
         var siteUrl = this.Service.GetObject();
+        _ = siteUrl ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
         if (this.ShouldProcess(siteUrl.ToString(), VerbsCommon.Remove))
         {
             this.Service.RemoveObject();

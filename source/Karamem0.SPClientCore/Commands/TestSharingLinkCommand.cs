@@ -24,10 +24,11 @@ public class TestSharingLinkCommand : ClientObjectCmdlet<ISharingLinkService>
 {
 
     [Parameter(Mandatory = true)]
-    public Uri Url { get; private set; }
+    public Uri? Url { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Url));
         if (this.Url.IsAbsoluteUri)
         {
             this.Outputs.Add(this.Service.GetSharingLinkKind(this.Url));

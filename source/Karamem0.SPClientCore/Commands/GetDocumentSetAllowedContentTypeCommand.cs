@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -23,13 +24,14 @@ public class GetDocumentSetAllowedContentTypeCommand : ClientObjectCmdlet<IDocum
 {
 
     [Parameter(Mandatory = true, Position = 0)]
-    public ContentType ContentType { get; private set; }
+    public ContentType? ContentType { get; private set; }
 
     [Parameter(Mandatory = false)]
     public SwitchParameter NoEnumerate { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.ContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentType));
         if (this.NoEnumerate)
         {
             this.Outputs.Add(this.Service.GetObjectEnumerable(this.ContentType));

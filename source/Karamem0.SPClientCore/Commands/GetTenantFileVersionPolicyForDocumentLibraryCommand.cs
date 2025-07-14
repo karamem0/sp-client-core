@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -24,22 +25,25 @@ public class GetTenantFileVersionPolicyForDocumentLibraryCommand : ClientObjectC
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-    public Uri SiteUrl { get; private set; }
+    public Uri? SiteUrl { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     public Guid ListId { get; set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-    public string ListTitle { get; set; }
+    public string? ListTitle { get; set; }
 
     protected override void ProcessRecordCore()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.SiteUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteUrl));
             this.Outputs.Add(this.Service.GetObject(this.SiteUrl, this.ListId));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.SiteUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteUrl));
+            _ = this.ListTitle ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListTitle));
             this.Outputs.Add(this.Service.GetObject(this.SiteUrl, this.ListTitle));
         }
     }

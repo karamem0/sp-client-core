@@ -24,10 +24,10 @@ public class TenantListDesignCreationInfo : ClientValueObject
     public virtual string? Description { get; protected set; }
 
     [JsonProperty()]
-    public virtual TenantListDesignColor? ListColor { get; protected set; }
+    public virtual TenantListDesignColor ListColor { get; protected set; }
 
     [JsonProperty()]
-    public virtual TenantListDesignIcon? ListIcon { get; protected set; }
+    public virtual TenantListDesignIcon ListIcon { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid[]? SiteScriptIds { get; protected set; }

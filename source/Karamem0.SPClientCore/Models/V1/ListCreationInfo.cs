@@ -26,7 +26,7 @@ public class ListCreationInfo : ClientValueObject
 
     [JsonProperty()]
     [DefaultValue(QuickLaunchOptions.DefaultValue)]
-    public virtual QuickLaunchOptions? QuickLaunchOption { get; protected set; }
+    public virtual QuickLaunchOptions QuickLaunchOption { get; protected set; }
 
     [JsonProperty("Url")]
     public virtual Uri? ServerRelativeUrl { get; protected set; }

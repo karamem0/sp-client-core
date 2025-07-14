@@ -30,7 +30,7 @@ public class PickerSettings : ClientObject
     public virtual string? PrincipalAccountType { get; protected set; }
 
     [JsonProperty()]
-    public virtual PrincipalSource? PrincipalSource { get; protected set; }
+    public virtual PrincipalSource PrincipalSource { get; protected set; }
 
     [JsonProperty()]
     public virtual PeoplePickerQuerySettings? QuerySettings { get; protected set; }

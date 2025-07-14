@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using System;
 using System.Collections.Generic;
@@ -22,10 +23,11 @@ public class NewBasePermissionCommand : ClientObjectCmdlet
 {
 
     [Parameter(Mandatory = true, Position = 0)]
-    public PermissionKind[] Permission { get; private set; }
+    public PermissionKind[]? Permission { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Permission ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Permission));
         this.Outputs.Add(new BasePermission(this.Permission));
     }
 

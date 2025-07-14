@@ -39,6 +39,6 @@ public class RoleDefinition : ClientObject
     public virtual int Order { get; protected set; }
 
     [JsonProperty()]
-    public virtual RoleTypeKind? RoleTypeKind { get; protected set; }
+    public virtual RoleTypeKind RoleTypeKind { get; protected set; }
 
 }

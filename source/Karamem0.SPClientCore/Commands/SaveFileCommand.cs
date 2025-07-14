@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -23,13 +24,13 @@ public class SaveFileCommand : ClientObjectCmdlet<IFileService>
 {
 
     [Parameter(Mandatory = true)]
-    public Folder Folder { get; private set; }
+    public Folder? Folder { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public System.IO.Stream Content { get; private set; }
+    public System.IO.Stream? Content { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public string FileName { get; private set; }
+    public string? FileName { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool Overwrite { get; private set; }
@@ -39,6 +40,9 @@ public class SaveFileCommand : ClientObjectCmdlet<IFileService>
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Folder?.ServerRelativeUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Folder));
+        _ = this.FileName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.FileName));
+        _ = this.Content ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Content));
         this.Service.UploadObject(
             this.Folder.ServerRelativeUrl,
             this.FileName,

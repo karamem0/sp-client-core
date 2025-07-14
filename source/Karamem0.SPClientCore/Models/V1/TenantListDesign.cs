@@ -24,16 +24,16 @@ public class TenantListDesign : ClientObject
     public virtual string? Description { get; protected set; }
 
     [JsonProperty()]
-    public virtual TenantTemplateDesignType? DesignType { get; protected set; }
+    public virtual TenantTemplateDesignType DesignType { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid Id { get; protected set; }
 
     [JsonProperty()]
-    public virtual TenantListDesignColor? ListColor { get; protected set; }
+    public virtual TenantListDesignColor ListColor { get; protected set; }
 
     [JsonProperty()]
-    public virtual TenantListDesignIcon? ListIcon { get; protected set; }
+    public virtual TenantListDesignIcon ListIcon { get; protected set; }
 
     [JsonProperty()]
     public virtual IReadOnlyCollection<Guid>? SiteScriptIds { get; protected set; }

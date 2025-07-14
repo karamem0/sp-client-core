@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -30,18 +31,20 @@ public class AddTenantCdnOriginCommand : ClientObjectCmdlet<ITenantCdnService>
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-    public string Origin { get; private set; }
+    public string? Origin { get; private set; }
 
     protected override void ProcessRecordCore()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             this.ValidateSwitchParameter(nameof(this.Public));
+            _ = this.Origin ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Origin));
             this.Service.AddOrigin(TenantCdnType.Public, this.Origin);
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             this.ValidateSwitchParameter(nameof(this.Private));
+            _ = this.Origin ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Origin));
             this.Service.AddOrigin(TenantCdnType.Private, this.Origin);
         }
     }

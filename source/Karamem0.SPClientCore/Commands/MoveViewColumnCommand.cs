@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -32,21 +33,21 @@ public class MoveViewColumnCommand : ClientObjectCmdlet<IViewColumnService>
         Position = 0,
         ParameterSetName = "ParamSet2"
     )]
-    public View View { get; private set; }
+    public View? View { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 1,
         ParameterSetName = "ParamSet1"
     )]
-    public Column Column { get; private set; }
+    public Column? Column { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 1,
         ParameterSetName = "ParamSet2"
     )]
-    public string ColumnName { get; private set; }
+    public string? ColumnName { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -64,6 +65,8 @@ public class MoveViewColumnCommand : ClientObjectCmdlet<IViewColumnService>
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.View ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.View));
+            _ = this.Column ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Column));
             this.Service.MoveObject(
                 this.View,
                 this.Column,
@@ -72,6 +75,8 @@ public class MoveViewColumnCommand : ClientObjectCmdlet<IViewColumnService>
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.View ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.View));
+            _ = this.ColumnName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ColumnName));
             this.Service.MoveObject(
                 this.View,
                 this.ColumnName,

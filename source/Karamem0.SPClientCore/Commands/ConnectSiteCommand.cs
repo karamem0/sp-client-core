@@ -6,6 +6,7 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Runtime.OAuth;
 using System;
@@ -53,14 +54,14 @@ public class ConnectSiteCommand : OAuthCmdlet
         Position = 0,
         ValueFromPipeline = true
     )]
-    public Uri Url { get; private set; }
+    public Uri? Url { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet4")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet5")]
-    public string ClientId { get; private set; }
+    public string? ClientId { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -73,24 +74,26 @@ public class ConnectSiteCommand : OAuthCmdlet
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
-    public string CertificatePath { get; private set; }
+    public string? CertificatePath { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-    public SecureString CertificatePassword { get; private set; }
+    public SecureString? CertificatePassword { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
-    public string PrivateKeyPath { get; private set; }
+    public string? PrivateKeyPath { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet4")]
     public SwitchParameter Cached { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet5")]
-    public SecureString ClientSecret { get; private set; }
+    public SecureString? ClientSecret { get; private set; }
 
     protected override void ProcessRecordCore()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.ClientId ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ClientId));
+            _ = this.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Url));
             this.Service.ConnectWithDeviceCode(
                 this.Authority,
                 this.ClientId,
@@ -101,6 +104,10 @@ public class ConnectSiteCommand : OAuthCmdlet
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.ClientId ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ClientId));
+            _ = this.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Url));
+            _ = this.CertificatePath ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.CertificatePath));
+            _ = this.CertificatePassword ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.CertificatePassword));
             var certificatePath = this.GetUnresolvedProviderPathFromPSPath(this.CertificatePath);
             var certificateBytes = BinaryData.FromBytes(File.ReadAllBytes(certificatePath));
             this.Service.ConnectWithCertificate(
@@ -113,6 +120,10 @@ public class ConnectSiteCommand : OAuthCmdlet
         }
         if (this.ParameterSetName == "ParamSet3")
         {
+            _ = this.ClientId ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ClientId));
+            _ = this.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Url));
+            _ = this.CertificatePath ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.CertificatePath));
+            _ = this.PrivateKeyPath ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.PrivateKeyPath));
             var certificatePath = this.GetUnresolvedProviderPathFromPSPath(this.CertificatePath);
             var certificateBytes = BinaryData.FromBytes(File.ReadAllBytes(certificatePath));
             var privateKeyPath = this.GetUnresolvedProviderPathFromPSPath(this.PrivateKeyPath);
@@ -128,6 +139,8 @@ public class ConnectSiteCommand : OAuthCmdlet
         if (this.ParameterSetName == "ParamSet4")
         {
             this.ValidateSwitchParameter(nameof(this.Cached));
+            _ = this.ClientId ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ClientId));
+            _ = this.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Url));
             this.Service.ConnectWithCache(
                 this.Authority,
                 this.ClientId,
@@ -136,6 +149,9 @@ public class ConnectSiteCommand : OAuthCmdlet
         }
         if (this.ParameterSetName == "ParamSet5")
         {
+            _ = this.ClientId ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ClientId));
+            _ = this.ClientSecret ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ClientSecret));
+            _ = this.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Url));
             this.Service.ConnectWithClientSecret(
                 this.ClientId,
                 this.ClientSecret,

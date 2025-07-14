@@ -24,7 +24,7 @@ public class ChangeItem : Change
     public override ChangeToken? ChangeToken { get; protected set; }
 
     [JsonProperty()]
-    public override ChangeType? ChangeType { get; protected set; }
+    public override ChangeType ChangeType { get; protected set; }
 
     [JsonProperty()]
     public virtual string? Editor { get; protected set; }
@@ -36,7 +36,7 @@ public class ChangeItem : Change
     public virtual string? EditorLoginName { get; protected set; }
 
     [JsonProperty()]
-    public virtual FileSystemObjectType? FileSystemObjectType { get; protected set; }
+    public virtual FileSystemObjectType FileSystemObjectType { get; protected set; }
 
     [JsonProperty()]
     public virtual string? FileType { get; protected set; }
@@ -54,7 +54,7 @@ public class ChangeItem : Change
     public virtual Guid ListId { get; protected set; }
 
     [JsonProperty()]
-    public virtual ListTemplateType? ListTemplate { get; protected set; }
+    public virtual ListTemplateType ListTemplate { get; protected set; }
 
     [JsonProperty()]
     public virtual string? ListTitle { get; protected set; }

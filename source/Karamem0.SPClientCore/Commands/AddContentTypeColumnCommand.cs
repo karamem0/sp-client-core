@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -23,16 +24,17 @@ public class AddContentTypeColumnCommand : ClientObjectCmdlet<IContentTypeColumn
 {
 
     [Parameter(Mandatory = true)]
-    public ContentType ContentType { get; private set; }
+    public ContentType? ContentType { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public Column Column { get; private set; }
+    public Column? Column { get; private set; }
 
     [Parameter(Mandatory = false)]
     public SwitchParameter PushChanges { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.ContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentType));
         this.Outputs.Add(
             this.Service.AddObject(
                 this.ContentType,

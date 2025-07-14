@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -23,7 +24,7 @@ public class AddTenantHubSiteCommand : ClientObjectCmdlet<ITenantHubSiteService>
 {
 
     [Parameter(Mandatory = false)]
-    public string Description { get; private set; }
+    public string? Description { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool EnablePermissionsSync { get; private set; }
@@ -32,19 +33,20 @@ public class AddTenantHubSiteCommand : ClientObjectCmdlet<ITenantHubSiteService>
     public bool HideNameInNavigation { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public Uri LogoUrl { get; private set; }
+    public Uri? LogoUrl { get; private set; }
 
     [Parameter(Mandatory = true)]
     public Guid SiteCollectionId { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public Uri SiteCollectionUrl { get; private set; }
+    public Uri? SiteCollectionUrl { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public string Title { get; private set; }
+    public string? Title { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.SiteCollectionUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollectionUrl));
         this.Outputs.Add(this.Service.AddObject(this.SiteCollectionUrl, this.MyInvocation.BoundParameters));
     }
 

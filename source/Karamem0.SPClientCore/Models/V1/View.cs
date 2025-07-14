@@ -102,7 +102,7 @@ public class View : ClientObject
     public virtual bool Paged { get; private set; }
 
     [JsonProperty()]
-    public virtual ListPageRenderType? PageRenderType { get; private set; }
+    public virtual ListPageRenderType PageRenderType { get; private set; }
 
     [JsonProperty()]
     public virtual bool PersonalView { get; private set; }
@@ -117,7 +117,7 @@ public class View : ClientObject
     public virtual int RowLimit { get; private set; }
 
     [JsonProperty()]
-    public virtual ViewScope? Scope { get; private set; }
+    public virtual ViewScope Scope { get; private set; }
 
     [JsonProperty()]
     public virtual ResourcePath? ServerRelativePath { get; private set; }

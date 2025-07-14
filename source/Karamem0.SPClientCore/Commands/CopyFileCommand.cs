@@ -35,7 +35,7 @@ public class CopyFileCommand : ClientObjectCmdlet<IFileService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet2"
     )]
-    public File Identity { get; private set; }
+    public File? Identity { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -47,7 +47,7 @@ public class CopyFileCommand : ClientObjectCmdlet<IFileService>
         Position = 1,
         ParameterSetName = "ParamSet2"
     )]
-    public Uri NewUrl { get; private set; }
+    public Uri? NewUrl { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -75,8 +75,10 @@ public class CopyFileCommand : ClientObjectCmdlet<IFileService>
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.NewUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.NewUrl));
             if (this.NewUrl.IsAbsoluteUri)
             {
+                _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
                 this.Service.CopyObject(
                     this.Identity,
                     this.NewUrl,
@@ -92,6 +94,8 @@ public class CopyFileCommand : ClientObjectCmdlet<IFileService>
         if (this.ParameterSetName == "ParamSet2")
         {
             this.ValidateSwitchParameter(nameof(this.Legacy));
+            _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
+            _ = this.NewUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.NewUrl));
             if (this.NewUrl.IsAbsoluteUri)
             {
                 var newUrl = new Uri(this.NewUrl.AbsolutePath, UriKind.Relative);

@@ -87,7 +87,7 @@ public class SharingLinkInfo : ClientValueObject
     public virtual bool LimitUseToApplication { get; protected set; }
 
     [JsonProperty()]
-    public virtual SharingLinkKind? LinkKind { get; protected set; }
+    public virtual SharingLinkKind LinkKind { get; protected set; }
 
     [JsonProperty()]
     public virtual string? PasswordLastModified { get; protected set; }
@@ -105,7 +105,7 @@ public class SharingLinkInfo : ClientValueObject
     public virtual bool RestrictedShareMembership { get; protected set; }
 
     [JsonProperty()]
-    public virtual SharingScope? Scope { get; protected set; }
+    public virtual SharingScope Scope { get; protected set; }
 
     [JsonProperty()]
     public virtual Guid ShareId { get; protected set; }
@@ -114,7 +114,7 @@ public class SharingLinkInfo : ClientValueObject
     public virtual string? ShareTokenString { get; protected set; }
 
     [JsonProperty()]
-    public virtual SharingLinkStatus? SharingLinkStatus { get; protected set; }
+    public virtual SharingLinkStatus SharingLinkStatus { get; protected set; }
 
     [JsonProperty()]
     public virtual bool TrackLinkUsers { get; protected set; }

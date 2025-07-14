@@ -27,7 +27,7 @@ public class File : ClientObject
     public virtual string? CheckInComment { get; protected set; }
 
     [JsonProperty()]
-    public virtual CheckOutType? CheckOutType { get; protected set; }
+    public virtual CheckOutType CheckOutType { get; protected set; }
 
     [JsonProperty("CheckedOutByUser")]
     public virtual User? CheckOutUser { get; protected set; }
@@ -66,7 +66,7 @@ public class File : ClientObject
     public virtual long Length { get; protected set; }
 
     [JsonProperty()]
-    public virtual byte? Level { get; protected set; }
+    public virtual byte Level { get; protected set; }
 
     [JsonProperty()]
     public virtual string? LinkingUri { get; protected set; }

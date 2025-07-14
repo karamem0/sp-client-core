@@ -39,7 +39,7 @@ public class NavigationNode : ClientObject
     public virtual bool IsVisible { get; protected set; }
 
     [JsonProperty()]
-    public virtual ListTemplateType? ListTemplateType { get; protected set; }
+    public virtual ListTemplateType ListTemplateType { get; protected set; }
 
     [JsonProperty()]
     public virtual string? Title { get; protected set; }

@@ -48,10 +48,10 @@ public class RecycleBinItem : ClientObject
     public virtual Guid Id { get; protected set; }
 
     [JsonProperty()]
-    public virtual RecycleBinItemState? ItemState { get; protected set; }
+    public virtual RecycleBinItemState ItemState { get; protected set; }
 
     [JsonProperty()]
-    public virtual RecycleBinItemType? ItemType { get; protected set; }
+    public virtual RecycleBinItemType ItemType { get; protected set; }
 
     [JsonProperty()]
     public virtual string? LeafName { get; protected set; }

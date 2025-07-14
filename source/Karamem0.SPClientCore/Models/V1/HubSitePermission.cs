@@ -27,6 +27,6 @@ public class HubSitePermission : ClientValueObject
     public virtual string? PrincipalName { get; protected set; }
 
     [JsonProperty()]
-    public virtual HubSiteUserRights? Rights { get; protected set; }
+    public virtual HubSiteUserRights Rights { get; protected set; }
 
 }

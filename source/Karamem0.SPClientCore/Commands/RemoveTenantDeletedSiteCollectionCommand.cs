@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -39,13 +40,14 @@ public class RemoveTenantDeletedSiteCollectionCommand : ClientObjectCmdlet<ITena
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet2"
     )]
-    public TenantDeletedSiteCollection Identity { get; private set; }
+    public TenantDeletedSiteCollection? Identity { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public SwitchParameter NoWait { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Identity?.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
         if (this.ShouldProcess(this.Identity.Url.ToString(), VerbsCommon.Remove))
         {
             if (this.ParameterSetName == "ParamSet1")

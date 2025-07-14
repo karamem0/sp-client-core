@@ -23,7 +23,7 @@ public class ItemReference : ODataV2Object
     public virtual string? DriveId { get; protected set; }
 
     [JsonProperty("driveType")]
-    public virtual DriveType? DriveType { get; protected set; }
+    public virtual DriveType DriveType { get; protected set; }
 
     [JsonProperty("id")]
     public virtual string? Id { get; protected set; }

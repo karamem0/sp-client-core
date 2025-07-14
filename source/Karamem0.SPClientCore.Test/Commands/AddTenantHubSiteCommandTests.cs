@@ -57,7 +57,7 @@ public class AddTenantHubSiteCommandTests
                 ["Description"] = "Test Hub Site 0 Description",
                 ["EnablePermissionsSync"] = true,
                 ["HideNameInNavigation"] = true,
-                ["LogoUrl"] =  $"{result2[0].Url}/_layouts/15/images/siteIcon.png",
+                ["LogoUrl"] = $"{result2[0].Url}/_layouts/15/images/siteIcon.png",
                 ["SiteCollectionId"] = result2[0].Id,
                 ["SiteCollectionUrl"] = result2[0].Url,
                 ["Title"] = "Test Hub Site 0"

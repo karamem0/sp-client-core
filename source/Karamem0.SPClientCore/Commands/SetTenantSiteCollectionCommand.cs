@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -34,7 +35,7 @@ public class SetTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteColl
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet2"
     )]
-    public TenantSiteCollection Identity { get; private set; }
+    public TenantSiteCollection? Identity { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -54,11 +55,11 @@ public class SetTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteColl
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-    public string AuthenticationContextStrength { get; private set; }
+    public string? AuthenticationContextStrength { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-    public string AuthenticationContextName { get; private set; }
+    public string? AuthenticationContextName { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -66,7 +67,7 @@ public class SetTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteColl
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-    public Guid[] BlockDownloadMicrosoft365GroupIds { get; private set; }
+    public Guid[]? BlockDownloadMicrosoft365GroupIds { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -110,7 +111,7 @@ public class SetTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteColl
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-    public Guid[] ExcludedBlockDownloadGroupIds { get; private set; }
+    public Guid[]? ExcludedBlockDownloadGroupIds { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -118,19 +119,19 @@ public class SetTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteColl
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-    public string InformationBarriersMode { get; private set; }
+    public string? InformationBarriersMode { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-    public Guid[] InformationBarriersSegments { get; private set; }
+    public Guid[]? InformationBarriersSegments { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-    public Guid[] InformationBarriersSegmentsToAdd { get; private set; }
+    public Guid[]? InformationBarriersSegmentsToAdd { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-    public Guid[] InformationBarriersSegmentsToRemove { get; private set; }
+    public Guid[]? InformationBarriersSegmentsToRemove { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -154,7 +155,7 @@ public class SetTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteColl
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-    public string Owner { get; private set; }
+    public string? Owner { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -194,15 +195,15 @@ public class SetTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteColl
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-    public string SensitivityLabel2 { get; private set; }
+    public string? SensitivityLabel2 { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-    public string SharingAllowedDomainList { get; private set; }
+    public string? SharingAllowedDomainList { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-    public string SharingBlockedDomainList { get; private set; }
+    public string? SharingBlockedDomainList { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -234,11 +235,11 @@ public class SetTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteColl
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-    public string Title { get; private set; }
+    public string? Title { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-    public ResourceEntry[] TitleTranslations { get; private set; }
+    public ResourceEntry[]? TitleTranslations { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -258,17 +259,24 @@ public class SetTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteColl
     {
         if (this.ParameterSetName == "ParamSet1")
         {
-            this.Service.SetObjectAwait(this.Identity, this.MyInvocation.BoundParameters);
-            var clientObject = this.Service.GetObjectAwait(this.Identity);
+            this.Service.SetObjectAwait(
+                this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity)),
+                this.MyInvocation.BoundParameters
+            );
+            var siteCollectionObject = this.Service.GetObjectAwait(this.Identity);
+            _ = siteCollectionObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
             if (this.PassThru)
             {
-                this.Outputs.Add(clientObject);
+                this.Outputs.Add(siteCollectionObject);
             }
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             this.ValidateSwitchParameter(nameof(this.NoWait));
-            _ = this.Service.SetObject(this.Identity, this.MyInvocation.BoundParameters);
+            _ = this.Service.SetObject(
+                this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity)),
+                this.MyInvocation.BoundParameters
+            );
         }
     }
 

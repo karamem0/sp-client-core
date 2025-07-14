@@ -21,13 +21,13 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IFolderService
 {
 
+    Folder? AddObject(Folder folderObject, string folderName);
+
     void CopyObject(
         Folder folderObject,
         Uri folderUrl,
         IReadOnlyDictionary<string, object?> moveCopyOptions
     );
-
-    Folder? AddObject(Folder folderObject, string folderName);
 
     Folder? GetObject(Folder folderObject);
 
@@ -59,34 +59,11 @@ public interface IFolderService
 
     void SetObject(Folder folderObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
+
 }
 
 public class FolderService(ClientContext clientContext) : ClientService<Folder>(clientContext), IFolderService
 {
-
-    public void CopyObject(
-        Folder folderObject,
-        Uri folderUrl,
-        IReadOnlyDictionary<string, object?> moveCopyOptions
-    )
-    {
-        var serverRelativeUrl = folderObject.ServerRelativeUrl;
-        _ = serverRelativeUrl ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
-        var requestPayload = new ClientRequestPayload();
-        requestPayload.Actions.Add(
-            ClientActionStaticMethod.Create(
-                typeof(MoveCopyUtil),
-                "CopyFolder",
-                requestPayload.CreateParameter(
-                    new Uri(this.ClientContext.BaseAddress.GetLeftPart(UriPartial.Authority))
-                        .ConcatPath(serverRelativeUrl.ToString())
-                ),
-                requestPayload.CreateParameter(folderUrl),
-                requestPayload.CreateParameter(ClientValueObject.Create<MoveCopyOptions>(moveCopyOptions))
-            )
-        );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
-    }
 
     public Folder? AddObject(Folder folderObject, string folderName)
     {
@@ -105,6 +82,29 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
+    }
+
+    public void CopyObject(
+        Folder folderObject,
+        Uri folderUrl,
+        IReadOnlyDictionary<string, object?> moveCopyOptions
+    )
+    {
+        var serverRelativeUrl = folderObject.ServerRelativeUrl;
+        _ = serverRelativeUrl ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
+        var requestPayload = new ClientRequestPayload();
+        requestPayload.Actions.Add(
+            ClientActionStaticMethod.Create(
+                typeof(MoveCopyUtil),
+                "CopyFolder",
+                requestPayload.CreateParameter(
+                    new Uri(this.ClientContext.BaseAddress.GetLeftPart(UriPartial.Authority)).ConcatPath(serverRelativeUrl.ToString())
+                ),
+                requestPayload.CreateParameter(folderUrl),
+                requestPayload.CreateParameter(ClientValueObject.Create<MoveCopyOptions>(moveCopyOptions))
+            )
+        );
+        _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
     public Folder? GetObject(List listObject)
@@ -257,8 +257,7 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
                 typeof(MoveCopyUtil),
                 "MoveFolder",
                 requestPayload.CreateParameter(
-                    new Uri(this.ClientContext.BaseAddress.GetLeftPart(UriPartial.Authority))
-                        .ConcatPath(serverRelativeUrl.ToString())
+                    new Uri(this.ClientContext.BaseAddress.GetLeftPart(UriPartial.Authority)).ConcatPath(serverRelativeUrl.ToString())
                 ),
                 requestPayload.CreateParameter(folderUrl),
                 requestPayload.CreateParameter(ClientValueObject.Create<MoveCopyOptions>(moveCopyOptions))

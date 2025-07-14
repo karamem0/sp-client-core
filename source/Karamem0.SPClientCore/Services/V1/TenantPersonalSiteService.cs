@@ -19,9 +19,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantPersonalSiteService
 {
 
-    TenantOperationResult? AddObject(IReadOnlyCollection<string> userIds);
+    TenantOperationResult? AddObject(IEnumerable<string> userIds);
 
-    void AddObjectAwait(IReadOnlyCollection<string> userIds);
+    void AddObjectAwait(IEnumerable<string> userIds);
 
     string? GetObject(string userId);
 
@@ -30,7 +30,7 @@ public interface ITenantPersonalSiteService
 public class TenantPersonalSiteService(ClientContext clientContext) : TenantClientService(clientContext), ITenantPersonalSiteService
 {
 
-    public TenantOperationResult? AddObject(IReadOnlyCollection<string> userIds)
+    public TenantOperationResult? AddObject(IEnumerable<string> userIds)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -48,7 +48,7 @@ public class TenantPersonalSiteService(ClientContext clientContext) : TenantClie
             .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public void AddObjectAwait(IReadOnlyCollection<string> userIds)
+    public void AddObjectAwait(IEnumerable<string> userIds)
     {
         this.WaitObject(this.AddObject(userIds));
     }

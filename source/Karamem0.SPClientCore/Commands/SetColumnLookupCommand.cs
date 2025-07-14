@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -27,31 +28,31 @@ public class SetColumnLookupCommand : ClientObjectCmdlet<IColumnService>
         Position = 0,
         ValueFromPipeline = true
     )]
-    public Column Identity { get; private set; }
+    public Column? Identity { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool AllowMultipleValues { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string ClientSideComponentId { get; private set; }
+    public string? ClientSideComponentId { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string ClientSideComponentProperties { get; private set; }
+    public string? ClientSideComponentProperties { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string CustomFormatter { get; private set; }
+    public string? CustomFormatter { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string Description { get; private set; }
+    public string? Description { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string Direction { get; private set; }
+    public string? Direction { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool EnforceUniqueValues { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string Group { get; private set; }
+    public string? Group { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool Hidden { get; private set; }
@@ -60,10 +61,10 @@ public class SetColumnLookupCommand : ClientObjectCmdlet<IColumnService>
     public bool Indexed { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string JSLink { get; private set; }
+    public string? JSLink { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string LookupColumnName { get; private set; }
+    public string? LookupColumnName { get; private set; }
 
     [Parameter(Mandatory = false)]
     public Guid LookupListId { get; private set; }
@@ -84,10 +85,10 @@ public class SetColumnLookupCommand : ClientObjectCmdlet<IColumnService>
     public bool Required { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string StaticName { get; private set; }
+    public string? StaticName { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string Title { get; private set; }
+    public string? Title { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool UnlimitedLengthInDocumentLibrary { get; private set; }
@@ -100,6 +101,7 @@ public class SetColumnLookupCommand : ClientObjectCmdlet<IColumnService>
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
         this.Service.SetObject(
             this.Identity,
             this.MyInvocation.BoundParameters,

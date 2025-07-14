@@ -1,7 +1,6 @@
 name: Deploy to PowerShell Gallery
 
-on:
-  workflow_call: {}
+on: workflow_call
 
 permissions: {}
 

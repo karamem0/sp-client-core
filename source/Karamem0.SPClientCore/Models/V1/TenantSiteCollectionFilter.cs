@@ -32,7 +32,7 @@ public class TenantSiteCollectionFilter : ClientValueObject
 
     [JsonProperty()]
     [SwitchParameterValue(TrueValue = PersonalSiteFilter.Include, FalseValue = PersonalSiteFilter.Exclude)]
-    public virtual PersonalSiteFilter? IncludePersonalSite { get; protected set; }
+    public virtual PersonalSiteFilter IncludePersonalSite { get; protected set; }
 
     [JsonProperty()]
     public virtual string? StartIndex { get; protected set; }

@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -39,7 +40,7 @@ public class RemoveFileCommand : ClientObjectCmdlet<IFileService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet2"
     )]
-    public File Identity { get; private set; }
+    public File? Identity { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     public SwitchParameter Force { get; private set; }
@@ -49,6 +50,7 @@ public class RemoveFileCommand : ClientObjectCmdlet<IFileService>
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
         if (this.ShouldProcess(this.Identity.Name, VerbsCommon.Remove))
         {
             if (this.ParameterSetName == "ParamSet1")

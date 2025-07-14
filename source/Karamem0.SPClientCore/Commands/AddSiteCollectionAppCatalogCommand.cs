@@ -24,26 +24,29 @@ public class AddSiteCollectionAppCatalogCommand : ClientObjectCmdlet<ISiteCollec
 {
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
-    public SiteCollection SiteCollection { get; private set; }
+    public SiteCollection? SiteCollection { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-    public TenantSiteCollection TenantSiteCollection { get; private set; }
+    public TenantSiteCollection? TenantSiteCollection { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
-    public Uri SiteCollectionUrl { get; private set; }
+    public Uri? SiteCollectionUrl { get; private set; }
 
     protected override void ProcessRecordCore()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.SiteCollection?.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollection));
             this.Service.AddObject(this.SiteCollection.Url);
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.TenantSiteCollection?.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.TenantSiteCollection));
             this.Service.AddObject(this.TenantSiteCollection.Url);
         }
         if (this.ParameterSetName == "ParamSet3")
         {
+            _ = this.SiteCollectionUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollectionUrl));
             if (this.SiteCollectionUrl.IsAbsoluteUri)
             {
                 this.Service.AddObject(this.SiteCollectionUrl);

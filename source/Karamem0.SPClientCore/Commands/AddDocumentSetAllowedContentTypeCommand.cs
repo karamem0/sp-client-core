@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -23,16 +24,18 @@ public class AddDocumentSetAllowedContentTypeCommand : ClientObjectCmdlet<IDocum
 {
 
     [Parameter(Mandatory = true, Position = 0)]
-    public ContentType ContentType { get; private set; }
+    public ContentType? ContentType { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public ContentType AllowedContentType { get; private set; }
+    public ContentType? AllowedContentType { get; private set; }
 
     [Parameter(Mandatory = false)]
     public SwitchParameter PushChanges { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.ContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentType));
+        _ = this.AllowedContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.AllowedContentType));
         this.Service.AddObject(
             this.ContentType,
             this.AllowedContentType,

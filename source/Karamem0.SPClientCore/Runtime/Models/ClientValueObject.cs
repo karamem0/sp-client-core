@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Models;
 public class ClientValueObject : JsonValueObject
 {
 
-    public static ClientValueObject Create<T>(IReadOnlyDictionary<string, object?> parameters) where T : ClientValueObject, new()
+    public static T Create<T>(IReadOnlyDictionary<string, object?> parameters) where T : ClientValueObject, new()
     {
         var value = new T();
         foreach (var propertyInfo in value

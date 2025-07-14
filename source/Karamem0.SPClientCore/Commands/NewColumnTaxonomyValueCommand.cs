@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using System;
 using System.Collections.Generic;
@@ -22,10 +23,11 @@ public class NewColumnTaxonomyValueCommand : ClientObjectCmdlet
 {
 
     [Parameter(Mandatory = true)]
-    public Term Term { get; private set; }
+    public Term? Term { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Term ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Term));
         this.Outputs.Add(
             new ColumnTaxonomyValue(
                 this.Term.Name,

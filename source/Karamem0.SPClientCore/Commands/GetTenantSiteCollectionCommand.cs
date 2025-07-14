@@ -29,14 +29,14 @@ public class GetTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteColl
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet1"
     )]
-    public TenantSiteCollection Identity { get; private set; }
+    public TenantSiteCollection? Identity { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 0,
         ParameterSetName = "ParamSet2"
     )]
-    public Uri SiteCollectionUrl { get; private set; }
+    public Uri? SiteCollectionUrl { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     public SwitchParameter GroupIdDefined { get; private set; }
@@ -45,7 +45,7 @@ public class GetTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteColl
     public SwitchParameter IncludePersonalSite { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
-    public string Template { get; private set; }
+    public string? Template { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     public SwitchParameter NoEnumerate { get; private set; }
@@ -54,10 +54,12 @@ public class GetTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteColl
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
             this.Outputs.Add(this.Service.GetObject(this.Identity));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.SiteCollectionUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollectionUrl));
             if (this.SiteCollectionUrl.IsAbsoluteUri)
             {
                 this.Outputs.Add(this.Service.GetObject(this.SiteCollectionUrl));

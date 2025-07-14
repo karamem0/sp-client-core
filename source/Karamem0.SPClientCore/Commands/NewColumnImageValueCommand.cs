@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Karamem0.SharePoint.PowerShell.Services.V1;
@@ -24,20 +25,20 @@ public class NewColumnImageValueCommand : ClientObjectCmdlet<ISiteService>
 {
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
-    public ImageItem ImageItem { get; private set; }
+    public ImageItem? ImageItem { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-    public string ColumnName { get; private set; }
+    public string? ColumnName { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-    public string FileName { get; private set; }
+    public string? FileName { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-    public Uri ServerUrl { get; private set; }
+    public Uri? ServerUrl { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
-    public Uri ServerRelativeUrl { get; private set; }
+    public Uri? ServerRelativeUrl { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     public Guid Id { get; private set; }
@@ -46,12 +47,16 @@ public class NewColumnImageValueCommand : ClientObjectCmdlet<ISiteService>
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.ImageItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ImageItem));
             var siteObject = this.Service.GetObject();
+            _ = siteObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
+            var siteUrl = siteObject.Url;
+            _ = siteUrl ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
             this.Outputs.Add(
                 new ColumnImageValue(
                     this.ColumnName,
                     this.ImageItem.Name,
-                    new Uri(siteObject.Url.GetAuthority(), UriKind.Absolute),
+                    new Uri(siteUrl.GetLeftPart(UriPartial.Authority), UriKind.Absolute),
                     this.ImageItem.ServerRelativeUrl,
                     this.ImageItem.UniqueId.ToString()
                 )

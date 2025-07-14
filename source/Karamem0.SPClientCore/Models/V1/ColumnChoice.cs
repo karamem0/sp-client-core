@@ -21,13 +21,16 @@ public class ColumnChoice : Column
 {
 
     [JsonProperty()]
+    public override string? AutofillInfo { get; protected set; }
+
+    [JsonProperty()]
     public override bool AutoIndexed { get; protected set; }
 
     [JsonProperty()]
     public override bool CanBeDeleted { get; protected set; }
 
     [JsonProperty("EditFormat")]
-    public virtual ChoiceFormatType? ChoiceFormat { get; protected set; }
+    public virtual ChoiceFormatType ChoiceFormat { get; protected set; }
 
     [JsonProperty()]
     public override string? ClientSideComponentId { get; protected set; }
@@ -39,7 +42,7 @@ public class ColumnChoice : Column
     public virtual IReadOnlyCollection<Column>? Columns { get; protected set; }
 
     [JsonProperty("FieldTypeKind")]
-    public override ColumnType? ColumnType { get; protected set; }
+    public override ColumnType ColumnType { get; protected set; }
 
     [JsonProperty()]
     public override string? CustomFormatter { get; protected set; }

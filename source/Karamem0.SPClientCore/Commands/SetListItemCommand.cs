@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Karamem0.SharePoint.PowerShell.Services.V1;
@@ -29,10 +30,10 @@ public class SetListItemCommand : ClientObjectCmdlet<IListItemService>
         Position = 0,
         ValueFromPipeline = true
     )]
-    public ListItem Identity { get; private set; }
+    public ListItem? Identity { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public PSObject Value { get; private set; }
+    public PSObject? Value { get; private set; }
 
     [Parameter(Mandatory = false)]
     public SwitchParameter SystemUpdate { get; private set; }
@@ -42,11 +43,15 @@ public class SetListItemCommand : ClientObjectCmdlet<IListItemService>
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
+        _ = this.Value ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Value));
         if (this.Value.BaseObject is Hashtable hashtable)
         {
             this.Service.SetObject(
                 this.Identity,
-                hashtable.ToDictionary<string, object>(),
+                hashtable
+                    .ToDictionary<string, object?>()
+                    .AsReadOnly(),
                 this.SystemUpdate
             );
         }
@@ -54,7 +59,9 @@ public class SetListItemCommand : ClientObjectCmdlet<IListItemService>
         {
             this.Service.SetObject(
                 this.Identity,
-                this.Value.Properties.ToDictionary(property => property.Name, property => property.Value),
+                this
+                    .Value.ToDictionary()
+                    .AsReadOnly(),
                 this.SystemUpdate
             );
         }

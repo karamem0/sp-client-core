@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -28,7 +29,7 @@ public class AddTermCommand : ClientObjectCmdlet<ITermService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet1"
     )]
-    public TermSet TermSet { get; private set; }
+    public TermSet? TermSet { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -36,7 +37,7 @@ public class AddTermCommand : ClientObjectCmdlet<ITermService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet2"
     )]
-    public Term Term { get; private set; }
+    public Term? Term { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -48,7 +49,7 @@ public class AddTermCommand : ClientObjectCmdlet<ITermService>
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-    public string Name { get; private set; }
+    public string? Name { get; private set; }
 
     protected override void ProcessRecordCore()
     {
@@ -58,6 +59,8 @@ public class AddTermCommand : ClientObjectCmdlet<ITermService>
         }
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.TermSet ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.TermSet));
+            _ = this.Name ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Name));
             this.Outputs.Add(
                 this.Service.AddObject(
                     this.TermSet,
@@ -69,6 +72,8 @@ public class AddTermCommand : ClientObjectCmdlet<ITermService>
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.Term ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Term));
+            _ = this.Name ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Name));
             this.Outputs.Add(
                 this.Service.AddObject(
                     this.Term,

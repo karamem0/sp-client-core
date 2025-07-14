@@ -27,6 +27,6 @@ public class ListItemCreationInfo : ClientValueObject
     public virtual string? LeafName { get; protected set; }
 
     [JsonProperty()]
-    public virtual FileSystemObjectType? UnderlyingObjectType { get; protected set; }
+    public virtual FileSystemObjectType UnderlyingObjectType { get; protected set; }
 
 }

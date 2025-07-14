@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -32,10 +33,11 @@ public class RemoveRoleAssignmentCommand : ClientObjectCmdlet<IRoleAssignmentSer
         Position = 0,
         ValueFromPipeline = true
     )]
-    public RoleAssignment Identity { get; private set; }
+    public RoleAssignment? Identity { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Identity?.Member ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
         if (this.ShouldProcess(this.Identity.Member.Title, VerbsCommon.Remove))
         {
             this.Service.RemoveObject(this.Identity);

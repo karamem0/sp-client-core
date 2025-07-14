@@ -28,10 +28,10 @@ public class CopyFolderCommand : ClientObjectCmdlet<IFolderService>
         Position = 0,
         ValueFromPipeline = true
     )]
-    public Folder Identity { get; private set; }
+    public Folder? Identity { get; private set; }
 
     [Parameter(Mandatory = true, Position = 1)]
-    public Uri NewUrl { get; private set; }
+    public Uri? NewUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
     public SwitchParameter KeepBoth { get; protected set; }
@@ -47,6 +47,8 @@ public class CopyFolderCommand : ClientObjectCmdlet<IFolderService>
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
+        _ = this.NewUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.NewUrl));
         if (this.NewUrl.IsAbsoluteUri)
         {
             this.Service.CopyObject(

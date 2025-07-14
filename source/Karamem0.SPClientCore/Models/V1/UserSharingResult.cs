@@ -24,7 +24,7 @@ public class UserSharingResult : ClientValueObject
     public virtual IReadOnlyCollection<RoleType>? AllowedRoles { get; protected set; }
 
     [JsonProperty()]
-    public virtual RoleType? CurrentRole { get; protected set; }
+    public virtual RoleType CurrentRole { get; protected set; }
 
     [JsonProperty()]
     public virtual string? DisplayName { get; protected set; }

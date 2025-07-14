@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -23,16 +24,18 @@ public class SetTermDescriptionCommand : ClientObjectCmdlet<ITermDescriptionServ
 {
 
     [Parameter(Mandatory = true, Position = 0)]
-    public Term Term { get; private set; }
+    public Term? Term { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public string Description { get; private set; }
+    public string? Description { get; private set; }
 
     [Parameter(Mandatory = true)]
     public uint Lcid { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Term ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Term));
+        _ = this.Description ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Description));
         this.Service.SetObject(
             this.Term,
             this.Description,

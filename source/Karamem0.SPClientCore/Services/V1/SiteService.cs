@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.Services;
 using System;
@@ -172,7 +173,7 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
 
     public void SelectObject(Site siteObject)
     {
-        this.ClientContext.BaseAddress = siteObject.Url;
+        this.ClientContext.BaseAddress = siteObject.Url ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
     }
 
 }

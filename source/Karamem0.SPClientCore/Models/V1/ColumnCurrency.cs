@@ -21,6 +21,9 @@ public class ColumnCurrency : Column
 {
 
     [JsonProperty()]
+    public override string? AutofillInfo { get; protected set; }
+
+    [JsonProperty()]
     public override bool AutoIndexed { get; protected set; }
 
     [JsonProperty()]
@@ -33,7 +36,7 @@ public class ColumnCurrency : Column
     public override string? ClientSideComponentProperties { get; protected set; }
 
     [JsonProperty("FieldTypeKind")]
-    public override ColumnType? ColumnType { get; protected set; }
+    public override ColumnType ColumnType { get; protected set; }
 
     [JsonProperty("CurrencyLocaleId")]
     public virtual uint CurrencyLcid { get; protected set; }
@@ -81,10 +84,10 @@ public class ColumnCurrency : Column
     public override string? JSLink { get; protected set; }
 
     [JsonProperty("MaximumValue")]
-    public virtual double? MaxValue { get; protected set; }
+    public virtual double MaxValue { get; protected set; }
 
     [JsonProperty("MinimumValue")]
-    public virtual double? MinValue { get; protected set; }
+    public virtual double MinValue { get; protected set; }
 
     [JsonProperty("InternalName")]
     public override string? Name { get; protected set; }

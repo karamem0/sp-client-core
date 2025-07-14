@@ -30,35 +30,35 @@ public class GetDriveItemCommand : ClientObjectCmdlet<IDriveItemService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet1"
     )]
-    public DriveItem Identity { get; private set; }
+    public DriveItem? Identity { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 0,
         ParameterSetName = "ParamSet2"
     )]
-    public Models.V1.Folder Folder { get; private set; }
+    public Models.V1.Folder? Folder { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 0,
         ParameterSetName = "ParamSet3"
     )]
-    public Models.V1.File File { get; private set; }
+    public Models.V1.File? File { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 0,
         ParameterSetName = "ParamSet4"
     )]
-    public ListItem ListItem { get; private set; }
+    public ListItem? ListItem { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 0,
         ParameterSetName = "ParamSet5"
     )]
-    public Uri DriveItemUrl { get; private set; }
+    public Uri? DriveItemUrl { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -75,28 +75,28 @@ public class GetDriveItemCommand : ClientObjectCmdlet<IDriveItemService>
         Position = 0,
         ParameterSetName = "ParamSet8"
     )]
-    public Drive Drive { get; private set; }
+    public Drive? Drive { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 1,
         ParameterSetName = "ParamSet6"
     )]
-    public string DriveItemId { get; private set; }
+    public string? DriveItemId { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 1,
         ParameterSetName = "ParamSet7"
     )]
-    public Uri DriveItemPath { get; private set; }
+    public Uri? DriveItemPath { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 0,
         ParameterSetName = "ParamSet9"
     )]
-    public DriveItem DriveItem { get; private set; }
+    public DriveItem? DriveItem { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet8")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet9")]
@@ -106,22 +106,27 @@ public class GetDriveItemCommand : ClientObjectCmdlet<IDriveItemService>
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
             this.Outputs.Add(this.Service.GetObject(this.Identity));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.Folder ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Folder));
             this.Outputs.Add(this.Service.GetObject(this.Folder));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
+            _ = this.File ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.File));
             this.Outputs.Add(this.Service.GetObject(this.File));
         }
         if (this.ParameterSetName == "ParamSet4")
         {
+            _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
             this.Outputs.Add(this.Service.GetObject(this.ListItem));
         }
         if (this.ParameterSetName == "ParamSet5")
         {
+            _ = this.DriveItemUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.DriveItemUrl));
             if (this.DriveItemUrl.IsAbsoluteUri)
             {
                 this.Outputs.Add(this.Service.GetObject(this.DriveItemUrl));
@@ -133,14 +138,19 @@ public class GetDriveItemCommand : ClientObjectCmdlet<IDriveItemService>
         }
         if (this.ParameterSetName == "ParamSet6")
         {
+            _ = this.Drive ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Drive));
+            _ = this.DriveItemId ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.DriveItemId));
             this.Outputs.Add(this.Service.GetObject(this.Drive, this.DriveItemId));
         }
         if (this.ParameterSetName == "ParamSet7")
         {
+            _ = this.Drive ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Drive));
+            _ = this.DriveItemPath ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.DriveItemPath));
             this.Outputs.Add(this.Service.GetObject(this.Drive, this.DriveItemPath));
         }
         if (this.ParameterSetName == "ParamSet8")
         {
+            _ = this.Drive ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Drive));
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(this.Service.GetObjectEnumerable(this.Drive));
@@ -152,6 +162,7 @@ public class GetDriveItemCommand : ClientObjectCmdlet<IDriveItemService>
         }
         if (this.ParameterSetName == "ParamSet9")
         {
+            _ = this.DriveItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.DriveItem));
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(this.Service.GetObjectEnumerable(this.DriveItem));

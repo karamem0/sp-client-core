@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -27,10 +28,11 @@ public class OpenFileCommand : ClientObjectCmdlet<IFileService>
         Position = 0,
         ValueFromPipeline = true
     )]
-    public File Identity { get; private set; }
+    public File? Identity { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
         this.Outputs.Add(this.Service.DownloadObject(this.Identity));
     }
 

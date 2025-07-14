@@ -57,7 +57,7 @@ public class AppInstance : ClientObject
     public virtual string? StartPage { get; protected set; }
 
     [JsonProperty()]
-    public virtual AppStatus? Status { get; protected set; }
+    public virtual AppStatus Status { get; protected set; }
 
     [JsonProperty()]
     public virtual string? Title { get; protected set; }

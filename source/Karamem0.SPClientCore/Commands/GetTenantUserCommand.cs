@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -37,7 +38,7 @@ public class GetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
         Position = 0,
         ParameterSetName = "ParamSet3"
     )]
-    public TenantSiteCollection SiteCollection { get; private set; }
+    public TenantSiteCollection? SiteCollection { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -54,7 +55,7 @@ public class GetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
         Position = 0,
         ParameterSetName = "ParamSet6"
     )]
-    public Uri SiteCollectionUrl { get; private set; }
+    public Uri? SiteCollectionUrl { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -78,7 +79,7 @@ public class GetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
         Position = 0,
         ParameterSetName = "ParamSet5"
     )]
-    public string UserName { get; private set; }
+    public string? UserName { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet6")]
@@ -88,14 +89,18 @@ public class GetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.SiteCollection?.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollection));
             this.Outputs.Add(this.Service.GetObject(this.SiteCollection.Url, this.UserId));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.SiteCollection?.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollection));
+            _ = this.UserName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.UserName));
             this.Outputs.Add(this.Service.GetObject(this.SiteCollection.Url, this.UserName));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
+            _ = this.SiteCollection?.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollection));
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(this.Service.GetObjectEnumerable(this.SiteCollection.Url));
@@ -107,14 +112,18 @@ public class GetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
         }
         if (this.ParameterSetName == "ParamSet4")
         {
+            _ = this.SiteCollectionUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollectionUrl));
             this.Outputs.Add(this.Service.GetObject(this.SiteCollectionUrl, this.UserId));
         }
         if (this.ParameterSetName == "ParamSet5")
         {
+            _ = this.SiteCollectionUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollectionUrl));
+            _ = this.UserName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.UserName));
             this.Outputs.Add(this.Service.GetObject(this.SiteCollectionUrl, this.UserName));
         }
         if (this.ParameterSetName == "ParamSet6")
         {
+            _ = this.SiteCollectionUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollectionUrl));
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(this.Service.GetObjectEnumerable(this.SiteCollectionUrl));

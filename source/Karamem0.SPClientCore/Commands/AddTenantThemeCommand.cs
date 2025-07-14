@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -27,13 +28,14 @@ public class AddTenantThemeCommand : ClientObjectCmdlet<ITenantThemeService>
     public bool IsInverted { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public string Name { get; private set; }
+    public string? Name { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public Hashtable Palette { get; private set; }
+    public Hashtable? Palette { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Name ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Name));
         _ = this.Service.AddObject(this.Name, this.MyInvocation.BoundParameters);
         this.Outputs.Add(this.Service.GetObject(this.Name));
     }

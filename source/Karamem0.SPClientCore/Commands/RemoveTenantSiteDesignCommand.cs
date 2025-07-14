@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -32,10 +33,11 @@ public class RemoveTenantSiteDesignCommand : ClientObjectCmdlet<ITenantSiteDesig
         Position = 0,
         ValueFromPipeline = true
     )]
-    public TenantSiteDesign Identity { get; private set; }
+    public TenantSiteDesign? Identity { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
         if (this.ShouldProcess(this.Identity.Title, VerbsCommon.Remove))
         {
             this.Service.RemoveObject(this.Identity);

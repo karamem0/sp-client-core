@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -44,7 +45,7 @@ public class SetUniqueRoleAssignmentEnabledCommand : ClientObjectCmdlet<ISiteSer
         Position = 0,
         ParameterSetName = "ParamSet4"
     )]
-    public List List { get; private set; }
+    public List? List { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -56,7 +57,7 @@ public class SetUniqueRoleAssignmentEnabledCommand : ClientObjectCmdlet<ISiteSer
         Position = 0,
         ParameterSetName = "ParamSet6"
     )]
-    public ListItem ListItem { get; private set; }
+    public ListItem? ListItem { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
@@ -84,8 +85,10 @@ public class SetUniqueRoleAssignmentEnabledCommand : ClientObjectCmdlet<ISiteSer
         {
             this.ValidateSwitchParameter(nameof(this.Site));
             this.ValidateSwitchParameter(nameof(this.Enabled));
+            var siteObject = this.Service1.GetObject();
+            _ = siteObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
             this.Service2.BreakObjectInheritance(
-                this.Service1.GetObject(),
+                siteObject,
                 this.CopyRoleAssignments,
                 this.ClearSubscopes
             );
@@ -94,11 +97,14 @@ public class SetUniqueRoleAssignmentEnabledCommand : ClientObjectCmdlet<ISiteSer
         {
             this.ValidateSwitchParameter(nameof(this.Site));
             this.ValidateSwitchParameter(nameof(this.Disabled));
-            this.Service2.ResetObjectInheritance(this.Service1.GetObject());
+            var siteObject = this.Service1.GetObject();
+            _ = siteObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
+            this.Service2.ResetObjectInheritance(siteObject);
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             this.ValidateSwitchParameter(nameof(this.Enabled));
+            _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
             this.Service2.BreakObjectInheritance(
                 this.List,
                 this.CopyRoleAssignments,
@@ -108,11 +114,13 @@ public class SetUniqueRoleAssignmentEnabledCommand : ClientObjectCmdlet<ISiteSer
         if (this.ParameterSetName == "ParamSet4")
         {
             this.ValidateSwitchParameter(nameof(this.Disabled));
+            _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
             this.Service2.ResetObjectInheritance(this.List);
         }
         if (this.ParameterSetName == "ParamSet5")
         {
             this.ValidateSwitchParameter(nameof(this.Enabled));
+            _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
             this.Service2.BreakObjectInheritance(
                 this.ListItem,
                 this.CopyRoleAssignments,
@@ -122,6 +130,7 @@ public class SetUniqueRoleAssignmentEnabledCommand : ClientObjectCmdlet<ISiteSer
         if (this.ParameterSetName == "ParamSet6")
         {
             this.ValidateSwitchParameter(nameof(this.Disabled));
+            _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
             this.Service2.ResetObjectInheritance(this.ListItem);
         }
     }

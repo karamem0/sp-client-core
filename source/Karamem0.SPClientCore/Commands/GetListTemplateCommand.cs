@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -28,14 +29,14 @@ public class GetListTemplateCommand : ClientObjectCmdlet<IListTemplateService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet1"
     )]
-    public ListTemplate Identity { get; private set; }
+    public ListTemplate? Identity { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 0,
         ParameterSetName = "ParamSet2"
     )]
-    public string ListTemplateTitle { get; private set; }
+    public string? ListTemplateTitle { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     public SwitchParameter NoEnumerate { get; private set; }
@@ -44,10 +45,12 @@ public class GetListTemplateCommand : ClientObjectCmdlet<IListTemplateService>
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
             this.Outputs.Add(this.Service.GetObject(this.Identity));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.ListTemplateTitle ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListTemplateTitle));
             this.Outputs.Add(this.Service.GetObject(this.ListTemplateTitle));
         }
         if (this.ParameterSetName == "ParamSet3")

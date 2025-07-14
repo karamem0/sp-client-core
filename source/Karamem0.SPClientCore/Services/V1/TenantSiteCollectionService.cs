@@ -116,7 +116,7 @@ public class TenantSiteCollectionService(ClientContext clientContext) : TenantCl
 
     public TenantSiteCollection? GetObjectAwait(TenantSiteCollection siteCollectionObject)
     {
-        return this.GetObjectAwait(siteCollectionObject.Url);
+        return this.GetObjectAwait(siteCollectionObject.Url ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull));
     }
 
     public TenantSiteCollection? GetObjectAwait(Uri siteCollectionUrl)

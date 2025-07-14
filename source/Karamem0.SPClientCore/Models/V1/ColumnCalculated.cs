@@ -21,6 +21,9 @@ public class ColumnCalculated : Column
 {
 
     [JsonProperty()]
+    public override string? AutofillInfo { get; protected set; }
+
+    [JsonProperty()]
     public override bool AutoIndexed { get; protected set; }
 
     [JsonProperty()]
@@ -33,7 +36,7 @@ public class ColumnCalculated : Column
     public override string? ClientSideComponentProperties { get; protected set; }
 
     [JsonProperty("FieldTypeKind")]
-    public override ColumnType? ColumnType { get; protected set; }
+    public override ColumnType ColumnType { get; protected set; }
 
     [JsonProperty("CurrencyLocaleId")]
     public virtual uint CurrencyLcid { get; protected set; }
@@ -48,7 +51,7 @@ public class ColumnCalculated : Column
     public override string? DefaultValue { get; protected set; }
 
     [JsonProperty()]
-    public virtual ColumnDateTimeFormatType? DateFormat { get; protected set; }
+    public virtual ColumnDateTimeFormatType DateFormat { get; protected set; }
 
     [JsonProperty()]
     public override string? Description { get; protected set; }
@@ -93,7 +96,7 @@ public class ColumnCalculated : Column
     public virtual int NumberFormat { get; protected set; }
 
     [JsonProperty()]
-    public virtual ColumnType? OutputType { get; protected set; }
+    public virtual ColumnType OutputType { get; protected set; }
 
     [JsonProperty()]
     public override bool PinnedToFiltersPane { get; protected set; }

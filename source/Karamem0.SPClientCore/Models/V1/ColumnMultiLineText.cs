@@ -21,6 +21,9 @@ public class ColumnMultiLineText : Column
 {
 
     [JsonProperty()]
+    public override string? AutofillInfo { get; protected set; }
+
+    [JsonProperty()]
     public virtual bool AllowHyperlink { get; protected set; }
 
     [JsonProperty()]
@@ -39,7 +42,7 @@ public class ColumnMultiLineText : Column
     public override string? ClientSideComponentProperties { get; protected set; }
 
     [JsonProperty("FieldTypeKind")]
-    public override ColumnType? ColumnType { get; protected set; }
+    public override ColumnType ColumnType { get; protected set; }
 
     [JsonProperty()]
     public override string? CustomFormatter { get; protected set; }

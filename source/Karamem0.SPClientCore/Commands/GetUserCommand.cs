@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -28,7 +29,7 @@ public class GetUserCommand : ClientObjectCmdlet<IUserService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet1"
     )]
-    public User Identity { get; private set; }
+    public User? Identity { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -42,7 +43,7 @@ public class GetUserCommand : ClientObjectCmdlet<IUserService>
         Position = 0,
         ParameterSetName = "ParamSet3"
     )]
-    public string UserName { get; private set; }
+    public string? UserName { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet4")]
     public SwitchParameter NoEnumerate { get; private set; }
@@ -51,6 +52,7 @@ public class GetUserCommand : ClientObjectCmdlet<IUserService>
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
             this.Outputs.Add(this.Service.GetObject(this.Identity));
         }
         if (this.ParameterSetName == "ParamSet2")
@@ -59,6 +61,7 @@ public class GetUserCommand : ClientObjectCmdlet<IUserService>
         }
         if (this.ParameterSetName == "ParamSet3")
         {
+            _ = this.UserName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.UserName));
             this.Outputs.Add(this.Service.GetObject(this.UserName));
         }
         if (this.ParameterSetName == "ParamSet4")

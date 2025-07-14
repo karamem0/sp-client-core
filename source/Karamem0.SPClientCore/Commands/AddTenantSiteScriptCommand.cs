@@ -23,13 +23,13 @@ public class AddTenantSiteScriptCommand : ClientObjectCmdlet<ITenantSiteScriptSe
 {
 
     [Parameter(Mandatory = true)]
-    public string Content { get; private set; }
+    public string? Content { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string Description { get; private set; }
+    public string? Description { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public string Title { get; private set; }
+    public string? Title { get; private set; }
 
     protected override void ProcessRecordCore()
     {

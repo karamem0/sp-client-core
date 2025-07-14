@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -28,7 +29,7 @@ public class GetAttachmentFileCommand : ClientObjectCmdlet<IAttachmentFileServic
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet1"
     )]
-    public AttachmentFile Identity { get; private set; }
+    public AttachmentFile? Identity { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -36,14 +37,14 @@ public class GetAttachmentFileCommand : ClientObjectCmdlet<IAttachmentFileServic
         ParameterSetName = "ParamSet2"
     )]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
-    public ListItem ListItem { get; private set; }
+    public ListItem? ListItem { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 1,
         ParameterSetName = "ParamSet2"
     )]
-    public string FileName { get; private set; }
+    public string? FileName { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     public SwitchParameter NoEnumerate { get; private set; }
@@ -52,14 +53,18 @@ public class GetAttachmentFileCommand : ClientObjectCmdlet<IAttachmentFileServic
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
             this.Outputs.Add(this.Service.GetObject(this.Identity));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
+            _ = this.FileName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.FileName));
             this.Outputs.Add(this.Service.GetObject(this.ListItem, this.FileName));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
+            _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(this.Service.GetObjectEnumerable(this.ListItem));

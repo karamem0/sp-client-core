@@ -32,6 +32,7 @@ public static class UriQuery
                     {
                         case string:
                         case Guid:
+                        case Uri:
                             var value = Uri.EscapeDataString(pair.Value.ToString());
                             if (quote)
                             {

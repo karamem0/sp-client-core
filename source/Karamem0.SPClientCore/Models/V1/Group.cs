@@ -57,7 +57,7 @@ public class Group : Principal
     public virtual bool OnlyAllowMembersViewMembership { get; protected set; }
 
     [JsonProperty()]
-    public override PrincipalType? PrincipalType { get; protected set; }
+    public override PrincipalType PrincipalType { get; protected set; }
 
     [JsonProperty()]
     public virtual string? RequestToJoinLeaveEmailSetting { get; protected set; }

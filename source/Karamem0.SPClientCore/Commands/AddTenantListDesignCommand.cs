@@ -23,7 +23,7 @@ public class AddTenantListDesignCommand : ClientObjectCmdlet<ITenantListDesignSe
 {
 
     [Parameter(Mandatory = false)]
-    public string Description { get; private set; }
+    public string? Description { get; private set; }
 
     [Parameter(Mandatory = false)]
     public TenantListDesignColor ListColor { get; private set; }
@@ -32,16 +32,16 @@ public class AddTenantListDesignCommand : ClientObjectCmdlet<ITenantListDesignSe
     public TenantListDesignIcon ListIcon { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public Guid[] SiteScriptIds { get; private set; }
+    public Guid[]? SiteScriptIds { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string[] TemplateFeatures { get; private set; }
+    public string[]? TemplateFeatures { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public Uri ThumbnailUrl { get; private set; }
+    public Uri? ThumbnailUrl { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public string Title { get; private set; }
+    public string? Title { get; private set; }
 
     protected override void ProcessRecordCore()
     {

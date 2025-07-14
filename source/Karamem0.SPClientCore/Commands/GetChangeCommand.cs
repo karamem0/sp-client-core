@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -33,17 +34,17 @@ public class GetChangeCommand : ClientObjectCmdlet<ISiteCollectionService, ISite
         Position = 0,
         ParameterSetName = "ParamSet3"
     )]
-    public List List { get; private set; }
+    public List? List { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
-    public ChangeToken BeginToken { get; private set; }
+    public ChangeToken? BeginToken { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
-    public ChangeToken EndToken { get; private set; }
+    public ChangeToken? EndToken { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -81,36 +82,50 @@ public class GetChangeCommand : ClientObjectCmdlet<ISiteCollectionService, ISite
         if (this.ParameterSetName == "ParamSet1")
         {
             this.ValidateSwitchParameter(nameof(this.SiteCollection));
+            var siteCollectionObject = this.Service1.GetObject();
+            _ = siteCollectionObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service3.GetObjectEnumerable(this.Service1.GetObject(), changeQuery));
+                this.Outputs.Add(this.Service3.GetObjectEnumerable(siteCollectionObject, changeQuery));
             }
             else
             {
-                this.Outputs.AddRange(this.Service3.GetObjectEnumerable(this.Service1.GetObject(), changeQuery));
+                this.Outputs.AddRange(this.Service3.GetObjectEnumerable(siteCollectionObject, changeQuery));
             }
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             this.ValidateSwitchParameter(nameof(this.Site));
+            var siteObject = this.Service2.GetObject();
+            _ = siteObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service3.GetObjectEnumerable(this.Service2.GetObject(), changeQuery));
+                this.Outputs.Add(this.Service3.GetObjectEnumerable(siteObject, changeQuery));
             }
             else
             {
-                this.Outputs.AddRange(this.Service3.GetObjectEnumerable(this.Service2.GetObject(), changeQuery));
+                this.Outputs.AddRange(this.Service3.GetObjectEnumerable(siteObject, changeQuery));
             }
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service3.GetObjectEnumerable(this.List, changeQuery));
+                this.Outputs.Add(
+                    this.Service3.GetObjectEnumerable(
+                        this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List)),
+                        changeQuery
+                    )
+                );
             }
             else
             {
-                this.Outputs.AddRange(this.Service3.GetObjectEnumerable(this.List, changeQuery));
+                this.Outputs.AddRange(
+                    this.Service3.GetObjectEnumerable(
+                        this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List)),
+                        changeQuery
+                    )
+                );
             }
         }
     }

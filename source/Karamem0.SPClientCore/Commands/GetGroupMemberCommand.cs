@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -33,7 +34,7 @@ public class GetGroupMemberCommand : ClientObjectCmdlet<IGroupMemberService>
         ParameterSetName = "ParamSet2"
     )]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
-    public Group Group { get; private set; }
+    public Group? Group { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -47,7 +48,7 @@ public class GetGroupMemberCommand : ClientObjectCmdlet<IGroupMemberService>
         Position = 1,
         ParameterSetName = "ParamSet2"
     )]
-    public string MemberName { get; private set; }
+    public string? MemberName { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     public SwitchParameter NoEnumerate { get; private set; }
@@ -56,14 +57,18 @@ public class GetGroupMemberCommand : ClientObjectCmdlet<IGroupMemberService>
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.Group ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Group));
             this.Outputs.Add(this.Service.GetObject(this.Group, this.MemberId));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.Group ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Group));
+            _ = this.MemberName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.MemberName));
             this.Outputs.Add(this.Service.GetObject(this.Group, this.MemberName));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
+            _ = this.Group ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Group));
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(this.Service.GetObjectEnumerable(this.Group));

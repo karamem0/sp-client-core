@@ -26,15 +26,15 @@ public class ColumnGeolocationValue(
 {
 
     [JsonProperty()]
-    public virtual double? Altitude { get; protected set; } = altitude;
+    public virtual double Altitude { get; protected set; } = altitude;
 
     [JsonProperty()]
-    public virtual double? Latitude { get; protected set; } = latitude;
+    public virtual double Latitude { get; protected set; } = latitude;
 
     [JsonProperty()]
-    public virtual double? Longitude { get; protected set; } = longitude;
+    public virtual double Longitude { get; protected set; } = longitude;
 
     [JsonProperty()]
-    public virtual double? Measure { get; protected set; } = measure;
+    public virtual double Measure { get; protected set; } = measure;
 
 }

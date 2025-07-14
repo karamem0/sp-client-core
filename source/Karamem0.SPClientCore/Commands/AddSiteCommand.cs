@@ -23,19 +23,19 @@ public class AddSiteCommand : ClientObjectCmdlet<ISiteService>
 {
 
     [Parameter(Mandatory = false)]
-    public string Description { get; private set; }
+    public string? Description { get; private set; }
 
     [Parameter(Mandatory = false)]
     public uint Lcid { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public Uri ServerRelativeUrl { get; private set; }
+    public Uri? ServerRelativeUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string Template { get; private set; }
+    public string? Template { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string Title { get; private set; }
+    public string? Title { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool UseSamePermissionsAsParentSite { get; private set; }

@@ -6,6 +6,7 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -27,10 +28,11 @@ public class RemoveStorageEntityCommand : ClientObjectCmdlet<IStorageEntityServi
 {
 
     [Parameter(Mandatory = true, Position = 0)]
-    public string Key { get; private set; }
+    public string? Key { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Key ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Key));
         if (this.ShouldProcess(this.Key, VerbsCommon.Remove))
         {
             this.Service.RemoveObject(this.Key);

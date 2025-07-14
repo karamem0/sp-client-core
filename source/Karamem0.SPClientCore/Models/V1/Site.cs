@@ -99,22 +99,22 @@ public class Site : SecurableObject
     public virtual bool ExcludeFromOfflineClient { get; protected set; }
 
     [JsonProperty()]
-    public virtual FooterVariantThemeType? FooterEmphasis { get; protected set; }
+    public virtual FooterVariantThemeType FooterEmphasis { get; protected set; }
 
     [JsonProperty()]
     public virtual bool FooterEnabled { get; protected set; }
 
     [JsonProperty()]
-    public virtual FooterLayoutType? FooterLayout { get; protected set; }
+    public virtual FooterLayoutType FooterLayout { get; protected set; }
 
     [JsonProperty()]
     public override bool HasUniqueRoleAssignments { get; protected set; }
 
     [JsonProperty()]
-    public virtual VariantThemeType? HeaderEmphasis { get; protected set; }
+    public virtual VariantThemeType HeaderEmphasis { get; protected set; }
 
     [JsonProperty()]
-    public virtual HeaderLayoutType? HeaderLayout { get; protected set; }
+    public virtual HeaderLayoutType HeaderLayout { get; protected set; }
 
     [JsonProperty()]
     public virtual bool HideTitleInHeader { get; protected set; }
@@ -147,7 +147,7 @@ public class Site : SecurableObject
     public virtual uint Lcid { get; protected set; }
 
     [JsonProperty()]
-    public virtual LogoAlignment? LogoAlignment { get; protected set; }
+    public virtual LogoAlignment LogoAlignment { get; protected set; }
 
     [JsonProperty()]
     public virtual Uri? MasterUrl { get; protected set; }
@@ -192,7 +192,7 @@ public class Site : SecurableObject
     public virtual bool SaveSiteAsTemplateEnabled { get; protected set; }
 
     [JsonProperty()]
-    public virtual SearchScopeType? SearchScope { get; protected set; }
+    public virtual SearchScopeType SearchScope { get; protected set; }
 
     [JsonProperty()]
     public virtual Uri? ServerRelativeUrl { get; protected set; }

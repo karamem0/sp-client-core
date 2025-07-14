@@ -21,13 +21,13 @@ public class ChangeList : Change
 {
 
     [JsonProperty()]
-    public virtual ListTemplateType? BaseTemplate { get; protected set; }
+    public virtual ListTemplateType BaseTemplate { get; protected set; }
 
     [JsonProperty()]
     public override ChangeToken? ChangeToken { get; protected set; }
 
     [JsonProperty()]
-    public override ChangeType? ChangeType { get; protected set; }
+    public override ChangeType ChangeType { get; protected set; }
 
     [JsonProperty()]
     public virtual User? Creator { get; protected set; }

@@ -45,6 +45,6 @@ public class ViewCreationInfo : ClientValueObject
     public virtual string? ViewQuery { get; private set; }
 
     [JsonProperty("ViewTypeKind")]
-    public virtual ViewType? ViewType { get; private set; }
+    public virtual ViewType ViewType { get; private set; }
 
 }

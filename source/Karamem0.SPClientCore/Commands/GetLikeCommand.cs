@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -28,7 +29,7 @@ public class GetLikeCommand : ClientObjectCmdlet<ILikeService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet1"
     )]
-    public Comment Comment { get; private set; }
+    public Comment? Comment { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -36,7 +37,7 @@ public class GetLikeCommand : ClientObjectCmdlet<ILikeService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet2"
     )]
-    public ListItem ListItem { get; private set; }
+    public ListItem? ListItem { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -46,6 +47,7 @@ public class GetLikeCommand : ClientObjectCmdlet<ILikeService>
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.Comment ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Comment));
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(this.Service.GetObjectEnumerable(this.Comment));
@@ -57,6 +59,7 @@ public class GetLikeCommand : ClientObjectCmdlet<ILikeService>
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(this.Service.GetObjectEnumerable(this.ListItem));

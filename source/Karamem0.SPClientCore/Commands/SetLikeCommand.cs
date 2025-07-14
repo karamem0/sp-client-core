@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -34,7 +35,7 @@ public class SetLikeCommand : ClientObjectCmdlet<ILikeService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet3"
     )]
-    public Comment Comment { get; private set; }
+    public Comment? Comment { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -48,7 +49,7 @@ public class SetLikeCommand : ClientObjectCmdlet<ILikeService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet4"
     )]
-    public ListItem ListItem { get; private set; }
+    public ListItem? ListItem { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
@@ -63,21 +64,25 @@ public class SetLikeCommand : ClientObjectCmdlet<ILikeService>
         if (this.ParameterSetName == "ParamSet1")
         {
             this.ValidateSwitchParameter(nameof(this.Like));
+            _ = this.Comment ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Comment));
             this.Service.LikeObject(this.Comment);
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             this.ValidateSwitchParameter(nameof(this.Like));
+            _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
             this.Service.LikeObject(this.ListItem);
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             this.ValidateSwitchParameter(nameof(this.Unlike));
+            _ = this.Comment ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Comment));
             this.Service.UnlikeObject(this.Comment);
         }
         if (this.ParameterSetName == "ParamSet4")
         {
             this.ValidateSwitchParameter(nameof(this.Unlike));
+            _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
             this.Service.UnlikeObject(this.ListItem);
         }
     }

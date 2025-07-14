@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -23,19 +24,22 @@ public class SetColumnTaxonomyValueCommand : ClientObjectCmdlet<IColumnTaxonomyS
 {
 
     [Parameter(Mandatory = true, Position = 0)]
-    public ColumnTaxonomy Column { get; private set; }
+    public ColumnTaxonomy? Column { get; private set; }
 
     [Parameter(Mandatory = true, Position = 1)]
-    public ListItem ListItem { get; private set; }
+    public ListItem? ListItem { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public Term[] Value { get; private set; }
+    public Term[]? Value { get; private set; }
 
     [Parameter(Mandatory = true)]
     public uint Lcid { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Column ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Column));
+        _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
+        _ = this.Value ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Value));
         this.Service.SetObjectValue(
             this.Column,
             this.ListItem,

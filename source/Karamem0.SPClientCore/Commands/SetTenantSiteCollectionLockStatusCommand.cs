@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -46,7 +47,7 @@ public class SetTenantSiteCollectionLockStatusCommand : ClientObjectCmdlet<ITena
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet4"
     )]
-    public TenantSiteCollection Identity { get; private set; }
+    public TenantSiteCollection? Identity { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
@@ -69,33 +70,39 @@ public class SetTenantSiteCollectionLockStatusCommand : ClientObjectCmdlet<ITena
         if (this.ParameterSetName == "ParamSet1")
         {
             this.ValidateSwitchParameter(nameof(this.Lock));
+            _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
             this.Service.LockObjectAwait(this.Identity);
-            var clientObject = this.Service.GetObjectAwait(this.Identity);
+            var siteCollectionObject = this.Service.GetObjectAwait(this.Identity);
+            _ = siteCollectionObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
             if (this.PassThru)
             {
-                this.Outputs.Add(clientObject);
+                this.Outputs.Add(siteCollectionObject);
             }
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             this.ValidateSwitchParameter(nameof(this.Lock));
             this.ValidateSwitchParameter(nameof(this.NoWait));
+            _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
             _ = this.Service.LockObject(this.Identity);
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             this.ValidateSwitchParameter(nameof(this.Unlock));
+            _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
             this.Service.UnlockObjectAwait(this.Identity);
-            var clientObject = this.Service.GetObjectAwait(this.Identity);
+            var siteCollectionObject = this.Service.GetObjectAwait(this.Identity);
+            _ = siteCollectionObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
             if (this.PassThru)
             {
-                this.Outputs.Add(clientObject);
+                this.Outputs.Add(siteCollectionObject);
             }
         }
         if (this.ParameterSetName == "ParamSet4")
         {
             this.ValidateSwitchParameter(nameof(this.Unlock));
             this.ValidateSwitchParameter(nameof(this.NoWait));
+            _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
             _ = this.Service.UnlockObject(this.Identity);
         }
     }

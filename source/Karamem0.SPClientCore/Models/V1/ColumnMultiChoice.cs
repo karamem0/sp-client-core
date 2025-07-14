@@ -21,6 +21,9 @@ public class ColumnMultiChoice : Column
 {
 
     [JsonProperty()]
+    public override string? AutofillInfo { get; protected set; }
+
+    [JsonProperty()]
     public override bool AutoIndexed { get; protected set; }
 
     [JsonProperty()]
@@ -36,7 +39,7 @@ public class ColumnMultiChoice : Column
     public virtual IReadOnlyCollection<Column>? Columns { get; protected set; }
 
     [JsonProperty("FieldTypeKind")]
-    public override ColumnType? ColumnType { get; protected set; }
+    public override ColumnType ColumnType { get; protected set; }
 
     [JsonProperty()]
     public override string? CustomFormatter { get; protected set; }

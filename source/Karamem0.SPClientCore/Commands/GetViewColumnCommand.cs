@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -23,13 +24,14 @@ public class GetViewColumnCommand : ClientObjectCmdlet<IViewColumnService>
 {
 
     [Parameter(Mandatory = true, Position = 0)]
-    public View View { get; private set; }
+    public View? View { get; private set; }
 
     [Parameter(Mandatory = false)]
     public SwitchParameter NoEnumerate { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.View ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.View));
         if (this.NoEnumerate)
         {
             this.Outputs.Add(this.Service.GetObjectEnumerable(this.View));

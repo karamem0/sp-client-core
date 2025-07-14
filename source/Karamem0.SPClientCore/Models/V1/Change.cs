@@ -24,7 +24,7 @@ public class Change : ClientObject
     public virtual ChangeToken? ChangeToken { get; protected set; }
 
     [JsonProperty()]
-    public virtual ChangeType? ChangeType { get; protected set; }
+    public virtual ChangeType ChangeType { get; protected set; }
 
     [JsonProperty()]
     public virtual string? RelativeTime { get; protected set; }

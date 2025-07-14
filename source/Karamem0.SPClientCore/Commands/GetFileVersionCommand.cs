@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -28,7 +29,7 @@ public class GetFileVersionCommand : ClientObjectCmdlet<IFileVersionService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet1"
     )]
-    public FileVersion Identity { get; private set; }
+    public FileVersion? Identity { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -36,7 +37,7 @@ public class GetFileVersionCommand : ClientObjectCmdlet<IFileVersionService>
         ParameterSetName = "ParamSet2"
     )]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
-    public File File { get; private set; }
+    public File? File { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -52,14 +53,17 @@ public class GetFileVersionCommand : ClientObjectCmdlet<IFileVersionService>
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
             this.Outputs.Add(this.Service.GetObject(this.Identity));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.File ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.File));
             this.Outputs.Add(this.Service.GetObject(this.File, this.FileVersionId));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
+            _ = this.File ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.File));
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(this.Service.GetObjectEnumerable(this.File));

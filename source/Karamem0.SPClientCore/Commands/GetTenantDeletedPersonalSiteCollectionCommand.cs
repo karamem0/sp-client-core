@@ -28,7 +28,7 @@ public class GetTenantDeletedPersonalSiteCollectionCommand : ClientObjectCmdlet<
         Position = 0,
         ParameterSetName = "ParamSet1"
     )]
-    public Uri SiteCollectionUrl { get; private set; }
+    public Uri? SiteCollectionUrl { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
@@ -38,6 +38,7 @@ public class GetTenantDeletedPersonalSiteCollectionCommand : ClientObjectCmdlet<
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.SiteCollectionUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollectionUrl));
             if (this.SiteCollectionUrl.IsAbsoluteUri)
             {
                 if (this.NoEnumerate)

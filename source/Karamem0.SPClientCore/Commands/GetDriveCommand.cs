@@ -8,6 +8,7 @@
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
 using Karamem0.SharePoint.PowerShell.Models.V2;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using Karamem0.SharePoint.PowerShell.Services.V2;
@@ -30,21 +31,21 @@ public class GetDriveCommand : ClientObjectCmdlet<IDriveService, ISiteCollection
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet1"
     )]
-    public Drive Identity { get; private set; }
+    public Drive? Identity { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 0,
         ParameterSetName = "ParamSet2"
     )]
-    public List List { get; private set; }
+    public List? List { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 0,
         ParameterSetName = "ParamSet3"
     )]
-    public string DriveId { get; private set; }
+    public string? DriveId { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet4")]
     public SwitchParameter NoEnumerate { get; private set; }
@@ -53,25 +54,25 @@ public class GetDriveCommand : ClientObjectCmdlet<IDriveService, ISiteCollection
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
             this.Outputs.Add(this.Service1.GetObject(this.Identity));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
             var siteCollectionObject = this.Service2.GetObject();
-            var siteCollectionId = siteCollectionObject.Id;
             var siteObject = this.Service3.GetObject();
-            var siteId = siteObject.Id;
-            var listId = this.List.Id;
             this.Outputs.Add(
                 this.Service1.GetObject(
-                    siteCollectionId,
-                    siteId,
-                    listId
+                    siteCollectionObject?.Id ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull),
+                    siteObject?.Id ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull),
+                    this.List.Id
                 )
             );
         }
         if (this.ParameterSetName == "ParamSet3")
         {
+            _ = this.DriveId ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.DriveId));
             this.Outputs.Add(this.Service1.GetObject(this.DriveId));
         }
         if (this.ParameterSetName == "ParamSet4")

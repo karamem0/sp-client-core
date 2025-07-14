@@ -8,7 +8,6 @@
 
 using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
-using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Karamem0.SharePoint.PowerShell.Runtime.OAuth;
 using Karamem0.SharePoint.PowerShell.Runtime.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,7 +30,7 @@ public class DisconnectSiteCommand : ClientObjectCmdlet
         Position = 0,
         ValueFromPipeline = true
     )]
-    public Uri Url { get; private set; }
+    public Uri? Url { get; private set; }
 
     protected override void ProcessRecordCore()
     {
@@ -42,6 +41,7 @@ public class DisconnectSiteCommand : ClientObjectCmdlet
                 throw new InvalidOperationException(StringResources.ErrorNotConnected);
             }
             var clientContext = ClientService.ServiceProvider.GetService<ClientContext>();
+            _ = clientContext ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
             var accessToken = clientContext.AccessToken;
             var jwtToken = new JsonWebToken(accessToken);
             var jwtTenantId = jwtToken.GetPayloadValue<string>("tid");

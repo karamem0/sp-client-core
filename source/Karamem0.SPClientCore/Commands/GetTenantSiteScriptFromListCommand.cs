@@ -6,6 +6,7 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -22,11 +23,13 @@ public class GetTenantSiteScriptFromListCommand : ClientObjectCmdlet<ITenantSite
 {
 
     [Parameter(Mandatory = true, Position = 0)]
-    public Uri ListUrl { get; private set; }
+    public Uri? ListUrl { get; private set; }
 
     protected override void ProcessRecordCore()
     {
-        this.Outputs.Add(this.Service.GetScriptFromList(this.ListUrl));
+        this.Outputs.Add(
+            this.Service.GetScriptFromList(this.ListUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListUrl)))
+        );
     }
 
 }

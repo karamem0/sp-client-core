@@ -26,7 +26,7 @@ public class AddAlertCommand : ClientObjectCmdlet<IAlertService>
     public AlertFrequency AlertFrequency { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string AlertTemplateName { get; private set; }
+    public string? AlertTemplateName { get; private set; }
 
     [Parameter(Mandatory = false)]
     public DateTime AlertTime { get; private set; }
@@ -47,25 +47,25 @@ public class AddAlertCommand : ClientObjectCmdlet<IAlertService>
     public int EventTypeBitmask { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string Filter { get; private set; }
+    public string? Filter { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public List List { get; private set; }
+    public List? List { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public ListItem ListItem { get; private set; }
+    public ListItem? ListItem { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public IReadOnlyDictionary<string, string> Properties { get; private set; }
+    public IReadOnlyDictionary<string, string>? Properties { get; private set; }
 
     [Parameter(Mandatory = false)]
     public AlertStatus Status { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string Title { get; private set; }
+    public string? Title { get; private set; }
 
     [Parameter(Mandatory = true)]
-    public User User { get; private set; }
+    public User? User { get; private set; }
 
     protected override void ProcessRecordCore()
     {

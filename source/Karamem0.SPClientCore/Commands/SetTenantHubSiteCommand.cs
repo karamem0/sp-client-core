@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -27,10 +28,10 @@ public class SetTenantHubSiteCommand : ClientObjectCmdlet<ITenantHubSiteService>
         Position = 0,
         ValueFromPipeline = true
     )]
-    public HubSite Identity { get; private set; }
+    public HubSite? Identity { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string Description { get; private set; }
+    public string? Description { get; private set; }
 
     [Parameter(Mandatory = false)]
     public bool EnablePermissionsSync { get; private set; }
@@ -39,24 +40,27 @@ public class SetTenantHubSiteCommand : ClientObjectCmdlet<ITenantHubSiteService>
     public bool HideNameInNavigation { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public Uri LogoUrl { get; private set; }
+    public Uri? LogoUrl { get; private set; }
 
     [Parameter(Mandatory = false)]
     public Guid ParentHubSiteId { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public string Title { get; private set; }
+    public string? Title { get; private set; }
 
     [Parameter(Mandatory = false)]
     public SwitchParameter PassThru { get; private set; }
 
     protected override void ProcessRecordCore()
     {
+        _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
         this.Service.SetObject(this.Identity, this.MyInvocation.BoundParameters);
-        var clientObject = this.Service.GetObject(this.Identity.SiteCollectionUrl);
+        var hubSiteUrl = this.Identity.SiteCollectionUrl;
+        _ = hubSiteUrl ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
+        var hubSiteObject = this.Service.GetObject(hubSiteUrl);
         if (this.PassThru)
         {
-            this.Outputs.Add(clientObject);
+            this.Outputs.Add(hubSiteObject);
         }
     }
 

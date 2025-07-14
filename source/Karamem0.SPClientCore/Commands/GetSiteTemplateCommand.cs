@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -27,7 +28,7 @@ public class GetSiteTemplateCommand : ClientObjectCmdlet<ISiteService, ISiteTemp
         Position = 0,
         ParameterSetName = "ParamSet1"
     )]
-    public string SiteTemplateName { get; private set; }
+    public string? SiteTemplateName { get; private set; }
 
     [Parameter(
         Mandatory = false,
@@ -60,6 +61,7 @@ public class GetSiteTemplateCommand : ClientObjectCmdlet<ISiteService, ISiteTemp
         }
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.SiteTemplateName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteTemplateName));
             this.Outputs.Add(
                 this.Service2.GetObject(
                     this.SiteTemplateName,

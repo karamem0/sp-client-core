@@ -29,7 +29,7 @@ public class Quota : ODataV2Object
     public virtual long Remaining { get; protected set; }
 
     [JsonProperty("state")]
-    public virtual QuotaState? State { get; protected set; }
+    public virtual QuotaState State { get; protected set; }
 
     [JsonProperty("total")]
     public virtual long Total { get; protected set; }

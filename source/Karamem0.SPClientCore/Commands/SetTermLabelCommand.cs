@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -41,13 +42,13 @@ public class SetTermLabelCommand : ClientObjectCmdlet<ITermService, ITermLabelSe
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet3"
     )]
-    public TermLabel Identity { get; private set; }
+    public TermLabel? Identity { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     public uint Lcid { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-    public string Name { get; private set; }
+    public string? Name { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
     public SwitchParameter IsDefault { get; private set; }
@@ -61,9 +62,11 @@ public class SetTermLabelCommand : ClientObjectCmdlet<ITermService, ITermLabelSe
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.Identity?.Name ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
             if (this.PassThru)
             {
                 var termObject = this.Service1.GetObject(this.Identity);
+                _ = termObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
                 this.Service2.SetObject(this.Identity, this.MyInvocation.BoundParameters);
                 this.Outputs.Add(
                     this.Service2.GetObject(
@@ -80,9 +83,12 @@ public class SetTermLabelCommand : ClientObjectCmdlet<ITermService, ITermLabelSe
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
+            _ = this.Name ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Name));
             if (this.PassThru)
             {
                 var termObject = this.Service1.GetObject(this.Identity);
+                _ = termObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
                 this.Service2.SetObject(this.Identity, this.MyInvocation.BoundParameters);
                 this.Outputs.Add(
                     this.Service2.GetObject(
@@ -100,6 +106,7 @@ public class SetTermLabelCommand : ClientObjectCmdlet<ITermService, ITermLabelSe
         if (this.ParameterSetName == "ParamSet3")
         {
             this.ValidateSwitchParameter(nameof(this.IsDefault));
+            _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
             this.Service2.SetObjectAsDefault(this.Identity);
             if (this.PassThru)
             {

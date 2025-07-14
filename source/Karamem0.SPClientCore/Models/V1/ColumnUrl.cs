@@ -21,6 +21,9 @@ public class ColumnUrl : Column
 {
 
     [JsonProperty()]
+    public override string? AutofillInfo { get; protected set; }
+
+    [JsonProperty()]
     public override bool AutoIndexed { get; protected set; }
 
     [JsonProperty()]
@@ -33,7 +36,7 @@ public class ColumnUrl : Column
     public override string? ClientSideComponentProperties { get; protected set; }
 
     [JsonProperty("FieldTypeKind")]
-    public override ColumnType? ColumnType { get; protected set; }
+    public override ColumnType ColumnType { get; protected set; }
 
     [JsonProperty()]
     public override string? CustomFormatter { get; protected set; }
@@ -126,7 +129,7 @@ public class ColumnUrl : Column
     public override string? TypeShortDescription { get; protected set; }
 
     [JsonProperty()]
-    public virtual ColumnUrlFormatType? UrlFormat { get; protected set; }
+    public virtual ColumnUrlFormatType UrlFormat { get; protected set; }
 
     [JsonProperty()]
     public override string? ValidationFormula { get; protected set; }

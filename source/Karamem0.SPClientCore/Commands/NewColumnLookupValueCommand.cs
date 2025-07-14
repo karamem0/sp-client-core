@@ -25,7 +25,7 @@ public class NewColumnLookupValueCommand : ClientObjectCmdlet
     public int LookupId { get; private set; }
 
     [Parameter(Mandatory = false, Position = 1)]
-    public string LookupValue { get; private set; }
+    public string? LookupValue { get; private set; }
 
     protected override void ProcessRecordCore()
     {

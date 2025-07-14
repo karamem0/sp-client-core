@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -28,7 +29,7 @@ public class GetAppCommand : ClientObjectCmdlet<IAppService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet1"
     )]
-    public App Identity { get; private set; }
+    public App? Identity { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -49,6 +50,7 @@ public class GetAppCommand : ClientObjectCmdlet<IAppService>
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
             this.Outputs.Add(this.Service.GetObject(this.Identity, this.Tenant));
         }
         if (this.ParameterSetName == "ParamSet2")

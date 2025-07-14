@@ -21,19 +21,19 @@ public class RegionalSettings : ClientObject
 {
 
     [JsonProperty()]
-    public virtual short? AdjustHijriDays { get; protected set; }
+    public virtual short AdjustHijriDays { get; protected set; }
 
     [JsonProperty()]
-    public virtual short? AlternateCalendarType { get; protected set; }
+    public virtual short AlternateCalendarType { get; protected set; }
 
     [JsonProperty()]
     public virtual string? AM { get; protected set; }
 
     [JsonProperty()]
-    public virtual short? CalendarType { get; protected set; }
+    public virtual short CalendarType { get; protected set; }
 
     [JsonProperty()]
-    public virtual short? Collation { get; protected set; }
+    public virtual short Collation { get; protected set; }
 
     [JsonProperty("CollationLCID")]
     public virtual uint CollationLcid { get; protected set; }
@@ -54,7 +54,7 @@ public class RegionalSettings : ClientObject
     public virtual uint FirstDayOfWeek { get; protected set; }
 
     [JsonProperty()]
-    public virtual short? FirstWeekOfYear { get; protected set; }
+    public virtual short FirstWeekOfYear { get; protected set; }
 
     [JsonProperty()]
     public virtual bool IsEastAsia { get; protected set; }
@@ -105,12 +105,12 @@ public class RegionalSettings : ClientObject
     public virtual TimeZoneEnumerable? TimeZones { get; protected set; }
 
     [JsonProperty()]
-    public virtual short? WorkDayEndHour { get; protected set; }
+    public virtual short WorkDayEndHour { get; protected set; }
 
     [JsonProperty()]
-    public virtual short? WorkDays { get; protected set; }
+    public virtual short WorkDays { get; protected set; }
 
     [JsonProperty()]
-    public virtual short? WorkDayStartHour { get; protected set; }
+    public virtual short WorkDayStartHour { get; protected set; }
 
 }

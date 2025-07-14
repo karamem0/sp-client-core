@@ -29,21 +29,21 @@ public class GetSiteCollectionAppCatalogCommand : ClientObjectCmdlet<ISiteCollec
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet1"
     )]
-    public SiteCollectionAppCatalog Identity { get; private set; }
+    public SiteCollectionAppCatalog? Identity { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 0,
         ParameterSetName = "ParamSet2"
     )]
-    public SiteCollection SiteCollection { get; private set; }
+    public SiteCollection? SiteCollection { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 0,
         ParameterSetName = "ParamSet3"
     )]
-    public Uri SiteCollectionUrl { get; private set; }
+    public Uri? SiteCollectionUrl { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -62,10 +62,12 @@ public class GetSiteCollectionAppCatalogCommand : ClientObjectCmdlet<ISiteCollec
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
             this.Outputs.Add(this.Service.GetObject(this.Identity));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.SiteCollection ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollection));
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(
@@ -87,6 +89,7 @@ public class GetSiteCollectionAppCatalogCommand : ClientObjectCmdlet<ISiteCollec
         }
         if (this.ParameterSetName == "ParamSet3")
         {
+            _ = this.SiteCollectionUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollectionUrl));
             if (this.SiteCollectionUrl.IsAbsoluteUri)
             {
                 if (this.NoEnumerate)

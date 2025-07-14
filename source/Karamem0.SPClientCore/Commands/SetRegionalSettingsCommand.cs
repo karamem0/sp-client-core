@@ -50,7 +50,7 @@ public class SetRegionalSettingsCommand : ClientObjectCmdlet<IRegionalSettingsSe
     public bool Time24 { get; private set; }
 
     [Parameter(Mandatory = false)]
-    public Models.V1.TimeZone TimeZone { get; private set; }
+    public Models.V1.TimeZone? TimeZone { get; private set; }
 
     [Parameter(Mandatory = false)]
     public short WorkDayEndHour { get; private set; }

@@ -42,4 +42,9 @@ public abstract class JsonValueObject : ValueObject
         .ToArray()
     );
 
+    public override string ToString()
+    {
+        return $"{this.GetType().Name}: {JsonSerializerManager.Instance.Serialize(this)}";
+    }
+
 }

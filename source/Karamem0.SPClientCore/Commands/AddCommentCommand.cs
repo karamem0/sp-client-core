@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -28,7 +29,7 @@ public class AddCommentCommand : ClientObjectCmdlet<ICommentService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet1"
     )]
-    public ListItem ListItem { get; private set; }
+    public ListItem? ListItem { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -36,20 +37,22 @@ public class AddCommentCommand : ClientObjectCmdlet<ICommentService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet2"
     )]
-    public Comment Comment { get; private set; }
+    public Comment? Comment { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-    public string Text { get; private set; }
+    public string? Text { get; private set; }
 
     protected override void ProcessRecordCore()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
             this.Outputs.Add(this.Service.AddObject(this.ListItem, this.MyInvocation.BoundParameters));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.Comment ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Comment));
             this.Outputs.Add(this.Service.AddObject(this.Comment, this.MyInvocation.BoundParameters));
         }
     }

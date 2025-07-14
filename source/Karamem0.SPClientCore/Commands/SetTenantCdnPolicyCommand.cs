@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -34,13 +35,14 @@ public class SetTenantCdnPolicyCommand : ClientObjectCmdlet<ITenantCdnService>
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
-    public string Value { get; private set; }
+    public string? Value { get; private set; }
 
     protected override void ProcessRecordCore()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             this.ValidateSwitchParameter(nameof(this.Public));
+            _ = this.Value ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Value));
             this.Service.SetPolicy(
                 TenantCdnType.Public,
                 this.Type,
@@ -50,6 +52,7 @@ public class SetTenantCdnPolicyCommand : ClientObjectCmdlet<ITenantCdnService>
         if (this.ParameterSetName == "ParamSet2")
         {
             this.ValidateSwitchParameter(nameof(this.Private));
+            _ = this.Value ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Value));
             this.Service.SetPolicy(
                 TenantCdnType.Private,
                 this.Type,

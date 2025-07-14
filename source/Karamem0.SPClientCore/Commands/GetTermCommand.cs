@@ -7,6 +7,7 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Models.V1;
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using System;
@@ -28,7 +29,7 @@ public class GetTermCommand : ClientObjectCmdlet<ITermService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet1"
     )]
-    public Term Identity { get; private set; }
+    public Term? Identity { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -36,7 +37,7 @@ public class GetTermCommand : ClientObjectCmdlet<ITermService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet2"
     )]
-    public TermLabel TermLabel { get; private set; }
+    public TermLabel? TermLabel { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -49,7 +50,7 @@ public class GetTermCommand : ClientObjectCmdlet<ITermService>
         ParameterSetName = "ParamSet4"
     )]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet5")]
-    public TermSet TermSet { get; private set; }
+    public TermSet? TermSet { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -62,7 +63,7 @@ public class GetTermCommand : ClientObjectCmdlet<ITermService>
         ParameterSetName = "ParamSet7"
     )]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet8")]
-    public Term Term { get; private set; }
+    public Term? Term { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -86,7 +87,7 @@ public class GetTermCommand : ClientObjectCmdlet<ITermService>
         Position = 1,
         ParameterSetName = "ParamSet7"
     )]
-    public string TermName { get; private set; }
+    public string? TermName { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet5")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet8")]
@@ -96,22 +97,28 @@ public class GetTermCommand : ClientObjectCmdlet<ITermService>
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
             this.Outputs.Add(this.Service.GetObject(this.Identity));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            _ = this.TermLabel ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.TermLabel));
             this.Outputs.Add(this.Service.GetObject(this.TermLabel));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
+            _ = this.TermSet ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.TermSet));
             this.Outputs.Add(this.Service.GetObject(this.TermSet, this.TermId));
         }
         if (this.ParameterSetName == "ParamSet4")
         {
+            _ = this.TermSet ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.TermSet));
+            _ = this.TermName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.TermName));
             this.Outputs.Add(this.Service.GetObject(this.TermSet, this.TermName));
         }
         if (this.ParameterSetName == "ParamSet5")
         {
+            _ = this.TermSet ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.TermSet));
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(this.Service.GetObjectEnumerable(this.TermSet));
@@ -123,14 +130,18 @@ public class GetTermCommand : ClientObjectCmdlet<ITermService>
         }
         if (this.ParameterSetName == "ParamSet6")
         {
+            _ = this.Term ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Term));
             this.Outputs.Add(this.Service.GetObject(this.Term, this.TermId));
         }
         if (this.ParameterSetName == "ParamSet7")
         {
+            _ = this.Term ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Term));
+            _ = this.TermName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.TermName));
             this.Outputs.Add(this.Service.GetObject(this.Term, this.TermName));
         }
         if (this.ParameterSetName == "ParamSet8")
         {
+            _ = this.Term ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Term));
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(this.Service.GetObjectEnumerable(this.Term));

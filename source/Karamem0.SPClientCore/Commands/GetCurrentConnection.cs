@@ -6,6 +6,7 @@
 // https://github.com/karamem0/sp-client-core/blob/main/LICENSE
 //
 
+using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Runtime.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,6 +25,10 @@ public class GetCurrentConnectionCommand : ClientObjectCmdlet
 
     protected override void ProcessRecordCore()
     {
+        if (ClientService.ServiceProvider is null)
+        {
+            throw new InvalidOperationException(StringResources.ErrorNotConnected);
+        }
         this.Outputs.Add(ClientService.ServiceProvider.GetService<ClientContext>());
     }
 

@@ -21,10 +21,13 @@ public class ColumnDateTime : Column
 {
 
     [JsonProperty()]
+    public override string? AutofillInfo { get; protected set; }
+
+    [JsonProperty()]
     public override bool AutoIndexed { get; protected set; }
 
     [JsonProperty("DateTimeCalendarType")]
-    public virtual CalendarType? CalendarType { get; protected set; }
+    public virtual CalendarType CalendarType { get; protected set; }
 
     [JsonProperty()]
     public override bool CanBeDeleted { get; protected set; }
@@ -36,7 +39,7 @@ public class ColumnDateTime : Column
     public override string? ClientSideComponentProperties { get; protected set; }
 
     [JsonProperty("FieldTypeKind")]
-    public override ColumnType? ColumnType { get; protected set; }
+    public override ColumnType ColumnType { get; protected set; }
 
     [JsonProperty()]
     public override string? CustomFormatter { get; protected set; }
@@ -48,7 +51,7 @@ public class ColumnDateTime : Column
     public override string? DefaultValue { get; protected set; }
 
     [JsonProperty("DisplayFormat")]
-    public virtual ColumnDateTimeFormatType? DateFormat { get; protected set; }
+    public virtual ColumnDateTimeFormatType DateFormat { get; protected set; }
 
     [JsonProperty()]
     public override string? Description { get; protected set; }
@@ -66,7 +69,7 @@ public class ColumnDateTime : Column
     public override bool Filterable { get; protected set; }
 
     [JsonProperty("FriendlyDisplayFormat")]
-    public virtual ColumnDateTimeFriendlyFormatType? FriendlyFormat { get; protected set; }
+    public virtual ColumnDateTimeFriendlyFormatType FriendlyFormat { get; protected set; }
 
     [JsonProperty()]
     public override bool FromBaseType { get; protected set; }

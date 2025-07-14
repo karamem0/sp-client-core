@@ -45,7 +45,7 @@ public class User : Principal
     public override string? LoginName { get; protected set; }
 
     [JsonProperty()]
-    public override PrincipalType? PrincipalType { get; protected set; }
+    public override PrincipalType PrincipalType { get; protected set; }
 
     [JsonProperty()]
     public override string? Title { get; protected set; }
