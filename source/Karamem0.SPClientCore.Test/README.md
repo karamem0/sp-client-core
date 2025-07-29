@@ -78,6 +78,7 @@
       - `Column16` (Geolocation)
       - `Column17` (Taxonomy)
       - `Column18` (Image)
+      - `Column19` (Location)
     - `/TestList2` (DocLib)
     - `/TestList3` (DocLib)
 

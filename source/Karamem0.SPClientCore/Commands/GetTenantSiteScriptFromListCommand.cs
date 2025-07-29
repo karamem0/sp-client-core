@@ -22,7 +22,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetTenantSiteScriptFromListCommand : ClientObjectCmdlet<ITenantSiteScriptService>
 {
 
-    [Parameter(Mandatory = true, Position = 0)]
+    [Parameter(Mandatory = true)]
     public Uri? ListUrl { get; private set; }
 
     protected override void ProcessRecordCore()

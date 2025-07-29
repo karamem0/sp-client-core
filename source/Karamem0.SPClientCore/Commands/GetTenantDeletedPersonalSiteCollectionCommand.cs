@@ -23,11 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetTenantDeletedPersonalSiteCollectionCommand : ClientObjectCmdlet<ITenantDeletedPersonalSiteCollectionService>
 {
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet1"
-    )]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     public Uri? SiteCollectionUrl { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]

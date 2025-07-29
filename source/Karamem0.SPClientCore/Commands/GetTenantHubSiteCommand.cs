@@ -30,11 +30,7 @@ public class GetTenantHubSiteCommand : ClientObjectCmdlet<ITenantHubSiteService>
     )]
     public Guid HubSiteId { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public Uri? HubSiteUrl { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]

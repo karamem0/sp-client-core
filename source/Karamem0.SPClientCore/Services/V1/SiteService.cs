@@ -40,6 +40,8 @@ public interface ISiteService
 
     void SelectObject(Site siteObject);
 
+    void SetObject(IReadOnlyDictionary<string, object?> modificationInfo);
+
     void SetObject(Site siteObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
@@ -174,6 +176,18 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
     public void SelectObject(Site siteObject)
     {
         this.ClientContext.BaseAddress = siteObject.Url ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
+    }
+
+    public void SetObject(IReadOnlyDictionary<string, object?> modificationInfo)
+    {
+        var requestPayload = new ClientRequestPayload();
+        var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(
+            ObjectPathProperty.Create(objectPath1.Id, "Web"),
+            requestPayload.CreateSetPropertyDelegates(typeof(Site), modificationInfo)
+        );
+        var objectPath3 = requestPayload.Add(objectPath2, objectPathId => ClientActionMethod.Create(objectPathId, "Update"));
+        _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
 }

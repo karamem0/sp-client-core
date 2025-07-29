@@ -63,33 +63,22 @@ public class GetFileCommand : ClientObjectCmdlet<IFileService>
     )]
     public ListItem? ListItem { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet6"
-    )]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet6")]
     public Guid FileId { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet7"
-    )]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet7")]
     public Uri? FileUrl { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 0,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet8"
     )]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet9")]
     public Folder? Folder { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet8"
-    )]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet8")]
     public string? FileName { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet9")]

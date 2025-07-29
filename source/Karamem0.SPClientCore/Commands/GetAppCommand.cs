@@ -34,6 +34,7 @@ public class GetAppCommand : ClientObjectCmdlet<IAppService>
     [Parameter(
         Mandatory = true,
         Position = 0,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet2"
     )]
     public Guid AppId { get; private set; }

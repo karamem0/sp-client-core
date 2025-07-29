@@ -19,11 +19,19 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IRegionalSettingsService
 {
 
+    void AddSupportedUILanguage(uint lcid);
+
+    void DisableMultilingual(bool force);
+
+    void EnableMultilingual(bool force);
+
     DateTime ConvertUniversalToLocal(DateTime date);
 
     DateTime ConvertLocalToUniversal(DateTime date);
 
     RegionalSettings? GetObject();
+
+    void RemoveSupportedUILanguage(uint lcid);
 
     void SetObject(IReadOnlyDictionary<string, object?> modificationInfo);
 
@@ -31,6 +39,77 @@ public interface IRegionalSettingsService
 
 public class RegionalSettingsService(ClientContext clientContext) : ClientService<RegionalSettings>(clientContext), IRegionalSettingsService
 {
+
+    public void AddSupportedUILanguage(uint lcid)
+    {
+        var requestPayload = new ClientRequestPayload();
+        var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
+        var objectPath3 = requestPayload.Add(
+            objectPath2,
+            objectPathId => ClientActionMethod.Create(
+                objectPathId,
+                "AddSupportedUILanguage",
+                requestPayload.CreateParameter(lcid)
+            )
+        );
+        _ = this.ClientContext.ProcessQuery(requestPayload);
+    }
+
+    public void DisableMultilingual(bool force)
+    {
+        var requestPayload = new ClientRequestPayload();
+        var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
+        var objectPath2 = ObjectPathProperty.Create(objectPath1.Id, "Web");
+        var objectPath3 = requestPayload.Add(
+            objectPath2,
+            objectPathId => ClientActionSetProperty.Create(
+                objectPathId,
+                "IsMultilingual",
+                requestPayload.CreateParameter(false)
+            ),
+            objectPathId => ClientActionMethod.Create(objectPathId, "Update")
+        );
+        var objectPath4 = requestPayload.Add(ObjectPathProperty.Create(objectPath2.Id, "Features"));
+        var objectPath5 = requestPayload.Add(
+            objectPath4,
+            objectPathId => ClientActionMethod.Create(
+                objectPathId,
+                "Remove",
+                requestPayload.CreateParameter("24611c05-ee19-45da-955f-6602264abaf8"),
+                requestPayload.CreateParameter(force)
+            )
+        );
+        _ = this.ClientContext.ProcessQuery(requestPayload);
+    }
+
+    public void EnableMultilingual(bool force)
+    {
+        var requestPayload = new ClientRequestPayload();
+        var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
+        var objectPath2 = ObjectPathProperty.Create(objectPath1.Id, "Web");
+        var objectPath3 = requestPayload.Add(
+            objectPath2,
+            objectPathId => ClientActionSetProperty.Create(
+                objectPathId,
+                "IsMultilingual",
+                requestPayload.CreateParameter(true)
+            ),
+            objectPathId => ClientActionMethod.Create(objectPathId, "Update")
+        );
+        var objectPath4 = requestPayload.Add(ObjectPathProperty.Create(objectPath2.Id, "Features"));
+        var objectPath5 = requestPayload.Add(
+            objectPath4,
+            objectPathId => ClientActionMethod.Create(
+                objectPathId,
+                "Add",
+                requestPayload.CreateParameter("24611c05-ee19-45da-955f-6602264abaf8"),
+                requestPayload.CreateParameter(force),
+                requestPayload.CreateParameter(FeatureDefinitionScope.None)
+            )
+        );
+        _ = this.ClientContext.ProcessQuery(requestPayload);
+    }
 
     public DateTime ConvertUniversalToLocal(DateTime date)
     {
@@ -85,6 +164,22 @@ public class RegionalSettingsService(ClientContext clientContext) : ClientServic
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<RegionalSettings>(requestPayload.GetActionId<ClientActionQuery>());
+    }
+
+    public void RemoveSupportedUILanguage(uint lcid)
+    {
+        var requestPayload = new ClientRequestPayload();
+        var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
+        var objectPath3 = requestPayload.Add(
+            objectPath2,
+            objectPathId => ClientActionMethod.Create(
+                objectPathId,
+                "RemoveSupportedUILanguage",
+                requestPayload.CreateParameter(lcid)
+            )
+        );
+        _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
     public void SetObject(IReadOnlyDictionary<string, object?> modificationInfo)

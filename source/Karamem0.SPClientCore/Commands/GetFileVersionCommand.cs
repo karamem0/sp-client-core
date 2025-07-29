@@ -34,16 +34,13 @@ public class GetFileVersionCommand : ClientObjectCmdlet<IFileVersionService>
     [Parameter(
         Mandatory = true,
         Position = 0,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet2"
     )]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
     public File? File { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public int FileVersionId { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]

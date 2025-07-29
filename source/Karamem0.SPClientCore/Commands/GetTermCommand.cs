@@ -42,11 +42,13 @@ public class GetTermCommand : ClientObjectCmdlet<ITermService>
     [Parameter(
         Mandatory = true,
         Position = 0,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet3"
     )]
     [Parameter(
         Mandatory = true,
         Position = 0,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet4"
     )]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet5")]
@@ -55,38 +57,24 @@ public class GetTermCommand : ClientObjectCmdlet<ITermService>
     [Parameter(
         Mandatory = true,
         Position = 0,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet6"
     )]
     [Parameter(
         Mandatory = true,
         Position = 0,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet7"
     )]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet8")]
     public Term? Term { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet3"
-    )]
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet6"
-    )]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet6")]
     public Guid TermId { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet4"
-    )]
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet7"
-    )]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet4")]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet7")]
     public string? TermName { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet5")]

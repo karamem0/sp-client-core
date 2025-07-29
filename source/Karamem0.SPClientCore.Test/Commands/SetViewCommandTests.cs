@@ -59,12 +59,13 @@ public class SetViewCommandTests
                 ["AggregationsStatus"] = "On",
                 ["AssociatedContentTypeId"] = null,
                 ["CalendarViewStyles"] = null,
-                ["DefaultView"] = true,
-                ["DefaultViewForContentType"] = true,
+                ["ColumnWidth"] = "<FieldRef Name='Title' width='300' />",
+                ["DefaultView"] = false,
+                ["DefaultViewForContentType"] = false,
                 ["EditorModified"] = false,
                 ["Formats"] = "<FormatDef Type='RowHeight' Value='100' />",
                 ["GridLayout"] = null,
-                ["Hidden"] = true,
+                ["Hidden"] = false,
                 ["IncludeRootFolder"] = true,
                 ["JSLink"] = "clienttemplates.js",
                 ["MobileDefaultView"] = true,
@@ -77,14 +78,15 @@ public class SetViewCommandTests
                 ["Title"] = "Test View 9",
                 ["Toolbar"] = "Standard",
                 ["ViewData"] = "",
-                ["ViewJoins"] =
-                    "<Join Type='LEFT' ListAlias='TestList1'>" +
-                    "<Eq>" +
-                    "<FieldRef Name='TestColumn8' RefType='Id'/>" +
-                    "<FieldRef List='TestList1' Name='ID'/>" +
-                    "</Eq>" +
-                    "</Join>",
-                ["ViewProjectedColumns"] = "<Field Name='TestColumn16' Type='Lookup' List='TestList1' ShowField='Title'/>",
+                ["ViewJoins"] = """
+                                <Join Type='LEFT' ListAlias='TestList1'>
+                                    <Eq>
+                                        <FieldRef Name='TestColumn8' RefType='Id'/>
+                                        <FieldRef List='TestList1' Name='ID'/>
+                                    </Eq>
+                                </Join>
+                                """,
+                ["ViewProjectedColumns"] = "<Field Name='TestColumn0' Type='Lookup' List='TestList1' ShowField='Title'/>",
                 ["ViewQuery"] = "<OrderBy><FieldRef Name='Title'/></OrderBy>",
                 ["ViewType2"] = null,
                 ["PassThru"] = true

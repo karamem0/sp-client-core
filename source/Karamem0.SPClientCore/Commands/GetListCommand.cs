@@ -46,7 +46,7 @@ public class GetListCommand : ClientObjectCmdlet<IListService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet3"
     )]
-    public View? View { get; private set; }
+    public Models.V1.Folder? Folder { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -54,37 +54,37 @@ public class GetListCommand : ClientObjectCmdlet<IListService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet4"
     )]
-    public Drive? Drive { get; private set; }
+    public Models.V1.File? File { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 0,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet5"
     )]
-    public Guid ListId { get; private set; }
+    public View? View { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 0,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet6"
     )]
+    public Drive? Drive { get; private set; }
+
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet7")]
+    public Guid ListId { get; private set; }
+
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet8")]
     public Uri? ListUrl { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet7"
-    )]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet9")]
     public string? ListTitle { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet8"
-    )]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet10")]
     public LibraryType LibraryType { get; private set; }
 
-    [Parameter(Mandatory = false, ParameterSetName = "ParamSet9")]
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet11")]
     public SwitchParameter NoEnumerate { get; private set; }
 
     protected override void ProcessRecordCore()
@@ -101,19 +101,29 @@ public class GetListCommand : ClientObjectCmdlet<IListService>
         }
         if (this.ParameterSetName == "ParamSet3")
         {
+            _ = this.Folder ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Folder));
+            this.Outputs.Add(this.Service.GetObject(this.Folder));
+        }
+        if (this.ParameterSetName == "ParamSet4")
+        {
+            _ = this.File ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.File));
+            this.Outputs.Add(this.Service.GetObject(this.File));
+        }
+        if (this.ParameterSetName == "ParamSet5")
+        {
             _ = this.View ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.View));
             this.Outputs.Add(this.Service.GetObject(this.View));
         }
-        if (this.ParameterSetName == "ParamSet4")
+        if (this.ParameterSetName == "ParamSet6")
         {
             _ = this.Drive ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Drive));
             this.Outputs.Add(this.Service.GetObject(this.Drive));
         }
-        if (this.ParameterSetName == "ParamSet5")
+        if (this.ParameterSetName == "ParamSet7")
         {
             this.Outputs.Add(this.Service.GetObject(this.ListId));
         }
-        if (this.ParameterSetName == "ParamSet6")
+        if (this.ParameterSetName == "ParamSet8")
         {
             _ = this.ListUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListUrl));
             if (this.ListUrl.IsAbsoluteUri)
@@ -125,16 +135,16 @@ public class GetListCommand : ClientObjectCmdlet<IListService>
                 this.Outputs.Add(this.Service.GetObject(this.ListUrl));
             }
         }
-        if (this.ParameterSetName == "ParamSet7")
+        if (this.ParameterSetName == "ParamSet9")
         {
             _ = this.ListTitle ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListTitle));
             this.Outputs.Add(this.Service.GetObject(this.ListTitle));
         }
-        if (this.ParameterSetName == "ParamSet8")
+        if (this.ParameterSetName == "ParamSet10")
         {
             this.Outputs.Add(this.Service.GetObject(this.LibraryType));
         }
-        if (this.ParameterSetName == "ParamSet9")
+        if (this.ParameterSetName == "ParamSet11")
         {
             if (this.NoEnumerate)
             {

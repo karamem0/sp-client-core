@@ -19,6 +19,8 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IPropertyService
 {
 
+    PropertyValues? GetObject();
+
     PropertyValues? GetObject(Alert alertObject);
 
     PropertyValues? GetObject(File fileObject);
@@ -27,12 +29,24 @@ public interface IPropertyService
 
     PropertyValues? GetObject(ListItem listItemObject);
 
-    PropertyValues? GetObject(Site siteObject);
-
 }
 
 public class PropertyService(ClientContext clientContext) : ClientService(clientContext), IPropertyService
 {
+
+    public PropertyValues? GetObject()
+    {
+        var requestPayload = new ClientRequestPayload();
+        var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
+        var objectPath3 = requestPayload.Add(
+            ObjectPathProperty.Create(objectPath2.Id, "AllProperties"),
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true))
+        );
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
+            .ToObject<PropertyValues>(requestPayload.GetActionId<ClientActionQuery>());
+    }
 
     public PropertyValues? GetObject(Alert alertObject)
     {
@@ -79,19 +93,6 @@ public class PropertyService(ClientContext clientContext) : ClientService(client
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listItemObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             ObjectPathProperty.Create(objectPath1.Id, "Properties"),
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true))
-        );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<PropertyValues>(requestPayload.GetActionId<ClientActionQuery>());
-    }
-
-    public PropertyValues? GetObject(Site siteObject)
-    {
-        var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(siteObject.ObjectIdentity));
-        var objectPath2 = requestPayload.Add(
-            ObjectPathProperty.Create(objectPath1.Id, "AllProperties"),
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true))
         );
         return this

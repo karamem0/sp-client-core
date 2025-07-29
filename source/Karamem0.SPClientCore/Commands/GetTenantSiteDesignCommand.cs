@@ -31,11 +31,7 @@ public class GetTenantSiteDesignCommand : ClientObjectCmdlet<ITenantSiteDesignSe
     )]
     public TenantSiteDesign? Identity { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public Guid SiteDesignId { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]

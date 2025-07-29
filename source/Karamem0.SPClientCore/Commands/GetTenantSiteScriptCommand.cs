@@ -31,11 +31,7 @@ public class GetTenantSiteScriptCommand : ClientObjectCmdlet<ITenantSiteScriptSe
     )]
     public TenantSiteScript? Identity { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public Guid SiteScriptId { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]

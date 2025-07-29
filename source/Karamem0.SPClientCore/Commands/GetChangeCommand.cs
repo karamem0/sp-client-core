@@ -32,6 +32,7 @@ public class GetChangeCommand : ClientObjectCmdlet<ISiteCollectionService, ISite
     [Parameter(
         Mandatory = true,
         Position = 0,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet3"
     )]
     public List? List { get; private set; }

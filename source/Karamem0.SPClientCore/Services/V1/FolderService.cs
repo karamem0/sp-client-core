@@ -59,7 +59,6 @@ public interface IFolderService
 
     void SetObject(Folder folderObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
-
 }
 
 public class FolderService(ClientContext clientContext) : ClientService<Folder>(clientContext), IFolderService

@@ -35,10 +35,11 @@ public class AddColumnTaxonomyCommandTests
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
-            "Get-KshList",
+            "Add-KshList",
             new Dictionary<string, object>()
             {
-                ["ListId"] = context.AppSettings["List1Id"]
+                ["Template"] = "GenericList",
+                ["Title"] = "Test List 0"
             }
         );
         var result2 = context.Runspace.InvokeCommand<TermGroup>(
@@ -97,6 +98,13 @@ public class AddColumnTaxonomyCommandTests
             new Dictionary<string, object>()
             {
                 ["Identity"] = result4[0]
+            }
+        );
+        _ = context.Runspace.InvokeCommand<Guid>(
+            "Remove-KshList",
+            new Dictionary<string, object>()
+            {
+                ["Identity"] = result1[0]
             }
         );
         var actual = result4[0];

@@ -23,67 +23,67 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetPropertyCommand : ClientObjectCmdlet<IPropertyService>
 {
 
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
+    public SwitchParameter Site { get; private set; }
+
     [Parameter(
         Mandatory = true,
         Position = 0,
-        ParameterSetName = "ParamSet1"
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet2"
     )]
     public Alert? Alert { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 0,
-        ParameterSetName = "ParamSet2"
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet3"
     )]
     public File? File { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 0,
-        ParameterSetName = "ParamSet3"
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet4"
     )]
     public Folder? Folder { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 0,
-        ParameterSetName = "ParamSet4"
-    )]
-    public ListItem? ListItem { get; private set; }
-
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet5"
     )]
-    public Site? Site { get; private set; }
+    public ListItem? ListItem { get; private set; }
 
     protected override void ProcessRecordCore()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
+            this.ValidateSwitchParameter(nameof(this.Site));
+            this.Outputs.Add(this.Service.GetObject());
+        }
+        if (this.ParameterSetName == "ParamSet2")
+        {
             _ = this.Alert ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Alert));
             this.Outputs.Add(this.Service.GetObject(this.Alert));
         }
-        if (this.ParameterSetName == "ParamSet2")
+        if (this.ParameterSetName == "ParamSet3")
         {
             _ = this.File ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.File));
             this.Outputs.Add(this.Service.GetObject(this.File));
         }
-        if (this.ParameterSetName == "ParamSet3")
+        if (this.ParameterSetName == "ParamSet4")
         {
             _ = this.Folder ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Folder));
             this.Outputs.Add(this.Service.GetObject(this.Folder));
         }
-        if (this.ParameterSetName == "ParamSet4")
+        if (this.ParameterSetName == "ParamSet5")
         {
             _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
             this.Outputs.Add(this.Service.GetObject(this.ListItem));
-        }
-        if (this.ParameterSetName == "ParamSet5")
-        {
-            _ = this.Site ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Site));
-            this.Outputs.Add(this.Service.GetObject(this.Site));
         }
     }
 

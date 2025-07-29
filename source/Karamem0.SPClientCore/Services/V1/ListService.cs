@@ -27,6 +27,10 @@ public interface IListService
 
     List? GetObject(ListItem listItemObject);
 
+    List? GetObject(Models.V1.Folder folderObject);
+
+    List? GetObject(Models.V1.File fileObject);
+
     List? GetObject(View viewObject);
 
     List? GetObject(Drive driveObject);
@@ -78,6 +82,36 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listItemObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             ObjectPathProperty.Create(objectPath1.Id, "ParentList"),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(List)))
+        );
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
+            .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
+    }
+
+    public List? GetObject(Models.V1.Folder folderObject)
+    {
+        var requestPayload = new ClientRequestPayload();
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(folderObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "ListItemAllFields"));
+        var objectPath3 = requestPayload.Add(
+            ObjectPathProperty.Create(objectPath2.Id, "ParentList"),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(List)))
+        );
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
+            .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
+    }
+
+    public List? GetObject(Models.V1.File fileObject)
+    {
+        var requestPayload = new ClientRequestPayload();
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(fileObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "ListItemAllFields"));
+        var objectPath3 = requestPayload.Add(
+            ObjectPathProperty.Create(objectPath2.Id, "ParentList"),
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(List)))
         );

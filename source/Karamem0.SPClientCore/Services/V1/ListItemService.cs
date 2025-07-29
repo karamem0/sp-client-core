@@ -35,6 +35,8 @@ public interface IListItemService
 
     ListItem? GetObject(List listObject, int listItemId);
 
+    ListItem? GetObject(List listObject, Guid listItemUniqueId);
+
     ListItem? GetObject(Uri listItemUrl);
 
     IEnumerable<ListItem>? GetObjectEnumerable(List listObject);
@@ -206,6 +208,24 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
                 objectPath1.Id,
                 "GetItemById",
                 requestPayload.CreateParameter(listItemId)
+            ),
+            ClientActionInstantiateObjectPath.Create,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true))
+        );
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
+            .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
+    }
+
+    public ListItem? GetObject(List listObject, Guid listItemUniqueId)
+    {
+        var requestPayload = new ClientRequestPayload();
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(
+            ObjectPathMethod.Create(
+                objectPath1.Id,
+                "GetItemByUniqueId",
+                requestPayload.CreateParameter(listItemUniqueId)
             ),
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true))

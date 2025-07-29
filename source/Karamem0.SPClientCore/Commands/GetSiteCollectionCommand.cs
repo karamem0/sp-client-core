@@ -31,11 +31,7 @@ public class GetSiteCollectioCommand : ClientObjectCmdlet<ISiteCollectionService
     )]
     public SiteCollection? Identity { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public Uri? SiteCollectionUrl { get; private set; }
 
     protected override void ProcessRecordCore()

@@ -47,37 +47,13 @@ public class GetFolderCommand : ClientObjectCmdlet<IFolderService>
     )]
     public ListItem? ListItem { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet4"
-    )]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet4")]
     public Guid FolderId { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet5"
-    )]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet5")]
     public Uri? FolderUrl { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet6"
-    )]
-    [Parameter(Mandatory = true, ParameterSetName = "ParamSet7")]
-    public Folder? Folder { get; private set; }
-
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet6"
-    )]
-    public string? FolderName { get; private set; }
-
-    [Parameter(Mandatory = false, ParameterSetName = "ParamSet7")]
-    [Parameter(Mandatory = false, ParameterSetName = "ParamSet8")]
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet6")]
     public SwitchParameter NoEnumerate { get; private set; }
 
     protected override void ProcessRecordCore()
@@ -114,24 +90,6 @@ public class GetFolderCommand : ClientObjectCmdlet<IFolderService>
             }
         }
         if (this.ParameterSetName == "ParamSet6")
-        {
-            _ = this.Folder ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Folder));
-            _ = this.FolderName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.FolderName));
-            this.Outputs.Add(this.Service.GetObject(this.Folder, this.FolderName));
-        }
-        if (this.ParameterSetName == "ParamSet7")
-        {
-            _ = this.Folder ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Folder));
-            if (this.NoEnumerate)
-            {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.Folder));
-            }
-            else
-            {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.Folder));
-            }
-        }
-        if (this.ParameterSetName == "ParamSet8")
         {
             if (this.NoEnumerate)
             {

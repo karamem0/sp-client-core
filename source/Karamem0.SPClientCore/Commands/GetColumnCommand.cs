@@ -34,61 +34,51 @@ public class GetColumnCommand : ClientObjectCmdlet<IColumnService>
     [Parameter(
         Mandatory = true,
         Position = 0,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet2"
     )]
     [Parameter(
         Mandatory = true,
         Position = 0,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet3"
     )]
-    [Parameter(Mandatory = true, ParameterSetName = "ParamSet4")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet4"
+    )]
     public ContentType? ContentType { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 0,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet5"
     )]
     [Parameter(
         Mandatory = true,
         Position = 0,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet6"
     )]
-    [Parameter(Mandatory = true, ParameterSetName = "ParamSet7")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet7"
+    )]
     public List? List { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet2"
-    )]
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet5"
-    )]
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet8"
-    )]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet5")]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet8")]
     public Guid ColumnId { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet3"
-    )]
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet6"
-    )]
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet9"
-    )]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet6")]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet9")]
     public string? ColumnTitle { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet4")]

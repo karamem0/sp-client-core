@@ -935,6 +935,21 @@ function Install-TestSite {
         $appSettings.Column18Name = $column18.Name
         $appSettings.Column18Title = $column18.Title
 
+        Write-Progress -Activity 'Creating columns...' -Status 'Test Column 19'
+        $column19 = Add-KshColumnLocation `
+            -AddColumnInternalNameHint `
+            -Name 'TestColumn19' `
+            -Title 'Test Column 19'
+        $null = Add-KshContentTypeColumn `
+            -ContentType $siteContentType1 `
+            -Column $column19
+        $null = Add-KshContentTypeColumn `
+            -ContentType $siteContentType7 `
+            -Column $column19
+        $appSettings.Column19Id = $column19.Id
+        $appSettings.Column19Name = $column19.Name
+        $appSettings.Column19Title = $column19.Title
+
         Write-Progress -Activity 'Creating list content types...' -Status 'Test Content Type 1'
         $listContentType1 = Add-KshContentType `
             -List $list1 `
@@ -1000,6 +1015,7 @@ function Install-TestSite {
                 'Test Column 16'
                 'Test Column 17'
                 'Test Column 18'
+                'Test Column 19'
             )
         $view1 = Set-KshView `
             -Identity $view1 `
@@ -1031,6 +1047,7 @@ function Install-TestSite {
                 'Test Column 16'
                 'Test Column 17'
                 'Test Column 18'
+                'Test Column 19'
             )
         $view2 = Set-KshView `
             -Identity $view2 `
@@ -1062,6 +1079,7 @@ function Install-TestSite {
                 'Test Column 16'
                 'Test Column 17'
                 'Test Column 18'
+                'Test Column 19'
             )
         $view3 = Set-KshView `
             -Identity $view3 `

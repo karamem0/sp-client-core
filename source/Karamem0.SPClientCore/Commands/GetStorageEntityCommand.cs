@@ -23,7 +23,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetStorageEntityCommand : ClientObjectCmdlet<IStorageEntityService>
 {
 
-    [Parameter(Mandatory = true, Position = 0)]
+    [Parameter(Mandatory = true)]
     public string? Key { get; private set; }
 
     protected override void ProcessRecordCore()

@@ -31,11 +31,7 @@ public class GetRecycleBinItemCommand : ClientObjectCmdlet<IRecycleBinItemServic
     )]
     public RecycleBinItem? Identity { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public Guid ItemId { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]

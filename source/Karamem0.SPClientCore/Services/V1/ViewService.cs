@@ -23,6 +23,14 @@ public interface IViewService
 
     View? GetObject(View viewObject);
 
+    string? CopyObject(
+        List listObject,
+        View viewObject,
+        string newName,
+        bool personalView,
+        string? url
+    );
+
     View? GetObject(List listObject, Guid viewId);
 
     View? GetObject(List listObject, string viewTitle);
@@ -55,6 +63,32 @@ public class ViewService(ClientContext clientContext) : ClientService<View>(clie
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<View>(requestPayload.GetActionId<ClientActionQuery>());
+    }
+
+    public string? CopyObject(
+        List listObject,
+        View viewObject,
+        string newName,
+        bool personalView,
+        string? url
+    )
+    {
+        var requestPayload = new ClientRequestPayload();
+        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));
+        var objectPath2 = requestPayload.Add(
+            objectPath1,
+            objectPath => ClientActionMethod.Create(
+                objectPath,
+                "SaveAsNewView",
+                requestPayload.CreateParameter(viewObject.Id),
+                requestPayload.CreateParameter(newName),
+                requestPayload.CreateParameter(personalView),
+                requestPayload.CreateParameter(url)
+            )
+        );
+        return this
+            .ClientContext.ProcessQuery(requestPayload)
+            .ToObject<string>(requestPayload.GetActionId<ClientActionMethod>());
     }
 
     public View? GetObject(List listObject, Guid viewId)

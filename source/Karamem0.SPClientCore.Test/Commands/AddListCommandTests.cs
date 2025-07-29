@@ -41,7 +41,7 @@ public class AddListCommandTests
                 ["Description"] = "Test List 0 Description",
                 ["QuickLaunchOption"] = "On",
                 ["ServerRelativeUrl"] = "Lists/TestList0",
-                ["Template"] = "DocumentLibrary",
+                ["Template"] = "GenericList",
                 ["Title"] = "Test List 0"
             }
         );

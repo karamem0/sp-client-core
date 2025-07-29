@@ -23,7 +23,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetViewColumnCommand : ClientObjectCmdlet<IViewColumnService>
 {
 
-    [Parameter(Mandatory = true, Position = 0)]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true
+    )]
     public View? View { get; private set; }
 
     [Parameter(Mandatory = false)]

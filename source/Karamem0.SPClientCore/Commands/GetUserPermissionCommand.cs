@@ -49,6 +49,7 @@ public class GetUserPermissionCommand : ClientObjectCmdlet<ISiteService, IUserPe
     [Parameter(
         Mandatory = true,
         Position = 1,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet2"
     )]
     public List? List { get; private set; }
@@ -56,6 +57,7 @@ public class GetUserPermissionCommand : ClientObjectCmdlet<ISiteService, IUserPe
     [Parameter(
         Mandatory = true,
         Position = 1,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet3"
     )]
     public ListItem? ListItem { get; private set; }

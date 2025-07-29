@@ -31,16 +31,13 @@ public class GetNavigationNodeCommand : ClientObjectCmdlet<INavigationNodeServic
     )]
     public NavigationNode? Identity { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public int NavigationNodeId { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 0,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet3"
     )]
     public NavigationNode? NavigationNode { get; private set; }

@@ -34,28 +34,22 @@ public class GetTermSetCommand : ClientObjectCmdlet<ITermSetService>
     [Parameter(
         Mandatory = true,
         Position = 0,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet2"
     )]
     [Parameter(
         Mandatory = true,
         Position = 0,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet3"
     )]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet4")]
     public TermGroup? TermGroup { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public Guid TermSetId { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet3"
-    )]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
     public string? TermSetName { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet4")]

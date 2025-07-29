@@ -167,8 +167,11 @@ SPClientCore は Microsoft Entra ID 2.0 認証をサポートします。
     - Remove-KshDocumentSetWelcomePageColumn
   - ドキュメント セット
     - Add-KshDocumentSet
+  - ドキュメント
+    - Add-KshDocument
   - ドライブ アイテム
     - Get-KshDriveItem
+    - Get-KshSubDriveItem
   - ドライブ
     - Get-KshDrive
   - 外部共有
@@ -194,6 +197,7 @@ SPClientCore は Microsoft Entra ID 2.0 認証をサポートします。
     - Add-KshFolderColoring
     - Copy-KshFolder
     - Get-KshFolder
+    - Get-KshSubFolder
     - Move-KshFolder
     - Remove-KshFolder
     - Set-KshFolder
@@ -208,6 +212,9 @@ SPClientCore は Microsoft Entra ID 2.0 認証をサポートします。
     - Remove-KshGroupMember
     - Set-KshGroup
     - Set-KshGroupOwner
+  - 強調表示
+    - Add-KshHighlight
+    - Remove-KshHighlight
   - 画像
     - Save-KshImage
   - いいね
@@ -251,6 +258,9 @@ SPClientCore は Microsoft Entra ID 2.0 認証をサポートします。
     - ConvertTo-KshUniversalTime
     - Get-KshRegionalSettings
     - Set-KshRegionalSettings
+    - Set-KshMultilingualEnabled
+    - Add-KshSupportedUILanguage
+    - Remove-KshSupportedUILanguage
   - アクセス許可
     - Add-KshRoleAssignment
     - Get-KshRoleAssignment
@@ -307,6 +317,7 @@ SPClientCore は Microsoft Entra ID 2.0 認証をサポートします。
     - Remove-KshView
     - Remove-KshViewColumn
     - Set-KshView
+    - Copy-KshView
   - Webhooks
     - Add-KshSubscription
     - Get-KshSubscription

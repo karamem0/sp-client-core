@@ -23,7 +23,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetGroupOwnerCommand : ClientObjectCmdlet<IGroupOwnerService>
 {
 
-    [Parameter(Mandatory = true, Position = 0)]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true
+    )]
     public Group? Group { get; private set; }
 
     protected override void ProcessRecordCore()

@@ -34,22 +34,15 @@ public class GetSiteCollectionAppCatalogCommand : ClientObjectCmdlet<ISiteCollec
     [Parameter(
         Mandatory = true,
         Position = 0,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet2"
     )]
     public SiteCollection? SiteCollection { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet3"
-    )]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
     public Uri? SiteCollectionUrl { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet4"
-    )]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet4")]
     public Guid SiteCollectionId { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]

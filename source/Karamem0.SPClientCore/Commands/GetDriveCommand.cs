@@ -36,15 +36,12 @@ public class GetDriveCommand : ClientObjectCmdlet<IDriveService, ISiteCollection
     [Parameter(
         Mandatory = true,
         Position = 0,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet2"
     )]
     public List? List { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet3"
-    )]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
     public string? DriveId { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet4")]

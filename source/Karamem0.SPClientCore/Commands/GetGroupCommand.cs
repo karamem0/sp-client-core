@@ -34,6 +34,7 @@ public class GetGroupCommand : ClientObjectCmdlet<IGroupService>
     [Parameter(
         Mandatory = true,
         Position = 0,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet2"
     )]
     public int GroupId { get; private set; }
@@ -41,6 +42,7 @@ public class GetGroupCommand : ClientObjectCmdlet<IGroupService>
     [Parameter(
         Mandatory = true,
         Position = 0,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet3"
     )]
     public string? GroupTitle { get; private set; }

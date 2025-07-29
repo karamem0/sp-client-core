@@ -34,28 +34,27 @@ public class GetViewCommand : ClientObjectCmdlet<IViewService>
     [Parameter(
         Mandatory = true,
         Position = 0,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet2"
     )]
     [Parameter(
         Mandatory = true,
         Position = 0,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet3"
     )]
-    [Parameter(Mandatory = true, ParameterSetName = "ParamSet4")]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet4"
+    )]
     public List? List { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public Guid ViewId { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet3"
-    )]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
     public string? ViewTitle { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet4")]

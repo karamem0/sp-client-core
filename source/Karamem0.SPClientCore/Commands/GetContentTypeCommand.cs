@@ -34,21 +34,19 @@ public class GetContentTypeCommand : ClientObjectCmdlet<IContentTypeService>
     [Parameter(
         Mandatory = true,
         Position = 0,
-        ParameterSetName = "ParamSet2"
-    )]
-    [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
-    public List? List { get; private set; }
-
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet2"
     )]
     [Parameter(
         Mandatory = true,
         Position = 0,
-        ParameterSetName = "ParamSet4"
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet3"
     )]
+    public List? List { get; private set; }
+
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet4")]
     public string? ContentTypeId { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]

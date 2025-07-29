@@ -78,6 +78,7 @@
       - `Column16` (地理位置情報)
       - `Column17` (管理されたメタデータ)
       - `Column18` (画像)
+      - `Column19` (Location)
     - `/TestList2` (ドキュメント ライブラリ)
     - `/TestList3` (ドキュメント ライブラリ)
 

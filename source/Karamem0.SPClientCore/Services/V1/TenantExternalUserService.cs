@@ -20,11 +20,11 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantExternalUserService
 {
 
-    IEnumerable<ExternalUser>? GetObjectEnumerable(string filter, SortOrder sortOrder);
+    IEnumerable<ExternalUser>? GetObjectEnumerable(string? filter, SortOrder sortOrder);
 
     IEnumerable<ExternalUser>? GetObjectEnumerable(
         Uri siteCollectionUrl,
-        string filter,
+        string? filter,
         SortOrder sortOrder
     );
 
@@ -35,7 +35,7 @@ public interface ITenantExternalUserService
 public class TenantExternalUserService(ClientContext clientContext) : ClientService(clientContext), ITenantExternalUserService
 {
 
-    public IEnumerable<ExternalUser>? GetObjectEnumerable(string filter, SortOrder sortOrder)
+    public IEnumerable<ExternalUser>? GetObjectEnumerable(string? filter, SortOrder sortOrder)
     {
         var position = 0;
         var totalCount = 0;
@@ -73,7 +73,7 @@ public class TenantExternalUserService(ClientContext clientContext) : ClientServ
 
     public IEnumerable<ExternalUser>? GetObjectEnumerable(
         Uri siteCollectionUrl,
-        string filter,
+        string? filter,
         SortOrder sortOrder
     )
     {

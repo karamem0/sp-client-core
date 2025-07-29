@@ -34,20 +34,18 @@ public class GetCommentCommand : ClientObjectCmdlet<ICommentService>
     [Parameter(
         Mandatory = true,
         Position = 0,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet2"
     )]
     [Parameter(
         Mandatory = true,
         Position = 0,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet3"
     )]
     public ListItem? ListItem { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public int CommentId { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]

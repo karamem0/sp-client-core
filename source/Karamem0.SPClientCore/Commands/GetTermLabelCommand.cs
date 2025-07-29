@@ -34,20 +34,18 @@ public class GetTermLabelCommand : ClientObjectCmdlet<ITermLabelService>
     [Parameter(
         Mandatory = true,
         Position = 0,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet2"
     )]
     [Parameter(
         Mandatory = true,
         Position = 0,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet3"
     )]
     public Term? Term { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet2"
-    )]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public string? LabelName { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]

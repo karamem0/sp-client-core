@@ -23,7 +23,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetDocumentSetWelcomePageColumnCommand : ClientObjectCmdlet<IDocumentSetWelcomePageColumnService>
 {
 
-    [Parameter(Mandatory = true, Position = 0)]
+    [Parameter(
+        Mandatory = true,
+        Position = 0,
+        ValueFromPipeline = true
+    )]
     public ContentType? ContentType { get; private set; }
 
     [Parameter(Mandatory = false)]

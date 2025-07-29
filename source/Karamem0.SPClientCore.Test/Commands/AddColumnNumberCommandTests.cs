@@ -35,10 +35,11 @@ public class AddColumnNumberCommandTests
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
-            "Get-KshList",
+            "Add-KshList",
             new Dictionary<string, object>()
             {
-                ["ListId"] = context.AppSettings["List1Id"]
+                ["Template"] = "GenericList",
+                ["Title"] = "Test List 0"
             }
         );
         var result2 = context.Runspace.InvokeCommand<ColumnNumber>(
@@ -86,6 +87,13 @@ public class AddColumnNumberCommandTests
             new Dictionary<string, object>()
             {
                 ["Identity"] = result2[0]
+            }
+        );
+        _ = context.Runspace.InvokeCommand<Guid>(
+            "Remove-KshList",
+            new Dictionary<string, object>()
+            {
+                ["Identity"] = result1[0]
             }
         );
         var actual = result2[0];

@@ -167,8 +167,11 @@ If you enable MFA, you can log in with a web browser of another device. If you d
     - Remove-KshDocumentSetWelcomePageColumn
   - Document Sets
     - Add-KshDocumentSet
+  - Documents
+    - Add-KshDocument
   - Drive Items
     - Get-KshDriveItem
+    - Get-KshSubDriveItem
   - Drives
     - Get-KshDrive
   - External Sharing
@@ -194,6 +197,7 @@ If you enable MFA, you can log in with a web browser of another device. If you d
     - Add-KshFolderColoring
     - Copy-KshFolder
     - Get-KshFolder
+    - Get-KshSubFolder
     - Move-KshFolder
     - Remove-KshFolder
     - Set-KshFolder
@@ -208,6 +212,9 @@ If you enable MFA, you can log in with a web browser of another device. If you d
     - Remove-KshGroupMember
     - Set-KshGroup
     - Set-KshGroupOwner
+  - Highlights
+    - Add-KshHighlight
+    - Remove-KshHighlight
   - Images
     - Save-KshImage
   - Likes
@@ -251,6 +258,9 @@ If you enable MFA, you can log in with a web browser of another device. If you d
     - ConvertTo-KshUniversalTime
     - Get-KshRegionalSettings
     - Set-KshRegionalSettings
+    - Set-KshMultilingualEnabled
+    - Add-KshSupportedUILanguage
+    - Remove-KshSupportedUILanguage
   - Role Assignments
     - Add-KshRoleAssignment
     - Get-KshRoleAssignment
@@ -307,6 +317,7 @@ If you enable MFA, you can log in with a web browser of another device. If you d
     - Remove-KshView
     - Remove-KshViewColumn
     - Set-KshView
+    - Copy-KshView
   - Webhooks
     - Add-KshSubscription
     - Get-KshSubscription

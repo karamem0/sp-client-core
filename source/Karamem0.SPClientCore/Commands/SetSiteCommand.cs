@@ -85,6 +85,9 @@ public class SetSiteCommand : ClientObjectCmdlet<ISiteService>
     public bool HorizontalQuickLaunch { get; private set; }
 
     [Parameter(Mandatory = false)]
+    public bool IsMultilingual { get; private set; }
+
+    [Parameter(Mandatory = false)]
     public LogoAlignment LogoAlignment { get; private set; }
 
     [Parameter(Mandatory = false)]
@@ -152,11 +155,21 @@ public class SetSiteCommand : ClientObjectCmdlet<ISiteService>
 
     protected override void ProcessRecordCore()
     {
-        _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-        this.Service.SetObject(this.Identity, this.MyInvocation.BoundParameters);
-        if (this.PassThru)
+        if (this.Identity is null)
         {
-            this.Outputs.Add(this.Service.GetObject(this.Identity));
+            this.Service.SetObject(this.MyInvocation.BoundParameters);
+            if (this.PassThru)
+            {
+                this.Outputs.Add(this.Service.GetObject());
+            }
+        }
+        else
+        { 
+            this.Service.SetObject(this.Identity, this.MyInvocation.BoundParameters);
+            if (this.PassThru)
+            {
+                this.Outputs.Add(this.Service.GetObject(this.Identity));
+            }
         }
     }
 

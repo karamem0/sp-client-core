@@ -56,51 +56,49 @@ public class GetListItemCommand : ClientObjectCmdlet<IListItemService>
     )]
     public DriveItem? DriveItem { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ParameterSetName = "ParamSet5"
-    )]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet5")]
     public Uri? ItemUrl { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 0,
+        ValueFromPipeline = true,
         ParameterSetName = "ParamSet6"
     )]
     [Parameter(
         Mandatory = true,
         Position = 0,
-        ParameterSetName = "ParamSet7"
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet8"
     )]
     [Parameter(
         Mandatory = true,
         Position = 0,
-        ParameterSetName = "ParamSet8"
+        ValueFromPipeline = true,
+        ParameterSetName = "ParamSet9"
     )]
     public List? List { get; private set; }
 
-    [Parameter(
-        Mandatory = true,
-        Position = 1,
-        ParameterSetName = "ParamSet6"
-    )]
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet6")]
     public int ItemId { get; private set; }
 
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet7")]
+    public Guid ItemUniqueId { get; private set; }
+
+    [Parameter(Mandatory = true, ParameterSetName = "ParamSet8")]
     public SwitchParameter All { get; private set; }
 
-    [Parameter(Mandatory = false, ParameterSetName = "ParamSet8")]
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet9")]
     public Uri? FolderServerRelativeUrl { get; private set; }
 
-    [Parameter(Mandatory = false, ParameterSetName = "ParamSet8")]
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet9")]
     public ListItemCollectionPosition? ListItemCollectionPosition { get; private set; }
 
-    [Parameter(Mandatory = false, ParameterSetName = "ParamSet8")]
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet9")]
     public string? ViewXml { get; private set; }
 
-    [Parameter(Mandatory = false, ParameterSetName = "ParamSet7")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet8")]
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet9")]
     public SwitchParameter NoEnumerate { get; private set; }
 
     protected override void ProcessRecordCore()
@@ -137,6 +135,11 @@ public class GetListItemCommand : ClientObjectCmdlet<IListItemService>
         }
         if (this.ParameterSetName == "ParamSet7")
         {
+            _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
+            this.Outputs.Add(this.Service.GetObject(this.List, this.ItemUniqueId));
+        }
+        if (this.ParameterSetName == "ParamSet8")
+        {
             this.ValidateSwitchParameter(nameof(this.All));
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
             if (this.NoEnumerate)
@@ -148,7 +151,7 @@ public class GetListItemCommand : ClientObjectCmdlet<IListItemService>
                 this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.List));
             }
         }
-        if (this.ParameterSetName == "ParamSet8")
+        if (this.ParameterSetName == "ParamSet9")
         {
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
             if (this.NoEnumerate)

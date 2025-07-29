@@ -43,6 +43,9 @@ public class SetViewCommand : ClientObjectCmdlet<IViewService>
     public string? CalendarViewStyles { get; private set; }
 
     [Parameter(Mandatory = false)]
+    public string? ColumnWidth { get; private set; }
+
+    [Parameter(Mandatory = false)]
     public ContentTypeId? ContentTypeId { get; private set; }
 
     [Parameter(Mandatory = false)]
