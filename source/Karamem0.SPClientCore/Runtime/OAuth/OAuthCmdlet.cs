@@ -7,10 +7,6 @@
 //
 
 using Karamem0.SharePoint.PowerShell.Runtime.OAuth;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Runtime.Commands;
 

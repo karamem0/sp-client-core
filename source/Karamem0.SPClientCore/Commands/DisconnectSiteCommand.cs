@@ -12,15 +12,11 @@ using Karamem0.SharePoint.PowerShell.Runtime.OAuth;
 using Karamem0.SharePoint.PowerShell.Runtime.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.JsonWebTokens;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Management.Automation;
-using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
-[Cmdlet(VerbsCommunications.Disconnect, "KshSite")]
+[Cmdlet(VerbsCommunications.Disconnect, "Site")]
 [OutputType(typeof(void))]
 public class DisconnectSiteCommand : ClientObjectCmdlet
 {

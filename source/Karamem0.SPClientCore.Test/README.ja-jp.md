@@ -1,4 +1,4 @@
-# Karamem0.SPClientCore.Tests
+# Karamem0.SPClientCore.Test
 
 ## テスト環境のセットアップ
 
@@ -49,7 +49,7 @@
         ExternalUserName = "someone@example.com"
     }
     $settings = Install-TestSite @params
-    $settings | ConvertTo-Json -Depth 16 | Out-File "./bin/Debug/net8.0/SPClientCore.Test.config.json"
+    $settings | ConvertTo-Json -Depth 16 | Out-File "./bin/Debug/net9.0/SPClientCore.Test.config.json"
     ```
 
 1. 次のコンポーネントが作成されます。

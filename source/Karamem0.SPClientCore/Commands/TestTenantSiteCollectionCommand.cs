@@ -8,15 +8,11 @@
 
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Management.Automation;
-using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
-[Cmdlet(VerbsDiagnostic.Test, "KshTenantSiteCollection")]
+[Cmdlet(VerbsDiagnostic.Test, "TenantSiteCollection")]
 [OutputType(typeof(bool))]
 public class TestTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantService>
 {

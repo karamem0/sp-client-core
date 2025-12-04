@@ -11,15 +11,36 @@ permissions:
 jobs:
   build-source:
     name: Build source
-    uses: ./.github/workflows/build-source.yml
-    secrets: inherit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repos
+        uses: actions/checkout@v4
+      - name: Build source
+        uses: ./.github/actions/build-source
+        env:
+          BUILD_VERSION: ${{vars.BUILD_VERSION}}
+          PWSH_VERSION: ${{vars.PWSH_VERSION}}
+          TELEMETRY_CONNECTION_STRING: ${{vars.TELEMETRY_CONNECTION_STRING}}
   deploy-to-powershell-gallery:
     name: Deploy to PowerShell Gallery
+    runs-on: ubuntu-latest
     needs: build-source
-    uses: ./.github/workflows/deploy-to-powershell-gallery.yml
-    secrets: inherit
+    steps:
+      - name: Checkout repos
+        uses: actions/checkout@v4
+      - name: Deploy to PowerShell Gallery
+        uses: ./.github/actions/deploy-to-powershell-gallery
+        env:
+          NUGET_API_KEY: ${{secrets.NUGET_API_KEY}}
+          PWSH_VERSION: ${{vars.PWSH_VERSION}}
   deploy-to-github-release:
     name: Deploy to GitHub Release
+    runs-on: ubuntu-latest
     needs: build-source
-    uses: ./.github/workflows/deploy-to-github-release.yml
-    secrets: inherit
+    steps:
+      - name: Checkout repos
+        uses: actions/checkout@v4
+      - name: Deploy to GitHub Release
+        uses: ./.github/actions/deploy-to-github-release
+        env:
+          RELEASE_FILE_NAME: SPClientCore_${{vars.BUILD_VERSION}}.zip

@@ -1,0 +1,31 @@
+{
+  "name": "Ubuntu",
+  "image": "mcr.microsoft.com/devcontainers/base:noble",
+  "features": {
+    "ghcr.io/devcontainers/features/dotnet:2": {
+      "version": "9.0"
+    },
+    "ghcr.io/devcontainers/features/git-lfs:1": {},
+    "ghcr.io/devcontainers/features/powershell:1": {
+      "version": "7.5.4"
+    }
+  },
+  "postCreateCommand": {
+    "dotnet-outdated-tool": "dotnet tool install -g dotnet-outdated-tool",
+    "jetbrains.resharper.globaltools": "dotnet tool install -g JetBrains.ReSharper.GlobalTools"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "editorconfig.editorconfig",
+        "github.vscode-github-actions",
+        "ms-dotnettools.csdevkit",
+        "redhat.vscode-yaml",
+        "redhat.vscode-xml"
+      ],
+      "settings": {
+        "redhat.telemetry.enabled": false
+      }
+    }
+  }
+}

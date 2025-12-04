@@ -8,10 +8,6 @@
 
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
@@ -87,6 +83,12 @@ public class SiteCollection : ClientObject
     public virtual bool IsHubSite { get; protected set; }
 
     [JsonProperty()]
+    public virtual bool IsRestrictedAccessControlPolicyEnforcedOnSite { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool IsScheduledForRemoval { get; protected set; }
+
+    [JsonProperty()]
     public virtual string? LockIssue { get; protected set; }
 
     [JsonProperty()]
@@ -114,6 +116,9 @@ public class SiteCollection : ClientObject
     public virtual int SandboxedCodeActivationCapability { get; protected set; }
 
     [JsonProperty()]
+    public virtual string? ScheduledDateForRemoval { get; protected set; }
+
+    [JsonProperty()]
     public virtual Guid SensitivityLabel { get; protected set; }
 
     [JsonProperty()]
@@ -136,6 +141,9 @@ public class SiteCollection : ClientObject
 
     [JsonProperty()]
     public virtual bool UIVersionConfigurationEnabled { get; protected set; }
+
+    [JsonProperty()]
+    public virtual Uri? UnifiedDomainUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual DateTime UpgradeReminderDate { get; protected set; }

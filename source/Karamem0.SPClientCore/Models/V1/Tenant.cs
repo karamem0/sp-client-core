@@ -8,10 +8,6 @@
 
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
@@ -42,19 +38,19 @@ public class Tenant : ClientObject
     public virtual string? AIBuilderSiteListFileName { get; protected set; }
 
     [JsonProperty()]
-    public virtual Guid AllOrganizationSecurityGroupId { get; protected set; }
+    public virtual IReadOnlyCollection<Guid>? AllowedDomainListForSyncClient { get; protected set; }
 
     [JsonProperty()]
     public virtual SharingState AllowAnonymousMeetingParticipantsToAccessWhiteboards { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool AllowClassicPublishingSiteCreation { get; protected set; }
 
     [JsonProperty()]
     public virtual bool AllowCommentsTextOnEmailEnabled { get; protected set; }
 
     [JsonProperty()]
     public virtual bool AllowDownloadingNonWebViewableFiles { get; protected set; }
-
-    [JsonProperty()]
-    public virtual IReadOnlyCollection<Guid>? AllowedDomainListForSyncClient { get; protected set; }
 
     [JsonProperty()]
     public virtual bool AllowEditing { get; protected set; }
@@ -66,16 +62,22 @@ public class Tenant : ClientObject
     public virtual bool AllowGuestUserShareToUsersNotInSiteCollection { get; protected set; }
 
     [JsonProperty()]
+    public virtual bool AllowLegacyAuthProtocolsEnabledSetting { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool AllowLegacyBrowserAuthProtocolsEnabledSetting { get; protected set; }
+
+    [JsonProperty()]
     public virtual bool AllowLimitedAccessOnUnmanagedDevices { get; protected set; }
 
     [JsonProperty()]
     public virtual bool AllowOverrideForBlockUserInfoVisibility { get; protected set; }
 
-    [JsonProperty("AllowSelectSecurityGroupsInSPSitesList")]
-    public virtual bool AllowSelectSecurityGroupsInSharePointSitesList { get; protected set; }
-
     [JsonProperty("AllowSelectSGsInODBListInTenant")]
     public virtual IReadOnlyCollection<string>? AllowSelectSecurityGroupsInOneDriveListInTenant { get; protected set; }
+
+    [JsonProperty("AllowSelectSecurityGroupsInSPSitesList")]
+    public virtual bool AllowSelectSecurityGroupsInSharePointSitesList { get; protected set; }
 
     [JsonProperty()]
     public virtual bool AllowSensitivityLabelOnRecords { get; protected set; }
@@ -87,19 +89,25 @@ public class Tenant : ClientObject
     public virtual bool AllowWebPropertyBagUpdateWhenDenyAddAndCustomizePagesIsEnabled { get; protected set; }
 
     [JsonProperty()]
+    public virtual Guid AllOrganizationSecurityGroupId { get; protected set; }
+
+    [JsonProperty()]
     public virtual string? AmplifyAdminSettings { get; protected set; }
 
     [JsonProperty()]
     public virtual bool AnyoneLinkTrackUsers { get; protected set; }
 
     [JsonProperty()]
+    public virtual IReadOnlyCollection<string>? AppAccessInformationBarriersAllowList { get; protected set; }
+
+    [JsonProperty()]
     public virtual bool AppBypassInformationBarriers { get; protected set; }
 
     [JsonProperty()]
-    public virtual bool ApplyAppEnforcedRestrictionsToAdHocRecipients { get; protected set; }
+    public virtual bool AppOnlyBypassPeoplePickerPolicies { get; protected set; }
 
     [JsonProperty()]
-    public virtual bool AppOnlyBypassPeoplePickerPolicies { get; protected set; }
+    public virtual bool ApplyAppEnforcedRestrictionsToAdHocRecipients { get; protected set; }
 
     [JsonProperty()]
     public virtual Uri? ArchiveRedirectUrl { get; protected set; }
@@ -168,6 +176,9 @@ public class Tenant : ClientObject
     public virtual bool BusinessConnectivityServiceDisabled { get; protected set; }
 
     [JsonProperty()]
+    public virtual bool ClassicPagesRestrictMode { get; protected set; }
+
+    [JsonProperty()]
     public virtual bool CommentsOnFilesDisabled { get; protected set; }
 
     [JsonProperty()]
@@ -225,7 +236,10 @@ public class Tenant : ClientObject
     public virtual SharingCapabilities CoreSharingCapability { get; protected set; }
 
     [JsonProperty()]
-    public virtual Uri? CustomizedExternalSharingServiceUrl { get; protected set; }
+    public virtual bool CustomScriptsRestrictMode { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string? CustomizedExternalSharingServiceUrl { get; protected set; }
 
     [JsonProperty()]
     public virtual bool DataverseUsageConsentEnabled { get; protected set; }
@@ -243,7 +257,13 @@ public class Tenant : ClientObject
     public virtual SharingLinkType DefaultSharingLinkType { get; protected set; }
 
     [JsonProperty()]
+    public virtual bool DelayContentSecurityPolicyEnforcement { get; protected set; }
+
+    [JsonProperty()]
     public virtual bool DelayDenyAddAndCustomizePagesEnforcement { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool DelayDenyAddAndCustomizePagesEnforcementOnClassicPublishingSites { get; protected set; }
 
     [JsonProperty()]
     public virtual bool DelegateRestrictedAccessControlConfiguration { get; protected set; }
@@ -251,14 +271,20 @@ public class Tenant : ClientObject
     [JsonProperty()]
     public virtual bool DelegateRestrictedContentDiscoveryConfiguration { get; protected set; }
 
-    [JsonProperty("DenySelectSecurityGroupsInSPSitesList")]
-    public virtual bool DenySelectSecurityGroupsInSharePointSitesList { get; protected set; }
-
     [JsonProperty("DenySelectSGsInODBListInTenant")]
     public virtual bool DenySelectSecurityGroupsInOneDriveListInTenant { get; protected set; }
 
+    [JsonProperty("DenySelectSecurityGroupsInSPSitesList")]
+    public virtual bool DenySelectSecurityGroupsInSharePointSitesList { get; protected set; }
+
     [JsonProperty()]
     public virtual bool DisableAddToOneDrive { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool DisableBackToClassic { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool DisableCustomAppAuthentication { get; protected set; }
 
     [JsonProperty()]
     public virtual bool DisabledAdaptiveCardExtensionIds { get; protected set; }
@@ -268,12 +294,6 @@ public class Tenant : ClientObject
 
     [JsonProperty()]
     public virtual IReadOnlyCollection<Guid>? DisabledWebPartIds { get; protected set; }
-
-    [JsonProperty()]
-    public virtual bool DisableBackToClassic { get; protected set; }
-
-    [JsonProperty()]
-    public virtual bool DisableCustomAppAuthentication { get; protected set; }
 
     [JsonProperty()]
     public virtual bool DisableDocumentLibraryDefaultLabeling { get; protected set; }
@@ -366,7 +386,13 @@ public class Tenant : ClientObject
     public virtual bool EnableRestrictedAccessControl { get; protected set; }
 
     [JsonProperty()]
+    public virtual bool EnableSensitivityLabelForOneNote { get; protected set; }
+
+    [JsonProperty()]
     public virtual bool EnableSensitivityLabelForPDF { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool EnableSensitivityLabelForVideoFiles { get; protected set; }
 
     [JsonProperty()]
     public virtual bool EnableSiteArchive { get; protected set; }
@@ -390,28 +416,28 @@ public class Tenant : ClientObject
     public virtual IReadOnlyCollection<string>? ESignatureThirdPartyProviderInfoList { get; protected set; }
 
     [JsonProperty()]
-    public virtual bool ExemptNativeUsersFromTenantLevelRestricedAccessControl { get; protected set; }
-
-    [JsonProperty()]
-    public virtual bool ExtendPermissionsToUnprotectedFiles { get; protected set; }
-
-    [JsonProperty()]
     public virtual IReadOnlyCollection<Guid>? ExcludedBlockDownloadGroupIds { get; protected set; }
 
     [JsonProperty()]
     public virtual IReadOnlyCollection<string>? ExcludedFileExtensionsForSyncClient { get; protected set; }
 
     [JsonProperty()]
+    public virtual bool ExemptNativeUsersFromTenantLevelRestricedAccessControl { get; protected set; }
+
+    [JsonProperty()]
     public virtual int ExpireVersionsAfterDays { get; protected set; }
 
     [JsonProperty()]
-    public virtual bool ExternalServicesEnabled { get; protected set; }
+    public virtual bool ExtendPermissionsToUnprotectedFiles { get; protected set; }
+
+    [JsonProperty()]
+    public virtual int ExternalUserExpireInDays { get; protected set; }
 
     [JsonProperty()]
     public virtual bool ExternalUserExpirationRequired { get; protected set; }
 
     [JsonProperty()]
-    public virtual int ExternalUserExpireInDays { get; protected set; }
+    public virtual bool ExternalServicesEnabled { get; protected set; }
 
     [JsonProperty()]
     public virtual AnonymousLinkType FileAnonymousLinkType { get; protected set; }
@@ -525,13 +551,22 @@ public class Tenant : ClientObject
     public virtual bool IsWhiteboardFluidEnabled { get; protected set; }
 
     [JsonProperty()]
+    public virtual bool KnowledgeAgentEnabled { get; protected set; }
+
+    [JsonProperty()]
+    public virtual int KnowledgeAgentScopeMode { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string? KnowledgeAgentSiteListFileName { get; protected set; }
+
+    [JsonProperty()]
     public virtual string? LabelMismatchEmailHelpLink { get; protected set; }
 
     [JsonProperty()]
-    public virtual bool LegacyBrowserAuthProtocolsEnabled { get; protected set; }
+    public virtual bool LegacyAuthProtocolsEnabled { get; protected set; }
 
     [JsonProperty()]
-    public virtual bool LegacyAuthProtocolsEnabled { get; protected set; }
+    public virtual bool LegacyBrowserAuthProtocolsEnabled { get; protected set; }
 
     [JsonProperty()]
     public virtual LimitedAccessFileType LimitedAccessFileType { get; protected set; }
@@ -540,16 +575,16 @@ public class Tenant : ClientObject
     public virtual bool MachineLearningCaptureEnabled { get; protected set; }
 
     [JsonProperty()]
-    public virtual bool MarkAllFilesAsSensitiveByDefault { get; protected set; }
-
-    [JsonProperty()]
-    public virtual bool MassDeleteNotificationDisabled { get; protected set; }
-
-    [JsonProperty()]
     public virtual int MajorVersionLimit { get; protected set; }
 
     [JsonProperty()]
+    public virtual bool MarkAllFilesAsSensitiveByDefault { get; protected set; }
+
+    [JsonProperty()]
     public virtual SensitiveByDefaultState MarkNewFilesSensitiveByDefault { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool MassDeleteNotificationDisabled { get; protected set; }
 
     [JsonProperty()]
     public virtual MediaTranscriptionPolicyType MediaTranscription { get; protected set; }
@@ -590,8 +625,8 @@ public class Tenant : ClientObject
     [JsonProperty()]
     public virtual int OCRModeForComplianceSites { get; protected set; }
 
-    [JsonProperty("OfficeClientADALDisabled")]
-    public virtual bool OfficeClientAdalDisabled { get; protected set; }
+    [JsonProperty()]
+    public virtual bool OfficeClientADALDisabled { get; protected set; }
 
     [JsonProperty("ODBAccessRequests")]
     public virtual SharingState OneDriveAccessRequests { get; protected set; }
@@ -684,6 +719,9 @@ public class Tenant : ClientObject
     public virtual IReadOnlyCollection<string>? PublicCdnOrigins { get; protected set; }
 
     [JsonProperty()]
+    public virtual string? ReactivationCost { get; protected set; }
+
+    [JsonProperty()]
     public virtual int RecycleBinRetentionPeriod { get; protected set; }
 
     [JsonProperty()]
@@ -699,6 +737,12 @@ public class Tenant : ClientObject
     public virtual int RequireAnonymousLinksExpireInDays { get; protected set; }
 
     [JsonProperty()]
+    public virtual double ResourceQuota { get; protected set; }
+
+    [JsonProperty()]
+    public virtual double ResourceQuotaAllocated { get; protected set; }
+
+    [JsonProperty()]
     public virtual string? RestrictedAccessControlForOneDriveErrorHelpLink { get; protected set; }
 
     [JsonProperty()]
@@ -711,10 +755,13 @@ public class Tenant : ClientObject
     public virtual bool RestrictedSharePointLicense { get; protected set; }
 
     [JsonProperty()]
-    public virtual double ResourceQuota { get; protected set; }
+    public virtual IReadOnlyCollection<string>? RestrictExternalSharing { get; protected set; }
 
     [JsonProperty()]
-    public virtual double ResourceQuotaAllocated { get; protected set; }
+    public virtual bool RestrictExternalSharingForAgents { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool RestrictResourceAccountAccess { get; protected set; }
 
     [JsonProperty()]
     public virtual Uri? RootSiteUrl { get; protected set; }
@@ -722,8 +769,8 @@ public class Tenant : ClientObject
     [JsonProperty()]
     public virtual bool SelfServiceSiteCreationDisabled { get; protected set; }
 
-    [JsonProperty("SearchResolveExactEmailOrUPN")]
-    public virtual bool SearchResolveExactEmailOrUpn { get; protected set; }
+    [JsonProperty()]
+    public virtual bool SharePointAddInsBlocked { get; protected set; }
 
     [JsonProperty()]
     public virtual bool SharePointAddInsDisabled { get; protected set; }
@@ -749,17 +796,17 @@ public class Tenant : ClientObject
     [JsonProperty()]
     public virtual bool ShowEveryoneExceptExternalUsersClaim { get; protected set; }
 
-    [JsonProperty()]
-    public virtual bool ShowOpenInDesktopOptionForSyncedFiles { get; protected set; }
-
     [JsonProperty("ShowNGSCDialogForSyncOnODB")]
     public virtual bool ShowNextGenerationSyncClientDialogForSyncOnOneDrive { get; protected set; }
 
     [JsonProperty()]
-    public virtual bool ShowPeoplePickerSuggestionsForGuestUsers { get; protected set; }
+    public virtual bool ShowOpenInDesktopOptionForSyncedFiles { get; protected set; }
 
     [JsonProperty("ShowPeoplePickerGroupSuggestionsForIB")]
     public virtual bool ShowPeoplePickerGroupSuggestionsForInformationBarriers { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool ShowPeoplePickerSuggestionsForGuestUsers { get; protected set; }
 
     [JsonProperty()]
     public virtual string? SignInAccelerationDomain { get; protected set; }
@@ -768,19 +815,34 @@ public class Tenant : ClientObject
     public virtual bool SiteOwnerManageLegacyServicePrincipalEnabled { get; protected set; }
 
     [JsonProperty()]
+    public virtual bool SiteOwnersCanAccessMissingContent { get; protected set; }
+
+    [JsonProperty()]
     public virtual bool SocialBarOnSitePagesDisabled { get; protected set; }
 
     [JsonProperty()]
     public virtual SpecialCharactersState SpecialCharactersStateInFileFolderNames { get; protected set; }
 
     [JsonProperty()]
+    public virtual string? SPJitDlpPolicyData { get; protected set; }
+
+    [JsonProperty()]
     public virtual Uri? StartASiteFormUrl { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool StopAlerts { get; protected set; }
 
     [JsonProperty()]
     public virtual bool StopNew2010Workflows { get; protected set; }
 
     [JsonProperty()]
     public virtual bool StopNew2013Workflows { get; protected set; }
+
+    [JsonProperty()]
+    public virtual long StorageQuota { get; protected set; }
+
+    [JsonProperty()]
+    public virtual long StorageQuotaAllocated { get; protected set; }
 
     [JsonProperty()]
     public virtual int StreamLaunchConfig { get; protected set; }
@@ -790,12 +852,6 @@ public class Tenant : ClientObject
 
     [JsonProperty()]
     public virtual int StreamLaunchConfigUpdateCount { get; protected set; }
-
-    [JsonProperty()]
-    public virtual long StorageQuota { get; protected set; }
-
-    [JsonProperty()]
-    public virtual long StorageQuotaAllocated { get; protected set; }
 
     [JsonProperty()]
     public virtual bool SyncPrivacyProfileProperties { get; protected set; }
@@ -818,17 +874,23 @@ public class Tenant : ClientObject
     [JsonProperty()]
     public virtual string? TranslationSiteListFileName { get; protected set; }
 
-    [JsonProperty("UnlicensedOdbSyntexBillingEnabled")]
-    public virtual bool UnlicensedOneDriveSyntexBillingEnabled { get; protected set; }
-
     [JsonProperty()]
     public virtual bool UniversalAnnotationDisabled { get; protected set; }
+
+    [JsonProperty()]
+    public virtual ClientObject? UnlicensedOneDriveForBusinessTenantMetricsData { get; protected set; }
+
+    [JsonProperty("UnlicensedOdbSyntexBillingEnabled")]
+    public virtual bool UnlicensedOneDriveSyntexBillingEnabled { get; protected set; }
 
     [JsonProperty()]
     public virtual bool UseFindPeopleInPeoplePicker { get; protected set; }
 
     [JsonProperty()]
     public virtual bool UsePersistentCookiesForExplorerView { get; protected set; }
+
+    [JsonProperty()]
+    public virtual IReadOnlyCollection<string>? VersionPolicyFileTypeOverride { get; protected set; }
 
     [JsonProperty()]
     public virtual bool ViewersCanCommentOnMediaDisabled { get; protected set; }

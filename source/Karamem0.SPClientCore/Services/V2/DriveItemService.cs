@@ -13,10 +13,6 @@ using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.Services;
 using Karamem0.SharePoint.PowerShell.Services.V2.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Services.V2;
 
@@ -94,6 +90,7 @@ public class DriveItemService(ClientContext clientContext) : ClientService(clien
         _ = objectIdentity ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
         var items = objectIdentity
             .Split(':')
+            .OfType<string>()
             .Reverse()
             .ToArray();
         var requestUrl = this

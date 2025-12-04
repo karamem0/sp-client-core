@@ -9,15 +9,11 @@
 using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Management.Automation;
-using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
-[Cmdlet(VerbsCommon.Add, "KshStorageEntity")]
+[Cmdlet(VerbsCommon.Add, "StorageEntity")]
 [OutputType(typeof(void))]
 public class AddStorageEntityCommand : ClientObjectCmdlet<IStorageEntityService>
 {

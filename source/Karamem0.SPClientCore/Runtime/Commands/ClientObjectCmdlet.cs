@@ -10,12 +10,8 @@ using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.ApplicationInsights;
 using Karamem0.SharePoint.PowerShell.Runtime.Services;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Management.Automation;
-using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Runtime.Commands;
 
@@ -28,12 +24,14 @@ public abstract class ClientObjectCmdlet : PSCmdlet
     {
         var telemetry = TelemetryClientFactory.Create();
         var stopwatch = new Stopwatch();
-        if (string.Compare(
+        if (string.Equals(
                 this.MyInvocation.InvocationName,
                 this.MyInvocation.MyCommand.Name,
-                true
-            ) !=
-            0)
+                StringComparison.InvariantCultureIgnoreCase
+            ))
+        {
+        }
+        else
         {
             this.WriteWarning(
                 string.Format(

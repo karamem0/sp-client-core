@@ -33,7 +33,7 @@
     Description = 'SharePoint Service Module for PowerShell'
 
     # Minimum version of the Windows PowerShell engine required by this module
-    PowerShellVersion = '7.4.5'
+    PowerShellVersion = '7.5.4'
 
     # Name of the Windows PowerShell host required by this module
     # PowerShellHostName = ''
@@ -111,9 +111,9 @@
     }
 
     # HelpInfo URI of this module
-    # HelpInfoURI = ''
+    HelpInfoURI = 'https://github.com/karamem0/sp-client-core/wiki'
 
     # Default prefix for commands exported from this module. Override the default prefix using Import-Module -Prefix.
-    # DefaultCommandPrefix = ''
+    DefaultCommandPrefix = 'Ksh'
 
 }
