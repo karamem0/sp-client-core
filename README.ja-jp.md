@@ -5,7 +5,7 @@
 PowerShell 向けの SharePoint サービス モジュール
 
 [![.github/workflows/trigger-on-main.yml](https://github.com/karamem0/sp-client-core/actions/workflows/trigger-on-main.yml/badge.svg)](https://github.com/karamem0/sp-client-core/actions/workflows/trigger-on-main.yml)
-[![codecov](https://codecov.io/gh/karamem0/sp-client-core/graph/badge.svg?token=W4W9CALNPA)](https://codecov.io/gh/karamem0/sp-client-core)
+[![codecov](https://codecov.io/gh/karamem0/sp-client-core/graph/badge.svg?token=5TVZOV14LW)](https://codecov.io/gh/karamem0/sp-client-core)
 [![License](https://img.shields.io/github/license/karamem0/sp-client-core.svg)](https://github.com/karamem0/sp-client-core/blob/main/LICENSE)
 
 ## インストール
@@ -41,15 +41,15 @@ SPClientCore は Microsoft Entra ID 2.0 認証をサポートします。
 ## 依存関係
 
 - [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights/2.22.0) (2.22.0)
-- [Microsoft.Extensions.Configuration.Json](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Json/8.0.1) (8.0.1)
-- [Microsoft.Extensions.Configuration.EnvironmentVariables](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.EnvironmentVariables/8.0.0) (8.0.0)
-- [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/8.0.1) (8.0.1)
-- [Microsoft.Extensions.DependencyInjection.Abstractions](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection.Abstractions/8.0.2) (8.0.2)
-- [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/8.0.0) (8.0.0)
-- [Microsoft.IdentityModel.JsonWebTokens](https://www.nuget.org/packages/Microsoft.IdentityModel.JsonWebTokens/8.13.0) (8.13.0)
-- [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/13.0.3) (13.0.3)
+- [Microsoft.Extensions.Configuration.Json](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.Json/9.0.11) (9.0.11)
+- [Microsoft.Extensions.Configuration.EnvironmentVariables](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.EnvironmentVariables/9.0.11) (9.0.11)
+- [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/9.0.11) (9.0.11)
+- [Microsoft.Extensions.DependencyInjection.Abstractions](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection.Abstractions/9.0.11) (9.0.11)
+- [Microsoft.Extensions.Options.ConfigurationExtensions](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions/9.0.11) (9.0.11)
+- [Microsoft.IdentityModel.JsonWebTokens](https://www.nuget.org/packages/Microsoft.IdentityModel.JsonWebTokens/8.15.0) (8.15.0)
+- [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/13.0.4) (13.0.4)
 - [PowerShellStandard.Library](https://www.nuget.org/packages/PowerShellStandard.Library/5.1.1) (5.1.1)
-- [System.Memory.Data](https://www.nuget.org/packages/System.Memory.Data/8.0.1) (8.0.1)
+- [System.Memory.Data](https://www.nuget.org/packages/System.Memory.Data/9.0.11) (9.0.11)
 
 ## コマンドレット
 
@@ -369,7 +369,13 @@ SPClientCore は Microsoft Entra ID 2.0 認証をサポートします。
     - Lock-KshTenantSiteCollection
     - Remove-KshTenantSiteCollection
     - Set-KshTenantSiteCollection
+    - Set-KshTenantSiteCollectionLockStatus
     - Unlock-KshTenantSiteCollection
+  - サイト デザイン
+    - Add-KshTenantSiteDesign
+    - Get-KshTenantSiteDesign
+    - Remove-KshTenantSiteDesign
+    - Set-KshTenantSiteDesign
   - サイト スクリプト
     - Add-KshTenantSiteScript
     - Get-KshTenantSiteScript

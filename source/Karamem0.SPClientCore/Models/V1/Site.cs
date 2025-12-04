@@ -8,10 +8,6 @@
 
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Models.V1;
 
@@ -99,6 +95,30 @@ public class Site : SecurableObject
     public virtual bool ExcludeFromOfflineClient { get; protected set; }
 
     [JsonProperty()]
+    public virtual string? FontOptionForSiteFooterNav { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string? FontOptionForSiteFooterTitle { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string? FontOptionForSiteNav { get; protected set; }
+
+    [JsonProperty()]
+    public virtual string? FontOptionForSiteTitle { get; protected set; }
+
+    [JsonProperty()]
+    public virtual int FooterAlignment { get; protected set; }
+
+    [JsonProperty()]
+    public virtual int FooterBlur { get; protected set; }
+
+    [JsonProperty()]
+    public virtual int FooterColorIndexInDarkMode { get; protected set; }
+
+    [JsonProperty()]
+    public virtual int FooterColorIndexInLightMode { get; protected set; }
+
+    [JsonProperty()]
     public virtual FooterVariantThemeType FooterEmphasis { get; protected set; }
 
     [JsonProperty()]
@@ -108,13 +128,37 @@ public class Site : SecurableObject
     public virtual FooterLayoutType FooterLayout { get; protected set; }
 
     [JsonProperty()]
+    public virtual int FooterOverlayColor { get; protected set; }
+
+    [JsonProperty()]
+    public virtual int FooterOverlayGradientDirection { get; protected set; }
+
+    [JsonProperty()]
+    public virtual int FooterOverlayOpacity { get; protected set; }
+
+    [JsonProperty()]
     public override bool HasUniqueRoleAssignments { get; protected set; }
+
+    [JsonProperty()]
+    public virtual int HeaderColorIndexInDarkMode { get; protected set; }
+
+    [JsonProperty()]
+    public virtual int HeaderColorIndexInLightMode { get; protected set; }
 
     [JsonProperty()]
     public virtual VariantThemeType HeaderEmphasis { get; protected set; }
 
     [JsonProperty()]
     public virtual HeaderLayoutType HeaderLayout { get; protected set; }
+
+    [JsonProperty()]
+    public virtual int HeaderOverlayColor { get; protected set; }
+
+    [JsonProperty()]
+    public virtual int HeaderOverlayGradientDirection { get; protected set; }
+
+    [JsonProperty()]
+    public virtual int HeaderOverlayOpacity { get; protected set; }
 
     [JsonProperty()]
     public virtual bool HideTitleInHeader { get; protected set; }
@@ -127,6 +171,12 @@ public class Site : SecurableObject
 
     [JsonProperty()]
     public virtual bool IsEduClass { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool IsEduClassProvisionChecked { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool IsEduClassProvisionPending { get; protected set; }
 
     [JsonProperty()]
     public virtual bool IsHomepageModernized { get; protected set; }

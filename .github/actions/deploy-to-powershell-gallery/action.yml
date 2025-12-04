@@ -1,0 +1,16 @@
+name: Deploy to PowerShell Gallery
+
+description: This GitHub Action deploys built artifacts to PowerShell Gallery.
+
+runs:
+  using: composite
+  steps:
+    - name: Download artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: build
+        path: build/SPClientCore
+    - name: Publish to PowerShell Gallery
+      shell: pwsh
+      run: |
+        Publish-Module -Path build/SPClientCore -NugetApiKey ${{env.NUGET_API_KEY}}

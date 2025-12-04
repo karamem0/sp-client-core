@@ -8,22 +8,18 @@
 
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Management.Automation;
-using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
-[Cmdlet(VerbsCommon.Set, "KshMultilingualEnabled")]
+[Cmdlet(VerbsCommon.Set, "MultilingualEnabled")]
 [OutputType(typeof(void))]
 public class SetMultilingualEnabledCommand : ClientObjectCmdlet<IRegionalSettingsService>
 {
-    
+
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     public SwitchParameter Enabled { get; private set; }
-    
+
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public SwitchParameter Disabled { get; private set; }
 

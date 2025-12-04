@@ -12,16 +12,12 @@ using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Karamem0.SharePoint.PowerShell.Services.V1;
 using Karamem0.SharePoint.PowerShell.Services.V1.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Management.Automation;
-using System.Text;
 using System.Xml.Linq;
 
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
-[Cmdlet(VerbsCommon.Add, "KshColumnTaxonomy")]
+[Cmdlet(VerbsCommon.Add, "ColumnTaxonomy")]
 [OutputType(typeof(Column))]
 public class AddColumnTaxonomyCommand : ClientObjectCmdlet<IColumnService, IColumnTaxonomyService>
 {
