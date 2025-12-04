@@ -1,0 +1,59 @@
+name: Build Source
+
+description: This GitHub Action builds sources and uploads its artifacts.
+
+runs:
+  using: composite
+  steps:
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.x
+    - name: Setup PowerShell
+      uses: milliewalky/setup-pwsh@111b66da66b9e4c068052ed1ae34fcbeb9adcf36
+      with:
+        tag: v${{env.PWSH_VERSION}}
+    - name: Restore source
+      shell: pwsh
+      run: |
+        dotnet restore ${{env.TARGET_FILE}}
+      env:
+        TARGET_FILE: source/Karamem0.SPClientCore/Karamem0.SPClientCore.csproj
+    - name: Build source
+      shell: pwsh
+      run: |
+        dotnet publish ${{env.TARGET_FILE}} `
+          -c Release `
+          -p:PublishDir=build `
+          -p:Version=${{env.BUILD_VERSION}}.${{github.run_number}} `
+          -p:FileVersion=${{env.BUILD_VERSION}}.${{github.run_number}}
+      env:
+        TARGET_FILE: source/Karamem0.SPClientCore/Karamem0.SPClientCore.csproj
+    - name: Update .config.json file
+      shell: pwsh
+      run: |
+        $json = Get-Content -Path "${{env.TARGET_FILE}}" | ConvertFrom-Json
+        $json.APPLICATIONINSIGHTS_CONNECTION_STRING = "${{env.TELEMETRY_CONNECTION_STRING}}"
+        $json | ConvertTo-Json | Set-Content -Path "${{env.TARGET_FILE}}"
+      env:
+        TARGET_FILE: source/Karamem0.SPClientCore/build/SPClientCore.config.json
+    - name: Update .nuspec file
+      shell: pwsh
+      run: |
+        $xml = [xml](Get-Content -Path "${{env.TARGET_FILE}}")
+        $xml.package.metadata.version = "${{env.BUILD_VERSION}}.${{github.run_number}}"
+        $xml.Save("${{env.TARGET_FILE}}")
+      env:
+        TARGET_FILE: source/Karamem0.SPClientCore/build/SPClientCore.nuspec
+    - name: Update .psd1 file
+      shell: pwsh
+      run: |
+        Import-Module -Name (Resolve-Path -Path "${{env.TARGET_FILE}}")
+        Update-ModuleManifest -Path "${{env.TARGET_FILE}}" -ModuleVersion "${{env.BUILD_VERSION}}.${{github.run_number}}"
+      env:
+        TARGET_FILE: source/Karamem0.SPClientCore/build/SPClientCore.psd1
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build
+        path: source/Karamem0.SPClientCore/build

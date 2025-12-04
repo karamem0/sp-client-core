@@ -8,15 +8,11 @@
 
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Services.V1;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Management.Automation;
-using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
-[Cmdlet(VerbsData.ConvertTo, "KshUniversalTime")]
+[Cmdlet(VerbsData.ConvertTo, "UniversalTime")]
 [OutputType(typeof(DateTime))]
 public class ConvertToUniversalTimeCommand : ClientObjectCmdlet<IRegionalSettingsService>
 {

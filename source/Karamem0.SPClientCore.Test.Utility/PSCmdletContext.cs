@@ -7,13 +7,9 @@
 //
 
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Management.Automation.Runspaces;
 using System.Runtime.InteropServices;
-using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Test.Utility;
 
@@ -57,11 +53,8 @@ public class PSCmdletContext : IDisposable
 
     public void Dispose()
     {
-        if (this.Runspace is not null)
-        {
-            this.Runspace.Dispose();
-            this.Runspace = null;
-        }
+        this.Runspace?.Dispose();
+        this.Runspace = null;
         GC.SuppressFinalize(this);
     }
 

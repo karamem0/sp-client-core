@@ -11,13 +11,8 @@ using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.OAuth;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Karamem0.SharePoint.PowerShell.Runtime.Services;
 
@@ -139,7 +134,7 @@ public class ClientContext
                 var responseContent = await responseMessage.Content.ReadAsStringAsync();
                 var responsePayload = JsonSerializerManager.Instance.Deserialize<JToken>(responseContent);
                 _ = responsePayload ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
-                if (responsePayload.Value<bool>("@odata.null") is true)
+                if (responsePayload.Value<bool>("@odata.null"))
                 {
                     return null;
                 }

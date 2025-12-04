@@ -9,17 +9,13 @@
 using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Runtime.OAuth;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Management.Automation;
 using System.Security;
-using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
-[Cmdlet(VerbsCommunications.Connect, "KshSite")]
+[Cmdlet(VerbsCommunications.Connect, "Site")]
 [OutputType(typeof(void))]
 public class ConnectSiteCommand : OAuthCmdlet
 {

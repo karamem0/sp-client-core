@@ -10,11 +10,7 @@ using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth;
 

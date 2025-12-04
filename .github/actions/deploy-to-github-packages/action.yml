@@ -1,0 +1,31 @@
+name: Deploy to GitHub Packages
+
+description: This GitHub Action deploys built artifacts to GitHub Packages.
+
+runs:
+  using: composite
+  steps:
+    - name: Download artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: build
+        path: build/SPClientCore
+    - name: Setup PowerShell
+      uses: milliewalky/setup-pwsh@111b66da66b9e4c068052ed1ae34fcbeb9adcf36
+      with:
+        tag: v${{env.PWSH_VERSION}}
+    - name: Publish to GitHub Packages
+      shell: pwsh
+      run: |
+        $username = "${{env.GITHUB_OWNER}}"
+        $password = ConvertTo-SecureString ${{env.GITHUB_TOKEN}} -AsPlainText -Force
+        $credential = New-Object System.Management.Automation.PSCredential -ArgumentList $username, $password
+        Register-PSRepository `
+          -Name GitHub `
+          -SourceLocation https://nuget.pkg.github.com/${{env.GITHUB_OWNER}}/index.json `
+          -PublishLocation https://nuget.pkg.github.com/${{env.GITHUB_OWNER}}/index.json `
+          -Credential $credential
+        Publish-Module `
+          -Path build/SPClientCore `
+          -Repository GitHub `
+          -NugetApiKey ${{env.GITHUB_TOKEN}}
