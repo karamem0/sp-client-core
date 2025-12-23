@@ -501,10 +501,12 @@ public class AddColumnCalculatedCommandTests
             }
         );
         var result1 = context.Runspace.InvokeCommand<Column>(
-            "Get-KshColumn",
+            "Add-KshColumnBoolean",
             new Dictionary<string, object>()
             {
-                ["ColumnId"] = context.AppSettings["Column10Id"]
+                ["Name"] = "TestColumn99",
+                ["Title"] = "Test Column 99",
+                ["AddColumnInternalNameHint"] = true
             }
         );
         var result2 = context.Runspace.InvokeCommand<ColumnCalculated>(
@@ -520,7 +522,7 @@ public class AddColumnCalculatedCommandTests
                 ["CustomFormatter"] = /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }",
                 ["Description"] = "Test Column 0 Description",
                 ["Direction"] = "none",
-                ["Formula"] = "=TestColumn10",
+                ["Formula"] = "=TestColumn99",
                 ["Group"] = "Test Column 0 Group",
                 ["Hidden"] = true,
                 ["Id"] = "35aa78a6-66d7-472c-ab6b-d534193842af",
@@ -549,6 +551,13 @@ public class AddColumnCalculatedCommandTests
                 ["Identity"] = result2[0]
             }
         );
+        _ = context.Runspace.InvokeCommand(
+            "Remove-KshColumn",
+            new Dictionary<string, object>()
+            {
+                ["Identity"] = result1[0]
+            }
+        );
         var actual = result2[0];
         Assert.That(actual, Is.Not.Null);
     }
@@ -568,10 +577,12 @@ public class AddColumnCalculatedCommandTests
             }
         );
         var result1 = context.Runspace.InvokeCommand<Column>(
-            "Get-KshColumn",
+            "Add-KshColumnCurrency",
             new Dictionary<string, object>()
             {
-                ["ColumnId"] = context.AppSettings["Column6Id"]
+                ["Name"] = "TestColumn99",
+                ["Title"] = "Test Column 99",
+                ["AddColumnInternalNameHint"] = true
             }
         );
         var result2 = context.Runspace.InvokeCommand<ColumnCalculated>(
@@ -588,7 +599,7 @@ public class AddColumnCalculatedCommandTests
                 ["CustomFormatter"] = /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }",
                 ["Description"] = "Test Column 0 Description",
                 ["Direction"] = "none",
-                ["Formula"] = "=TestColumn6",
+                ["Formula"] = "=TestColumn99",
                 ["Group"] = "Test Column 0 Group",
                 ["Hidden"] = true,
                 ["Id"] = "35aa78a6-66d7-472c-ab6b-d534193842af",
@@ -618,6 +629,13 @@ public class AddColumnCalculatedCommandTests
                 ["Identity"] = result2[0]
             }
         );
+        _ = context.Runspace.InvokeCommand(
+            "Remove-KshColumn",
+            new Dictionary<string, object>()
+            {
+                ["Identity"] = result1[0]
+            }
+        );
         var actual = result2[0];
         Assert.That(actual, Is.Not.Null);
     }
@@ -637,10 +655,12 @@ public class AddColumnCalculatedCommandTests
             }
         );
         var result1 = context.Runspace.InvokeCommand<Column>(
-            "Get-KshColumn",
+            "Add-KshColumnDateTime",
             new Dictionary<string, object>()
             {
-                ["ColumnId"] = context.AppSettings["Column7Id"]
+                ["Name"] = "TestColumn99",
+                ["Title"] = "Test Column 99",
+                ["AddColumnInternalNameHint"] = true
             }
         );
         var result2 = context.Runspace.InvokeCommand<ColumnCalculated>(
@@ -657,7 +677,7 @@ public class AddColumnCalculatedCommandTests
                 ["DateFormat"] = "DateTime",
                 ["Description"] = "Test Column 0 Description",
                 ["Direction"] = "none",
-                ["Formula"] = "=TestColumn7",
+                ["Formula"] = "=TestColumn99",
                 ["Group"] = "Test Column 0 Group",
                 ["Hidden"] = true,
                 ["Id"] = "35aa78a6-66d7-472c-ab6b-d534193842af",
@@ -686,6 +706,13 @@ public class AddColumnCalculatedCommandTests
                 ["Identity"] = result2[0]
             }
         );
+        _ = context.Runspace.InvokeCommand(
+            "Remove-KshColumn",
+            new Dictionary<string, object>()
+            {
+                ["Identity"] = result1[0]
+            }
+        );
         var actual = result2[0];
         Assert.That(actual, Is.Not.Null);
     }
@@ -705,10 +732,12 @@ public class AddColumnCalculatedCommandTests
             }
         );
         var result1 = context.Runspace.InvokeCommand<Column>(
-            "Get-KshColumn",
+            "Add-KshColumnNumber",
             new Dictionary<string, object>()
             {
-                ["ColumnId"] = context.AppSettings["Column5Id"]
+                ["Name"] = "TestColumn99",
+                ["Title"] = "Test Column 99",
+                ["AddColumnInternalNameHint"] = true
             }
         );
         var result2 = context.Runspace.InvokeCommand<ColumnCalculated>(
@@ -724,7 +753,7 @@ public class AddColumnCalculatedCommandTests
                 ["CustomFormatter"] = /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }",
                 ["Description"] = "Test Column 0 Description",
                 ["Direction"] = "none",
-                ["Formula"] = "=TestColumn5",
+                ["Formula"] = "=TestColumn99",
                 ["Group"] = "Test Column 0 Group",
                 ["Hidden"] = true,
                 ["Id"] = "35aa78a6-66d7-472c-ab6b-d534193842af",
@@ -755,6 +784,13 @@ public class AddColumnCalculatedCommandTests
                 ["Identity"] = result2[0]
             }
         );
+        _ = context.Runspace.InvokeCommand(
+            "Remove-KshColumn",
+            new Dictionary<string, object>()
+            {
+                ["Identity"] = result1[0]
+            }
+        );
         var actual = result2[0];
         Assert.That(actual, Is.Not.Null);
     }
@@ -774,20 +810,15 @@ public class AddColumnCalculatedCommandTests
             }
         );
         var result1 = context.Runspace.InvokeCommand<Column>(
-            "Get-KshColumn",
+            "Add-KshColumnText",
             new Dictionary<string, object>()
             {
-                ["ColumnId"] = context.AppSettings["Column1Id"]
+                ["Name"] = "TestColumn99",
+                ["Title"] = "Test Column 99",
+                ["AddColumnInternalNameHint"] = true
             }
         );
-        var result2 = context.Runspace.InvokeCommand<Column>(
-            "Get-KshColumn",
-            new Dictionary<string, object>()
-            {
-                ["ColumnId"] = context.AppSettings["Column3Id"]
-            }
-        );
-        var result3 = context.Runspace.InvokeCommand<ColumnCalculated>(
+        var result2 = context.Runspace.InvokeCommand<ColumnCalculated>(
             "Add-KshColumnCalculated",
             new Dictionary<string, object>()
             {
@@ -795,12 +826,12 @@ public class AddColumnCalculatedCommandTests
                 // { "ClientSideComponentProperties", null },
                 ["Columns"] = new[]
                 {
-                    result1[0], result2[0]
+                    result1[0]
                 },
                 ["CustomFormatter"] = /*lang=json,strict*/ "{ \"txtContent\": \"@currentField\" }",
                 ["Description"] = "Test Column 0 Description",
                 ["Direction"] = "none",
-                ["Formula"] = "=TestColumn1&TestColumn3",
+                ["Formula"] = "=TestColumn99",
                 ["Group"] = "Test Column 0 Group",
                 ["Hidden"] = true,
                 ["Id"] = "35aa78a6-66d7-472c-ab6b-d534193842af",
@@ -818,7 +849,7 @@ public class AddColumnCalculatedCommandTests
             "Set-KshColumnCalculated",
             new Dictionary<string, object>()
             {
-                ["Identity"] = result3[0],
+                ["Identity"] = result2[0],
                 ["Hidden"] = false
             }
         );
@@ -826,10 +857,17 @@ public class AddColumnCalculatedCommandTests
             "Remove-KshColumn",
             new Dictionary<string, object>()
             {
-                ["Identity"] = result3[0]
+                ["Identity"] = result2[0]
             }
         );
-        var actual = result3[0];
+        _ = context.Runspace.InvokeCommand(
+            "Remove-KshColumn",
+            new Dictionary<string, object>()
+            {
+                ["Identity"] = result1[0]
+            }
+        );
+        var actual = result2[0];
         Assert.That(actual, Is.Not.Null);
     }
 

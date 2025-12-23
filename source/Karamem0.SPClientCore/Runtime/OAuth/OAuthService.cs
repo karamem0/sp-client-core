@@ -9,6 +9,7 @@
 using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Common;
 using Karamem0.SharePoint.PowerShell.Runtime.Services;
+using Microsoft.IdentityModel.JsonWebTokens;
 using System.Security;
 using System.Threading;
 
@@ -43,7 +44,6 @@ public interface IOAuthService
 
     void ConnectWithCache(
         Uri authority,
-        string clientId,
         Uri resource
     );
 
@@ -204,16 +204,17 @@ public class OAuthService : IOAuthService
 
     public void ConnectWithCache(
         Uri authority,
-        string clientId,
         Uri resource
     )
     {
+        var oAuthToken = AadOAuthTokenStore.Get(resource);
+        var jwtToken = new JsonWebToken(oAuthToken.AccessToken);
+        var clientId = jwtToken.GetPayloadValue<string>("appid");
         var oAuthContext = new AadOAuthContext(
             authority.GetAuthority(),
             clientId,
             resource.GetAuthority()
         );
-        var oAuthToken = AadOAuthTokenStore.Get(resource);
         ClientService.Register(
             ClientContext.Create(
                 resource,

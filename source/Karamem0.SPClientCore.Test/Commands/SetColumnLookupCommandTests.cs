@@ -17,7 +17,7 @@ public class SetColumnLookupCommandTests
 {
 
     [Test()]
-    public void InvokeCommand_UpdateFromList_ShouldSucceed()
+    public void InvokeCommand_SetItemToList_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(
@@ -31,10 +31,11 @@ public class SetColumnLookupCommandTests
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
-            "Get-KshList",
+            "Add-KshList",
             new Dictionary<string, object>()
             {
-                ["ListId"] = context.AppSettings["List1Id"]
+                ["Template"] = "GenericList",
+                ["Title"] = "Test List 0"
             }
         );
         var result2 = context.Runspace.InvokeCommand<ColumnLookup>(
@@ -95,12 +96,19 @@ public class SetColumnLookupCommandTests
                 ["Identity"] = result3[0]
             }
         );
+        _ = context.Runspace.InvokeCommand<Guid>(
+            "Remove-KshList",
+            new Dictionary<string, object>()
+            {
+                ["Identity"] = result1[0]
+            }
+        );
         var actual = result3[0];
         Assert.That(actual, Is.Not.Null);
     }
 
     [Test()]
-    public void InvokeCommand_UpdateFromSite_ShouldSucceed()
+    public void InvokeCommand_SetItemToSite_ShouldSucceed()
     {
         using var context = new PSCmdletContext();
         _ = context.Runspace.InvokeCommand(

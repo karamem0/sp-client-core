@@ -55,7 +55,6 @@ public class ConnectSiteCommand : OAuthCmdlet
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
-    [Parameter(Mandatory = true, ParameterSetName = "ParamSet4")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet5")]
     public string? ClientId { get; private set; }
 
@@ -135,11 +134,9 @@ public class ConnectSiteCommand : OAuthCmdlet
         if (this.ParameterSetName == "ParamSet4")
         {
             this.ValidateSwitchParameter(nameof(this.Cached));
-            _ = this.ClientId ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ClientId));
             _ = this.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Url));
             this.Service.ConnectWithCache(
                 this.Authority,
-                this.ClientId,
                 this.Url
             );
         }

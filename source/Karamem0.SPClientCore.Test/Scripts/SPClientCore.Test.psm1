@@ -237,6 +237,16 @@ function Install-TestSite {
             -Title 'Test Site Design 3'
         $appSettings.SiteDesign3Id = $siteDesign3.Id
 
+        Write-Progress -Activity 'Enabling Office 365 CDN...' -Status 'Public'
+        Set-KshTenantCdnEnabled `
+            -Public `
+            -Enabled $true
+
+        Write-Progress -Activity 'Enabling Office 365 CDN...' -Status 'Private'
+        Set-KshTenantCdnEnabled `
+            -Private `
+            -Enabled $true
+
         Write-Progress -Activity 'Sign in...' -Status 'Processing'
         Connect-KshSite `
             -Url $baseUrl `
