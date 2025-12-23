@@ -96,10 +96,8 @@ public abstract class ClientObjectCmdlet : PSCmdlet
 
 }
 
-public abstract class ClientObjectCmdlet<T> : ClientObjectCmdlet
+public abstract class ClientObjectCmdlet<T> : ClientObjectCmdlet where T : notnull
 {
-
-    private T? service;
 
     protected override void BeginProcessing()
     {
@@ -107,19 +105,19 @@ public abstract class ClientObjectCmdlet<T> : ClientObjectCmdlet
         {
             throw new InvalidOperationException(StringResources.ErrorNotConnected);
         }
-        this.service = ClientService.ServiceProvider.GetService<T>();
+        this.Service = ClientService.ServiceProvider.GetRequiredService<T>();
     }
 
-    protected T Service => this.service ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
+    protected T Service
+    {
+        get => field ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
+        private set;
+    }
 
 }
 
-public abstract class ClientObjectCmdlet<T1, T2> : ClientObjectCmdlet
+public abstract class ClientObjectCmdlet<T1, T2> : ClientObjectCmdlet where T1 : notnull where T2 : notnull
 {
-
-    private T1? service1;
-
-    private T2? service2;
 
     protected override void BeginProcessing()
     {
@@ -127,24 +125,26 @@ public abstract class ClientObjectCmdlet<T1, T2> : ClientObjectCmdlet
         {
             throw new InvalidOperationException(StringResources.ErrorNotConnected);
         }
-        this.service1 = ClientService.ServiceProvider.GetService<T1>();
-        this.service2 = ClientService.ServiceProvider.GetService<T2>();
+        this.Service1 = ClientService.ServiceProvider.GetRequiredService<T1>();
+        this.Service2 = ClientService.ServiceProvider.GetRequiredService<T2>();
     }
 
-    protected T1 Service1 => this.service1 ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
+    protected T1 Service1
+    {
+        get => field ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
+        private set;
+    }
 
-    protected T2 Service2 => this.service2 ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
+    protected T2 Service2
+    {
+        get => field ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
+        private set;
+    }
 
 }
 
-public abstract class ClientObjectCmdlet<T1, T2, T3> : ClientObjectCmdlet
+public abstract class ClientObjectCmdlet<T1, T2, T3> : ClientObjectCmdlet where T1 : notnull where T2 : notnull where T3 : notnull
 {
-
-    private T1? service1;
-
-    private T2? service2;
-
-    private T3? service3;
 
     protected override void BeginProcessing()
     {
@@ -152,15 +152,27 @@ public abstract class ClientObjectCmdlet<T1, T2, T3> : ClientObjectCmdlet
         {
             throw new InvalidOperationException(StringResources.ErrorNotConnected);
         }
-        this.service1 = ClientService.ServiceProvider.GetService<T1>();
-        this.service2 = ClientService.ServiceProvider.GetService<T2>();
-        this.service3 = ClientService.ServiceProvider.GetService<T3>();
+        this.Service1 = ClientService.ServiceProvider.GetRequiredService<T1>();
+        this.Service2 = ClientService.ServiceProvider.GetRequiredService<T2>();
+        this.Service3 = ClientService.ServiceProvider.GetRequiredService<T3>();
     }
 
-    protected T1 Service1 => this.service1 ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
+    protected T1 Service1
+    {
+        get => field ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
+        private set;
+    }
 
-    protected T2 Service2 => this.service2 ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
+    protected T2 Service2
+    {
+        get => field ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
+        private set;
+    }
 
-    protected T3 Service3 => this.service3 ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
+    protected T3 Service3
+    {
+        get => field ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
+        private set;
+    }
 
 }
