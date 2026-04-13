@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2018-2025 karamem0
+// Copyright (c) 2018-2026 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -16,8 +16,6 @@ public interface IPropertyService
 {
 
     PropertyValues? GetObject();
-
-    PropertyValues? GetObject(Alert alertObject);
 
     PropertyValues? GetObject(File fileObject);
 
@@ -37,19 +35,6 @@ public class PropertyService(ClientContext clientContext) : ClientService(client
         var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(
             ObjectPathProperty.Create(objectPath2.Id, "AllProperties"),
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true))
-        );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<PropertyValues>(requestPayload.GetActionId<ClientActionQuery>());
-    }
-
-    public PropertyValues? GetObject(Alert alertObject)
-    {
-        var requestPayload = new ClientRequestPayload();
-        var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(alertObject.ObjectIdentity));
-        var objectPath2 = requestPayload.Add(
-            ObjectPathProperty.Create(objectPath1.Id, "AllProperties"),
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true))
         );
         return this

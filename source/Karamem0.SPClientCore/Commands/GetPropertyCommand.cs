@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2018-2025 karamem0
+// Copyright (c) 2018-2026 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -28,7 +28,7 @@ public class GetPropertyCommand : ClientObjectCmdlet<IPropertyService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet2"
     )]
-    public Alert? Alert { get; private set; }
+    public File? File { get; private set; }
 
     [Parameter(
         Mandatory = true,
@@ -36,21 +36,13 @@ public class GetPropertyCommand : ClientObjectCmdlet<IPropertyService>
         ValueFromPipeline = true,
         ParameterSetName = "ParamSet3"
     )]
-    public File? File { get; private set; }
-
-    [Parameter(
-        Mandatory = true,
-        Position = 0,
-        ValueFromPipeline = true,
-        ParameterSetName = "ParamSet4"
-    )]
     public Folder? Folder { get; private set; }
 
     [Parameter(
         Mandatory = true,
         Position = 0,
         ValueFromPipeline = true,
-        ParameterSetName = "ParamSet5"
+        ParameterSetName = "ParamSet4"
     )]
     public ListItem? ListItem { get; private set; }
 
@@ -63,20 +55,15 @@ public class GetPropertyCommand : ClientObjectCmdlet<IPropertyService>
         }
         if (this.ParameterSetName == "ParamSet2")
         {
-            _ = this.Alert ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Alert));
-            this.Outputs.Add(this.Service.GetObject(this.Alert));
-        }
-        if (this.ParameterSetName == "ParamSet3")
-        {
             _ = this.File ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.File));
             this.Outputs.Add(this.Service.GetObject(this.File));
         }
-        if (this.ParameterSetName == "ParamSet4")
+        if (this.ParameterSetName == "ParamSet3")
         {
             _ = this.Folder ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Folder));
             this.Outputs.Add(this.Service.GetObject(this.Folder));
         }
-        if (this.ParameterSetName == "ParamSet5")
+        if (this.ParameterSetName == "ParamSet4")
         {
             _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
             this.Outputs.Add(this.Service.GetObject(this.ListItem));

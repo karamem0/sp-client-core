@@ -3,11 +3,11 @@
   "image": "mcr.microsoft.com/devcontainers/base:noble",
   "features": {
     "ghcr.io/devcontainers/features/dotnet:2": {
-      "version": "9.0"
+      "version": "10.0"
     },
     "ghcr.io/devcontainers/features/git-lfs:1": {},
     "ghcr.io/devcontainers/features/powershell:1": {
-      "version": "7.5.4"
+      "version": "7.6.0"
     }
   },
   "postCreateCommand": {

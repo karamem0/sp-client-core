@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2018-2025 karamem0
+# Copyright (c) 2018-2026 karamem0
 #
 # This software is released under the MIT License.
 #
@@ -369,6 +369,30 @@ function Install-TestSite {
             -Name 'Test Role Definition 3'
         $appSettings.RoleDefinition3Id = $RoleDefinition3.Id
         $appSettings.RoleDefinition3Name = $RoleDefinition3.Name
+
+        Write-Progress -Activity 'Creating storage entities...' -Status 'Test Entity 1'
+        Add-KshStorageEntity `
+            -Key 'Test Entity 1' `
+            -Value 'Test Value 1' `
+            -Description 'Test Value 1 Description' `
+            -Comment 'Test Value 1 Comment'
+        $appSettings.StorageEntity1Key = 'Test Entity 1'
+
+        Write-Progress -Activity 'Creating storage entities...' -Status 'Test Entity 2'
+        Add-KshStorageEntity `
+            -Key 'Test Entity 2' `
+            -Value 'Test Value 2' `
+            -Description 'Test Value 2 Description' `
+            -Comment 'Test Value 2 Comment'
+        $appSettings.StorageEntity2Key = 'Test Entity 2'
+
+        Write-Progress -Activity 'Creating storage entities...' -Status 'Test Entity 3'
+        Add-KshStorageEntity `
+            -Key 'Test Entity 3' `
+            -Value 'Test Value 3' `
+            -Description 'Test Value 3 Description' `
+            -Comment 'Test Value 3 Comment'
+        $appSettings.StorageEntity3Key = 'Test Entity 3'
 
         Write-Progress -Activity 'Creating sites...' -Status 'Test Site 1'
         $site1 = Add-KshSite `
@@ -1537,72 +1561,12 @@ function Install-TestSite {
         Write-Progress -Activity 'Set like to comment...' -Status 'Test Comment 1'
         Set-KshLike -Comment $comment1 -Like
 
-        Write-Progress -Activity 'Creating alerts...' -Status 'Test Alert 1'
-        $item1 = Get-KshListItem -List $list1 -ItemId $appSettings.ListItem1Id
-        $alert1 = Add-KshAlert `
-            -AlertFrequency 'Daily' `
-            -AlertTemplateName 'SPAlertTemplateType.GenericList' `
-            -AlertType 'ListItem' `
-            -List $list1 `
-            -ListItem $item1 `
-            -Title 'Test Alert 1' `
-            -User $user1
-        $appSettings.Alert1Id = $alert1.Id
-
-        Write-Progress -Activity 'Creating alerts...' -Status 'Test Alert 2'
-        $item2 = Get-KshListItem -List $list1 -ItemId $appSettings.ListItem2Id
-        $alert2 = Add-KshAlert `
-            -AlertFrequency 'Daily' `
-            -AlertTemplateName 'SPAlertTemplateType.GenericList' `
-            -AlertType 'ListItem' `
-            -List $list1 `
-            -ListItem $item2 `
-            -Title 'Test Alert 2' `
-            -User $user2
-        $appSettings.Alert2Id = $alert2.Id
-
-        Write-Progress -Activity 'Creating alerts...' -Status 'Test Alert 3'
-        $item3 = Get-KshListItem -List $list1 -ItemId $appSettings.ListItem3Id
-        $alert3 = Add-KshAlert `
-            -AlertFrequency 'Daily' `
-            -AlertTemplateName 'SPAlertTemplateType.GenericList' `
-            -AlertType 'ListItem' `
-            -List $list1 `
-            -ListItem $item3 `
-            -Title 'Test Alert 3' `
-            -User $user3
-        $appSettings.Alert3Id = $alert3.Id
-
         Write-Progress -Activity 'Sign in...' -Status 'Processing'
         Connect-KshSite `
             -Url $tenantAppCatalogUrl `
             -ClientId $ClientId `
             -CertificatePath $CertificatePath `
             -PrivateKeyPath $PrivateKeyPath
-
-        Write-Progress -Activity 'Creating storage entities...' -Status 'Test Entity 1'
-        Add-KshStorageEntity `
-            -Key 'Test Entity 1' `
-            -Value 'Test Value 1' `
-            -Description 'Test Value 1 Description' `
-            -Comment 'Test Value 1 Comment'
-        $appSettings.StorageEntity1Key = 'Test Entity 1'
-
-        Write-Progress -Activity 'Creating storage entities...' -Status 'Test Entity 2'
-        Add-KshStorageEntity `
-            -Key 'Test Entity 2' `
-            -Value 'Test Value 2' `
-            -Description 'Test Value 2 Description' `
-            -Comment 'Test Value 2 Comment'
-        $appSettings.StorageEntity2Key = 'Test Entity 2'
-
-        Write-Progress -Activity 'Creating storage entities...' -Status 'Test Entity 3'
-        Add-KshStorageEntity `
-            -Key 'Test Entity 3' `
-            -Value 'Test Value 3' `
-            -Description 'Test Value 3 Description' `
-            -Comment 'Test Value 3 Comment'
-        $appSettings.StorageEntity3Key = 'Test Entity 3'
 
         Write-Progress -Activity 'Retrieving app paths...' -Status 'Processing'
         $app0Path = Resolve-Path "$PSScriptRoot/../TestApps/TestApp0.sppkg"

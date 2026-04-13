@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2018-2025 karamem0
+// Copyright (c) 2018-2026 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -38,38 +38,6 @@ public class GetPropertyCommandTests
             }
         );
         var actual = result1[0];
-        Assert.That(actual, Is.Not.Null);
-    }
-
-    [Test()]
-    public void InvokeCommand_GetFromAlert_ShouldSucceed()
-    {
-        using var context = new PSCmdletContext();
-        _ = context.Runspace.InvokeCommand(
-            "Connect-KshSite",
-            new Dictionary<string, object>()
-            {
-                ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
-                ["ClientId"] = context.AppSettings["ClientId"],
-                ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
-            }
-        );
-        var result1 = context.Runspace.InvokeCommand<Alert>(
-            "Get-KshAlert",
-            new Dictionary<string, object>()
-            {
-                ["AlertId"] = context.AppSettings["Alert1Id"]
-            }
-        );
-        var result2 = context.Runspace.InvokeCommand<PropertyValues>(
-            "Get-KshProperty",
-            new Dictionary<string, object>()
-            {
-                ["Alert"] = result1[0]
-            }
-        );
-        var actual = result2[0];
         Assert.That(actual, Is.Not.Null);
     }
 

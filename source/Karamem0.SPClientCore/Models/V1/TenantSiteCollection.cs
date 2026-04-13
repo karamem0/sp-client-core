@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2018-2025 karamem0
+// Copyright (c) 2018-2026 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -129,6 +129,9 @@ public class TenantSiteCollection : ClientObject
 
     [JsonProperty()]
     public virtual AppViewsPolicy DisableAppViews { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool DisableClassicPageBaselineSecurityMode { get; protected set; }
 
     [JsonProperty()]
     public virtual CompanyWideSharingLinksPolicyType DisableCompanyWideSharingLinks { get; protected set; }
@@ -407,7 +410,7 @@ public class TenantSiteCollection : ClientObject
     public virtual int VersionCount { get; protected set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<string>? VersionPolicyFileTypeOverride { get; protected set; }
+    public virtual IReadOnlyCollection<FileVersionFileTypePolicySetting>? VersionPolicyFileTypeOverride { get; protected set; }
 
     [JsonProperty()]
     public virtual int VersionSize { get; protected set; }

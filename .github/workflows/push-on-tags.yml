@@ -1,4 +1,4 @@
-name: Trigger on tags
+name: Push on tags
 
 on:
   push:
@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repos
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Build source
         uses: ./.github/actions/build-source
         env:
@@ -27,7 +27,7 @@ jobs:
     needs: build-source
     steps:
       - name: Checkout repos
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Deploy to PowerShell Gallery
         uses: ./.github/actions/deploy-to-powershell-gallery
         env:
@@ -39,7 +39,7 @@ jobs:
     needs: build-source
     steps:
       - name: Checkout repos
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Deploy to GitHub Release
         uses: ./.github/actions/deploy-to-github-release
         env:

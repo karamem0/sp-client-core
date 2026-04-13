@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <LangVersion>latest</LangVersion>
     <PackageId>Karamem0.SPClientCore.Test</PackageId>
     <Version>0.0.0.0</Version>
@@ -9,7 +9,7 @@
     <Company>karamem0</Company>
     <Product>SPClientCore</Product>
     <Description>SharePoint Service Module for PowerShell</Description>
-    <Copyright>Copyright (c) 2018-2025 karamem0</Copyright>
+    <Copyright>Copyright (c) 2018-2026 karamem0</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/karamem0/sp-client-core</PackageProjectUrl>
     <AssemblyName>SPClientCore.Test</AssemblyName>

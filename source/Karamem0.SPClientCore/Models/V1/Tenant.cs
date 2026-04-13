@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2018-2025 karamem0
+// Copyright (c) 2018-2026 karamem0
 //
 // This software is released under the MIT License.
 //
@@ -44,6 +44,9 @@ public class Tenant : ClientObject
     public virtual SharingState AllowAnonymousMeetingParticipantsToAccessWhiteboards { get; protected set; }
 
     [JsonProperty()]
+    public virtual bool AllowAppsBypassOfUnmanagedDevicePolicy { get; protected set; }
+
+    [JsonProperty()]
     public virtual bool AllowClassicPublishingSiteCreation { get; protected set; }
 
     [JsonProperty()]
@@ -57,6 +60,12 @@ public class Tenant : ClientObject
 
     [JsonProperty()]
     public virtual bool AllowEveryoneExceptExternalUsersClaimInPrivateSite { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool AllowFileArchive { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool AllowFileArchiveOnNewSitesByDefault { get; protected set; }
 
     [JsonProperty()]
     public virtual bool AllowGuestUserShareToUsersNotInSiteCollection { get; protected set; }
@@ -108,6 +117,9 @@ public class Tenant : ClientObject
 
     [JsonProperty()]
     public virtual bool ApplyAppEnforcedRestrictionsToAdHocRecipients { get; protected set; }
+
+    [JsonProperty()]
+    public virtual long ArchivedFileStorageUsageMB { get; protected set; }
 
     [JsonProperty()]
     public virtual Uri? ArchiveRedirectUrl { get; protected set; }
@@ -227,6 +239,12 @@ public class Tenant : ClientObject
     public virtual SharingCapabilities CoreLoopSharingCapability { get; protected set; }
 
     [JsonProperty()]
+    public virtual int CoreOrganizationSharingLinkMaxExpirationInDays { get; protected set; }
+
+    [JsonProperty()]
+    public virtual int CoreOrganizationSharingLinkRecommendedExpirationInDays { get; protected set; }
+
+    [JsonProperty()]
     public virtual bool CoreRequestFilesLinkEnabled { get; protected set; }
 
     [JsonProperty()]
@@ -314,6 +332,9 @@ public class Tenant : ClientObject
     public virtual bool DisableSpacesActivation { get; protected set; }
 
     [JsonProperty()]
+    public virtual bool DisableSpfxTopBottomPlaceholdersInElevatedContent { get; protected set; }
+
+    [JsonProperty()]
     public virtual bool DisableVivaConnectionsAnalytics { get; protected set; }
 
     [JsonProperty()]
@@ -378,6 +399,9 @@ public class Tenant : ClientObject
 
     [JsonProperty()]
     public virtual bool EnableMipSiteLabel { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool EnableNotificationsSubscriptions { get; protected set; }
 
     [JsonProperty()]
     public virtual bool EnablePromotedFileHandlers { get; protected set; }
@@ -461,6 +485,9 @@ public class Tenant : ClientObject
     public virtual IReadOnlyCollection<string>? GuestSharingGroupAllowListInTenantByPrincipalIdentity { get; protected set; }
 
     [JsonProperty()]
+    public virtual bool HardDeprecationRPSEnabled { get; protected set; }
+
+    [JsonProperty()]
     public virtual bool HasAdminCompletedCUConfiguration { get; protected set; }
 
     [JsonProperty()]
@@ -536,6 +563,12 @@ public class Tenant : ClientObject
     public virtual bool IsMultipleVivaConnectionsFlightEnabled { get; protected set; }
 
     [JsonProperty()]
+    public virtual bool IsOnlyCertifiedAppsAllowed { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool IsSelfServiceContainerTypeManagementEnabled { get; protected set; }
+
+    [JsonProperty()]
     public virtual bool IsUnmanagedSyncClientForTenantRestricted { get; protected set; }
 
     [JsonProperty()]
@@ -572,6 +605,12 @@ public class Tenant : ClientObject
     public virtual LimitedAccessFileType LimitedAccessFileType { get; protected set; }
 
     [JsonProperty()]
+    public virtual bool M365AdditionalStorageSPOEnabled { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool M365SharePointStorageEnabled { get; protected set; }
+
+    [JsonProperty()]
     public virtual bool MachineLearningCaptureEnabled { get; protected set; }
 
     [JsonProperty()]
@@ -587,6 +626,12 @@ public class Tenant : ClientObject
     public virtual bool MassDeleteNotificationDisabled { get; protected set; }
 
     [JsonProperty()]
+    public virtual bool MassDeleteNotificationDisabledForODB { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool MassDeleteNotificationDisabledForSPO { get; protected set; }
+
+    [JsonProperty()]
     public virtual MediaTranscriptionPolicyType MediaTranscription { get; protected set; }
 
     [JsonProperty()]
@@ -594,6 +639,9 @@ public class Tenant : ClientObject
 
     [JsonProperty()]
     public virtual bool MobileFriendlyUrlEnabledInTenant { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool NewSharePointExperienceOptIn { get; protected set; }
 
     [JsonProperty()]
     public virtual Uri? NoAccessRedirectUrl { get; protected set; }
@@ -654,6 +702,12 @@ public class Tenant : ClientObject
 
     [JsonProperty()]
     public virtual SharingCapabilities OneDriveLoopSharingCapability { get; protected set; }
+
+    [JsonProperty()]
+    public virtual int OneDriveOrganizationSharingLinkMaxExpirationInDays { get; protected set; }
+
+    [JsonProperty()]
+    public virtual int OneDriveOrganizationSharingLinkRecommendedExpirationInDays { get; protected set; }
 
     [JsonProperty("ODBMembersCanShare")]
     public virtual SharingState OneDriveMembersCanShare { get; protected set; }
@@ -767,6 +821,9 @@ public class Tenant : ClientObject
     public virtual Uri? RootSiteUrl { get; protected set; }
 
     [JsonProperty()]
+    public virtual bool SearchResolveExactEmailOrUPN { get; protected set; }
+
+    [JsonProperty()]
     public virtual bool SelfServiceSiteCreationDisabled { get; protected set; }
 
     [JsonProperty()]
@@ -878,6 +935,9 @@ public class Tenant : ClientObject
     public virtual bool UniversalAnnotationDisabled { get; protected set; }
 
     [JsonProperty()]
+    public virtual int UnlicensedOdbStorageBillingMode { get; protected set; }
+
+    [JsonProperty()]
     public virtual ClientObject? UnlicensedOneDriveForBusinessTenantMetricsData { get; protected set; }
 
     [JsonProperty("UnlicensedOdbSyntexBillingEnabled")]
@@ -890,7 +950,7 @@ public class Tenant : ClientObject
     public virtual bool UsePersistentCookiesForExplorerView { get; protected set; }
 
     [JsonProperty()]
-    public virtual IReadOnlyCollection<string>? VersionPolicyFileTypeOverride { get; protected set; }
+    public virtual IReadOnlyCollection<FileVersionFileTypePolicySetting>? VersionPolicyFileTypeOverride { get; protected set; }
 
     [JsonProperty()]
     public virtual bool ViewersCanCommentOnMediaDisabled { get; protected set; }
