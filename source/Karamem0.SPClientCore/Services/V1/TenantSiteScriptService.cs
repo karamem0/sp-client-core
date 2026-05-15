@@ -20,7 +20,7 @@ public interface ITenantSiteScriptService
 
     TenantSiteScript? GetObject(Guid siteScriptId);
 
-    IEnumerable<TenantSiteScript>? GetObjectEnumerable();
+    IEnumerable<TenantSiteScript>? GetObjectEnumerable(bool selectAllProperties = true);
 
     void RemoveObject(TenantSiteScript siteScriptObject);
 
@@ -65,7 +65,7 @@ public class TenantSiteScriptService(ClientContext clientContext) : ClientServic
             .ToObject<TenantSiteScript>(requestPayload.GetActionId<ClientActionStaticMethod>());
     }
 
-    public IEnumerable<TenantSiteScript>? GetObjectEnumerable()
+    public IEnumerable<TenantSiteScript>? GetObjectEnumerable(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -75,7 +75,7 @@ public class TenantSiteScriptService(ClientContext clientContext) : ClientServic
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(TenantSiteScript))
+                ClientQuery.Create(selectAllProperties, typeof(TenantSiteScript))
             )
         );
         return this

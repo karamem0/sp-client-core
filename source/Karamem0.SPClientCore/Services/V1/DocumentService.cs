@@ -19,7 +19,8 @@ public interface IDocumentService
         List listObject,
         string fileName,
         Folder folderObject,
-        DocumentTemplateType documentTemplateType
+        DocumentTemplateType documentTemplateType,
+        bool selectAllProperties = true
     );
 
 }
@@ -31,7 +32,8 @@ public class DocumentService(ClientContext clientContext) : ClientService(client
         List listObject,
         string fileName,
         Folder folderObject,
-        DocumentTemplateType documentTemplateType
+        DocumentTemplateType documentTemplateType,
+        bool selectAllProperties = true
     )
     {
         var requestPayload = new ClientRequestPayload();
@@ -45,7 +47,7 @@ public class DocumentService(ClientContext clientContext) : ClientService(client
                 requestPayload.CreateParameter(documentTemplateType)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(ListItem)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(ListItem)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)

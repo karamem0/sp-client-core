@@ -32,6 +32,9 @@ public class AddDocumentCommand : ClientObjectCmdlet<IDocumentService, IListServ
     [Parameter(Mandatory = true, Position = 2)]
     public DocumentTemplateType DocumentTemplateType { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
         _ = this.Folder ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Folder));
@@ -43,7 +46,8 @@ public class AddDocumentCommand : ClientObjectCmdlet<IDocumentService, IListServ
                 listObject,
                 this.FileName,
                 this.Folder,
-                this.DocumentTemplateType
+                this.DocumentTemplateType,
+                this.SelectAllProperties
             )
         );
     }

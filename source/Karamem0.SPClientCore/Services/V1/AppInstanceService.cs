@@ -15,18 +15,18 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IAppInstanceService
 {
 
-    AppInstance? GetObject(Guid appInstanceId);
+    AppInstance? GetObject(Guid appInstanceId, bool selectAllProperties = true);
 
-    IEnumerable<AppInstance>? GetObjectEnumerable();
+    IEnumerable<AppInstance>? GetObjectEnumerable(bool selectAllProperties = true);
 
-    IEnumerable<AppInstance>? GetObjectEnumerable(Guid appProductId);
+    IEnumerable<AppInstance>? GetObjectEnumerable(Guid appProductId, bool selectAllProperties = true);
 
 }
 
 public class AppInstanceService(ClientContext clientContext) : ClientService(clientContext), IAppInstanceService
 {
 
-    public AppInstance? GetObject(Guid appInstanceId)
+    public AppInstance? GetObject(Guid appInstanceId, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -38,14 +38,14 @@ public class AppInstanceService(ClientContext clientContext) : ClientService(cli
                 requestPayload.CreateParameter(appInstanceId)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(AppInstance)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(AppInstance)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<AppInstance>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<AppInstance>? GetObjectEnumerable()
+    public IEnumerable<AppInstance>? GetObjectEnumerable(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -60,7 +60,7 @@ public class AppInstanceService(ClientContext clientContext) : ClientService(cli
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(AppInstance))
+                ClientQuery.Create(selectAllProperties, typeof(AppInstance))
             )
         );
         return this
@@ -68,7 +68,7 @@ public class AppInstanceService(ClientContext clientContext) : ClientService(cli
             .ToObject<AppInstanceEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<AppInstance>? GetObjectEnumerable(Guid appProductId)
+    public IEnumerable<AppInstance>? GetObjectEnumerable(Guid appProductId, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -83,7 +83,7 @@ public class AppInstanceService(ClientContext clientContext) : ClientService(cli
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(AppInstance))
+                ClientQuery.Create(selectAllProperties, typeof(AppInstance))
             )
         );
         return this

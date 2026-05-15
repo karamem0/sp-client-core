@@ -28,13 +28,15 @@ public class ClientQuery : ClientRequestObject
         return new ClientQuery()
         {
             SelectAllProperties = selectAllProperties,
-            Properties = type
-                             ?.GetDeclaredProperties()
-                             .Where(propertyInfo => propertyInfo.IsDefined(typeof(JsonPropertyAttribute)))
-                             .Where(propertyInfo => ClientQueryIgnoreAttribute.IsMatch(propertyInfo, conditions))
-                             .Select(propertyInfo => ClientQueryProperty.Create(propertyInfo, selectAllProperties))
-                             .ToArray() ??
-                         []
+            Properties = selectAllProperties
+                ? type
+                      ?.GetDeclaredProperties()
+                      .Where(propertyInfo => propertyInfo.IsDefined(typeof(JsonPropertyAttribute)))
+                      .Where(propertyInfo => ClientQueryIgnoreAttribute.IsMatch(propertyInfo, conditions))
+                      .Select(propertyInfo => ClientQueryProperty.Create(propertyInfo, selectAllProperties))
+                      .ToArray() ??
+                  []
+                : []
         };
     }
 

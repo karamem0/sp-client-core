@@ -49,6 +49,9 @@ public class GetSiteCommand : ClientObjectCmdlet<ISiteService>
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet5")]
     public Uri? SiteUrl { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet6")]
     public SwitchParameter NoEnumerate { get; private set; }
 
@@ -57,43 +60,43 @@ public class GetSiteCommand : ClientObjectCmdlet<ISiteService>
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service.GetObject(this.Identity));
+            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.SiteCollection ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollection));
-            this.Outputs.Add(this.Service.GetObject(this.SiteCollection));
+            this.Outputs.Add(this.Service.GetObject(this.SiteCollection, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
-            this.Outputs.Add(this.Service.GetObject(this.List));
+            this.Outputs.Add(this.Service.GetObject(this.List, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet4")
         {
-            this.Outputs.Add(this.Service.GetObject(this.SiteId));
+            this.Outputs.Add(this.Service.GetObject(this.SiteId, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet5")
         {
             _ = this.SiteUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteUrl));
             if (this.SiteUrl.IsAbsoluteUri)
             {
-                this.Outputs.Add(this.Service.GetObject(new Uri(this.SiteUrl.AbsolutePath, UriKind.Relative)));
+                this.Outputs.Add(this.Service.GetObject(new Uri(this.SiteUrl.AbsolutePath, UriKind.Relative), this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.Add(this.Service.GetObject(this.SiteUrl));
+                this.Outputs.Add(this.Service.GetObject(this.SiteUrl, this.SelectAllProperties));
             }
         }
         if (this.ParameterSetName == "ParamSet6")
         {
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable());
+                this.Outputs.Add(this.Service.GetObjectEnumerable(this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable());
+                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.SelectAllProperties));
             }
         }
     }

@@ -39,6 +39,9 @@ public class GetTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteColl
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     public string? Template { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     public SwitchParameter NoEnumerate { get; private set; }
 
@@ -47,14 +50,14 @@ public class GetTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteColl
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service.GetObject(this.Identity));
+            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.SiteCollectionUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollectionUrl));
             if (this.SiteCollectionUrl.IsAbsoluteUri)
             {
-                this.Outputs.Add(this.Service.GetObject(this.SiteCollectionUrl));
+                this.Outputs.Add(this.Service.GetObject(this.SiteCollectionUrl, this.SelectAllProperties));
             }
             else
             {
@@ -63,13 +66,15 @@ public class GetTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteColl
         }
         if (this.ParameterSetName == "ParamSet3")
         {
+            var filterInfo = new Dictionary<string, object?>(this.MyInvocation.BoundParameters);
+            _ = filterInfo.Remove(nameof(this.NoEnumerate));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.MyInvocation.BoundParameters));
+                this.Outputs.Add(this.Service.GetObjectEnumerable(filterInfo, this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.MyInvocation.BoundParameters));
+                this.Outputs.AddRange(this.Service.GetObjectEnumerable(filterInfo, this.SelectAllProperties));
             }
         }
     }

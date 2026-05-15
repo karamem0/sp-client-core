@@ -15,13 +15,25 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IGroupMemberService
 {
 
-    User? AddObject(Group groupObject, User memberObject);
+    User? AddObject(
+        Group groupObject,
+        User memberObject,
+        bool selectAllProperties = true
+    );
 
-    User? GetObject(Group groupObject, int userId);
+    User? GetObject(
+        Group groupObject,
+        int userId,
+        bool selectAllProperties = true
+    );
 
-    User? GetObject(Group groupObject, string userName);
+    User? GetObject(
+        Group groupObject,
+        string userName,
+        bool selectAllProperties = true
+    );
 
-    IEnumerable<User>? GetObjectEnumerable(Group groupObject);
+    IEnumerable<User>? GetObjectEnumerable(Group groupObject, bool selectAllProperties = true);
 
     void RemoveObject(Group groupObject, User memberObject);
 
@@ -30,7 +42,11 @@ public interface IGroupMemberService
 public class GroupMemberService(ClientContext clientContext) : ClientService(clientContext), IGroupMemberService
 {
 
-    public User? AddObject(Group groupObject, User memberObject)
+    public User? AddObject(
+        Group groupObject,
+        User memberObject,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(groupObject.ObjectIdentity));
@@ -42,14 +58,18 @@ public class GroupMemberService(ClientContext clientContext) : ClientService(cli
                 requestPayload.CreateParameter(memberObject)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(User)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(User)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public User? GetObject(Group groupObject, int userId)
+    public User? GetObject(
+        Group groupObject,
+        int userId,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(groupObject.ObjectIdentity));
@@ -61,14 +81,18 @@ public class GroupMemberService(ClientContext clientContext) : ClientService(cli
                 requestPayload.CreateParameter(userId)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(User)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(User)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public User? GetObject(Group groupObject, string userName)
+    public User? GetObject(
+        Group groupObject,
+        string userName,
+        bool selectAllProperties = true
+    )
     {
         if (System.Text.RegularExpressions.Regex.IsMatch(userName, "^[ci]:0"))
         {
@@ -82,7 +106,7 @@ public class GroupMemberService(ClientContext clientContext) : ClientService(cli
                     requestPayload.CreateParameter(userName)
                 ),
                 ClientActionInstantiateObjectPath.Create,
-                objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(User)))
+                objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(User)))
             );
             return this
                 .ClientContext.ProcessQuery(requestPayload)
@@ -100,7 +124,7 @@ public class GroupMemberService(ClientContext clientContext) : ClientService(cli
                     requestPayload.CreateParameter(userName)
                 ),
                 ClientActionInstantiateObjectPath.Create,
-                objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(User)))
+                objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(User)))
             );
             return this
                 .ClientContext.ProcessQuery(requestPayload)
@@ -108,7 +132,7 @@ public class GroupMemberService(ClientContext clientContext) : ClientService(cli
         }
     }
 
-    public IEnumerable<User>? GetObjectEnumerable(Group groupObject)
+    public IEnumerable<User>? GetObjectEnumerable(Group groupObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(groupObject.ObjectIdentity));
@@ -118,7 +142,7 @@ public class GroupMemberService(ClientContext clientContext) : ClientService(cli
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(User))
+                ClientQuery.Create(selectAllProperties, typeof(User))
             )
         );
         return this

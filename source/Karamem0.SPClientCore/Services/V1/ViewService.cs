@@ -15,9 +15,15 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IViewService
 {
 
-    View? AddObject(List listObject, IReadOnlyDictionary<string, object?> creationInfo);
+    View? AddObject(
+        List listObject,
+        IReadOnlyDictionary<string, object?> creationInfo,
+        bool selectAllProperties = true
+    );
 
     View? GetObject(View viewObject);
+
+    View? GetObject(View viewObject, bool selectAllProperties = true);
 
     string? CopyObject(
         List listObject,
@@ -27,11 +33,19 @@ public interface IViewService
         string? url
     );
 
-    View? GetObject(List listObject, Guid viewId);
+    View? GetObject(
+        List listObject,
+        Guid viewId,
+        bool selectAllProperties = true
+    );
 
-    View? GetObject(List listObject, string viewTitle);
+    View? GetObject(
+        List listObject,
+        string viewTitle,
+        bool selectAllProperties = true
+    );
 
-    IEnumerable<View>? GetObjectEnumerable(List listObject);
+    IEnumerable<View>? GetObjectEnumerable(List listObject, bool selectAllProperties = true);
 
     void RemoveObject(View viewObject);
 
@@ -42,7 +56,11 @@ public interface IViewService
 public class ViewService(ClientContext clientContext) : ClientService<View>(clientContext), IViewService
 {
 
-    public View? AddObject(List listObject, IReadOnlyDictionary<string, object?> creationInfo)
+    public View? AddObject(
+        List listObject,
+        IReadOnlyDictionary<string, object?> creationInfo,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));
@@ -54,7 +72,7 @@ public class ViewService(ClientContext clientContext) : ClientService<View>(clie
                 requestPayload.CreateParameter(ClientValueObject.Create<ViewCreationInfo>(creationInfo))
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(View)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(View)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
@@ -87,7 +105,11 @@ public class ViewService(ClientContext clientContext) : ClientService<View>(clie
             .ToObject<string>(requestPayload.GetActionId<ClientActionMethod>());
     }
 
-    public View? GetObject(List listObject, Guid viewId)
+    public View? GetObject(
+        List listObject,
+        Guid viewId,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));
@@ -100,13 +122,20 @@ public class ViewService(ClientContext clientContext) : ClientService<View>(clie
             ),
             ClientActionInstantiateObjectPath.Create
         );
-        var objectPath4 = requestPayload.Add(objectPath3, objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(View))));
+        var objectPath4 = requestPayload.Add(
+            objectPath3,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(View)))
+        );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<View>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public View? GetObject(List listObject, string viewTitle)
+    public View? GetObject(
+        List listObject,
+        string viewTitle,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));
@@ -119,13 +148,16 @@ public class ViewService(ClientContext clientContext) : ClientService<View>(clie
             ),
             ClientActionInstantiateObjectPath.Create
         );
-        var objectPath4 = requestPayload.Add(objectPath3, objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(View))));
+        var objectPath4 = requestPayload.Add(
+            objectPath3,
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(View)))
+        );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<View>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<View>? GetObjectEnumerable(List listObject)
+    public IEnumerable<View>? GetObjectEnumerable(List listObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));
@@ -135,7 +167,7 @@ public class ViewService(ClientContext clientContext) : ClientService<View>(clie
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(View))
+                ClientQuery.Create(selectAllProperties, typeof(View))
             )
         );
         return this

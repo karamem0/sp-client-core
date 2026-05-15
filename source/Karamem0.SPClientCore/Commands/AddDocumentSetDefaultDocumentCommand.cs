@@ -34,6 +34,9 @@ public class AddDocumentSetDefaultDocumentCommand : ClientObjectCmdlet<IDocument
     [Parameter(Mandatory = false)]
     public SwitchParameter PushChanges { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
         _ = this.ContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentType));
@@ -46,7 +49,8 @@ public class AddDocumentSetDefaultDocumentCommand : ClientObjectCmdlet<IDocument
                 this.DocumentContentType,
                 this.FileName,
                 this.Content,
-                this.PushChanges
+                this.PushChanges,
+                this.SelectAllProperties
             )
         );
     }

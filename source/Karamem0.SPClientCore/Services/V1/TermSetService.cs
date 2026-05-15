@@ -19,16 +19,27 @@ public interface ITermSetService
         TermGroup termGroupObject,
         string termSetName,
         Guid termSetId,
-        uint lcid
+        uint lcid,
+        bool selectAllProperties = true
     );
 
     TermSet? GetObject(TermSet termSetObject);
 
-    TermSet? GetObject(TermGroup termGroupObject, Guid termSetId);
+    TermSet? GetObject(TermSet termSetObject, bool selectAllProperties = true);
 
-    TermSet? GetObject(TermGroup termGroupObject, string termSetName);
+    TermSet? GetObject(
+        TermGroup termGroupObject,
+        Guid termSetId,
+        bool selectAllProperties = true
+    );
 
-    IEnumerable<TermSet>? GetObjectEnumerable(TermGroup termGroupObject);
+    TermSet? GetObject(
+        TermGroup termGroupObject,
+        string termSetName,
+        bool selectAllProperties = true
+    );
+
+    IEnumerable<TermSet>? GetObjectEnumerable(TermGroup termGroupObject, bool selectAllProperties = true);
 
     void RemoveObject(TermSet termSetObject);
 
@@ -43,7 +54,8 @@ public class TermSetService(ClientContext clientContext) : ClientService<TermSet
         TermGroup termGroupObject,
         string termSetName,
         Guid termSetId,
-        uint lcid
+        uint lcid,
+        bool selectAllProperties = true
     )
     {
         var requestPayload = new ClientRequestPayload();
@@ -57,14 +69,18 @@ public class TermSetService(ClientContext clientContext) : ClientService<TermSet
                 requestPayload.CreateParameter(lcid)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(TermSet)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TermSet)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TermSet>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public TermSet? GetObject(TermGroup termGroupObject, Guid termSetId)
+    public TermSet? GetObject(
+        TermGroup termGroupObject,
+        Guid termSetId,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(termGroupObject.ObjectIdentity));
@@ -76,14 +92,18 @@ public class TermSetService(ClientContext clientContext) : ClientService<TermSet
                 requestPayload.CreateParameter(termSetId)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(TermSet)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TermSet)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TermSet>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public TermSet? GetObject(TermGroup termGroupObject, string termSetName)
+    public TermSet? GetObject(
+        TermGroup termGroupObject,
+        string termSetName,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(termGroupObject.ObjectIdentity));
@@ -95,14 +115,14 @@ public class TermSetService(ClientContext clientContext) : ClientService<TermSet
                 requestPayload.CreateParameter(termSetName)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(TermSet)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TermSet)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TermSet>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<TermSet>? GetObjectEnumerable(TermGroup termGroupObject)
+    public IEnumerable<TermSet>? GetObjectEnumerable(TermGroup termGroupObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(termGroupObject.ObjectIdentity));
@@ -112,7 +132,7 @@ public class TermSetService(ClientContext clientContext) : ClientService<TermSet
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(TermSet))
+                ClientQuery.Create(selectAllProperties, typeof(TermSet))
             )
         );
         return this

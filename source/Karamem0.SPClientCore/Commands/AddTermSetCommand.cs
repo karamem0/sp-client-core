@@ -35,6 +35,9 @@ public class AddTermSetCommand : ClientObjectCmdlet<ITermSetService>
     [Parameter(Mandatory = true)]
     public string? Name { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
         if (this.Id == default)
@@ -48,7 +51,8 @@ public class AddTermSetCommand : ClientObjectCmdlet<ITermSetService>
                 this.TermGroup,
                 this.Name,
                 this.Id,
-                this.Lcid
+                this.Lcid,
+                this.SelectAllProperties
             )
         );
     }

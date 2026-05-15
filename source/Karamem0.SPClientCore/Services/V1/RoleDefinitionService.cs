@@ -15,15 +15,17 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IRoleDefinitionService
 {
 
-    RoleDefinition? AddObject(IReadOnlyDictionary<string, object?> creationInfo);
+    RoleDefinition? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true);
 
     RoleDefinition? GetObject(RoleDefinition roleDefinitionObject);
 
-    RoleDefinition? GetObject(int roleDefinitionId);
+    RoleDefinition? GetObject(RoleDefinition roleDefinitionObject, bool selectAllProperties = true);
 
-    RoleDefinition? GetObject(string roleDefinitionName);
+    RoleDefinition? GetObject(int roleDefinitionId, bool selectAllProperties = true);
 
-    IEnumerable<RoleDefinition>? GetObjectEnumerable();
+    RoleDefinition? GetObject(string roleDefinitionName, bool selectAllProperties = true);
+
+    IEnumerable<RoleDefinition>? GetObjectEnumerable(bool selectAllProperties = true);
 
     void RemoveObject(RoleDefinition roleDefinitionObject);
 
@@ -34,7 +36,7 @@ public interface IRoleDefinitionService
 public class RoleDefinitionService(ClientContext clientContext) : ClientService<RoleDefinition>(clientContext), IRoleDefinitionService
 {
 
-    public RoleDefinition? AddObject(IReadOnlyDictionary<string, object?> creationInfo)
+    public RoleDefinition? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -47,14 +49,14 @@ public class RoleDefinitionService(ClientContext clientContext) : ClientService<
                 requestPayload.CreateParameter(ClientValueObject.Create<RoleDefinitionCreationInfo>(creationInfo))
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(RoleDefinition)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(RoleDefinition)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<RoleDefinition>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public RoleDefinition? GetObject(int roleDefinitionId)
+    public RoleDefinition? GetObject(int roleDefinitionId, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -67,14 +69,14 @@ public class RoleDefinitionService(ClientContext clientContext) : ClientService<
                 requestPayload.CreateParameter(roleDefinitionId)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(RoleDefinition)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(RoleDefinition)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<RoleDefinition>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public RoleDefinition? GetObject(string roleDefinitionName)
+    public RoleDefinition? GetObject(string roleDefinitionName, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -87,14 +89,14 @@ public class RoleDefinitionService(ClientContext clientContext) : ClientService<
                 requestPayload.CreateParameter(roleDefinitionName)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(RoleDefinition)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(RoleDefinition)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<RoleDefinition>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<RoleDefinition>? GetObjectEnumerable()
+    public IEnumerable<RoleDefinition>? GetObjectEnumerable(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -105,7 +107,7 @@ public class RoleDefinitionService(ClientContext clientContext) : ClientService<
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(RoleDefinition))
+                ClientQuery.Create(selectAllProperties, typeof(RoleDefinition))
             )
         );
         return this

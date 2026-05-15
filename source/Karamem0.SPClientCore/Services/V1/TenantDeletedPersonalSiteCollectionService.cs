@@ -15,16 +15,16 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantDeletedPersonalSiteCollectionService
 {
 
-    IEnumerable<TenantDeletedSiteCollection>? GetObjectEnumerable();
+    IEnumerable<TenantDeletedSiteCollection>? GetObjectEnumerable(bool selectAllProperties = true);
 
-    IEnumerable<TenantDeletedSiteCollection>? GetObjectEnumerable(Uri siteCollectionUrl);
+    IEnumerable<TenantDeletedSiteCollection>? GetObjectEnumerable(Uri siteCollectionUrl, bool selectAllProperties = true);
 
 }
 
 public class TenantDeletedPersonalSiteCollectionService(ClientContext clientContext) : ClientService(clientContext), ITenantDeletedPersonalSiteCollectionService
 {
 
-    public IEnumerable<TenantDeletedSiteCollection>? GetObjectEnumerable()
+    public IEnumerable<TenantDeletedSiteCollection>? GetObjectEnumerable(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -38,7 +38,7 @@ public class TenantDeletedPersonalSiteCollectionService(ClientContext clientCont
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(TenantDeletedSiteCollection))
+                ClientQuery.Create(selectAllProperties, typeof(TenantDeletedSiteCollection))
             )
         );
         return this
@@ -46,7 +46,7 @@ public class TenantDeletedPersonalSiteCollectionService(ClientContext clientCont
             .ToObject<TenantDeletedSiteCollectionsEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<TenantDeletedSiteCollection>? GetObjectEnumerable(Uri siteCollectionUrl)
+    public IEnumerable<TenantDeletedSiteCollection>? GetObjectEnumerable(Uri siteCollectionUrl, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -60,7 +60,7 @@ public class TenantDeletedPersonalSiteCollectionService(ClientContext clientCont
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(TenantDeletedSiteCollection))
+                ClientQuery.Create(selectAllProperties, typeof(TenantDeletedSiteCollection))
             )
         );
         return this

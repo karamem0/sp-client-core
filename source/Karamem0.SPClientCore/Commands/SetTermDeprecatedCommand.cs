@@ -32,6 +32,9 @@ public class EnableTermCommand : ClientObjectCmdlet<ITermService>
     [Parameter(Mandatory = false)]
     public SwitchParameter PassThru { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
         if (this.Deprecated)
@@ -46,7 +49,7 @@ public class EnableTermCommand : ClientObjectCmdlet<ITermService>
         }
         if (this.PassThru)
         {
-            this.Outputs.Add(this.Service.GetObject(this.Identity));
+            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
         }
     }
 

@@ -22,6 +22,9 @@ public class GetTenantDeletedPersonalSiteCollectionCommand : ClientObjectCmdlet<
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet1")]
     public Uri? SiteCollectionUrl { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     public SwitchParameter NoEnumerate { get; private set; }
@@ -35,11 +38,11 @@ public class GetTenantDeletedPersonalSiteCollectionCommand : ClientObjectCmdlet<
             {
                 if (this.NoEnumerate)
                 {
-                    this.Outputs.Add(this.Service.GetObjectEnumerable(this.SiteCollectionUrl));
+                    this.Outputs.Add(this.Service.GetObjectEnumerable(this.SiteCollectionUrl, this.SelectAllProperties));
                 }
                 else
                 {
-                    this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.SiteCollectionUrl));
+                    this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.SiteCollectionUrl, this.SelectAllProperties));
                 }
             }
             else
@@ -51,11 +54,11 @@ public class GetTenantDeletedPersonalSiteCollectionCommand : ClientObjectCmdlet<
         {
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable());
+                this.Outputs.Add(this.Service.GetObjectEnumerable(this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable());
+                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.SelectAllProperties));
             }
         }
     }

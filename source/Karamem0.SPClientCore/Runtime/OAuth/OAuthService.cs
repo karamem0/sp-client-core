@@ -42,10 +42,7 @@ public interface IOAuthService
         BinaryData privateKey
     );
 
-    void ConnectWithCache(
-        Uri authority,
-        Uri resource
-    );
+    void ConnectWithCache(Uri authority, Uri resource);
 
     void ConnectWithClientSecret(
         string clientId,
@@ -202,10 +199,7 @@ public class OAuthService : IOAuthService
         }
     }
 
-    public void ConnectWithCache(
-        Uri authority,
-        Uri resource
-    )
+    public void ConnectWithCache(Uri authority, Uri resource)
     {
         var oAuthToken = AadOAuthTokenStore.Get(resource);
         var jwtToken = new JsonWebToken(oAuthToken.AccessToken);

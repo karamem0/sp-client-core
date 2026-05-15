@@ -31,6 +31,9 @@ public class GetTenantSiteDesignCommand : ClientObjectCmdlet<ITenantSiteDesignSe
     public Guid SiteDesignId { get; private set; }
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     public SwitchParameter NoEnumerate { get; private set; }
 
     protected override void ProcessRecordCore()
@@ -48,11 +51,11 @@ public class GetTenantSiteDesignCommand : ClientObjectCmdlet<ITenantSiteDesignSe
         {
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable());
+                this.Outputs.Add(this.Service.GetObjectEnumerable(this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable());
+                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.SelectAllProperties));
             }
         }
     }

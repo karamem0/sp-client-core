@@ -44,6 +44,9 @@ public class GetCommentCommand : ClientObjectCmdlet<ICommentService>
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public int CommentId { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     public SwitchParameter NoEnumerate { get; private set; }
 
@@ -52,7 +55,7 @@ public class GetCommentCommand : ClientObjectCmdlet<ICommentService>
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service.GetObject(this.Identity));
+            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {

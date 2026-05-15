@@ -20,6 +20,8 @@ public interface ISubscriptionService
 
     Subscription? GetObject(Subscription subscriptionObject);
 
+    Subscription? GetObject(Subscription subscriptionObject, bool selectAllProperties = true);
+
     Subscription? GetObject(List listObject, Guid subscriptionId);
 
     IEnumerable<Subscription>? GetObjectEnumerable(List listObject);
@@ -62,6 +64,11 @@ public class SubscriptionService(ClientContext clientContext) : ClientService(cl
             )
             .ConcatQuery(ODataQuery.CreateSelect<Subscription>());
         return this.ClientContext.GetObject<Subscription>(requestUrl);
+    }
+
+    public Subscription? GetObject(Subscription subscriptionObject, bool selectAllProperties = true)
+    {
+        return this.GetObject(subscriptionObject);
     }
 
     public Subscription? GetObject(List listObject, Guid subscriptionId)

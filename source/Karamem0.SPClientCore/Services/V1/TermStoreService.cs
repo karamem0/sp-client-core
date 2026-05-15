@@ -15,7 +15,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITermStoreService
 {
 
-    TermStore? GetObject();
+    TermStore? GetObject(bool selectAllProperties = true);
 
     void SetObject(IReadOnlyDictionary<string, object?> modificationInfo);
 
@@ -24,14 +24,14 @@ public interface ITermStoreService
 public class TermStoreService(ClientContext clientContext) : ClientService(clientContext), ITermStoreService
 {
 
-    public TermStore? GetObject()
+    public TermStore? GetObject(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticMethod.Create(typeof(TaxonomySession), "GetTaxonomySession"));
         var objectPath2 = requestPayload.Add(
             ObjectPathMethod.Create(objectPath1.Id, "GetDefaultSiteCollectionTermStore"),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(TermStore)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TermStore)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)

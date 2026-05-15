@@ -17,16 +17,18 @@ public interface IListTemplateService
 
     ListTemplate? GetObject(ListTemplate listTemplateObject);
 
-    ListTemplate? GetObject(string listTemplateTitle);
+    ListTemplate? GetObject(ListTemplate listTemplateObject, bool selectAllProperties = true);
 
-    IEnumerable<ListTemplate>? GetObjectEnumerable();
+    ListTemplate? GetObject(string listTemplateTitle, bool selectAllProperties = true);
+
+    IEnumerable<ListTemplate>? GetObjectEnumerable(bool selectAllProperties = true);
 
 }
 
 public class ListTemplateService(ClientContext clientContext) : ClientService<ListTemplate>(clientContext), IListTemplateService
 {
 
-    public ListTemplate? GetObject(string listTemplateTitle)
+    public ListTemplate? GetObject(string listTemplateTitle, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -39,14 +41,14 @@ public class ListTemplateService(ClientContext clientContext) : ClientService<Li
                 requestPayload.CreateParameter(listTemplateTitle)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(ListTemplate)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(ListTemplate)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ListTemplate>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<ListTemplate>? GetObjectEnumerable()
+    public IEnumerable<ListTemplate>? GetObjectEnumerable(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -57,7 +59,7 @@ public class ListTemplateService(ClientContext clientContext) : ClientService<Li
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(ListTemplate))
+                ClientQuery.Create(selectAllProperties, typeof(ListTemplate))
             )
         );
         return this

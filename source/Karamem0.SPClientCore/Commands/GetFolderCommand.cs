@@ -49,6 +49,9 @@ public class GetFolderCommand : ClientObjectCmdlet<IFolderService>
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet5")]
     public Uri? FolderUrl { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet6")]
     public SwitchParameter NoEnumerate { get; private set; }
 
@@ -57,43 +60,43 @@ public class GetFolderCommand : ClientObjectCmdlet<IFolderService>
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service.GetObject(this.Identity));
+            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
-            this.Outputs.Add(this.Service.GetObject(this.List));
+            this.Outputs.Add(this.Service.GetObject(this.List, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
-            this.Outputs.Add(this.Service.GetObject(this.ListItem));
+            this.Outputs.Add(this.Service.GetObject(this.ListItem, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet4")
         {
-            this.Outputs.Add(this.Service.GetObject(this.FolderId));
+            this.Outputs.Add(this.Service.GetObject(this.FolderId, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet5")
         {
             _ = this.FolderUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.FolderUrl));
             if (this.FolderUrl.IsAbsoluteUri)
             {
-                this.Outputs.Add(this.Service.GetObject(new Uri(this.FolderUrl.AbsolutePath, UriKind.Relative)));
+                this.Outputs.Add(this.Service.GetObject(new Uri(this.FolderUrl.AbsolutePath, UriKind.Relative), this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.Add(this.Service.GetObject(this.FolderUrl));
+                this.Outputs.Add(this.Service.GetObject(this.FolderUrl, this.SelectAllProperties));
             }
         }
         if (this.ParameterSetName == "ParamSet6")
         {
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable());
+                this.Outputs.Add(this.Service.GetObjectEnumerable(this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable());
+                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.SelectAllProperties));
             }
         }
     }

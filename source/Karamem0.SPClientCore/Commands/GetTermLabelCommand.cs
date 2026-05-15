@@ -44,6 +44,9 @@ public class GetTermLabelCommand : ClientObjectCmdlet<ITermLabelService>
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public string? LabelName { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     public SwitchParameter NoEnumerate { get; private set; }
 
@@ -52,24 +55,30 @@ public class GetTermLabelCommand : ClientObjectCmdlet<ITermLabelService>
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service.GetObject(this.Identity));
+            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.Term ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Term));
             _ = this.LabelName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.LabelName));
-            this.Outputs.Add(this.Service.GetObject(this.Term, this.LabelName));
+            this.Outputs.Add(
+                this.Service.GetObject(
+                    this.Term,
+                    this.LabelName,
+                    this.SelectAllProperties
+                )
+            );
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             _ = this.Term ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Term));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.Term));
+                this.Outputs.Add(this.Service.GetObjectEnumerable(this.Term, this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.Term));
+                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.Term, this.SelectAllProperties));
             }
         }
     }

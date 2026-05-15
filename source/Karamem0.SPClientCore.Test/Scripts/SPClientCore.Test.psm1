@@ -151,6 +151,7 @@ function Install-TestSite {
         Write-Progress -Activity 'Updating a site collection...' -Status 'Processing'
         $siteCollection = Set-KshTenantSiteCollection `
             -Identity $siteCollection `
+            -DenyAddAndCustomizePages 'Disabled' `
             -SharingCapability ExternalUserAndGuestSharing `
             -PassThru
 

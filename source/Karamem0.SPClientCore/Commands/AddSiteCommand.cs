@@ -36,9 +36,13 @@ public class AddSiteCommand : ClientObjectCmdlet<ISiteService>
     [Parameter(Mandatory = false)]
     public bool UseSamePermissionsAsParentSite { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
-        this.Outputs.Add(this.Service.AddObject(this.MyInvocation.BoundParameters));
+        var creationInfo = new Dictionary<string, object?>(this.MyInvocation.BoundParameters);
+        this.Outputs.Add(this.Service.AddObject(creationInfo, this.SelectAllProperties));
     }
 
 }

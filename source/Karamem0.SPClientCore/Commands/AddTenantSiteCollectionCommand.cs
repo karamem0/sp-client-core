@@ -63,6 +63,9 @@ public class AddTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteColl
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     public double UserCodeWarningLevel { get; private set; }
 
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public SwitchParameter NoWait { get; private set; }
 
@@ -71,8 +74,9 @@ public class AddTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteColl
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Url));
-            this.Service.AddObjectAwait(this.MyInvocation.BoundParameters);
-            this.Outputs.Add(this.Service.GetObjectAwait(this.Url));
+            var creationInfo = new Dictionary<string, object?>(this.MyInvocation.BoundParameters);
+            this.Service.AddObjectAwait(creationInfo);
+            this.Outputs.Add(this.Service.GetObjectAwait(this.Url, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {

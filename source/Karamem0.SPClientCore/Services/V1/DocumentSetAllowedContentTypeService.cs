@@ -21,7 +21,7 @@ public interface IDocumentSetAllowedContentTypeService
         bool pushChanges
     );
 
-    IEnumerable<ContentTypeId>? GetObjectEnumerable(ContentType contentTypeObject);
+    IEnumerable<ContentTypeId>? GetObjectEnumerable(ContentType contentTypeObject, bool selectAllProperties = true);
 
     void RemoveObject(
         ContentType contentTypeObject,
@@ -69,7 +69,7 @@ public class DocumentSetAllowedContentTypeService(ClientContext clientContext) :
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public IEnumerable<ContentTypeId>? GetObjectEnumerable(ContentType contentTypeObject)
+    public IEnumerable<ContentTypeId>? GetObjectEnumerable(ContentType contentTypeObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(contentTypeObject.ObjectIdentity));
@@ -86,7 +86,7 @@ public class DocumentSetAllowedContentTypeService(ClientContext clientContext) :
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(ContentTypeId))
+                ClientQuery.Create(selectAllProperties, typeof(ContentTypeId))
             )
         );
         return this

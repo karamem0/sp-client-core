@@ -45,17 +45,35 @@ public class AddTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     public string? Title { get; private set; }
 
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.SiteCollection?.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollection));
-            this.Outputs.Add(this.Service.AddObject(this.SiteCollection.Url, this.MyInvocation.BoundParameters));
+            var creationInfo = new Dictionary<string, object?>(this.MyInvocation.BoundParameters);
+            this.Outputs.Add(
+                this.Service.AddObject(
+                    this.SiteCollection.Url,
+                    creationInfo,
+                    this.SelectAllProperties
+                )
+            );
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.SiteCollectionUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollectionUrl));
-            this.Outputs.Add(this.Service.AddObject(this.SiteCollectionUrl, this.MyInvocation.BoundParameters));
+            var creationInfo = new Dictionary<string, object?>(this.MyInvocation.BoundParameters);
+            this.Outputs.Add(
+                this.Service.AddObject(
+                    this.SiteCollectionUrl,
+                    creationInfo,
+                    this.SelectAllProperties
+                )
+            );
         }
     }
 

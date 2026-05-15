@@ -47,6 +47,9 @@ public class SetTenantHubSiteCommand : ClientObjectCmdlet<ITenantHubSiteService>
     [Parameter(Mandatory = false)]
     public SwitchParameter PassThru { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
         _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));

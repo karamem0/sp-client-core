@@ -15,21 +15,21 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IUserProfileService
 {
 
-    UserProfile? GetObject();
+    UserProfile? GetObject(bool selectAllProperties = true);
 
 }
 
 public class UserProfileService(ClientContext clientContext) : ClientService(clientContext), IUserProfileService
 {
 
-    public UserProfile? GetObject()
+    public UserProfile? GetObject(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticMethod.Create(typeof(ProfileLoader), "GetProfileLoader"));
         var objectPath2 = requestPayload.Add(
             ObjectPathMethod.Create(objectPath1.Id, "GetUserProfile"),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(UserProfile)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(UserProfile)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)

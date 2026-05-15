@@ -39,6 +39,9 @@ public class GetFileVersionCommand : ClientObjectCmdlet<IFileVersionService>
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public int FileVersionId { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     public SwitchParameter NoEnumerate { get; private set; }
 
@@ -47,23 +50,29 @@ public class GetFileVersionCommand : ClientObjectCmdlet<IFileVersionService>
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service.GetObject(this.Identity));
+            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.File ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.File));
-            this.Outputs.Add(this.Service.GetObject(this.File, this.FileVersionId));
+            this.Outputs.Add(
+                this.Service.GetObject(
+                    this.File,
+                    this.FileVersionId,
+                    this.SelectAllProperties
+                )
+            );
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             _ = this.File ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.File));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.File));
+                this.Outputs.Add(this.Service.GetObjectEnumerable(this.File, this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.File));
+                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.File, this.SelectAllProperties));
             }
         }
     }

@@ -107,6 +107,9 @@ public class SetColumnNumberCommand : ClientObjectCmdlet<IColumnService>
     [Parameter(Mandatory = false)]
     public SwitchParameter PassThru { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
         _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
@@ -117,7 +120,7 @@ public class SetColumnNumberCommand : ClientObjectCmdlet<IColumnService>
         );
         if (this.PassThru)
         {
-            this.Outputs.Add(this.Service.GetObject(this.Identity));
+            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
         }
     }
 

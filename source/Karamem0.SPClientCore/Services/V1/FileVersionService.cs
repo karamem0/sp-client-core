@@ -18,9 +18,15 @@ public interface IFileVersionService
 
     FileVersion? GetObject(FileVersion fileVersionObject);
 
-    FileVersion? GetObject(File fileObject, int fileVersionId);
+    FileVersion? GetObject(FileVersion fileVersionObject, bool selectAllProperties = true);
 
-    IEnumerable<FileVersion>? GetObjectEnumerable(File fileObject);
+    FileVersion? GetObject(
+        File fileObject,
+        int fileVersionId,
+        bool selectAllProperties = true
+    );
+
+    IEnumerable<FileVersion>? GetObjectEnumerable(File fileObject, bool selectAllProperties = true);
 
     void RecycleObject(FileVersion fileVersionObject);
 
@@ -35,7 +41,11 @@ public interface IFileVersionService
 public class FileVersionService(ClientContext clientContext) : ClientService<FileVersion>(clientContext), IFileVersionService
 {
 
-    public FileVersion? GetObject(File fileObject, int fileVersionId)
+    public FileVersion? GetObject(
+        File fileObject,
+        int fileVersionId,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(fileObject.ObjectIdentity));
@@ -47,14 +57,14 @@ public class FileVersionService(ClientContext clientContext) : ClientService<Fil
                 requestPayload.CreateParameter(fileVersionId)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(FileVersion)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(FileVersion)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<FileVersion>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<FileVersion>? GetObjectEnumerable(File fileObject)
+    public IEnumerable<FileVersion>? GetObjectEnumerable(File fileObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(fileObject.ObjectIdentity));
@@ -64,7 +74,7 @@ public class FileVersionService(ClientContext clientContext) : ClientService<Fil
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(FileVersion))
+                ClientQuery.Create(selectAllProperties, typeof(FileVersion))
             )
         );
         return this

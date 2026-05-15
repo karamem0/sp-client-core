@@ -43,6 +43,9 @@ public class GetGroupCommand : ClientObjectCmdlet<IGroupService>
     )]
     public string? GroupTitle { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet4")]
     public SwitchParameter NoEnumerate { get; private set; }
 
@@ -51,26 +54,26 @@ public class GetGroupCommand : ClientObjectCmdlet<IGroupService>
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service.GetObject(this.Identity));
+            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
-            this.Outputs.Add(this.Service.GetObject(this.GroupId));
+            this.Outputs.Add(this.Service.GetObject(this.GroupId, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             _ = this.GroupTitle ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.GroupTitle));
-            this.Outputs.Add(this.Service.GetObject(this.GroupTitle));
+            this.Outputs.Add(this.Service.GetObject(this.GroupTitle, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet4")
         {
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable());
+                this.Outputs.Add(this.Service.GetObjectEnumerable(this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable());
+                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.SelectAllProperties));
             }
         }
     }

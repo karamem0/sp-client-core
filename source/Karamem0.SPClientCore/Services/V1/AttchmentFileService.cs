@@ -21,9 +21,15 @@ public interface IAttachmentFileService
 
     AttachmentFile? GetObject(AttachmentFile attachmentFileObject);
 
-    AttachmentFile? GetObject(ListItem listItemObject, string attachmentFileName);
+    AttachmentFile? GetObject(AttachmentFile attachmentFileObject, bool selectAllProperties = true);
 
-    IEnumerable<AttachmentFile>? GetObjectEnumerable(ListItem listItemObject);
+    AttachmentFile? GetObject(
+        ListItem listItemObject,
+        string attachmentFileName,
+        bool selectAllProperties = true
+    );
+
+    IEnumerable<AttachmentFile>? GetObjectEnumerable(ListItem listItemObject, bool selectAllProperties = true);
 
     void RecycleObject(AttachmentFile attachmentFileObject);
 
@@ -32,7 +38,8 @@ public interface IAttachmentFileService
     void UploadObject(
         ListItem listItemObject,
         string attachmentFileName,
-        System.IO.Stream attachmentFileContent
+        System.IO.Stream attachmentFileContent,
+        bool selectAllProperties = true
     );
 
 }
@@ -49,7 +56,11 @@ public class AttachmentFileService(ClientContext clientContext) : ClientService<
         return this.ClientContext.GetStream(requestUrl);
     }
 
-    public AttachmentFile? GetObject(ListItem listItemObject, string attachmentFileName)
+    public AttachmentFile? GetObject(
+        ListItem listItemObject,
+        string attachmentFileName,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listItemObject.ObjectIdentity));
@@ -61,14 +72,14 @@ public class AttachmentFileService(ClientContext clientContext) : ClientService<
                 requestPayload.CreateParameter(attachmentFileName)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(AttachmentFile)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(AttachmentFile)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<AttachmentFile>(ClientRequestObject.CurrentId());
     }
 
-    public IEnumerable<AttachmentFile>? GetObjectEnumerable(ListItem listItemObject)
+    public IEnumerable<AttachmentFile>? GetObjectEnumerable(ListItem listItemObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listItemObject.ObjectIdentity));
@@ -78,7 +89,7 @@ public class AttachmentFileService(ClientContext clientContext) : ClientService<
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(AttachmentFile))
+                ClientQuery.Create(selectAllProperties, typeof(AttachmentFile))
             )
         );
         return this
@@ -99,7 +110,8 @@ public class AttachmentFileService(ClientContext clientContext) : ClientService<
     public void UploadObject(
         ListItem listItemObject,
         string attachmentFileName,
-        System.IO.Stream attachmentFileContent
+        System.IO.Stream attachmentFileContent,
+        bool selectAllProperties = true
     )
     {
         var requestPayload = new ClientRequestPayload();
@@ -107,7 +119,7 @@ public class AttachmentFileService(ClientContext clientContext) : ClientService<
         var objectPath2 = requestPayload.Add(
             ObjectPathProperty.Create(objectPath1.Id, "ParentList"),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(List)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(List)))
         );
         var listObject = this
             .ClientContext.ProcessQuery(requestPayload)

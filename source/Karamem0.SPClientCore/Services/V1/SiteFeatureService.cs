@@ -23,9 +23,11 @@ public interface ISiteFeatureService
 
     Feature? GetObject(Feature featureObject);
 
-    Feature? GetObject(Guid featureId);
+    Feature? GetObject(Feature featureObject, bool selectAllProperties = true);
 
-    IEnumerable<Feature>? GetObjectEnumerable();
+    Feature? GetObject(Guid featureId, bool selectAllProperties = true);
+
+    IEnumerable<Feature>? GetObjectEnumerable(bool selectAllProperties = true);
 
     void RemoveObject(Guid featureId, bool force);
 
@@ -57,7 +59,7 @@ public class SiteFeatureService(ClientContext clientContext) : ClientService<Fea
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public Feature? GetObject(Guid featureId)
+    public Feature? GetObject(Guid featureId, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -70,14 +72,14 @@ public class SiteFeatureService(ClientContext clientContext) : ClientService<Fea
                 requestPayload.CreateParameter(featureId)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Feature)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Feature)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Feature>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<Feature>? GetObjectEnumerable()
+    public IEnumerable<Feature>? GetObjectEnumerable(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -88,7 +90,7 @@ public class SiteFeatureService(ClientContext clientContext) : ClientService<Fea
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(Feature))
+                ClientQuery.Create(selectAllProperties, typeof(Feature))
             )
         );
         return this

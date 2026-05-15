@@ -48,20 +48,41 @@ public class AddNavigationNodeCommand : ClientObjectCmdlet<INavigationNodeServic
     [Parameter(Mandatory = false)]
     public Uri? Url { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.NavigationNode ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.NavigationNode));
-            this.Outputs.Add(this.Service.AddObject(this.NavigationNode, this.MyInvocation.BoundParameters));
+            var creationInfo = new Dictionary<string, object?>(this.MyInvocation.BoundParameters);
+            _ = creationInfo.Remove(nameof(this.NavigationNode));
+            _ = creationInfo.Remove(nameof(this.QuickLaunch));
+            _ = creationInfo.Remove(nameof(this.TopNavigationBar));
+            this.Outputs.Add(
+                this.Service.AddObject(
+                    this.NavigationNode,
+                    creationInfo,
+                    this.SelectAllProperties
+                )
+            );
         }
         if (this.ParameterSetName == "ParamSet2")
         {
-            this.Outputs.Add(this.Service.AddObjectToQuickLaunch(this.MyInvocation.BoundParameters));
+            var creationInfo = new Dictionary<string, object?>(this.MyInvocation.BoundParameters);
+            _ = creationInfo.Remove(nameof(this.NavigationNode));
+            _ = creationInfo.Remove(nameof(this.QuickLaunch));
+            _ = creationInfo.Remove(nameof(this.TopNavigationBar));
+            this.Outputs.Add(this.Service.AddObjectToQuickLaunch(creationInfo, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
-            this.Outputs.Add(this.Service.AddObjectToTopNavigationBar(this.MyInvocation.BoundParameters));
+            var creationInfo = new Dictionary<string, object?>(this.MyInvocation.BoundParameters);
+            _ = creationInfo.Remove(nameof(this.NavigationNode));
+            _ = creationInfo.Remove(nameof(this.QuickLaunch));
+            _ = creationInfo.Remove(nameof(this.TopNavigationBar));
+            this.Outputs.Add(this.Service.AddObjectToTopNavigationBar(creationInfo, this.SelectAllProperties));
         }
     }
 

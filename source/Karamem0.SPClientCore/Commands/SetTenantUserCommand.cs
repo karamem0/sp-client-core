@@ -73,6 +73,9 @@ public class SetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
     [Parameter(Mandatory = false)]
     public SwitchParameter PassThru { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
         if (this.ParameterSetName == "ParamSet1")
@@ -86,7 +89,13 @@ public class SetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
             );
             if (this.PassThru)
             {
-                this.Outputs.Add(this.Service.GetObject(this.SiteCollection.Url, this.User.LoginName));
+                this.Outputs.Add(
+                    this.Service.GetObject(
+                        this.SiteCollection.Url,
+                        this.User.LoginName,
+                        this.SelectAllProperties
+                    )
+                );
             }
         }
         if (this.ParameterSetName == "ParamSet2")
@@ -100,7 +109,13 @@ public class SetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
             );
             if (this.PassThru)
             {
-                this.Outputs.Add(this.Service.GetObject(this.SiteCollection.Url, this.UserName));
+                this.Outputs.Add(
+                    this.Service.GetObject(
+                        this.SiteCollection.Url,
+                        this.UserName,
+                        this.SelectAllProperties
+                    )
+                );
             }
         }
         if (this.ParameterSetName == "ParamSet3")
@@ -114,7 +129,13 @@ public class SetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
             );
             if (this.PassThru)
             {
-                this.Outputs.Add(this.Service.GetObject(this.SiteCollectionUrl, this.User.LoginName));
+                this.Outputs.Add(
+                    this.Service.GetObject(
+                        this.SiteCollectionUrl,
+                        this.User.LoginName,
+                        this.SelectAllProperties
+                    )
+                );
             }
         }
         if (this.ParameterSetName == "ParamSet4")
@@ -128,7 +149,13 @@ public class SetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
             );
             if (this.PassThru)
             {
-                this.Outputs.Add(this.Service.GetObject(this.SiteCollectionUrl, this.UserName));
+                this.Outputs.Add(
+                    this.Service.GetObject(
+                        this.SiteCollectionUrl,
+                        this.UserName,
+                        this.SelectAllProperties
+                    )
+                );
             }
         }
     }

@@ -30,17 +30,20 @@ public class GetSiteCollectioCommand : ClientObjectCmdlet<ISiteCollectionService
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public Uri? SiteCollectionUrl { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service.GetObject(this.Identity));
+            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.SiteCollectionUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollectionUrl));
-            this.Outputs.Add(this.Service.GetObject(this.SiteCollectionUrl));
+            this.Outputs.Add(this.Service.GetObject(this.SiteCollectionUrl, this.SelectAllProperties));
         }
     }
 

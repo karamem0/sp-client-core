@@ -30,17 +30,20 @@ public class GetUserPropertyCommand : ClientObjectCmdlet<IUserPropertyService>
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public string? UserLoginName { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service.GetObject(this.Identity));
+            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.UserLoginName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.UserLoginName));
-            this.Outputs.Add(this.Service.GetObject(this.UserLoginName));
+            this.Outputs.Add(this.Service.GetObject(this.UserLoginName, this.SelectAllProperties));
         }
     }
 

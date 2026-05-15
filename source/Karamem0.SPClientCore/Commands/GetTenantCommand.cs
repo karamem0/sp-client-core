@@ -18,9 +18,12 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetTenantCommand : ClientObjectCmdlet<ITenantService>
 {
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
-        this.Outputs.Add(this.Service.GetObject());
+        this.Outputs.Add(this.Service.GetObject(this.SelectAllProperties));
     }
 
 }

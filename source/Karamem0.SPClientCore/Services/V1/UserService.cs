@@ -16,19 +16,21 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IUserService
 {
 
-    User? AddObject(IReadOnlyDictionary<string, object?> creationInfo);
+    User? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true);
 
-    User? EnsureObject(string userLoginName);
+    User? EnsureObject(string userLoginName, bool selectAllProperties = true);
 
-    User? GetObject();
+    User? GetObject(bool selectAllProperties = true);
 
     User? GetObject(User userObject);
 
-    User? GetObject(int userId);
+    User? GetObject(User userObject, bool selectAllProperties = true);
 
-    User? GetObject(string userName);
+    User? GetObject(int userId, bool selectAllProperties = true);
 
-    IEnumerable<User>? GetObjectEnumerable();
+    User? GetObject(string userName, bool selectAllProperties = true);
+
+    IEnumerable<User>? GetObjectEnumerable(bool selectAllProperties = true);
 
     void RemoveObject(User userObject);
 
@@ -39,7 +41,7 @@ public interface IUserService
 public class UserService(ClientContext clientContext) : ClientService<User>(clientContext), IUserService
 {
 
-    public User? AddObject(IReadOnlyDictionary<string, object?> creationInfo)
+    public User? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -52,14 +54,14 @@ public class UserService(ClientContext clientContext) : ClientService<User>(clie
                 requestPayload.CreateParameter(ClientValueObject.Create<UserCreationInfo>(creationInfo))
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(User)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(User)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public User? EnsureObject(string userLoginName)
+    public User? EnsureObject(string userLoginName, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -71,14 +73,14 @@ public class UserService(ClientContext clientContext) : ClientService<User>(clie
                 requestPayload.CreateParameter(userLoginName)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(User)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(User)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public User? GetObject()
+    public User? GetObject(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -86,14 +88,14 @@ public class UserService(ClientContext clientContext) : ClientService<User>(clie
         var objectPath3 = requestPayload.Add(
             ObjectPathProperty.Create(objectPath2.Id, "CurrentUser"),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(User)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(User)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public User? GetObject(int userId)
+    public User? GetObject(int userId, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -106,14 +108,14 @@ public class UserService(ClientContext clientContext) : ClientService<User>(clie
                 requestPayload.CreateParameter(userId)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(User)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(User)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public User? GetObject(string userName)
+    public User? GetObject(string userName, bool selectAllProperties = true)
     {
         if (Regex.IsMatch(userName, "^[ci]:0"))
         {
@@ -128,7 +130,7 @@ public class UserService(ClientContext clientContext) : ClientService<User>(clie
                     requestPayload.CreateParameter(userName)
                 ),
                 ClientActionInstantiateObjectPath.Create,
-                objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(User)))
+                objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(User)))
             );
             return this
                 .ClientContext.ProcessQuery(requestPayload)
@@ -147,7 +149,7 @@ public class UserService(ClientContext clientContext) : ClientService<User>(clie
                     requestPayload.CreateParameter(userName)
                 ),
                 ClientActionInstantiateObjectPath.Create,
-                objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(User)))
+                objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(User)))
             );
             return this
                 .ClientContext.ProcessQuery(requestPayload)
@@ -155,7 +157,7 @@ public class UserService(ClientContext clientContext) : ClientService<User>(clie
         }
     }
 
-    public IEnumerable<User>? GetObjectEnumerable()
+    public IEnumerable<User>? GetObjectEnumerable(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -166,7 +168,7 @@ public class UserService(ClientContext clientContext) : ClientService<User>(clie
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(User))
+                ClientQuery.Create(selectAllProperties, typeof(User))
             )
         );
         return this

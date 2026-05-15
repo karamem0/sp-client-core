@@ -40,10 +40,20 @@ public class AddTenantHubSiteCommand : ClientObjectCmdlet<ITenantHubSiteService>
     [Parameter(Mandatory = true)]
     public string? Title { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
         _ = this.SiteCollectionUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollectionUrl));
-        this.Outputs.Add(this.Service.AddObject(this.SiteCollectionUrl, this.MyInvocation.BoundParameters));
+        var creationInfo = new Dictionary<string, object?>(this.MyInvocation.BoundParameters);
+        this.Outputs.Add(
+            this.Service.AddObject(
+                this.SiteCollectionUrl,
+                creationInfo,
+                this.SelectAllProperties
+            )
+        );
     }
 
 }

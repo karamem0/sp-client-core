@@ -53,10 +53,20 @@ public class AddViewCommand : ClientObjectCmdlet<IViewService>
     [Parameter(Mandatory = false)]
     public ViewType ViewType { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
         _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
-        this.Outputs.Add(this.Service.AddObject(this.List, this.MyInvocation.BoundParameters));
+        var creationInfo = new Dictionary<string, object?>(this.MyInvocation.BoundParameters);
+        this.Outputs.Add(
+            this.Service.AddObject(
+                this.List,
+                creationInfo,
+                this.SelectAllProperties
+            )
+        );
     }
 
 }

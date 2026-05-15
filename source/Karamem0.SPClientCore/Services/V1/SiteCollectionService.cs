@@ -15,32 +15,34 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ISiteCollectionService
 {
 
-    SiteCollection? GetObject();
+    SiteCollection? GetObject(bool selectAllProperties = true);
 
     SiteCollection? GetObject(SiteCollection siteCollectionObject);
 
-    SiteCollection? GetObject(Uri siteCollectionUrl);
+    SiteCollection? GetObject(SiteCollection siteCollectionObject, bool selectAllProperties = true);
+
+    SiteCollection? GetObject(Uri siteCollectionUrl, bool selectAllProperties = true);
 
 }
 
 public class SiteCollectionService(ClientContext clientContext) : ClientService<SiteCollection>(clientContext), ISiteCollectionService
 {
 
-    public SiteCollection? GetObject()
+    public SiteCollection? GetObject(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(
             ObjectPathProperty.Create(objectPath1.Id, "Site"),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(SiteCollection)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(SiteCollection)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<SiteCollection>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public SiteCollection? GetObject(Uri siteCollectionUrl)
+    public SiteCollection? GetObject(Uri siteCollectionUrl, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -52,7 +54,7 @@ public class SiteCollectionService(ClientContext clientContext) : ClientService<
                 requestPayload.CreateParameter(false)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(SiteCollection)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(SiteCollection)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)

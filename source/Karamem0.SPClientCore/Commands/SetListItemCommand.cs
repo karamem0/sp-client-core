@@ -37,6 +37,9 @@ public class SetListItemCommand : ClientObjectCmdlet<IListItemService>
     [Parameter(Mandatory = false)]
     public SwitchParameter PassThru { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
         _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
@@ -63,7 +66,7 @@ public class SetListItemCommand : ClientObjectCmdlet<IListItemService>
         }
         if (this.PassThru)
         {
-            this.Outputs.Add(this.Service.GetObject(this.Identity));
+            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
         }
     }
 

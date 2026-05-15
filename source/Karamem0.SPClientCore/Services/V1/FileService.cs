@@ -17,7 +17,11 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IFileService
 {
 
-    File? AddObject(Folder folderObject, IReadOnlyDictionary<string, object?> creationInfo);
+    File? AddObject(
+        Folder folderObject,
+        IReadOnlyDictionary<string, object?> creationInfo,
+        bool selectAllProperties = true
+    );
 
     void CheckInObject(
         File fileObject,
@@ -44,19 +48,25 @@ public interface IFileService
 
     File? GetObject(File fileObject);
 
-    File? GetObject(FileVersion fileVersionObject);
+    File? GetObject(File fileObject, bool selectAllProperties = true);
 
-    File? GetObject(App appObject);
+    File? GetObject(FileVersion fileVersionObject, bool selectAllProperties = true);
 
-    File? GetObject(ListItem listItemObject);
+    File? GetObject(App appObject, bool selectAllProperties = true);
 
-    File? GetObject(Guid fileId);
+    File? GetObject(ListItem listItemObject, bool selectAllProperties = true);
 
-    File? GetObject(Uri fileUrl);
+    File? GetObject(Guid fileId, bool selectAllProperties = true);
 
-    File? GetObject(Folder folderObject, string fileName);
+    File? GetObject(Uri fileUrl, bool selectAllProperties = true);
 
-    IEnumerable<File>? GetObjectEnumerable(Folder folderObject);
+    File? GetObject(
+        Folder folderObject,
+        string fileName,
+        bool selectAllProperties = true
+    );
+
+    IEnumerable<File>? GetObjectEnumerable(Folder folderObject, bool selectAllProperties = true);
 
     void MoveObject(
         File fileObject,
@@ -95,7 +105,11 @@ public interface IFileService
 public class FileService(ClientContext clientContext) : ClientService<File>(clientContext), IFileService
 {
 
-    public File? AddObject(Folder folderObject, IReadOnlyDictionary<string, object?> creationInfo)
+    public File? AddObject(
+        Folder folderObject,
+        IReadOnlyDictionary<string, object?> creationInfo,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(folderObject.ObjectIdentity));
@@ -107,7 +121,7 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                 requestPayload.CreateParameter(ClientValueObject.Create<FileCreationInfo>(creationInfo))
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(File)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(File)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
@@ -193,7 +207,7 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
         return this.ClientContext.GetStream(requestUrl);
     }
 
-    public File? GetObject(FileVersion fileVersionObject)
+    public File? GetObject(FileVersion fileVersionObject, bool selectAllProperties = true)
     {
         var objectIdentity = fileVersionObject.ObjectIdentity;
         _ = objectIdentity ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
@@ -208,14 +222,14 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                 )
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(File)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(File)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<File>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public File? GetObject(App appObject)
+    public File? GetObject(App appObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -227,28 +241,28 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                 requestPayload.CreateParameter(appObject.Id)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(File)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(File)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<File>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public File? GetObject(ListItem listItemObject)
+    public File? GetObject(ListItem listItemObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listItemObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             ObjectPathProperty.Create(objectPath1.Id, "File"),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(File)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(File)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<File>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public File? GetObject(Guid fileId)
+    public File? GetObject(Guid fileId, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -260,14 +274,14 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                 requestPayload.CreateParameter(fileId)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(File)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(File)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<File>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public File? GetObject(Uri fileUrl)
+    public File? GetObject(Uri fileUrl, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -279,14 +293,18 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                 requestPayload.CreateParameter(fileUrl)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(File)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(File)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<File>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public File? GetObject(Folder folderObject, string fileName)
+    public File? GetObject(
+        Folder folderObject,
+        string fileName,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(folderObject.ObjectIdentity));
@@ -298,14 +316,14 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                 requestPayload.CreateParameter(fileName)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(File)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(File)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<File>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<File>? GetObjectEnumerable(Folder folderObject)
+    public IEnumerable<File>? GetObjectEnumerable(Folder folderObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(folderObject.ObjectIdentity));
@@ -315,7 +333,7 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(File))
+                ClientQuery.Create(selectAllProperties, typeof(File))
             )
         );
         return this

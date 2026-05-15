@@ -25,6 +25,9 @@ public class GetTenantThemeCommand : ClientObjectCmdlet<ITenantThemeService>
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public string? ThemeName { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     public SwitchParameter NoEnumerate { get; private set; }
 
@@ -33,24 +36,30 @@ public class GetTenantThemeCommand : ClientObjectCmdlet<ITenantThemeService>
         if (this.ParameterSetName == "ParamSet1")
         {
             this.Outputs.Add(
-                this.Service.GetObject(this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity)))
+                this.Service.GetObject(
+                    this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity)),
+                    this.SelectAllProperties
+                )
             );
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             this.Outputs.Add(
-                this.Service.GetObject(this.ThemeName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ThemeName)))
+                this.Service.GetObject(
+                    this.ThemeName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ThemeName)),
+                    this.SelectAllProperties
+                )
             );
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable());
+                this.Outputs.Add(this.Service.GetObjectEnumerable(this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable());
+                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.SelectAllProperties));
             }
         }
     }

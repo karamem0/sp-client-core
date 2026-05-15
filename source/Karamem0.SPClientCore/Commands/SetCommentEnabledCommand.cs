@@ -32,6 +32,9 @@ public class SetCommentEnabledCommand : ClientObjectCmdlet<ICommentService, ILis
     [Parameter(Mandatory = false)]
     public SwitchParameter PassThru { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
         _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
@@ -45,7 +48,7 @@ public class SetCommentEnabledCommand : ClientObjectCmdlet<ICommentService, ILis
         }
         if (this.PassThru)
         {
-            this.Outputs.Add(this.Service2.GetObject(this.Identity));
+            this.Outputs.Add(this.Service2.GetObject(this.Identity, this.SelectAllProperties));
         }
     }
 

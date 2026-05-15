@@ -15,15 +15,21 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITermGroupService
 {
 
-    TermGroup? AddObject(string termGroupName, Guid termGroupId);
+    TermGroup? AddObject(
+        string termGroupName,
+        Guid termGroupId,
+        bool selectAllProperties = true
+    );
 
     TermGroup? GetObject(TermGroup termGroupObject);
 
-    TermGroup? GetObject(Guid termGroupId);
+    TermGroup? GetObject(TermGroup termGroupObject, bool selectAllProperties = true);
 
-    TermGroup? GetObject(string termGroupName);
+    TermGroup? GetObject(Guid termGroupId, bool selectAllProperties = true);
 
-    IEnumerable<TermGroup>? GetObjectEnumerable();
+    TermGroup? GetObject(string termGroupName, bool selectAllProperties = true);
+
+    IEnumerable<TermGroup>? GetObjectEnumerable(bool selectAllProperties = true);
 
     void RemoveObject(TermGroup termGroupObject);
 
@@ -34,7 +40,11 @@ public interface ITermGroupService
 public class TermGroupService(ClientContext clientContext) : ClientService<TermGroup>(clientContext), ITermGroupService
 {
 
-    public TermGroup? AddObject(string termGroupName, Guid termGroupId)
+    public TermGroup? AddObject(
+        string termGroupName,
+        Guid termGroupId,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticMethod.Create(typeof(TaxonomySession), "GetTaxonomySession"));
@@ -47,14 +57,14 @@ public class TermGroupService(ClientContext clientContext) : ClientService<TermG
                 requestPayload.CreateParameter(termGroupId)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(TermGroup)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TermGroup)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TermGroup>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public TermGroup? GetObject(Guid termGroupId)
+    public TermGroup? GetObject(Guid termGroupId, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticMethod.Create(typeof(TaxonomySession), "GetTaxonomySession"));
@@ -67,14 +77,14 @@ public class TermGroupService(ClientContext clientContext) : ClientService<TermG
                 requestPayload.CreateParameter(termGroupId)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(TermGroup)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TermGroup)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TermGroup>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public TermGroup? GetObject(string termGroupName)
+    public TermGroup? GetObject(string termGroupName, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticMethod.Create(typeof(TaxonomySession), "GetTaxonomySession"));
@@ -87,14 +97,14 @@ public class TermGroupService(ClientContext clientContext) : ClientService<TermG
                 requestPayload.CreateParameter(termGroupName)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(TermGroup)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TermGroup)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TermGroup>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<TermGroup>? GetObjectEnumerable()
+    public IEnumerable<TermGroup>? GetObjectEnumerable(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticMethod.Create(typeof(TaxonomySession), "GetTaxonomySession"));
@@ -105,7 +115,7 @@ public class TermGroupService(ClientContext clientContext) : ClientService<TermG
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(TermGroup))
+                ClientQuery.Create(selectAllProperties, typeof(TermGroup))
             )
         );
         return this

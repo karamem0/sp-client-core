@@ -38,6 +38,9 @@ public class GetNavigationNodeCommand : ClientObjectCmdlet<INavigationNodeServic
     )]
     public NavigationNode? NavigationNode { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     public SwitchParameter NoEnumerate { get; private set; }
 
@@ -46,22 +49,22 @@ public class GetNavigationNodeCommand : ClientObjectCmdlet<INavigationNodeServic
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service.GetObject(this.Identity));
+            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
-            this.Outputs.Add(this.Service.GetObject(this.NavigationNodeId));
+            this.Outputs.Add(this.Service.GetObject(this.NavigationNodeId, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             _ = this.NavigationNode ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.NavigationNode));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.NavigationNode));
+                this.Outputs.Add(this.Service.GetObjectEnumerable(this.NavigationNode, this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.NavigationNode));
+                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.NavigationNode, this.SelectAllProperties));
             }
         }
     }

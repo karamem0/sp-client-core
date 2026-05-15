@@ -42,17 +42,24 @@ public class AddFolderColoringCommand : ClientObjectCmdlet<IFolderColoringServic
     [Parameter(Mandatory = false)]
     public bool Overwrite { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
         _ = this.Folder?.ServerRelativeUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Folder));
         _ = this.FolderName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.FolderName));
+        var creationInfo = new Dictionary<string, object?>(this.MyInvocation.BoundParameters);
+        _ = creationInfo.Remove(nameof(this.Folder));
+        _ = creationInfo.Remove(nameof(this.FolderName));
+        _ = creationInfo.Remove(nameof(this.Overwrite));
         this.Service1.AddObject(
             this.Folder.ServerRelativeUrl,
             this.FolderName,
             this.Overwrite,
-            this.MyInvocation.BoundParameters
+            creationInfo
         );
-        this.Outputs.Add(this.Service2.GetObject(this.Folder.ServerRelativeUrl.ConcatPath(this.FolderName)));
+        this.Outputs.Add(this.Service2.GetObject(this.Folder.ServerRelativeUrl.ConcatPath(this.FolderName), this.SelectAllProperties));
     }
 
 }

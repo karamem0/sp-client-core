@@ -24,14 +24,21 @@ public interface IRoleAssignmentService
     RoleAssignment? AddObject(
         SecurableObject securableObject,
         Principal principalObject,
-        RoleDefinition roleDefinitionObject
+        RoleDefinition roleDefinitionObject,
+        bool selectAllProperties = true
     );
 
-    IEnumerable<RoleAssignment>? GetObjectEnumerable(SecurableObject securableObject);
+    IEnumerable<RoleAssignment>? GetObjectEnumerable(SecurableObject securableObject, bool selectAllProperties = true);
 
     RoleAssignment? GetObject(RoleAssignment roleAssignmentObject);
 
-    RoleAssignment? GetObject(SecurableObject securableObject, int principalId);
+    RoleAssignment? GetObject(RoleAssignment roleAssignmentObject, bool selectAllProperties = true);
+
+    RoleAssignment? GetObject(
+        SecurableObject securableObject,
+        int principalId,
+        bool selectAllProperties = true
+    );
 
     void RemoveObject(RoleAssignment roleAssignmentObject);
 
@@ -64,7 +71,8 @@ public class RoleAssignmentService(ClientContext clientContext) : ClientService<
     public RoleAssignment? AddObject(
         SecurableObject securableObject,
         Principal principalObject,
-        RoleDefinition roleDefinitionObject
+        RoleDefinition roleDefinitionObject,
+        bool selectAllProperties = true
     )
     {
         var requestPayload = new ClientRequestPayload();
@@ -86,14 +94,14 @@ public class RoleAssignmentService(ClientContext clientContext) : ClientService<
                 ClientRequestParameterObjectPath.Create(objectPath1)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(RoleAssignment)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(RoleAssignment)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<RoleAssignment>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<RoleAssignment>? GetObjectEnumerable(SecurableObject securableObject)
+    public IEnumerable<RoleAssignment>? GetObjectEnumerable(SecurableObject securableObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(securableObject.ObjectIdentity));
@@ -103,7 +111,7 @@ public class RoleAssignmentService(ClientContext clientContext) : ClientService<
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(RoleAssignment))
+                ClientQuery.Create(selectAllProperties, typeof(RoleAssignment))
             )
         );
         return this
@@ -111,7 +119,11 @@ public class RoleAssignmentService(ClientContext clientContext) : ClientService<
             .ToObject<RoleAssignmentEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public RoleAssignment? GetObject(SecurableObject securableObject, int principalId)
+    public RoleAssignment? GetObject(
+        SecurableObject securableObject,
+        int principalId,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(securableObject.ObjectIdentity));
@@ -123,7 +135,7 @@ public class RoleAssignmentService(ClientContext clientContext) : ClientService<
                 requestPayload.CreateParameter(principalId)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(RoleAssignment)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(RoleAssignment)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)

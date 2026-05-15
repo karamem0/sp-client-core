@@ -21,9 +21,11 @@ public interface ITenantThemeService
 
     TenantTheme? GetObject(TenantTheme themeObject);
 
-    TenantTheme? GetObject(string themeName);
+    TenantTheme? GetObject(TenantTheme themeObject, bool selectAllProperties = true);
 
-    IEnumerable<TenantTheme>? GetObjectEnumerable();
+    TenantTheme? GetObject(string themeName, bool selectAllProperties = true);
+
+    IEnumerable<TenantTheme>? GetObjectEnumerable(bool selectAllProperties = true);
 
     void RemoveObject(TenantTheme themeObject);
 
@@ -58,12 +60,17 @@ public class TenantThemeService(ClientContext clientContext) : ClientService(cli
 
     public TenantTheme? GetObject(TenantTheme themeObject)
     {
-        var themeName = themeObject.Name;
-        _ = themeName ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
-        return this.GetObject(themeName);
+        return this.GetObject(themeObject, selectAllProperties: true);
     }
 
-    public TenantTheme? GetObject(string themeName)
+    public TenantTheme? GetObject(TenantTheme themeObject, bool selectAllProperties = true)
+    {
+        var themeName = themeObject.Name;
+        _ = themeName ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
+        return this.GetObject(themeName, selectAllProperties);
+    }
+
+    public TenantTheme? GetObject(string themeName, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -74,14 +81,14 @@ public class TenantThemeService(ClientContext clientContext) : ClientService(cli
                 requestPayload.CreateParameter(themeName)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(TenantTheme)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TenantTheme)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TenantTheme>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<TenantTheme>? GetObjectEnumerable()
+    public IEnumerable<TenantTheme>? GetObjectEnumerable(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -91,7 +98,7 @@ public class TenantThemeService(ClientContext clientContext) : ClientService(cli
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(TenantTheme))
+                ClientQuery.Create(selectAllProperties, typeof(TenantTheme))
             )
         );
         return this

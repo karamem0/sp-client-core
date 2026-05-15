@@ -53,6 +53,11 @@ public class SetTermLabelCommand : ClientObjectCmdlet<ITermService, ITermLabelSe
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     public SwitchParameter PassThru { get; private set; }
 
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
         if (this.ParameterSetName == "ParamSet1")
@@ -105,7 +110,7 @@ public class SetTermLabelCommand : ClientObjectCmdlet<ITermService, ITermLabelSe
             this.Service2.SetObjectAsDefault(this.Identity);
             if (this.PassThru)
             {
-                this.Outputs.Add(this.Service2.GetObject(this.Identity));
+                this.Outputs.Add(this.Service2.GetObject(this.Identity, this.SelectAllProperties));
             }
         }
     }

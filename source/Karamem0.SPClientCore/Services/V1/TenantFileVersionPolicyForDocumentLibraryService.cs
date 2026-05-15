@@ -22,13 +22,15 @@ public interface ITenantFileVersionPolicyForDocumentLibraryService
     TenantOperationResult? SetObject(
         Uri siteUrl,
         Guid listId,
-        IReadOnlyDictionary<string, object?> modificationInfo
+        IReadOnlyDictionary<string, object?> modificationInfo,
+        bool selectAllProperties = true
     );
 
     TenantOperationResult? SetObject(
         Uri siteUrl,
         string listTitle,
-        IReadOnlyDictionary<string, object?> modificationInfo
+        IReadOnlyDictionary<string, object?> modificationInfo,
+        bool selectAllProperties = true
     );
 
     void SetObjectAwait(
@@ -88,7 +90,8 @@ public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clie
     public TenantOperationResult? SetObject(
         Uri siteUrl,
         Guid listId,
-        IReadOnlyDictionary<string, object?> modificationInfo
+        IReadOnlyDictionary<string, object?> modificationInfo,
+        bool selectAllProperties = true
     )
     {
         var requestPayload = new ClientRequestPayload();
@@ -102,7 +105,7 @@ public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clie
                 requestPayload.CreateParameter(ClientValueObject.Create<FileVersionPolicyForDocumentLibrary>(modificationInfo))
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(TenantOperationResult)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TenantOperationResult)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
@@ -112,7 +115,8 @@ public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clie
     public TenantOperationResult? SetObject(
         Uri siteUrl,
         string listTitle,
-        IReadOnlyDictionary<string, object?> modificationInfo
+        IReadOnlyDictionary<string, object?> modificationInfo,
+        bool selectAllProperties = true
     )
     {
         var requestPayload = new ClientRequestPayload();
@@ -126,7 +130,7 @@ public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clie
                 requestPayload.CreateParameter(ClientValueObject.Create<FileVersionPolicyForDocumentLibrary>(modificationInfo))
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(TenantOperationResult)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TenantOperationResult)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)

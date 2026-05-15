@@ -19,7 +19,9 @@ public interface ISiteCollectionAppCatalogService
 
     SiteCollectionAppCatalog? GetObject(SiteCollectionAppCatalog siteCollectionAppCatalogObject);
 
-    IEnumerable<SiteCollectionAppCatalog>? GetObjectEnumerable();
+    SiteCollectionAppCatalog? GetObject(SiteCollectionAppCatalog siteCollectionAppCatalogObject, bool selectAllProperties = true);
+
+    IEnumerable<SiteCollectionAppCatalog>? GetObjectEnumerable(bool selectAllProperties = true);
 
     void RemoveObject(Uri siteCollectionUrl);
 
@@ -49,7 +51,7 @@ public class SiteCollectionAppCatalogService(ClientContext clientContext)
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public IEnumerable<SiteCollectionAppCatalog>? GetObjectEnumerable()
+    public IEnumerable<SiteCollectionAppCatalog>? GetObjectEnumerable(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -61,7 +63,7 @@ public class SiteCollectionAppCatalogService(ClientContext clientContext)
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(SiteCollectionAppCatalog))
+                ClientQuery.Create(selectAllProperties, typeof(SiteCollectionAppCatalog))
             )
         );
         return this

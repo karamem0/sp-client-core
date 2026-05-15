@@ -21,7 +21,7 @@ public interface IDocumentSetSharedColumnService
         bool pushChanges
     );
 
-    IEnumerable<Column>? GetObjectEnumerable(ContentType contentTypeObject);
+    IEnumerable<Column>? GetObjectEnumerable(ContentType contentTypeObject, bool selectAllProperties = true);
 
     void RemoveObject(
         ContentType contentTypeObject,
@@ -70,7 +70,7 @@ public class DocumentSetSharedColumnService(ClientContext clientContext) : Clien
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public IEnumerable<Column>? GetObjectEnumerable(ContentType contentTypeObject)
+    public IEnumerable<Column>? GetObjectEnumerable(ContentType contentTypeObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(contentTypeObject.ObjectIdentity));
@@ -87,7 +87,7 @@ public class DocumentSetSharedColumnService(ClientContext clientContext) : Clien
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(Column))
+                ClientQuery.Create(selectAllProperties, typeof(Column))
             )
         );
         return this

@@ -17,29 +17,31 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IListService
 {
 
-    List? AddObject(IReadOnlyDictionary<string, object?> creationInfo);
+    List? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true);
 
     List? GetObject(List listObject);
 
-    List? GetObject(ListItem listItemObject);
+    List? GetObject(List listObject, bool selectAllProperties = true);
 
-    List? GetObject(Models.V1.Folder folderObject);
+    List? GetObject(ListItem listItemObject, bool selectAllProperties = true);
 
-    List? GetObject(Models.V1.File fileObject);
+    List? GetObject(Models.V1.Folder folderObject, bool selectAllProperties = true);
 
-    List? GetObject(View viewObject);
+    List? GetObject(Models.V1.File fileObject, bool selectAllProperties = true);
 
-    List? GetObject(Drive driveObject);
+    List? GetObject(View viewObject, bool selectAllProperties = true);
 
-    List? GetObject(Guid listId);
+    List? GetObject(Drive driveObject, bool selectAllProperties = true);
 
-    List? GetObject(Uri listUrl);
+    List? GetObject(Guid listId, bool selectAllProperties = true);
 
-    List? GetObject(string listTitle);
+    List? GetObject(Uri listUrl, bool selectAllProperties = true);
 
-    List? GetObject(LibraryType libraryType);
+    List? GetObject(string listTitle, bool selectAllProperties = true);
 
-    IEnumerable<List>? GetObjectEnumerable();
+    List? GetObject(LibraryType libraryType, bool selectAllProperties = true);
+
+    IEnumerable<List>? GetObjectEnumerable(bool selectAllProperties = true);
 
     Guid RecycleObject(List listObject);
 
@@ -52,7 +54,7 @@ public interface IListService
 public class ListService(ClientContext clientContext) : ClientService<List>(clientContext), IListService
 {
 
-    public List? AddObject(IReadOnlyDictionary<string, object?> creationInfo)
+    public List? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -65,28 +67,28 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
                 requestPayload.CreateParameter(ClientValueObject.Create<ListCreationInfo>(creationInfo))
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(List)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(List)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public List? GetObject(ListItem listItemObject)
+    public List? GetObject(ListItem listItemObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listItemObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             ObjectPathProperty.Create(objectPath1.Id, "ParentList"),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(List)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(List)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public List? GetObject(Models.V1.Folder folderObject)
+    public List? GetObject(Models.V1.Folder folderObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(folderObject.ObjectIdentity));
@@ -94,14 +96,14 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
         var objectPath3 = requestPayload.Add(
             ObjectPathProperty.Create(objectPath2.Id, "ParentList"),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(List)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(List)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public List? GetObject(Models.V1.File fileObject)
+    public List? GetObject(Models.V1.File fileObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(fileObject.ObjectIdentity));
@@ -109,14 +111,14 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
         var objectPath3 = requestPayload.Add(
             ObjectPathProperty.Create(objectPath2.Id, "ParentList"),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(List)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(List)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public List? GetObject(View viewObject)
+    public List? GetObject(View viewObject, bool selectAllProperties = true)
     {
         var objectIdentity = viewObject.ObjectIdentity;
         _ = objectIdentity ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
@@ -131,14 +133,14 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
                 )
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(List)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(List)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public List? GetObject(Drive driveObject)
+    public List? GetObject(Drive driveObject, bool selectAllProperties = true)
     {
         var listId = driveObject.SharePointIds?.ListId;
         _ = listId ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
@@ -153,14 +155,14 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
                 requestPayload.CreateParameter(new Guid(listId))
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(List)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(List)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public List? GetObject(Guid listId)
+    public List? GetObject(Guid listId, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -173,14 +175,14 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
                 requestPayload.CreateParameter(listId)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(List)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(List)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public List? GetObject(Uri listUrl)
+    public List? GetObject(Uri listUrl, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -192,14 +194,14 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
                 requestPayload.CreateParameter(listUrl)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(List)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(List)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public List? GetObject(string listTitle)
+    public List? GetObject(string listTitle, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -212,14 +214,14 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
                 requestPayload.CreateParameter(listTitle)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(List)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(List)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public List? GetObject(LibraryType libraryType)
+    public List? GetObject(LibraryType libraryType, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -230,7 +232,7 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
             var objectPath4 = requestPayload.Add(
                 ObjectPathMethod.Create(objectPath3.Id, "EnsureSitePagesLibrary"),
                 ClientActionInstantiateObjectPath.Create,
-                objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(List)))
+                objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(List)))
             );
         }
         if (libraryType == LibraryType.ClientRenderedSitePages)
@@ -238,7 +240,7 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
             var objectPath4 = requestPayload.Add(
                 ObjectPathMethod.Create(objectPath3.Id, "EnsureClientRenderedSitePagesLibrary"),
                 ClientActionInstantiateObjectPath.Create,
-                objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(List)))
+                objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(List)))
             );
         }
         if (libraryType == LibraryType.SiteAssets)
@@ -246,7 +248,7 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
             var objectPath4 = requestPayload.Add(
                 ObjectPathMethod.Create(objectPath3.Id, "EnsureSiteAssetsLibrary"),
                 ClientActionInstantiateObjectPath.Create,
-                objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(List)))
+                objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(List)))
             );
         }
         return this
@@ -254,7 +256,7 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
             .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<List>? GetObjectEnumerable()
+    public IEnumerable<List>? GetObjectEnumerable(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -265,7 +267,7 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(List))
+                ClientQuery.Create(selectAllProperties, typeof(List))
             )
         );
         return this

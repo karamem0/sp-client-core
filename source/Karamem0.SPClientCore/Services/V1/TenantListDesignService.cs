@@ -15,11 +15,11 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantListDesignService
 {
 
-    TenantListDesign? AddObject(IReadOnlyDictionary<string, object?> creationInfo);
+    TenantListDesign? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true);
 
     TenantListDesign? GetObject(Guid listDesignId);
 
-    IEnumerable<TenantListDesign>? GetObjectEnumerable();
+    IEnumerable<TenantListDesign>? GetObjectEnumerable(bool selectAllProperties = true);
 
     void RemoveObject(TenantListDesign listDesignObject);
 
@@ -28,7 +28,7 @@ public interface ITenantListDesignService
 public class TenantListDesignService(ClientContext clientContext) : ClientService(clientContext), ITenantListDesignService
 {
 
-    public TenantListDesign? AddObject(IReadOnlyDictionary<string, object?> creationInfo)
+    public TenantListDesign? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -39,7 +39,7 @@ public class TenantListDesignService(ClientContext clientContext) : ClientServic
                 requestPayload.CreateParameter(ClientValueObject.Create<TenantListDesignCreationInfo>(creationInfo))
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(TenantListDesign)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TenantListDesign)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
@@ -61,7 +61,7 @@ public class TenantListDesignService(ClientContext clientContext) : ClientServic
             .ToObject<TenantListDesign>(requestPayload.GetActionId<ClientActionStaticMethod>());
     }
 
-    public IEnumerable<TenantListDesign>? GetObjectEnumerable()
+    public IEnumerable<TenantListDesign>? GetObjectEnumerable(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -71,7 +71,7 @@ public class TenantListDesignService(ClientContext clientContext) : ClientServic
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(TenantListDesign))
+                ClientQuery.Create(selectAllProperties, typeof(TenantListDesign))
             )
         );
         return this

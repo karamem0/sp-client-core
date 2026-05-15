@@ -52,6 +52,9 @@ public class GetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet5")]
     public string? UserName { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet6")]
     public SwitchParameter NoEnumerate { get; private set; }
@@ -61,47 +64,71 @@ public class GetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.SiteCollection?.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollection));
-            this.Outputs.Add(this.Service.GetObject(this.SiteCollection.Url, this.UserId));
+            this.Outputs.Add(
+                this.Service.GetObject(
+                    this.SiteCollection.Url,
+                    this.UserId,
+                    this.SelectAllProperties
+                )
+            );
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.SiteCollection?.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollection));
             _ = this.UserName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.UserName));
-            this.Outputs.Add(this.Service.GetObject(this.SiteCollection.Url, this.UserName));
+            this.Outputs.Add(
+                this.Service.GetObject(
+                    this.SiteCollection.Url,
+                    this.UserName,
+                    this.SelectAllProperties
+                )
+            );
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             _ = this.SiteCollection?.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollection));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.SiteCollection.Url));
+                this.Outputs.Add(this.Service.GetObjectEnumerable(this.SiteCollection.Url, this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.SiteCollection.Url));
+                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.SiteCollection.Url, this.SelectAllProperties));
             }
         }
         if (this.ParameterSetName == "ParamSet4")
         {
             _ = this.SiteCollectionUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollectionUrl));
-            this.Outputs.Add(this.Service.GetObject(this.SiteCollectionUrl, this.UserId));
+            this.Outputs.Add(
+                this.Service.GetObject(
+                    this.SiteCollectionUrl,
+                    this.UserId,
+                    this.SelectAllProperties
+                )
+            );
         }
         if (this.ParameterSetName == "ParamSet5")
         {
             _ = this.SiteCollectionUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollectionUrl));
             _ = this.UserName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.UserName));
-            this.Outputs.Add(this.Service.GetObject(this.SiteCollectionUrl, this.UserName));
+            this.Outputs.Add(
+                this.Service.GetObject(
+                    this.SiteCollectionUrl,
+                    this.UserName,
+                    this.SelectAllProperties
+                )
+            );
         }
         if (this.ParameterSetName == "ParamSet6")
         {
             _ = this.SiteCollectionUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollectionUrl));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.SiteCollectionUrl));
+                this.Outputs.Add(this.Service.GetObjectEnumerable(this.SiteCollectionUrl, this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.SiteCollectionUrl));
+                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.SiteCollectionUrl, this.SelectAllProperties));
             }
         }
     }

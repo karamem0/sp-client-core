@@ -29,11 +29,20 @@ public class AddFolderCommand : ClientObjectCmdlet<IFolderService>
     [Parameter(Mandatory = true)]
     public string? FolderName { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
         _ = this.Folder ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Folder));
         _ = this.FolderName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.FolderName));
-        this.Outputs.Add(this.Service.AddObject(this.Folder, this.FolderName));
+        this.Outputs.Add(
+            this.Service.AddObject(
+                this.Folder,
+                this.FolderName,
+                this.SelectAllProperties
+            )
+        );
     }
 
 }

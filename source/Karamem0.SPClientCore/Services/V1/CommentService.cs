@@ -23,6 +23,8 @@ public interface ICommentService
 
     Comment? GetObject(Comment commentObject);
 
+    Comment? GetObject(Comment commentObject, bool selectAllProperties = true);
+
     Comment? GetObject(ListItem listItemObject, int commentId);
 
     IEnumerable<Comment>? GetObjectEnumerable(ListItem listItemObject);
@@ -79,6 +81,11 @@ public class CommentService(ClientContext clientContext) : ClientService(clientC
             )
             .ConcatQuery(ODataQuery.CreateSelect<Comment>());
         return this.ClientContext.GetObject<Comment>(requestUrl);
+    }
+
+    public Comment? GetObject(Comment commentObject, bool selectAllProperties = true)
+    {
+        return this.GetObject(commentObject);
     }
 
     public Comment? GetObject(ListItem listItemObject, int commentId)

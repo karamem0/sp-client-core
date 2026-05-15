@@ -29,6 +29,9 @@ public class GetTenantHubSiteCommand : ClientObjectCmdlet<ITenantHubSiteService>
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public Uri? HubSiteUrl { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     public SwitchParameter NoEnumerate { get; private set; }
 
@@ -36,23 +39,26 @@ public class GetTenantHubSiteCommand : ClientObjectCmdlet<ITenantHubSiteService>
     {
         if (this.ParameterSetName == "ParamSet1")
         {
-            this.Outputs.Add(this.Service.GetObject(this.HubSiteId));
+            this.Outputs.Add(this.Service.GetObject(this.HubSiteId, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             this.Outputs.Add(
-                this.Service.GetObject(this.HubSiteUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.HubSiteUrl)))
+                this.Service.GetObject(
+                    this.HubSiteUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.HubSiteUrl)),
+                    this.SelectAllProperties
+                )
             );
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable());
+                this.Outputs.Add(this.Service.GetObjectEnumerable(this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable());
+                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.SelectAllProperties));
             }
         }
     }

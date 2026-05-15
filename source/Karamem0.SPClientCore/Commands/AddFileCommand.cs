@@ -35,10 +35,19 @@ public class AddFileCommand : ClientObjectCmdlet<IFileService>
     [Parameter(Mandatory = false)]
     public bool Overwrite { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
         _ = this.Folder ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Folder));
-        this.Outputs.Add(this.Service.AddObject(this.Folder, this.MyInvocation.BoundParameters));
+        this.Outputs.Add(
+            this.Service.AddObject(
+                this.Folder,
+                this.MyInvocation.BoundParameters,
+                this.SelectAllProperties
+            )
+        );
     }
 
 }

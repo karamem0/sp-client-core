@@ -38,6 +38,9 @@ public class SetContentTypeColumnCommand : ClientObjectCmdlet<IContentTypeColumn
     [Parameter(Mandatory = false)]
     public SwitchParameter PassThru { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
         _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
@@ -48,7 +51,7 @@ public class SetContentTypeColumnCommand : ClientObjectCmdlet<IContentTypeColumn
         );
         if (this.PassThru)
         {
-            this.Outputs.Add(this.Service.GetObject(this.Identity));
+            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
         }
     }
 

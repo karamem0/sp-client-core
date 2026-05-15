@@ -25,6 +25,9 @@ public class AddTermGroupCommand : ClientObjectCmdlet<ITermGroupService>
     [Parameter(Mandatory = true)]
     public string? Name { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
         if (this.Id == default)
@@ -32,7 +35,13 @@ public class AddTermGroupCommand : ClientObjectCmdlet<ITermGroupService>
             this.Id = Guid.NewGuid();
         }
         _ = this.Name ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Name));
-        this.Outputs.Add(this.Service.AddObject(this.Name, this.Id));
+        this.Outputs.Add(
+            this.Service.AddObject(
+                this.Name,
+                this.Id,
+                this.SelectAllProperties
+            )
+        );
     }
 
 }

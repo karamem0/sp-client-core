@@ -16,11 +16,16 @@ public abstract class ClientService<T>(ClientContext clientContext) : ClientServ
 
     public virtual T? GetObject(T clientObject)
     {
+        return this.GetObject(clientObject, selectAllProperties: true);
+    }
+
+    public virtual T? GetObject(T clientObject, bool selectAllProperties = true)
+    {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             ObjectPathIdentity.Create(clientObject.ObjectIdentity),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(T)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(T)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)

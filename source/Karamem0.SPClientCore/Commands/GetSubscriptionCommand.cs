@@ -44,6 +44,9 @@ public class GetSubscriptionCommand : ClientObjectCmdlet<ISubscriptionService>
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public Guid SubscriptionId { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     public SwitchParameter NoEnumerate { get; private set; }
 
@@ -52,7 +55,7 @@ public class GetSubscriptionCommand : ClientObjectCmdlet<ISubscriptionService>
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service.GetObject(this.Identity));
+            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {

@@ -17,13 +17,25 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantUserService
 {
 
-    User? AddObject(Uri siteCollectionUrl, IReadOnlyDictionary<string, object?> creationInfo);
+    User? AddObject(
+        Uri siteCollectionUrl,
+        IReadOnlyDictionary<string, object?> creationInfo,
+        bool selectAllProperties = true
+    );
 
-    User? GetObject(Uri siteCollectionUrl, int userId);
+    User? GetObject(
+        Uri siteCollectionUrl,
+        int userId,
+        bool selectAllProperties = true
+    );
 
-    User? GetObject(Uri siteCollectionUrl, string userName);
+    User? GetObject(
+        Uri siteCollectionUrl,
+        string userName,
+        bool selectAllProperties = true
+    );
 
-    IEnumerable<User>? GetObjectEnumerable(Uri siteCollectionUrl);
+    IEnumerable<User>? GetObjectEnumerable(Uri siteCollectionUrl, bool selectAllProperties = true);
 
     void RemoveObject(Uri siteCollectionUrl, User userObject);
 
@@ -44,7 +56,11 @@ public interface ITenantUserService
 public class TenantUserService(ClientContext clientContext) : ClientService<User>(clientContext), ITenantUserService
 {
 
-    public User? AddObject(Uri siteCollectionUrl, IReadOnlyDictionary<string, object?> creationInfo)
+    public User? AddObject(
+        Uri siteCollectionUrl,
+        IReadOnlyDictionary<string, object?> creationInfo,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -64,14 +80,18 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
                 requestPayload.CreateParameter(ClientValueObject.Create<UserCreationInfo>(creationInfo))
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(User)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(User)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public User? GetObject(Uri siteCollectionUrl, int userId)
+    public User? GetObject(
+        Uri siteCollectionUrl,
+        int userId,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -91,14 +111,18 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
                 requestPayload.CreateParameter(userId)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(User)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(User)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public User? GetObject(Uri siteCollectionUrl, string userName)
+    public User? GetObject(
+        Uri siteCollectionUrl,
+        string userName,
+        bool selectAllProperties = true
+    )
     {
         if (Regex.IsMatch(userName, "^[ci]:0"))
         {
@@ -120,7 +144,7 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
                     requestPayload.CreateParameter(userName)
                 ),
                 ClientActionInstantiateObjectPath.Create,
-                objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(User)))
+                objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(User)))
             );
             return this
                 .ClientContext.ProcessQuery(requestPayload)
@@ -146,7 +170,7 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
                     requestPayload.CreateParameter(userName)
                 ),
                 ClientActionInstantiateObjectPath.Create,
-                objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(User)))
+                objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(User)))
             );
             return this
                 .ClientContext.ProcessQuery(requestPayload)
@@ -154,7 +178,7 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
         }
     }
 
-    public IEnumerable<User>? GetObjectEnumerable(Uri siteCollectionUrl)
+    public IEnumerable<User>? GetObjectEnumerable(Uri siteCollectionUrl, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -172,7 +196,7 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(User))
+                ClientQuery.Create(selectAllProperties, typeof(User))
             )
         );
         return this

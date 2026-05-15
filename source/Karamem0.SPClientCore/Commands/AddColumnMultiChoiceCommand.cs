@@ -152,6 +152,10 @@ public class AddColumnMultiChoiceCommand : ClientObjectCmdlet<IColumnService>
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     public SwitchParameter AddToDefaultView { get; private set; }
 
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
     public SwitchParameter WhatIf { get; private set; }
 
@@ -162,24 +166,28 @@ public class AddColumnMultiChoiceCommand : ClientObjectCmdlet<IColumnService>
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
+            var creationInfo = new Dictionary<string, object?>(this.MyInvocation.BoundParameters);
             this.Outputs.Add(
                 this.Service.AddObject(
                     this.List,
                     columnType,
-                    this.MyInvocation.BoundParameters,
+                    creationInfo,
                     this.AddToDefaultView,
-                    addColumnOptions
+                    addColumnOptions,
+                    this.SelectAllProperties
                 )
             );
         }
         if (this.ParameterSetName == "ParamSet2")
         {
+            var creationInfo = new Dictionary<string, object?>(this.MyInvocation.BoundParameters);
             this.Outputs.Add(
                 this.Service.AddObject(
                     columnType,
-                    this.MyInvocation.BoundParameters,
+                    creationInfo,
                     this.AddToDefaultView,
-                    addColumnOptions
+                    addColumnOptions,
+                    this.SelectAllProperties
                 )
             );
         }

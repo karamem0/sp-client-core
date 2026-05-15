@@ -19,13 +19,15 @@ public interface IHighlightService
         View viewObject,
         int itemId,
         string folderPath,
-        int afterItemId
+        int afterItemId,
+        bool selectAllProperties = true
     );
 
     HighlightResult? RemoveObject(
         View viewObject,
         int itemId,
-        string folderPath
+        string folderPath,
+        bool selectAllProperties = true
     );
 
 }
@@ -37,7 +39,8 @@ public class HighlightService(ClientContext clientContext) : ClientService(clien
         View viewObject,
         int itemId,
         string folderPath,
-        int afterItemId
+        int afterItemId,
+        bool selectAllProperties = true
     )
     {
         var requestPayload = new ClientRequestPayload();
@@ -51,7 +54,7 @@ public class HighlightService(ClientContext clientContext) : ClientService(clien
                 requestPayload.CreateParameter(afterItemId)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
@@ -61,7 +64,8 @@ public class HighlightService(ClientContext clientContext) : ClientService(clien
     public HighlightResult? RemoveObject(
         View viewObject,
         int itemId,
-        string folderPath
+        string folderPath,
+        bool selectAllProperties = true
     )
     {
         var requestPayload = new ClientRequestPayload();
@@ -74,7 +78,7 @@ public class HighlightService(ClientContext clientContext) : ClientService(clien
                 requestPayload.CreateParameter(folderPath)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)

@@ -17,7 +17,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public abstract class TenantClientService(ClientContext clientContext) : ClientService(clientContext)
 {
 
-    public void WaitObject(TenantOperationResult? operationResultObject)
+    public void WaitObject(TenantOperationResult? operationResultObject, bool selectAllProperties = true)
     {
         while (true)
         {
@@ -36,7 +36,7 @@ public abstract class TenantClientService(ClientContext clientContext) : ClientS
             var objectPath1 = requestPayload.Add(
                 ObjectPathIdentity.Create(operationResultObject.ObjectIdentity),
                 ClientActionInstantiateObjectPath.Create,
-                objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(TenantOperationResult)))
+                objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TenantOperationResult)))
             );
             operationResultObject = this
                 .ClientContext.ProcessQuery(requestPayload)

@@ -20,10 +20,11 @@ public interface IDocumentSetDefaultDocumentService
         ContentType documentContentTypeObject,
         string fileName,
         byte[] fileContent,
-        bool pushChanges
+        bool pushChanges,
+        bool selectAllProperties = true
     );
 
-    IEnumerable<DefaultDocument>? GetObjectEnumerable(ContentType documentContentTypeObject);
+    IEnumerable<DefaultDocument>? GetObjectEnumerable(ContentType documentContentTypeObject, bool selectAllProperties = true);
 
     void RemoveObject(
         ContentType contentTypeObject,
@@ -41,7 +42,8 @@ public class DocumentSetDefaultDocumentService(ClientContext clientContext) : Cl
         ContentType documentContentTypeObject,
         string fileName,
         byte[] fileContent,
-        bool pushChanges
+        bool pushChanges,
+        bool selectAllProperties = true
     )
     {
         var requestPayload = new ClientRequestPayload();
@@ -63,7 +65,7 @@ public class DocumentSetDefaultDocumentService(ClientContext clientContext) : Cl
                 requestPayload.CreateParameter(fileContent)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(DefaultDocument)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(DefaultDocument)))
         );
         var objectPath5 = requestPayload.Add(
             objectPath2,
@@ -78,7 +80,7 @@ public class DocumentSetDefaultDocumentService(ClientContext clientContext) : Cl
             .ToObject<DefaultDocument>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<DefaultDocument>? GetObjectEnumerable(ContentType documentContentTypeObject)
+    public IEnumerable<DefaultDocument>? GetObjectEnumerable(ContentType documentContentTypeObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(documentContentTypeObject.ObjectIdentity));
@@ -95,7 +97,7 @@ public class DocumentSetDefaultDocumentService(ClientContext clientContext) : Cl
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(DefaultDocument))
+                ClientQuery.Create(selectAllProperties, typeof(DefaultDocument))
             )
         );
         return this

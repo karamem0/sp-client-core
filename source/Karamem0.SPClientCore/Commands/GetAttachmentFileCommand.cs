@@ -39,6 +39,9 @@ public class GetAttachmentFileCommand : ClientObjectCmdlet<IAttachmentFileServic
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public string? FileName { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     public SwitchParameter NoEnumerate { get; private set; }
 
@@ -47,24 +50,30 @@ public class GetAttachmentFileCommand : ClientObjectCmdlet<IAttachmentFileServic
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service.GetObject(this.Identity));
+            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
             _ = this.FileName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.FileName));
-            this.Outputs.Add(this.Service.GetObject(this.ListItem, this.FileName));
+            this.Outputs.Add(
+                this.Service.GetObject(
+                    this.ListItem,
+                    this.FileName,
+                    this.SelectAllProperties
+                )
+            );
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.ListItem));
+                this.Outputs.Add(this.Service.GetObjectEnumerable(this.ListItem, this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.ListItem));
+                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.ListItem, this.SelectAllProperties));
             }
         }
     }

@@ -20,7 +20,7 @@ public interface IViewColumnService
 
     void AddObject(View viewObject, string columnName);
 
-    IEnumerable<string>? GetObjectEnumerable(View viewObject);
+    IEnumerable<string>? GetObjectEnumerable(View viewObject, bool selectAllProperties = true);
 
     void MoveObject(
         View viewObject,
@@ -69,7 +69,7 @@ public class ViewColumnService(ClientContext clientContext) : ClientService(clie
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public IEnumerable<string>? GetObjectEnumerable(View viewObject)
+    public IEnumerable<string>? GetObjectEnumerable(View viewObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(viewObject.ObjectIdentity));
@@ -78,8 +78,8 @@ public class ViewColumnService(ClientContext clientContext) : ClientService(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
-                ClientQuery.Create(true, typeof(ViewColumnEnumerable)),
-                ClientQuery.Create(true)
+                ClientQuery.Create(selectAllProperties, typeof(ViewColumnEnumerable)),
+                ClientQuery.Create(selectAllProperties)
             )
         );
         return this

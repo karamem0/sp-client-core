@@ -21,7 +21,8 @@ public interface IColumnService
         ColumnType columnType,
         IReadOnlyDictionary<string, object?> creationInfo,
         bool addToDefaultView,
-        AddColumnOptions addColumnOptions
+        AddColumnOptions addColumnOptions,
+        bool selectAllProperties = true
     );
 
     Column? AddObject(
@@ -29,28 +30,47 @@ public interface IColumnService
         ColumnType columnType,
         IReadOnlyDictionary<string, object?> creationInfo,
         bool addToDefaultView,
-        AddColumnOptions addColumnOptions
+        AddColumnOptions addColumnOptions,
+        bool selectAllProperties = true
     );
 
     Column? GetObject(Column columnObject);
 
-    Column? GetObject(Guid columnId);
+    Column? GetObject(Column columnObject, bool selectAllProperties = true);
 
-    Column? GetObject(string columnTitle);
+    Column? GetObject(Guid columnId, bool selectAllProperties = true);
 
-    Column? GetObject(ContentType contentTypeObject, Guid columnId);
+    Column? GetObject(string columnTitle, bool selectAllProperties = true);
 
-    Column? GetObject(ContentType contentTypeObject, string columnTitle);
+    Column? GetObject(
+        ContentType contentTypeObject,
+        Guid columnId,
+        bool selectAllProperties = true
+    );
 
-    Column? GetObject(List listObject, Guid columnId);
+    Column? GetObject(
+        ContentType contentTypeObject,
+        string columnTitle,
+        bool selectAllProperties = true
+    );
 
-    Column? GetObject(List listObject, string columnTitle);
+    Column? GetObject(
+        List listObject,
+        Guid columnId,
+        bool selectAllProperties = true
+    );
 
-    IEnumerable<Column>? GetObjectEnumerable();
+    Column? GetObject(
+        List listObject,
+        string columnTitle,
+        bool selectAllProperties = true
+    );
 
-    IEnumerable<Column>? GetObjectEnumerable(ContentType contentTypeObject);
+    IEnumerable<Column>? GetObjectEnumerable(bool selectAllProperties = true);
 
-    IEnumerable<Column>? GetObjectEnumerable(List listObject);
+    IEnumerable<Column>? GetObjectEnumerable(ContentType contentTypeObject, bool selectAllProperties = true);
+
+    IEnumerable<Column>? GetObjectEnumerable(List listObject, bool selectAllProperties = true);
 
     void RemoveObject(Column columnObject);
 
@@ -71,7 +91,8 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
         ColumnType columnType,
         IReadOnlyDictionary<string, object?> creationInfo,
         bool addToDefaultView,
-        AddColumnOptions addColumnOptions
+        AddColumnOptions addColumnOptions,
+        bool selectAllProperties = true
     )
     {
         var requestPayload = new ClientRequestPayload();
@@ -87,7 +108,7 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
                 requestPayload.CreateParameter(addColumnOptions)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Column)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Column)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
@@ -99,7 +120,8 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
         ColumnType columnType,
         IReadOnlyDictionary<string, object?> creationInfo,
         bool addToDefaultView,
-        AddColumnOptions addColumnOptions
+        AddColumnOptions addColumnOptions,
+        bool selectAllProperties = true
     )
     {
         var requestPayload = new ClientRequestPayload();
@@ -114,14 +136,14 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
                 requestPayload.CreateParameter(addColumnOptions)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Column)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Column)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public Column? GetObject(Guid columnId)
+    public Column? GetObject(Guid columnId, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -134,14 +156,14 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
                 requestPayload.CreateParameter(columnId)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Column)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Column)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public Column? GetObject(string columnTitle)
+    public Column? GetObject(string columnTitle, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -154,14 +176,18 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
                 requestPayload.CreateParameter(columnTitle)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Column)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Column)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public Column? GetObject(ContentType contentTypeObject, Guid columnId)
+    public Column? GetObject(
+        ContentType contentTypeObject,
+        Guid columnId,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(contentTypeObject.ObjectIdentity));
@@ -173,14 +199,18 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
                 requestPayload.CreateParameter(columnId)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Column)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Column)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public Column? GetObject(ContentType contentTypeObject, string columnTitle)
+    public Column? GetObject(
+        ContentType contentTypeObject,
+        string columnTitle,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(contentTypeObject.ObjectIdentity));
@@ -192,14 +222,18 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
                 requestPayload.CreateParameter(columnTitle)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Column)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Column)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public Column? GetObject(List listObject, Guid columnId)
+    public Column? GetObject(
+        List listObject,
+        Guid columnId,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));
@@ -211,14 +245,18 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
                 requestPayload.CreateParameter(columnId)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Column)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Column)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public Column? GetObject(List listObject, string columnTitle)
+    public Column? GetObject(
+        List listObject,
+        string columnTitle,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));
@@ -230,14 +268,14 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
                 requestPayload.CreateParameter(columnTitle)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Column)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Column)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<Column>? GetObjectEnumerable()
+    public IEnumerable<Column>? GetObjectEnumerable(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -248,7 +286,7 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(Column))
+                ClientQuery.Create(selectAllProperties, typeof(Column))
             )
         );
         return this
@@ -256,7 +294,7 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
             .ToObject<ColumnEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<Column>? GetObjectEnumerable(ContentType contentTypeObject)
+    public IEnumerable<Column>? GetObjectEnumerable(ContentType contentTypeObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(contentTypeObject.ObjectIdentity));
@@ -266,7 +304,7 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(Column))
+                ClientQuery.Create(selectAllProperties, typeof(Column))
             )
         );
         return this
@@ -274,7 +312,7 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
             .ToObject<ColumnEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<Column>? GetObjectEnumerable(List listObject)
+    public IEnumerable<Column>? GetObjectEnumerable(List listObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));
@@ -284,7 +322,7 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(Column))
+                ClientQuery.Create(selectAllProperties, typeof(Column))
             )
         );
         return this

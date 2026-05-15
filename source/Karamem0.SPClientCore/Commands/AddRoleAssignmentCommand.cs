@@ -74,6 +74,9 @@ public class AddRoleAssignmentCommand : ClientObjectCmdlet<ISiteService, IRoleAs
     )]
     public RoleDefinition? RoleDefinition { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
         if (this.ParameterSetName == "ParamSet1")
@@ -87,7 +90,8 @@ public class AddRoleAssignmentCommand : ClientObjectCmdlet<ISiteService, IRoleAs
                 this.Service2.AddObject(
                     siteObject,
                     this.Principal,
-                    this.RoleDefinition
+                    this.RoleDefinition,
+                    this.SelectAllProperties
                 )
             );
         }
@@ -100,7 +104,8 @@ public class AddRoleAssignmentCommand : ClientObjectCmdlet<ISiteService, IRoleAs
                 this.Service2.AddObject(
                     this.List,
                     this.Principal,
-                    this.RoleDefinition
+                    this.RoleDefinition,
+                    this.SelectAllProperties
                 )
             );
         }
@@ -113,7 +118,8 @@ public class AddRoleAssignmentCommand : ClientObjectCmdlet<ISiteService, IRoleAs
                 this.Service2.AddObject(
                     this.ListItem,
                     this.Principal,
-                    this.RoleDefinition
+                    this.RoleDefinition,
+                    this.SelectAllProperties
                 )
             );
         }

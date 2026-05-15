@@ -30,6 +30,9 @@ public class SetTenantFileVersionPolicyCommand : ClientObjectCmdlet<ITenantServi
     [Parameter(Mandatory = false)]
     public SwitchParameter PassThru { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
         this.Service2.SetObject(

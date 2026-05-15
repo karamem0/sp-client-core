@@ -16,21 +16,23 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ISiteService
 {
 
-    Site? AddObject(IReadOnlyDictionary<string, object?> creationInfo);
+    Site? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true);
 
-    Site? GetObject();
+    Site? GetObject(bool selectAllProperties = true);
 
     Site? GetObject(Site siteObject);
 
-    Site? GetObject(SiteCollection siteCollectionObject);
+    Site? GetObject(Site siteObject, bool selectAllProperties = true);
 
-    Site? GetObject(List listObject);
+    Site? GetObject(SiteCollection siteCollectionObject, bool selectAllProperties = true);
 
-    Site? GetObject(Guid siteId);
+    Site? GetObject(List listObject, bool selectAllProperties = true);
 
-    Site? GetObject(Uri siteUrl);
+    Site? GetObject(Guid siteId, bool selectAllProperties = true);
 
-    IEnumerable<Site>? GetObjectEnumerable();
+    Site? GetObject(Uri siteUrl, bool selectAllProperties = true);
+
+    IEnumerable<Site>? GetObjectEnumerable(bool selectAllProperties = true);
 
     void RemoveObject(Site siteObject);
 
@@ -45,7 +47,7 @@ public interface ISiteService
 public class SiteService(ClientContext clientContext) : ClientService<Site>(clientContext), ISiteService
 {
 
-    public Site? AddObject(IReadOnlyDictionary<string, object?> creationInfo)
+    public Site? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -58,28 +60,28 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
                 requestPayload.CreateParameter(ClientValueObject.Create<SiteCreationInfo>(creationInfo))
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Site)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Site)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Site>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public Site? GetObject()
+    public Site? GetObject(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(
             ObjectPathProperty.Create(objectPath1.Id, "Web"),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Site)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Site)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Site>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public Site? GetObject(SiteCollection siteCollectionObject)
+    public Site? GetObject(SiteCollection siteCollectionObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -91,28 +93,28 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
                 requestPayload.CreateParameter(siteCollectionObject.ServerRelativeUrl)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Site)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Site)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Site>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public Site? GetObject(List listObject)
+    public Site? GetObject(List listObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             ObjectPathProperty.Create(objectPath1.Id, "ParentWeb"),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Site)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Site)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Site>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public Site? GetObject(Guid siteId)
+    public Site? GetObject(Guid siteId, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -124,14 +126,14 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
                 requestPayload.CreateParameter(siteId)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Site)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Site)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Site>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public Site? GetObject(Uri siteUrl)
+    public Site? GetObject(Uri siteUrl, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -143,14 +145,14 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
                 requestPayload.CreateParameter(siteUrl)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Site)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Site)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Site>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<Site>? GetObjectEnumerable()
+    public IEnumerable<Site>? GetObjectEnumerable(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -161,7 +163,7 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(Site))
+                ClientQuery.Create(selectAllProperties, typeof(Site))
             )
         );
         return this

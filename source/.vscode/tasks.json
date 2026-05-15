@@ -39,7 +39,7 @@
       "problemMatcher": []
     },
     {
-      "label": "resharper",
+      "label": "cleanupcode",
       "type": "shell",
       "command": "jb",
       "args": [

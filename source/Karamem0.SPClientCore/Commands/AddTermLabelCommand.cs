@@ -35,6 +35,9 @@ public class AddTermLabelCommand : ClientObjectCmdlet<ITermLabelService>
     [Parameter(Mandatory = true)]
     public bool IsDefault { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
         _ = this.Term ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Term));
@@ -44,7 +47,8 @@ public class AddTermLabelCommand : ClientObjectCmdlet<ITermLabelService>
                 this.Term,
                 this.Name,
                 this.Lcid,
-                this.IsDefault
+                this.IsDefault,
+                this.SelectAllProperties
             )
         );
     }

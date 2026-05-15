@@ -53,6 +53,9 @@ public class GetViewCommand : ClientObjectCmdlet<IViewService>
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
     public string? ViewTitle { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet4")]
     public SwitchParameter NoEnumerate { get; private set; }
 
@@ -61,29 +64,41 @@ public class GetViewCommand : ClientObjectCmdlet<IViewService>
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service.GetObject(this.Identity));
+            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
-            this.Outputs.Add(this.Service.GetObject(this.List, this.ViewId));
+            this.Outputs.Add(
+                this.Service.GetObject(
+                    this.List,
+                    this.ViewId,
+                    this.SelectAllProperties
+                )
+            );
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
             _ = this.ViewTitle ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ViewTitle));
-            this.Outputs.Add(this.Service.GetObject(this.List, this.ViewTitle));
+            this.Outputs.Add(
+                this.Service.GetObject(
+                    this.List,
+                    this.ViewTitle,
+                    this.SelectAllProperties
+                )
+            );
         }
         if (this.ParameterSetName == "ParamSet4")
         {
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.List));
+                this.Outputs.Add(this.Service.GetObjectEnumerable(this.List, this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.List));
+                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.List, this.SelectAllProperties));
             }
         }
     }

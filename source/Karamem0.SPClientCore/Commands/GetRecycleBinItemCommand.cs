@@ -34,6 +34,9 @@ public class GetRecycleBinItemCommand : ClientObjectCmdlet<IRecycleBinItemServic
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     public SwitchParameter SecondStage { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     public SwitchParameter NoEnumerate { get; private set; }
 
@@ -42,17 +45,29 @@ public class GetRecycleBinItemCommand : ClientObjectCmdlet<IRecycleBinItemServic
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service.GetObject(this.Identity));
+            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             if (this.SecondStage)
             {
-                this.Outputs.Add(this.Service.GetObject(this.ItemId, RecycleBinItemState.SecondStageRecycleBin));
+                this.Outputs.Add(
+                    this.Service.GetObject(
+                        this.ItemId,
+                        RecycleBinItemState.SecondStageRecycleBin,
+                        this.SelectAllProperties
+                    )
+                );
             }
             else
             {
-                this.Outputs.Add(this.Service.GetObject(this.ItemId, RecycleBinItemState.FirstStageRecycleBin));
+                this.Outputs.Add(
+                    this.Service.GetObject(
+                        this.ItemId,
+                        RecycleBinItemState.FirstStageRecycleBin,
+                        this.SelectAllProperties
+                    )
+                );
             }
         }
         if (this.ParameterSetName == "ParamSet3")
@@ -61,22 +76,22 @@ public class GetRecycleBinItemCommand : ClientObjectCmdlet<IRecycleBinItemServic
             {
                 if (this.NoEnumerate)
                 {
-                    this.Outputs.Add(this.Service.GetObjectEnumerable(RecycleBinItemState.SecondStageRecycleBin));
+                    this.Outputs.Add(this.Service.GetObjectEnumerable(RecycleBinItemState.SecondStageRecycleBin, this.SelectAllProperties));
                 }
                 else
                 {
-                    this.Outputs.AddRange(this.Service.GetObjectEnumerable(RecycleBinItemState.SecondStageRecycleBin));
+                    this.Outputs.AddRange(this.Service.GetObjectEnumerable(RecycleBinItemState.SecondStageRecycleBin, this.SelectAllProperties));
                 }
             }
             else
             {
                 if (this.NoEnumerate)
                 {
-                    this.Outputs.Add(this.Service.GetObjectEnumerable(RecycleBinItemState.FirstStageRecycleBin));
+                    this.Outputs.Add(this.Service.GetObjectEnumerable(RecycleBinItemState.FirstStageRecycleBin, this.SelectAllProperties));
                 }
                 else
                 {
-                    this.Outputs.AddRange(this.Service.GetObjectEnumerable(RecycleBinItemState.FirstStageRecycleBin));
+                    this.Outputs.AddRange(this.Service.GetObjectEnumerable(RecycleBinItemState.FirstStageRecycleBin, this.SelectAllProperties));
                 }
             }
         }

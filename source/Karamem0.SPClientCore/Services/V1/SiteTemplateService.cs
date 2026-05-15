@@ -18,10 +18,15 @@ public interface ISiteTemplateService
     SiteTemplate? GetObject(
         string name,
         uint lcid,
-        bool includeCrossLanguage
+        bool includeCrossLanguage,
+        bool selectAllProperties = true
     );
 
-    IEnumerable<SiteTemplate>? GetObjectEnumerable(uint lcid, bool includeCrossLanguage);
+    IEnumerable<SiteTemplate>? GetObjectEnumerable(
+        uint lcid,
+        bool includeCrossLanguage,
+        bool selectAllProperties = true
+    );
 
 }
 
@@ -31,7 +36,8 @@ public class SiteTemplateService(ClientContext clientContext) : ClientService(cl
     public SiteTemplate? GetObject(
         string name,
         uint lcid,
-        bool includeCrossLanguage
+        bool includeCrossLanguage,
+        bool selectAllProperties = true
     )
     {
         var requestPayload = new ClientRequestPayload();
@@ -53,14 +59,18 @@ public class SiteTemplateService(ClientContext clientContext) : ClientService(cl
                 requestPayload.CreateParameter(name)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(SiteTemplate)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(SiteTemplate)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<SiteTemplate>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<SiteTemplate>? GetObjectEnumerable(uint lcid, bool includeCrossLanguage)
+    public IEnumerable<SiteTemplate>? GetObjectEnumerable(
+        uint lcid,
+        bool includeCrossLanguage,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -76,7 +86,7 @@ public class SiteTemplateService(ClientContext clientContext) : ClientService(cl
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(SiteTemplate))
+                ClientQuery.Create(selectAllProperties, typeof(SiteTemplate))
             )
         );
         return this

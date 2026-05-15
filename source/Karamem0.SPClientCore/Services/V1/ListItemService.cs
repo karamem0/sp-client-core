@@ -17,27 +17,49 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IListItemService
 {
 
-    ListItem? AddObject(List listObject, IReadOnlyDictionary<string, object?> creationInfo);
+    ListItem? AddObject(
+        List listObject,
+        IReadOnlyDictionary<string, object?> creationInfo,
+        bool selectAllProperties = true
+    );
 
-    IEnumerable<ListItem?>? AddObjectEnumerable(List listObject, IEnumerable<IReadOnlyDictionary<string, object?>> creationInfos);
+    IEnumerable<ListItem?>? AddObjectEnumerable(
+        List listObject,
+        IEnumerable<IReadOnlyDictionary<string, object?>> creationInfos,
+        bool selectAllProperties = true
+    );
 
     ListItem? GetObject(ListItem listItemObject);
 
-    ListItem? GetObject(Models.V1.Folder folderObject);
+    ListItem? GetObject(ListItem listItemObject, bool selectAllProperties = true);
 
-    ListItem? GetObject(Models.V1.File fileObject);
+    ListItem? GetObject(Models.V1.Folder folderObject, bool selectAllProperties = true);
 
-    ListItem? GetObject(DriveItem driveItemObject);
+    ListItem? GetObject(Models.V1.File fileObject, bool selectAllProperties = true);
 
-    ListItem? GetObject(List listObject, int listItemId);
+    ListItem? GetObject(DriveItem driveItemObject, bool selectAllProperties = true);
 
-    ListItem? GetObject(List listObject, Guid listItemUniqueId);
+    ListItem? GetObject(
+        List listObject,
+        int listItemId,
+        bool selectAllProperties = true
+    );
 
-    ListItem? GetObject(Uri listItemUrl);
+    ListItem? GetObject(
+        List listObject,
+        Guid listItemUniqueId,
+        bool selectAllProperties = true
+    );
 
-    IEnumerable<ListItem>? GetObjectEnumerable(List listObject);
+    ListItem? GetObject(Uri listItemUrl, bool selectAllProperties = true);
 
-    IEnumerable<ListItem>? GetObjectEnumerable(List listObject, IReadOnlyDictionary<string, object?> filterInfo);
+    IEnumerable<ListItem>? GetObjectEnumerable(List listObject, bool selectAllProperties = true);
+
+    IEnumerable<ListItem>? GetObjectEnumerable(
+        List listObject,
+        IReadOnlyDictionary<string, object?> filterInfo,
+        bool selectAllProperties = true
+    );
 
     Guid RecycleObject(ListItem listItemObject);
 
@@ -54,7 +76,11 @@ public interface IListItemService
 public class ListItemService(ClientContext clientContext) : ClientService<ListItem>(clientContext), IListItemService
 {
 
-    public ListItem? AddObject(List listObject, IReadOnlyDictionary<string, object?> creationInfo)
+    public ListItem? AddObject(
+        List listObject,
+        IReadOnlyDictionary<string, object?> creationInfo,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var delegates = new List<ClientActionDelegate>
@@ -72,7 +98,7 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
             )
         );
         delegates.Add(objectPathId => ClientActionMethod.Create(objectPathId, "Update"));
-        delegates.Add(objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true)));
+        delegates.Add(objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties)));
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             ObjectPathMethod.Create(
@@ -87,7 +113,11 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
             .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<ListItem?>? AddObjectEnumerable(List listObject, IEnumerable<IReadOnlyDictionary<string, object?>> creationInfos)
+    public IEnumerable<ListItem?>? AddObjectEnumerable(
+        List listObject,
+        IEnumerable<IReadOnlyDictionary<string, object?>> creationInfos,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));
@@ -108,7 +138,7 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
                 )
             );
             delegates.Add(objectPathId => ClientActionMethod.Create(objectPathId, "Update"));
-            delegates.Add(objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true)));
+            delegates.Add(objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties)));
             var objectPath2 = requestPayload.Add(
                 ObjectPathMethod.Create(
                     objectPath1.Id,
@@ -123,48 +153,50 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
             .ToObjectEnumerable<ListItem>(requestPayload.GetActionIds<ClientActionQuery>());
     }
 
-    public override ListItem? GetObject(ListItem listItemObject)
+    public override ListItem? GetObject(ListItem listItemObject) => this.GetObject(listItemObject, true);
+
+    public override ListItem? GetObject(ListItem listItemObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             ObjectPathIdentity.Create(listItemObject.ObjectIdentity),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(ListItem)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(ListItem)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public ListItem? GetObject(Models.V1.Folder folderObject)
+    public ListItem? GetObject(Models.V1.Folder folderObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(folderObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             ObjectPathProperty.Create(objectPath1.Id, "ListItemAllFields"),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(ListItem)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(ListItem)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public ListItem? GetObject(Models.V1.File fileObject)
+    public ListItem? GetObject(Models.V1.File fileObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(fileObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             ObjectPathProperty.Create(objectPath1.Id, "ListItemAllFields"),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(ListItem)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(ListItem)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public ListItem? GetObject(DriveItem driveItemObject)
+    public ListItem? GetObject(DriveItem driveItemObject, bool selectAllProperties = true)
     {
         var listId = driveItemObject.SharePointIds?.ListId;
         _ = listId ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
@@ -188,14 +220,18 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
                 requestPayload.CreateParameter(int.Parse(listItemId))
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public ListItem? GetObject(List listObject, int listItemId)
+    public ListItem? GetObject(
+        List listObject,
+        int listItemId,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));
@@ -206,14 +242,18 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
                 requestPayload.CreateParameter(listItemId)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public ListItem? GetObject(List listObject, Guid listItemUniqueId)
+    public ListItem? GetObject(
+        List listObject,
+        Guid listItemUniqueId,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));
@@ -224,14 +264,14 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
                 requestPayload.CreateParameter(listItemUniqueId)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public ListItem? GetObject(Uri listItemUrl)
+    public ListItem? GetObject(Uri listItemUrl, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -243,14 +283,14 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
                 requestPayload.CreateParameter(listItemUrl)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<ListItem>? GetObjectEnumerable(List listObject)
+    public IEnumerable<ListItem>? GetObjectEnumerable(List listObject, bool selectAllProperties = true)
     {
         var listItemCollectionPosition = default(ListItemCollectionPosition);
         do
@@ -274,8 +314,8 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
                 ClientActionInstantiateObjectPath.Create,
                 objectPathId => ClientActionQuery.Create(
                     objectPathId,
-                    ClientQuery.Create(true, typeof(ListItemEnumerable)),
-                    ClientQuery.Create(true)
+                    ClientQuery.Create(selectAllProperties, typeof(ListItemEnumerable)),
+                    ClientQuery.Create(selectAllProperties)
                 )
             );
             var listItemEnumerable = this
@@ -290,7 +330,11 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
         } while (listItemCollectionPosition is not null);
     }
 
-    public IEnumerable<ListItem>? GetObjectEnumerable(List listObject, IReadOnlyDictionary<string, object?> filterInfo)
+    public IEnumerable<ListItem>? GetObjectEnumerable(
+        List listObject,
+        IReadOnlyDictionary<string, object?> filterInfo,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));
@@ -303,8 +347,8 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
-                ClientQuery.Create(true, typeof(ListItemEnumerable)),
-                ClientQuery.Create(true)
+                ClientQuery.Create(selectAllProperties, typeof(ListItemEnumerable)),
+                ClientQuery.Create(selectAllProperties)
             )
         );
         return this

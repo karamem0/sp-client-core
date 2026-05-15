@@ -498,12 +498,15 @@ public class SetTenantCommand : ClientObjectCmdlet<ITenantService>
     [Parameter(Mandatory = false)]
     public SwitchParameter PassThru { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
         this.Service.SetObject(this.MyInvocation.BoundParameters);
         if (this.PassThru)
         {
-            this.Outputs.Add(this.Service.GetObject());
+            this.Outputs.Add(this.Service.GetObject(this.SelectAllProperties));
         }
     }
 

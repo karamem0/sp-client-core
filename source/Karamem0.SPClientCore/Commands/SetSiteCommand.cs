@@ -148,6 +148,9 @@ public class SetSiteCommand : ClientObjectCmdlet<ISiteService>
     [Parameter(Mandatory = false)]
     public SwitchParameter PassThru { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
         if (this.Identity is null)
@@ -155,7 +158,7 @@ public class SetSiteCommand : ClientObjectCmdlet<ISiteService>
             this.Service.SetObject(this.MyInvocation.BoundParameters);
             if (this.PassThru)
             {
-                this.Outputs.Add(this.Service.GetObject());
+                this.Outputs.Add(this.Service.GetObject(this.SelectAllProperties));
             }
         }
         else
@@ -163,7 +166,7 @@ public class SetSiteCommand : ClientObjectCmdlet<ISiteService>
             this.Service.SetObject(this.Identity, this.MyInvocation.BoundParameters);
             if (this.PassThru)
             {
-                this.Outputs.Add(this.Service.GetObject(this.Identity));
+                this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
             }
         }
     }

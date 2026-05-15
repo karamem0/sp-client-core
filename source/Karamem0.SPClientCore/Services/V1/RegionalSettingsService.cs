@@ -25,7 +25,7 @@ public interface IRegionalSettingsService
 
     DateTime ConvertLocalToUniversal(DateTime date);
 
-    RegionalSettings? GetObject();
+    RegionalSettings? GetObject(bool selectAllProperties = true);
 
     void RemoveSupportedUILanguage(uint lcid);
 
@@ -147,7 +147,7 @@ public class RegionalSettingsService(ClientContext clientContext) : ClientServic
             .ToObject<DateTime>(requestPayload.GetActionId<ClientActionMethod>());
     }
 
-    public RegionalSettings? GetObject()
+    public RegionalSettings? GetObject(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -155,7 +155,7 @@ public class RegionalSettingsService(ClientContext clientContext) : ClientServic
         var objectPath3 = requestPayload.Add(
             ObjectPathProperty.Create(objectPath2.Id, "RegionalSettings"),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(RegionalSettings)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(RegionalSettings)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)

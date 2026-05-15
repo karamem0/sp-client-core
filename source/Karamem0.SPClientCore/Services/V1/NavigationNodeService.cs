@@ -15,17 +15,23 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface INavigationNodeService
 {
 
-    NavigationNode? AddObject(NavigationNode navigationNodeObject, IReadOnlyDictionary<string, object?> creationInfo);
+    NavigationNode? AddObject(
+        NavigationNode navigationNodeObject,
+        IReadOnlyDictionary<string, object?> creationInfo,
+        bool selectAllProperties = true
+    );
 
-    NavigationNode? AddObjectToQuickLaunch(IReadOnlyDictionary<string, object?> creationInfo);
+    NavigationNode? AddObjectToQuickLaunch(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true);
 
-    NavigationNode? AddObjectToTopNavigationBar(IReadOnlyDictionary<string, object?> creationInfo);
+    NavigationNode? AddObjectToTopNavigationBar(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true);
 
     NavigationNode? GetObject(NavigationNode navigationNodeObject);
 
-    NavigationNode? GetObject(int navigationNodeId);
+    NavigationNode? GetObject(NavigationNode navigationNodeObject, bool selectAllProperties = true);
 
-    IEnumerable<NavigationNode>? GetObjectEnumerable(NavigationNode navigationNodeObject);
+    NavigationNode? GetObject(int navigationNodeId, bool selectAllProperties = true);
+
+    IEnumerable<NavigationNode>? GetObjectEnumerable(NavigationNode navigationNodeObject, bool selectAllProperties = true);
 
     void RemoveObject(NavigationNode navigationNodeObject);
 
@@ -36,7 +42,11 @@ public interface INavigationNodeService
 public class NavigationNodeService(ClientContext clientContext) : ClientService<NavigationNode>(clientContext), INavigationNodeService
 {
 
-    public NavigationNode? AddObject(NavigationNode navigationNodeObject, IReadOnlyDictionary<string, object?> creationInfo)
+    public NavigationNode? AddObject(
+        NavigationNode navigationNodeObject,
+        IReadOnlyDictionary<string, object?> creationInfo,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(navigationNodeObject.ObjectIdentity));
@@ -48,14 +58,14 @@ public class NavigationNodeService(ClientContext clientContext) : ClientService<
                 requestPayload.CreateParameter(ClientValueObject.Create<NavigationNodeCreationInfo>(creationInfo))
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(NavigationNode)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(NavigationNode)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<NavigationNode>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public NavigationNode? AddObjectToQuickLaunch(IReadOnlyDictionary<string, object?> creationInfo)
+    public NavigationNode? AddObjectToQuickLaunch(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -69,14 +79,14 @@ public class NavigationNodeService(ClientContext clientContext) : ClientService<
                 requestPayload.CreateParameter(ClientValueObject.Create<NavigationNodeCreationInfo>(creationInfo))
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(NavigationNode)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(NavigationNode)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<NavigationNode>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public NavigationNode? AddObjectToTopNavigationBar(IReadOnlyDictionary<string, object?> creationInfo)
+    public NavigationNode? AddObjectToTopNavigationBar(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -90,14 +100,14 @@ public class NavigationNodeService(ClientContext clientContext) : ClientService<
                 requestPayload.CreateParameter(ClientValueObject.Create<NavigationNodeCreationInfo>(creationInfo))
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(NavigationNode)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(NavigationNode)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<NavigationNode>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public NavigationNode? GetObject(int navigationNodeId)
+    public NavigationNode? GetObject(int navigationNodeId, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -110,14 +120,14 @@ public class NavigationNodeService(ClientContext clientContext) : ClientService<
                 requestPayload.CreateParameter(navigationNodeId)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(NavigationNode)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(NavigationNode)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<NavigationNode>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<NavigationNode>? GetObjectEnumerable(NavigationNode navigationNodeObject)
+    public IEnumerable<NavigationNode>? GetObjectEnumerable(NavigationNode navigationNodeObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(navigationNodeObject.ObjectIdentity));
@@ -127,7 +137,7 @@ public class NavigationNodeService(ClientContext clientContext) : ClientService<
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(NavigationNode))
+                ClientQuery.Create(selectAllProperties, typeof(NavigationNode))
             )
         );
         return this

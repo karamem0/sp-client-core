@@ -35,6 +35,9 @@ public class SetFilePublishedCommand : ClientObjectCmdlet<IFileService>
     [Parameter(Mandatory = false)]
     public SwitchParameter PassThru { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
         if (this.Published)
@@ -49,7 +52,7 @@ public class SetFilePublishedCommand : ClientObjectCmdlet<IFileService>
         }
         if (this.PassThru)
         {
-            this.Outputs.Add(this.Service.GetObject(this.File));
+            this.Outputs.Add(this.Service.GetObject(this.File, this.SelectAllProperties));
         }
     }
 

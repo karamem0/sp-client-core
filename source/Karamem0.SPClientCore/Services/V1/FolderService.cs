@@ -17,7 +17,11 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IFolderService
 {
 
-    Folder? AddObject(Folder folderObject, string folderName);
+    Folder? AddObject(
+        Folder folderObject,
+        string folderName,
+        bool selectAllProperties = true
+    );
 
     void CopyObject(
         Folder folderObject,
@@ -27,19 +31,25 @@ public interface IFolderService
 
     Folder? GetObject(Folder folderObject);
 
-    Folder? GetObject(List listObject);
+    Folder? GetObject(Folder folderObject, bool selectAllProperties = true);
 
-    Folder? GetObject(ListItem listItemObject);
+    Folder? GetObject(List listObject, bool selectAllProperties = true);
 
-    Folder? GetObject(Guid folderId);
+    Folder? GetObject(ListItem listItemObject, bool selectAllProperties = true);
 
-    Folder? GetObject(Uri folderUrl);
+    Folder? GetObject(Guid folderId, bool selectAllProperties = true);
 
-    Folder? GetObject(Folder folderObject, string folderName);
+    Folder? GetObject(Uri folderUrl, bool selectAllProperties = true);
 
-    IEnumerable<Folder>? GetObjectEnumerable();
+    Folder? GetObject(
+        Folder folderObject,
+        string folderName,
+        bool selectAllProperties = true
+    );
 
-    IEnumerable<Folder>? GetObjectEnumerable(Folder folderObject);
+    IEnumerable<Folder>? GetObjectEnumerable(bool selectAllProperties = true);
+
+    IEnumerable<Folder>? GetObjectEnumerable(Folder folderObject, bool selectAllProperties = true);
 
     void MoveObject(Folder folderObject, Uri folderUrl);
 
@@ -60,7 +70,11 @@ public interface IFolderService
 public class FolderService(ClientContext clientContext) : ClientService<Folder>(clientContext), IFolderService
 {
 
-    public Folder? AddObject(Folder folderObject, string folderName)
+    public Folder? AddObject(
+        Folder folderObject,
+        string folderName,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(folderObject.ObjectIdentity));
@@ -72,7 +86,7 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
                 requestPayload.CreateParameter(folderName)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Folder)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Folder)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
@@ -102,35 +116,35 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public Folder? GetObject(List listObject)
+    public Folder? GetObject(List listObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             ObjectPathProperty.Create(objectPath1.Id, "RootFolder"),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Folder)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Folder)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public Folder? GetObject(ListItem listItemObject)
+    public Folder? GetObject(ListItem listItemObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listItemObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(
             ObjectPathProperty.Create(objectPath1.Id, "Folder"),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Folder)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Folder)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public Folder? GetObject(Guid folderId)
+    public Folder? GetObject(Guid folderId, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -142,14 +156,14 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
                 requestPayload.CreateParameter(folderId)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Folder)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Folder)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public Folder? GetObject(Uri folderUrl)
+    public Folder? GetObject(Uri folderUrl, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -161,14 +175,18 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
                 requestPayload.CreateParameter(folderUrl)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Folder)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Folder)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public Folder? GetObject(Folder folderObject, string folderName)
+    public Folder? GetObject(
+        Folder folderObject,
+        string folderName,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(folderObject.ObjectIdentity));
@@ -180,14 +198,14 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
                 requestPayload.CreateParameter(folderName)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Folder)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Folder)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<Folder>? GetObjectEnumerable()
+    public IEnumerable<Folder>? GetObjectEnumerable(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -198,7 +216,7 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true)
+                ClientQuery.Create(selectAllProperties)
             )
         );
         return this
@@ -206,7 +224,7 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
             .ToObject<FolderEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<Folder>? GetObjectEnumerable(Folder folderObject)
+    public IEnumerable<Folder>? GetObjectEnumerable(Folder folderObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(folderObject.ObjectIdentity));
@@ -216,7 +234,7 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(Folder))
+                ClientQuery.Create(selectAllProperties, typeof(Folder))
             )
         );
         return this

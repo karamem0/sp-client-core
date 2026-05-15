@@ -28,14 +28,21 @@ public class AddContentTypeColumnCommand : ClientObjectCmdlet<IContentTypeColumn
     [Parameter(Mandatory = false)]
     public SwitchParameter PushChanges { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
         _ = this.ContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentType));
+        var creationInfo = new Dictionary<string, object?>(this.MyInvocation.BoundParameters);
+        _ = creationInfo.Remove(nameof(this.ContentType));
+        _ = creationInfo.Remove(nameof(this.PushChanges));
         this.Outputs.Add(
             this.Service.AddObject(
                 this.ContentType,
-                this.MyInvocation.BoundParameters,
-                this.PushChanges
+                creationInfo,
+                this.PushChanges,
+                this.SelectAllProperties
             )
         );
     }

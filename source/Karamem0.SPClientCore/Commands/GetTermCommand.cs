@@ -73,6 +73,9 @@ public class GetTermCommand : ClientObjectCmdlet<ITermService>
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet7")]
     public string? TermName { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet5")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet8")]
     public SwitchParameter NoEnumerate { get; private set; }
@@ -82,57 +85,81 @@ public class GetTermCommand : ClientObjectCmdlet<ITermService>
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service.GetObject(this.Identity));
+            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.TermLabel ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.TermLabel));
-            this.Outputs.Add(this.Service.GetObject(this.TermLabel));
+            this.Outputs.Add(this.Service.GetObject(this.TermLabel, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             _ = this.TermSet ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.TermSet));
-            this.Outputs.Add(this.Service.GetObject(this.TermSet, this.TermId));
+            this.Outputs.Add(
+                this.Service.GetObject(
+                    this.TermSet,
+                    this.TermId,
+                    this.SelectAllProperties
+                )
+            );
         }
         if (this.ParameterSetName == "ParamSet4")
         {
             _ = this.TermSet ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.TermSet));
             _ = this.TermName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.TermName));
-            this.Outputs.Add(this.Service.GetObject(this.TermSet, this.TermName));
+            this.Outputs.Add(
+                this.Service.GetObject(
+                    this.TermSet,
+                    this.TermName,
+                    this.SelectAllProperties
+                )
+            );
         }
         if (this.ParameterSetName == "ParamSet5")
         {
             _ = this.TermSet ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.TermSet));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.TermSet));
+                this.Outputs.Add(this.Service.GetObjectEnumerable(this.TermSet, this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.TermSet));
+                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.TermSet, this.SelectAllProperties));
             }
         }
         if (this.ParameterSetName == "ParamSet6")
         {
             _ = this.Term ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Term));
-            this.Outputs.Add(this.Service.GetObject(this.Term, this.TermId));
+            this.Outputs.Add(
+                this.Service.GetObject(
+                    this.Term,
+                    this.TermId,
+                    this.SelectAllProperties
+                )
+            );
         }
         if (this.ParameterSetName == "ParamSet7")
         {
             _ = this.Term ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Term));
             _ = this.TermName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.TermName));
-            this.Outputs.Add(this.Service.GetObject(this.Term, this.TermName));
+            this.Outputs.Add(
+                this.Service.GetObject(
+                    this.Term,
+                    this.TermName,
+                    this.SelectAllProperties
+                )
+            );
         }
         if (this.ParameterSetName == "ParamSet8")
         {
             _ = this.Term ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Term));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.Term));
+                this.Outputs.Add(this.Service.GetObjectEnumerable(this.Term, this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.Term));
+                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.Term, this.SelectAllProperties));
             }
         }
     }

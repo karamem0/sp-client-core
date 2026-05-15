@@ -18,9 +18,15 @@ public interface IRecycleBinItemService
 
     RecycleBinItem? GetObject(RecycleBinItem recycleBinItemObject);
 
-    RecycleBinItem? GetObject(Guid itemId, RecycleBinItemState recycleBinItemState);
+    RecycleBinItem? GetObject(RecycleBinItem recycleBinItemObject, bool selectAllProperties = true);
 
-    IEnumerable<RecycleBinItem>? GetObjectEnumerable(RecycleBinItemState recycleBinItemState);
+    RecycleBinItem? GetObject(
+        Guid itemId,
+        RecycleBinItemState recycleBinItemState,
+        bool selectAllProperties = true
+    );
+
+    IEnumerable<RecycleBinItem>? GetObjectEnumerable(RecycleBinItemState recycleBinItemState, bool selectAllProperties = true);
 
     void MoveAllObjectToSecondStage();
 
@@ -41,7 +47,11 @@ public interface IRecycleBinItemService
 public class RecycleBinItemService(ClientContext clientContext) : ClientService<RecycleBinItem>(clientContext), IRecycleBinItemService
 {
 
-    public RecycleBinItem? GetObject(Guid itemId, RecycleBinItemState recycleBinItemState)
+    public RecycleBinItem? GetObject(
+        Guid itemId,
+        RecycleBinItemState recycleBinItemState,
+        bool selectAllProperties = true
+    )
     {
         if (recycleBinItemState == RecycleBinItemState.FirstStageRecycleBin)
         {
@@ -56,7 +66,7 @@ public class RecycleBinItemService(ClientContext clientContext) : ClientService<
                     requestPayload.CreateParameter(itemId)
                 ),
                 ClientActionInstantiateObjectPath.Create,
-                objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(RecycleBinItem)))
+                objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(RecycleBinItem)))
             );
             return this
                 .ClientContext.ProcessQuery(requestPayload)
@@ -75,7 +85,7 @@ public class RecycleBinItemService(ClientContext clientContext) : ClientService<
                     requestPayload.CreateParameter(itemId)
                 ),
                 ClientActionInstantiateObjectPath.Create,
-                objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(RecycleBinItem)))
+                objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(RecycleBinItem)))
             );
             return this
                 .ClientContext.ProcessQuery(requestPayload)
@@ -84,7 +94,7 @@ public class RecycleBinItemService(ClientContext clientContext) : ClientService<
         throw new InvalidOperationException(StringResources.ErrorValueIsInvalid);
     }
 
-    public IEnumerable<RecycleBinItem>? GetObjectEnumerable(RecycleBinItemState recycleBinItemState)
+    public IEnumerable<RecycleBinItem>? GetObjectEnumerable(RecycleBinItemState recycleBinItemState, bool selectAllProperties = true)
     {
         if (recycleBinItemState == RecycleBinItemState.FirstStageRecycleBin)
         {
@@ -97,7 +107,7 @@ public class RecycleBinItemService(ClientContext clientContext) : ClientService<
                 objectPathId => ClientActionQuery.Create(
                     objectPathId,
                     ClientQuery.Empty,
-                    ClientQuery.Create(true, typeof(RecycleBinItem))
+                    ClientQuery.Create(selectAllProperties, typeof(RecycleBinItem))
                 )
             );
             return this
@@ -115,7 +125,7 @@ public class RecycleBinItemService(ClientContext clientContext) : ClientService<
                 objectPathId => ClientActionQuery.Create(
                     objectPathId,
                     ClientQuery.Empty,
-                    ClientQuery.Create(true, typeof(RecycleBinItem))
+                    ClientQuery.Create(selectAllProperties, typeof(RecycleBinItem))
                 )
             );
             return this

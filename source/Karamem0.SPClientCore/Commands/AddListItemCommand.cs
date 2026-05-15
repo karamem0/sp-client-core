@@ -31,6 +31,9 @@ public class AddListItemCommand : ClientObjectCmdlet<IListItemService>
     public PSObject[]? Value { get; private set; }
 
     [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
+    [Parameter(Mandatory = false)]
     public SwitchParameter NoEnumerate { get; private set; }
 
     protected override void ProcessRecordCore()
@@ -44,7 +47,8 @@ public class AddListItemCommand : ClientObjectCmdlet<IListItemService>
                     this.Value.Select(value => value
                         .ToDictionary()
                         .AsReadOnly()
-                    )
+                    ),
+                    this.SelectAllProperties
                 )
             );
         }
@@ -56,7 +60,8 @@ public class AddListItemCommand : ClientObjectCmdlet<IListItemService>
                     this.Value.Select(value => value
                         .ToDictionary()
                         .AsReadOnly()
-                    )
+                    ),
+                    this.SelectAllProperties
                 )
             );
         }

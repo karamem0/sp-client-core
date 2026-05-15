@@ -26,7 +26,8 @@ public interface IImageService
     ImageItem? UploadObject(
         ListItem listItemObject,
         string fileName,
-        System.IO.Stream fileContent
+        System.IO.Stream fileContent,
+        bool selectAllProperties = true
     );
 
 }
@@ -62,7 +63,8 @@ public class ImageService(ClientContext clientContext) : ClientService(clientCon
     public ImageItem? UploadObject(
         ListItem listItemObject,
         string fileName,
-        System.IO.Stream fileContent
+        System.IO.Stream fileContent,
+        bool selectAllProperties = true
     )
     {
         var requestPayload = new ClientRequestPayload();
@@ -70,7 +72,7 @@ public class ImageService(ClientContext clientContext) : ClientService(clientCon
         var objectPath2 = requestPayload.Add(
             ObjectPathProperty.Create(objectPath1.Id, "ParentList"),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(List)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(List)))
         );
         var listObject = this
             .ClientContext.ProcessQuery(requestPayload)

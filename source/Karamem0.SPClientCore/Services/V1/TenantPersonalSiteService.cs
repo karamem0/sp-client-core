@@ -15,7 +15,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantPersonalSiteService
 {
 
-    TenantOperationResult? AddObject(IEnumerable<string> userIds);
+    TenantOperationResult? AddObject(IEnumerable<string> userIds, bool selectAllProperties = true);
 
     void AddObjectAwait(IEnumerable<string> userIds);
 
@@ -26,7 +26,7 @@ public interface ITenantPersonalSiteService
 public class TenantPersonalSiteService(ClientContext clientContext) : TenantClientService(clientContext), ITenantPersonalSiteService
 {
 
-    public TenantOperationResult? AddObject(IEnumerable<string> userIds)
+    public TenantOperationResult? AddObject(IEnumerable<string> userIds, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -37,7 +37,7 @@ public class TenantPersonalSiteService(ClientContext clientContext) : TenantClie
                 requestPayload.CreateParameter(userIds)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(TenantOperationResult)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TenantOperationResult)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)

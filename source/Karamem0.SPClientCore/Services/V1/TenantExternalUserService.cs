@@ -16,12 +16,17 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantExternalUserService
 {
 
-    IEnumerable<ExternalUser>? GetObjectEnumerable(string? filter, SortOrder sortOrder);
+    IEnumerable<ExternalUser>? GetObjectEnumerable(
+        string? filter,
+        SortOrder sortOrder,
+        bool selectAllProperties = true
+    );
 
     IEnumerable<ExternalUser>? GetObjectEnumerable(
         Uri siteCollectionUrl,
         string? filter,
-        SortOrder sortOrder
+        SortOrder sortOrder,
+        bool selectAllProperties = true
     );
 
     void RemoveObject(ExternalUser userObject);
@@ -31,7 +36,11 @@ public interface ITenantExternalUserService
 public class TenantExternalUserService(ClientContext clientContext) : ClientService(clientContext), ITenantExternalUserService
 {
 
-    public IEnumerable<ExternalUser>? GetObjectEnumerable(string? filter, SortOrder sortOrder)
+    public IEnumerable<ExternalUser>? GetObjectEnumerable(
+        string? filter,
+        SortOrder sortOrder,
+        bool selectAllProperties = true
+    )
     {
         var position = 0;
         var totalCount = 0;
@@ -49,7 +58,7 @@ public class TenantExternalUserService(ClientContext clientContext) : ClientServ
                     requestPayload.CreateParameter(sortOrder)
                 ),
                 ClientActionInstantiateObjectPath.Create,
-                objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(ExternalUserResult)))
+                objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(ExternalUserResult)))
             );
             var resultObject = this
                 .ClientContext.ProcessQuery(requestPayload)
@@ -70,7 +79,8 @@ public class TenantExternalUserService(ClientContext clientContext) : ClientServ
     public IEnumerable<ExternalUser>? GetObjectEnumerable(
         Uri siteCollectionUrl,
         string? filter,
-        SortOrder sortOrder
+        SortOrder sortOrder,
+        bool selectAllProperties = true
     )
     {
         var position = 0;
@@ -90,7 +100,7 @@ public class TenantExternalUserService(ClientContext clientContext) : ClientServ
                     requestPayload.CreateParameter(sortOrder)
                 ),
                 ClientActionInstantiateObjectPath.Create,
-                objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(ExternalUserResult)))
+                objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(ExternalUserResult)))
             );
             var resultObject = this
                 .ClientContext.ProcessQuery(requestPayload)

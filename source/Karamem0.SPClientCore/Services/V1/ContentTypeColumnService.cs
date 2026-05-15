@@ -19,14 +19,21 @@ public interface IContentTypeColumnService
     ContentTypeColumn? AddObject(
         ContentType contentTypeObject,
         IReadOnlyDictionary<string, object?> creationInfo,
-        bool pushChanges
+        bool pushChanges,
+        bool selectAllProperties = true
     );
 
     ContentTypeColumn? GetObject(ContentTypeColumn contentTypeColumnObject);
 
-    ContentTypeColumn? GetObject(ContentType contentTypeObject, Guid? columnId);
+    ContentTypeColumn? GetObject(ContentTypeColumn contentTypeColumnObject, bool selectAllProperties = true);
 
-    IEnumerable<ContentTypeColumn>? GetObjectEnumerable(ContentType contentTypeObject);
+    ContentTypeColumn? GetObject(
+        ContentType contentTypeObject,
+        Guid? columnId,
+        bool selectAllProperties = true
+    );
+
+    IEnumerable<ContentTypeColumn>? GetObjectEnumerable(ContentType contentTypeObject, bool selectAllProperties = true);
 
     void RemoveObject(ContentTypeColumn contentTypeColumnObject, bool pushChanges);
 
@@ -50,7 +57,8 @@ public class ContentTypeColumnService(ClientContext clientContext) : ClientServi
     public ContentTypeColumn? AddObject(
         ContentType contentTypeObject,
         IReadOnlyDictionary<string, object?> creationInfo,
-        bool pushChanges
+        bool pushChanges,
+        bool selectAllProperties = true
     )
     {
         var requestPayload = new ClientRequestPayload();
@@ -63,7 +71,7 @@ public class ContentTypeColumnService(ClientContext clientContext) : ClientServi
                 requestPayload.CreateParameter(ClientValueObject.Create<ContentTypeColumnCreationInfo>(creationInfo))
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(ContentTypeColumn)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(ContentTypeColumn)))
         );
         var objectPath4 = requestPayload.Add(
             objectPath1,
@@ -78,7 +86,11 @@ public class ContentTypeColumnService(ClientContext clientContext) : ClientServi
             .ToObject<ContentTypeColumn>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public ContentTypeColumn? GetObject(ContentType contentTypeObject, Guid? columnId)
+    public ContentTypeColumn? GetObject(
+        ContentType contentTypeObject,
+        Guid? columnId,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(contentTypeObject.ObjectIdentity));
@@ -90,14 +102,14 @@ public class ContentTypeColumnService(ClientContext clientContext) : ClientServi
                 requestPayload.CreateParameter(columnId)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(ContentTypeColumn)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(ContentTypeColumn)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ContentTypeColumn>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<ContentTypeColumn>? GetObjectEnumerable(ContentType contentTypeObject)
+    public IEnumerable<ContentTypeColumn>? GetObjectEnumerable(ContentType contentTypeObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(contentTypeObject.ObjectIdentity));
@@ -107,7 +119,7 @@ public class ContentTypeColumnService(ClientContext clientContext) : ClientServi
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(ContentTypeColumn))
+                ClientQuery.Create(selectAllProperties, typeof(ContentTypeColumn))
             )
         );
         return this

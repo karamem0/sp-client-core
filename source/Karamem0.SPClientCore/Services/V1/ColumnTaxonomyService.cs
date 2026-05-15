@@ -20,14 +20,16 @@ public interface IColumnTaxonomyService
     ColumnTaxonomy? AddObject(
         IReadOnlyDictionary<string, object?> creationInfo,
         bool addToDefaultView,
-        AddColumnOptions addColumnOptions
+        AddColumnOptions addColumnOptions,
+        bool selectAllProperties = true
     );
 
     ColumnTaxonomy? AddObject(
         List listObject,
         IReadOnlyDictionary<string, object?> creationInfo,
         bool addToDefaultView,
-        AddColumnOptions addColumnOptions
+        AddColumnOptions addColumnOptions,
+        bool selectAllProperties = true
     );
 
     void RemoveObject(ColumnTaxonomy columnTaxonomyObject);
@@ -49,7 +51,8 @@ public class ColumnTaxonomyService(ClientContext clientContext) : ClientService<
     public ColumnTaxonomy? AddObject(
         IReadOnlyDictionary<string, object?> creationInfo,
         bool addToDefaultView,
-        AddColumnOptions addColumnOptions
+        AddColumnOptions addColumnOptions,
+        bool selectAllProperties = true
     )
     {
         var requestPayload = new ClientRequestPayload();
@@ -65,7 +68,7 @@ public class ColumnTaxonomyService(ClientContext clientContext) : ClientService<
                 requestPayload.CreateParameter(addColumnOptions)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Column)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Column)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
@@ -76,7 +79,8 @@ public class ColumnTaxonomyService(ClientContext clientContext) : ClientService<
         List listObject,
         IReadOnlyDictionary<string, object?> creationInfo,
         bool addToDefaultView,
-        AddColumnOptions addColumnOptions
+        AddColumnOptions addColumnOptions,
+        bool selectAllProperties = true
     )
     {
         var requestPayload = new ClientRequestPayload();
@@ -91,7 +95,7 @@ public class ColumnTaxonomyService(ClientContext clientContext) : ClientService<
                 requestPayload.CreateParameter(addColumnOptions)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Column)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Column)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)

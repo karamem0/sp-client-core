@@ -24,9 +24,13 @@ public class AddGroupCommand : ClientObjectCmdlet<IGroupService>
     [Parameter(Mandatory = true)]
     public string? Title { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
-        this.Outputs.Add(this.Service.AddObject(this.MyInvocation.BoundParameters));
+        var creationInfo = new Dictionary<string, object?>(this.MyInvocation.BoundParameters);
+        this.Outputs.Add(this.Service.AddObject(creationInfo, this.SelectAllProperties));
     }
 
 }

@@ -33,6 +33,9 @@ public class GetRoleDefinitionCommand : ClientObjectCmdlet<IRoleDefinitionServic
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
     public string? RoleDefinitionName { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet4")]
     public SwitchParameter NoEnumerate { get; private set; }
 
@@ -41,26 +44,26 @@ public class GetRoleDefinitionCommand : ClientObjectCmdlet<IRoleDefinitionServic
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service.GetObject(this.Identity));
+            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
-            this.Outputs.Add(this.Service.GetObject(this.RoleDefinitionId));
+            this.Outputs.Add(this.Service.GetObject(this.RoleDefinitionId, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             _ = this.RoleDefinitionName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.RoleDefinitionName));
-            this.Outputs.Add(this.Service.GetObject(this.RoleDefinitionName));
+            this.Outputs.Add(this.Service.GetObject(this.RoleDefinitionName, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet4")
         {
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable());
+                this.Outputs.Add(this.Service.GetObjectEnumerable(this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable());
+                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.SelectAllProperties));
             }
         }
     }

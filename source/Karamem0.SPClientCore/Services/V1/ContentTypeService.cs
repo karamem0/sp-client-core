@@ -15,21 +15,35 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IContentTypeService
 {
 
-    ContentType? AddObject(IReadOnlyDictionary<string, object?> creationInfo);
+    ContentType? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true);
 
-    ContentType? AddObject(List listObject, IReadOnlyDictionary<string, object?> creationInfo);
+    ContentType? AddObject(
+        List listObject,
+        IReadOnlyDictionary<string, object?> creationInfo,
+        bool selectAllProperties = true
+    );
 
-    ContentType? AddObject(List listObject, ContentType contentTypeObject);
+    ContentType? AddObject(
+        List listObject,
+        ContentType contentTypeObject,
+        bool selectAllProperties = true
+    );
 
     ContentType? GetObject(ContentType contentTypeObject);
 
-    ContentType? GetObject(string contentTypeId);
+    ContentType? GetObject(ContentType contentTypeObject, bool selectAllProperties = true);
 
-    ContentType? GetObject(List listObject, string contentTypeId);
+    ContentType? GetObject(string contentTypeId, bool selectAllProperties = true);
 
-    IEnumerable<ContentType>? GetObjectEnumerable();
+    ContentType? GetObject(
+        List listObject,
+        string contentTypeId,
+        bool selectAllProperties = true
+    );
 
-    IEnumerable<ContentType>? GetObjectEnumerable(List listObject);
+    IEnumerable<ContentType>? GetObjectEnumerable(bool selectAllProperties = true);
+
+    IEnumerable<ContentType>? GetObjectEnumerable(List listObject, bool selectAllProperties = true);
 
     void RemoveObject(ContentType contentTypeObject);
 
@@ -40,7 +54,7 @@ public interface IContentTypeService
 public class ContentTypeService(ClientContext clientContext) : ClientService<ContentType>(clientContext), IContentTypeService
 {
 
-    public ContentType? AddObject(IReadOnlyDictionary<string, object?> creationInfo)
+    public ContentType? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -53,14 +67,18 @@ public class ContentTypeService(ClientContext clientContext) : ClientService<Con
                 requestPayload.CreateParameter(ClientValueObject.Create<ContentTypeCreationInfo>(creationInfo))
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(ContentType)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(ContentType)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ContentType>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public ContentType? AddObject(List listObject, IReadOnlyDictionary<string, object?> creationInfo)
+    public ContentType? AddObject(
+        List listObject,
+        IReadOnlyDictionary<string, object?> creationInfo,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity), ClientActionInstantiateObjectPath.Create);
@@ -72,14 +90,18 @@ public class ContentTypeService(ClientContext clientContext) : ClientService<Con
                 requestPayload.CreateParameter(ClientValueObject.Create<ContentTypeCreationInfo>(creationInfo))
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(ContentType)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(ContentType)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ContentType>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public ContentType? AddObject(List listObject, ContentType contentTypeObject)
+    public ContentType? AddObject(
+        List listObject,
+        ContentType contentTypeObject,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));
@@ -91,14 +113,14 @@ public class ContentTypeService(ClientContext clientContext) : ClientService<Con
                 requestPayload.CreateParameter(contentTypeObject)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(ContentType)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(ContentType)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ContentType>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public ContentType? GetObject(string contentTypeId)
+    public ContentType? GetObject(string contentTypeId, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -111,14 +133,18 @@ public class ContentTypeService(ClientContext clientContext) : ClientService<Con
                 requestPayload.CreateParameter(contentTypeId)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(ContentType)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(ContentType)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ContentType>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public ContentType? GetObject(List listObject, string contentTypeId)
+    public ContentType? GetObject(
+        List listObject,
+        string contentTypeId,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));
@@ -130,14 +156,14 @@ public class ContentTypeService(ClientContext clientContext) : ClientService<Con
                 requestPayload.CreateParameter(contentTypeId)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(ContentType)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(ContentType)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<ContentType>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<ContentType>? GetObjectEnumerable()
+    public IEnumerable<ContentType>? GetObjectEnumerable(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -148,7 +174,7 @@ public class ContentTypeService(ClientContext clientContext) : ClientService<Con
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(ContentType))
+                ClientQuery.Create(selectAllProperties, typeof(ContentType))
             )
         );
         return this
@@ -156,7 +182,7 @@ public class ContentTypeService(ClientContext clientContext) : ClientService<Con
             .ToObject<ContentTypeEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<ContentType>? GetObjectEnumerable(List listObject)
+    public IEnumerable<ContentType>? GetObjectEnumerable(List listObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));
@@ -166,7 +192,7 @@ public class ContentTypeService(ClientContext clientContext) : ClientService<Con
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(ContentType))
+                ClientQuery.Create(selectAllProperties, typeof(ContentType))
             )
         );
         return this

@@ -40,22 +40,41 @@ public class AddContentTypeCommand : ClientObjectCmdlet<IContentTypeService>
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
     public string? Name { get; private set; }
 
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
+    [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
             _ = this.ContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentType));
-            this.Outputs.Add(this.Service.AddObject(this.List, this.ContentType));
+            this.Outputs.Add(
+                this.Service.AddObject(
+                    this.List,
+                    this.ContentType,
+                    this.SelectAllProperties
+                )
+            );
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
-            this.Outputs.Add(this.Service.AddObject(this.List, this.MyInvocation.BoundParameters));
+            var creationInfo = new Dictionary<string, object?>(this.MyInvocation.BoundParameters);
+            this.Outputs.Add(
+                this.Service.AddObject(
+                    this.List,
+                    creationInfo,
+                    this.SelectAllProperties
+                )
+            );
         }
         if (this.ParameterSetName == "ParamSet3")
         {
-            this.Outputs.Add(this.Service.AddObject(this.MyInvocation.BoundParameters));
+            var creationInfo = new Dictionary<string, object?>(this.MyInvocation.BoundParameters);
+            this.Outputs.Add(this.Service.AddObject(creationInfo, this.SelectAllProperties));
         }
     }
 

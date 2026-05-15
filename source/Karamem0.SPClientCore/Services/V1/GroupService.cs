@@ -15,15 +15,17 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IGroupService
 {
 
-    Group? AddObject(IReadOnlyDictionary<string, object?> creationInfo);
+    Group? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true);
 
     Group? GetObject(Group groupObject);
 
-    Group? GetObject(int groupId);
+    Group? GetObject(Group groupObject, bool selectAllProperties = true);
 
-    Group? GetObject(string groupName);
+    Group? GetObject(int groupId, bool selectAllProperties = true);
 
-    IEnumerable<Group>? GetObjectEnumerable();
+    Group? GetObject(string groupName, bool selectAllProperties = true);
+
+    IEnumerable<Group>? GetObjectEnumerable(bool selectAllProperties = true);
 
     void RemoveObject(Group groupObject);
 
@@ -34,7 +36,7 @@ public interface IGroupService
 public class GroupService(ClientContext clientContext) : ClientService<Group>(clientContext), IGroupService
 {
 
-    public Group? AddObject(IReadOnlyDictionary<string, object?> creationInfo)
+    public Group? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -47,14 +49,14 @@ public class GroupService(ClientContext clientContext) : ClientService<Group>(cl
                 requestPayload.CreateParameter(ClientValueObject.Create<GroupCreationInfo>(creationInfo))
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Group)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Group)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Group>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public Group? GetObject(int groupId)
+    public Group? GetObject(int groupId, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -67,14 +69,14 @@ public class GroupService(ClientContext clientContext) : ClientService<Group>(cl
                 requestPayload.CreateParameter(groupId)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Group)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Group)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Group>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public Group? GetObject(string groupName)
+    public Group? GetObject(string groupName, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -87,14 +89,14 @@ public class GroupService(ClientContext clientContext) : ClientService<Group>(cl
                 requestPayload.CreateParameter(groupName)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Group)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Group)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<Group>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<Group>? GetObjectEnumerable()
+    public IEnumerable<Group>? GetObjectEnumerable(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -105,7 +107,7 @@ public class GroupService(ClientContext clientContext) : ClientService<Group>(cl
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(Group))
+                ClientQuery.Create(selectAllProperties, typeof(Group))
             )
         );
         return this

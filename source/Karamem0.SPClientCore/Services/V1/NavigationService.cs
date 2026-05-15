@@ -15,7 +15,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface INavigationService
 {
 
-    Navigation? GetObject();
+    Navigation? GetObject(bool selectAllProperties = true);
 
     void SetObject(IReadOnlyDictionary<string, object?> modificationInfo);
 
@@ -24,7 +24,7 @@ public interface INavigationService
 public class NavigationService(ClientContext clientContext) : ClientService(clientContext), INavigationService
 {
 
-    public Navigation? GetObject()
+    public Navigation? GetObject(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -32,7 +32,7 @@ public class NavigationService(ClientContext clientContext) : ClientService(clie
         var objectPath3 = requestPayload.Add(
             ObjectPathProperty.Create(objectPath2.Id, "Navigation"),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Navigation)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Navigation)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)

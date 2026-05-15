@@ -15,18 +15,34 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IChangeService
 {
 
-    IEnumerable<Change>? GetObjectEnumerable(SiteCollection siteCollectionObject, ChangeQuery changeQueryObject);
+    IEnumerable<Change>? GetObjectEnumerable(
+        SiteCollection siteCollectionObject,
+        ChangeQuery changeQueryObject,
+        bool selectAllProperties = true
+    );
 
-    IEnumerable<Change>? GetObjectEnumerable(Site siteObject, ChangeQuery changeQueryObject);
+    IEnumerable<Change>? GetObjectEnumerable(
+        Site siteObject,
+        ChangeQuery changeQueryObject,
+        bool selectAllProperties = true
+    );
 
-    IEnumerable<Change>? GetObjectEnumerable(List listObject, ChangeQuery changeQueryObject);
+    IEnumerable<Change>? GetObjectEnumerable(
+        List listObject,
+        ChangeQuery changeQueryObject,
+        bool selectAllProperties = true
+    );
 
 }
 
 public class ChangeService(ClientContext clientContext) : ClientService(clientContext), IChangeService
 {
 
-    public IEnumerable<Change>? GetObjectEnumerable(SiteCollection siteCollectionObject, ChangeQuery changeQueryObject)
+    public IEnumerable<Change>? GetObjectEnumerable(
+        SiteCollection siteCollectionObject,
+        ChangeQuery changeQueryObject,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(siteCollectionObject.ObjectIdentity));
@@ -40,7 +56,7 @@ public class ChangeService(ClientContext clientContext) : ClientService(clientCo
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(Change))
+                ClientQuery.Create(selectAllProperties, typeof(Change))
             )
         );
         return this
@@ -48,7 +64,11 @@ public class ChangeService(ClientContext clientContext) : ClientService(clientCo
             .ToObject<ChangeEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<Change>? GetObjectEnumerable(Site siteObject, ChangeQuery changeQueryObject)
+    public IEnumerable<Change>? GetObjectEnumerable(
+        Site siteObject,
+        ChangeQuery changeQueryObject,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(siteObject.ObjectIdentity));
@@ -62,7 +82,7 @@ public class ChangeService(ClientContext clientContext) : ClientService(clientCo
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(Change))
+                ClientQuery.Create(selectAllProperties, typeof(Change))
             )
         );
         return this
@@ -70,7 +90,11 @@ public class ChangeService(ClientContext clientContext) : ClientService(clientCo
             .ToObject<ChangeEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public IEnumerable<Change>? GetObjectEnumerable(List listObject, ChangeQuery changeQueryObject)
+    public IEnumerable<Change>? GetObjectEnumerable(
+        List listObject,
+        ChangeQuery changeQueryObject,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));
@@ -84,7 +108,7 @@ public class ChangeService(ClientContext clientContext) : ClientService(clientCo
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(Change))
+                ClientQuery.Create(selectAllProperties, typeof(Change))
             )
         );
         return this

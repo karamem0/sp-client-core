@@ -137,6 +137,12 @@ public class Site : SecurableObject
     public virtual int FooterOverlayOpacity { get; protected set; }
 
     [JsonProperty()]
+    public virtual bool HasFooterBackgroundImage { get; protected set; }
+
+    [JsonProperty()]
+    public virtual bool HasHeaderBackgroundImage { get; protected set; }
+
+    [JsonProperty()]
     public override bool HasUniqueRoleAssignments { get; protected set; }
 
     [JsonProperty()]

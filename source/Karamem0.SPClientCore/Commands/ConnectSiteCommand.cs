@@ -135,10 +135,7 @@ public class ConnectSiteCommand : OAuthCmdlet
         {
             this.ValidateSwitchParameter(nameof(this.Cached));
             _ = this.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Url));
-            this.Service.ConnectWithCache(
-                this.Authority,
-                this.Url
-            );
+            this.Service.ConnectWithCache(this.Authority, this.Url);
         }
         if (this.ParameterSetName == "ParamSet5")
         {

@@ -35,6 +35,9 @@ public class AddHighlightCommand : ClientObjectCmdlet<IHighlightService>
     [Parameter(Mandatory = false)]
     public int AfterItemId { get; private set; }
 
+    [Parameter(Mandatory = false)]
+    public SwitchParameter SelectAllProperties { get; private set; } = true;
+
     protected override void ProcessRecordCore()
     {
         _ = this.View ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.View));
@@ -48,7 +51,8 @@ public class AddHighlightCommand : ClientObjectCmdlet<IHighlightService>
                 this.View,
                 this.ItemId,
                 this.FolderPath,
-                this.AfterItemId
+                this.AfterItemId,
+                this.SelectAllProperties
             )
         );
     }

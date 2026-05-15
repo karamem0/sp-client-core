@@ -21,12 +21,19 @@ public interface ITermLabelService
         Term termObject,
         string name,
         uint lcid,
-        bool isDefault
+        bool isDefault,
+        bool selectAllProperties = true
     );
 
     TermLabel? GetObject(TermLabel termLabelObject);
 
-    TermLabel? GetObject(Term termObject, string name);
+    TermLabel? GetObject(TermLabel termLabelObject, bool selectAllProperties = true);
+
+    TermLabel? GetObject(
+        Term termObject,
+        string name,
+        bool selectAllProperties = true
+    );
 
     TermLabel? GetObject(
         Term termObject,
@@ -34,7 +41,7 @@ public interface ITermLabelService
         uint lcid
     );
 
-    IEnumerable<TermLabel>? GetObjectEnumerable(Term termObject);
+    IEnumerable<TermLabel>? GetObjectEnumerable(Term termObject, bool selectAllProperties = true);
 
     void RemoveObject(TermLabel termLabelObject);
 
@@ -53,7 +60,8 @@ public class TermLabelService(ClientContext clientContext) : ClientService<TermL
         Term termObject,
         string name,
         uint lcid,
-        bool isDefault
+        bool isDefault,
+        bool selectAllProperties = true
     )
     {
         var requestPayload = new ClientRequestPayload();
@@ -67,14 +75,18 @@ public class TermLabelService(ClientContext clientContext) : ClientService<TermL
                 requestPayload.CreateParameter(isDefault)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(TermLabel)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TermLabel)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
             .ToObject<TermLabel>(requestPayload.GetActionId<ClientActionQuery>());
     }
 
-    public TermLabel? GetObject(Term termObject, string name)
+    public TermLabel? GetObject(
+        Term termObject,
+        string name,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(termObject.ObjectIdentity));
@@ -86,7 +98,7 @@ public class TermLabelService(ClientContext clientContext) : ClientService<TermL
                 requestPayload.CreateParameter(name)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(TermLabel)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TermLabel)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
@@ -106,7 +118,7 @@ public class TermLabelService(ClientContext clientContext) : ClientService<TermL
             .SingleOrDefault();
     }
 
-    public IEnumerable<TermLabel>? GetObjectEnumerable(Term termObject)
+    public IEnumerable<TermLabel>? GetObjectEnumerable(Term termObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(termObject.ObjectIdentity));
@@ -116,7 +128,7 @@ public class TermLabelService(ClientContext clientContext) : ClientService<TermL
             objectPathId => ClientActionQuery.Create(
                 objectPathId,
                 ClientQuery.Empty,
-                ClientQuery.Create(true, typeof(TermLabel))
+                ClientQuery.Create(selectAllProperties, typeof(TermLabel))
             )
         );
         return this

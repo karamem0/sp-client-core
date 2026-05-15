@@ -33,13 +33,15 @@ public interface ISharingLinkService
         bool retrieveAnonymousLinks,
         bool retrieveUserInfoDetails,
         bool checkForAccessRequests,
-        bool retrievePermissionLevels
+        bool retrievePermissionLevels,
+        bool selectAllProperties = true
     );
 
     SharingSettings? GetSharingSettings(
         Uri url,
         int groupId,
-        bool useSimplifiedRoles
+        bool useSimplifiedRoles,
+        bool selectAllProperties = true
     );
 
     SharingLinkKind? GetSharingLinkKind(Uri url);
@@ -122,7 +124,8 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
         bool retrieveAnonymousLinks,
         bool retrieveUserInfoDetails,
         bool checkForAccessRequests,
-        bool retrievePermissionLevels
+        bool retrievePermissionLevels,
+        bool selectAllProperties = true
     )
     {
         var requestPayload = new ClientRequestPayload();
@@ -139,7 +142,7 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
                 requestPayload.CreateParameter(checkForAccessRequests),
                 requestPayload.CreateParameter(retrievePermissionLevels)
             ),
-            objectPath => ClientActionQuery.Create(objectPath, ClientQuery.Create(true, typeof(SharingInfo)))
+            objectPath => ClientActionQuery.Create(objectPath, ClientQuery.Create(selectAllProperties, typeof(SharingInfo)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
@@ -149,7 +152,8 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
     public SharingSettings? GetSharingSettings(
         Uri url,
         int groupId,
-        bool useSimplifiedRoles
+        bool useSimplifiedRoles,
+        bool selectAllProperties = true
     )
     {
         var requestPayload = new ClientRequestPayload();
@@ -161,7 +165,7 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
                 requestPayload.CreateParameter(groupId),
                 requestPayload.CreateParameter(useSimplifiedRoles)
             ),
-            objectPath => ClientActionQuery.Create(objectPath, ClientQuery.Create(true, typeof(SharingSettings)))
+            objectPath => ClientActionQuery.Create(objectPath, ClientQuery.Create(selectAllProperties, typeof(SharingSettings)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)

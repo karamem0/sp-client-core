@@ -22,7 +22,7 @@ public interface IStorageEntityService
         string? comments
     );
 
-    StorageEntity? GetObject(string key);
+    StorageEntity? GetObject(string key, bool selectAllProperties = true);
 
     void RemoveObject(string key);
 
@@ -55,7 +55,7 @@ public class StorageEntityService(ClientContext clientContext) : ClientService(c
         _ = this.ClientContext.ProcessQuery(requestPayload);
     }
 
-    public StorageEntity? GetObject(string key)
+    public StorageEntity? GetObject(string key, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -67,7 +67,7 @@ public class StorageEntityService(ClientContext clientContext) : ClientService(c
                 requestPayload.CreateParameter(key)
             ),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(StorageEntity)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(StorageEntity)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)

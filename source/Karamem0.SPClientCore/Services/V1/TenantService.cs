@@ -15,7 +15,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantService
 {
 
-    Tenant? GetObject();
+    Tenant? GetObject(bool selectAllProperties = true);
 
     void SetObject(IReadOnlyDictionary<string, object?> modificationInfo);
 
@@ -24,13 +24,13 @@ public interface ITenantService
 public class TenantService(ClientContext clientContext) : ClientService(clientContext), ITenantService
 {
 
-    public Tenant? GetObject()
+    public Tenant? GetObject(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             ObjectPathConstructor.Create(typeof(Tenant)),
             ClientActionInstantiateObjectPath.Create,
-            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(true, typeof(Tenant)))
+            objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Tenant)))
         );
         return this
             .ClientContext.ProcessQuery(requestPayload)
