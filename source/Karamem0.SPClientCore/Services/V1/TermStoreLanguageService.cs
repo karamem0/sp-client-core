@@ -15,16 +15,16 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITermStoreLanguageService
 {
 
-    void AddObject(uint lcid);
+    Task AddObjectAsync(uint lcid);
 
-    void RemoveObject(uint lcid);
+    Task RemoveObjectAsync(uint lcid);
 
 }
 
 public class TermStoreLanguageService(ClientContext clientContext) : ClientService(clientContext), ITermStoreLanguageService
 {
 
-    public void AddObject(uint lcid)
+    public async Task AddObjectAsync(uint lcid)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticMethod.Create(typeof(TaxonomySession), "GetTaxonomySession"));
@@ -38,10 +38,10 @@ public class TermStoreLanguageService(ClientContext clientContext) : ClientServi
             )
         );
         var objectPath4 = requestPayload.Add(objectPath2, objectPathId => ClientActionMethod.Create(objectPathId, "CommitAll"));
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void RemoveObject(uint lcid)
+    public async Task RemoveObjectAsync(uint lcid)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticMethod.Create(typeof(TaxonomySession), "GetTaxonomySession"));
@@ -55,7 +55,7 @@ public class TermStoreLanguageService(ClientContext clientContext) : ClientServi
             )
         );
         var objectPath4 = requestPayload.Add(objectPath2, objectPathId => ClientActionMethod.Create(objectPathId, "CommitAll"));
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

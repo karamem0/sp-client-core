@@ -33,7 +33,7 @@ public class SaveImageCommand : ClientObjectCmdlet<IImageService>
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public string? FileName { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
@@ -41,7 +41,7 @@ public class SaveImageCommand : ClientObjectCmdlet<IImageService>
             _ = this.FileName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.FileName));
             _ = this.Content ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Content));
             this.Outputs.Add(
-                this.Service.UploadObject(
+                await this.Service.UploadObjectAsync(
                     this.List,
                     this.FileName,
                     this.Content
@@ -54,7 +54,7 @@ public class SaveImageCommand : ClientObjectCmdlet<IImageService>
             _ = this.FileName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.FileName));
             _ = this.Content ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Content));
             this.Outputs.Add(
-                this.Service.UploadObject(
+                await this.Service.UploadObjectAsync(
                     this.ListItem,
                     this.FileName,
                     this.Content

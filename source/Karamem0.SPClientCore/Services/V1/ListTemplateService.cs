@@ -15,20 +15,20 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IListTemplateService
 {
 
-    ListTemplate? GetObject(ListTemplate listTemplateObject);
+    Task<ListTemplate?> GetObjectAsync(ListTemplate listTemplateObject);
 
-    ListTemplate? GetObject(ListTemplate listTemplateObject, bool selectAllProperties = true);
+    Task<ListTemplate?> GetObjectAsync(ListTemplate listTemplateObject, bool selectAllProperties = true);
 
-    ListTemplate? GetObject(string listTemplateTitle, bool selectAllProperties = true);
+    Task<ListTemplate?> GetObjectAsync(string listTemplateTitle, bool selectAllProperties = true);
 
-    IEnumerable<ListTemplate>? GetObjectEnumerable(bool selectAllProperties = true);
+    Task<IEnumerable<ListTemplate>?> GetObjectEnumerableAsync(bool selectAllProperties = true);
 
 }
 
 public class ListTemplateService(ClientContext clientContext) : ClientService<ListTemplate>(clientContext), IListTemplateService
 {
 
-    public ListTemplate? GetObject(string listTemplateTitle, bool selectAllProperties = true)
+    public async Task<ListTemplate?> GetObjectAsync(string listTemplateTitle, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -43,12 +43,12 @@ public class ListTemplateService(ClientContext clientContext) : ClientService<Li
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(ListTemplate)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ListTemplate>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ListTemplate>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<ListTemplate>? GetObjectEnumerable(bool selectAllProperties = true)
+    public async Task<IEnumerable<ListTemplate>?> GetObjectEnumerableAsync(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -62,9 +62,9 @@ public class ListTemplateService(ClientContext clientContext) : ClientService<Li
                 ClientQuery.Create(selectAllProperties, typeof(ListTemplate))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ListTemplateEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ListTemplateEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
 }

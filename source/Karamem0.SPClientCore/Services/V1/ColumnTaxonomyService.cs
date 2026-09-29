@@ -17,14 +17,14 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IColumnTaxonomyService
 {
 
-    ColumnTaxonomy? AddObject(
+    Task<ColumnTaxonomy?> AddObjectAsync(
         IReadOnlyDictionary<string, object?> creationInfo,
         bool addToDefaultView,
         AddColumnOptions addColumnOptions,
         bool selectAllProperties = true
     );
 
-    ColumnTaxonomy? AddObject(
+    Task<ColumnTaxonomy?> AddObjectAsync(
         List listObject,
         IReadOnlyDictionary<string, object?> creationInfo,
         bool addToDefaultView,
@@ -32,11 +32,11 @@ public interface IColumnTaxonomyService
         bool selectAllProperties = true
     );
 
-    void RemoveObject(ColumnTaxonomy columnTaxonomyObject);
+    Task RemoveObjectAsync(ColumnTaxonomy columnTaxonomyObject);
 
-    void SetObject(ColumnTaxonomy columnTaxonomyObject, IReadOnlyDictionary<string, object?> modificationInfo);
+    Task SetObjectAsync(ColumnTaxonomy columnTaxonomyObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
-    void SetObjectValue(
+    Task SetObjectValueAsync(
         ColumnTaxonomy columnTaxonomyObject,
         ListItem listItemObject,
         IEnumerable<Term> termCollection,
@@ -48,7 +48,7 @@ public interface IColumnTaxonomyService
 public class ColumnTaxonomyService(ClientContext clientContext) : ClientService<ColumnTaxonomy>(clientContext), IColumnTaxonomyService
 {
 
-    public ColumnTaxonomy? AddObject(
+    public async Task<ColumnTaxonomy?> AddObjectAsync(
         IReadOnlyDictionary<string, object?> creationInfo,
         bool addToDefaultView,
         AddColumnOptions addColumnOptions,
@@ -70,12 +70,12 @@ public class ColumnTaxonomyService(ClientContext clientContext) : ClientService<
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Column)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ColumnTaxonomy>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ColumnTaxonomy>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public ColumnTaxonomy? AddObject(
+    public async Task<ColumnTaxonomy?> AddObjectAsync(
         List listObject,
         IReadOnlyDictionary<string, object?> creationInfo,
         bool addToDefaultView,
@@ -97,12 +97,12 @@ public class ColumnTaxonomyService(ClientContext clientContext) : ClientService<
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Column)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ColumnTaxonomy>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ColumnTaxonomy>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void SetObjectValue(
+    public async Task SetObjectValueAsync(
         ColumnTaxonomy columnTaxonomyObject,
         ListItem listItemObject,
         IEnumerable<Term> termCollection,
@@ -123,7 +123,7 @@ public class ColumnTaxonomyService(ClientContext clientContext) : ClientService<
             )
         );
         var objectPath4 = requestPayload.Add(objectPath2, objectPathId => ClientActionMethod.Create(objectPathId, "Update"));
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

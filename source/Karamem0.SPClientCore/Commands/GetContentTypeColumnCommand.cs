@@ -45,19 +45,19 @@ public class GetContentTypeColumnCommand : ClientObjectCmdlet<IContentTypeColumn
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.Identity, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.ContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentType));
             _ = this.Column?.Id ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Column));
             this.Outputs.Add(
-                this.Service.GetObject(
+                await this.Service.GetObjectAsync(
                     this.ContentType,
                     this.Column.Id,
                     this.SelectAllProperties
@@ -69,11 +69,11 @@ public class GetContentTypeColumnCommand : ClientObjectCmdlet<IContentTypeColumn
             _ = this.ContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentType));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.ContentType, this.SelectAllProperties));
+                this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.ContentType, this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.ContentType, this.SelectAllProperties));
+                this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.ContentType, this.SelectAllProperties));
             }
         }
     }

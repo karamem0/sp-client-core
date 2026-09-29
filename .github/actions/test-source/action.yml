@@ -8,7 +8,7 @@ runs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 9.0.x
+        dotnet-version: 10.0.x
     - name: Test source
       shell: pwsh
       run: |
@@ -19,14 +19,14 @@ runs:
       env:
         TARGET_FILE: source/Karamem0.SPClientCore.Test/Karamem0.SPClientCore.Test.csproj
     - name: Upload test results
-      uses: enricomi/publish-unit-test-result-action/linux@170bf24d20d201b842d7a52403b73ed297e6645b
+      uses: enricomi/publish-unit-test-result-action/linux@d0a4676d0e0b938bc201470d88276b7c74c712b3
       if: always()
       with:
         files: |
           source/test/**/*.xml
         check_name: Test results
     - name: Upload coverage reports
-      uses: codecov/codecov-action@13ce06bfc6bbe3ecf90edbbf1bc32fe5978ca1d3
+      uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5
       if: always()
       with:
         fail_ci_if_error: true

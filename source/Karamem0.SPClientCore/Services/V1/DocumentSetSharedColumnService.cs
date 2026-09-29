@@ -15,15 +15,15 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IDocumentSetSharedColumnService
 {
 
-    void AddObject(
+    Task AddObjectAsync(
         ContentType contentTypeObject,
         Column columnObject,
         bool pushChanges
     );
 
-    IEnumerable<Column>? GetObjectEnumerable(ContentType contentTypeObject, bool selectAllProperties = true);
+    Task<IEnumerable<Column>?> GetObjectEnumerableAsync(ContentType contentTypeObject, bool selectAllProperties = true);
 
-    void RemoveObject(
+    Task RemoveObjectAsync(
         ContentType contentTypeObject,
         Column columnObject,
         bool pushChanges
@@ -34,7 +34,7 @@ public interface IDocumentSetSharedColumnService
 public class DocumentSetSharedColumnService(ClientContext clientContext) : ClientService(clientContext), IDocumentSetSharedColumnService
 {
 
-    public void AddObject(
+    public async Task AddObjectAsync(
         ContentType contentTypeObject,
         Column columnObject,
         bool pushChanges
@@ -67,10 +67,10 @@ public class DocumentSetSharedColumnService(ClientContext clientContext) : Clien
                 requestPayload.CreateParameter(pushChanges)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public IEnumerable<Column>? GetObjectEnumerable(ContentType contentTypeObject, bool selectAllProperties = true)
+    public async Task<IEnumerable<Column>?> GetObjectEnumerableAsync(ContentType contentTypeObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(contentTypeObject.ObjectIdentity));
@@ -90,12 +90,12 @@ public class DocumentSetSharedColumnService(ClientContext clientContext) : Clien
                 ClientQuery.Create(selectAllProperties, typeof(Column))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<SharedColumnEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<SharedColumnEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void RemoveObject(
+    public async Task RemoveObjectAsync(
         ContentType contentTypeObject,
         Column columnObject,
         bool pushChanges
@@ -128,7 +128,7 @@ public class DocumentSetSharedColumnService(ClientContext clientContext) : Clien
                 requestPayload.CreateParameter(pushChanges)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

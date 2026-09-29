@@ -32,14 +32,14 @@ public class MoveTermCommand : ClientObjectCmdlet<ITermService>
     [Parameter(Mandatory = false)]
     public SwitchParameter PassThru { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
         _ = this.NewParent ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.NewParent));
-        this.Service.MoveObject(this.Identity, this.NewParent);
+        await this.Service.MoveObjectAsync(this.Identity, this.NewParent);
         if (this.PassThru)
         {
-            this.Outputs.Add(this.Service.GetObject(this.NewParent, this.Identity.Id));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.NewParent, this.Identity.Id));
         }
     }
 

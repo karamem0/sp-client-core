@@ -24,9 +24,9 @@ public class AddSupportedUILanguageCommand : ClientObjectCmdlet<IRegionalSetting
     )]
     public uint Lcid { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
-        this.Service.AddSupportedUILanguage(this.Lcid);
+        await this.Service.AddSupportedUILanguageAsync(this.Lcid);
     }
 
 }

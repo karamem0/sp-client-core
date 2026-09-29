@@ -44,19 +44,19 @@ public class RemoveFileCommand : ClientObjectCmdlet<IFileService>
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public SwitchParameter RecycleBin { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
         if (this.ShouldProcess(this.Identity.Name, VerbsCommon.Remove))
         {
             if (this.ParameterSetName == "ParamSet1")
             {
-                this.Service.RemoveObject(this.Identity, this.Force);
+                await this.Service.RemoveObjectAsync(this.Identity, this.Force);
             }
             if (this.ParameterSetName == "ParamSet2")
             {
                 this.ValidateSwitchParameter(nameof(this.RecycleBin));
-                this.Outputs.Add(this.Service.RecycleObject(this.Identity));
+                this.Outputs.Add(await this.Service.RecycleObjectAsync(this.Identity));
             }
         }
     }

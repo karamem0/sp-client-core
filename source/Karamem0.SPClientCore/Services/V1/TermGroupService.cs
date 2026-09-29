@@ -15,32 +15,32 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITermGroupService
 {
 
-    TermGroup? AddObject(
+    Task<TermGroup?> AddObjectAsync(
         string termGroupName,
         Guid termGroupId,
         bool selectAllProperties = true
     );
 
-    TermGroup? GetObject(TermGroup termGroupObject);
+    Task<TermGroup?> GetObjectAsync(TermGroup termGroupObject);
 
-    TermGroup? GetObject(TermGroup termGroupObject, bool selectAllProperties = true);
+    Task<TermGroup?> GetObjectAsync(TermGroup termGroupObject, bool selectAllProperties = true);
 
-    TermGroup? GetObject(Guid termGroupId, bool selectAllProperties = true);
+    Task<TermGroup?> GetObjectAsync(Guid termGroupId, bool selectAllProperties = true);
 
-    TermGroup? GetObject(string termGroupName, bool selectAllProperties = true);
+    Task<TermGroup?> GetObjectAsync(string termGroupName, bool selectAllProperties = true);
 
-    IEnumerable<TermGroup>? GetObjectEnumerable(bool selectAllProperties = true);
+    Task<IEnumerable<TermGroup>?> GetObjectEnumerableAsync(bool selectAllProperties = true);
 
-    void RemoveObject(TermGroup termGroupObject);
+    Task RemoveObjectAsync(TermGroup termGroupObject);
 
-    void SetObject(TermGroup termGroupObject, IReadOnlyDictionary<string, object?> modificationInfo);
+    Task SetObjectAsync(TermGroup termGroupObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class TermGroupService(ClientContext clientContext) : ClientService<TermGroup>(clientContext), ITermGroupService
 {
 
-    public TermGroup? AddObject(
+    public async Task<TermGroup?> AddObjectAsync(
         string termGroupName,
         Guid termGroupId,
         bool selectAllProperties = true
@@ -59,12 +59,12 @@ public class TermGroupService(ClientContext clientContext) : ClientService<TermG
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TermGroup)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TermGroup>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TermGroup>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public TermGroup? GetObject(Guid termGroupId, bool selectAllProperties = true)
+    public async Task<TermGroup?> GetObjectAsync(Guid termGroupId, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticMethod.Create(typeof(TaxonomySession), "GetTaxonomySession"));
@@ -79,12 +79,12 @@ public class TermGroupService(ClientContext clientContext) : ClientService<TermG
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TermGroup)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TermGroup>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TermGroup>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public TermGroup? GetObject(string termGroupName, bool selectAllProperties = true)
+    public async Task<TermGroup?> GetObjectAsync(string termGroupName, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticMethod.Create(typeof(TaxonomySession), "GetTaxonomySession"));
@@ -99,12 +99,12 @@ public class TermGroupService(ClientContext clientContext) : ClientService<TermG
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TermGroup)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TermGroup>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TermGroup>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<TermGroup>? GetObjectEnumerable(bool selectAllProperties = true)
+    public async Task<IEnumerable<TermGroup>?> GetObjectEnumerableAsync(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticMethod.Create(typeof(TaxonomySession), "GetTaxonomySession"));
@@ -118,19 +118,19 @@ public class TermGroupService(ClientContext clientContext) : ClientService<TermG
                 ClientQuery.Create(selectAllProperties, typeof(TermGroup))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TermGroupEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TermGroupEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public override void SetObject(TermGroup termGroupObject, IReadOnlyDictionary<string, object?> modificationInfo)
+    public override async Task SetObjectAsync(TermGroup termGroupObject, IReadOnlyDictionary<string, object?> modificationInfo)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(termGroupObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(objectPath1, requestPayload.CreateSetPropertyDelegates(termGroupObject, modificationInfo));
         var objectPath3 = requestPayload.Add(ObjectPathProperty.Create(objectPath2.Id, "TermStore"), ClientActionInstantiateObjectPath.Create);
         var objectPath4 = requestPayload.Add(objectPath3, objectPathId => ClientActionMethod.Create(objectPathId, "CommitAll"));
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

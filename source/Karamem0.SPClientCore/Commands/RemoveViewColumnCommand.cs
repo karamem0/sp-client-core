@@ -58,7 +58,7 @@ public class RemoveViewColumnCommand : ClientObjectCmdlet<IViewColumnService>
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
     public SwitchParameter All { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.View ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.View));
         if (this.ShouldProcess(this.View.Title, VerbsCommon.Remove))
@@ -66,16 +66,16 @@ public class RemoveViewColumnCommand : ClientObjectCmdlet<IViewColumnService>
             if (this.ParameterSetName == "ParamSet1")
             {
                 _ = this.Column ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Column));
-                this.Service.RemoveObject(this.View, this.Column);
+                await this.Service.RemoveObjectAsync(this.View, this.Column);
             }
             if (this.ParameterSetName == "ParamSet2")
             {
                 _ = this.ColumnName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ColumnName));
-                this.Service.RemoveObject(this.View, this.ColumnName);
+                await this.Service.RemoveObjectAsync(this.View, this.ColumnName);
             }
             if (this.ParameterSetName == "ParamSet3")
             {
-                this.Service.RemoveObjectAll(this.View);
+                await this.Service.RemoveObjectAllAsync(this.View);
             }
         }
     }

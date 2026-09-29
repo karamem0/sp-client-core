@@ -33,17 +33,17 @@ public class TestExternalUserSharingCommand : ClientObjectCmdlet<IExternalUserSe
     )]
     public List? List { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             this.ValidateSwitchParameter(nameof(this.Site));
-            this.Outputs.Add(this.Service.CheckObject());
+            this.Outputs.Add(await this.Service.CheckObjectAsync());
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
-            this.Outputs.Add(this.Service.CheckObject(this.List));
+            this.Outputs.Add(await this.Service.CheckObjectAsync(this.List));
         }
     }
 

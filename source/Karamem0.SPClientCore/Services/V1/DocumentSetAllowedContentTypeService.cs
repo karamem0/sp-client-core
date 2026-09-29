@@ -15,15 +15,15 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IDocumentSetAllowedContentTypeService
 {
 
-    void AddObject(
+    Task AddObjectAsync(
         ContentType contentTypeObject,
         ContentType allowedContentTypeObject,
         bool pushChanges
     );
 
-    IEnumerable<ContentTypeId>? GetObjectEnumerable(ContentType contentTypeObject, bool selectAllProperties = true);
+    Task<IEnumerable<ContentTypeId>?> GetObjectEnumerableAsync(ContentType contentTypeObject, bool selectAllProperties = true);
 
-    void RemoveObject(
+    Task RemoveObjectAsync(
         ContentType contentTypeObject,
         ContentType allowedContentTypeObject,
         bool pushChanges
@@ -34,7 +34,7 @@ public interface IDocumentSetAllowedContentTypeService
 public class DocumentSetAllowedContentTypeService(ClientContext clientContext) : ClientService(clientContext), IDocumentSetAllowedContentTypeService
 {
 
-    public void AddObject(
+    public async Task AddObjectAsync(
         ContentType contentTypeObject,
         ContentType allowedContentTypeObject,
         bool pushChanges
@@ -66,10 +66,10 @@ public class DocumentSetAllowedContentTypeService(ClientContext clientContext) :
                 requestPayload.CreateParameter(pushChanges)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public IEnumerable<ContentTypeId>? GetObjectEnumerable(ContentType contentTypeObject, bool selectAllProperties = true)
+    public async Task<IEnumerable<ContentTypeId>?> GetObjectEnumerableAsync(ContentType contentTypeObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(contentTypeObject.ObjectIdentity));
@@ -89,12 +89,12 @@ public class DocumentSetAllowedContentTypeService(ClientContext clientContext) :
                 ClientQuery.Create(selectAllProperties, typeof(ContentTypeId))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<AllowedContentTypeEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<AllowedContentTypeEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void RemoveObject(
+    public async Task RemoveObjectAsync(
         ContentType contentTypeObject,
         ContentType allowedContentTypeObject,
         bool pushChanges
@@ -126,7 +126,7 @@ public class DocumentSetAllowedContentTypeService(ClientContext clientContext) :
                 requestPayload.CreateParameter(pushChanges)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

@@ -34,12 +34,12 @@ public class RemoveSiteCollectionFeatureCommand : ClientObjectCmdlet<ISiteCollec
     [Parameter(Mandatory = false)]
     public bool Force { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
         if (this.ShouldProcess(this.Identity.DisplayName, VerbsCommon.Remove))
         {
-            this.Service.RemoveObject(this.Identity.DefinitionId, this.Force);
+            await this.Service.RemoveObjectAsync(this.Identity.DefinitionId, this.Force);
         }
     }
 

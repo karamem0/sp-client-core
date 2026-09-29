@@ -15,19 +15,19 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IChangeService
 {
 
-    IEnumerable<Change>? GetObjectEnumerable(
+    Task<IEnumerable<Change>?> GetObjectEnumerableAsync(
         SiteCollection siteCollectionObject,
         ChangeQuery changeQueryObject,
         bool selectAllProperties = true
     );
 
-    IEnumerable<Change>? GetObjectEnumerable(
+    Task<IEnumerable<Change>?> GetObjectEnumerableAsync(
         Site siteObject,
         ChangeQuery changeQueryObject,
         bool selectAllProperties = true
     );
 
-    IEnumerable<Change>? GetObjectEnumerable(
+    Task<IEnumerable<Change>?> GetObjectEnumerableAsync(
         List listObject,
         ChangeQuery changeQueryObject,
         bool selectAllProperties = true
@@ -38,7 +38,7 @@ public interface IChangeService
 public class ChangeService(ClientContext clientContext) : ClientService(clientContext), IChangeService
 {
 
-    public IEnumerable<Change>? GetObjectEnumerable(
+    public async Task<IEnumerable<Change>?> GetObjectEnumerableAsync(
         SiteCollection siteCollectionObject,
         ChangeQuery changeQueryObject,
         bool selectAllProperties = true
@@ -59,12 +59,12 @@ public class ChangeService(ClientContext clientContext) : ClientService(clientCo
                 ClientQuery.Create(selectAllProperties, typeof(Change))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ChangeEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ChangeEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<Change>? GetObjectEnumerable(
+    public async Task<IEnumerable<Change>?> GetObjectEnumerableAsync(
         Site siteObject,
         ChangeQuery changeQueryObject,
         bool selectAllProperties = true
@@ -85,12 +85,12 @@ public class ChangeService(ClientContext clientContext) : ClientService(clientCo
                 ClientQuery.Create(selectAllProperties, typeof(Change))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ChangeEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ChangeEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<Change>? GetObjectEnumerable(
+    public async Task<IEnumerable<Change>?> GetObjectEnumerableAsync(
         List listObject,
         ChangeQuery changeQueryObject,
         bool selectAllProperties = true
@@ -111,9 +111,9 @@ public class ChangeService(ClientContext clientContext) : ClientService(clientCo
                 ClientQuery.Create(selectAllProperties, typeof(Change))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ChangeEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ChangeEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
 }

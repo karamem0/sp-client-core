@@ -26,12 +26,12 @@ public class RemoveStorageEntityCommand : ClientObjectCmdlet<IStorageEntityServi
     [Parameter(Mandatory = true, Position = 0)]
     public string? Key { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Key ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Key));
         if (this.ShouldProcess(this.Key, VerbsCommon.Remove))
         {
-            this.Service.RemoveObject(this.Key);
+            await this.Service.RemoveObjectAsync(this.Key);
         }
     }
 

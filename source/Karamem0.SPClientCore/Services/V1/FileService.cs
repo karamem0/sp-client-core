@@ -17,83 +17,83 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IFileService
 {
 
-    File? AddObject(
+    Task<File?> AddObjectAsync(
         Folder folderObject,
         IReadOnlyDictionary<string, object?> creationInfo,
         bool selectAllProperties = true
     );
 
-    void CheckInObject(
+    Task CheckInObjectAsync(
         File fileObject,
         string? comment,
         CheckInType? checkInType
     );
 
-    void CheckOutObject(File fileObject);
+    Task CheckOutObjectAsync(File fileObject);
 
-    void CopyObject(
+    Task CopyObjectAsync(
         File fileObject,
         Uri fileUrl,
         bool overwrite
     );
 
-    void CopyObject(
+    Task CopyObjectAsync(
         File fileObject,
         Uri fileUrl,
         bool overwrite,
         IReadOnlyDictionary<string, object?> moveCopyOptions
     );
 
-    System.IO.Stream DownloadObject(File fileObject);
+    Task<System.IO.Stream> DownloadObjectAsync(File fileObject);
 
-    File? GetObject(File fileObject);
+    Task<File?> GetObjectAsync(File fileObject);
 
-    File? GetObject(File fileObject, bool selectAllProperties = true);
+    Task<File?> GetObjectAsync(File fileObject, bool selectAllProperties = true);
 
-    File? GetObject(FileVersion fileVersionObject, bool selectAllProperties = true);
+    Task<File?> GetObjectAsync(FileVersion fileVersionObject, bool selectAllProperties = true);
 
-    File? GetObject(App appObject, bool selectAllProperties = true);
+    Task<File?> GetObjectAsync(App appObject, bool selectAllProperties = true);
 
-    File? GetObject(ListItem listItemObject, bool selectAllProperties = true);
+    Task<File?> GetObjectAsync(ListItem listItemObject, bool selectAllProperties = true);
 
-    File? GetObject(Guid fileId, bool selectAllProperties = true);
+    Task<File?> GetObjectAsync(Guid fileId, bool selectAllProperties = true);
 
-    File? GetObject(Uri fileUrl, bool selectAllProperties = true);
+    Task<File?> GetObjectAsync(Uri fileUrl, bool selectAllProperties = true);
 
-    File? GetObject(
+    Task<File?> GetObjectAsync(
         Folder folderObject,
         string fileName,
         bool selectAllProperties = true
     );
 
-    IEnumerable<File>? GetObjectEnumerable(Folder folderObject, bool selectAllProperties = true);
+    Task<IEnumerable<File>?> GetObjectEnumerableAsync(Folder folderObject, bool selectAllProperties = true);
 
-    void MoveObject(
+    Task MoveObjectAsync(
         File fileObject,
         Uri fileUrl,
         MoveOperations fileMoveOperations
     );
 
-    void MoveObject(
+    Task MoveObjectAsync(
         File fileObject,
         Uri fileUrl,
         bool overwrite,
         IReadOnlyDictionary<string, object?> moveCopyOptions
     );
 
-    void PublishObject(File fileObject, string? comment);
+    Task PublishObjectAsync(File fileObject, string? comment);
 
-    Guid RecycleObject(File fileObject);
+    Task<Guid> RecycleObjectAsync(File fileObject);
 
-    void RemoveObject(File fileObject, bool force);
+    Task RemoveObjectAsync(File fileObject, bool force);
 
-    void SetObject(File fileObject, IReadOnlyDictionary<string, object?> modificationInfo);
+    Task SetObjectAsync(File fileObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
-    void UndoCheckOutObject(File fileObject);
+    Task UndoCheckOutObjectAsync(File fileObject);
 
-    void UnpublishObject(File fileObject, string? comment);
+    Task UnpublishObjectAsync(File fileObject, string? comment);
 
-    void UploadObject(
+    Task UploadObjectAsync(
         Uri folderUrl,
         string fileName,
         System.IO.Stream fileContent,
@@ -105,7 +105,7 @@ public interface IFileService
 public class FileService(ClientContext clientContext) : ClientService<File>(clientContext), IFileService
 {
 
-    public File? AddObject(
+    public async Task<File?> AddObjectAsync(
         Folder folderObject,
         IReadOnlyDictionary<string, object?> creationInfo,
         bool selectAllProperties = true
@@ -123,12 +123,12 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(File)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<File>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<File>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void CheckInObject(
+    public async Task CheckInObjectAsync(
         File fileObject,
         string? comment,
         CheckInType? checkInType
@@ -144,20 +144,20 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                 requestPayload.CreateParameter(checkInType ?? CheckInType.MinorCheckIn)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void CheckOutObject(File fileObject)
+    public async Task CheckOutObjectAsync(File fileObject)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             ObjectPathIdentity.Create(fileObject.ObjectIdentity),
             objectPathId => ClientActionMethod.Create(objectPathId, "CheckOut")
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void CopyObject(
+    public async Task CopyObjectAsync(
         File fileObject,
         Uri fileUrl,
         bool overwrite
@@ -173,10 +173,10 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                 requestPayload.CreateParameter(overwrite)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void CopyObject(
+    public async Task CopyObjectAsync(
         File fileObject,
         Uri fileUrl,
         bool overwrite,
@@ -198,16 +198,16 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                 requestPayload.CreateParameter(ClientValueObject.Create<MoveCopyOptions>(moveCopyOptions))
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public System.IO.Stream DownloadObject(File fileObject)
+    public async Task<System.IO.Stream> DownloadObjectAsync(File fileObject)
     {
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath("_api/web/getfilebyserverrelativeurl('{0}')/openbinarystream", fileObject.ServerRelativeUrl);
-        return this.ClientContext.GetStream(requestUrl);
+        return await this.ClientContext.GetStreamAsync(requestUrl);
     }
 
-    public File? GetObject(FileVersion fileVersionObject, bool selectAllProperties = true)
+    public async Task<File?> GetObjectAsync(FileVersion fileVersionObject, bool selectAllProperties = true)
     {
         var objectIdentity = fileVersionObject.ObjectIdentity;
         _ = objectIdentity ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
@@ -224,12 +224,12 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(File)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<File>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<File>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public File? GetObject(App appObject, bool selectAllProperties = true)
+    public async Task<File?> GetObjectAsync(App appObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -243,12 +243,12 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(File)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<File>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<File>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public File? GetObject(ListItem listItemObject, bool selectAllProperties = true)
+    public async Task<File?> GetObjectAsync(ListItem listItemObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listItemObject.ObjectIdentity));
@@ -257,12 +257,12 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(File)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<File>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<File>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public File? GetObject(Guid fileId, bool selectAllProperties = true)
+    public async Task<File?> GetObjectAsync(Guid fileId, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -276,12 +276,12 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(File)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<File>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<File>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public File? GetObject(Uri fileUrl, bool selectAllProperties = true)
+    public async Task<File?> GetObjectAsync(Uri fileUrl, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -295,12 +295,12 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(File)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<File>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<File>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public File? GetObject(
+    public async Task<File?> GetObjectAsync(
         Folder folderObject,
         string fileName,
         bool selectAllProperties = true
@@ -318,12 +318,12 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(File)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<File>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<File>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<File>? GetObjectEnumerable(Folder folderObject, bool selectAllProperties = true)
+    public async Task<IEnumerable<File>?> GetObjectEnumerableAsync(Folder folderObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(folderObject.ObjectIdentity));
@@ -336,12 +336,12 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                 ClientQuery.Create(selectAllProperties, typeof(File))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<FileEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<FileEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void MoveObject(
+    public async Task MoveObjectAsync(
         File fileObject,
         Uri fileUrl,
         MoveOperations fileMoveOperations
@@ -357,10 +357,10 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                 requestPayload.CreateParameter(fileMoveOperations)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void MoveObject(
+    public async Task MoveObjectAsync(
         File fileObject,
         Uri fileUrl,
         bool overwrite,
@@ -382,10 +382,10 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                 requestPayload.CreateParameter(ClientValueObject.Create<MoveCopyOptions>(moveCopyOptions))
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void PublishObject(File fileObject, string? comment)
+    public async Task PublishObjectAsync(File fileObject, string? comment)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
@@ -396,22 +396,22 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                 requestPayload.CreateParameter(comment)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public Guid RecycleObject(File fileObject)
+    public async Task<Guid> RecycleObjectAsync(File fileObject)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             ObjectPathIdentity.Create(fileObject.ObjectIdentity),
             objectPathId => ClientActionMethod.Create(objectPathId, "Recycle")
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Guid>(requestPayload.GetActionId<ClientActionMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Guid>(requestPayload.GetActionId<ClientActionMethod>()));
     }
 
-    public virtual void RemoveObject(File fileObject, bool force)
+    public virtual async Task RemoveObjectAsync(File fileObject, bool force)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
@@ -429,20 +429,20 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                 )
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void UndoCheckOutObject(File fileObject)
+    public async Task UndoCheckOutObjectAsync(File fileObject)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             ObjectPathIdentity.Create(fileObject.ObjectIdentity),
             objectPathId => ClientActionMethod.Create(objectPathId, "UndoCheckOut")
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void UnpublishObject(File fileObject, string? comment)
+    public async Task UnpublishObjectAsync(File fileObject, string? comment)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
@@ -453,10 +453,10 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                 requestPayload.CreateParameter(comment)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void UploadObject(
+    public async Task UploadObjectAsync(
         Uri folderUrl,
         string fileName,
         System.IO.Stream fileContent,
@@ -472,7 +472,7 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                 fileName,
                 overwrite
             );
-            this.ClientContext.PostStream(requestUrl, fileContent);
+            await this.ClientContext.PostStreamAsync(requestUrl, fileContent);
         }
         else
         {
@@ -482,10 +482,10 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                 fileName,
                 overwrite
             );
-            this.ClientContext.PostObject(requestUrl, null);
+            await this.ClientContext.PostObjectAsync(requestUrl, null);
             var uploadId = Guid.NewGuid();
             var chunk = new byte[ClientConstants.ChunkSize];
-            var bytes = fileContent.Read(
+            var bytes = await fileContent.ReadAsync(
                 chunk,
                 0,
                 chunk.Length
@@ -500,10 +500,10 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                         fileName,
                         uploadId
                     );
-                    this.ClientContext.PostStream(requestUrl, stream);
+                    await this.ClientContext.PostStreamAsync(requestUrl, stream);
                 }
                 var offset = bytes;
-                while ((bytes = fileContent.Read(
+                while ((bytes = await fileContent.ReadAsync(
                            chunk,
                            0,
                            chunk.Length
@@ -520,7 +520,7 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                             uploadId,
                             offset
                         );
-                        this.ClientContext.PostStream(requestUrl, stream);
+                        await this.ClientContext.PostStreamAsync(requestUrl, stream);
                     }
                     else
                     {
@@ -538,7 +538,7 @@ public class FileService(ClientContext clientContext) : ClientService<File>(clie
                             uploadId,
                             offset
                         );
-                        this.ClientContext.PostStream(requestUrl, stream);
+                        await this.ClientContext.PostStreamAsync(requestUrl, stream);
                     }
                     offset += bytes;
                 }

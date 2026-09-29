@@ -31,12 +31,12 @@ public class RemoveNavigationNodeCommand : ClientObjectCmdlet<INavigationNodeSer
     )]
     public NavigationNode? Identity { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
         if (this.ShouldProcess(this.Identity.Title, VerbsCommon.Remove))
         {
-            this.Service.RemoveObject(this.Identity);
+            await this.Service.RemoveObjectAsync(this.Identity);
         }
     }
 

@@ -28,11 +28,11 @@ public class AddDocumentSetWelcomePageColumnCommand : ClientObjectCmdlet<IDocume
     [Parameter(Mandatory = false)]
     public SwitchParameter PushChanges { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.ContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentType));
         _ = this.Column ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Column));
-        this.Service.AddObject(
+        await this.Service.AddObjectAsync(
             this.ContentType,
             this.Column,
             this.PushChanges

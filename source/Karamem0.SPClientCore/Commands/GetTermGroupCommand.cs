@@ -39,31 +39,31 @@ public class GetTermGroupCommand : ClientObjectCmdlet<ITermGroupService>
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet4")]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.Identity, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
-            this.Outputs.Add(this.Service.GetObject(this.TermGroupId, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.TermGroupId, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             _ = this.TermGroupName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.TermGroupName));
-            this.Outputs.Add(this.Service.GetObject(this.TermGroupName, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.TermGroupName, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet4")
         {
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.SelectAllProperties));
+                this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.SelectAllProperties));
+                this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.SelectAllProperties));
             }
         }
     }

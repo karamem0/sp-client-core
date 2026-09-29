@@ -30,11 +30,11 @@ public class AddStorageEntityCommand : ClientObjectCmdlet<IStorageEntityService>
     [Parameter(Mandatory = false)]
     public string? Comment { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Key ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Key));
         _ = this.Value ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Value));
-        this.Service.AddObject(
+        await this.Service.AddObjectAsync(
             this.Key,
             this.Value,
             this.Description,

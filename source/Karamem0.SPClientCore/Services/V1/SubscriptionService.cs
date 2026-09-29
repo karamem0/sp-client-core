@@ -16,26 +16,26 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ISubscriptionService
 {
 
-    Subscription? AddObject(List listObject, IReadOnlyDictionary<string, object?> creationInfo);
+    Task<Subscription?> AddObjectAsync(List listObject, IReadOnlyDictionary<string, object?> creationInfo);
 
-    Subscription? GetObject(Subscription subscriptionObject);
+    Task<Subscription?> GetObjectAsync(Subscription subscriptionObject);
 
-    Subscription? GetObject(Subscription subscriptionObject, bool selectAllProperties = true);
+    Task<Subscription?> GetObjectAsync(Subscription subscriptionObject, bool selectAllProperties = true);
 
-    Subscription? GetObject(List listObject, Guid subscriptionId);
+    Task<Subscription?> GetObjectAsync(List listObject, Guid subscriptionId);
 
-    IEnumerable<Subscription>? GetObjectEnumerable(List listObject);
+    Task<IEnumerable<Subscription>?> GetObjectEnumerableAsync(List listObject);
 
-    void RemoveObject(Subscription subscriptionObject);
+    Task RemoveObjectAsync(Subscription subscriptionObject);
 
-    void SetObject(Subscription subscriptionObject, IReadOnlyDictionary<string, object?> modificationInfo);
+    Task SetObjectAsync(Subscription subscriptionObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class SubscriptionService(ClientContext clientContext) : ClientService(clientContext), ISubscriptionService
 {
 
-    public Subscription? AddObject(List listObject, IReadOnlyDictionary<string, object?> creationInfo)
+    public async Task<Subscription?> AddObjectAsync(List listObject, IReadOnlyDictionary<string, object?> creationInfo)
     {
         var listUrl = this.ClientContext.BaseAddress.ConcatPath("_api/web/lists('{0}')", listObject.Id);
         var requestUrl = listUrl
@@ -51,10 +51,10 @@ public class SubscriptionService(ClientContext clientContext) : ClientService(cl
                 )
                 .ToDictionary(item => item.Key, item => item.Value)
         );
-        return this.ClientContext.PostObject<Subscription>(requestUrl, requestPayload.Entity);
+        return await this.ClientContext.PostObjectAsync<Subscription>(requestUrl, requestPayload.Entity);
     }
 
-    public Subscription? GetObject(Subscription subscriptionObject)
+    public async Task<Subscription?> GetObjectAsync(Subscription subscriptionObject)
     {
         var requestUrl = this
             .ClientContext.BaseAddress.ConcatPath(
@@ -63,15 +63,15 @@ public class SubscriptionService(ClientContext clientContext) : ClientService(cl
                 subscriptionObject.Id
             )
             .ConcatQuery(ODataQuery.CreateSelect<Subscription>());
-        return this.ClientContext.GetObject<Subscription>(requestUrl);
+        return await this.ClientContext.GetObjectAsync<Subscription>(requestUrl);
     }
 
-    public Subscription? GetObject(Subscription subscriptionObject, bool selectAllProperties = true)
+    public async Task<Subscription?> GetObjectAsync(Subscription subscriptionObject, bool selectAllProperties = true)
     {
-        return this.GetObject(subscriptionObject);
+        return await this.GetObjectAsync(subscriptionObject);
     }
 
-    public Subscription? GetObject(List listObject, Guid subscriptionId)
+    public async Task<Subscription?> GetObjectAsync(List listObject, Guid subscriptionId)
     {
         var requestUrl = this
             .ClientContext.BaseAddress.ConcatPath(
@@ -80,28 +80,28 @@ public class SubscriptionService(ClientContext clientContext) : ClientService(cl
                 subscriptionId
             )
             .ConcatQuery(ODataQuery.CreateSelect<Subscription>());
-        return this.ClientContext.GetObject<Subscription>(requestUrl);
+        return await this.ClientContext.GetObjectAsync<Subscription>(requestUrl);
     }
 
-    public IEnumerable<Subscription>? GetObjectEnumerable(List listObject)
+    public async Task<IEnumerable<Subscription>?> GetObjectEnumerableAsync(List listObject)
     {
         var requestUrl = this
             .ClientContext.BaseAddress.ConcatPath("_api/web/lists('{0}')/subscriptions", listObject.Id)
             .ConcatQuery(ODataQuery.CreateSelect<Subscription>());
-        return this.ClientContext.GetObject<ODataV1ObjectEnumerable<Subscription>>(requestUrl);
+        return await this.ClientContext.GetObjectAsync<ODataV1ObjectEnumerable<Subscription>>(requestUrl);
     }
 
-    public void RemoveObject(Subscription subscriptionObject)
+    public async Task RemoveObjectAsync(Subscription subscriptionObject)
     {
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/lists('{0}')/subscriptions('{1}')",
             subscriptionObject.Resource,
             subscriptionObject.Id
         );
-        this.ClientContext.DeleteObject(requestUrl);
+        await this.ClientContext.DeleteObjectAsync(requestUrl);
     }
 
-    public void SetObject(Subscription subscriptionObject, IReadOnlyDictionary<string, object?> modificationInfo)
+    public async Task SetObjectAsync(Subscription subscriptionObject, IReadOnlyDictionary<string, object?> modificationInfo)
     {
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/lists('{0}')/subscriptions('{1}')",
@@ -109,7 +109,7 @@ public class SubscriptionService(ClientContext clientContext) : ClientService(cl
             subscriptionObject.Id
         );
         var requestPayload = ODataV1RequestPayload.Create<SubscriptionModificationInfo>(modificationInfo);
-        this.ClientContext.PatchObject(requestUrl, requestPayload.Entity);
+        await this.ClientContext.PatchObjectAsync(requestUrl, requestPayload.Entity);
     }
 
 }

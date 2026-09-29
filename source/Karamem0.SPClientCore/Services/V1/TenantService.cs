@@ -15,16 +15,16 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantService
 {
 
-    Tenant? GetObject(bool selectAllProperties = true);
+    Task<Tenant?> GetObjectAsync(bool selectAllProperties = true);
 
-    void SetObject(IReadOnlyDictionary<string, object?> modificationInfo);
+    Task SetObjectAsync(IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class TenantService(ClientContext clientContext) : ClientService(clientContext), ITenantService
 {
 
-    public Tenant? GetObject(bool selectAllProperties = true)
+    public async Task<Tenant?> GetObjectAsync(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
@@ -32,12 +32,12 @@ public class TenantService(ClientContext clientContext) : ClientService(clientCo
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Tenant)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Tenant>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Tenant>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void SetObject(IReadOnlyDictionary<string, object?> modificationInfo)
+    public async Task SetObjectAsync(IReadOnlyDictionary<string, object?> modificationInfo)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
@@ -45,7 +45,7 @@ public class TenantService(ClientContext clientContext) : ClientService(clientCo
             requestPayload.CreateSetPropertyDelegates(typeof(Tenant), modificationInfo)
         );
         var objectPath2 = requestPayload.Add(objectPath1, objectPathId => ClientActionMethod.Create(objectPathId, "Update"));
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

@@ -25,11 +25,11 @@ public class RemoveTermStoreLanguageCommand : ClientObjectCmdlet<ITermStoreLangu
     [Parameter(Mandatory = true, Position = 0)]
     public uint Lcid { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ShouldProcess(this.Lcid.ToString(), VerbsCommon.Remove))
         {
-            this.Service.RemoveObject(this.Lcid);
+            await this.Service.RemoveObjectAsync(this.Lcid);
         }
     }
 

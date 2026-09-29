@@ -34,7 +34,7 @@ public class GetTenantExternalUserCommand : ClientObjectCmdlet<ITenantExternalUs
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
@@ -42,7 +42,7 @@ public class GetTenantExternalUserCommand : ClientObjectCmdlet<ITenantExternalUs
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(
-                    this.Service.GetObjectEnumerable(
+                    await this.Service.GetObjectEnumerableAsync(
                         this.SiteCollectionUrl,
                         this.Filter,
                         this.SortOrder
@@ -52,7 +52,7 @@ public class GetTenantExternalUserCommand : ClientObjectCmdlet<ITenantExternalUs
             else
             {
                 this.Outputs.AddRange(
-                    this.Service.GetObjectEnumerable(
+                    await this.Service.GetObjectEnumerableAsync(
                         this.SiteCollectionUrl,
                         this.Filter,
                         this.SortOrder
@@ -64,11 +64,11 @@ public class GetTenantExternalUserCommand : ClientObjectCmdlet<ITenantExternalUs
         {
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.Filter, this.SortOrder));
+                this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.Filter, this.SortOrder));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.Filter, this.SortOrder));
+                this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.Filter, this.SortOrder));
             }
         }
     }

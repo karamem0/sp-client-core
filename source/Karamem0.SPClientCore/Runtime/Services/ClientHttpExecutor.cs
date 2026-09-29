@@ -37,92 +37,47 @@ public class ClientHttpExecutor
         );
     }
 
-    public void Execute(Func<HttpRequestMessage> requestCallback, Func<HttpResponseMessage, Task<object>> responseCallback)
+    public async Task<T> ExecuteAsync<T>(Func<Task<HttpRequestMessage>> requestCallback, Func<HttpResponseMessage, Task<T>> responseCallback)
     {
-        var syncContext = new ClientHttpSynchronizationContext();
-        try
+        var errorCount = 0;
+        while (true)
         {
-            SynchronizationContext.SetSynchronizationContext(syncContext);
-            var executeTask = this.ExecuteAsync(requestCallback, responseCallback);
-            syncContext.Wait();
-            _ = executeTask
-                .GetAwaiter()
-                .GetResult();
-        }
-        finally
-        {
-            SynchronizationContext.SetSynchronizationContext(null);
-        }
-    }
-
-    public T Execute<T>(Func<HttpRequestMessage> requestCallback, Func<HttpResponseMessage, Task<T>> responseCallback)
-    {
-        var syncContext = new ClientHttpSynchronizationContext();
-        try
-        {
-            SynchronizationContext.SetSynchronizationContext(syncContext);
-            var executeTask = this.ExecuteAsync(requestCallback, responseCallback);
-            syncContext.Wait();
-            return executeTask
-                .GetAwaiter()
-                .GetResult();
-        }
-        finally
-        {
-            SynchronizationContext.SetSynchronizationContext(null);
-        }
-    }
-
-    public async Task<T> ExecuteAsync<T>(Func<HttpRequestMessage> requestCallback, Func<HttpResponseMessage, Task<T>> responseCallback)
-    {
-        var syncContext = SynchronizationContext.Current as ClientHttpSynchronizationContext;
-        _ = syncContext ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
-        try
-        {
-            var errorCount = 0;
-            while (true)
+            var requestMessage = await requestCallback.Invoke();
+            var responseMessage = await this.httpClient.SendAsync(requestMessage);
+            if (responseMessage.IsSuccessStatusCode)
             {
-                var requestMessage = requestCallback.Invoke();
-                var responseMessage = await this.httpClient.SendAsync(requestMessage);
-                if (responseMessage.IsSuccessStatusCode)
+                return await responseCallback.Invoke(responseMessage);
+            }
+            else
+            {
+                var statusCode = (int)responseMessage.StatusCode;
+                if (statusCode is 429 or 502 or 503)
                 {
-                    return await responseCallback.Invoke(responseMessage);
+                    errorCount += 1;
+                    if (errorCount > ClientConstants.MaxRetryCount)
+                    {
+                        throw new InvalidOperationException(StringResources.ErrorMaxRetryCountExceeded);
+                    }
+                    await Task.Delay(responseMessage.Headers.RetryAfter.Delta.GetValueOrDefault(TimeSpan.FromSeconds(errorCount + 1)));
                 }
                 else
                 {
-                    var statusCode = (int)responseMessage.StatusCode;
-                    if (statusCode is 429 or 502 or 503)
+                    var responseContent = await responseMessage.Content.ReadAsStringAsync();
+                    if (JsonSerializerManager.Instance.TryDeserialize(responseContent, out OAuthError? oAuthError))
                     {
-                        errorCount += 1;
-                        if (errorCount > ClientConstants.MaxRetryCount)
-                        {
-                            throw new InvalidOperationException(StringResources.ErrorMaxRetryCountExceeded);
-                        }
-                        await Task.Delay(responseMessage.Headers.RetryAfter.Delta.GetValueOrDefault(TimeSpan.FromSeconds(errorCount + 1)));
+                        throw new InvalidOperationException(oAuthError?.ErrorDescription);
                     }
-                    else
+                    if (JsonSerializerManager.Instance.TryDeserialize(responseContent, out ODataV1ResultPayload? v1Payload))
                     {
-                        var responseContent = await responseMessage.Content.ReadAsStringAsync();
-                        if (JsonSerializerManager.Instance.TryDeserialize(responseContent, out OAuthError? oAuthError))
-                        {
-                            throw new InvalidOperationException(oAuthError?.ErrorDescription);
-                        }
-                        if (JsonSerializerManager.Instance.TryDeserialize(responseContent, out ODataV1ResultPayload? v1Payload))
-                        {
-                            throw new InvalidOperationException(v1Payload?.Error?.Message?.Value);
-                        }
-                        if (JsonSerializerManager.Instance.TryDeserialize(responseContent, out ODataV2ResultPayload? v2Payload))
-                        {
-                            throw new InvalidOperationException(v2Payload?.Error?.Message);
-                        }
-                        throw new InvalidOperationException(StringResources.ErrorUnknown);
+                        throw new InvalidOperationException(v1Payload?.Error?.Message?.Value);
                     }
+                    if (JsonSerializerManager.Instance.TryDeserialize(responseContent, out ODataV2ResultPayload? v2Payload))
+                    {
+                        throw new InvalidOperationException(v2Payload?.Error?.Message);
+                    }
+                    throw new InvalidOperationException(StringResources.ErrorUnknown);
                 }
             }
-        }
-        finally
-        {
-            syncContext.Complete();
         }
     }
 

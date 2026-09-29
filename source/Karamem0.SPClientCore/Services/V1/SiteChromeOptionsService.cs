@@ -16,18 +16,18 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ISiteChromeOptionsService
 {
 
-    void SetObject(IReadOnlyDictionary<string, object?> modificationInfo);
+    Task SetObjectAsync(IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class SiteChromeOptionsService(ClientContext clientContext) : ClientService(clientContext), ISiteChromeOptionsService
 {
 
-    public void SetObject(IReadOnlyDictionary<string, object?> modificationInfo)
+    public async Task SetObjectAsync(IReadOnlyDictionary<string, object?> modificationInfo)
     {
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath("_api/web/setchromeoptions");
         var requestPayload = ClientValueObject.Create<ChromeOptionsRequestPayload>(modificationInfo);
-        _ = this.ClientContext.PostObject<ODataV1Object>(requestUrl, requestPayload);
+        _ = await this.ClientContext.PostObjectAsync<ODataV1Object>(requestUrl, requestPayload);
     }
 
 }

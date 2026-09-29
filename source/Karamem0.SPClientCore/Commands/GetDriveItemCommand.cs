@@ -75,34 +75,34 @@ public class GetDriveItemCommand : ClientObjectCmdlet<IDriveItemService>
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet7")]
     public Uri? DriveItemPath { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service.GetObject(this.Identity));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.Identity));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.Folder ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Folder));
-            this.Outputs.Add(this.Service.GetObject(this.Folder));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.Folder));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             _ = this.File ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.File));
-            this.Outputs.Add(this.Service.GetObject(this.File));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.File));
         }
         if (this.ParameterSetName == "ParamSet4")
         {
             _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
-            this.Outputs.Add(this.Service.GetObject(this.ListItem));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.ListItem));
         }
         if (this.ParameterSetName == "ParamSet5")
         {
             _ = this.DriveItemUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.DriveItemUrl));
             if (this.DriveItemUrl.IsAbsoluteUri)
             {
-                this.Outputs.Add(this.Service.GetObject(this.DriveItemUrl));
+                this.Outputs.Add(await this.Service.GetObjectAsync(this.DriveItemUrl));
             }
             else
             {
@@ -113,13 +113,13 @@ public class GetDriveItemCommand : ClientObjectCmdlet<IDriveItemService>
         {
             _ = this.Drive ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Drive));
             _ = this.DriveItemId ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.DriveItemId));
-            this.Outputs.Add(this.Service.GetObject(this.Drive, this.DriveItemId));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.Drive, this.DriveItemId));
         }
         if (this.ParameterSetName == "ParamSet7")
         {
             _ = this.Drive ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Drive));
             _ = this.DriveItemPath ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.DriveItemPath));
-            this.Outputs.Add(this.Service.GetObject(this.Drive, this.DriveItemPath));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.Drive, this.DriveItemPath));
         }
     }
 

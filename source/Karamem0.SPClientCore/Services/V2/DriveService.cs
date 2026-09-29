@@ -16,32 +16,32 @@ namespace Karamem0.SharePoint.PowerShell.Services.V2;
 public interface IDriveService
 {
 
-    Drive? GetObject(Drive driveObject);
+    Task<Drive?> GetObjectAsync(Drive driveObject);
 
-    Drive? GetObject(
+    Task<Drive?> GetObjectAsync(
         Guid siteCollectionId,
         Guid siteId,
         Guid listId
     );
 
-    Drive? GetObject(string driveId);
+    Task<Drive?> GetObjectAsync(string driveId);
 
-    IEnumerable<Drive>? GetObjectEnumerable();
+    Task<IEnumerable<Drive>?> GetObjectEnumerableAsync();
 
 }
 
 public class DriveService(ClientContext clientContext) : ClientService(clientContext), IDriveService
 {
-    public Drive? GetObject(Drive driveObject)
+    public async Task<Drive?> GetObjectAsync(Drive driveObject)
     {
         var requestUrl = this
             .ClientContext.BaseAddress.ConcatPath("_api/v2.0/drives/{0}", driveObject.Id)
             .ConcatQuery(ODataQuery.CreateSelect<Drive>())
             .ConcatQuery(ODataQuery.CreateExpand<Drive>());
-        return this.ClientContext.GetObjectV2<Drive>(requestUrl);
+        return await this.ClientContext.GetObjectV2Async<Drive>(requestUrl);
     }
 
-    public Drive? GetObject(
+    public async Task<Drive?> GetObjectAsync(
         Guid siteCollectionId,
         Guid siteId,
         Guid listId
@@ -57,25 +57,25 @@ public class DriveService(ClientContext clientContext) : ClientService(clientCon
             )
             .ConcatQuery(ODataQuery.CreateSelect<Drive>())
             .ConcatQuery(ODataQuery.CreateExpand<Drive>());
-        return this.ClientContext.GetObjectV2<Drive>(requestUrl);
+        return await this.ClientContext.GetObjectV2Async<Drive>(requestUrl);
     }
 
-    public Drive? GetObject(string driveId)
+    public async Task<Drive?> GetObjectAsync(string driveId)
     {
         var requestUrl = this
             .ClientContext.BaseAddress.ConcatPath("_api/v2.0/drives/{0}", driveId)
             .ConcatQuery(ODataQuery.CreateSelect<Drive>())
             .ConcatQuery(ODataQuery.CreateExpand<Drive>());
-        return this.ClientContext.GetObjectV2<Drive>(requestUrl);
+        return await this.ClientContext.GetObjectV2Async<Drive>(requestUrl);
     }
 
-    public IEnumerable<Drive>? GetObjectEnumerable()
+    public async Task<IEnumerable<Drive>?> GetObjectEnumerableAsync()
     {
         var requestUrl = this
             .ClientContext.BaseAddress.ConcatPath("_api/v2.0/drives")
             .ConcatQuery(ODataQuery.CreateSelect<Drive>())
             .ConcatQuery(ODataQuery.CreateExpand<Drive>());
-        return this.ClientContext.GetObjectV2<ODataV2ObjectEnumerable<Drive>>(requestUrl);
+        return await this.ClientContext.GetObjectV2Async<ODataV2ObjectEnumerable<Drive>>(requestUrl);
     }
 
 }

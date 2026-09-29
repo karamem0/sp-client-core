@@ -15,34 +15,34 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IGroupMemberService
 {
 
-    User? AddObject(
+    Task<User?> AddObjectAsync(
         Group groupObject,
         User memberObject,
         bool selectAllProperties = true
     );
 
-    User? GetObject(
+    Task<User?> GetObjectAsync(
         Group groupObject,
         int userId,
         bool selectAllProperties = true
     );
 
-    User? GetObject(
+    Task<User?> GetObjectAsync(
         Group groupObject,
         string userName,
         bool selectAllProperties = true
     );
 
-    IEnumerable<User>? GetObjectEnumerable(Group groupObject, bool selectAllProperties = true);
+    Task<IEnumerable<User>?> GetObjectEnumerableAsync(Group groupObject, bool selectAllProperties = true);
 
-    void RemoveObject(Group groupObject, User memberObject);
+    Task RemoveObjectAsync(Group groupObject, User memberObject);
 
 }
 
 public class GroupMemberService(ClientContext clientContext) : ClientService(clientContext), IGroupMemberService
 {
 
-    public User? AddObject(
+    public async Task<User?> AddObjectAsync(
         Group groupObject,
         User memberObject,
         bool selectAllProperties = true
@@ -60,12 +60,12 @@ public class GroupMemberService(ClientContext clientContext) : ClientService(cli
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(User)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<User>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public User? GetObject(
+    public async Task<User?> GetObjectAsync(
         Group groupObject,
         int userId,
         bool selectAllProperties = true
@@ -83,12 +83,12 @@ public class GroupMemberService(ClientContext clientContext) : ClientService(cli
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(User)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<User>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public User? GetObject(
+    public async Task<User?> GetObjectAsync(
         Group groupObject,
         string userName,
         bool selectAllProperties = true
@@ -108,9 +108,9 @@ public class GroupMemberService(ClientContext clientContext) : ClientService(cli
                 ClientActionInstantiateObjectPath.Create,
                 objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(User)))
             );
-            return this
-                .ClientContext.ProcessQuery(requestPayload)
-                .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
+            return await this
+                .ClientContext.ProcessQueryAsync(requestPayload)
+                .ContinueWith(task => task.Result.ToObject<User>(requestPayload.GetActionId<ClientActionQuery>()));
         }
         else
         {
@@ -126,13 +126,13 @@ public class GroupMemberService(ClientContext clientContext) : ClientService(cli
                 ClientActionInstantiateObjectPath.Create,
                 objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(User)))
             );
-            return this
-                .ClientContext.ProcessQuery(requestPayload)
-                .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
+            return await this
+                .ClientContext.ProcessQueryAsync(requestPayload)
+                .ContinueWith(task => task.Result.ToObject<User>(requestPayload.GetActionId<ClientActionQuery>()));
         }
     }
 
-    public IEnumerable<User>? GetObjectEnumerable(Group groupObject, bool selectAllProperties = true)
+    public async Task<IEnumerable<User>?> GetObjectEnumerableAsync(Group groupObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(groupObject.ObjectIdentity));
@@ -145,12 +145,12 @@ public class GroupMemberService(ClientContext clientContext) : ClientService(cli
                 ClientQuery.Create(selectAllProperties, typeof(User))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<UserEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<UserEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void RemoveObject(Group groupObject, User memberObject)
+    public async Task RemoveObjectAsync(Group groupObject, User memberObject)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(groupObject.ObjectIdentity));
@@ -163,7 +163,7 @@ public class GroupMemberService(ClientContext clientContext) : ClientService(cli
                 requestPayload.CreateParameter(memberObject)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

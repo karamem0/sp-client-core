@@ -97,55 +97,55 @@ public class SetApprovalStatusCommand : ClientObjectCmdlet<IApprovalStatusServic
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet8")]
     public string? Comment { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             this.ValidateSwitchParameter(nameof(this.Approve));
             _ = this.File ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.File));
-            this.Service.ApproveObject(this.File, this.Comment);
+            await this.Service.ApproveObjectAsync(this.File, this.Comment);
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             this.ValidateSwitchParameter(nameof(this.Reject));
             _ = this.File ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.File));
-            this.Service.DenyObject(this.File, this.Comment);
+            await this.Service.DenyObjectAsync(this.File, this.Comment);
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             this.ValidateSwitchParameter(nameof(this.Approve));
             _ = this.Folder ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Folder));
-            this.Service.ApproveObject(this.Folder, this.Comment);
+            await this.Service.ApproveObjectAsync(this.Folder, this.Comment);
         }
         if (this.ParameterSetName == "ParamSet4")
         {
             this.ValidateSwitchParameter(nameof(this.Reject));
             _ = this.Folder ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Folder));
-            this.Service.DenyObject(this.Folder, this.Comment);
+            await this.Service.DenyObjectAsync(this.Folder, this.Comment);
         }
         if (this.ParameterSetName == "ParamSet5")
         {
             this.ValidateSwitchParameter(nameof(this.Pending));
             _ = this.Folder ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Folder));
-            this.Service.SuspendObject(this.Folder, this.Comment);
+            await this.Service.SuspendObjectAsync(this.Folder, this.Comment);
         }
         if (this.ParameterSetName == "ParamSet6")
         {
             this.ValidateSwitchParameter(nameof(this.Approve));
             _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
-            this.Service.ApproveObject(this.ListItem, this.Comment);
+            await this.Service.ApproveObjectAsync(this.ListItem, this.Comment);
         }
         if (this.ParameterSetName == "ParamSet7")
         {
             this.ValidateSwitchParameter(nameof(this.Reject));
             _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
-            this.Service.DenyObject(this.ListItem, this.Comment);
+            await this.Service.DenyObjectAsync(this.ListItem, this.Comment);
         }
         if (this.ParameterSetName == "ParamSet8")
         {
             this.ValidateSwitchParameter(nameof(this.Pending));
             _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
-            this.Service.SuspendObject(this.ListItem, this.Comment);
+            await this.Service.SuspendObjectAsync(this.ListItem, this.Comment);
         }
     }
 

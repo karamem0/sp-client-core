@@ -17,9 +17,9 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetTenantAppCatalogCommand : ClientObjectCmdlet<ITenantSettingsService>
 {
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
-        var tenantSettingsObject = this.Service.GetObject();
+        var tenantSettingsObject = await this.Service.GetObjectAsync();
         if (tenantSettingsObject is not null)
         {
             this.Outputs.Add(tenantSettingsObject.AppCatalogUrl);

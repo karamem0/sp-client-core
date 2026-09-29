@@ -85,18 +85,18 @@ public class GetColumnCommand : ClientObjectCmdlet<IColumnService>
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet10")]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.Identity, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.ContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentType));
             this.Outputs.Add(
-                this.Service.GetObject(
+                await this.Service.GetObjectAsync(
                     this.ContentType,
                     this.ColumnId,
                     this.SelectAllProperties
@@ -108,7 +108,7 @@ public class GetColumnCommand : ClientObjectCmdlet<IColumnService>
             _ = this.ContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentType));
             _ = this.ColumnTitle ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ColumnTitle));
             this.Outputs.Add(
-                this.Service.GetObject(
+                await this.Service.GetObjectAsync(
                     this.ContentType,
                     this.ColumnTitle,
                     this.SelectAllProperties
@@ -120,18 +120,18 @@ public class GetColumnCommand : ClientObjectCmdlet<IColumnService>
             _ = this.ContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentType));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.ContentType, this.SelectAllProperties));
+                this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.ContentType, this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.ContentType, this.SelectAllProperties));
+                this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.ContentType, this.SelectAllProperties));
             }
         }
         if (this.ParameterSetName == "ParamSet5")
         {
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
             this.Outputs.Add(
-                this.Service.GetObject(
+                await this.Service.GetObjectAsync(
                     this.List,
                     this.ColumnId,
                     this.SelectAllProperties
@@ -143,7 +143,7 @@ public class GetColumnCommand : ClientObjectCmdlet<IColumnService>
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
             _ = this.ColumnTitle ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ColumnTitle));
             this.Outputs.Add(
-                this.Service.GetObject(
+                await this.Service.GetObjectAsync(
                     this.List,
                     this.ColumnTitle,
                     this.SelectAllProperties
@@ -155,31 +155,31 @@ public class GetColumnCommand : ClientObjectCmdlet<IColumnService>
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.List, this.SelectAllProperties));
+                this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.List, this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.List, this.SelectAllProperties));
+                this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.List, this.SelectAllProperties));
             }
         }
         if (this.ParameterSetName == "ParamSet8")
         {
-            this.Outputs.Add(this.Service.GetObject(this.ColumnId, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.ColumnId, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet9")
         {
             _ = this.ColumnTitle ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ColumnTitle));
-            this.Outputs.Add(this.Service.GetObject(this.ColumnTitle, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.ColumnTitle, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet10")
         {
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.SelectAllProperties));
+                this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.SelectAllProperties));
+                this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.SelectAllProperties));
             }
         }
     }

@@ -24,9 +24,9 @@ public class ConvertToUniversalTimeCommand : ClientObjectCmdlet<IRegionalSetting
     )]
     public DateTime Value { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
-        this.Outputs.Add(this.Service.ConvertLocalToUniversal(this.Value));
+        this.Outputs.Add(await this.Service.ConvertLocalToUniversalAsync(this.Value));
     }
 
 }

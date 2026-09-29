@@ -31,12 +31,12 @@ public class AddAppCommand : ClientObjectCmdlet<IAppService>
     [Parameter(Mandatory = false)]
     public SwitchParameter Tenant { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Content ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Content));
         _ = this.FileName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.FileName));
         this.Outputs.Add(
-            this.Service.AddObject(
+            await this.Service.AddObjectAsync(
                 this.Content,
                 this.FileName,
                 this.Overwrite,

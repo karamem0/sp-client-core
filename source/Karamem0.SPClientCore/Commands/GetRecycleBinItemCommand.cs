@@ -40,19 +40,19 @@ public class GetRecycleBinItemCommand : ClientObjectCmdlet<IRecycleBinItemServic
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.Identity, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             if (this.SecondStage)
             {
                 this.Outputs.Add(
-                    this.Service.GetObject(
+                    await this.Service.GetObjectAsync(
                         this.ItemId,
                         RecycleBinItemState.SecondStageRecycleBin,
                         this.SelectAllProperties
@@ -62,7 +62,7 @@ public class GetRecycleBinItemCommand : ClientObjectCmdlet<IRecycleBinItemServic
             else
             {
                 this.Outputs.Add(
-                    this.Service.GetObject(
+                    await this.Service.GetObjectAsync(
                         this.ItemId,
                         RecycleBinItemState.FirstStageRecycleBin,
                         this.SelectAllProperties
@@ -76,22 +76,22 @@ public class GetRecycleBinItemCommand : ClientObjectCmdlet<IRecycleBinItemServic
             {
                 if (this.NoEnumerate)
                 {
-                    this.Outputs.Add(this.Service.GetObjectEnumerable(RecycleBinItemState.SecondStageRecycleBin, this.SelectAllProperties));
+                    this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(RecycleBinItemState.SecondStageRecycleBin, this.SelectAllProperties));
                 }
                 else
                 {
-                    this.Outputs.AddRange(this.Service.GetObjectEnumerable(RecycleBinItemState.SecondStageRecycleBin, this.SelectAllProperties));
+                    this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(RecycleBinItemState.SecondStageRecycleBin, this.SelectAllProperties));
                 }
             }
             else
             {
                 if (this.NoEnumerate)
                 {
-                    this.Outputs.Add(this.Service.GetObjectEnumerable(RecycleBinItemState.FirstStageRecycleBin, this.SelectAllProperties));
+                    this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(RecycleBinItemState.FirstStageRecycleBin, this.SelectAllProperties));
                 }
                 else
                 {
-                    this.Outputs.AddRange(this.Service.GetObjectEnumerable(RecycleBinItemState.FirstStageRecycleBin, this.SelectAllProperties));
+                    this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(RecycleBinItemState.FirstStageRecycleBin, this.SelectAllProperties));
                 }
             }
         }

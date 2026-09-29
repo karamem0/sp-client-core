@@ -37,19 +37,19 @@ public class AddViewColumnCommand : ClientObjectCmdlet<IViewColumnService>
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public string? ColumnName { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.View ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.View));
             _ = this.Column ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Column));
-            this.Service.AddObject(this.View, this.Column);
+            await this.Service.AddObjectAsync(this.View, this.Column);
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.View ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.View));
             _ = this.ColumnName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ColumnName));
-            this.Service.AddObject(this.View, this.ColumnName);
+            await this.Service.AddObjectAsync(this.View, this.ColumnName);
         }
     }
 

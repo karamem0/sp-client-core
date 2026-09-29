@@ -33,13 +33,13 @@ public class SetTenantCdnPolicyCommand : ClientObjectCmdlet<ITenantCdnService>
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public string? Value { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             this.ValidateSwitchParameter(nameof(this.Public));
             _ = this.Value ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Value));
-            this.Service.SetPolicy(
+            await this.Service.SetPolicyAsync(
                 TenantCdnType.Public,
                 this.Type,
                 this.Value
@@ -49,7 +49,7 @@ public class SetTenantCdnPolicyCommand : ClientObjectCmdlet<ITenantCdnService>
         {
             this.ValidateSwitchParameter(nameof(this.Private));
             _ = this.Value ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Value));
-            this.Service.SetPolicy(
+            await this.Service.SetPolicyAsync(
                 TenantCdnType.Private,
                 this.Type,
                 this.Value

@@ -31,12 +31,12 @@ public class RemoveTenantExternalUserCommand : ClientObjectCmdlet<ITenantExterna
     )]
     public ExternalUser? User { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.User ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.User));
         if (this.ShouldProcess(this.User.DisplayName, VerbsCommon.Remove))
         {
-            this.Service.RemoveObject(this.User);
+            await this.Service.RemoveObjectAsync(this.User);
         }
     }
 

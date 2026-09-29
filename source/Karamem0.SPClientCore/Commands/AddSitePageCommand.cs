@@ -34,15 +34,15 @@ public class AddSitePageCommand : ClientObjectCmdlet<IListService, IFolderServic
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     public SitePageLayoutType PageLayoutType { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
             _ = this.PageName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.PageName));
-            var folderObject = this.Service2.GetObject(this.List);
+            var folderObject = await this.Service2.GetObjectAsync(this.List);
             _ = folderObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
-            this.Service3.AddObject(
+            await this.Service3.AddObjectAsync(
                 folderObject,
                 this.PageName,
                 this.PageLayoutType
@@ -50,11 +50,11 @@ public class AddSitePageCommand : ClientObjectCmdlet<IListService, IFolderServic
         }
         if (this.ParameterSetName == "ParamSet2")
         {
-            var listObject = this.Service1.GetObject(LibraryType.ClientRenderedSitePages);
+            var listObject = await this.Service1.GetObjectAsync(LibraryType.ClientRenderedSitePages);
             _ = listObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
-            var folderObject = this.Service2.GetObject(listObject);
+            var folderObject = await this.Service2.GetObjectAsync(listObject);
             _ = this.PageName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.PageName));
-            this.Service3.AddObject(
+            await this.Service3.AddObjectAsync(
                 folderObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull),
                 this.PageName,
                 this.PageLayoutType

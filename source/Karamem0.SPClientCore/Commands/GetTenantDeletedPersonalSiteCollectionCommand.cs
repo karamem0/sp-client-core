@@ -29,7 +29,7 @@ public class GetTenantDeletedPersonalSiteCollectionCommand : ClientObjectCmdlet<
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
@@ -38,11 +38,11 @@ public class GetTenantDeletedPersonalSiteCollectionCommand : ClientObjectCmdlet<
             {
                 if (this.NoEnumerate)
                 {
-                    this.Outputs.Add(this.Service.GetObjectEnumerable(this.SiteCollectionUrl, this.SelectAllProperties));
+                    this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.SiteCollectionUrl, this.SelectAllProperties));
                 }
                 else
                 {
-                    this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.SiteCollectionUrl, this.SelectAllProperties));
+                    this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.SiteCollectionUrl, this.SelectAllProperties));
                 }
             }
             else
@@ -54,11 +54,11 @@ public class GetTenantDeletedPersonalSiteCollectionCommand : ClientObjectCmdlet<
         {
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.SelectAllProperties));
+                this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.SelectAllProperties));
+                this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.SelectAllProperties));
             }
         }
     }

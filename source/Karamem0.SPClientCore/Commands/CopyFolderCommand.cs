@@ -41,13 +41,13 @@ public class CopyFolderCommand : ClientObjectCmdlet<IFolderService>
     [Parameter(Mandatory = false)]
     public SwitchParameter ShouldBypassSharedLocks { get; protected set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
         _ = this.NewUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.NewUrl));
         if (this.NewUrl.IsAbsoluteUri)
         {
-            this.Service.CopyObject(
+            await this.Service.CopyObjectAsync(
                 this.Identity,
                 this.NewUrl,
                 this.MyInvocation.BoundParameters

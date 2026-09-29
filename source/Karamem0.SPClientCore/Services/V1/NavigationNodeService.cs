@@ -15,34 +15,34 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface INavigationNodeService
 {
 
-    NavigationNode? AddObject(
+    Task<NavigationNode?> AddObjectAsync(
         NavigationNode navigationNodeObject,
         IReadOnlyDictionary<string, object?> creationInfo,
         bool selectAllProperties = true
     );
 
-    NavigationNode? AddObjectToQuickLaunch(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true);
+    Task<NavigationNode?> AddObjectToQuickLaunchAsync(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true);
 
-    NavigationNode? AddObjectToTopNavigationBar(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true);
+    Task<NavigationNode?> AddObjectToTopNavigationBarAsync(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true);
 
-    NavigationNode? GetObject(NavigationNode navigationNodeObject);
+    Task<NavigationNode?> GetObjectAsync(NavigationNode navigationNodeObject);
 
-    NavigationNode? GetObject(NavigationNode navigationNodeObject, bool selectAllProperties = true);
+    Task<NavigationNode?> GetObjectAsync(NavigationNode navigationNodeObject, bool selectAllProperties = true);
 
-    NavigationNode? GetObject(int navigationNodeId, bool selectAllProperties = true);
+    Task<NavigationNode?> GetObjectAsync(int navigationNodeId, bool selectAllProperties = true);
 
-    IEnumerable<NavigationNode>? GetObjectEnumerable(NavigationNode navigationNodeObject, bool selectAllProperties = true);
+    Task<IEnumerable<NavigationNode>?> GetObjectEnumerableAsync(NavigationNode navigationNodeObject, bool selectAllProperties = true);
 
-    void RemoveObject(NavigationNode navigationNodeObject);
+    Task RemoveObjectAsync(NavigationNode navigationNodeObject);
 
-    void SetObject(NavigationNode navigationNodeObject, IReadOnlyDictionary<string, object?> modificationInfo);
+    Task SetObjectAsync(NavigationNode navigationNodeObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class NavigationNodeService(ClientContext clientContext) : ClientService<NavigationNode>(clientContext), INavigationNodeService
 {
 
-    public NavigationNode? AddObject(
+    public async Task<NavigationNode?> AddObjectAsync(
         NavigationNode navigationNodeObject,
         IReadOnlyDictionary<string, object?> creationInfo,
         bool selectAllProperties = true
@@ -60,12 +60,12 @@ public class NavigationNodeService(ClientContext clientContext) : ClientService<
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(NavigationNode)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<NavigationNode>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<NavigationNode>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public NavigationNode? AddObjectToQuickLaunch(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true)
+    public async Task<NavigationNode?> AddObjectToQuickLaunchAsync(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -81,12 +81,12 @@ public class NavigationNodeService(ClientContext clientContext) : ClientService<
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(NavigationNode)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<NavigationNode>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<NavigationNode>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public NavigationNode? AddObjectToTopNavigationBar(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true)
+    public async Task<NavigationNode?> AddObjectToTopNavigationBarAsync(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -102,12 +102,12 @@ public class NavigationNodeService(ClientContext clientContext) : ClientService<
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(NavigationNode)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<NavigationNode>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<NavigationNode>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public NavigationNode? GetObject(int navigationNodeId, bool selectAllProperties = true)
+    public async Task<NavigationNode?> GetObjectAsync(int navigationNodeId, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -122,12 +122,12 @@ public class NavigationNodeService(ClientContext clientContext) : ClientService<
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(NavigationNode)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<NavigationNode>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<NavigationNode>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<NavigationNode>? GetObjectEnumerable(NavigationNode navigationNodeObject, bool selectAllProperties = true)
+    public async Task<IEnumerable<NavigationNode>?> GetObjectEnumerableAsync(NavigationNode navigationNodeObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(navigationNodeObject.ObjectIdentity));
@@ -140,9 +140,9 @@ public class NavigationNodeService(ClientContext clientContext) : ClientService<
                 ClientQuery.Create(selectAllProperties, typeof(NavigationNode))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<NavigationNodeEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<NavigationNodeEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
 }

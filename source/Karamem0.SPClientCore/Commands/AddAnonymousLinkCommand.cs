@@ -29,14 +29,14 @@ public class AddAnonymousLinkCommand : ClientObjectCmdlet<ISharingLinkService>
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public DateTime Expiration { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Url));
             if (this.Url.IsAbsoluteUri)
             {
-                this.Outputs.Add(this.Service.CreateAnonymousLink(this.Url, this.IsEditLink));
+                this.Outputs.Add(await this.Service.CreateAnonymousLinkAsync(this.Url, this.IsEditLink));
             }
             else
             {
@@ -49,7 +49,7 @@ public class AddAnonymousLinkCommand : ClientObjectCmdlet<ISharingLinkService>
             if (this.Url.IsAbsoluteUri)
             {
                 this.Outputs.Add(
-                    this.Service.CreateAnonymousLink(
+                    await this.Service.CreateAnonymousLinkAsync(
                         this.Url,
                         this.IsEditLink,
                         this.Expiration

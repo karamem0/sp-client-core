@@ -58,18 +58,18 @@ public class SetTermLabelCommand : ClientObjectCmdlet<ITermService, ITermLabelSe
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     public SwitchParameter SelectAllProperties { get; private set; } = true;
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity?.Name ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
             if (this.PassThru)
             {
-                var termObject = this.Service1.GetObject(this.Identity);
+                var termObject = await this.Service1.GetObjectAsync(this.Identity);
                 _ = termObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
-                this.Service2.SetObject(this.Identity, this.MyInvocation.BoundParameters);
+                await this.Service2.SetObjectAsync(this.Identity, this.MyInvocation.BoundParameters);
                 this.Outputs.Add(
-                    this.Service2.GetObject(
+                    await this.Service2.GetObjectAsync(
                         termObject,
                         this.Identity.Name,
                         this.Lcid
@@ -78,7 +78,7 @@ public class SetTermLabelCommand : ClientObjectCmdlet<ITermService, ITermLabelSe
             }
             else
             {
-                this.Service2.SetObjectAwait(this.Identity, this.MyInvocation.BoundParameters);
+                await this.Service2.SetObjectAwaitAsync(this.Identity, this.MyInvocation.BoundParameters);
             }
         }
         if (this.ParameterSetName == "ParamSet2")
@@ -87,11 +87,11 @@ public class SetTermLabelCommand : ClientObjectCmdlet<ITermService, ITermLabelSe
             _ = this.Name ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Name));
             if (this.PassThru)
             {
-                var termObject = this.Service1.GetObject(this.Identity);
+                var termObject = await this.Service1.GetObjectAsync(this.Identity);
                 _ = termObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
-                this.Service2.SetObject(this.Identity, this.MyInvocation.BoundParameters);
+                await this.Service2.SetObjectAsync(this.Identity, this.MyInvocation.BoundParameters);
                 this.Outputs.Add(
-                    this.Service2.GetObject(
+                    await this.Service2.GetObjectAsync(
                         termObject,
                         this.Name,
                         this.Identity.Lcid
@@ -100,17 +100,17 @@ public class SetTermLabelCommand : ClientObjectCmdlet<ITermService, ITermLabelSe
             }
             else
             {
-                this.Service2.SetObjectAwait(this.Identity, this.MyInvocation.BoundParameters);
+                await this.Service2.SetObjectAwaitAsync(this.Identity, this.MyInvocation.BoundParameters);
             }
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             this.ValidateSwitchParameter(nameof(this.IsDefault));
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Service2.SetObjectAsDefault(this.Identity);
+            await this.Service2.SetObjectAsDefaultAsync(this.Identity);
             if (this.PassThru)
             {
-                this.Outputs.Add(this.Service2.GetObject(this.Identity, this.SelectAllProperties));
+                this.Outputs.Add(await this.Service2.GetObjectAsync(this.Identity, this.SelectAllProperties));
             }
         }
     }

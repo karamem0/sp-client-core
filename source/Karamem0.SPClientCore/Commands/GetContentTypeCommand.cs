@@ -52,19 +52,19 @@ public class GetContentTypeCommand : ClientObjectCmdlet<IContentTypeService>
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet5")]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.Identity, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
             _ = this.ContentTypeId ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentTypeId));
             this.Outputs.Add(
-                this.Service.GetObject(
+                await this.Service.GetObjectAsync(
                     this.List,
                     this.ContentTypeId,
                     this.SelectAllProperties
@@ -76,27 +76,27 @@ public class GetContentTypeCommand : ClientObjectCmdlet<IContentTypeService>
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.List, this.SelectAllProperties));
+                this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.List, this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.List, this.SelectAllProperties));
+                this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.List, this.SelectAllProperties));
             }
         }
         if (this.ParameterSetName == "ParamSet4")
         {
             _ = this.ContentTypeId ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentTypeId));
-            this.Outputs.Add(this.Service.GetObject(this.ContentTypeId, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.ContentTypeId, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet5")
         {
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.SelectAllProperties));
+                this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.SelectAllProperties));
+                this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.SelectAllProperties));
             }
         }
     }

@@ -15,20 +15,20 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITermCustomPropertyService
 {
 
-    void AddObject(
+    Task AddObjectAsync(
         TermSetItem termSetItemObject,
         string propertyName,
         string propertyValue
     );
 
-    void RemoveObject(TermSetItem termSetItemObject, string propertyName);
+    Task RemoveObjectAsync(TermSetItem termSetItemObject, string propertyName);
 
 }
 
 public class TermCustomPropertyService(ClientContext clientContext) : ClientService(clientContext), ITermCustomPropertyService
 {
 
-    public void AddObject(
+    public async Task AddObjectAsync(
         TermSetItem termSetItemObject,
         string propertyName,
         string propertyValue
@@ -45,10 +45,10 @@ public class TermCustomPropertyService(ClientContext clientContext) : ClientServ
                 requestPayload.CreateParameter(propertyValue)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void RemoveObject(TermSetItem termSetItemObject, string propertyName)
+    public async Task RemoveObjectAsync(TermSetItem termSetItemObject, string propertyName)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(termSetItemObject.ObjectIdentity));
@@ -60,7 +60,7 @@ public class TermCustomPropertyService(ClientContext clientContext) : ClientServ
                 requestPayload.CreateParameter(propertyName)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

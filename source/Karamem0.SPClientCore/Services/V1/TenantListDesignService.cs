@@ -15,20 +15,20 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantListDesignService
 {
 
-    TenantListDesign? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true);
+    Task<TenantListDesign?> AddObjectAsync(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true);
 
-    TenantListDesign? GetObject(Guid listDesignId);
+    Task<TenantListDesign?> GetObjectAsync(Guid listDesignId);
 
-    IEnumerable<TenantListDesign>? GetObjectEnumerable(bool selectAllProperties = true);
+    Task<IEnumerable<TenantListDesign>?> GetObjectEnumerableAsync(bool selectAllProperties = true);
 
-    void RemoveObject(TenantListDesign listDesignObject);
+    Task RemoveObjectAsync(TenantListDesign listDesignObject);
 
 }
 
 public class TenantListDesignService(ClientContext clientContext) : ClientService(clientContext), ITenantListDesignService
 {
 
-    public TenantListDesign? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true)
+    public async Task<TenantListDesign?> AddObjectAsync(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -41,12 +41,12 @@ public class TenantListDesignService(ClientContext clientContext) : ClientServic
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TenantListDesign)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantListDesign>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantListDesign>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public TenantListDesign? GetObject(Guid listDesignId)
+    public async Task<TenantListDesign?> GetObjectAsync(Guid listDesignId)
     {
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
@@ -56,12 +56,12 @@ public class TenantListDesignService(ClientContext clientContext) : ClientServic
                 requestPayload.CreateParameter(listDesignId)
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantListDesign>(requestPayload.GetActionId<ClientActionStaticMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantListDesign>(requestPayload.GetActionId<ClientActionStaticMethod>()));
     }
 
-    public IEnumerable<TenantListDesign>? GetObjectEnumerable(bool selectAllProperties = true)
+    public async Task<IEnumerable<TenantListDesign>?> GetObjectEnumerableAsync(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -74,12 +74,12 @@ public class TenantListDesignService(ClientContext clientContext) : ClientServic
                 ClientQuery.Create(selectAllProperties, typeof(TenantListDesign))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantListDesignEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantListDesignEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void RemoveObject(TenantListDesign listDesignObject)
+    public async Task RemoveObjectAsync(TenantListDesign listDesignObject)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -91,7 +91,7 @@ public class TenantListDesignService(ClientContext clientContext) : ClientServic
                 requestPayload.CreateParameter(listDesignObject.Id)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

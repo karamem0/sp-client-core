@@ -251,15 +251,15 @@ public class SetTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteColl
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public SwitchParameter NoWait { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
-            this.Service.SetObjectAwait(
+            await this.Service.SetObjectAwaitAsync(
                 this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity)),
                 this.MyInvocation.BoundParameters
             );
-            var siteCollectionObject = this.Service.GetObjectAwait(this.Identity);
+            var siteCollectionObject = await this.Service.GetObjectAwaitAsync(this.Identity);
             _ = siteCollectionObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
             if (this.PassThru)
             {
@@ -269,7 +269,7 @@ public class SetTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteColl
         if (this.ParameterSetName == "ParamSet2")
         {
             this.ValidateSwitchParameter(nameof(this.NoWait));
-            _ = this.Service.SetObject(
+            _ = await this.Service.SetObjectAsync(
                 this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity)),
                 this.MyInvocation.BoundParameters
             );

@@ -17,60 +17,60 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IFolderService
 {
 
-    Folder? AddObject(
+    Task<Folder?> AddObjectAsync(
         Folder folderObject,
         string folderName,
         bool selectAllProperties = true
     );
 
-    void CopyObject(
+    Task CopyObjectAsync(
         Folder folderObject,
         Uri folderUrl,
         IReadOnlyDictionary<string, object?> moveCopyOptions
     );
 
-    Folder? GetObject(Folder folderObject);
+    Task<Folder?> GetObjectAsync(Folder folderObject);
 
-    Folder? GetObject(Folder folderObject, bool selectAllProperties = true);
+    Task<Folder?> GetObjectAsync(Folder folderObject, bool selectAllProperties = true);
 
-    Folder? GetObject(List listObject, bool selectAllProperties = true);
+    Task<Folder?> GetObjectAsync(List listObject, bool selectAllProperties = true);
 
-    Folder? GetObject(ListItem listItemObject, bool selectAllProperties = true);
+    Task<Folder?> GetObjectAsync(ListItem listItemObject, bool selectAllProperties = true);
 
-    Folder? GetObject(Guid folderId, bool selectAllProperties = true);
+    Task<Folder?> GetObjectAsync(Guid folderId, bool selectAllProperties = true);
 
-    Folder? GetObject(Uri folderUrl, bool selectAllProperties = true);
+    Task<Folder?> GetObjectAsync(Uri folderUrl, bool selectAllProperties = true);
 
-    Folder? GetObject(
+    Task<Folder?> GetObjectAsync(
         Folder folderObject,
         string folderName,
         bool selectAllProperties = true
     );
 
-    IEnumerable<Folder>? GetObjectEnumerable(bool selectAllProperties = true);
+    Task<IEnumerable<Folder>?> GetObjectEnumerableAsync(bool selectAllProperties = true);
 
-    IEnumerable<Folder>? GetObjectEnumerable(Folder folderObject, bool selectAllProperties = true);
+    Task<IEnumerable<Folder>?> GetObjectEnumerableAsync(Folder folderObject, bool selectAllProperties = true);
 
-    void MoveObject(Folder folderObject, Uri folderUrl);
+    Task MoveObjectAsync(Folder folderObject, Uri folderUrl);
 
-    void MoveObject(
+    Task MoveObjectAsync(
         Folder folderObject,
         Uri folderUrl,
         IReadOnlyDictionary<string, object?> moveCopyOptions
     );
 
-    Guid RecycleObject(Folder folderObject);
+    Task<Guid> RecycleObjectAsync(Folder folderObject);
 
-    void RemoveObject(Folder folderObject);
+    Task RemoveObjectAsync(Folder folderObject);
 
-    void SetObject(Folder folderObject, IReadOnlyDictionary<string, object?> modificationInfo);
+    Task SetObjectAsync(Folder folderObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class FolderService(ClientContext clientContext) : ClientService<Folder>(clientContext), IFolderService
 {
 
-    public Folder? AddObject(
+    public async Task<Folder?> AddObjectAsync(
         Folder folderObject,
         string folderName,
         bool selectAllProperties = true
@@ -88,12 +88,12 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Folder)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void CopyObject(
+    public async Task CopyObjectAsync(
         Folder folderObject,
         Uri folderUrl,
         IReadOnlyDictionary<string, object?> moveCopyOptions
@@ -113,10 +113,10 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
                 requestPayload.CreateParameter(ClientValueObject.Create<MoveCopyOptions>(moveCopyOptions))
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public Folder? GetObject(List listObject, bool selectAllProperties = true)
+    public async Task<Folder?> GetObjectAsync(List listObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));
@@ -125,12 +125,12 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Folder)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public Folder? GetObject(ListItem listItemObject, bool selectAllProperties = true)
+    public async Task<Folder?> GetObjectAsync(ListItem listItemObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listItemObject.ObjectIdentity));
@@ -139,12 +139,12 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Folder)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public Folder? GetObject(Guid folderId, bool selectAllProperties = true)
+    public async Task<Folder?> GetObjectAsync(Guid folderId, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -158,12 +158,12 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Folder)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public Folder? GetObject(Uri folderUrl, bool selectAllProperties = true)
+    public async Task<Folder?> GetObjectAsync(Uri folderUrl, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -177,12 +177,12 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Folder)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public Folder? GetObject(
+    public async Task<Folder?> GetObjectAsync(
         Folder folderObject,
         string folderName,
         bool selectAllProperties = true
@@ -200,12 +200,12 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Folder)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Folder>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<Folder>? GetObjectEnumerable(bool selectAllProperties = true)
+    public async Task<IEnumerable<Folder>?> GetObjectEnumerableAsync(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -219,12 +219,12 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
                 ClientQuery.Create(selectAllProperties)
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<FolderEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<FolderEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<Folder>? GetObjectEnumerable(Folder folderObject, bool selectAllProperties = true)
+    public async Task<IEnumerable<Folder>?> GetObjectEnumerableAsync(Folder folderObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(folderObject.ObjectIdentity));
@@ -237,12 +237,12 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
                 ClientQuery.Create(selectAllProperties, typeof(Folder))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<FolderEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<FolderEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void MoveObject(Folder folderObject, Uri folderUrl)
+    public async Task MoveObjectAsync(Folder folderObject, Uri folderUrl)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
@@ -253,10 +253,10 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
                 requestPayload.CreateParameter(folderUrl)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void MoveObject(
+    public async Task MoveObjectAsync(
         Folder folderObject,
         Uri folderUrl,
         IReadOnlyDictionary<string, object?> moveCopyOptions
@@ -276,19 +276,19 @@ public class FolderService(ClientContext clientContext) : ClientService<Folder>(
                 requestPayload.CreateParameter(ClientValueObject.Create<MoveCopyOptions>(moveCopyOptions))
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public Guid RecycleObject(Folder folderObject)
+    public async Task<Guid> RecycleObjectAsync(Folder folderObject)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             ObjectPathIdentity.Create(folderObject.ObjectIdentity),
             objectPathId => ClientActionMethod.Create(objectPathId, "Recycle")
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Guid>(requestPayload.GetActionId<ClientActionMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Guid>(requestPayload.GetActionId<ClientActionMethod>()));
     }
 
 }

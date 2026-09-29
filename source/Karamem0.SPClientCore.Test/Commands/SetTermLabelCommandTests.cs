@@ -28,7 +28,7 @@ public class SetTermLabelCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
+                ["PrivateKey"] = Convert.FromBase64String(context.AppSettings["PrivateKey"])
             }
         );
         var result1 = context.Runspace.InvokeCommand<TermGroup>(
@@ -96,7 +96,7 @@ public class SetTermLabelCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
+                ["PrivateKey"] = Convert.FromBase64String(context.AppSettings["PrivateKey"])
             }
         );
         var result1 = context.Runspace.InvokeCommand<TermGroup>(
@@ -164,7 +164,7 @@ public class SetTermLabelCommandTests
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
+                ["PrivateKey"] = Convert.FromBase64String(context.AppSettings["PrivateKey"])
             }
         );
         var result1 = context.Runspace.InvokeCommand<TermGroup>(

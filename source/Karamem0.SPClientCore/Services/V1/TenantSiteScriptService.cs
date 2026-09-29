@@ -16,24 +16,24 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantSiteScriptService
 {
 
-    TenantSiteScript? AddObject(IReadOnlyDictionary<string, object?> creationInfo);
+    Task<TenantSiteScript?> AddObjectAsync(IReadOnlyDictionary<string, object?> creationInfo);
 
-    TenantSiteScript? GetObject(Guid siteScriptId);
+    Task<TenantSiteScript?> GetObjectAsync(Guid siteScriptId);
 
-    IEnumerable<TenantSiteScript>? GetObjectEnumerable(bool selectAllProperties = true);
+    Task<IEnumerable<TenantSiteScript>?> GetObjectEnumerableAsync(bool selectAllProperties = true);
 
-    void RemoveObject(TenantSiteScript siteScriptObject);
+    Task RemoveObjectAsync(TenantSiteScript siteScriptObject);
 
-    string? GetScriptFromList(Uri listUrl);
+    Task<string?> GetScriptFromListAsync(Uri listUrl);
 
-    string? GetScriptFromSite(Uri siteUrl, IReadOnlyDictionary<string, object?> serializationInfo);
+    Task<string?> GetScriptFromSiteAsync(Uri siteUrl, IReadOnlyDictionary<string, object?> serializationInfo);
 
 }
 
 public class TenantSiteScriptService(ClientContext clientContext) : ClientService(clientContext), ITenantSiteScriptService
 {
 
-    public TenantSiteScript? AddObject(IReadOnlyDictionary<string, object?> creationInfo)
+    public async Task<TenantSiteScript?> AddObjectAsync(IReadOnlyDictionary<string, object?> creationInfo)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -45,12 +45,12 @@ public class TenantSiteScriptService(ClientContext clientContext) : ClientServic
                 requestPayload.CreateParameter(ClientValueObject.Create<TenantSiteScriptCreationInfo>(creationInfo))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantSiteScript>(requestPayload.GetActionId<ClientActionMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantSiteScript>(requestPayload.GetActionId<ClientActionMethod>()));
     }
 
-    public TenantSiteScript? GetObject(Guid siteScriptId)
+    public async Task<TenantSiteScript?> GetObjectAsync(Guid siteScriptId)
     {
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
@@ -60,12 +60,12 @@ public class TenantSiteScriptService(ClientContext clientContext) : ClientServic
                 requestPayload.CreateParameter(siteScriptId)
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantSiteScript>(requestPayload.GetActionId<ClientActionStaticMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantSiteScript>(requestPayload.GetActionId<ClientActionStaticMethod>()));
     }
 
-    public IEnumerable<TenantSiteScript>? GetObjectEnumerable(bool selectAllProperties = true)
+    public async Task<IEnumerable<TenantSiteScript>?> GetObjectEnumerableAsync(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -78,12 +78,12 @@ public class TenantSiteScriptService(ClientContext clientContext) : ClientServic
                 ClientQuery.Create(selectAllProperties, typeof(TenantSiteScript))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantSiteScriptEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantSiteScriptEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void RemoveObject(TenantSiteScript siteScriptObject)
+    public async Task RemoveObjectAsync(TenantSiteScript siteScriptObject)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -95,10 +95,10 @@ public class TenantSiteScriptService(ClientContext clientContext) : ClientServic
                 requestPayload.CreateParameter(siteScriptObject.Id)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public string? GetScriptFromList(Uri listUrl)
+    public async Task<string?> GetScriptFromListAsync(Uri listUrl)
     {
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
@@ -108,12 +108,12 @@ public class TenantSiteScriptService(ClientContext clientContext) : ClientServic
                 requestPayload.CreateParameter(listUrl)
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<string>(requestPayload.GetActionId<ClientActionStaticMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<string>(requestPayload.GetActionId<ClientActionStaticMethod>()));
     }
 
-    public string? GetScriptFromSite(Uri siteUrl, IReadOnlyDictionary<string, object?> serializationInfo)
+    public async Task<string?> GetScriptFromSiteAsync(Uri siteUrl, IReadOnlyDictionary<string, object?> serializationInfo)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -126,9 +126,9 @@ public class TenantSiteScriptService(ClientContext clientContext) : ClientServic
                 requestPayload.CreateParameter(ClientValueObject.Create<TenantSiteScriptSerializationInfo>(serializationInfo))
             )
         );
-        var clientObject = this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantSiteScriptSerializationResult>(requestPayload.GetActionId<ClientActionMethod>());
+        var clientObject = await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantSiteScriptSerializationResult>(requestPayload.GetActionId<ClientActionMethod>()));
         _ = clientObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
         if (clientObject.Warnings.Any())
         {

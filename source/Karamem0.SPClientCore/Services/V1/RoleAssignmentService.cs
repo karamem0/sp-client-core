@@ -15,41 +15,41 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IRoleAssignmentService
 {
 
-    void BreakObjectInheritance(
+    Task BreakObjectInheritanceAsync(
         SecurableObject securableObject,
         bool copyRoleAssignments,
         bool clearSubscopes
     );
 
-    RoleAssignment? AddObject(
+    Task<RoleAssignment?> AddObjectAsync(
         SecurableObject securableObject,
         Principal principalObject,
         RoleDefinition roleDefinitionObject,
         bool selectAllProperties = true
     );
 
-    IEnumerable<RoleAssignment>? GetObjectEnumerable(SecurableObject securableObject, bool selectAllProperties = true);
+    Task<IEnumerable<RoleAssignment>?> GetObjectEnumerableAsync(SecurableObject securableObject, bool selectAllProperties = true);
 
-    RoleAssignment? GetObject(RoleAssignment roleAssignmentObject);
+    Task<RoleAssignment?> GetObjectAsync(RoleAssignment roleAssignmentObject);
 
-    RoleAssignment? GetObject(RoleAssignment roleAssignmentObject, bool selectAllProperties = true);
+    Task<RoleAssignment?> GetObjectAsync(RoleAssignment roleAssignmentObject, bool selectAllProperties = true);
 
-    RoleAssignment? GetObject(
+    Task<RoleAssignment?> GetObjectAsync(
         SecurableObject securableObject,
         int principalId,
         bool selectAllProperties = true
     );
 
-    void RemoveObject(RoleAssignment roleAssignmentObject);
+    Task RemoveObjectAsync(RoleAssignment roleAssignmentObject);
 
-    void ResetObjectInheritance(SecurableObject securableObject);
+    Task ResetObjectInheritanceAsync(SecurableObject securableObject);
 
 }
 
 public class RoleAssignmentService(ClientContext clientContext) : ClientService<RoleAssignment>(clientContext), IRoleAssignmentService
 {
 
-    public void BreakObjectInheritance(
+    public async Task BreakObjectInheritanceAsync(
         SecurableObject securableObject,
         bool copyRoleAssignments,
         bool clearSubscopes
@@ -65,10 +65,10 @@ public class RoleAssignmentService(ClientContext clientContext) : ClientService<
                 requestPayload.CreateParameter(clearSubscopes)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public RoleAssignment? AddObject(
+    public async Task<RoleAssignment?> AddObjectAsync(
         SecurableObject securableObject,
         Principal principalObject,
         RoleDefinition roleDefinitionObject,
@@ -96,12 +96,12 @@ public class RoleAssignmentService(ClientContext clientContext) : ClientService<
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(RoleAssignment)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<RoleAssignment>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<RoleAssignment>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<RoleAssignment>? GetObjectEnumerable(SecurableObject securableObject, bool selectAllProperties = true)
+    public async Task<IEnumerable<RoleAssignment>?> GetObjectEnumerableAsync(SecurableObject securableObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(securableObject.ObjectIdentity));
@@ -114,12 +114,12 @@ public class RoleAssignmentService(ClientContext clientContext) : ClientService<
                 ClientQuery.Create(selectAllProperties, typeof(RoleAssignment))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<RoleAssignmentEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<RoleAssignmentEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public RoleAssignment? GetObject(
+    public async Task<RoleAssignment?> GetObjectAsync(
         SecurableObject securableObject,
         int principalId,
         bool selectAllProperties = true
@@ -137,19 +137,19 @@ public class RoleAssignmentService(ClientContext clientContext) : ClientService<
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(RoleAssignment)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<RoleAssignment>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<RoleAssignment>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void ResetObjectInheritance(SecurableObject securableObject)
+    public async Task ResetObjectInheritanceAsync(SecurableObject securableObject)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             ObjectPathIdentity.Create(securableObject.ObjectIdentity),
             objectPathId => ClientActionMethod.Create(objectPathId, "ResetRoleInheritance")
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

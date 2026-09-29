@@ -80,23 +80,23 @@ public class GetTermCommand : ClientObjectCmdlet<ITermService>
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet8")]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.Identity, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.TermLabel ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.TermLabel));
-            this.Outputs.Add(this.Service.GetObject(this.TermLabel, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.TermLabel, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             _ = this.TermSet ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.TermSet));
             this.Outputs.Add(
-                this.Service.GetObject(
+                await this.Service.GetObjectAsync(
                     this.TermSet,
                     this.TermId,
                     this.SelectAllProperties
@@ -108,7 +108,7 @@ public class GetTermCommand : ClientObjectCmdlet<ITermService>
             _ = this.TermSet ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.TermSet));
             _ = this.TermName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.TermName));
             this.Outputs.Add(
-                this.Service.GetObject(
+                await this.Service.GetObjectAsync(
                     this.TermSet,
                     this.TermName,
                     this.SelectAllProperties
@@ -120,18 +120,18 @@ public class GetTermCommand : ClientObjectCmdlet<ITermService>
             _ = this.TermSet ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.TermSet));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.TermSet, this.SelectAllProperties));
+                this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.TermSet, this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.TermSet, this.SelectAllProperties));
+                this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.TermSet, this.SelectAllProperties));
             }
         }
         if (this.ParameterSetName == "ParamSet6")
         {
             _ = this.Term ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Term));
             this.Outputs.Add(
-                this.Service.GetObject(
+                await this.Service.GetObjectAsync(
                     this.Term,
                     this.TermId,
                     this.SelectAllProperties
@@ -143,7 +143,7 @@ public class GetTermCommand : ClientObjectCmdlet<ITermService>
             _ = this.Term ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Term));
             _ = this.TermName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.TermName));
             this.Outputs.Add(
-                this.Service.GetObject(
+                await this.Service.GetObjectAsync(
                     this.Term,
                     this.TermName,
                     this.SelectAllProperties
@@ -155,11 +155,11 @@ public class GetTermCommand : ClientObjectCmdlet<ITermService>
             _ = this.Term ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Term));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.Term, this.SelectAllProperties));
+                this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.Term, this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.Term, this.SelectAllProperties));
+                this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.Term, this.SelectAllProperties));
             }
         }
     }

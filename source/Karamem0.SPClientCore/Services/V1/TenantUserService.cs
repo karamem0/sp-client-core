@@ -17,35 +17,35 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantUserService
 {
 
-    User? AddObject(
+    Task<User?> AddObjectAsync(
         Uri siteCollectionUrl,
         IReadOnlyDictionary<string, object?> creationInfo,
         bool selectAllProperties = true
     );
 
-    User? GetObject(
+    Task<User?> GetObjectAsync(
         Uri siteCollectionUrl,
         int userId,
         bool selectAllProperties = true
     );
 
-    User? GetObject(
+    Task<User?> GetObjectAsync(
         Uri siteCollectionUrl,
         string userName,
         bool selectAllProperties = true
     );
 
-    IEnumerable<User>? GetObjectEnumerable(Uri siteCollectionUrl, bool selectAllProperties = true);
+    Task<IEnumerable<User>?> GetObjectEnumerableAsync(Uri siteCollectionUrl, bool selectAllProperties = true);
 
-    void RemoveObject(Uri siteCollectionUrl, User userObject);
+    Task RemoveObjectAsync(Uri siteCollectionUrl, User userObject);
 
-    void SetObject(
+    Task SetObjectAsync(
         Uri siteCollectionUrl,
         User userObject,
         bool isSiteCollectionAdmin
     );
 
-    void SetObject(
+    Task SetObjectAsync(
         Uri siteCollectionUrl,
         string userName,
         bool isSiteCollectionAdmin
@@ -56,7 +56,7 @@ public interface ITenantUserService
 public class TenantUserService(ClientContext clientContext) : ClientService<User>(clientContext), ITenantUserService
 {
 
-    public User? AddObject(
+    public async Task<User?> AddObjectAsync(
         Uri siteCollectionUrl,
         IReadOnlyDictionary<string, object?> creationInfo,
         bool selectAllProperties = true
@@ -82,12 +82,12 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(User)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<User>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public User? GetObject(
+    public async Task<User?> GetObjectAsync(
         Uri siteCollectionUrl,
         int userId,
         bool selectAllProperties = true
@@ -113,12 +113,12 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(User)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<User>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public User? GetObject(
+    public async Task<User?> GetObjectAsync(
         Uri siteCollectionUrl,
         string userName,
         bool selectAllProperties = true
@@ -146,9 +146,9 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
                 ClientActionInstantiateObjectPath.Create,
                 objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(User)))
             );
-            return this
-                .ClientContext.ProcessQuery(requestPayload)
-                .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
+            return await this
+                .ClientContext.ProcessQueryAsync(requestPayload)
+                .ContinueWith(task => task.Result.ToObject<User>(requestPayload.GetActionId<ClientActionQuery>()));
         }
         else
         {
@@ -172,13 +172,13 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
                 ClientActionInstantiateObjectPath.Create,
                 objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(User)))
             );
-            return this
-                .ClientContext.ProcessQuery(requestPayload)
-                .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
+            return await this
+                .ClientContext.ProcessQueryAsync(requestPayload)
+                .ContinueWith(task => task.Result.ToObject<User>(requestPayload.GetActionId<ClientActionQuery>()));
         }
     }
 
-    public IEnumerable<User>? GetObjectEnumerable(Uri siteCollectionUrl, bool selectAllProperties = true)
+    public async Task<IEnumerable<User>?> GetObjectEnumerableAsync(Uri siteCollectionUrl, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -199,12 +199,12 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
                 ClientQuery.Create(selectAllProperties, typeof(User))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<UserEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<UserEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void RemoveObject(Uri siteCollectionUrl, User userObject)
+    public async Task RemoveObjectAsync(Uri siteCollectionUrl, User userObject)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -225,10 +225,10 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
             )
         );
         var objectPath6 = requestPayload.Add(objectPath5, objectPathId => ClientActionMethod.Create(objectPathId, "DeleteObject"));
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void SetObject(
+    public async Task SetObjectAsync(
         Uri siteCollectionUrl,
         User userObject,
         bool isSiteCollectionAdmin
@@ -236,14 +236,14 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
     {
         var userLoginName = userObject.LoginName;
         _ = userLoginName ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
-        this.SetObject(
+        await this.SetObjectAsync(
             siteCollectionUrl,
             userLoginName,
             isSiteCollectionAdmin
         );
     }
 
-    public void SetObject(
+    public async Task SetObjectAsync(
         Uri siteCollectionUrl,
         string userName,
         bool isSiteCollectionAdmin
@@ -261,7 +261,7 @@ public class TenantUserService(ClientContext clientContext) : ClientService<User
                 requestPayload.CreateParameter(isSiteCollectionAdmin)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

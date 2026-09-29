@@ -35,10 +35,10 @@ public class AddSubscriptionCommand : ClientObjectCmdlet<ISubscriptionService>
     [Parameter(Mandatory = true)]
     public Uri? NotificationUrl { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
-        this.Outputs.Add(this.Service.AddObject(this.List, this.MyInvocation.BoundParameters));
+        this.Outputs.Add(await this.Service.AddObjectAsync(this.List, this.MyInvocation.BoundParameters));
     }
 
 }

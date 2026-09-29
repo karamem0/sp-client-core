@@ -35,21 +35,21 @@ public class EnableTermCommand : ClientObjectCmdlet<ITermService>
     [Parameter(Mandatory = false)]
     public SwitchParameter SelectAllProperties { get; private set; } = true;
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.Deprecated)
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Service.DeprecateObject(this.Identity, true);
+            await this.Service.DeprecateObjectAsync(this.Identity, true);
         }
         else
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Service.DeprecateObject(this.Identity, false);
+            await this.Service.DeprecateObjectAsync(this.Identity, false);
         }
         if (this.PassThru)
         {
-            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.Identity, this.SelectAllProperties));
         }
     }
 

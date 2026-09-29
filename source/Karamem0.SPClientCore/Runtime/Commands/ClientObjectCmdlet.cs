@@ -22,63 +22,68 @@ public abstract class ClientObjectCmdlet : PSCmdlet
 
     protected override void ProcessRecord()
     {
-        var telemetry = TelemetryClientFactory.Create();
-        var stopwatch = new Stopwatch();
-        if (string.Equals(
-                this.MyInvocation.InvocationName,
-                this.MyInvocation.MyCommand.Name,
-                StringComparison.InvariantCultureIgnoreCase
-            ))
         {
-        }
-        else
-        {
-            this.WriteWarning(
-                string.Format(
-                    StringResources.WarningCmdletIsObsolete,
+            var telemetry = TelemetryClientFactory.Create();
+            var stopwatch = new Stopwatch();
+            if (string.Equals(
                     this.MyInvocation.InvocationName,
-                    this.MyInvocation.MyCommand.Name
-                )
-            );
-        }
-        var listener = Trace.Listeners[Trace.Listeners.Add(new ClientObjectCmdletTraceListener(this))];
-        try
-        {
-            stopwatch.Start();
-            this.Outputs.Clear();
-            this.ProcessRecordCore();
-            listener.Flush();
-            this.WriteObject(this.Outputs, true);
-        }
-        catch (PipelineStoppedException)
-        {
-            listener.Flush();
-            throw;
-        }
-        catch (Exception ex)
-        {
-            listener.Flush();
-            this.WriteError(
-                new ErrorRecord(
-                    ex,
-                    "Exception",
-                    ErrorCategory.NotSpecified,
-                    null
-                )
-            );
-            telemetry.TrackException(ex);
-        }
-        finally
-        {
-            Trace.Listeners.Remove(listener);
-            stopwatch.Stop();
-            telemetry
-                .GetMetric(this.MyInvocation.InvocationName)
-                .TrackValue(stopwatch.ElapsedMilliseconds);
+                    this.MyInvocation.MyCommand.Name,
+                    StringComparison.InvariantCultureIgnoreCase
+                ))
+            {
+            }
+            else
+            {
+                this.WriteWarning(
+                    string.Format(
+                        StringResources.WarningCmdletIsObsolete,
+                        this.MyInvocation.InvocationName,
+                        this.MyInvocation.MyCommand.Name
+                    )
+                );
+            }
+            var listener = Trace.Listeners[Trace.Listeners.Add(new ClientObjectCmdletTraceListener(this))];
+            try
+            {
+                stopwatch.Start();
+                this.Outputs.Clear();
+                Task
+                    .Run(async () => await this.ProcessRecordAsync())
+                    .GetAwaiter()
+                    .GetResult();
+                listener.Flush();
+                this.WriteObject(this.Outputs, true);
+            }
+            catch (PipelineStoppedException)
+            {
+                listener.Flush();
+                throw;
+            }
+            catch (Exception ex)
+            {
+                listener.Flush();
+                this.WriteError(
+                    new ErrorRecord(
+                        ex,
+                        "Exception",
+                        ErrorCategory.NotSpecified,
+                        null
+                    )
+                );
+                telemetry.TrackException(ex);
+            }
+            finally
+            {
+                Trace.Listeners.Remove(listener);
+                stopwatch.Stop();
+                telemetry
+                    .GetMetric(this.MyInvocation.InvocationName)
+                    .TrackValue(stopwatch.ElapsedMilliseconds);
+            }
         }
     }
 
-    protected abstract void ProcessRecordCore();
+    protected abstract Task ProcessRecordAsync();
 
     public void ValidateSwitchParameter(string parameterName)
     {

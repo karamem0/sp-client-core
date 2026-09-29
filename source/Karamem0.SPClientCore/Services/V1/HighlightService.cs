@@ -15,7 +15,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IHighlightService
 {
 
-    HighlightResult? AddObject(
+    Task<HighlightResult?> AddObjectAsync(
         View viewObject,
         int itemId,
         string folderPath,
@@ -23,7 +23,7 @@ public interface IHighlightService
         bool selectAllProperties = true
     );
 
-    HighlightResult? RemoveObject(
+    Task<HighlightResult?> RemoveObjectAsync(
         View viewObject,
         int itemId,
         string folderPath,
@@ -35,7 +35,7 @@ public interface IHighlightService
 public class HighlightService(ClientContext clientContext) : ClientService(clientContext), IHighlightService
 {
 
-    public HighlightResult? AddObject(
+    public async Task<HighlightResult?> AddObjectAsync(
         View viewObject,
         int itemId,
         string folderPath,
@@ -56,12 +56,12 @@ public class HighlightService(ClientContext clientContext) : ClientService(clien
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<HighlightResult>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<HighlightResult>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public HighlightResult? RemoveObject(
+    public async Task<HighlightResult?> RemoveObjectAsync(
         View viewObject,
         int itemId,
         string folderPath,
@@ -80,9 +80,9 @@ public class HighlightService(ClientContext clientContext) : ClientService(clien
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<HighlightResult>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<HighlightResult>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
 }

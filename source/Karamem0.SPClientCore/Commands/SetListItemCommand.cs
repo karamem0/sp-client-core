@@ -40,13 +40,13 @@ public class SetListItemCommand : ClientObjectCmdlet<IListItemService>
     [Parameter(Mandatory = false)]
     public SwitchParameter SelectAllProperties { get; private set; } = true;
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
         _ = this.Value ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Value));
         if (this.Value.BaseObject is Hashtable hashtable)
         {
-            this.Service.SetObject(
+            await this.Service.SetObjectAsync(
                 this.Identity,
                 hashtable
                     .ToDictionary<string, object?>()
@@ -56,7 +56,7 @@ public class SetListItemCommand : ClientObjectCmdlet<IListItemService>
         }
         else
         {
-            this.Service.SetObject(
+            await this.Service.SetObjectAsync(
                 this.Identity,
                 this
                     .Value.ToDictionary()
@@ -66,7 +66,7 @@ public class SetListItemCommand : ClientObjectCmdlet<IListItemService>
         }
         if (this.PassThru)
         {
-            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.Identity, this.SelectAllProperties));
         }
     }
 

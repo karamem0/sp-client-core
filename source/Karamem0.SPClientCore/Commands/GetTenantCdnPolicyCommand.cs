@@ -28,18 +28,18 @@ public class GetTenantCdnPolicyCommand : ClientObjectCmdlet<ITenantCdnService>
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             this.ValidateSwitchParameter(nameof(this.Public));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetPolicyEnumerable(TenantCdnType.Public));
+                this.Outputs.Add(await this.Service.GetPolicyEnumerableAsync(TenantCdnType.Public));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetPolicyEnumerable(TenantCdnType.Public));
+                this.Outputs.AddRange(await this.Service.GetPolicyEnumerableAsync(TenantCdnType.Public));
             }
         }
         if (this.ParameterSetName == "ParamSet2")
@@ -47,11 +47,11 @@ public class GetTenantCdnPolicyCommand : ClientObjectCmdlet<ITenantCdnService>
             this.ValidateSwitchParameter(nameof(this.Private));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetPolicyEnumerable(TenantCdnType.Private));
+                this.Outputs.Add(await this.Service.GetPolicyEnumerableAsync(TenantCdnType.Private));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetPolicyEnumerable(TenantCdnType.Private));
+                this.Outputs.AddRange(await this.Service.GetPolicyEnumerableAsync(TenantCdnType.Private));
             }
         }
     }

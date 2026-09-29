@@ -15,16 +15,16 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantSiteTemplateService
 {
 
-    IEnumerable<TenantSiteTemplate>? GetObjectEnumerable(uint lcid, int compatibilityLevel);
+    Task<IEnumerable<TenantSiteTemplate>?> GetObjectEnumerableAsync(uint lcid, int compatibilityLevel);
 
-    IEnumerable<TenantSiteTemplate>? GetObjectEnumerable();
+    Task<IEnumerable<TenantSiteTemplate>?> GetObjectEnumerableAsync();
 
 }
 
 public class TenantSiteTemplateService(ClientContext clientContext) : ClientService(clientContext), ITenantSiteTemplateService
 {
 
-    public IEnumerable<TenantSiteTemplate>? GetObjectEnumerable(uint lcid, int compatibilityLevel)
+    public async Task<IEnumerable<TenantSiteTemplate>?> GetObjectEnumerableAsync(uint lcid, int compatibilityLevel)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -42,12 +42,12 @@ public class TenantSiteTemplateService(ClientContext clientContext) : ClientServ
                 ClientQuery.Empty
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantSiteTemplateEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantSiteTemplateEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<TenantSiteTemplate>? GetObjectEnumerable()
+    public async Task<IEnumerable<TenantSiteTemplate>?> GetObjectEnumerableAsync()
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -60,9 +60,9 @@ public class TenantSiteTemplateService(ClientContext clientContext) : ClientServ
                 ClientQuery.Empty
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantSiteTemplateEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantSiteTemplateEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
 }

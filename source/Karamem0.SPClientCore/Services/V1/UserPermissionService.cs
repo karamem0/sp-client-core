@@ -15,14 +15,14 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IUserPermissionService
 {
 
-    BasePermission? GetObject(User userObject, SecurableObject securableObject);
+    Task<BasePermission?> GetObjectAsync(User userObject, SecurableObject securableObject);
 
 }
 
 public class UserPermissionService(ClientContext clientContext) : ClientService(clientContext), IUserPermissionService
 {
 
-    public BasePermission? GetObject(User userObject, SecurableObject securableObject)
+    public async Task<BasePermission?> GetObjectAsync(User userObject, SecurableObject securableObject)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(securableObject.ObjectIdentity));
@@ -34,9 +34,9 @@ public class UserPermissionService(ClientContext clientContext) : ClientService(
                 requestPayload.CreateParameter(userObject.LoginName)
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<BasePermission>(requestPayload.GetActionId<ClientActionMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<BasePermission>(requestPayload.GetActionId<ClientActionMethod>()));
     }
 
 }

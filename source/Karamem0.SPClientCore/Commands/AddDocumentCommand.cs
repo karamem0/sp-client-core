@@ -35,14 +35,14 @@ public class AddDocumentCommand : ClientObjectCmdlet<IDocumentService, IListServ
     [Parameter(Mandatory = false)]
     public SwitchParameter SelectAllProperties { get; private set; } = true;
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Folder ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Folder));
         _ = this.FileName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.FileName));
-        var listObject = this.Service2.GetObject(this.Folder);
+        var listObject = await this.Service2.GetObjectAsync(this.Folder);
         _ = listObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
         this.Outputs.Add(
-            this.Service1.AddObject(
+            await this.Service1.AddObjectAsync(
                 listObject,
                 this.FileName,
                 this.Folder,

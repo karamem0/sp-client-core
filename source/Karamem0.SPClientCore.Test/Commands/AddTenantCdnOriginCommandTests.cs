@@ -25,8 +25,8 @@ public class AddTenantCdnOriginCommandTests
             {
                 ["Url"] = context.AppSettings["AdminUrl"],
                 ["ClientId"] = context.AppSettings["ClientId"],
-                ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
+                ["Certificate"] = Convert.FromBase64String(context.AppSettings["Certificate"]),
+                ["PrivateKey"] = Convert.FromBase64String(context.AppSettings["PrivateKey"])
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -66,8 +66,8 @@ public class AddTenantCdnOriginCommandTests
             {
                 ["Url"] = context.AppSettings["AdminUrl"],
                 ["ClientId"] = context.AppSettings["ClientId"],
-                ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
+                ["Certificate"] = Convert.FromBase64String(context.AppSettings["Certificate"]),
+                ["PrivateKey"] = Convert.FromBase64String(context.AppSettings["PrivateKey"])
             }
         );
         _ = context.Runspace.InvokeCommand(

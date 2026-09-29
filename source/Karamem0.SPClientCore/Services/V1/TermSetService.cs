@@ -15,7 +15,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITermSetService
 {
 
-    TermSet? AddObject(
+    Task<TermSet?> AddObjectAsync(
         TermGroup termGroupObject,
         string termSetName,
         Guid termSetId,
@@ -23,34 +23,34 @@ public interface ITermSetService
         bool selectAllProperties = true
     );
 
-    TermSet? GetObject(TermSet termSetObject);
+    Task<TermSet?> GetObjectAsync(TermSet termSetObject);
 
-    TermSet? GetObject(TermSet termSetObject, bool selectAllProperties = true);
+    Task<TermSet?> GetObjectAsync(TermSet termSetObject, bool selectAllProperties = true);
 
-    TermSet? GetObject(
+    Task<TermSet?> GetObjectAsync(
         TermGroup termGroupObject,
         Guid termSetId,
         bool selectAllProperties = true
     );
 
-    TermSet? GetObject(
+    Task<TermSet?> GetObjectAsync(
         TermGroup termGroupObject,
         string termSetName,
         bool selectAllProperties = true
     );
 
-    IEnumerable<TermSet>? GetObjectEnumerable(TermGroup termGroupObject, bool selectAllProperties = true);
+    Task<IEnumerable<TermSet>?> GetObjectEnumerableAsync(TermGroup termGroupObject, bool selectAllProperties = true);
 
-    void RemoveObject(TermSet termSetObject);
+    Task RemoveObjectAsync(TermSet termSetObject);
 
-    void SetObject(TermSet termSetObject, IReadOnlyDictionary<string, object?> modificationInfo);
+    Task SetObjectAsync(TermSet termSetObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class TermSetService(ClientContext clientContext) : ClientService<TermSet>(clientContext), ITermSetService
 {
 
-    public TermSet? AddObject(
+    public async Task<TermSet?> AddObjectAsync(
         TermGroup termGroupObject,
         string termSetName,
         Guid termSetId,
@@ -71,12 +71,12 @@ public class TermSetService(ClientContext clientContext) : ClientService<TermSet
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TermSet)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TermSet>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TermSet>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public TermSet? GetObject(
+    public async Task<TermSet?> GetObjectAsync(
         TermGroup termGroupObject,
         Guid termSetId,
         bool selectAllProperties = true
@@ -94,12 +94,12 @@ public class TermSetService(ClientContext clientContext) : ClientService<TermSet
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TermSet)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TermSet>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TermSet>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public TermSet? GetObject(
+    public async Task<TermSet?> GetObjectAsync(
         TermGroup termGroupObject,
         string termSetName,
         bool selectAllProperties = true
@@ -117,12 +117,12 @@ public class TermSetService(ClientContext clientContext) : ClientService<TermSet
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TermSet)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TermSet>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TermSet>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<TermSet>? GetObjectEnumerable(TermGroup termGroupObject, bool selectAllProperties = true)
+    public async Task<IEnumerable<TermSet>?> GetObjectEnumerableAsync(TermGroup termGroupObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(termGroupObject.ObjectIdentity));
@@ -135,19 +135,19 @@ public class TermSetService(ClientContext clientContext) : ClientService<TermSet
                 ClientQuery.Create(selectAllProperties, typeof(TermSet))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TermSetEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TermSetEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public override void SetObject(TermSet termSetObject, IReadOnlyDictionary<string, object?> modificationInfo)
+    public override async Task SetObjectAsync(TermSet termSetObject, IReadOnlyDictionary<string, object?> modificationInfo)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(termSetObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(objectPath1, requestPayload.CreateSetPropertyDelegates(termSetObject, modificationInfo));
         var objectPath3 = requestPayload.Add(ObjectPathProperty.Create(objectPath2.Id, "TermStore"));
         var objectPath4 = requestPayload.Add(objectPath3, objectPathId => ClientActionMethod.Create(objectPathId, "CommitAll"));
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

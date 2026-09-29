@@ -16,7 +16,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IExternalUserService
 {
 
-    IEnumerable<UserSharingResult>? AddObject(
+    Task<IEnumerable<UserSharingResult>?> AddObjectAsync(
         IEnumerable<string> userId,
         RoleType role,
         bool sendServerManagedNotification,
@@ -25,7 +25,7 @@ public interface IExternalUserService
         bool allowExternalSharing
     );
 
-    IEnumerable<UserSharingResult>? AddObject(
+    Task<IEnumerable<UserSharingResult>?> AddObjectAsync(
         Uri documentUrl,
         IEnumerable<string> userId,
         RoleType role,
@@ -37,16 +37,16 @@ public interface IExternalUserService
         bool propagateAcl
     );
 
-    bool CheckObject();
+    Task<bool> CheckObjectAsync();
 
-    bool CheckObject(List listObject);
+    Task<bool> CheckObjectAsync(List listObject);
 
 }
 
 public class ExternalUserService(ClientContext clientContext) : ClientService(clientContext), IExternalUserService
 {
 
-    public IEnumerable<UserSharingResult>? AddObject(
+    public async Task<IEnumerable<UserSharingResult>?> AddObjectAsync(
         IEnumerable<string> userId,
         RoleType role,
         bool sendServerManagedNotification,
@@ -70,12 +70,12 @@ public class ExternalUserService(ClientContext clientContext) : ClientService(cl
                 requestPayload.CreateParameter(allowExternalSharing)
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<IEnumerable<UserSharingResult>>(requestPayload.GetActionId<ClientActionStaticMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<IEnumerable<UserSharingResult>>(requestPayload.GetActionId<ClientActionStaticMethod>()));
     }
 
-    public IEnumerable<UserSharingResult>? AddObject(
+    public async Task<IEnumerable<UserSharingResult>?> AddObjectAsync(
         Uri documentUrl,
         IEnumerable<string> userId,
         RoleType role,
@@ -102,12 +102,12 @@ public class ExternalUserService(ClientContext clientContext) : ClientService(cl
                 requestPayload.CreateParameter(propagateAcl)
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<IEnumerable<UserSharingResult>>(requestPayload.GetActionId<ClientActionStaticMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<IEnumerable<UserSharingResult>>(requestPayload.GetActionId<ClientActionStaticMethod>()));
     }
 
-    public bool CheckObject()
+    public async Task<bool> CheckObjectAsync()
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -119,12 +119,12 @@ public class ExternalUserService(ClientContext clientContext) : ClientService(cl
                 ClientRequestParameterObjectPath.Create(objectPath2)
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<bool>(requestPayload.GetActionId<ClientActionStaticMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<bool>(requestPayload.GetActionId<ClientActionStaticMethod>()));
     }
 
-    public bool CheckObject(List listObject)
+    public async Task<bool> CheckObjectAsync(List listObject)
     {
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
@@ -134,9 +134,9 @@ public class ExternalUserService(ClientContext clientContext) : ClientService(cl
                 requestPayload.CreateParameter(listObject)
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<bool>(requestPayload.GetActionId<ClientActionStaticMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<bool>(requestPayload.GetActionId<ClientActionStaticMethod>()));
     }
 
 }

@@ -12,13 +12,8 @@ using System.Threading;
 
 namespace Karamem0.SharePoint.PowerShell.Runtime.Services;
 
-public class ClientHttpMessageHandler : DelegatingHandler
+public class ClientHttpMessageHandler() : DelegatingHandler(new HttpClientHandler())
 {
-
-    public ClientHttpMessageHandler()
-        : base(new HttpClientHandler())
-    {
-    }
 
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage requestMessage, CancellationToken cancellationToken)
     {

@@ -57,13 +57,13 @@ public class MoveViewColumnCommand : ClientObjectCmdlet<IViewColumnService>
     )]
     public int NewIndex { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.View ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.View));
             _ = this.Column ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Column));
-            this.Service.MoveObject(
+            await this.Service.MoveObjectAsync(
                 this.View,
                 this.Column,
                 this.NewIndex
@@ -73,7 +73,7 @@ public class MoveViewColumnCommand : ClientObjectCmdlet<IViewColumnService>
         {
             _ = this.View ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.View));
             _ = this.ColumnName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ColumnName));
-            this.Service.MoveObject(
+            await this.Service.MoveObjectAsync(
                 this.View,
                 this.ColumnName,
                 this.NewIndex

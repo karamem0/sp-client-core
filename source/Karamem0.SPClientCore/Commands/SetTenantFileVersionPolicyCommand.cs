@@ -33,16 +33,16 @@ public class SetTenantFileVersionPolicyCommand : ClientObjectCmdlet<ITenantServi
     [Parameter(Mandatory = false)]
     public SwitchParameter SelectAllProperties { get; private set; } = true;
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
-        this.Service2.SetObject(
+        await this.Service2.SetObjectAsync(
             this.IsAutoTrimEnabled,
             this.MajorVersionLimit,
             this.ExpireVersionsAfterDays
         );
         if (this.PassThru)
         {
-            this.Outputs.Add(new FileVersionPolicy(this.Service1.GetObject()));
+            this.Outputs.Add(new FileVersionPolicy(await this.Service1.GetObjectAsync()));
         }
     }
 

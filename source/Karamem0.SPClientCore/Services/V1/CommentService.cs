@@ -17,28 +17,28 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ICommentService
 {
 
-    Comment? AddObject(ListItem listItemObject, IReadOnlyDictionary<string, object?> creationInfo);
+    Task<Comment?> AddObjectAsync(ListItem listItemObject, IReadOnlyDictionary<string, object?> creationInfo);
 
-    Comment? AddObject(Comment commentObject, IReadOnlyDictionary<string, object?> creationInfo);
+    Task<Comment?> AddObjectAsync(Comment commentObject, IReadOnlyDictionary<string, object?> creationInfo);
 
-    Comment? GetObject(Comment commentObject);
+    Task<Comment?> GetObjectAsync(Comment commentObject);
 
-    Comment? GetObject(Comment commentObject, bool selectAllProperties = true);
+    Task<Comment?> GetObjectAsync(Comment commentObject, bool selectAllProperties = true);
 
-    Comment? GetObject(ListItem listItemObject, int commentId);
+    Task<Comment?> GetObjectAsync(ListItem listItemObject, int commentId);
 
-    IEnumerable<Comment>? GetObjectEnumerable(ListItem listItemObject);
+    Task<IEnumerable<Comment>?> GetObjectEnumerableAsync(ListItem listItemObject);
 
-    void RemoveObject(Comment commentObject);
+    Task RemoveObjectAsync(Comment commentObject);
 
-    void SetDisabled(ListItem listItemObject, bool disabled);
+    Task SetDisabledAsync(ListItem listItemObject, bool disabled);
 
 }
 
 public class CommentService(ClientContext clientContext) : ClientService(clientContext), ICommentService
 {
 
-    public Comment? AddObject(ListItem listItemObject, IReadOnlyDictionary<string, object?> creationInfo)
+    public async Task<Comment?> AddObjectAsync(ListItem listItemObject, IReadOnlyDictionary<string, object?> creationInfo)
     {
         var objectIdentity = listItemObject.ObjectIdentity;
         _ = objectIdentity ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
@@ -53,10 +53,10 @@ public class CommentService(ClientContext clientContext) : ClientService(clientC
             )
             .ConcatQuery(ODataQuery.CreateSelect<Comment>());
         var requestPayload = ODataV1RequestPayload.Create<CommentCreationInfo>(creationInfo);
-        return this.ClientContext.PostObject<Comment>(requestUrl, requestPayload.Entity);
+        return await this.ClientContext.PostObjectAsync<Comment>(requestUrl, requestPayload.Entity);
     }
 
-    public Comment? AddObject(Comment commentObject, IReadOnlyDictionary<string, object?> creationInfo)
+    public async Task<Comment?> AddObjectAsync(Comment commentObject, IReadOnlyDictionary<string, object?> creationInfo)
     {
         var requestUrl = this
             .ClientContext.BaseAddress.ConcatPath(
@@ -67,10 +67,10 @@ public class CommentService(ClientContext clientContext) : ClientService(clientC
             )
             .ConcatQuery(ODataQuery.CreateSelect<Comment>());
         var requestPayload = ODataV1RequestPayload.Create<CommentCreationInfo>(creationInfo);
-        return this.ClientContext.PostObject<Comment>(requestUrl, requestPayload.Entity);
+        return await this.ClientContext.PostObjectAsync<Comment>(requestUrl, requestPayload.Entity);
     }
 
-    public Comment? GetObject(Comment commentObject)
+    public async Task<Comment?> GetObjectAsync(Comment commentObject)
     {
         var requestUrl = this
             .ClientContext.BaseAddress.ConcatPath(
@@ -80,15 +80,15 @@ public class CommentService(ClientContext clientContext) : ClientService(clientC
                 commentObject.Id
             )
             .ConcatQuery(ODataQuery.CreateSelect<Comment>());
-        return this.ClientContext.GetObject<Comment>(requestUrl);
+        return await this.ClientContext.GetObjectAsync<Comment>(requestUrl);
     }
 
-    public Comment? GetObject(Comment commentObject, bool selectAllProperties = true)
+    public async Task<Comment?> GetObjectAsync(Comment commentObject, bool selectAllProperties = true)
     {
-        return this.GetObject(commentObject);
+        return await this.GetObjectAsync(commentObject);
     }
 
-    public Comment? GetObject(ListItem listItemObject, int commentId)
+    public async Task<Comment?> GetObjectAsync(ListItem listItemObject, int commentId)
     {
         var objectIdentity = listItemObject.ObjectIdentity;
         _ = objectIdentity ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
@@ -103,10 +103,10 @@ public class CommentService(ClientContext clientContext) : ClientService(clientC
                 commentId
             )
             .ConcatQuery(ODataQuery.CreateSelect<Comment>());
-        return this.ClientContext.GetObject<Comment>(requestUrl);
+        return await this.ClientContext.GetObjectAsync<Comment>(requestUrl);
     }
 
-    public IEnumerable<Comment>? GetObjectEnumerable(ListItem listItemObject)
+    public async Task<IEnumerable<Comment>?> GetObjectEnumerableAsync(ListItem listItemObject)
     {
         var objectIdentity = listItemObject.ObjectIdentity;
         _ = objectIdentity ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
@@ -120,10 +120,10 @@ public class CommentService(ClientContext clientContext) : ClientService(clientC
                 listItemObject.Id
             )
             .ConcatQuery(ODataQuery.CreateSelect<Comment>());
-        return this.ClientContext.GetObject<ODataV1ObjectEnumerable<Comment>>(requestUrl);
+        return await this.ClientContext.GetObjectAsync<ODataV1ObjectEnumerable<Comment>>(requestUrl);
     }
 
-    public void RemoveObject(Comment commentObject)
+    public async Task RemoveObjectAsync(Comment commentObject)
     {
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/lists('{0}')/items({1})/comments({2})",
@@ -131,10 +131,10 @@ public class CommentService(ClientContext clientContext) : ClientService(clientC
             commentObject.ItemId,
             commentObject.Id
         );
-        this.ClientContext.DeleteObject(requestUrl);
+        await this.ClientContext.DeleteObjectAsync(requestUrl);
     }
 
-    public void SetDisabled(ListItem listItemObject, bool disabled)
+    public async Task SetDisabledAsync(ListItem listItemObject, bool disabled)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
@@ -145,7 +145,7 @@ public class CommentService(ClientContext clientContext) : ClientService(clientC
                 requestPayload.CreateParameter(disabled)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

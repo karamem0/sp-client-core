@@ -45,14 +45,14 @@ public class AddContentTypeCommand : ClientObjectCmdlet<IContentTypeService>
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     public SwitchParameter SelectAllProperties { get; private set; } = true;
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
             _ = this.ContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentType));
             this.Outputs.Add(
-                this.Service.AddObject(
+                await this.Service.AddObjectAsync(
                     this.List,
                     this.ContentType,
                     this.SelectAllProperties
@@ -64,7 +64,7 @@ public class AddContentTypeCommand : ClientObjectCmdlet<IContentTypeService>
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
             var creationInfo = new Dictionary<string, object?>(this.MyInvocation.BoundParameters);
             this.Outputs.Add(
-                this.Service.AddObject(
+                await this.Service.AddObjectAsync(
                     this.List,
                     creationInfo,
                     this.SelectAllProperties
@@ -74,7 +74,7 @@ public class AddContentTypeCommand : ClientObjectCmdlet<IContentTypeService>
         if (this.ParameterSetName == "ParamSet3")
         {
             var creationInfo = new Dictionary<string, object?>(this.MyInvocation.BoundParameters);
-            this.Outputs.Add(this.Service.AddObject(creationInfo, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.AddObjectAsync(creationInfo, this.SelectAllProperties));
         }
     }
 

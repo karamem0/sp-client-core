@@ -15,28 +15,28 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ISiteCollectionFeatureService
 {
 
-    void AddObject(
+    Task AddObjectAsync(
         Guid featureId,
         bool force,
         FeatureDefinitionScope scope
     );
 
-    Feature? GetObject(Feature featureObject);
+    Task<Feature?> GetObjectAsync(Feature featureObject);
 
-    Feature? GetObject(Feature featureObject, bool selectAllProperties = true);
+    Task<Feature?> GetObjectAsync(Feature featureObject, bool selectAllProperties = true);
 
-    Feature? GetObject(Guid featureId, bool selectAllProperties = true);
+    Task<Feature?> GetObjectAsync(Guid featureId, bool selectAllProperties = true);
 
-    IEnumerable<Feature>? GetObjectEnumerable(bool selectAllProperties = true);
+    Task<IEnumerable<Feature>?> GetObjectEnumerableAsync(bool selectAllProperties = true);
 
-    void RemoveObject(Guid featureId, bool force);
+    Task RemoveObjectAsync(Guid featureId, bool force);
 
 }
 
 public class SiteCollectionFeatureService(ClientContext clientContext) : ClientService<Feature>(clientContext), ISiteCollectionFeatureService
 {
 
-    public void AddObject(
+    public async Task AddObjectAsync(
         Guid featureId,
         bool force,
         FeatureDefinitionScope scope
@@ -56,10 +56,10 @@ public class SiteCollectionFeatureService(ClientContext clientContext) : ClientS
                 requestPayload.CreateParameter(scope)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public Feature? GetObject(Guid featureId, bool selectAllProperties = true)
+    public async Task<Feature?> GetObjectAsync(Guid featureId, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -74,12 +74,12 @@ public class SiteCollectionFeatureService(ClientContext clientContext) : ClientS
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Feature)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Feature>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Feature>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<Feature>? GetObjectEnumerable(bool selectAllProperties = true)
+    public async Task<IEnumerable<Feature>?> GetObjectEnumerableAsync(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -93,12 +93,12 @@ public class SiteCollectionFeatureService(ClientContext clientContext) : ClientS
                 ClientQuery.Create(selectAllProperties, typeof(Feature))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<FeatureEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<FeatureEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void RemoveObject(Guid featureId, bool force)
+    public async Task RemoveObjectAsync(Guid featureId, bool force)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -113,7 +113,7 @@ public class SiteCollectionFeatureService(ClientContext clientContext) : ClientS
                 requestPayload.CreateParameter(force)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

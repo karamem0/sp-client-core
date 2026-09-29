@@ -26,8 +26,8 @@ public class SetAppPublishedCommandTests
             {
                 ["Url"] = context.AppSettings["TenantAppCatalogUrl"],
                 ["ClientId"] = context.AppSettings["ClientId"],
-                ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
+                ["Certificate"] = Convert.FromBase64String(context.AppSettings["Certificate"]),
+                ["PrivateKey"] = Convert.FromBase64String(context.AppSettings["PrivateKey"])
             }
         );
         var result1 = context.Runspace.InvokeCommand<App>(
@@ -88,8 +88,8 @@ public class SetAppPublishedCommandTests
             {
                 ["Url"] = context.AppSettings["BaseUrl"],
                 ["ClientId"] = context.AppSettings["ClientId"],
-                ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
+                ["Certificate"] = Convert.FromBase64String(context.AppSettings["Certificate"]),
+                ["PrivateKey"] = Convert.FromBase64String(context.AppSettings["PrivateKey"])
             }
         );
         var result1 = context.Runspace.InvokeCommand<App>(
@@ -150,8 +150,8 @@ public class SetAppPublishedCommandTests
             {
                 ["Url"] = context.AppSettings["TenantAppCatalogUrl"],
                 ["ClientId"] = context.AppSettings["ClientId"],
-                ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
+                ["Certificate"] = Convert.FromBase64String(context.AppSettings["Certificate"]),
+                ["PrivateKey"] = Convert.FromBase64String(context.AppSettings["PrivateKey"])
             }
         );
         var result1 = context.Runspace.InvokeCommand<App>(
@@ -212,8 +212,8 @@ public class SetAppPublishedCommandTests
             {
                 ["Url"] = context.AppSettings["BaseUrl"],
                 ["ClientId"] = context.AppSettings["ClientId"],
-                ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
+                ["Certificate"] = Convert.FromBase64String(context.AppSettings["Certificate"]),
+                ["PrivateKey"] = Convert.FromBase64String(context.AppSettings["PrivateKey"])
             }
         );
         var result1 = context.Runspace.InvokeCommand<App>(

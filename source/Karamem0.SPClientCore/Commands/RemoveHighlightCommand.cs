@@ -32,12 +32,12 @@ public class RemoveHighlightCommand : ClientObjectCmdlet<IHighlightService>
     [Parameter(Mandatory = true)]
     public string? FolderPath { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.View ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.View));
         _ = this.FolderPath ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.FolderPath));
         this.Outputs.Add(
-            this.Service.RemoveObject(
+            await this.Service.RemoveObjectAsync(
                 this.View,
                 this.ItemId,
                 this.FolderPath

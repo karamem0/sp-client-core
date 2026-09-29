@@ -38,12 +38,12 @@ public class AddTermLabelCommand : ClientObjectCmdlet<ITermLabelService>
     [Parameter(Mandatory = false)]
     public SwitchParameter SelectAllProperties { get; private set; } = true;
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Term ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Term));
         _ = this.Name ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Name));
         this.Outputs.Add(
-            this.Service.AddObject(
+            await this.Service.AddObjectAsync(
                 this.Term,
                 this.Name,
                 this.Lcid,

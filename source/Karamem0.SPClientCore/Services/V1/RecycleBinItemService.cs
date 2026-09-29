@@ -16,38 +16,38 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IRecycleBinItemService
 {
 
-    RecycleBinItem? GetObject(RecycleBinItem recycleBinItemObject);
+    Task<RecycleBinItem?> GetObjectAsync(RecycleBinItem recycleBinItemObject);
 
-    RecycleBinItem? GetObject(RecycleBinItem recycleBinItemObject, bool selectAllProperties = true);
+    Task<RecycleBinItem?> GetObjectAsync(RecycleBinItem recycleBinItemObject, bool selectAllProperties = true);
 
-    RecycleBinItem? GetObject(
+    Task<RecycleBinItem?> GetObjectAsync(
         Guid itemId,
         RecycleBinItemState recycleBinItemState,
         bool selectAllProperties = true
     );
 
-    IEnumerable<RecycleBinItem>? GetObjectEnumerable(RecycleBinItemState recycleBinItemState, bool selectAllProperties = true);
+    Task<IEnumerable<RecycleBinItem>?> GetObjectEnumerableAsync(RecycleBinItemState recycleBinItemState, bool selectAllProperties = true);
 
-    void MoveAllObjectToSecondStage();
+    Task MoveAllObjectToSecondStageAsync();
 
-    void MoveObjectToSecondStage(RecycleBinItem recycleBinItemObject);
+    Task MoveObjectToSecondStageAsync(RecycleBinItem recycleBinItemObject);
 
-    void RemoveAllObject();
+    Task RemoveAllObjectAsync();
 
-    void RemoveAllSecondStageObject();
+    Task RemoveAllSecondStageObjectAsync();
 
-    void RemoveObject(RecycleBinItem recycleBinItemObject);
+    Task RemoveObjectAsync(RecycleBinItem recycleBinItemObject);
 
-    void RestoreAllObject();
+    Task RestoreAllObjectAsync();
 
-    void RestoreObject(RecycleBinItem recycleBinItemObject);
+    Task RestoreObjectAsync(RecycleBinItem recycleBinItemObject);
 
 }
 
 public class RecycleBinItemService(ClientContext clientContext) : ClientService<RecycleBinItem>(clientContext), IRecycleBinItemService
 {
 
-    public RecycleBinItem? GetObject(
+    public async Task<RecycleBinItem?> GetObjectAsync(
         Guid itemId,
         RecycleBinItemState recycleBinItemState,
         bool selectAllProperties = true
@@ -68,9 +68,9 @@ public class RecycleBinItemService(ClientContext clientContext) : ClientService<
                 ClientActionInstantiateObjectPath.Create,
                 objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(RecycleBinItem)))
             );
-            return this
-                .ClientContext.ProcessQuery(requestPayload)
-                .ToObject<RecycleBinItem>(requestPayload.GetActionId<ClientActionQuery>());
+            return await this
+                .ClientContext.ProcessQueryAsync(requestPayload)
+                .ContinueWith(task => task.Result.ToObject<RecycleBinItem>(requestPayload.GetActionId<ClientActionQuery>()));
         }
         if (recycleBinItemState == RecycleBinItemState.SecondStageRecycleBin)
         {
@@ -87,14 +87,14 @@ public class RecycleBinItemService(ClientContext clientContext) : ClientService<
                 ClientActionInstantiateObjectPath.Create,
                 objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(RecycleBinItem)))
             );
-            return this
-                .ClientContext.ProcessQuery(requestPayload)
-                .ToObject<RecycleBinItem>(requestPayload.GetActionId<ClientActionQuery>());
+            return await this
+                .ClientContext.ProcessQueryAsync(requestPayload)
+                .ContinueWith(task => task.Result.ToObject<RecycleBinItem>(requestPayload.GetActionId<ClientActionQuery>()));
         }
         throw new InvalidOperationException(StringResources.ErrorValueIsInvalid);
     }
 
-    public IEnumerable<RecycleBinItem>? GetObjectEnumerable(RecycleBinItemState recycleBinItemState, bool selectAllProperties = true)
+    public async Task<IEnumerable<RecycleBinItem>?> GetObjectEnumerableAsync(RecycleBinItemState recycleBinItemState, bool selectAllProperties = true)
     {
         if (recycleBinItemState == RecycleBinItemState.FirstStageRecycleBin)
         {
@@ -110,9 +110,9 @@ public class RecycleBinItemService(ClientContext clientContext) : ClientService<
                     ClientQuery.Create(selectAllProperties, typeof(RecycleBinItem))
                 )
             );
-            return this
-                .ClientContext.ProcessQuery(requestPayload)
-                .ToObject<RecycleBinItemEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+            return await this
+                .ClientContext.ProcessQueryAsync(requestPayload)
+                .ContinueWith(task => task.Result.ToObject<RecycleBinItemEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
         }
         if (recycleBinItemState == RecycleBinItemState.SecondStageRecycleBin)
         {
@@ -128,71 +128,71 @@ public class RecycleBinItemService(ClientContext clientContext) : ClientService<
                     ClientQuery.Create(selectAllProperties, typeof(RecycleBinItem))
                 )
             );
-            return this
-                .ClientContext.ProcessQuery(requestPayload)
-                .ToObject<RecycleBinItemEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+            return await this
+                .ClientContext.ProcessQueryAsync(requestPayload)
+                .ContinueWith(task => task.Result.ToObject<RecycleBinItemEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
         }
         throw new InvalidOperationException(StringResources.ErrorValueIsInvalid);
     }
 
-    public void MoveAllObjectToSecondStage()
+    public async Task MoveAllObjectToSecondStageAsync()
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(ObjectPathProperty.Create(objectPath2.Id, "RecycleBin"));
         var objectPath4 = requestPayload.Add(objectPath3, objectPathId => ClientActionMethod.Create(objectPathId, "MoveAllToSecondStage"));
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void MoveObjectToSecondStage(RecycleBinItem recycleBinItemObject)
+    public async Task MoveObjectToSecondStageAsync(RecycleBinItem recycleBinItemObject)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             ObjectPathIdentity.Create(recycleBinItemObject.ObjectIdentity),
             objectPathId => ClientActionMethod.Create(objectPathId, "MoveToSecondStage")
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void RemoveAllObject()
+    public async Task RemoveAllObjectAsync()
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(ObjectPathProperty.Create(objectPath2.Id, "RecycleBin"));
         var objectPath4 = requestPayload.Add(objectPath3, objectPathId => ClientActionMethod.Create(objectPathId, "DeleteAll"));
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void RemoveAllSecondStageObject()
+    public async Task RemoveAllSecondStageObjectAsync()
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Site"));
         var objectPath3 = requestPayload.Add(ObjectPathProperty.Create(objectPath2.Id, "RecycleBin"));
         var objectPath4 = requestPayload.Add(objectPath3, objectPathId => ClientActionMethod.Create(objectPathId, "DeleteAllSecondStageItems"));
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void RestoreAllObject()
+    public async Task RestoreAllObjectAsync()
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
         var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Web"));
         var objectPath3 = requestPayload.Add(ObjectPathProperty.Create(objectPath2.Id, "RecycleBin"));
         var objectPath4 = requestPayload.Add(objectPath3, objectPathId => ClientActionMethod.Create(objectPathId, "RestoreAll"));
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void RestoreObject(RecycleBinItem recycleBinItemObject)
+    public async Task RestoreObjectAsync(RecycleBinItem recycleBinItemObject)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             ObjectPathIdentity.Create(recycleBinItemObject.ObjectIdentity),
             objectPathId => ClientActionMethod.Create(objectPathId, "Restore")
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

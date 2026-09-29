@@ -15,28 +15,28 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantHubSiteService
 {
 
-    HubSite? AddObject(
+    Task<HubSite?> AddObjectAsync(
         Uri siteCollectionUrl,
         IReadOnlyDictionary<string, object?> creationInfo,
         bool selectAllProperties = true
     );
 
-    HubSite? GetObject(Guid hubSiteId, bool selectAllProperties = true);
+    Task<HubSite?> GetObjectAsync(Guid hubSiteId, bool selectAllProperties = true);
 
-    HubSite? GetObject(Uri hubSiteUrl, bool selectAllProperties = true);
+    Task<HubSite?> GetObjectAsync(Uri hubSiteUrl, bool selectAllProperties = true);
 
-    IEnumerable<HubSite>? GetObjectEnumerable(bool selectAllProperties = true);
+    Task<IEnumerable<HubSite>?> GetObjectEnumerableAsync(bool selectAllProperties = true);
 
-    void RemoveObject(HubSite hubSiteObject);
+    Task RemoveObjectAsync(HubSite hubSiteObject);
 
-    void SetObject(HubSite hubSiteObject, IReadOnlyDictionary<string, object?> modificationInfo);
+    Task SetObjectAsync(HubSite hubSiteObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class TenantHubSiteService(ClientContext clientContext) : ClientService<HubSite>(clientContext), ITenantHubSiteService
 {
 
-    public HubSite? AddObject(
+    public async Task<HubSite?> AddObjectAsync(
         Uri siteCollectionUrl,
         IReadOnlyDictionary<string, object?> creationInfo,
         bool selectAllProperties = true
@@ -54,12 +54,12 @@ public class TenantHubSiteService(ClientContext clientContext) : ClientService<H
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(HubSite)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<HubSite>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<HubSite>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public HubSite? GetObject(Guid hubSiteId, bool selectAllProperties = true)
+    public async Task<HubSite?> GetObjectAsync(Guid hubSiteId, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -72,12 +72,12 @@ public class TenantHubSiteService(ClientContext clientContext) : ClientService<H
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(HubSite)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<HubSite>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<HubSite>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public HubSite? GetObject(Uri hubSiteUrl, bool selectAllProperties = true)
+    public async Task<HubSite?> GetObjectAsync(Uri hubSiteUrl, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -90,12 +90,12 @@ public class TenantHubSiteService(ClientContext clientContext) : ClientService<H
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(HubSite)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<HubSite>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<HubSite>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<HubSite>? GetObjectEnumerable(bool selectAllProperties = true)
+    public async Task<IEnumerable<HubSite>?> GetObjectEnumerableAsync(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -108,12 +108,12 @@ public class TenantHubSiteService(ClientContext clientContext) : ClientService<H
                 ClientQuery.Create(selectAllProperties, typeof(HubSite))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<HubSiteEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<HubSiteEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public override void RemoveObject(HubSite hubSiteObject)
+    public override async Task RemoveObjectAsync(HubSite hubSiteObject)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -125,10 +125,10 @@ public class TenantHubSiteService(ClientContext clientContext) : ClientService<H
                 requestPayload.CreateParameter(hubSiteObject.SiteCollectionUrl)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public override void SetObject(HubSite hubSiteObject, IReadOnlyDictionary<string, object?> modificationInfo)
+    public override async Task SetObjectAsync(HubSite hubSiteObject, IReadOnlyDictionary<string, object?> modificationInfo)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -143,7 +143,7 @@ public class TenantHubSiteService(ClientContext clientContext) : ClientService<H
         );
         var objectPath3 = requestPayload.Add(objectPath2, requestPayload.CreateSetPropertyDelegates(hubSiteObject, modificationInfo));
         var objectPath4 = requestPayload.Add(objectPath3, objectPathId => ClientActionMethod.Create(objectPathId, "Update"));
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

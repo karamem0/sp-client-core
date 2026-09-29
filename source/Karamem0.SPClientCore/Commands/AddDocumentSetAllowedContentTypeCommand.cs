@@ -28,11 +28,11 @@ public class AddDocumentSetAllowedContentTypeCommand : ClientObjectCmdlet<IDocum
     [Parameter(Mandatory = false)]
     public SwitchParameter PushChanges { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.ContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentType));
         _ = this.AllowedContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.AllowedContentType));
-        this.Service.AddObject(
+        await this.Service.AddObjectAsync(
             this.ContentType,
             this.AllowedContentType,
             this.PushChanges

@@ -15,16 +15,16 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface INavigationService
 {
 
-    Navigation? GetObject(bool selectAllProperties = true);
+    Task<Navigation?> GetObjectAsync(bool selectAllProperties = true);
 
-    void SetObject(IReadOnlyDictionary<string, object?> modificationInfo);
+    Task SetObjectAsync(IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class NavigationService(ClientContext clientContext) : ClientService(clientContext), INavigationService
 {
 
-    public Navigation? GetObject(bool selectAllProperties = true)
+    public async Task<Navigation?> GetObjectAsync(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -34,12 +34,12 @@ public class NavigationService(ClientContext clientContext) : ClientService(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Navigation)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Navigation>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Navigation>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void SetObject(IReadOnlyDictionary<string, object?> modificationInfo)
+    public async Task SetObjectAsync(IReadOnlyDictionary<string, object?> modificationInfo)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -49,7 +49,7 @@ public class NavigationService(ClientContext clientContext) : ClientService(clie
             requestPayload.CreateSetPropertyDelegates(typeof(Navigation), modificationInfo)
         );
         var objectPath4 = requestPayload.Add(objectPath2, objectPathId => ClientActionMethod.Create(objectPathId, "Update"));
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

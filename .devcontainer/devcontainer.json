@@ -6,8 +6,8 @@
       "version": "10.0"
     },
     "ghcr.io/devcontainers/features/git-lfs:1": {},
-    "ghcr.io/devcontainers/features/powershell:1": {
-      "version": "7.6.2"
+    "ghcr.io/devcontainers/features/powershell:2": {
+      "version": "7.6.6"
     }
   },
   "postCreateCommand": {

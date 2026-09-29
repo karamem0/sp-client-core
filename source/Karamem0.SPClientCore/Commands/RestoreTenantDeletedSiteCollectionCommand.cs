@@ -36,18 +36,18 @@ public class RestoreTenantDeletedSiteCollectionCommand : ClientObjectCmdlet<ITen
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public SwitchParameter NoWait { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Service.RestoreObjectAwait(this.Identity);
+            await this.Service.RestoreObjectAwaitAsync(this.Identity);
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             this.ValidateSwitchParameter(nameof(this.NoWait));
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            _ = this.Service.RestoreObject(this.Identity);
+            _ = await this.Service.RestoreObjectAsync(this.Identity);
         }
     }
 

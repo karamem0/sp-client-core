@@ -39,25 +39,25 @@ public class RemoveRecycleBinItemCommand : ClientObjectCmdlet<IRecycleBinItemSer
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
     public SwitchParameter SecondStage { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ShouldProcess(this.Identity is null ? "All" : this.Identity.Title, VerbsCommon.Remove))
         {
             if (this.ParameterSetName == "ParamSet1")
             {
                 _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-                this.Service.RemoveObject(this.Identity);
+                await this.Service.RemoveObjectAsync(this.Identity);
             }
             if (this.ParameterSetName == "ParamSet2")
             {
                 this.ValidateSwitchParameter(nameof(this.All));
-                this.Service.RemoveAllObject();
+                await this.Service.RemoveAllObjectAsync();
             }
             if (this.ParameterSetName == "ParamSet3")
             {
                 this.ValidateSwitchParameter(nameof(this.All));
                 this.ValidateSwitchParameter(nameof(this.SecondStage));
-                this.Service.RemoveAllSecondStageObject();
+                await this.Service.RemoveAllSecondStageObjectAsync();
             }
         }
     }

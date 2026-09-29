@@ -38,24 +38,24 @@ public class GetSubFolderCommand : ClientObjectCmdlet<IFolderService>
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Folder ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Folder));
             _ = this.FolderName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.FolderName));
-            this.Outputs.Add(this.Service.GetObject(this.Folder, this.FolderName));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.Folder, this.FolderName));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.Folder ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Folder));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.Folder));
+                this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.Folder));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.Folder));
+                this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.Folder));
             }
         }
     }

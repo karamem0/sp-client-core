@@ -51,7 +51,7 @@ public class AddTermCommand : ClientObjectCmdlet<ITermService>
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     public SwitchParameter SelectAllProperties { get; private set; } = true;
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.Id == default)
         {
@@ -62,7 +62,7 @@ public class AddTermCommand : ClientObjectCmdlet<ITermService>
             _ = this.TermSet ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.TermSet));
             _ = this.Name ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Name));
             this.Outputs.Add(
-                this.Service.AddObject(
+                await this.Service.AddObjectAsync(
                     this.TermSet,
                     this.Name,
                     this.Id,
@@ -76,7 +76,7 @@ public class AddTermCommand : ClientObjectCmdlet<ITermService>
             _ = this.Term ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Term));
             _ = this.Name ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Name));
             this.Outputs.Add(
-                this.Service.AddObject(
+                await this.Service.AddObjectAsync(
                     this.Term,
                     this.Name,
                     this.Id,

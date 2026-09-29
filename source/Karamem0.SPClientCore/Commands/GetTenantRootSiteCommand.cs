@@ -17,9 +17,9 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetTenantRootSiteCommand : ClientObjectCmdlet<ITenantRootSiteService>
 {
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
-        this.Outputs.Add(this.Service.GetObject());
+        this.Outputs.Add(await this.Service.GetObjectAsync());
     }
 
 }

@@ -34,10 +34,10 @@ public class RemoveAppCommand : ClientObjectCmdlet<IAppService>
     [Parameter(Mandatory = false)]
     public SwitchParameter Tenant { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-        this.Service.RemoveObject(this.Identity, this.Tenant);
+        await this.Service.RemoveObjectAsync(this.Identity, this.Tenant);
     }
 
 }

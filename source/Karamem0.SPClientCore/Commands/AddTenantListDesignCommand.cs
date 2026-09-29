@@ -42,10 +42,10 @@ public class AddTenantListDesignCommand : ClientObjectCmdlet<ITenantListDesignSe
     [Parameter(Mandatory = false)]
     public SwitchParameter SelectAllProperties { get; private set; } = true;
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         var creationInfo = new Dictionary<string, object?>(this.MyInvocation.BoundParameters);
-        this.Outputs.Add(this.Service.AddObject(creationInfo, this.SelectAllProperties));
+        this.Outputs.Add(await this.Service.AddObjectAsync(creationInfo, this.SelectAllProperties));
     }
 
 }

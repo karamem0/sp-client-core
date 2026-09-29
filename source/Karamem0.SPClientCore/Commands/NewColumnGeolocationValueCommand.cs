@@ -29,7 +29,7 @@ public class NewColumnGeolocationValueCommand : ClientObjectCmdlet
     [Parameter(Mandatory = false)]
     public double Measure { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         this.Outputs.Add(
             new ColumnGeolocationValue(

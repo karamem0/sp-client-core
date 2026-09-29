@@ -34,12 +34,12 @@ public class SaveFileCommand : ClientObjectCmdlet<IFileService>
     [Parameter(Mandatory = false)]
     public SwitchParameter PassThru { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Folder?.ServerRelativeUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Folder));
         _ = this.FileName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.FileName));
         _ = this.Content ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Content));
-        this.Service.UploadObject(
+        await this.Service.UploadObjectAsync(
             this.Folder.ServerRelativeUrl,
             this.FileName,
             this.Content,
@@ -47,7 +47,7 @@ public class SaveFileCommand : ClientObjectCmdlet<IFileService>
         );
         if (this.PassThru)
         {
-            this.Outputs.Add(this.Service.GetObject(this.Folder, this.FileName));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.Folder, this.FileName));
         }
     }
 

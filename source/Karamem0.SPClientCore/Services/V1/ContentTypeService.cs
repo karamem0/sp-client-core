@@ -15,46 +15,46 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IContentTypeService
 {
 
-    ContentType? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true);
+    Task<ContentType?> AddObjectAsync(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true);
 
-    ContentType? AddObject(
+    Task<ContentType?> AddObjectAsync(
         List listObject,
         IReadOnlyDictionary<string, object?> creationInfo,
         bool selectAllProperties = true
     );
 
-    ContentType? AddObject(
+    Task<ContentType?> AddObjectAsync(
         List listObject,
         ContentType contentTypeObject,
         bool selectAllProperties = true
     );
 
-    ContentType? GetObject(ContentType contentTypeObject);
+    Task<ContentType?> GetObjectAsync(ContentType contentTypeObject);
 
-    ContentType? GetObject(ContentType contentTypeObject, bool selectAllProperties = true);
+    Task<ContentType?> GetObjectAsync(ContentType contentTypeObject, bool selectAllProperties = true);
 
-    ContentType? GetObject(string contentTypeId, bool selectAllProperties = true);
+    Task<ContentType?> GetObjectAsync(string contentTypeId, bool selectAllProperties = true);
 
-    ContentType? GetObject(
+    Task<ContentType?> GetObjectAsync(
         List listObject,
         string contentTypeId,
         bool selectAllProperties = true
     );
 
-    IEnumerable<ContentType>? GetObjectEnumerable(bool selectAllProperties = true);
+    Task<IEnumerable<ContentType>?> GetObjectEnumerableAsync(bool selectAllProperties = true);
 
-    IEnumerable<ContentType>? GetObjectEnumerable(List listObject, bool selectAllProperties = true);
+    Task<IEnumerable<ContentType>?> GetObjectEnumerableAsync(List listObject, bool selectAllProperties = true);
 
-    void RemoveObject(ContentType contentTypeObject);
+    Task RemoveObjectAsync(ContentType contentTypeObject);
 
-    void SetObject(ContentType contentTypeObject, IReadOnlyDictionary<string, object?> modificationInfo);
+    Task SetObjectAsync(ContentType contentTypeObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class ContentTypeService(ClientContext clientContext) : ClientService<ContentType>(clientContext), IContentTypeService
 {
 
-    public ContentType? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true)
+    public async Task<ContentType?> AddObjectAsync(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -69,12 +69,12 @@ public class ContentTypeService(ClientContext clientContext) : ClientService<Con
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(ContentType)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ContentType>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ContentType>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public ContentType? AddObject(
+    public async Task<ContentType?> AddObjectAsync(
         List listObject,
         IReadOnlyDictionary<string, object?> creationInfo,
         bool selectAllProperties = true
@@ -92,12 +92,12 @@ public class ContentTypeService(ClientContext clientContext) : ClientService<Con
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(ContentType)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ContentType>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ContentType>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public ContentType? AddObject(
+    public async Task<ContentType?> AddObjectAsync(
         List listObject,
         ContentType contentTypeObject,
         bool selectAllProperties = true
@@ -115,12 +115,12 @@ public class ContentTypeService(ClientContext clientContext) : ClientService<Con
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(ContentType)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ContentType>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ContentType>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public ContentType? GetObject(string contentTypeId, bool selectAllProperties = true)
+    public async Task<ContentType?> GetObjectAsync(string contentTypeId, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -135,12 +135,12 @@ public class ContentTypeService(ClientContext clientContext) : ClientService<Con
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(ContentType)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ContentType>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ContentType>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public ContentType? GetObject(
+    public async Task<ContentType?> GetObjectAsync(
         List listObject,
         string contentTypeId,
         bool selectAllProperties = true
@@ -158,12 +158,12 @@ public class ContentTypeService(ClientContext clientContext) : ClientService<Con
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(ContentType)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ContentType>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ContentType>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<ContentType>? GetObjectEnumerable(bool selectAllProperties = true)
+    public async Task<IEnumerable<ContentType>?> GetObjectEnumerableAsync(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -177,12 +177,12 @@ public class ContentTypeService(ClientContext clientContext) : ClientService<Con
                 ClientQuery.Create(selectAllProperties, typeof(ContentType))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ContentTypeEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ContentTypeEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<ContentType>? GetObjectEnumerable(List listObject, bool selectAllProperties = true)
+    public async Task<IEnumerable<ContentType>?> GetObjectEnumerableAsync(List listObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));
@@ -195,9 +195,9 @@ public class ContentTypeService(ClientContext clientContext) : ClientService<Con
                 ClientQuery.Create(selectAllProperties, typeof(ContentType))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ContentTypeEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ContentTypeEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
 }

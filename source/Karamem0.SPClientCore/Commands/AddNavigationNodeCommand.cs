@@ -51,7 +51,7 @@ public class AddNavigationNodeCommand : ClientObjectCmdlet<INavigationNodeServic
     [Parameter(Mandatory = false)]
     public SwitchParameter SelectAllProperties { get; private set; } = true;
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
@@ -61,7 +61,7 @@ public class AddNavigationNodeCommand : ClientObjectCmdlet<INavigationNodeServic
             _ = creationInfo.Remove(nameof(this.QuickLaunch));
             _ = creationInfo.Remove(nameof(this.TopNavigationBar));
             this.Outputs.Add(
-                this.Service.AddObject(
+                await this.Service.AddObjectAsync(
                     this.NavigationNode,
                     creationInfo,
                     this.SelectAllProperties
@@ -74,7 +74,7 @@ public class AddNavigationNodeCommand : ClientObjectCmdlet<INavigationNodeServic
             _ = creationInfo.Remove(nameof(this.NavigationNode));
             _ = creationInfo.Remove(nameof(this.QuickLaunch));
             _ = creationInfo.Remove(nameof(this.TopNavigationBar));
-            this.Outputs.Add(this.Service.AddObjectToQuickLaunch(creationInfo, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.AddObjectToQuickLaunchAsync(creationInfo, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
@@ -82,7 +82,7 @@ public class AddNavigationNodeCommand : ClientObjectCmdlet<INavigationNodeServic
             _ = creationInfo.Remove(nameof(this.NavigationNode));
             _ = creationInfo.Remove(nameof(this.QuickLaunch));
             _ = creationInfo.Remove(nameof(this.TopNavigationBar));
-            this.Outputs.Add(this.Service.AddObjectToTopNavigationBar(creationInfo, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.AddObjectToTopNavigationBarAsync(creationInfo, this.SelectAllProperties));
         }
     }
 

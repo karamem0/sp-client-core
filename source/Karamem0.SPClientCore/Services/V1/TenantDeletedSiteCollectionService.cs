@@ -16,26 +16,26 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantDeletedSiteCollectionService
 {
 
-    TenantDeletedSiteCollection? GetObject(TenantDeletedSiteCollection siteCollectionObject, bool selectAllProperties = true);
+    Task<TenantDeletedSiteCollection?> GetObjectAsync(TenantDeletedSiteCollection siteCollectionObject, bool selectAllProperties = true);
 
-    TenantDeletedSiteCollection? GetObject(Uri siteCollectionUrl, bool selectAllProperties = true);
+    Task<TenantDeletedSiteCollection?> GetObjectAsync(Uri siteCollectionUrl, bool selectAllProperties = true);
 
-    IEnumerable<TenantDeletedSiteCollection>? GetObjectEnumerable(bool selectAllProperties = true);
+    Task<IEnumerable<TenantDeletedSiteCollection>?> GetObjectEnumerableAsync(bool selectAllProperties = true);
 
-    TenantOperationResult? RemoveObject(TenantDeletedSiteCollection siteCollectionObject, bool selectAllProperties = true);
+    Task<TenantOperationResult?> RemoveObjectAsync(TenantDeletedSiteCollection siteCollectionObject, bool selectAllProperties = true);
 
-    void RemoveObjectAwait(TenantDeletedSiteCollection siteCollectionObject);
+    Task RemoveObjectAwaitAsync(TenantDeletedSiteCollection siteCollectionObject);
 
-    TenantOperationResult? RestoreObject(TenantDeletedSiteCollection siteCollectionObject, bool selectAllProperties = true);
+    Task<TenantOperationResult?> RestoreObjectAsync(TenantDeletedSiteCollection siteCollectionObject, bool selectAllProperties = true);
 
-    void RestoreObjectAwait(TenantDeletedSiteCollection siteCollectionObject);
+    Task RestoreObjectAwaitAsync(TenantDeletedSiteCollection siteCollectionObject);
 
 }
 
 public class TenantDeletedSiteCollectionService(ClientContext clientContext) : TenantClientService(clientContext), ITenantDeletedSiteCollectionService
 {
 
-    public TenantDeletedSiteCollection? GetObject(TenantDeletedSiteCollection siteCollectionObject, bool selectAllProperties = true)
+    public async Task<TenantDeletedSiteCollection?> GetObjectAsync(TenantDeletedSiteCollection siteCollectionObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
@@ -43,15 +43,15 @@ public class TenantDeletedSiteCollectionService(ClientContext clientContext) : T
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TenantDeletedSiteCollection)))
         );
-        var clientObject = this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantDeletedSiteCollection>(requestPayload.GetActionId<ClientActionQuery>());
+        var clientObject = await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantDeletedSiteCollection>(requestPayload.GetActionId<ClientActionQuery>()));
         var clientObjectUrl = clientObject?.Url;
         _ = clientObjectUrl ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
-        return this.GetObject(clientObjectUrl, selectAllProperties);
+        return await this.GetObjectAsync(clientObjectUrl, selectAllProperties);
     }
 
-    public TenantDeletedSiteCollection? GetObject(Uri siteCollectionUrl, bool selectAllProperties = true)
+    public async Task<TenantDeletedSiteCollection?> GetObjectAsync(Uri siteCollectionUrl, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -65,12 +65,12 @@ public class TenantDeletedSiteCollectionService(ClientContext clientContext) : T
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TenantDeletedSiteCollection)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantDeletedSiteCollection>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantDeletedSiteCollection>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<TenantDeletedSiteCollection>? GetObjectEnumerable(bool selectAllProperties = true)
+    public async Task<IEnumerable<TenantDeletedSiteCollection>?> GetObjectEnumerableAsync(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -87,12 +87,12 @@ public class TenantDeletedSiteCollectionService(ClientContext clientContext) : T
                 ClientQuery.Create(selectAllProperties, typeof(TenantDeletedSiteCollection))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantDeletedSiteCollectionsEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantDeletedSiteCollectionsEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public TenantOperationResult? RemoveObject(TenantDeletedSiteCollection siteCollectionObject, bool selectAllProperties = true)
+    public async Task<TenantOperationResult?> RemoveObjectAsync(TenantDeletedSiteCollection siteCollectionObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -105,17 +105,17 @@ public class TenantDeletedSiteCollectionService(ClientContext clientContext) : T
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TenantOperationResult)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void RemoveObjectAwait(TenantDeletedSiteCollection siteCollectionObject)
+    public async Task RemoveObjectAwaitAsync(TenantDeletedSiteCollection siteCollectionObject)
     {
-        this.WaitObject(this.RemoveObject(siteCollectionObject));
+        await this.WaitObjectAsync(await this.RemoveObjectAsync(siteCollectionObject));
     }
 
-    public TenantOperationResult? RestoreObject(TenantDeletedSiteCollection siteCollectionObject, bool selectAllProperties = true)
+    public async Task<TenantOperationResult?> RestoreObjectAsync(TenantDeletedSiteCollection siteCollectionObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -129,14 +129,14 @@ public class TenantDeletedSiteCollectionService(ClientContext clientContext) : T
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TenantOperationResult)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void RestoreObjectAwait(TenantDeletedSiteCollection siteCollectionObject)
+    public async Task RestoreObjectAwaitAsync(TenantDeletedSiteCollection siteCollectionObject)
     {
-        this.WaitObject(this.RestoreObject(siteCollectionObject));
+        await this.WaitObjectAsync(await this.RestoreObjectAsync(siteCollectionObject));
     }
 
 }

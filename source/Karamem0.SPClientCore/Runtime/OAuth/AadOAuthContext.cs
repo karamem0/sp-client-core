@@ -33,7 +33,7 @@ public class AadOAuthContext(
 
     private readonly TenantIdResolver tenantIdResolver = new(new Uri(resource, UriKind.Absolute));
 
-    public OAuthMessage? AcquireDeviceCode()
+    public async Task<OAuthMessage?> AcquireDeviceCodeAsync()
     {
         var requertParameters = new Dictionary<string, object?>()
         {
@@ -63,14 +63,8 @@ public class AadOAuthContext(
             .ConcatQuery(UriQuery.Create(requertParameters));
         var requestMessage = new HttpRequestMessage(HttpMethod.Get, requestUrl);
         requestMessage.Headers.Add("Accept", "application/json");
-        var responseMessage = this
-            .HttpClient.SendAsync(requestMessage)
-            .GetAwaiter()
-            .GetResult();
-        var responseContent = responseMessage
-            .Content.ReadAsStringAsync()
-            .GetAwaiter()
-            .GetResult();
+        var responseMessage = await this.HttpClient.SendAsync(requestMessage);
+        var responseContent = await responseMessage.Content.ReadAsStringAsync();
         if (responseMessage.IsSuccessStatusCode)
         {
             return JsonConvert.DeserializeObject<OAuthDeviceCode>(responseContent);
@@ -81,7 +75,7 @@ public class AadOAuthContext(
         }
     }
 
-    public OAuthMessage? AcquireTokenByDeviceCode(string deviceCode)
+    public async Task<OAuthMessage?> AcquireTokenByDeviceCodeAsync(string deviceCode)
     {
         var tenantId = this.tenantIdResolver.Resolve();
         var requestUrl = new Uri(this.authority, UriKind.Absolute)
@@ -120,14 +114,8 @@ public class AadOAuthContext(
             )
         };
         requestMessage.Headers.Add("Accept", "application/json");
-        var responseMessage = this
-            .HttpClient.SendAsync(requestMessage)
-            .GetAwaiter()
-            .GetResult();
-        var responseContent = responseMessage
-            .Content.ReadAsStringAsync()
-            .GetAwaiter()
-            .GetResult();
+        var responseMessage = await this.HttpClient.SendAsync(requestMessage);
+        var responseContent = await responseMessage.Content.ReadAsStringAsync();
         if (responseMessage.IsSuccessStatusCode)
         {
             return JsonConvert.DeserializeObject<AadOAuthToken>(responseContent);
@@ -138,7 +126,7 @@ public class AadOAuthContext(
         }
     }
 
-    public OAuthMessage? AcquireTokenByRefreshToken(string refreshToken)
+    public async Task<OAuthMessage?> AcquireTokenByRefreshTokenAsync(string refreshToken)
     {
         var tenantId = this.tenantIdResolver.Resolve();
         var requestUrl = new Uri(this.authority, UriKind.Absolute)
@@ -177,14 +165,8 @@ public class AadOAuthContext(
             )
         };
         requestMessage.Headers.Add("Accept", "application/json");
-        var responseMessage = this
-            .HttpClient.SendAsync(requestMessage)
-            .GetAwaiter()
-            .GetResult();
-        var responseContent = responseMessage
-            .Content.ReadAsStringAsync()
-            .GetAwaiter()
-            .GetResult();
+        var responseMessage = await this.HttpClient.SendAsync(requestMessage);
+        var responseContent = await responseMessage.Content.ReadAsStringAsync();
         if (responseMessage.IsSuccessStatusCode)
         {
             return JsonConvert.DeserializeObject<AadOAuthToken>(responseContent);
@@ -195,7 +177,7 @@ public class AadOAuthContext(
         }
     }
 
-    public OAuthMessage? AcquireTokenByCertificate(BinaryData certData, SecureString certPassword)
+    public async Task<OAuthMessage?> AcquireTokenByCertificateAsync(BinaryData certData, SecureString certPassword)
     {
         var tenantId = this.tenantIdResolver.Resolve();
         var requestUrl = new Uri(this.authority, UriKind.Absolute)
@@ -235,14 +217,8 @@ public class AadOAuthContext(
             )
         };
         requestMessage.Headers.Add("Accept", "application/json");
-        var responseMessage = this
-            .HttpClient.SendAsync(requestMessage)
-            .GetAwaiter()
-            .GetResult();
-        var responseContent = responseMessage
-            .Content.ReadAsStringAsync()
-            .GetAwaiter()
-            .GetResult();
+        var responseMessage = await this.HttpClient.SendAsync(requestMessage);
+        var responseContent = await responseMessage.Content.ReadAsStringAsync();
         if (responseMessage.IsSuccessStatusCode)
         {
             return JsonConvert.DeserializeObject<AadOAuthToken>(responseContent);
@@ -253,7 +229,7 @@ public class AadOAuthContext(
         }
     }
 
-    public OAuthMessage? AcquireTokenByCertificate(BinaryData certData, BinaryData keyData)
+    public async Task<OAuthMessage?> AcquireTokenByCertificateAsync(BinaryData certData, BinaryData keyData)
     {
         var tenantId = this.tenantIdResolver.Resolve();
         var requestUrl = new Uri(this.authority, UriKind.Absolute)
@@ -319,14 +295,8 @@ public class AadOAuthContext(
             )
         };
         requestMessage.Headers.Add("Accept", "application/json");
-        var responseMessage = this
-            .HttpClient.SendAsync(requestMessage)
-            .GetAwaiter()
-            .GetResult();
-        var responseContent = responseMessage
-            .Content.ReadAsStringAsync()
-            .GetAwaiter()
-            .GetResult();
+        var responseMessage = await this.HttpClient.SendAsync(requestMessage);
+        var responseContent = await responseMessage.Content.ReadAsStringAsync();
         if (responseMessage.IsSuccessStatusCode)
         {
             return JsonConvert.DeserializeObject<AadOAuthToken>(responseContent);

@@ -30,17 +30,17 @@ public class GetTenantPersonalSiteCommand : ClientObjectCmdlet<ITenantPersonalSi
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public string? UserId { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.User?.UserPrincipalName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.User));
-            this.Outputs.Add(this.Service.GetObject(this.User.UserPrincipalName));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.User.UserPrincipalName));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.UserId ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.UserId));
-            this.Outputs.Add(this.Service.GetObject(this.UserId));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.UserId));
         }
     }
 

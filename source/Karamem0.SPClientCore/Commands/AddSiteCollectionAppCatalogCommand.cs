@@ -28,24 +28,24 @@ public class AddSiteCollectionAppCatalogCommand : ClientObjectCmdlet<ISiteCollec
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
     public Uri? SiteCollectionUrl { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.SiteCollection?.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollection));
-            this.Service.AddObject(this.SiteCollection.Url);
+            await this.Service.AddObjectAsync(this.SiteCollection.Url);
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.TenantSiteCollection?.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.TenantSiteCollection));
-            this.Service.AddObject(this.TenantSiteCollection.Url);
+            await this.Service.AddObjectAsync(this.TenantSiteCollection.Url);
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             _ = this.SiteCollectionUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollectionUrl));
             if (this.SiteCollectionUrl.IsAbsoluteUri)
             {
-                this.Service.AddObject(this.SiteCollectionUrl);
+                await this.Service.AddObjectAsync(this.SiteCollectionUrl);
             }
             else
             {

@@ -30,13 +30,13 @@ public class RemoveGroupMemberCommand : ClientObjectCmdlet<IGroupMemberService>
     [Parameter(Mandatory = true, Position = 1)]
     public User? Member { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Member ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Member));
         _ = this.Group ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Group));
         if (this.ShouldProcess(this.Member.Title, VerbsCommon.Remove))
         {
-            this.Service.RemoveObject(this.Group, this.Member);
+            await this.Service.RemoveObjectAsync(this.Group, this.Member);
         }
     }
 

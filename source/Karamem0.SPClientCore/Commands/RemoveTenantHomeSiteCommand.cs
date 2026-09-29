@@ -23,13 +23,13 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class RemoveTenantHomeSiteCommand : ClientObjectCmdlet<ITenantHomeSiteService>
 {
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
-        var siteUrl = this.Service.GetObject();
+        var siteUrl = await this.Service.GetObjectAsync();
         _ = siteUrl ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
         if (this.ShouldProcess(siteUrl.ToString(), VerbsCommon.Remove))
         {
-            this.Service.RemoveObject();
+            await this.Service.RemoveObjectAsync();
         }
     }
 

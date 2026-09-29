@@ -36,13 +36,13 @@ public class AddListItemCommand : ClientObjectCmdlet<IListItemService>
     [Parameter(Mandatory = false)]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
         if (this.NoEnumerate)
         {
             this.Outputs.Add(
-                this.Service.AddObjectEnumerable(
+                await this.Service.AddObjectEnumerableAsync(
                     this.List,
                     this.Value.Select(value => value
                         .ToDictionary()
@@ -55,7 +55,7 @@ public class AddListItemCommand : ClientObjectCmdlet<IListItemService>
         else
         {
             this.Outputs.AddRange(
-                this.Service.AddObjectEnumerable(
+                await this.Service.AddObjectEnumerableAsync(
                     this.List,
                     this.Value.Select(value => value
                         .ToDictionary()

@@ -50,28 +50,28 @@ public class GetSubscriptionCommand : ClientObjectCmdlet<ISubscriptionService>
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.Identity, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
-            this.Outputs.Add(this.Service.GetObject(this.List, this.SubscriptionId));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.List, this.SubscriptionId));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.List));
+                this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.List));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.List));
+                this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.List));
             }
         }
     }

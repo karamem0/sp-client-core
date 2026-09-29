@@ -21,10 +21,10 @@ public class GetTenantSiteScriptFromListCommand : ClientObjectCmdlet<ITenantSite
     [Parameter(Mandatory = true)]
     public Uri? ListUrl { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         this.Outputs.Add(
-            this.Service.GetScriptFromList(this.ListUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListUrl)))
+            await this.Service.GetScriptFromListAsync(this.ListUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListUrl)))
         );
     }
 

@@ -24,15 +24,15 @@ public class SetTenantHomeSiteCommand : ClientObjectCmdlet<ITenantHomeSiteServic
     [Parameter(Mandatory = false)]
     public SwitchParameter PassThru { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Url));
         if (this.Url.IsAbsoluteUri)
         {
-            this.Service.SetObject(this.Url);
+            await this.Service.SetObjectAsync(this.Url);
             if (this.PassThru)
             {
-                this.Outputs.Add(this.Service.GetObject());
+                this.Outputs.Add(await this.Service.GetObjectAsync());
             }
         }
         else

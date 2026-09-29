@@ -24,9 +24,9 @@ public class AadOAuthTokenProvider(
 
     private AadOAuthToken oAuthToken = oAuthToken;
 
-    public override string? CurrentAceessToken => this.oAuthToken.AccessToken;
+    public override string? CurrentAccessToken => this.oAuthToken.AccessToken;
 
-    public override string? GetAccessToken()
+    public override async Task<string?> GetAccessTokenAsync()
     {
         var jwtToken = new JsonWebToken(this.oAuthToken.AccessToken);
         var jwtExpireIn = jwtToken.GetPayloadValue<double>("exp");
@@ -37,7 +37,7 @@ public class AadOAuthTokenProvider(
             {
                 throw new InvalidOperationException(StringResources.ErrorAccessTokenExpired);
             }
-            var oAuthMessage = this.oAuthContext.AcquireTokenByRefreshToken(this.oAuthToken.RefreshToken);
+            var oAuthMessage = await this.oAuthContext.AcquireTokenByRefreshTokenAsync(this.oAuthToken.RefreshToken);
             if (oAuthMessage is AadOAuthToken oAuthToken)
             {
                 this.oAuthToken = oAuthToken;

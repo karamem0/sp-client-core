@@ -15,28 +15,28 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IApprovalStatusService
 {
 
-    void ApproveObject(File fileObject, string? comment);
+    Task ApproveObjectAsync(File fileObject, string? comment);
 
-    void ApproveObject(Folder folderObject, string? comment);
+    Task ApproveObjectAsync(Folder folderObject, string? comment);
 
-    void ApproveObject(ListItem listItemObject, string? comment);
+    Task ApproveObjectAsync(ListItem listItemObject, string? comment);
 
-    void DenyObject(File fileObject, string? comment);
+    Task DenyObjectAsync(File fileObject, string? comment);
 
-    void DenyObject(Folder folderObject, string? comment);
+    Task DenyObjectAsync(Folder folderObject, string? comment);
 
-    void DenyObject(ListItem listItemObject, string? comment);
+    Task DenyObjectAsync(ListItem listItemObject, string? comment);
 
-    void SuspendObject(Folder folderObject, string? comment);
+    Task SuspendObjectAsync(Folder folderObject, string? comment);
 
-    void SuspendObject(ListItem listItemObject, string? comment);
+    Task SuspendObjectAsync(ListItem listItemObject, string? comment);
 
 }
 
 public class ApprovalStatusService(ClientContext clientContext) : ClientService(clientContext), IApprovalStatusService
 {
 
-    public void ApproveObject(File fileObject, string? comment)
+    public async Task ApproveObjectAsync(File fileObject, string? comment)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
@@ -47,10 +47,10 @@ public class ApprovalStatusService(ClientContext clientContext) : ClientService(
                 requestPayload.CreateParameter(comment)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void ApproveObject(Folder folderObject, string? comment)
+    public async Task ApproveObjectAsync(Folder folderObject, string? comment)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(folderObject.ObjectIdentity));
@@ -70,10 +70,10 @@ public class ApprovalStatusService(ClientContext clientContext) : ClientService(
             ),
             objectPathId => ClientActionMethod.Create(objectPathId, "Update")
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void ApproveObject(ListItem listItemObject, string? comment)
+    public async Task ApproveObjectAsync(ListItem listItemObject, string? comment)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
@@ -92,10 +92,10 @@ public class ApprovalStatusService(ClientContext clientContext) : ClientService(
             ),
             objectPathId => ClientActionMethod.Create(objectPathId, "Update")
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void DenyObject(File fileObject, string? comment)
+    public async Task DenyObjectAsync(File fileObject, string? comment)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
@@ -106,10 +106,10 @@ public class ApprovalStatusService(ClientContext clientContext) : ClientService(
                 requestPayload.CreateParameter(comment)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void DenyObject(Folder folderObject, string? comment)
+    public async Task DenyObjectAsync(Folder folderObject, string? comment)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(folderObject.ObjectIdentity));
@@ -129,10 +129,10 @@ public class ApprovalStatusService(ClientContext clientContext) : ClientService(
             ),
             objectPathId => ClientActionMethod.Create(objectPathId, "Update")
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void DenyObject(ListItem listItemObject, string? comment)
+    public async Task DenyObjectAsync(ListItem listItemObject, string? comment)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
@@ -151,10 +151,10 @@ public class ApprovalStatusService(ClientContext clientContext) : ClientService(
             ),
             objectPathId => ClientActionMethod.Create(objectPathId, "Update")
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void SuspendObject(Folder folderObject, string? comment)
+    public async Task SuspendObjectAsync(Folder folderObject, string? comment)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(folderObject.ObjectIdentity));
@@ -174,10 +174,10 @@ public class ApprovalStatusService(ClientContext clientContext) : ClientService(
             ),
             objectPathId => ClientActionMethod.Create(objectPathId, "Update")
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void SuspendObject(ListItem listItemObject, string? comment)
+    public async Task SuspendObjectAsync(ListItem listItemObject, string? comment)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
@@ -196,7 +196,7 @@ public class ApprovalStatusService(ClientContext clientContext) : ClientService(
             ),
             objectPathId => ClientActionMethod.Create(objectPathId, "Update")
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

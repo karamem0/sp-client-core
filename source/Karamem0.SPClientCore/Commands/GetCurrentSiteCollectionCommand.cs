@@ -18,9 +18,9 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetCurrentSiteCollectionCommand : ClientObjectCmdlet<ISiteCollectionService>
 {
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
-        this.Outputs.Add(this.Service.GetObject());
+        this.Outputs.Add(await this.Service.GetObjectAsync());
     }
 
 }

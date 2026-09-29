@@ -28,7 +28,7 @@ public class AddTermGroupCommand : ClientObjectCmdlet<ITermGroupService>
     [Parameter(Mandatory = false)]
     public SwitchParameter SelectAllProperties { get; private set; } = true;
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.Id == default)
         {
@@ -36,7 +36,7 @@ public class AddTermGroupCommand : ClientObjectCmdlet<ITermGroupService>
         }
         _ = this.Name ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Name));
         this.Outputs.Add(
-            this.Service.AddObject(
+            await this.Service.AddObjectAsync(
                 this.Name,
                 this.Id,
                 this.SelectAllProperties

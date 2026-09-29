@@ -15,13 +15,13 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITermService
 {
 
-    Term? CopyObject(
+    Task<Term?> CopyObjectAsync(
         Term termObject,
         bool copyChildren,
         bool selectAllProperties = true
     );
 
-    Term? AddObject(
+    Task<Term?> AddObjectAsync(
         TermSetItem termSetItemObject,
         string termName,
         Guid termId,
@@ -29,42 +29,42 @@ public interface ITermService
         bool selectAllProperties = true
     );
 
-    void DeprecateObject(Term termObject, bool deprecated);
+    Task DeprecateObjectAsync(Term termObject, bool deprecated);
 
-    Term? GetObject(Term termObject);
+    Task<Term?> GetObjectAsync(Term termObject);
 
-    Term? GetObject(Term termObject, bool selectAllProperties = true);
+    Task<Term?> GetObjectAsync(Term termObject, bool selectAllProperties = true);
 
-    Term? GetObject(TermLabel termLabelObject, bool selectAllProperties = true);
+    Task<Term?> GetObjectAsync(TermLabel termLabelObject, bool selectAllProperties = true);
 
-    Term? GetObject(
+    Task<Term?> GetObjectAsync(
         TermSetItem termSetItemObject,
         Guid termId,
         bool selectAllProperties = true
     );
 
-    Term? GetObject(
+    Task<Term?> GetObjectAsync(
         TermSetItem termSetItemObject,
         string termName,
         bool selectAllProperties = true
     );
 
-    IEnumerable<Term>? GetObjectEnumerable(TermSetItem termSetItemObject, bool selectAllProperties = true);
+    Task<IEnumerable<Term>?> GetObjectEnumerableAsync(TermSetItem termSetItemObject, bool selectAllProperties = true);
 
-    void MergeObject(Term sourceTermObject, TermSetItem destinationTermObject);
+    Task MergeObjectAsync(Term sourceTermObject, TermSetItem destinationTermObject);
 
-    void MoveObject(Term termObject, TermSetItem termSetItemObject);
+    Task MoveObjectAsync(Term termObject, TermSetItem termSetItemObject);
 
-    void RemoveObject(Term termObject);
+    Task RemoveObjectAsync(Term termObject);
 
-    void SetObject(Term termObject, IReadOnlyDictionary<string, object?> modificationInfo);
+    Task SetObjectAsync(Term termObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class TermService(ClientContext clientContext) : ClientService<Term>(clientContext), ITermService
 {
 
-    public Term? CopyObject(
+    public async Task<Term?> CopyObjectAsync(
         Term termObject,
         bool copyChildren,
         bool selectAllProperties = true
@@ -81,12 +81,12 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Term)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Term>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Term>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public Term? AddObject(
+    public async Task<Term?> AddObjectAsync(
         TermSetItem termSetItemObject,
         string termName,
         Guid termId,
@@ -107,12 +107,12 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Term)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Term>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Term>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void DeprecateObject(Term termObject, bool deprecated)
+    public async Task DeprecateObjectAsync(Term termObject, bool deprecated)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(termObject.ObjectIdentity));
@@ -124,10 +124,10 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
                 requestPayload.CreateParameter(deprecated)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public Term? GetObject(TermLabel termLabelObject, bool selectAllProperties = true)
+    public async Task<Term?> GetObjectAsync(TermLabel termLabelObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(termLabelObject.ObjectIdentity));
@@ -136,12 +136,12 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Term)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Term>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Term>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public Term? GetObject(
+    public async Task<Term?> GetObjectAsync(
         TermSetItem termSetItemObject,
         Guid termId,
         bool selectAllProperties = true
@@ -159,12 +159,12 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Term)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Term>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Term>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public Term? GetObject(
+    public async Task<Term?> GetObjectAsync(
         TermSetItem termSetItemObject,
         string termName,
         bool selectAllProperties = true
@@ -182,12 +182,12 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TermSetItem)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Term>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Term>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<Term>? GetObjectEnumerable(TermSetItem termSetItemObject, bool selectAllProperties = true)
+    public async Task<IEnumerable<Term>?> GetObjectEnumerableAsync(TermSetItem termSetItemObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(termSetItemObject.ObjectIdentity));
@@ -200,12 +200,12 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
                 ClientQuery.Create(selectAllProperties, typeof(Term))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TermEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TermEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void MergeObject(Term sourceTermObject, TermSetItem destinationTermObject)
+    public async Task MergeObjectAsync(Term sourceTermObject, TermSetItem destinationTermObject)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(sourceTermObject.ObjectIdentity));
@@ -217,10 +217,10 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
                 requestPayload.CreateParameter(destinationTermObject)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void MoveObject(Term termObject, TermSetItem termSetItemObject)
+    public async Task MoveObjectAsync(Term termObject, TermSetItem termSetItemObject)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(termObject.ObjectIdentity));
@@ -232,17 +232,17 @@ public class TermService(ClientContext clientContext) : ClientService<Term>(clie
                 requestPayload.CreateParameter(termSetItemObject)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public override void SetObject(Term termObject, IReadOnlyDictionary<string, object?> modificationInfo)
+    public override async Task SetObjectAsync(Term termObject, IReadOnlyDictionary<string, object?> modificationInfo)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(termObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(objectPath1, requestPayload.CreateSetPropertyDelegates(termObject, modificationInfo));
         var objectPath3 = requestPayload.Add(ObjectPathProperty.Create(objectPath2.Id, "TermStore"));
         var objectPath4 = requestPayload.Add(objectPath3, objectPathId => ClientActionMethod.Create(objectPathId, "CommitAll"));
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

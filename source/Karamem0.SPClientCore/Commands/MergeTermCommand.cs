@@ -29,11 +29,11 @@ public class MergeTermCommand : ClientObjectCmdlet<ITermService>
     [Parameter(Mandatory = true, Position = 1)]
     public Term? ToMerge { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
         _ = this.ToMerge ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ToMerge));
-        this.Service.MergeObject(this.Identity, this.ToMerge);
+        await this.Service.MergeObjectAsync(this.Identity, this.ToMerge);
     }
 
 }

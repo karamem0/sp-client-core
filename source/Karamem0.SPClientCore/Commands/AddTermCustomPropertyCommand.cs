@@ -41,14 +41,14 @@ public class AddTermCustomPropertyCommand : ClientObjectCmdlet<ITermCustomProper
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public string? Value { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.TermSet ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.TermSet));
             _ = this.Name ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Name));
             _ = this.Value ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Value));
-            this.Service.AddObject(
+            await this.Service.AddObjectAsync(
                 this.TermSet,
                 this.Name,
                 this.Value
@@ -59,7 +59,7 @@ public class AddTermCustomPropertyCommand : ClientObjectCmdlet<ITermCustomProper
             _ = this.Term ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Term));
             _ = this.Name ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Name));
             _ = this.Value ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Value));
-            this.Service.AddObject(
+            await this.Service.AddObjectAsync(
                 this.Term,
                 this.Name,
                 this.Value

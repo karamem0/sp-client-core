@@ -28,13 +28,13 @@ public class GetSharingSettingsCommand : ClientObjectCmdlet<ISharingLinkService>
     [Parameter(Mandatory = false)]
     public bool UseSimplifiedRoles { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Url));
         if (this.Url.IsAbsoluteUri)
         {
             this.Outputs.Add(
-                this.Service.GetSharingSettings(
+                await this.Service.GetSharingSettingsAsync(
                     this.Url,
                     this.GroupId,
                     this.UseSimplifiedRoles

@@ -15,15 +15,15 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IDocumentSetWelcomePageColumnService
 {
 
-    void AddObject(
+    Task AddObjectAsync(
         ContentType contentTypeObject,
         Column columnObject,
         bool pushChanges
     );
 
-    IEnumerable<Column>? GetObjectEnumerable(ContentType contentTypeObject, bool selectAllProperties = true);
+    Task<IEnumerable<Column>?> GetObjectEnumerableAsync(ContentType contentTypeObject, bool selectAllProperties = true);
 
-    void RemoveObject(
+    Task RemoveObjectAsync(
         ContentType contentTypeObject,
         Column columnObject,
         bool pushChanges
@@ -34,7 +34,7 @@ public interface IDocumentSetWelcomePageColumnService
 public class DocumentSetWelcomePageColumnService(ClientContext clientContext) : ClientService(clientContext), IDocumentSetWelcomePageColumnService
 {
 
-    public void AddObject(
+    public async Task AddObjectAsync(
         ContentType contentTypeObject,
         Column columnObject,
         bool pushChanges
@@ -67,10 +67,10 @@ public class DocumentSetWelcomePageColumnService(ClientContext clientContext) : 
                 requestPayload.CreateParameter(pushChanges)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public IEnumerable<Column>? GetObjectEnumerable(ContentType contentTypeObject, bool selectAllProperties = true)
+    public async Task<IEnumerable<Column>?> GetObjectEnumerableAsync(ContentType contentTypeObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(contentTypeObject.ObjectIdentity));
@@ -90,12 +90,12 @@ public class DocumentSetWelcomePageColumnService(ClientContext clientContext) : 
                 ClientQuery.Create(selectAllProperties, typeof(Column))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<WelcomePageColumnEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<WelcomePageColumnEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void RemoveObject(
+    public async Task RemoveObjectAsync(
         ContentType contentTypeObject,
         Column columnObject,
         bool pushChanges
@@ -127,7 +127,7 @@ public class DocumentSetWelcomePageColumnService(ClientContext clientContext) : 
                 requestPayload.CreateParameter(pushChanges)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

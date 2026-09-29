@@ -43,8 +43,8 @@ function Install-TestSite {
 
         $appSettings.LoginDomainName = $domainName
         $appSettings.ClientId = $ClientId
-        $appSettings.CertificatePath = $CertificatePath
-        $appSettings.PrivateKeyPath = $PrivateKeyPath
+        $appSettings.Certificate = [System.Convert]::ToBase64String([System.IO.File]::ReadAllBytes($CertificatePath))
+        $appSettings.PrivateKey = [System.Convert]::ToBase64String([System.IO.File]::ReadAllBytes($PrivateKeyPath))
         $appSettings.OwnerUserName = $OwnerUserName
         $appSettings.ExternalUserName = $ExternalUserName
         $appSettings.BaseUrl = $baseUrl
@@ -1571,13 +1571,13 @@ function Install-TestSite {
 
         Write-Progress -Activity 'Retrieving app paths...' -Status 'Processing'
         $app0Path = Resolve-Path "$PSScriptRoot/../TestApps/TestApp0.sppkg"
-        $appSettings.App0Path = $app0Path.ToString()
+        $appSettings.App0Path = "../../../TestApps/TestApp0.sppkg"
         $app1Path = Resolve-Path "$PSScriptRoot/../TestApps/TestApp1.sppkg"
-        $appSettings.App1Path = $app1Path.ToString()
+        $appSettings.App1Path = "../../../TestApps/TestApp1.sppkg"
         $app2Path = Resolve-Path "$PSScriptRoot/../TestApps/TestApp2.sppkg"
-        $appSettings.App2Path = $app2Path.ToString()
+        $appSettings.App2Path = "../../../TestApps/TestApp2.sppkg"
         $app3Path = Resolve-Path "$PSScriptRoot/../TestApps/TestApp3.sppkg"
-        $appSettings.App3Path = $app3Path.ToString()
+        $appSettings.App3Path = "../../../TestApps/TestApp3.sppkg"
 
         Write-Progress -Activity 'Creating tenant apps...' -Status 'Test App 1'
         $app1 = Add-KshApp `

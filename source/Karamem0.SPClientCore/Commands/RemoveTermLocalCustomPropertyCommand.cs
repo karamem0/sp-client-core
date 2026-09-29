@@ -30,13 +30,13 @@ public class RemoveTermLocalCustomPropertyCommand : ClientObjectCmdlet<ITermLoca
     [Parameter(Mandatory = true, Position = 1)]
     public string? Name { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Term ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Term));
         _ = this.Name ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Name));
         if (this.ShouldProcess(this.Name, VerbsCommon.Remove))
         {
-            this.Service.RemoveObject(this.Term, this.Name);
+            await this.Service.RemoveObjectAsync(this.Term, this.Name);
         }
     }
 

@@ -61,14 +61,14 @@ public class SetTenantSiteCollectionLockStatusCommand : ClientObjectCmdlet<ITena
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet4")]
     public SwitchParameter NoWait { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             this.ValidateSwitchParameter(nameof(this.Lock));
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Service.LockObjectAwait(this.Identity);
-            var siteCollectionObject = this.Service.GetObjectAwait(this.Identity);
+            await this.Service.LockObjectAwaitAsync(this.Identity);
+            var siteCollectionObject = await this.Service.GetObjectAwaitAsync(this.Identity);
             _ = siteCollectionObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
             if (this.PassThru)
             {
@@ -80,14 +80,14 @@ public class SetTenantSiteCollectionLockStatusCommand : ClientObjectCmdlet<ITena
             this.ValidateSwitchParameter(nameof(this.Lock));
             this.ValidateSwitchParameter(nameof(this.NoWait));
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            _ = this.Service.LockObject(this.Identity);
+            _ = await this.Service.LockObjectAsync(this.Identity);
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             this.ValidateSwitchParameter(nameof(this.Unlock));
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Service.UnlockObjectAwait(this.Identity);
-            var siteCollectionObject = this.Service.GetObjectAwait(this.Identity);
+            await this.Service.UnlockObjectAwaitAsync(this.Identity);
+            var siteCollectionObject = await this.Service.GetObjectAwaitAsync(this.Identity);
             _ = siteCollectionObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
             if (this.PassThru)
             {
@@ -99,7 +99,7 @@ public class SetTenantSiteCollectionLockStatusCommand : ClientObjectCmdlet<ITena
             this.ValidateSwitchParameter(nameof(this.Unlock));
             this.ValidateSwitchParameter(nameof(this.NoWait));
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            _ = this.Service.UnlockObject(this.Identity);
+            _ = await this.Service.UnlockObjectAsync(this.Identity);
         }
     }
 

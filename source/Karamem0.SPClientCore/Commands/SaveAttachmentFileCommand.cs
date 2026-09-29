@@ -35,19 +35,19 @@ public class SaveAttachmentFileCommand : ClientObjectCmdlet<IAttachmentFileServi
     [Parameter(Mandatory = true)]
     public SwitchParameter PassThru { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
         _ = this.FileName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.FileName));
         _ = this.Content ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Content));
-        this.Service.UploadObject(
+        await this.Service.UploadObjectAsync(
             this.ListItem,
             this.FileName,
             this.Content
         );
         if (this.PassThru)
         {
-            this.Outputs.Add(this.Service.GetObject(this.ListItem, this.FileName));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.ListItem, this.FileName));
         }
     }
 

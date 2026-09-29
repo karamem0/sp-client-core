@@ -15,18 +15,18 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IAppInstanceService
 {
 
-    AppInstance? GetObject(Guid appInstanceId, bool selectAllProperties = true);
+    Task<AppInstance?> GetObjectAsync(Guid appInstanceId, bool selectAllProperties = true);
 
-    IEnumerable<AppInstance>? GetObjectEnumerable(bool selectAllProperties = true);
+    Task<IEnumerable<AppInstance>?> GetObjectEnumerableAsync(bool selectAllProperties = true);
 
-    IEnumerable<AppInstance>? GetObjectEnumerable(Guid appProductId, bool selectAllProperties = true);
+    Task<IEnumerable<AppInstance>?> GetObjectEnumerableAsync(Guid appProductId, bool selectAllProperties = true);
 
 }
 
 public class AppInstanceService(ClientContext clientContext) : ClientService(clientContext), IAppInstanceService
 {
 
-    public AppInstance? GetObject(Guid appInstanceId, bool selectAllProperties = true)
+    public async Task<AppInstance?> GetObjectAsync(Guid appInstanceId, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -40,12 +40,12 @@ public class AppInstanceService(ClientContext clientContext) : ClientService(cli
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(AppInstance)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<AppInstance>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<AppInstance>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<AppInstance>? GetObjectEnumerable(bool selectAllProperties = true)
+    public async Task<IEnumerable<AppInstance>?> GetObjectEnumerableAsync(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -63,12 +63,12 @@ public class AppInstanceService(ClientContext clientContext) : ClientService(cli
                 ClientQuery.Create(selectAllProperties, typeof(AppInstance))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<AppInstanceEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<AppInstanceEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<AppInstance>? GetObjectEnumerable(Guid appProductId, bool selectAllProperties = true)
+    public async Task<IEnumerable<AppInstance>?> GetObjectEnumerableAsync(Guid appProductId, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -86,9 +86,9 @@ public class AppInstanceService(ClientContext clientContext) : ClientService(cli
                 ClientQuery.Create(selectAllProperties, typeof(AppInstance))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<AppInstanceEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<AppInstanceEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
 }

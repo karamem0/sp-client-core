@@ -15,28 +15,28 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IRoleDefinitionService
 {
 
-    RoleDefinition? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true);
+    Task<RoleDefinition?> AddObjectAsync(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true);
 
-    RoleDefinition? GetObject(RoleDefinition roleDefinitionObject);
+    Task<RoleDefinition?> GetObjectAsync(RoleDefinition roleDefinitionObject);
 
-    RoleDefinition? GetObject(RoleDefinition roleDefinitionObject, bool selectAllProperties = true);
+    Task<RoleDefinition?> GetObjectAsync(RoleDefinition roleDefinitionObject, bool selectAllProperties = true);
 
-    RoleDefinition? GetObject(int roleDefinitionId, bool selectAllProperties = true);
+    Task<RoleDefinition?> GetObjectAsync(int roleDefinitionId, bool selectAllProperties = true);
 
-    RoleDefinition? GetObject(string roleDefinitionName, bool selectAllProperties = true);
+    Task<RoleDefinition?> GetObjectAsync(string roleDefinitionName, bool selectAllProperties = true);
 
-    IEnumerable<RoleDefinition>? GetObjectEnumerable(bool selectAllProperties = true);
+    Task<IEnumerable<RoleDefinition>?> GetObjectEnumerableAsync(bool selectAllProperties = true);
 
-    void RemoveObject(RoleDefinition roleDefinitionObject);
+    Task RemoveObjectAsync(RoleDefinition roleDefinitionObject);
 
-    void SetObject(RoleDefinition roleDefinitionObject, IReadOnlyDictionary<string, object?> modificationInfo);
+    Task SetObjectAsync(RoleDefinition roleDefinitionObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class RoleDefinitionService(ClientContext clientContext) : ClientService<RoleDefinition>(clientContext), IRoleDefinitionService
 {
 
-    public RoleDefinition? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true)
+    public async Task<RoleDefinition?> AddObjectAsync(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -51,12 +51,12 @@ public class RoleDefinitionService(ClientContext clientContext) : ClientService<
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(RoleDefinition)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<RoleDefinition>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<RoleDefinition>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public RoleDefinition? GetObject(int roleDefinitionId, bool selectAllProperties = true)
+    public async Task<RoleDefinition?> GetObjectAsync(int roleDefinitionId, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -71,12 +71,12 @@ public class RoleDefinitionService(ClientContext clientContext) : ClientService<
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(RoleDefinition)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<RoleDefinition>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<RoleDefinition>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public RoleDefinition? GetObject(string roleDefinitionName, bool selectAllProperties = true)
+    public async Task<RoleDefinition?> GetObjectAsync(string roleDefinitionName, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -91,12 +91,12 @@ public class RoleDefinitionService(ClientContext clientContext) : ClientService<
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(RoleDefinition)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<RoleDefinition>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<RoleDefinition>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<RoleDefinition>? GetObjectEnumerable(bool selectAllProperties = true)
+    public async Task<IEnumerable<RoleDefinition>?> GetObjectEnumerableAsync(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -110,9 +110,9 @@ public class RoleDefinitionService(ClientContext clientContext) : ClientService<
                 ClientQuery.Create(selectAllProperties, typeof(RoleDefinition))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<RoleDefinitionEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<RoleDefinitionEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
 }

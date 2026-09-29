@@ -17,11 +17,11 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class TestTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantService>
 {
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         try
         {
-            var tenantObject = this.Service.GetObject();
+            var tenantObject = await this.Service.GetObjectAsync();
             if (tenantObject is null)
             {
                 this.Outputs.Add(false);

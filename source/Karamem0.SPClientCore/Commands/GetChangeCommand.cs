@@ -73,35 +73,35 @@ public class GetChangeCommand : ClientObjectCmdlet<ISiteCollectionService, ISite
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         var changeQuery = new ChangeQuery(this.MyInvocation.BoundParameters);
         if (this.ParameterSetName == "ParamSet1")
         {
             this.ValidateSwitchParameter(nameof(this.SiteCollection));
-            var siteCollectionObject = this.Service1.GetObject();
+            var siteCollectionObject = await this.Service1.GetObjectAsync();
             _ = siteCollectionObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service3.GetObjectEnumerable(siteCollectionObject, changeQuery));
+                this.Outputs.Add(await this.Service3.GetObjectEnumerableAsync(siteCollectionObject, changeQuery));
             }
             else
             {
-                this.Outputs.AddRange(this.Service3.GetObjectEnumerable(siteCollectionObject, changeQuery));
+                this.Outputs.AddRange(await this.Service3.GetObjectEnumerableAsync(siteCollectionObject, changeQuery));
             }
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             this.ValidateSwitchParameter(nameof(this.Site));
-            var siteObject = this.Service2.GetObject();
+            var siteObject = await this.Service2.GetObjectAsync();
             _ = siteObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service3.GetObjectEnumerable(siteObject, changeQuery));
+                this.Outputs.Add(await this.Service3.GetObjectEnumerableAsync(siteObject, changeQuery));
             }
             else
             {
-                this.Outputs.AddRange(this.Service3.GetObjectEnumerable(siteObject, changeQuery));
+                this.Outputs.AddRange(await this.Service3.GetObjectEnumerableAsync(siteObject, changeQuery));
             }
         }
         if (this.ParameterSetName == "ParamSet3")
@@ -109,7 +109,7 @@ public class GetChangeCommand : ClientObjectCmdlet<ISiteCollectionService, ISite
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(
-                    this.Service3.GetObjectEnumerable(
+                    await this.Service3.GetObjectEnumerableAsync(
                         this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List)),
                         changeQuery
                     )
@@ -118,7 +118,7 @@ public class GetChangeCommand : ClientObjectCmdlet<ISiteCollectionService, ISite
             else
             {
                 this.Outputs.AddRange(
-                    this.Service3.GetObjectEnumerable(
+                    await this.Service3.GetObjectEnumerableAsync(
                         this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List)),
                         changeQuery
                     )

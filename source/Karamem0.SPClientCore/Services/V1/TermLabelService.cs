@@ -10,14 +10,13 @@ using Karamem0.SharePoint.PowerShell.Models.V1;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.Services;
 using System.Text.RegularExpressions;
-using System.Threading;
 
 namespace Karamem0.SharePoint.PowerShell.Services.V1;
 
 public interface ITermLabelService
 {
 
-    TermLabel? AddObject(
+    Task<TermLabel?> AddObjectAsync(
         Term termObject,
         string name,
         uint lcid,
@@ -25,38 +24,38 @@ public interface ITermLabelService
         bool selectAllProperties = true
     );
 
-    TermLabel? GetObject(TermLabel termLabelObject);
+    Task<TermLabel?> GetObjectAsync(TermLabel termLabelObject);
 
-    TermLabel? GetObject(TermLabel termLabelObject, bool selectAllProperties = true);
+    Task<TermLabel?> GetObjectAsync(TermLabel termLabelObject, bool selectAllProperties = true);
 
-    TermLabel? GetObject(
+    Task<TermLabel?> GetObjectAsync(
         Term termObject,
         string name,
         bool selectAllProperties = true
     );
 
-    TermLabel? GetObject(
+    Task<TermLabel?> GetObjectAsync(
         Term termObject,
         string name,
         uint lcid
     );
 
-    IEnumerable<TermLabel>? GetObjectEnumerable(Term termObject, bool selectAllProperties = true);
+    Task<IEnumerable<TermLabel>?> GetObjectEnumerableAsync(Term termObject, bool selectAllProperties = true);
 
-    void RemoveObject(TermLabel termLabelObject);
+    Task RemoveObjectAsync(TermLabel termLabelObject);
 
-    void SetObjectAsDefault(TermLabel termLabelObject);
+    Task SetObjectAsDefaultAsync(TermLabel termLabelObject);
 
-    void SetObject(TermLabel termLabelObject, IReadOnlyDictionary<string, object?> modificationInfo);
+    Task SetObjectAsync(TermLabel termLabelObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
-    void SetObjectAwait(TermLabel termLabelObject, IReadOnlyDictionary<string, object?> modificationInfo);
+    Task SetObjectAwaitAsync(TermLabel termLabelObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class TermLabelService(ClientContext clientContext) : ClientService<TermLabel>(clientContext), ITermLabelService
 {
 
-    public TermLabel? AddObject(
+    public async Task<TermLabel?> AddObjectAsync(
         Term termObject,
         string name,
         uint lcid,
@@ -77,12 +76,12 @@ public class TermLabelService(ClientContext clientContext) : ClientService<TermL
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TermLabel)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TermLabel>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TermLabel>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public TermLabel? GetObject(
+    public async Task<TermLabel?> GetObjectAsync(
         Term termObject,
         string name,
         bool selectAllProperties = true
@@ -100,25 +99,25 @@ public class TermLabelService(ClientContext clientContext) : ClientService<TermL
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TermLabel)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TermLabel>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TermLabel>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public TermLabel? GetObject(
+    public async Task<TermLabel?> GetObjectAsync(
         Term termObject,
         string name,
         uint lcid
     )
     {
-        return this
-            .GetObjectEnumerable(termObject)
-            .Where(termLabelObject => termLabelObject.Name == name)
+        var termLabels = await this.GetObjectEnumerableAsync(termObject);
+        return termLabels
+            ?.Where(termLabelObject => termLabelObject.Name == name)
             .Where(termLabelObject => termLabelObject.Lcid == lcid)
             .SingleOrDefault();
     }
 
-    public IEnumerable<TermLabel>? GetObjectEnumerable(Term termObject, bool selectAllProperties = true)
+    public async Task<IEnumerable<TermLabel>?> GetObjectEnumerableAsync(Term termObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(termObject.ObjectIdentity));
@@ -131,12 +130,12 @@ public class TermLabelService(ClientContext clientContext) : ClientService<TermL
                 ClientQuery.Create(selectAllProperties, typeof(TermLabel))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TermLabelEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TermLabelEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public override void RemoveObject(TermLabel termLabelObject)
+    public override async Task RemoveObjectAsync(TermLabel termLabelObject)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(termLabelObject.ObjectIdentity));
@@ -144,10 +143,10 @@ public class TermLabelService(ClientContext clientContext) : ClientService<TermL
         var objectPath3 = requestPayload.Add(ObjectPathProperty.Create(objectPath2.Id, "Term"));
         var objectPath4 = requestPayload.Add(ObjectPathProperty.Create(objectPath3.Id, "TermStore"));
         var objectPath5 = requestPayload.Add(objectPath4, objectPathId => ClientActionMethod.Create(objectPathId, "CommitAll"));
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void SetObjectAsDefault(TermLabel termLabelObject)
+    public async Task SetObjectAsDefaultAsync(TermLabel termLabelObject)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(termLabelObject.ObjectIdentity));
@@ -155,12 +154,12 @@ public class TermLabelService(ClientContext clientContext) : ClientService<TermL
         var objectPath3 = requestPayload.Add(ObjectPathProperty.Create(objectPath2.Id, "Term"));
         var objectPath4 = requestPayload.Add(ObjectPathProperty.Create(objectPath3.Id, "TermStore"));
         var objectPath5 = requestPayload.Add(objectPath4, objectPathId => ClientActionMethod.Create(objectPathId, "CommitAll"));
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public override void SetObject(TermLabel termLabelObject, IReadOnlyDictionary<string, object?> modificationInfo)
+    public override async Task SetObjectAsync(TermLabel termLabelObject, IReadOnlyDictionary<string, object?> modificationInfo)
     {
-        this.SetObjectAwait(termLabelObject, modificationInfo);
+        await this.SetObjectAwaitAsync(termLabelObject, modificationInfo);
         var termLabelObjectIdentity = Regex.Replace(
             termLabelObject.ObjectIdentity,
             ";(.+);(.+);(.+)$",
@@ -174,11 +173,9 @@ public class TermLabelService(ClientContext clientContext) : ClientService<TermL
         {
             var requestPayload = new ClientRequestPayload();
             var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(termLabelObjectIdentity), ClientActionInstantiateObjectPath.Create);
-            if (this
-                .ClientContext.ProcessQuery(requestPayload)
-                .IsNull(requestPayload.GetActionId<ClientActionInstantiateObjectPath>()))
+            if ((await this.ClientContext.ProcessQueryAsync(requestPayload)).IsNull(requestPayload.GetActionId<ClientActionInstantiateObjectPath>()))
             {
-                Thread.Sleep(TimeSpan.FromSeconds(ClientConstants.WaitIntervalForTermLabelService));
+                await Task.Delay(TimeSpan.FromSeconds(ClientConstants.WaitIntervalForTermLabelService));
             }
             else
             {
@@ -187,7 +184,7 @@ public class TermLabelService(ClientContext clientContext) : ClientService<TermL
         }
     }
 
-    public void SetObjectAwait(TermLabel termLabelObject, IReadOnlyDictionary<string, object?> modificationInfo)
+    public async Task SetObjectAwaitAsync(TermLabel termLabelObject, IReadOnlyDictionary<string, object?> modificationInfo)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(termLabelObject.ObjectIdentity));
@@ -195,7 +192,7 @@ public class TermLabelService(ClientContext clientContext) : ClientService<TermL
         var objectPath3 = requestPayload.Add(ObjectPathProperty.Create(objectPath2.Id, "Term"));
         var objectPath4 = requestPayload.Add(ObjectPathProperty.Create(objectPath3.Id, "TermStore"));
         var objectPath5 = requestPayload.Add(objectPath4, objectPathId => ClientActionMethod.Create(objectPathId, "CommitAll"));
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

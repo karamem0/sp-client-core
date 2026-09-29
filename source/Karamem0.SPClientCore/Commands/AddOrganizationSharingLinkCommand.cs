@@ -24,12 +24,12 @@ public class AddOrganizationSharingLinkCommand : ClientObjectCmdlet<ISharingLink
     [Parameter(Mandatory = true)]
     public bool IsEditLink { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Url));
         if (this.Url.IsAbsoluteUri)
         {
-            this.Outputs.Add(this.Service.CreateOrganizationSharingLink(this.Url, this.IsEditLink));
+            this.Outputs.Add(await this.Service.CreateOrganizationSharingLinkAsync(this.Url, this.IsEditLink));
         }
         else
         {

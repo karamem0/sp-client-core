@@ -16,32 +16,33 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantExternalUserService
 {
 
-    IEnumerable<ExternalUser>? GetObjectEnumerable(
+    Task<IEnumerable<ExternalUser>?> GetObjectEnumerableAsync(
         string? filter,
         SortOrder sortOrder,
         bool selectAllProperties = true
     );
 
-    IEnumerable<ExternalUser>? GetObjectEnumerable(
+    Task<IEnumerable<ExternalUser>?> GetObjectEnumerableAsync(
         Uri siteCollectionUrl,
         string? filter,
         SortOrder sortOrder,
         bool selectAllProperties = true
     );
 
-    void RemoveObject(ExternalUser userObject);
+    Task RemoveObjectAsync(ExternalUser userObject);
 
 }
 
 public class TenantExternalUserService(ClientContext clientContext) : ClientService(clientContext), ITenantExternalUserService
 {
 
-    public IEnumerable<ExternalUser>? GetObjectEnumerable(
+    public async Task<IEnumerable<ExternalUser>?> GetObjectEnumerableAsync(
         string? filter,
         SortOrder sortOrder,
         bool selectAllProperties = true
     )
     {
+        var externalUsers = new List<ExternalUser>();
         var position = 0;
         var totalCount = 0;
         do
@@ -60,29 +61,31 @@ public class TenantExternalUserService(ClientContext clientContext) : ClientServ
                 ClientActionInstantiateObjectPath.Create,
                 objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(ExternalUserResult)))
             );
-            var resultObject = this
-                .ClientContext.ProcessQuery(requestPayload)
-                .ToObject<ExternalUserResult>(requestPayload.GetActionId<ClientActionQuery>());
+            var resultObject = await this
+                .ClientContext.ProcessQueryAsync(requestPayload)
+                .ContinueWith(task => task.Result.ToObject<ExternalUserResult>(requestPayload.GetActionId<ClientActionQuery>()));
             _ = resultObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
             if (resultObject.ExternalUsers is not null)
             {
                 foreach (var userObject in resultObject.ExternalUsers)
                 {
-                    yield return userObject;
+                    externalUsers.Add(userObject);
                 }
             }
             position = resultObject.Position;
             totalCount = resultObject.TotalCount;
         } while (position >= 0 && position < totalCount);
+        return externalUsers;
     }
 
-    public IEnumerable<ExternalUser>? GetObjectEnumerable(
+    public async Task<IEnumerable<ExternalUser>?> GetObjectEnumerableAsync(
         Uri siteCollectionUrl,
         string? filter,
         SortOrder sortOrder,
         bool selectAllProperties = true
     )
     {
+        var externalUsers = new List<ExternalUser>();
         var position = 0;
         var totalCount = 0;
         do
@@ -102,23 +105,24 @@ public class TenantExternalUserService(ClientContext clientContext) : ClientServ
                 ClientActionInstantiateObjectPath.Create,
                 objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(ExternalUserResult)))
             );
-            var resultObject = this
-                .ClientContext.ProcessQuery(requestPayload)
-                .ToObject<ExternalUserResult>(requestPayload.GetActionId<ClientActionQuery>());
+            var resultObject = await this
+                .ClientContext.ProcessQueryAsync(requestPayload)
+                .ContinueWith(task => task.Result.ToObject<ExternalUserResult>(requestPayload.GetActionId<ClientActionQuery>()));
             _ = resultObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
             if (resultObject.ExternalUsers is not null)
             {
                 foreach (var userObject in resultObject.ExternalUsers)
                 {
-                    yield return userObject;
+                    externalUsers.Add(userObject);
                 }
             }
             position = resultObject.Position;
             totalCount = resultObject.TotalCount;
         } while (position >= 0 && position < totalCount);
+        return externalUsers;
     }
 
-    public void RemoveObject(ExternalUser userObject)
+    public async Task RemoveObjectAsync(ExternalUser userObject)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Office365Tenant)));
@@ -135,7 +139,7 @@ public class TenantExternalUserService(ClientContext clientContext) : ClientServ
                 )
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

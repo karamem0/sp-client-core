@@ -20,9 +20,9 @@ public class SetNavigationCommand : ClientObjectCmdlet<INavigationService>
     [Parameter(Mandatory = false)]
     public bool UseShared { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
-        this.Service.SetObject(this.MyInvocation.BoundParameters);
+        await this.Service.SetObjectAsync(this.MyInvocation.BoundParameters);
     }
 
 }

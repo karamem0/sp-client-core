@@ -33,13 +33,13 @@ public class RemoveDocumentSetWelcomePageColumnCommand : ClientObjectCmdlet<IDoc
     [Parameter(Mandatory = false)]
     public SwitchParameter PushChanges { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Column ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Column));
         _ = this.ContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentType));
         if (this.ShouldProcess(this.Column.Name, VerbsCommon.Remove))
         {
-            this.Service.RemoveObject(
+            await this.Service.RemoveObjectAsync(
                 this.ContentType,
                 this.Column,
                 this.PushChanges

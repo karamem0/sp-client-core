@@ -26,10 +26,10 @@ public class OpenAttachmentFileCommand : ClientObjectCmdlet<IAttachmentFileServi
     )]
     public AttachmentFile? Identity { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-        this.Outputs.Add(this.Service.DownloadObject(this.Identity));
+        this.Outputs.Add(await this.Service.DownloadObjectAsync(this.Identity));
     }
 
 }

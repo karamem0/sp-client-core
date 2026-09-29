@@ -28,7 +28,7 @@ public class DisconnectSiteCommand : ClientObjectCmdlet
     )]
     public Uri? Url { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.Url is null)
         {

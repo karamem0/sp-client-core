@@ -38,13 +38,13 @@ public class SetFolderCommand : ClientObjectCmdlet<IFolderService>
     [Parameter(Mandatory = false)]
     public SwitchParameter SelectAllProperties { get; private set; } = true;
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-        this.Service.SetObject(this.Identity, this.MyInvocation.BoundParameters);
+        await this.Service.SetObjectAsync(this.Identity, this.MyInvocation.BoundParameters);
         if (this.PassThru)
         {
-            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.Identity, this.SelectAllProperties));
         }
     }
 

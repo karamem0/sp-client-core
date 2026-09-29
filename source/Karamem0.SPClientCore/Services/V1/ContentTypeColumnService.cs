@@ -16,34 +16,34 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IContentTypeColumnService
 {
 
-    ContentTypeColumn? AddObject(
+    Task<ContentTypeColumn?> AddObjectAsync(
         ContentType contentTypeObject,
         IReadOnlyDictionary<string, object?> creationInfo,
         bool pushChanges,
         bool selectAllProperties = true
     );
 
-    ContentTypeColumn? GetObject(ContentTypeColumn contentTypeColumnObject);
+    Task<ContentTypeColumn?> GetObjectAsync(ContentTypeColumn contentTypeColumnObject);
 
-    ContentTypeColumn? GetObject(ContentTypeColumn contentTypeColumnObject, bool selectAllProperties = true);
+    Task<ContentTypeColumn?> GetObjectAsync(ContentTypeColumn contentTypeColumnObject, bool selectAllProperties = true);
 
-    ContentTypeColumn? GetObject(
+    Task<ContentTypeColumn?> GetObjectAsync(
         ContentType contentTypeObject,
         Guid? columnId,
         bool selectAllProperties = true
     );
 
-    IEnumerable<ContentTypeColumn>? GetObjectEnumerable(ContentType contentTypeObject, bool selectAllProperties = true);
+    Task<IEnumerable<ContentTypeColumn>?> GetObjectEnumerableAsync(ContentType contentTypeObject, bool selectAllProperties = true);
 
-    void RemoveObject(ContentTypeColumn contentTypeColumnObject, bool pushChanges);
+    Task RemoveObjectAsync(ContentTypeColumn contentTypeColumnObject, bool pushChanges);
 
-    void ReorderObject(
+    Task ReorderObjectAsync(
         ContentType contentTypeObject,
         IEnumerable<string> contentTypeColumnNames,
         bool pushChanges
     );
 
-    void SetObject(
+    Task SetObjectAsync(
         ContentTypeColumn contentTypeColumnObject,
         IReadOnlyDictionary<string, object?> modificationInfo,
         bool pushChanges
@@ -54,7 +54,7 @@ public interface IContentTypeColumnService
 public class ContentTypeColumnService(ClientContext clientContext) : ClientService<ContentTypeColumn>(clientContext), IContentTypeColumnService
 {
 
-    public ContentTypeColumn? AddObject(
+    public async Task<ContentTypeColumn?> AddObjectAsync(
         ContentType contentTypeObject,
         IReadOnlyDictionary<string, object?> creationInfo,
         bool pushChanges,
@@ -81,12 +81,12 @@ public class ContentTypeColumnService(ClientContext clientContext) : ClientServi
                 requestPayload.CreateParameter(pushChanges)
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ContentTypeColumn>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ContentTypeColumn>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public ContentTypeColumn? GetObject(
+    public async Task<ContentTypeColumn?> GetObjectAsync(
         ContentType contentTypeObject,
         Guid? columnId,
         bool selectAllProperties = true
@@ -104,12 +104,12 @@ public class ContentTypeColumnService(ClientContext clientContext) : ClientServi
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(ContentTypeColumn)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ContentTypeColumn>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ContentTypeColumn>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<ContentTypeColumn>? GetObjectEnumerable(ContentType contentTypeObject, bool selectAllProperties = true)
+    public async Task<IEnumerable<ContentTypeColumn>?> GetObjectEnumerableAsync(ContentType contentTypeObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(contentTypeObject.ObjectIdentity));
@@ -122,12 +122,12 @@ public class ContentTypeColumnService(ClientContext clientContext) : ClientServi
                 ClientQuery.Create(selectAllProperties, typeof(ContentTypeColumn))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ContentTypeColumnEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ContentTypeColumnEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void RemoveObject(ContentTypeColumn contentTypeColumnObject, bool pushChanges)
+    public async Task RemoveObjectAsync(ContentTypeColumn contentTypeColumnObject, bool pushChanges)
     {
         var objectIdentity = contentTypeColumnObject.ObjectIdentity;
         _ = objectIdentity ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
@@ -152,10 +152,10 @@ public class ContentTypeColumnService(ClientContext clientContext) : ClientServi
                 requestPayload.CreateParameter(pushChanges)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void ReorderObject(
+    public async Task ReorderObjectAsync(
         ContentType contentTypeObject,
         IEnumerable<string> contentTypeColumnNames,
         bool pushChanges
@@ -180,10 +180,10 @@ public class ContentTypeColumnService(ClientContext clientContext) : ClientServi
                 requestPayload.CreateParameter(pushChanges)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void SetObject(
+    public async Task SetObjectAsync(
         ContentTypeColumn contentTypeColumnObject,
         IReadOnlyDictionary<string, object?> modificationInfo,
         bool pushChanges
@@ -212,7 +212,7 @@ public class ContentTypeColumnService(ClientContext clientContext) : ClientServi
                 requestPayload.CreateParameter(pushChanges)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

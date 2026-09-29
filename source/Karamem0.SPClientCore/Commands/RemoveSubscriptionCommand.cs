@@ -31,12 +31,12 @@ public class RemoveSubscriptionCommand : ClientObjectCmdlet<ISubscriptionService
     )]
     public Subscription? Identity { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Identity?.NotificationUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
         if (this.ShouldProcess(this.Identity.NotificationUrl.ToString(), VerbsCommon.Remove))
         {
-            this.Service.RemoveObject(this.Identity);
+            await this.Service.RemoveObjectAsync(this.Identity);
         }
     }
 

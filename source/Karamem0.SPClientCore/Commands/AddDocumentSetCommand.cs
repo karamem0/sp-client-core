@@ -28,13 +28,13 @@ public class AddDocumentSetCommand : ClientObjectCmdlet<IDocumentSetService>
     [Parameter(Mandatory = true)]
     public ContentType? ContentType { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Folder ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Folder));
         _ = this.Name ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Name));
         _ = this.ContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentType));
         this.Outputs.Add(
-            this.Service.AddObject(
+            await this.Service.AddObjectAsync(
                 this.Folder,
                 this.Name,
                 this.ContentType

@@ -29,10 +29,10 @@ public class SelectSiteCommand : ClientObjectCmdlet<ISiteService>
     [Parameter(Mandatory = false)]
     public SwitchParameter PassThru { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-        this.Service.SelectObject(this.Identity);
+        await this.Service.SelectObjectAsync(this.Identity);
         if (this.PassThru)
         {
             this.Outputs.Add(this.Identity);

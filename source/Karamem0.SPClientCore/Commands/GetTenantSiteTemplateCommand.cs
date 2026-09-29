@@ -28,28 +28,28 @@ public class GetTenantSiteTemplateCommand : ClientObjectCmdlet<ITenantSiteTempla
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.Lcid, this.CompatibilityLevel));
+                this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.Lcid, this.CompatibilityLevel));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.Lcid, this.CompatibilityLevel));
+                this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.Lcid, this.CompatibilityLevel));
             }
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable());
+                this.Outputs.Add(await this.Service.GetObjectEnumerableAsync());
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable());
+                this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync());
             }
         }
     }

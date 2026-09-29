@@ -29,10 +29,10 @@ public class GetTermDescriptionCommand : ClientObjectCmdlet<ITermDescriptionServ
     [Parameter(Mandatory = true)]
     public uint Lcid { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-        this.Outputs.Add(this.Service.GetObject(this.Identity, this.Lcid));
+        this.Outputs.Add(await this.Service.GetObjectAsync(this.Identity, this.Lcid));
     }
 
 }

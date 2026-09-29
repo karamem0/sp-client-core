@@ -32,14 +32,14 @@ public class RemoveAnonymousLinkCommand : ClientObjectCmdlet<ISharingLinkService
     [Parameter(Mandatory = true, Position = 2)]
     public bool RemoveAssociatedSharingLinkGroup { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Url));
         if (this.ShouldProcess(this.Url.ToString(), VerbsCommon.Remove))
         {
             if (this.Url.IsAbsoluteUri)
             {
-                this.Service.RemoveAnonymousLink(
+                await this.Service.RemoveAnonymousLinkAsync(
                     this.Url,
                     this.IsEditLink,
                     this.RemoveAssociatedSharingLinkGroup

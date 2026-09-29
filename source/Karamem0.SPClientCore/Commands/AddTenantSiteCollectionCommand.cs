@@ -69,19 +69,19 @@ public class AddTenantSiteCollectionCommand : ClientObjectCmdlet<ITenantSiteColl
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public SwitchParameter NoWait { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Url));
             var creationInfo = new Dictionary<string, object?>(this.MyInvocation.BoundParameters);
-            this.Service.AddObjectAwait(creationInfo);
-            this.Outputs.Add(this.Service.GetObjectAwait(this.Url, this.SelectAllProperties));
+            await this.Service.AddObjectAwaitAsync(creationInfo);
+            this.Outputs.Add(await this.Service.GetObjectAwaitAsync(this.Url, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             this.ValidateSwitchParameter(nameof(this.NoWait));
-            _ = this.Service.AddObject(this.MyInvocation.BoundParameters);
+            _ = await this.Service.AddObjectAsync(this.MyInvocation.BoundParameters);
         }
     }
 

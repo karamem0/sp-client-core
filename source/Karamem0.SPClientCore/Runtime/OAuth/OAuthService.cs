@@ -18,7 +18,7 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.OAuth;
 public interface IOAuthService
 {
 
-    void ConnectWithDeviceCode(
+    Task ConnectWithDeviceCodeAsync(
         Uri authority,
         string clientId,
         Uri resource,
@@ -26,7 +26,7 @@ public interface IOAuthService
         Action<string> callback
     );
 
-    void ConnectWithCertificate(
+    Task ConnectWithCertificateAsync(
         Uri authority,
         string clientId,
         Uri resource,
@@ -34,7 +34,7 @@ public interface IOAuthService
         SecureString certificatePassword
     );
 
-    void ConnectWithCertificate(
+    Task ConnectWithCertificateAsync(
         Uri authority,
         string clientId,
         Uri resource,
@@ -42,9 +42,9 @@ public interface IOAuthService
         BinaryData privateKey
     );
 
-    void ConnectWithCache(Uri authority, Uri resource);
+    Task ConnectWithCacheAsync(Uri authority, Uri resource);
 
-    void ConnectWithClientSecret(
+    Task ConnectWithClientSecretAsync(
         string clientId,
         SecureString clientSecret,
         Uri resource
@@ -55,7 +55,7 @@ public interface IOAuthService
 public class OAuthService : IOAuthService
 {
 
-    public void ConnectWithDeviceCode(
+    public async Task ConnectWithDeviceCodeAsync(
         Uri authority,
         string clientId,
         Uri resource,
@@ -72,7 +72,7 @@ public class OAuthService : IOAuthService
                 resource.GetAuthority(),
                 userMode
             );
-            var oAuthDeviceCodeMessage = oAuthContext.AcquireDeviceCode();
+            var oAuthDeviceCodeMessage = await oAuthContext.AcquireDeviceCodeAsync();
             if (oAuthDeviceCodeMessage is OAuthDeviceCode oAuthDeviceCode)
             {
                 _ = oAuthDeviceCode.Message ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
@@ -97,7 +97,7 @@ public class OAuthService : IOAuthService
                             }
                         }
                     }
-                    var oAuthTokenMessage = oAuthContext.AcquireTokenByDeviceCode(oAuthDeviceCode.DeviceCode);
+                    var oAuthTokenMessage = await oAuthContext.AcquireTokenByDeviceCodeAsync(oAuthDeviceCode.DeviceCode);
                     if (oAuthTokenMessage is AadOAuthToken oAuthToken)
                     {
                         AadOAuthTokenStore.Add(resource, oAuthToken);
@@ -137,7 +137,7 @@ public class OAuthService : IOAuthService
         }
     }
 
-    public void ConnectWithCertificate(
+    public async Task ConnectWithCertificateAsync(
         Uri authority,
         string clientId,
         Uri resource,
@@ -150,10 +150,9 @@ public class OAuthService : IOAuthService
             clientId,
             resource.GetAuthority()
         );
-        var oAuthMessage = oAuthContext.AcquireTokenByCertificate(certificate, certificatePassword);
+        var oAuthMessage = await oAuthContext.AcquireTokenByCertificateAsync(certificate, certificatePassword);
         if (oAuthMessage is AadOAuthToken oAuthToken)
         {
-            AadOAuthTokenStore.Add(resource, oAuthToken);
             ClientService.Register(
                 ClientContext.Create(
                     resource,
@@ -168,7 +167,7 @@ public class OAuthService : IOAuthService
         }
     }
 
-    public void ConnectWithCertificate(
+    public async Task ConnectWithCertificateAsync(
         Uri authority,
         string clientId,
         Uri resource,
@@ -181,10 +180,9 @@ public class OAuthService : IOAuthService
             clientId,
             resource.GetAuthority()
         );
-        var oAuthMessage = oAuthContext.AcquireTokenByCertificate(certificate, privateKey);
+        var oAuthMessage = await oAuthContext.AcquireTokenByCertificateAsync(certificate, privateKey);
         if (oAuthMessage is AadOAuthToken oAuthToken)
         {
-            AadOAuthTokenStore.Add(resource, oAuthToken);
             ClientService.Register(
                 ClientContext.Create(
                     resource,
@@ -199,7 +197,7 @@ public class OAuthService : IOAuthService
         }
     }
 
-    public void ConnectWithCache(Uri authority, Uri resource)
+    public async Task ConnectWithCacheAsync(Uri authority, Uri resource)
     {
         var oAuthToken = AadOAuthTokenStore.Get(resource);
         var jwtToken = new JsonWebToken(oAuthToken.AccessToken);
@@ -218,7 +216,7 @@ public class OAuthService : IOAuthService
         );
     }
 
-    public void ConnectWithClientSecret(
+    public async Task ConnectWithClientSecretAsync(
         string clientId,
         SecureString clientSecret,
         Uri resource
@@ -229,7 +227,7 @@ public class OAuthService : IOAuthService
             clientSecret,
             resource.GetAuthority()
         );
-        var oAuthMessage = oAuthContext.AcquireToken();
+        var oAuthMessage = await oAuthContext.AcquireTokenAsync();
         if (oAuthMessage is AcsOAuthToken oAuthToken)
         {
             ClientService.Register(

@@ -15,7 +15,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IDocumentSetService
 {
 
-    string? AddObject(
+    Task<string?> AddObjectAsync(
         Folder folderObject,
         string documentSetName,
         ContentType contentTypeObject
@@ -26,7 +26,7 @@ public interface IDocumentSetService
 public class DocumentSetService(ClientContext clientContext) : ClientService(clientContext), IDocumentSetService
 {
 
-    public string? AddObject(
+    public async Task<string?> AddObjectAsync(
         Folder folderObject,
         string documentSetName,
         ContentType contentTypeObject
@@ -42,9 +42,9 @@ public class DocumentSetService(ClientContext clientContext) : ClientService(cli
                 requestPayload.CreateParameter(contentTypeObject.Id)
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<string>(requestPayload.GetActionId<ClientActionStaticMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<string>(requestPayload.GetActionId<ClientActionStaticMethod>()));
     }
 
 }

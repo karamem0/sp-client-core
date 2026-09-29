@@ -24,17 +24,17 @@ public class GetTenantCdnEnabledCommand : ClientObjectCmdlet<ITenantCdnService>
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public SwitchParameter Private { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             this.ValidateSwitchParameter(nameof(this.Public));
-            this.Outputs.Add(this.Service.GetEnabled(TenantCdnType.Public));
+            this.Outputs.Add(await this.Service.GetEnabledAsync(TenantCdnType.Public));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             this.ValidateSwitchParameter(nameof(this.Private));
-            this.Outputs.Add(this.Service.GetEnabled(TenantCdnType.Private));
+            this.Outputs.Add(await this.Service.GetEnabledAsync(TenantCdnType.Private));
         }
     }
 

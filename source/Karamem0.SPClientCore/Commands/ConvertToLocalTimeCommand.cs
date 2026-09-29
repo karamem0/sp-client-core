@@ -24,9 +24,9 @@ public class ConvertToLocalTimeCommand : ClientObjectCmdlet<IRegionalSettingsSer
     )]
     public DateTime Value { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
-        this.Outputs.Add(this.Service.ConvertUniversalToLocal(this.Value));
+        this.Outputs.Add(await this.Service.ConvertUniversalToLocalAsync(this.Value));
     }
 
 }

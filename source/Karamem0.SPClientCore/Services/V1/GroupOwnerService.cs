@@ -15,16 +15,16 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IGroupOwnerService
 {
 
-    Principal? GetObject(Group groupObject);
+    Task<Principal?> GetObjectAsync(Group groupObject);
 
-    void SetObject(Group groupObject, Principal principalObject);
+    Task SetObjectAsync(Group groupObject, Principal principalObject);
 
 }
 
 public class GroupOwnerService(ClientContext clientContext) : ClientService(clientContext), IGroupOwnerService
 {
 
-    public Principal? GetObject(Group groupObject)
+    public async Task<Principal?> GetObjectAsync(Group groupObject)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(groupObject.ObjectIdentity));
@@ -33,12 +33,12 @@ public class GroupOwnerService(ClientContext clientContext) : ClientService(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(false, typeof(Principal)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Principal>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Principal>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void SetObject(Group groupObject, Principal principalObject)
+    public async Task SetObjectAsync(Group groupObject, Principal principalObject)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(groupObject.ObjectIdentity));
@@ -51,7 +51,7 @@ public class GroupOwnerService(ClientContext clientContext) : ClientService(clie
             ),
             objectPathId => ClientActionMethod.Create(objectPathId, "Update")
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

@@ -24,9 +24,9 @@ public class RemoveSupportedUILanguageCommand : ClientObjectCmdlet<IRegionalSett
     )]
     public uint Lcid { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
-        this.Service.RemoveSupportedUILanguage(this.Lcid);
+        await this.Service.RemoveSupportedUILanguageAsync(this.Lcid);
     }
 
 }

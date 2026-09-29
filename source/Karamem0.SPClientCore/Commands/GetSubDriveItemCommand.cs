@@ -39,18 +39,18 @@ public class GetSubDriveItemCommand : ClientObjectCmdlet<IDriveItemService>
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Drive ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Drive));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.Drive));
+                this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.Drive));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.Drive));
+                this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.Drive));
             }
         }
         if (this.ParameterSetName == "ParamSet2")
@@ -58,11 +58,11 @@ public class GetSubDriveItemCommand : ClientObjectCmdlet<IDriveItemService>
             _ = this.DriveItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.DriveItem));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.DriveItem));
+                this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.DriveItem));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.DriveItem));
+                this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.DriveItem));
             }
         }
     }

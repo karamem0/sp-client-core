@@ -15,21 +15,21 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantRootSiteService
 {
 
-    Uri? GetObject();
+    Task<Uri?> GetObjectAsync();
 
 }
 
 public class TenantRootSiteService(ClientContext clientContext) : ClientService(clientContext), ITenantRootSiteService
 {
 
-    public Uri? GetObject()
+    public async Task<Uri?> GetObjectAsync()
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(objectPath1, objectPathId => ClientActionMethod.Create(objectPathId, "GetRootSiteUrl"));
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Uri>(requestPayload.GetActionId<ClientActionMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Uri>(requestPayload.GetActionId<ClientActionMethod>()));
     }
 
 }

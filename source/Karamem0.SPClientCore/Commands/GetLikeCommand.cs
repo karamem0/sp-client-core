@@ -39,18 +39,18 @@ public class GetLikeCommand : ClientObjectCmdlet<ILikeService>
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Comment ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Comment));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.Comment));
+                this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.Comment));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.Comment));
+                this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.Comment));
             }
         }
         if (this.ParameterSetName == "ParamSet2")
@@ -58,11 +58,11 @@ public class GetLikeCommand : ClientObjectCmdlet<ILikeService>
             _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.ListItem));
+                this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.ListItem));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.ListItem));
+                this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.ListItem));
             }
         }
     }

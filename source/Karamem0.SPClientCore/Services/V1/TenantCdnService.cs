@@ -15,34 +15,34 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantCdnService
 {
 
-    void AddOrigin(TenantCdnType cdnType, string cdnOrigin);
+    Task AddOriginAsync(TenantCdnType cdnType, string cdnOrigin);
 
-    bool GetEnabled(TenantCdnType cdnType);
+    Task<bool> GetEnabledAsync(TenantCdnType cdnType);
 
-    IEnumerable<string>? GetOriginEnumerable(TenantCdnType cdnType);
+    Task<IEnumerable<string>?> GetOriginEnumerableAsync(TenantCdnType cdnType);
 
-    IEnumerable<string>? GetPolicyEnumerable(TenantCdnType cdnType);
+    Task<IEnumerable<string>?> GetPolicyEnumerableAsync(TenantCdnType cdnType);
 
-    void SetEnabled(
+    Task SetEnabledAsync(
         TenantCdnType cdnType,
         bool cdnEnabled,
         bool noDefaultOrigins
     );
 
-    void SetPolicy(
+    Task SetPolicyAsync(
         TenantCdnType cdnType,
         TenantCdnPolicyType cdnPolicyType,
         string cdnPolicyValue
     );
 
-    void RemoveOrigin(TenantCdnType cdnType, string cdnOrigin);
+    Task RemoveOriginAsync(TenantCdnType cdnType, string cdnOrigin);
 
 }
 
 public class TenantCdnService(ClientContext clientContext) : ClientService(clientContext), ITenantCdnService
 {
 
-    public void AddOrigin(TenantCdnType cdnType, string cdnOrigin)
+    public async Task AddOriginAsync(TenantCdnType cdnType, string cdnOrigin)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -55,10 +55,10 @@ public class TenantCdnService(ClientContext clientContext) : ClientService(clien
                 requestPayload.CreateParameter(cdnOrigin)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public bool GetEnabled(TenantCdnType cdnType)
+    public async Task<bool> GetEnabledAsync(TenantCdnType cdnType)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -70,12 +70,12 @@ public class TenantCdnService(ClientContext clientContext) : ClientService(clien
                 requestPayload.CreateParameter(cdnType)
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<bool>(requestPayload.GetActionId<ClientActionMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<bool>(requestPayload.GetActionId<ClientActionMethod>()));
     }
 
-    public IEnumerable<string>? GetOriginEnumerable(TenantCdnType cdnType)
+    public async Task<IEnumerable<string>?> GetOriginEnumerableAsync(TenantCdnType cdnType)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -87,12 +87,12 @@ public class TenantCdnService(ClientContext clientContext) : ClientService(clien
                 requestPayload.CreateParameter(cdnType)
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<IEnumerable<string>>(requestPayload.GetActionId<ClientActionMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<IEnumerable<string>>(requestPayload.GetActionId<ClientActionMethod>()));
     }
 
-    public IEnumerable<string>? GetPolicyEnumerable(TenantCdnType cdnType)
+    public async Task<IEnumerable<string>?> GetPolicyEnumerableAsync(TenantCdnType cdnType)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -104,12 +104,12 @@ public class TenantCdnService(ClientContext clientContext) : ClientService(clien
                 requestPayload.CreateParameter(cdnType)
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<IEnumerable<string>>(requestPayload.GetActionId<ClientActionMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<IEnumerable<string>>(requestPayload.GetActionId<ClientActionMethod>()));
     }
 
-    public void SetEnabled(
+    public async Task SetEnabledAsync(
         TenantCdnType cdnType,
         bool cdnEnabled,
         bool noDefaultOrigins
@@ -140,10 +140,10 @@ public class TenantCdnService(ClientContext clientContext) : ClientService(clien
                 )
             );
         }
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void SetPolicy(
+    public async Task SetPolicyAsync(
         TenantCdnType cdnType,
         TenantCdnPolicyType cdnPolicyType,
         string cdnPolicyValue
@@ -161,10 +161,10 @@ public class TenantCdnService(ClientContext clientContext) : ClientService(clien
                 requestPayload.CreateParameter(cdnPolicyValue)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void RemoveOrigin(TenantCdnType cdnType, string cdnOrigin)
+    public async Task RemoveOriginAsync(TenantCdnType cdnType, string cdnOrigin)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -177,7 +177,7 @@ public class TenantCdnService(ClientContext clientContext) : ClientService(clien
                 requestPayload.CreateParameter(cdnOrigin)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

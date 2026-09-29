@@ -33,13 +33,13 @@ public class RemoveDocumentSetDefaultDocumentCommand : ClientObjectCmdlet<IDocum
     [Parameter(Mandatory = false)]
     public SwitchParameter PushChanges { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ShouldProcess(this.FileName, VerbsCommon.Remove))
         {
             _ = this.ContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentType));
             _ = this.FileName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.FileName));
-            this.Service.RemoveObject(
+            await this.Service.RemoveObjectAsync(
                 this.ContentType,
                 this.FileName,
                 this.PushChanges

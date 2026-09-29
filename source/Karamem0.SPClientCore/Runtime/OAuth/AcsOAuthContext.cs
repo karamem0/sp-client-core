@@ -27,7 +27,7 @@ public class AcsOAuthContext(
 
     private readonly TenantIdResolver tenantIdResolver = new(new Uri(resource, UriKind.Absolute));
 
-    public OAuthMessage? AcquireToken()
+    public async Task<OAuthMessage?> AcquireTokenAsync()
     {
         var tenantId = this.tenantIdResolver.Resolve();
         var resourceId = new Uri(this.resource, UriKind.Absolute).Host;
@@ -59,14 +59,8 @@ public class AcsOAuthContext(
             )
         };
         requestMessage.Headers.Add("Accept", "application/json");
-        var responseMessage = this
-            .HttpClient.SendAsync(requestMessage)
-            .GetAwaiter()
-            .GetResult();
-        var responseContent = responseMessage
-            .Content.ReadAsStringAsync()
-            .GetAwaiter()
-            .GetResult();
+        var responseMessage = await this.HttpClient.SendAsync(requestMessage);
+        var responseContent = await responseMessage.Content.ReadAsStringAsync();
         if (responseMessage.IsSuccessStatusCode)
         {
             return JsonConvert.DeserializeObject<AcsOAuthToken>(responseContent);

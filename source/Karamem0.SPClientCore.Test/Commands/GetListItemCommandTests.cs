@@ -27,8 +27,8 @@ public class GetListItemCommandTests
             {
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
-                ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
+                ["Certificate"] = Convert.FromBase64String(context.AppSettings["Certificate"]),
+                ["PrivateKey"] = Convert.FromBase64String(context.AppSettings["PrivateKey"])
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
@@ -60,8 +60,8 @@ public class GetListItemCommandTests
             {
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
-                ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
+                ["Certificate"] = Convert.FromBase64String(context.AppSettings["Certificate"]),
+                ["PrivateKey"] = Convert.FromBase64String(context.AppSettings["PrivateKey"])
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
@@ -93,8 +93,8 @@ public class GetListItemCommandTests
             {
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
-                ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
+                ["Certificate"] = Convert.FromBase64String(context.AppSettings["Certificate"]),
+                ["PrivateKey"] = Convert.FromBase64String(context.AppSettings["PrivateKey"])
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
@@ -133,8 +133,8 @@ public class GetListItemCommandTests
             {
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
-                ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
+                ["Certificate"] = Convert.FromBase64String(context.AppSettings["Certificate"]),
+                ["PrivateKey"] = Convert.FromBase64String(context.AppSettings["PrivateKey"])
             }
         );
         var result1 = context.Runspace.InvokeCommand<Models.V1.Folder>(
@@ -165,8 +165,8 @@ public class GetListItemCommandTests
             {
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
-                ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
+                ["Certificate"] = Convert.FromBase64String(context.AppSettings["Certificate"]),
+                ["PrivateKey"] = Convert.FromBase64String(context.AppSettings["PrivateKey"])
             }
         );
         var result1 = context.Runspace.InvokeCommand<Models.V1.File>(
@@ -197,8 +197,8 @@ public class GetListItemCommandTests
             {
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
-                ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
+                ["Certificate"] = Convert.FromBase64String(context.AppSettings["Certificate"]),
+                ["PrivateKey"] = Convert.FromBase64String(context.AppSettings["PrivateKey"])
             }
         );
         var result1 = context.Runspace.InvokeCommand<Models.V1.File>(
@@ -243,8 +243,8 @@ public class GetListItemCommandTests
             {
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
-                ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
+                ["Certificate"] = Convert.FromBase64String(context.AppSettings["Certificate"]),
+                ["PrivateKey"] = Convert.FromBase64String(context.AppSettings["PrivateKey"])
             }
         );
         var result1 = context.Runspace.InvokeCommand<List>(
@@ -276,8 +276,8 @@ public class GetListItemCommandTests
             {
                 ["Url"] = context.AppSettings["AuthorityUrl"] + context.AppSettings["Site1Url"],
                 ["ClientId"] = context.AppSettings["ClientId"],
-                ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
+                ["Certificate"] = Convert.FromBase64String(context.AppSettings["Certificate"]),
+                ["PrivateKey"] = Convert.FromBase64String(context.AppSettings["PrivateKey"])
             }
         );
         var result1 = context.Runspace.InvokeCommand<ListItem>(

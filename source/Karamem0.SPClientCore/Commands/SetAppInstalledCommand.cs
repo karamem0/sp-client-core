@@ -35,20 +35,20 @@ public class SetAppInstalledCommand : ClientObjectCmdlet<IAppService>
     [Parameter(Mandatory = false)]
     public SwitchParameter PassThru { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
         if (this.Installed)
         {
-            this.Service.InstallObject(this.Identity, this.Tenant);
+            await this.Service.InstallObjectAsync(this.Identity, this.Tenant);
         }
         else
         {
-            this.Service.UninstallObject(this.Identity, this.Tenant);
+            await this.Service.UninstallObjectAsync(this.Identity, this.Tenant);
         }
         if (this.PassThru)
         {
-            this.Outputs.Add(this.Service.GetObject(this.Identity, this.Tenant));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.Identity, this.Tenant));
         }
     }
 

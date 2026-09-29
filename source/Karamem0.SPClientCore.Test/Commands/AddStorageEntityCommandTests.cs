@@ -24,10 +24,35 @@ public class AddStorageEntityTests
             "Connect-KshSite",
             new Dictionary<string, object>()
             {
+                ["Url"] = context.AppSettings["AdminUrl"],
+                ["ClientId"] = context.AppSettings["ClientId"],
+                ["Certificate"] = Convert.FromBase64String(context.AppSettings["Certificate"]),
+                ["PrivateKey"] = Convert.FromBase64String(context.AppSettings["PrivateKey"])
+            }
+        );
+        var result1 = context.Runspace.InvokeCommand<TenantSiteCollection>(
+            "Get-KshTenantSiteCollection",
+            new Dictionary<string, object>()
+            {
+                ["SiteCollectionUrl"] = context.AppSettings["TenantAppCatalogUrl"]
+            }
+        );
+        _ = context.Runspace.InvokeCommand<TenantSiteCollection>(
+            "Set-KshTenantSiteCollection",
+            new Dictionary<string, object>()
+            {
+                ["Identity"] = result1[0],
+                ["DenyAddAndCustomizePages"] = "Disabled"
+            }
+        );
+        _ = context.Runspace.InvokeCommand(
+            "Connect-KshSite",
+            new Dictionary<string, object>()
+            {
                 ["Url"] = context.AppSettings["TenantAppCatalogUrl"],
                 ["ClientId"] = context.AppSettings["ClientId"],
-                ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
+                ["Certificate"] = Convert.FromBase64String(context.AppSettings["Certificate"]),
+                ["PrivateKey"] = Convert.FromBase64String(context.AppSettings["PrivateKey"])
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -40,7 +65,7 @@ public class AddStorageEntityTests
                 ["Comment"] = "Test Value 0 Comment"
             }
         );
-        var result1 = context.Runspace.InvokeCommand<StorageEntity>(
+        var result3 = context.Runspace.InvokeCommand<StorageEntity>(
             "Get-KshStorageEntity",
             new Dictionary<string, object>()
             {
@@ -54,7 +79,7 @@ public class AddStorageEntityTests
                 ["Key"] = "Test Entity 0"
             }
         );
-        var actual = result1[0];
+        var actual = result3[0];
         Assert.That(actual, Is.Not.Null);
     }
 

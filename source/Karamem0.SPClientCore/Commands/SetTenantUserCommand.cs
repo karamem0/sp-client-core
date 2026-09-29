@@ -76,13 +76,13 @@ public class SetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
     [Parameter(Mandatory = false)]
     public SwitchParameter SelectAllProperties { get; private set; } = true;
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.SiteCollection?.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollection));
             _ = this.User?.LoginName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.User));
-            this.Service.SetObject(
+            await this.Service.SetObjectAsync(
                 this.SiteCollection.Url,
                 this.User,
                 this.IsSiteCollectionAdmin
@@ -90,7 +90,7 @@ public class SetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
             if (this.PassThru)
             {
                 this.Outputs.Add(
-                    this.Service.GetObject(
+                    await this.Service.GetObjectAsync(
                         this.SiteCollection.Url,
                         this.User.LoginName,
                         this.SelectAllProperties
@@ -102,7 +102,7 @@ public class SetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
         {
             _ = this.SiteCollection?.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollection));
             _ = this.UserName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.UserName));
-            this.Service.SetObject(
+            await this.Service.SetObjectAsync(
                 this.SiteCollection.Url,
                 this.UserName,
                 this.IsSiteCollectionAdmin
@@ -110,7 +110,7 @@ public class SetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
             if (this.PassThru)
             {
                 this.Outputs.Add(
-                    this.Service.GetObject(
+                    await this.Service.GetObjectAsync(
                         this.SiteCollection.Url,
                         this.UserName,
                         this.SelectAllProperties
@@ -122,7 +122,7 @@ public class SetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
         {
             _ = this.SiteCollectionUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollectionUrl));
             _ = this.User?.LoginName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.User));
-            this.Service.SetObject(
+            await this.Service.SetObjectAsync(
                 this.SiteCollectionUrl,
                 this.User,
                 this.IsSiteCollectionAdmin
@@ -130,7 +130,7 @@ public class SetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
             if (this.PassThru)
             {
                 this.Outputs.Add(
-                    this.Service.GetObject(
+                    await this.Service.GetObjectAsync(
                         this.SiteCollectionUrl,
                         this.User.LoginName,
                         this.SelectAllProperties
@@ -142,7 +142,7 @@ public class SetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
         {
             _ = this.SiteCollectionUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollectionUrl));
             _ = this.UserName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.UserName));
-            this.Service.SetObject(
+            await this.Service.SetObjectAsync(
                 this.SiteCollectionUrl,
                 this.UserName,
                 this.IsSiteCollectionAdmin
@@ -150,7 +150,7 @@ public class SetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
             if (this.PassThru)
             {
                 this.Outputs.Add(
-                    this.Service.GetObject(
+                    await this.Service.GetObjectAsync(
                         this.SiteCollectionUrl,
                         this.UserName,
                         this.SelectAllProperties

@@ -15,15 +15,15 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ISitePageService
 {
 
-    void AddObject(
+    Task AddObjectAsync(
         Folder folderObject,
         string pageName,
         SitePageLayoutType pageLayoutType
     );
 
-    void RemoveObject(Folder folderObject, string pageName);
+    Task RemoveObjectAsync(Folder folderObject, string pageName);
 
-    void SetObject(
+    Task SetObjectAsync(
         Folder folderObject,
         string pageName,
         IReadOnlyDictionary<string, object?> modificationInfo
@@ -34,7 +34,7 @@ public interface ISitePageService
 public class SitePageService(ClientContext clientContext) : ClientService(clientContext), ISitePageService
 {
 
-    public void AddObject(
+    public async Task AddObjectAsync(
         Folder folderObject,
         string pageName,
         SitePageLayoutType pageLayoutType
@@ -80,10 +80,10 @@ public class SitePageService(ClientContext clientContext) : ClientService(client
             ),
             objectPathId => ClientActionMethod.Create(objectPathId, "Update")
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void RemoveObject(Folder folderObject, string pageName)
+    public async Task RemoveObjectAsync(Folder folderObject, string pageName)
     {
         var fileName = System.IO.Path.ChangeExtension(pageName, ".aspx");
         var requestPayload = new ClientRequestPayload();
@@ -97,10 +97,10 @@ public class SitePageService(ClientContext clientContext) : ClientService(client
             )
         );
         var objectPath4 = requestPayload.Add(objectPath3, objectPathId => ClientActionMethod.Create(objectPathId, "DeleteObject"));
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void SetObject(
+    public async Task SetObjectAsync(
         Folder folderObject,
         string pageName,
         IReadOnlyDictionary<string, object?> modificationInfo
@@ -145,7 +145,7 @@ public class SitePageService(ClientContext clientContext) : ClientService(client
             );
         }
         var objectPath6 = requestPayload.Add(objectPath4, objectPathId => ClientActionMethod.Create(objectPathId, "Update"));
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

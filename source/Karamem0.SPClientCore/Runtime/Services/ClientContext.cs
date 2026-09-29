@@ -74,15 +74,16 @@ public class ClientContext
         );
     }
 
-    public string? AccessToken => this.oAuthTokenProvider.CurrentAceessToken;
+    public string? AccessToken => this.oAuthTokenProvider.CurrentAccessToken;
 
-    public void DeleteObject(Uri requestUrl)
+    public async Task DeleteObjectAsync(Uri requestUrl)
     {
-        _ = this.clientHttpExecutor.Execute(
-            () =>
+        _ = await this.clientHttpExecutor.ExecuteAsync(
+            async () =>
             {
+                var accessToken = await this.oAuthTokenProvider.GetAccessTokenAsync();
                 var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
-                requestMessage.Headers.Add("Authorization", $"Bearer {this.oAuthTokenProvider.GetAccessToken()}");
+                requestMessage.Headers.Add("Authorization", $"Bearer {accessToken}");
                 requestMessage.Headers.Add("Accept", "application/json;odata=verbose");
                 requestMessage.Headers.Add("X-HTTP-Method", "DELETE");
                 requestMessage.Headers.Add("If-Match", "*");
@@ -92,13 +93,14 @@ public class ClientContext
         );
     }
 
-    public T? GetObject<T>(Uri requestUrl) where T : ODataV1Object
+    public async Task<T?> GetObjectAsync<T>(Uri requestUrl) where T : ODataV1Object
     {
-        return this.clientHttpExecutor.Execute(
-            () =>
+        return await this.clientHttpExecutor.ExecuteAsync(
+            async () =>
             {
+                var accessToken = await this.oAuthTokenProvider.GetAccessTokenAsync();
                 var requestMessage = new HttpRequestMessage(HttpMethod.Get, requestUrl);
-                requestMessage.Headers.Add("Authorization", $"Bearer {this.oAuthTokenProvider.GetAccessToken()}");
+                requestMessage.Headers.Add("Authorization", $"Bearer {accessToken}");
                 requestMessage.Headers.Add("Accept", "application/json;odata=verbose");
                 return requestMessage;
             },
@@ -119,13 +121,14 @@ public class ClientContext
         );
     }
 
-    public T? GetObjectV2<T>(Uri requestUrl) where T : ODataV2Object
+    public async Task<T?> GetObjectV2Async<T>(Uri requestUrl) where T : ODataV2Object
     {
-        return this.clientHttpExecutor.Execute(
-            () =>
+        return await this.clientHttpExecutor.ExecuteAsync(
+            async () =>
             {
+                var accessToken = await this.oAuthTokenProvider.GetAccessTokenAsync();
                 var requestMessage = new HttpRequestMessage(HttpMethod.Get, requestUrl);
-                requestMessage.Headers.Add("Authorization", $"Bearer {this.oAuthTokenProvider.GetAccessToken()}");
+                requestMessage.Headers.Add("Authorization", $"Bearer {accessToken}");
                 requestMessage.Headers.Add("Accept", "application/json");
                 return requestMessage;
             },
@@ -146,13 +149,14 @@ public class ClientContext
         );
     }
 
-    public System.IO.Stream GetStream(Uri requestUrl)
+    public async Task<System.IO.Stream> GetStreamAsync(Uri requestUrl)
     {
-        return this.clientHttpExecutor.Execute(
-            () =>
+        return await this.clientHttpExecutor.ExecuteAsync(
+            async () =>
             {
+                var accessToken = await this.oAuthTokenProvider.GetAccessTokenAsync();
                 var requestMessage = new HttpRequestMessage(HttpMethod.Get, requestUrl);
-                requestMessage.Headers.Add("Authorization", $"Bearer {this.oAuthTokenProvider.GetAccessToken()}");
+                requestMessage.Headers.Add("Authorization", $"Bearer {accessToken}");
                 requestMessage.Headers.Add("Accept", "application/json;odata=verbose");
                 return requestMessage;
             },
@@ -160,13 +164,14 @@ public class ClientContext
         );
     }
 
-    public void PatchObject(Uri requestUrl, object? requestPayload)
+    public async Task PatchObjectAsync(Uri requestUrl, object? requestPayload)
     {
-        _ = this.clientHttpExecutor.Execute(
-            () =>
+        _ = await this.clientHttpExecutor.ExecuteAsync(
+            async () =>
             {
+                var accessToken = await this.oAuthTokenProvider.GetAccessTokenAsync();
                 var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
-                requestMessage.Headers.Add("Authorization", $"Bearer {this.oAuthTokenProvider.GetAccessToken()}");
+                requestMessage.Headers.Add("Authorization", $"Bearer {accessToken}");
                 requestMessage.Headers.Add("Accept", "application/json;odata=verbose");
                 requestMessage.Headers.Add("X-HTTP-Method", "PATCH");
                 requestMessage.Headers.Add("If-Match", "*");
@@ -182,13 +187,14 @@ public class ClientContext
         );
     }
 
-    public void PostObject(Uri requestUrl, object? requestPayload)
+    public async Task PostObjectAsync(Uri requestUrl, object? requestPayload)
     {
-        _ = this.clientHttpExecutor.Execute(
-            () =>
+        _ = await this.clientHttpExecutor.ExecuteAsync(
+            async () =>
             {
+                var accessToken = await this.oAuthTokenProvider.GetAccessTokenAsync();
                 var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
-                requestMessage.Headers.Add("Authorization", $"Bearer {this.oAuthTokenProvider.GetAccessToken()}");
+                requestMessage.Headers.Add("Authorization", $"Bearer {accessToken}");
                 requestMessage.Headers.Add("Accept", "application/json;odata=verbose");
                 if (requestPayload is not null)
                 {
@@ -202,13 +208,14 @@ public class ClientContext
         );
     }
 
-    public T? PostObject<T>(Uri requestUrl, object? requestPayload) where T : ODataV1Object
+    public async Task<T?> PostObjectAsync<T>(Uri requestUrl, object? requestPayload) where T : ODataV1Object
     {
-        return this.clientHttpExecutor.Execute(
-            () =>
+        return await this.clientHttpExecutor.ExecuteAsync(
+            async () =>
             {
+                var accessToken = await this.oAuthTokenProvider.GetAccessTokenAsync();
                 var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
-                requestMessage.Headers.Add("Authorization", $"Bearer {this.oAuthTokenProvider.GetAccessToken()}");
+                requestMessage.Headers.Add("Authorization", $"Bearer {accessToken}");
                 requestMessage.Headers.Add("Accept", "application/json;odata=verbose");
                 if (requestPayload is not null)
                 {
@@ -235,29 +242,31 @@ public class ClientContext
         );
     }
 
-    public void PostStream(Uri requestUrl, System.IO.Stream requestStream)
+    public async Task PostStreamAsync(Uri requestUrl, System.IO.Stream requestStream)
     {
-        _ = this.clientHttpExecutor.Execute(
-            () =>
+        _ = await this.clientHttpExecutor.ExecuteAsync(
+            async () =>
             {
+                var accessToken = await this.oAuthTokenProvider.GetAccessTokenAsync();
                 var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
-                requestMessage.Headers.Add("Authorization", $"Bearer {this.oAuthTokenProvider.GetAccessToken()}");
+                requestMessage.Headers.Add("Authorization", $"Bearer {accessToken}");
                 requestMessage.Headers.Add("Accept", "application/json;odata=verbose");
                 requestMessage.Content = new StreamContent(requestStream);
                 requestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json;odata=verbose");
                 return requestMessage;
             },
-            responseMessage => responseMessage.Content.ReadAsStringAsync()
+            async responseMessage => await responseMessage.Content.ReadAsStringAsync()
         );
     }
 
-    public T? PostStream<T>(Uri requestUrl, System.IO.Stream requestStream) where T : ODataV1Object
+    public async Task<T?> PostStreamAsync<T>(Uri requestUrl, System.IO.Stream requestStream) where T : ODataV1Object
     {
-        return this.clientHttpExecutor.Execute(
-            () =>
+        return await this.clientHttpExecutor.ExecuteAsync(
+            async () =>
             {
+                var accessToken = await this.oAuthTokenProvider.GetAccessTokenAsync();
                 var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
-                requestMessage.Headers.Add("Authorization", $"Bearer {this.oAuthTokenProvider.GetAccessToken()}");
+                requestMessage.Headers.Add("Authorization", $"Bearer {accessToken}");
                 requestMessage.Headers.Add("Accept", "application/json;odata=verbose");
                 requestMessage.Content = new StreamContent(requestStream);
                 requestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json;odata=verbose");
@@ -280,14 +289,15 @@ public class ClientContext
         );
     }
 
-    public ClientResultPayload ProcessQuery(ClientRequestPayload requestPayload)
+    public async Task<ClientResultPayload> ProcessQueryAsync(ClientRequestPayload requestPayload)
     {
-        return this.clientHttpExecutor.Execute(
-            () =>
+        return await this.clientHttpExecutor.ExecuteAsync(
+            async () =>
             {
+                var accessToken = await this.oAuthTokenProvider.GetAccessTokenAsync();
                 var requestUrl = this.BaseAddress.ConcatPath("_vti_bin/client.svc/ProcessQuery");
                 var requestMessage = new HttpRequestMessage(HttpMethod.Post, requestUrl);
-                requestMessage.Headers.Add("Authorization", $"Bearer {this.oAuthTokenProvider.GetAccessToken()}");
+                requestMessage.Headers.Add("Authorization", $"Bearer {accessToken}");
                 var requestContent = requestPayload.ToString();
                 requestMessage.Content = new StringContent(requestContent, Encoding.UTF8);
                 requestMessage.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("text/xml");

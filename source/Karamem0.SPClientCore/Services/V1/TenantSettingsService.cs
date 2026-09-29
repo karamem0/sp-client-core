@@ -15,17 +15,17 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantSettingsService
 {
 
-    TenantSettings? GetObject();
+    Task<TenantSettings?> GetObjectAsync();
 
 }
 
 public class TenantSettingsService(ClientContext clientContext) : ClientService(clientContext), ITenantSettingsService
 {
 
-    public TenantSettings? GetObject()
+    public async Task<TenantSettings?> GetObjectAsync()
     {
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath("_api/sp_tenantsettings_current");
-        return this.ClientContext.GetObject<TenantSettings>(requestUrl);
+        return await this.ClientContext.GetObjectAsync<TenantSettings>(requestUrl);
     }
 
 }

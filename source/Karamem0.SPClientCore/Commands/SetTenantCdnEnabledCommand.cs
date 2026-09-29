@@ -32,12 +32,12 @@ public class SetTenantCdnEnabledCommand : ClientObjectCmdlet<ITenantCdnService>
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     public SwitchParameter NoDefaultOrigins { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             this.ValidateSwitchParameter(nameof(this.Public));
-            this.Service.SetEnabled(
+            await this.Service.SetEnabledAsync(
                 TenantCdnType.Public,
                 this.Enabled,
                 this.NoDefaultOrigins
@@ -46,7 +46,7 @@ public class SetTenantCdnEnabledCommand : ClientObjectCmdlet<ITenantCdnService>
         if (this.ParameterSetName == "ParamSet2")
         {
             this.ValidateSwitchParameter(nameof(this.Private));
-            this.Service.SetEnabled(
+            await this.Service.SetEnabledAsync(
                 TenantCdnType.Private,
                 this.Enabled,
                 this.NoDefaultOrigins

@@ -15,23 +15,23 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IStorageEntityService
 {
 
-    void AddObject(
+    Task AddObjectAsync(
         string key,
         string value,
         string? description,
         string? comments
     );
 
-    StorageEntity? GetObject(string key, bool selectAllProperties = true);
+    Task<StorageEntity?> GetObjectAsync(string key, bool selectAllProperties = true);
 
-    void RemoveObject(string key);
+    Task RemoveObjectAsync(string key);
 
 }
 
 public class StorageEntityService(ClientContext clientContext) : ClientService(clientContext), IStorageEntityService
 {
 
-    public void AddObject(
+    public async Task AddObjectAsync(
         string key,
         string value,
         string? description,
@@ -52,10 +52,10 @@ public class StorageEntityService(ClientContext clientContext) : ClientService(c
                 requestPayload.CreateParameter(comment)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public StorageEntity? GetObject(string key, bool selectAllProperties = true)
+    public async Task<StorageEntity?> GetObjectAsync(string key, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -69,12 +69,12 @@ public class StorageEntityService(ClientContext clientContext) : ClientService(c
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(StorageEntity)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<StorageEntity>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<StorageEntity>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void RemoveObject(string key)
+    public async Task RemoveObjectAsync(string key)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -87,7 +87,7 @@ public class StorageEntityService(ClientContext clientContext) : ClientService(c
                 requestPayload.CreateParameter(key)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

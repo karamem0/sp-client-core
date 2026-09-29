@@ -51,26 +51,26 @@ public class RemoveFileVersionCommand : ClientObjectCmdlet<IFileVersionService>
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
     public SwitchParameter All { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ShouldProcess(this.Identity is null ? "All" : this.Identity.VersionLabel, VerbsCommon.Remove))
         {
             if (this.ParameterSetName == "ParamSet1")
             {
                 _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-                this.Service.RemoveObject(this.Identity);
+                await this.Service.RemoveObjectAsync(this.Identity);
             }
             if (this.ParameterSetName == "ParamSet2")
             {
                 this.ValidateSwitchParameter(nameof(this.RecycleBin));
                 _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-                this.Service.RecycleObject(this.Identity);
+                await this.Service.RecycleObjectAsync(this.Identity);
             }
             if (this.ParameterSetName == "ParamSet3")
             {
                 this.ValidateSwitchParameter(nameof(this.All));
                 _ = this.File ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.File));
-                this.Service.RemoveObjectAll(this.File);
+                await this.Service.RemoveObjectAllAsync(this.File);
             }
         }
     }

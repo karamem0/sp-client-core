@@ -37,14 +37,14 @@ public class AddDocumentSetDefaultDocumentCommand : ClientObjectCmdlet<IDocument
     [Parameter(Mandatory = false)]
     public SwitchParameter SelectAllProperties { get; private set; } = true;
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.ContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentType));
         _ = this.DocumentContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.DocumentContentType));
         _ = this.FileName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.FileName));
         _ = this.Content ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Content));
         this.Outputs.Add(
-            this.Service.AddObject(
+            await this.Service.AddObjectAsync(
                 this.ContentType,
                 this.DocumentContentType,
                 this.FileName,

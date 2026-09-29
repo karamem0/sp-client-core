@@ -66,14 +66,14 @@ public class SetPropertyCommand : ClientObjectCmdlet<IPropertyService>
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet4")]
     public SwitchParameter SelectAllProperties { get; private set; } = true;
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Value ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Value));
         if (this.ParameterSetName == "ParamSet1")
         {
             if (this.Value.BaseObject is Hashtable hashtable)
             {
-                this.Service.SetObject(
+                await this.Service.SetObjectAsync(
                     hashtable
                         .ToDictionary<string, object?>()
                         .AsReadOnly()
@@ -81,7 +81,7 @@ public class SetPropertyCommand : ClientObjectCmdlet<IPropertyService>
             }
             else
             {
-                this.Service.SetObject(
+                await this.Service.SetObjectAsync(
                     this
                         .Value.ToDictionary()
                         .AsReadOnly()
@@ -89,7 +89,7 @@ public class SetPropertyCommand : ClientObjectCmdlet<IPropertyService>
             }
             if (this.PassThru)
             {
-                this.Outputs.Add(this.Service.GetObject(this.SelectAllProperties));
+                this.Outputs.Add(await this.Service.GetObjectAsync(this.SelectAllProperties));
             }
         }
         if (this.ParameterSetName == "ParamSet2")
@@ -97,7 +97,7 @@ public class SetPropertyCommand : ClientObjectCmdlet<IPropertyService>
             _ = this.File ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.File));
             if (this.Value.BaseObject is Hashtable hashtable)
             {
-                this.Service.SetObject(
+                await this.Service.SetObjectAsync(
                     this.File,
                     hashtable
                         .ToDictionary<string, object?>()
@@ -106,7 +106,7 @@ public class SetPropertyCommand : ClientObjectCmdlet<IPropertyService>
             }
             else
             {
-                this.Service.SetObject(
+                await this.Service.SetObjectAsync(
                     this.File,
                     this
                         .Value.ToDictionary()
@@ -115,7 +115,7 @@ public class SetPropertyCommand : ClientObjectCmdlet<IPropertyService>
             }
             if (this.PassThru)
             {
-                this.Outputs.Add(this.Service.GetObject(this.File, this.SelectAllProperties));
+                this.Outputs.Add(await this.Service.GetObjectAsync(this.File, this.SelectAllProperties));
             }
         }
         if (this.ParameterSetName == "ParamSet3")
@@ -123,7 +123,7 @@ public class SetPropertyCommand : ClientObjectCmdlet<IPropertyService>
             _ = this.Folder ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Folder));
             if (this.Value.BaseObject is Hashtable hashtable)
             {
-                this.Service.SetObject(
+                await this.Service.SetObjectAsync(
                     this.Folder,
                     hashtable
                         .ToDictionary<string, object?>()
@@ -132,7 +132,7 @@ public class SetPropertyCommand : ClientObjectCmdlet<IPropertyService>
             }
             else
             {
-                this.Service.SetObject(
+                await this.Service.SetObjectAsync(
                     this.Folder,
                     this
                         .Value.ToDictionary()
@@ -141,7 +141,7 @@ public class SetPropertyCommand : ClientObjectCmdlet<IPropertyService>
             }
             if (this.PassThru)
             {
-                this.Outputs.Add(this.Service.GetObject(this.Folder, this.SelectAllProperties));
+                this.Outputs.Add(await this.Service.GetObjectAsync(this.Folder, this.SelectAllProperties));
             }
         }
         if (this.ParameterSetName == "ParamSet4")
@@ -149,7 +149,7 @@ public class SetPropertyCommand : ClientObjectCmdlet<IPropertyService>
             _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
             if (this.Value.BaseObject is Hashtable hashtable)
             {
-                this.Service.SetObject(
+                await this.Service.SetObjectAsync(
                     this.ListItem,
                     hashtable
                         .ToDictionary<string, object?>()
@@ -158,7 +158,7 @@ public class SetPropertyCommand : ClientObjectCmdlet<IPropertyService>
             }
             else
             {
-                this.Service.SetObject(
+                await this.Service.SetObjectAsync(
                     this.ListItem,
                     this
                         .Value.ToDictionary()
@@ -167,7 +167,7 @@ public class SetPropertyCommand : ClientObjectCmdlet<IPropertyService>
             }
             if (this.PassThru)
             {
-                this.Outputs.Add(this.Service.GetObject(this.ListItem, this.SelectAllProperties));
+                this.Outputs.Add(await this.Service.GetObjectAsync(this.ListItem, this.SelectAllProperties));
             }
         }
     }

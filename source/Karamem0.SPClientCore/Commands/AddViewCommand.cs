@@ -56,12 +56,12 @@ public class AddViewCommand : ClientObjectCmdlet<IViewService>
     [Parameter(Mandatory = false)]
     public SwitchParameter SelectAllProperties { get; private set; } = true;
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
         var creationInfo = new Dictionary<string, object?>(this.MyInvocation.BoundParameters);
         this.Outputs.Add(
-            this.Service.AddObject(
+            await this.Service.AddObjectAsync(
                 this.List,
                 creationInfo,
                 this.SelectAllProperties

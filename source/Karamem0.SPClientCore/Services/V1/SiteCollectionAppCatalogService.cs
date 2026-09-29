@@ -15,17 +15,21 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ISiteCollectionAppCatalogService
 {
 
-    void AddObject(Uri siteCollectionUrl);
+    Task AddObjectAsync(Uri siteCollectionUrl);
 
-    SiteCollectionAppCatalog? GetObject(SiteCollectionAppCatalog siteCollectionAppCatalogObject);
+    Task<SiteCollectionAppCatalog?> GetObjectAsync(SiteCollectionAppCatalog siteCollectionAppCatalogObject);
 
-    SiteCollectionAppCatalog? GetObject(SiteCollectionAppCatalog siteCollectionAppCatalogObject, bool selectAllProperties = true);
+    Task<SiteCollectionAppCatalog?> GetObjectAsync(SiteCollectionAppCatalog siteCollectionAppCatalogObject, bool selectAllProperties = true);
 
-    IEnumerable<SiteCollectionAppCatalog>? GetObjectEnumerable(bool selectAllProperties = true);
+    Task<IEnumerable<SiteCollectionAppCatalog>?> GetObjectEnumerableAsync(bool selectAllProperties = true);
 
-    void RemoveObject(Uri siteCollectionUrl);
+    Task<IEnumerable<SiteCollectionAppCatalog>?> GetObjectEnumerableAsync(Guid? siteCollectionId, bool selectAllProperties = true);
 
-    void RemoveObject(Guid siteCollectionId);
+    Task<IEnumerable<SiteCollectionAppCatalog>?> GetObjectEnumerableAsync(Uri? siteCollectionUrl = null, bool selectAllProperties = true);
+
+    Task RemoveObjectAsync(Uri siteCollectionUrl);
+
+    Task RemoveObjectAsync(Guid siteCollectionId);
 
 }
 
@@ -33,7 +37,7 @@ public class SiteCollectionAppCatalogService(ClientContext clientContext)
     : ClientService<SiteCollectionAppCatalog>(clientContext), ISiteCollectionAppCatalogService
 {
 
-    public void AddObject(Uri siteCollectionUrl)
+    public async Task AddObjectAsync(Uri siteCollectionUrl)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -48,10 +52,10 @@ public class SiteCollectionAppCatalogService(ClientContext clientContext)
                 requestPayload.CreateParameter(siteCollectionUrl)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public IEnumerable<SiteCollectionAppCatalog>? GetObjectEnumerable(bool selectAllProperties = true)
+    public async Task<IEnumerable<SiteCollectionAppCatalog>?> GetObjectEnumerableAsync(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -66,12 +70,28 @@ public class SiteCollectionAppCatalogService(ClientContext clientContext)
                 ClientQuery.Create(selectAllProperties, typeof(SiteCollectionAppCatalog))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<SiteCollectionAppCatalogEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<SiteCollectionAppCatalogEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void RemoveObject(Uri siteCollectionUrl)
+    public async Task<IEnumerable<SiteCollectionAppCatalog>?> GetObjectEnumerableAsync(Guid? siteCollectionId, bool selectAllProperties = true)
+    {
+        return await this
+            .GetObjectEnumerableAsync(selectAllProperties)
+            .ContinueWith(task => task.Result.Where(item => item.SiteCollectionId == siteCollectionId))
+            .ContinueWith(task => task.Result.ToArray());
+    }
+
+    public async Task<IEnumerable<SiteCollectionAppCatalog>?> GetObjectEnumerableAsync(Uri? siteCollectionUrl, bool selectAllProperties = true)
+    {
+        return await this
+            .GetObjectEnumerableAsync(selectAllProperties)
+            .ContinueWith(task => task.Result.Where(item => item.AbsoluteUrl == siteCollectionUrl))
+            .ContinueWith(task => task.Result.ToArray());
+    }
+
+    public async Task RemoveObjectAsync(Uri siteCollectionUrl)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -86,10 +106,10 @@ public class SiteCollectionAppCatalogService(ClientContext clientContext)
                 requestPayload.CreateParameter(siteCollectionUrl)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void RemoveObject(Guid siteCollectionId)
+    public async Task RemoveObjectAsync(Guid siteCollectionId)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -104,7 +124,7 @@ public class SiteCollectionAppCatalogService(ClientContext clientContext)
                 requestPayload.CreateParameter(siteCollectionId)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

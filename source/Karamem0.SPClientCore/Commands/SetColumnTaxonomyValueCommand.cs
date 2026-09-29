@@ -31,12 +31,12 @@ public class SetColumnTaxonomyValueCommand : ClientObjectCmdlet<IColumnTaxonomyS
     [Parameter(Mandatory = true)]
     public uint Lcid { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Column ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Column));
         _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
         _ = this.Value ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Value));
-        this.Service.SetObjectValue(
+        await this.Service.SetObjectValueAsync(
             this.Column,
             this.ListItem,
             this.Value,

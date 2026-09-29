@@ -54,19 +54,19 @@ public class SetFileCheckOutStatusCommand : ClientObjectCmdlet<IFileService>
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     public CheckInType CheckInType { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.File ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.File));
             this.ValidateSwitchParameter(nameof(this.CheckOut));
-            this.Service.CheckOutObject(this.File);
+            await this.Service.CheckOutObjectAsync(this.File);
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             this.ValidateSwitchParameter(nameof(this.CheckIn));
             _ = this.File ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.File));
-            this.Service.CheckInObject(
+            await this.Service.CheckInObjectAsync(
                 this.File,
                 this.Comment,
                 this.CheckInType
@@ -76,7 +76,7 @@ public class SetFileCheckOutStatusCommand : ClientObjectCmdlet<IFileService>
         {
             this.ValidateSwitchParameter(nameof(this.UndoCheckOut));
             _ = this.File ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.File));
-            this.Service.UndoCheckOutObject(this.File);
+            await this.Service.UndoCheckOutObjectAsync(this.File);
         }
     }
 

@@ -49,14 +49,14 @@ public class AddTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     public SwitchParameter SelectAllProperties { get; private set; } = true;
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.SiteCollection?.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollection));
             var creationInfo = new Dictionary<string, object?>(this.MyInvocation.BoundParameters);
             this.Outputs.Add(
-                this.Service.AddObject(
+                await this.Service.AddObjectAsync(
                     this.SiteCollection.Url,
                     creationInfo,
                     this.SelectAllProperties
@@ -68,7 +68,7 @@ public class AddTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
             _ = this.SiteCollectionUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollectionUrl));
             var creationInfo = new Dictionary<string, object?>(this.MyInvocation.BoundParameters);
             this.Outputs.Add(
-                this.Service.AddObject(
+                await this.Service.AddObjectAsync(
                     this.SiteCollectionUrl,
                     creationInfo,
                     this.SelectAllProperties

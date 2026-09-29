@@ -27,9 +27,9 @@ public class AddTenantSiteScriptCommand : ClientObjectCmdlet<ITenantSiteScriptSe
     [Parameter(Mandatory = true)]
     public string? Title { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
-        this.Outputs.Add(this.Service.AddObject(this.MyInvocation.BoundParameters));
+        this.Outputs.Add(await this.Service.AddObjectAsync(this.MyInvocation.BoundParameters));
     }
 
 }

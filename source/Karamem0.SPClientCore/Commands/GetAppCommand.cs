@@ -43,26 +43,26 @@ public class GetAppCommand : ClientObjectCmdlet<IAppService>
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service.GetObject(this.Identity, this.Tenant));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.Identity, this.Tenant));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
-            this.Outputs.Add(this.Service.GetObject(this.AppId, this.Tenant));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.AppId, this.Tenant));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.Tenant));
+                this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.Tenant));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.Tenant));
+                this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.Tenant));
             }
         }
     }

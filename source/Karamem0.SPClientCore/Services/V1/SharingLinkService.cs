@@ -15,17 +15,17 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ISharingLinkService
 {
 
-    string? CreateAnonymousLink(Uri url, bool isEditLink);
+    Task<string?> CreateAnonymousLinkAsync(Uri url, bool isEditLink);
 
-    string? CreateAnonymousLink(
+    Task<string?> CreateAnonymousLinkAsync(
         Uri url,
         bool isEditLink,
         DateTime expiration
     );
 
-    string? CreateOrganizationSharingLink(Uri url, bool isEditLink);
+    Task<string?> CreateOrganizationSharingLinkAsync(Uri url, bool isEditLink);
 
-    SharingInfo? GetSharingInfo(
+    Task<SharingInfo?> GetSharingInfoAsync(
         Uri url,
         bool excludeCurrentUser,
         bool excludeSiteAdmin,
@@ -37,22 +37,22 @@ public interface ISharingLinkService
         bool selectAllProperties = true
     );
 
-    SharingSettings? GetSharingSettings(
+    Task<SharingSettings?> GetSharingSettingsAsync(
         Uri url,
         int groupId,
         bool useSimplifiedRoles,
         bool selectAllProperties = true
     );
 
-    SharingLinkKind? GetSharingLinkKind(Uri url);
+    Task<SharingLinkKind?> GetSharingLinkKindAsync(Uri url);
 
-    void RemoveAnonymousLink(
+    Task RemoveAnonymousLinkAsync(
         Uri url,
         bool isEditLink,
         bool removeAssociatedSharingLinkGroup
     );
 
-    void RemoveOrganizationSharingLink(
+    Task RemoveOrganizationSharingLinkAsync(
         Uri url,
         bool isEditLink,
         bool removeAssociatedSharingLinkGroup
@@ -63,7 +63,7 @@ public interface ISharingLinkService
 public class SharingLinkService(ClientContext clientContext) : ClientService(clientContext), ISharingLinkService
 {
 
-    public string? CreateAnonymousLink(Uri url, bool isEditLink)
+    public async Task<string?> CreateAnonymousLinkAsync(Uri url, bool isEditLink)
     {
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
@@ -74,12 +74,12 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
                 requestPayload.CreateParameter(isEditLink)
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<string>(requestPayload.GetActionId<ClientActionStaticMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<string>(requestPayload.GetActionId<ClientActionStaticMethod>()));
     }
 
-    public string? CreateAnonymousLink(
+    public async Task<string?> CreateAnonymousLinkAsync(
         Uri url,
         bool isEditLink,
         DateTime expiration
@@ -95,12 +95,12 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
                 requestPayload.CreateParameter(expiration.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'sszzz"))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<string>(requestPayload.GetActionId<ClientActionStaticMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<string>(requestPayload.GetActionId<ClientActionStaticMethod>()));
     }
 
-    public string? CreateOrganizationSharingLink(Uri url, bool isEditLink)
+    public async Task<string?> CreateOrganizationSharingLinkAsync(Uri url, bool isEditLink)
     {
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
@@ -111,12 +111,12 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
                 requestPayload.CreateParameter(isEditLink)
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<string>(requestPayload.GetActionId<ClientActionStaticMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<string>(requestPayload.GetActionId<ClientActionStaticMethod>()));
     }
 
-    public SharingInfo? GetSharingInfo(
+    public async Task<SharingInfo?> GetSharingInfoAsync(
         Uri url,
         bool excludeCurrentUser,
         bool excludeSiteAdmin,
@@ -144,12 +144,12 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
             ),
             objectPath => ClientActionQuery.Create(objectPath, ClientQuery.Create(selectAllProperties, typeof(SharingInfo)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<SharingInfo>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<SharingInfo>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public SharingSettings? GetSharingSettings(
+    public async Task<SharingSettings?> GetSharingSettingsAsync(
         Uri url,
         int groupId,
         bool useSimplifiedRoles,
@@ -167,12 +167,12 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
             ),
             objectPath => ClientActionQuery.Create(objectPath, ClientQuery.Create(selectAllProperties, typeof(SharingSettings)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<SharingSettings>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<SharingSettings>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public SharingLinkKind? GetSharingLinkKind(Uri url)
+    public async Task<SharingLinkKind?> GetSharingLinkKindAsync(Uri url)
     {
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
@@ -182,12 +182,12 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
                 requestPayload.CreateParameter(url)
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<SharingLinkKind>(requestPayload.GetActionId<ClientActionStaticMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<SharingLinkKind>(requestPayload.GetActionId<ClientActionStaticMethod>()));
     }
 
-    public void RemoveAnonymousLink(
+    public async Task RemoveAnonymousLinkAsync(
         Uri url,
         bool isEditLink,
         bool removeAssociatedSharingLinkGroup
@@ -203,10 +203,10 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
                 requestPayload.CreateParameter(removeAssociatedSharingLinkGroup)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void RemoveOrganizationSharingLink(
+    public async Task RemoveOrganizationSharingLinkAsync(
         Uri url,
         bool isEditLink,
         bool removeAssociatedSharingLinkGroup
@@ -222,7 +222,7 @@ public class SharingLinkService(ClientContext clientContext) : ClientService(cli
                 requestPayload.CreateParameter(removeAssociatedSharingLinkGroup)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

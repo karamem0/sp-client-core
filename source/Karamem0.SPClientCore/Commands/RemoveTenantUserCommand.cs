@@ -50,7 +50,7 @@ public class RemoveTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
     )]
     public User? User { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.User ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.User));
         if (this.ShouldProcess(this.User.Title, VerbsCommon.Remove))
@@ -58,12 +58,12 @@ public class RemoveTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
             if (this.ParameterSetName == "ParamSet1")
             {
                 _ = this.SiteCollection?.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollection));
-                this.Service.RemoveObject(this.SiteCollection.Url, this.User);
+                await this.Service.RemoveObjectAsync(this.SiteCollection.Url, this.User);
             }
             if (this.ParameterSetName == "ParamSet2")
             {
                 _ = this.SiteCollectionUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollectionUrl));
-                this.Service.RemoveObject(this.SiteCollectionUrl, this.User);
+                await this.Service.RemoveObjectAsync(this.SiteCollectionUrl, this.User);
             }
         }
     }

@@ -28,11 +28,11 @@ public class SetContentTypeColumnOrderCommand : ClientObjectCmdlet<IContentTypeC
     [Parameter(Mandatory = false)]
     public SwitchParameter PushChanges { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.ContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentType));
         _ = this.ContentTypeColumns ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentTypeColumns));
-        this.Service.ReorderObject(
+        await this.Service.ReorderObjectAsync(
             this.ContentType,
             this.ContentTypeColumns,
             this.PushChanges

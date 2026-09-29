@@ -10,22 +10,21 @@ using Karamem0.SharePoint.PowerShell.Models.V1;
 using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.Services;
-using System.Threading;
 
 namespace Karamem0.SharePoint.PowerShell.Services.V1;
 
 public abstract class TenantClientService(ClientContext clientContext) : ClientService(clientContext)
 {
 
-    public void WaitObject(TenantOperationResult? operationResultObject, bool selectAllProperties = true)
+    public async Task WaitObjectAsync(TenantOperationResult? operationResultObject, bool selectAllProperties = true)
     {
         while (true)
         {
             _ = operationResultObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
-            Thread.Sleep(operationResultObject.PollingInterval);
+            await Task.Delay(operationResultObject.PollingInterval);
             if (operationResultObject.IsComplete)
             {
-                Thread.Sleep(TimeSpan.FromSeconds(ClientConstants.WaitIntervalForTenantService));
+                await Task.Delay(TimeSpan.FromSeconds(ClientConstants.WaitIntervalForTenantService));
                 break;
             }
             if (operationResultObject.HasTimedout)
@@ -38,9 +37,9 @@ public abstract class TenantClientService(ClientContext clientContext) : ClientS
                 ClientActionInstantiateObjectPath.Create,
                 objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TenantOperationResult)))
             );
-            operationResultObject = this
-                .ClientContext.ProcessQuery(requestPayload)
-                .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
+            operationResultObject = await this
+                .ClientContext.ProcessQueryAsync(requestPayload)
+                .ContinueWith(task => task.Result.ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>()));
         }
     }
 

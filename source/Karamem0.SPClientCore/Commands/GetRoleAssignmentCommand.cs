@@ -62,20 +62,20 @@ public class GetRoleAssignmentCommand : ClientObjectCmdlet<ISiteService, IRoleAs
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet7")]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service2.GetObject(this.Identity, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service2.GetObjectAsync(this.Identity, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             this.ValidateSwitchParameter(nameof(this.Site));
-            var siteObject = this.Service1.GetObject(this.SelectAllProperties);
+            var siteObject = await this.Service1.GetObjectAsync(this.SelectAllProperties);
             _ = siteObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
             this.Outputs.Add(
-                this.Service2.GetObject(
+                await this.Service2.GetObjectAsync(
                     siteObject,
                     this.PrincipalId,
                     this.SelectAllProperties
@@ -85,22 +85,22 @@ public class GetRoleAssignmentCommand : ClientObjectCmdlet<ISiteService, IRoleAs
         if (this.ParameterSetName == "ParamSet3")
         {
             this.ValidateSwitchParameter(nameof(this.Site));
-            var siteObject = this.Service1.GetObject(this.SelectAllProperties);
+            var siteObject = await this.Service1.GetObjectAsync(this.SelectAllProperties);
             _ = siteObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service2.GetObjectEnumerable(siteObject, this.SelectAllProperties));
+                this.Outputs.Add(await this.Service2.GetObjectEnumerableAsync(siteObject, this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service2.GetObjectEnumerable(siteObject, this.SelectAllProperties));
+                this.Outputs.AddRange(await this.Service2.GetObjectEnumerableAsync(siteObject, this.SelectAllProperties));
             }
         }
         if (this.ParameterSetName == "ParamSet4")
         {
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
             this.Outputs.Add(
-                this.Service2.GetObject(
+                await this.Service2.GetObjectAsync(
                     this.List,
                     this.PrincipalId,
                     this.SelectAllProperties
@@ -112,18 +112,18 @@ public class GetRoleAssignmentCommand : ClientObjectCmdlet<ISiteService, IRoleAs
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service2.GetObjectEnumerable(this.List, this.SelectAllProperties));
+                this.Outputs.Add(await this.Service2.GetObjectEnumerableAsync(this.List, this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service2.GetObjectEnumerable(this.List, this.SelectAllProperties));
+                this.Outputs.AddRange(await this.Service2.GetObjectEnumerableAsync(this.List, this.SelectAllProperties));
             }
         }
         if (this.ParameterSetName == "ParamSet6")
         {
             _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
             this.Outputs.Add(
-                this.Service2.GetObject(
+                await this.Service2.GetObjectAsync(
                     this.ListItem,
                     this.PrincipalId,
                     this.SelectAllProperties
@@ -135,11 +135,11 @@ public class GetRoleAssignmentCommand : ClientObjectCmdlet<ISiteService, IRoleAs
             _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service2.GetObjectEnumerable(this.ListItem, this.SelectAllProperties));
+                this.Outputs.Add(await this.Service2.GetObjectEnumerableAsync(this.ListItem, this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service2.GetObjectEnumerable(this.ListItem, this.SelectAllProperties));
+                this.Outputs.AddRange(await this.Service2.GetObjectEnumerableAsync(this.ListItem, this.SelectAllProperties));
             }
         }
     }

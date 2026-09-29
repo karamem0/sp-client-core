@@ -25,11 +25,11 @@ public class AddGroupMemberCommand : ClientObjectCmdlet<IGroupMemberService>
     [Parameter(Mandatory = true)]
     public User? Member { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Group ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Group));
         _ = this.Member ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Member));
-        _ = this.Service.AddObject(this.Group, this.Member);
+        _ = await this.Service.AddObjectAsync(this.Group, this.Member);
     }
 
 }

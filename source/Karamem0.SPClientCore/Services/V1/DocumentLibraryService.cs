@@ -15,18 +15,18 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IDocumentLibraryService
 {
 
-    DocumentLibraryInfo? GetObject();
+    Task<DocumentLibraryInfo?> GetObjectAsync();
 
-    IEnumerable<DocumentLibraryInfo>? GetObjectEnumerable();
+    Task<IEnumerable<DocumentLibraryInfo>?> GetObjectEnumerableAsync();
 
-    IEnumerable<DocumentLibraryInfo>? GetObjectEnumerable(bool includePageLibraries);
+    Task<IEnumerable<DocumentLibraryInfo>?> GetObjectEnumerableAsync(bool includePageLibraries);
 
 }
 
 public class DocumentLibraryService(ClientContext clientContext) : ClientService(clientContext), IDocumentLibraryService
 {
 
-    public DocumentLibraryInfo? GetObject()
+    public async Task<DocumentLibraryInfo?> GetObjectAsync()
     {
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
@@ -36,12 +36,12 @@ public class DocumentLibraryService(ClientContext clientContext) : ClientService
                 requestPayload.CreateParameter(this.ClientContext.BaseAddress)
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<DocumentLibraryInfo>(requestPayload.GetActionId<ClientActionStaticMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<DocumentLibraryInfo>(requestPayload.GetActionId<ClientActionStaticMethod>()));
     }
 
-    public IEnumerable<DocumentLibraryInfo>? GetObjectEnumerable()
+    public async Task<IEnumerable<DocumentLibraryInfo>?> GetObjectEnumerableAsync()
     {
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
@@ -51,12 +51,12 @@ public class DocumentLibraryService(ClientContext clientContext) : ClientService
                 requestPayload.CreateParameter(this.ClientContext.BaseAddress)
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<List<DocumentLibraryInfo>>(requestPayload.GetActionId<ClientActionStaticMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<List<DocumentLibraryInfo>>(requestPayload.GetActionId<ClientActionStaticMethod>()));
     }
 
-    public IEnumerable<DocumentLibraryInfo>? GetObjectEnumerable(bool includePageLibraries)
+    public async Task<IEnumerable<DocumentLibraryInfo>?> GetObjectEnumerableAsync(bool includePageLibraries)
     {
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
@@ -67,9 +67,9 @@ public class DocumentLibraryService(ClientContext clientContext) : ClientService
                 requestPayload.CreateParameter(includePageLibraries)
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<List<DocumentLibraryInfo>>(requestPayload.GetActionId<ClientActionStaticMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<List<DocumentLibraryInfo>>(requestPayload.GetActionId<ClientActionStaticMethod>()));
     }
 
 }

@@ -17,16 +17,16 @@ public class AcsOAuthTokenProvider(AcsOAuthContext oAuthContext, AcsOAuthToken o
 
     private AcsOAuthToken oAuthToken = oAuthToken;
 
-    public override string? CurrentAceessToken => this.oAuthToken.AccessToken;
+    public override string? CurrentAccessToken => this.oAuthToken.AccessToken;
 
-    public override string? GetAccessToken()
+    public override async Task<string?> GetAccessTokenAsync()
     {
         var jwtToken = new JsonWebToken(this.oAuthToken.AccessToken);
         var jwtExpireIn = jwtToken.GetPayloadValue<double>("exp");
         var jwtExpireOn = DateTime.UnixEpoch.AddSeconds(jwtExpireIn);
         if (jwtExpireOn <= DateTime.UtcNow)
         {
-            var oAuthMessage = this.oAuthContext.AcquireToken();
+            var oAuthMessage = await this.oAuthContext.AcquireTokenAsync();
             if (oAuthMessage is AcsOAuthToken oAuthToken)
             {
                 this.oAuthToken = oAuthToken;

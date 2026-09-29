@@ -30,17 +30,17 @@ public class MoveRecycleBinItemCommand : ClientObjectCmdlet<IRecycleBinItemServi
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public SwitchParameter All { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Service.MoveObjectToSecondStage(this.Identity);
+            await this.Service.MoveObjectToSecondStageAsync(this.Identity);
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             this.ValidateSwitchParameter(nameof(this.All));
-            this.Service.MoveAllObjectToSecondStage();
+            await this.Service.MoveAllObjectToSecondStageAsync();
         }
     }
 

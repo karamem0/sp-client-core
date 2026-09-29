@@ -59,26 +59,26 @@ public class SetTenantFileVersionPolicyForDocumentLibraryCommand : ClientObjectC
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet4")]
     public SwitchParameter NoWait { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.SiteUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteUrl));
-            this.Service.SetObjectAwait(
+            await this.Service.SetObjectAwaitAsync(
                 this.SiteUrl,
                 this.ListId,
                 this.MyInvocation.BoundParameters
             );
             if (this.PassThru)
             {
-                this.Outputs.Add(this.Service.GetObject(this.SiteUrl, this.ListId));
+                this.Outputs.Add(await this.Service.GetObjectAsync(this.SiteUrl, this.ListId));
             }
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             this.ValidateSwitchParameter(nameof(this.NoWait));
             _ = this.SiteUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteUrl));
-            _ = this.Service.SetObject(
+            _ = await this.Service.SetObjectAsync(
                 this.SiteUrl,
                 this.ListId,
                 this.MyInvocation.BoundParameters
@@ -88,14 +88,14 @@ public class SetTenantFileVersionPolicyForDocumentLibraryCommand : ClientObjectC
         {
             _ = this.SiteUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteUrl));
             _ = this.ListTitle ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListTitle));
-            this.Service.SetObjectAwait(
+            await this.Service.SetObjectAwaitAsync(
                 this.SiteUrl,
                 this.ListTitle,
                 this.MyInvocation.BoundParameters
             );
             if (this.PassThru)
             {
-                this.Outputs.Add(this.Service.GetObject(this.SiteUrl, this.ListTitle));
+                this.Outputs.Add(await this.Service.GetObjectAsync(this.SiteUrl, this.ListTitle));
             }
         }
         if (this.ParameterSetName == "ParamSet4")
@@ -103,7 +103,7 @@ public class SetTenantFileVersionPolicyForDocumentLibraryCommand : ClientObjectC
             this.ValidateSwitchParameter(nameof(this.NoWait));
             _ = this.SiteUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteUrl));
             _ = this.ListTitle ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListTitle));
-            _ = this.Service.SetObject(
+            _ = await this.Service.SetObjectAsync(
                 this.SiteUrl,
                 this.ListTitle,
                 this.MyInvocation.BoundParameters

@@ -20,15 +20,15 @@ public class GetTenantOrganizationNewsSiteCommand : ClientObjectCmdlet<ITenantOr
     [Parameter(Mandatory = false)]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.NoEnumerate)
         {
-            this.Outputs.Add(this.Service.GetObjectEnumerable());
+            this.Outputs.Add(await this.Service.GetObjectEnumerableAsync());
         }
         else
         {
-            this.Outputs.AddRange(this.Service.GetObjectEnumerable());
+            this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync());
         }
     }
 

@@ -28,11 +28,11 @@ public class SetTermDescriptionCommand : ClientObjectCmdlet<ITermDescriptionServ
     [Parameter(Mandatory = true)]
     public uint Lcid { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Term ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Term));
         _ = this.Description ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Description));
-        this.Service.SetObject(
+        await this.Service.SetObjectAsync(
             this.Term,
             this.Description,
             this.Lcid

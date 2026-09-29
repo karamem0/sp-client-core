@@ -26,10 +26,10 @@ public class RestoreFileVersionCommand : ClientObjectCmdlet<IFileVersionService>
     )]
     public FileVersion? Identity { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-        this.Service.RestoreObject(this.Identity);
+        await this.Service.RestoreObjectAsync(this.Identity);
     }
 
 }

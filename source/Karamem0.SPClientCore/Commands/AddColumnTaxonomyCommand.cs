@@ -160,7 +160,7 @@ public class AddColumnTaxonomyCommand : ClientObjectCmdlet<IColumnService, IColu
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
     public SwitchParameter WhatIf { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         var addColumnOptions = FlagsParser.Parse<AddColumnOptions>(this.MyInvocation.BoundParameters);
         if (this.ParameterSetName == "ParamSet1")
@@ -168,7 +168,7 @@ public class AddColumnTaxonomyCommand : ClientObjectCmdlet<IColumnService, IColu
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
             _ = this.TermSet?.TermStore ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.TermSet));
             var creationInfo = new Dictionary<string, object?>(this.MyInvocation.BoundParameters);
-            var columnObject = this.Service2.AddObject(
+            var columnObject = await this.Service2.AddObjectAsync(
                 this.List,
                 creationInfo,
                 this.AddToDefaultView,
@@ -176,7 +176,7 @@ public class AddColumnTaxonomyCommand : ClientObjectCmdlet<IColumnService, IColu
                 this.SelectAllProperties
             );
             _ = columnObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
-            this.Service2.SetObject(
+            await this.Service2.SetObjectAsync(
                 columnObject,
                 new Dictionary<string, object?>()
                 {
@@ -184,19 +184,19 @@ public class AddColumnTaxonomyCommand : ClientObjectCmdlet<IColumnService, IColu
                     ["TermStoreId"] = this.TermSet.TermStore.Id
                 }
             );
-            this.Outputs.Add(this.Service1.GetObject(columnObject, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service1.GetObjectAsync(columnObject, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             var creationInfo = new Dictionary<string, object?>(this.MyInvocation.BoundParameters);
-            var columnObject = this.Service2.AddObject(
+            var columnObject = await this.Service2.AddObjectAsync(
                 creationInfo,
                 this.AddToDefaultView,
                 addColumnOptions,
                 this.SelectAllProperties
             );
             _ = columnObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
-            this.Service2.SetObject(
+            await this.Service2.SetObjectAsync(
                 columnObject,
                 new Dictionary<string, object?>()
                 {
@@ -204,7 +204,7 @@ public class AddColumnTaxonomyCommand : ClientObjectCmdlet<IColumnService, IColu
                     ["TermStoreId"] = this.TermSet?.TermStore?.Id
                 }
             );
-            this.Outputs.Add(this.Service1.GetObject(columnObject, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service1.GetObjectAsync(columnObject, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet3")
         {

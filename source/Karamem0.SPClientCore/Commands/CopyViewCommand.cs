@@ -41,12 +41,12 @@ public class CopyViewCommand : ClientObjectCmdlet<IViewService>
     [Parameter(Mandatory = false)]
     public SwitchParameter PassThru { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
         _ = this.View ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.View));
         _ = this.NewName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.NewName));
-        _ = this.Service.CopyObject(
+        _ = await this.Service.CopyObjectAsync(
             this.List,
             this.View,
             this.NewName,
@@ -55,7 +55,7 @@ public class CopyViewCommand : ClientObjectCmdlet<IViewService>
         );
         if (this.PassThru)
         {
-            this.WriteObject(this.Service.GetObject(this.List, this.NewName));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.List, this.NewName));
         }
     }
 

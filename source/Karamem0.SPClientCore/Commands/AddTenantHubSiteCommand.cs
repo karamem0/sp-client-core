@@ -43,12 +43,12 @@ public class AddTenantHubSiteCommand : ClientObjectCmdlet<ITenantHubSiteService>
     [Parameter(Mandatory = false)]
     public SwitchParameter SelectAllProperties { get; private set; } = true;
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.SiteCollectionUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollectionUrl));
         var creationInfo = new Dictionary<string, object?>(this.MyInvocation.BoundParameters);
         this.Outputs.Add(
-            this.Service.AddObject(
+            await this.Service.AddObjectAsync(
                 this.SiteCollectionUrl,
                 creationInfo,
                 this.SelectAllProperties

@@ -35,16 +35,16 @@ public class GetTenantHubSiteCommand : ClientObjectCmdlet<ITenantHubSiteService>
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet3")]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
-            this.Outputs.Add(this.Service.GetObject(this.HubSiteId, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.HubSiteId, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             this.Outputs.Add(
-                this.Service.GetObject(
+                await this.Service.GetObjectAsync(
                     this.HubSiteUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.HubSiteUrl)),
                     this.SelectAllProperties
                 )
@@ -54,11 +54,11 @@ public class GetTenantHubSiteCommand : ClientObjectCmdlet<ITenantHubSiteService>
         {
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.SelectAllProperties));
+                this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.SelectAllProperties));
+                this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.SelectAllProperties));
             }
         }
     }

@@ -15,28 +15,28 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IRegionalSettingsService
 {
 
-    void AddSupportedUILanguage(uint lcid);
+    Task AddSupportedUILanguageAsync(uint lcid);
 
-    void DisableMultilingual(bool force);
+    Task DisableMultilingualAsync(bool force);
 
-    void EnableMultilingual(bool force);
+    Task EnableMultilingualAsync(bool force);
 
-    DateTime ConvertUniversalToLocal(DateTime date);
+    Task<DateTime> ConvertUniversalToLocalAsync(DateTime date);
 
-    DateTime ConvertLocalToUniversal(DateTime date);
+    Task<DateTime> ConvertLocalToUniversalAsync(DateTime date);
 
-    RegionalSettings? GetObject(bool selectAllProperties = true);
+    Task<RegionalSettings?> GetObjectAsync(bool selectAllProperties = true);
 
-    void RemoveSupportedUILanguage(uint lcid);
+    Task RemoveSupportedUILanguageAsync(uint lcid);
 
-    void SetObject(IReadOnlyDictionary<string, object?> modificationInfo);
+    Task SetObjectAsync(IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class RegionalSettingsService(ClientContext clientContext) : ClientService<RegionalSettings>(clientContext), IRegionalSettingsService
 {
 
-    public void AddSupportedUILanguage(uint lcid)
+    public async Task AddSupportedUILanguageAsync(uint lcid)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -49,10 +49,10 @@ public class RegionalSettingsService(ClientContext clientContext) : ClientServic
                 requestPayload.CreateParameter(lcid)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void DisableMultilingual(bool force)
+    public async Task DisableMultilingualAsync(bool force)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -76,10 +76,10 @@ public class RegionalSettingsService(ClientContext clientContext) : ClientServic
                 requestPayload.CreateParameter(force)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void EnableMultilingual(bool force)
+    public async Task EnableMultilingualAsync(bool force)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -104,10 +104,10 @@ public class RegionalSettingsService(ClientContext clientContext) : ClientServic
                 requestPayload.CreateParameter(FeatureDefinitionScope.None)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public DateTime ConvertUniversalToLocal(DateTime date)
+    public async Task<DateTime> ConvertUniversalToLocalAsync(DateTime date)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -122,12 +122,12 @@ public class RegionalSettingsService(ClientContext clientContext) : ClientServic
                 requestPayload.CreateParameter(date)
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<DateTime>(requestPayload.GetActionId<ClientActionMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<DateTime>(requestPayload.GetActionId<ClientActionMethod>()));
     }
 
-    public DateTime ConvertLocalToUniversal(DateTime date)
+    public async Task<DateTime> ConvertLocalToUniversalAsync(DateTime date)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -142,12 +142,12 @@ public class RegionalSettingsService(ClientContext clientContext) : ClientServic
                 requestPayload.CreateParameter(date)
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<DateTime>(requestPayload.GetActionId<ClientActionMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<DateTime>(requestPayload.GetActionId<ClientActionMethod>()));
     }
 
-    public RegionalSettings? GetObject(bool selectAllProperties = true)
+    public async Task<RegionalSettings?> GetObjectAsync(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -157,12 +157,12 @@ public class RegionalSettingsService(ClientContext clientContext) : ClientServic
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(RegionalSettings)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<RegionalSettings>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<RegionalSettings>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void RemoveSupportedUILanguage(uint lcid)
+    public async Task RemoveSupportedUILanguageAsync(uint lcid)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -175,10 +175,10 @@ public class RegionalSettingsService(ClientContext clientContext) : ClientServic
                 requestPayload.CreateParameter(lcid)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void SetObject(IReadOnlyDictionary<string, object?> modificationInfo)
+    public async Task SetObjectAsync(IReadOnlyDictionary<string, object?> modificationInfo)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -186,7 +186,7 @@ public class RegionalSettingsService(ClientContext clientContext) : ClientServic
         var objectPath3 = requestPayload.Add(ObjectPathProperty.Create(objectPath2.Id, "RegionalSettings"));
         var objectPath4 = requestPayload.Add(objectPath3, requestPayload.CreateSetPropertyDelegates(typeof(RegionalSettings), modificationInfo));
         var objectPath5 = requestPayload.Add(objectPath4, objectPathId => ClientActionMethod.Create(objectPathId, "Update"));
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

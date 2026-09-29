@@ -22,10 +22,10 @@ public class GetStorageEntityCommand : ClientObjectCmdlet<IStorageEntityService>
     [Parameter(Mandatory = true)]
     public string? Key { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Key ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Key));
-        this.Outputs.Add(this.Service.GetObject(this.Key));
+        this.Outputs.Add(await this.Service.GetObjectAsync(this.Key));
     }
 
 }

@@ -23,7 +23,7 @@ public class NewColumnLookupValueCommand : ClientObjectCmdlet
     [Parameter(Mandatory = false, Position = 1)]
     public string? LookupValue { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         this.Outputs.Add(new ColumnLookupValue(this.LookupId, this.LookupValue));
     }

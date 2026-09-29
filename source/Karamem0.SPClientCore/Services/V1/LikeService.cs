@@ -17,24 +17,24 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ILikeService
 {
 
-    IEnumerable<LikedUser>? GetObjectEnumerable(Comment commentObject);
+    Task<IEnumerable<LikedUser>?> GetObjectEnumerableAsync(Comment commentObject);
 
-    IEnumerable<LikedUser>? GetObjectEnumerable(ListItem listItemObject);
+    Task<IEnumerable<LikedUser>?> GetObjectEnumerableAsync(ListItem listItemObject);
 
-    void LikeObject(Comment commentObject);
+    Task LikeObjectAsync(Comment commentObject);
 
-    void LikeObject(ListItem listItemObject);
+    Task LikeObjectAsync(ListItem listItemObject);
 
-    void UnlikeObject(Comment commentObject);
+    Task UnlikeObjectAsync(Comment commentObject);
 
-    void UnlikeObject(ListItem listItemObject);
+    Task UnlikeObjectAsync(ListItem listItemObject);
 
 }
 
 public class LikeService(ClientContext clientContext) : ClientService(clientContext), ILikeService
 {
 
-    public IEnumerable<LikedUser>? GetObjectEnumerable(Comment commentObject)
+    public async Task<IEnumerable<LikedUser>?> GetObjectEnumerableAsync(Comment commentObject)
     {
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/lists('{0}')/items({1})/comments({2})/likedby",
@@ -42,10 +42,10 @@ public class LikeService(ClientContext clientContext) : ClientService(clientCont
             commentObject.ItemId,
             commentObject.Id
         );
-        return this.ClientContext.GetObject<ODataV1ObjectEnumerable<LikedUser>>(requestUrl);
+        return await this.ClientContext.GetObjectAsync<ODataV1ObjectEnumerable<LikedUser>>(requestUrl);
     }
 
-    public IEnumerable<LikedUser>? GetObjectEnumerable(ListItem listItemObject)
+    public async Task<IEnumerable<LikedUser>?> GetObjectEnumerableAsync(ListItem listItemObject)
     {
         var objectIdentity = listItemObject.ObjectIdentity;
         _ = objectIdentity ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
@@ -57,10 +57,10 @@ public class LikeService(ClientContext clientContext) : ClientService(clientCont
                 .Last(),
             listItemObject.Id
         );
-        return this.ClientContext.GetObject<ODataV1ObjectEnumerable<LikedUser>>(requestUrl);
+        return await this.ClientContext.GetObjectAsync<ODataV1ObjectEnumerable<LikedUser>>(requestUrl);
     }
 
-    public void LikeObject(Comment commentObject)
+    public async Task LikeObjectAsync(Comment commentObject)
     {
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/lists('{0}')/items({1})/comments({2})/like",
@@ -68,10 +68,10 @@ public class LikeService(ClientContext clientContext) : ClientService(clientCont
             commentObject.ItemId,
             commentObject.Id
         );
-        this.ClientContext.PostObject(requestUrl, null);
+        await this.ClientContext.PostObjectAsync(requestUrl, null);
     }
 
-    public void LikeObject(ListItem listItemObject)
+    public async Task LikeObjectAsync(ListItem listItemObject)
     {
         var objectIdentity = listItemObject.ObjectIdentity;
         _ = objectIdentity ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
@@ -83,10 +83,10 @@ public class LikeService(ClientContext clientContext) : ClientService(clientCont
                 .Last(),
             listItemObject.Id
         );
-        this.ClientContext.PostObject(requestUrl, null);
+        await this.ClientContext.PostObjectAsync(requestUrl, null);
     }
 
-    public void UnlikeObject(Comment commentObject)
+    public async Task UnlikeObjectAsync(Comment commentObject)
     {
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/lists('{0}')/items({1})/comments({2})/unlike",
@@ -94,10 +94,10 @@ public class LikeService(ClientContext clientContext) : ClientService(clientCont
             commentObject.ItemId,
             commentObject.Id
         );
-        this.ClientContext.PostObject(requestUrl, null);
+        await this.ClientContext.PostObjectAsync(requestUrl, null);
     }
 
-    public void UnlikeObject(ListItem listItemObject)
+    public async Task UnlikeObjectAsync(ListItem listItemObject)
     {
         var objectIdentity = listItemObject.ObjectIdentity;
         _ = objectIdentity ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
@@ -109,7 +109,7 @@ public class LikeService(ClientContext clientContext) : ClientService(clientCont
                 .Last(),
             listItemObject.Id
         );
-        this.ClientContext.PostObject(requestUrl, null);
+        await this.ClientContext.PostObjectAsync(requestUrl, null);
     }
 
 }

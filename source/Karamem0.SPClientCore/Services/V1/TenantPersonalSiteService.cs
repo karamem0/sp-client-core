@@ -15,18 +15,18 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantPersonalSiteService
 {
 
-    TenantOperationResult? AddObject(IEnumerable<string> userIds, bool selectAllProperties = true);
+    Task<TenantOperationResult?> AddObjectAsync(IEnumerable<string> userIds, bool selectAllProperties = true);
 
-    void AddObjectAwait(IEnumerable<string> userIds);
+    Task AddObjectAwaitAsync(IEnumerable<string> userIds);
 
-    string? GetObject(string userId);
+    Task<string?> GetObjectAsync(string userId);
 
 }
 
 public class TenantPersonalSiteService(ClientContext clientContext) : TenantClientService(clientContext), ITenantPersonalSiteService
 {
 
-    public TenantOperationResult? AddObject(IEnumerable<string> userIds, bool selectAllProperties = true)
+    public async Task<TenantOperationResult?> AddObjectAsync(IEnumerable<string> userIds, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -39,17 +39,17 @@ public class TenantPersonalSiteService(ClientContext clientContext) : TenantClie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TenantOperationResult)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void AddObjectAwait(IEnumerable<string> userIds)
+    public async Task AddObjectAwaitAsync(IEnumerable<string> userIds)
     {
-        this.WaitObject(this.AddObject(userIds));
+        await this.WaitObjectAsync(await this.AddObjectAsync(userIds));
     }
 
-    public string? GetObject(string userId)
+    public async Task<string?> GetObjectAsync(string userId)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -61,9 +61,9 @@ public class TenantPersonalSiteService(ClientContext clientContext) : TenantClie
                 requestPayload.CreateParameter(userId)
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<string>(requestPayload.GetActionId<ClientActionMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<string>(requestPayload.GetActionId<ClientActionMethod>()));
     }
 
 }

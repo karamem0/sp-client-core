@@ -29,16 +29,16 @@ public class GetViewColumnCommand : ClientObjectCmdlet<IViewColumnService>
     [Parameter(Mandatory = false)]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.View ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.View));
         if (this.NoEnumerate)
         {
-            this.Outputs.Add(this.Service.GetObjectEnumerable(this.View));
+            this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.View));
         }
         else
         {
-            this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.View));
+            this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.View));
         }
     }
 

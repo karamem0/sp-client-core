@@ -31,12 +31,12 @@ public class RemoveSiteCollectionAppCatalogCommand : ClientObjectCmdlet<ISiteCol
     )]
     public SiteCollectionAppCatalog? Identity { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Identity?.AbsoluteUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
         if (this.ShouldProcess(this.Identity.AbsoluteUrl.ToString(), VerbsCommon.Remove))
         {
-            this.Service.RemoveObject(this.Identity.SiteCollectionId);
+            await this.Service.RemoveObjectAsync(this.Identity.SiteCollectionId);
         }
     }
 

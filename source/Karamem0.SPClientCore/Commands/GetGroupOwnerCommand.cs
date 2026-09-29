@@ -26,10 +26,10 @@ public class GetGroupOwnerCommand : ClientObjectCmdlet<IGroupOwnerService>
     )]
     public Group? Group { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Group ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Group));
-        this.Outputs.Add(this.Service.GetObject(this.Group));
+        this.Outputs.Add(await this.Service.GetObjectAsync(this.Group));
     }
 
 }

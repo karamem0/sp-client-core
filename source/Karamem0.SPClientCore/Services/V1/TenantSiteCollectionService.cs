@@ -10,55 +10,54 @@ using Karamem0.SharePoint.PowerShell.Models.V1;
 using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Models;
 using Karamem0.SharePoint.PowerShell.Runtime.Services;
-using System.Threading;
 
 namespace Karamem0.SharePoint.PowerShell.Services.V1;
 
 public interface ITenantSiteCollectionService
 {
 
-    TenantOperationResult? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true);
+    Task<TenantOperationResult?> AddObjectAsync(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true);
 
-    void AddObjectAwait(IReadOnlyDictionary<string, object?> creationInfo);
+    Task AddObjectAwaitAsync(IReadOnlyDictionary<string, object?> creationInfo);
 
-    TenantSiteCollection? GetObject(TenantSiteCollection siteCollectionObject, bool selectAllProperties = true);
+    Task<TenantSiteCollection?> GetObjectAsync(TenantSiteCollection siteCollectionObject, bool selectAllProperties = true);
 
-    TenantSiteCollection? GetObject(Uri siteCollectionUrl, bool selectAllProperties = true);
+    Task<TenantSiteCollection?> GetObjectAsync(Uri siteCollectionUrl, bool selectAllProperties = true);
 
-    TenantSiteCollection? GetObjectAwait(TenantSiteCollection siteCollectionObject, bool selectAllProperties = true);
+    Task<TenantSiteCollection?> GetObjectAwaitAsync(TenantSiteCollection siteCollectionObject, bool selectAllProperties = true);
 
-    TenantSiteCollection? GetObjectAwait(Uri siteCollectionUrl, bool selectAllProperties = true);
+    Task<TenantSiteCollection?> GetObjectAwaitAsync(Uri siteCollectionUrl, bool selectAllProperties = true);
 
-    IEnumerable<TenantSiteCollection>? GetObjectEnumerable(bool selectAllProperties = true);
+    Task<IEnumerable<TenantSiteCollection>?> GetObjectEnumerableAsync(bool selectAllProperties = true);
 
-    IEnumerable<TenantSiteCollection>? GetObjectEnumerable(IReadOnlyDictionary<string, object?> filterInfo, bool selectAllProperties = true);
+    Task<IEnumerable<TenantSiteCollection>?> GetObjectEnumerableAsync(IReadOnlyDictionary<string, object?> filterInfo, bool selectAllProperties = true);
 
-    TenantOperationResult? LockObject(TenantSiteCollection siteCollectionObject, bool selectAllProperties = true);
+    Task<TenantOperationResult?> LockObjectAsync(TenantSiteCollection siteCollectionObject, bool selectAllProperties = true);
 
-    void LockObjectAwait(TenantSiteCollection siteCollectionObject);
+    Task LockObjectAwaitAsync(TenantSiteCollection siteCollectionObject);
 
-    TenantOperationResult? RemoveObject(TenantSiteCollection siteCollectionObject, bool selectAllProperties = true);
+    Task<TenantOperationResult?> RemoveObjectAsync(TenantSiteCollection siteCollectionObject, bool selectAllProperties = true);
 
-    void RemoveObjectAwait(TenantSiteCollection siteCollectionObject);
+    Task RemoveObjectAwaitAsync(TenantSiteCollection siteCollectionObject);
 
-    TenantOperationResult? SetObject(
+    Task<TenantOperationResult?> SetObjectAsync(
         TenantSiteCollection siteCollectionObject,
         IReadOnlyDictionary<string, object?> modificationInfo,
         bool selectAllProperties = true
     );
 
-    void SetObjectAwait(TenantSiteCollection siteCollectionObject, IReadOnlyDictionary<string, object?> modificationInfo);
+    Task SetObjectAwaitAsync(TenantSiteCollection siteCollectionObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
-    TenantOperationResult? UnlockObject(TenantSiteCollection siteCollectionObject, bool selectAllProperties = true);
+    Task<TenantOperationResult?> UnlockObjectAsync(TenantSiteCollection siteCollectionObject, bool selectAllProperties = true);
 
-    void UnlockObjectAwait(TenantSiteCollection siteCollectionObject);
+    Task UnlockObjectAwaitAsync(TenantSiteCollection siteCollectionObject);
 
 }
 
 public class TenantSiteCollectionService(ClientContext clientContext) : TenantClientService(clientContext), ITenantSiteCollectionService
 {
 
-    public TenantOperationResult? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true)
+    public async Task<TenantOperationResult?> AddObjectAsync(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -71,17 +70,17 @@ public class TenantSiteCollectionService(ClientContext clientContext) : TenantCl
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TenantOperationResult)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void AddObjectAwait(IReadOnlyDictionary<string, object?> creationInfo)
+    public async Task AddObjectAwaitAsync(IReadOnlyDictionary<string, object?> creationInfo)
     {
-        this.WaitObject(this.AddObject(creationInfo));
+        await this.WaitObjectAsync(await this.AddObjectAsync(creationInfo));
     }
 
-    public TenantSiteCollection? GetObject(TenantSiteCollection siteCollectionObject, bool selectAllProperties = true)
+    public async Task<TenantSiteCollection?> GetObjectAsync(TenantSiteCollection siteCollectionObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
@@ -89,12 +88,12 @@ public class TenantSiteCollectionService(ClientContext clientContext) : TenantCl
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TenantSiteCollection)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantSiteCollection>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantSiteCollection>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public TenantSiteCollection? GetObject(Uri siteCollectionUrl, bool selectAllProperties = true)
+    public async Task<TenantSiteCollection?> GetObjectAsync(Uri siteCollectionUrl, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -108,28 +107,28 @@ public class TenantSiteCollectionService(ClientContext clientContext) : TenantCl
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TenantSiteCollection)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantSiteCollection>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantSiteCollection>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public TenantSiteCollection? GetObjectAwait(TenantSiteCollection siteCollectionObject, bool selectAllProperties = true)
+    public async Task<TenantSiteCollection?> GetObjectAwaitAsync(TenantSiteCollection siteCollectionObject, bool selectAllProperties = true)
     {
-        return this.GetObjectAwait(
+        return await this.GetObjectAwaitAsync(
             siteCollectionObject.Url ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull),
             selectAllProperties
         );
     }
 
-    public TenantSiteCollection? GetObjectAwait(Uri siteCollectionUrl, bool selectAllProperties = true)
+    public async Task<TenantSiteCollection?> GetObjectAwaitAsync(Uri siteCollectionUrl, bool selectAllProperties = true)
     {
         while (true)
         {
             var errorCount = 0;
             try
             {
-                Thread.Sleep(TimeSpan.FromSeconds(ClientConstants.WaitIntervalForTenantService));
-                var siteCollectionObject = this.GetObject(siteCollectionUrl, selectAllProperties);
+                await Task.Delay(TimeSpan.FromSeconds(ClientConstants.WaitIntervalForTenantService));
+                var siteCollectionObject = await this.GetObjectAsync(siteCollectionUrl, selectAllProperties);
                 _ = siteCollectionObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
                 if (siteCollectionObject.Status == "Active")
                 {
@@ -147,7 +146,7 @@ public class TenantSiteCollectionService(ClientContext clientContext) : TenantCl
         }
     }
 
-    public IEnumerable<TenantSiteCollection>? GetObjectEnumerable(bool selectAllProperties = true)
+    public async Task<IEnumerable<TenantSiteCollection>?> GetObjectEnumerableAsync(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -165,12 +164,15 @@ public class TenantSiteCollectionService(ClientContext clientContext) : TenantCl
                 ClientQuery.Create(selectAllProperties, typeof(TenantSiteCollection))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantSiteCollectionEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantSiteCollectionEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<TenantSiteCollection>? GetObjectEnumerable(IReadOnlyDictionary<string, object?> filterInfo, bool selectAllProperties = true)
+    public async Task<IEnumerable<TenantSiteCollection>?> GetObjectEnumerableAsync(
+        IReadOnlyDictionary<string, object?> filterInfo,
+        bool selectAllProperties = true
+    )
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -187,12 +189,12 @@ public class TenantSiteCollectionService(ClientContext clientContext) : TenantCl
                 ClientQuery.Create(selectAllProperties, typeof(TenantSiteCollection))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantSiteCollectionEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantSiteCollectionEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public TenantOperationResult? LockObject(TenantSiteCollection siteCollectionObject, bool selectAllProperties = true)
+    public async Task<TenantOperationResult?> LockObjectAsync(TenantSiteCollection siteCollectionObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
@@ -208,17 +210,17 @@ public class TenantSiteCollectionService(ClientContext clientContext) : TenantCl
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TenantOperationResult)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void LockObjectAwait(TenantSiteCollection siteCollectionObject)
+    public async Task LockObjectAwaitAsync(TenantSiteCollection siteCollectionObject)
     {
-        this.WaitObject(this.LockObject(siteCollectionObject));
+        await this.WaitObjectAsync(await this.LockObjectAsync(siteCollectionObject));
     }
 
-    public TenantOperationResult? RemoveObject(TenantSiteCollection siteCollectionObject, bool selectAllProperties = true)
+    public async Task<TenantOperationResult?> RemoveObjectAsync(TenantSiteCollection siteCollectionObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -231,17 +233,17 @@ public class TenantSiteCollectionService(ClientContext clientContext) : TenantCl
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TenantOperationResult)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void RemoveObjectAwait(TenantSiteCollection siteCollectionObject)
+    public async Task RemoveObjectAwaitAsync(TenantSiteCollection siteCollectionObject)
     {
-        this.WaitObject(this.RemoveObject(siteCollectionObject));
+        await this.WaitObjectAsync(await this.RemoveObjectAsync(siteCollectionObject));
     }
 
-    public TenantOperationResult? SetObject(
+    public async Task<TenantOperationResult?> SetObjectAsync(
         TenantSiteCollection siteCollectionObject,
         IReadOnlyDictionary<string, object?> modificationInfo,
         bool selectAllProperties = true
@@ -257,17 +259,17 @@ public class TenantSiteCollectionService(ClientContext clientContext) : TenantCl
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TenantOperationResult)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void SetObjectAwait(TenantSiteCollection siteCollectionObject, IReadOnlyDictionary<string, object?> modificationInfo)
+    public async Task SetObjectAwaitAsync(TenantSiteCollection siteCollectionObject, IReadOnlyDictionary<string, object?> modificationInfo)
     {
-        this.WaitObject(this.SetObject(siteCollectionObject, modificationInfo));
+        await this.WaitObjectAsync(await this.SetObjectAsync(siteCollectionObject, modificationInfo));
     }
 
-    public TenantOperationResult? UnlockObject(TenantSiteCollection siteCollectionObject, bool selectAllProperties = true)
+    public async Task<TenantOperationResult?> UnlockObjectAsync(TenantSiteCollection siteCollectionObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
@@ -283,14 +285,14 @@ public class TenantSiteCollectionService(ClientContext clientContext) : TenantCl
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TenantOperationResult)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void UnlockObjectAwait(TenantSiteCollection siteCollectionObject)
+    public async Task UnlockObjectAwaitAsync(TenantSiteCollection siteCollectionObject)
     {
-        this.WaitObject(this.UnlockObject(siteCollectionObject));
+        await this.WaitObjectAsync(await this.UnlockObjectAsync(siteCollectionObject));
     }
 
 }

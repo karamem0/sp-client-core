@@ -107,7 +107,7 @@ public class AddExternalUserCommand : ClientObjectCmdlet<IExternalUserService>
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
@@ -116,7 +116,7 @@ public class AddExternalUserCommand : ClientObjectCmdlet<IExternalUserService>
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(
-                    this.Service.AddObject(
+                    await this.Service.AddObjectAsync(
                         this.UserId,
                         this.Role,
                         this.SendServerManagedNotification,
@@ -129,7 +129,7 @@ public class AddExternalUserCommand : ClientObjectCmdlet<IExternalUserService>
             else
             {
                 this.Outputs.AddRange(
-                    this.Service.AddObject(
+                    await this.Service.AddObjectAsync(
                         this.UserId,
                         this.Role,
                         this.SendServerManagedNotification,
@@ -147,7 +147,7 @@ public class AddExternalUserCommand : ClientObjectCmdlet<IExternalUserService>
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(
-                    this.Service.AddObject(
+                    await this.Service.AddObjectAsync(
                         this.File.ServerRelativeUrl,
                         this.UserId,
                         this.Role,
@@ -163,7 +163,7 @@ public class AddExternalUserCommand : ClientObjectCmdlet<IExternalUserService>
             else
             {
                 this.Outputs.AddRange(
-                    this.Service.AddObject(
+                    await this.Service.AddObjectAsync(
                         this.File.ServerRelativeUrl,
                         this.UserId,
                         this.Role,
@@ -184,7 +184,7 @@ public class AddExternalUserCommand : ClientObjectCmdlet<IExternalUserService>
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(
-                    this.Service.AddObject(
+                    await this.Service.AddObjectAsync(
                         this.Folder.ServerRelativeUrl,
                         this.UserId,
                         this.Role,
@@ -200,7 +200,7 @@ public class AddExternalUserCommand : ClientObjectCmdlet<IExternalUserService>
             else
             {
                 this.Outputs.AddRange(
-                    this.Service.AddObject(
+                    await this.Service.AddObjectAsync(
                         this.Folder.ServerRelativeUrl,
                         this.UserId,
                         this.Role,

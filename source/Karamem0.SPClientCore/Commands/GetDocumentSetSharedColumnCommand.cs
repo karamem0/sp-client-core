@@ -29,16 +29,16 @@ public class GetDocumentSetSharedColumnCommand : ClientObjectCmdlet<IDocumentSet
     [Parameter(Mandatory = false)]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.ContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentType));
         if (this.NoEnumerate)
         {
-            this.Outputs.Add(this.Service.GetObjectEnumerable(this.ContentType));
+            this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.ContentType));
         }
         else
         {
-            this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.ContentType));
+            this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.ContentType));
         }
     }
 

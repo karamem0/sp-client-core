@@ -15,28 +15,28 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IPropertyService
 {
 
-    PropertyValues? GetObject(bool selectAllProperties = true);
+    Task<PropertyValues?> GetObjectAsync(bool selectAllProperties = true);
 
-    PropertyValues? GetObject(File fileObject, bool selectAllProperties = true);
+    Task<PropertyValues?> GetObjectAsync(File fileObject, bool selectAllProperties = true);
 
-    PropertyValues? GetObject(Folder folderObject, bool selectAllProperties = true);
+    Task<PropertyValues?> GetObjectAsync(Folder folderObject, bool selectAllProperties = true);
 
-    PropertyValues? GetObject(ListItem listItemObject, bool selectAllProperties = true);
+    Task<PropertyValues?> GetObjectAsync(ListItem listItemObject, bool selectAllProperties = true);
 
-    void SetObject(IReadOnlyDictionary<string, object?> modificationInfo);
+    Task SetObjectAsync(IReadOnlyDictionary<string, object?> modificationInfo);
 
-    void SetObject(File fileObject, IReadOnlyDictionary<string, object?> modificationInfo);
+    Task SetObjectAsync(File fileObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
-    void SetObject(Folder folderObject, IReadOnlyDictionary<string, object?> modificationInfo);
+    Task SetObjectAsync(Folder folderObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
-    void SetObject(ListItem listItemObject, IReadOnlyDictionary<string, object?> modificationInfo);
+    Task SetObjectAsync(ListItem listItemObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class PropertyService(ClientContext clientContext) : ClientService(clientContext), IPropertyService
 {
 
-    public PropertyValues? GetObject(bool selectAllProperties = true)
+    public async Task<PropertyValues?> GetObjectAsync(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -45,12 +45,12 @@ public class PropertyService(ClientContext clientContext) : ClientService(client
             ObjectPathProperty.Create(objectPath2.Id, "AllProperties"),
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<PropertyValues>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<PropertyValues>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public PropertyValues? GetObject(File fileObject, bool selectAllProperties = true)
+    public async Task<PropertyValues?> GetObjectAsync(File fileObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(fileObject.ObjectIdentity));
@@ -58,12 +58,12 @@ public class PropertyService(ClientContext clientContext) : ClientService(client
             ObjectPathProperty.Create(objectPath1.Id, "Properties"),
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<PropertyValues>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<PropertyValues>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public PropertyValues? GetObject(Folder folderObject, bool selectAllProperties = true)
+    public async Task<PropertyValues?> GetObjectAsync(Folder folderObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(folderObject.ObjectIdentity));
@@ -71,12 +71,12 @@ public class PropertyService(ClientContext clientContext) : ClientService(client
             ObjectPathProperty.Create(objectPath1.Id, "Properties"),
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<PropertyValues>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<PropertyValues>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public PropertyValues? GetObject(ListItem listItemObject, bool selectAllProperties = true)
+    public async Task<PropertyValues?> GetObjectAsync(ListItem listItemObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listItemObject.ObjectIdentity));
@@ -84,12 +84,12 @@ public class PropertyService(ClientContext clientContext) : ClientService(client
             ObjectPathProperty.Create(objectPath1.Id, "Properties"),
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<PropertyValues>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<PropertyValues>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void SetObject(IReadOnlyDictionary<string, object?> modificationInfo)
+    public async Task SetObjectAsync(IReadOnlyDictionary<string, object?> modificationInfo)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -106,10 +106,10 @@ public class PropertyService(ClientContext clientContext) : ClientService(client
             )
         );
         var objectPath4 = requestPayload.Add(objectPath2, objectPathId => ClientActionMethod.Create(objectPathId, "Update"));
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void SetObject(File fileObject, IReadOnlyDictionary<string, object?> modificationInfo)
+    public async Task SetObjectAsync(File fileObject, IReadOnlyDictionary<string, object?> modificationInfo)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(fileObject.ObjectIdentity));
@@ -125,10 +125,10 @@ public class PropertyService(ClientContext clientContext) : ClientService(client
             )
         );
         var objectPath3 = requestPayload.Add(objectPath1, objectPathId => ClientActionMethod.Create(objectPathId, "Update"));
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void SetObject(Folder folderObject, IReadOnlyDictionary<string, object?> modificationInfo)
+    public async Task SetObjectAsync(Folder folderObject, IReadOnlyDictionary<string, object?> modificationInfo)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(folderObject.ObjectIdentity));
@@ -144,10 +144,10 @@ public class PropertyService(ClientContext clientContext) : ClientService(client
             )
         );
         var objectPath3 = requestPayload.Add(objectPath1, objectPathId => ClientActionMethod.Create(objectPathId, "Update"));
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void SetObject(ListItem listItemObject, IReadOnlyDictionary<string, object?> modificationInfo)
+    public async Task SetObjectAsync(ListItem listItemObject, IReadOnlyDictionary<string, object?> modificationInfo)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listItemObject.ObjectIdentity));
@@ -163,7 +163,7 @@ public class PropertyService(ClientContext clientContext) : ClientService(client
             )
         );
         var objectPath3 = requestPayload.Add(objectPath1, objectPathId => ClientActionMethod.Create(objectPathId, "Update"));
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

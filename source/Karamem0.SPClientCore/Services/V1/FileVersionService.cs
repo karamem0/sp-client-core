@@ -16,32 +16,32 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IFileVersionService
 {
 
-    FileVersion? GetObject(FileVersion fileVersionObject);
+    Task<FileVersion?> GetObjectAsync(FileVersion fileVersionObject);
 
-    FileVersion? GetObject(FileVersion fileVersionObject, bool selectAllProperties = true);
+    Task<FileVersion?> GetObjectAsync(FileVersion fileVersionObject, bool selectAllProperties = true);
 
-    FileVersion? GetObject(
+    Task<FileVersion?> GetObjectAsync(
         File fileObject,
         int fileVersionId,
         bool selectAllProperties = true
     );
 
-    IEnumerable<FileVersion>? GetObjectEnumerable(File fileObject, bool selectAllProperties = true);
+    Task<IEnumerable<FileVersion>?> GetObjectEnumerableAsync(File fileObject, bool selectAllProperties = true);
 
-    void RecycleObject(FileVersion fileVersionObject);
+    Task RecycleObjectAsync(FileVersion fileVersionObject);
 
-    void RemoveObject(FileVersion fileVersionObject);
+    Task RemoveObjectAsync(FileVersion fileVersionObject);
 
-    void RemoveObjectAll(File fileObject);
+    Task RemoveObjectAllAsync(File fileObject);
 
-    void RestoreObject(FileVersion fileVersionObject);
+    Task RestoreObjectAsync(FileVersion fileVersionObject);
 
 }
 
 public class FileVersionService(ClientContext clientContext) : ClientService<FileVersion>(clientContext), IFileVersionService
 {
 
-    public FileVersion? GetObject(
+    public async Task<FileVersion?> GetObjectAsync(
         File fileObject,
         int fileVersionId,
         bool selectAllProperties = true
@@ -59,12 +59,12 @@ public class FileVersionService(ClientContext clientContext) : ClientService<Fil
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(FileVersion)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<FileVersion>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<FileVersion>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<FileVersion>? GetObjectEnumerable(File fileObject, bool selectAllProperties = true)
+    public async Task<IEnumerable<FileVersion>?> GetObjectEnumerableAsync(File fileObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(fileObject.ObjectIdentity));
@@ -77,12 +77,12 @@ public class FileVersionService(ClientContext clientContext) : ClientService<Fil
                 ClientQuery.Create(selectAllProperties, typeof(FileVersion))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<FileVersionEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<FileVersionEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void RecycleObject(FileVersion fileVersionObject)
+    public async Task RecycleObjectAsync(FileVersion fileVersionObject)
     {
         var objectIdentity = fileVersionObject.ObjectIdentity;
         _ = objectIdentity ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
@@ -107,10 +107,10 @@ public class FileVersionService(ClientContext clientContext) : ClientService<Fil
                 requestPayload.CreateParameter(fileVersionObject.VersionLabel)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public override void RemoveObject(FileVersion fileVersionObject)
+    public override async Task RemoveObjectAsync(FileVersion fileVersionObject)
     {
         var objectIdentity = fileVersionObject.ObjectIdentity;
         _ = objectIdentity ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
@@ -134,19 +134,19 @@ public class FileVersionService(ClientContext clientContext) : ClientService<Fil
                 requestPayload.CreateParameter(fileVersionObject.VersionLabel)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void RemoveObjectAll(File fileObject)
+    public async Task RemoveObjectAllAsync(File fileObject)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(fileObject.ObjectIdentity));
         var objectPath2 = requestPayload.Add(ObjectPathProperty.Create(objectPath1.Id, "Versions"));
         var objectPath3 = requestPayload.Add(objectPath2, objectPathId => ClientActionMethod.Create(objectPathId, "DeleteAll"));
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void RestoreObject(FileVersion fileVersionObject)
+    public async Task RestoreObjectAsync(FileVersion fileVersionObject)
     {
         var objectIdentity = fileVersionObject.ObjectIdentity;
         _ = objectIdentity ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
@@ -170,7 +170,7 @@ public class FileVersionService(ClientContext clientContext) : ClientService<Fil
                 requestPayload.CreateParameter(fileVersionObject.VersionLabel)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

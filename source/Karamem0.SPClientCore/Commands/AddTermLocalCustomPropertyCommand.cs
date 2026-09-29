@@ -28,12 +28,12 @@ public class AddTermLocalCustomPropertyCommand : ClientObjectCmdlet<ITermLocalCu
     [Parameter(Mandatory = true)]
     public string? Value { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Term ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Term));
         _ = this.Name ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Name));
         _ = this.Value ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Value));
-        this.Service.AddObject(
+        await this.Service.AddObjectAsync(
             this.Term,
             this.Name,
             this.Value

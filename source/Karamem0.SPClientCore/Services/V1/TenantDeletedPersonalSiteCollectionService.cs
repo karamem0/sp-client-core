@@ -15,16 +15,16 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantDeletedPersonalSiteCollectionService
 {
 
-    IEnumerable<TenantDeletedSiteCollection>? GetObjectEnumerable(bool selectAllProperties = true);
+    Task<IEnumerable<TenantDeletedSiteCollection>?> GetObjectEnumerableAsync(bool selectAllProperties = true);
 
-    IEnumerable<TenantDeletedSiteCollection>? GetObjectEnumerable(Uri siteCollectionUrl, bool selectAllProperties = true);
+    Task<IEnumerable<TenantDeletedSiteCollection>?> GetObjectEnumerableAsync(Uri siteCollectionUrl, bool selectAllProperties = true);
 
 }
 
 public class TenantDeletedPersonalSiteCollectionService(ClientContext clientContext) : ClientService(clientContext), ITenantDeletedPersonalSiteCollectionService
 {
 
-    public IEnumerable<TenantDeletedSiteCollection>? GetObjectEnumerable(bool selectAllProperties = true)
+    public async Task<IEnumerable<TenantDeletedSiteCollection>?> GetObjectEnumerableAsync(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -41,12 +41,12 @@ public class TenantDeletedPersonalSiteCollectionService(ClientContext clientCont
                 ClientQuery.Create(selectAllProperties, typeof(TenantDeletedSiteCollection))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantDeletedSiteCollectionsEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantDeletedSiteCollectionsEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<TenantDeletedSiteCollection>? GetObjectEnumerable(Uri siteCollectionUrl, bool selectAllProperties = true)
+    public async Task<IEnumerable<TenantDeletedSiteCollection>?> GetObjectEnumerableAsync(Uri siteCollectionUrl, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -63,9 +63,9 @@ public class TenantDeletedPersonalSiteCollectionService(ClientContext clientCont
                 ClientQuery.Create(selectAllProperties, typeof(TenantDeletedSiteCollection))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantDeletedSiteCollectionsEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantDeletedSiteCollectionsEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
 }

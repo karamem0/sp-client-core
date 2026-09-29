@@ -28,18 +28,18 @@ public class GetTenantCdnOriginCommand : ClientObjectCmdlet<ITenantCdnService>
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             this.ValidateSwitchParameter(nameof(this.Public));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetOriginEnumerable(TenantCdnType.Public));
+                this.Outputs.Add(await this.Service.GetOriginEnumerableAsync(TenantCdnType.Public));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetOriginEnumerable(TenantCdnType.Public));
+                this.Outputs.AddRange(await this.Service.GetOriginEnumerableAsync(TenantCdnType.Public));
             }
         }
         if (this.ParameterSetName == "ParamSet2")
@@ -47,11 +47,11 @@ public class GetTenantCdnOriginCommand : ClientObjectCmdlet<ITenantCdnService>
             this.ValidateSwitchParameter(nameof(this.Private));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetOriginEnumerable(TenantCdnType.Private));
+                this.Outputs.Add(await this.Service.GetOriginEnumerableAsync(TenantCdnType.Private));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetOriginEnumerable(TenantCdnType.Private));
+                this.Outputs.AddRange(await this.Service.GetOriginEnumerableAsync(TenantCdnType.Private));
             }
         }
     }

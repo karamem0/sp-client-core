@@ -20,9 +20,9 @@ public class AddTermStoreLanguageCommand : ClientObjectCmdlet<ITermStoreLanguage
     [Parameter(Mandatory = true)]
     public uint Lcid { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
-        this.Service.AddObject(this.Lcid);
+        await this.Service.AddObjectAsync(this.Lcid);
     }
 
 }

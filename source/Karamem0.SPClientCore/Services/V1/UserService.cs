@@ -16,32 +16,32 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IUserService
 {
 
-    User? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true);
+    Task<User?> AddObjectAsync(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true);
 
-    User? EnsureObject(string userLoginName, bool selectAllProperties = true);
+    Task<User?> EnsureObjectAsync(string userLoginName, bool selectAllProperties = true);
 
-    User? GetObject(bool selectAllProperties = true);
+    Task<User?> GetObjectAsync(bool selectAllProperties = true);
 
-    User? GetObject(User userObject);
+    Task<User?> GetObjectAsync(User userObject);
 
-    User? GetObject(User userObject, bool selectAllProperties = true);
+    Task<User?> GetObjectAsync(User userObject, bool selectAllProperties = true);
 
-    User? GetObject(int userId, bool selectAllProperties = true);
+    Task<User?> GetObjectAsync(int userId, bool selectAllProperties = true);
 
-    User? GetObject(string userName, bool selectAllProperties = true);
+    Task<User?> GetObjectAsync(string userName, bool selectAllProperties = true);
 
-    IEnumerable<User>? GetObjectEnumerable(bool selectAllProperties = true);
+    Task<IEnumerable<User>?> GetObjectEnumerableAsync(bool selectAllProperties = true);
 
-    void RemoveObject(User userObject);
+    Task RemoveObjectAsync(User userObject);
 
-    void SetObject(User userObject, IReadOnlyDictionary<string, object?> modificationInfo);
+    Task SetObjectAsync(User userObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class UserService(ClientContext clientContext) : ClientService<User>(clientContext), IUserService
 {
 
-    public User? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true)
+    public async Task<User?> AddObjectAsync(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -56,12 +56,12 @@ public class UserService(ClientContext clientContext) : ClientService<User>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(User)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<User>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public User? EnsureObject(string userLoginName, bool selectAllProperties = true)
+    public async Task<User?> EnsureObjectAsync(string userLoginName, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -75,12 +75,12 @@ public class UserService(ClientContext clientContext) : ClientService<User>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(User)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<User>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public User? GetObject(bool selectAllProperties = true)
+    public async Task<User?> GetObjectAsync(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -90,12 +90,12 @@ public class UserService(ClientContext clientContext) : ClientService<User>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(User)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<User>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public User? GetObject(int userId, bool selectAllProperties = true)
+    public async Task<User?> GetObjectAsync(int userId, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -110,12 +110,12 @@ public class UserService(ClientContext clientContext) : ClientService<User>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(User)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<User>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public User? GetObject(string userName, bool selectAllProperties = true)
+    public async Task<User?> GetObjectAsync(string userName, bool selectAllProperties = true)
     {
         if (Regex.IsMatch(userName, "^[ci]:0"))
         {
@@ -132,9 +132,9 @@ public class UserService(ClientContext clientContext) : ClientService<User>(clie
                 ClientActionInstantiateObjectPath.Create,
                 objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(User)))
             );
-            return this
-                .ClientContext.ProcessQuery(requestPayload)
-                .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
+            return await this
+                .ClientContext.ProcessQueryAsync(requestPayload)
+                .ContinueWith(task => task.Result.ToObject<User>(requestPayload.GetActionId<ClientActionQuery>()));
         }
         else
         {
@@ -151,13 +151,13 @@ public class UserService(ClientContext clientContext) : ClientService<User>(clie
                 ClientActionInstantiateObjectPath.Create,
                 objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(User)))
             );
-            return this
-                .ClientContext.ProcessQuery(requestPayload)
-                .ToObject<User>(requestPayload.GetActionId<ClientActionQuery>());
+            return await this
+                .ClientContext.ProcessQueryAsync(requestPayload)
+                .ContinueWith(task => task.Result.ToObject<User>(requestPayload.GetActionId<ClientActionQuery>()));
         }
     }
 
-    public IEnumerable<User>? GetObjectEnumerable(bool selectAllProperties = true)
+    public async Task<IEnumerable<User>?> GetObjectEnumerableAsync(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -171,9 +171,9 @@ public class UserService(ClientContext clientContext) : ClientService<User>(clie
                 ClientQuery.Create(selectAllProperties, typeof(User))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<UserEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<UserEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
 }

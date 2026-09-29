@@ -29,18 +29,18 @@ public class GetTenantFileVersionPolicyForDocumentLibraryCommand : ClientObjectC
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public string? ListTitle { get; set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.SiteUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteUrl));
-            this.Outputs.Add(this.Service.GetObject(this.SiteUrl, this.ListId));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.SiteUrl, this.ListId));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.SiteUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteUrl));
             _ = this.ListTitle ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListTitle));
-            this.Outputs.Add(this.Service.GetObject(this.SiteUrl, this.ListTitle));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.SiteUrl, this.ListTitle));
         }
     }
 

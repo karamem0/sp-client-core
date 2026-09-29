@@ -151,22 +151,22 @@ public class SetSiteCommand : ClientObjectCmdlet<ISiteService>
     [Parameter(Mandatory = false)]
     public SwitchParameter SelectAllProperties { get; private set; } = true;
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.Identity is null)
         {
-            this.Service.SetObject(this.MyInvocation.BoundParameters);
+            await this.Service.SetObjectAsync(this.MyInvocation.BoundParameters);
             if (this.PassThru)
             {
-                this.Outputs.Add(this.Service.GetObject(this.SelectAllProperties));
+                this.Outputs.Add(await this.Service.GetObjectAsync(this.SelectAllProperties));
             }
         }
         else
         {
-            this.Service.SetObject(this.Identity, this.MyInvocation.BoundParameters);
+            await this.Service.SetObjectAsync(this.Identity, this.MyInvocation.BoundParameters);
             if (this.PassThru)
             {
-                this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
+                this.Outputs.Add(await this.Service.GetObjectAsync(this.Identity, this.SelectAllProperties));
             }
         }
     }

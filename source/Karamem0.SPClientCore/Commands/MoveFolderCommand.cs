@@ -63,7 +63,7 @@ public class MoveFolderCommand : ClientObjectCmdlet<IFolderService>
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     public SwitchParameter PassThru { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
@@ -71,7 +71,7 @@ public class MoveFolderCommand : ClientObjectCmdlet<IFolderService>
             if (this.NewUrl.IsAbsoluteUri)
             {
                 _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-                this.Service.MoveObject(
+                await this.Service.MoveObjectAsync(
                     this.Identity,
                     this.NewUrl,
                     this.MyInvocation.BoundParameters
@@ -89,19 +89,19 @@ public class MoveFolderCommand : ClientObjectCmdlet<IFolderService>
             {
                 var newUrl = new Uri(this.NewUrl.AbsolutePath, UriKind.Relative);
                 _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-                this.Service.MoveObject(this.Identity, newUrl);
+                await this.Service.MoveObjectAsync(this.Identity, newUrl);
                 if (this.PassThru)
                 {
-                    this.Outputs.Add(this.Service.GetObject(newUrl));
+                    this.Outputs.Add(await this.Service.GetObjectAsync(newUrl));
                 }
             }
             else
             {
                 _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-                this.Service.MoveObject(this.Identity, this.NewUrl);
+                await this.Service.MoveObjectAsync(this.Identity, this.NewUrl);
                 if (this.PassThru)
                 {
-                    this.Outputs.Add(this.Service.GetObject(this.NewUrl));
+                    this.Outputs.Add(await this.Service.GetObjectAsync(this.NewUrl));
                 }
             }
         }

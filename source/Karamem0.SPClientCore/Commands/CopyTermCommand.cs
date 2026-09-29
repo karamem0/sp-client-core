@@ -29,10 +29,10 @@ public class CopyTermCommand : ClientObjectCmdlet<ITermService>
     [Parameter(Mandatory = false)]
     public SwitchParameter CopyChildren { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-        this.Outputs.Add(this.Service.CopyObject(this.Identity, this.CopyChildren));
+        this.Outputs.Add(await this.Service.CopyObjectAsync(this.Identity, this.CopyChildren));
     }
 
 }

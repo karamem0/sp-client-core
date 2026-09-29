@@ -27,17 +27,17 @@ public class SetMultilingualEnabledCommand : ClientObjectCmdlet<IRegionalSetting
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     public SwitchParameter Force { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             this.ValidateSwitchParameter(nameof(this.Enabled));
-            this.Service.EnableMultilingual(this.Force);
+            await this.Service.EnableMultilingualAsync(this.Force);
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             this.ValidateSwitchParameter(nameof(this.Disabled));
-            this.Service.DisableMultilingual(this.Force);
+            await this.Service.DisableMultilingualAsync(this.Force);
         }
     }
 

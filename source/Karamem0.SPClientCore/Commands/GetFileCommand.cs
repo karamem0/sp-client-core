@@ -83,47 +83,47 @@ public class GetFileCommand : ClientObjectCmdlet<IFileService>
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet9")]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.Identity, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.AttachmentFile?.ServerRelativeUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.AttachmentFile));
-            this.Outputs.Add(this.Service.GetObject(this.AttachmentFile.ServerRelativeUrl, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.AttachmentFile.ServerRelativeUrl, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             _ = this.FileVersion ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.FileVersion));
-            this.Outputs.Add(this.Service.GetObject(this.FileVersion, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.FileVersion, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet4")
         {
             _ = this.App ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.App));
-            this.Outputs.Add(this.Service.GetObject(this.App, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.App, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet5")
         {
             _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
-            this.Outputs.Add(this.Service.GetObject(this.ListItem, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.ListItem, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet6")
         {
-            this.Outputs.Add(this.Service.GetObject(this.FileId, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.FileId, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet7")
         {
             _ = this.FileUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.FileUrl));
             if (this.FileUrl.IsAbsoluteUri)
             {
-                this.Outputs.Add(this.Service.GetObject(new Uri(this.FileUrl.AbsolutePath, UriKind.Relative), this.SelectAllProperties));
+                this.Outputs.Add(await this.Service.GetObjectAsync(new Uri(this.FileUrl.AbsolutePath, UriKind.Relative), this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.Add(this.Service.GetObject(this.FileUrl, this.SelectAllProperties));
+                this.Outputs.Add(await this.Service.GetObjectAsync(this.FileUrl, this.SelectAllProperties));
             }
         }
         if (this.ParameterSetName == "ParamSet8")
@@ -131,7 +131,7 @@ public class GetFileCommand : ClientObjectCmdlet<IFileService>
             _ = this.Folder ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Folder));
             _ = this.FileName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.FileName));
             this.Outputs.Add(
-                this.Service.GetObject(
+                await this.Service.GetObjectAsync(
                     this.Folder,
                     this.FileName,
                     this.SelectAllProperties
@@ -143,11 +143,11 @@ public class GetFileCommand : ClientObjectCmdlet<IFileService>
             _ = this.Folder ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Folder));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.Folder, this.SelectAllProperties));
+                this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.Folder, this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.Folder, this.SelectAllProperties));
+                this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.Folder, this.SelectAllProperties));
             }
         }
     }

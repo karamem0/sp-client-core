@@ -29,19 +29,19 @@ public class AddTenantCdnOriginCommand : ClientObjectCmdlet<ITenantCdnService>
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public string? Origin { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             this.ValidateSwitchParameter(nameof(this.Public));
             _ = this.Origin ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Origin));
-            this.Service.AddOrigin(TenantCdnType.Public, this.Origin);
+            await this.Service.AddOriginAsync(TenantCdnType.Public, this.Origin);
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             this.ValidateSwitchParameter(nameof(this.Private));
             _ = this.Origin ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Origin));
-            this.Service.AddOrigin(TenantCdnType.Private, this.Origin);
+            await this.Service.AddOriginAsync(TenantCdnType.Private, this.Origin);
         }
     }
 

@@ -50,33 +50,23 @@ public class GetSiteCollectionAppCatalogCommand : ClientObjectCmdlet<ISiteCollec
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet5")]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.Identity, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.SiteCollection ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollection));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(
-                    this
-                        .Service.GetObjectEnumerable(this.SelectAllProperties)
-                        .Where(obj => obj.SiteCollectionId == this.SiteCollection.Id)
-                        .ToArray()
-                );
+                this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.SiteCollection.Id, this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(
-                    this
-                        .Service.GetObjectEnumerable(this.SelectAllProperties)
-                        .Where(obj => obj.SiteCollectionId == this.SiteCollection.Id)
-                        .ToArray()
-                );
+                this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.SiteCollection.Id, this.SelectAllProperties));
             }
         }
         if (this.ParameterSetName == "ParamSet3")
@@ -86,21 +76,11 @@ public class GetSiteCollectionAppCatalogCommand : ClientObjectCmdlet<ISiteCollec
             {
                 if (this.NoEnumerate)
                 {
-                    this.Outputs.Add(
-                        this
-                            .Service.GetObjectEnumerable(this.SelectAllProperties)
-                            .Where(obj => obj.AbsoluteUrl == this.SiteCollectionUrl)
-                            .ToArray()
-                    );
+                    this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.SiteCollectionUrl, this.SelectAllProperties));
                 }
                 else
                 {
-                    this.Outputs.AddRange(
-                        this
-                            .Service.GetObjectEnumerable(this.SelectAllProperties)
-                            .Where(obj => obj.AbsoluteUrl == this.SiteCollectionUrl)
-                            .ToArray()
-                    );
+                    this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.SiteCollectionUrl, this.SelectAllProperties));
                 }
             }
             else
@@ -112,32 +92,22 @@ public class GetSiteCollectionAppCatalogCommand : ClientObjectCmdlet<ISiteCollec
         {
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(
-                    this
-                        .Service.GetObjectEnumerable(this.SelectAllProperties)
-                        .Where(obj => obj.SiteCollectionId == this.SiteCollectionId)
-                        .ToArray()
-                );
+                this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.SiteCollectionId, this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(
-                    this
-                        .Service.GetObjectEnumerable(this.SelectAllProperties)
-                        .Where(obj => obj.SiteCollectionId == this.SiteCollectionId)
-                        .ToArray()
-                );
+                this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.SiteCollectionId, this.SelectAllProperties));
             }
         }
         if (this.ParameterSetName == "ParamSet5")
         {
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.SelectAllProperties));
+                this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.SiteCollectionUrl, this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.SelectAllProperties));
+                this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.SiteCollectionUrl, this.SelectAllProperties));
             }
         }
     }

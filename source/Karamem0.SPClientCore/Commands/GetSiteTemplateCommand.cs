@@ -33,11 +33,11 @@ public class GetSiteTemplateCommand : ClientObjectCmdlet<ISiteService, ISiteTemp
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.Lcid == default)
         {
-            var siteObject = this.Service1.GetObject();
+            var siteObject = await this.Service1.GetObjectAsync();
             if (siteObject is not null)
             {
                 this.Lcid = siteObject.Lcid;
@@ -47,7 +47,7 @@ public class GetSiteTemplateCommand : ClientObjectCmdlet<ISiteService, ISiteTemp
         {
             _ = this.SiteTemplateName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteTemplateName));
             this.Outputs.Add(
-                this.Service2.GetObject(
+                await this.Service2.GetObjectAsync(
                     this.SiteTemplateName,
                     this.Lcid,
                     this.IncludeCrossLanguage
@@ -58,11 +58,11 @@ public class GetSiteTemplateCommand : ClientObjectCmdlet<ISiteService, ISiteTemp
         {
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service2.GetObjectEnumerable(this.Lcid, this.IncludeCrossLanguage));
+                this.Outputs.Add(await this.Service2.GetObjectEnumerableAsync(this.Lcid, this.IncludeCrossLanguage));
             }
             else
             {
-                this.Outputs.AddRange(this.Service2.GetObjectEnumerable(this.Lcid, this.IncludeCrossLanguage));
+                this.Outputs.AddRange(await this.Service2.GetObjectEnumerableAsync(this.Lcid, this.IncludeCrossLanguage));
             }
         }
     }

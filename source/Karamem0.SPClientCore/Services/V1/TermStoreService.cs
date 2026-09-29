@@ -15,16 +15,16 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITermStoreService
 {
 
-    TermStore? GetObject(bool selectAllProperties = true);
+    Task<TermStore?> GetObjectAsync(bool selectAllProperties = true);
 
-    void SetObject(IReadOnlyDictionary<string, object?> modificationInfo);
+    Task SetObjectAsync(IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class TermStoreService(ClientContext clientContext) : ClientService(clientContext), ITermStoreService
 {
 
-    public TermStore? GetObject(bool selectAllProperties = true)
+    public async Task<TermStore?> GetObjectAsync(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticMethod.Create(typeof(TaxonomySession), "GetTaxonomySession"));
@@ -33,12 +33,12 @@ public class TermStoreService(ClientContext clientContext) : ClientService(clien
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TermStore)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TermStore>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TermStore>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void SetObject(IReadOnlyDictionary<string, object?> modificationInfo)
+    public async Task SetObjectAsync(IReadOnlyDictionary<string, object?> modificationInfo)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticMethod.Create(typeof(TaxonomySession), "GetTaxonomySession"));
@@ -48,7 +48,7 @@ public class TermStoreService(ClientContext clientContext) : ClientService(clien
         );
         var objectPath3 = requestPayload.Add(objectPath2, requestPayload.CreateSetPropertyDelegates(typeof(TermStore), modificationInfo));
         var objectPath4 = requestPayload.Add(objectPath2, objectPathId => ClientActionMethod.Create(objectPathId, "CommitAll"));
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

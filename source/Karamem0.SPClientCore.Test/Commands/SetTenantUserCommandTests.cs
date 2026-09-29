@@ -27,7 +27,7 @@ public class SetTenantUserCommandTests
                 ["Url"] = context.AppSettings["AdminUrl"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
+                ["PrivateKey"] = Convert.FromBase64String(context.AppSettings["PrivateKey"])
             }
         );
         var result1 = context.Runspace.InvokeCommand<TenantSiteCollection>(
@@ -80,7 +80,7 @@ public class SetTenantUserCommandTests
                 ["Url"] = context.AppSettings["AdminUrl"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
+                ["PrivateKey"] = Convert.FromBase64String(context.AppSettings["PrivateKey"])
             }
         );
         var result1 = context.Runspace.InvokeCommand<TenantSiteCollection>(
@@ -133,7 +133,7 @@ public class SetTenantUserCommandTests
                 ["Url"] = context.AppSettings["AdminUrl"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
+                ["PrivateKey"] = Convert.FromBase64String(context.AppSettings["PrivateKey"])
             }
         );
         var result1 = context.Runspace.InvokeCommand<TenantSiteCollection>(
@@ -186,7 +186,7 @@ public class SetTenantUserCommandTests
                 ["Url"] = context.AppSettings["AdminUrl"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
+                ["PrivateKey"] = Convert.FromBase64String(context.AppSettings["PrivateKey"])
             }
         );
         var result1 = context.Runspace.InvokeCommand<User>(
@@ -232,7 +232,7 @@ public class SetTenantUserCommandTests
                 ["Url"] = context.AppSettings["AdminUrl"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
+                ["PrivateKey"] = Convert.FromBase64String(context.AppSettings["PrivateKey"])
             }
         );
         var result1 = context.Runspace.InvokeCommand<User>(
@@ -278,7 +278,7 @@ public class SetTenantUserCommandTests
                 ["Url"] = context.AppSettings["AdminUrl"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
+                ["PrivateKey"] = Convert.FromBase64String(context.AppSettings["PrivateKey"])
             }
         );
         var result1 = context.Runspace.InvokeCommand<User>(

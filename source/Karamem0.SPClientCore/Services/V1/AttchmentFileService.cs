@@ -17,25 +17,25 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IAttachmentFileService
 {
 
-    System.IO.Stream DownloadObject(AttachmentFile attachmentFileObject);
+    Task<System.IO.Stream> DownloadObjectAsync(AttachmentFile attachmentFileObject);
 
-    AttachmentFile? GetObject(AttachmentFile attachmentFileObject);
+    Task<AttachmentFile?> GetObjectAsync(AttachmentFile attachmentFileObject);
 
-    AttachmentFile? GetObject(AttachmentFile attachmentFileObject, bool selectAllProperties = true);
+    Task<AttachmentFile?> GetObjectAsync(AttachmentFile attachmentFileObject, bool selectAllProperties = true);
 
-    AttachmentFile? GetObject(
+    Task<AttachmentFile?> GetObjectAsync(
         ListItem listItemObject,
         string attachmentFileName,
         bool selectAllProperties = true
     );
 
-    IEnumerable<AttachmentFile>? GetObjectEnumerable(ListItem listItemObject, bool selectAllProperties = true);
+    Task<IEnumerable<AttachmentFile>?> GetObjectEnumerableAsync(ListItem listItemObject, bool selectAllProperties = true);
 
-    void RecycleObject(AttachmentFile attachmentFileObject);
+    Task RecycleObjectAsync(AttachmentFile attachmentFileObject);
 
-    void RemoveObject(AttachmentFile attachmentFileObject);
+    Task RemoveObjectAsync(AttachmentFile attachmentFileObject);
 
-    void UploadObject(
+    Task UploadObjectAsync(
         ListItem listItemObject,
         string attachmentFileName,
         System.IO.Stream attachmentFileContent,
@@ -47,16 +47,16 @@ public interface IAttachmentFileService
 public class AttachmentFileService(ClientContext clientContext) : ClientService<AttachmentFile>(clientContext), IAttachmentFileService
 {
 
-    public System.IO.Stream DownloadObject(AttachmentFile attachmentFileObject)
+    public async Task<System.IO.Stream> DownloadObjectAsync(AttachmentFile attachmentFileObject)
     {
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/getfilebyserverrelativeurl('{0}')/openbinarystream",
             attachmentFileObject.ServerRelativeUrl
         );
-        return this.ClientContext.GetStream(requestUrl);
+        return await this.ClientContext.GetStreamAsync(requestUrl);
     }
 
-    public AttachmentFile? GetObject(
+    public async Task<AttachmentFile?> GetObjectAsync(
         ListItem listItemObject,
         string attachmentFileName,
         bool selectAllProperties = true
@@ -74,12 +74,12 @@ public class AttachmentFileService(ClientContext clientContext) : ClientService<
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(AttachmentFile)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<AttachmentFile>(ClientRequestObject.CurrentId());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<AttachmentFile>(ClientRequestObject.CurrentId()));
     }
 
-    public IEnumerable<AttachmentFile>? GetObjectEnumerable(ListItem listItemObject, bool selectAllProperties = true)
+    public async Task<IEnumerable<AttachmentFile>?> GetObjectEnumerableAsync(ListItem listItemObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listItemObject.ObjectIdentity));
@@ -92,22 +92,22 @@ public class AttachmentFileService(ClientContext clientContext) : ClientService<
                 ClientQuery.Create(selectAllProperties, typeof(AttachmentFile))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<AttachmentFileEnumerable>(ClientRequestObject.CurrentId());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<AttachmentFileEnumerable>(ClientRequestObject.CurrentId()));
     }
 
-    public void RecycleObject(AttachmentFile attachmentFileObject)
+    public async Task RecycleObjectAsync(AttachmentFile attachmentFileObject)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             ObjectPathIdentity.Create(attachmentFileObject.ObjectIdentity),
             objectPathId => ClientActionMethod.Create(objectPathId, "RecycleObject")
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void UploadObject(
+    public async Task UploadObjectAsync(
         ListItem listItemObject,
         string attachmentFileName,
         System.IO.Stream attachmentFileContent,
@@ -121,9 +121,9 @@ public class AttachmentFileService(ClientContext clientContext) : ClientService<
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(List)))
         );
-        var listObject = this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<List>(ClientRequestObject.CurrentId());
+        var listObject = await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<List>(ClientRequestObject.CurrentId()));
         _ = listObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/lists('{0}')/items({1})/attachmentfiles/add(filename='{2}')",
@@ -131,7 +131,7 @@ public class AttachmentFileService(ClientContext clientContext) : ClientService<
             listItemObject.Id,
             attachmentFileName
         );
-        this.ClientContext.PostStream(requestUrl, attachmentFileContent);
+        await this.ClientContext.PostStreamAsync(requestUrl, attachmentFileContent);
     }
 
 }

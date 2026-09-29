@@ -35,20 +35,20 @@ public class SetCommentEnabledCommand : ClientObjectCmdlet<ICommentService, ILis
     [Parameter(Mandatory = false)]
     public SwitchParameter SelectAllProperties { get; private set; } = true;
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
         if (this.Enabled)
         {
-            this.Service1.SetDisabled(this.Identity, false);
+            await this.Service1.SetDisabledAsync(this.Identity, false);
         }
         else
         {
-            this.Service1.SetDisabled(this.Identity, true);
+            await this.Service1.SetDisabledAsync(this.Identity, true);
         }
         if (this.PassThru)
         {
-            this.Outputs.Add(this.Service2.GetObject(this.Identity, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service2.GetObjectAsync(this.Identity, this.SelectAllProperties));
         }
     }
 

@@ -15,31 +15,31 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantFileVersionPolicyForDocumentLibraryService
 {
 
-    FileVersionPolicyForDocumentLibrary? GetObject(Uri siteUrl, Guid listId);
+    Task<FileVersionPolicyForDocumentLibrary?> GetObjectAsync(Uri siteUrl, Guid listId);
 
-    FileVersionPolicyForDocumentLibrary? GetObject(Uri siteUrl, string listTitle);
+    Task<FileVersionPolicyForDocumentLibrary?> GetObjectAsync(Uri siteUrl, string listTitle);
 
-    TenantOperationResult? SetObject(
+    Task<TenantOperationResult?> SetObjectAsync(
         Uri siteUrl,
         Guid listId,
         IReadOnlyDictionary<string, object?> modificationInfo,
         bool selectAllProperties = true
     );
 
-    TenantOperationResult? SetObject(
+    Task<TenantOperationResult?> SetObjectAsync(
         Uri siteUrl,
         string listTitle,
         IReadOnlyDictionary<string, object?> modificationInfo,
         bool selectAllProperties = true
     );
 
-    void SetObjectAwait(
+    Task SetObjectAwaitAsync(
         Uri siteUrl,
         Guid listId,
         IReadOnlyDictionary<string, object?> modificationInfo
     );
 
-    void SetObjectAwait(
+    Task SetObjectAwaitAsync(
         Uri siteUrl,
         string listTitle,
         IReadOnlyDictionary<string, object?> modificationInfo
@@ -51,7 +51,7 @@ public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clie
     : TenantClientService(clientContext), ITenantFileVersionPolicyForDocumentLibraryService
 {
 
-    public FileVersionPolicyForDocumentLibrary? GetObject(Uri siteUrl, Guid listId)
+    public async Task<FileVersionPolicyForDocumentLibrary?> GetObjectAsync(Uri siteUrl, Guid listId)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -64,12 +64,12 @@ public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clie
                 requestPayload.CreateParameter(new ListParameters(id: listId))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<FileVersionPolicyForDocumentLibrary>(requestPayload.GetActionId<ClientActionMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<FileVersionPolicyForDocumentLibrary>(requestPayload.GetActionId<ClientActionMethod>()));
     }
 
-    public FileVersionPolicyForDocumentLibrary? GetObject(Uri siteUrl, string listTitle)
+    public async Task<FileVersionPolicyForDocumentLibrary?> GetObjectAsync(Uri siteUrl, string listTitle)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -82,12 +82,12 @@ public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clie
                 requestPayload.CreateParameter(new ListParameters(title: listTitle))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<FileVersionPolicyForDocumentLibrary>(requestPayload.GetActionId<ClientActionMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<FileVersionPolicyForDocumentLibrary>(requestPayload.GetActionId<ClientActionMethod>()));
     }
 
-    public TenantOperationResult? SetObject(
+    public async Task<TenantOperationResult?> SetObjectAsync(
         Uri siteUrl,
         Guid listId,
         IReadOnlyDictionary<string, object?> modificationInfo,
@@ -107,12 +107,12 @@ public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TenantOperationResult)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public TenantOperationResult? SetObject(
+    public async Task<TenantOperationResult?> SetObjectAsync(
         Uri siteUrl,
         string listTitle,
         IReadOnlyDictionary<string, object?> modificationInfo,
@@ -132,19 +132,19 @@ public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TenantOperationResult)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantOperationResult>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void SetObjectAwait(
+    public async Task SetObjectAwaitAsync(
         Uri siteUrl,
         Guid listId,
         IReadOnlyDictionary<string, object?> modificationInfo
     )
     {
-        this.WaitObject(
-            this.SetObject(
+        await this.WaitObjectAsync(
+            await this.SetObjectAsync(
                 siteUrl,
                 listId,
                 modificationInfo
@@ -152,14 +152,14 @@ public class TenantFileVersionPolicyForDocumentLibraryService(ClientContext clie
         );
     }
 
-    public void SetObjectAwait(
+    public async Task SetObjectAwaitAsync(
         Uri siteUrl,
         string listTitle,
         IReadOnlyDictionary<string, object?> modificationInfo
     )
     {
-        this.WaitObject(
-            this.SetObject(
+        await this.WaitObjectAsync(
+            await this.SetObjectAsync(
                 siteUrl,
                 listTitle,
                 modificationInfo

@@ -15,36 +15,36 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantHomeSiteService
 {
 
-    Uri? GetObject();
+    Task<Uri?> GetObjectAsync();
 
-    void RemoveObject();
+    Task RemoveObjectAsync();
 
-    void SetObject(Uri homeSiteUrl);
+    Task SetObjectAsync(Uri homeSiteUrl);
 
 }
 
 public class TenantHomeSiteService(ClientContext clientContext) : ClientService(clientContext), ITenantHomeSiteService
 {
 
-    public Uri? GetObject()
+    public async Task<Uri?> GetObjectAsync()
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(objectPath1, objectPathId => ClientActionMethod.Create(objectPathId, "GetSPHSiteUrl"));
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Uri>(requestPayload.GetActionId<ClientActionMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Uri>(requestPayload.GetActionId<ClientActionMethod>()));
     }
 
-    public void RemoveObject()
+    public async Task RemoveObjectAsync()
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(objectPath1, objectPathId => ClientActionMethod.Create(objectPathId, "RemoveSPHSite"));
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void SetObject(Uri homeSiteUrl)
+    public async Task SetObjectAsync(Uri homeSiteUrl)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -56,7 +56,7 @@ public class TenantHomeSiteService(ClientContext clientContext) : ClientService(
                 requestPayload.CreateParameter(homeSiteUrl)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

@@ -20,7 +20,7 @@ public class NewContentTypeIdCommand : ClientObjectCmdlet
     [Parameter(Mandatory = true, Position = 0)]
     public string? StringValue { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         this.Outputs.Add(new ContentTypeId(this.StringValue));
     }

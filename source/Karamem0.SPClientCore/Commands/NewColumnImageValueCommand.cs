@@ -38,12 +38,12 @@ public class NewColumnImageValueCommand : ClientObjectCmdlet<ISiteService>
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     public Guid Id { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.ImageItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ImageItem));
-            var siteObject = this.Service.GetObject();
+            var siteObject = await this.Service.GetObjectAsync();
             _ = siteObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
             var siteUrl = siteObject.Url;
             _ = siteUrl ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);

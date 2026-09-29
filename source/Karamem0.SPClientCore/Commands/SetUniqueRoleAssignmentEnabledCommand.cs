@@ -75,15 +75,15 @@ public class SetUniqueRoleAssignmentEnabledCommand : ClientObjectCmdlet<ISiteSer
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet6")]
     public SwitchParameter Disabled { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             this.ValidateSwitchParameter(nameof(this.Site));
             this.ValidateSwitchParameter(nameof(this.Enabled));
-            var siteObject = this.Service1.GetObject();
+            var siteObject = await this.Service1.GetObjectAsync();
             _ = siteObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
-            this.Service2.BreakObjectInheritance(
+            await this.Service2.BreakObjectInheritanceAsync(
                 siteObject,
                 this.CopyRoleAssignments,
                 this.ClearSubscopes
@@ -93,15 +93,15 @@ public class SetUniqueRoleAssignmentEnabledCommand : ClientObjectCmdlet<ISiteSer
         {
             this.ValidateSwitchParameter(nameof(this.Site));
             this.ValidateSwitchParameter(nameof(this.Disabled));
-            var siteObject = this.Service1.GetObject();
+            var siteObject = await this.Service1.GetObjectAsync();
             _ = siteObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
-            this.Service2.ResetObjectInheritance(siteObject);
+            await this.Service2.ResetObjectInheritanceAsync(siteObject);
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             this.ValidateSwitchParameter(nameof(this.Enabled));
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
-            this.Service2.BreakObjectInheritance(
+            await this.Service2.BreakObjectInheritanceAsync(
                 this.List,
                 this.CopyRoleAssignments,
                 this.ClearSubscopes
@@ -111,13 +111,13 @@ public class SetUniqueRoleAssignmentEnabledCommand : ClientObjectCmdlet<ISiteSer
         {
             this.ValidateSwitchParameter(nameof(this.Disabled));
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
-            this.Service2.ResetObjectInheritance(this.List);
+            await this.Service2.ResetObjectInheritanceAsync(this.List);
         }
         if (this.ParameterSetName == "ParamSet5")
         {
             this.ValidateSwitchParameter(nameof(this.Enabled));
             _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
-            this.Service2.BreakObjectInheritance(
+            await this.Service2.BreakObjectInheritanceAsync(
                 this.ListItem,
                 this.CopyRoleAssignments,
                 this.ClearSubscopes
@@ -127,7 +127,7 @@ public class SetUniqueRoleAssignmentEnabledCommand : ClientObjectCmdlet<ISiteSer
         {
             this.ValidateSwitchParameter(nameof(this.Disabled));
             _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
-            this.Service2.ResetObjectInheritance(this.ListItem);
+            await this.Service2.ResetObjectInheritanceAsync(this.ListItem);
         }
     }
 

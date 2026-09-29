@@ -21,10 +21,10 @@ public class AddTenantOrganizationNewsSiteCommand : ClientObjectCmdlet<ITenantOr
     [Parameter(Mandatory = true)]
     public Uri? Url { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Url));
-        this.Service.AddObject(this.Url);
+        await this.Service.AddObjectAsync(this.Url);
     }
 
 }

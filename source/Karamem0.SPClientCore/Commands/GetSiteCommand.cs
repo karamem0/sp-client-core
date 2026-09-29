@@ -55,48 +55,48 @@ public class GetSiteCommand : ClientObjectCmdlet<ISiteService>
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet6")]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.Identity, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.SiteCollection ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollection));
-            this.Outputs.Add(this.Service.GetObject(this.SiteCollection, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.SiteCollection, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
-            this.Outputs.Add(this.Service.GetObject(this.List, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.List, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet4")
         {
-            this.Outputs.Add(this.Service.GetObject(this.SiteId, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.SiteId, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet5")
         {
             _ = this.SiteUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteUrl));
             if (this.SiteUrl.IsAbsoluteUri)
             {
-                this.Outputs.Add(this.Service.GetObject(new Uri(this.SiteUrl.AbsolutePath, UriKind.Relative), this.SelectAllProperties));
+                this.Outputs.Add(await this.Service.GetObjectAsync(new Uri(this.SiteUrl.AbsolutePath, UriKind.Relative), this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.Add(this.Service.GetObject(this.SiteUrl, this.SelectAllProperties));
+                this.Outputs.Add(await this.Service.GetObjectAsync(this.SiteUrl, this.SelectAllProperties));
             }
         }
         if (this.ParameterSetName == "ParamSet6")
         {
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.SelectAllProperties));
+                this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.SelectAllProperties));
+                this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.SelectAllProperties));
             }
         }
     }

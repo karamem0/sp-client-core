@@ -21,7 +21,7 @@ public class NewBasePermissionCommand : ClientObjectCmdlet
     [Parameter(Mandatory = true, Position = 0)]
     public PermissionKind[]? Permission { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Permission ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Permission));
         this.Outputs.Add(new BasePermission(this.Permission));

@@ -39,10 +39,10 @@ public class GetTenantSiteScriptFromSiteCommand : ClientObjectCmdlet<ITenantSite
     [Parameter(Mandatory = false)]
     public SwitchParameter IncludeTheme { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         this.Outputs.Add(
-            this.Service.GetScriptFromSite(
+            await this.Service.GetScriptFromSiteAsync(
                 this.SiteUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteUrl)),
                 this.MyInvocation.BoundParameters
             )

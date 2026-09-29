@@ -15,20 +15,20 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IUserPropertyService
 {
 
-    UserProperty? GetObject(bool selectAllProperties = true);
+    Task<UserProperty?> GetObjectAsync(bool selectAllProperties = true);
 
-    UserProperty? GetObject(UserProperty userPropertyObject);
+    Task<UserProperty?> GetObjectAsync(UserProperty userPropertyObject);
 
-    UserProperty? GetObject(UserProperty userPropertyObject, bool selectAllProperties = true);
+    Task<UserProperty?> GetObjectAsync(UserProperty userPropertyObject, bool selectAllProperties = true);
 
-    UserProperty? GetObject(string userLoginName, bool selectAllProperties = true);
+    Task<UserProperty?> GetObjectAsync(string userLoginName, bool selectAllProperties = true);
 
 }
 
 public class UserPropertyService(ClientContext clientContext) : ClientService<UserProperty>(clientContext), IUserPropertyService
 {
 
-    public UserProperty? GetObject(bool selectAllProperties = true)
+    public async Task<UserProperty?> GetObjectAsync(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(PeopleManager)));
@@ -37,12 +37,12 @@ public class UserPropertyService(ClientContext clientContext) : ClientService<Us
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(UserProperty)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<UserProperty>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<UserProperty>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public UserProperty? GetObject(string userLoginName, bool selectAllProperties = true)
+    public async Task<UserProperty?> GetObjectAsync(string userLoginName, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(PeopleManager)));
@@ -55,9 +55,9 @@ public class UserPropertyService(ClientContext clientContext) : ClientService<Us
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(UserProperty)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<UserProperty>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<UserProperty>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
 }

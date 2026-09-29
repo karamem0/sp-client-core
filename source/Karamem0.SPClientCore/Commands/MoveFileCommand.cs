@@ -74,7 +74,7 @@ public class MoveFileCommand : ClientObjectCmdlet<IFileService>
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     public SwitchParameter PassThru { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
@@ -82,7 +82,7 @@ public class MoveFileCommand : ClientObjectCmdlet<IFileService>
             if (this.NewUrl.IsAbsoluteUri)
             {
                 _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-                this.Service.MoveObject(
+                await this.Service.MoveObjectAsync(
                     this.Identity,
                     this.NewUrl,
                     this.Overwrite,
@@ -102,26 +102,26 @@ public class MoveFileCommand : ClientObjectCmdlet<IFileService>
             if (this.NewUrl.IsAbsoluteUri)
             {
                 var newUrl = new Uri(this.NewUrl.AbsolutePath, UriKind.Relative);
-                this.Service.MoveObject(
+                await this.Service.MoveObjectAsync(
                     this.Identity,
                     newUrl,
                     moveOperations
                 );
                 if (this.PassThru)
                 {
-                    this.Outputs.Add(this.Service.GetObject(newUrl));
+                    this.Outputs.Add(await this.Service.GetObjectAsync(newUrl));
                 }
             }
             else
             {
-                this.Service.MoveObject(
+                await this.Service.MoveObjectAsync(
                     this.Identity,
                     this.NewUrl,
                     moveOperations
                 );
                 if (this.PassThru)
                 {
-                    this.Outputs.Add(this.Service.GetObject(this.NewUrl));
+                    this.Outputs.Add(await this.Service.GetObjectAsync(this.NewUrl));
                 }
             }
         }

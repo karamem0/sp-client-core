@@ -58,27 +58,27 @@ public class GetUserPermissionCommand : ClientObjectCmdlet<ISiteService, IUserPe
     )]
     public ListItem? ListItem { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             this.ValidateSwitchParameter(nameof(this.Site));
             _ = this.User ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.User));
-            var siteObject = this.Service1.GetObject();
+            var siteObject = await this.Service1.GetObjectAsync();
             _ = siteObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
-            this.Outputs.Add(this.Service2.GetObject(this.User, siteObject));
+            this.Outputs.Add(await this.Service2.GetObjectAsync(this.User, siteObject));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.User ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.User));
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
-            this.Outputs.Add(this.Service2.GetObject(this.User, this.List));
+            this.Outputs.Add(await this.Service2.GetObjectAsync(this.User, this.List));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             _ = this.User ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.User));
             _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
-            this.Outputs.Add(this.Service2.GetObject(this.User, this.ListItem));
+            this.Outputs.Add(await this.Service2.GetObjectAsync(this.User, this.ListItem));
         }
     }
 

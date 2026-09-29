@@ -17,30 +17,30 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantThemeService
 {
 
-    bool AddObject(string themeName, IReadOnlyDictionary<string, object?> creationInfo);
+    Task<bool> AddObjectAsync(string themeName, IReadOnlyDictionary<string, object?> creationInfo);
 
-    TenantTheme? GetObject(TenantTheme themeObject);
+    Task<TenantTheme?> GetObjectAsync(TenantTheme themeObject);
 
-    TenantTheme? GetObject(TenantTheme themeObject, bool selectAllProperties = true);
+    Task<TenantTheme?> GetObjectAsync(TenantTheme themeObject, bool selectAllProperties = true);
 
-    TenantTheme? GetObject(string themeName, bool selectAllProperties = true);
+    Task<TenantTheme?> GetObjectAsync(string themeName, bool selectAllProperties = true);
 
-    IEnumerable<TenantTheme>? GetObjectEnumerable(bool selectAllProperties = true);
+    Task<IEnumerable<TenantTheme>?> GetObjectEnumerableAsync(bool selectAllProperties = true);
 
-    void RemoveObject(TenantTheme themeObject);
+    Task RemoveObjectAsync(TenantTheme themeObject);
 
-    void RemoveObject(string themeName);
+    Task RemoveObjectAsync(string themeName);
 
-    bool SetObject(TenantTheme themeObject, IReadOnlyDictionary<string, object?> modificationInfo);
+    Task<bool> SetObjectAsync(TenantTheme themeObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
-    bool SetObject(string themeName, IReadOnlyDictionary<string, object?> modificationInfo);
+    Task<bool> SetObjectAsync(string themeName, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class TenantThemeService(ClientContext clientContext) : ClientService(clientContext), ITenantThemeService
 {
 
-    public bool AddObject(string themeName, IReadOnlyDictionary<string, object?> creationInfo)
+    public async Task<bool> AddObjectAsync(string themeName, IReadOnlyDictionary<string, object?> creationInfo)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -53,24 +53,24 @@ public class TenantThemeService(ClientContext clientContext) : ClientService(cli
                 requestPayload.CreateParameter(JsonConvert.SerializeObject(ClientValueObject.Create<TenantThemeCreationInfo>(creationInfo)))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<bool>(requestPayload.GetActionId<ClientActionMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<bool>(requestPayload.GetActionId<ClientActionMethod>()));
     }
 
-    public TenantTheme? GetObject(TenantTheme themeObject)
+    public async Task<TenantTheme?> GetObjectAsync(TenantTheme themeObject)
     {
-        return this.GetObject(themeObject, selectAllProperties: true);
+        return await this.GetObjectAsync(themeObject, selectAllProperties: true);
     }
 
-    public TenantTheme? GetObject(TenantTheme themeObject, bool selectAllProperties = true)
+    public async Task<TenantTheme?> GetObjectAsync(TenantTheme themeObject, bool selectAllProperties = true)
     {
         var themeName = themeObject.Name;
         _ = themeName ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
-        return this.GetObject(themeName, selectAllProperties);
+        return await this.GetObjectAsync(themeName, selectAllProperties);
     }
 
-    public TenantTheme? GetObject(string themeName, bool selectAllProperties = true)
+    public async Task<TenantTheme?> GetObjectAsync(string themeName, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -83,12 +83,12 @@ public class TenantThemeService(ClientContext clientContext) : ClientService(cli
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TenantTheme)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantTheme>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantTheme>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<TenantTheme>? GetObjectEnumerable(bool selectAllProperties = true)
+    public async Task<IEnumerable<TenantTheme>?> GetObjectEnumerableAsync(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -101,19 +101,19 @@ public class TenantThemeService(ClientContext clientContext) : ClientService(cli
                 ClientQuery.Create(selectAllProperties, typeof(TenantTheme))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantThemeEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantThemeEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void RemoveObject(TenantTheme themeObject)
+    public async Task RemoveObjectAsync(TenantTheme themeObject)
     {
         var themeName = themeObject.Name;
         _ = themeName ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
-        this.RemoveObject(themeName);
+        await this.RemoveObjectAsync(themeName);
     }
 
-    public void RemoveObject(string themeName)
+    public async Task RemoveObjectAsync(string themeName)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -125,17 +125,17 @@ public class TenantThemeService(ClientContext clientContext) : ClientService(cli
                 requestPayload.CreateParameter(themeName)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public bool SetObject(TenantTheme themeObject, IReadOnlyDictionary<string, object?> modificationInfo)
+    public async Task<bool> SetObjectAsync(TenantTheme themeObject, IReadOnlyDictionary<string, object?> modificationInfo)
     {
         var themeName = themeObject.Name;
         _ = themeName ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
-        return this.SetObject(themeName, modificationInfo);
+        return await this.SetObjectAsync(themeName, modificationInfo);
     }
 
-    public bool SetObject(string themeName, IReadOnlyDictionary<string, object?> modificationInfo)
+    public async Task<bool> SetObjectAsync(string themeName, IReadOnlyDictionary<string, object?> modificationInfo)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -148,9 +148,9 @@ public class TenantThemeService(ClientContext clientContext) : ClientService(cli
                 requestPayload.CreateParameter(JsonConvert.SerializeObject(ClientValueObject.Create<TenantThemeCreationInfo>(modificationInfo)))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<bool>(requestPayload.GetActionId<ClientActionMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<bool>(requestPayload.GetActionId<ClientActionMethod>()));
     }
 
 }

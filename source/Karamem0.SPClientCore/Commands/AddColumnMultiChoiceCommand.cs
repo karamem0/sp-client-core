@@ -159,7 +159,7 @@ public class AddColumnMultiChoiceCommand : ClientObjectCmdlet<IColumnService>
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet3")]
     public SwitchParameter WhatIf { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         var columnType = ColumnType.MultiChoice;
         var addColumnOptions = FlagsParser.Parse<AddColumnOptions>(this.MyInvocation.BoundParameters);
@@ -168,7 +168,7 @@ public class AddColumnMultiChoiceCommand : ClientObjectCmdlet<IColumnService>
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
             var creationInfo = new Dictionary<string, object?>(this.MyInvocation.BoundParameters);
             this.Outputs.Add(
-                this.Service.AddObject(
+                await this.Service.AddObjectAsync(
                     this.List,
                     columnType,
                     creationInfo,
@@ -182,7 +182,7 @@ public class AddColumnMultiChoiceCommand : ClientObjectCmdlet<IColumnService>
         {
             var creationInfo = new Dictionary<string, object?>(this.MyInvocation.BoundParameters);
             this.Outputs.Add(
-                this.Service.AddObject(
+                await this.Service.AddObjectAsync(
                     columnType,
                     creationInfo,
                     this.AddToDefaultView,

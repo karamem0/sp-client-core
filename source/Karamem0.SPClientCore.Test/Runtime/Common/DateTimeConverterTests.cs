@@ -32,12 +32,11 @@ public class DateTimeConverterTests
             DateTimeKind.Utc
         );
         var actual = DateTimeConverter.TryParse(args.Input, out var result);
-        Assert.Multiple(() =>
-            {
-                Assert.That(actual, Is.True);
-                Assert.That(result, Is.EqualTo(expected));
-            }
-        );
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(actual, Is.True);
+            Assert.That(result, Is.EqualTo(expected));
+        }
     }
 
     [Test()]
@@ -48,12 +47,11 @@ public class DateTimeConverterTests
             Input = "2000,00,01,15,30,45,500",
         };
         var actual = DateTimeConverter.TryParse(args.Input, out var result);
-        Assert.Multiple(() =>
-            {
-                Assert.That(actual, Is.False);
-                Assert.That(result, Is.Default);
-            }
-        );
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(actual, Is.False);
+            Assert.That(result, Is.Default);
+        }
     }
 
 }

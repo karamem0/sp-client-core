@@ -15,18 +15,18 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantOrganizationNewsSiteService
 {
 
-    void AddObject(Uri organizationNewsSiteUrl);
+    Task AddObjectAsync(Uri organizationNewsSiteUrl);
 
-    IEnumerable<Uri>? GetObjectEnumerable();
+    Task<IEnumerable<Uri>?> GetObjectEnumerableAsync();
 
-    void RemoveObject(Uri organizationNewsSiteUrl);
+    Task RemoveObjectAsync(Uri organizationNewsSiteUrl);
 
 }
 
 public class TenantOrganizationNewsSiteService(ClientContext clientContext) : ClientService(clientContext), ITenantOrganizationNewsSiteService
 {
 
-    public void AddObject(Uri organizationNewsSiteUrl)
+    public async Task AddObjectAsync(Uri organizationNewsSiteUrl)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -38,20 +38,20 @@ public class TenantOrganizationNewsSiteService(ClientContext clientContext) : Cl
                 requestPayload.CreateParameter(organizationNewsSiteUrl)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public IEnumerable<Uri>? GetObjectEnumerable()
+    public async Task<IEnumerable<Uri>?> GetObjectEnumerableAsync()
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
         var objectPath2 = requestPayload.Add(objectPath1, objectPathId => ClientActionMethod.Create(objectPathId, "GetOrgNewsSites"));
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<IEnumerable<Uri>>(requestPayload.GetActionId<ClientActionMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<IEnumerable<Uri>>(requestPayload.GetActionId<ClientActionMethod>()));
     }
 
-    public void RemoveObject(Uri organizationNewsSiteUrl)
+    public async Task RemoveObjectAsync(Uri organizationNewsSiteUrl)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -63,7 +63,7 @@ public class TenantOrganizationNewsSiteService(ClientContext clientContext) : Cl
                 requestPayload.CreateParameter(organizationNewsSiteUrl)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

@@ -38,21 +38,21 @@ public class SetFilePublishedCommand : ClientObjectCmdlet<IFileService>
     [Parameter(Mandatory = false)]
     public SwitchParameter SelectAllProperties { get; private set; } = true;
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.Published)
         {
             _ = this.File ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.File));
-            this.Service.PublishObject(this.File, this.Comment);
+            await this.Service.PublishObjectAsync(this.File, this.Comment);
         }
         else
         {
             _ = this.File ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.File));
-            this.Service.UnpublishObject(this.File, this.Comment);
+            await this.Service.UnpublishObjectAsync(this.File, this.Comment);
         }
         if (this.PassThru)
         {
-            this.Outputs.Add(this.Service.GetObject(this.File, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.File, this.SelectAllProperties));
         }
     }
 

@@ -35,20 +35,20 @@ public class SetAppPublishedCommand : ClientObjectCmdlet<IAppService>
     [Parameter(Mandatory = false)]
     public SwitchParameter PassThru { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
         if (this.Published)
         {
-            this.Service.PublishObject(this.Identity, this.Tenant);
+            await this.Service.PublishObjectAsync(this.Identity, this.Tenant);
         }
         else
         {
-            this.Service.UnpublishObject(this.Identity, this.Tenant);
+            await this.Service.UnpublishObjectAsync(this.Identity, this.Tenant);
         }
         if (this.PassThru)
         {
-            this.Outputs.Add(this.Service.GetObject(this.Identity, this.Tenant));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.Identity, this.Tenant));
         }
     }
 

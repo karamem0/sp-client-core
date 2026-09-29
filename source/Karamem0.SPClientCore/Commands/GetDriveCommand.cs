@@ -43,20 +43,20 @@ public class GetDriveCommand : ClientObjectCmdlet<IDriveService, ISiteCollection
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet4")]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service1.GetObject(this.Identity));
+            this.Outputs.Add(await this.Service1.GetObjectAsync(this.Identity));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
-            var siteCollectionObject = this.Service2.GetObject();
-            var siteObject = this.Service3.GetObject();
+            var siteCollectionObject = await this.Service2.GetObjectAsync();
+            var siteObject = await this.Service3.GetObjectAsync();
             this.Outputs.Add(
-                this.Service1.GetObject(
+                await this.Service1.GetObjectAsync(
                     siteCollectionObject?.Id ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull),
                     siteObject?.Id ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull),
                     this.List.Id
@@ -66,17 +66,17 @@ public class GetDriveCommand : ClientObjectCmdlet<IDriveService, ISiteCollection
         if (this.ParameterSetName == "ParamSet3")
         {
             _ = this.DriveId ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.DriveId));
-            this.Outputs.Add(this.Service1.GetObject(this.DriveId));
+            this.Outputs.Add(await this.Service1.GetObjectAsync(this.DriveId));
         }
         if (this.ParameterSetName == "ParamSet4")
         {
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service1.GetObjectEnumerable());
+                this.Outputs.Add(await this.Service1.GetObjectEnumerableAsync());
             }
             else
             {
-                this.Outputs.AddRange(this.Service1.GetObjectEnumerable());
+                this.Outputs.AddRange(await this.Service1.GetObjectEnumerableAsync());
             }
         }
     }

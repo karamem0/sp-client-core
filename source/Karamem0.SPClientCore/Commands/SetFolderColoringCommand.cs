@@ -41,13 +41,13 @@ public class SetFolderColoringCommand : ClientObjectCmdlet<IFolderColoringServic
     [Parameter(Mandatory = false)]
     public SwitchParameter SelectAllProperties { get; private set; } = true;
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Identity?.ServerRelativeUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-        this.Service1.SetObject(this.Identity.ServerRelativeUrl, this.MyInvocation.BoundParameters);
+        await this.Service1.SetObjectAsync(this.Identity.ServerRelativeUrl, this.MyInvocation.BoundParameters);
         if (this.PassThru)
         {
-            this.Outputs.Add(this.Service2.GetObject(this.Identity, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service2.GetObjectAsync(this.Identity, this.SelectAllProperties));
         }
     }
 

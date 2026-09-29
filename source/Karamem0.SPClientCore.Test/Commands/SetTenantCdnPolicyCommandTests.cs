@@ -26,7 +26,7 @@ public class SetTenantCdnPolicyCommandTests
                 ["Url"] = context.AppSettings["AdminUrl"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
+                ["PrivateKey"] = Convert.FromBase64String(context.AppSettings["PrivateKey"])
             }
         );
         _ = context.Runspace.InvokeCommand(
@@ -51,7 +51,7 @@ public class SetTenantCdnPolicyCommandTests
                 ["Url"] = context.AppSettings["AdminUrl"],
                 ["ClientId"] = context.AppSettings["ClientId"],
                 ["CertificatePath"] = context.AppSettings["CertificatePath"],
-                ["PrivateKeyPath"] = context.AppSettings["PrivateKeyPath"]
+                ["PrivateKey"] = Convert.FromBase64String(context.AppSettings["PrivateKey"])
             }
         );
         _ = context.Runspace.InvokeCommand(

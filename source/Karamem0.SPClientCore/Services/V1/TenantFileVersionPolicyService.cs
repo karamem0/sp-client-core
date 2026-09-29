@@ -15,7 +15,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantFileVersionPolicyService
 {
 
-    void SetObject(
+    Task SetObjectAsync(
         bool isAutoTrimEnabled,
         int majorVersionLimit,
         int expireVersionsAfterDays
@@ -26,7 +26,7 @@ public interface ITenantFileVersionPolicyService
 public class TenantFileVersionPolicyService(ClientContext clientContext) : TenantClientService(clientContext), ITenantFileVersionPolicyService
 {
 
-    public void SetObject(
+    public async Task SetObjectAsync(
         bool isAutoTrimEnabled,
         int majorVersionLimit,
         int expireVersionsAfterDays
@@ -44,7 +44,7 @@ public class TenantFileVersionPolicyService(ClientContext clientContext) : Tenan
                 requestPayload.CreateParameter(expireVersionsAfterDays)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

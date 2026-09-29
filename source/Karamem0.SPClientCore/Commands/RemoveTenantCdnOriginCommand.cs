@@ -34,7 +34,7 @@ public class RemoveTenantCdnOriginCommand : ClientObjectCmdlet<ITenantCdnService
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public string? Origin { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Origin ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Origin));
         if (this.ShouldProcess(this.Origin, VerbsCommon.Remove))
@@ -42,12 +42,12 @@ public class RemoveTenantCdnOriginCommand : ClientObjectCmdlet<ITenantCdnService
             if (this.ParameterSetName == "ParamSet1")
             {
                 this.ValidateSwitchParameter(nameof(this.Public));
-                this.Service.RemoveOrigin(TenantCdnType.Public, this.Origin);
+                await this.Service.RemoveOriginAsync(TenantCdnType.Public, this.Origin);
             }
             if (this.ParameterSetName == "ParamSet2")
             {
                 this.ValidateSwitchParameter(nameof(this.Private));
-                this.Service.RemoveOrigin(TenantCdnType.Private, this.Origin);
+                await this.Service.RemoveOriginAsync(TenantCdnType.Private, this.Origin);
             }
         }
     }

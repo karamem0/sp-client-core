@@ -15,17 +15,17 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IViewService
 {
 
-    View? AddObject(
+    Task<View?> AddObjectAsync(
         List listObject,
         IReadOnlyDictionary<string, object?> creationInfo,
         bool selectAllProperties = true
     );
 
-    View? GetObject(View viewObject);
+    Task<View?> GetObjectAsync(View viewObject);
 
-    View? GetObject(View viewObject, bool selectAllProperties = true);
+    Task<View?> GetObjectAsync(View viewObject, bool selectAllProperties = true);
 
-    string? CopyObject(
+    Task<string?> CopyObjectAsync(
         List listObject,
         View viewObject,
         string newName,
@@ -33,30 +33,30 @@ public interface IViewService
         string? url
     );
 
-    View? GetObject(
+    Task<View?> GetObjectAsync(
         List listObject,
         Guid viewId,
         bool selectAllProperties = true
     );
 
-    View? GetObject(
+    Task<View?> GetObjectAsync(
         List listObject,
         string viewTitle,
         bool selectAllProperties = true
     );
 
-    IEnumerable<View>? GetObjectEnumerable(List listObject, bool selectAllProperties = true);
+    Task<IEnumerable<View>?> GetObjectEnumerableAsync(List listObject, bool selectAllProperties = true);
 
-    void RemoveObject(View viewObject);
+    Task RemoveObjectAsync(View viewObject);
 
-    void SetObject(View viewObject, IReadOnlyDictionary<string, object?> modificationInfo);
+    Task SetObjectAsync(View viewObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class ViewService(ClientContext clientContext) : ClientService<View>(clientContext), IViewService
 {
 
-    public View? AddObject(
+    public async Task<View?> AddObjectAsync(
         List listObject,
         IReadOnlyDictionary<string, object?> creationInfo,
         bool selectAllProperties = true
@@ -74,12 +74,12 @@ public class ViewService(ClientContext clientContext) : ClientService<View>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(View)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<View>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<View>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public string? CopyObject(
+    public async Task<string?> CopyObjectAsync(
         List listObject,
         View viewObject,
         string newName,
@@ -100,12 +100,12 @@ public class ViewService(ClientContext clientContext) : ClientService<View>(clie
                 requestPayload.CreateParameter(url)
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<string>(requestPayload.GetActionId<ClientActionMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<string>(requestPayload.GetActionId<ClientActionMethod>()));
     }
 
-    public View? GetObject(
+    public async Task<View?> GetObjectAsync(
         List listObject,
         Guid viewId,
         bool selectAllProperties = true
@@ -126,12 +126,12 @@ public class ViewService(ClientContext clientContext) : ClientService<View>(clie
             objectPath3,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(View)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<View>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<View>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public View? GetObject(
+    public async Task<View?> GetObjectAsync(
         List listObject,
         string viewTitle,
         bool selectAllProperties = true
@@ -152,12 +152,12 @@ public class ViewService(ClientContext clientContext) : ClientService<View>(clie
             objectPath3,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(View)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<View>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<View>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<View>? GetObjectEnumerable(List listObject, bool selectAllProperties = true)
+    public async Task<IEnumerable<View>?> GetObjectEnumerableAsync(List listObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));
@@ -170,9 +170,9 @@ public class ViewService(ClientContext clientContext) : ClientService<View>(clie
                 ClientQuery.Create(selectAllProperties, typeof(View))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ViewEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ViewEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
 }

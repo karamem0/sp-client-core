@@ -38,7 +38,7 @@ public class AddHighlightCommand : ClientObjectCmdlet<IHighlightService>
     [Parameter(Mandatory = false)]
     public SwitchParameter SelectAllProperties { get; private set; } = true;
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.View ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.View));
         _ = this.FolderPath ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.FolderPath));
@@ -47,7 +47,7 @@ public class AddHighlightCommand : ClientObjectCmdlet<IHighlightService>
             this.AfterItemId = -1;
         }
         this.Outputs.Add(
-            this.Service.AddObject(
+            await this.Service.AddObjectAsync(
                 this.View,
                 this.ItemId,
                 this.FolderPath,

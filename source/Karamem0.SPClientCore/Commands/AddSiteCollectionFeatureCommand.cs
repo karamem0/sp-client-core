@@ -27,9 +27,9 @@ public class AddSiteCollectionFeatureCommand : ClientObjectCmdlet<ISiteCollectio
     [Parameter(Mandatory = false)]
     public FeatureDefinitionScope Scope { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
-        this.Service.AddObject(
+        await this.Service.AddObjectAsync(
             this.FeatureId,
             this.Force,
             this.Scope

@@ -17,13 +17,13 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IImageService
 {
 
-    ImageItem? UploadObject(
+    Task<ImageItem?> UploadObjectAsync(
         List listObject,
         string fileName,
         System.IO.Stream fileContent
     );
 
-    ImageItem? UploadObject(
+    Task<ImageItem?> UploadObjectAsync(
         ListItem listItemObject,
         string fileName,
         System.IO.Stream fileContent,
@@ -35,7 +35,7 @@ public interface IImageService
 public class ImageService(ClientContext clientContext) : ClientService(clientContext), IImageService
 {
 
-    public ImageItem? UploadObject(
+    public async Task<ImageItem?> UploadObjectAsync(
         List listObject,
         string fileName,
         System.IO.Stream fileContent
@@ -55,12 +55,12 @@ public class ImageService(ClientContext clientContext) : ClientService(clientCon
                     true
                 )
             );
-        var returnValue = this.ClientContext.PostStream<ODataV1MethodReturnValue>(requestUrl, fileContent);
+        var returnValue = await this.ClientContext.PostStreamAsync<ODataV1MethodReturnValue>(requestUrl, fileContent);
         _ = returnValue ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
         return returnValue.GetValue<ImageItem>("UploadImage");
     }
 
-    public ImageItem? UploadObject(
+    public async Task<ImageItem?> UploadObjectAsync(
         ListItem listItemObject,
         string fileName,
         System.IO.Stream fileContent,
@@ -74,9 +74,9 @@ public class ImageService(ClientContext clientContext) : ClientService(clientCon
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(List)))
         );
-        var listObject = this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
+        var listObject = await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<List>(requestPayload.GetActionId<ClientActionQuery>()));
         _ = listObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
         var requestUrl = this
             .ClientContext.BaseAddress.ConcatPath("_api/web/uploadimage(listtitle=@v1,imagename=@v2,listid=@v3,itemid=@v4)")
@@ -92,7 +92,7 @@ public class ImageService(ClientContext clientContext) : ClientService(clientCon
                     true
                 )
             );
-        var returnValue = this.ClientContext.PostStream<ODataV1MethodReturnValue>(requestUrl, fileContent);
+        var returnValue = await this.ClientContext.PostStreamAsync<ODataV1MethodReturnValue>(requestUrl, fileContent);
         _ = returnValue ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
         return returnValue.GetValue<ImageItem>("UploadImage");
     }

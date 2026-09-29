@@ -19,7 +19,7 @@ namespace Karamem0.SharePoint.PowerShell.Commands;
 public class GetCurrentConnectionCommand : ClientObjectCmdlet
 {
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (ClientService.ServiceProvider is null)
         {

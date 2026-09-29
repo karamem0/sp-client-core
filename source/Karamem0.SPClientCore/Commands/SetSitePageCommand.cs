@@ -46,15 +46,15 @@ public class SetSitePageCommand : ClientObjectCmdlet<ISitePageService, IListServ
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     public string? Title { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
             _ = this.PageName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.PageName));
-            var folderObject = this.Service3.GetObject(this.List);
+            var folderObject = await this.Service3.GetObjectAsync(this.List);
             _ = folderObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
-            this.Service1.SetObject(
+            await this.Service1.SetObjectAsync(
                 folderObject,
                 this.PageName,
                 this.MyInvocation.BoundParameters
@@ -63,11 +63,11 @@ public class SetSitePageCommand : ClientObjectCmdlet<ISitePageService, IListServ
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.PageName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.PageName));
-            var listObject = this.Service2.GetObject(LibraryType.ClientRenderedSitePages);
+            var listObject = await this.Service2.GetObjectAsync(LibraryType.ClientRenderedSitePages);
             _ = listObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
-            var folderObject = this.Service3.GetObject(listObject);
+            var folderObject = await this.Service3.GetObjectAsync(listObject);
             _ = folderObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
-            this.Service1.SetObject(
+            await this.Service1.SetObjectAsync(
                 folderObject,
                 this.PageName,
                 this.MyInvocation.BoundParameters

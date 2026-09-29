@@ -59,13 +59,13 @@ public class GetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet6")]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.SiteCollection?.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollection));
             this.Outputs.Add(
-                this.Service.GetObject(
+                await this.Service.GetObjectAsync(
                     this.SiteCollection.Url,
                     this.UserId,
                     this.SelectAllProperties
@@ -77,7 +77,7 @@ public class GetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
             _ = this.SiteCollection?.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollection));
             _ = this.UserName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.UserName));
             this.Outputs.Add(
-                this.Service.GetObject(
+                await this.Service.GetObjectAsync(
                     this.SiteCollection.Url,
                     this.UserName,
                     this.SelectAllProperties
@@ -89,18 +89,18 @@ public class GetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
             _ = this.SiteCollection?.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollection));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.SiteCollection.Url, this.SelectAllProperties));
+                this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.SiteCollection.Url, this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.SiteCollection.Url, this.SelectAllProperties));
+                this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.SiteCollection.Url, this.SelectAllProperties));
             }
         }
         if (this.ParameterSetName == "ParamSet4")
         {
             _ = this.SiteCollectionUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollectionUrl));
             this.Outputs.Add(
-                this.Service.GetObject(
+                await this.Service.GetObjectAsync(
                     this.SiteCollectionUrl,
                     this.UserId,
                     this.SelectAllProperties
@@ -112,7 +112,7 @@ public class GetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
             _ = this.SiteCollectionUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollectionUrl));
             _ = this.UserName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.UserName));
             this.Outputs.Add(
-                this.Service.GetObject(
+                await this.Service.GetObjectAsync(
                     this.SiteCollectionUrl,
                     this.UserName,
                     this.SelectAllProperties
@@ -124,11 +124,11 @@ public class GetTenantUserCommand : ClientObjectCmdlet<ITenantUserService>
             _ = this.SiteCollectionUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollectionUrl));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.SiteCollectionUrl, this.SelectAllProperties));
+                this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.SiteCollectionUrl, this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.SiteCollectionUrl, this.SelectAllProperties));
+                this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.SiteCollectionUrl, this.SelectAllProperties));
             }
         }
     }

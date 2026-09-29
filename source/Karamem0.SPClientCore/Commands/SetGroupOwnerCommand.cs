@@ -25,11 +25,11 @@ public class SetGroupOwnerCommand : ClientObjectCmdlet<IGroupOwnerService>
     [Parameter(Mandatory = true)]
     public Principal? Owner { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Group ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Group));
         _ = this.Owner ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Owner));
-        this.Service.SetObject(this.Group, this.Owner);
+        await this.Service.SetObjectAsync(this.Group, this.Owner);
     }
 
 }

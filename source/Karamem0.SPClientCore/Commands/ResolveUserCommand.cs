@@ -22,10 +22,10 @@ public class ResolveUserCommand : ClientObjectCmdlet<IUserService>
     [Parameter(Mandatory = true, Position = 0)]
     public string? LoginName { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.LoginName ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.LoginName));
-        this.Outputs.Add(this.Service.EnsureObject(this.LoginName));
+        this.Outputs.Add(await this.Service.EnsureObjectAsync(this.LoginName));
     }
 
 }

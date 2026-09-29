@@ -41,19 +41,19 @@ public class RemoveTenantDeletedSiteCollectionCommand : ClientObjectCmdlet<ITena
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public SwitchParameter NoWait { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Identity?.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
         if (this.ShouldProcess(this.Identity.Url.ToString(), VerbsCommon.Remove))
         {
             if (this.ParameterSetName == "ParamSet1")
             {
-                this.Service.RemoveObjectAwait(this.Identity);
+                await this.Service.RemoveObjectAwaitAsync(this.Identity);
             }
             if (this.ParameterSetName == "ParamSet2")
             {
                 this.ValidateSwitchParameter(nameof(this.NoWait));
-                _ = this.Service.RemoveObject(this.Identity);
+                _ = await this.Service.RemoveObjectAsync(this.Identity);
             }
         }
     }

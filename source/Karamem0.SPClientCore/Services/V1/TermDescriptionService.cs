@@ -15,9 +15,9 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITermDescriptionService
 {
 
-    string? GetObject(Term termObject, uint lcid);
+    Task<string?> GetObjectAsync(Term termObject, uint lcid);
 
-    void SetObject(
+    Task SetObjectAsync(
         Term termObject,
         string description,
         uint lcid
@@ -28,7 +28,7 @@ public interface ITermDescriptionService
 public class TermDescriptionService(ClientContext clientContext) : ClientService(clientContext), ITermDescriptionService
 {
 
-    public string? GetObject(Term termObject, uint lcid)
+    public async Task<string?> GetObjectAsync(Term termObject, uint lcid)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(termObject.ObjectIdentity));
@@ -40,12 +40,12 @@ public class TermDescriptionService(ClientContext clientContext) : ClientService
                 requestPayload.CreateParameter(lcid)
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<string>(requestPayload.GetActionId<ClientActionMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<string>(requestPayload.GetActionId<ClientActionMethod>()));
     }
 
-    public void SetObject(
+    public async Task SetObjectAsync(
         Term termObject,
         string description,
         uint lcid
@@ -62,7 +62,7 @@ public class TermDescriptionService(ClientContext clientContext) : ClientService
                 requestPayload.CreateParameter(lcid)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

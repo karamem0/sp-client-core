@@ -23,7 +23,7 @@ public class NewColumnUrlValueCommand : ClientObjectCmdlet
     [Parameter(Mandatory = false, Position = 1)]
     public string? Description { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         this.Outputs.Add(new ColumnUrlValue(this.Url, this.Description));
     }

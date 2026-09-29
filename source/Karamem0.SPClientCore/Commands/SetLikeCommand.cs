@@ -55,31 +55,31 @@ public class SetLikeCommand : ClientObjectCmdlet<ILikeService>
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet4")]
     public SwitchParameter Unlike { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             this.ValidateSwitchParameter(nameof(this.Like));
             _ = this.Comment ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Comment));
-            this.Service.LikeObject(this.Comment);
+            await this.Service.LikeObjectAsync(this.Comment);
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             this.ValidateSwitchParameter(nameof(this.Like));
             _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
-            this.Service.LikeObject(this.ListItem);
+            await this.Service.LikeObjectAsync(this.ListItem);
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             this.ValidateSwitchParameter(nameof(this.Unlike));
             _ = this.Comment ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Comment));
-            this.Service.UnlikeObject(this.Comment);
+            await this.Service.UnlikeObjectAsync(this.Comment);
         }
         if (this.ParameterSetName == "ParamSet4")
         {
             this.ValidateSwitchParameter(nameof(this.Unlike));
             _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
-            this.Service.UnlikeObject(this.ListItem);
+            await this.Service.UnlikeObjectAsync(this.ListItem);
         }
     }
 

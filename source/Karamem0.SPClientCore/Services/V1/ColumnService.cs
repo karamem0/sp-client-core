@@ -17,7 +17,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IColumnService
 {
 
-    Column? AddObject(
+    Task<Column?> AddObjectAsync(
         ColumnType columnType,
         IReadOnlyDictionary<string, object?> creationInfo,
         bool addToDefaultView,
@@ -25,7 +25,7 @@ public interface IColumnService
         bool selectAllProperties = true
     );
 
-    Column? AddObject(
+    Task<Column?> AddObjectAsync(
         List listObject,
         ColumnType columnType,
         IReadOnlyDictionary<string, object?> creationInfo,
@@ -34,49 +34,49 @@ public interface IColumnService
         bool selectAllProperties = true
     );
 
-    Column? GetObject(Column columnObject);
+    Task<Column?> GetObjectAsync(Column columnObject);
 
-    Column? GetObject(Column columnObject, bool selectAllProperties = true);
+    Task<Column?> GetObjectAsync(Column columnObject, bool selectAllProperties = true);
 
-    Column? GetObject(Guid columnId, bool selectAllProperties = true);
+    Task<Column?> GetObjectAsync(Guid columnId, bool selectAllProperties = true);
 
-    Column? GetObject(string columnTitle, bool selectAllProperties = true);
+    Task<Column?> GetObjectAsync(string columnTitle, bool selectAllProperties = true);
 
-    Column? GetObject(
+    Task<Column?> GetObjectAsync(
         ContentType contentTypeObject,
         Guid columnId,
         bool selectAllProperties = true
     );
 
-    Column? GetObject(
+    Task<Column?> GetObjectAsync(
         ContentType contentTypeObject,
         string columnTitle,
         bool selectAllProperties = true
     );
 
-    Column? GetObject(
+    Task<Column?> GetObjectAsync(
         List listObject,
         Guid columnId,
         bool selectAllProperties = true
     );
 
-    Column? GetObject(
+    Task<Column?> GetObjectAsync(
         List listObject,
         string columnTitle,
         bool selectAllProperties = true
     );
 
-    IEnumerable<Column>? GetObjectEnumerable(bool selectAllProperties = true);
+    Task<IEnumerable<Column>?> GetObjectEnumerableAsync(bool selectAllProperties = true);
 
-    IEnumerable<Column>? GetObjectEnumerable(ContentType contentTypeObject, bool selectAllProperties = true);
+    Task<IEnumerable<Column>?> GetObjectEnumerableAsync(ContentType contentTypeObject, bool selectAllProperties = true);
 
-    IEnumerable<Column>? GetObjectEnumerable(List listObject, bool selectAllProperties = true);
+    Task<IEnumerable<Column>?> GetObjectEnumerableAsync(List listObject, bool selectAllProperties = true);
 
-    void RemoveObject(Column columnObject);
+    Task RemoveObjectAsync(Column columnObject);
 
-    void SetObject(Column columnObject, IReadOnlyDictionary<string, object?> modificationInfo);
+    Task SetObjectAsync(Column columnObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
-    void SetObject(
+    Task SetObjectAsync(
         Column columnObject,
         IReadOnlyDictionary<string, object?> modificationInfo,
         bool pushChanges
@@ -87,7 +87,7 @@ public interface IColumnService
 public class ColumnService(ClientContext clientContext) : ClientService<Column>(clientContext), IColumnService
 {
 
-    public Column? AddObject(
+    public async Task<Column?> AddObjectAsync(
         ColumnType columnType,
         IReadOnlyDictionary<string, object?> creationInfo,
         bool addToDefaultView,
@@ -110,12 +110,12 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Column)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public Column? AddObject(
+    public async Task<Column?> AddObjectAsync(
         List listObject,
         ColumnType columnType,
         IReadOnlyDictionary<string, object?> creationInfo,
@@ -138,12 +138,12 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Column)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public Column? GetObject(Guid columnId, bool selectAllProperties = true)
+    public async Task<Column?> GetObjectAsync(Guid columnId, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -158,12 +158,12 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Column)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public Column? GetObject(string columnTitle, bool selectAllProperties = true)
+    public async Task<Column?> GetObjectAsync(string columnTitle, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -178,12 +178,12 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Column)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public Column? GetObject(
+    public async Task<Column?> GetObjectAsync(
         ContentType contentTypeObject,
         Guid columnId,
         bool selectAllProperties = true
@@ -201,12 +201,12 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Column)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public Column? GetObject(
+    public async Task<Column?> GetObjectAsync(
         ContentType contentTypeObject,
         string columnTitle,
         bool selectAllProperties = true
@@ -224,12 +224,12 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Column)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public Column? GetObject(
+    public async Task<Column?> GetObjectAsync(
         List listObject,
         Guid columnId,
         bool selectAllProperties = true
@@ -247,12 +247,12 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Column)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public Column? GetObject(
+    public async Task<Column?> GetObjectAsync(
         List listObject,
         string columnTitle,
         bool selectAllProperties = true
@@ -270,12 +270,12 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Column)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Column>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<Column>? GetObjectEnumerable(bool selectAllProperties = true)
+    public async Task<IEnumerable<Column>?> GetObjectEnumerableAsync(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -289,12 +289,12 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
                 ClientQuery.Create(selectAllProperties, typeof(Column))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ColumnEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ColumnEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<Column>? GetObjectEnumerable(ContentType contentTypeObject, bool selectAllProperties = true)
+    public async Task<IEnumerable<Column>?> GetObjectEnumerableAsync(ContentType contentTypeObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(contentTypeObject.ObjectIdentity));
@@ -307,12 +307,12 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
                 ClientQuery.Create(selectAllProperties, typeof(Column))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ColumnEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ColumnEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<Column>? GetObjectEnumerable(List listObject, bool selectAllProperties = true)
+    public async Task<IEnumerable<Column>?> GetObjectEnumerableAsync(List listObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));
@@ -325,12 +325,12 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
                 ClientQuery.Create(selectAllProperties, typeof(Column))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ColumnEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ColumnEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public override void SetObject(Column columnObject, IReadOnlyDictionary<string, object?> modificationInfo)
+    public override async Task SetObjectAsync(Column columnObject, IReadOnlyDictionary<string, object?> modificationInfo)
     {
         var requestPayload = new ClientRequestPayload();
         var objectName = columnObject.ObjectType;
@@ -347,10 +347,10 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
             ),
             objectPathId => ClientActionMethod.Create(objectPathId, "Update")
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public void SetObject(
+    public async Task SetObjectAsync(
         Column columnObject,
         IReadOnlyDictionary<string, object?> modificationInfo,
         bool pushChanges
@@ -375,7 +375,7 @@ public class ColumnService(ClientContext clientContext) : ClientService<Column>(
                 requestPayload.CreateParameter(pushChanges)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

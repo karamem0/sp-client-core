@@ -29,11 +29,11 @@ public class AddTenantThemeCommand : ClientObjectCmdlet<ITenantThemeService>
     [Parameter(Mandatory = true)]
     public Hashtable? Palette { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Name ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Name));
-        _ = this.Service.AddObject(this.Name, this.MyInvocation.BoundParameters);
-        this.Outputs.Add(this.Service.GetObject(this.Name));
+        _ = await this.Service.AddObjectAsync(this.Name, this.MyInvocation.BoundParameters);
+        this.Outputs.Add(await this.Service.GetObjectAsync(this.Name));
     }
 
 }

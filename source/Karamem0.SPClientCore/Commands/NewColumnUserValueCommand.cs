@@ -20,7 +20,7 @@ public class NewColumnUserValueCommand : ClientObjectCmdlet
     [Parameter(Mandatory = true, Position = 0)]
     public int LookupId { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         this.Outputs.Add(
             new ColumnUserValue(

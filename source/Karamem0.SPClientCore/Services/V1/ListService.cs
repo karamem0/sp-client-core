@@ -17,44 +17,44 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IListService
 {
 
-    List? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true);
+    Task<List?> AddObjectAsync(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true);
 
-    List? GetObject(List listObject);
+    Task<List?> GetObjectAsync(List listObject);
 
-    List? GetObject(List listObject, bool selectAllProperties = true);
+    Task<List?> GetObjectAsync(List listObject, bool selectAllProperties = true);
 
-    List? GetObject(ListItem listItemObject, bool selectAllProperties = true);
+    Task<List?> GetObjectAsync(ListItem listItemObject, bool selectAllProperties = true);
 
-    List? GetObject(Models.V1.Folder folderObject, bool selectAllProperties = true);
+    Task<List?> GetObjectAsync(Models.V1.Folder folderObject, bool selectAllProperties = true);
 
-    List? GetObject(Models.V1.File fileObject, bool selectAllProperties = true);
+    Task<List?> GetObjectAsync(Models.V1.File fileObject, bool selectAllProperties = true);
 
-    List? GetObject(View viewObject, bool selectAllProperties = true);
+    Task<List?> GetObjectAsync(View viewObject, bool selectAllProperties = true);
 
-    List? GetObject(Drive driveObject, bool selectAllProperties = true);
+    Task<List?> GetObjectAsync(Drive driveObject, bool selectAllProperties = true);
 
-    List? GetObject(Guid listId, bool selectAllProperties = true);
+    Task<List?> GetObjectAsync(Guid listId, bool selectAllProperties = true);
 
-    List? GetObject(Uri listUrl, bool selectAllProperties = true);
+    Task<List?> GetObjectAsync(Uri listUrl, bool selectAllProperties = true);
 
-    List? GetObject(string listTitle, bool selectAllProperties = true);
+    Task<List?> GetObjectAsync(string listTitle, bool selectAllProperties = true);
 
-    List? GetObject(LibraryType libraryType, bool selectAllProperties = true);
+    Task<List?> GetObjectAsync(LibraryType libraryType, bool selectAllProperties = true);
 
-    IEnumerable<List>? GetObjectEnumerable(bool selectAllProperties = true);
+    Task<IEnumerable<List>?> GetObjectEnumerableAsync(bool selectAllProperties = true);
 
-    Guid RecycleObject(List listObject);
+    Task<Guid> RecycleObjectAsync(List listObject);
 
-    void RemoveObject(List listObject);
+    Task RemoveObjectAsync(List listObject);
 
-    void SetObject(List listObject, IReadOnlyDictionary<string, object?> modificationInfo);
+    Task SetObjectAsync(List listObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class ListService(ClientContext clientContext) : ClientService<List>(clientContext), IListService
 {
 
-    public List? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true)
+    public async Task<List?> AddObjectAsync(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -69,12 +69,12 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(List)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<List>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public List? GetObject(ListItem listItemObject, bool selectAllProperties = true)
+    public async Task<List?> GetObjectAsync(ListItem listItemObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listItemObject.ObjectIdentity));
@@ -83,12 +83,12 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(List)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<List>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public List? GetObject(Models.V1.Folder folderObject, bool selectAllProperties = true)
+    public async Task<List?> GetObjectAsync(Models.V1.Folder folderObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(folderObject.ObjectIdentity));
@@ -98,12 +98,12 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(List)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<List>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public List? GetObject(Models.V1.File fileObject, bool selectAllProperties = true)
+    public async Task<List?> GetObjectAsync(Models.V1.File fileObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(fileObject.ObjectIdentity));
@@ -113,12 +113,12 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(List)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<List>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public List? GetObject(View viewObject, bool selectAllProperties = true)
+    public async Task<List?> GetObjectAsync(View viewObject, bool selectAllProperties = true)
     {
         var objectIdentity = viewObject.ObjectIdentity;
         _ = objectIdentity ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
@@ -135,12 +135,12 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(List)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<List>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public List? GetObject(Drive driveObject, bool selectAllProperties = true)
+    public async Task<List?> GetObjectAsync(Drive driveObject, bool selectAllProperties = true)
     {
         var listId = driveObject.SharePointIds?.ListId;
         _ = listId ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
@@ -157,12 +157,12 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(List)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<List>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public List? GetObject(Guid listId, bool selectAllProperties = true)
+    public async Task<List?> GetObjectAsync(Guid listId, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -177,12 +177,12 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(List)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<List>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public List? GetObject(Uri listUrl, bool selectAllProperties = true)
+    public async Task<List?> GetObjectAsync(Uri listUrl, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -196,12 +196,12 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(List)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<List>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public List? GetObject(string listTitle, bool selectAllProperties = true)
+    public async Task<List?> GetObjectAsync(string listTitle, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -216,12 +216,12 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(List)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<List>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public List? GetObject(LibraryType libraryType, bool selectAllProperties = true)
+    public async Task<List?> GetObjectAsync(LibraryType libraryType, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -251,12 +251,12 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
                 objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(List)))
             );
         }
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<List>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<List>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<List>? GetObjectEnumerable(bool selectAllProperties = true)
+    public async Task<IEnumerable<List>?> GetObjectEnumerableAsync(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -270,21 +270,21 @@ public class ListService(ClientContext clientContext) : ClientService<List>(clie
                 ClientQuery.Create(selectAllProperties, typeof(List))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ListEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ListEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public Guid RecycleObject(List listObject)
+    public async Task<Guid> RecycleObjectAsync(List listObject)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             ObjectPathIdentity.Create(listObject.ObjectIdentity),
             objectPathId => ClientActionMethod.Create(objectPathId, "Recycle")
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Guid>(requestPayload.GetActionId<ClientActionMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Guid>(requestPayload.GetActionId<ClientActionMethod>()));
     }
 
 }

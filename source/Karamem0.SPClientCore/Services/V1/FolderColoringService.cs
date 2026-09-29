@@ -15,21 +15,21 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IFolderColoringService
 {
 
-    void AddObject(
+    Task AddObjectAsync(
         Uri folderUrl,
         string folderName,
         bool overwrite,
         IReadOnlyDictionary<string, object?> creationInfo
     );
 
-    void SetObject(Uri folderUrl, IReadOnlyDictionary<string, object?> modificationInfo);
+    Task SetObjectAsync(Uri folderUrl, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class FolderColoringService(ClientContext clientContext) : ClientService(clientContext), IFolderColoringService
 {
 
-    public void AddObject(
+    public async Task AddObjectAsync(
         Uri folderUrl,
         string folderName,
         bool overwrite,
@@ -49,10 +49,10 @@ public class FolderColoringService(ClientContext clientContext) : ClientService(
                 )
             );
         var requestPayload = FolderColoringInfoRequestPayload.Create(creationInfo);
-        this.ClientContext.PostObject(requestUrl, requestPayload);
+        await this.ClientContext.PostObjectAsync(requestUrl, requestPayload);
     }
 
-    public void SetObject(Uri folderUrl, IReadOnlyDictionary<string, object?> modificationInfo)
+    public async Task SetObjectAsync(Uri folderUrl, IReadOnlyDictionary<string, object?> modificationInfo)
     {
         var requestUrl = this
             .ClientContext.BaseAddress.ConcatPath("_api/foldercoloring/stampcolor(decodedurl=@v1)")
@@ -66,7 +66,7 @@ public class FolderColoringService(ClientContext clientContext) : ClientService(
                 )
             );
         var requestPayload = FolderColoringInfoRequestPayload.Create(modificationInfo);
-        this.ClientContext.PostObject(requestUrl, requestPayload);
+        await this.ClientContext.PostObjectAsync(requestUrl, requestPayload);
     }
 
 }

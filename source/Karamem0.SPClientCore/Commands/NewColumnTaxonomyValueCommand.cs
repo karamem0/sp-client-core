@@ -21,7 +21,7 @@ public class NewColumnTaxonomyValueCommand : ClientObjectCmdlet
     [Parameter(Mandatory = true)]
     public Term? Term { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Term ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Term));
         this.Outputs.Add(

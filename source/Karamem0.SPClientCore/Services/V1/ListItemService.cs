@@ -17,55 +17,55 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IListItemService
 {
 
-    ListItem? AddObject(
+    Task<ListItem?> AddObjectAsync(
         List listObject,
         IReadOnlyDictionary<string, object?> creationInfo,
         bool selectAllProperties = true
     );
 
-    IEnumerable<ListItem?>? AddObjectEnumerable(
+    Task<IEnumerable<ListItem?>?> AddObjectEnumerableAsync(
         List listObject,
         IEnumerable<IReadOnlyDictionary<string, object?>> creationInfos,
         bool selectAllProperties = true
     );
 
-    ListItem? GetObject(ListItem listItemObject);
+    Task<ListItem?> GetObjectAsync(ListItem listItemObject);
 
-    ListItem? GetObject(ListItem listItemObject, bool selectAllProperties = true);
+    Task<ListItem?> GetObjectAsync(ListItem listItemObject, bool selectAllProperties = true);
 
-    ListItem? GetObject(Models.V1.Folder folderObject, bool selectAllProperties = true);
+    Task<ListItem?> GetObjectAsync(Models.V1.Folder folderObject, bool selectAllProperties = true);
 
-    ListItem? GetObject(Models.V1.File fileObject, bool selectAllProperties = true);
+    Task<ListItem?> GetObjectAsync(Models.V1.File fileObject, bool selectAllProperties = true);
 
-    ListItem? GetObject(DriveItem driveItemObject, bool selectAllProperties = true);
+    Task<ListItem?> GetObjectAsync(DriveItem driveItemObject, bool selectAllProperties = true);
 
-    ListItem? GetObject(
+    Task<ListItem?> GetObjectAsync(
         List listObject,
         int listItemId,
         bool selectAllProperties = true
     );
 
-    ListItem? GetObject(
+    Task<ListItem?> GetObjectAsync(
         List listObject,
         Guid listItemUniqueId,
         bool selectAllProperties = true
     );
 
-    ListItem? GetObject(Uri listItemUrl, bool selectAllProperties = true);
+    Task<ListItem?> GetObjectAsync(Uri listItemUrl, bool selectAllProperties = true);
 
-    IEnumerable<ListItem>? GetObjectEnumerable(List listObject, bool selectAllProperties = true);
+    Task<IEnumerable<ListItem>?> GetObjectEnumerableAsync(List listObject, bool selectAllProperties = true);
 
-    IEnumerable<ListItem>? GetObjectEnumerable(
+    Task<IEnumerable<ListItem>?> GetObjectEnumerableAsync(
         List listObject,
         IReadOnlyDictionary<string, object?> filterInfo,
         bool selectAllProperties = true
     );
 
-    Guid RecycleObject(ListItem listItemObject);
+    Task<Guid> RecycleObjectAsync(ListItem listItemObject);
 
-    void RemoveObject(ListItem listItemObject);
+    Task RemoveObjectAsync(ListItem listItemObject);
 
-    void SetObject(
+    Task SetObjectAsync(
         ListItem listItemObject,
         IReadOnlyDictionary<string, object?> modificationInfo,
         bool useSyetemUpdate
@@ -76,7 +76,7 @@ public interface IListItemService
 public class ListItemService(ClientContext clientContext) : ClientService<ListItem>(clientContext), IListItemService
 {
 
-    public ListItem? AddObject(
+    public async Task<ListItem?> AddObjectAsync(
         List listObject,
         IReadOnlyDictionary<string, object?> creationInfo,
         bool selectAllProperties = true
@@ -108,12 +108,12 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
             )
         );
         var objectPath3 = requestPayload.Add(objectPath2, delegates);
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<ListItem?>? AddObjectEnumerable(
+    public async Task<IEnumerable<ListItem?>?> AddObjectEnumerableAsync(
         List listObject,
         IEnumerable<IReadOnlyDictionary<string, object?>> creationInfos,
         bool selectAllProperties = true
@@ -148,14 +148,14 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
             );
             var objectPath3 = requestPayload.Add(objectPath2, delegates);
         }
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObjectEnumerable<ListItem>(requestPayload.GetActionIds<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObjectEnumerable<ListItem>(requestPayload.GetActionIds<ClientActionQuery>()));
     }
 
-    public override ListItem? GetObject(ListItem listItemObject) => this.GetObject(listItemObject, true);
+    public override async Task<ListItem?> GetObjectAsync(ListItem listItemObject) => await this.GetObjectAsync(listItemObject, true);
 
-    public override ListItem? GetObject(ListItem listItemObject, bool selectAllProperties = true)
+    public override async Task<ListItem?> GetObjectAsync(ListItem listItemObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
@@ -163,12 +163,12 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(ListItem)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public ListItem? GetObject(Models.V1.Folder folderObject, bool selectAllProperties = true)
+    public async Task<ListItem?> GetObjectAsync(Models.V1.Folder folderObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(folderObject.ObjectIdentity));
@@ -177,12 +177,12 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(ListItem)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public ListItem? GetObject(Models.V1.File fileObject, bool selectAllProperties = true)
+    public async Task<ListItem?> GetObjectAsync(Models.V1.File fileObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(fileObject.ObjectIdentity));
@@ -191,12 +191,12 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(ListItem)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public ListItem? GetObject(DriveItem driveItemObject, bool selectAllProperties = true)
+    public async Task<ListItem?> GetObjectAsync(DriveItem driveItemObject, bool selectAllProperties = true)
     {
         var listId = driveItemObject.SharePointIds?.ListId;
         _ = listId ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
@@ -222,12 +222,12 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public ListItem? GetObject(
+    public async Task<ListItem?> GetObjectAsync(
         List listObject,
         int listItemId,
         bool selectAllProperties = true
@@ -244,12 +244,12 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public ListItem? GetObject(
+    public async Task<ListItem?> GetObjectAsync(
         List listObject,
         Guid listItemUniqueId,
         bool selectAllProperties = true
@@ -266,12 +266,12 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public ListItem? GetObject(Uri listItemUrl, bool selectAllProperties = true)
+    public async Task<ListItem?> GetObjectAsync(Uri listItemUrl, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -285,13 +285,14 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<ListItem>? GetObjectEnumerable(List listObject, bool selectAllProperties = true)
+    public async Task<IEnumerable<ListItem>?> GetObjectEnumerableAsync(List listObject, bool selectAllProperties = true)
     {
+        var listItems = new List<ListItem>();
         var listItemCollectionPosition = default(ListItemCollectionPosition);
         do
         {
@@ -318,19 +319,20 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
                     ClientQuery.Create(selectAllProperties)
                 )
             );
-            var listItemEnumerable = this
-                .ClientContext.ProcessQuery(requestPayload)
-                .ToObject<ListItemEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+            var listItemEnumerable = await this
+                .ClientContext.ProcessQueryAsync(requestPayload)
+                .ContinueWith(task => task.Result.ToObject<ListItemEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
             _ = listItemEnumerable ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
             foreach (var listItem in listItemEnumerable)
             {
-                yield return listItem;
+                listItems.Add(listItem);
             }
             listItemCollectionPosition = listItemEnumerable.ListItemCollectionPosition;
         } while (listItemCollectionPosition is not null);
+        return listItems;
     }
 
-    public IEnumerable<ListItem>? GetObjectEnumerable(
+    public async Task<IEnumerable<ListItem>?> GetObjectEnumerableAsync(
         List listObject,
         IReadOnlyDictionary<string, object?> filterInfo,
         bool selectAllProperties = true
@@ -351,24 +353,24 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
                 ClientQuery.Create(selectAllProperties)
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ListItemEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ListItemEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public Guid RecycleObject(ListItem listItemObject)
+    public async Task<Guid> RecycleObjectAsync(ListItem listItemObject)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             ObjectPathIdentity.Create(listItemObject.ObjectIdentity),
             objectPathId => ClientActionMethod.Create(objectPathId, "Recycle")
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Guid>(requestPayload.GetActionId<ClientActionMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Guid>(requestPayload.GetActionId<ClientActionMethod>()));
     }
 
-    public void SetObject(
+    public async Task SetObjectAsync(
         ListItem listItemObject,
         IReadOnlyDictionary<string, object?> modificationInfo,
         bool useSyetemUpdate
@@ -389,7 +391,7 @@ public class ListItemService(ClientContext clientContext) : ClientService<ListIt
                 .Append(objectPathId => ClientActionMethod.Create(objectPathId, useSyetemUpdate ? "SystemUpdate" : "Update"))
                 .Where(item => item is not null)
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

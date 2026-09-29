@@ -18,37 +18,37 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IAppService
 {
 
-    App? AddObject(
+    Task<App?> AddObjectAsync(
         System.IO.Stream appContent,
         string appName,
         bool overwrite,
         bool isTenant
     );
 
-    App? GetObject(App appObject, bool isTenant);
+    Task<App?> GetObjectAsync(App appObject, bool isTenant);
 
-    App? GetObject(Guid appId, bool isTenant);
+    Task<App?> GetObjectAsync(Guid appId, bool isTenant);
 
-    IEnumerable<App>? GetObjectEnumerable(bool isTenant);
+    Task<IEnumerable<App>?> GetObjectEnumerableAsync(bool isTenant);
 
-    void InstallObject(App appObject, bool isTenant);
+    Task InstallObjectAsync(App appObject, bool isTenant);
 
-    void PublishObject(App appObject, bool isTenant);
+    Task PublishObjectAsync(App appObject, bool isTenant);
 
-    void RemoveObject(App appObject, bool isTenant);
+    Task RemoveObjectAsync(App appObject, bool isTenant);
 
-    void UninstallObject(App appObject, bool isTenant);
+    Task UninstallObjectAsync(App appObject, bool isTenant);
 
-    void UnpublishObject(App appObject, bool isTenant);
+    Task UnpublishObjectAsync(App appObject, bool isTenant);
 
-    void UpdateObject(App appObject, bool isTenant);
+    Task UpdateObjectAsync(App appObject, bool isTenant);
 
 }
 
 public class AppService(ClientContext clientContext) : ClientService(clientContext), IAppService
 {
 
-    public App? AddObject(
+    public async Task<App?> AddObjectAsync(
         System.IO.Stream appContent,
         string appName,
         bool overwrite,
@@ -63,20 +63,20 @@ public class AppService(ClientContext clientContext) : ClientService(clientConte
                 overwrite
             )
             .ConcatQuery("$expand=ListItemAllFields&$select=ListItemAllFields/UniqueId");
-        var file = this.ClientContext.PostStream<ODataV1Object>(requestUrl, appContent);
+        var file = await this.ClientContext.PostStreamAsync<ODataV1Object>(requestUrl, appContent);
         var item = (JToken?)file?["ListItemAllFields"];
         var uniqueId = item?["UniqueId"];
         var appId = uniqueId?.ToObject<Guid>();
         _ = appId ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
-        return this.GetObject(appId.Value, isTenant);
+        return await this.GetObjectAsync(appId.Value, isTenant);
     }
 
-    public App? GetObject(App appObject, bool isTenant)
+    public async Task<App?> GetObjectAsync(App appObject, bool isTenant)
     {
-        return this.GetObject(appObject.Id, isTenant);
+        return await this.GetObjectAsync(appObject.Id, isTenant);
     }
 
-    public App? GetObject(Guid appId, bool isTenant)
+    public async Task<App?> GetObjectAsync(Guid appId, bool isTenant)
     {
         var requestUrl = this
             .ClientContext.BaseAddress.ConcatPath(
@@ -85,75 +85,75 @@ public class AppService(ClientContext clientContext) : ClientService(clientConte
                 appId
             )
             .ConcatQuery(ODataQuery.CreateSelect<App>());
-        return this.ClientContext.GetObject<App>(requestUrl);
+        return await this.ClientContext.GetObjectAsync<App>(requestUrl);
     }
 
-    public IEnumerable<App>? GetObjectEnumerable(bool isTenant)
+    public async Task<IEnumerable<App>?> GetObjectEnumerableAsync(bool isTenant)
     {
         var requestUrl = this
             .ClientContext.BaseAddress.ConcatPath("_api/web/{0}/availableapps", isTenant ? "tenantappcatalog" : "sitecollectionappcatalog")
             .ConcatQuery(ODataQuery.CreateSelect<App>());
-        return this.ClientContext.GetObject<ODataV1ObjectEnumerable<App>>(requestUrl);
+        return await this.ClientContext.GetObjectAsync<ODataV1ObjectEnumerable<App>>(requestUrl);
     }
 
-    public void InstallObject(App appObject, bool isTenant)
+    public async Task InstallObjectAsync(App appObject, bool isTenant)
     {
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/{0}/availableapps/getbyid('{1}')/install",
             isTenant ? "tenantappcatalog" : "sitecollectionappcatalog",
             appObject.Id
         );
-        this.ClientContext.PostObject(requestUrl, null);
+        await this.ClientContext.PostObjectAsync(requestUrl, null);
     }
 
-    public void PublishObject(App appObject, bool isTenant)
+    public async Task PublishObjectAsync(App appObject, bool isTenant)
     {
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/{0}/availableapps/getbyid('{1}')/deploy",
             isTenant ? "tenantappcatalog" : "sitecollectionappcatalog",
             appObject.Id
         );
-        this.ClientContext.PostObject(requestUrl, null);
+        await this.ClientContext.PostObjectAsync(requestUrl, null);
     }
 
-    public void RemoveObject(App appObject, bool isTenant)
+    public async Task RemoveObjectAsync(App appObject, bool isTenant)
     {
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/{0}/availableapps/getbyid('{1}')/remove",
             isTenant ? "tenantappcatalog" : "sitecollectionappcatalog",
             appObject.Id
         );
-        this.ClientContext.PostObject(requestUrl, null);
+        await this.ClientContext.PostObjectAsync(requestUrl, null);
     }
 
-    public void UninstallObject(App appObject, bool isTenant)
+    public async Task UninstallObjectAsync(App appObject, bool isTenant)
     {
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/{0}/availableapps/getbyid('{1}')/uninstall",
             isTenant ? "tenantappcatalog" : "sitecollectionappcatalog",
             appObject.Id
         );
-        this.ClientContext.PostObject(requestUrl, null);
+        await this.ClientContext.PostObjectAsync(requestUrl, null);
     }
 
-    public void UnpublishObject(App appObject, bool isTenant)
+    public async Task UnpublishObjectAsync(App appObject, bool isTenant)
     {
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/{0}/availableapps/getbyid('{1}')/retract",
             isTenant ? "tenantappcatalog" : "sitecollectionappcatalog",
             appObject.Id
         );
-        this.ClientContext.PostObject(requestUrl, null);
+        await this.ClientContext.PostObjectAsync(requestUrl, null);
     }
 
-    public void UpdateObject(App appObject, bool isTenant)
+    public async Task UpdateObjectAsync(App appObject, bool isTenant)
     {
         var requestUrl = this.ClientContext.BaseAddress.ConcatPath(
             "_api/web/{0}/availableapps/getbyid('{1}')/upgrade",
             isTenant ? "tenantappcatalog" : "sitecollectionappcatalog",
             appObject.Id
         );
-        this.ClientContext.PostObject(requestUrl, null);
+        await this.ClientContext.PostObjectAsync(requestUrl, null);
     }
 
 }

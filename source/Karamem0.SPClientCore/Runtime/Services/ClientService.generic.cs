@@ -14,12 +14,12 @@ namespace Karamem0.SharePoint.PowerShell.Runtime.Services;
 public abstract class ClientService<T>(ClientContext clientContext) : ClientService(clientContext) where T : ClientObject
 {
 
-    public virtual T? GetObject(T clientObject)
+    public virtual async Task<T?> GetObjectAsync(T clientObject)
     {
-        return this.GetObject(clientObject, selectAllProperties: true);
+        return await this.GetObjectAsync(clientObject, selectAllProperties: true);
     }
 
-    public virtual T? GetObject(T clientObject, bool selectAllProperties = true)
+    public virtual async Task<T?> GetObjectAsync(T clientObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
@@ -27,22 +27,22 @@ public abstract class ClientService<T>(ClientContext clientContext) : ClientServ
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(T)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<T>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<T>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public virtual void RemoveObject(T clientObject)
+    public virtual async Task RemoveObjectAsync(T clientObject)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(
             ObjectPathIdentity.Create(clientObject.ObjectIdentity),
             objectPathId => ClientActionMethod.Create(objectPathId, "DeleteObject")
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
-    public virtual void SetObject(T clientObject, IReadOnlyDictionary<string, object?> modificationInfo)
+    public virtual async Task SetObjectAsync(T clientObject, IReadOnlyDictionary<string, object?> modificationInfo)
     {
         var requestPayload = new ClientRequestPayload();
         var objectName = clientObject.ObjectType;
@@ -53,7 +53,7 @@ public abstract class ClientService<T>(ClientContext clientContext) : ClientServ
             requestPayload.CreateSetPropertyDelegates(clientObject, modificationInfo)
         );
         var objectPath2 = requestPayload.Add(objectPath1, objectPathId => ClientActionMethod.Create(objectPathId, "Update"));
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

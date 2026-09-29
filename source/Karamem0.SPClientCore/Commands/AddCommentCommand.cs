@@ -39,17 +39,17 @@ public class AddCommentCommand : ClientObjectCmdlet<ICommentService>
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet2")]
     public string? Text { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
-            this.Outputs.Add(this.Service.AddObject(this.ListItem, this.MyInvocation.BoundParameters));
+            this.Outputs.Add(await this.Service.AddObjectAsync(this.ListItem, this.MyInvocation.BoundParameters));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.Comment ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Comment));
-            this.Outputs.Add(this.Service.AddObject(this.Comment, this.MyInvocation.BoundParameters));
+            this.Outputs.Add(await this.Service.AddObjectAsync(this.Comment, this.MyInvocation.BoundParameters));
         }
     }
 

@@ -15,28 +15,28 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IGroupService
 {
 
-    Group? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true);
+    Task<Group?> AddObjectAsync(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true);
 
-    Group? GetObject(Group groupObject);
+    Task<Group?> GetObjectAsync(Group groupObject);
 
-    Group? GetObject(Group groupObject, bool selectAllProperties = true);
+    Task<Group?> GetObjectAsync(Group groupObject, bool selectAllProperties = true);
 
-    Group? GetObject(int groupId, bool selectAllProperties = true);
+    Task<Group?> GetObjectAsync(int groupId, bool selectAllProperties = true);
 
-    Group? GetObject(string groupName, bool selectAllProperties = true);
+    Task<Group?> GetObjectAsync(string groupName, bool selectAllProperties = true);
 
-    IEnumerable<Group>? GetObjectEnumerable(bool selectAllProperties = true);
+    Task<IEnumerable<Group>?> GetObjectEnumerableAsync(bool selectAllProperties = true);
 
-    void RemoveObject(Group groupObject);
+    Task RemoveObjectAsync(Group groupObject);
 
-    void SetObject(Group groupObject, IReadOnlyDictionary<string, object?> modificationInfo);
+    Task SetObjectAsync(Group groupObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class GroupService(ClientContext clientContext) : ClientService<Group>(clientContext), IGroupService
 {
 
-    public Group? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true)
+    public async Task<Group?> AddObjectAsync(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -51,12 +51,12 @@ public class GroupService(ClientContext clientContext) : ClientService<Group>(cl
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Group)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Group>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Group>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public Group? GetObject(int groupId, bool selectAllProperties = true)
+    public async Task<Group?> GetObjectAsync(int groupId, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -71,12 +71,12 @@ public class GroupService(ClientContext clientContext) : ClientService<Group>(cl
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Group)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Group>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Group>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public Group? GetObject(string groupName, bool selectAllProperties = true)
+    public async Task<Group?> GetObjectAsync(string groupName, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -91,12 +91,12 @@ public class GroupService(ClientContext clientContext) : ClientService<Group>(cl
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Group)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Group>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Group>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<Group>? GetObjectEnumerable(bool selectAllProperties = true)
+    public async Task<IEnumerable<Group>?> GetObjectEnumerableAsync(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -110,12 +110,12 @@ public class GroupService(ClientContext clientContext) : ClientService<Group>(cl
                 ClientQuery.Create(selectAllProperties, typeof(Group))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<GroupEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<GroupEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public override void RemoveObject(Group groupObject)
+    public override async Task RemoveObjectAsync(Group groupObject)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -129,7 +129,7 @@ public class GroupService(ClientContext clientContext) : ClientService<Group>(cl
                 requestPayload.CreateParameter(groupObject)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

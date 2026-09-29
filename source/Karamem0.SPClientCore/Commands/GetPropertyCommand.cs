@@ -46,27 +46,27 @@ public class GetPropertyCommand : ClientObjectCmdlet<IPropertyService>
     )]
     public ListItem? ListItem { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             this.ValidateSwitchParameter(nameof(this.Site));
-            this.Outputs.Add(this.Service.GetObject());
+            this.Outputs.Add(await this.Service.GetObjectAsync());
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.File ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.File));
-            this.Outputs.Add(this.Service.GetObject(this.File));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.File));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             _ = this.Folder ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Folder));
-            this.Outputs.Add(this.Service.GetObject(this.Folder));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.Folder));
         }
         if (this.ParameterSetName == "ParamSet4")
         {
             _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
-            this.Outputs.Add(this.Service.GetObject(this.ListItem));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.ListItem));
         }
     }
 

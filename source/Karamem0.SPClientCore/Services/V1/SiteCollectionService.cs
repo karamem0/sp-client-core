@@ -15,20 +15,20 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ISiteCollectionService
 {
 
-    SiteCollection? GetObject(bool selectAllProperties = true);
+    Task<SiteCollection?> GetObjectAsync(bool selectAllProperties = true);
 
-    SiteCollection? GetObject(SiteCollection siteCollectionObject);
+    Task<SiteCollection?> GetObjectAsync(SiteCollection siteCollectionObject);
 
-    SiteCollection? GetObject(SiteCollection siteCollectionObject, bool selectAllProperties = true);
+    Task<SiteCollection?> GetObjectAsync(SiteCollection siteCollectionObject, bool selectAllProperties = true);
 
-    SiteCollection? GetObject(Uri siteCollectionUrl, bool selectAllProperties = true);
+    Task<SiteCollection?> GetObjectAsync(Uri siteCollectionUrl, bool selectAllProperties = true);
 
 }
 
 public class SiteCollectionService(ClientContext clientContext) : ClientService<SiteCollection>(clientContext), ISiteCollectionService
 {
 
-    public SiteCollection? GetObject(bool selectAllProperties = true)
+    public async Task<SiteCollection?> GetObjectAsync(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -37,12 +37,12 @@ public class SiteCollectionService(ClientContext clientContext) : ClientService<
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(SiteCollection)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<SiteCollection>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<SiteCollection>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public SiteCollection? GetObject(Uri siteCollectionUrl, bool selectAllProperties = true)
+    public async Task<SiteCollection?> GetObjectAsync(Uri siteCollectionUrl, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -56,9 +56,9 @@ public class SiteCollectionService(ClientContext clientContext) : ClientService<
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(SiteCollection)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<SiteCollection>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<SiteCollection>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
 }

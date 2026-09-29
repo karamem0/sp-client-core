@@ -77,17 +77,17 @@ public class AddRoleAssignmentCommand : ClientObjectCmdlet<ISiteService, IRoleAs
     [Parameter(Mandatory = false)]
     public SwitchParameter SelectAllProperties { get; private set; } = true;
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             this.ValidateSwitchParameter(nameof(this.Site));
             _ = this.Principal ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Principal));
             _ = this.RoleDefinition ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.RoleDefinition));
-            var siteObject = this.Service1.GetObject();
+            var siteObject = await this.Service1.GetObjectAsync();
             _ = siteObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
             this.Outputs.Add(
-                this.Service2.AddObject(
+                await this.Service2.AddObjectAsync(
                     siteObject,
                     this.Principal,
                     this.RoleDefinition,
@@ -101,7 +101,7 @@ public class AddRoleAssignmentCommand : ClientObjectCmdlet<ISiteService, IRoleAs
             _ = this.Principal ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Principal));
             _ = this.RoleDefinition ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.RoleDefinition));
             this.Outputs.Add(
-                this.Service2.AddObject(
+                await this.Service2.AddObjectAsync(
                     this.List,
                     this.Principal,
                     this.RoleDefinition,
@@ -115,7 +115,7 @@ public class AddRoleAssignmentCommand : ClientObjectCmdlet<ISiteService, IRoleAs
             _ = this.Principal ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Principal));
             _ = this.RoleDefinition ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.RoleDefinition));
             this.Outputs.Add(
-                this.Service2.AddObject(
+                await this.Service2.AddObjectAsync(
                     this.ListItem,
                     this.Principal,
                     this.RoleDefinition,

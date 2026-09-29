@@ -33,13 +33,13 @@ public class RemoveDocumentSetAllowedContentTypeCommand : ClientObjectCmdlet<IDo
     [Parameter(Mandatory = false)]
     public SwitchParameter PushChanges { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.ContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ContentType));
         _ = this.AllowedContentType ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.AllowedContentType));
         if (this.ShouldProcess(this.AllowedContentType.Name, VerbsCommon.Remove))
         {
-            this.Service.RemoveObject(
+            await this.Service.RemoveObjectAsync(
                 this.ContentType,
                 this.AllowedContentType,
                 this.PushChanges

@@ -86,72 +86,72 @@ public class GetListCommand : ClientObjectCmdlet<IListService>
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet11")]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.Identity, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.ListItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListItem));
-            this.Outputs.Add(this.Service.GetObject(this.ListItem, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.ListItem, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             _ = this.Folder ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Folder));
-            this.Outputs.Add(this.Service.GetObject(this.Folder, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.Folder, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet4")
         {
             _ = this.File ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.File));
-            this.Outputs.Add(this.Service.GetObject(this.File, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.File, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet5")
         {
             _ = this.View ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.View));
-            this.Outputs.Add(this.Service.GetObject(this.View, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.View, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet6")
         {
             _ = this.Drive ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Drive));
-            this.Outputs.Add(this.Service.GetObject(this.Drive, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.Drive, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet7")
         {
-            this.Outputs.Add(this.Service.GetObject(this.ListId, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.ListId, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet8")
         {
             _ = this.ListUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListUrl));
             if (this.ListUrl.IsAbsoluteUri)
             {
-                this.Outputs.Add(this.Service.GetObject(new Uri(this.ListUrl.AbsolutePath, UriKind.Relative), this.SelectAllProperties));
+                this.Outputs.Add(await this.Service.GetObjectAsync(new Uri(this.ListUrl.AbsolutePath, UriKind.Relative), this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.Add(this.Service.GetObject(this.ListUrl, this.SelectAllProperties));
+                this.Outputs.Add(await this.Service.GetObjectAsync(this.ListUrl, this.SelectAllProperties));
             }
         }
         if (this.ParameterSetName == "ParamSet9")
         {
             _ = this.ListTitle ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ListTitle));
-            this.Outputs.Add(this.Service.GetObject(this.ListTitle, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.ListTitle, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet10")
         {
-            this.Outputs.Add(this.Service.GetObject(this.LibraryType, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.LibraryType, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet11")
         {
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.SelectAllProperties));
+                this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.SelectAllProperties));
+                this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.SelectAllProperties));
             }
         }
     }

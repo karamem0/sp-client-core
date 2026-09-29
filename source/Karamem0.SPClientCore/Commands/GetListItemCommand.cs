@@ -100,38 +100,38 @@ public class GetListItemCommand : ClientObjectCmdlet<IListItemService>
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet9")]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.Identity, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.Folder ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Folder));
-            this.Outputs.Add(this.Service.GetObject(this.Folder, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.Folder, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet3")
         {
             _ = this.File ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.File));
-            this.Outputs.Add(this.Service.GetObject(this.File, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.File, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet4")
         {
             _ = this.DriveItem ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.DriveItem));
-            this.Outputs.Add(this.Service.GetObject(this.DriveItem, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.DriveItem, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet5")
         {
             _ = this.ItemUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.ItemUrl));
-            this.Outputs.Add(this.Service.GetObject(this.ItemUrl, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.ItemUrl, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet6")
         {
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
             this.Outputs.Add(
-                this.Service.GetObject(
+                await this.Service.GetObjectAsync(
                     this.List,
                     this.ItemId,
                     this.SelectAllProperties
@@ -142,7 +142,7 @@ public class GetListItemCommand : ClientObjectCmdlet<IListItemService>
         {
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
             this.Outputs.Add(
-                this.Service.GetObject(
+                await this.Service.GetObjectAsync(
                     this.List,
                     this.ItemUniqueId,
                     this.SelectAllProperties
@@ -155,11 +155,11 @@ public class GetListItemCommand : ClientObjectCmdlet<IListItemService>
             _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
             if (this.NoEnumerate)
             {
-                this.Outputs.Add(this.Service.GetObjectEnumerable(this.List, this.SelectAllProperties));
+                this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.List, this.SelectAllProperties));
             }
             else
             {
-                this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.List, this.SelectAllProperties));
+                this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.List, this.SelectAllProperties));
             }
         }
         if (this.ParameterSetName == "ParamSet9")
@@ -171,7 +171,7 @@ public class GetListItemCommand : ClientObjectCmdlet<IListItemService>
             if (this.NoEnumerate)
             {
                 this.Outputs.Add(
-                    this.Service.GetObjectEnumerable(
+                    await this.Service.GetObjectEnumerableAsync(
                         this.List,
                         filterInfo,
                         this.SelectAllProperties
@@ -181,7 +181,7 @@ public class GetListItemCommand : ClientObjectCmdlet<IListItemService>
             else
             {
                 this.Outputs.AddRange(
-                    this.Service.GetObjectEnumerable(
+                    await this.Service.GetObjectEnumerableAsync(
                         this.List,
                         filterInfo,
                         this.SelectAllProperties

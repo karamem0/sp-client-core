@@ -15,7 +15,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IDocumentSetDefaultDocumentService
 {
 
-    DefaultDocument? AddObject(
+    Task<DefaultDocument?> AddObjectAsync(
         ContentType contentTypeObject,
         ContentType documentContentTypeObject,
         string fileName,
@@ -24,9 +24,9 @@ public interface IDocumentSetDefaultDocumentService
         bool selectAllProperties = true
     );
 
-    IEnumerable<DefaultDocument>? GetObjectEnumerable(ContentType documentContentTypeObject, bool selectAllProperties = true);
+    Task<IEnumerable<DefaultDocument>?> GetObjectEnumerableAsync(ContentType documentContentTypeObject, bool selectAllProperties = true);
 
-    void RemoveObject(
+    Task RemoveObjectAsync(
         ContentType contentTypeObject,
         string fileName,
         bool pushChanges
@@ -37,7 +37,7 @@ public interface IDocumentSetDefaultDocumentService
 public class DocumentSetDefaultDocumentService(ClientContext clientContext) : ClientService(clientContext), IDocumentSetDefaultDocumentService
 {
 
-    public DefaultDocument? AddObject(
+    public async Task<DefaultDocument?> AddObjectAsync(
         ContentType contentTypeObject,
         ContentType documentContentTypeObject,
         string fileName,
@@ -75,12 +75,12 @@ public class DocumentSetDefaultDocumentService(ClientContext clientContext) : Cl
                 requestPayload.CreateParameter(pushChanges)
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<DefaultDocument>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<DefaultDocument>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<DefaultDocument>? GetObjectEnumerable(ContentType documentContentTypeObject, bool selectAllProperties = true)
+    public async Task<IEnumerable<DefaultDocument>?> GetObjectEnumerableAsync(ContentType documentContentTypeObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(documentContentTypeObject.ObjectIdentity));
@@ -100,12 +100,12 @@ public class DocumentSetDefaultDocumentService(ClientContext clientContext) : Cl
                 ClientQuery.Create(selectAllProperties, typeof(DefaultDocument))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<DefaultDocumentEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<DefaultDocumentEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void RemoveObject(
+    public async Task RemoveObjectAsync(
         ContentType contentTypeObject,
         string fileName,
         bool pushChanges
@@ -137,7 +137,7 @@ public class DocumentSetDefaultDocumentService(ClientContext clientContext) : Cl
                 requestPayload.CreateParameter(pushChanges)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

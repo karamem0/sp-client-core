@@ -33,17 +33,17 @@ public class GetSiteCollectioCommand : ClientObjectCmdlet<ISiteCollectionService
     [Parameter(Mandatory = false)]
     public SwitchParameter SelectAllProperties { get; private set; } = true;
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             _ = this.Identity ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Identity));
-            this.Outputs.Add(this.Service.GetObject(this.Identity, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.Identity, this.SelectAllProperties));
         }
         if (this.ParameterSetName == "ParamSet2")
         {
             _ = this.SiteCollectionUrl ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.SiteCollectionUrl));
-            this.Outputs.Add(this.Service.GetObject(this.SiteCollectionUrl, this.SelectAllProperties));
+            this.Outputs.Add(await this.Service.GetObjectAsync(this.SiteCollectionUrl, this.SelectAllProperties));
         }
     }
 

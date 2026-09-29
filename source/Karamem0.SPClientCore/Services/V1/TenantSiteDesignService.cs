@@ -15,20 +15,20 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ITenantSiteDesignService
 {
 
-    TenantSiteDesign? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true);
+    Task<TenantSiteDesign?> AddObjectAsync(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true);
 
-    TenantSiteDesign? GetObject(Guid siteDesignId);
+    Task<TenantSiteDesign?> GetObjectAsync(Guid siteDesignId);
 
-    IEnumerable<TenantSiteDesign>? GetObjectEnumerable(bool selectAllProperties = true);
+    Task<IEnumerable<TenantSiteDesign>?> GetObjectEnumerableAsync(bool selectAllProperties = true);
 
-    void RemoveObject(TenantSiteDesign siteDesignObject);
+    Task RemoveObjectAsync(TenantSiteDesign siteDesignObject);
 
 }
 
 public class TenantSiteDesignService(ClientContext clientContext) : ClientService(clientContext), ITenantSiteDesignService
 {
 
-    public TenantSiteDesign? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true)
+    public async Task<TenantSiteDesign?> AddObjectAsync(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -41,12 +41,12 @@ public class TenantSiteDesignService(ClientContext clientContext) : ClientServic
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(TenantSiteDesign)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantSiteDesign>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantSiteDesign>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public TenantSiteDesign? GetObject(Guid siteDesignId)
+    public async Task<TenantSiteDesign?> GetObjectAsync(Guid siteDesignId)
     {
         var requestPayload = new ClientRequestPayload();
         requestPayload.Actions.Add(
@@ -56,12 +56,12 @@ public class TenantSiteDesignService(ClientContext clientContext) : ClientServic
                 requestPayload.CreateParameter(siteDesignId)
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantSiteDesign>(requestPayload.GetActionId<ClientActionStaticMethod>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantSiteDesign>(requestPayload.GetActionId<ClientActionStaticMethod>()));
     }
 
-    public IEnumerable<TenantSiteDesign>? GetObjectEnumerable(bool selectAllProperties = true)
+    public async Task<IEnumerable<TenantSiteDesign>?> GetObjectEnumerableAsync(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -74,12 +74,12 @@ public class TenantSiteDesignService(ClientContext clientContext) : ClientServic
                 ClientQuery.Create(selectAllProperties, typeof(TenantSiteDesign))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<TenantSiteDesignEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<TenantSiteDesignEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void RemoveObject(TenantSiteDesign siteDesignObject)
+    public async Task RemoveObjectAsync(TenantSiteDesign siteDesignObject)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathConstructor.Create(typeof(Tenant)));
@@ -91,7 +91,7 @@ public class TenantSiteDesignService(ClientContext clientContext) : ClientServic
                 requestPayload.CreateParameter(siteDesignObject.Id)
             )
         );
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

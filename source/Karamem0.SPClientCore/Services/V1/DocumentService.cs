@@ -15,7 +15,7 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface IDocumentService
 {
 
-    ListItem? AddObject(
+    Task<ListItem?> AddObjectAsync(
         List listObject,
         string fileName,
         Folder folderObject,
@@ -28,7 +28,7 @@ public interface IDocumentService
 public class DocumentService(ClientContext clientContext) : ClientService(clientContext), IDocumentService
 {
 
-    public ListItem? AddObject(
+    public async Task<ListItem?> AddObjectAsync(
         List listObject,
         string fileName,
         Folder folderObject,
@@ -49,9 +49,9 @@ public class DocumentService(ClientContext clientContext) : ClientService(client
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(ListItem)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<ListItem>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
 }

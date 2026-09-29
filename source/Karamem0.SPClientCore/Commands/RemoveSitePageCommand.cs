@@ -43,7 +43,7 @@ public class RemoveSitePageCommand : ClientObjectCmdlet<ISitePageService, IListS
     )]
     public string? PageName { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ShouldProcess(this.PageName, VerbsCommon.Remove))
         {
@@ -51,17 +51,17 @@ public class RemoveSitePageCommand : ClientObjectCmdlet<ISitePageService, IListS
             if (this.ParameterSetName == "ParamSet1")
             {
                 _ = this.List ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.List));
-                var folderObject = this.Service3.GetObject(this.List);
+                var folderObject = await this.Service3.GetObjectAsync(this.List);
                 _ = folderObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
-                this.Service1.RemoveObject(folderObject, this.PageName);
+                await this.Service1.RemoveObjectAsync(folderObject, this.PageName);
             }
             if (this.ParameterSetName == "ParamSet2")
             {
-                var listObject = this.Service2.GetObject(LibraryType.ClientRenderedSitePages);
+                var listObject = await this.Service2.GetObjectAsync(LibraryType.ClientRenderedSitePages);
                 _ = listObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
-                var folderObject = this.Service3.GetObject(listObject);
+                var folderObject = await this.Service3.GetObjectAsync(listObject);
                 _ = folderObject ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
-                this.Service1.RemoveObject(folderObject, this.PageName);
+                await this.Service1.RemoveObjectAsync(folderObject, this.PageName);
             }
         }
     }

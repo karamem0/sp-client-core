@@ -16,38 +16,38 @@ namespace Karamem0.SharePoint.PowerShell.Services.V1;
 public interface ISiteService
 {
 
-    Site? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true);
+    Task<Site?> AddObjectAsync(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true);
 
-    Site? GetObject(bool selectAllProperties = true);
+    Task<Site?> GetObjectAsync(bool selectAllProperties = true);
 
-    Site? GetObject(Site siteObject);
+    Task<Site?> GetObjectAsync(Site siteObject);
 
-    Site? GetObject(Site siteObject, bool selectAllProperties = true);
+    Task<Site?> GetObjectAsync(Site siteObject, bool selectAllProperties = true);
 
-    Site? GetObject(SiteCollection siteCollectionObject, bool selectAllProperties = true);
+    Task<Site?> GetObjectAsync(SiteCollection siteCollectionObject, bool selectAllProperties = true);
 
-    Site? GetObject(List listObject, bool selectAllProperties = true);
+    Task<Site?> GetObjectAsync(List listObject, bool selectAllProperties = true);
 
-    Site? GetObject(Guid siteId, bool selectAllProperties = true);
+    Task<Site?> GetObjectAsync(Guid siteId, bool selectAllProperties = true);
 
-    Site? GetObject(Uri siteUrl, bool selectAllProperties = true);
+    Task<Site?> GetObjectAsync(Uri siteUrl, bool selectAllProperties = true);
 
-    IEnumerable<Site>? GetObjectEnumerable(bool selectAllProperties = true);
+    Task<IEnumerable<Site>?> GetObjectEnumerableAsync(bool selectAllProperties = true);
 
-    void RemoveObject(Site siteObject);
+    Task RemoveObjectAsync(Site siteObject);
 
-    void SelectObject(Site siteObject);
+    Task SelectObjectAsync(Site siteObject);
 
-    void SetObject(IReadOnlyDictionary<string, object?> modificationInfo);
+    Task SetObjectAsync(IReadOnlyDictionary<string, object?> modificationInfo);
 
-    void SetObject(Site siteObject, IReadOnlyDictionary<string, object?> modificationInfo);
+    Task SetObjectAsync(Site siteObject, IReadOnlyDictionary<string, object?> modificationInfo);
 
 }
 
 public class SiteService(ClientContext clientContext) : ClientService<Site>(clientContext), ISiteService
 {
 
-    public Site? AddObject(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true)
+    public async Task<Site?> AddObjectAsync(IReadOnlyDictionary<string, object?> creationInfo, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -62,12 +62,12 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Site)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Site>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Site>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public Site? GetObject(bool selectAllProperties = true)
+    public async Task<Site?> GetObjectAsync(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -76,12 +76,12 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Site)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Site>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Site>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public Site? GetObject(SiteCollection siteCollectionObject, bool selectAllProperties = true)
+    public async Task<Site?> GetObjectAsync(SiteCollection siteCollectionObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -95,12 +95,12 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Site)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Site>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Site>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public Site? GetObject(List listObject, bool selectAllProperties = true)
+    public async Task<Site?> GetObjectAsync(List listObject, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathIdentity.Create(listObject.ObjectIdentity));
@@ -109,12 +109,12 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Site)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Site>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Site>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public Site? GetObject(Guid siteId, bool selectAllProperties = true)
+    public async Task<Site?> GetObjectAsync(Guid siteId, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -128,12 +128,12 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Site)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Site>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Site>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public Site? GetObject(Uri siteUrl, bool selectAllProperties = true)
+    public async Task<Site?> GetObjectAsync(Uri siteUrl, bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -147,12 +147,12 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
             ClientActionInstantiateObjectPath.Create,
             objectPathId => ClientActionQuery.Create(objectPathId, ClientQuery.Create(selectAllProperties, typeof(Site)))
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<Site>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<Site>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public IEnumerable<Site>? GetObjectEnumerable(bool selectAllProperties = true)
+    public async Task<IEnumerable<Site>?> GetObjectEnumerableAsync(bool selectAllProperties = true)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -166,17 +166,17 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
                 ClientQuery.Create(selectAllProperties, typeof(Site))
             )
         );
-        return this
-            .ClientContext.ProcessQuery(requestPayload)
-            .ToObject<SiteEnumerable>(requestPayload.GetActionId<ClientActionQuery>());
+        return await this
+            .ClientContext.ProcessQueryAsync(requestPayload)
+            .ContinueWith(task => task.Result.ToObject<SiteEnumerable>(requestPayload.GetActionId<ClientActionQuery>()));
     }
 
-    public void SelectObject(Site siteObject)
+    public async Task SelectObjectAsync(Site siteObject)
     {
         this.ClientContext.BaseAddress = siteObject.Url ?? throw new InvalidOperationException(StringResources.ErrorValueCannotBeNull);
     }
 
-    public void SetObject(IReadOnlyDictionary<string, object?> modificationInfo)
+    public async Task SetObjectAsync(IReadOnlyDictionary<string, object?> modificationInfo)
     {
         var requestPayload = new ClientRequestPayload();
         var objectPath1 = requestPayload.Add(ObjectPathStaticProperty.Create(typeof(Context), "Current"));
@@ -185,7 +185,7 @@ public class SiteService(ClientContext clientContext) : ClientService<Site>(clie
             requestPayload.CreateSetPropertyDelegates(typeof(Site), modificationInfo)
         );
         var objectPath3 = requestPayload.Add(objectPath2, objectPathId => ClientActionMethod.Create(objectPathId, "Update"));
-        _ = this.ClientContext.ProcessQuery(requestPayload);
+        _ = await this.ClientContext.ProcessQueryAsync(requestPayload);
     }
 
 }

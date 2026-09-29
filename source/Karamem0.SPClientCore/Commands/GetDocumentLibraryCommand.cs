@@ -30,12 +30,12 @@ public class GetDocumentLibraryCommand : ClientObjectCmdlet<IDocumentLibraryServ
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]
     public SwitchParameter NoEnumerate { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ParameterSetName == "ParamSet1")
         {
             this.ValidateSwitchParameter(nameof(this.Default));
-            this.Outputs.Add(this.Service.GetObject());
+            this.Outputs.Add(await this.Service.GetObjectAsync());
         }
         if (this.ParameterSetName == "ParamSet2")
         {
@@ -43,22 +43,22 @@ public class GetDocumentLibraryCommand : ClientObjectCmdlet<IDocumentLibraryServ
             {
                 if (this.NoEnumerate)
                 {
-                    this.Outputs.Add(this.Service.GetObjectEnumerable(this.IncludeMediaLibraries));
+                    this.Outputs.Add(await this.Service.GetObjectEnumerableAsync(this.IncludeMediaLibraries));
                 }
                 else
                 {
-                    this.Outputs.AddRange(this.Service.GetObjectEnumerable(this.IncludeMediaLibraries));
+                    this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync(this.IncludeMediaLibraries));
                 }
             }
             else
             {
                 if (this.NoEnumerate)
                 {
-                    this.Outputs.Add(this.Service.GetObjectEnumerable());
+                    this.Outputs.Add(await this.Service.GetObjectEnumerableAsync());
                 }
                 else
                 {
-                    this.Outputs.AddRange(this.Service.GetObjectEnumerable());
+                    this.Outputs.AddRange(await this.Service.GetObjectEnumerableAsync());
                 }
             }
         }

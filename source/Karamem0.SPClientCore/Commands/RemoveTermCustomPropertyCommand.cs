@@ -50,7 +50,7 @@ public class RemoveTermCustomPropertyCommand : ClientObjectCmdlet<ITermCustomPro
     )]
     public string? Name { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         if (this.ShouldProcess(this.Name, VerbsCommon.Remove))
         {
@@ -58,13 +58,13 @@ public class RemoveTermCustomPropertyCommand : ClientObjectCmdlet<ITermCustomPro
             {
                 _ = this.TermSet ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.TermSet));
                 _ = this.Name ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Name));
-                this.Service.RemoveObject(this.TermSet, this.Name);
+                await this.Service.RemoveObjectAsync(this.TermSet, this.Name);
             }
             if (this.ParameterSetName == "ParamSet2")
             {
                 _ = this.Term ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Term));
                 _ = this.Name ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Name));
-                this.Service.RemoveObject(this.Term, this.Name);
+                await this.Service.RemoveObjectAsync(this.Term, this.Name);
             }
         }
     }

@@ -26,12 +26,12 @@ public class RemoveTenantOrganizationNewsSiteCommand : ClientObjectCmdlet<ITenan
     [Parameter(Mandatory = true)]
     public Uri? Url { get; private set; }
 
-    protected override void ProcessRecordCore()
+    protected override async Task ProcessRecordAsync()
     {
         _ = this.Url ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(this.Url));
         if (this.ShouldProcess(this.Url.ToString(), VerbsCommon.Remove))
         {
-            this.Service.RemoveObject(this.Url);
+            await this.Service.RemoveObjectAsync(this.Url);
         }
     }
 
