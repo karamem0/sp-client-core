@@ -34,10 +34,17 @@ public class UriExtensionsTests
         {
             Uri = new Uri("http://example.com"),
             Path = "path/{0}/{1}",
-            Args = new string[] { "to", "resource" }
+            Args = new string[]
+            {
+                "to", "resource"
+            }
         };
         var expected = "http://example.com/path/to/resource";
-        var actual = UriExtensions.ConcatPath(args.Uri, args.Path, args.Args);
+        var actual = UriExtensions.ConcatPath(
+            args.Uri,
+            args.Path,
+            args.Args
+        );
         Assert.That(actual, Is.EqualTo(expected));
     }
 

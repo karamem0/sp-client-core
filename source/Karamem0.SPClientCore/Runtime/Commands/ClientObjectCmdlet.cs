@@ -12,6 +12,7 @@ using Karamem0.SharePoint.PowerShell.Runtime.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics;
 using System.Management.Automation;
+using System.Threading;
 
 namespace Karamem0.SharePoint.PowerShell.Runtime.Commands;
 
@@ -22,68 +23,92 @@ public abstract class ClientObjectCmdlet : PSCmdlet
 
     protected override void ProcessRecord()
     {
+        var telemetry = TelemetryClientFactory.Create();
+        var currentContext = SynchronizationContext.Current;
+        var syncContext = new ClientObjectCmdletSynchronizationContext();
+        var stopwatch = new Stopwatch();
+        if (string.Equals(
+                this.MyInvocation.InvocationName,
+                this.MyInvocation.MyCommand.Name,
+                StringComparison.InvariantCultureIgnoreCase
+            ))
         {
-            var telemetry = TelemetryClientFactory.Create();
-            var stopwatch = new Stopwatch();
-            if (string.Equals(
+        }
+        else
+        {
+            base.WriteWarning(
+                string.Format(
+                    StringResources.WarningCmdletIsObsolete,
                     this.MyInvocation.InvocationName,
-                    this.MyInvocation.MyCommand.Name,
-                    StringComparison.InvariantCultureIgnoreCase
-                ))
-            {
-            }
-            else
-            {
-                this.WriteWarning(
-                    string.Format(
-                        StringResources.WarningCmdletIsObsolete,
-                        this.MyInvocation.InvocationName,
-                        this.MyInvocation.MyCommand.Name
-                    )
-                );
-            }
-            var listener = Trace.Listeners[Trace.Listeners.Add(new ClientObjectCmdletTraceListener(this))];
-            try
-            {
-                stopwatch.Start();
-                this.Outputs.Clear();
-                Task
-                    .Run(async () => await this.ProcessRecordAsync())
-                    .GetAwaiter()
-                    .GetResult();
-                listener.Flush();
-                this.WriteObject(this.Outputs, true);
-            }
-            catch (PipelineStoppedException)
-            {
-                listener.Flush();
-                throw;
-            }
-            catch (Exception ex)
-            {
-                listener.Flush();
-                this.WriteError(
-                    new ErrorRecord(
-                        ex,
-                        "Exception",
-                        ErrorCategory.NotSpecified,
-                        null
-                    )
-                );
-                telemetry.TrackException(ex);
-            }
-            finally
-            {
-                Trace.Listeners.Remove(listener);
-                stopwatch.Stop();
-                telemetry
-                    .GetMetric(this.MyInvocation.InvocationName)
-                    .TrackValue(stopwatch.ElapsedMilliseconds);
-            }
+                    this.MyInvocation.MyCommand.Name
+                )
+            );
+        }
+        var listener = Trace.Listeners[Trace.Listeners.Add(new ClientObjectCmdletTraceListener(this))];
+        try
+        {
+            SynchronizationContext.SetSynchronizationContext(syncContext);
+            stopwatch.Start();
+            this.Outputs.Clear();
+            var task = Task.Run(() =>
+                {
+                    var currentContext = SynchronizationContext.Current;
+                    SynchronizationContext.SetSynchronizationContext(syncContext);
+                    try
+                    {
+                        return this.ProcessRecordAsync();
+                    }
+                    finally
+                    {
+                        SynchronizationContext.SetSynchronizationContext(currentContext);
+                    }
+                }
+            );
+            _ = task.ContinueWith(_ => syncContext.Complete(), TaskScheduler.Default);
+            syncContext.Wait();
+            task
+                .GetAwaiter()
+                .GetResult();
+            listener.Flush();
+            this.WriteObject(this.Outputs, true);
+        }
+        catch (PipelineStoppedException)
+        {
+            listener.Flush();
+            throw;
+        }
+        catch (Exception ex)
+        {
+            listener.Flush();
+            base.WriteError(
+                new ErrorRecord(
+                    ex,
+                    "Exception",
+                    ErrorCategory.NotSpecified,
+                    null
+                )
+            );
+            telemetry.TrackException(ex);
+        }
+        finally
+        {
+            Trace.Listeners.Remove(listener);
+            SynchronizationContext.SetSynchronizationContext(currentContext);
+            stopwatch.Stop();
+            telemetry
+                .GetMetric(this.MyInvocation.InvocationName)
+                .TrackValue(stopwatch.ElapsedMilliseconds);
         }
     }
 
     protected abstract Task ProcessRecordAsync();
+
+    protected void WriteLine(string text)
+    {
+        var syncContext = SynchronizationContext.Current as ClientObjectCmdletSynchronizationContext;
+        _ = syncContext ?? throw new ArgumentException(StringResources.ErrorValueCannotBeNull, nameof(syncContext));
+        syncContext.Post(_ => this.Host.UI.WriteLine(text), this);
+    }
 
     public void ValidateSwitchParameter(string parameterName)
     {

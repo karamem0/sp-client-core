@@ -1,0 +1,41 @@
+//
+// Copyright (c) 2018-2026 karamem0
+//
+// This software is released under the MIT License.
+//
+// https://github.com/karamem0/sp-client-core/blob/main/LICENSE
+//
+
+using System.Collections.Concurrent;
+using System.Threading;
+
+namespace Karamem0.SharePoint.PowerShell.Runtime.Services;
+
+public class ClientObjectCmdletSynchronizationContext : SynchronizationContext
+{
+
+    private readonly BlockingCollection<ClientObjectCmdletSynchronizationObject> collection = [];
+
+    public override void Post(SendOrPostCallback d, object state)
+    {
+        this.collection.Add(new ClientObjectCmdletSynchronizationObject(d, state));
+    }
+
+    public void Wait()
+    {
+        while (this.collection.TryTake(out var value, Timeout.Infinite))
+        {
+            if (value == ClientObjectCmdletSynchronizationObject.Completed)
+            {
+                break;
+            }
+            value?.Callback(value.State);
+        }
+    }
+
+    public void Complete()
+    {
+        this.collection.Add(ClientObjectCmdletSynchronizationObject.Completed);
+    }
+
+}

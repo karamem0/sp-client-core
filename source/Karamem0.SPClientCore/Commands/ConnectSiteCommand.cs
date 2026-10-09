@@ -9,9 +9,11 @@
 using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Runtime.OAuth;
+using Karamem0.SharePoint.PowerShell.Runtime.Services;
 using System.IO;
 using System.Management.Automation;
 using System.Security;
+using System.Threading;
 
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
@@ -118,7 +120,7 @@ public class ConnectSiteCommand : OAuthCmdlet
                 this.ClientId,
                 this.Url,
                 this.UserMode,
-                this.WriteWarning
+                this.WriteLine
             );
         }
         if (this.ParameterSetName == "ParamSet2")
