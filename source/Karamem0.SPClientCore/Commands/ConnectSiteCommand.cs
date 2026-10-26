@@ -9,11 +9,9 @@
 using Karamem0.SharePoint.PowerShell.Resources;
 using Karamem0.SharePoint.PowerShell.Runtime.Commands;
 using Karamem0.SharePoint.PowerShell.Runtime.OAuth;
-using Karamem0.SharePoint.PowerShell.Runtime.Services;
 using System.IO;
 using System.Management.Automation;
 using System.Security;
-using System.Threading;
 
 namespace Karamem0.SharePoint.PowerShell.Commands;
 
@@ -72,7 +70,7 @@ public class ConnectSiteCommand : OAuthCmdlet
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet4")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet5")]
     [Parameter(Mandatory = true, ParameterSetName = "ParamSet7")]
-    public string? ClientId { get; private set; }
+    public string? ClientId { get; private set; } = Environment.GetEnvironmentVariable("SPCLIENTCORE_CLIENT_ID");
 
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet1")]
     [Parameter(Mandatory = false, ParameterSetName = "ParamSet2")]

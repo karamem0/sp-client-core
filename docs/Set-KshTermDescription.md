@@ -1,0 +1,87 @@
+---
+Module Name: SPClientCore
+external help file: SPClientCore.dll-Help.xml
+schema: 2.0.0
+---
+
+# Set-KshTermDescription
+
+## SYNOPSIS
+Set term description.
+
+## SYNTAX
+
+```
+Set-KshTermDescription [-Term] <Term> [-Description] <String> [-Lcid] <UInt32>
+ [-ProgressAction <ActionPreference>] [<CommonParameters>]
+```
+
+## PARAMETERS
+
+### -Description
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Lcid
+
+```yaml
+Type: UInt32
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Term
+
+```yaml
+Type: Term
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 0
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ProgressAction
+
+```yaml
+Type: ActionPreference
+Parameter Sets: (All)
+Aliases: proga
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+### None
+
+## OUTPUTS
+
+### System.Void
+

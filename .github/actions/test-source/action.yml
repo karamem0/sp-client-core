@@ -6,7 +6,7 @@ runs:
   using: composite
   steps:
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v4
+      uses: actions/setup-dotnet@v6
       with:
         dotnet-version: 10.0.x
     - name: Test source
@@ -19,7 +19,7 @@ runs:
       env:
         TARGET_FILE: source/Karamem0.SPClientCore.Test/Karamem0.SPClientCore.Test.csproj
     - name: Upload test results
-      uses: enricomi/publish-unit-test-result-action/linux@d0a4676d0e0b938bc201470d88276b7c74c712b3
+      uses: enricomi/publish-unit-test-result-action/linux@7622c5bf3d112a72ab4fa3951c2aa5723d8ab92d
       if: always()
       with:
         files: |

@@ -33,7 +33,7 @@
     Description = 'SharePoint Service Module for PowerShell'
 
     # Minimum version of the Windows PowerShell engine required by this module
-    PowerShellVersion = '7.6.6'
+    PowerShellVersion = '7.6.9'
 
     # Name of the Windows PowerShell host required by this module
     # PowerShellHostName = ''
